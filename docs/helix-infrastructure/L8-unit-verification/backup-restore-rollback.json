@@ -418,7 +418,7 @@
     }
   ],
   "remaining": [
-    "有限53caseと3局所probe以外の全shape/任意missing-null組合せ/全診断優先は未閉包。",
+    "原53case＋既存3局所probe＋R1独立6分岐probeのwhole期待を保存。これ以外の全shape/任意missing-null組合せ/意味診断の全優先・実source集合は未閉包。型到達probeの成功から意味oracle/実資格を生成しない。",
     "正式schema/codec/resolver、source/owner資格、実backup/restore/rollback、実consumer permissionは未成立。",
     "L6関数設計/L7対検証は未形成。製品実装は層外。実TDD/CI/L11/全92親430対意味閉包/Readyは未成立。"
   ],
@@ -434,7 +434,8 @@
       "held_target_unqualified",
       "restore_evidence_referenced_requires_actual_qualification",
       "rollback_recorded_incident_open",
-      "target_content_referenced_requires_actual_qualification"
+      "target_content_referenced_requires_actual_qualification",
+      "not_evaluated"
     ],
     "backup_state_candidate": [
       "not_evaluated",
@@ -484,7 +485,10 @@
       "source_revision",
       "target",
       "time_ref",
-      "unknown_compatibility_is_qualified"
+      "unknown_compatibility_is_qualified",
+      "restore",
+      "claim",
+      "execution_state"
     ],
     "failure_reasons.result": [
       "backup-expired",
@@ -535,18 +539,20 @@
     }
   },
   "deep_equality_rule": {
-    "objects": "objectのkey集合と各member値を比較する。keyの並び順は意味を持たない。",
-    "arrays": "配列長と各indexの値をindex昇順で比較する。",
-    "missing_vs_null": "object memberの欠如と明示nullは異なる。",
-    "scalar": "JSON scalarの型と値の両方が一致した場合だけ等しい。",
-    "fixed_fixture_limit": "固定53 rawと3 probeには、同じ比較位置でbooleanとnumberの型だけが異なる入力対はない。verify_static.pyのPython == はtrueと1等を同値扱いし得るため、その異型比較はcheckerで立証されていない。ここではJSON型を含む比較意味を定義するが、一般wire/codec実装や異型入力の検証成立は主張しない。"
+    "objects": "key集合と各memberのJSON型/値を再帰比較。key順は意味を持たず最初の差はsorted key順。",
+    "arrays": "長さと各index値を昇順比較。位置が片側だけに存在するとそのindexが差。",
+    "missing_vs_null": "key membershipで区別。欠如と明示nullは等しくない。",
+    "scalar": "bool/number/string/nullを別JSON型として比較。true≠1、false≠0。int/floatはnumberの値同値（一般float codecは未採用）。",
+    "first_difference_format": "memberを.、indexを[n]。root型/値差のpath空文字はpublic prefix後record。順序はstepsに全定義。"
   },
   "unit_scope": {
     "source_cases": 53,
     "local_compound_probes": 3,
     "public_functions": 3,
     "typed_calls": 56,
-    "original_raw_and_whole_expected": "原53 packet/全期待を不変保持。probeは別local projectionとして区別。すべてnot_executed。"
+    "original_raw_and_whole_expected": "原53 packet/全期待を不変保持。probeは別local projectionとして区別。すべてnot_executed。",
+    "r1_branch_probes": 6,
+    "typed_calls_including_r1": 62
   },
   "document_id": "HELIXINFRASTRUCTURE-L8-005",
   "pair": "HELIXINFRASTRUCTURE-L5-005",
@@ -20162,5 +20168,2758 @@
   ],
   "execution_state": "not_executed",
   "effect": "none",
-  "output_schema_ref": "HELIXINFRASTRUCTURE-L5-005#/logical_types/RecoveryAssessment"
+  "output_schema_ref": "docs/helix-infrastructure/L5-detail-design/backup-restore-rollback.json#/logical_types/1/schema",
+  "comparison_constants": {
+    "OWNER_BACKUP": "state-backup-owner/recovery-owner",
+    "OWNER_RECOVERY": "recovery-design-owner/OS",
+    "BACKUP_FIELDS": [
+      "completeness",
+      "source_revision",
+      "expiry_state",
+      "integrity_ref",
+      "location_ref",
+      "time_ref",
+      "receipt_ref",
+      "target"
+    ],
+    "CHECK_FIELDS": [
+      "integrity",
+      "dependency_reconnection",
+      "startup",
+      "verification"
+    ],
+    "RESTORE_FIELDS": [
+      "execution_result",
+      "receipt_ref",
+      "compatibility",
+      "backup_ref",
+      "environment"
+    ],
+    "ROLLBACK_FIELDS": [
+      "infrastructure_version_ref",
+      "config_ref",
+      "artifact_ref",
+      "dependency_ref",
+      "data_compatibility",
+      "procedure_ref",
+      "target"
+    ],
+    "EFFECTS": [
+      "backup",
+      "restore_write",
+      "rollback",
+      "consumer_overwrite",
+      "permission",
+      "deployment",
+      "incident_close",
+      "forward_fix_complete",
+      "acceptance",
+      "implementation_ready"
+    ],
+    "RETAINED": [
+      [
+        "retained_backup",
+        "original_backup"
+      ],
+      [
+        "retained_incident",
+        "original_incident"
+      ],
+      [
+        "retained_previous_eligible_state",
+        "original_previous_eligible_state"
+      ],
+      [
+        "retained_restore",
+        "original_restore"
+      ],
+      [
+        "retained_rollback_result",
+        "original_rollback_result"
+      ],
+      [
+        "retained_rollback_target",
+        "original_rollback_target"
+      ],
+      [
+        "retained_unfinished",
+        "original_unfinished"
+      ]
+    ],
+    "COMPLETE": "complete_in_fixture_only",
+    "VALID_EXPIRY": "valid_in_fixture_only",
+    "BACKUP_SUCCESS": "succeeded_in_fixture_only",
+    "CHECK_PASS": "passed_in_fixture_only",
+    "RESTORED": "restored_in_fixture_only",
+    "COMPATIBLE": "known_compatible_in_fixture_only",
+    "QUALIFIED": "qualified_in_fixture_only"
+  },
+  "output_domain_contract": {
+    "failure_field": {
+      "fixed_fields": [
+        "artifact_ref",
+        "backup",
+        "backup.receipt_ref",
+        "backup_ref",
+        "checks.dependency_reconnection",
+        "checks.integrity",
+        "checks.startup",
+        "checks.verification",
+        "compatibility",
+        "completeness",
+        "config_is_backup_success",
+        "config_ref",
+        "data_compatibility",
+        "dependency_ref",
+        "environment",
+        "execution_is_incident_closed",
+        "execution_result",
+        "existence_is_restore_pass",
+        "expiry_state",
+        "infrastructure_version_ref",
+        "integrity_ref",
+        "location_ref",
+        "procedure_ref",
+        "receipt_ref",
+        "restore.receipt_ref",
+        "rollback_result",
+        "rollback_target",
+        "rollback_target.procedure_ref",
+        "source_revision",
+        "target",
+        "time_ref",
+        "unknown_compatibility_is_qualified",
+        "restore",
+        "claim",
+        "execution_state"
+      ],
+      "difference_prefixes": [
+        "backup.",
+        "restore.",
+        "rollback_target."
+      ],
+      "path_grammar": "rootはrecord、memberはASCII identifierを.連結、indexは[n]（nは非負10進整数）。first_differenceの既知carrier key/indexからだけ構成。",
+      "claim_passthrough": "F01/F03は拒否分岐のinput.claims[0]をそのままfieldに返せる。空文字を含む原stringを勝手に未知labelへ置換しない。",
+      "domain_limit": "任意field literalを発明してよい意味ではない。独立checkerは固定field/構成path/原claimへの値joinを検証する。"
+    },
+    "rejected_claims": {
+      "source": "input.claims",
+      "rule": "拒否分岐では入力の全string順序/重複をそのまま保持、他は[]。観測6語に閉じない。"
+    },
+    "observed_labels": "output_literal_domainsのfield/rejected_claims listは原sourceの固定語彙例であり、dependent domainを排除するclosed enumではない。result/state/candidates/ownersは明示enum。"
+  },
+  "unknown_key_boundary": "RecoveryPacket/Assessmentはこの有限論理carrierの宣言memberだけを持つ。raw全文はL8 source_raw_utf8へ不変保存し、宣言外keyを黙って捨てない。typed fixtureのclosed carrier検査は正式wire/schemaの未知key拒否/許容policyではない。metadata/hash/state markerと実source資格/必要集合を分離する。",
+  "constant_source_basis": [
+    {
+      "constants": [
+        "COMPLETE",
+        "VALID_EXPIRY",
+        "BACKUP_SUCCESS"
+      ],
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "json_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+      "decoded_paths": {
+        "COMPLETE": "/original_backup/completeness",
+        "VALID_EXPIRY": "/original_backup/expiry_state",
+        "BACKUP_SUCCESS": "/original_backup/execution_state"
+      },
+      "meaning": "原正例の合成成功marker。実成功/時刻/資格ではない。"
+    },
+    {
+      "constants": [
+        "CHECK_PASS",
+        "RESTORED",
+        "COMPATIBLE",
+        "QUALIFIED"
+      ],
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "json_pointer": "/verification_obligations/1/cases/0/independent_source_packet/raw_utf8",
+      "decoded_paths": {
+        "CHECK_PASS": "/original_restore/checks/integrity/result",
+        "RESTORED": "/original_restore/execution_result",
+        "COMPATIBLE": "/original_restore/compatibility",
+        "QUALIFIED": "/original_restore/environment/independent"
+      },
+      "meaning": "原4check/restore/compatibility/独立環境の合成marker。実sourceはunclosed_source_supply。"
+    }
+  ],
+  "output_schema_binding": {
+    "kind": "candidate_document",
+    "path": "docs/helix-infrastructure/L5-detail-design/backup-restore-rollback.json",
+    "json_pointer": "/logical_types/1/schema",
+    "revision_policy": "同candidate内の型参照。base revisionの未存在新pathを指定しない。"
+  },
+  "owner_literal_boundary": {
+    "values": {
+      "state-backup-owner/recovery-owner": "L9 F01のexpected_materialに固定されたfixture返却ラベル。L4 F01の「state/recovery owner」という戻し先の役割表示に対応する。",
+      "recovery-design-owner/OS": "L9 F02/F03のexpected_materialに固定されたfixture返却ラベル。L4 F02/F03の「recovery owner/OS」または「recovery design owner/OS」という戻し先の役割表示に対応する。"
+    },
+    "boundary": "これらはL9 oracle内の合成ラベルで、実在owner identity、source資格、受入済consumer、route authorityの証拠ではない。raw packetのowner文字列からこの返却値を資格化せず、固定L9 expectedとのfixture照合にのみ使う。",
+    "source_bindings": [
+      {
+        "output_value": "state-backup-owner/recovery-owner",
+        "requirement_source": {
+          "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+          "json_pointer": "/contracts/0/content_rules/2",
+          "role_text": "state/recovery owner and OS"
+        },
+        "fixture_oracle_source": {
+          "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+          "selection": "F01 cases whose expected_material.failure_reasons is nonempty; exact literal is in each expected failure.return_owner"
+        },
+        "interpretation": "合成fixture返却tokenであり実ownerを特定しない。"
+      },
+      {
+        "output_value": "recovery-design-owner/OS",
+        "fixture_oracle_source": {
+          "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+          "selection": "F02 and F03 cases whose expected_material.failure_reasons is nonempty; exact literal is in each expected failure.return_owner"
+        },
+        "interpretation": "合成fixture返却tokenであり実ownerを特定しない。",
+        "requirement_sources": [
+          {
+            "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+            "json_pointer": "/contracts/1/content_rules/2"
+          },
+          {
+            "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+            "json_pointer": "/contracts/2/content_rules/2"
+          }
+        ]
+      }
+    ]
+  },
+  "r1_resolution": {
+    "comment_id": 6182595369,
+    "reviewed_head": "55684dbc883b857c7dc866962bb26bb64f8bc700",
+    "body_sha256": "01c50789c29a1a75f5741f199a2c43875a3e59e9b3c2efeb75e3a1723c94474c",
+    "findings": [
+      "INFRA05D-01",
+      "INFRA05D-02",
+      "INFRA05D-03",
+      "INFRA05D-04"
+    ],
+    "state": "corrected_pending_parent_and_independent_review",
+    "original_and_local_56_expected": "unchanged",
+    "verification_rule": "正式L5 raw_comparison_reference.steps＋comparison_constantsだけを独立checkerで解釈し全whole/再帰型へ比較。補助assess/author/importなし。"
+  },
+  "r1_branch_cases": [
+    {
+      "id": "R1-F01-NOT-CONFIGURED",
+      "root_kind": "F01",
+      "function_ref": "INFRA005-F01",
+      "baseline_case_ref": "I005-F01-CONFIG-ONLY",
+      "source_mutations": [
+        {
+          "path": [
+            "backup_configured"
+          ],
+          "before": true,
+          "after": false
+        }
+      ],
+      "source_raw_utf8": "{\"backup_configured\":false,\"backup_exists\":false,\"claims\":[],\"original_backup\":null,\"original_incident\":{\"owner\":\"OS-incident-owner\",\"ref\":\"INCIDENT-P@r2\",\"state\":\"open\"},\"original_previous_eligible_state\":{\"owner\":\"state-owner\",\"ref\":\"ELIGIBLE-STATE-P@r1\"},\"original_restore\":null,\"original_rollback_result\":{\"execution_state\":\"not_executed\",\"receipt_ref\":null,\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"original_unfinished\":[\"recovery_verification_pending\",\"incident_not_closed\"],\"recovery_requirement_ref\":\"RECOVERY-P@r2\",\"retention_requirement_ref\":\"RETENTION-P@r2\",\"state_owner_ref\":\"STATE-OWNER-P@r2\",\"submitted_backup\":null,\"submitted_restore\":null,\"submitted_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}}",
+      "source_raw_utf8_sha256": "bb3d7a497a7f7b3e215b85095916777fa07557684b843b985160f37a59e862ff",
+      "typed_input": {
+        "backup_configured": false,
+        "backup_exists": false,
+        "claims": [],
+        "original_backup": null,
+        "original_incident": {
+          "owner": "OS-incident-owner",
+          "ref": "INCIDENT-P@r2",
+          "state": "open"
+        },
+        "original_previous_eligible_state": {
+          "owner": "state-owner",
+          "ref": "ELIGIBLE-STATE-P@r1"
+        },
+        "original_restore": null,
+        "original_rollback_result": {
+          "execution_state": "not_executed",
+          "receipt_ref": null,
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_target": {
+          "environment": "ENV-STAGING",
+          "resource": "STATE-P",
+          "scope": "PRODUCT-P",
+          "source_revision": "STATE-P-r2"
+        },
+        "original_unfinished": [
+          "recovery_verification_pending",
+          "incident_not_closed"
+        ],
+        "recovery_requirement_ref": "RECOVERY-P@r2",
+        "retention_requirement_ref": "RETENTION-P@r2",
+        "state_owner_ref": "STATE-OWNER-P@r2",
+        "submitted_backup": null,
+        "submitted_restore": null,
+        "submitted_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        }
+      },
+      "expected_output": {
+        "information_state": "not_evaluated",
+        "backup_state_candidate": "not_evaluated",
+        "restore_state_candidate": "not_evaluated",
+        "rollback_target_candidate": "not_evaluated",
+        "retained_backup": null,
+        "retained_restore": null,
+        "retained_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_rollback_result": {
+          "execution_state": "not_executed",
+          "receipt_ref": null,
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_previous_eligible_state": {
+          "owner": "state-owner",
+          "ref": "ELIGIBLE-STATE-P@r1"
+        },
+        "retained_incident": {
+          "owner": "OS-incident-owner",
+          "ref": "INCIDENT-P@r2",
+          "state": "open"
+        },
+        "retained_unfinished": [
+          "recovery_verification_pending",
+          "incident_not_closed"
+        ],
+        "failure_reasons": [],
+        "return_owners": [],
+        "rejected_claims": [],
+        "actual_effects": {
+          "backup": false,
+          "restore_write": false,
+          "rollback": false,
+          "consumer_overwrite": false,
+          "permission": false,
+          "deployment": false,
+          "incident_close": false,
+          "forward_fix_complete": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "expected_canonical_sha256": "b12da548fd77c9ca61af9acfbd005dfd06e07685ef0c02cec48e4f87ca35dad4",
+      "independent_oracle_rule": "L4 F01設定/実行/存在/restoreの分離。原backup nullかつ設定なしで成功/実行を生成せず全candidate未評価。",
+      "basis": {
+        "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+        "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+        "json_pointer": "/contracts/0/content_rules"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "id": "R1-F01-EXECUTION-FAILED",
+      "root_kind": "F01",
+      "function_ref": "INFRA005-F01",
+      "baseline_case_ref": "I005-F01-BACKUP-RECORDED",
+      "source_mutations": [
+        {
+          "path": [
+            "original_backup",
+            "execution_state"
+          ],
+          "before": "succeeded_in_fixture_only",
+          "after": "failed"
+        },
+        {
+          "path": [
+            "submitted_backup",
+            "execution_state"
+          ],
+          "before": "succeeded_in_fixture_only",
+          "after": "failed"
+        }
+      ],
+      "source_raw_utf8": "{\"backup_configured\":true,\"backup_exists\":true,\"claims\":[],\"original_backup\":{\"completeness\":\"complete_in_fixture_only\",\"execution_state\":\"failed\",\"expiry_state\":\"valid_in_fixture_only\",\"integrity_ref\":\"INTEGRITY-P@r2\",\"location_ref\":\"STORE-P@r2\",\"owner\":\"state-backup-owner\",\"receipt_ref\":\"BACKUP-RECEIPT-P@r2\",\"source_revision\":\"STATE-P-r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"time_ref\":\"OWNER-TIME-P@r2\"},\"original_incident\":{\"owner\":\"OS-incident-owner\",\"ref\":\"INCIDENT-P@r2\",\"state\":\"open\"},\"original_previous_eligible_state\":{\"owner\":\"state-owner\",\"ref\":\"ELIGIBLE-STATE-P@r1\"},\"original_restore\":null,\"original_rollback_result\":{\"execution_state\":\"not_executed\",\"receipt_ref\":null,\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"original_unfinished\":[\"recovery_verification_pending\",\"incident_not_closed\"],\"recovery_requirement_ref\":\"RECOVERY-P@r2\",\"retention_requirement_ref\":\"RETENTION-P@r2\",\"state_owner_ref\":\"STATE-OWNER-P@r2\",\"submitted_backup\":{\"completeness\":\"complete_in_fixture_only\",\"execution_state\":\"failed\",\"expiry_state\":\"valid_in_fixture_only\",\"integrity_ref\":\"INTEGRITY-P@r2\",\"location_ref\":\"STORE-P@r2\",\"owner\":\"state-backup-owner\",\"receipt_ref\":\"BACKUP-RECEIPT-P@r2\",\"source_revision\":\"STATE-P-r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"time_ref\":\"OWNER-TIME-P@r2\"},\"submitted_restore\":null,\"submitted_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}}",
+      "source_raw_utf8_sha256": "ec04366214b088f15491375a99b1c4cebffc14ac5469e5e4aabb5f8f057fed4d",
+      "typed_input": {
+        "backup_configured": true,
+        "backup_exists": true,
+        "claims": [],
+        "original_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "failed",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "original_incident": {
+          "owner": "OS-incident-owner",
+          "ref": "INCIDENT-P@r2",
+          "state": "open"
+        },
+        "original_previous_eligible_state": {
+          "owner": "state-owner",
+          "ref": "ELIGIBLE-STATE-P@r1"
+        },
+        "original_restore": null,
+        "original_rollback_result": {
+          "execution_state": "not_executed",
+          "receipt_ref": null,
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_target": {
+          "environment": "ENV-STAGING",
+          "resource": "STATE-P",
+          "scope": "PRODUCT-P",
+          "source_revision": "STATE-P-r2"
+        },
+        "original_unfinished": [
+          "recovery_verification_pending",
+          "incident_not_closed"
+        ],
+        "recovery_requirement_ref": "RECOVERY-P@r2",
+        "retention_requirement_ref": "RETENTION-P@r2",
+        "state_owner_ref": "STATE-OWNER-P@r2",
+        "submitted_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "failed",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "submitted_restore": null,
+        "submitted_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        }
+      },
+      "expected_output": {
+        "information_state": "held_backup_unqualified",
+        "backup_state_candidate": "not_qualified",
+        "restore_state_candidate": "not_evaluated",
+        "rollback_target_candidate": "not_evaluated",
+        "retained_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "failed",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "retained_restore": null,
+        "retained_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_rollback_result": {
+          "execution_state": "not_executed",
+          "receipt_ref": null,
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_previous_eligible_state": {
+          "owner": "state-owner",
+          "ref": "ELIGIBLE-STATE-P@r1"
+        },
+        "retained_incident": {
+          "owner": "OS-incident-owner",
+          "ref": "INCIDENT-P@r2",
+          "state": "open"
+        },
+        "retained_unfinished": [
+          "recovery_verification_pending",
+          "incident_not_closed"
+        ],
+        "failure_reasons": [
+          {
+            "field": "execution_state",
+            "result": "unqualified_backup",
+            "return_owner": "state-backup-owner/recovery-owner"
+          }
+        ],
+        "return_owners": [
+          "state-backup-owner/recovery-owner"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "backup": false,
+          "restore_write": false,
+          "rollback": false,
+          "consumer_overwrite": false,
+          "permission": false,
+          "deployment": false,
+          "incident_close": false,
+          "forward_fix_complete": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "expected_canonical_sha256": "3b57f9dc49343fe518a3b994144963ea1ad02c68bd820c7dd2e23868fa5f96ce",
+      "independent_oracle_rule": "L3/L4 F01は実execution stateが成功でなければ候補成功にしない。全先行field正常の後にexecution stateを照合。",
+      "basis": {
+        "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+        "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+        "json_pointer": "/contracts/0/content_rules"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "id": "R1-F02-RESTORE-NULL",
+      "root_kind": "F02",
+      "function_ref": "INFRA005-F02",
+      "baseline_case_ref": "I005-F02-RESTORE-ALL-CHECKS",
+      "source_mutations": [
+        {
+          "path": [
+            "original_restore"
+          ],
+          "before": {
+            "backup_ref": "BACKUP-P@r2",
+            "checks": {
+              "dependency_reconnection": {
+                "evidence_ref": "DEPENDENCY_RECONNECTION-P@r2",
+                "owner": "independent-verification-owner",
+                "result": "passed_in_fixture_only",
+                "target": {
+                  "environment": "ENV-STAGING",
+                  "resource": "STATE-P",
+                  "scope": "PRODUCT-P",
+                  "source_revision": "STATE-P-r2"
+                }
+              },
+              "integrity": {
+                "evidence_ref": "INTEGRITY-P@r2",
+                "owner": "independent-verification-owner",
+                "result": "passed_in_fixture_only",
+                "target": {
+                  "environment": "ENV-STAGING",
+                  "resource": "STATE-P",
+                  "scope": "PRODUCT-P",
+                  "source_revision": "STATE-P-r2"
+                }
+              },
+              "startup": {
+                "evidence_ref": "STARTUP-P@r2",
+                "owner": "independent-verification-owner",
+                "result": "passed_in_fixture_only",
+                "target": {
+                  "environment": "ENV-STAGING",
+                  "resource": "STATE-P",
+                  "scope": "PRODUCT-P",
+                  "source_revision": "STATE-P-r2"
+                }
+              },
+              "verification": {
+                "evidence_ref": "VERIFICATION-P@r2",
+                "owner": "independent-verification-owner",
+                "result": "passed_in_fixture_only",
+                "target": {
+                  "environment": "ENV-STAGING",
+                  "resource": "STATE-P",
+                  "scope": "PRODUCT-P",
+                  "source_revision": "STATE-P-r2"
+                }
+              }
+            },
+            "compatibility": "known_compatible_in_fixture_only",
+            "environment": {
+              "identity": "ENV-RESTORE-P",
+              "independent": "qualified_in_fixture_only",
+              "owner": "recovery-design-owner"
+            },
+            "execution_result": "restored_in_fixture_only",
+            "receipt_ref": "RESTORE-RECEIPT-P@r2",
+            "target": {
+              "environment": "ENV-STAGING",
+              "resource": "STATE-P",
+              "scope": "PRODUCT-P",
+              "source_revision": "STATE-P-r2"
+            }
+          },
+          "after": null
+        },
+        {
+          "path": [
+            "submitted_restore"
+          ],
+          "before": {
+            "backup_ref": "BACKUP-P@r2",
+            "checks": {
+              "dependency_reconnection": {
+                "evidence_ref": "DEPENDENCY_RECONNECTION-P@r2",
+                "owner": "independent-verification-owner",
+                "result": "passed_in_fixture_only",
+                "target": {
+                  "environment": "ENV-STAGING",
+                  "resource": "STATE-P",
+                  "scope": "PRODUCT-P",
+                  "source_revision": "STATE-P-r2"
+                }
+              },
+              "integrity": {
+                "evidence_ref": "INTEGRITY-P@r2",
+                "owner": "independent-verification-owner",
+                "result": "passed_in_fixture_only",
+                "target": {
+                  "environment": "ENV-STAGING",
+                  "resource": "STATE-P",
+                  "scope": "PRODUCT-P",
+                  "source_revision": "STATE-P-r2"
+                }
+              },
+              "startup": {
+                "evidence_ref": "STARTUP-P@r2",
+                "owner": "independent-verification-owner",
+                "result": "passed_in_fixture_only",
+                "target": {
+                  "environment": "ENV-STAGING",
+                  "resource": "STATE-P",
+                  "scope": "PRODUCT-P",
+                  "source_revision": "STATE-P-r2"
+                }
+              },
+              "verification": {
+                "evidence_ref": "VERIFICATION-P@r2",
+                "owner": "independent-verification-owner",
+                "result": "passed_in_fixture_only",
+                "target": {
+                  "environment": "ENV-STAGING",
+                  "resource": "STATE-P",
+                  "scope": "PRODUCT-P",
+                  "source_revision": "STATE-P-r2"
+                }
+              }
+            },
+            "compatibility": "known_compatible_in_fixture_only",
+            "environment": {
+              "identity": "ENV-RESTORE-P",
+              "independent": "qualified_in_fixture_only",
+              "owner": "recovery-design-owner"
+            },
+            "execution_result": "restored_in_fixture_only",
+            "receipt_ref": "RESTORE-RECEIPT-P@r2",
+            "target": {
+              "environment": "ENV-STAGING",
+              "resource": "STATE-P",
+              "scope": "PRODUCT-P",
+              "source_revision": "STATE-P-r2"
+            }
+          },
+          "after": null
+        }
+      ],
+      "source_raw_utf8": "{\"backup_configured\":true,\"backup_exists\":true,\"claims\":[],\"original_backup\":{\"completeness\":\"complete_in_fixture_only\",\"execution_state\":\"succeeded_in_fixture_only\",\"expiry_state\":\"valid_in_fixture_only\",\"integrity_ref\":\"INTEGRITY-P@r2\",\"location_ref\":\"STORE-P@r2\",\"owner\":\"state-backup-owner\",\"receipt_ref\":\"BACKUP-RECEIPT-P@r2\",\"source_revision\":\"STATE-P-r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"time_ref\":\"OWNER-TIME-P@r2\"},\"original_incident\":{\"owner\":\"OS-incident-owner\",\"ref\":\"INCIDENT-P@r2\",\"state\":\"open\"},\"original_previous_eligible_state\":{\"owner\":\"state-owner\",\"ref\":\"ELIGIBLE-STATE-P@r1\"},\"original_restore\":null,\"original_rollback_result\":{\"execution_state\":\"not_executed\",\"receipt_ref\":null,\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"original_unfinished\":[\"recovery_verification_pending\",\"incident_not_closed\"],\"recovery_requirement_ref\":\"RECOVERY-P@r2\",\"retention_requirement_ref\":\"RETENTION-P@r2\",\"state_owner_ref\":\"STATE-OWNER-P@r2\",\"submitted_backup\":{\"completeness\":\"complete_in_fixture_only\",\"execution_state\":\"succeeded_in_fixture_only\",\"expiry_state\":\"valid_in_fixture_only\",\"integrity_ref\":\"INTEGRITY-P@r2\",\"location_ref\":\"STORE-P@r2\",\"owner\":\"state-backup-owner\",\"receipt_ref\":\"BACKUP-RECEIPT-P@r2\",\"source_revision\":\"STATE-P-r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"time_ref\":\"OWNER-TIME-P@r2\"},\"submitted_restore\":null,\"submitted_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}}",
+      "source_raw_utf8_sha256": "3dd1ebfe081baff2ca3a1218480d7bf0f1eae5a6dbeb3c9659e39feae0aab5bb",
+      "typed_input": {
+        "backup_configured": true,
+        "backup_exists": true,
+        "claims": [],
+        "original_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "succeeded_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "original_incident": {
+          "owner": "OS-incident-owner",
+          "ref": "INCIDENT-P@r2",
+          "state": "open"
+        },
+        "original_previous_eligible_state": {
+          "owner": "state-owner",
+          "ref": "ELIGIBLE-STATE-P@r1"
+        },
+        "original_restore": null,
+        "original_rollback_result": {
+          "execution_state": "not_executed",
+          "receipt_ref": null,
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_target": {
+          "environment": "ENV-STAGING",
+          "resource": "STATE-P",
+          "scope": "PRODUCT-P",
+          "source_revision": "STATE-P-r2"
+        },
+        "original_unfinished": [
+          "recovery_verification_pending",
+          "incident_not_closed"
+        ],
+        "recovery_requirement_ref": "RECOVERY-P@r2",
+        "retention_requirement_ref": "RETENTION-P@r2",
+        "state_owner_ref": "STATE-OWNER-P@r2",
+        "submitted_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "succeeded_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "submitted_restore": null,
+        "submitted_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        }
+      },
+      "expected_output": {
+        "information_state": "held_restore_unqualified",
+        "backup_state_candidate": "not_evaluated",
+        "restore_state_candidate": "not_qualified",
+        "rollback_target_candidate": "not_evaluated",
+        "retained_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "succeeded_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "retained_restore": null,
+        "retained_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_rollback_result": {
+          "execution_state": "not_executed",
+          "receipt_ref": null,
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_previous_eligible_state": {
+          "owner": "state-owner",
+          "ref": "ELIGIBLE-STATE-P@r1"
+        },
+        "retained_incident": {
+          "owner": "OS-incident-owner",
+          "ref": "INCIDENT-P@r2",
+          "state": "open"
+        },
+        "retained_unfinished": [
+          "recovery_verification_pending",
+          "incident_not_closed"
+        ],
+        "failure_reasons": [
+          {
+            "field": "restore",
+            "result": "missing",
+            "return_owner": "recovery-design-owner/OS"
+          }
+        ],
+        "return_owners": [
+          "recovery-design-owner/OS"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "backup": false,
+          "restore_write": false,
+          "rollback": false,
+          "consumer_overwrite": false,
+          "permission": false,
+          "deployment": false,
+          "incident_close": false,
+          "forward_fix_complete": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "expected_canonical_sha256": "1b880f0fc5bb6d9cfb845f0a24c762cab22a8a4963cffb5131e3c25302e7e1dc",
+      "independent_oracle_rule": "L4 F02実restore結果が無ければmissing。原nullを保持しbackup存在で補わない。",
+      "basis": {
+        "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+        "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+        "json_pointer": "/contracts/1/content_rules"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "id": "R1-F02-CLAIM-WITH-ALL-CHECKS",
+      "root_kind": "F02",
+      "function_ref": "INFRA005-F02",
+      "baseline_case_ref": "I005-F02-RESTORE-ALL-CHECKS",
+      "source_mutations": [
+        {
+          "path": [
+            "claims"
+          ],
+          "before": [],
+          "after": [
+            "local_unqualified_inference"
+          ]
+        }
+      ],
+      "source_raw_utf8": "{\"backup_configured\":true,\"backup_exists\":true,\"claims\":[\"local_unqualified_inference\"],\"original_backup\":{\"completeness\":\"complete_in_fixture_only\",\"execution_state\":\"succeeded_in_fixture_only\",\"expiry_state\":\"valid_in_fixture_only\",\"integrity_ref\":\"INTEGRITY-P@r2\",\"location_ref\":\"STORE-P@r2\",\"owner\":\"state-backup-owner\",\"receipt_ref\":\"BACKUP-RECEIPT-P@r2\",\"source_revision\":\"STATE-P-r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"time_ref\":\"OWNER-TIME-P@r2\"},\"original_incident\":{\"owner\":\"OS-incident-owner\",\"ref\":\"INCIDENT-P@r2\",\"state\":\"open\"},\"original_previous_eligible_state\":{\"owner\":\"state-owner\",\"ref\":\"ELIGIBLE-STATE-P@r1\"},\"original_restore\":{\"backup_ref\":\"BACKUP-P@r2\",\"checks\":{\"dependency_reconnection\":{\"evidence_ref\":\"DEPENDENCY_RECONNECTION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"integrity\":{\"evidence_ref\":\"INTEGRITY-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"startup\":{\"evidence_ref\":\"STARTUP-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"verification\":{\"evidence_ref\":\"VERIFICATION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}},\"compatibility\":\"known_compatible_in_fixture_only\",\"environment\":{\"identity\":\"ENV-RESTORE-P\",\"independent\":\"qualified_in_fixture_only\",\"owner\":\"recovery-design-owner\"},\"execution_result\":\"restored_in_fixture_only\",\"receipt_ref\":\"RESTORE-RECEIPT-P@r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_rollback_result\":{\"execution_state\":\"not_executed\",\"receipt_ref\":null,\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"original_unfinished\":[\"recovery_verification_pending\",\"incident_not_closed\"],\"recovery_requirement_ref\":\"RECOVERY-P@r2\",\"retention_requirement_ref\":\"RETENTION-P@r2\",\"state_owner_ref\":\"STATE-OWNER-P@r2\",\"submitted_backup\":{\"completeness\":\"complete_in_fixture_only\",\"execution_state\":\"succeeded_in_fixture_only\",\"expiry_state\":\"valid_in_fixture_only\",\"integrity_ref\":\"INTEGRITY-P@r2\",\"location_ref\":\"STORE-P@r2\",\"owner\":\"state-backup-owner\",\"receipt_ref\":\"BACKUP-RECEIPT-P@r2\",\"source_revision\":\"STATE-P-r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"time_ref\":\"OWNER-TIME-P@r2\"},\"submitted_restore\":{\"backup_ref\":\"BACKUP-P@r2\",\"checks\":{\"dependency_reconnection\":{\"evidence_ref\":\"DEPENDENCY_RECONNECTION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"integrity\":{\"evidence_ref\":\"INTEGRITY-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"startup\":{\"evidence_ref\":\"STARTUP-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"verification\":{\"evidence_ref\":\"VERIFICATION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}},\"compatibility\":\"known_compatible_in_fixture_only\",\"environment\":{\"identity\":\"ENV-RESTORE-P\",\"independent\":\"qualified_in_fixture_only\",\"owner\":\"recovery-design-owner\"},\"execution_result\":\"restored_in_fixture_only\",\"receipt_ref\":\"RESTORE-RECEIPT-P@r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"submitted_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}}",
+      "source_raw_utf8_sha256": "f91ff55e2b1d6b97570c9b0628fbfb7d8b56ec9fd0bba2989118a5a375629df6",
+      "typed_input": {
+        "backup_configured": true,
+        "backup_exists": true,
+        "claims": [
+          "local_unqualified_inference"
+        ],
+        "original_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "succeeded_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "original_incident": {
+          "owner": "OS-incident-owner",
+          "ref": "INCIDENT-P@r2",
+          "state": "open"
+        },
+        "original_previous_eligible_state": {
+          "owner": "state-owner",
+          "ref": "ELIGIBLE-STATE-P@r1"
+        },
+        "original_restore": {
+          "backup_ref": "BACKUP-P@r2",
+          "checks": {
+            "dependency_reconnection": {
+              "evidence_ref": "DEPENDENCY_RECONNECTION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "integrity": {
+              "evidence_ref": "INTEGRITY-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "startup": {
+              "evidence_ref": "STARTUP-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "verification": {
+              "evidence_ref": "VERIFICATION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            }
+          },
+          "compatibility": "known_compatible_in_fixture_only",
+          "environment": {
+            "identity": "ENV-RESTORE-P",
+            "independent": "qualified_in_fixture_only",
+            "owner": "recovery-design-owner"
+          },
+          "execution_result": "restored_in_fixture_only",
+          "receipt_ref": "RESTORE-RECEIPT-P@r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_rollback_result": {
+          "execution_state": "not_executed",
+          "receipt_ref": null,
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_target": {
+          "environment": "ENV-STAGING",
+          "resource": "STATE-P",
+          "scope": "PRODUCT-P",
+          "source_revision": "STATE-P-r2"
+        },
+        "original_unfinished": [
+          "recovery_verification_pending",
+          "incident_not_closed"
+        ],
+        "recovery_requirement_ref": "RECOVERY-P@r2",
+        "retention_requirement_ref": "RETENTION-P@r2",
+        "state_owner_ref": "STATE-OWNER-P@r2",
+        "submitted_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "succeeded_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "submitted_restore": {
+          "backup_ref": "BACKUP-P@r2",
+          "checks": {
+            "dependency_reconnection": {
+              "evidence_ref": "DEPENDENCY_RECONNECTION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "integrity": {
+              "evidence_ref": "INTEGRITY-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "startup": {
+              "evidence_ref": "STARTUP-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "verification": {
+              "evidence_ref": "VERIFICATION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            }
+          },
+          "compatibility": "known_compatible_in_fixture_only",
+          "environment": {
+            "identity": "ENV-RESTORE-P",
+            "independent": "qualified_in_fixture_only",
+            "owner": "recovery-design-owner"
+          },
+          "execution_result": "restored_in_fixture_only",
+          "receipt_ref": "RESTORE-RECEIPT-P@r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "submitted_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        }
+      },
+      "expected_output": {
+        "information_state": "held_claim_rejected",
+        "backup_state_candidate": "not_evaluated",
+        "restore_state_candidate": "not_qualified",
+        "rollback_target_candidate": "not_evaluated",
+        "retained_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "succeeded_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "retained_restore": {
+          "backup_ref": "BACKUP-P@r2",
+          "checks": {
+            "dependency_reconnection": {
+              "evidence_ref": "DEPENDENCY_RECONNECTION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "integrity": {
+              "evidence_ref": "INTEGRITY-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "startup": {
+              "evidence_ref": "STARTUP-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "verification": {
+              "evidence_ref": "VERIFICATION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            }
+          },
+          "compatibility": "known_compatible_in_fixture_only",
+          "environment": {
+            "identity": "ENV-RESTORE-P",
+            "independent": "qualified_in_fixture_only",
+            "owner": "recovery-design-owner"
+          },
+          "execution_result": "restored_in_fixture_only",
+          "receipt_ref": "RESTORE-RECEIPT-P@r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_rollback_result": {
+          "execution_state": "not_executed",
+          "receipt_ref": null,
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_previous_eligible_state": {
+          "owner": "state-owner",
+          "ref": "ELIGIBLE-STATE-P@r1"
+        },
+        "retained_incident": {
+          "owner": "OS-incident-owner",
+          "ref": "INCIDENT-P@r2",
+          "state": "open"
+        },
+        "retained_unfinished": [
+          "recovery_verification_pending",
+          "incident_not_closed"
+        ],
+        "failure_reasons": [
+          {
+            "field": "claim",
+            "result": "unsupported_inference",
+            "return_owner": "recovery-design-owner/OS"
+          }
+        ],
+        "return_owners": [
+          "recovery-design-owner/OS"
+        ],
+        "rejected_claims": [
+          "local_unqualified_inference"
+        ],
+        "actual_effects": {
+          "backup": false,
+          "restore_write": false,
+          "rollback": false,
+          "consumer_overwrite": false,
+          "permission": false,
+          "deployment": false,
+          "incident_close": false,
+          "forward_fix_complete": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "expected_canonical_sha256": "c9e3043f9c0e3b0b009bd6aed6689c21041177bcae8bb8c3daf72b1db7d34325",
+      "independent_oracle_rule": "L3/L4 F02知見のないclaimを実restore成立へ昇格しない。先行failureがない場合の有限fallbackを独立に固定。実資格の免除/発行ではない。",
+      "basis": {
+        "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+        "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+        "json_pointer": "/contracts/1/content_rules"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "id": "R1-F02-CONTENT-BEFORE-CLAIM",
+      "root_kind": "F02",
+      "function_ref": "INFRA005-F02",
+      "baseline_case_ref": "I005-F02-SUBMITTED-FOREIGN",
+      "source_mutations": [
+        {
+          "path": [
+            "claims"
+          ],
+          "before": [],
+          "after": [
+            "local_unqualified_inference"
+          ]
+        }
+      ],
+      "source_raw_utf8": "{\"backup_configured\":true,\"backup_exists\":true,\"claims\":[\"local_unqualified_inference\"],\"original_backup\":{\"completeness\":\"complete_in_fixture_only\",\"execution_state\":\"succeeded_in_fixture_only\",\"expiry_state\":\"valid_in_fixture_only\",\"integrity_ref\":\"INTEGRITY-P@r2\",\"location_ref\":\"STORE-P@r2\",\"owner\":\"state-backup-owner\",\"receipt_ref\":\"BACKUP-RECEIPT-P@r2\",\"source_revision\":\"STATE-P-r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"time_ref\":\"OWNER-TIME-P@r2\"},\"original_incident\":{\"owner\":\"OS-incident-owner\",\"ref\":\"INCIDENT-P@r2\",\"state\":\"open\"},\"original_previous_eligible_state\":{\"owner\":\"state-owner\",\"ref\":\"ELIGIBLE-STATE-P@r1\"},\"original_restore\":{\"backup_ref\":\"BACKUP-P@r2\",\"checks\":{\"dependency_reconnection\":{\"evidence_ref\":\"DEPENDENCY_RECONNECTION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"integrity\":{\"evidence_ref\":\"INTEGRITY-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"startup\":{\"evidence_ref\":\"STARTUP-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"verification\":{\"evidence_ref\":\"VERIFICATION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}},\"compatibility\":\"known_compatible_in_fixture_only\",\"environment\":{\"identity\":\"ENV-RESTORE-P\",\"independent\":\"qualified_in_fixture_only\",\"owner\":\"recovery-design-owner\"},\"execution_result\":\"restored_in_fixture_only\",\"receipt_ref\":\"RESTORE-RECEIPT-P@r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_rollback_result\":{\"execution_state\":\"not_executed\",\"receipt_ref\":null,\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"original_unfinished\":[\"recovery_verification_pending\",\"incident_not_closed\"],\"recovery_requirement_ref\":\"RECOVERY-P@r2\",\"retention_requirement_ref\":\"RETENTION-P@r2\",\"state_owner_ref\":\"STATE-OWNER-P@r2\",\"submitted_backup\":{\"completeness\":\"complete_in_fixture_only\",\"execution_state\":\"succeeded_in_fixture_only\",\"expiry_state\":\"valid_in_fixture_only\",\"integrity_ref\":\"INTEGRITY-P@r2\",\"location_ref\":\"STORE-P@r2\",\"owner\":\"state-backup-owner\",\"receipt_ref\":\"BACKUP-RECEIPT-P@r2\",\"source_revision\":\"STATE-P-r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"time_ref\":\"OWNER-TIME-P@r2\"},\"submitted_restore\":{\"backup_ref\":\"BACKUP-P@r2\",\"checks\":{\"dependency_reconnection\":{\"evidence_ref\":\"DEPENDENCY_RECONNECTION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"integrity\":{\"evidence_ref\":\"INTEGRITY-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"startup\":{\"evidence_ref\":\"STARTUP-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"verification\":{\"evidence_ref\":\"VERIFICATION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}},\"compatibility\":\"known_compatible_in_fixture_only\",\"environment\":{\"identity\":\"ENV-RESTORE-P\",\"independent\":\"qualified_in_fixture_only\",\"owner\":\"recovery-design-owner\"},\"execution_result\":\"restored_in_fixture_only\",\"receipt_ref\":\"FOREIGN\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"submitted_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}}",
+      "source_raw_utf8_sha256": "99846a28c2b2efdbd039f274e6d9a5bb75bcfe1fd3e0cc178160043ee6f63d0b",
+      "typed_input": {
+        "backup_configured": true,
+        "backup_exists": true,
+        "claims": [
+          "local_unqualified_inference"
+        ],
+        "original_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "succeeded_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "original_incident": {
+          "owner": "OS-incident-owner",
+          "ref": "INCIDENT-P@r2",
+          "state": "open"
+        },
+        "original_previous_eligible_state": {
+          "owner": "state-owner",
+          "ref": "ELIGIBLE-STATE-P@r1"
+        },
+        "original_restore": {
+          "backup_ref": "BACKUP-P@r2",
+          "checks": {
+            "dependency_reconnection": {
+              "evidence_ref": "DEPENDENCY_RECONNECTION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "integrity": {
+              "evidence_ref": "INTEGRITY-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "startup": {
+              "evidence_ref": "STARTUP-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "verification": {
+              "evidence_ref": "VERIFICATION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            }
+          },
+          "compatibility": "known_compatible_in_fixture_only",
+          "environment": {
+            "identity": "ENV-RESTORE-P",
+            "independent": "qualified_in_fixture_only",
+            "owner": "recovery-design-owner"
+          },
+          "execution_result": "restored_in_fixture_only",
+          "receipt_ref": "RESTORE-RECEIPT-P@r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_rollback_result": {
+          "execution_state": "not_executed",
+          "receipt_ref": null,
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_target": {
+          "environment": "ENV-STAGING",
+          "resource": "STATE-P",
+          "scope": "PRODUCT-P",
+          "source_revision": "STATE-P-r2"
+        },
+        "original_unfinished": [
+          "recovery_verification_pending",
+          "incident_not_closed"
+        ],
+        "recovery_requirement_ref": "RECOVERY-P@r2",
+        "retention_requirement_ref": "RETENTION-P@r2",
+        "state_owner_ref": "STATE-OWNER-P@r2",
+        "submitted_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "succeeded_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "submitted_restore": {
+          "backup_ref": "BACKUP-P@r2",
+          "checks": {
+            "dependency_reconnection": {
+              "evidence_ref": "DEPENDENCY_RECONNECTION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "integrity": {
+              "evidence_ref": "INTEGRITY-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "startup": {
+              "evidence_ref": "STARTUP-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "verification": {
+              "evidence_ref": "VERIFICATION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            }
+          },
+          "compatibility": "known_compatible_in_fixture_only",
+          "environment": {
+            "identity": "ENV-RESTORE-P",
+            "independent": "qualified_in_fixture_only",
+            "owner": "recovery-design-owner"
+          },
+          "execution_result": "restored_in_fixture_only",
+          "receipt_ref": "FOREIGN",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "submitted_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        }
+      },
+      "expected_output": {
+        "information_state": "held_content_conflict",
+        "backup_state_candidate": "not_evaluated",
+        "restore_state_candidate": "not_evaluated",
+        "rollback_target_candidate": "not_evaluated",
+        "retained_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "succeeded_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "retained_restore": {
+          "backup_ref": "BACKUP-P@r2",
+          "checks": {
+            "dependency_reconnection": {
+              "evidence_ref": "DEPENDENCY_RECONNECTION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "integrity": {
+              "evidence_ref": "INTEGRITY-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "startup": {
+              "evidence_ref": "STARTUP-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "verification": {
+              "evidence_ref": "VERIFICATION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            }
+          },
+          "compatibility": "known_compatible_in_fixture_only",
+          "environment": {
+            "identity": "ENV-RESTORE-P",
+            "independent": "qualified_in_fixture_only",
+            "owner": "recovery-design-owner"
+          },
+          "execution_result": "restored_in_fixture_only",
+          "receipt_ref": "RESTORE-RECEIPT-P@r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_rollback_result": {
+          "execution_state": "not_executed",
+          "receipt_ref": null,
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_previous_eligible_state": {
+          "owner": "state-owner",
+          "ref": "ELIGIBLE-STATE-P@r1"
+        },
+        "retained_incident": {
+          "owner": "OS-incident-owner",
+          "ref": "INCIDENT-P@r2",
+          "state": "open"
+        },
+        "retained_unfinished": [
+          "recovery_verification_pending",
+          "incident_not_closed"
+        ],
+        "failure_reasons": [
+          {
+            "field": "restore.receipt_ref",
+            "result": "submitted_content_conflict",
+            "return_owner": "recovery-design-owner/OS"
+          }
+        ],
+        "return_owners": [
+          "recovery-design-owner/OS"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "backup": false,
+          "restore_write": false,
+          "rollback": false,
+          "consumer_overwrite": false,
+          "permission": false,
+          "deployment": false,
+          "incident_close": false,
+          "forward_fix_complete": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "expected_canonical_sha256": "6aceb18eea9b435fee2ad06fdd1f97c7c3038960f20386f5b5583f72b341be30",
+      "independent_oracle_rule": "L4 F02原提出内容の差を先に保持。未評価のclaimをrejected扱いにせず、元claimsはrawに保全する。",
+      "basis": {
+        "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+        "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+        "json_pointer": "/contracts/1/content_rules"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "id": "R1-F03-INCIDENT-OTHER-STATE",
+      "root_kind": "F03",
+      "function_ref": "INFRA005-F03",
+      "baseline_case_ref": "I005-F03-ROLLED-BACK-INCIDENT-OPEN",
+      "source_mutations": [
+        {
+          "path": [
+            "original_incident",
+            "state"
+          ],
+          "before": "open",
+          "after": "closed"
+        }
+      ],
+      "source_raw_utf8": "{\"backup_configured\":true,\"backup_exists\":true,\"claims\":[],\"original_backup\":{\"completeness\":\"complete_in_fixture_only\",\"execution_state\":\"succeeded_in_fixture_only\",\"expiry_state\":\"valid_in_fixture_only\",\"integrity_ref\":\"INTEGRITY-P@r2\",\"location_ref\":\"STORE-P@r2\",\"owner\":\"state-backup-owner\",\"receipt_ref\":\"BACKUP-RECEIPT-P@r2\",\"source_revision\":\"STATE-P-r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"time_ref\":\"OWNER-TIME-P@r2\"},\"original_incident\":{\"owner\":\"OS-incident-owner\",\"ref\":\"INCIDENT-P@r2\",\"state\":\"closed\"},\"original_previous_eligible_state\":{\"owner\":\"state-owner\",\"ref\":\"ELIGIBLE-STATE-P@r1\"},\"original_restore\":{\"backup_ref\":\"BACKUP-P@r2\",\"checks\":{\"dependency_reconnection\":{\"evidence_ref\":\"DEPENDENCY_RECONNECTION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"integrity\":{\"evidence_ref\":\"INTEGRITY-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"startup\":{\"evidence_ref\":\"STARTUP-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"verification\":{\"evidence_ref\":\"VERIFICATION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}},\"compatibility\":\"known_compatible_in_fixture_only\",\"environment\":{\"identity\":\"ENV-RESTORE-P\",\"independent\":\"qualified_in_fixture_only\",\"owner\":\"recovery-design-owner\"},\"execution_result\":\"restored_in_fixture_only\",\"receipt_ref\":\"RESTORE-RECEIPT-P@r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_rollback_result\":{\"execution_state\":\"succeeded_in_fixture_only\",\"receipt_ref\":\"ROLLBACK-RECEIPT-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"original_unfinished\":[\"recovery_verification_pending\",\"incident_not_closed\"],\"recovery_requirement_ref\":\"RECOVERY-P@r2\",\"retention_requirement_ref\":\"RETENTION-P@r2\",\"state_owner_ref\":\"STATE-OWNER-P@r2\",\"submitted_backup\":{\"completeness\":\"complete_in_fixture_only\",\"execution_state\":\"succeeded_in_fixture_only\",\"expiry_state\":\"valid_in_fixture_only\",\"integrity_ref\":\"INTEGRITY-P@r2\",\"location_ref\":\"STORE-P@r2\",\"owner\":\"state-backup-owner\",\"receipt_ref\":\"BACKUP-RECEIPT-P@r2\",\"source_revision\":\"STATE-P-r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"time_ref\":\"OWNER-TIME-P@r2\"},\"submitted_restore\":{\"backup_ref\":\"BACKUP-P@r2\",\"checks\":{\"dependency_reconnection\":{\"evidence_ref\":\"DEPENDENCY_RECONNECTION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"integrity\":{\"evidence_ref\":\"INTEGRITY-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"startup\":{\"evidence_ref\":\"STARTUP-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"verification\":{\"evidence_ref\":\"VERIFICATION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}},\"compatibility\":\"known_compatible_in_fixture_only\",\"environment\":{\"identity\":\"ENV-RESTORE-P\",\"independent\":\"qualified_in_fixture_only\",\"owner\":\"recovery-design-owner\"},\"execution_result\":\"restored_in_fixture_only\",\"receipt_ref\":\"RESTORE-RECEIPT-P@r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"submitted_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}}",
+      "source_raw_utf8_sha256": "2299cfd890a896410aac00196302fb2fe4d6901cb8d372625ee04425e839e489",
+      "typed_input": {
+        "backup_configured": true,
+        "backup_exists": true,
+        "claims": [],
+        "original_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "succeeded_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "original_incident": {
+          "owner": "OS-incident-owner",
+          "ref": "INCIDENT-P@r2",
+          "state": "closed"
+        },
+        "original_previous_eligible_state": {
+          "owner": "state-owner",
+          "ref": "ELIGIBLE-STATE-P@r1"
+        },
+        "original_restore": {
+          "backup_ref": "BACKUP-P@r2",
+          "checks": {
+            "dependency_reconnection": {
+              "evidence_ref": "DEPENDENCY_RECONNECTION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "integrity": {
+              "evidence_ref": "INTEGRITY-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "startup": {
+              "evidence_ref": "STARTUP-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "verification": {
+              "evidence_ref": "VERIFICATION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            }
+          },
+          "compatibility": "known_compatible_in_fixture_only",
+          "environment": {
+            "identity": "ENV-RESTORE-P",
+            "independent": "qualified_in_fixture_only",
+            "owner": "recovery-design-owner"
+          },
+          "execution_result": "restored_in_fixture_only",
+          "receipt_ref": "RESTORE-RECEIPT-P@r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_rollback_result": {
+          "execution_state": "succeeded_in_fixture_only",
+          "receipt_ref": "ROLLBACK-RECEIPT-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "original_target": {
+          "environment": "ENV-STAGING",
+          "resource": "STATE-P",
+          "scope": "PRODUCT-P",
+          "source_revision": "STATE-P-r2"
+        },
+        "original_unfinished": [
+          "recovery_verification_pending",
+          "incident_not_closed"
+        ],
+        "recovery_requirement_ref": "RECOVERY-P@r2",
+        "retention_requirement_ref": "RETENTION-P@r2",
+        "state_owner_ref": "STATE-OWNER-P@r2",
+        "submitted_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "succeeded_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "submitted_restore": {
+          "backup_ref": "BACKUP-P@r2",
+          "checks": {
+            "dependency_reconnection": {
+              "evidence_ref": "DEPENDENCY_RECONNECTION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "integrity": {
+              "evidence_ref": "INTEGRITY-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "startup": {
+              "evidence_ref": "STARTUP-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "verification": {
+              "evidence_ref": "VERIFICATION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            }
+          },
+          "compatibility": "known_compatible_in_fixture_only",
+          "environment": {
+            "identity": "ENV-RESTORE-P",
+            "independent": "qualified_in_fixture_only",
+            "owner": "recovery-design-owner"
+          },
+          "execution_result": "restored_in_fixture_only",
+          "receipt_ref": "RESTORE-RECEIPT-P@r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "submitted_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        }
+      },
+      "expected_output": {
+        "information_state": "target_content_referenced_requires_actual_qualification",
+        "backup_state_candidate": "not_evaluated",
+        "restore_state_candidate": "not_evaluated",
+        "rollback_target_candidate": "qualified_in_fixture_only",
+        "retained_backup": {
+          "completeness": "complete_in_fixture_only",
+          "execution_state": "succeeded_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "integrity_ref": "INTEGRITY-P@r2",
+          "location_ref": "STORE-P@r2",
+          "owner": "state-backup-owner",
+          "receipt_ref": "BACKUP-RECEIPT-P@r2",
+          "source_revision": "STATE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          },
+          "time_ref": "OWNER-TIME-P@r2"
+        },
+        "retained_restore": {
+          "backup_ref": "BACKUP-P@r2",
+          "checks": {
+            "dependency_reconnection": {
+              "evidence_ref": "DEPENDENCY_RECONNECTION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "integrity": {
+              "evidence_ref": "INTEGRITY-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "startup": {
+              "evidence_ref": "STARTUP-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            },
+            "verification": {
+              "evidence_ref": "VERIFICATION-P@r2",
+              "owner": "independent-verification-owner",
+              "result": "passed_in_fixture_only",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "STATE-P",
+                "scope": "PRODUCT-P",
+                "source_revision": "STATE-P-r2"
+              }
+            }
+          },
+          "compatibility": "known_compatible_in_fixture_only",
+          "environment": {
+            "identity": "ENV-RESTORE-P",
+            "independent": "qualified_in_fixture_only",
+            "owner": "recovery-design-owner"
+          },
+          "execution_result": "restored_in_fixture_only",
+          "receipt_ref": "RESTORE-RECEIPT-P@r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_rollback_target": {
+          "artifact_ref": "ARTIFACT-P@r1",
+          "backup_ref": "BACKUP-P@r2",
+          "config_ref": "CONFIG-P@r1",
+          "data_compatibility": "known_compatible_in_fixture_only",
+          "dependency_ref": "DEPENDENCY-P@r1",
+          "infrastructure_version_ref": "INFRA-P@r1",
+          "owner": "recovery-design-owner",
+          "procedure_ref": "PROCEDURE-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_rollback_result": {
+          "execution_state": "succeeded_in_fixture_only",
+          "receipt_ref": "ROLLBACK-RECEIPT-P@r1",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "STATE-P",
+            "scope": "PRODUCT-P",
+            "source_revision": "STATE-P-r2"
+          }
+        },
+        "retained_previous_eligible_state": {
+          "owner": "state-owner",
+          "ref": "ELIGIBLE-STATE-P@r1"
+        },
+        "retained_incident": {
+          "owner": "OS-incident-owner",
+          "ref": "INCIDENT-P@r2",
+          "state": "closed"
+        },
+        "retained_unfinished": [
+          "recovery_verification_pending",
+          "incident_not_closed"
+        ],
+        "failure_reasons": [],
+        "return_owners": [],
+        "rejected_claims": [],
+        "actual_effects": {
+          "backup": false,
+          "restore_write": false,
+          "rollback": false,
+          "consumer_overwrite": false,
+          "permission": false,
+          "deployment": false,
+          "incident_close": false,
+          "forward_fix_complete": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "expected_canonical_sha256": "fe1cdf48b8d1b370049083cb987f7ad342f0332a05ca978ad5c4976a9142c2f3",
+      "independent_oracle_rule": "L4 F03 rollbackとincidentは独立。供給incident状態を保持しopenラベルを偽造しない。閉鎖の資格/因果/完了は評価せずtarget内容参照のみ。",
+      "basis": {
+        "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+        "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+        "json_pointer": "/contracts/2/content_rules"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    }
+  ],
+  "literal_source_basis": [
+    {
+      "value": "artifact_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/5/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "backup",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/14/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "backup-expired",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/14/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "backup-missing",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/15/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "backup.receipt_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/12/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "backup_record_referenced_restore_not_evaluated",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/0/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "backup_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/16/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "checks.dependency_reconnection",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/4/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "checks.integrity",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/1/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "checks.startup",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/7/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "checks.verification",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/10/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "claim",
+      "kind": "finite_unobserved_derivation",
+      "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/contracts/1/content_rules",
+      "meaning": "not_evaluatedはbackup無/設定無の未評価。restoreは原restore欠落、claimは裏付けのない推論、execution_stateは原backup実行state。不足を成功へ補完しない既存義務の有限診断語。R1局所wholeで固定し一般域/実資格を生成しない。"
+    },
+    {
+      "value": "compatibility",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/15/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "completeness",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/2/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "config_is_backup_success",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/10/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "config_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/4/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "configured_no_backup_execution",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/1/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "data_compatibility",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/7/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "dependency_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/6/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "environment",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/17/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "execution_is_incident_closed",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/11/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "execution_result",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/13/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "execution_state",
+      "kind": "finite_unobserved_derivation",
+      "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/contracts/0/content_rules",
+      "meaning": "not_evaluatedはbackup無/設定無の未評価。restoreは原restore欠落、claimは裏付けのない推論、execution_stateは原backup実行state。不足を成功へ補完しない既存義務の有限診断語。R1局所wholeで固定し一般域/実資格を生成しない。"
+    },
+    {
+      "value": "existence_is_restore_pass",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/11/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "expiry_state",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/4/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "failed",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/2/expected_material/retained_restore/checks/integrity/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "foreign-target",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/3/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "held_backup_unqualified",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/2/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "held_claim_rejected",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/10/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "held_content_conflict",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/12/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "held_restore_unqualified",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/1/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "held_rollback_unqualified",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/14/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "held_target_unqualified",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/2/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "incompatible",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/10/expected_material/retained_rollback_target/data_compatibility",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "infrastructure_version_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/3/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "integrity_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/5/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "location_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/6/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "missing",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/1/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "missing_verification_not_offset",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/18/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "not_evaluated",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/0/expected_material/restore_state_candidate",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "not_executed",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/0/expected_material/retained_rollback_result/execution_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "not_qualified",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/2/expected_material/backup_state_candidate",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "passed_in_fixture_only",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/0/expected_material/restore_state_candidate",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "procedure_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/8/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "qualified_in_fixture_only",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/0/expected_material/retained_restore/environment/independent",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "receipt_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/8/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "recovery-design-owner/OS",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/1/expected_material/failure_reasons/0/return_owner",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "restore",
+      "kind": "finite_unobserved_derivation",
+      "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/contracts/1/content_rules",
+      "meaning": "not_evaluatedはbackup無/設定無の未評価。restoreは原restore欠落、claimは裏付けのない推論、execution_stateは原backup実行state。不足を成功へ補完しない既存義務の有限診断語。R1局所wholeで固定し一般域/実資格を生成しない。"
+    },
+    {
+      "value": "restore.receipt_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/20/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "restore_evidence_referenced_requires_actual_qualification",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/0/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "result-foreign",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/18/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "rollback-failed",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/17/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "rollback_recorded_incident_open",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/1/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "rollback_result",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/17/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "rollback_target",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/2/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "rollback_target.procedure_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/13/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "source_revision",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/3/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "state-backup-owner/recovery-owner",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/2/expected_material/failure_reasons/0/return_owner",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "submitted_content_conflict",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/12/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "succeeded_in_fixture_only",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/0/expected_material/backup_state_candidate",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "target",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/9/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "target-foreign",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/16/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "target_content_referenced_requires_actual_qualification",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/0/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "time_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/7/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "unknown",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/15/expected_material/retained_restore/compatibility",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "unknown_compatibility_is_qualified",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/12/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "unknown_target_information",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/3/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "unqualified_backup",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/2/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "unqualified_restore",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/13/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "unsupported_closure_or_qualification",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/11/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "unsupported_inference",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/10/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    }
+  ]
 }

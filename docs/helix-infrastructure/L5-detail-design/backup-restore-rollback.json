@@ -418,7 +418,7 @@
     }
   ],
   "remaining": [
-    "有限53caseと3局所probe以外の全shape/任意missing-null組合せ/全診断優先は未閉包。",
+    "原53case＋既存3局所probe＋R1独立6分岐probeのwhole期待を保存。これ以外の全shape/任意missing-null組合せ/意味診断の全優先・実source集合は未閉包。型到達probeの成功から意味oracle/実資格を生成しない。",
     "正式schema/codec/resolver、source/owner資格、実backup/restore/rollback、実consumer permissionは未成立。",
     "L6関数設計/L7対検証は未形成。製品実装は層外。実TDD/CI/L11/全92親430対意味閉包/Readyは未成立。"
   ],
@@ -1573,34 +1573,64 @@
             "type": "object",
             "properties": {
               "acceptance": {
-                "type": "boolean"
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
               },
               "backup": {
-                "type": "boolean"
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
               },
               "consumer_overwrite": {
-                "type": "boolean"
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
               },
               "deployment": {
-                "type": "boolean"
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
               },
               "forward_fix_complete": {
-                "type": "boolean"
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
               },
               "implementation_ready": {
-                "type": "boolean"
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
               },
               "incident_close": {
-                "type": "boolean"
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
               },
               "permission": {
-                "type": "boolean"
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
               },
               "restore_write": {
-                "type": "boolean"
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
               },
               "rollback": {
-                "type": "boolean"
+                "type": "boolean",
+                "enum": [
+                  false
+                ]
               }
             },
             "required": [
@@ -1618,7 +1648,13 @@
             "additionalProperties": false
           },
           "backup_state_candidate": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "not_evaluated",
+              "not_executed",
+              "not_qualified",
+              "succeeded_in_fixture_only"
+            ]
           },
           "failure_reasons": {
             "type": "array",
@@ -1626,13 +1662,83 @@
               "type": "object",
               "properties": {
                 "field": {
-                  "type": "string"
+                  "type": "string",
+                  "dependent_domain": {
+                    "fixed_fields": [
+                      "artifact_ref",
+                      "backup",
+                      "backup.receipt_ref",
+                      "backup_ref",
+                      "checks.dependency_reconnection",
+                      "checks.integrity",
+                      "checks.startup",
+                      "checks.verification",
+                      "compatibility",
+                      "completeness",
+                      "config_is_backup_success",
+                      "config_ref",
+                      "data_compatibility",
+                      "dependency_ref",
+                      "environment",
+                      "execution_is_incident_closed",
+                      "execution_result",
+                      "existence_is_restore_pass",
+                      "expiry_state",
+                      "infrastructure_version_ref",
+                      "integrity_ref",
+                      "location_ref",
+                      "procedure_ref",
+                      "receipt_ref",
+                      "restore.receipt_ref",
+                      "rollback_result",
+                      "rollback_target",
+                      "rollback_target.procedure_ref",
+                      "source_revision",
+                      "target",
+                      "time_ref",
+                      "unknown_compatibility_is_qualified",
+                      "restore",
+                      "claim",
+                      "execution_state"
+                    ],
+                    "difference_prefixes": [
+                      "backup.",
+                      "restore.",
+                      "rollback_target."
+                    ],
+                    "path_grammar": "rootはrecord、memberはASCII identifierを.連結、indexは[n]（nは非負10進整数）。first_differenceの既知carrier key/indexからだけ構成。",
+                    "claim_passthrough": "F01/F03は拒否分岐のinput.claims[0]をそのままfieldに返せる。空文字を含む原stringを勝手に未知labelへ置換しない。",
+                    "domain_limit": "任意field literalを発明してよい意味ではない。独立checkerは固定field/構成path/原claimへの値joinを検証する。"
+                  }
                 },
                 "result": {
-                  "type": "string"
+                  "type": "string",
+                  "enum": [
+                    "backup-expired",
+                    "backup-missing",
+                    "failed",
+                    "foreign-target",
+                    "incompatible",
+                    "missing",
+                    "missing_verification_not_offset",
+                    "result-foreign",
+                    "rollback-failed",
+                    "submitted_content_conflict",
+                    "target-foreign",
+                    "unknown",
+                    "unknown_target_information",
+                    "unqualified_backup",
+                    "unqualified_restore",
+                    "unsupported_closure_or_qualification",
+                    "unsupported_inference"
+                  ]
                 },
                 "return_owner": {
-                  "type": "string"
+                  "type": "string",
+                  "enum": [
+                    "recovery-design-owner/OS",
+                    "state-backup-owner/recovery-owner"
+                  ]
                 }
               },
               "required": [
@@ -1644,16 +1750,39 @@
             }
           },
           "information_state": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "backup_record_referenced_restore_not_evaluated",
+              "configured_no_backup_execution",
+              "held_backup_unqualified",
+              "held_claim_rejected",
+              "held_content_conflict",
+              "held_restore_unqualified",
+              "held_rollback_unqualified",
+              "held_target_unqualified",
+              "restore_evidence_referenced_requires_actual_qualification",
+              "rollback_recorded_incident_open",
+              "target_content_referenced_requires_actual_qualification",
+              "not_evaluated"
+            ]
           },
           "rejected_claims": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "dependent_domain": {
+                "source": "input.claims",
+                "rule": "拒否分岐では入力の全string順序/重複をそのまま保持、他は[]。観測6語に閉じない。"
+              }
             }
           },
           "restore_state_candidate": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "not_evaluated",
+              "not_qualified",
+              "passed_in_fixture_only"
+            ]
           },
           "retained_backup": {
             "anyOf": [
@@ -2232,11 +2361,20 @@
           "return_owners": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "recovery-design-owner/OS",
+                "state-backup-owner/recovery-owner"
+              ]
             }
           },
           "rollback_target_candidate": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "not_evaluated",
+              "not_qualified",
+              "qualified_in_fixture_only"
+            ]
           }
         },
         "required": [
@@ -2299,44 +2437,49 @@
         "input.original_unfinished"
       ],
       "returns": [
-        "information_state",
+        "actual_effects",
         "backup_state_candidate",
-        "restore_state_candidate",
-        "rollback_target_candidate",
-        "retained_backup",
-        "retained_restore",
-        "retained_rollback_target",
-        "retained_rollback_result",
-        "retained_previous_eligible_state",
-        "retained_incident",
-        "retained_unfinished",
         "failure_reasons",
-        "return_owners",
+        "information_state",
         "rejected_claims",
-        "actual_effects"
+        "restore_state_candidate",
+        "retained_backup",
+        "retained_incident",
+        "retained_previous_eligible_state",
+        "retained_restore",
+        "retained_rollback_result",
+        "retained_rollback_target",
+        "retained_unfinished",
+        "return_owners",
+        "rollback_target_candidate"
       ],
       "preconditions": [
         "inputはこの有限fixture familyの完全なdecoded JSON object。nullは原値として保持する。",
         "fixture値のowner/target/receipt文字列は資格・実状態を意味しない。"
       ],
       "postconditions": [
-        "retained_* は各 original_* をそのままコピーし、actual_effects 10 fieldはfalse。",
-        "failureが一件ならreturn_ownersはそのreturn_owner一件、failure無しなら両配列空。",
-        "L9 oracleはsource packetと期待の独立比較用。関数はL9 expectedを読み取らない。"
+        "全15返却rootをwhole_resultで返す。retained_*はoriginal_*の深い同値、入力不変、actual_effects全false。",
+        "failure_reasonsは0/1件、return_ownersはfailure.return_ownerの0/1件。rejected_claimsは拒否分岐でinput.claims全順序/重複保存、早期別failure時は[]。",
+        "表示診断は有限priorityであり実source資格/consumer authority/許可/backup/restore/rollback/incident closureの成立ではない。"
       ],
       "algorithm": [
-        "優先順: claims非空→held_claim_rejected/最初のclaimをunsupported_inferenceとして返し、backup/restore/rollback candidateはnot_evaluated。",
-        "次に original_backup=null: backup_configured=trueならconfigured_no_backup_executionかつbackup_state_candidate=not_executed、falseならnot_evaluated。",
-        "次に submitted_backup と original_backup のdeep equality。差があれば最初の差分path（object member名の辞書順、配列index昇順）をbackup.<path>へ返す。",
-        "次に original_backup.completeness=complete_in_fixture_only、source_revision=original_target.source_revision、expiry_state=valid_in_fixture_only、integrity_ref/location_ref/time_ref/receipt_refがnull/空/unknownでない、targetがoriginal_targetとdeep equal、execution_state=succeeded_in_fixture_onlyをこの順で検査。先に失敗したfieldだけunqualified_backupとして返す。",
-        "全条件を満たすとbackup_record_referenced_restore_not_evaluated、backup_state_candidate=succeeded_in_fixture_only。restore/rollback candidateはnot_evaluatedのまま。"
+        "同candidate /raw_comparison_reference/stepsの assess_backup を実行し、/raw_comparison_reference/decisions/INFRA005-F01 の段階別全返却へ対応させる。",
+        "全retained_*は元rawのdeep copy。最初のfailureのみ表示し、原因優先で消えた元原値/状態/claimsは保持する。実効果/qualificationを生成しない。"
       ],
       "source_basis": [
         "HELIXINFRASTRUCTURE-L3-005-F01 / L10-005-F01",
         "HELIXINFRASTRUCTURE-L4-005-F01 content_rules",
         "L9 13件の固定raw/expected",
         "旧LEGACY-ASSET-17C4BF78919578FEBB18、5D41345F55800F23AC38"
-      ]
+      ],
+      "reference_definition": {
+        "kind": "candidate_document",
+        "path": "docs/helix-infrastructure/L5-detail-design/backup-restore-rollback.json",
+        "json_pointer": "/raw_comparison_reference/steps",
+        "entry_function": "assess_backup",
+        "revision_policy": "新candidate内pointer。存在しないbase revisionへ束縛しない。"
+      },
+      "read_semantics": "original_* rootの宣言はretained_*へ全値deep copyするreadを含む。配下の判定readとは別。未readのbackup_exists/retention/recovery/state_owner等を実qualificationの成立へ用いない。"
     },
     {
       "id": "INFRA005-F02",
@@ -2378,45 +2521,51 @@
         "input.original_restore.receipt_ref",
         "input.original_restore.compatibility",
         "input.original_restore.backup_ref",
-        "input.original_restore.environment.independent"
+        "input.original_restore.environment.independent",
+        "input.original_rollback_target"
       ],
       "returns": [
-        "information_state",
+        "actual_effects",
         "backup_state_candidate",
-        "restore_state_candidate",
-        "rollback_target_candidate",
-        "retained_backup",
-        "retained_restore",
-        "retained_rollback_target",
-        "retained_rollback_result",
-        "retained_previous_eligible_state",
-        "retained_incident",
-        "retained_unfinished",
         "failure_reasons",
-        "return_owners",
+        "information_state",
         "rejected_claims",
-        "actual_effects"
+        "restore_state_candidate",
+        "retained_backup",
+        "retained_incident",
+        "retained_previous_eligible_state",
+        "retained_restore",
+        "retained_rollback_result",
+        "retained_rollback_target",
+        "retained_unfinished",
+        "return_owners",
+        "rollback_target_candidate"
       ],
       "preconditions": [
         "inputは有限fixture familyの完全なdecoded JSON object。original_restore/submitted_restoreのnullは欠如値でなく元packetの明示null。"
       ],
       "postconditions": [
-        "backup/rollback candidateは常にnot_evaluated。この関数の評価対象はrestore。",
-        "retained_* とactual_effectsは原値保持/falseの固定規則。"
+        "全15返却rootをwhole_resultで返す。retained_*はoriginal_*の深い同値、入力不変、actual_effects全false。",
+        "failure_reasonsは0/1件、return_ownersはfailure.return_ownerの0/1件。rejected_claimsは拒否分岐でinput.claims全順序/重複保存、早期別failure時は[]。",
+        "表示診断は有限priorityであり実source資格/consumer authority/許可/backup/restore/rollback/incident closureの成立ではない。"
       ],
       "algorithm": [
-        "original_restore=nullならheld_restore_unqualified、restore_state_candidate=not_qualified、field=restore/result=missing。",
-        "次にsubmitted_restoreとoriginal_restoreをdeep equal比較し、差分時は最初の差をrestore.<path>/submitted_content_conflictで返す。",
-        "次にchecks.integrity, dependency_reconnection, startup, verificationをこの順に検査。欠如→missing、resultがpassed_in_fixture_only以外→failed、targetがoriginal_targetとdeep unequal→foreign-target。最初の失敗だけ返す。",
-        "次にexecution_result=restored_in_fixture_only、receipt_refはnull/空/unknownでない、compatibility=known_compatible_in_fixture_only、backup_ref=original_rollback_target.backup_ref、environment.independent=qualified_in_fixture_onlyをこの順に検査。最初の不成立をunqualified_restoreで返す。",
-        "claims非空は先行検査で得たfailureを保持し、verification欠落だけmissing_verification_not_offsetへ置換。failureがなければfield=claim/result=unsupported_inferenceの有限model fallbackとする。state=held_claim_rejected、restore candidate=not_qualified。 ただし、固定L9 21件にはclaims非空かつ先行failureなしの入力がなく、field=claim等のfallback診断はL3/L4から導く一般の戻りfield・期待oracleが未観測である。ここでの説明は有限model上の仮置きで、一般域の閉包を主張しない。",
-        "claims無しでfailureがあればheld_restore_unqualified/not_qualified。全条件成立でrestore_evidence_referenced_requires_actual_qualification/passed_in_fixture_only。"
+        "同candidate /raw_comparison_reference/stepsの assess_restore を実行し、/raw_comparison_reference/decisions/INFRA005-F02 の段階別全返却へ対応させる。",
+        "全retained_*は元rawのdeep copy。最初のfailureのみ表示し、原因優先で消えた元原値/状態/claimsは保持する。実効果/qualificationを生成しない。"
       ],
       "source_basis": [
         "HELIXINFRASTRUCTURE-L3-005-F02 / L10-005-F02",
         "HELIXINFRASTRUCTURE-L4-005-F02 content_rules",
         "L9 21件の固定raw/expected"
-      ]
+      ],
+      "reference_definition": {
+        "kind": "candidate_document",
+        "path": "docs/helix-infrastructure/L5-detail-design/backup-restore-rollback.json",
+        "json_pointer": "/raw_comparison_reference/steps",
+        "entry_function": "assess_restore",
+        "revision_policy": "新candidate内pointer。存在しないbase revisionへ束縛しない。"
+      },
+      "read_semantics": "original_* rootの宣言はretained_*へ全値deep copyするreadを含む。配下の判定readとは別。未readのbackup_exists/retention/recovery/state_owner等を実qualificationの成立へ用いない。"
     },
     {
       "id": "INFRA005-F03",
@@ -2451,45 +2600,52 @@
         "input.original_incident",
         "input.original_unfinished",
         "input.original_previous_eligible_state",
-        "input.original_restore"
+        "input.original_restore",
+        "input.original_incident.state"
       ],
       "returns": [
-        "information_state",
+        "actual_effects",
         "backup_state_candidate",
-        "restore_state_candidate",
-        "rollback_target_candidate",
-        "retained_backup",
-        "retained_restore",
-        "retained_rollback_target",
-        "retained_rollback_result",
-        "retained_previous_eligible_state",
-        "retained_incident",
-        "retained_unfinished",
         "failure_reasons",
-        "return_owners",
+        "information_state",
         "rejected_claims",
-        "actual_effects"
+        "restore_state_candidate",
+        "retained_backup",
+        "retained_incident",
+        "retained_previous_eligible_state",
+        "retained_restore",
+        "retained_rollback_result",
+        "retained_rollback_target",
+        "retained_unfinished",
+        "return_owners",
+        "rollback_target_candidate"
       ],
       "preconditions": [
         "inputは有限fixture familyの完全なdecoded JSON object。target/backup/result nullはそのまま保持する。"
       ],
       "postconditions": [
-        "rollback target candidateは適格性評価、rollback resultは独立状態。incident/unfinishedは変更しない。"
+        "全15返却rootをwhole_resultで返す。retained_*はoriginal_*の深い同値、入力不変、actual_effects全false。",
+        "failure_reasonsは0/1件、return_ownersはfailure.return_ownerの0/1件。rejected_claimsは拒否分岐でinput.claims全順序/重複保存、早期別failure時は[]。",
+        "表示診断は有限priorityであり実source資格/consumer authority/許可/backup/restore/rollback/incident closureの成立ではない。"
       ],
       "algorithm": [
-        "target=nullならrollback_target/unknown。そうでなければ infrastructure_version_ref, config_ref, artifact_ref, dependency_ref, data_compatibility, procedure_ref, targetをこの順で確認。null/空/unknownはunknown_target_information、data_compatibility=incompatibleはincompatible、それ以外のcompatibility値はunknown_target_information。targetがoriginal_targetと不一致ならtarget/target-foreign。",
-        "次にoriginal_backup=nullまたはexpiry_state!=valid_in_fixture_onlyならbackup/backup-missing又はbackup-expired。",
-        "claims非空なら、failure_reasonsは最初のclaimをfield、unsupported_closure_or_qualificationをresultとして返す。既存のtarget/backup不適格性はこの診断へ置換されるが、rollback_target_candidateはtarget/backup評価から独立してqualified_in_fixture_only又はnot_qualifiedを返し、元のtarget/backup/incidentはretained_*で保持する。L9の二つのclaim負例がこの規則を示す。submitted target/result差分の判定よりclaimsを優先する。",
-        "次にsubmitted_rollback_targetとoriginal_rollback_targetをdeep equal比較し、差分時は最初のpathをrollback_target.<path>/submitted_content_conflictへ返す。",
-        "上記failureが無い場合に限りoriginal_rollback_result.execution_state=failedならrollback_result/rollback-failed。succeeded_in_fixture_onlyかつresult.target!=original_targetならrollback_result/result-foreign。rollback-failedではtarget candidateをqualified_in_fixture_only、result-foreignではnot_qualifiedとする。",
-        "failureはtarget違い/result/backupならheld_rollback_unqualified、target情報欠落/非互換ならheld_target_unqualified。成功resultでincident.state=openならrollback_recorded_incident_open。未実行ならtarget_content_referenced_requires_actual_qualification。いずれもincident closure/forward fixを生成しない。 固定L9 19件のoriginal_incident.stateはすべてopenであり、open以外の状態に対する出力は未観測である。したがって成功resultの観測規則はopen条件付きで、他状態の一般化は未閉包。"
+        "同candidate /raw_comparison_reference/stepsの assess_rollback を実行し、/raw_comparison_reference/decisions/INFRA005-F03 の段階別全返却へ対応させる。",
+        "全retained_*は元rawのdeep copy。最初のfailureのみ表示し、原因優先で消えた元原値/状態/claimsは保持する。実効果/qualificationを生成しない。"
       ],
       "source_basis": [
         "HELIXINFRASTRUCTURE-L3-005-F03 / L10-005-F03",
         "HELIXINFRASTRUCTURE-L4-005-F03 content_rules",
         "L9 19件の固定raw/expected",
         "旧LEGACY-ASSET-17C4BF78919578FEBB18"
-      ]
+      ],
+      "reference_definition": {
+        "kind": "candidate_document",
+        "path": "docs/helix-infrastructure/L5-detail-design/backup-restore-rollback.json",
+        "json_pointer": "/raw_comparison_reference/steps",
+        "entry_function": "assess_rollback",
+        "revision_policy": "新candidate内pointer。存在しないbase revisionへ束縛しない。"
+      },
+      "read_semantics": "original_* rootの宣言はretained_*へ全値deep copyするreadを含む。配下の判定readとは別。未readのbackup_exists/retention/recovery/state_owner等を実qualificationの成立へ用いない。"
     }
   ],
   "output_literal_domains": {
@@ -2504,7 +2660,8 @@
       "held_target_unqualified",
       "restore_evidence_referenced_requires_actual_qualification",
       "rollback_recorded_incident_open",
-      "target_content_referenced_requires_actual_qualification"
+      "target_content_referenced_requires_actual_qualification",
+      "not_evaluated"
     ],
     "backup_state_candidate": [
       "not_evaluated",
@@ -2554,7 +2711,10 @@
       "source_revision",
       "target",
       "time_ref",
-      "unknown_compatibility_is_qualified"
+      "unknown_compatibility_is_qualified",
+      "restore",
+      "claim",
+      "execution_state"
     ],
     "failure_reasons.result": [
       "backup-expired",
@@ -2605,11 +2765,11 @@
     }
   },
   "deep_equality_rule": {
-    "objects": "objectのkey集合と各member値を比較する。keyの並び順は意味を持たない。",
-    "arrays": "配列長と各indexの値をindex昇順で比較する。",
-    "missing_vs_null": "object memberの欠如と明示nullは異なる。",
-    "scalar": "JSON scalarの型と値の両方が一致した場合だけ等しい。",
-    "fixed_fixture_limit": "固定53 rawと3 probeには、同じ比較位置でbooleanとnumberの型だけが異なる入力対はない。verify_static.pyのPython == はtrueと1等を同値扱いし得るため、その異型比較はcheckerで立証されていない。ここではJSON型を含む比較意味を定義するが、一般wire/codec実装や異型入力の検証成立は主張しない。"
+    "objects": "key集合と各memberのJSON型/値を再帰比較。key順は意味を持たず最初の差はsorted key順。",
+    "arrays": "長さと各index値を昇順比較。位置が片側だけに存在するとそのindexが差。",
+    "missing_vs_null": "key membershipで区別。欠如と明示nullは等しくない。",
+    "scalar": "bool/number/string/nullを別JSON型として比較。true≠1、false≠0。int/floatはnumberの値同値（一般float codecは未採用）。",
+    "first_difference_format": "memberを.、indexを[n]。root型/値差のpath空文字はpublic prefix後record。順序はstepsに全定義。"
   },
   "contracts": [
     {
@@ -2793,7 +2953,9 @@
     "local_compound_probes": 3,
     "public_functions": 3,
     "typed_calls": 56,
-    "original_raw_and_whole_expected": "原53 packet/全期待を不変保持。probeは別local projectionとして区別。すべてnot_executed。"
+    "original_raw_and_whole_expected": "原53 packet/全期待を不変保持。probeは別local projectionとして区別。すべてnot_executed。",
+    "r1_branch_probes": 6,
+    "typed_calls_including_r1": 62
   },
   "owner_literal_boundary": {
     "values": {
@@ -2817,17 +2979,1151 @@
       },
       {
         "output_value": "recovery-design-owner/OS",
-        "requirement_source": {
-          "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
-          "json_pointer": "/contracts/1/content_rules/2 and /contracts/2/content_rules/2",
-          "role_text": "recovery design owner/OS or recovery owner/OS"
-        },
         "fixture_oracle_source": {
           "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
           "selection": "F02 and F03 cases whose expected_material.failure_reasons is nonempty; exact literal is in each expected failure.return_owner"
         },
-        "interpretation": "合成fixture返却tokenであり実ownerを特定しない。"
+        "interpretation": "合成fixture返却tokenであり実ownerを特定しない。",
+        "requirement_sources": [
+          {
+            "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+            "json_pointer": "/contracts/1/content_rules/2"
+          },
+          {
+            "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+            "json_pointer": "/contracts/2/content_rules/2"
+          }
+        ]
       }
     ]
-  }
+  },
+  "comparison_constants": {
+    "OWNER_BACKUP": "state-backup-owner/recovery-owner",
+    "OWNER_RECOVERY": "recovery-design-owner/OS",
+    "BACKUP_FIELDS": [
+      "completeness",
+      "source_revision",
+      "expiry_state",
+      "integrity_ref",
+      "location_ref",
+      "time_ref",
+      "receipt_ref",
+      "target"
+    ],
+    "CHECK_FIELDS": [
+      "integrity",
+      "dependency_reconnection",
+      "startup",
+      "verification"
+    ],
+    "RESTORE_FIELDS": [
+      "execution_result",
+      "receipt_ref",
+      "compatibility",
+      "backup_ref",
+      "environment"
+    ],
+    "ROLLBACK_FIELDS": [
+      "infrastructure_version_ref",
+      "config_ref",
+      "artifact_ref",
+      "dependency_ref",
+      "data_compatibility",
+      "procedure_ref",
+      "target"
+    ],
+    "EFFECTS": [
+      "backup",
+      "restore_write",
+      "rollback",
+      "consumer_overwrite",
+      "permission",
+      "deployment",
+      "incident_close",
+      "forward_fix_complete",
+      "acceptance",
+      "implementation_ready"
+    ],
+    "RETAINED": [
+      [
+        "retained_backup",
+        "original_backup"
+      ],
+      [
+        "retained_incident",
+        "original_incident"
+      ],
+      [
+        "retained_previous_eligible_state",
+        "original_previous_eligible_state"
+      ],
+      [
+        "retained_restore",
+        "original_restore"
+      ],
+      [
+        "retained_rollback_result",
+        "original_rollback_result"
+      ],
+      [
+        "retained_rollback_target",
+        "original_rollback_target"
+      ],
+      [
+        "retained_unfinished",
+        "original_unfinished"
+      ]
+    ],
+    "COMPLETE": "complete_in_fixture_only",
+    "VALID_EXPIRY": "valid_in_fixture_only",
+    "BACKUP_SUCCESS": "succeeded_in_fixture_only",
+    "CHECK_PASS": "passed_in_fixture_only",
+    "RESTORED": "restored_in_fixture_only",
+    "COMPATIBLE": "known_compatible_in_fixture_only",
+    "QUALIFIED": "qualified_in_fixture_only"
+  },
+  "raw_comparison_reference": {
+    "scope": "宣言RecoveryPacketのimmutable値から全15返却rootを計算する純粋有限参照記法。製品実装/正式schema/codec/libraryの採用ではない。case ID/完成期待/sourceoracle lookupはしない。",
+    "constant_binding": "Cは同candidate /comparison_constantsの全値をそのまま束縛する。state/owner markerは合成値で実資格を生成しない。",
+    "primitive_operators": [
+      "copy.deepcopyはJSON値の保持。dict.fromkeys(EFFECTS,False)は10作用false、**展開は全retained値を返却へ結ぶ。",
+      "isinstance(dict/list/str/bool/int/float)はJSON論理型分類。boolはnumberから独立、int/floatはJSONnumberとして同値を比較。任意float parser方式は採用しない。",
+      "if/elif/else、is None、==/!=、and/or/not短絡、in/not in、len/max、set和/等値、all、zip、for/break/return、list/dict comprehensions、get、辞書添字。",
+      "sorted object keyはUnicode文字の辞書順、arrayはindex昇順。nullとmember absentはmembershipで別扱い、型差は必ず差分。",
+      "pathはmemberを.で、array indexを[n]で連結。root型差はrecord。宣言carrier keyは既知のASCII identifierであり、任意opaque keyのescaping grammarへ一般化しない。",
+      "truthinessはclaims空/非空、rollback objectの有無とdelta空pathを区別する。suppliedはNone/空文字/unknown文字列だけを不足とし、空map/list/False/0まで暗黙にmissingへしない。",
+      "関数内のローカルrecord/list更新のみ。clock/env/fs/network/DB/GitHub/権限/実operationなし。"
+    ],
+    "decisions": {
+      "INFRA005-F01": [
+        {
+          "condition": "claims非空（最優先）",
+          "information_state": "held_claim_rejected",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "not_evaluated",
+          "failure": [
+            "claims[0]",
+            "unsupported_inference"
+          ],
+          "rejected_claims": "input.claimsを順序/重複込みで全保持",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "original_backup=null、backup_configured=true",
+          "information_state": "configured_no_backup_execution",
+          "backup_state_candidate": "not_executed",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "not_evaluated",
+          "failure": null,
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "original_backup=null、backup_configured=false",
+          "information_state": "not_evaluated",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "not_evaluated",
+          "failure": null,
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "original_backupとsubmitted_backupに型/値/key/index差",
+          "information_state": "held_content_conflict",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "not_evaluated",
+          "failure": [
+            "backup.<first_difference or record>",
+            "submitted_content_conflict"
+          ],
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "BACKUP_FIELDS順または最後のexecution_stateが不成立",
+          "information_state": "held_backup_unqualified",
+          "backup_state_candidate": "not_qualified",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "not_evaluated",
+          "failure": [
+            "最初の不成立field",
+            "unqualified_backup"
+          ],
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "上記なし",
+          "information_state": "backup_record_referenced_restore_not_evaluated",
+          "backup_state_candidate": "succeeded_in_fixture_only",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "not_evaluated",
+          "failure": null,
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        }
+      ],
+      "INFRA005-F02": [
+        {
+          "condition": "original_restore=null（claimsより前）",
+          "information_state": "held_restore_unqualified",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_qualified",
+          "rollback_target_candidate": "not_evaluated",
+          "failure": [
+            "restore",
+            "missing"
+          ],
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "original/submitted_restore差（claimsより前、適格評価と分離）",
+          "information_state": "held_content_conflict",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "not_evaluated",
+          "failure": [
+            "restore.<first_difference or record>",
+            "submitted_content_conflict"
+          ],
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "CHECK_FIELDS→RESTORE_FIELDSから最初の不成立を取得しclaims非空",
+          "information_state": "held_claim_rejected",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_qualified",
+          "rollback_target_candidate": "not_evaluated",
+          "failure": [
+            "先行failure、ただしverification/missingはmissing_verification_not_offset；先行failure無しはclaim/unsupported_inference"
+          ],
+          "rejected_claims": "input.claimsを順序/重複込みで全保持",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "claims空でCHECK_FIELDS/RESTORE_FIELDS不成立",
+          "information_state": "held_restore_unqualified",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_qualified",
+          "rollback_target_candidate": "not_evaluated",
+          "failure": [
+            "最初の不成立field",
+            "missing/failed/foreign-target/unqualified_restoreをstepsから選ぶ"
+          ],
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "全必要合成条件成立",
+          "information_state": "restore_evidence_referenced_requires_actual_qualification",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "passed_in_fixture_only",
+          "rollback_target_candidate": "not_evaluated",
+          "failure": null,
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        }
+      ],
+      "INFRA005-F03": [
+        {
+          "condition": "target母null/ROLLBACK_FIELDS/target同値/backup存在期限の順で暫定failureを作りclaims非空",
+          "information_state": "held_claim_rejected",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "暫定failureなしならqualified_in_fixture_only、あればnot_qualified",
+          "failure": [
+            "claims[0]",
+            "unsupported_closure_or_qualification"
+          ],
+          "rejected_claims": "input.claimsを順序/重複込みで全保持",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "claims空でoriginal/submitted_target差",
+          "information_state": "held_content_conflict",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "not_evaluated",
+          "failure": [
+            "rollback_target.<first_difference or record>",
+            "submitted_content_conflict"
+          ],
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "暫定failureがbackupまたはtarget-foreign",
+          "information_state": "held_rollback_unqualified",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "not_qualified",
+          "failure": [
+            "backup/target",
+            "backup-missing/backup-expired/target-foreign"
+          ],
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "暫定failureがtarget情報不足/互換不明/非互換",
+          "information_state": "held_target_unqualified",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "not_qualified",
+          "failure": [
+            "最初のtarget fieldまたはrollback_target",
+            "unknown/unknown_target_information/incompatible"
+          ],
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "暫定failureなしでrollback実結果failed",
+          "information_state": "held_rollback_unqualified",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "qualified_in_fixture_only",
+          "failure": [
+            "rollback_result",
+            "rollback-failed"
+          ],
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "暫定failureなしで成功resultのtargetがforeign",
+          "information_state": "held_rollback_unqualified",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "not_qualified",
+          "failure": [
+            "rollback_result",
+            "result-foreign"
+          ],
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "暫定failureなし・成功result・incident.state=open",
+          "information_state": "rollback_recorded_incident_open",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "qualified_in_fixture_only",
+          "failure": null,
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        },
+        {
+          "condition": "上記なし（未実行または他incident状態を含む）",
+          "information_state": "target_content_referenced_requires_actual_qualification",
+          "backup_state_candidate": "not_evaluated",
+          "restore_state_candidate": "not_evaluated",
+          "rollback_target_candidate": "qualified_in_fixture_only",
+          "failure": null,
+          "rejected_claims": "[]",
+          "remaining_roots": "whole_resultの全retained_* deep copy、failureからreturn_owners、actual_effects全false。"
+        }
+      ]
+    },
+    "steps": [
+      "def json_kind(value):",
+      " if value is None:return 'null'",
+      " if isinstance(value,bool):return 'boolean'",
+      " if isinstance(value,(int,float)):return 'number'",
+      " if isinstance(value,str):return 'string'",
+      " if isinstance(value,list):return 'array'",
+      " return 'object'",
+      "",
+      "def same_json(left,right):",
+      " kind=json_kind(left)",
+      " if kind!=json_kind(right):return False",
+      " if kind=='object':return set(left)==set(right) and all(same_json(left[k],right[k]) for k in left)",
+      " if kind=='array':return len(left)==len(right) and all(same_json(a,b) for a,b in zip(left,right))",
+      " return left==right",
+      "",
+      "def first_difference(left,right,path=''):",
+      " if isinstance(left,dict) and isinstance(right,dict):",
+      "  for key in sorted(set(left)|set(right)):",
+      "   child=path+'.'+key if path else key",
+      "   if key not in left or key not in right:return child",
+      "   delta=first_difference(left[key],right[key],child)",
+      "   if delta is not None:return delta",
+      "  return None",
+      " if isinstance(left,list) and isinstance(right,list):",
+      "  for index in range(max(len(left),len(right))):",
+      "   child=path+'['+str(index)+']'",
+      "   if index>=len(left) or index>=len(right):return child",
+      "   delta=first_difference(left[index],right[index],child)",
+      "   if delta is not None:return delta",
+      "  return None",
+      " return None if same_json(left,right) else path",
+      "",
+      "def supplied(value):",
+      " return value is not None and value!='' and value!='unknown'",
+      "",
+      "def retained_values(raw):",
+      " out={key:copy.deepcopy(raw[source]) for key,source in C['RETAINED']}",
+      " out['actual_effects']=dict.fromkeys(C['EFFECTS'],False)",
+      " return out",
+      "",
+      "def whole_result(raw,owner,information,backup='not_evaluated',restore='not_evaluated',target='not_evaluated',failure=None,claims=None):",
+      " failures=[] if failure is None else [{'field':failure[0],'result':failure[1],'return_owner':owner}]",
+      " return {'information_state':information,'backup_state_candidate':backup,'restore_state_candidate':restore,'rollback_target_candidate':target,**retained_values(raw),'failure_reasons':failures,'return_owners':[] if failure is None else [owner],'rejected_claims':copy.deepcopy([] if claims is None else claims)}",
+      "",
+      "def assess_backup(raw):",
+      " owner=C['OWNER_BACKUP'];original=raw['original_backup'];submitted=raw['submitted_backup'];claims=raw['claims']",
+      " if claims:return whole_result(raw,owner,'held_claim_rejected',failure=(claims[0],'unsupported_inference'),claims=claims)",
+      " if original is None:return whole_result(raw,owner,'configured_no_backup_execution' if raw['backup_configured'] else 'not_evaluated',backup='not_executed' if raw['backup_configured'] else 'not_evaluated')",
+      " delta=first_difference(original,submitted)",
+      " if delta is not None:return whole_result(raw,owner,'held_content_conflict',failure=('backup.'+(delta or 'record'),'submitted_content_conflict'))",
+      " target=raw['original_target']",
+      " for key in C['BACKUP_FIELDS']:",
+      "  value=original.get(key)",
+      "  if key=='completeness':valid=value==C['COMPLETE']",
+      "  elif key=='source_revision':valid=same_json(value,target.get('source_revision'))",
+      "  elif key=='expiry_state':valid=value==C['VALID_EXPIRY']",
+      "  elif key=='target':valid=same_json(value,target)",
+      "  else:valid=supplied(value)",
+      "  if not valid:return whole_result(raw,owner,'held_backup_unqualified',backup='not_qualified',failure=(key,'unqualified_backup'))",
+      " if original.get('execution_state')!=C['BACKUP_SUCCESS']:return whole_result(raw,owner,'held_backup_unqualified',backup='not_qualified',failure=('execution_state','unqualified_backup'))",
+      " return whole_result(raw,owner,'backup_record_referenced_restore_not_evaluated',backup=C['BACKUP_SUCCESS'])",
+      "",
+      "def assess_restore(raw):",
+      " owner=C['OWNER_RECOVERY'];original=raw['original_restore'];submitted=raw['submitted_restore'];claims=raw['claims']",
+      " if original is None:return whole_result(raw,owner,'held_restore_unqualified',restore='not_qualified',failure=('restore','missing'))",
+      " delta=first_difference(original,submitted)",
+      " if delta is not None:return whole_result(raw,owner,'held_content_conflict',failure=('restore.'+(delta or 'record'),'submitted_content_conflict'))",
+      " failure=None",
+      " for key in C['CHECK_FIELDS']:",
+      "  check=original.get('checks',{}).get(key)",
+      "  if check is None:failure=('checks.'+key,'missing');break",
+      "  if check.get('result')!=C['CHECK_PASS']:failure=('checks.'+key,'failed');break",
+      "  if not same_json(check.get('target'),raw['original_target']):failure=('checks.'+key,'foreign-target');break",
+      " if failure is None:",
+      "  for key in C['RESTORE_FIELDS']:",
+      "   value=original.get(key)",
+      "   if key=='execution_result':valid=value==C['RESTORED']",
+      "   elif key=='receipt_ref':valid=supplied(value)",
+      "   elif key=='compatibility':valid=value==C['COMPATIBLE']",
+      "   elif key=='backup_ref':valid=isinstance(raw['original_rollback_target'],dict) and same_json(value,raw['original_rollback_target'].get('backup_ref'))",
+      "   else:valid=isinstance(value,dict) and value.get('independent')==C['QUALIFIED']",
+      "   if not valid:failure=(key,'unqualified_restore');break",
+      " if claims:",
+      "  diagnostic=failure if failure is not None else ('claim','unsupported_inference')",
+      "  if diagnostic==('checks.verification','missing'):diagnostic=('checks.verification','missing_verification_not_offset')",
+      "  return whole_result(raw,owner,'held_claim_rejected',restore='not_qualified',failure=diagnostic,claims=claims)",
+      " if failure is not None:return whole_result(raw,owner,'held_restore_unqualified',restore='not_qualified',failure=failure)",
+      " return whole_result(raw,owner,'restore_evidence_referenced_requires_actual_qualification',restore=C['CHECK_PASS'])",
+      "",
+      "def assess_rollback(raw):",
+      " owner=C['OWNER_RECOVERY'];target=raw['original_rollback_target'];submitted=raw['submitted_rollback_target'];backup=raw['original_backup'];rollback=raw['original_rollback_result'];claims=raw['claims'];failure=None",
+      " if target is None:failure=('rollback_target','unknown')",
+      " else:",
+      "  for key in C['ROLLBACK_FIELDS']:",
+      "   value=target.get(key)",
+      "   if not supplied(value):failure=(key,'unknown_target_information');break",
+      "   if key=='data_compatibility' and value!=C['COMPATIBLE']:failure=(key,'incompatible' if value=='incompatible' else 'unknown_target_information');break",
+      "  if failure is None and not same_json(target.get('target'),raw['original_target']):failure=('target','target-foreign')",
+      "  if failure is None and (backup is None or backup.get('expiry_state')!=C['VALID_EXPIRY']):failure=('backup','backup-missing' if backup is None else 'backup-expired')",
+      " if claims:",
+      "  candidate=C['QUALIFIED'] if failure is None else 'not_qualified'",
+      "  return whole_result(raw,owner,'held_claim_rejected',target=candidate,failure=(claims[0],'unsupported_closure_or_qualification'),claims=claims)",
+      " delta=first_difference(target,submitted)",
+      " if delta is not None:return whole_result(raw,owner,'held_content_conflict',failure=('rollback_target.'+(delta or 'record'),'submitted_content_conflict'))",
+      " if failure is None and rollback and rollback.get('execution_state')=='failed':failure=('rollback_result','rollback-failed')",
+      " if failure is None and rollback and rollback.get('execution_state')==C['BACKUP_SUCCESS'] and not same_json(rollback.get('target'),raw['original_target']):failure=('rollback_result','result-foreign')",
+      " if failure is not None:",
+      "  information='held_rollback_unqualified' if failure[0] in ['backup','rollback_result'] or failure==('target','target-foreign') else 'held_target_unqualified'",
+      "  candidate=C['QUALIFIED'] if failure==('rollback_result','rollback-failed') else 'not_qualified'",
+      "  return whole_result(raw,owner,information,target=candidate,failure=failure)",
+      " if rollback and rollback.get('execution_state')==C['BACKUP_SUCCESS'] and raw['original_incident'].get('state')=='open':return whole_result(raw,owner,'rollback_recorded_incident_open',target=C['QUALIFIED'])",
+      " return whole_result(raw,owner,'target_content_referenced_requires_actual_qualification',target=C['QUALIFIED'])"
+    ],
+    "limits": [
+      "全53原caseと3局所probeの診断順を固定する。未見一般域/全missing-null組合せ/実source-qualified必要集合は未閉包。",
+      "原L4の証拠owner/同scope/sourceの完全binding、実integrity/evidence/procedureの真偽はこの合成marker比較で成立しない。取得providerと実qualified sourceの供給はunclosed_source_supplyを保持。",
+      "F02 claimsありで先行failure無しのclaim/unsupported_inferenceは原53oracle未観測の有限fallback。R1局所wholeへ独立固定したが、未見全claim policy/実qualification/permissionの成立は未閉包。",
+      "F03 claimsは対象/backup検査済み適格性を候補に残し、表示診断を先頭claimへ写す有限診断scope。原target/backup/incidentは全保持し実不適格を取り消さない。",
+      "F03成功resultかつincident.state=openだけrollback_recorded_incident_open。他incident状態はtarget_content_referenced_requires_actual_qualificationで原incidentを保存し、closureを評価/生成しない。",
+      "非JSON/NaN/Infinity/任意wire/unknown-key一般policy/実時刻/expiry計算は未採用。型外rawはこの有限関数の有効入力へ暗黙変換しない。"
+    ]
+  },
+  "output_domain_contract": {
+    "failure_field": {
+      "fixed_fields": [
+        "artifact_ref",
+        "backup",
+        "backup.receipt_ref",
+        "backup_ref",
+        "checks.dependency_reconnection",
+        "checks.integrity",
+        "checks.startup",
+        "checks.verification",
+        "compatibility",
+        "completeness",
+        "config_is_backup_success",
+        "config_ref",
+        "data_compatibility",
+        "dependency_ref",
+        "environment",
+        "execution_is_incident_closed",
+        "execution_result",
+        "existence_is_restore_pass",
+        "expiry_state",
+        "infrastructure_version_ref",
+        "integrity_ref",
+        "location_ref",
+        "procedure_ref",
+        "receipt_ref",
+        "restore.receipt_ref",
+        "rollback_result",
+        "rollback_target",
+        "rollback_target.procedure_ref",
+        "source_revision",
+        "target",
+        "time_ref",
+        "unknown_compatibility_is_qualified",
+        "restore",
+        "claim",
+        "execution_state"
+      ],
+      "difference_prefixes": [
+        "backup.",
+        "restore.",
+        "rollback_target."
+      ],
+      "path_grammar": "rootはrecord、memberはASCII identifierを.連結、indexは[n]（nは非負10進整数）。first_differenceの既知carrier key/indexからだけ構成。",
+      "claim_passthrough": "F01/F03は拒否分岐のinput.claims[0]をそのままfieldに返せる。空文字を含む原stringを勝手に未知labelへ置換しない。",
+      "domain_limit": "任意field literalを発明してよい意味ではない。独立checkerは固定field/構成path/原claimへの値joinを検証する。"
+    },
+    "rejected_claims": {
+      "source": "input.claims",
+      "rule": "拒否分岐では入力の全string順序/重複をそのまま保持、他は[]。観測6語に閉じない。"
+    },
+    "observed_labels": "output_literal_domainsのfield/rejected_claims listは原sourceの固定語彙例であり、dependent domainを排除するclosed enumではない。result/state/candidates/ownersは明示enum。"
+  },
+  "unknown_key_boundary": "RecoveryPacket/Assessmentはこの有限論理carrierの宣言memberだけを持つ。raw全文はL8 source_raw_utf8へ不変保存し、宣言外keyを黙って捨てない。typed fixtureのclosed carrier検査は正式wire/schemaの未知key拒否/許容policyではない。metadata/hash/state markerと実source資格/必要集合を分離する。",
+  "constant_source_basis": [
+    {
+      "constants": [
+        "COMPLETE",
+        "VALID_EXPIRY",
+        "BACKUP_SUCCESS"
+      ],
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "json_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+      "decoded_paths": {
+        "COMPLETE": "/original_backup/completeness",
+        "VALID_EXPIRY": "/original_backup/expiry_state",
+        "BACKUP_SUCCESS": "/original_backup/execution_state"
+      },
+      "meaning": "原正例の合成成功marker。実成功/時刻/資格ではない。"
+    },
+    {
+      "constants": [
+        "CHECK_PASS",
+        "RESTORED",
+        "COMPATIBLE",
+        "QUALIFIED"
+      ],
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "json_pointer": "/verification_obligations/1/cases/0/independent_source_packet/raw_utf8",
+      "decoded_paths": {
+        "CHECK_PASS": "/original_restore/checks/integrity/result",
+        "RESTORED": "/original_restore/execution_result",
+        "COMPATIBLE": "/original_restore/compatibility",
+        "QUALIFIED": "/original_restore/environment/independent"
+      },
+      "meaning": "原4check/restore/compatibility/独立環境の合成marker。実sourceはunclosed_source_supply。"
+    }
+  ],
+  "r1_resolution": {
+    "comment_id": 6182595369,
+    "reviewed_head": "55684dbc883b857c7dc866962bb26bb64f8bc700",
+    "body_sha256": "01c50789c29a1a75f5741f199a2c43875a3e59e9b3c2efeb75e3a1723c94474c",
+    "findings": [
+      "INFRA05D-01",
+      "INFRA05D-02",
+      "INFRA05D-03",
+      "INFRA05D-04"
+    ],
+    "state": "corrected_pending_parent_and_independent_review",
+    "original_and_local_56_expected": "unchanged",
+    "verification_rule": "正式L5 raw_comparison_reference.steps＋comparison_constantsだけを独立checkerで解釈し全whole/再帰型へ比較。補助assess/author/importなし。"
+  },
+  "literal_source_basis": [
+    {
+      "value": "artifact_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/5/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "backup",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/14/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "backup-expired",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/14/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "backup-missing",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/15/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "backup.receipt_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/12/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "backup_record_referenced_restore_not_evaluated",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/0/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "backup_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/16/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "checks.dependency_reconnection",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/4/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "checks.integrity",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/1/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "checks.startup",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/7/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "checks.verification",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/10/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "claim",
+      "kind": "finite_unobserved_derivation",
+      "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/contracts/1/content_rules",
+      "meaning": "not_evaluatedはbackup無/設定無の未評価。restoreは原restore欠落、claimは裏付けのない推論、execution_stateは原backup実行state。不足を成功へ補完しない既存義務の有限診断語。R1局所wholeで固定し一般域/実資格を生成しない。"
+    },
+    {
+      "value": "compatibility",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/15/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "completeness",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/2/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "config_is_backup_success",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/10/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "config_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/4/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "configured_no_backup_execution",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/1/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "data_compatibility",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/7/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "dependency_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/6/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "environment",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/17/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "execution_is_incident_closed",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/11/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "execution_result",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/13/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "execution_state",
+      "kind": "finite_unobserved_derivation",
+      "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/contracts/0/content_rules",
+      "meaning": "not_evaluatedはbackup無/設定無の未評価。restoreは原restore欠落、claimは裏付けのない推論、execution_stateは原backup実行state。不足を成功へ補完しない既存義務の有限診断語。R1局所wholeで固定し一般域/実資格を生成しない。"
+    },
+    {
+      "value": "existence_is_restore_pass",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/11/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "expiry_state",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/4/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "failed",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/2/expected_material/retained_restore/checks/integrity/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "foreign-target",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/3/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "held_backup_unqualified",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/2/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "held_claim_rejected",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/10/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "held_content_conflict",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/12/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "held_restore_unqualified",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/1/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "held_rollback_unqualified",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/14/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "held_target_unqualified",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/2/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "incompatible",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/10/expected_material/retained_rollback_target/data_compatibility",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "infrastructure_version_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/3/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "integrity_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/5/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "location_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/6/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "missing",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/1/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "missing_verification_not_offset",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/18/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "not_evaluated",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/0/expected_material/restore_state_candidate",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "not_executed",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/0/expected_material/retained_rollback_result/execution_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "not_qualified",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/2/expected_material/backup_state_candidate",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "passed_in_fixture_only",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/0/expected_material/restore_state_candidate",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "procedure_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/8/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "qualified_in_fixture_only",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/0/expected_material/retained_restore/environment/independent",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "receipt_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/8/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "recovery-design-owner/OS",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/1/expected_material/failure_reasons/0/return_owner",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "restore",
+      "kind": "finite_unobserved_derivation",
+      "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/contracts/1/content_rules",
+      "meaning": "not_evaluatedはbackup無/設定無の未評価。restoreは原restore欠落、claimは裏付けのない推論、execution_stateは原backup実行state。不足を成功へ補完しない既存義務の有限診断語。R1局所wholeで固定し一般域/実資格を生成しない。"
+    },
+    {
+      "value": "restore.receipt_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/20/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "restore_evidence_referenced_requires_actual_qualification",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/0/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "result-foreign",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/18/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "rollback-failed",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/17/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "rollback_recorded_incident_open",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/1/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "rollback_result",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/17/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "rollback_target",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/2/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "rollback_target.procedure_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/13/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "source_revision",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/3/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "state-backup-owner/recovery-owner",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/2/expected_material/failure_reasons/0/return_owner",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "submitted_content_conflict",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/12/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "succeeded_in_fixture_only",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/0/expected_material/backup_state_candidate",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "target",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/9/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "target-foreign",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/16/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "target_content_referenced_requires_actual_qualification",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/0/expected_material/information_state",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "time_ref",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/7/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "unknown",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/15/expected_material/retained_restore/compatibility",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "unknown_compatibility_is_qualified",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/12/expected_material/failure_reasons/0/field",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "unknown_target_information",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/3/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "unqualified_backup",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/2/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "unqualified_restore",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/13/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "unsupported_closure_or_qualification",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/2/cases/11/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "unsupported_inference",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/0/cases/10/expected_material/failure_reasons/0/result",
+      "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    }
+  ]
 }
