@@ -22860,7 +22860,14 @@
         "OS-CARRIER-WRONG-KIND",
         "OS-CARRIER-ABSENT",
         "OS-ASSOCIATION-DUPLICATE-SAME-TARGET",
-        "RAW-AND-VALIDATED-CANDIDATE-DISAGREE"
+        "RAW-AND-VALIDATED-CANDIDATE-DISAGREE",
+        "SINGLE-RAW-ARRAY-IS-ONE-OCCURRENCE",
+        "DUPLICATE-RAW-ITEMS-CORRESPONDING",
+        "DUPLICATE-IDENTICAL-RAW-ITEMS",
+        "DUPLICATE-RAW-ITEMS-PAIR-CONFLICT",
+        "MALFORMED-OS-OUTPUT-REF-ZERO-EXACT-MATCH",
+        "MALFORMED-OS-SIBLING-DOES-NOT-POISON-SELECTED-REF",
+        "DUPLICATE-RAW-ITEMS-OS-ASSOCIATION-MISSING"
       ],
       "expected_is_not_input": true,
       "runtime_execution": "not_executed",
@@ -150450,15 +150457,6 @@
         "input_materialization_ref": "/dispatch_boundary_cases/cases/3/input_materialization"
       },
       "expected_scope": "dispatch_boundary_casesの同一期待projection全体。これは該当分岐の局所投影であり、関数の全戻り値や製品実行結果を表さない。",
-      "expected_field_presence": {
-        "/records/0/candidate_output_ref": "present",
-        "/records/0/candidate_source_projection": "present",
-        "/records/0/validated_input_candidate": "present",
-        "/records/0/validated_candidate_source_projection": "present",
-        "/records/0/candidate_item_occurrences": "omitted",
-        "/records/0/validated_input_item_occurrences": "omitted",
-        "/records/0/qualified_os_record": "omitted"
-      },
       "expected_complete_return_ref": {
         "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
         "revision": "30d0df41916694206c05b269080a1795b96dc2d0",
@@ -152753,15 +152751,6 @@
         "revision": "30d0df41916694206c05b269080a1795b96dc2d0",
         "file_sha256": "ec645833b721b027f1dadda5f5223bf93d7fce11904bb8ed3fd639ff3a87455d",
         "pointer": "/cases/5/qualified_source_projection_join_oracles/direct_boundary_contrasts/0/expected_complete_source_projection_join"
-      },
-      "expected_field_presence": {
-        "/records/0/candidate_output_ref": "omitted",
-        "/records/0/candidate_source_projection": "omitted",
-        "/records/0/validated_input_candidate": "omitted",
-        "/records/0/validated_candidate_source_projection": "omitted",
-        "/records/0/candidate_item_occurrences": "present",
-        "/records/0/validated_input_item_occurrences": "omitted",
-        "/records/0/qualified_os_record": "present"
       },
       "downstream_validator_whole_trace_comparison": "excluded"
     }
@@ -157856,10 +157845,10 @@
     "contract_count": 13,
     "negative_case_count": 71,
     "full92_430_completion": "unproven",
-    "remaining": "型/既存71変異/資格/shape/合成byte閉包と関数正常oracleの独立確認を継続。F04 source-projection 18例はL9 recipeを期待値として参照し、独立dispatch境界4例は呼出し/返却projectionを固定したが、製品関数実行はnot_executed。実source/保存/接続/実装oracle凍結・独立reviewは未成立。",
+    "remaining": "型/既存71変異/資格/shape/合成byte閉包と関数正常oracleの独立確認を継続。F04 source-projection 25例はL9 recipeを期待値として参照し、独立dispatch境界5例は呼出し/返却projectionを固定したが、製品関数実行はnot_executed。実source/保存/接続/実装oracle凍結は未成立。独立review記録は対象HEADのPR commentで照合する。",
     "F04_source_projection_cases": {
-      "total": 18,
-      "join_result": 16,
+      "total": 25,
+      "join_result": 23,
       "join_member_omission": 2,
       "execution_state": "not_executed",
       "verification_state": "static_recipe_shape_not_run_in_product"
@@ -164220,14 +164209,11 @@
             "file_sha256": "842fb0fd24707188f7d38b0e3e89aa33bd3cb97051fc2a85b700552d267ea10f"
           }
         ],
-        "expected_field_presence": {
-          "/records/0/candidate_output_ref": "present",
-          "/records/0/candidate_source_projection": "present",
-          "/records/0/validated_input_candidate": "present",
-          "/records/0/validated_candidate_source_projection": "present",
-          "/records/0/candidate_item_occurrences": "omitted",
-          "/records/0/validated_input_item_occurrences": "omitted",
-          "/records/0/qualified_os_record": "omitted"
+        "expected_complete_return_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "revision": "30d0df41916694206c05b269080a1795b96dc2d0",
+          "file_sha256": "ec645833b721b027f1dadda5f5223bf93d7fce11904bb8ed3fd639ff3a87455d",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/occurrence_and_relevance_contrasts/4/expected_complete_source_projection_join"
         }
       },
       {
@@ -164246,7 +164232,7 @@
           "downstream_validator_whole_trace_comparison": "excluded",
           "candidate_pair_state": "unknown",
           "typed_candidate_arrays": "Field.missing",
-          "raw_occurrence_retention": "candidate side preserves all matching raw items by original index; trace side raw candidate is null, so no validated occurrence is invented."
+          "raw_occurrence_retention": "candidate側は一致する全raw itemを元indexで保持する。trace側のraw candidateはnullなので、validated側のoccurrenceを作らない。"
         },
         "expected_complete_return_ref": {
           "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
@@ -166484,16 +166470,7 @@
           "source_issues": [],
           "effects": "none"
         },
-        "expected_field_presence": {
-          "/records/0/candidate_output_ref": "omitted",
-          "/records/0/candidate_source_projection": "omitted",
-          "/records/0/validated_input_candidate": "omitted",
-          "/records/0/validated_candidate_source_projection": "omitted",
-          "/records/0/candidate_item_occurrences": "present",
-          "/records/0/validated_input_item_occurrences": "omitted",
-          "/records/0/qualified_os_record": "present"
-        },
-        "expected_basis": "L9 direct contrastの完全期待だけを照合する。validator/normal integrationまたは#3228 validator whole traceへ転用しない。"
+        "expected_basis": "L9の直接関数境界に固定された完全期待へ照合する。validatorが生成する完全traceの期待や通常の統合検証へは転用しない。"
       }
     ]
   },
