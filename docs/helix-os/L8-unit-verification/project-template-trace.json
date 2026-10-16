@@ -161461,9 +161461,9 @@
   },
   "candidate_l5_binding": {
     "paired_document": "docs/helix-os/L5-detail-design/project-template-trace.json",
-    "working_bytes_sha256": "e70320bcbec5ee609c82654b9d58d19e8e99996c2a7a3b5db8bd997b8b303b30",
-    "binding_scope": "Exact candidate L5 bytes including D02/D03/D05 setter refinements; original L4 and legacy pins/history retained. This binding is not runtime or implementation evidence.",
-    "revision_note": "This candidate L5 exact bytes pin; it does not imply source revision approval, product implementation, or runtime execution.",
+    "working_bytes_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+    "binding_scope": "D02・D03・D05のsetter refinementを含む候補L5の厳密なbytesを束縛する。元L4とlegacyのpin/historyは保持する。このbindingはruntimeまたは実装の証拠ではない。",
+    "revision_note": "候補L5の厳密なbytes pinである。source revisionの承認、製品実装、runtime実行を意味しない。",
     "binding_kind": "candidate_file_bytes"
   },
   "f04_source_projection_profile_cases": {
@@ -161538,12 +161538,12 @@
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "3d59d6c8f1e6979b5c88e98e5620f40d16df968c493f662e862c725ba5ce5b7d",
+            "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
             "pointer": "/functions/16/algorithm/3"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "3d59d6c8f1e6979b5c88e98e5620f40d16df968c493f662e862c725ba5ce5b7d",
+            "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
             "pointer": "/functions/13/algorithm/2"
           }
         ],
@@ -161571,7 +161571,7 @@
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "3d59d6c8f1e6979b5c88e98e5620f40d16df968c493f662e862c725ba5ce5b7d",
+            "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
             "pointer": "/functions/13/algorithm/2"
           }
         ],
@@ -161621,17 +161621,17 @@
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "3d59d6c8f1e6979b5c88e98e5620f40d16df968c493f662e862c725ba5ce5b7d",
+            "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
             "pointer": "/functions/14/algorithm/2"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "3d59d6c8f1e6979b5c88e98e5620f40d16df968c493f662e862c725ba5ce5b7d",
+            "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
             "pointer": "/functions/14/algorithm/3"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "3d59d6c8f1e6979b5c88e98e5620f40d16df968c493f662e862c725ba5ce5b7d",
+            "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
             "pointer": "/functions/20/algorithm/1"
           }
         ],
@@ -278095,7 +278095,7 @@
         "raw_caller_sha256_canonical": "f823d1bce918f0fb91330602f6975bd797ec0c5860aaa82de8e2e61ff7ed00f7",
         "prior_component_ref": "/f04_source_original_correspondence_verification/materials/m_4332737a9a0bc3bf18ce2dcba82c271bbac667d7ccae22d2ab718d188549a226/expected_component",
         "prior_component_sha256_canonical": "bbf481a8f5a6726120c2e2bc8c1a7ce1228836175dde5f664f1671fc34a55529",
-        "comparison_scope": "exact full private returns for fn19/fn14/fn20/fn22 as ordinary JSON; preserve existing public and component endpoints unchanged; this is an expectation, not observed actual",
+        "comparison_scope": "fn19・fn14・fn20・fn22の完全なprivate returnを通常のJSON値として照合する。既存のpublic endpointとcomponent endpointは変更しない。これは期待値であり、実際の観測結果ではない。",
         "expected_returns": [
           {
             "function_ref": "HELIXOS-L5-002-validate_record_trace_with_origins",
@@ -278153,7 +278153,7 @@
         "raw_caller_sha256_canonical": "a9c33fe3d9d81054b8f66c31d40bff26c7e865096a8fb07dea4ac084e4606c3f",
         "prior_component_ref": "/f04_source_original_correspondence_verification/materials/m_303c4eb7708468fced36eeca284c02b05fdcc0e9d8f8d78262185cf80faddd5d/expected_component",
         "prior_component_sha256_canonical": "4bffb8b510c4b7d132c67e06c4b3e496165ac31a98b5a0ed0449f98f84d8abb1",
-        "comparison_scope": "exact full private returns for fn19/fn14/fn20/fn22 as ordinary JSON; preserve existing public and component endpoints unchanged; this is an expectation, not observed actual",
+        "comparison_scope": "fn19・fn14・fn20・fn22の完全なprivate returnを通常のJSON値として照合する。既存のpublic endpointとcomponent endpointは変更しない。これは期待値であり、実際の観測結果ではない。",
         "expected_returns": [
           {
             "function_ref": "HELIXOS-L5-002-validate_record_trace_with_origins",
@@ -278205,7 +278205,7 @@
       }
     ],
     "private_return_expectation_recipes": {
-      "root": "this object; expected_ref pointers resolve against its cases array",
+      "root": "このobjectをrootとし、expected_refはそのcases配列を基準に解決する。",
       "cases": [
         {
           "case_id": "HELIXOS-L8-002-F04-ORIGINAL-CORE-CONDITION-MALFORMED-PRESENCE",
@@ -278804,7 +278804,7 @@
                 }
               ]
             },
-            "derivation": "L5 /functions/19/algorithm/1..7; the raw fixture contains six validly qualified source occurrences and 11 decoded records, no input/source issues or subject/section conflict. Each occurrence retains source index/record index/flat index and raw record slot. Flags exactly [qualified] per source per closed enum."
+            "derivation": "L5 /functions/19/algorithm/1..7に基づく。raw fixtureには資格確認済みsource occurrenceが6件、decoded recordが11件あり、input/source issuesおよびsubject/section conflictはない。各出現のsource index／record index／flat indexを保持し、qualified source refsはsource occurrence順で重複を除かず保持する。"
           },
           "fn14_private_return": {
             "candidate_input_state": "corresponding",
@@ -279857,7 +279857,7 @@
                       "condition",
                       "obligations"
                     ],
-                    "preservation": "Field states/presence values map 1:1 from the four-member raw carrier; nested Presence<JsonValue> stays its original raw value."
+                    "preservation": "Field stateとpresence値は4-member raw carrierから1対1で写す。入れ子のPresence<JsonValue>は元のraw値のまま保持する。"
                   }
                 },
                 {
@@ -279932,7 +279932,7 @@
                       "condition",
                       "obligations"
                     ],
-                    "preservation": "Field states/presence values map 1:1 from the four-member raw carrier; nested Presence<JsonValue> stays its original raw value."
+                    "preservation": "Field stateとpresence値は4-member raw carrierから1対1で写す。入れ子のPresence<JsonValue>は元のraw値のまま保持する。"
                   }
                 },
                 {
@@ -280007,12 +280007,12 @@
                       "condition",
                       "obligations"
                     ],
-                    "preservation": "Field states/presence values map 1:1 from the four-member raw carrier; nested Presence<JsonValue> stays its original raw value."
+                    "preservation": "Field stateとpresence値は4-member raw carrierから1対1で写す。入れ子のPresence<JsonValue>は元のraw値のまま保持する。"
                   }
                 }
               ]
             },
-            "field_presence_encoding": "metadata only: missing | supplied_null | supplied_value; product JSON remains ordinary member omission/null/value."
+            "field_presence_encoding": "metadataのみ。missing／supplied_null／supplied_valueを区別して記録する。製品JSONは通常のmember省略／null／値のままにする。"
           },
           "fn20_private_return": {
             "join": {
@@ -281362,11 +281362,11 @@
                     },
                     "candidate_item_occurrences": {
                       "state": "omitted",
-                      "reason": "single selected candidate occurrence; occurrence-array fields are present only when the selected occurrence count is multiple"
+                      "reason": "選択candidate occurrenceは1件である。occurrence数が複数の場合に限り、occurrence-array fieldを含める。"
                     },
                     "validated_input_item_occurrences": {
                       "state": "omitted",
-                      "reason": "single selected candidate occurrence; occurrence-array fields are present only when the selected occurrence count is multiple"
+                      "reason": "選択candidate occurrenceは1件である。occurrence数が複数の場合に限り、occurrence-array fieldを含める。"
                     }
                   }
                 }
@@ -281454,7 +281454,7 @@
                 }
               ]
             },
-            "field_presence_encoding": "metadata only: member omitted vs Field missing vs Field supplied(null/value) are separately stated; no wrapper enters product wire."
+            "field_presence_encoding": "metadataのみ。member省略、Field.missing、Field.supplied(null/value)を別々に表す。製品wireにはwrapperを入れない。"
           },
           "fn22_private_return": {
             "observation_component": {
@@ -282063,7 +282063,7 @@
                 }
               ]
             },
-            "derivation": "L5 /functions/19/algorithm/1..7; the raw fixture contains six validly qualified source occurrences and 11 decoded records, no input/source issues or subject/section conflict. Each occurrence retains source index/record index/flat index and raw record slot. Flags exactly [qualified] per source per closed enum."
+            "derivation": "L5 /functions/19/algorithm/1..7に基づく。raw fixtureには資格確認済みsource occurrenceが6件、decoded recordが11件あり、input/source issuesおよびsubject/section conflictはない。各出現のsource index／record index／flat indexを保持し、qualified source refsはsource occurrence順で重複を除かず保持する。"
           },
           "fn14_private_return": {
             "candidate_input_state": "corresponding",
@@ -283116,7 +283116,7 @@
                       "condition",
                       "obligations"
                     ],
-                    "preservation": "Field states/presence values map 1:1 from the four-member raw carrier; nested Presence<JsonValue> stays its original raw value."
+                    "preservation": "Field stateとpresence値は4-member raw carrierから1対1で写す。入れ子のPresence<JsonValue>は元のraw値のまま保持する。"
                   }
                 },
                 {
@@ -283191,7 +283191,7 @@
                       "condition",
                       "obligations"
                     ],
-                    "preservation": "Field states/presence values map 1:1 from the four-member raw carrier; nested Presence<JsonValue> stays its original raw value."
+                    "preservation": "Field stateとpresence値は4-member raw carrierから1対1で写す。入れ子のPresence<JsonValue>は元のraw値のまま保持する。"
                   }
                 },
                 {
@@ -283266,12 +283266,12 @@
                       "condition",
                       "obligations"
                     ],
-                    "preservation": "Field states/presence values map 1:1 from the four-member raw carrier; nested Presence<JsonValue> stays its original raw value."
+                    "preservation": "Field stateとpresence値は4-member raw carrierから1対1で写す。入れ子のPresence<JsonValue>は元のraw値のまま保持する。"
                   }
                 }
               ]
             },
-            "field_presence_encoding": "metadata only: missing | supplied_null | supplied_value; product JSON remains ordinary member omission/null/value."
+            "field_presence_encoding": "metadataのみ。missing／supplied_null／supplied_valueを区別して記録する。製品JSONは通常のmember省略／null／値のままにする。"
           },
           "fn20_private_return": {
             "join": {
@@ -284627,11 +284627,11 @@
                     },
                     "candidate_item_occurrences": {
                       "state": "omitted",
-                      "reason": "single selected candidate occurrence; occurrence-array fields are present only when the selected occurrence count is multiple"
+                      "reason": "選択candidate occurrenceは1件である。occurrence数が複数の場合に限り、occurrence-array fieldを含める。"
                     },
                     "validated_input_item_occurrences": {
                       "state": "omitted",
-                      "reason": "single selected candidate occurrence; occurrence-array fields are present only when the selected occurrence count is multiple"
+                      "reason": "選択candidate occurrenceは1件である。occurrence数が複数の場合に限り、occurrence-array fieldを含める。"
                     }
                   }
                 }
@@ -284719,7 +284719,7 @@
                 }
               ]
             },
-            "field_presence_encoding": "metadata only: member omitted vs Field missing vs Field supplied(null/value) are separately stated; no wrapper enters product wire."
+            "field_presence_encoding": "metadataのみ。member省略、Field.missing、Field.supplied(null/value)を別々に表す。製品wireにはwrapperを入れない。"
           },
           "fn22_private_return": {
             "observation_component": {
@@ -284737,15 +284737,16 @@
       "execution_state": "not_executed",
       "source_packet_sha256": "e9d49081f67311ce0ec5df4a5fcf3574fae372211b99341455466abc5d97b7dd",
       "whole_artifact_sha256": "1f5b0a3ba9286da956241809eb517e7a48de068ed8efe0df3be05be2593a3a64",
-      "whole_index_ref": "scaffold/review-handoff/local/os002-malformed-carrier-priority-detail-plan/malformed-private-return-freeze-whole-index.json at preparation time; fixed expected per-return canonical hashes are duplicated here to make this L8 scope self-contained",
-      "recipe_rules": "$copy resolves only within this L8 materials map. $raw_record_ref resolves the exact indexed OwnerRecord within the referenced material after canonical hash check. expected_ref is RFC6901 relative to private_return_expectation_recipes. Field recipe state is metadata only: materialized returns contain omitted JSON member for missing, member:null for supplied(null), and exact unwrapped supplied value. JsonValue/OwnerRecord/source raw payloads are copied without recursive key rewriting. fn22 reuses the exact existing component value and existing diagnostic suffix [].",
-      "no_product_evidence": "These are source-derived complete expected private returns; no product function, AST, runtime, decoder, evaluator, qualification, or output observation was executed."
+      "whole_index_ref": "準備時点のmalformed-private-return-freeze-whole-index.jsonを参照する。各returnの固定期待canonical hashをこのL8 scopeにも重複記載し、scope内で参照できるようにする。",
+      "recipe_rules": "$copyはこのL8 materials map内だけで解決する。$raw_record_refはcanonical hash確認後、参照先material内の指定OwnerRecordを解決する。expected_refはprivate_return_expectation_recipesをrootとするRFC6901相対pointerである。Field recipeのstateはmetadataに限り、materialized returnではmissingはJSON member省略、supplied(null)はmember:null、supplied valueはunwrapした値として表す。JsonValue、OwnerRecord、source raw payloadは再帰的なkey書換えをせず、そのまま複製する。fn22は既存componentの値をそのまま使い、既存diagnostic suffix []を維持する。fn19 recipeのvalidated_trace.input.sourceはmaterializerが完全一致で照合する固定機械markerなので、英語literalを変更せず保持する。fn14のorigin_support_refも同一object参照を示す固定値として原文を保持する。",
+      "no_product_evidence": "これらはsourceから導いた完全なprivate return期待値である。製品関数、AST、runtime、decoder、evaluator、qualification、出力のいずれも実行・観測していない。",
+      "external_preparation_artifact_note": "source_packet_sha256、private_return_negative_source_artifact.sha256、private_return_correction_historyのrejected_candidate_digestは、repository外に保存された準備・照合artifactのdigestであり、Git内容だけからは再計算できない。これらは来歴参照で、意味の正本ではない。意味の根拠はrevisionとpointerで固定したrequirements・L4/L5/L8の本文である。"
     },
     "private_return_negative_controls": [
       {
         "id": "HELIXOS-L8-002-F04-PRIVATE-N1-HEADER-MISMATCH-DOMAIN-FAILURE",
         "source_negative_id": "N1-header-mismatch-domain-failure-retained",
-        "scope": "defined projection only, not full fn14/fn20/fn22 returns",
+        "scope": "定義済みprojectionだけを対象とし、fn14/fn20/fn22の完全な返却値は対象外",
         "input": {
           "mutation_pointer": "/source_projection_selection/output_refs/0",
           "replacement": {
@@ -285056,14 +285057,14 @@
         "fn22_expected_projection": {
           "diagnostic_drafts": [],
           "target_unknown_from_mismatched_raw_relation": false,
-          "basis": "No selected qualified OS association; no CORE row acquired."
+          "basis": "選択対象に一致するqualified OS associationがないため、CORE rowは取得されない。"
         },
-        "expected_selector_state": "unknown retained at source5/record0 before target header filtering; no target semantic unknown on header mismatch"
+        "expected_selector_state": "target header照合より前にsource 5/record 0でunknownを保持する。header不一致からtarget semantic unknownは作らない。"
       },
       {
         "id": "HELIXOS-L8-002-F04-PRIVATE-N2-SAME-REF-DISTINCT-SOURCE-INDEX",
         "source_negative_id": "N2-same-ref-distinct-source-index",
-        "scope": "partial facts only; not whole fn19/fn20; dependency membership remains not frozen",
+        "scope": "部分事実だけを対象とし、fn19/fn20の完全返却値ではない。dependency membershipは未凍結",
         "raw_caller_ref": "/f04_source_original_correspondence_verification/materials/m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695/raw_caller",
         "raw_caller_sha256_canonical": "5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4",
         "partial_expected_facts": {
@@ -285113,7 +285114,7 @@
       {
         "id": "HELIXOS-L8-002-F04-PRIVATE-N3-UNQUALIFIED-EQUAL-REF-NOT-RESCUED",
         "source_negative_id": "N3-equal-ref-unqualified-twin-not-rescued",
-        "scope": "partial facts only; not whole fn19/fn20",
+        "scope": "部分事実だけを対象とし、fn19/fn20の完全返却値ではない",
         "raw_caller_ref": "/f04_source_original_correspondence_verification/materials/m_d2860186e9b273489fc9abbf2c0fd81dfff9b718183e519a3963c60e95dfde4e/raw_caller",
         "raw_caller_sha256_canonical": "01bca57813a546adf7dd7b49e71d15a98881cf5599efae685bae2f3adfbea9fa",
         "input": {
@@ -285166,14 +285167,14 @@
         "N2-same-ref-distinct-source-index",
         "N3-equal-ref-unqualified-twin-not-rescued"
       ],
-      "scope": "N1 is a defined private projection check. N2 and N3 contain partial facts only, not whole-return or dependency-closure evidence."
+      "scope": "N1は定義済みprivate projectionの確認である。N2とN3は部分事実のみで、whole-returnまたはdependency-closureの証拠ではない。"
     },
     "private_return_correction_history": [
       {
-        "previous_local_expectation": "N1 local_decode_states empty on header mismatch",
+        "previous_local_expectation": "header不一致時にN1のlocal_decode_statesを空にする旧期待",
         "status": "withdrawn",
-        "reason": "conflated source-local domain decode failure with post-decode target header mismatch; contradicted L4 table/5 and L5 fn14 preheader decoder order",
-        "current_expected": "source5/record0 local unknown state and raw payload retained before header filtering; no target semantic unknown from mismatched raw header",
+        "reason": "source単位のdomain decode failureと、decode後に行うtarget header照合を混同していた。L4 table/5およびL5 fn14のpreheader decoder順序に反する。",
+        "current_expected": "headerによるfiltering前にsource 5/record 0のlocal unknown状態とraw payloadを保持する。raw header不一致からtarget semantic unknownは作らない。",
         "rejected_candidate_digest": "a18c25a22374d10c48d7bb9fa845692b3d0b141f61ee8f6ad05419e0cdae5386",
         "corrected_negative_artifact_sha256": "1c503120778d36b79e23461785ef35c7478754b36f37a4dd417d10d87753cb5c"
       }
@@ -285206,32 +285207,31 @@
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/functions/14/algorithm/9",
-        "file_sha256": "e70320bcbec5ee609c82654b9d58d19e8e99996c2a7a3b5db8bd997b8b303b30",
-        "revision_note": "Exact candidate L5 bytes bound by candidate_l5_binding; no approval or execution implied."
+        "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+        "revision_note": "この参照は、今回のL5/L8候補pairに含まれる候補L5 bytesへ束縛される。承認済みsource revisionや実行結果を示さない。"
       },
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-        "pointer": "/functions/20/algorithm/10",
-        "file_sha256": "e70320bcbec5ee609c82654b9d58d19e8e99996c2a7a3b5db8bd997b8b303b30",
-        "revision_note": "Exact candidate L5 bytes bound by candidate_l5_binding; no approval or execution implied."
+        "pointer": "/functions/20/algorithm/12",
+        "revision_note": "同一のL5/L8候補pairにおける現在のD03 setter箇所を示す。引用したhistorical revisionではなく、L5自身のhashを束縛するものでもない。"
       },
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/wire_codec_contract/field_encoding",
-        "file_sha256": "e70320bcbec5ee609c82654b9d58d19e8e99996c2a7a3b5db8bd997b8b303b30",
-        "revision_note": "Exact candidate L5 bytes bound by candidate_l5_binding; no approval or execution implied."
+        "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+        "revision_note": "この参照は、今回のL5/L8候補pairに含まれる候補L5 bytesへ束縛される。承認済みsource revisionや実行結果を示さない。"
       },
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/type_contract/types/F04ProjectionSelectorDecodeState/meaning",
-        "file_sha256": "e70320bcbec5ee609c82654b9d58d19e8e99996c2a7a3b5db8bd997b8b303b30",
-        "revision_note": "Exact candidate L5 bytes bound by candidate_l5_binding; no approval or execution implied."
+        "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+        "revision_note": "この参照は、今回のL5/L8候補pairに含まれる候補L5 bytesへ束縛される。承認済みsource revisionや実行結果を示さない。"
       },
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/type_contract/types/F04ResolvedSelectedSource/meaning",
-        "file_sha256": "e70320bcbec5ee609c82654b9d58d19e8e99996c2a7a3b5db8bd997b8b303b30",
-        "revision_note": "Exact candidate L5 bytes bound by candidate_l5_binding; no approval or execution implied."
+        "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+        "revision_note": "この参照は、今回のL5/L8候補pairに含まれる候補L5 bytesへ束縛される。承認済みsource revisionや実行結果を示さない。"
       },
       {
         "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",

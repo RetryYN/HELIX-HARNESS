@@ -2200,7 +2200,7 @@
         "raw candidateとValidatedRecordTrace.input.candidateの各core_outputsがarrayの場合、selector評価用typed decodeと独立して、全raw itemを側別F04CandidateItemOccurrence(item_index, raw_item)へ元index順・重複保持で写しF04ProjectionTypedInputs.candidate_raw_occurrences/validated_raw_occurrencesに渡す。arrayでない側からoccurrenceを合成しない。元ValidatedRecordTrace.qualified_records、source classification、issue配列は変更しない。",
         "origin suppliedの場合、new kindの全qualified raw occurrenceを列挙しraw4member payloadを保持。output_refとselected Refのexact header選択に先立ち、structured domain viewの成功/失敗を別Fieldでdecodeする。domain失敗でもqualified headerを候補列から落とさない。fn0 raw閉型dropは除外済みであり復元しない。",
         "F04OriginalDecodeContextは同origin_supportと全decoded relationship列から構成しsuppliedへ。qualified0件でも取得済み空列を供給する。candidate pair conflict/unknownはこのsource context取得を抑止しない。legacy direct missingだけoriginal_decode_contextをmissingにする。",
-        "D02 local decode-state setter: for each profile source occurrence whose local selector or structured-domain decode returns missing/unknown/conflict, append exactly one F04ProjectionSelectorDecodeState containing that occurrence and its pre-header raw payload, ordered by original source index then record index. Do not coalesce equal Ref occurrences. Decode the qualified new-kind structured domain before matching its output_ref to a selected target; retain its unknown state and raw payload even when the subsequent header does not match (L4 /contracts/5/source_original_correspondence/resolution_and_decode/table/5). A mismatched raw header must not create target semantic unknown or a new finding. A successful corresponding decode creates no local failure row. The original two malformed CORE rows remain outside this fn14 list: their inner CORE009 Presence decode fails at fn20 and yields fn20 resolved_core_row=Field.missing. L4 table/3 retains raw record and existing issue/local-state evidence for zero exact headers. This setter changes local private evidence only; it does not rewrite fn0 qualification, source issues, or OS input issues."
+        "D02 局所decode状態の設定：各profile sourceの各出現について、局所selectorまたは構造化domainのdecode結果がmissing・unknown・conflictの場合に限り、その出現とheader照合前のraw payloadを含むF04ProjectionSelectorDecodeStateを1件追加する。元source index、record indexの順に並べ、Refが等しい別出現を統合しない。qualifiedな新kindの構造化domainは、output_refを選択targetと照合する前にdecodeする。後続のheaderが一致しない場合も、source単位のunknown状態とraw payloadを保持する（L4 /contracts/5/source_original_correspondence/resolution_and_decode/table/5）。一致しないraw headerからtargetのsemantic unknownや新たなfindingを作らない。対応するdecodeに成功した場合、局所failure行は作らない。元の2件のmalformed CORE rowはこのfn14一覧に含めない。内側のCORE009 Presence decodeはfn20で失敗し、fn20のresolved_core_row=Field.missingとなる。L4 table/3は、exact headerが0件の場合もraw recordと既存issue/local-state evidenceを保持する。このsetterが変えるのはprivateな局所証拠だけであり、fn0 qualification、source issues、OS input issuesは書き換えない。"
       ],
       "source_bindings": [
         {
@@ -2773,7 +2773,7 @@
         "旧join recordを構成する同じ取得過程でselected source originsとtrusted CORE locator/解決済みraw rowをF04ResolvedSelectedSourceへ保持する。候補carrierのdecode/一致状態を取得事実へ混ぜない。CORE取得元はunique qualified OS associationだけであり、新relationshipのlocatorは比較対象に限る。",
         "新original_decode_contextがsuppliedなら、同一traceに束縛された非null F04OriginalComparisonContextを構築する。source未取得selectedにもresolved_core_row missingのcontextを返す。旧legacy context missingは新context missingとし、その制限をraw runner経路へ持ち込まない。",
         "返却joinは旧fn15と全値同一。source refsとraw OwnerRecord candidate配列へ新origin wrapperを漏らさない。private取得contextは公開wire/返却へ新規追加しない。",
-        "D03 reached-source-index setter: return the distinct original source occurrence indices actually traversed by the resolver while acquiring the selected OS association / CORE row, in original source-index order. Retain different indices even when their Ref or OwnerRecord values are equal; do not reconstruct the list by Ref equality or sort by identity. For the two fixed malformed carrier inputs the independently derived reached_source_indices is [2,3]; source 4 and source 5 are outside this acquisition closure."
+        "D03 到達source indexの設定：選択したOS associationとCORE rowを取得するresolverの経路で実際に通過した、元source occurrenceのindexを返す。元source index順に並べ、RefまたはOwnerRecordが等しくても異なるindexは別々に残す。Refの同値性から一覧を再構成したり、identityで並べ替えたりしない。固定済みのmalformed carrier 2入力で独立に導かれるreached_source_indicesは[2,3]である。source 4とsource 5はこの取得閉包の外にある。"
       ],
       "source_l4_ref": {
         "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
@@ -10906,14 +10906,14 @@
         "revision": "aef2a236e07aab42e83296f22549ee518f3d1209",
         "file_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
         "pointer": "/contracts/5/source_original_correspondence/resolution_and_decode/table/3",
-        "supports": "zero qualified exact header: retain raw record and existing issue/local decode evidence"
+        "supports": "qualified exact headerが0件の場合：raw recordと既存issue/local decode evidenceを保持する。"
       },
       {
         "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
         "revision": "aef2a236e07aab42e83296f22549ee518f3d1209",
         "file_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
         "pointer": "/contracts/5/source_original_correspondence/resolution_and_decode/table/5",
-        "supports": "qualified exact raw header with full domain decode failure: unknown plus original qualified owner record/raw payload/local_decode_states; no new semantic finding"
+        "supports": "qualified exact raw headerがありdomain decodeに失敗した場合：unknown、元のqualified owner record/raw payload/local_decode_statesを保持し、新しいsemantic findingは作らない。"
       },
       {
         "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
@@ -10932,8 +10932,8 @@
           107
         ],
         "reuse_class": "semantic_rederivation",
-        "preserve": "typed references, trace and unknown preservation; JSON remains structural authority",
-        "change": "derive the selected OS002 local setter details without adopting the legacy TPL grammar, version lifecycle, expression tree, or registry method"
+        "preserve": "typed reference、trace、unknownの保持を継続し、JSONを構造上の正本として扱う。",
+        "change": "legacy TPL grammar、version lifecycle、expression tree、registry方式を採用せず、選択したOS002 local setterの詳細を再導出する。"
       }
     ]
   },
