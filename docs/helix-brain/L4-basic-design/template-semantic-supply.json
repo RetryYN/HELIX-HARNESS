@@ -3370,6 +3370,244 @@
             "semantic_contract_ref"
           ],
           "additionalProperties": false
+        },
+        "OwnerDescriptorTarget": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target_ref",
+            "slot_identity",
+            "descriptor_kind"
+          ],
+          "properties": {
+            "target_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "slot_identity": {
+              "type": "string"
+            },
+            "descriptor_kind": {
+              "enum": [
+                "template identity",
+                "version",
+                "layer/pair",
+                "applicability",
+                "required input",
+                "required section",
+                "required field",
+                "relation",
+                "意味owner",
+                "trace",
+                "negative oracle",
+                "measurement",
+                "completion",
+                "downstream kind",
+                "supersession"
+              ]
+            }
+          }
+        },
+        "DescriptorTargetOccurrence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_ref",
+            "source_locator",
+            "declaration_locator",
+            "declaration",
+            "source_binding"
+          ],
+          "properties": {
+            "source_ref": {
+              "$ref": "#/$defs/PortPresenceRef"
+            },
+            "source_locator": {
+              "type": "string"
+            },
+            "declaration_locator": {
+              "type": "string"
+            },
+            "declaration": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "source_binding": {
+              "$ref": "#/$defs/PortPresenceBinding"
+            }
+          }
+        },
+        "DescriptorTargetMatch": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target_ref",
+            "binding",
+            "slot_identity",
+            "descriptor_kind",
+            "source_refs",
+            "declaration_locators",
+            "slot_locators",
+            "candidate_indices",
+            "candidate_refs"
+          ],
+          "properties": {
+            "target_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "slot_identity": {
+              "type": "string"
+            },
+            "descriptor_kind": {
+              "enum": [
+                "template identity",
+                "version",
+                "layer/pair",
+                "applicability",
+                "required input",
+                "required section",
+                "required field",
+                "relation",
+                "意味owner",
+                "trace",
+                "negative oracle",
+                "measurement",
+                "completion",
+                "downstream kind",
+                "supersession"
+              ]
+            },
+            "source_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "declaration_locators": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "slot_locators": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "candidate_indices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "candidate_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          }
+        },
+        "DescriptorTargetProblem": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "locator",
+            "reason",
+            "source_ref"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "owner_source_unresolved",
+                "target_container_absent",
+                "target_container_null",
+                "target_container_type",
+                "declaration_shape",
+                "target_ref_unresolved",
+                "target_ref_conflict",
+                "binding_unresolved",
+                "binding_conflict",
+                "kind_unresolved",
+                "target_ambiguous",
+                "target_mapping_conflict",
+                "target_not_declared"
+              ]
+            },
+            "locator": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            },
+            "source_ref": {
+              "$ref": "#/$defs/PortPresenceRef"
+            }
+          }
+        },
+        "DescriptorTargetRead": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "claim_locator",
+            "claim",
+            "candidate_indices",
+            "candidate_refs",
+            "occurrences",
+            "matches",
+            "state",
+            "problems"
+          ],
+          "properties": {
+            "claim_locator": {
+              "type": "string"
+            },
+            "claim": {
+              "$ref": "#/$defs/Claim"
+            },
+            "candidate_indices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "candidate_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "occurrences": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/DescriptorTargetOccurrence"
+              }
+            },
+            "matches": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/DescriptorTargetMatch"
+              }
+            },
+            "state": {
+              "enum": [
+                "resolved",
+                "unknown",
+                "conflict"
+              ]
+            },
+            "problems": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/DescriptorTargetProblem"
+              }
+            }
+          }
         }
       }
     },
@@ -4091,6 +4329,279 @@
         "reference_equality": "docs/helix-brain/L5-detail-design/template-semantic-supply.json#/source_return_contract/constructor_meaning/reference_equality",
         "meaning": "fullRef対応はRef全6member literal JSON一致ではない。identity/revision/scope/owner双方供給non-null同値、sha256は双方供給non-null時だけ比較、source_locatorは所在。Ref原全値は比較に使わないmemberも出力で保持。request側null locator/digestをsource側供給値で埋めず、新必須gateにしない。"
       }
+    },
+    "descriptor_target_contract": {
+      "status": "新しい技術表現の再導出候補。scaffoldでの根拠付き候補であり正式採用/実source資格/実装の成立ではない。",
+      "requirement_refs": [
+        "HELIXBRAIN-L3-032-F09",
+        "HELIXBRAIN-L3-032-F01",
+        "HELIXBRAIN-L3-032-F02"
+      ],
+      "purpose": "reference_onlyによる必須定義代替を検査するとき、原Claimがどのdescriptorを指すかをownerの原対応へ結ぶ。definition missingとtarget住所を分離し、templateへのalias/唯一欠落推定を使わない。",
+      "carrier": {
+        "location": "既存QualifiedSource.content:RawValueのdescriptor_targets",
+        "item_type": "OwnerDescriptorTarget",
+        "original_binding": "同source.content.bindingの原full Binding",
+        "origin": "同immutable snapshotのClaim.binding.knowledge_refへ既存Ref比較で対応するKnowledgeRecordの原provenance_refsからsemantic_json sourceへ辿る。既存source bytes/body/digest/owner資格判定を使い、Claim.basisや提出欠落集合からsource/rootを生成しない。",
+        "fields": {
+          "target_ref": "生成時からownerが持つ原descriptor target Ref。原6memberを保持。slot文字列/配列位置/表示名からRefを生成しない。",
+          "slot_identity": "同full Binding内の原slot identity。factsの有無と独立して宣言できる。",
+          "descriptor_kind": "既存descriptor_meaningsの固定15名。callerの分類をowner原分類へ昇格しない。"
+        },
+        "absence": "carrier/fieldの欠落・null・空配列・型外を別に保存する。意味body/facts不足からtargetを補完しない。新SupplyInput/Claim fieldは追加しない。"
+      },
+      "logical_port": {
+        "symbol": "read_descriptor_replacement_target",
+        "signature": "同immutable入力の既存ValidatedSupply、直接引数Claim全値、claim_locator:string -> DescriptorTargetRead",
+        "caller": "同validator invocationのsource資格判定とinputを使う。raw Claimは指定原locatorで解決した全値を直接引数へ渡す。locatorはtrace所在であってClaim入力値の代用ではない。",
+        "scope": "住所対応だけを読むpure port。source refsの掲載を実資格へせず、意味body/同義判定/採択/CORE適用/OS義務成立を返さない。"
+      },
+      "ordered_branches": [
+        {
+          "order": 0,
+          "condition": "kind=fill_definitionの原Claimを読む",
+          "action": "原Claim/locator/全candidate indexとRefを保持。値intentの正/未解決は既決claim_intent_protocolで独立に読む。null replacementをabsenceにしない。"
+        },
+        {
+          "order": 1,
+          "condition": "原knowledge record/provenance/sourceを解決",
+          "action": "既存Ref/Binding/source資格を消費する。解決不能はowner_source_unresolved。相反/未資格sourceをfirst/最新/別source成功で捨てない。"
+        },
+        {
+          "order": 2,
+          "condition": "source Binding又は原targetのframeを比較",
+          "action": "下記relevance_tableの当該source/full Binding/target cohortでだけunknown/conflictの影響を決める。無関係又は未帰属宣言を全target blockerにしない。"
+        },
+        {
+          "order": 3,
+          "condition": "descriptor_targetsを読む",
+          "action": "欠落→target_container_absent、null→target_container_null、非array→target_container_type。明示空又は該当名指しなしはtarget_not_declared。原containerを成功/空意味へ補完しない。"
+        },
+        {
+          "order": 4,
+          "condition": "原array要素を原source/index順に読む",
+          "action": "全RawValue宣言をoccurrencesへ保持。3fieldのtyped viewは供給値を検査して作る。raw追加memberはoriginal declarationに残し、viewから除くこと自体をraw不正受理と呼ばない。required view field不成立は局所問題。"
+        },
+        {
+          "order": 5,
+          "condition": "Claim.subject_refと原target_refを比較",
+          "action": "既存ref_sameに従いidentity/revision/scope/owner非null一致、両sha256非null時だけdigest一致。source_locatorはidentityでない。Ref全原値を保持しliteral6member一致を新必須gateにしない。"
+        },
+        {
+          "order": 6,
+          "condition": "当該targetのowner対応をまとめる",
+          "action": "stateの対応キーは既存Ref/Binding比較と原slot/kind。distinct slotはunknown、同slot既知kind差はconflict。返却matchをまとめるのはtarget_ref/full Binding/slot/kindの全値完全同値の場合だけで、その際も全原source_refs/宣言locator/indexを反復ごと保持する。optional Ref所在等が違う対応は別matchで全原値を保持し、同じ住所への既存Ref比較成立を妨げる新gateにはしない。"
+        },
+        {
+          "order": 7,
+          "condition": "owner宣言のslotへcaller元slotを照合",
+          "action": "同full Binding/exact slot_identity/kindの全元slot locatorを保持。既知kind差は当該mapping conflict。slot不在は空slot_locatorsで住所対応自体を維持できる。新たなrequired slotやFactを生成しない。"
+        },
+        {
+          "order": 8,
+          "condition": "当該cohortの結果を返す",
+          "action": "対応する既知conflict→unknown→resolvedの順。同住所の安全な対応が無ければmatches空。別scope/未帰属の問題もproblems/occurrencesから消さない。resolvedは当該住所対応だけであり全source問題解消ではない。"
+        }
+      ],
+      "relevance_table": [
+        {
+          "condition": "原source usable、source.content.bindingがClaim.bindingと同full Binding、原target Refが既存ref_sameでClaim.subject_refへ対応",
+          "relation": "当該target/Binding",
+          "effect": "対応slot/kindの不足・未知は当該targetのunknown。既知同slot kind相反はconflict。原source資格/body問題は当該対応資料の既存判定として保持する。"
+        },
+        {
+          "condition": "target_ref.identityが供給stringでClaim.subject_ref.identityと異なる",
+          "relation": "別target",
+          "effect": "その原source/full Bindingの宣言/型問題を保持するが当該target成功の相殺に使わない。kind未知を全targetへ広げない。"
+        },
+        {
+          "condition": "target identityが欠落/null/型外で関連を確定できない",
+          "relation": "元source/full Binding内の未帰属",
+          "effect": "原宣言と局所unknownを保持し全targetへ対応を断定しない。独立した明示target対応を相殺しない。明示対応が一つもなければ当該targetはunknown。source全体完成の認定ではない。"
+        },
+        {
+          "condition": "同identityでも原target revision/scope/owner等が既知相違",
+          "relation": "別の明示target frame",
+          "effect": "原full Refのtarget_ref_conflictを保持し、独立した当該frameのexact対応を相殺しない。当該frame対応が無く既知相違資料だけならconflict。locatorをidentityにせず両digest供給時だけdigest比較する。"
+        },
+        {
+          "condition": "source.content.bindingがClaim.bindingと既知相違",
+          "relation": "別full Binding",
+          "effect": "binding_conflictと原scopeを保持し、当該Bindingの独立対応を相殺しない。別Binding資料しか無い場合はconflictでmatches空。Bindingを付け替えない。"
+        },
+        {
+          "condition": "source Bindingが比較不能だが原target frame対応は明示",
+          "relation": "当該targetのBinding未解決",
+          "effect": "その元sourceにおける当該targetのbinding_unresolved/unknown。全ての他identity/Bindingへ広げない。"
+        },
+        {
+          "condition": "source Bindingとtarget identityの双方が未解決",
+          "relation": "未帰属の元source範囲",
+          "effect": "原不足を局所保持し、独立して名指されたtargetの反対対応を生成しない。独立対応も無ければunknown。"
+        },
+        {
+          "condition": "同target/current Bindingに複数distinct slot対応がある",
+          "relation": "当該targetのscope曖昧",
+          "effect": "target_ambiguous unknown。全候補宣言/全原missingを保持し先頭/最新/全域適用を推測しない。"
+        },
+        {
+          "condition": "同target/current Binding/同slotに異なる既知kindがある",
+          "relation": "当該対応の相反",
+          "effect": "target_mapping_conflict conflict。他target/slotの原状態は保持する。"
+        },
+        {
+          "condition": "target/full Binding/slot/kindの対応値が完全同値で反復",
+          "relation": "論理対応値だけの重複",
+          "effect": "一matchへまとめ得るが原source/ref/宣言出現/locator/候補index/Refと順序は全保持する。異なるbody/binding/scope/資格/未知memberをsourceごと消さない。"
+        }
+      ],
+      "return_field_mapping": {
+        "DescriptorTargetRead.claim_locator": "直接引数の原所在stringを保持。",
+        "DescriptorTargetRead.claim": "直接引数のClaim全値を保持。",
+        "DescriptorTargetRead.candidate_indices": "input.candidatesの全原indexを原順保持。unknown/conflictでも削らない。",
+        "DescriptorTargetRead.candidate_refs": "input.candidates全原Ref配列を反復込みで原順保持。",
+        "DescriptorTargetRead.occurrences": "原provenanceが指す全sourceの供給descriptor_targets array全要素。source順/array index順。RawValue非object/重複/未知も捨てない。",
+        "DescriptorTargetOccurrence.source_ref": "当該source.refが既存Ref型で供給されればsupplied原Ref、形成不能ならabsent。形成不能の元値はsource_locatorの同snapshot sourceに残す。",
+        "DescriptorTargetOccurrence.source_locator": "当該原sourceのRFC6901 pointer /sources/{i}。",
+        "DescriptorTargetOccurrence.declaration_locator": "原要素pointer /sources/{i}/content/descriptor_targets/{j}。",
+        "DescriptorTargetOccurrence.declaration": "原array要素RawValueの全値。",
+        "DescriptorTargetOccurrence.source_binding": "content.bindingが既存Bindingとして供給された場合supplied原Binding。それ以外absentで元値は同snapshot locatorに保存。null/欠落の原因はproblemで区別し代替Bindingを作らない。",
+        "DescriptorTargetRead.matches": "対応成立した原target/Binding/slot/kind。各matchは次の全fieldを持ち、unknown/conflictの候補自体はoccurrencesに残す。",
+        "DescriptorTargetMatch.target_ref": "原owner宣言target_ref全値。",
+        "DescriptorTargetMatch.binding": "原source.content.binding全値。Claimへ付け替えない。",
+        "DescriptorTargetMatch.slot_identity": "原owner宣言string全値。",
+        "DescriptorTargetMatch.descriptor_kind": "原owner宣言の既決exact名。",
+        "DescriptorTargetMatch.source_refs": "対応を供給した全原source Refを反復/順序込みで保持。一件の論理対応にしてもsource_refをdedupしない。",
+        "DescriptorTargetMatch.declaration_locators": "対応を供給した全原宣言pointerを反復/順序込みで保持。",
+        "DescriptorTargetMatch.slot_locators": "同full Binding/slot/kindに実在した全input.descriptors indexのpointer。存在しないslotを追加しない。",
+        "DescriptorTargetMatch.candidate_indices": "原binding.template_refに既存Ref比較で対応する全input.candidates indexを反復込みで保持。",
+        "DescriptorTargetMatch.candidate_refs": "当該indexの元Refを同順保持。",
+        "DescriptorTargetRead.state": "ordered_branches/relevance_tableによる当該target/Binding住所対応だけ。",
+        "DescriptorTargetRead.problems": "元scopeの全局所問題。原source/index/field順。複数distinct slotの曖昧/同slot kind相反は当該group一問題にし、候補資料は全occurrencesへ保持。",
+        "DescriptorTargetProblem.kind": "schemaの既決private13語。public codeへ転用しない。",
+        "DescriptorTargetProblem.locator": "次のproblem_locator規則の原pointer。",
+        "DescriptorTargetProblem.reason": "次のreason_templatesのkind対応literal。自由文を期待生成源にせず独立期待と照合する。",
+        "DescriptorTargetProblem.source_ref": "元source Refが型内ならsupplied全値。原source未解決/Ref形成不能はabsent。元raw所在はlocatorで保持。"
+      },
+      "problem_locator": {
+        "owner_source_unresolved": "knowledge_ref不足は/binding/knowledge_ref、同原recordなし/曖昧は/knowledge_records、原provenance不足は/knowledge_records/{i}/provenance_refs/{j}、対応source資格不足は/sources/{i}。",
+        "target_container_absent/null/type/not_declared": "該当原sourceの/content/descriptor_targets。解決source自体なしはowner_source_unresolved。",
+        "declaration_shape": "原array要素pointer。",
+        "target_ref_unresolved/conflict": "原array要素/target_ref。",
+        "binding_unresolved/conflict": "原source/content/binding。",
+        "kind_unresolved": "原array要素/descriptor_kind。",
+        "target_ambiguous": "当該groupが最初に出現する原sourceの/content/descriptor_targets。最初を対応選択する意味ではなく全宣言はoccurrencesに残す。",
+        "target_mapping_conflict": "原owner kind相反は同group最初の/content/descriptor_targets、caller kind相反は該当/descriptors/{i}/descriptor_kind。"
+      },
+      "reason_templates": {
+        "target_container_absent": "owner原sourceにdescriptor_targets memberが供給されていない。targetを生成しない。",
+        "target_ambiguous": "同じ原target Refに複数の異なるslot対応が宣言されている。先頭又は全scopeへの適用を推定せず全候補を保持する。",
+        "binding_conflict": "owner原target宣言のfull Bindingと原Claim.bindingが既知に異なる。原scopeを保持する。",
+        "kind_unresolved": "owner原target宣言のdescriptor_kindが既決15名へ結べない。原値を保持する。",
+        "target_ref_conflict": "原Claimとowner宣言のtarget identityは同じだがrevision/scope/owner等の既存比較frameが既知に異なる。",
+        "owner_source_unresolved": "同knowledge原record/provenanceから既存資格を満たすowner sourceへ解決できない。原所在と不足を保持する。",
+        "target_container_null": "owner原sourceのdescriptor_targetsは明示nullである。targetを生成しない。",
+        "target_container_type": "owner原sourceのdescriptor_targetsが配列型でない。原値を保持しtargetを生成しない。",
+        "declaration_shape": "owner原target宣言の構造を型付きviewへ対応できない。原宣言を保持する。",
+        "target_ref_unresolved": "owner原target Refの比較必須memberが未供給/null/型外である。対応するtargetを補完しない。",
+        "binding_unresolved": "owner原target宣言のfull Bindingを原Claim.bindingへ比較できない。原値を保持する。",
+        "target_mapping_conflict": "同target/slotの既知kind対応又はcaller slotの既知kind対応が相反する。原宣言と元slotを保持する。",
+        "target_not_declared": "原Claimが指すtargetの明示owner対応を当該原scopeに得られない。欠落definitionからtargetを推定しない。"
+      },
+      "definition_consumer_boundary": {
+        "requirement": "元definition missing/unknownの保証は住所対応のresolvedと別に保つ。既存実compare_descriptor_definitionsと同immutable入力で得た原結果だけを消費する。",
+        "missing": "既存固定15正規kindでの元slot不在missing、又は元slotのfacts不足missingを保持する。owner target宣言から新required slot義務を増やさない。",
+        "other_same_kind": "指定slot不在だが別same-kind slotが存在する場合、その結果を当該targetへ借りない。元全slot/全missingを保持しtargetからdefinitionへの対応未成立を明示する。",
+        "routing": "当該元target/定義状態/basisの対応が成立した場合だけ、missing＋reference_only replacementは既存rule87/fn6、unknown＋任意fallbackは既存rule93/fn7へ。null replacementは保持。同Claimを別ruleで二重裁定しない。",
+        "detail_followup": "fn1評価一回のprivate索引型/constructor/helper署名と既存公開Comparisonへのprojectionは次L5/L8。これらのprivate実装型を本basic schemaへ混載しない。"
+      },
+      "legacy_rederivation": {
+        "disposition": "既存原target比較義務からの新技術表現の再導出候補。新要求/権限gateの新設ではない。",
+        "current_source_basis": [
+          {
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/source_return_contract/owner_descriptor_attribution/owner_mapping",
+            "retained": "owner samefullBinding/slot_identity/descriptor_kind explicit mapping, no index inference"
+          },
+          {
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/source_return_contract/owner_descriptor_attribution/join",
+            "retained": "existing source qualification/full Binding and source-backed exact mapping"
+          },
+          {
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/type_contract/types/DescriptorSlot",
+            "retained": "facts missing independent from descriptor kind and slot identity"
+          },
+          {
+            "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+            "pointer": "/conditional_source_dependency_contract/source_types/DependencyOperation/origin",
+            "retained": "same knowledge record provenance -> owner semantic source origin, not submitted Claim/refs"
+          },
+          {
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/source_return_contract/constructor_meaning/reference_resolution",
+            "retained": "original KnowledgeRecord Ref join; references alone issue no qualification"
+          },
+          {
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/failure_rules/87",
+            "retained": "only actual target semantic definition missing plus reference_only replacement is rule87"
+          },
+          {
+            "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+            "pointer": "/dependency_semantic_ports/public_projection/claim_subject",
+            "retained": "original Claim subject not aliased to template/knowledge"
+          }
+        ],
+        "old_sources": [
+          {
+            "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+            "observed_revision": "64dc8a7032990e8f961f4e5e9601a1909d2e4f6d",
+            "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+            "lines": [
+              16,
+              45
+            ],
+            "quote": "## §1 目的とauthority境界\n\nRequirement JSONから必要十分な設計成果物を選べるよう、templateの構造的意味をversioned JSONへ\n集約する。文章をJSONへ詰め込むのではなく、機械判断に必要な契約だけをJSON正本とする。\n\n| surface | 責務 | authority |\n|---|---|---|\n| Design Template JSON | template ID/version、layer/pair、適用条件、必須input/section/field、owner、trace、negative oracle、measurement、completion、downstream kind | canonical candidate。pair freeze後にcanonical |\n| Design Instance JSON | 選択済みtemplateとrequirement/obligationを束縛した設計値 | 後続L5 episode |\n| graph JSON | component、state transition、data flow、sequence、V-pair edge | 図の構造的意味 |\n| generated Markdown/HTML/Mermaid | JSONを人間向けに投影 | derived、直接編集禁止 |\n| supplemental Markdown | rationale、alternatives、trade-off、背景 | JSON IDへ束縛する説明。構造的意味の正本ではない |\n| `docs/design/design-catalog.yaml` | 現行成果物の所在と分類 | inventory。template schemaではない |\n\n画像、Markdown、tool node ID、file pathだけをtemplate identityや設計意味の主キーにしない。\n\n## §2 component境界\n\n| component | 入力 | 出力 | 責務 | failure |\n|---|---|---|---|---|\n| `DesignTemplateRegistry` | versioned template JSON | exact template set、registry digest | ID/version/supersessionとschema束縛 | duplicate、unknown version、digest drift |\n| `ApplicabilityEvaluator` | requirement atom、obligation、risk、style/layer、typed predicate | applicable/non-applicable＋理由 | `all`/`any`/`not`のfail-close評価 | unknown operator/field/enum、自由文条件 |\n| `TemplateShadowCompiler` | 既存template/canonical design inventory | shadow template候補、parity finding | 既存意味を新正本候補へ一方向変換 | 未分類、意味欠落、二重authority |\n| `GeneratedViewProjector` | validated template/instance/graph JSON | Markdown/HTML/Mermaid＋source digest | 決定論表示 | source digest不一致、直接編集 |\n| `DesignPortfolioPlanner` | Requirement JSON、Design Obligation Graph、registry | reuse/delta/new/N/A proposal | 最小portfolio提案 | uncovered、duplicate、fabricated ID |\n| `PairGraphBinder` | selected template/instance、V-pair oracle | L4↔L9、L5↔L8 graph | pair exact setとcompletionを束縛 | missing pair、別revision、stale oracle |\n\n本sliceはcomponent契約だけを定義する。schema/runtime、planner algorithm、instance生成、pair graph\nfreezeは後続L5/L6 episodeで実装する。\n"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+            "observed_revision": "64dc8a7032990e8f961f4e5e9601a1909d2e4f6d",
+            "file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+            "lines": [
+              30,
+              78
+            ],
+            "quote": "## §2 Design Template JSONのfield\n\n```yaml\nrequired:\n  - schema_version\n  - template_id\n  - template_version\n  - status\n  - title\n  - layer\n  - pair_layer\n  - artifact_kind\n  - responsibility_owner\n  - applicability\n  - required_inputs\n  - sections\n  - trace_contract\n  - verification\n  - measurement\n  - completion\n  - downstream_artifact_kinds\n  - semantic_digest\n```\n\n### identityとlifecycle\n\n- `template_id`: `TPL-`で始まるstable ID。pathやtitleをidentityにしない。\n- `template_version`: 1以上の整数。同じID/versionの重複を拒否する。\n- `status`: `candidate | verified | approved | canonical | deprecated`の閉じた集合。\n- `supersedes`: 同じtemplate classの既存ID/versionだけを参照できる。\n- `layer/pair_layer`: current L1–L12 pair exact setだけを許可する。\n\n`candidate -> verified -> approved -> canonical -> deprecated`の順だけを許可する。shadow compilerの\n出力は常にcandidateであり、parity greenだけでapproved/canonicalへ昇格しない。\n\n### sectionとfield\n\n`sections`は`section_id`をtemplate内で一意にし、`required`、`fields`、`completion_rule_ids`を持つ。\nfieldは`field_id`、`value_type`、`cardinality`、`required`、`trace_kind`、`validation_rule_ids`を持つ。\n自由文fieldも意味ownerとtraceを持ち、rationaleだけを構造fieldの代用にしない。\n\n### trace、verification、measurementの契約\n\n- `trace_contract`: requirement、system contract、acceptance、design obligationの必須参照class。\n- `verification`: pair template ID、required oracle class、negative oracle、stale条件。\n- `measurement`: metric ID、unit、threshold/operatorまたはauthority付きN/A。\n- `completion`: required coverage、unresolved policy、independent review、digest一致条件。\n- `downstream_artifact_kinds`: current layer/pairで生成可能な閉じたartifact kind。\n"
+          },
+          {
+            "asset_id": "UTW-014/020/021",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "observed_revision": "64dc8a7032990e8f961f4e5e9601a1909d2e4f6d",
+            "file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+            "lines": [
+              80,
+              87
+            ],
+            "quote": "| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |\n| UTW-015 | High | branch lifecycleが閉じず、main未包含6 heads、最大54 commits aheadが残る | mirror ref inventory | UTH-FR-013、UTH-FR-014 |\n| UTW-016 | High | tag 0でrelease provenanceとsource snapshot authorityが弱い | ref inventory | UTH-FR-027 |\n| UTW-017 | High | Issue Formsのlabel bootstrap/inbound dogfoodが未閉包 | 既存UT-GH-08/09 | UTH-FR-016 |\n| UTW-018 | High | merge後branch/state/memory cleanupがtransactionalでない | UT-GH-02/13/14 | UTH-FR-018、UTH-FR-019 |\n| UTW-019 | High | subagent/agent spawn guardはruntime surface差分に追随し続ける必要がある | 対象rulesの旧「未配線」履歴と現guard test | UTH-FR-008 |\n| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |\n| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |"
+          }
+        ],
+        "retained": "旧JSON authority/原identity/owner/source trace、欠落の空集合化防止、局所owner診断、自己申告を資格へ変換しない境界。現在の既存Ref/Binding/qualified owner source比較と原Claim.subject_refを保持する。",
+        "changed": "現owner descriptor_factsにはfacts独立のdescriptor target Ref carrierがないため、既存RawValue内のdescriptor_targetsを論理I/Oとして追加する。ClaimやSupplyInputへ新memberを足さず、元target Ref↔slot/kind/full Bindingを明示する。",
+        "reason": "既存rule87は当該descriptorの意味定義missingとreference-only代替を比較する。Fact不在でも元target住所は存在し得るため、template alias/唯一候補推測を使わず供給元から原対応を運ぶ必要がある。宣言追加でrequired義務集合を増やさない。",
+        "producer": "032 semantic source ownerが生成時の原target Ref/slot/kind/full Bindingを当該sourceへ出力する。実source運用の稼働証明をlogical port設計の前提にしない。",
+        "consumer": "同callのtarget readを経由するF09/fn6と原unknown fallbackのfn7。実fn1結果への具体接続はL5/L8へ。",
+        "oracle": "対L9のdescriptor_target_port_verificationに自己完結9原callerと独立port全返却期待を保持する。旧port/conditional oracle又は全F09のwholeを格下げしない。"
+      },
+      "limits": [
+        "新carrierは現owner原schemaに無い技術表現の再導出候補。実provider/資格運用の稼働証明を設計の前提にはしない。",
+        "新oracleは私的target readの全返却だけ。F09全Comparison/全producer/SupplyAnalysis全返却や14義務完了へ読み替えない。",
+        "OS incoming未観測/030 producer未追随、既存conditional22reasonの未観測13語は保持。",
+        "新権限/actor/承認/全stage成功gateを設けない。"
+      ]
     }
   }
 }
