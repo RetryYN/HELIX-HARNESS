@@ -109,7 +109,9 @@
     "実source資格/必要metric集合/内容組合せ/実未見と独立意味review。",
     "022/005/003004/001/CORE trace・実行/SEC/data-use/INFRA/選択CONNECT/LABOへのowner-qualified exact bindingと正式schema/codec/probe。",
     "L5/L8内部型・実oracle凍結→実装前Red→最小Green→Refactor→再検証、実L9/L10/計測/PO L11。",
-    "全92親430対の基本/詳細設計閉包・実装準備。"
+    "全92親430対の基本/詳細設計閉包・実装準備。",
+    "005のticket別未完義務をrisk/選択/非適用根拠へ対応づける規則は未定義のまま。本追補はL5の固定10列を正当化・否定せず、この対応を解決しない。",
+    "後続L5/L8で、選択事実と理由不足の分離を型・関数戻り・whole対照へ接続する。今回のL4/L9有限対照は実関数実行や製品Redを主張しない。"
   ],
   "document_id": "HARNESS-L4-034",
   "layer": "L4",
@@ -381,7 +383,8 @@
         "未完検証義務"
       ],
       "content_comparison": [
-        "risk別の適用/非適用根拠を照合し全ticket固定CIにしない。手法導入だけを検証完成としない。"
+        "risk別の適用/非適用根拠を照合し全ticket固定CIにしない。手法導入だけを検証完成としない。",
+        "各手法のraw selectedとreasonの有無/値を別に保つ。selected=trueでreasonがAbsent/null/emptyなら既存の理由不足状態missing_selection_reasonを返し、not_selectedへ変換しない。selected=falseで理由がない場合の既存missing_selection_reasonも維持する。これは選択記録の判定であり、実行・完成・全ticket固定CIを生成しない。"
       ],
       "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
       "operation_effect": "none"
@@ -507,7 +510,7 @@
       "F06": 6,
       "F07": 10,
       "F08": 15,
-      "F09": 12,
+      "F09": 13,
       "F10": 7,
       "N01": 8,
       "N02": 7,

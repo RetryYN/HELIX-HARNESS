@@ -109,7 +109,9 @@
     "実source資格/必要metric集合/内容組合せ/実未見と独立意味review。",
     "022/005/003004/001/CORE trace・実行/SEC/data-use/INFRA/選択CONNECT/LABOへのowner-qualified exact bindingと正式schema/codec/probe。",
     "L5/L8内部型・実oracle凍結→実装前Red→最小Green→Refactor→再検証、実L9/L10/計測/PO L11。",
-    "全92親430対の基本/詳細設計閉包・実装準備。"
+    "全92親430対の基本/詳細設計閉包・実装準備。",
+    "005のticket別未完義務へのrisk/選択/非適用根拠の対応は未確定。固定10列の妥当性は本例で確定せず、追加の一律suite gateも導入しない。",
+    "L5/L8の関数・型への追随、実関数のRed/Green、資格済みsource、runtime/CIは未成立。今回の新例はL4/L9のsource-derived有限対照であり、実行証拠ではない。"
   ],
   "document_id": "HARNESS-L9-034",
   "layer": "L9",
@@ -5530,6 +5532,64 @@
           "basis": "risk別選択を全ticket固定CIへ変えない。",
           "execution_state": "not_executed",
           "effect": "none"
+        },
+        {
+          "id": "H034-F09-SELECTED-NO-REASON",
+          "requirement_ref": "HARNESS-L3-034-F09",
+          "system_oracle_ref": "HARNESS-L10-034-F09",
+          "l4_ref": "HARNESS-L4-034-F09",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-H034-F09-SELECTED-NO-REASON",
+              "revision": "fixture-content-c7828f1f58fa16bf4c9863c3e6fa1447cf3f8523212b869bde830a841e630e86",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"actual_verification_observed\":false,\"all_ticket_fixed_CI\":false,\"method_installation_only\":true,\"methods\":{\"crash_recovery\":{\"reason\":\"risk P requires crash_recovery\",\"selected\":true},\"differential\":{\"reason\":\"risk P requires differential\",\"selected\":true},\"fault_injection\":{\"reason\":null,\"selected\":true},\"fuzz\":{\"reason\":\"risk P requires fuzz\",\"selected\":true},\"model_based_state_machine\":{\"reason\":\"risk P requires model_based_state_machine\",\"selected\":true},\"mutation\":{\"reason\":\"risk P requires mutation\",\"selected\":true},\"property_based\":{\"reason\":\"risk P requires property_based\",\"selected\":true},\"race\":{\"reason\":\"risk P requires race\",\"selected\":true},\"snapshot_compatibility\":{\"reason\":\"risk P requires snapshot_compatibility\",\"selected\":true},\"soak\":{\"reason\":\"risk P requires soak\",\"selected\":true}},\"risk\":\"state_boundary_change\",\"selected_boundary\":\"projection\",\"ticket\":\"TICKET-P\"}",
+            "sha256": "c7828f1f58fa16bf4c9863c3e6fa1447cf3f8523212b869bde830a841e630e86",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "method_results": {
+              "fault_injection": "missing_selection_reason",
+              "race": "selected_with_reason",
+              "soak": "selected_with_reason",
+              "crash_recovery": "selected_with_reason",
+              "property_based": "selected_with_reason",
+              "model_based_state_machine": "selected_with_reason",
+              "differential": "selected_with_reason",
+              "mutation": "selected_with_reason",
+              "fuzz": "selected_with_reason",
+              "snapshot_compatibility": "selected_with_reason"
+            },
+            "005_unfinished_obligations": [
+              "fault_injection",
+              "race",
+              "soak",
+              "crash_recovery",
+              "property_based",
+              "model_based_state_machine",
+              "differential",
+              "mutation",
+              "fuzz",
+              "snapshot_compatibility"
+            ],
+            "all_ticket_fixed_CI": false,
+            "verification_complete": false,
+            "effects": {
+              "actual_measurement": false,
+              "actual_probe_execution": false,
+              "actual_OS_save": false,
+              "actual_system_complete": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "selected=trueという選択事実とreason=nullを別に保ち、既存Assessment_F09のmissing_selection_reasonを返す。not_selectedには写さない。005の固定10列のticket別意味はこの例で確定しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
         }
       ],
       "execution_state": "not_executed",
@@ -6824,7 +6884,7 @@
       "F06": 6,
       "F07": 10,
       "F08": 15,
-      "F09": 12,
+      "F09": 13,
       "F10": 7,
       "N01": 8,
       "N02": 7,
