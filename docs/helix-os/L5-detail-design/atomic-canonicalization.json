@@ -4,8 +4,8 @@
   "paired_document": "docs/helix-os/L8-unit-verification/atomic-canonicalization.json",
   "parent": "HELIXOS-L2-053",
   "status": "candidate_pending_independent_review",
-  "source_main": "ab6c4b6b8a45cf9d9fa45886db45a534a3ca8407",
-  "parent_pair_revision": "18ef3dcafcf823c0462883a7c3b681c06d8e00ed",
+  "source_main": "69cda1984e0a42c2a8b0d800c593bb4dff135683",
+  "parent_pair_revision": "69cda1984e0a42c2a8b0d800c593bb4dff135683",
   "scope": "053の11義務のdomain型、単一store adapter、保存/読出し/receipt/復旧algorithmと対L8。外部write未閉包を削らず未完として保持。正式実装と実L9/L10は未成立。",
   "source_pins": [
     {
@@ -189,7 +189,7 @@
         "required_after": "Locator（新record address、content_bytesと別に固定）",
         "content_bytes": "immutable byte array",
         "content_contract_ref": "Ref",
-        "required_links": "Ref（既存外部入力）またはLocator（同generation内）のdiscriminated tuple",
+        "required_links": "順序付きRequiredLink tuple（同値の重複要素も保持する）。",
         "applicability_ref": "Ref",
         "write_id": "Text",
         "owner_ref": "Ref",
@@ -218,7 +218,7 @@
         "source_ref": "Ref",
         "content_contract_ref": "Ref",
         "content_bytes": "immutable byte array",
-        "required_links": "Ref（既存外部入力）またはLocator（同generation内）のdiscriminated tuple",
+        "required_links": "順序付きRequiredLink tuple（同値の重複要素も保持する）。",
         "depends_on_write_ids": "unique Text tuple",
         "store_ref": "Ref"
       },
@@ -288,7 +288,7 @@
         "write_count": "nonnegative safe integer",
         "write_outcomes": "WriteOutcome tuple",
         "owner_refs": "Ref tuple",
-        "content_links": "Ref（既存外部入力）またはLocator（同generation内）のdiscriminated tuple",
+        "content_links": "順序付きRequiredLink tuple（同値の重複要素も保持する）。",
         "projection_refs": "Locator tuple（対応する実projection bytesはread snapshotで照合）",
         "record_kind": "transaction_writes_verified | failure",
         "failure_point": "Text | null",
@@ -398,6 +398,22 @@
         "expected_points": "FaultPoint tuple",
         "required_routes": "pointer/canonical/projection exact tuple",
         "source_refs": "Ref tuple（独立L9 root）"
+      },
+      "RequiredLink": {
+        "kind": "ref | locator",
+        "value": "kind=refは既存の外部入力を指す完全なRef、kind=locatorは同じgeneration内のmemberを指す完全なLocator。",
+        "shape": "{kind,value}だけから成る閉じたrecord。unknown、追加key、未定義variantを拒否し、tupleの順序と同じ値の反復を保持する。",
+        "wire_status": "このL5で選ぶ技術codecであり、旧storage bytesや既存実装codecを示すものではない。"
+      },
+      "WriteRefAxes": {
+        "owner_ref": "Ref",
+        "store_ref": "Ref",
+        "shape": "owner_refとstore_refだけから成る閉じたrecord。両Refは元のWriteから複写し、immutableなrow metadataとして保存する。"
+      },
+      "WriteProjectionResult": {
+        "complete": "{projection_state:\"complete\",write:Write}だけから成る厳密なvariant。S05内部で使い、Writeのbyte配列をBase64文字列に置き換えない。",
+        "rejected": "{projection_state:\"conflict\",result:\"conflict\",finding_code:\"schema_invalid | read_mismatch\",pointer:Text,write:null}だけから成る厳密なvariant。内部診断に限り、S05は既存Finding規則と独立に観測したbasisからFindingを組み立てる。",
+        "authority": "公開Result variant、Finding、受入判断、receiptではない。"
       }
     },
     "finding_codes": [
@@ -657,9 +673,10 @@
           "before_ref_bytes",
           "after_locator_bytes",
           "store_id",
-          "depends_on_write_ids_bytes"
+          "depends_on_write_ids_bytes",
+          "write_ref_axes_bytes"
         ],
-        "rules": "全8kind。JSON/projectionを同kindへ混同しない。recordはimmutable、同key異bytesはconflict。意味JSONはowner bytesをそのまま格納、OS正規化なし。digestは格納metadataで自己payloadへ埋込まない。"
+        "rules": "全8kind。JSON/projectionを同kindへ混同しない。recordはimmutable、同key異bytesはconflict。意味JSONはowner bytesをそのまま格納、OS正規化なし。digestは格納metadataで自己payloadへ埋込まない。 新列write_ref_axes_bytesは各recordの元のWrite.owner_ref/store_refを保持するimmutable metadataで、欠落/nullをRef合成で補わない。"
       },
       {
         "name": "generations",
@@ -731,8 +748,62 @@
         "rules": "content_records failure receiptへFK。success generation/member/headは更新しない。先行episodeをdropせず各scope/identityへ結ぶ。"
       }
     ],
-    "ddl_rules": "全tableはSTRICT、必須field NOT NULL。identity/Ref/enum/bytes/typeはdomain validationでも検査。FK ONを読戻す。content_records/generations/generation_members/failure_episodesのUPDATE/DELETEを拒否するimmutable運用。command_bindingsは既存identity同一/未完→committedのみ、current_headsのみCAS更新。DDL詳細はL6のfixed SQLへこの列/key/FK/enumから導出し、旧DDLをコピーしない。 nullを型で許すbefore/previous generation/incomplete generation/prior episode等だけはSQL NULLを許す。安全整数のcountとboolean/enumはCHECKし、Ref/Locator bytesはdomainで全field検査する。",
-    "receipt_self": "receipt logical writeはcontent_recordsの一row。13 fixture件数はlogical write数であり、generation/member/head/commandの索引更新SQL数ではない。receipt row自身のoutcomeはincluded_in_same_commitを表す条件付き記録で、rowのCOMMITと独立read確認で初めてcommittedと観測する。 receipt自身のafterはLocatorのみでpayload内shaを持たず、content_linksにも自己Refを含めない。12非receipt recordのdigestは先に固定し、条件付きreceipt bytes→外metadata sha→closure根拠Ref→Planの順に固定する。generation/operationは論理Locatorなのでclosure/receiptとのhash循環は無い。"
+    "ddl_rules": "全tableはSTRICT、必須field NOT NULL。identity/Ref/enum/bytes/typeはdomain validationでも検査。FK ONを読戻す。content_records/generations/generation_members/failure_episodesのUPDATE/DELETEを拒否するimmutable運用。command_bindingsは既存identity同一/未完→committedのみ、current_headsのみCAS更新。DDL詳細はL6のfixed SQLへこの列/key/FK/enumから導出し、旧DDLをコピーしない。 nullを型で許すbefore/previous generation/incomplete generation/prior episode等だけはSQL NULLを許す。安全整数のcountとboolean/enumはCHECKし、Ref/Locator bytesはdomainで全field検査する。 write_ref_axes_bytesはBLOB NOT NULL。",
+    "receipt_self": "receipt logical writeはcontent_recordsの一row。13 fixture件数はlogical write数であり、generation/member/head/commandの索引更新SQL数ではない。receipt row自身のoutcomeはincluded_in_same_commitを表す条件付き記録で、rowのCOMMITと独立read確認で初めてcommittedと観測する。 receipt自身のafterはLocatorのみでpayload内shaを持たず、content_linksにも自己Refを含めない。12非receipt recordのdigestは先に固定し、条件付きreceipt bytes→外metadata sha→closure根拠Ref→Planの順に固定する。generation/operationは論理Locatorなのでclosure/receiptとのhash循環は無い。",
+    "row_codec": {
+      "status": "OSが所有するrow projection用の技術codec候補。database/runtimeは存在せず、migrationの実行手順を定めない。",
+      "physical_column_order": [
+        "record_identity",
+        "record_revision",
+        "scope",
+        "owner",
+        "kind",
+        "source_ref_bytes",
+        "content_contract_ref_bytes",
+        "payload_blob",
+        "payload_sha256",
+        "required_links_bytes",
+        "write_id",
+        "asset_id",
+        "before_ref_bytes",
+        "after_locator_bytes",
+        "store_id",
+        "depends_on_write_ids_bytes",
+        "write_ref_axes_bytes"
+      ],
+      "mapping": {
+        "record_identity": "Write.after_ref.identity",
+        "record_revision": "Write.after_ref.revision",
+        "scope": "Write.after_ref.scope",
+        "owner": "Write.after_ref.owner",
+        "kind": "Write.kind",
+        "source_ref_bytes": "Write.source_refを厳密なcanonical Ref bytesへ符号化した値",
+        "content_contract_ref_bytes": "Write.content_contract_refを厳密なcanonical Ref bytesへ符号化した値",
+        "payload_blob": "Write.content_bytesそのもののraw bytes。JSONとしてparseせず、正規化もしない。",
+        "payload_sha256": "payload_blobの正確なbytesに対するlowercase SHA-256",
+        "required_links_bytes": "順序付きRequiredLink tupleを厳密なcanonical JSON bytesへ符号化した値",
+        "write_id": "Write.write_id",
+        "asset_id": "Write.asset_id",
+        "before_ref_bytes": "Write.before_refがnullならSQL NULL、それ以外は厳密なcanonical Ref bytes。SQL NULLはJSON bytes b\"null\"とは異なる。",
+        "after_locator_bytes": "Write.after_refを厳密なcanonical Locator bytesへ符号化した値",
+        "store_id": "Write.store_ref.identity（索引値のみ。これだけからRefを復元しない。）",
+        "depends_on_write_ids_bytes": "重複のない順序付きText tupleを厳密なcanonical JSON bytesへ符号化した値",
+        "write_ref_axes_bytes": "元のWrite.owner_refとWrite.store_refを持つ厳密な{owner_ref,store_ref}のcanonical JSON bytes"
+      },
+      "metadata_json_codec": {
+        "encoding": "BOMなしUTF-8、compact JSON separator、Unicode scalar値順のobject key、非ASCII文字は直接出力、control characterはescapeし、末尾改行を付けない。",
+        "decode": "重複したdecode後key、不正UTF-8、Unicode scalarでない値、NaN/Infinity、型不一致、必須key欠落・未知key、未知union tag、不正なRef/Locator field、canonical bytesへ戻らない値を拒否する。",
+        "union_wire": "RequiredLinkは厳密な{kind:\"ref\",value:Ref}または{kind:\"locator\",value:Locator}。field集合を固定し、他のtagを認めない。",
+        "byte_boundary": "JSON fixtureではimmutable byte arrayを運ぶためBase64を使える。正式なWrite/AssetContractを構成する前にdecodeする。Base64文字列自体は意味上のcontent_bytesではない。"
+      },
+      "row_checks": [
+        "record keyのidentity/revision/scopeはafter_refの各軸と完全一致し、scalar ownerはafter_ref.ownerと一致する。",
+        "store_idはdecodeした完全なstore_ref.identityと一致する。完全なstore_refはwrite_ref_axes_bytesからだけ復元する。",
+        "payload_sha256はpayload_blobの正確なbytesに対して再計算する。",
+        "write_ref_axes_bytesはdecode後に再encodeしたbytesと完全一致し、decodeした値を元の完全なowner_ref/store_refとして返す。",
+        "SQL NULL、JSON nullのbytes、空BLOB、column欠落を別の観測として扱う。"
+      ]
+    }
   },
   "functions": [
     {
@@ -840,7 +911,8 @@
         "前generationの全memberを新generationへ継承し、planが明示する更新/新規対象だけ置換する。未変更assetを落とさない。全参照がgeneration内のmemberまたは明示external input Refへ解決することを照合する。",
         "command binding/成功receipt locatorとcurrent_headsを同transactionで更新。headの期待before条件をWHEREへ含めchanges=1を確認（新規は不存在確認とINSERT）。その後のCOMMITだけが公開境界。",
         "COMMIT例外ではdatabase.isTransactionと独立readを取得してrecover_failed_operationへ。BUSY残存をcommit成功にしない。自動commit retry/後続writeはしない。COMMIT応答喪失は既存generation/receipt/all memberのexact readで既存確定のみ再確認する。",
-        "COMMIT正常後は別connection/read transactionでread_committed_bundle→verify_committed_receipt。後からreceiptを成功fieldで更新せず、read-afterを別結果として返す。"
+        "COMMIT正常後は別connection/read transactionでread_committed_bundle→verify_committed_receipt。後からreceiptを成功fieldで更新せず、read-afterを別結果として返す。",
+        "依存順にprepared INSERTする前にrow_codec.mappingを適用する。receiptを含む各Writeについて、元のowner_ref/store_refをwrite_ref_axes_bytesへ符号化し、ownerにはafter_ref.owner、store_idにはstore_ref.identityだけを索引値として別々に書く。同じtransaction内で17列のraw rowを読み直し、row_codec.row_checksにより元のWriteとの逆照合を行う。"
       ],
       "failure": "type_contract.finding_rulesのcondition→code→Resultを適用。委譲先のfindingは原rule IDと原因Ref/write/field/episodeを保持して返す。定義外code/Resultやunknownから成功への補完は禁止。",
       "failure_rules": [
@@ -880,7 +952,11 @@
         "writerと別DatabaseSyncをreadOnlyで開き、BEGIN→current_headsの最初のSELECTでsnapshotを固定。pointer/canonical/projection三routeはこの同じread transactionから取得する。3routeごとに別時点のlatestを混ぜない。",
         "current modeはそのsnapshotのcurrent generation、exact modeは指定generationを読む。generation header/member/全record/receiptが全内容で閉じ、scope/operation/source/projection revisionが一致するか検査する。未知/欠落を空集合へ変換しない。",
         "current以外の確定generationを読む場合、observed current refを別fieldで返す。別operation G2が既に進めたcurrentをO/G1と表示しない。Oのreceipt確認はG1のimmutable recordsへ束縛し、G2が進んだというだけでOの過去成功を抹消しない。",
-        "read transactionを必ず終了する。read failure/route未観測はread_unknownと当該route/最後の確認Refを返す。writer private SELECTを公開readの観測Refに使わない。"
+        "read transactionを必ず終了する。read failure/route未観測はread_unknownと当該route/最後の確認Refを返す。writer private SELECTを公開readの観測Refに使わない。",
+        "各generation member rowを、上記の固定read transaction内で17列すべてを持つ閉じたraw rowとして取得する。取得済みのimmutable値をprivateなproject_content_record_rowへ渡し、別read transactionを開始しない。SQL NULLとBLOB bytesを分離してrow_codecでdecodeする。",
+        "project_content_record_rowは各raw scalarとdecoded Ref/Locator/RequiredLink/tupleを相互照合し、17列から完全なWrite（immutable byte arraysを含む）へexact inverseする。owner_ref/store_refをscalar IDから合成せず、write_ref_axes_bytesの完全値を戻す。",
+        "row decode/type/tag/canonical round-trip欠陥は既存schema_invalid、値・address・digest相違は既存read_mismatchへ内部 code/pointer を渡す。S05は現行Finding rulesにより実際に観測したbasis refs付きFindingを作り、未観測routeは既存read_unknownのまま返す。",
+        "payload_blobのbytesはそのままWrite.content_bytesとなる。L8 fixtureのbase64は入力・期待を表すfixture運搬表現だけで、正式Writeへはdecode済みbyte arrayを渡す。"
       ],
       "failure": "type_contract.finding_rulesのcondition→code→Resultを適用。委譲先のfindingは原rule IDと原因Ref/write/field/episodeを保持して返す。定義外code/Resultやunknownから成功への補完は禁止。",
       "failure_rules": [
@@ -911,7 +987,11 @@
         "receipt rowとread snapshotを同operation/episode/scope/generationに束縛する。receipt全行集合と原closureのwrite集合を双方向比較し、count一致だけでは通さない。",
         "各行のowner/base/before/after/links/projectionと格納record実bytesを原plan/owner契約へ逆照合。transaction_writes_verifiedと全3route一致の論理積だけで成功receiptとして返す。",
         "route内容不一致はread_mismatch/conflict、不能/未観測はread_unknown/unknown。保存receipt/generation/実commitの観測を保全して復旧義務を返す。receipt後書き補修、G0へ復元したとの推定、口頭成功は無い。",
-        "同operation再送は先行exact generationへの全内容照合でreplay。現在headがG2でも、先行G1をcurrentとして返さず、observed currentと先行確定結果を分ける。"
+        "同operation再送は先行exact generationへの全内容照合でreplay。現在headがG2でも、先行G1をcurrentとして返さず、observed currentと先行確定結果を分ける。",
+        "現在のoperationに属するPlan.writes、Closure.expected_write_ids/asset_contracts、ReceiptRecord.write_outcomesのwrite_id集合を双方向に比較し、既存のclosure_mismatchを返す。ReceiptRecord.write_outcomesは完全なWriteOutcome値として検査し、callerが申告したID配列で代用しない。",
+        "ReadSnapshot.recordsにはgeneration全体のmemberが含まれ得る。現在のPlan Writeごとに、write_id・kind・asset_id・完全なafter_ref Locator（identity/revision/scope/owner）が一致する観測rowを特定し、該当する現在のClosure AssetContractを全fieldで比較する。同じwrite_idを持つ過去operationのLocator不一致inherited rowは現在Writeの一致候補にせず、現在Closureを適用しない。inherited memberは既存のgeneration membership/source/read整合性の義務に従って保持・照合する。",
+        "現在WriteとAssetContractの比較では、完全なowner_ref/store_ref、before/after、kind、asset identity、source_ref、content_contract_ref、実content bytes、順序を保つRequiredLink tuple、depends_on_write_idsを厳密に比較する。異なるLocator revision、異なるRequiredLink順序、同数の別write IDを成功へ畳まない。全3route一致、receipt record_kind、operation/episode/scope/generation、write_count、owner/base/projection照合、およびreplay/failureの意味を含む既存S06全規則を保持する。",
+        "現在Plan・Closure・receiptのwrite集合が一致しているのに、同一read snapshotのgeneration recordsに plan.after_ref と完全一致する現在rowがない場合（継承rowまたは別revisionのrowしかない場合）は、 既存Finding型で code=read_mismatch、field_pointer=/records/current/after_ref として返す。 同一Locatorのrowが見つかっても、そのrowの保存metadataがPlan/owner契約と異なる場合は、 既存code=content_mismatchを、実際に相違したrow fieldのfield_pointer（例: /records/current/owner_ref）で返す。 read自体が未実施・不能ならread_mismatchへ変換せず、既存read_unknownを使う。 Findingは既存Finding型のcode/field_pointer/subject_ref/basis_refsを用い、sourceのfinding_precedenceに従う。"
       ],
       "failure": "type_contract.finding_rulesのcondition→code→Resultを適用。委譲先のfindingは原rule IDと原因Ref/write/field/episodeを保持して返す。定義外code/Resultやunknownから成功への補完は禁止。",
       "failure_rules": [

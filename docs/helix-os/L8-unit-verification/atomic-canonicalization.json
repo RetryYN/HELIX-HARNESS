@@ -4,8 +4,8 @@
   "paired_document": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
   "parent": "HELIXOS-L2-053",
   "status": "candidate_pending_independent_review",
-  "source_main": "ab6c4b6b8a45cf9d9fa45886db45a534a3ca8407",
-  "parent_pair_revision": "18ef3dcafcf823c0462883a7c3b681c06d8e00ed",
+  "source_main": "69cda1984e0a42c2a8b0d800c593bb4dff135683",
+  "parent_pair_revision": "69cda1984e0a42c2a8b0d800c593bb4dff135683",
   "source_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/atomic-canonicalization.json",
@@ -16,7 +16,7 @@
       "sha256": "dde351842a8a38438b78ef8acc8041c814f85bc8fcfd7dbc1545a86ab87dd7fa"
     }
   ],
-  "scope": "局所型/比較とadapter protocolの独立合成oracle。実SQLite保存/全readの原子性はL9、全総合契約はL10へ残す。局所stub PASSを実runtime成立にしない。",
+  "scope": "局所型/比較とadapter protocolの独立合成oracle。実SQLite保存/全readの原子性はL9、全総合契約はL10へ残す。局所stub PASSを実runtime成立にしない。 S05 row→Write exact inverseとS06 current/inherited row bindingのinternal projection oracleを追加。既存F06/N02全read/receipt rulesは継続。",
   "fixture": {
     "namespace": "合成fixture/053。実案件・実登録・実採用知識ではない。Ref owner/revision/scopeとbytesをtest定義前に独立固定。変異ごとにoracle/closure/source期待値は変更しない。",
     "scope": "S/r1",
@@ -1919,5 +1919,2697 @@
     "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
     "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。違反の自己申告で検出を代用しない。",
     "definition_order": "各入力・期待値・母集合はL6/L7で実装前に独立定義・凍結する。このcandidateは未reviewの検証設計であり、実装前testコード凍結の完了は主張しない。"
+  },
+  "internal_projection_oracles": {
+    "scope": "S05のprivate row projectionとS06のcurrent-row binding helperについて、sourceに基づき候補より先に固定した15件のwhole期待値。既存F06/N02のreceipt全体・3 route契約を補うもので、置き換えない。",
+    "input_carrier": "各caseは具体的なstage inputを含む。raw BLOB値はBase64で運ぶbytes、SQL_NULLはSQL NULLを表し、JSON nullのbytesではない。",
+    "expected_byte_carrier": "content_bytes_base64はfixture運搬値。formal Write/AssetContract.content_bytesと比較する前にbyte配列へdecodeする。",
+    "link_variant": "{kind,value}はこの候補で選ぶ閉じたlocal wire形式である。tupleの順序と同値反復を保つ。上流sourceはRefとLocatorの意味上の区別を定めるが、既存のliteral tag encodingは定めていない。",
+    "cases": [
+      {
+        "id": "P01-valid-lossless-inverse",
+        "stage_input_refs": {
+          "s05": "input:e6f1c06a8dc54ae94f7270be52d5b59d04c8f13105e88e94ccd556d2b23cd088",
+          "s06": "input:f67d047189d8f88159c3ba0ff1bfd2f5dc93ffae52c30867facf36c4dfd60f21"
+        },
+        "expected_whole_refs": {
+          "s05": "expected:ab4fa0a0346b0272081fe6e5fff1f2da654c4ad076199c5785e92d747d170096",
+          "s06": "expected:657fee14637c33584cbce4d3c0e2051cfda7165806635cb6b738a150b998bcfe"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "P01-valid-lossless-inverse",
+          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+        }
+      },
+      {
+        "id": "N01-owner-address-axis-not-write-owner",
+        "stage_input_refs": {
+          "s05": "input:0c1028980aa1b1fe62b109e3c4b6ba731f4a809d2e18f146cc4a079efbf1962a"
+        },
+        "expected_whole_refs": {
+          "s05": "expected:e61d7849353d166e8c607b213d090cc25581482c003b4cb283b0c5b084332f1c"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "N01-owner-address-axis-not-write-owner",
+          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+        }
+      },
+      {
+        "id": "N02-store-index-axis-mismatch",
+        "stage_input_refs": {
+          "s05": "input:685fe3a216c4ac40b705343b8f66b053719dc982e9a99922a79cd89ebc961651"
+        },
+        "expected_whole_refs": {
+          "s05": "expected:66b91eb277ca4f761d1f19118ed779b6d5089eaf9b841359cba09de24bb1b4cf"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "N02-store-index-axis-mismatch",
+          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+        }
+      },
+      {
+        "id": "N03-missing-ref-pair-blob",
+        "stage_input_refs": {
+          "s05": "input:e8afef97ba9a37b744d7f1c89c56f6fcd87b9c943c4f6a574f7254852d7c54a2"
+        },
+        "expected_whole_refs": {
+          "s05": "expected:e347f813c7b5a0c42e067307fe2ea6f0ef271b786dccbf676ab3c9c44073cb45"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "N03-missing-ref-pair-blob",
+          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+        }
+      },
+      {
+        "id": "N04-valid-shaped-owner-ref-mismatch",
+        "stage_input_refs": {
+          "s05": "input:297788db5306016294ff377f68f62fb700995bf42ee16c86759f52735c47e035",
+          "s06": "input:8fbdda4c01fbbcd07a6f90847eb0eb35e88acd28269d2b5a763b1dfa1bc1197d"
+        },
+        "expected_whole_refs": {
+          "s05": "expected:7f4f1bc5dd1e9095b6ea65a9b49a99d63f5e1460d7b82858d7d1f66bc29d59db",
+          "s06": "expected:f99c671ff086a97e72d351fc94004b126d67d488895e0a3937ba5a1e4256a155"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "N04-valid-shaped-owner-ref-mismatch",
+          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+        }
+      },
+      {
+        "id": "P02-resource-basis-revision-does-not-overwrite-historical-write-ref",
+        "stage_input_refs": {
+          "s05": "input:e6f1c06a8dc54ae94f7270be52d5b59d04c8f13105e88e94ccd556d2b23cd088",
+          "s06": "input:f67d047189d8f88159c3ba0ff1bfd2f5dc93ffae52c30867facf36c4dfd60f21"
+        },
+        "expected_whole_refs": {
+          "s05": "expected:ab4fa0a0346b0272081fe6e5fff1f2da654c4ad076199c5785e92d747d170096",
+          "s06": "expected:657fee14637c33584cbce4d3c0e2051cfda7165806635cb6b738a150b998bcfe"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "P02-resource-basis-revision-does-not-overwrite-historical-write-ref",
+          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+        },
+        "limitation": "S05とS06の入力参照はともにP01と同一（S05 input:e6f1c06a8dc54ae94f7270be52d5b59d04c8f13105e88e94ccd556d2b23cd088、S06 input:f67d047189d8f88159c3ba0ff1bfd2f5dc93ffae52c30867facf36c4dfd60f21）。ResourceBasis revisionを入力に含まず、過去Write Refが上書きされないとの題名の主張は未検証。独立証拠ではなくP01の重複観測。"
+      },
+      {
+        "id": "N05-json-null-bytes-not-sql-null",
+        "stage_input_refs": {
+          "s05": "input:a2deb83eadb62fd0d2fc2fc84d4c54ec7e31d6204cd39f6278106f2d8c169cea"
+        },
+        "expected_whole_refs": {
+          "s05": "expected:d011d25137ee3220cc909de6e6371c36cfa54d59767200482291626b90aa4275"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "N05-json-null-bytes-not-sql-null",
+          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+        }
+      },
+      {
+        "id": "P03-inherited-same-write-id-does-not-shadow-current-locator",
+        "stage_input_refs": {
+          "s06": "input:f67d047189d8f88159c3ba0ff1bfd2f5dc93ffae52c30867facf36c4dfd60f21"
+        },
+        "expected_whole_refs": {
+          "s06": "expected:657fee14637c33584cbce4d3c0e2051cfda7165806635cb6b738a150b998bcfe"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "P03-inherited-same-write-id-does-not-shadow-current-locator",
+          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+        },
+        "limitation": "S06入力参照はP01と同一（input:f67d047189d8f88159c3ba0ff1bfd2f5dc93ffae52c30867facf36c4dfd60f21）。独立入力ではなく、R7内でP01と重複する観測としてのみ扱う。"
+      },
+      {
+        "id": "N06-inherited-same-write-id-cannot-satisfy-current-write",
+        "stage_input_refs": {
+          "s06": "input:98c752db24df908a2996c414cd45ceffc4fa645d6989c43204c3fc0b9b0c40fd"
+        },
+        "expected_whole_refs": {
+          "s06": "expected:5836cd6db208440cada02dba6b7da68ed6106373e6e8be2e7dd58741420ff7e0"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "N06-inherited-same-write-id-cannot-satisfy-current-write",
+          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+        }
+      },
+      {
+        "id": "N07-current-row-wrong-after-revision",
+        "stage_input_refs": {
+          "s06": "input:3dfc63d586df0414d1029c606ae9e0eb10b472d75725573e72e3aaac511ee214"
+        },
+        "expected_whole_refs": {
+          "s06": "expected:5836cd6db208440cada02dba6b7da68ed6106373e6e8be2e7dd58741420ff7e0"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "N07-current-row-wrong-after-revision",
+          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+        }
+      },
+      {
+        "id": "N08-current-row-owner-contract-mismatch",
+        "stage_input_refs": {
+          "s06": "input:0ec3a0ffad0a1190e9ef8267b4e882cbdd9c26c1933a1064b164d297230e5dd8"
+        },
+        "expected_whole_refs": {
+          "s06": "expected:9b83f8994c269c95a99f2f550d7bab7b4981727cc066fb4288658c7e0fdad385"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "scaffold/review-handoff/local/design-completion-obligation-audit/harness052-parent-source-read/os053-s06-n08-current-row-owner-mismatch-oracle-freeze-r9.json",
+          "sha256": "e53e3ac2fe85411c0040b5bb0800174e9fd7d7f656ac5dbb44c8a05d2accf005",
+          "case_id": "N08-current-row-owner-mismatch-r9",
+          "expectation_origin": "候補を再評価する前に独立して固定。候補から計算していない。",
+          "source_pin_provenance_correction": {
+            "artifact": "scaffold/review-handoff/local/design-completion-obligation-audit/harness052-parent-source-read/os053-s06-n08-r9-source-pin-provenance-correction.json",
+            "sha256": "862513a6975c47a6360e965219aeb63bb3df8160ea6dbf480363465ade7dcaf0",
+            "purpose": "R9 source_mainと各pin revisionの実Git bytes対応を明示。R9 bytesは不変。"
+          }
+        },
+        "historical_r7_observation": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "N08-current-row-owner-contract-mismatch",
+          "stage_input_ref": "input:6793004866b0633e7bc488473b5cc256af173ffd1637ab0d5cde10da92d77ec3",
+          "expected_whole_ref": "expected:f99c671ff086a97e72d351fc94004b126d67d488895e0a3937ba5a1e4256a155",
+          "status": "immutable_historical_observation_superseded_for_current_catalog"
+        }
+      },
+      {
+        "id": "P04-required-links-mixed-tagged-ordered-repeat-preserved",
+        "stage_input_refs": {
+          "s05": "input:fa777085ce381e547bf74cf7325157d84f6c65ad5aa2f9d41c04217d6b1f5fb1",
+          "s06": "input:2e4415bf03f8b372deb9b958801838120e5fbaf3b8f2f7adbe2968bc979baf79"
+        },
+        "expected_whole_refs": {
+          "s05": "expected:1b0e8e4c073168799beee0a932b6b8d8a4642416161643e8b0d8f287b08bf74f",
+          "s06": "expected:657fee14637c33584cbce4d3c0e2051cfda7165806635cb6b738a150b998bcfe"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "P04-required-links-mixed-tagged-ordered-repeat-preserved",
+          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+        }
+      },
+      {
+        "id": "N09-required-links-order-mismatch",
+        "stage_input_refs": {
+          "s05": "input:7676ae99262721ea3d5e3272f913cb0f76f94e6c94c4fb0aa94a2e47bea10cdf",
+          "s06": "input:57a0c9fda8c8266683ed19055b1c11bfac6b90438d5ccceeaaf2412ed9a62525"
+        },
+        "expected_whole_refs": {
+          "s05": "expected:f0e59e94e52264c98f70dcb246882dc96742d8eaf6afd3afb241b4f45112114f",
+          "s06": "expected:ed9718e270e8ae56a322f8b5947c5e49756c3aacacaa4578c9540f7229fbd1eb"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "N09-required-links-order-mismatch",
+          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+        }
+      },
+      {
+        "id": "N10-kind-outside-source-enum",
+        "stage_input_refs": {
+          "s05": "input:e4c33a6710b3deffa81f8b59863e3d72442c91879353f294167fc8a0f1f097a5"
+        },
+        "expected_whole_refs": {
+          "s05": "expected:c992e29b8d5d9d7b0bad70780dbf0535da1055101eaddf304d2d4bd0d4cfbbe5"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "N10-kind-outside-source-enum",
+          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+        }
+      },
+      {
+        "id": "N11-unknown-local-link-discriminator",
+        "stage_input_refs": {
+          "s05": "input:33feadd86a3db26648a152ae5563877327b92b82e4c8036d06da35992e3ba4ea"
+        },
+        "expected_whole_refs": {
+          "s05": "expected:565a91c75e720b6774cca5e4fbef0afe51725ad3e8ddf03ceb7496a4bf234fc5"
+        },
+        "source_refs": [
+          "OS-L5-053-S05",
+          "OS-L5-053-S06",
+          "OS-L5-053-Schema-content_records",
+          "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
+        ],
+        "pre_candidate_freeze": {
+          "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
+          "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
+          "case_id": "N11-unknown-local-link-discriminator",
+          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+        }
+      }
+    ],
+    "execution_state": "not_executed",
+    "reference_catalogs": {
+      "stage_inputs": [
+        {
+          "ref": "input:e6f1c06a8dc54ae94f7270be52d5b59d04c8f13105e88e94ccd556d2b23cd088",
+          "sha256": "e6f1c06a8dc54ae94f7270be52d5b59d04c8f13105e88e94ccd556d2b23cd088",
+          "value": {
+            "raw_row_17_columns": [
+              "record:requirements-main",
+              "r8",
+              "scope-project",
+              "record-owner",
+              "json_canonical",
+              "eyJpZGVudGl0eSI6InNvdXJjZS1kb2N1bWVudCIsIm93bmVyIjoiZG9jLW93bmVyIiwicmV2aXNpb24iOiJyMyIsInNjb3BlIjoic2NvcGUtcHJvamVjdCIsInNoYTI1NiI6ImRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQifQ==",
+              "eyJpZGVudGl0eSI6Impzb24tY29udHJhY3QiLCJvd25lciI6ImZvcm1hdC1vd25lciIsInJldmlzaW9uIjoicjUiLCJzY29wZSI6InNjb3BlLXByb2plY3QiLCJzaGEyNTYiOiJlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlIn0=",
+              "eyJzY2hlbWEiOjF9",
+              "67d6291b301412df4a6ca7808aeafac9d0587b06ece3c68e72bab0157cd9d52c",
+              "W10=",
+              "write-alpha",
+              "requirements-main",
+              "SQL_NULL",
+              "eyJpZGVudGl0eSI6InJlY29yZDpyZXF1aXJlbWVudHMtbWFpbiIsIm93bmVyIjoicmVjb3JkLW93bmVyIiwicmV2aXNpb24iOiJyOCIsInNjb3BlIjoic2NvcGUtcHJvamVjdCJ9",
+              "store-instance-2",
+              "W10=",
+              "eyJvd25lcl9yZWYiOnsiaWRlbnRpdHkiOiJvd25lci1jb250cmFjdC03Iiwib3duZXIiOiJ0ZWFtLWFscGhhIiwicmV2aXNpb24iOiJyLW93bmVyLTExIiwic2NvcGUiOiJzY29wZS1vd25lciIsInNoYTI1NiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEifSwic3RvcmVfcmVmIjp7ImlkZW50aXR5Ijoic3RvcmUtaW5zdGFuY2UtMiIsIm93bmVyIjoiaW5mcmEtb3duZXIiLCJyZXZpc2lvbiI6InN0b3JlLXIxNyIsInNjb3BlIjoic2NvcGUtcm9vdCIsInNoYTI1NiI6ImJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmIifX0="
+            ]
+          }
+        },
+        {
+          "ref": "input:f67d047189d8f88159c3ba0ff1bfd2f5dc93ffae52c30867facf36c4dfd60f21",
+          "sha256": "f67d047189d8f88159c3ba0ff1bfd2f5dc93ffae52c30867facf36c4dfd60f21",
+          "value": {
+            "plan_current_writes": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_asset_contracts": [
+              {
+                "asset_ref": {
+                  "identity": "requirements-main",
+                  "revision": "asset-r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "canonical_location": "store_record",
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                },
+                "canonical_kind": "json_canonical",
+                "required_before": null,
+                "required_after": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "required_links": [],
+                "applicability_ref": {
+                  "identity": "applicability-current",
+                  "revision": "r1",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+                },
+                "write_id": "write-alpha",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "depends_on_write_ids": []
+              }
+            ],
+            "snapshot_records": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-old",
+                  "revision": "r4",
+                  "scope": "scope-owner",
+                  "owner": "team-legacy",
+                  "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r6",
+                  "scope": "scope-project",
+                  "owner": "legacy-record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r11",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                }
+              },
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_expected_write_ids": [
+              "write-alpha"
+            ],
+            "receipt_write_outcomes": [
+              {
+                "write_id": "write-alpha",
+                "stage": "committed",
+                "failure_code": null,
+                "observed_ref": {
+                  "identity": "record:write-alpha",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "ref": "input:0c1028980aa1b1fe62b109e3c4b6ba731f4a809d2e18f146cc4a079efbf1962a",
+          "sha256": "0c1028980aa1b1fe62b109e3c4b6ba731f4a809d2e18f146cc4a079efbf1962a",
+          "value": {
+            "raw_row_17_columns": [
+              "record:requirements-main",
+              "r8",
+              "scope-project",
+              "owner-contract-7",
+              "json_canonical",
+              "eyJpZGVudGl0eSI6InNvdXJjZS1kb2N1bWVudCIsIm93bmVyIjoiZG9jLW93bmVyIiwicmV2aXNpb24iOiJyMyIsInNjb3BlIjoic2NvcGUtcHJvamVjdCIsInNoYTI1NiI6ImRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQifQ==",
+              "eyJpZGVudGl0eSI6Impzb24tY29udHJhY3QiLCJvd25lciI6ImZvcm1hdC1vd25lciIsInJldmlzaW9uIjoicjUiLCJzY29wZSI6InNjb3BlLXByb2plY3QiLCJzaGEyNTYiOiJlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlIn0=",
+              "eyJzY2hlbWEiOjF9",
+              "67d6291b301412df4a6ca7808aeafac9d0587b06ece3c68e72bab0157cd9d52c",
+              "W10=",
+              "write-alpha",
+              "requirements-main",
+              "SQL_NULL",
+              "eyJpZGVudGl0eSI6InJlY29yZDpyZXF1aXJlbWVudHMtbWFpbiIsIm93bmVyIjoicmVjb3JkLW93bmVyIiwicmV2aXNpb24iOiJyOCIsInNjb3BlIjoic2NvcGUtcHJvamVjdCJ9",
+              "store-instance-2",
+              "W10=",
+              "eyJvd25lcl9yZWYiOnsiaWRlbnRpdHkiOiJvd25lci1jb250cmFjdC03Iiwib3duZXIiOiJ0ZWFtLWFscGhhIiwicmV2aXNpb24iOiJyLW93bmVyLTExIiwic2NvcGUiOiJzY29wZS1vd25lciIsInNoYTI1NiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEifSwic3RvcmVfcmVmIjp7ImlkZW50aXR5Ijoic3RvcmUtaW5zdGFuY2UtMiIsIm93bmVyIjoiaW5mcmEtb3duZXIiLCJyZXZpc2lvbiI6InN0b3JlLXIxNyIsInNjb3BlIjoic2NvcGUtcm9vdCIsInNoYTI1NiI6ImJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmIifX0="
+            ]
+          }
+        },
+        {
+          "ref": "input:685fe3a216c4ac40b705343b8f66b053719dc982e9a99922a79cd89ebc961651",
+          "sha256": "685fe3a216c4ac40b705343b8f66b053719dc982e9a99922a79cd89ebc961651",
+          "value": {
+            "raw_row_17_columns": [
+              "record:requirements-main",
+              "r8",
+              "scope-project",
+              "record-owner",
+              "json_canonical",
+              "eyJpZGVudGl0eSI6InNvdXJjZS1kb2N1bWVudCIsIm93bmVyIjoiZG9jLW93bmVyIiwicmV2aXNpb24iOiJyMyIsInNjb3BlIjoic2NvcGUtcHJvamVjdCIsInNoYTI1NiI6ImRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQifQ==",
+              "eyJpZGVudGl0eSI6Impzb24tY29udHJhY3QiLCJvd25lciI6ImZvcm1hdC1vd25lciIsInJldmlzaW9uIjoicjUiLCJzY29wZSI6InNjb3BlLXByb2plY3QiLCJzaGEyNTYiOiJlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlIn0=",
+              "eyJzY2hlbWEiOjF9",
+              "67d6291b301412df4a6ca7808aeafac9d0587b06ece3c68e72bab0157cd9d52c",
+              "W10=",
+              "write-alpha",
+              "requirements-main",
+              "SQL_NULL",
+              "eyJpZGVudGl0eSI6InJlY29yZDpyZXF1aXJlbWVudHMtbWFpbiIsIm93bmVyIjoicmVjb3JkLW93bmVyIiwicmV2aXNpb24iOiJyOCIsInNjb3BlIjoic2NvcGUtcHJvamVjdCJ9",
+              "infra-owner",
+              "W10=",
+              "eyJvd25lcl9yZWYiOnsiaWRlbnRpdHkiOiJvd25lci1jb250cmFjdC03Iiwib3duZXIiOiJ0ZWFtLWFscGhhIiwicmV2aXNpb24iOiJyLW93bmVyLTExIiwic2NvcGUiOiJzY29wZS1vd25lciIsInNoYTI1NiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEifSwic3RvcmVfcmVmIjp7ImlkZW50aXR5Ijoic3RvcmUtaW5zdGFuY2UtMiIsIm93bmVyIjoiaW5mcmEtb3duZXIiLCJyZXZpc2lvbiI6InN0b3JlLXIxNyIsInNjb3BlIjoic2NvcGUtcm9vdCIsInNoYTI1NiI6ImJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmIifX0="
+            ]
+          }
+        },
+        {
+          "ref": "input:e8afef97ba9a37b744d7f1c89c56f6fcd87b9c943c4f6a574f7254852d7c54a2",
+          "sha256": "e8afef97ba9a37b744d7f1c89c56f6fcd87b9c943c4f6a574f7254852d7c54a2",
+          "value": {
+            "raw_row_17_columns": [
+              "record:requirements-main",
+              "r8",
+              "scope-project",
+              "record-owner",
+              "json_canonical",
+              "eyJpZGVudGl0eSI6InNvdXJjZS1kb2N1bWVudCIsIm93bmVyIjoiZG9jLW93bmVyIiwicmV2aXNpb24iOiJyMyIsInNjb3BlIjoic2NvcGUtcHJvamVjdCIsInNoYTI1NiI6ImRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQifQ==",
+              "eyJpZGVudGl0eSI6Impzb24tY29udHJhY3QiLCJvd25lciI6ImZvcm1hdC1vd25lciIsInJldmlzaW9uIjoicjUiLCJzY29wZSI6InNjb3BlLXByb2plY3QiLCJzaGEyNTYiOiJlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlIn0=",
+              "eyJzY2hlbWEiOjF9",
+              "67d6291b301412df4a6ca7808aeafac9d0587b06ece3c68e72bab0157cd9d52c",
+              "W10=",
+              "write-alpha",
+              "requirements-main",
+              "SQL_NULL",
+              "eyJpZGVudGl0eSI6InJlY29yZDpyZXF1aXJlbWVudHMtbWFpbiIsIm93bmVyIjoicmVjb3JkLW93bmVyIiwicmV2aXNpb24iOiJyOCIsInNjb3BlIjoic2NvcGUtcHJvamVjdCJ9",
+              "store-instance-2",
+              "W10=",
+              "SQL_NULL"
+            ]
+          }
+        },
+        {
+          "ref": "input:297788db5306016294ff377f68f62fb700995bf42ee16c86759f52735c47e035",
+          "sha256": "297788db5306016294ff377f68f62fb700995bf42ee16c86759f52735c47e035",
+          "value": {
+            "raw_row_17_columns": [
+              "record:requirements-main",
+              "r8",
+              "scope-project",
+              "record-owner",
+              "json_canonical",
+              "eyJpZGVudGl0eSI6InNvdXJjZS1kb2N1bWVudCIsIm93bmVyIjoiZG9jLW93bmVyIiwicmV2aXNpb24iOiJyMyIsInNjb3BlIjoic2NvcGUtcHJvamVjdCIsInNoYTI1NiI6ImRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQifQ==",
+              "eyJpZGVudGl0eSI6Impzb24tY29udHJhY3QiLCJvd25lciI6ImZvcm1hdC1vd25lciIsInJldmlzaW9uIjoicjUiLCJzY29wZSI6InNjb3BlLXByb2plY3QiLCJzaGEyNTYiOiJlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlIn0=",
+              "eyJzY2hlbWEiOjF9",
+              "67d6291b301412df4a6ca7808aeafac9d0587b06ece3c68e72bab0157cd9d52c",
+              "W10=",
+              "write-alpha",
+              "requirements-main",
+              "SQL_NULL",
+              "eyJpZGVudGl0eSI6InJlY29yZDpyZXF1aXJlbWVudHMtbWFpbiIsIm93bmVyIjoicmVjb3JkLW93bmVyIiwicmV2aXNpb24iOiJyOCIsInNjb3BlIjoic2NvcGUtcHJvamVjdCJ9",
+              "store-instance-2",
+              "W10=",
+              "eyJvd25lcl9yZWYiOnsiaWRlbnRpdHkiOiJvd25lci1jb250cmFjdC03Iiwib3duZXIiOiJ0ZWFtLWFscGhhIiwicmV2aXNpb24iOiJyLW93bmVyLTEyIiwic2NvcGUiOiJzY29wZS1vd25lciIsInNoYTI1NiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEifSwic3RvcmVfcmVmIjp7ImlkZW50aXR5Ijoic3RvcmUtaW5zdGFuY2UtMiIsIm93bmVyIjoiaW5mcmEtb3duZXIiLCJyZXZpc2lvbiI6InN0b3JlLXIxNyIsInNjb3BlIjoic2NvcGUtcm9vdCIsInNoYTI1NiI6ImJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmIifX0="
+            ]
+          }
+        },
+        {
+          "ref": "input:8fbdda4c01fbbcd07a6f90847eb0eb35e88acd28269d2b5a763b1dfa1bc1197d",
+          "sha256": "8fbdda4c01fbbcd07a6f90847eb0eb35e88acd28269d2b5a763b1dfa1bc1197d",
+          "value": {
+            "plan_current_writes": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-12",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_asset_contracts": [
+              {
+                "asset_ref": {
+                  "identity": "requirements-main",
+                  "revision": "asset-r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "canonical_location": "store_record",
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                },
+                "canonical_kind": "json_canonical",
+                "required_before": null,
+                "required_after": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "required_links": [],
+                "applicability_ref": {
+                  "identity": "applicability-current",
+                  "revision": "r1",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+                },
+                "write_id": "write-alpha",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "depends_on_write_ids": []
+              }
+            ],
+            "snapshot_records": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-12",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_expected_write_ids": [
+              "write-alpha"
+            ],
+            "receipt_write_outcomes": [
+              {
+                "write_id": "write-alpha",
+                "stage": "committed",
+                "failure_code": null,
+                "observed_ref": {
+                  "identity": "record:write-alpha",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "ref": "input:a2deb83eadb62fd0d2fc2fc84d4c54ec7e31d6204cd39f6278106f2d8c169cea",
+          "sha256": "a2deb83eadb62fd0d2fc2fc84d4c54ec7e31d6204cd39f6278106f2d8c169cea",
+          "value": {
+            "raw_row_17_columns": [
+              "record:requirements-main",
+              "r8",
+              "scope-project",
+              "record-owner",
+              "json_canonical",
+              "eyJpZGVudGl0eSI6InNvdXJjZS1kb2N1bWVudCIsIm93bmVyIjoiZG9jLW93bmVyIiwicmV2aXNpb24iOiJyMyIsInNjb3BlIjoic2NvcGUtcHJvamVjdCIsInNoYTI1NiI6ImRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQifQ==",
+              "eyJpZGVudGl0eSI6Impzb24tY29udHJhY3QiLCJvd25lciI6ImZvcm1hdC1vd25lciIsInJldmlzaW9uIjoicjUiLCJzY29wZSI6InNjb3BlLXByb2plY3QiLCJzaGEyNTYiOiJlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlIn0=",
+              "eyJzY2hlbWEiOjF9",
+              "67d6291b301412df4a6ca7808aeafac9d0587b06ece3c68e72bab0157cd9d52c",
+              "W10=",
+              "write-alpha",
+              "requirements-main",
+              "bnVsbA==",
+              "eyJpZGVudGl0eSI6InJlY29yZDpyZXF1aXJlbWVudHMtbWFpbiIsIm93bmVyIjoicmVjb3JkLW93bmVyIiwicmV2aXNpb24iOiJyOCIsInNjb3BlIjoic2NvcGUtcHJvamVjdCJ9",
+              "store-instance-2",
+              "W10=",
+              "eyJvd25lcl9yZWYiOnsiaWRlbnRpdHkiOiJvd25lci1jb250cmFjdC03Iiwib3duZXIiOiJ0ZWFtLWFscGhhIiwicmV2aXNpb24iOiJyLW93bmVyLTExIiwic2NvcGUiOiJzY29wZS1vd25lciIsInNoYTI1NiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEifSwic3RvcmVfcmVmIjp7ImlkZW50aXR5Ijoic3RvcmUtaW5zdGFuY2UtMiIsIm93bmVyIjoiaW5mcmEtb3duZXIiLCJyZXZpc2lvbiI6InN0b3JlLXIxNyIsInNjb3BlIjoic2NvcGUtcm9vdCIsInNoYTI1NiI6ImJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmIifX0="
+            ]
+          }
+        },
+        {
+          "ref": "input:98c752db24df908a2996c414cd45ceffc4fa645d6989c43204c3fc0b9b0c40fd",
+          "sha256": "98c752db24df908a2996c414cd45ceffc4fa645d6989c43204c3fc0b9b0c40fd",
+          "value": {
+            "plan_current_writes": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_asset_contracts": [
+              {
+                "asset_ref": {
+                  "identity": "requirements-main",
+                  "revision": "asset-r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "canonical_location": "store_record",
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                },
+                "canonical_kind": "json_canonical",
+                "required_before": null,
+                "required_after": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "required_links": [],
+                "applicability_ref": {
+                  "identity": "applicability-current",
+                  "revision": "r1",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+                },
+                "write_id": "write-alpha",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "depends_on_write_ids": []
+              }
+            ],
+            "snapshot_records": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-old",
+                  "revision": "r4",
+                  "scope": "scope-owner",
+                  "owner": "team-legacy",
+                  "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r6",
+                  "scope": "scope-project",
+                  "owner": "legacy-record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r11",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                }
+              }
+            ],
+            "closure_current_expected_write_ids": [
+              "write-alpha"
+            ],
+            "receipt_write_outcomes": [
+              {
+                "write_id": "write-alpha",
+                "stage": "committed",
+                "failure_code": null,
+                "observed_ref": {
+                  "identity": "record:write-alpha",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "ref": "input:3dfc63d586df0414d1029c606ae9e0eb10b472d75725573e72e3aaac511ee214",
+          "sha256": "3dfc63d586df0414d1029c606ae9e0eb10b472d75725573e72e3aaac511ee214",
+          "value": {
+            "plan_current_writes": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_asset_contracts": [
+              {
+                "asset_ref": {
+                  "identity": "requirements-main",
+                  "revision": "asset-r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "canonical_location": "store_record",
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                },
+                "canonical_kind": "json_canonical",
+                "required_before": null,
+                "required_after": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "required_links": [],
+                "applicability_ref": {
+                  "identity": "applicability-current",
+                  "revision": "r1",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+                },
+                "write_id": "write-alpha",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "depends_on_write_ids": []
+              }
+            ],
+            "snapshot_records": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r9",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_expected_write_ids": [
+              "write-alpha"
+            ],
+            "receipt_write_outcomes": [
+              {
+                "write_id": "write-alpha",
+                "stage": "committed",
+                "failure_code": null,
+                "observed_ref": {
+                  "identity": "record:write-alpha",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "ref": "input:6793004866b0633e7bc488473b5cc256af173ffd1637ab0d5cde10da92d77ec3",
+          "sha256": "6793004866b0633e7bc488473b5cc256af173ffd1637ab0d5cde10da92d77ec3",
+          "value": {
+            "plan_current_writes": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_asset_contracts": [
+              {
+                "asset_ref": {
+                  "identity": "requirements-main",
+                  "revision": "asset-r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "canonical_location": "store_record",
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                },
+                "canonical_kind": "json_canonical",
+                "required_before": null,
+                "required_after": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "required_links": [],
+                "applicability_ref": {
+                  "identity": "applicability-current",
+                  "revision": "r1",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+                },
+                "write_id": "write-alpha",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "depends_on_write_ids": []
+              }
+            ],
+            "snapshot_records": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_expected_write_ids": [
+              "write-alpha"
+            ],
+            "receipt_write_outcomes": [
+              {
+                "write_id": "write-alpha",
+                "stage": "committed",
+                "failure_code": null,
+                "observed_ref": {
+                  "identity": "record:write-alpha",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "ref": "input:fa777085ce381e547bf74cf7325157d84f6c65ad5aa2f9d41c04217d6b1f5fb1",
+          "sha256": "fa777085ce381e547bf74cf7325157d84f6c65ad5aa2f9d41c04217d6b1f5fb1",
+          "value": {
+            "raw_row_17_columns": [
+              "record:requirements-main",
+              "r8",
+              "scope-project",
+              "record-owner",
+              "json_canonical",
+              "eyJpZGVudGl0eSI6InNvdXJjZS1kb2N1bWVudCIsIm93bmVyIjoiZG9jLW93bmVyIiwicmV2aXNpb24iOiJyMyIsInNjb3BlIjoic2NvcGUtcHJvamVjdCIsInNoYTI1NiI6ImRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQifQ==",
+              "eyJpZGVudGl0eSI6Impzb24tY29udHJhY3QiLCJvd25lciI6ImZvcm1hdC1vd25lciIsInJldmlzaW9uIjoicjUiLCJzY29wZSI6InNjb3BlLXByb2plY3QiLCJzaGEyNTYiOiJlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlIn0=",
+              "eyJzY2hlbWEiOjF9",
+              "67d6291b301412df4a6ca7808aeafac9d0587b06ece3c68e72bab0157cd9d52c",
+              "W3sia2luZCI6InJlZiIsInZhbHVlIjp7ImlkZW50aXR5IjoiZXh0ZXJuYWwtYmFzaXMiLCJvd25lciI6ImJhc2lzLW93bmVyIiwicmV2aXNpb24iOiJyNSIsInNjb3BlIjoic2NvcGUtcHJvamVjdCIsInNoYTI1NiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEifX0seyJraW5kIjoibG9jYXRvciIsInZhbHVlIjp7ImlkZW50aXR5IjoicmVjb3JkOnJlbGF0ZWQiLCJvd25lciI6InJlY29yZC1vd25lciIsInJldmlzaW9uIjoicjciLCJzY29wZSI6InNjb3BlLXByb2plY3QifX0seyJraW5kIjoicmVmIiwidmFsdWUiOnsiaWRlbnRpdHkiOiJleHRlcm5hbC1iYXNpcyIsIm93bmVyIjoiYmFzaXMtb3duZXIiLCJyZXZpc2lvbiI6InI1Iiwic2NvcGUiOiJzY29wZS1wcm9qZWN0Iiwic2hhMjU2IjoiYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYSJ9fV0=",
+              "write-alpha",
+              "requirements-main",
+              "SQL_NULL",
+              "eyJpZGVudGl0eSI6InJlY29yZDpyZXF1aXJlbWVudHMtbWFpbiIsIm93bmVyIjoicmVjb3JkLW93bmVyIiwicmV2aXNpb24iOiJyOCIsInNjb3BlIjoic2NvcGUtcHJvamVjdCJ9",
+              "store-instance-2",
+              "W10=",
+              "eyJvd25lcl9yZWYiOnsiaWRlbnRpdHkiOiJvd25lci1jb250cmFjdC03Iiwib3duZXIiOiJ0ZWFtLWFscGhhIiwicmV2aXNpb24iOiJyLW93bmVyLTExIiwic2NvcGUiOiJzY29wZS1vd25lciIsInNoYTI1NiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEifSwic3RvcmVfcmVmIjp7ImlkZW50aXR5Ijoic3RvcmUtaW5zdGFuY2UtMiIsIm93bmVyIjoiaW5mcmEtb3duZXIiLCJyZXZpc2lvbiI6InN0b3JlLXIxNyIsInNjb3BlIjoic2NvcGUtcm9vdCIsInNoYTI1NiI6ImJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmIifX0="
+            ]
+          }
+        },
+        {
+          "ref": "input:2e4415bf03f8b372deb9b958801838120e5fbaf3b8f2f7adbe2968bc979baf79",
+          "sha256": "2e4415bf03f8b372deb9b958801838120e5fbaf3b8f2f7adbe2968bc979baf79",
+          "value": {
+            "plan_current_writes": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [
+                  {
+                    "kind": "ref",
+                    "value": {
+                      "identity": "external-basis",
+                      "revision": "r5",
+                      "scope": "scope-project",
+                      "owner": "basis-owner",
+                      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    }
+                  },
+                  {
+                    "kind": "locator",
+                    "value": {
+                      "identity": "record:related",
+                      "revision": "r7",
+                      "scope": "scope-project",
+                      "owner": "record-owner"
+                    }
+                  },
+                  {
+                    "kind": "ref",
+                    "value": {
+                      "identity": "external-basis",
+                      "revision": "r5",
+                      "scope": "scope-project",
+                      "owner": "basis-owner",
+                      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    }
+                  }
+                ],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_expected_write_ids": [
+              "write-alpha"
+            ],
+            "closure_current_asset_contracts": [
+              {
+                "asset_ref": {
+                  "identity": "requirements-main",
+                  "revision": "asset-r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "canonical_location": "store_record",
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                },
+                "canonical_kind": "json_canonical",
+                "required_before": null,
+                "required_after": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "required_links": [
+                  {
+                    "kind": "ref",
+                    "value": {
+                      "identity": "external-basis",
+                      "revision": "r5",
+                      "scope": "scope-project",
+                      "owner": "basis-owner",
+                      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    }
+                  },
+                  {
+                    "kind": "locator",
+                    "value": {
+                      "identity": "record:related",
+                      "revision": "r7",
+                      "scope": "scope-project",
+                      "owner": "record-owner"
+                    }
+                  },
+                  {
+                    "kind": "ref",
+                    "value": {
+                      "identity": "external-basis",
+                      "revision": "r5",
+                      "scope": "scope-project",
+                      "owner": "basis-owner",
+                      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    }
+                  }
+                ],
+                "applicability_ref": {
+                  "identity": "applicability-current",
+                  "revision": "r1",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+                },
+                "write_id": "write-alpha",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "depends_on_write_ids": []
+              }
+            ],
+            "receipt_write_outcomes": [
+              {
+                "write_id": "write-alpha",
+                "stage": "committed",
+                "failure_code": null,
+                "observed_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                }
+              }
+            ],
+            "snapshot_records": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-old",
+                  "revision": "r4",
+                  "scope": "scope-owner",
+                  "owner": "team-legacy",
+                  "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r6",
+                  "scope": "scope-project",
+                  "owner": "legacy-record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r11",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                }
+              },
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [
+                  {
+                    "kind": "ref",
+                    "value": {
+                      "identity": "external-basis",
+                      "revision": "r5",
+                      "scope": "scope-project",
+                      "owner": "basis-owner",
+                      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    }
+                  },
+                  {
+                    "kind": "locator",
+                    "value": {
+                      "identity": "record:related",
+                      "revision": "r7",
+                      "scope": "scope-project",
+                      "owner": "record-owner"
+                    }
+                  },
+                  {
+                    "kind": "ref",
+                    "value": {
+                      "identity": "external-basis",
+                      "revision": "r5",
+                      "scope": "scope-project",
+                      "owner": "basis-owner",
+                      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    }
+                  }
+                ],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "ref": "input:7676ae99262721ea3d5e3272f913cb0f76f94e6c94c4fb0aa94a2e47bea10cdf",
+          "sha256": "7676ae99262721ea3d5e3272f913cb0f76f94e6c94c4fb0aa94a2e47bea10cdf",
+          "value": {
+            "raw_row_17_columns": [
+              "record:requirements-main",
+              "r8",
+              "scope-project",
+              "record-owner",
+              "json_canonical",
+              "eyJpZGVudGl0eSI6InNvdXJjZS1kb2N1bWVudCIsIm93bmVyIjoiZG9jLW93bmVyIiwicmV2aXNpb24iOiJyMyIsInNjb3BlIjoic2NvcGUtcHJvamVjdCIsInNoYTI1NiI6ImRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQifQ==",
+              "eyJpZGVudGl0eSI6Impzb24tY29udHJhY3QiLCJvd25lciI6ImZvcm1hdC1vd25lciIsInJldmlzaW9uIjoicjUiLCJzY29wZSI6InNjb3BlLXByb2plY3QiLCJzaGEyNTYiOiJlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlIn0=",
+              "eyJzY2hlbWEiOjF9",
+              "67d6291b301412df4a6ca7808aeafac9d0587b06ece3c68e72bab0157cd9d52c",
+              "W3sia2luZCI6ImxvY2F0b3IiLCJ2YWx1ZSI6eyJpZGVudGl0eSI6InJlY29yZDpyZWxhdGVkIiwib3duZXIiOiJyZWNvcmQtb3duZXIiLCJyZXZpc2lvbiI6InI3Iiwic2NvcGUiOiJzY29wZS1wcm9qZWN0In19LHsia2luZCI6InJlZiIsInZhbHVlIjp7ImlkZW50aXR5IjoiZXh0ZXJuYWwtYmFzaXMiLCJvd25lciI6ImJhc2lzLW93bmVyIiwicmV2aXNpb24iOiJyNSIsInNjb3BlIjoic2NvcGUtcHJvamVjdCIsInNoYTI1NiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEifX0seyJraW5kIjoicmVmIiwidmFsdWUiOnsiaWRlbnRpdHkiOiJleHRlcm5hbC1iYXNpcyIsIm93bmVyIjoiYmFzaXMtb3duZXIiLCJyZXZpc2lvbiI6InI1Iiwic2NvcGUiOiJzY29wZS1wcm9qZWN0Iiwic2hhMjU2IjoiYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYSJ9fV0=",
+              "write-alpha",
+              "requirements-main",
+              "SQL_NULL",
+              "eyJpZGVudGl0eSI6InJlY29yZDpyZXF1aXJlbWVudHMtbWFpbiIsIm93bmVyIjoicmVjb3JkLW93bmVyIiwicmV2aXNpb24iOiJyOCIsInNjb3BlIjoic2NvcGUtcHJvamVjdCJ9",
+              "store-instance-2",
+              "W10=",
+              "eyJvd25lcl9yZWYiOnsiaWRlbnRpdHkiOiJvd25lci1jb250cmFjdC03Iiwib3duZXIiOiJ0ZWFtLWFscGhhIiwicmV2aXNpb24iOiJyLW93bmVyLTExIiwic2NvcGUiOiJzY29wZS1vd25lciIsInNoYTI1NiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEifSwic3RvcmVfcmVmIjp7ImlkZW50aXR5Ijoic3RvcmUtaW5zdGFuY2UtMiIsIm93bmVyIjoiaW5mcmEtb3duZXIiLCJyZXZpc2lvbiI6InN0b3JlLXIxNyIsInNjb3BlIjoic2NvcGUtcm9vdCIsInNoYTI1NiI6ImJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmIifX0="
+            ]
+          }
+        },
+        {
+          "ref": "input:57a0c9fda8c8266683ed19055b1c11bfac6b90438d5ccceeaaf2412ed9a62525",
+          "sha256": "57a0c9fda8c8266683ed19055b1c11bfac6b90438d5ccceeaaf2412ed9a62525",
+          "value": {
+            "plan_current_writes": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [
+                  {
+                    "kind": "ref",
+                    "value": {
+                      "identity": "external-basis",
+                      "revision": "r5",
+                      "scope": "scope-project",
+                      "owner": "basis-owner",
+                      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    }
+                  },
+                  {
+                    "kind": "locator",
+                    "value": {
+                      "identity": "record:related",
+                      "revision": "r7",
+                      "scope": "scope-project",
+                      "owner": "record-owner"
+                    }
+                  },
+                  {
+                    "kind": "ref",
+                    "value": {
+                      "identity": "external-basis",
+                      "revision": "r5",
+                      "scope": "scope-project",
+                      "owner": "basis-owner",
+                      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    }
+                  }
+                ],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_expected_write_ids": [
+              "write-alpha"
+            ],
+            "closure_current_asset_contracts": [
+              {
+                "asset_ref": {
+                  "identity": "requirements-main",
+                  "revision": "asset-r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "canonical_location": "store_record",
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                },
+                "canonical_kind": "json_canonical",
+                "required_before": null,
+                "required_after": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "required_links": [
+                  {
+                    "kind": "ref",
+                    "value": {
+                      "identity": "external-basis",
+                      "revision": "r5",
+                      "scope": "scope-project",
+                      "owner": "basis-owner",
+                      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    }
+                  },
+                  {
+                    "kind": "locator",
+                    "value": {
+                      "identity": "record:related",
+                      "revision": "r7",
+                      "scope": "scope-project",
+                      "owner": "record-owner"
+                    }
+                  },
+                  {
+                    "kind": "ref",
+                    "value": {
+                      "identity": "external-basis",
+                      "revision": "r5",
+                      "scope": "scope-project",
+                      "owner": "basis-owner",
+                      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    }
+                  }
+                ],
+                "applicability_ref": {
+                  "identity": "applicability-current",
+                  "revision": "r1",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+                },
+                "write_id": "write-alpha",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "depends_on_write_ids": []
+              }
+            ],
+            "receipt_write_outcomes": [
+              {
+                "write_id": "write-alpha",
+                "stage": "committed",
+                "failure_code": null,
+                "observed_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                }
+              }
+            ],
+            "snapshot_records": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-old",
+                  "revision": "r4",
+                  "scope": "scope-owner",
+                  "owner": "team-legacy",
+                  "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r6",
+                  "scope": "scope-project",
+                  "owner": "legacy-record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r11",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                }
+              },
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [
+                  {
+                    "kind": "locator",
+                    "value": {
+                      "identity": "record:related",
+                      "revision": "r7",
+                      "scope": "scope-project",
+                      "owner": "record-owner"
+                    }
+                  },
+                  {
+                    "kind": "ref",
+                    "value": {
+                      "identity": "external-basis",
+                      "revision": "r5",
+                      "scope": "scope-project",
+                      "owner": "basis-owner",
+                      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    }
+                  },
+                  {
+                    "kind": "ref",
+                    "value": {
+                      "identity": "external-basis",
+                      "revision": "r5",
+                      "scope": "scope-project",
+                      "owner": "basis-owner",
+                      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    }
+                  }
+                ],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "ref": "input:e4c33a6710b3deffa81f8b59863e3d72442c91879353f294167fc8a0f1f097a5",
+          "sha256": "e4c33a6710b3deffa81f8b59863e3d72442c91879353f294167fc8a0f1f097a5",
+          "value": {
+            "raw_row_17_columns": [
+              "record:requirements-main",
+              "r8",
+              "scope-project",
+              "record-owner",
+              "not_a_write_kind",
+              "eyJpZGVudGl0eSI6InNvdXJjZS1kb2N1bWVudCIsIm93bmVyIjoiZG9jLW93bmVyIiwicmV2aXNpb24iOiJyMyIsInNjb3BlIjoic2NvcGUtcHJvamVjdCIsInNoYTI1NiI6ImRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQifQ==",
+              "eyJpZGVudGl0eSI6Impzb24tY29udHJhY3QiLCJvd25lciI6ImZvcm1hdC1vd25lciIsInJldmlzaW9uIjoicjUiLCJzY29wZSI6InNjb3BlLXByb2plY3QiLCJzaGEyNTYiOiJlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlIn0=",
+              "eyJzY2hlbWEiOjF9",
+              "67d6291b301412df4a6ca7808aeafac9d0587b06ece3c68e72bab0157cd9d52c",
+              "W3sia2luZCI6InJlZiIsInZhbHVlIjp7ImlkZW50aXR5IjoiZXh0ZXJuYWwtYmFzaXMiLCJvd25lciI6ImJhc2lzLW93bmVyIiwicmV2aXNpb24iOiJyNSIsInNjb3BlIjoic2NvcGUtcHJvamVjdCIsInNoYTI1NiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEifX0seyJraW5kIjoibG9jYXRvciIsInZhbHVlIjp7ImlkZW50aXR5IjoicmVjb3JkOnJlbGF0ZWQiLCJvd25lciI6InJlY29yZC1vd25lciIsInJldmlzaW9uIjoicjciLCJzY29wZSI6InNjb3BlLXByb2plY3QifX0seyJraW5kIjoicmVmIiwidmFsdWUiOnsiaWRlbnRpdHkiOiJleHRlcm5hbC1iYXNpcyIsIm93bmVyIjoiYmFzaXMtb3duZXIiLCJyZXZpc2lvbiI6InI1Iiwic2NvcGUiOiJzY29wZS1wcm9qZWN0Iiwic2hhMjU2IjoiYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYSJ9fV0=",
+              "write-alpha",
+              "requirements-main",
+              "SQL_NULL",
+              "eyJpZGVudGl0eSI6InJlY29yZDpyZXF1aXJlbWVudHMtbWFpbiIsIm93bmVyIjoicmVjb3JkLW93bmVyIiwicmV2aXNpb24iOiJyOCIsInNjb3BlIjoic2NvcGUtcHJvamVjdCJ9",
+              "store-instance-2",
+              "W10=",
+              "eyJvd25lcl9yZWYiOnsiaWRlbnRpdHkiOiJvd25lci1jb250cmFjdC03Iiwib3duZXIiOiJ0ZWFtLWFscGhhIiwicmV2aXNpb24iOiJyLW93bmVyLTExIiwic2NvcGUiOiJzY29wZS1vd25lciIsInNoYTI1NiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEifSwic3RvcmVfcmVmIjp7ImlkZW50aXR5Ijoic3RvcmUtaW5zdGFuY2UtMiIsIm93bmVyIjoiaW5mcmEtb3duZXIiLCJyZXZpc2lvbiI6InN0b3JlLXIxNyIsInNjb3BlIjoic2NvcGUtcm9vdCIsInNoYTI1NiI6ImJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmIifX0="
+            ]
+          }
+        },
+        {
+          "ref": "input:33feadd86a3db26648a152ae5563877327b92b82e4c8036d06da35992e3ba4ea",
+          "sha256": "33feadd86a3db26648a152ae5563877327b92b82e4c8036d06da35992e3ba4ea",
+          "value": {
+            "raw_row_17_columns": [
+              "record:requirements-main",
+              "r8",
+              "scope-project",
+              "record-owner",
+              "json_canonical",
+              "eyJpZGVudGl0eSI6InNvdXJjZS1kb2N1bWVudCIsIm93bmVyIjoiZG9jLW93bmVyIiwicmV2aXNpb24iOiJyMyIsInNjb3BlIjoic2NvcGUtcHJvamVjdCIsInNoYTI1NiI6ImRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQifQ==",
+              "eyJpZGVudGl0eSI6Impzb24tY29udHJhY3QiLCJvd25lciI6ImZvcm1hdC1vd25lciIsInJldmlzaW9uIjoicjUiLCJzY29wZSI6InNjb3BlLXByb2plY3QiLCJzaGEyNTYiOiJlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlIn0=",
+              "eyJzY2hlbWEiOjF9",
+              "67d6291b301412df4a6ca7808aeafac9d0587b06ece3c68e72bab0157cd9d52c",
+              "W3sia2luZCI6Im90aGVyIiwidmFsdWUiOnsiaWRlbnRpdHkiOiJleHRlcm5hbC1iYXNpcyIsIm93bmVyIjoiYmFzaXMtb3duZXIiLCJyZXZpc2lvbiI6InI1Iiwic2NvcGUiOiJzY29wZS1wcm9qZWN0Iiwic2hhMjU2IjoiYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYSJ9fV0=",
+              "write-alpha",
+              "requirements-main",
+              "SQL_NULL",
+              "eyJpZGVudGl0eSI6InJlY29yZDpyZXF1aXJlbWVudHMtbWFpbiIsIm93bmVyIjoicmVjb3JkLW93bmVyIiwicmV2aXNpb24iOiJyOCIsInNjb3BlIjoic2NvcGUtcHJvamVjdCJ9",
+              "store-instance-2",
+              "W10=",
+              "eyJvd25lcl9yZWYiOnsiaWRlbnRpdHkiOiJvd25lci1jb250cmFjdC03Iiwib3duZXIiOiJ0ZWFtLWFscGhhIiwicmV2aXNpb24iOiJyLW93bmVyLTExIiwic2NvcGUiOiJzY29wZS1vd25lciIsInNoYTI1NiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEifSwic3RvcmVfcmVmIjp7ImlkZW50aXR5Ijoic3RvcmUtaW5zdGFuY2UtMiIsIm93bmVyIjoiaW5mcmEtb3duZXIiLCJyZXZpc2lvbiI6InN0b3JlLXIxNyIsInNjb3BlIjoic2NvcGUtcm9vdCIsInNoYTI1NiI6ImJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmIifX0="
+            ]
+          }
+        },
+        {
+          "ref": "input:0ec3a0ffad0a1190e9ef8267b4e882cbdd9c26c1933a1064b164d297230e5dd8",
+          "sha256": "0ec3a0ffad0a1190e9ef8267b4e882cbdd9c26c1933a1064b164d297230e5dd8",
+          "value": {
+            "plan_current_writes": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_asset_contracts": [
+              {
+                "asset_ref": {
+                  "identity": "requirements-main",
+                  "revision": "asset-r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "canonical_location": "store_record",
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                },
+                "canonical_kind": "json_canonical",
+                "required_before": null,
+                "required_after": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "required_links": [],
+                "applicability_ref": {
+                  "identity": "applicability-current",
+                  "revision": "r1",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+                },
+                "write_id": "write-alpha",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "depends_on_write_ids": []
+              }
+            ],
+            "snapshot_records": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-12",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_expected_write_ids": [
+              "write-alpha"
+            ],
+            "receipt_write_outcomes": [
+              {
+                "write_id": "write-alpha",
+                "stage": "committed",
+                "failure_code": null,
+                "observed_ref": {
+                  "identity": "record:write-alpha",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "expected_wholes": [
+        {
+          "ref": "expected:ab4fa0a0346b0272081fe6e5fff1f2da654c4ad076199c5785e92d747d170096",
+          "sha256": "ab4fa0a0346b0272081fe6e5fff1f2da654c4ad076199c5785e92d747d170096",
+          "value": {
+            "projection_state": "complete",
+            "write": {
+              "write_id": "write-alpha",
+              "kind": "json_canonical",
+              "owner_ref": {
+                "identity": "owner-contract-7",
+                "revision": "r-owner-11",
+                "scope": "scope-owner",
+                "owner": "team-alpha",
+                "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              },
+              "asset_id": "requirements-main",
+              "before_ref": null,
+              "after_ref": {
+                "identity": "record:requirements-main",
+                "revision": "r8",
+                "scope": "scope-project",
+                "owner": "record-owner"
+              },
+              "source_ref": {
+                "identity": "source-document",
+                "revision": "r3",
+                "scope": "scope-project",
+                "owner": "doc-owner",
+                "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+              },
+              "content_contract_ref": {
+                "identity": "json-contract",
+                "revision": "r5",
+                "scope": "scope-project",
+                "owner": "format-owner",
+                "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+              },
+              "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+              "required_links": [],
+              "depends_on_write_ids": [],
+              "store_ref": {
+                "identity": "store-instance-2",
+                "revision": "store-r17",
+                "scope": "scope-root",
+                "owner": "infra-owner",
+                "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            }
+          }
+        },
+        {
+          "ref": "expected:657fee14637c33584cbce4d3c0e2051cfda7165806635cb6b738a150b998bcfe",
+          "sha256": "657fee14637c33584cbce4d3c0e2051cfda7165806635cb6b738a150b998bcfe",
+          "value": {
+            "variant": "matched",
+            "matched_current_write_ids": [
+              "write-alpha"
+            ],
+            "matched_current_after_refs": [
+              {
+                "identity": "record:requirements-main",
+                "revision": "r8",
+                "scope": "scope-project",
+                "owner": "record-owner"
+              }
+            ],
+            "retained_inherited_after_refs": [
+              {
+                "identity": "record:requirements-main",
+                "revision": "r6",
+                "scope": "scope-project",
+                "owner": "legacy-record-owner"
+              }
+            ]
+          }
+        },
+        {
+          "ref": "expected:e61d7849353d166e8c607b213d090cc25581482c003b4cb283b0c5b084332f1c",
+          "sha256": "e61d7849353d166e8c607b213d090cc25581482c003b4cb283b0c5b084332f1c",
+          "value": {
+            "projection_state": "conflict",
+            "result": "conflict",
+            "finding_code": "read_mismatch",
+            "pointer": "/owner",
+            "write": null
+          }
+        },
+        {
+          "ref": "expected:66b91eb277ca4f761d1f19118ed779b6d5089eaf9b841359cba09de24bb1b4cf",
+          "sha256": "66b91eb277ca4f761d1f19118ed779b6d5089eaf9b841359cba09de24bb1b4cf",
+          "value": {
+            "projection_state": "conflict",
+            "result": "conflict",
+            "finding_code": "read_mismatch",
+            "pointer": "/store_id",
+            "write": null
+          }
+        },
+        {
+          "ref": "expected:e347f813c7b5a0c42e067307fe2ea6f0ef271b786dccbf676ab3c9c44073cb45",
+          "sha256": "e347f813c7b5a0c42e067307fe2ea6f0ef271b786dccbf676ab3c9c44073cb45",
+          "value": {
+            "projection_state": "conflict",
+            "result": "conflict",
+            "finding_code": "schema_invalid",
+            "pointer": "/write_ref_axes_bytes",
+            "write": null
+          }
+        },
+        {
+          "ref": "expected:7f4f1bc5dd1e9095b6ea65a9b49a99d63f5e1460d7b82858d7d1f66bc29d59db",
+          "sha256": "7f4f1bc5dd1e9095b6ea65a9b49a99d63f5e1460d7b82858d7d1f66bc29d59db",
+          "value": {
+            "projection_state": "complete",
+            "write": {
+              "write_id": "write-alpha",
+              "kind": "json_canonical",
+              "owner_ref": {
+                "identity": "owner-contract-7",
+                "revision": "r-owner-12",
+                "scope": "scope-owner",
+                "owner": "team-alpha",
+                "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              },
+              "asset_id": "requirements-main",
+              "before_ref": null,
+              "after_ref": {
+                "identity": "record:requirements-main",
+                "revision": "r8",
+                "scope": "scope-project",
+                "owner": "record-owner"
+              },
+              "source_ref": {
+                "identity": "source-document",
+                "revision": "r3",
+                "scope": "scope-project",
+                "owner": "doc-owner",
+                "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+              },
+              "content_contract_ref": {
+                "identity": "json-contract",
+                "revision": "r5",
+                "scope": "scope-project",
+                "owner": "format-owner",
+                "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+              },
+              "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+              "required_links": [],
+              "depends_on_write_ids": [],
+              "store_ref": {
+                "identity": "store-instance-2",
+                "revision": "store-r17",
+                "scope": "scope-root",
+                "owner": "infra-owner",
+                "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            }
+          }
+        },
+        {
+          "ref": "expected:f99c671ff086a97e72d351fc94004b126d67d488895e0a3937ba5a1e4256a155",
+          "sha256": "f99c671ff086a97e72d351fc94004b126d67d488895e0a3937ba5a1e4256a155",
+          "value": {
+            "variant": "rejected",
+            "result": "conflict",
+            "finding_code": "content_mismatch",
+            "pointer": "/asset_contracts/write-alpha/owner_ref",
+            "write": null
+          }
+        },
+        {
+          "ref": "expected:d011d25137ee3220cc909de6e6371c36cfa54d59767200482291626b90aa4275",
+          "sha256": "d011d25137ee3220cc909de6e6371c36cfa54d59767200482291626b90aa4275",
+          "value": {
+            "projection_state": "conflict",
+            "result": "conflict",
+            "finding_code": "schema_invalid",
+            "pointer": "/before_ref_bytes",
+            "write": null
+          }
+        },
+        {
+          "ref": "expected:5836cd6db208440cada02dba6b7da68ed6106373e6e8be2e7dd58741420ff7e0",
+          "sha256": "5836cd6db208440cada02dba6b7da68ed6106373e6e8be2e7dd58741420ff7e0",
+          "value": {
+            "variant": "rejected",
+            "result": "conflict",
+            "finding_code": "read_mismatch",
+            "pointer": "/records/current/after_ref",
+            "write": null
+          }
+        },
+        {
+          "ref": "expected:1b0e8e4c073168799beee0a932b6b8d8a4642416161643e8b0d8f287b08bf74f",
+          "sha256": "1b0e8e4c073168799beee0a932b6b8d8a4642416161643e8b0d8f287b08bf74f",
+          "value": {
+            "projection_state": "complete",
+            "write": {
+              "write_id": "write-alpha",
+              "kind": "json_canonical",
+              "owner_ref": {
+                "identity": "owner-contract-7",
+                "revision": "r-owner-11",
+                "scope": "scope-owner",
+                "owner": "team-alpha",
+                "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              },
+              "asset_id": "requirements-main",
+              "before_ref": null,
+              "after_ref": {
+                "identity": "record:requirements-main",
+                "revision": "r8",
+                "scope": "scope-project",
+                "owner": "record-owner"
+              },
+              "source_ref": {
+                "identity": "source-document",
+                "revision": "r3",
+                "scope": "scope-project",
+                "owner": "doc-owner",
+                "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+              },
+              "content_contract_ref": {
+                "identity": "json-contract",
+                "revision": "r5",
+                "scope": "scope-project",
+                "owner": "format-owner",
+                "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+              },
+              "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+              "required_links": [
+                {
+                  "kind": "ref",
+                  "value": {
+                    "identity": "external-basis",
+                    "revision": "r5",
+                    "scope": "scope-project",
+                    "owner": "basis-owner",
+                    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  }
+                },
+                {
+                  "kind": "locator",
+                  "value": {
+                    "identity": "record:related",
+                    "revision": "r7",
+                    "scope": "scope-project",
+                    "owner": "record-owner"
+                  }
+                },
+                {
+                  "kind": "ref",
+                  "value": {
+                    "identity": "external-basis",
+                    "revision": "r5",
+                    "scope": "scope-project",
+                    "owner": "basis-owner",
+                    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  }
+                }
+              ],
+              "depends_on_write_ids": [],
+              "store_ref": {
+                "identity": "store-instance-2",
+                "revision": "store-r17",
+                "scope": "scope-root",
+                "owner": "infra-owner",
+                "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            }
+          }
+        },
+        {
+          "ref": "expected:f0e59e94e52264c98f70dcb246882dc96742d8eaf6afd3afb241b4f45112114f",
+          "sha256": "f0e59e94e52264c98f70dcb246882dc96742d8eaf6afd3afb241b4f45112114f",
+          "value": {
+            "projection_state": "complete",
+            "write": {
+              "write_id": "write-alpha",
+              "kind": "json_canonical",
+              "owner_ref": {
+                "identity": "owner-contract-7",
+                "revision": "r-owner-11",
+                "scope": "scope-owner",
+                "owner": "team-alpha",
+                "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              },
+              "asset_id": "requirements-main",
+              "before_ref": null,
+              "after_ref": {
+                "identity": "record:requirements-main",
+                "revision": "r8",
+                "scope": "scope-project",
+                "owner": "record-owner"
+              },
+              "source_ref": {
+                "identity": "source-document",
+                "revision": "r3",
+                "scope": "scope-project",
+                "owner": "doc-owner",
+                "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+              },
+              "content_contract_ref": {
+                "identity": "json-contract",
+                "revision": "r5",
+                "scope": "scope-project",
+                "owner": "format-owner",
+                "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+              },
+              "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+              "required_links": [
+                {
+                  "kind": "locator",
+                  "value": {
+                    "identity": "record:related",
+                    "revision": "r7",
+                    "scope": "scope-project",
+                    "owner": "record-owner"
+                  }
+                },
+                {
+                  "kind": "ref",
+                  "value": {
+                    "identity": "external-basis",
+                    "revision": "r5",
+                    "scope": "scope-project",
+                    "owner": "basis-owner",
+                    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  }
+                },
+                {
+                  "kind": "ref",
+                  "value": {
+                    "identity": "external-basis",
+                    "revision": "r5",
+                    "scope": "scope-project",
+                    "owner": "basis-owner",
+                    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  }
+                }
+              ],
+              "depends_on_write_ids": [],
+              "store_ref": {
+                "identity": "store-instance-2",
+                "revision": "store-r17",
+                "scope": "scope-root",
+                "owner": "infra-owner",
+                "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+              }
+            }
+          }
+        },
+        {
+          "ref": "expected:ed9718e270e8ae56a322f8b5947c5e49756c3aacacaa4578c9540f7229fbd1eb",
+          "sha256": "ed9718e270e8ae56a322f8b5947c5e49756c3aacacaa4578c9540f7229fbd1eb",
+          "value": {
+            "variant": "rejected",
+            "result": "conflict",
+            "finding_code": "content_mismatch",
+            "pointer": "/required_links",
+            "write": null
+          }
+        },
+        {
+          "ref": "expected:c992e29b8d5d9d7b0bad70780dbf0535da1055101eaddf304d2d4bd0d4cfbbe5",
+          "sha256": "c992e29b8d5d9d7b0bad70780dbf0535da1055101eaddf304d2d4bd0d4cfbbe5",
+          "value": {
+            "projection_state": "conflict",
+            "result": "conflict",
+            "finding_code": "schema_invalid",
+            "pointer": "/kind",
+            "write": null
+          }
+        },
+        {
+          "ref": "expected:565a91c75e720b6774cca5e4fbef0afe51725ad3e8ddf03ceb7496a4bf234fc5",
+          "sha256": "565a91c75e720b6774cca5e4fbef0afe51725ad3e8ddf03ceb7496a4bf234fc5",
+          "value": {
+            "projection_state": "conflict",
+            "result": "conflict",
+            "finding_code": "schema_invalid",
+            "pointer": "/required_links/0/kind",
+            "write": null
+          }
+        },
+        {
+          "ref": "expected:9b83f8994c269c95a99f2f550d7bab7b4981727cc066fb4288658c7e0fdad385",
+          "sha256": "9b83f8994c269c95a99f2f550d7bab7b4981727cc066fb4288658c7e0fdad385",
+          "value": {
+            "variant": "rejected",
+            "result": "conflict",
+            "finding_code": "content_mismatch",
+            "pointer": "/records/current/owner_ref",
+            "write": null
+          }
+        }
+      ],
+      "reference_algorithm": "重複を除いて安定参照するため、compact UTF-8 JSON（Unicode scalar値順にobject keyを整列）のSHA-256を使う。参照先はこの文書内に限る。"
+    },
+    "normalization": "入力whole値と期待whole値は閉じたcatalogに一度だけ保存し、各named caseはhashで該当値を参照する。期待値を候補から生成せず、重複値をlosslessにまとめたもの。"
+  },
+  "candidate_l5_binding": {
+    "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+    "sha256": "9065ae8c02a36e8670eba5a2ae4f1627ddc49a11a0e3a2e3156e3460205b4113"
   }
 }
