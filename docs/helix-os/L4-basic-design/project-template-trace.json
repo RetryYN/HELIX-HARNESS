@@ -1288,6 +1288,20 @@
               "one": "一致itemが1件なら従来のsingular Fieldだけを原presence/原値で返す。raw candidate側はitem.output_refをcandidate_output_ref、item.source_projectionをcandidate_source_projectionへ写す。trace input側はitem全体をvalidated_input_candidate、item.source_projectionをvalidated_candidate_source_projectionへ写す。source_projectionがraw配列でもその配列一つをそのまま返し、occurrence列は省略する。",
               "multiple": "一致itemが複数件なら当該側の二つのsingular Fieldを省略し、candidate_item_occurrencesまたはvalidated_input_item_occurrencesへ全itemを{item_index,raw_item}として返す。field値だけを配列packingしない。二側をzip/mergeせず、異なる件数・index・値・member欠落も別々に保持する。",
               "comparison": "whole pairがcorrespondingでも一致itemが複数件ならcandidate_os_field_stateとcandidate_core_row_stateはunknownとし、先頭または同値itemを単一carrierへ採用しない。candidate_input_stateはwhole比較のcorrespondingのまま保持する。OS側のassociation/carrier/CORE row状態は独立に算出する。集約は従来の二つのCORE row状態の順位だけで決める。"
+            },
+            "carrier_domain_priority_rules": {
+              "scope": "既存carrier/CORE primaryの局所比較責務を明確化する。closed wire member/型、source資格、既存lookup選好、native4観測、finding生成は変更しない。",
+              "raw_pair": "candidate_input_stateはoperation.candidateとValidatedRecordTrace.input.candidateの外側raw全体等値。carrier又はCORE rowのdomain不成立でこの既知対応をunknownへ変えない。全raw保存は比較状態と独立して継続する。",
+              "candidate_priority": "candidate_state_priority/occurrence_rulesを先に適用する。pair conflict/unknown又はselected candidate多重では既存candidate側二状態unknownを維持し、一方/先頭を採用しない。",
+              "association_and_acquisition": "association missing/ambiguous/unknown、OS carrier outer欠落/null/wrong-kind、locator不成立、CORE source不在/未資格/相反、pointer未解決の既存association_state_rulesを維持する。後述domain表で既存missing/conflict/not_comparedを一律unknownへ上書きしない。",
+              "own_carrier_domain": "一意OS/比較可能域では、candidateとOSの各carrier自身をCoreProjectionSourceの既存閉型へ独立照合する。outer raw object同士が同値でも、row内部Presence等がpin済みSourceResultProjectionRow型に入らないcarrierの型付き比較はunknown。candidate_os_field_stateは両carrier自身が比較可能なら既存JSON型付き等値でcorresponding/conflict、いずれかのdomain不成立ならunknownとする。outer null/wrong-kind/欠落は既存枝のまま。",
+              "independent_primary": "candidate_os_field_stateの既知対応は独立CORE primaryの資格/取得/row domain成功を条件にしない。両carrier自身が有効同値なら、CORE source未資格/相反又はprimary rowだけ型外でもcorrespondingを保持する。",
+              "resolved_row_domain": "qualified OSの妥当なsnapshot Ref/pointerからqualified COREのraw rowが解決した後にだけ、選択rowの外部型を照合する。candidate_core_row_stateとqualified_os_core_row_stateはそれぞれのcarrierと同じprimary rowを独立比較し、当該比較のcarrier又はprimary typed rowが取得不能ならunknown。取得済みの無関係row/targetを局所型外で失効させない。",
+              "raw_and_typed_row": "row内部だけ型外でも、妥当なOS原locatorとqualified CORE原record/raw pointer値を保持する。wire resolved_core_row:Field<JsonValue>には実解決raw rowを保持するが、これをtyped SourceResultProjectionRow成功とはしない。後続private typed rowは未取得として扱う。candidate locatorへ切り替えず、資格分類/原issueを後段decodeで再生成しない。",
+              "aggregate": "carrier_core_row_stateは既存のcandidate_core_row_stateとqualified_os_core_row_stateだけを既存順位で集約する。candidate_input_state/candidate_os_field_state/associationを混ぜない。",
+              "later_phases": "qualified primary typed rowを取得できた場合、candidate/OS carrierのunknownだけで取得済みrowのmember/original比較を抑止しない。primary typed row未取得の場合は既存not_compared/decode channelを保持し、型外rowから新semantic findingを作らない。",
+              "diagnostic_preservation": "candidate原item/occurrence、両carrier、qualified record、raw row、OS独立state/context、元source classification/issueを原値で保持する。既存の局所decode unknownを保持し、新finding/source issue/InputIssue/authority/全体gateを追加しない。",
+              "finite_scope": "L9の4projectionでcarrier自身とprimaryの失敗位置を分離する。全schema fault/未導出直積/全Analysis/実codec/provider/資格/CI/runtimeの合格を主張しない。native source未供給のField/診断写像はこの追補に含めない。"
             }
           },
           "SourceProjectionJoinResult": {
