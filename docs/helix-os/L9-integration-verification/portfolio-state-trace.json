@@ -400913,5 +400913,1152 @@
       "portfolio_input_canonical_sha256": "9be2f6b07c8d01a799eb8002baaee9316e6e296a358e025fb0b335fe969e7f47",
       "execution_state": "synthetic_document_comparison_only"
     }
-  ]
+  ],
+  "source_candidate_return_verification": {
+    "requirement_ref": "HELIXOS-L3-016-F03",
+    "oracle_ref": "HELIXOS-L10-016-F03",
+    "call_signature": "evaluate_portfolio_with_source_candidates(input:SelectedPortfolioInput, diagnostic_contract:DiagnosticContract, *supplied_targets:0..1<JSONValue>) -> SourceBoundTrace",
+    "source_rule": "既存L9の固定revisionの原input/wholeへ参照し、候補材料と比較結果は要求と独立原sourceから先行著述した。$projectionは期待の著述記法に限り、返却値には入れない。",
+    "cases": [
+      {
+        "id": "OS016-A03-MISSING-ACTUAL",
+        "input": {
+          "$projection": {
+            "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+            "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+            "pointer": "/domain_extension_cases/4/input",
+            "canonical_sha256": "0f8c608716a4bd5183b296bfb4ff5c53cdbbfa7f7485aec062f95b7bcac24be1"
+          }
+        },
+        "expected_whole": {
+          "trace_material": {
+            "$projection": {
+              "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+              "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+              "pointer": "/domain_extension_cases/4/expected_whole",
+              "canonical_sha256": "5a2f7e22ab66ee9a31b96b57ab881f6928d2a658c1ded092636a9067e17e0eb7"
+            }
+          },
+          "failure_source_candidates": [
+            {
+              "finding": {
+                "$projection": {
+                  "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                  "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                  "pointer": "/domain_extension_cases/4/expected_whole/findings/0",
+                  "canonical_sha256": "95bd042863a9e3ee913148fa428f511959d9287c7df8f132a36fb4a5d88a3e99"
+                }
+              },
+              "locator": {
+                "kind": "node",
+                "project_key": "lab",
+                "node_key": "batch",
+                "finding_side": "actual"
+              },
+              "material_sources": {
+                "kind": "node",
+                "actual": {
+                  "node_record": {
+                    "requested_pointer": "/projects/lab/batch",
+                    "reached_pointer": "/projects/lab/batch",
+                    "availability": "absent"
+                  },
+                  "source": {
+                    "requested_pointer": "/projects/lab/batch/source",
+                    "reached_pointer": "/projects/lab/batch",
+                    "availability": "absent"
+                  },
+                  "owners": {
+                    "requested_pointer": "/projects/lab/batch/owners",
+                    "reached_pointer": "/projects/lab/batch",
+                    "availability": "absent"
+                  }
+                },
+                "context": {
+                  "node_record": {
+                    "requested_pointer": "/context/projects/lab/batch",
+                    "reached_pointer": "/context/projects/lab/batch",
+                    "availability": "present",
+                    "value": {
+                      "$projection": {
+                        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                        "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                        "pointer": "/domain_extension_cases/4/input/portfolio/context/projects/lab/batch",
+                        "canonical_sha256": "858c4f0c488895cfa4ad02b7ec56ba7eedbc847dc2bf91e10e67ea2e64c9106c"
+                      }
+                    }
+                  },
+                  "source": {
+                    "requested_pointer": "/context/projects/lab/batch/source",
+                    "reached_pointer": "/context/projects/lab/batch/source",
+                    "availability": "present",
+                    "value": {
+                      "$projection": {
+                        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                        "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                        "pointer": "/domain_extension_cases/4/input/portfolio/context/projects/lab/batch/source",
+                        "canonical_sha256": "7b5488a067e03de00afdc242a39e569a79261bd4fbd212efe5f30b04df6c4527"
+                      }
+                    }
+                  },
+                  "owners": {
+                    "requested_pointer": "/context/projects/lab/batch/owners",
+                    "reached_pointer": "/context/projects/lab/batch/owners",
+                    "availability": "present",
+                    "value": {
+                      "$projection": {
+                        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                        "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                        "pointer": "/domain_extension_cases/4/input/portfolio/context/projects/lab/batch/owners",
+                        "canonical_sha256": "c6f35b639ca92a0d4f3ed49e62b13c0ef5274949f12e759e767999b32d92b1ee"
+                      }
+                    }
+                  }
+                },
+                "selected": {
+                  "project_axes": {
+                    "project_id": {
+                      "requested_pointer": "/targets/projects/lab/project_id",
+                      "reached_pointer": "/targets/projects/lab/project_id",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/4/input/targets/projects/lab/project_id",
+                          "canonical_sha256": "79bdb33275339b1a01fba5b42805b3d07a0f0ef5df3a9601764ad0305e77eb7e"
+                        }
+                      }
+                    },
+                    "requirement_id": {
+                      "requested_pointer": "/targets/projects/lab/requirement_id",
+                      "reached_pointer": "/targets/projects/lab/requirement_id",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/4/input/targets/projects/lab/requirement_id",
+                          "canonical_sha256": "4abc52147d12c949284cff82ffe6dcdfa98a4384bd8a47925bf0732f9786e788"
+                        }
+                      }
+                    },
+                    "requirement_revision": {
+                      "requested_pointer": "/targets/projects/lab/requirement_revision",
+                      "reached_pointer": "/targets/projects/lab/requirement_revision",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/4/input/targets/projects/lab/requirement_revision",
+                          "canonical_sha256": "91d600a4b0b2dd0c2ccdf0bda375aa6f2eee1fc0e775b3c881497ff6258090a3"
+                        }
+                      }
+                    },
+                    "scope": {
+                      "requested_pointer": "/targets/projects/lab/scope",
+                      "reached_pointer": "/targets/projects/lab/scope",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/4/input/targets/projects/lab/scope",
+                          "canonical_sha256": "726d129923ed512de4438cfbf5308acff56ed782601850172a592af72ce5509b"
+                        }
+                      }
+                    },
+                    "harness_contract_revision": {
+                      "requested_pointer": "/targets/projects/lab/harness_contract_revision",
+                      "reached_pointer": "/targets/projects/lab/harness_contract_revision",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/4/input/targets/projects/lab/harness_contract_revision",
+                          "canonical_sha256": "54149954222278cca8d76dd181240614fca4f69e708ce27934f67e5c9cc4ffab"
+                        }
+                      }
+                    }
+                  },
+                  "node_axes": {
+                    "target_id": {
+                      "requested_pointer": "/targets/projects/lab/nodes/batch/target_id",
+                      "reached_pointer": "/targets/projects/lab/nodes/batch/target_id",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/4/input/targets/projects/lab/nodes/batch/target_id",
+                          "canonical_sha256": "65329cc8b768423c288d10b26b2e48701c201e5f37928f461af6dfd5a9a6d9ae"
+                        }
+                      }
+                    },
+                    "target_revision": {
+                      "requested_pointer": "/targets/projects/lab/nodes/batch/target_revision",
+                      "reached_pointer": "/targets/projects/lab/nodes/batch/target_revision",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/4/input/targets/projects/lab/nodes/batch/target_revision",
+                          "canonical_sha256": "3d884689a9bc8610d92e0b555c2b85f383f641da2f7177ad398f95da4dc14667"
+                        }
+                      }
+                    },
+                    "target_digest": {
+                      "requested_pointer": "/targets/projects/lab/nodes/batch/target_digest",
+                      "reached_pointer": "/targets/projects/lab/nodes/batch/target_digest",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/4/input/targets/projects/lab/nodes/batch/target_digest",
+                          "canonical_sha256": "0ff33289df09a669019337dae44affb84a69074098ac20aba3978c2aec9823c2"
+                        }
+                      }
+                    },
+                    "kind": {
+                      "requested_pointer": "/targets/projects/lab/nodes/batch/kind",
+                      "reached_pointer": "/targets/projects/lab/nodes/batch/kind",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/4/input/targets/projects/lab/nodes/batch/kind",
+                          "canonical_sha256": "d2d4cf08a4befc0ed75da38873a70dbab2fc8fc1039ee50bb98c84c0901d6847"
+                        }
+                      }
+                    },
+                    "source_ref": {
+                      "requested_pointer": "/targets/projects/lab/nodes/batch/source_ref",
+                      "reached_pointer": "/targets/projects/lab/nodes/batch/source_ref",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/4/input/targets/projects/lab/nodes/batch/source_ref",
+                          "canonical_sha256": "6b954c1d1a62388df1982de0e085c8956d32a1d67d3e21589b453816612ac718"
+                        }
+                      }
+                    },
+                    "source_revision": {
+                      "requested_pointer": "/targets/projects/lab/nodes/batch/source_revision",
+                      "reached_pointer": "/targets/projects/lab/nodes/batch/source_revision",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/4/input/targets/projects/lab/nodes/batch/source_revision",
+                          "canonical_sha256": "4221e420b00ff27a366f37ff0b971fe15b5dba8013f9af5dc056b0abd43ddb69"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "comparisons": {
+                "kind": "node",
+                "actual_context": {
+                  "project_id": "unknown",
+                  "requirement_id": "unknown",
+                  "requirement_revision": "unknown",
+                  "scope": "unknown",
+                  "harness_contract_revision": "unknown",
+                  "target_id": "unknown",
+                  "target_revision": "unknown",
+                  "target_digest": "unknown",
+                  "kind": "unknown",
+                  "source_ref": "unknown",
+                  "source_revision": "unknown",
+                  "difference_ref": "unknown",
+                  "operation_record_ref": "unknown"
+                },
+                "actual_selected": {
+                  "project_id": "unknown",
+                  "requirement_id": "unknown",
+                  "requirement_revision": "unknown",
+                  "scope": "unknown",
+                  "harness_contract_revision": "unknown",
+                  "target_id": "unknown",
+                  "target_revision": "unknown",
+                  "target_digest": "unknown",
+                  "kind": "unknown",
+                  "source_ref": "unknown",
+                  "source_revision": "unknown"
+                },
+                "context_selected": {
+                  "project_id": "material_corresponding",
+                  "requirement_id": "material_corresponding",
+                  "requirement_revision": "material_corresponding",
+                  "scope": "material_corresponding",
+                  "harness_contract_revision": "material_corresponding",
+                  "target_id": "material_corresponding",
+                  "target_revision": "material_corresponding",
+                  "target_digest": "material_corresponding",
+                  "kind": "material_corresponding",
+                  "source_ref": "material_corresponding",
+                  "source_revision": "material_corresponding"
+                }
+              },
+              "recipient_qualification": "not_established",
+              "actual_delivery": false
+            }
+          ],
+          "operation_effect": "none"
+        },
+        "independent_basis": [
+          "L3/L10-016-F03",
+          "L4 R10/R15",
+          "OS015 FN02 same-input/presence pattern (意味再導出、三参照の型変換はしない)"
+        ],
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "OS016-A03-MISSING-SELECTED",
+        "input": {
+          "$projection": {
+            "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+            "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+            "pointer": "/domain_extension_cases/5/input",
+            "canonical_sha256": "f5ecca7f265b954ff397d7fd873cdb55be331ea67a49dafe49ac7ef48da4251e"
+          }
+        },
+        "expected_whole": {
+          "trace_material": {
+            "$projection": {
+              "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+              "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+              "pointer": "/domain_extension_cases/5/expected_whole",
+              "canonical_sha256": "7d2bc2ddbd352132d01e2aa3f037d196874570c544f0c312ca2f476f959714df"
+            }
+          },
+          "failure_source_candidates": [
+            {
+              "finding": {
+                "$projection": {
+                  "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                  "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                  "pointer": "/domain_extension_cases/5/expected_whole/findings/0",
+                  "canonical_sha256": "9ec8d33e09a3b96a10218563aa68a89ef291441f875986816de6d56f21407232"
+                }
+              },
+              "locator": {
+                "kind": "node",
+                "project_key": "lab",
+                "node_key": "batch/raw~node",
+                "finding_side": "selected"
+              },
+              "material_sources": {
+                "kind": "node",
+                "actual": {
+                  "node_record": {
+                    "requested_pointer": "/projects/lab/batch~1raw~0node",
+                    "reached_pointer": "/projects/lab/batch~1raw~0node",
+                    "availability": "present",
+                    "value": {
+                      "$projection": {
+                        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                        "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                        "pointer": "/domain_extension_cases/5/input/portfolio/projects/lab/batch~1raw~0node",
+                        "canonical_sha256": "858c4f0c488895cfa4ad02b7ec56ba7eedbc847dc2bf91e10e67ea2e64c9106c"
+                      }
+                    }
+                  },
+                  "source": {
+                    "requested_pointer": "/projects/lab/batch~1raw~0node/source",
+                    "reached_pointer": "/projects/lab/batch~1raw~0node/source",
+                    "availability": "present",
+                    "value": {
+                      "$projection": {
+                        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                        "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                        "pointer": "/domain_extension_cases/5/input/portfolio/projects/lab/batch~1raw~0node/source",
+                        "canonical_sha256": "7b5488a067e03de00afdc242a39e569a79261bd4fbd212efe5f30b04df6c4527"
+                      }
+                    }
+                  },
+                  "owners": {
+                    "requested_pointer": "/projects/lab/batch~1raw~0node/owners",
+                    "reached_pointer": "/projects/lab/batch~1raw~0node/owners",
+                    "availability": "present",
+                    "value": {
+                      "$projection": {
+                        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                        "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                        "pointer": "/domain_extension_cases/5/input/portfolio/projects/lab/batch~1raw~0node/owners",
+                        "canonical_sha256": "c6f35b639ca92a0d4f3ed49e62b13c0ef5274949f12e759e767999b32d92b1ee"
+                      }
+                    }
+                  }
+                },
+                "context": {
+                  "node_record": {
+                    "requested_pointer": "/context/projects/lab/batch~1raw~0node",
+                    "reached_pointer": "/context/projects/lab/batch~1raw~0node",
+                    "availability": "present",
+                    "value": {
+                      "$projection": {
+                        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                        "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                        "pointer": "/domain_extension_cases/5/input/portfolio/context/projects/lab/batch~1raw~0node",
+                        "canonical_sha256": "858c4f0c488895cfa4ad02b7ec56ba7eedbc847dc2bf91e10e67ea2e64c9106c"
+                      }
+                    }
+                  },
+                  "source": {
+                    "requested_pointer": "/context/projects/lab/batch~1raw~0node/source",
+                    "reached_pointer": "/context/projects/lab/batch~1raw~0node/source",
+                    "availability": "present",
+                    "value": {
+                      "$projection": {
+                        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                        "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                        "pointer": "/domain_extension_cases/5/input/portfolio/context/projects/lab/batch~1raw~0node/source",
+                        "canonical_sha256": "7b5488a067e03de00afdc242a39e569a79261bd4fbd212efe5f30b04df6c4527"
+                      }
+                    }
+                  },
+                  "owners": {
+                    "requested_pointer": "/context/projects/lab/batch~1raw~0node/owners",
+                    "reached_pointer": "/context/projects/lab/batch~1raw~0node/owners",
+                    "availability": "present",
+                    "value": {
+                      "$projection": {
+                        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                        "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                        "pointer": "/domain_extension_cases/5/input/portfolio/context/projects/lab/batch~1raw~0node/owners",
+                        "canonical_sha256": "c6f35b639ca92a0d4f3ed49e62b13c0ef5274949f12e759e767999b32d92b1ee"
+                      }
+                    }
+                  }
+                },
+                "selected": {
+                  "project_axes": {
+                    "project_id": {
+                      "requested_pointer": "/targets/projects/lab/project_id",
+                      "reached_pointer": "/targets/projects/lab/project_id",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/5/input/targets/projects/lab/project_id",
+                          "canonical_sha256": "79bdb33275339b1a01fba5b42805b3d07a0f0ef5df3a9601764ad0305e77eb7e"
+                        }
+                      }
+                    },
+                    "requirement_id": {
+                      "requested_pointer": "/targets/projects/lab/requirement_id",
+                      "reached_pointer": "/targets/projects/lab/requirement_id",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/5/input/targets/projects/lab/requirement_id",
+                          "canonical_sha256": "4abc52147d12c949284cff82ffe6dcdfa98a4384bd8a47925bf0732f9786e788"
+                        }
+                      }
+                    },
+                    "requirement_revision": {
+                      "requested_pointer": "/targets/projects/lab/requirement_revision",
+                      "reached_pointer": "/targets/projects/lab/requirement_revision",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/5/input/targets/projects/lab/requirement_revision",
+                          "canonical_sha256": "91d600a4b0b2dd0c2ccdf0bda375aa6f2eee1fc0e775b3c881497ff6258090a3"
+                        }
+                      }
+                    },
+                    "scope": {
+                      "requested_pointer": "/targets/projects/lab/scope",
+                      "reached_pointer": "/targets/projects/lab/scope",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/5/input/targets/projects/lab/scope",
+                          "canonical_sha256": "726d129923ed512de4438cfbf5308acff56ed782601850172a592af72ce5509b"
+                        }
+                      }
+                    },
+                    "harness_contract_revision": {
+                      "requested_pointer": "/targets/projects/lab/harness_contract_revision",
+                      "reached_pointer": "/targets/projects/lab/harness_contract_revision",
+                      "availability": "present",
+                      "value": {
+                        "$projection": {
+                          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                          "pointer": "/domain_extension_cases/5/input/targets/projects/lab/harness_contract_revision",
+                          "canonical_sha256": "54149954222278cca8d76dd181240614fca4f69e708ce27934f67e5c9cc4ffab"
+                        }
+                      }
+                    }
+                  },
+                  "node_axes": {
+                    "target_id": {
+                      "requested_pointer": "/targets/projects/lab/nodes/batch~1raw~0node/target_id",
+                      "reached_pointer": "/targets/projects/lab/nodes/batch~1raw~0node",
+                      "availability": "absent"
+                    },
+                    "target_revision": {
+                      "requested_pointer": "/targets/projects/lab/nodes/batch~1raw~0node/target_revision",
+                      "reached_pointer": "/targets/projects/lab/nodes/batch~1raw~0node",
+                      "availability": "absent"
+                    },
+                    "target_digest": {
+                      "requested_pointer": "/targets/projects/lab/nodes/batch~1raw~0node/target_digest",
+                      "reached_pointer": "/targets/projects/lab/nodes/batch~1raw~0node",
+                      "availability": "absent"
+                    },
+                    "kind": {
+                      "requested_pointer": "/targets/projects/lab/nodes/batch~1raw~0node/kind",
+                      "reached_pointer": "/targets/projects/lab/nodes/batch~1raw~0node",
+                      "availability": "absent"
+                    },
+                    "source_ref": {
+                      "requested_pointer": "/targets/projects/lab/nodes/batch~1raw~0node/source_ref",
+                      "reached_pointer": "/targets/projects/lab/nodes/batch~1raw~0node",
+                      "availability": "absent"
+                    },
+                    "source_revision": {
+                      "requested_pointer": "/targets/projects/lab/nodes/batch~1raw~0node/source_revision",
+                      "reached_pointer": "/targets/projects/lab/nodes/batch~1raw~0node",
+                      "availability": "absent"
+                    }
+                  }
+                }
+              },
+              "comparisons": {
+                "kind": "node",
+                "actual_context": {
+                  "project_id": "material_corresponding",
+                  "requirement_id": "material_corresponding",
+                  "requirement_revision": "material_corresponding",
+                  "scope": "material_corresponding",
+                  "harness_contract_revision": "material_corresponding",
+                  "target_id": "material_corresponding",
+                  "target_revision": "material_corresponding",
+                  "target_digest": "material_corresponding",
+                  "kind": "material_corresponding",
+                  "source_ref": "material_corresponding",
+                  "source_revision": "material_corresponding",
+                  "difference_ref": "material_corresponding",
+                  "operation_record_ref": "material_corresponding"
+                },
+                "actual_selected": {
+                  "project_id": "material_corresponding",
+                  "requirement_id": "material_corresponding",
+                  "requirement_revision": "material_corresponding",
+                  "scope": "material_corresponding",
+                  "harness_contract_revision": "material_corresponding",
+                  "target_id": "unknown",
+                  "target_revision": "unknown",
+                  "target_digest": "unknown",
+                  "kind": "unknown",
+                  "source_ref": "unknown",
+                  "source_revision": "unknown"
+                },
+                "context_selected": {
+                  "project_id": "material_corresponding",
+                  "requirement_id": "material_corresponding",
+                  "requirement_revision": "material_corresponding",
+                  "scope": "material_corresponding",
+                  "harness_contract_revision": "material_corresponding",
+                  "target_id": "unknown",
+                  "target_revision": "unknown",
+                  "target_digest": "unknown",
+                  "kind": "unknown",
+                  "source_ref": "unknown",
+                  "source_revision": "unknown"
+                }
+              },
+              "recipient_qualification": "not_established",
+              "actual_delivery": false
+            }
+          ],
+          "operation_effect": "none"
+        },
+        "independent_basis": [
+          "L3/L10-016-F03",
+          "L4 R10/R15",
+          "OS015 FN02 same-input/presence pattern (意味再導出、三参照の型変換はしない)"
+        ],
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "OS016-A03-UNBOUND",
+        "input": {
+          "$projection": {
+            "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+            "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+            "pointer": "/domain_extension_cases/27/input",
+            "canonical_sha256": "a4dc8115889eff2e9980d78ec31b8275c2ae8982e9070de97da34e3d744e15dc"
+          }
+        },
+        "expected_whole": {
+          "trace_material": {
+            "$projection": {
+              "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+              "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+              "pointer": "/domain_extension_cases/27/expected_whole",
+              "canonical_sha256": "f459e7d10461a9a076eb574e5e46160406d4563883afb55fce7475a7c90e2dba"
+            }
+          },
+          "failure_source_candidates": [
+            {
+              "finding": {
+                "$projection": {
+                  "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                  "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                  "pointer": "/domain_extension_cases/27/expected_whole/findings/0",
+                  "canonical_sha256": "9482434f47645eb63d399ba6c2fca9a11dd7e89b4276559e7f52b49121b55bdd"
+                }
+              },
+              "locator": {
+                "kind": "unbound",
+                "finding_side": "context",
+                "reason": "container_or_non_locator_pointer"
+              },
+              "material_sources": {
+                "kind": "unbound"
+              },
+              "comparisons": {
+                "kind": "not_node_bound"
+              },
+              "recipient_qualification": "not_established",
+              "actual_delivery": false
+            }
+          ],
+          "operation_effect": "none"
+        },
+        "independent_basis": [
+          "L3/L10-016-F03",
+          "L4 R10/R15",
+          "OS015 FN02 same-input/presence pattern (意味再導出、三参照の型変換はしない)"
+        ],
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "OS016-A03-PROJECT",
+        "input": {
+          "$projection": {
+            "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+            "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+            "pointer": "/domain_extension_cases/12/input",
+            "canonical_sha256": "976549f38878fa76212274c8f29a3443c414584e53a0f2fd6db98876db628e5d"
+          }
+        },
+        "expected_whole": {
+          "trace_material": {
+            "$projection": {
+              "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+              "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+              "pointer": "/domain_extension_cases/12/expected_whole",
+              "canonical_sha256": "7a11424c5fe4733a0b9ca01d3674cdbdfb4866350d6fb8f22867a7d0b29a15be"
+            }
+          },
+          "failure_source_candidates": [
+            {
+              "finding": {
+                "$projection": {
+                  "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                  "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                  "pointer": "/domain_extension_cases/12/expected_whole/findings/0",
+                  "canonical_sha256": "0fb231ca36969f513e9db05702582b70206d5bab0060ee198d91689d5caba7bb"
+                }
+              },
+              "locator": {
+                "kind": "project",
+                "project_key": "south",
+                "finding_side": "selected"
+              },
+              "material_sources": {
+                "kind": "project",
+                "selected_project_axes": {
+                  "project_id": {
+                    "requested_pointer": "/targets/projects/south/project_id",
+                    "reached_pointer": "/targets/projects/south/project_id",
+                    "availability": "present",
+                    "value": {
+                      "$projection": {
+                        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                        "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                        "pointer": "/domain_extension_cases/12/input/targets/projects/south/project_id",
+                        "canonical_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+                      }
+                    }
+                  },
+                  "requirement_id": {
+                    "requested_pointer": "/targets/projects/south/requirement_id",
+                    "reached_pointer": "/targets/projects/south/requirement_id",
+                    "availability": "present",
+                    "value": {
+                      "$projection": {
+                        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                        "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                        "pointer": "/domain_extension_cases/12/input/targets/projects/south/requirement_id",
+                        "canonical_sha256": "c215966f81b128023c2a66f9f1558ffb4e907d97c5b67dee87a5afd2d341429a"
+                      }
+                    }
+                  },
+                  "requirement_revision": {
+                    "requested_pointer": "/targets/projects/south/requirement_revision",
+                    "reached_pointer": "/targets/projects/south/requirement_revision",
+                    "availability": "present",
+                    "value": {
+                      "$projection": {
+                        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                        "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                        "pointer": "/domain_extension_cases/12/input/targets/projects/south/requirement_revision",
+                        "canonical_sha256": "91d600a4b0b2dd0c2ccdf0bda375aa6f2eee1fc0e775b3c881497ff6258090a3"
+                      }
+                    }
+                  },
+                  "scope": {
+                    "requested_pointer": "/targets/projects/south/scope",
+                    "reached_pointer": "/targets/projects/south/scope",
+                    "availability": "present",
+                    "value": {
+                      "$projection": {
+                        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                        "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                        "pointer": "/domain_extension_cases/12/input/targets/projects/south/scope",
+                        "canonical_sha256": "64141c558c6ca12c4920534eefb11a04073a997ec6a2a5c53f2ff509508f23e8"
+                      }
+                    }
+                  },
+                  "harness_contract_revision": {
+                    "requested_pointer": "/targets/projects/south/harness_contract_revision",
+                    "reached_pointer": "/targets/projects/south/harness_contract_revision",
+                    "availability": "present",
+                    "value": {
+                      "$projection": {
+                        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+                        "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+                        "pointer": "/domain_extension_cases/12/input/targets/projects/south/harness_contract_revision",
+                        "canonical_sha256": "54149954222278cca8d76dd181240614fca4f69e708ce27934f67e5c9cc4ffab"
+                      }
+                    }
+                  }
+                }
+              },
+              "comparisons": {
+                "kind": "not_node_bound"
+              },
+              "recipient_qualification": "not_established",
+              "actual_delivery": false
+            }
+          ],
+          "operation_effect": "none"
+        },
+        "independent_basis": [
+          "L3/L10-016-F03",
+          "L4 R10/R15",
+          "OS015 FN02 same-input/presence pattern (意味再導出、三参照の型変換はしない)"
+        ],
+        "execution_state": "not_executed"
+      }
+    ],
+    "comparison_subresult_probes": [
+      {
+        "id": "OS016-A03-KIND-CLOSED-DOMAIN",
+        "status": "independent_comparison_subresult_oracle_not_wrapper_whole",
+        "input_recipe": {
+          "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+          "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+          "pointer": "/domain_extension_cases/0/input",
+          "base_canonical_sha256": "c9e3c095a2e7fa3906d6e5e38cc86f166bd8fdb0b3c448938ebda96050c25ea5",
+          "operations": [
+            {
+              "op": "replace",
+              "path": "/portfolio/projects/lab/batch/source/kind",
+              "value": "unknown-new-kind"
+            },
+            {
+              "op": "replace",
+              "path": "/portfolio/context/projects/lab/batch/source/kind",
+              "value": "unknown-new-kind"
+            }
+          ]
+        },
+        "scope": "node lab/batchのcandidate.comparisons全35fieldだけ。wrapper原trace/全candidate配列の期待ではなく、関数実行済みとも主張しない。",
+        "expected_whole_subresult": {
+          "kind": "node",
+          "actual_context": {
+            "project_id": "material_corresponding",
+            "requirement_id": "material_corresponding",
+            "requirement_revision": "material_corresponding",
+            "scope": "material_corresponding",
+            "harness_contract_revision": "material_corresponding",
+            "target_id": "material_corresponding",
+            "target_revision": "material_corresponding",
+            "target_digest": "material_corresponding",
+            "kind": "unknown",
+            "source_ref": "material_corresponding",
+            "source_revision": "material_corresponding",
+            "difference_ref": "material_corresponding",
+            "operation_record_ref": "material_corresponding"
+          },
+          "actual_selected": {
+            "project_id": "material_corresponding",
+            "requirement_id": "material_corresponding",
+            "requirement_revision": "material_corresponding",
+            "scope": "material_corresponding",
+            "harness_contract_revision": "material_corresponding",
+            "target_id": "material_corresponding",
+            "target_revision": "material_corresponding",
+            "target_digest": "material_corresponding",
+            "kind": "unknown",
+            "source_ref": "material_corresponding",
+            "source_revision": "material_corresponding"
+          },
+          "context_selected": {
+            "project_id": "material_corresponding",
+            "requirement_id": "material_corresponding",
+            "requirement_revision": "material_corresponding",
+            "scope": "material_corresponding",
+            "harness_contract_revision": "material_corresponding",
+            "target_id": "material_corresponding",
+            "target_revision": "material_corresponding",
+            "target_digest": "material_corresponding",
+            "kind": "unknown",
+            "source_ref": "material_corresponding",
+            "source_revision": "material_corresponding"
+          }
+        },
+        "basis": [
+          {
+            "path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
+            "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+            "pointer": "/normative_program/source_code",
+            "lines": [
+              70,
+              75
+            ],
+            "quote": "value not in {'unit','connection','composite'}"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
+            "revision": "6a1352651f03e41850ccbc03656899145da71bcd",
+            "pointer": "/logical_types/20",
+            "quote": "NodeKind"
+          }
+        ],
+        "interpretation": "材料の有効kind対応を返す比較である。双方の未知文字列の偶然同値をNodeKind対応としない。元raw未知値はCaptureへ保持。",
+        "synthetic_value_basis": "2patchはこの著述scenarioの条件。原source観測値としない。",
+        "source_binding_correction": "先行凍結kind-rule-oracleのNodeKind位置誤記を20へ訂正。期待35fieldは変更しない。"
+      }
+    ],
+    "helper_boundary_probes": {
+      "basis": "既存A03 Captureのpresence規則、RFC6901の一回decode、containerからnodeを推定しない契約。期待値を候補の返却から取得しない。",
+      "capture_cases": [
+        {
+          "root": null,
+          "tokens": [
+            "projects",
+            "p"
+          ],
+          "prefix": "",
+          "expected": {
+            "requested_pointer": "/projects/p",
+            "reached_pointer": "",
+            "availability": "blocked",
+            "value": null
+          }
+        },
+        {
+          "root": {
+            "projects": []
+          },
+          "tokens": [
+            "projects",
+            "p"
+          ],
+          "prefix": "",
+          "expected": {
+            "requested_pointer": "/projects/p",
+            "reached_pointer": "/projects",
+            "availability": "blocked",
+            "value": []
+          }
+        },
+        {
+          "root": {},
+          "tokens": [
+            "a"
+          ],
+          "prefix": "/targets",
+          "expected": {
+            "requested_pointer": "/targets/a",
+            "reached_pointer": "/targets/a",
+            "availability": "absent"
+          }
+        },
+        {
+          "root": {
+            "source": null
+          },
+          "tokens": [
+            "source"
+          ],
+          "prefix": "",
+          "expected": {
+            "requested_pointer": "/source",
+            "reached_pointer": "/source",
+            "availability": "present",
+            "value": null
+          }
+        },
+        {
+          "root": {
+            "a/b~": false
+          },
+          "tokens": [
+            "a/b~"
+          ],
+          "prefix": "",
+          "expected": {
+            "requested_pointer": "/a~1b~0",
+            "reached_pointer": "/a~1b~0",
+            "availability": "present",
+            "value": false
+          }
+        },
+        {
+          "root": {
+            "a/b~": 0
+          },
+          "tokens": [
+            "a/b~"
+          ],
+          "prefix": "",
+          "expected": {
+            "requested_pointer": "/a~1b~0",
+            "reached_pointer": "/a~1b~0",
+            "availability": "present",
+            "value": 0
+          }
+        }
+      ],
+      "locator_cases": [
+        {
+          "pointer": "/projects/a~01/b~1c~0d/source",
+          "expected": {
+            "kind": "node",
+            "project_key": "a~1",
+            "node_key": "b/c~d",
+            "finding_side": "actual"
+          }
+        },
+        {
+          "pointer": "/context/projects/p/n",
+          "expected": {
+            "kind": "node",
+            "project_key": "p",
+            "node_key": "n",
+            "finding_side": "context"
+          }
+        },
+        {
+          "pointer": "/targets/projects/p/nodes",
+          "expected": {
+            "kind": "project",
+            "project_key": "p",
+            "finding_side": "selected"
+          }
+        },
+        {
+          "pointer": "/projects/a/b~2",
+          "expected": {
+            "kind": "unbound",
+            "finding_side": "unbound",
+            "reason": "container_or_non_locator_pointer"
+          }
+        },
+        {
+          "pointer": "/whole_completion_claim",
+          "expected": {
+            "kind": "unbound",
+            "finding_side": "unbound",
+            "reason": "container_or_non_locator_pointer"
+          }
+        },
+        {
+          "pointer": "/projects",
+          "expected": {
+            "kind": "unbound",
+            "finding_side": "actual",
+            "reason": "container_or_non_locator_pointer"
+          }
+        }
+      ]
+    },
+    "invocation_boundary_probes": {
+      "scope": "局所arity/presence期待。全SourceBoundTraceの固定期待ではない。同一原入力・同一arityの既存selected evaluatorと全traceを照合する。",
+      "fixture": {
+        "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+        "revision": "e1a758b63b261ee3dfa09aa747714b71220080ba",
+        "pointer": "/domain_extension_cases/0/input/portfolio",
+        "canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+        "targets_control_path": "/domain_extension_cases/0/input/targets",
+        "targets_control_canonical_sha256": "204fe182e65f15516c88dbe461c328fa7d93db2ae4e28d35e5ffe295d3f30ba2",
+        "note": "原D0001のportfolioはそのまま保持し、targetsを渡す引数の個数だけを変更する。"
+      },
+      "oracle_provenance_sha256": "4fd77beae527df0bc55acce1f4dc21afafc447a24f30a1650ef064886d12c83b",
+      "correction": "旧先行期待の診断pointer /targets/selection_source_ref は誤り。既存locateは非object rootでpathを進める前に /targets を返すため訂正。引数規則・Capture・元4 wholeは不変。",
+      "cases": [
+        {
+          "id": "A03-WRAPPER-TARGETS-ABSENT",
+          "supplied_targets_count": 0,
+          "targets_member_present": false,
+          "trace_local_expected": {
+            "condition": "trace_material_unknown",
+            "actual_state_updated": false,
+            "actual_acceptance_created": false,
+            "actual_release_authorized": false,
+            "whole_portfolio_complete": false,
+            "operation_effect": "none",
+            "contains_original_finding": {
+              "code": "field_unknown",
+              "pointer": "/targets",
+              "return_owner": "portfolio-trace-owner"
+            }
+          },
+          "capture_probe": {
+            "root": "internal envelope variant above",
+            "tokens": [
+              "targets",
+              "projects",
+              "south",
+              "project_id"
+            ],
+            "prefix": "",
+            "expected": {
+              "requested_pointer": "/targets/projects/south/project_id",
+              "reached_pointer": "/targets",
+              "availability": "absent"
+            }
+          },
+          "unbound_candidate_local_expected": {
+            "finding": {
+              "code": "field_unknown",
+              "pointer": "/targets",
+              "return_owner": "portfolio-trace-owner"
+            },
+            "locator": {
+              "kind": "unbound",
+              "finding_side": "unbound",
+              "reason": "container_or_non_locator_pointer"
+            },
+            "material_sources": {
+              "kind": "unbound"
+            },
+            "comparisons": {
+              "kind": "not_node_bound"
+            },
+            "recipient_qualification": "not_established",
+            "actual_delivery": false
+          },
+          "internal_envelope_required": [
+            "input",
+            "trace_material"
+          ]
+        },
+        {
+          "id": "A03-WRAPPER-TARGETS-NULL",
+          "supplied_targets_count": 1,
+          "targets_member_present": true,
+          "trace_local_expected": {
+            "condition": "trace_material_unknown",
+            "actual_state_updated": false,
+            "actual_acceptance_created": false,
+            "actual_release_authorized": false,
+            "whole_portfolio_complete": false,
+            "operation_effect": "none",
+            "contains_original_finding": {
+              "code": "field_unknown",
+              "pointer": "/targets",
+              "return_owner": "portfolio-trace-owner"
+            }
+          },
+          "capture_probe": {
+            "root": "internal envelope variant above",
+            "tokens": [
+              "targets",
+              "projects",
+              "south",
+              "project_id"
+            ],
+            "prefix": "",
+            "expected": {
+              "requested_pointer": "/targets/projects/south/project_id",
+              "reached_pointer": "/targets",
+              "availability": "blocked",
+              "value": null
+            }
+          },
+          "unbound_candidate_local_expected": {
+            "finding": {
+              "code": "field_unknown",
+              "pointer": "/targets",
+              "return_owner": "portfolio-trace-owner"
+            },
+            "locator": {
+              "kind": "unbound",
+              "finding_side": "unbound",
+              "reason": "container_or_non_locator_pointer"
+            },
+            "material_sources": {
+              "kind": "unbound"
+            },
+            "comparisons": {
+              "kind": "not_node_bound"
+            },
+            "recipient_qualification": "not_established",
+            "actual_delivery": false
+          },
+          "internal_envelope_required": [
+            "input",
+            "trace_material",
+            "targets"
+          ],
+          "targets_value": null
+        },
+        {
+          "id": "A03-WRAPPER-TWO-TARGET-ARGS-REJECTED",
+          "supplied_targets_count": 2,
+          "expected_outcome": {
+            "exception": "ValueError",
+            "message": "selected targets引数は最大1件",
+            "returned_trace": false,
+            "binder_called": false,
+            "envelope_returned": false
+          }
+        }
+      ],
+      "oracle_provenance_role": "oracle_provenance_sha256はgit外の先行著述素材の来歴digestで、Gitだけから再取得できず、意味の別正本や検証成立の証拠ではない。正式な局所期待はこのobjectのcasesとfixtureに記載する。"
+    },
+    "execution_state": "not_executed",
+    "scope": "4件の全wrapper期待と1件の比較全35field。入力のcorpusを独立の別試料とは主張しない。実資格・配送・全親義務の完了を生成しない。",
+    "authoring_provenance": {
+      "original_oracles_sha256": "72c6eff3f23c693b207d580b33dc62b0e2b34f4b8f2cbb50758059231ec98d64",
+      "kind_oracle_sha256": "fd3c2f99c3a190757d6465fd41c7773777b8ca2fae20dbbbf8194f6489fef73e",
+      "role": "git外の先行著述記録の来歴digest。正式な期待の値と原source pointerはこのgroupに含む。git外artifact自体はGitだけから再取得できず、意味の別正本にはしない。"
+    }
+  }
 }
