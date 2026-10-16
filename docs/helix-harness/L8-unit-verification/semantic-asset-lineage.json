@@ -131,7 +131,7 @@
     "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
     "meaning": "UTW005の最新revision証拠の未束縛、UTW014の欠損→空集合、UTW020のaggregateで部分欠落不可視、UTW021の自己申告成立を、対象ID/revisionと個別欠落の照合で防ぐ。現failure-development-foundation-auditは053→042の停止を保持。実再発防止は未証明。"
   },
-  "verification_scope": "L5の型・pure関数・原38負例と追加20branchの単体oracle設計。テスト実装/実行証拠ではない。",
+  "verification_scope": "L5の型・pure関数・原38負例と追加21branchの単体oracle設計。テスト実装/実行証拠ではない。",
   "fixture_contract": {
     "id": "ASSET-LINEAGE-BASE-01",
     "scope": "project-P/tenant-T/environment-E",
@@ -1796,6 +1796,48 @@
       "expected_operation_state": "not_requested",
       "expected_operation_selection": "not_requested",
       "expected_claim_state": "not_reported"
+    },
+    {
+      "id": "HARNESS-L8-053-ADD-21",
+      "function_ref": "HARNESS-L5-053-build_lineage_analysis",
+      "branch": "input-null-full-return-preservation",
+      "input": "build_lineage_analysisへValidatedInputを直接渡す。RawLineageInput、validator、具体的なraw→InputIssue生成はこのcaseで実行しない。",
+      "typed_input": {
+        "input": null,
+        "issues": [
+          {
+            "input_path": "synthetic-invalid-analysis/input",
+            "code": "input_shape_invalid",
+            "subject_ref": null,
+            "source_refs": [],
+            "owner": null
+          }
+        ],
+        "unusable_envelope_refs": []
+      },
+      "expected": "返却LineageAnalysisの8 memberをすべて照合する。bindingは合成せずnull。comparisons/boundariesは未観測の空配列であり、request_state=not_requestedのBoundaryObservationを作らない。input_issuesの全5 memberと順序を無損失保持。",
+      "expected_analysis": {
+        "binding": null,
+        "comparisons": [],
+        "boundaries": [],
+        "input_issues": [
+          {
+            "input_path": "synthetic-invalid-analysis/input",
+            "code": "input_shape_invalid",
+            "subject_ref": null,
+            "source_refs": [],
+            "owner": null
+          }
+        ],
+        "local_closure": "unestablished",
+        "unresolved_reference": "HARNESS-L2-053→HARNESS-L2-042",
+        "side_effect_count": 0,
+        "global_completion": "unproven"
+      },
+      "expected_side_effect_count": 0,
+      "expected_reference_state": "unresolved",
+      "execution_state": "not_executed",
+      "input_type": "ValidatedInput"
     }
   ],
   "function_oracles": [
@@ -1908,7 +1950,8 @@
         "HARNESS-L8-053-ADD-17",
         "HARNESS-L8-053-ADD-18",
         "HARNESS-L8-053-ADD-19",
-        "HARNESS-L8-053-ADD-20"
+        "HARNESS-L8-053-ADD-20",
+        "HARNESS-L8-053-ADD-21"
       ],
       "effect_oracle": "入力immutable、IO spy0、採番/保存/rollback/権限/採択/受入0、042unresolved保全。",
       "execution_state": "not_executed"
