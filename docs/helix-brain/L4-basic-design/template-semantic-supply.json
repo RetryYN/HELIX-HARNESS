@@ -257,7 +257,8 @@
         "HELIXBRAIN-L2-020",
         "HELIXBRAIN-L2-025"
       ],
-      "meaning": "入力の選択conditionに応じて該当参照の意味/版/scope/不足を照合。未選択sourceは未観測。将来receiver完了receiptや全seed成功を開始前提にしない。"
+      "meaning": "入力の選択conditionに応じて該当参照の意味/版/scope/不足を照合。未選択sourceは未観測。将来receiver完了receiptや全seed成功を開始前提にしない。",
+      "conditional_source_contract_ref": "/conditional_source_dependency_contract"
     },
     "return_boundary": "候補/必要input/反例/限界/関係/代替・sourceと不足原因を同revision/scopeでCOREへ返す。受領可能と案件適用/義務完成は別。案件記録/DB/Git/GitHub書込/lease/割当/実operation/認可/採択なし。",
     "locality": "source不足/互換不明/項目矛盾は当該候補/項目/選択操作へ返す。無関係な有効候補を停止せず、他候補の成功でも不足を相殺しない。",
@@ -501,7 +502,8 @@
       ],
       "input": "同template/knowledge/source/scopeへ結ぶ意味項目と独立原根拠。任意claimは原項目から分離。",
       "output": "原項目状態/値不足/適用未決/版互換/運用state/受渡しを独立して返す。",
-      "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。"
+      "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
+      "conditional_source_contract_ref": "/conditional_source_dependency_contract"
     },
     {
       "id": "HELIXBRAIN-L4-032-N01",
@@ -1607,6 +1609,510 @@
   "remaining": [
     "L5/L8で論理型、descriptor/source解決、claim、条件別依存とpure関数、単体oracleを具体化。",
     "正式schema/key/型/式木/wire/registry/resolver、各field意味/要否/oracle最終照合、BRAIN運用promotionと全seed採用は未成立。",
-    "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは未成立。"
-  ]
+    "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは未成立。",
+    "F09の018/020固定写像と025原操作scopeは本基本pair候補で具体化。L5/L8の未決記述/producer/input/返却契約への反映、実source/資格と実接続、独立reviewは未成立。"
+  ],
+  "conditional_source_dependency_contract": {
+    "id": "HELIXBRAIN-L4-032-F09-CONDITIONAL-SOURCE",
+    "requirement_ref": "HELIXBRAIN-L3-032-F09",
+    "system_oracle_ref": "HELIXBRAIN-L10-032-F09",
+    "integration_ref": "HELIXBRAIN-L9-032-F09-CONDITIONAL-SOURCE",
+    "scope": "既決F09の018/020固定写像と025の操作scope原根拠を基本契約へ具体化する候補。実資格/正式schema/runtime/全stage成功を生成しない。L5/L8の実producerへの具体化は別に残る。",
+    "observed_source_main": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+    "source_pins": [
+      {
+        "alias": "L2",
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "L3F",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "L3B",
+        "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "L3N",
+        "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "L10F",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "L10B",
+        "path": "docs/helix-brain/L10-verification/business-verification.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "L10N",
+        "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "L4",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "L9",
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "3744770e232c6974c2038e0b638efd3442907dd1213ac7efe1cb2f4ef88d078c",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "L5",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "L8",
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "383ea8217d42550fca30572006606d208c44887069bd721dcff97229c0808f6f",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "020L4",
+        "path": "docs/helix-brain/L4-basic-design/labo-evaluation-candidate-receipt.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "0fa8307255c44ff8264662bee638264f36c320020d599bdae8d3c4c37bda28db",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "020L5",
+        "path": "docs/helix-brain/L5-detail-design/labo-evaluation-candidate-receipt.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "55d2b5aba748738cc76b156bac95d23bb6b15ea85f47375d74fc9db0658ced3f",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "025L4",
+        "path": "docs/helix-brain/L4-basic-design/knowledge-independent-adoption.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "aef8186c332e82f01293ac3b086a72160ef1982669eb3442f4b15ca5cc6781f3",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "025L5",
+        "path": "docs/helix-brain/L5-detail-design/knowledge-independent-adoption.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "ba6b60cfcca87643afbbcff2968f1839b5288ad1f5b38419a3c6f21a8aa6ea9d",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "CORE",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "bd031871e97f05b871a04a90bb51658a6875128aa467160ca432c8a4702985c8",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "OS",
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "2d14300906508f6f8ba93218d2f13bb5f6043be114fbd5cab779ed94263c6ff3",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "DECISION",
+        "path": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "764b3f42bd8004c69275a49f70248a31ee1e06aaf91f46a02201467dc6036d27",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "A",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "B",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "R",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      },
+      {
+        "alias": "F",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
+        "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+        "meaning": "観測bytes。対象上流の承認は既存authority recordを参照し、このpinから生成しない。"
+      }
+    ],
+    "upstream_scope_sources": {
+      "L2": "docs/helix-brain/L2-requirements/brain-requirements.md:394-402,414-422,464-472,603-610",
+      "L3": "functional-requirements.json /requirements/7,8,28,31",
+      "L10": "functional-verification.json /cases/7,8,31",
+      "025_F04": "docs/helix-brain/L4-basic-design/knowledge-independent-adoption.json /responsibility_and_failure_return_contract/F04"
+    },
+    "source_types": {
+      "DependencyOperationSourceContent": {
+        "location": "QualifiedSource.content.dependency_operations",
+        "type": "DependencyOperation[]",
+        "additional_SupplyInput_field": false,
+        "meaning": "owner原操作の内容記録。期待state/codeや提出参照の加工結果ではない。"
+      },
+      "DependencyOperation": {
+        "fields": {
+          "ref": "Ref",
+          "binding": "Binding",
+          "channel": "core_source | labo_evaluation",
+          "operation_kind": "source_intake | knowledge_state_trace | independent_adoption",
+          "operation_scope": "RawValue",
+          "knowledge_fields": "KnowledgeRecordField[]",
+          "basis_refs": "Ref[]",
+          "contract_bindings": "Ref[]"
+        },
+        "presence": "全fieldの存在を区別し、欠落/null/非kindは該当fieldのunknown。空配列は明示空であり、欠落/nullに変換しない。channel未知はどちらかへ補完せずoperationのunknownとして保持。",
+        "origin": "同immutable snapshotのbinding.knowledge_refに対応する一意のKnowledgeRecord.provenance_refsから解決したsemantic_json原source内のrecord。body/bytes/digestとowner/root資格は既存validateの独立source資格契約。Claimや提出依存一覧からrecord/資格/rootを生成しない。",
+        "binding": "record.bindingと入力bindingを既存full Binding/Ref比較で照合。operation_ref.scopeとoperation_scopeはexact RawValue一致。source scopeとの適用関係は既存資格入力で照合し、scopeの包含/階層fallbackを新設しない。"
+      },
+      "KnowledgeRecordField": {
+        "type": "既存KnowledgeRecord field名の有限表現",
+        "values": [
+          "ref",
+          "operational_state",
+          "provenance_refs",
+          "limited_adoption_ref",
+          "evaluation_scope",
+          "evaluation_ref",
+          "os_registration_ref",
+          "independent_verification_ref",
+          "adoption_ref",
+          "limits",
+          "counterexamples"
+        ],
+        "meaning": "原操作が読む知識記録のpathを宣言する技術表現。operational_state自体の新enum/遷移ではない。"
+      },
+      "operation_kind_semantics": {
+        "source_intake": "原候補source/evaluationの取込照合のみをこの操作scopeで行う。knowledge_fieldsは明示空。knowledge state/owner段階の読取を同時に宣言したらkindとの相反であり025不要にしない。F08のKnowledgeRecord原state保全を省略する意味ではない。",
+        "knowledge_state_trace": "knowledge_fieldsの明示nonempty集合により候補/提案状態も含むknowledge原記録のstate/owner/範囲/採用根拠を読む操作。025を必要とするが全stage成功/receipt供給は要求しない。",
+        "independent_adoption": "独立検証・採否の元段階/owner/未完を扱う操作。025を必要とする。単一証拠の非昇格、未実施、unknown/holdを維持し本比較から運用採否を実行しない。",
+        "unknown": "kind欠落/null/未知語やknowledge_fields不足をsource_intakeへ丸めない。025該当性unknownと原field locatorを返す。"
+      },
+      "DependencyScopeResult": {
+        "kind": "内部比較材料。新SupplyAnalysis top-level fieldやwireを追加しない。",
+        "fields": {
+          "operation_source_ref": "Ref|null",
+          "operation_locators": "string[]",
+          "operation_refs": "Ref[]",
+          "binding": "Binding",
+          "channel": "string",
+          "operation_scope": "RawValue",
+          "dependency_identity": "string|null",
+          "expected_refs": "Ref[]",
+          "actual_refs": "Ref[]",
+          "state": "resolved | missing | unknown | conflict | unobserved",
+          "reason_code": "string",
+          "backflow_owner": "string|null"
+        },
+        "meaning": "expected_refsは原source.contract_bindingsに実在するRefだけ。required identityが既決でも原revision/scope/ownerがないときRefを生成しない。判定コードは比較側で算出する。"
+      }
+    },
+    "decision_table": {
+      "channels": [
+        {
+          "channel": "core_source",
+          "selector": "core_source_selected",
+          "identity": "HELIXBRAIN-L2-018",
+          "category": "selected_source_refs"
+        },
+        {
+          "channel": "labo_evaluation",
+          "selector": "labo_evaluation_selected",
+          "identity": "HELIXBRAIN-L2-020",
+          "category": "selected_evaluation_refs"
+        }
+      ],
+      "025_identity": "HELIXBRAIN-L2-025",
+      "operation_kinds": {
+        "source_intake": {
+          "knowledge_fields": "explicit_empty",
+          "025_usage": "unselected"
+        },
+        "knowledge_state_trace": {
+          "knowledge_fields": "explicit_nonempty_existing_fields",
+          "025_usage": "required"
+        },
+        "independent_adoption": {
+          "knowledge_fields": "explicit_existing_fields",
+          "025_usage": "required"
+        }
+      },
+      "unknown": "selector/原operation kind/scope/container/fieldの欠落・null・未解決をfalse/source_intake/非適用へ補完しない。選択trueの原operation不在はrefs有無にかかわらず025局所unknown。",
+      "conflict": "同operation identity/revision/binding/channelの異なる原scope/kind/contract bindingを片方へ統合せずconflict。完全同値の複数所在もtraceへ保持。所在だけのref.source_locatorを内容差にしない。",
+      "fixed_reference_independence": "018/020の必要identityは既存selectorから固定し、原fullRef/source/current revision/scope/qualificationは既存snapshot内の原契約/owner bodyと既存resolver入力へ照合する。新operationは018/020照合を始める必須入力ではない。operation.contract_bindingsが供給された場合は追加原根拠として既存bodyとの相反を保持するが、未供給で既存解決を失効させない。025の操作該当性は原operationを必ず調べ、未供給/未解決は局所unknown。025のfullRef必要scopeを確定する根拠は原operation/原knowledge recordから別に保持する。"
+    },
+    "original_projection_algorithm": [
+      "1. 既存三selectorをstrict boolean/presenceで読む。missing/null/型不適合はその条件のunknown。明示falseのchannelは非選択unobserved。CORE返却falseをCORE由来falseと取り違えない。",
+      "2. 選択trueのchannelごとに固定018/020の完全identityを先に必要とする。提出category不在/空でも必要identityを落とさずmissing。018/020の原fullRef/source/current revision/scope/資格は既存snapshotの原契約/owner bodyとresolver入力で照合し、新operation供給を条件にしない。",
+      "3. 同knowledge Ref/bindingのKnowledgeRecordを既存joinで読む。原recordなし/異なる値の重複曖昧は025該当性unknown。原provenance_refsから解決できるsemantic_json sourcesのdependency_operationsを読み、同bindingの同channel全recordを保持する。source未解決/未資格はその原locatorのunknownを保持。提出selected refsやclaimsを検索元にしない。",
+      "4. 選択channelのoperation recordが存在しない、container欠落/null/非array、scope/kind/knowledge_fieldsが不明なとき、025該当性unknown。空operationsをsource_intake宣言とみなさない。既知018/020 identity照合は続ける。",
+      "5. kindとknowledge_fieldsの意味から025必要を決める。source_intake + 明示空fieldsならそのoperationだけ025 unobserved。knowledge_state_trace + 明示nonempty既存fieldなら025必要。independent_adoptionなら025必要でstage成功を前提にしない。相反宣言はconflict、未定情報はunknown。025を期待するclaimの有無やRef存在からこの分岐を作らない。",
+      "6. 同operation identity/revision/binding/channelのrecordを、所在だけのref.source_locatorを除くbody全値で比較する。完全同値の複数所在もtraceに保持し、異なる原scope/kind/contract bindingがあれば当該operationのconflict。片方をlatest/配列先頭で選ばない。025該当性はそのoperationについてconflictであり、一方への提出一致では解消しない。別operation/固定018/020は独立に続ける。",
+      "7. 固定018/020及び原kindで必要と確定した025を、当該categoryの提出Refに完全identityで照合する。必要集合を提出Ref配列から作らない。025の原contract_bindings不足は原fullRef根拠unknownを保持し、必要identityの提出member不在missingを抑止しない。018/020の原fullRef照合は既存source根拠を維持する。operation.contract_bindingsは供給時の追加原根拠であり、未供給で既存照合を失効させない。",
+      "8. 固定018/020は既存owner原body/Ref/資格と対象binding.scopeへ照合し、025は原operationで選択したscope/契約版と照合する。原identity/revision/scope/ownerの不足はunknown、既知不一致はconflict。両digest供給時の比較とsource bytes/資格は既存規則。identity所在だけをresolvedにしない。合成fixture rootの前提は実source資格ではない。",
+      "9. 同一identityに複数提出Refsがある場合、全原対応/相反を保持する。合致が一つあっても別scope/別版の相反Refを捨てず、そのoperation/reference結果にconflictを併存させる。他source/categoryの成功で補償しない。",
+      "10. 内部DependencyScopeResultを既存Comparisonへ投影する。subject_refは既存knowledge_ref→template_ref形成条件を維持。selector不明はaxis dependency_selection、原操作不明/相反はaxis dependency_operation、参照はaxis dependency_reference。非選択は既存source state unobserved。原state/definition/receiptは更新しない。",
+      "11. AxisResult.original_refs/Finding.source_refsはそのcategoryに実際に供給されたRefだけを保つ。原operation/source/fullRef根拠はreasonにsourceのRef全値・body pointer・operation Ref全値と必要identityを含むtrace detailを文字列として保存し、同snapshotから辿れるようにする。missing Refを出力へ捏造しない。reasonの表示書式・lossless wireは既存codecに従う次L5詳細でありscope raw値を丸めない。",
+      "12. 必要なsubject Ref双方欠落時のtyped AxisResult/Finding形成限界と既存/binding InputIssue→builder経路は変更しない。戻し先未解決はnull。新しい署名/root/承認/全stage完了gateを作らない。"
+    ],
+    "projection_material": {
+      "observation_type": "内部DependencyScopeResultをobservation_field_mappingのbasic観測projectionへ対応付ける。内部意味名とL9表示名を区別し、新SupplyInput/SupplyAnalysis top-level fieldやclosed wire型を採用しない。",
+      "order": "core_source、labo_evaluation順。各選択channelは固定018/020結果の後に当該operationの025結果。複数原operationは同identity/revision/binding/channelごとに保持する。",
+      "finite_L9_projection": "両channel明示falseの局所対照は018/020のunobservedを観測する。それ以外の8有限projectionはtrue/unknownのchannelを観測し、false channelの他軸は範囲外。全Comparisonのwholeではない。",
+      "reference_states": [
+        "resolved",
+        "missing",
+        "unknown",
+        "conflict",
+        "unobserved"
+      ],
+      "axis_mapping": {
+        "selector_absent": "dependency_selection",
+        "operation_basis_unknown_or_conflict": "dependency_operation",
+        "identity_or_fullRef": "dependency_reference",
+        "channel_false": "unselected_source"
+      },
+      "trace": "原operation source Ref、body pointer、operation Ref/全相反scope、原contract refs、提出category全refs、入力bindingを保持。missingのRefを捏造しない。返却原Refは既存category規則を保ち、原操作traceをreasonへ結ぶ。subject Ref双方不在の形成限界は既存L5/builderへ残す。",
+      "operation_source_ref_boundary": "operation_source_refは同knowledge原provenanceに一意に供給されたoperation containerのRefを保持する所在traceであり、当該channelの選択/操作解決を表さない。selector不明でも共通containerのRefだけを保持できるが、その条件集合を評価せずoperation_refs/indices/locatorsは空、operation_scopeはnull。container不在/未解決/複数曖昧ではこの局所fieldはnull。いずれもraw.sources/既存Comparisonの原source保持を削除しない。別既知channelは独立に評価する。",
+      "observation_field_mapping": {
+        "scope": "既定8有限integration projectionの全17fieldの意味対応。state/必要集合/原source/raw/独立期待を変更しない。",
+        "preservation": "same_valueは内部原値、renameは同じ内部意味の表示名、derived_traceは原snapshotの所在又は既存channel/axis表からの観測表示。追加traceを新しい依存選択/成功条件にしない。",
+        "fields": [
+          {
+            "observed_field": "identity",
+            "internal_meaning": "dependency_identity",
+            "mapping": "rename",
+            "derivation": "同じ完全identity又はnullを保持する。短縮IDへ変換せず、提出Refから必要identityを生成しない。"
+          },
+          {
+            "observed_field": "state",
+            "internal_meaning": "state",
+            "mapping": "same_value",
+            "derivation": "内部のsource比較状態を原値で保持する。knowledge運用stateへ転写しない。"
+          },
+          {
+            "observed_field": "reason_code",
+            "internal_meaning": "reason_code",
+            "mapping": "same_value",
+            "derivation": "原根拠と比較分岐から計算した理由codeを保持する。入力/claimから期待codeを読まない。"
+          },
+          {
+            "observed_field": "channel",
+            "internal_meaning": "channel",
+            "mapping": "same_value",
+            "derivation": "当該診断channelの名前を保持する。selector不明でも診断対象名は存在し、選択成立を意味しない。"
+          },
+          {
+            "observed_field": "operation_index",
+            "internal_meaning": "operation_locatorsから得る単一原record所在",
+            "mapping": "derived_trace",
+            "derivation": "operation_indicesがちょうど1要素なら同じ原array index。0件又は複数ならnull。新しいoperationを生成しない。"
+          },
+          {
+            "observed_field": "operation_scope",
+            "internal_meaning": "operation_scope",
+            "mapping": "same_value",
+            "derivation": "単一に観測できる原operation scopeを原値で保持。selector不明/未解決又は複数原recordの局所scalar表示はnullであり、原scopeの非供給や非適用を生成しない。複数原scopeはoperation_scopesと原locatorへ保持する。"
+          },
+          {
+            "observed_field": "actual_category",
+            "internal_meaning": "channel、selector診断状態及びdecision_table.channels",
+            "mapping": "derived_trace",
+            "derivation": "固定channel表からcore_source→selected_source_refs、labo_evaluation→selected_evaluation_refs。selector診断又はchannel_not_selected行は、条件集合を読まないためnull。025が必要かどうかをこのfieldから決めない。"
+          },
+          {
+            "observed_field": "backflow_owner",
+            "internal_meaning": "backflow_owner",
+            "mapping": "same_value",
+            "derivation": "元owner又はnullをそのまま保持。所在Refの掲載から実recipient/配送資格を生成しない。"
+          },
+          {
+            "observed_field": "operation_indices",
+            "internal_meaning": "operation_locators",
+            "mapping": "derived_trace",
+            "derivation": "各原recordのRFC6901 operation_locator末尾にあるdependency_operations array indexを原順で列挙。原recordを観測しない行は[]。配列のordinalをidentityへ変換しない。"
+          },
+          {
+            "observed_field": "operation_source_ref",
+            "internal_meaning": "operation_source_ref",
+            "mapping": "same_value",
+            "derivation": "既定のoperation_source_ref_boundaryに従う共通provenance containerの所在Ref又はnull。未知selectorのoperation/scope解決を主張しない。"
+          },
+          {
+            "observed_field": "operation_locators",
+            "internal_meaning": "operation_locators",
+            "mapping": "same_value",
+            "derivation": "同immutable input内の原source.content.dependency_operations recordへのRFC6901 pointer配列を全値・順序で保持する。"
+          },
+          {
+            "observed_field": "operation_refs",
+            "internal_meaning": "operation_refs",
+            "mapping": "same_value",
+            "derivation": "各原locatorのoperation Refを全値・順序で保持し、重複/相反を捨てない。selector不明で原recordを評価しない行は[]。"
+          },
+          {
+            "observed_field": "operation_scopes",
+            "internal_meaning": "operation_locatorsで辿る原record.operation_scope",
+            "mapping": "derived_trace",
+            "derivation": "対象8projectionでは各原locatorに供給されたoperation_scopeを原順・原値で列挙し、相反する複数scopeも残す。原recordを観測しない行は[]。原scope欠落をnullへ創作しない。この対応表だけで対象外入力の欠落carrier/wireを決定しない。"
+          },
+          {
+            "observed_field": "original_contract_refs",
+            "internal_meaning": "expected_refs",
+            "mapping": "rename",
+            "derivation": "内部expected_refsはテスト期待ではなく原source.contract_bindingsに実在する当該dependency_identityのRef根拠。その全値・順序・重複を保持する。018/020の既存source照合をこの配列の供給条件へ変更しない。"
+          },
+          {
+            "observed_field": "actual_refs",
+            "internal_meaning": "actual_refs",
+            "mapping": "same_value",
+            "derivation": "当該提出categoryに実際に供給されたRef配列を全値で保持。原expected_refsや不足Refを混入しない。"
+          },
+          {
+            "observed_field": "binding",
+            "internal_meaning": "binding",
+            "mapping": "same_value",
+            "derivation": "同immutable入力の原Binding全値を保持し、別binding/省略されたRefを補わない。"
+          },
+          {
+            "observed_field": "axis",
+            "internal_meaning": "reason_code及びprojection_material.axis_mapping",
+            "mapping": "derived_trace",
+            "derivation": "selector診断→dependency_selection、channel_not_selected→unselected_source、原operation不明/相反及びsource_intake_only→dependency_operation、identity/fullRef照合→dependency_reference。既に決まった比較結果の観測軸を表し、必要集合やstateを追加計算しない。"
+          }
+        ],
+        "boundary": "これはbasic観測projectionの対応表であり、17fieldを製品のclosed wire型として採用するものではない。対象外の欠落carrier、L5/L8組込と実codec/resolverは既存未閉包に残す。"
+      }
+    },
+    "fixture_binding_adapter": {
+      "meaning": "L9の有限合成原bodyを読むための表現。全ownerの正式schema/実resolverとして採用しない。",
+      "qualified_contract_body": {
+        "contract_identity": "元契約identity",
+        "contract_revision": "元契約revision",
+        "condition_scope": "元契約の適用scope"
+      },
+      "fixed_scope_rule": "018/020の有限対照では元契約body/Ref/資格とinput.binding.knowledge_ref.scopeのexact対応を照合。operation無しでも既存照合を続ける。任意scope包含/fallbackは定義しない。",
+      "qualification": "既存QualifiedSource bytes/body/digest、qualification subject/fullRef/scope/root入力へ照合する合成前提。root掲載やfixture source対応から実資格を発行しない。"
+    },
+    "source_intake_vs_F08": {
+      "original_L2_018": "L2:394-402。candidate intakeはPattern成立/成熟/採用を意味せず採用判定は025へ委ねる。これは採用済みになるまで取込を不成立にする規則ではない。",
+      "original_L2_020": "L2:414-422。評価候補/receiptはscope/限界と原stateを保持し採否/成熟を先取りしない。",
+      "original_L2_032": "L2:603-608。知識記録のsource/評価範囲/限界/採用状態を007/008/025へ常時結ぶ責務と、選択した018/020/025の該当source/scope/evaluation照合を区別する。",
+      "F08": "L3F#/requirements/7。既存KnowledgeRecordのref/operational_state/provenance/evaluation/limits/counterexamples/adoptionを常時保持し、単独成功からaccepted/matureへ更新しない。",
+      "source_intake_operation_scope": "前案のsource_intake/knowledge_fields=[]は当該source/evaluation取込scopeが知識stageを消費しない宣言であり、032全体がKnowledgeRecordを読まない意味ではない。F08の原state保持は残る。F09の025追加dependencyを非選択としても、025知識記録意味への結合/非昇格責務はなくならない。",
+      "required_unknown_boundary": "source/evaluation selector trueだが原operationの内容未供給/未解決なら、取込だけと推測せず025 scope unknown。Refとqualified sourceがあるだけでもこのunknownを消さない。kind=knowledge_state_traceならcandidate/proposal stageでも025必要。",
+      "source_fact_vs_unprovided": "既存QualifiedSource bodyと資格envelopeの供給、操作内容の供給、知識stageの実成立は別。合成rootや新operation keyの存在を実資格/実採否の証拠にしない。"
+    },
+    "failure_consumer_table": [
+      {
+        "failure": "018/020/025 contract identity不足/版scope相反",
+        "logical_responsibility": "対応BRAIN contract owner",
+        "output": "原identity/operation/source pointer付き局所missing/unknown/conflict。実recipientは原Ref.ownerを保持し資格は別。"
+      },
+      {
+        "failure": "原operation/binding/scope不足又は相反",
+        "logical_responsibility": "原knowledge/source owner",
+        "output": "原source locatorと全相反operationを保持。提出Refで相反を解消しない。"
+      },
+      {
+        "failure": "018原候補由来/製品意味分離の不成立",
+        "logical_responsibility": "製品CORE",
+        "output": "既存018責務へ返す。025成功を代替根拠にしない。"
+      },
+      {
+        "failure": "020/025評価対象/evaluation source不足",
+        "logical_responsibility": "LABO",
+        "output": "評価scope/target原値を保持しunknown候補。登録状態不足はOS、独立検証/採否はBRAIN change、知識意味は該当L1へ分ける。"
+      },
+      {
+        "failure": "consumerへの受領/適用/OS記録未証明",
+        "logical_responsibility": "CORE/OSの既存接続",
+        "output": "候補/knowledge traceとCORE適用・OS記録receiptを別保持し完了を生成しない。"
+      }
+    ],
+    "consumer_compatibility": {
+      "existing_F09": "既存L9/L8のnamed negativeは保持。source/evaluation trueで原operation未供給なら025 unknownが併存し、元不足を抑止しない。",
+      "source_return_79": "既存79件は限定constructor wholeでありcurrent rawの三selectorはfalse。原raw/期待を変更せず現在期待として保つ。",
+      "builder_5": "主要5件は合成Comparison operandsを受け取る9member wholeでありproducer実計算ではない。新診断を供給した場合は比較memberへ保持し、InputIssueや原stateへ変換しない。既存wholeをhistoricalへ格下げしない。",
+      "local_projection_filter": "既存L8 function_oracles/6のdependency_reference/selection全要素filterを変更して追加診断を隠さない。新dependency_operationは別の有限projectionで観測する。"
+    },
+    "legacy_change_record": [
+      {
+        "assets": [
+          "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "LEGACY-ASSET-98372FEE8A3AC8F9C299"
+        ],
+        "evidence": [
+          "A:19-30",
+          "A:80-91",
+          "B:33-78",
+          "B:97-108"
+        ],
+        "preserve": "項目を定義側から比較しunknown/default/元source不足を成功補完しない。意味/値/適用/参照を分ける。",
+        "change": "旧template schema・旧ID・旧pair gateを移植せず、現032/018/020/025の条件とimmutable原sourceへ写像する。",
+        "reason": "現F09の選択scopeと元source保存が義務であり、旧field一覧だけでは現selector意味を表さない。"
+      },
+      {
+        "assets": [
+          "LEGACY-ASSET-F2C2755C8809C2C0DEAD"
+        ],
+        "evidence": [
+          "R:37-47"
+        ],
+        "preserve": "候補と独立/横断/shadow検証、元authority非変更、反例再検証を分ける。",
+        "change": "全ticket shadowgateや旧learning runtimeを移植せず現025の操作別scopeへ再導出する。",
+        "reason": "現025-F02/F04と承認記録は選択scopeを要求し全ticket一律gateを禁止する。"
+      },
+      {
+        "evidence": [
+          "F:80-87"
+        ],
+        "failure_origin": "UTW-014 missing→empty、UTW-020 aggregateの部分隠蔽、UTW-021自己申告完了",
+        "application": "原必要集合をsubmitted refsから作らず、局所不足をaggregate成功や自己申告へ変えない。"
+      }
+    ],
+    "limits": [
+      "既存L3/L10意味を変更せず、025 mandatory boolean/全stage完了gate/将来receipt gate/追加人間approvalを作らない。",
+      "8有限integration projectionは実source資格、全operation kind/shape/owner、全case/全mutation、全14義務/全92親430対の閉包ではない。",
+      "L5/L8のproducer/input/返却組込、formal codec/resolver、L6/L7、実TDD/CI/L11は未成立。"
+    ]
+  }
 }
