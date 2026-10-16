@@ -6906,6 +6906,16 @@
             },
             "side_effect_count": {
               "type": "integer"
+            },
+            "source_result_reference_projection": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/SourceResultProjectionResult"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             }
           },
           "additionalProperties": false,
@@ -7160,6 +7170,362 @@
             "policy_occurrence_index",
             "policy_ref",
             "disposition"
+          ],
+          "additionalProperties": false
+        },
+        "JSONValue": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/JSONValue"
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/JSONValue"
+              }
+            }
+          ]
+        },
+        "JsonValue": {
+          "$ref": "#/$defs/JSONValue"
+        },
+        "PresenceJsonValue": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "absent"
+                }
+              },
+              "required": [
+                "presence"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "present"
+                },
+                "value": {
+                  "$ref": "#/$defs/JSONValue"
+                }
+              },
+              "required": [
+                "presence",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "Natural": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "JSONPointer": {
+          "type": "string",
+          "pattern": "^(?:/(?:[^~/]|~[01])*)*$"
+        },
+        "SourceRelation": {
+          "type": "string",
+          "enum": [
+            "content_corresponding",
+            "content_conflict",
+            "unresolved",
+            "unprovided",
+            "ambiguous_duplicate"
+          ]
+        },
+        "SourceRelationReason": {
+          "type": "string",
+          "enum": [
+            "all_declared_fields_equal",
+            "application_input_absent",
+            "application_input_invalid_kind",
+            "application_input_null",
+            "candidate_not_found",
+            "candidate_relation_unresolved",
+            "candidate_result_ref_identity_absent",
+            "candidate_result_ref_identity_invalid",
+            "candidate_result_ref_identity_null",
+            "candidate_result_ref_invalid_kind",
+            "candidate_result_ref_missing",
+            "candidate_result_ref_null",
+            "candidate_source_members_missing",
+            "computed_row_invalid_kind",
+            "computed_rows_absent",
+            "computed_rows_invalid_kind",
+            "computed_rows_null",
+            "declared_fields_differ",
+            "multiple_candidate_envelopes",
+            "source_envelopes_absent",
+            "source_envelopes_empty",
+            "source_envelopes_explicit_null_or_non_array",
+            "source_role_not_semantic"
+          ]
+        },
+        "LogicalOwnerReturn": {
+          "type": "string",
+          "enum": [
+            "not_required",
+            "BRAIN",
+            "HARNESS008",
+            "HARNESS",
+            "OS",
+            "unknown"
+          ]
+        },
+        "ProjectionInputState": {
+          "type": "string",
+          "enum": [
+            "absent",
+            "explicit_null",
+            "invalid_kind"
+          ]
+        },
+        "NotEstablished": {
+          "type": "string",
+          "enum": [
+            "not_established"
+          ]
+        },
+        "DecisionImpact": {
+          "type": "string",
+          "enum": [
+            "none"
+          ]
+        },
+        "None": {
+          "type": "string",
+          "enum": [
+            "none"
+          ]
+        },
+        "SourceResultProjectionRow": {
+          "type": "object",
+          "properties": {
+            "application_policy_ref": {
+              "$ref": "#/$defs/PresenceJsonValue"
+            },
+            "template_ref": {
+              "$ref": "#/$defs/PresenceJsonValue"
+            },
+            "binding": {
+              "$ref": "#/$defs/PresenceJsonValue"
+            },
+            "computed_disposition": {
+              "$ref": "#/$defs/PresenceJsonValue"
+            },
+            "computed_condition_pairs": {
+              "$ref": "#/$defs/PresenceJsonValue"
+            },
+            "computed_obligation_refs": {
+              "$ref": "#/$defs/PresenceJsonValue"
+            },
+            "computed_na_attributes": {
+              "$ref": "#/$defs/PresenceJsonValue"
+            },
+            "source_envelopes_input": {
+              "$ref": "#/$defs/PresenceJsonValue"
+            },
+            "source_candidate_envelopes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/JSONValue"
+              }
+            },
+            "candidate_count": {
+              "$ref": "#/$defs/Natural"
+            },
+            "source_result_ref_claims": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/PresenceJsonValue"
+              }
+            },
+            "source_qualification_claims": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/PresenceJsonValue"
+              }
+            },
+            "source_role_claims": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/PresenceJsonValue"
+              }
+            },
+            "source_relation": {
+              "$ref": "#/$defs/SourceRelation"
+            },
+            "source_relation_reason": {
+              "$ref": "#/$defs/SourceRelationReason"
+            },
+            "source_relation_difference_paths": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/JSONPointer"
+              }
+            },
+            "source_relation_missing_paths": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/JSONPointer"
+              }
+            },
+            "actual_source_qualification": {
+              "$ref": "#/$defs/NotEstablished"
+            },
+            "logical_backflow_owner": {
+              "$ref": "#/$defs/LogicalOwnerReturn"
+            },
+            "actual_recipient_qualification": {
+              "$ref": "#/$defs/NotEstablished"
+            },
+            "decision_impact": {
+              "$ref": "#/$defs/None"
+            }
+          },
+          "required": [
+            "application_policy_ref",
+            "template_ref",
+            "binding",
+            "computed_disposition",
+            "computed_condition_pairs",
+            "computed_obligation_refs",
+            "computed_na_attributes",
+            "source_envelopes_input",
+            "source_candidate_envelopes",
+            "candidate_count",
+            "source_result_ref_claims",
+            "source_qualification_claims",
+            "source_role_claims",
+            "source_relation",
+            "source_relation_reason",
+            "source_relation_difference_paths",
+            "source_relation_missing_paths",
+            "actual_source_qualification",
+            "logical_backflow_owner",
+            "actual_recipient_qualification",
+            "decision_impact"
+          ],
+          "additionalProperties": false
+        },
+        "InvalidComputedRowObservation": {
+          "type": "object",
+          "properties": {
+            "row_index": {
+              "$ref": "#/$defs/Natural"
+            },
+            "computed_row": {
+              "$ref": "#/$defs/PresenceJsonValue"
+            },
+            "source_envelopes_input": {
+              "$ref": "#/$defs/PresenceJsonValue"
+            },
+            "source_relation": {
+              "$ref": "#/$defs/SourceRelation"
+            },
+            "source_relation_reason": {
+              "$ref": "#/$defs/SourceRelationReason"
+            },
+            "logical_backflow_owner": {
+              "$ref": "#/$defs/LogicalOwnerReturn"
+            },
+            "actual_source_qualification": {
+              "$ref": "#/$defs/NotEstablished"
+            },
+            "actual_recipient_qualification": {
+              "$ref": "#/$defs/NotEstablished"
+            },
+            "decision_impact": {
+              "$ref": "#/$defs/DecisionImpact"
+            }
+          },
+          "required": [
+            "row_index",
+            "computed_row",
+            "source_envelopes_input",
+            "source_relation",
+            "source_relation_reason",
+            "logical_backflow_owner",
+            "actual_source_qualification",
+            "actual_recipient_qualification",
+            "decision_impact"
+          ],
+          "additionalProperties": false
+        },
+        "ProjectionResultRow": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/SourceResultProjectionRow"
+            },
+            {
+              "$ref": "#/$defs/InvalidComputedRowObservation"
+            }
+          ]
+        },
+        "ProjectionInputFinding": {
+          "type": "object",
+          "properties": {
+            "field": {
+              "$ref": "#/$defs/JSONPointer"
+            },
+            "state": {
+              "$ref": "#/$defs/ProjectionInputState"
+            },
+            "reason": {
+              "$ref": "#/$defs/SourceRelationReason"
+            },
+            "raw_value": {
+              "$ref": "#/$defs/PresenceJsonValue"
+            }
+          },
+          "required": [
+            "field",
+            "state",
+            "reason",
+            "raw_value"
+          ],
+          "additionalProperties": false
+        },
+        "SourceResultProjectionResult": {
+          "type": "object",
+          "properties": {
+            "rows": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ProjectionResultRow"
+              }
+            },
+            "input_findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ProjectionInputFinding"
+              }
+            }
+          },
+          "required": [
+            "rows",
+            "input_findings"
           ],
           "additionalProperties": false
         }
