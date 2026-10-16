@@ -15181,7 +15181,7 @@
       "function_ref": "HELIXBRAIN-L5-032-build_supply_analysis",
       "input_fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
       "input_context": "AnalysisContext",
-      "expected_observation": "各原binding/項目/軸/sourceへ遡れる候補/必要input/反例/限界を返す。全体green/Accepted/選択/昇格/実受領/義務消込なし。副作用0。",
+      "expected_observation": "既存builder constructorの9返却memberを組み立てる。適合Comparisonだけを宣言順に保持し、欠落・不適合は原値を残して局所Issueへ分離する。候補/必要input/反例/限界は元参照を保つ。全体green/Accepted/選択/昇格/実受領/義務消込なし。副作用0。返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
       "contract_refs": [
         "HELIXBRAIN-L5-032-B01",
         "HELIXBRAIN-L5-032-B02",
@@ -15202,9 +15202,22 @@
         "HELIXBRAIN-L8-032-ADD-21",
         "HELIXBRAIN-L8-032-ADD-22",
         "HELIXBRAIN-L8-032-ADD-23",
-        "HELIXBRAIN-L8-032-ADD-24"
+        "HELIXBRAIN-L8-032-ADD-24",
+        "HELIXBRAIN-L8-032-BUILDER-RAW-NULL",
+        "HELIXBRAIN-L8-032-BUILDER-BINDING-NULL-INVALID",
+        "HELIXBRAIN-L8-032-BUILDER-TYPED-INPUT-NULL",
+        "HELIXBRAIN-L8-032-BUILDER-BINDING-ABSENT",
+        "HELIXBRAIN-L8-032-BUILDER-BINDING-EMPTY-OBJECT",
+        "HELIXBRAIN-L8-032-BUILDER-CANDIDATES-ABSENT",
+        "HELIXBRAIN-L8-032-BUILDER-INPUT-ISSUE-ORDER"
       ],
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "builder_assembly_case_refs": [
+        "HELIXBRAIN-L8-032-BUILDER-ASSEMBLY-NORMAL-A",
+        "HELIXBRAIN-L8-032-BUILDER-BINDING-ABSENT",
+        "HELIXBRAIN-L8-032-BUILDER-CANDIDATES-ABSENT",
+        "HELIXBRAIN-L8-032-BUILDER-INPUT-ISSUE-ORDER"
+      ]
     }
   ],
   "input_structure_verification": {
@@ -20431,7 +20444,7 @@
       "document_id": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
       "pointer": "/wire_codec_contract/schema",
       "canonical_sha256": "535d8f0b8f2e71c709e66418fa079cb4f757a7a6d0530b50267a452d74036640",
-      "candidate_current_file_sha256": "2ff49683ceeda8e63fe662acf3b6678b134c2ae82626c749a55f7e4c696f418a",
+      "candidate_current_file_sha256": "74aca286152562dc1ac5e7d3b9272a816574fdb3dc4eb05b9b1a4e46cb8dc673",
       "candidate_current_schema_canonical_sha256": "ace94a797cce9f3b0ead1f9a909eef564b08bbdcfc6ba6ef0d5ffbd60fe21f66",
       "candidate_note": "既存canonical pinは歴史的参照として保持。二つのnullable結果memberを含む現在candidate schemaの静的照合用。"
     },
@@ -56872,7 +56885,7 @@
     ],
     "candidate_design_bytes_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "file_bytes_sha256": "2ff49683ceeda8e63fe662acf3b6678b134c2ae82626c749a55f7e4c696f418a",
+      "file_bytes_sha256": "74aca286152562dc1ac5e7d3b9272a816574fdb3dc4eb05b9b1a4e46cb8dc673",
       "meaning": "同一candidate文書の現在bytesを照合するbinding。過去revisionにこの追補が存在したというsource pinではない。",
       "scope": "このfieldは同じPR候補のcurrent L5ファイル全bytesを指す。旧資産source引用hashはlegacy_comparison.source_assetsにあり変更しない。"
     },
@@ -66702,8 +66715,8 @@
         "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
         "pointer": "/functions/8",
         "sha256": "8b42b107322b595ed694280bd2d7a7c49974291526be0b0e2f05a0f08ee52fa9",
-        "candidate_file_bytes_sha256": "2ff49683ceeda8e63fe662acf3b6678b134c2ae82626c749a55f7e4c696f418a",
-        "candidate_pointer_canonical_sha256": "d39d48de578449a943ef041f7fe21c0fbb8fe20396d8631bc5c27d8bc5819a59",
+        "candidate_file_bytes_sha256": "74aca286152562dc1ac5e7d3b9272a816574fdb3dc4eb05b9b1a4e46cb8dc673",
+        "candidate_pointer_canonical_sha256": "514d86b30962df6e45f004cc8e60cd742a2493df870a419ee1a37885406ef698",
         "candidate_note": "function本体の現在candidate bytes。歴史的revision/pinは上書きしない。"
       },
       {
@@ -66721,21 +66734,21 @@
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary/producer_symbol_by_member",
-        "candidate_file_bytes_sha256": "2ff49683ceeda8e63fe662acf3b6678b134c2ae82626c749a55f7e4c696f418a",
+        "candidate_file_bytes_sha256": "74aca286152562dc1ac5e7d3b9272a816574fdb3dc4eb05b9b1a4e46cb8dc673",
         "candidate_pointer_canonical_sha256": "dc690dc5e77f88850db94330710d02ade0b9883a3c6a3480c5dbdb2604cc52e8",
         "note": "AnalysisContext memberから宣言済みproducer_symbolへの対応。axes/findingsのfixtureはtest doubleであり実producer出力でない。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/output_member_rules/1",
-        "candidate_file_bytes_sha256": "2ff49683ceeda8e63fe662acf3b6678b134c2ae82626c749a55f7e4c696f418a",
+        "candidate_file_bytes_sha256": "74aca286152562dc1ac5e7d3b9272a816574fdb3dc4eb05b9b1a4e46cb8dc673",
         "candidate_pointer_canonical_sha256": "1c6c240dee25be650e0db206ee755072fdfb497070696081b551f27314ad1e12",
         "note": "candidate欠落/空の区別を既存member_presence/construction_issuesへ結ぶ現在candidate値。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary",
-        "candidate_file_bytes_sha256": "2ff49683ceeda8e63fe662acf3b6678b134c2ae82626c749a55f7e4c696f418a",
+        "candidate_file_bytes_sha256": "74aca286152562dc1ac5e7d3b9272a816574fdb3dc4eb05b9b1a4e46cb8dc673",
         "candidate_pointer_canonical_sha256": "8a73e82f6d1538f8330a45fa36755f95e56c08abef6785395cd4df9bb9f12506",
         "note": "producer_symbol/input_bindingの適合条件と局所issue。"
       }
@@ -67870,7 +67883,7 @@
         "validated_wrapper": {
           "input_issues": [],
           "unusable_source_refs": [],
-          "origin": "synthetic typed unit operand; no validation runtime was run"
+          "origin": "合成typed unit入力。validation runtimeは実行していない。"
         },
         "comparison_inputs_by_analysis_context_member": {
           "claims": {
@@ -70358,7 +70371,7 @@
         "validated_wrapper": {
           "input_issues": [],
           "unusable_source_refs": [],
-          "origin": "synthetic typed unit operand; no validation runtime was run"
+          "origin": "合成typed unit入力。validation runtimeは実行していない。"
         },
         "comparison_inputs_by_analysis_context_member": {
           "claims": {
@@ -72863,7 +72876,7 @@
         "validated_wrapper": {
           "input_issues": [],
           "unusable_source_refs": [],
-          "origin": "synthetic typed unit operand; no validation runtime was run"
+          "origin": "合成typed unit入力。validation runtimeは実行していない。"
         },
         "comparison_inputs_by_analysis_context_member": {
           "claims": {
@@ -75258,7 +75271,7 @@
         "validated_wrapper": {
           "input_issues": [],
           "unusable_source_refs": [],
-          "origin": "synthetic typed unit operand; no validation runtime was run"
+          "origin": "合成typed unit入力。validation runtimeは実行していない。"
         },
         "comparison_inputs_by_analysis_context_member": {
           "claims": {
@@ -77622,7 +77635,7 @@
         "validated_wrapper": {
           "input_issues": [],
           "unusable_source_refs": [],
-          "origin": "synthetic typed unit operand; no validation runtime was run"
+          "origin": "合成typed unit入力。validation runtimeは実行していない。"
         },
         "comparison_inputs_by_analysis_context_member": {
           "claims": {
@@ -79982,7 +79995,7 @@
       }
     ],
     "limits": [
-      "B′ではSupplyAnalysis.bindingとComparison.input_bindingだけをBinding|nullとし、SupplyInput.bindingおよび入力型はBindingのまま保つ。invalid_raw/decode失敗時のinput=nullを含む結果型の限定修正であり、validator・producer・codec・runtimeの実実行や成立を証明しない。",
+      "builder返却のSupplyAnalysis.bindingとComparison.input_bindingだけをBinding|nullとし、SupplyInput.bindingの入力型はBindingのまま保つ。invalid_raw/decode失敗時を含む有限型契約の記述であり、validator・producer・codec・runtimeの実実行や成立を証明しない。",
       "全9member期待はこの有限fixture群だけ。全任意入力/7 producer計算/資格/実runtime/CI/CORE接続を証明しない。",
       "空候補/候補未結合の扱いは既存constructor joinと候補Ref projectionの局所意味であり、全体比較greenやselectionを作らない。"
     ],
@@ -80014,11 +80027,6 @@
           "pointer": "/additional_unit_cases/34/expected_builder_input_issues"
         }
       ],
-      "prefreeze_ref": {
-        "path": "scaffold/review-handoff/local/brain032-f09-dependency-detail/builder-assembly/prefreeze/error-boundary-expectations-v2.json",
-        "sha256": "d2d054e08c2a932c3b29847726a95287d49cb73e1b4096b8c45df480e087781c",
-        "role": "B′形式化前の独立期待と訂正履歴。L8下記ケースは自己完結しscratchを実行時入力や規範sourceとして要求しない。"
-      },
       "cases": [
         {
           "id": "HELIXBRAIN-L8-032-BUILDER-RAW-NULL",
@@ -80028,7 +80036,8 @@
             "input_issues": "validatorが返すIssue[]をlocator/reason/source_refごと正確にcopy。reason文字列は固定されていないため期待へ創作しない。",
             "unusable_source_refs": []
           },
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "scope_note": "validator段階のpartial projectionのみ。builder全返却のoracleではない。"
         },
         {
           "id": "HELIXBRAIN-L8-032-BUILDER-BINDING-NULL-INVALID",
@@ -80046,7 +80055,8 @@
             "unusable_source_refs": []
           },
           "meaning": "SupplyInput.bindingはBindingのままなので明示nullはwrong_provided_shape。",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "scope_note": "validator段階のpartial projectionのみ。明示nullは入力型違反でinput=nullとなる。builder全返却のoracleではない。"
         },
         {
           "id": "HELIXBRAIN-L8-032-BUILDER-TYPED-INPUT-NULL",
@@ -80055,8 +80065,8 @@
               "input": null,
               "input_issues": [
                 {
-                  "locator": "/binding",
-                  "reason": "root bindingのknowledge_refとtemplate_refがどちらもRefとして供給されず、依存診断subjectを構成できない。元bindingを保持し、Refを生成しない。",
+                  "locator": "/input",
+                  "reason": "合成ValidatedSupply.input_issuesの順序保持用項目。validator実行での生成は主張しない。",
                   "source_ref": null
                 }
               ],
@@ -80107,7 +80117,7 @@
               }
             ]
           },
-          "comparison_test_double_note": "7 empty Comparisonは既存invalid_rawの意味関数結果形をbuilder入力へ置くsynthetic typed boundary。実producerの実行証拠ではない。",
+          "comparison_test_double_note": "7 empty Comparisonは既存invalid_rawの意味関数結果形をbuilder入力へ置くsynthetic typed boundary。input_issuesも順序保持用の合成値であり、実validatorの生成証拠ではない。",
           "expected_complete_return": {
             "binding": null,
             "candidate_refs": [],
@@ -80157,8 +80167,8 @@
             ],
             "input_issues": [
               {
-                "locator": "/binding",
-                "reason": "root bindingのknowledge_refとtemplate_refがどちらもRefとして供給されず、依存診断subjectを構成できない。元bindingを保持し、Refを生成しない。",
+                "locator": "/input",
+                "reason": "合成ValidatedSupply.input_issuesの順序保持用項目。validator実行での生成は主張しない。",
                 "source_ref": null
               }
             ],
@@ -80168,7 +80178,31 @@
             "limits": [],
             "side_effect_count": 0
           },
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "scope_note": "ValidatedSupplyを受けるbuilder段階の全返却対照。raw validator projectionではなく、input_issuesは合成typed inputに与えた原値。",
+          "expectation_correction_history": {
+            "published_revision": "02e47675fe1d231ca54b8de4105f53eb61cc78ce",
+            "published_l8_bytes_sha256": "bf7b087b9392e68a57aa6147c0af268df7ae704f2950efa594da44e34e82cc1c",
+            "published_input_pointer": "/builder_assembly_verification/error_boundary_controls/cases/2/typed_input_context",
+            "published_typed_input_canonical_sha256": "d853034889b07e5bebf0af1f695a86769e92b43ca90859547f94de2640604e64",
+            "published_expected_pointer": "/builder_assembly_verification/error_boundary_controls/cases/2/expected_complete_return",
+            "published_expected_complete_return_canonical_sha256": "657f90e47a4bbf7b931f921ecd911152d20c338dfb85b1ec43b02dc6bf9e25bd",
+            "published_issue": {
+              "locator": "/binding",
+              "reason": "root bindingのknowledge_refとtemplate_refがどちらもRefとして供給されず、依存診断subjectを構成できない。元bindingを保持し、Refを生成しない。",
+              "source_ref": null
+            },
+            "corrected_issue": {
+              "locator": "/input",
+              "reason": "合成ValidatedSupply.input_issuesの順序保持用項目。validator実行での生成は主張しない。",
+              "source_ref": null
+            },
+            "correction_reason": "このsynthetic typed ValidatedSupply boundaryはvalidator生成を主張しないため、constructor固有のbinding欠落reasonをinput_issuesへ流用しない。中立な合成issueは原順保持だけを対照する。",
+            "corrected_input_pointer": "/builder_assembly_verification/error_boundary_controls/cases/2/typed_input_context",
+            "corrected_expected_pointer": "/builder_assembly_verification/error_boundary_controls/cases/2/expected_complete_return",
+            "corrected_typed_input_canonical_sha256": "dd01e38f6f49c52ce6398378982f267ca67229d7c69e6f4af24c029b5f8b4f7f",
+            "corrected_expected_complete_return_canonical_sha256": "a6f2e45975ff50c6550a7a52808875a048d6055fc104efc867e8d4efc73f3703"
+          }
         },
         {
           "id": "HELIXBRAIN-L8-032-BUILDER-BINDING-ABSENT",
@@ -81490,7 +81524,7 @@
             "input_issues": [
               {
                 "locator": "/binding",
-                "reason": "root bindingのknowledge_refとtemplate_refがどちらもRefとして供給されず、依存診断subjectを構成できない。元bindingを保持し、Refを生成しない。",
+                "reason": "返却constructorが読む元memberが未供給。意味充足へ補完しない。",
                 "source_ref": null
               }
             ],
@@ -81634,10 +81668,40 @@
             ],
             "side_effect_count": 0
           },
-          "expected": "返却bindingはnull。root objectは保持し、既存/binding Issueを保持する。入力bodyに残るsource/required/materialと7 comparison operandを切り捨てない。",
-          "input_issue_source_pointer": "/additional_unit_cases/34/expected_builder_input_issues",
+          "expected": "返却bindingはnull。root objectは保持し、construction_issuesが元binding memberの未供給を記録する。入力bodyに残るsource/required/materialと7 comparison operandを切り捨てない。",
           "comparison_test_double_note": "合成AnalysisContext input。producer_symbolはL5宣言関数と一致し、axes/findingsは実計算ではない。",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_issue_source_pointer": "/source_return_contract/pure_reference_notation/definitions",
+          "branch_derivation": [
+            "decode済input objectをsnapshot_inputが取得する。",
+            "construction_issuesの必須member走査でbinding absentを検出し、/bindingの未供給Issueを追加する。",
+            "root_bindingはobjectでないため、knowledge_ref/template_ref両Ref欠落の別分岐には入らない。"
+          ],
+          "expectation_correction_history": {
+            "published_revision": "02e47675fe1d231ca54b8de4105f53eb61cc78ce",
+            "published_l8_bytes_sha256": "bf7b087b9392e68a57aa6147c0af268df7ae704f2950efa594da44e34e82cc1c",
+            "input_source_pointer": "/fixture_contract/normal_control/input",
+            "input_patch": [
+              {
+                "op": "remove",
+                "path": "/binding"
+              }
+            ],
+            "published_patched_input_canonical_sha256": "5d5c9e53f2d4ae0fecad9f2395795b5ae3093a4c9df65cef9f24111e4e8b151b",
+            "published_expected_pointer": "/builder_assembly_verification/error_boundary_controls/cases/3/expected_complete_return",
+            "published_expected_complete_return_canonical_sha256": "5725ad603b7c674c55c81daf020bba057759ee618afba58b051be28955e5aee4",
+            "published_issue": [
+              {
+                "locator": "/binding",
+                "reason": "root bindingのknowledge_refとtemplate_refがどちらもRefとして供給されず、依存診断subjectを構成できない。元bindingを保持し、Refを生成しない。",
+                "source_ref": null
+              }
+            ],
+            "correction_reason": "旧期待はbindingがobjectで両Refが欠ける分岐を誤適用していた。修正入力ではbinding member自体がabsentなので、construction_issuesの必須member走査が返すgeneric未供給Issueを採用する。",
+            "corrected_expected_pointer": "/builder_assembly_verification/error_boundary_controls/cases/3/expected_complete_return",
+            "corrected_expected_input_issues_canonical_sha256": "6e319ac3b6b8862c70d5640db20960aebe8a49835b1bd5131c0047fc5bdf3df4",
+            "source_pointer": "/source_return_contract/pure_reference_notation/definitions"
+          }
         },
         {
           "id": "HELIXBRAIN-L8-032-BUILDER-BINDING-EMPTY-OBJECT",
@@ -83113,15 +83177,89 @@
           "id": "HELIXBRAIN-L8-032-BUILDER-VALID-EMPTY-CANDIDATES",
           "reference_case": "HELIXBRAIN-L8-032-BUILDER-ASSEMBLY-EMPTY-CANDIDATES",
           "expected": "candidate_refs=[]は有効なempty-array入力。input=nullによる未評価[]とはIssue/input状態で区別する。",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "name": "明示空候補配列"
         }
       ],
       "limits": [
-        "raw invalid形のvalidator Issue reason文字列は固定されていないため新設しない。",
+        "builder返却のSupplyAnalysis.bindingとComparison.input_bindingだけをBinding|nullとし、SupplyInput.bindingの入力型はBindingのまま保つ。invalid_raw/decode失敗時を含む有限型契約の記述であり、validator・producer・codec・runtimeの実実行や成立を証明しない。",
         "typed input=null builder testは原Issue literalをinputとして与え、その完全保持を検査する。validatorがraw errorでそのliteralを実生成したとは主張しない。",
         "7 Comparisonの合成axes/findingsはbuilder unit入力であり、producer計算・接続・資格の証拠ではない。",
         "有限の静的期待でありruntime/codec/qualification/全入力shapeを立証しない。"
-      ]
+      ],
+      "issue_order_control": {
+        "case_ref": "HELIXBRAIN-L8-032-BUILDER-INPUT-ISSUE-ORDER",
+        "source_basis_refs": [
+          "/source_return_contract/builder_assembly/output_member_rules/3",
+          "/source_return_contract/builder_assembly/comparison_input_boundary/mismatch_issue_contract",
+          "/source_return_contract/pure_reference_notation/definitions"
+        ],
+        "meaning": "既存ValidatedSupply.input_issuesの原順、object inputに対するconstruction_issues、AnalysisContext不適合のcomposition Issueの順を一例で照合する。synthetic typed wrapperの有限対照であり、validatorが原issueを生成した証拠ではない。"
+      },
+      "input_issue_order_control": {
+        "case_id": "HELIXBRAIN-L8-032-BUILDER-INPUT-ISSUE-ORDER",
+        "input_base_pointer": "/fixture_contract/normal_control/input",
+        "input_patch": [
+          {
+            "op": "remove",
+            "path": "/binding"
+          }
+        ],
+        "typed_wrapper": {
+          "validated_input": "materialize patched input object; binding member absent",
+          "input_issues": [
+            {
+              "locator": "/input",
+              "reason": "合成ValidatedSupply.input_issuesの順序保持用項目。validator実行での生成は主張しない。",
+              "source_ref": null
+            }
+          ],
+          "unusable_source_refs": [],
+          "comparison_inputs_pointer": "/builder_assembly_verification/error_boundary_controls/cases/3/comparison_inputs",
+          "comparison_patch": {
+            "op": "replace",
+            "path": "/1/producer_symbol",
+            "value": "compare_claim_boundaries"
+          }
+        },
+        "expected_issue_order_sources": [
+          "ValidatedSupply.input_issues",
+          "construction_issues",
+          "comparison_composition_issues"
+        ],
+        "expected_issue_order": [
+          {
+            "locator": "/input",
+            "reason": "合成ValidatedSupply.input_issuesの順序保持用項目。validator実行での生成は主張しない。",
+            "source_ref": null
+          },
+          {
+            "locator": "/binding",
+            "reason": "返却constructorが読む元memberが未供給。意味充足へ補完しない。",
+            "source_ref": null
+          },
+          {
+            "locator": "/definitions",
+            "reason": "AnalysisContext比較memberのproducer_symbolが対応するL5関数と一致しないため比較結果を採用しない。",
+            "source_ref": null
+          }
+        ],
+        "expected_comparison_source_pointers": [
+          "/builder_assembly_verification/error_boundary_controls/cases/3/comparison_inputs/0",
+          "/builder_assembly_verification/error_boundary_controls/cases/3/comparison_inputs/2",
+          "/builder_assembly_verification/error_boundary_controls/cases/3/comparison_inputs/3",
+          "/builder_assembly_verification/error_boundary_controls/cases/3/comparison_inputs/4",
+          "/builder_assembly_verification/error_boundary_controls/cases/3/comparison_inputs/5",
+          "/builder_assembly_verification/error_boundary_controls/cases/3/comparison_inputs/6"
+        ],
+        "scope": "input_issuesの順序と適合Comparisonの宣言順部分列だけを照合するprojection control。完全9member返却やvalidator生成を主張しない。合成typed wrapperを使う。",
+        "source_basis_refs": [
+          "/source_return_contract/builder_assembly/output_member_rules/3",
+          "/source_return_contract/builder_assembly/comparison_input_boundary/mismatch_issue_contract",
+          "/source_return_contract/pure_reference_notation/definitions"
+        ],
+        "execution_state": "not_executed"
+      }
     },
     "comparison_composition_controls": {
       "source_basis_refs": [
@@ -83339,6 +83477,11 @@
         }
       ]
     },
-    "scope_note": "このassemblyはfunction_ref=HELIXBRAIN-L5-032-build_supply_analysisの全体責務の一部。L3/L10各義務全体の完了や7 producerのend-to-end結合証拠ではない。"
+    "scope_note": "このassemblyはfunction_ref=HELIXBRAIN-L5-032-build_supply_analysisの全体責務の一部。L3/L10各義務全体の完了や7 producerのend-to-end結合証拠ではない。",
+    "legacy_comparison_ref": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointer": "/source_return_contract/builder_assembly/legacy_comparison",
+      "note": "旧template/JSON authorityとの保持点・差分・変更理由・failure対応をL5で記録する。"
+    }
   }
 }
