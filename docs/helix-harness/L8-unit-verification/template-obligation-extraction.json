@@ -29427,7 +29427,7 @@
     },
     "reason": "統合済み基本対の原packet snapshot/全原出現traceと一方向互換projectionを詳細へ接続する。source_duplicateと旧5field値を保ち、source_main/承認objectは元起草・承認履歴としてcurrent pair pinと分ける。",
     "remaining": [
-      "R1の異内容同ID/未解釈null追加memberの2対照は、element_occurrence_trace.input_snapshotと原行順occurrencesから各raw/parsed値/通常NA/候補index/原NApointerを辿れる。element_dispositionsは同ID最後行の互換summaryであり、gaps=[]/fixture_content_complete=trueでも同一義務又は別義務の分類を意味しない。その意味分類/実source資格/実consumer成立をtraceから生成しない。",
+      "既存の異内容同ID・null追加memberの2対照は、element_occurrence_trace.input_snapshotと原行順occurrencesから各raw/parsed値/通常NA/候補index/原NApointerを辿れる。element_dispositionsは同ID最後行の互換summaryであり、gaps=[]/fixture_content_complete=trueでも同一義務又は別義務の分類を意味しない。その意味分類/実source資格/実consumer成立をtraceから生成しない。",
       "N01 held-out occurrenceの重複処理はこのF03差分の対象外であり、N01の入力・返却・期待を変更しない。",
       "外部source qualificationとcodec bindingは未成立。F03の有限synthetic whole/traceから全format/全入力域の意味閉包や実資格を主張しない。"
     ]
