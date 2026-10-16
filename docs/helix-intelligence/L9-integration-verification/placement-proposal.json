@@ -234,7 +234,7 @@
     "task/Worker実績/Bench/quality-priority原判断と入力契約のowner-qualified exact bindingは未成立。",
     "正式schema/codec/適合条件・Evidence・decision resolver/比較選択閉包/並行revision/全組合せ/L5L8/oracle凍結は未完。",
     "実装前Red→Green→Refactor→再検証、実配置/実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。",
-    "L5/L8にはF02 task_anchor、worker_checksのmissing/invalid_value_kind分岐、および6軸proposal_scope_alignmentの関数入力・診断返却と対oracle追補が未反映であり、後続の当該pair更新が必要。",
+    "L5/L8のF02 task_anchorとworker_checksのmissing/invalid_value_kind分岐は、統合revision f6a70fca446306b2f913bb04eddd474244aad1c7の詳細pairへ接続済み。6軸proposal_scope_alignmentのL5 checksは既存から保持し、L9の期待訂正6件にL8を接続した。106 caseと既存45 whole probeの有限比較は全域検証を示さず、対検証と詳細pairに開示した未観測組合せ、実source資格・正式codec/resolver・実運転は引き続き未成立である。",
     "有限のtask_anchor例で未評価の組合せ: (1) 左task値が非空文字列でない同時に右scope値がAbsent/nullである場合のmissing判定とinvalid判定の優先順、(2) 左task値が空文字列の場合のinvalid_value_kind識別、(3) recommendation形状またはidentity binding所見とtask_anchor所見が同時にある場合の順序。現L4 orderingは処理順を宣言するが、この3組合せのoracle観測は置いていない。mutationの全件検出や全組合せを主張しない。",
     "有限のworker_checks例で未評価の組合せ: (a) domainのmissing/invalid_value_kindと同じWorkerのtools incompatibleが同時にある場合（既存例はdomain incompatibleとtools missingの逆向き）、(b)複数の選択対象Workerで先行Workerのtask値が欠落しても後続Workerの所見が保持される場合、(d)domain空文字列とtool_requirementに非文字列要素を含むarray、(e)有効な空tool_requirement array。選択対象Workerが0件ならworker_checks枝の所見を生成しないことはL4で明示した。ここではこれらの未観測範囲を開示するだけで、追加whole例、全組合せ、全mutation検出を要求しない。",
     "有限のF02 proposal_scope_alignment例で未評価の組合せ: proposal側の原/提出scope memberがAbsent/nullとなる場合、原/提出の一方だけがbaselineと異なる場合、reason_refs所見とscope所見が同時に発生する場合。これらの未観測範囲を開示するだけで、全組合せや全mutation検出を主張しない。"
@@ -32582,7 +32582,7 @@
   },
   "same_pair_l4_bytes_binding": {
     "path": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
-    "sha256": "dde2ad1d910b340932cde4cefd09d4814b752b7fe06a4170a6ae4fbb4964ee4b",
+    "sha256": "c8a0c32384ba1867a3cf2a1a151b4c6e287e3ad87a6ebcfb624acca70ed255d6",
     "binding": "同一candidate bytes。過去source revisionに追補が存在したとは主張しない。"
   },
   "source_revision_role": {

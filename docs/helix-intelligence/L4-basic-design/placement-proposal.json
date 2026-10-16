@@ -234,7 +234,7 @@
     "task/Worker実績/Bench/quality-priority原判断と入力契約のowner-qualified exact bindingは未成立。",
     "正式schema/codec/適合条件・Evidence・decision resolver/比較選択閉包/並行revision/全組合せ/L5L8/oracle凍結は未完。",
     "実装前Red→Green→Refactor→再検証、実配置/実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。",
-    "L5/L8にはF02 task_anchor、worker_checksのmissing/invalid_value_kind分岐、および6軸proposal_scope_alignmentの関数入力・診断返却と対oracle追補が未反映であり、後続の当該pair更新が必要。"
+    "L5/L8のF02 task_anchorとworker_checksのmissing/invalid_value_kind分岐は、統合revision f6a70fca446306b2f913bb04eddd474244aad1c7の詳細pairへ接続済み。6軸proposal_scope_alignmentのL5 checksは既存から保持し、L9の期待訂正6件にL8を接続した。106 caseと既存45 whole probeの有限比較は全域検証を示さず、対検証と詳細pairに開示した未観測組合せ、実source資格・正式codec/resolver・実運転は引き続き未成立である。"
   ],
   "document_id": "HELIXINTELLIGENCE-L4-010",
   "layer": "L4",
