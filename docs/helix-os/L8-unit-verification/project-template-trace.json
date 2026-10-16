@@ -288116,10 +288116,55 @@
       "source_packet_sha256": "e9d49081f67311ce0ec5df4a5fcf3574fae372211b99341455466abc5d97b7dd",
       "whole_artifact_sha256": "1f5b0a3ba9286da956241809eb517e7a48de068ed8efe0df3be05be2593a3a64",
       "whole_index_ref": "準備時点のmalformed-private-return-freeze-whole-index.jsonを参照する。各returnの固定期待canonical hashをこのL8 scopeにも重複記載し、scope内で参照できるようにする。",
-      "recipe_rules": "$copyはこのL8 materials map内だけで解決する。$raw_record_refはcanonical hash確認後、参照先material内の指定OwnerRecordを解決する。expected_refはprivate_return_expectation_recipesをrootとするRFC6901相対pointerである。Field recipeのstateはmetadataに限り、materialized returnではmissingはJSON member省略、supplied(null)はmember:null、supplied valueはunwrapした値として表す。JsonValue、OwnerRecord、source raw payloadは再帰的なkey書換えをせず、そのまま複製する。fn22は既存componentの値をそのまま使い、既存diagnostic suffix []を維持する。fn19 recipeのvalidated_trace.input.sourceはmaterializerが完全一致で照合する固定機械markerなので、英語literalを変更せず保持する。fn14のorigin_support_refも同一object参照を示す固定値として原文を保持する。",
+      "recipe_rules": "本節のclosed_reconstruction_contractに従い、同じGit上のL5型・L8 materials・3case recipeだけから12個の通常JSON期待値を復元する。以下は既存期待の保存表現の明確化であり、製品関数の実装、型、原材料、期待値、資格又は一般dependency membershipの契約を変更しない。",
       "no_product_evidence": "これらはsourceから導いた完全なprivate return期待値である。製品関数、AST、runtime、decoder、evaluator、qualification、出力のいずれも実行・観測していない。",
       "external_preparation_artifact_note": "source_packet_sha256、private_return_negative_source_artifact.sha256、private_return_correction_historyのrejected_candidate_digestは、repository外に保存された準備・照合artifactのdigestであり、Git内容だけからは再計算できない。これらは来歴参照で、意味の正本ではない。意味の根拠はrevisionとpointerで固定したrequirements・L4/L5/L8の本文である。",
-      "candidate_extension_note": "N2の追加4期待はcases/2のcompact recipeから展開される。原材料・既存2 whole case・旧fixture/historyの値は複製しない。N2/N3 partial correctionはsource occurrence 6のexact missing-rootだけを対象にし、source occurrence 1のequal Ref状態を混ぜない。N2 dependency membershipは未完のまま。候補は製品実行・CI実行・actual証拠ではない。"
+      "candidate_extension_note": "N2の追加4期待はcases/2のcompact recipeから展開される。原材料・既存2 whole case・旧fixture/historyの値は複製しない。N2/N3 partial correctionはsource occurrence 6のexact missing-rootだけを対象にし、source occurrence 1のequal Ref状態を混ぜない。N2 dependency membershipは未完のまま。候補は製品実行・CI実行・actual証拠ではない。",
+      "closed_reconstruction_contract": {
+        "scope": "private_return_expectation_recipes/cases/0..2とprivate_return_whole_cases/0..2の4返却ずつだけ。新しい一般DSLではない。未知のencodingを推測で補完しない。",
+        "return_types": {
+          "fn19_private_return": "F04ValidationBundle",
+          "fn14_private_return": "F04ProjectionTypedInputs",
+          "fn20_private_return": "F04ProjectionResolution",
+          "fn22_private_return": "F04OriginalComparisonOutput"
+        },
+        "case_encoding": [
+          {
+            "case_index": 0,
+            "typed_object_key_order": "L5_fields_declaration_order",
+            "ref_key_order": "L5_fields_declaration_order"
+          },
+          {
+            "case_index": 1,
+            "typed_object_key_order": "L5_fields_declaration_order",
+            "ref_key_order": "L5_fields_declaration_order"
+          },
+          {
+            "case_index": 2,
+            "typed_object_key_order": "recipe_member_occurrence_order",
+            "ref_key_order": "raw_member_occurrence_order"
+          }
+        ],
+        "hash_bytes": "SHA-256対象は展開後の通常JSONをUTF-8、BOMなし、改行なし、indentなし、comma/colonに空白なし、ensure_ascii=false、sort_keys=falseで直列化したbytes。JSON keyの出現順・配列順・重複・数値/boolean/nullを保持する。ここでcanonicalと記した既存hashはkey sortしたJCSを意味しない。固定wholehash、raw/record hashは変更しない。",
+        "reference_roots": "expected_refのrootは本L8のprivate_return_expectation_recipes objectであり、/cases/N/...はRFC6901でそのcases[N]以下を指す。同じcase内だけで、指示先recipe全体を現在の宣言型位置へ代入して再帰展開する（文字列を出力しない）。caseをまたぐ参照、未解決pointer、循環は再構成エラー。record_field_manifest内の短いexpected_refはmanifestの説明metadataであり参照命令ではない。",
+        "material_references": "$copyはexact一member objectだけをmarkerとし、root=f04_original_materials、pointerは同じL8のmaterials mapをrootとするRFC6901。pointer途中の$copyも展開してから次tokenを読む。展開は元member順を保つ値の置換でありmergeではない。循環/不存在/root違いはエラー。$raw_record_ref又は旧value_ref内の{l8_material_id,expanded_raw_caller_pointer,canonical_sha256}は、当該case.material_idのmaterials[material_id].raw_callerを$copy展開した値内のpointerを読み、同じcompact hash一致を確認して置換する。他caseのmaterialへ移さない。raw caller全体もcaseとwholeの固定hashに照合する。",
+        "typed_recursion": "L5 type_contract/typesのfieldsを辿り、Field<T>、配列、入れ子のnamed record、inline recordの各宣言位置に限り以下のField metadataを解釈する。出力に必須non-Field memberの欠落又は宣言外memberを許容しない。optional_fields/Fieldの省略を保持する。配列要素のmissingは要素削除せずエラー。型やmarkerを名前/値の類似から推測しない。",
+        "field_cases": "宣言Field<T>位置でmissing又は{state:missing}は親memberを省略、{state:supplied_null}はnull、supplied_value/suppliedのvalueはTとして再帰展開、value_refは指示先値をTとして再帰展開する。旧supplied_nullのvalue_refはnullへのhash付き来歴確認であり追加memberではない。Fieldではないraw JSON内のstate/value/presenceは元データとしてそのまま保持する。",
+        "raw_boundaries": "JsonValue/RawValue/CaseInput/RecordTraceInput/OwnerRecord/SourceSectionValue/CORE009SourceResultProjectionRowのraw値では入れ子Fieldをunwrapせず、元のkey順・state/value/presence/nullを保存する。ただし保存表現のexact $copyはraw境界内でも展開する。$raw_record_refはOwnerRecordを示す現在のrecipe位置でのみ値全体へ置換する。CORE009PresenceJsonValue/CORE009RefはL5がpinする外部型のJSONを保持し、そのpresence/valueをHELIX-OS Field markerに読み替えない。case2のRefも原key順の値を保持する。",
+        "fn19_input": "fn19 validated_trace.inputのstate=suppliedとsource固定literal「original raw caller RecordTraceInput exact value; referenced by original_cases.raw_source」は、当該caseの展開済raw_caller.record_trace_input全体を同じmember位置へ置く。state/sourceは出力しない。",
+        "shared_context_construction": "original_decode_contextの{state:supplied,origin_support_ref,relationships}は出力member順origin_support,relationshipsのobjectを作る。origin_support_refは固定literal「same exact object as fn19_private_return.origin_support」を要求し、同case fn19.origin_support全体を代入。relationshipsはF04OriginalDecodedRelationship[]として再帰展開。original_contextの{state:supplied,decoded_ref,selected_sources}はdecoded,selected_sourcesの順のobjectを作り、decoded_ref固定literal「fn14_private_return.original_decode_context」は同case fn14の展開後context全体（Field wrapperなし）へ置換する。selected_sourcesはF04ResolvedSelectedSource[]として再帰展開。これらのstate/*_refは出力しない。",
+        "legacy_short_forms": [
+          "cases0/1のvalidated_trace.qualified_recordsの{count,ordered_record_refs}はcountと配列長、flat_index=元配列index、source_index/record_indexとvalue_ref pointerの所在一致を確認し、ordered_record_refs各value_refのOwnerRecord値を元順に並べる。index/count metadataは出力しない。",
+          "cases0/1のcandidate_input/validated_input_candidateの{state:supplied,items}はitems[].typed_fieldsをF04ProjectionCandidateItemとしてL5宣言順に展開した配列へ置換する。item_index/raw_item_refは元caller itemの所在とhash確認用metadataであり、このtyped配列へ出さない。candidate_raw_occurrences等のF04CandidateItemOccurrenceはitem_index,raw_itemの順に構成し、raw_item_refを元raw itemへ置換する。",
+          "F04QualifiedOwnerRecordOccurrenceのrecord_refは同case origin qualified_occurrence全体を指す。そのsource_ref/record_index（旧source_occurrence_indexもあればそれも）の一致を確認し、出力はsource_ref,record_index,recordの3memberだけをこの順に構成。recordは指示先origin.record。origin全体への置換やsource_occurrence_indexの追加をしない。",
+          "cases0/1 domain_payloadのstate/domain_decode=success/field_projection/domain_field_order/preservationはField<F04OriginalCorrespondencePayload>の短縮形。field_projectionだけをL5閉型として展開し、他4memberは出力しない。domain_field_orderはL5の4member宣言順を示すmetadata。",
+          "cases0/1 joinのstate=suppliedはstate以外をF04SourceProjectionJoinResultとして展開する。trusted_core_row_locatorのstate=supplied_valueと直下projection_snapshot_ref,row_pointerはその2memberのinline recordへ置換し、stateを除く。resolved_core_rowのraw_row_sha256_canonicalはvalue_refの原row hashを追加確認するmetadataで、出力しない。",
+          "cases0/1のfn19.derivation、fn14/fn20.field_presence_encoding、F04ProjectionRecordObservation.record_field_manifestは説明metadataとして出力から除く。それ以外の宣言外keyを黙って捨てない。manifest present/omittedは同じrecordのmember有無に対応し、短いexpected_refは同じrecord member名。"
+        ],
+        "ordering_exception_boundary": "上記構成objectは明示順、typed recordはcase_encodingの順、raw値と$copy先は元member順、配列は元順を使う。cases0/1とcase2の順の差は既存固定hashを保存するための有限recipe encoding差であり、製品の意味差又は新gateではない。",
+        "fn22": "fn22.observation_componentの既存component値をそのまま保持し、旧cases0/1の直接$copyもFieldの値として扱う。diagnostic_drafts=[]を保持する。hashを合わせるためにcomponent内容を変更しない。",
+        "provenance_and_change": "PR3286 R1 Major1（comment6225513655）で独立再構成不能が判明したため、旧2casesを含む保存encodingの不足説明を補完した。元L5/raw/recipe/12固定wholehashを保持する意味再導出。旧source LEGACY-ASSET-98372FEE8A3AC8F9C299の閉型・exact version/traceの分離を保持し、旧DSL/registry/CIを導入・実行しない。準備artifactのhashは従来通り来歴参照で、再構成はGit上の本文だけで閉じる。"
+      }
     },
     "private_return_negative_controls": [
       {
