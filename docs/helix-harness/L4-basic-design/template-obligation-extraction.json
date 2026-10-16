@@ -123,7 +123,8 @@
     "初回合成oracle起草済み。追加source資格/必要集合/内容組合せ・実未見比較と独立意味reviewは未完。",
     "009/BRAIN選択入力・040相当ledger/pair・対象scopeへのowner-qualified exact binding、正式schema/codec/extractorは未binding。",
     "L5/L8内部処理/edge cases、実oracle凍結→実装前Red→最小Green→Refactorと再検証、実L9/L10・PO L11は未成立。 source_duplicateと各原行の通常診断後に付加する順序のL5/L8追随は未成立。",
-    "全限定92親430対の設計閉包・実装準備は未成立。"
+    "全限定92親430対の設計閉包・実装準備は未成立。",
+    "F03原出現traceの基本論理/有限wholeを追補。L5/L8の新返却とboolean true/false基本範囲への型追随は未成立。source qualification/実runtimeは論理追補の成立と区別する。"
   ],
   "document_id": "HARNESS-L4-041",
   "layer": "L4",
@@ -249,19 +250,493 @@
         "element_dispositions",
         "span_kind_target_count_gaps",
         "unresolved_elements",
-        "owner_return_candidates"
+        "owner_return_candidates",
+        "source_bound_element_occurrence_trace"
       ],
       "content_comparison": [
         "原templateの全対象要素をatom/原条件による理由付き非適用/個別gapへ対応。gapがあることを表示できても完了にはしない。",
         "未対応/空/TBD/抽出不能/同一義務重複/分岐欠落を当該span/kind/対象/数で示す。gapをLLM値で埋めず、重複と欠落を件数で相殺しない。",
-        "同一義務として確認できる原source occurrenceが複数ある場合、理由付き非適用のidentity dispositionは保持しつつ、各原spanをkind=source_duplicate・対象ID・occurrence_count付きのgapとして示す。候補側atom重複の既存finding kind=duplicateは別に保持する。 返却配列では各原行に対する通常の個別診断の後に、その原行のsource_duplicate診断を置き、原行順を維持する。非適用理由で重複を相殺せず、gapが残る場合は完了扱いにしない。同一内容の型付き原行が複数あることは同一義務を確認できる十分条件とするが、異なる内容の同一IDだけから同一義務を推定しない。"
+        "同一義務として確認できる原source occurrenceが複数ある場合、理由付き非適用のidentity dispositionは保持しつつ、各原spanをkind=source_duplicate・対象ID・occurrence_count付きのgapとして示す。候補側atom重複の既存finding kind=duplicateは別に保持する。 返却配列では各原行に対する通常の個別診断の後に、その原行のsource_duplicate診断を置き、原行順を維持する。非適用理由で重複を相殺せず、gapが残る場合は完了扱いにしない。同一内容の型付き原行が複数あることは同一義務を確認できる十分条件とするが、異なる内容の同一IDだけから同一義務を推定しない。",
+        "各原出現の通常dispositionと原source/candidate/NAの所在をoccurrence_return_contractで一正本として保存し、既存element_dispositionsはそこから互換summaryへ一方向に導出する。異raw同IDの理由付きNAを原spanごとに辿れるなら、そのraw差だけで新gapや意味同一性裁定を要求しない。"
       ],
       "failure_returns": [
         "009/対象template owner",
         "041 extractor契約owner"
       ],
       "qualification_rule": "原source identity/revision/scope/owner/意味と必要集合を独立比較。missing/unknown/conflict/staleを当該field/scopeへ保持し他の成立部分を消さない。具体source資格と正式codecは未binding。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "occurrence_return_contract": {
+        "id": "HARNESS-L4-041-F03-OCCURRENCE-TRACE",
+        "scope": "全原出現の通常判定と元source/candidate/NAの所在を同返却へ保存する。原sourceの意味同一性/別義務裁定を新設せず、実資格/実extractor/OS実作用を生成しない。",
+        "source_basis": [
+          {
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+            "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+            "pointer": "/requirements/46",
+            "role": "各原要素を一つずつatom/理由付きNA/gapへ結ぶ採択済み義務"
+          },
+          {
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+            "file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+            "pointer": "/cases/46",
+            "role": "全対象と個別結果へのtrace、重複/未対応を隠さない対検証"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+            "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+            "file_sha256": "7fd802b52a8979561a4f86a70dec07b84862333e70245e04f7934929a42c6396",
+            "pointer": "/contracts/2",
+            "role": "元F03/完全typedrow同値source_duplicate規則の固定歴史bytes"
+          },
+          {
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+            "file_sha256": "dca5aa7554e167013bc4b5b361e809665825b32ebdb37502a81cd40140fd7e28",
+            "pointer": "/verification_obligations/2",
+            "role": "旧9原source/旧5field期待の固定歴史bytes"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+            "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+            "file_sha256": "ee87216f138769f4137ac0ad4d93ab77a5b0f9acd9724ac05d72c161d42e0940",
+            "pointer": "/finite_reference/definitions/18",
+            "role": "既存有限normal比較の分岐/順序。新trace未追随"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+            "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+            "file_sha256": "ee87216f138769f4137ac0ad4d93ab77a5b0f9acd9724ac05d72c161d42e0940",
+            "pointer": "/template_domain_function",
+            "role": "既存domain違反はmaterial F03非呼出し"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/template-obligation-extraction.json",
+            "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+            "file_sha256": "71e144c46cd047135b25c06cb8a9df5c453bc2553b6fa30b6485fe657a22a875",
+            "pointer": "/cases/18/arguments/context",
+            "role": "元Q contextを同呼出し入力として明示供給するfixture source"
+          }
+        ],
+        "input_boundary": {
+          "signature": "既存F03 packet/contextを取るpure比較。新必須入力や外部registryを加えない。",
+          "snapshot": "同呼出し原packet JSON全体を1返却に1回、未解釈member/Absent/null/原bytes/宣言SHAごと保存。snapshotの保存は入力受理/資格の判定ではない。",
+          "domain": "現finite NDJSON domainを保持。各物理行はJSON objectかつid非empty string。blank行はline_not_jsonのdomain違反で、TemplateDomainReturnを返してmaterial F03を呼ばない。blankを黙ってskipして成功しない。id中の/や~は拒否せず原値保持し、pointer tokenにするときだけ~1/~0へescapeする。"
+        },
+        "logical_return": {
+          "existing_fields": [
+            "element_dispositions",
+            "gaps",
+            "fixture_content_complete",
+            "effects",
+            "unaffected_Q"
+          ],
+          "added_field": "element_occurrence_trace:F03ElementOccurrenceTrace",
+          "types": {
+            "F03ElementOccurrenceTrace": {
+              "closed_fields": {
+                "input_snapshot": "JsonObject（同呼出し原packet全体。現basicのscreen=trueも原値保持し、現L5の限定型へcastしない）",
+                "occurrences": "F03ElementOccurrence[]（原行順・原出現を全件。ID dedupしない）"
+              }
+            },
+            "F03ElementOccurrence": {
+              "closed_fields": {
+                "source_row_index": "Natural（原raw_utf8を既存splitlinesで区切った物理lineの0-based index。parsed ordinalでない）",
+                "source_span": "{start_line:Positive,end_line:Positive}（既存1-based span）",
+                "raw_line": "string（既存splitlinesで得る当該原行。改行符を除く。改行符を含む全文はinput_snapshot.original_template.raw_utf8に残る）",
+                "parsed_element": "元JSON object全体（id非空stringという現domain。未解釈memberのnull/Absentも保持）",
+                "matching_candidate_indices": "Natural[]（同snapshot.candidate_atomsの原index、元順・重複。既存atom_matchesの該当候補であり正常認定ではない）",
+                "normal_disposition": "F03OccurrenceDisposition（source_duplicate追加前の原行通常判定）",
+                "gap_indices": "Natural[]（同返却gaps中で当該原spanに属するnormal/source_duplicate診断の元index）",
+                "na_input_pointer": "Field<RFC6901>（snapshot packet root。reasoned_NA内の原keyが存在する場合だけ供給。Absentをnull/emptyで代用しない）"
+              }
+            },
+            "F03OccurrenceDisposition": {
+              "tagged_variants": {
+                "atom": {
+                  "kind": "atom",
+                  "atom_id": "string（元candidate値）",
+                  "candidate_input_index": "Natural（matching_candidate_indices内の元index）"
+                },
+                "reasoned_not_applicable": {
+                  "kind": "reasoned_not_applicable",
+                  "reason": "string（na_input_pointerで辿る原NA recordのreason）"
+                },
+                "gap": {
+                  "kind": "gap",
+                  "normal_gap_index": "Natural（同返却gapsにある原行通常診断のindex）"
+                }
+              }
+            }
+          },
+          "component_schema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "type": "object",
+            "properties": {
+              "element_dispositions": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string"
+                    },
+                    "atom_id": {
+                      "type": "string"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "gap_kind": {
+                      "type": "string",
+                      "enum": [
+                        "empty",
+                        "placeholder",
+                        "duplicate",
+                        "uncovered",
+                        "applicability_unknown",
+                        "content_conflict",
+                        "candidate_metadata_conflict",
+                        "non_applicability_unqualified",
+                        "unsupported_element"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "gaps": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "element_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "kind": {
+                      "type": "string"
+                    },
+                    "source_span": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "start_line": {
+                              "type": "integer"
+                            },
+                            "end_line": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "start_line",
+                            "end_line"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "occurrence_count": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "element_id",
+                    "kind",
+                    "source_span",
+                    "occurrence_count"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "fixture_content_complete": {
+                "type": "boolean"
+              },
+              "effects": {
+                "type": "object",
+                "properties": {
+                  "actual_extraction_executed": {
+                    "type": "boolean",
+                    "enum": [
+                      false
+                    ]
+                  },
+                  "actual_ledger_registered": {
+                    "type": "boolean",
+                    "enum": [
+                      false
+                    ]
+                  },
+                  "actual_OS_execution": {
+                    "type": "boolean",
+                    "enum": [
+                      false
+                    ]
+                  },
+                  "actual_template_authority": {
+                    "type": "boolean",
+                    "enum": [
+                      false
+                    ]
+                  },
+                  "actual_design_complete": {
+                    "type": "boolean",
+                    "enum": [
+                      false
+                    ]
+                  },
+                  "actual_requirement_agreement": {
+                    "type": "boolean",
+                    "enum": [
+                      false
+                    ]
+                  },
+                  "actual_acceptance": {
+                    "type": "boolean",
+                    "enum": [
+                      false
+                    ]
+                  }
+                },
+                "required": [
+                  "actual_extraction_executed",
+                  "actual_ledger_registered",
+                  "actual_OS_execution",
+                  "actual_template_authority",
+                  "actual_design_complete",
+                  "actual_requirement_agreement",
+                  "actual_acceptance"
+                ],
+                "additionalProperties": false
+              },
+              "unaffected_Q": {},
+              "element_occurrence_trace": {
+                "type": "object",
+                "properties": {
+                  "input_snapshot": {
+                    "type": "object",
+                    "description": "同呼出し原packet全体。raw保存型であり現L5 decoderの受理宣言ではない。"
+                  },
+                  "occurrences": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "source_row_index": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "source_span": {
+                          "type": "object",
+                          "properties": {
+                            "start_line": {
+                              "type": "integer",
+                              "minimum": 1
+                            },
+                            "end_line": {
+                              "type": "integer",
+                              "minimum": 1
+                            }
+                          },
+                          "required": [
+                            "start_line",
+                            "end_line"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "raw_line": {
+                          "type": "string"
+                        },
+                        "parsed_element": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "id"
+                          ],
+                          "additionalProperties": true
+                        },
+                        "matching_candidate_indices": {
+                          "type": "array",
+                          "items": {
+                            "type": "integer",
+                            "minimum": 0
+                          }
+                        },
+                        "normal_disposition": {
+                          "oneOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "kind": {
+                                  "const": "atom"
+                                },
+                                "atom_id": {
+                                  "type": "string"
+                                },
+                                "candidate_input_index": {
+                                  "type": "integer",
+                                  "minimum": 0
+                                }
+                              },
+                              "required": [
+                                "kind",
+                                "atom_id",
+                                "candidate_input_index"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "kind": {
+                                  "const": "reasoned_not_applicable"
+                                },
+                                "reason": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "kind",
+                                "reason"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "kind": {
+                                  "const": "gap"
+                                },
+                                "normal_gap_index": {
+                                  "type": "integer",
+                                  "minimum": 0
+                                }
+                              },
+                              "required": [
+                                "kind",
+                                "normal_gap_index"
+                              ],
+                              "additionalProperties": false
+                            }
+                          ]
+                        },
+                        "gap_indices": {
+                          "type": "array",
+                          "items": {
+                            "type": "integer",
+                            "minimum": 0
+                          }
+                        },
+                        "na_input_pointer": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "source_row_index",
+                        "source_span",
+                        "raw_line",
+                        "parsed_element",
+                        "matching_candidate_indices",
+                        "normal_disposition",
+                        "gap_indices"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "input_snapshot",
+                  "occurrences"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "element_dispositions",
+              "gaps",
+              "fixture_content_complete",
+              "effects",
+              "unaffected_Q",
+              "element_occurrence_trace"
+            ],
+            "additionalProperties": false
+          },
+          "schema_scope": "本基本の論理返却構造。現L5 codec/正式wire/製品runtimeの受理証拠ではない。snapshotは原JSON保存型として別扱いする。"
+        },
+        "single_authority_rules": [
+          "各原行のnormal_dispositionと既存gapsを一度だけ作り、source_duplicateは既存完全typedrow同値規則で別追加する。",
+          "element_dispositionsはoccurrencesを原順に畳む互換projection。atomはkind/atom_id、NAはkind/reason、gapはkindとgaps[normal_gap_index].kindへ写す。同IDの最後の原行が現旧mapと同じsummaryを残すが、各原出現の意味正本はoccurrencesである。別の比較器でmapを計算しない。",
+          "raw内容の相違だけで新unknown/gap/同義務/別義務裁定を生成しない。validNA二行は各NAと原sourceを返せればgaps=[]/fixture_content_complete=trueとなり得る。completeはこのfixtureの原出現対応と既存gap規則についてで、同義務/別義務判定又は全意味閉包を表さない。",
+          "完全typedrow同値の複数原行は各source_duplicate gapを保持する。NAもsource_duplicateを相殺せずfixture_content_complete=false。",
+          "fixture_content_completeは既存gapsが空かどうかの規則を保ち、trace存在/候補数/ID一意性や資格を新たな全域gateにしない。"
+        ],
+        "observation_binding": [
+          "occurrencesは原templateの全対象原行を元順・重複ごと保持する。各normal_dispositionを一度だけ作り、その結果から既存ID mapを一方向に導出する。ID mapは互換summaryであり全原出現の正本ではない。",
+          "source_row_indexは原raw_utf8内の物理line位置、source_spanは同位置の1-based start/end、raw_lineはその原行（改行符除く）。全文と改行符はinput_snapshot.original_template.raw_utf8へ残す。domain違反行からparsed ordinalを合成せず、既存domain返却に保持してF03非呼出しとする。",
+          "matching_candidate_indicesはinput_snapshot.candidate_atomsの原index列、normal atomのcandidate_input_indexはその列の原indexである。ID照合で候補を特定しただけでnormal成功としない。既存meaning/span/revision/kind/原digest等の比較をそのまま行う。",
+          "na_input_pointerはinput_snapshotをrootとするRFC6901。原idを変更せず、tokenの~を~0、/を~1へescapeする。例id=E/~8は/reasoned_NA/E~1~08。原NA keyが無ければpointer fieldを省略する。存在する原NA recordは理由/decider/reassessment/target_revisionを同snapshotから辿れる。",
+          "normal gapのnormal_gap_indexと各行gap_indicesは同じ返却gapsの原位置を参照する。通常診断→source_duplicateという既存原行順/各span/countを保つ。source全体のmissing/digest gapは元位置のまま残し、架空行へ配らない。",
+          "normal NAとsource_duplicateは別観測。異raw同IDだけで新unknown/gapを加えず、同義務/別義務のどちらも断定しない。完全typedrow同値の既存source_duplicate十分条件は維持する。",
+          "source null/空ならsnapshotへ元値を保持し、原source gapとoccurrences=[]を返す。raw SHA不一致を再hash修復せず元global gapを保持する。unknown適用をNA/falseへ丸めない。"
+        ],
+        "consumer_boundary": {
+          "F03_consumer": "同じF03Returnで原packetと各出現を辿れる。full snapshot案では外部の保存registry/照会成功を仮定しない。実consumer/caller exact binding自体は現sourceで未成立。",
+          "B01_existing_contract": "現compare_b01はtemplate_meaning/ledger_pair_contract/OS_observationという独立primitiveを読む。F03Returnを直接読む既存APIではないため、B01が新traceを自動消費するとは書かない。",
+          "B01_preserve": "raw差/ID要約件数/traceの存在だけでB01.template_meaningをunknown又はknownにしない。両NAを各原行へ保存できることから新owner不足を創作しない。実意味不足の既存gapがあれば009/対象ownerという既存役割へ戻し、OS receipt不足と混同しない。",
+          "connection_followup": "consumer_connectionsでF03観測のsource/occurrence/gap保存と既存owner-routerの併置を明記する。B01のprimitive所見供給/実caller bindingは別根拠で特定し、field追加だけで実owner返却成立を認定しない。B01 signature/判定の変更を本B案の必須にしない。"
+        },
+        "compact_alternative": "同immutable call observationの入力保持consumer/exact bindingを明示できる場合にはpacket hash/template revision/declared・observed SHA/pointerによるcompact化を比較できる。現在はその具体consumer bindingがないためfull snapshotを採る。外部registry/常時unknown停止gateを新設しない。",
+        "legacy_rederivation": {
+          "mode": "semantic_rederivation",
+          "existing_source_refs": [
+            "/legacy_comparison/0",
+            "/legacy_comparison/1"
+          ],
+          "additional_source": {
+            "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+            "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+            "read_lines": [
+              97,
+              99
+            ],
+            "quote": "評価結果は`applicable | not_applicable | evaluation_error`の三値とする。missing fieldやunknown enumを\n`not_applicable`へ丸めない。N/Aは`reason`、`authority`、`reentry_trigger`を持つdispositionであり、\npredicate falseとは別に記録する。\n",
+            "selected_lines_sha256": "ef02d7122de64e46863d7b03f3814a5810715aa34b5e7681f1dae1997c5cf15d"
+          },
+          "preserve": "旧HIL-FR-47の全要素provenance、1原子/候補又はgap、NAと評価unknownの分離、候補と正本ownerの分離を保持。",
+          "change": "ID mapだけに畳まず、各原行の判定・候補/NA所在・元sourceを返却へ追加する。",
+          "reason": "同ID異rawの両NAは旧map一件では各原出現へ戻れない。原出現を保存すれば意味同一性の新裁定やID uniqueness gateなしで追跡できる。旧writer/runtime/freeze gateを移植しない。"
+        },
+        "detail_followup": {
+          "L5_L8": "F03Return/closed trace型/normal outcomeからの互換projection/原line保存/返却と全対象F03 wholeの追随が必要。今回L5/L8を編集していない。",
+          "boolean_axis": "既存basic case7/8はscreen=true、現L5 F03Argumentsはboolean domain=[false]で全原basic域を受けない。後続は既存L4のtrue/false両分岐を受ける必要型へ追随する。画面生成/新seed採用/実作用再開を意味しない。旧有限評価は関数内比較であり全型成立の証明ではなかった。",
+          "authority": "source資格/実runtimeの未実証を論理追補自体の入場条件にしない。一方、論理whole/構造schemaからそれらの成立を生成しない。"
+        },
+        "remaining": [
+          "新返却へのL5/L8型/関数/codec宣言・対象whole追随は未成立。",
+          "実consumer/caller/owner handoff、正式source資格/codec/extractor/OS保存は別の未bindingを保持。",
+          "15 wholeと入口1対照の有限範囲であり、全format/全入力域/全mutation/実L9観測の証明ではない。"
+        ]
+      }
     },
     {
       "id": "HARNESS-L4-041-N01",
