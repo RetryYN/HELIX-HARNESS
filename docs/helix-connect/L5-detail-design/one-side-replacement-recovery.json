@@ -10718,7 +10718,7 @@
     "unresolved_scopeはsourceにあるscope不足を説明する局所failure-area labelであり、L2/L3/L4の新しいstate、承認gate、許可拒否語彙ではない。",
     "failure判定はASTに列挙した順に行う。F01のfailure_reasonsは同値recordを最初の一件にまとめる元L9互換の投影であり、原receiptと提出receiptのtargetが同じ診断になる場合の発生元は区別できない。F02は同値recordも列挙順に保持するが、unfinished_content/recordの原対提出とhandoff対原の二比較は同じfield表示になる。全失敗へ一意のsource locatorを付ける設計は未成立であり、発生元別の識別力を原whole一致から主張しない。",
     "F01のprofile revision/digestとF02のoperation_identityなど、identifier_placeholder_valuesのAST対象外fieldに対するmarker値の資格判定は未実現。単純な値一致からscope/identityの意味を推測しない。",
-    "F02の宣言signatureはhandoff.owner、obligation.identity/owner/recovery_refをstring、obligationsをarrayとして要求する。null/absentは型内placeholder値や成功例ではなく、入力型境界で拒否される。"
+    "F02の宣言signatureはhandoff.ownerとobligation.identity/owner/recovery_refをstring、obligationsをarrayとして定義する。Absent/nullはこの定義域の外である。現在のASTにはそれらを拒否する検査段階や返却結果が定義されていないため、自動拒否や型検査の成立を主張しない。"
   ],
   "diagnostic_vocabulary": {
     "unresolved_scope": "L2-006 unknown/stale時に通信停止しrecovery先を記録する義務と、L4-006のscope material比較に基づく診断label。資格やowner認可を表さない。",
