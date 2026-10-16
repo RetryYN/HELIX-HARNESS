@@ -498,7 +498,7 @@
           }
         }
       ],
-      "ordering": "提出推薦の形状→提出推薦の原Workerへのidentity bindingを提出index順→task identity/revision anchor（identity→revision）→raw Worker配列順の選択対象domain→tools→Bench class→理由対応→原/提出推薦内容→原/提出除外内容→推薦/除外対応→claim宣言順。task anchorは既存F02規則と並列に評価し、他のsource所見を抑止しない。",
+      "ordering": "提出推薦の形状→提出推薦の原Workerへのidentity bindingを提出index順→task identity/revision anchor（identity→revision）→raw Worker配列順の選択対象domain→tools→Bench class→reason_refs所見→6軸proposal scope alignment（ticket→task→revision→scope→task_class→contract_revision）→原/提出推薦内容→原/提出除外内容→推薦/除外対応→claim宣言順。scope alignmentは各軸でbaseline missing、proposal missing、供給値不一致の優先順に高々1所見を返す。各比較は独立し、別所見を相殺しない。",
       "bench_class": {
         "left": "/original_bench/task_class",
         "right": "/original_scope/task_class",
@@ -597,6 +597,183 @@
         ],
         "member_extraction": "各固定RFC 6901 pathを同じ入力から独立に読み、途中memberがAbsent/nonobject/arrayの場合はpath結果をAbsentとし、葉のAbsent/nullは欠損として保持する。左右いずれかの欠損は、その比較軸の未成立として同じfield/result/owner（missing）で返す。左右の原値は入力保持対象のoriginal_task/original_scopeから辿れるため、missing表示だけから欠損側を示す別fieldを推測しない。左側task値が供給され非空文字列でなければinvalid_value_kindとする。右側scope値はJSON値のまま保持し、parse/castしない。両側が供給され左側が有効な場合だけJSON意味等値で比較し、差をidentity/revision別resultで返す。F01の実行や成功を前提にしない。",
         "ordering": "identity軸、revision軸の順。各軸はmissing判定、左側invalid判定、比較不一致判定の順で高々1所見。各所見は既存F02 orderingに従ってselected_identity_bindingの後、Worker domain/tools所見の前へ置く。別のF02所見を相殺しない。"
+      },
+      "proposal_scope_alignment": {
+        "scope_axes": [
+          {
+            "axis": "ticket",
+            "baseline_path": "/original_scope/ticket",
+            "original_proposal_path": "/original_proposal/scope/ticket",
+            "submitted_proposal_path": "/submitted_proposal/scope/ticket",
+            "baseline_absent_or_null_finding": {
+              "field": "scope.ticket",
+              "result": "missing",
+              "return_owner": "OS-task-owner"
+            },
+            "proposal_absent_or_null_finding": {
+              "field": "proposal.scope.ticket",
+              "result": "missing",
+              "return_owner": "INTELLIGENCE-proposal-owner"
+            },
+            "mismatch_finding": {
+              "field": "proposal.scope.ticket",
+              "result": "foreign",
+              "return_owner": "INTELLIGENCE-proposal-owner"
+            }
+          },
+          {
+            "axis": "task",
+            "baseline_path": "/original_scope/task",
+            "original_proposal_path": "/original_proposal/scope/task",
+            "submitted_proposal_path": "/submitted_proposal/scope/task",
+            "baseline_absent_or_null_finding": {
+              "field": "scope.task",
+              "result": "missing",
+              "return_owner": "OS-task-owner"
+            },
+            "proposal_absent_or_null_finding": {
+              "field": "proposal.scope.task",
+              "result": "missing",
+              "return_owner": "INTELLIGENCE-proposal-owner"
+            },
+            "mismatch_finding": {
+              "field": "proposal.scope.task",
+              "result": "foreign",
+              "return_owner": "INTELLIGENCE-proposal-owner"
+            }
+          },
+          {
+            "axis": "revision",
+            "baseline_path": "/original_scope/revision",
+            "original_proposal_path": "/original_proposal/scope/revision",
+            "submitted_proposal_path": "/submitted_proposal/scope/revision",
+            "baseline_absent_or_null_finding": {
+              "field": "scope.revision",
+              "result": "missing",
+              "return_owner": "OS-task-owner"
+            },
+            "proposal_absent_or_null_finding": {
+              "field": "proposal.scope.revision",
+              "result": "missing",
+              "return_owner": "INTELLIGENCE-proposal-owner"
+            },
+            "mismatch_finding": {
+              "field": "proposal.scope.revision",
+              "result": "foreign",
+              "return_owner": "INTELLIGENCE-proposal-owner"
+            }
+          },
+          {
+            "axis": "scope",
+            "baseline_path": "/original_scope/scope",
+            "original_proposal_path": "/original_proposal/scope/scope",
+            "submitted_proposal_path": "/submitted_proposal/scope/scope",
+            "baseline_absent_or_null_finding": {
+              "field": "scope.scope",
+              "result": "missing",
+              "return_owner": "OS-task-owner"
+            },
+            "proposal_absent_or_null_finding": {
+              "field": "proposal.scope.scope",
+              "result": "missing",
+              "return_owner": "INTELLIGENCE-proposal-owner"
+            },
+            "mismatch_finding": {
+              "field": "proposal.scope.scope",
+              "result": "foreign",
+              "return_owner": "INTELLIGENCE-proposal-owner"
+            }
+          },
+          {
+            "axis": "task_class",
+            "baseline_path": "/original_scope/task_class",
+            "original_proposal_path": "/original_proposal/scope/task_class",
+            "submitted_proposal_path": "/submitted_proposal/scope/task_class",
+            "baseline_absent_or_null_finding": {
+              "field": "scope.task_class",
+              "result": "missing",
+              "return_owner": "OS-task-owner"
+            },
+            "proposal_absent_or_null_finding": {
+              "field": "proposal.scope.task_class",
+              "result": "missing",
+              "return_owner": "INTELLIGENCE-proposal-owner"
+            },
+            "mismatch_finding": {
+              "field": "proposal.scope.task_class",
+              "result": "foreign",
+              "return_owner": "INTELLIGENCE-proposal-owner"
+            }
+          },
+          {
+            "axis": "contract_revision",
+            "baseline_path": "/original_scope/contract_revision",
+            "original_proposal_path": "/original_proposal/scope/contract_revision",
+            "submitted_proposal_path": "/submitted_proposal/scope/contract_revision",
+            "baseline_absent_or_null_finding": {
+              "field": "scope.contract_revision",
+              "result": "missing",
+              "return_owner": "OS-task-owner"
+            },
+            "proposal_absent_or_null_finding": {
+              "field": "proposal.scope.contract_revision",
+              "result": "missing",
+              "return_owner": "INTELLIGENCE-proposal-owner"
+            },
+            "mismatch_finding": {
+              "field": "proposal.scope.contract_revision",
+              "result": "foreign",
+              "return_owner": "INTELLIGENCE-proposal-owner"
+            }
+          }
+        ],
+        "member_resolution": "各固定JSON pointerを同じPlacementPacketから独立に読む。非object途中/存在しないmemberはAbsent、葉のnullはnullとして保持する。原入力recordはretained_inputsからそのまま辿れる。",
+        "per_axis_rule": "各axisにつき1所見以下。最初にbaseline_pathがAbsent/nullならbaseline_absent_or_null_findingだけを返す。baselineが存在しnullでない場合、original_proposal_pathまたはsubmitted_proposal_pathのいずれかがAbsent/nullならproposal_absent_or_null_findingを返す。3値すべて供給された場合、いずれかのproposal値がbaselineとJSON意味等値でなければmismatch_findingを返す。一致すれば所見なし。",
+        "priority": "baseline missing → proposal missing → supplied-value mismatch。一つのaxis内で先行状態により最大1所見とし、異なるaxis・他のF02所見は抑止しない。",
+        "axis_order": [
+          "ticket",
+          "task",
+          "revision",
+          "scope",
+          "task_class",
+          "contract_revision"
+        ],
+        "placement": "reason_refsの不足/内容所見の後、推薦・除外内容所見およびclaim所見の前。F02全体の既存check orderを維持する。",
+        "task_anchor_relation": "task identity/revision anchorとは別の比較責務。original_task対original_scopeのanchor結果でproposal scopeの比較を省略・合成しない。",
+        "source_basis": {
+          "adopted_requirement": {
+            "id": "HELIXINTELLIGENCE-L3-010-F02",
+            "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+            "revision": "cec8f8ed3576192e27c1ee58958d1199e61c9395",
+            "pointer": "/requirements/1",
+            "file_sha256": "622072ec5eae8b73395091638034e7d76b35c916f4b0799c2ff37a4ec57e649e",
+            "meaning": "候補適合と理由を同scopeの実績/水準へ照合する。"
+          },
+          "adopted_oracle": {
+            "id": "HELIXINTELLIGENCE-L10-010-F02",
+            "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+            "revision": "cec8f8ed3576192e27c1ee58958d1199e61c9395",
+            "pointer": "/cases/1",
+            "file_sha256": "d7ce3514fd0dd3ba3bd5545fb97075425d2a8abb3156a107bfaf6e7d56db2dbf",
+            "meaning": "適合条件と候補/除外/根拠が一致し、不足はOSまたはLABOへ戻る。"
+          },
+          "legacy": {
+            "asset_ids": [
+              "LEGACY-ASSET-11E8FE0479751F02A4A3",
+              "LEGACY-ASSET-50CA1C554747F12266D3"
+            ],
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+            "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+            "lines": [
+              317,
+              434
+            ],
+            "existing_record_pointer": "/legacy_comparison/2/source_search",
+            "preserve": "scope正本を一つとし、assignmentのscopeを保持する。router候補から実dispatch authorityを作らない。",
+            "change": "現行F02候補/根拠のscopeを6軸で比較し、欠落・差異を既存OS/INTELLIGENCE責務へ返す具体規則を追加する。旧sourceはこの6軸の比較結果、順序、owner labelを規定していたとは主張しない。",
+            "reason": "採択L3/L10の同scope照合義務を現行L4 packetの既存scope fieldsへ具体化するため。旧assignment runtimeや過去の数値を移植しない。"
+          }
+        }
       }
     },
     "F04": {
