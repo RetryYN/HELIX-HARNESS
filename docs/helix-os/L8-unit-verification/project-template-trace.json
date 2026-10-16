@@ -155127,8 +155127,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -155284,8 +155284,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -155441,8 +155441,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -155598,8 +155598,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -155718,8 +155718,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -155838,8 +155838,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -155958,8 +155958,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -156078,8 +156078,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -156271,8 +156271,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -156428,8 +156428,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -156585,8 +156585,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -156705,8 +156705,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -156825,8 +156825,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -156945,8 +156945,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -157065,8 +157065,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -157185,8 +157185,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -157305,8 +157305,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -157425,8 +157425,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -157555,8 +157555,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -157714,8 +157714,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -157836,8 +157836,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -157958,8 +157958,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -158080,8 +158080,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -158202,8 +158202,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -158361,8 +158361,8 @@
           }
         },
         "comparison_rule": {
-          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。",
-          "excluded_projection": "source_projection_joinと新member finding suffixだけをbaseline保存関係から分ける。既存finding prefixは値/順/重複を含め不変。",
+          "relation": "同一validator返却とsource_projectionだけ除いたdeclared F04 childによる関数17の通常resultを保持する。profile側は各F04観測へ固定L9期待のjoinを付加し、findingsは通常baselineの原prefixにexpected_source_member_suffixを元順で追加する。既存finding内の観測/provenanceを最終観測に書換えない。input_issues/source分類/envelopeは別oracleに従う。 この関係はoriginal比較を追加する前の通常→join→member段階の保存関係である。後段のsource_original_correspondenceと新original finding suffixは独立した観測として分離し、このcaseではその最終全値を固定していない。通常prefix/member suffixと各phaseの保存観測の旧値・順・重複はそのまま照合する。",
+          "excluded_projection": "source_projection_join、新member finding suffix、および後段のsource_original_correspondenceと新original finding suffixを区別してbaseline保存関係へ照合する。通常prefixとmember段階の既存期待は値・順・重複を含め不変。新original面の最終全値はこのcaseの比較から結論せず、別の原対応oracleへ残す。",
           "must_preserve": [
             "contract_ref",
             "conditional_original_value",
@@ -161461,7 +161461,7 @@
   },
   "candidate_l5_binding": {
     "paired_document": "docs/helix-os/L5-detail-design/project-template-trace.json",
-    "working_bytes_sha256": "4f567ce0a03b1baf3ff9d1f8eeee69d1a6e4c80a09786cbd2f1db6c1c69bcc2a",
+    "working_bytes_sha256": "4576e21c25e342228e7bee95798cc1f992df351cc53bf8a03b01a301c6b4ad16",
     "binding_scope": "同scratch候補L5 bytes。原対応現基本はfed4701固定candidateを参照し、独立review/merge結果に追随する。旧歴史pinsは保持。",
     "revision_note": "この候補L5の現bytes pin。対象source revisionの承認やruntime実装を示さない。",
     "binding_kind": "candidate_file_bytes"
@@ -274197,7 +274197,8 @@
       "root": "f04_original_materials",
       "source": "/f04_source_original_correspondence_verification/materials",
       "expansion": "各$copyは同file内materialsのpointerを再帰展開。cycle不可。元JSON値/array順/重複/object挿入順/raw UTF8文字列を保持し、資格/hash/Refを再生成しない。",
-      "meaning": "recipe展開は固定期待の構造復元であり業務計算ではない。"
+      "meaning": "recipe展開は固定期待の構造復元であり業務計算ではない。",
+      "material_name_rule": "m_に、当該素材を再帰展開したJSON値をobject挿入順のままjson.dumps(value, ensure_ascii=False, separators=(\",\", \":\"))でcompact JSON化し、そのUTF-8 bytesのSHA-256小文字hexを連結する。sort_keysは使わず、終端改行は付けない。素材名は構造復元用であり、意味正本や資格のidentityにしない。"
     },
     "execution_state": "not_executed",
     "comparison_limits": [

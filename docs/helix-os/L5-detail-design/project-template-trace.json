@@ -2861,7 +2861,7 @@
         "HELIXOS-L5-002-F04"
       ],
       "algorithm": [
-        "L4 activation.operation_tableに従う。input null、F04未選択、selector missing/empty/invalidはcomponent Field.missing、drafts=[]。valid nonempty selectionは原順/重複を保ち各出現に一recordを生成する。",
+        "L4 activation.scope_tableに従う。input null、F04未選択、selector missing/empty/invalidはcomponent Field.missing、drafts=[]。valid nonempty selectionは原順/重複を保ち各出現に一recordを生成する。",
         "各selected contextの同CORE row未取得はnot_compared closed tuple。raw collection Field missing、全role/collection state not_compared、候補/関係/edge/decode列は空、new semantic draftsなし。原join/native観測は独立保持する。",
         "取得rowのcomputed_condition_pairs/computed_obligation_refsを外部Presenceのままraw保存。absentはmissing、present(null/nonarray)はunknown、present[]はempty、nonempty arrayは各item型を原index順で確認する。条件pair不正itemは列unknown、義務Ref6不正itemはその出現だけunknown。false/0/nullをemptyへ丸めない。",
         "condition requestedは既知conditional又は非empty解釈可能条件列。empty+既知非conditionalはnot_requested、empty+未知disposition又は不明列はunresolved。obligation requestedは原非empty列、既知emptyはnot_requested。不明列から仮想edge/元indexを作らない。両role not_requestedならresolution=not_requestedで新sourceを要求せず、CORE raw/locatorと元source refsを保持する。",
@@ -11662,11 +11662,32 @@
       "reason": "source rowのcopy/候補自己一致だけではF04の原条件/各未完義務への追跡を閉じず、値の自動cast/zipでは原意味を失う。"
     },
     "remaining": [
-      "scratch候補でありformal未適用、業務evaluator未実行。型/schema記述だけを実codec成立としない。",
+      "型・schemaと論理呼出しの契約を記述したもので、業務evaluator・実codecの成立証拠は未供給。有限期待の型適合だけで実行成立を認定しない。",
       "型外Presence2callerの新component/semantic suffixだけ先固定。旧join全値/最終F04 wholeは未固定。",
       "旧25は元のjoin/native/member各phase比較を保持するが新original全Analysis whole25は未導出。旧fn0全返却比較はprivate projection設計でそのまま保持する。",
       "実provider/caller/原operation/custody/実資格/transport/L6/L7/runtime/CIは未成立。論理詳細の新入場gateにしない。",
       "remaining basicのnative endpoint不成立・混在縮約・closed tuple等は有限対照外を全域成立としない。"
-    ]
+    ],
+    "diagnostic_code_binding": {
+      "condition_native_endpoint_conflict": {
+        "source_l4_ref": {
+          "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+          "revision": "fed4701ea97c53ed5edfcfb54925e6aa6339db51",
+          "file_sha256": "ae413e997a19c66c76e776924f84ac7272b4dc345be7509f30673baf2f013efe",
+          "pointer": "/contracts/5/source_original_correspondence"
+        },
+        "source_pointers": [
+          "/contracts/5/source_original_correspondence/logical_return/state_derivation/condition_correspondence_state/internal_operands/native_endpoint_binding_state",
+          "/contracts/5/source_original_correspondence/logical_return/state_derivation/condition_correspondence_state/same_relation_state_reduction",
+          "/contracts/5/source_original_correspondence/diagnostics/code_families/4",
+          "/contracts/5/source_original_correspondence/diagnostics/code_families/5"
+        ],
+        "derivation": "L4はnative所在・原item.output_refの既知相反をcondition対応のconflictとして保持するが、その枝専用のcode名は列挙していない。本詳細はその未命名枝を、原対応providerが主張するconditionのtarget接続の既知相反として、既存condition relation conflict familyへ対応付ける。native scalar original_conditionの欠落/未決を表すobservation missing/unknownとは区別する。これはL4にこの対応の逐語記載があるという主張ではなく、既存の状態・責務・code familyを保つ技術的な導出である。",
+        "code": "core_source_condition_relation_conflict",
+        "path": "原対応payload.condition.native_outputの当該locator/target対応の所在。既存diagnostics.path_roots.relationship_rawをrootとする。",
+        "owner": "当該原対応OwnerRecord.owner（誤ったtarget接続を主張したprovider）",
+        "preserves": "CORE原rowやnative scalarを再判定せず、親condition対応の既知相反を保持する。独立資格の元issueが原因の枝では既存issueを保持し重複semantic findingを作らない。"
+      }
+    }
   }
 }
