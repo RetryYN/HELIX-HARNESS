@@ -1201,10 +1201,65 @@
         "pointer": "/functions/5/steps/0",
         "value": "invalid→classification unresolved/utilization held、InputIssueと原報告を保全、dispatch等false。valid/unresolved→classify→expand→check→同snapshot報告比較→routeの順。"
       },
-      "logical_problem": "旧閉じたValidationResultがinvalid/value=nullの場合は原報告を持たず、builder単引数だけでは異なる原報告を復元できなかった。"
+      "logical_problem": "旧閉じたValidationResultがinvalid/value=nullの場合は原報告を持たず、builder単引数だけでは異なる原報告を復元できなかった。",
+      "upstream_context": [
+        {
+          "revision": "555d287b74d1f001416b1ae71fe0a5f7ad3e0330",
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+          "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486",
+          "pointer": "/requirements/0/obligation",
+          "value": "同じ要求入力・pack/contract revisionから同じ有効closureと理由を再現し、利用依存版/scope/判定根拠を相関結果へ結ぶ。",
+          "object_canonical_sha256": "0a69874f270b7d9c11dcfbf8ce45834a7d914f69ec66df045983f44365c5bfe1"
+        },
+        {
+          "revision": "555d287b74d1f001416b1ae71fe0a5f7ad3e0330",
+          "path": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json",
+          "sha256": "55bd79ac24bbccfdc79b25537899a7ea5c80f77006af5eb4406312c71f399d2b",
+          "pointer": "/contracts/4/behavior",
+          "value": "同一要求入力/pack/contract revision/条件根拠のsnapshotから、同一required/excluded/unselected/reference/pending集合と理由を再現する。出力をcall/correlation/input/scope/pack/contractと依存実版の根拠へ結ぶ。時刻/到着順/フォルダ名を意味条件に使わず、版変更の差分は影響依存だけへ局所化する。",
+          "object_canonical_sha256": "015ed706141b6b184cde36f1d4ec0b30851e2c089f463978e740778f103eb1c1"
+        }
+      ],
+      "upstream_scope": "L3/L4の上記pointerは同snapshotの再現・追跡という上位文脈であり、invalid時の原報告保持を上位literalとして規定したものではない。原報告保持の直接根拠はoriginal_invalid_ruleに固定した旧L5 /functions/5/steps/0で、private carrier/read/呼出し経路はそのL5内部の具体化である。新しい上位/public保存義務は追加しない。",
+      "original_builder_signature": {
+        "revision": "555d287b74d1f001416b1ae71fe0a5f7ad3e0330",
+        "path": "docs/helix-harness/L5-detail-design/conditional-dependency-closure.json",
+        "sha256": "85a94976c720227c595e1cd65e0e6c2929769a8a4280c7183ef0830fb7a57082",
+        "pointer": "/functions/5/signature",
+        "value": "validation: ValidationResult -> ClosureResult",
+        "object_canonical_sha256": "8cf8d6e034eec8ac29cc81b88f921ca9242307b065fc5d13ee17212e53cdceb0"
+      }
     },
     "disposition": "semantic_rederivation",
-    "legacy_basis": "本書legacy_comparison/failure_basisの旧source・consumerと、旧distribution-lite-dependency-closure.md行21〜49、functional-release-slice-requirements.md行129〜144のexact入力・不足の可視化を保持。旧runtime/CIや旧一律full gateは移植しない。",
+    "legacy_basis": {
+      "sources": [
+        {
+          "asset_id": "LEGACY-ASSET-42A34FA10C651E19C463",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md",
+          "revision": "555d287b74d1f001416b1ae71fe0a5f7ad3e0330",
+          "sha256": "eaa3ef510cc95b374f9ff79789e9e052cb97604e14e571fadc4d4db6b232d649",
+          "lines": [
+            21,
+            49
+          ],
+          "retained": "exact artifact/dependency ownership、未収載依存のmissing、入力順に依存しない原所在trace、拒否時handler不実行を保持する。",
+          "correspondence_limit": "この行範囲はinvalid時の原報告保持又はprivate report carrierの直接sourceではない。直接根拠は本detail.source_basis.original_invalid_ruleの旧L5内部契約である。"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+          "revision": "555d287b74d1f001416b1ae71fe0a5f7ad3e0330",
+          "sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+          "lines": [
+            129,
+            144
+          ],
+          "retained": "owner不変、影響/検証依存のtrace、unknown/ambiguous/staleを成功・空集合へ丸めない点を保持する。",
+          "correspondence_limit": "この行範囲はinvalid時の原報告保持又はprivate report carrierの直接sourceではない。直接根拠は本detail.source_basis.original_invalid_ruleの旧L5内部契約である。"
+        }
+      ],
+      "scope": "旧source/consumerのexact入力・不足可視化・原traceを保持する文脈。旧runtime/CI/一律full gateは移植せず、invalid原報告保持の直接根拠とは区別する。"
+    },
     "preserve": "既存ValidationResult/ClosureResultの公開field、6業務関数の正常・未解決経路、原44負例と20追加の意味・原因・戻し先を保持。構造decodeだけで資格や分類を成功にしない。",
     "change": "builderの入力署名を同一invocationのprivate validation/report carrierへ訂正し、3つのpure support関数でvalidator→report read→builder→呼出し側を結ぶ。",
     "reason": "現在の型・引数で表せなかった原報告保存を、公開返却fieldを増やさず供給可能にする。",

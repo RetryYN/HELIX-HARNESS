@@ -1339,10 +1339,91 @@
           },
           "decode_issues": []
         },
-        "source": "既存二原報告の情報損失反例。ReportRead全4fieldのみ。",
+        "source": {
+          "kind": "このcaseのraw_input内で完結する合成素材",
+          "outer_invalid": {
+            "pointer": "/report_retention_verification/cases/0/raw_input/binding/request_ref/sha256",
+            "value": "not-hex",
+            "basis": "L5 type_contract/type_model/Refの64 lowercase hexに適合しない。reported subtree外の構造不正である。"
+          },
+          "inner_report": {
+            "pointer": "/report_retention_verification/cases/0/raw_input/reported_closure",
+            "request_digest_pointer": "/report_retention_verification/cases/0/raw_input/reported_closure/binding/request_ref/sha256",
+            "request_digest_value": "0000000000000000000000000000000000000000000000000000000000000000",
+            "scope": "内側報告は既存ReportedClosure/Binding/Refの閉じた構造を満たす素材で、外側の不正から独立に構造readできる。zero digestは合成Refの型形であり、解決済body/実資格を示さない。"
+          },
+          "pair_difference": {
+            "other_case_pointer": "/report_retention_verification/cases/1",
+            "pointer": "/report_retention_verification/cases/0/raw_input/reported_closure/reason_refs",
+            "value": [],
+            "meaning": "case0は明示空、case1はdifferent-reported-reasonの原Ref1件。それ以外のraw値は同値。原報告の全値をreportedへ保持するのでこの差も保存される。"
+          }
+        },
         "comparison_scope": "ReportRead全4field。validate_closure_input全返却/ClosureResult全値/実資格/全要求の成立は含まない。",
         "execution_state": "not_executed",
-        "effect": "none"
+        "effect": "none",
+        "expected_builder_partial": {
+          "classification": "unresolved",
+          "utilization": "held",
+          "binding": null,
+          "reported": {
+            "binding": {
+              "request_ref": {
+                "identity": "request",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "pack_ref": {
+                "identity": "pack",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_ref": {
+                "identity": "contract",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "call_id": "call",
+              "attempt_id": "attempt",
+              "correlation_id": "correlation",
+              "input_ref": {
+                "identity": "input",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "operation_ref": null,
+              "source_selection_ref": null,
+              "scope_ref": null,
+              "actor_ref": {
+                "identity": "actor",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "actor_kind": "worker"
+            },
+            "condition_snapshot_refs": [],
+            "declarations": [],
+            "required_refs": [],
+            "excluded_refs": [],
+            "unselected_refs": [],
+            "reference_refs": [],
+            "pending_refs": [],
+            "reason_refs": [],
+            "observed_target_refs": [],
+            "claims": []
+          }
+        },
+        "builder_partial_scope": "build_dependency_analysisのclassification/utilization/binding/reportedの4fieldだけを比較する。全ClosureResult又は元validator全InputIssue literalの期待ではない。input_issuesの同値・同順保持は既存invalid_builder_partial契約で別に照合する。"
       },
       {
         "id": "H023-REPORT-INVALID-OUTSIDE-2",
@@ -1597,10 +1678,107 @@
           },
           "decode_issues": []
         },
-        "source": "既存二原報告の情報損失反例。ReportRead全4fieldのみ。",
+        "source": {
+          "kind": "このcaseのraw_input内で完結する合成素材",
+          "outer_invalid": {
+            "pointer": "/report_retention_verification/cases/1/raw_input/binding/request_ref/sha256",
+            "value": "not-hex",
+            "basis": "L5 type_contract/type_model/Refの64 lowercase hexに適合しない。reported subtree外の構造不正である。"
+          },
+          "inner_report": {
+            "pointer": "/report_retention_verification/cases/1/raw_input/reported_closure",
+            "request_digest_pointer": "/report_retention_verification/cases/1/raw_input/reported_closure/binding/request_ref/sha256",
+            "request_digest_value": "0000000000000000000000000000000000000000000000000000000000000000",
+            "scope": "内側報告は既存ReportedClosure/Binding/Refの閉じた構造を満たす素材で、外側の不正から独立に構造readできる。zero digestは合成Refの型形であり、解決済body/実資格を示さない。"
+          },
+          "pair_difference": {
+            "other_case_pointer": "/report_retention_verification/cases/0",
+            "pointer": "/report_retention_verification/cases/1/raw_input/reported_closure/reason_refs",
+            "value": [
+              {
+                "identity": "different-reported-reason",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "meaning": "case0は明示空、case1はdifferent-reported-reasonの原Ref1件。それ以外のraw値は同値。原報告の全値をreportedへ保持するのでこの差も保存される。"
+          }
+        },
         "comparison_scope": "ReportRead全4field。validate_closure_input全返却/ClosureResult全値/実資格/全要求の成立は含まない。",
         "execution_state": "not_executed",
-        "effect": "none"
+        "effect": "none",
+        "expected_builder_partial": {
+          "classification": "unresolved",
+          "utilization": "held",
+          "binding": null,
+          "reported": {
+            "binding": {
+              "request_ref": {
+                "identity": "request",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "pack_ref": {
+                "identity": "pack",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_ref": {
+                "identity": "contract",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "call_id": "call",
+              "attempt_id": "attempt",
+              "correlation_id": "correlation",
+              "input_ref": {
+                "identity": "input",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "operation_ref": null,
+              "source_selection_ref": null,
+              "scope_ref": null,
+              "actor_ref": {
+                "identity": "actor",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "actor_kind": "worker"
+            },
+            "condition_snapshot_refs": [],
+            "declarations": [],
+            "required_refs": [],
+            "excluded_refs": [],
+            "unselected_refs": [],
+            "reference_refs": [],
+            "pending_refs": [],
+            "reason_refs": [
+              {
+                "identity": "different-reported-reason",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "observed_target_refs": [],
+            "claims": []
+          }
+        },
+        "builder_partial_scope": "build_dependency_analysisのclassification/utilization/binding/reportedの4fieldだけを比較する。全ClosureResult又は元validator全InputIssue literalの期待ではない。input_issuesの同値・同順保持は既存invalid_builder_partial契約で別に照合する。"
       },
       {
         "id": "H023-REPORT-ABSENT",
