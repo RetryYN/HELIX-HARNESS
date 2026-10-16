@@ -17,7 +17,7 @@
   "candidate_l5_binding": {
     "path": "docs/helix-connect/L5-detail-design/direction-order-feedback-relations.json",
     "binding": "同一candidateのbytes。既存source revisionに新pathがあると主張しない。",
-    "sha256": "701129d59af6abbb290fe3639a16da8f07c08a2e899daabbf78cbe4404b68cee"
+    "sha256": "bd97314daae8b147b23448d5c0d278f85a9d2843bc8da9c517b56d4738b4ffc8"
   },
   "source_basis": {
     "existing_source_pins": [
@@ -130236,6 +130236,37 @@
           "file_sha256": "098520eda430ef2bb86a88efa9436043c4c03f0bee42892005d44594547f6162",
           "canonical_sha256": "8c209663c82dd0a52f602026c893080ec04f107b8f145f1771ee44dbbc3dfae3"
         }
+      ],
+      "baseline_source_scope_ja": "baseline_sourceは元rawとその局所input_patchの歴史出典であり、追加した独立原source2口の出典ではない。追加sourceはadded_source_material_refsの固定raw memberから別に供給する。",
+      "added_source_material_refs": [
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_source_target",
+          "member_canonical_sha256": "af02c1a70eb2841af20740c100029d7feee3888521335daf54850ebc94b2af76",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_source_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_source_target"
+        },
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_return_target",
+          "member_canonical_sha256": "b551e7077927e7751766c0c174bac0774b73d31d8fee06201926ee9afa404e6f",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_return_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_return_target"
+        }
       ]
     },
     {
@@ -133571,6 +133602,37 @@
           "pointer": "/cases/294",
           "file_sha256": "098520eda430ef2bb86a88efa9436043c4c03f0bee42892005d44594547f6162",
           "canonical_sha256": "0a4429d08eb6a9f002e77cbe404148d07775e31129fb589a711c5587685c4779"
+        }
+      ],
+      "baseline_source_scope_ja": "baseline_sourceは元rawとその局所input_patchの歴史出典であり、追加した独立原source2口の出典ではない。追加sourceはadded_source_material_refsの固定raw memberから別に供給する。",
+      "added_source_material_refs": [
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_source_target",
+          "member_canonical_sha256": "af02c1a70eb2841af20740c100029d7feee3888521335daf54850ebc94b2af76",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_source_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_source_target"
+        },
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_return_target",
+          "member_canonical_sha256": "b551e7077927e7751766c0c174bac0774b73d31d8fee06201926ee9afa404e6f",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_return_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_return_target"
         }
       ]
     },
@@ -137054,6 +137116,37 @@
           "file_sha256": "098520eda430ef2bb86a88efa9436043c4c03f0bee42892005d44594547f6162",
           "canonical_sha256": "a7d40bc095512e493c6f3c237aa5d04b710503e7a7d973ad119d1eced401ce13"
         }
+      ],
+      "baseline_source_scope_ja": "baseline_sourceは元rawとその局所input_patchの歴史出典であり、追加した独立原source2口の出典ではない。追加sourceはadded_source_material_refsの固定raw memberから別に供給する。",
+      "added_source_material_refs": [
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_source_target",
+          "member_canonical_sha256": "af02c1a70eb2841af20740c100029d7feee3888521335daf54850ebc94b2af76",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_source_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_source_target"
+        },
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_return_target",
+          "member_canonical_sha256": "b551e7077927e7751766c0c174bac0774b73d31d8fee06201926ee9afa404e6f",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_return_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_return_target"
+        }
       ]
     },
     {
@@ -137608,6 +137701,37 @@
           "pointer": "/cases/304",
           "file_sha256": "098520eda430ef2bb86a88efa9436043c4c03f0bee42892005d44594547f6162",
           "canonical_sha256": "f58e877c2909410a6865e6e2d96f74674ae434d75829de228d1b0f84bd97e72c"
+        }
+      ],
+      "baseline_source_scope_ja": "baseline_sourceは元rawとその局所input_patchの歴史出典であり、追加した独立原source2口の出典ではない。追加sourceはadded_source_material_refsの固定raw memberから別に供給する。",
+      "added_source_material_refs": [
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_source_target",
+          "member_canonical_sha256": "af02c1a70eb2841af20740c100029d7feee3888521335daf54850ebc94b2af76",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_source_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_source_target"
+        },
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_return_target",
+          "member_canonical_sha256": "b551e7077927e7751766c0c174bac0774b73d31d8fee06201926ee9afa404e6f",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_return_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_return_target"
         }
       ]
     },
@@ -142265,6 +142389,37 @@
           "file_sha256": "098520eda430ef2bb86a88efa9436043c4c03f0bee42892005d44594547f6162",
           "canonical_sha256": "ffd95454a587043e5aa9cf1566eb11707f234c8181c8dc64044752d669bda713"
         }
+      ],
+      "baseline_source_scope_ja": "baseline_sourceは元rawとその局所input_patchの歴史出典であり、追加した独立原source2口の出典ではない。追加sourceはadded_source_material_refsの固定raw memberから別に供給する。",
+      "added_source_material_refs": [
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_source_target",
+          "member_canonical_sha256": "af02c1a70eb2841af20740c100029d7feee3888521335daf54850ebc94b2af76",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_source_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_source_target"
+        },
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_return_target",
+          "member_canonical_sha256": "b551e7077927e7751766c0c174bac0774b73d31d8fee06201926ee9afa404e6f",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_return_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_return_target"
+        }
       ]
     },
     {
@@ -144101,6 +144256,37 @@
           "file_sha256": "098520eda430ef2bb86a88efa9436043c4c03f0bee42892005d44594547f6162",
           "canonical_sha256": "ecb0841f4a271cf817280277c4ca95bb58d792220aacf0a797e9d927389c3117"
         }
+      ],
+      "baseline_source_scope_ja": "baseline_sourceは元rawとその局所input_patchの歴史出典であり、追加した独立原source2口の出典ではない。追加sourceはadded_source_material_refsの固定raw memberから別に供給する。",
+      "added_source_material_refs": [
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_source_target",
+          "member_canonical_sha256": "af02c1a70eb2841af20740c100029d7feee3888521335daf54850ebc94b2af76",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_source_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_source_target"
+        },
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_return_target",
+          "member_canonical_sha256": "b551e7077927e7751766c0c174bac0774b73d31d8fee06201926ee9afa404e6f",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_return_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_return_target"
+        }
       ]
     },
     {
@@ -144655,6 +144841,37 @@
           "pointer": "/cases/321",
           "file_sha256": "098520eda430ef2bb86a88efa9436043c4c03f0bee42892005d44594547f6162",
           "canonical_sha256": "af3e17a68836d67e3805d04452510b32cf085fdb6e93fb9a4868b97149d4a766"
+        }
+      ],
+      "baseline_source_scope_ja": "baseline_sourceは元rawとその局所input_patchの歴史出典であり、追加した独立原source2口の出典ではない。追加sourceはadded_source_material_refsの固定raw memberから別に供給する。",
+      "added_source_material_refs": [
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_source_target",
+          "member_canonical_sha256": "af02c1a70eb2841af20740c100029d7feee3888521335daf54850ebc94b2af76",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_source_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_source_target"
+        },
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_return_target",
+          "member_canonical_sha256": "b551e7077927e7751766c0c174bac0774b73d31d8fee06201926ee9afa404e6f",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_return_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_return_target"
         }
       ]
     },
@@ -145217,6 +145434,37 @@
           "file_sha256": "098520eda430ef2bb86a88efa9436043c4c03f0bee42892005d44594547f6162",
           "canonical_sha256": "c9303acc5ff2dc0132a1babc9d26d77d09858050b941af0bc25396f4cd07efba"
         }
+      ],
+      "baseline_source_scope_ja": "baseline_sourceは元rawとその局所input_patchの歴史出典であり、追加した独立原source2口の出典ではない。追加sourceはadded_source_material_refsの固定raw memberから別に供給する。",
+      "added_source_material_refs": [
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_source_target",
+          "member_canonical_sha256": "af02c1a70eb2841af20740c100029d7feee3888521335daf54850ebc94b2af76",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_source_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_source_target"
+        },
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_return_target",
+          "member_canonical_sha256": "b551e7077927e7751766c0c174bac0774b73d31d8fee06201926ee9afa404e6f",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_return_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_return_target"
+        }
       ]
     },
     {
@@ -145771,6 +146019,37 @@
           "pointer": "/cases/323",
           "file_sha256": "098520eda430ef2bb86a88efa9436043c4c03f0bee42892005d44594547f6162",
           "canonical_sha256": "c8923b3a3292209460e8c0c9156dfc0c565fb2f8865cac47593ac49895a183ec"
+        }
+      ],
+      "baseline_source_scope_ja": "baseline_sourceは元rawとその局所input_patchの歴史出典であり、追加した独立原source2口の出典ではない。追加sourceはadded_source_material_refsの固定raw memberから別に供給する。",
+      "added_source_material_refs": [
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_source_target",
+          "member_canonical_sha256": "af02c1a70eb2841af20740c100029d7feee3888521335daf54850ebc94b2af76",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_source_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_source_target"
+        },
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_return_target",
+          "member_canonical_sha256": "b551e7077927e7751766c0c174bac0774b73d31d8fee06201926ee9afa404e6f",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_return_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_return_target"
         }
       ]
     },
@@ -154157,6 +154436,37 @@
           "file_sha256": "098520eda430ef2bb86a88efa9436043c4c03f0bee42892005d44594547f6162",
           "canonical_sha256": "5ad06ab2174013c775b31bf59114161baa8fe1f7eafb4970a0875a2696cef715"
         }
+      ],
+      "baseline_source_scope_ja": "baseline_sourceは元rawとその局所input_patchの歴史出典であり、追加した独立原source2口の出典ではない。追加sourceはadded_source_material_refsの固定raw memberから別に供給する。",
+      "added_source_material_refs": [
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_source_target",
+          "member_canonical_sha256": "af02c1a70eb2841af20740c100029d7feee3888521335daf54850ebc94b2af76",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_source_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_source_target"
+        },
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_return_target",
+          "member_canonical_sha256": "b551e7077927e7751766c0c174bac0774b73d31d8fee06201926ee9afa404e6f",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_return_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_return_target"
+        }
       ]
     },
     {
@@ -154712,6 +155022,37 @@
           "pointer": "/cases/342",
           "file_sha256": "098520eda430ef2bb86a88efa9436043c4c03f0bee42892005d44594547f6162",
           "canonical_sha256": "8e7a9a0e8c39ca2e2f69582dd07ffcae0b2844018bdc9af8fc6978eebeec8544"
+        }
+      ],
+      "baseline_source_scope_ja": "baseline_sourceは元rawとその局所input_patchの歴史出典であり、追加した独立原source2口の出典ではない。追加sourceはadded_source_material_refsの固定raw memberから別に供給する。",
+      "added_source_material_refs": [
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_source_target",
+          "member_canonical_sha256": "af02c1a70eb2841af20740c100029d7feee3888521335daf54850ebc94b2af76",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_source_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_source_target"
+        },
+        {
+          "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+          "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+          "file_sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+          "scenario_pointer": "/verification_obligations/6/verification_scenarios/0",
+          "scenario_canonical_sha256": "5508041cd27d49954524e441ae10c7a201e73bd9716f2844b28f098a8ee96b53",
+          "raw_utf8_pointer": "/verification_obligations/6/verification_scenarios/0/independent_source_packet/raw_utf8",
+          "raw_sha256": "077b1379c364ecc887fd41c7aae0e6b799159e5f49f5b9a0b8d0de52c026d31c",
+          "decode": "strict_json_parse_string",
+          "member_pointer": "/original_inputs/feedback_return_target",
+          "member_canonical_sha256": "b551e7077927e7751766c0c174bac0774b73d31d8fee06201926ee9afa404e6f",
+          "input_member_pointer": "/arguments/packet/original_inputs/feedback_return_target",
+          "expected_echo_pointer": "/expected_return/retained_original_inputs/feedback_return_target"
         }
       ]
     },
@@ -156004,7 +156345,8 @@
           "file_sha256": "098520eda430ef2bb86a88efa9436043c4c03f0bee42892005d44594547f6162",
           "canonical_sha256": "9bdef454ed5cf6858ff0211851ef0c44be19fc0fc237bf2779f05c28c15be923"
         }
-      ]
+      ],
+      "baseline_source_scope_ja": "baseline_sourceは元rawとその局所input_patchの歴史出典。このwitnessは独立原source2口を未供給のまま保持する。"
     },
     {
       "id": "LOCAL-C009-F02-DECLARATION-IDENTITY-NULL",
@@ -179018,5 +179360,68 @@
       "approval_algorithm": "actual_admission_revisionの記録tableにある12path/bytecount/SHA-256をapproved_content_revisionとactual_admission_revisionと現fileで照合する。"
     },
     "prior_observed_counts_scope": "type_inside26612/type_outside520は旧352候補の有限摂動履歴。現在の基本source追加後のbaselineに対する観測数でも、全入力域total性の証明でもない。"
+  },
+  "verification_limits": {
+    "current_scope": "全389wholeの有限宣言比較。L9由来288例、保存local/独立例、追加21対照を含む。変更前のraw/wholeはexact revisionで保持し、旧有限摂動履歴を現全入力域/全mutation識別力へ転用しない。",
+    "independent_binding_scope": "F07のL9由来26更新、local 12分類、既存16独立対照と追加21対照を有限比較する。全source/全domain/全mutation kill/実資格/実runtime/Readyの成立を主張しない。",
+    "untested_source_binding_branches": [
+      {
+        "function": "resolve_original_target_record",
+        "definition_pointer": "/raw_comparison_reference/definitions/11",
+        "condition": "source stateが未宣言値（null/列挙外を含む）",
+        "declared_result": "unknown",
+        "coverage": "state unknown/stale/conflictの既存対照と区別し、このguardの未宣言state側は未対照。"
+      },
+      {
+        "function": "resolve_original_target_record",
+        "definition_pointer": "/raw_comparison_reference/definitions/11",
+        "condition": "known_fixture_only source wrapperのvalue memberがAbsent",
+        "declared_result": "unknown",
+        "coverage": "解決済value内部の必須member Absentとは別のsource wrapper guard。"
+      },
+      {
+        "function": "resolve_original_target_record",
+        "definition_pointer": "/raw_comparison_reference/definitions/11",
+        "condition": "known_fixture_only source wrapperのvalueが明示null",
+        "declared_result": "unknown",
+        "coverage": "source口全体のnullやvalue内部member nullとは別のguard。"
+      },
+      {
+        "function": "compare_predecessor_target_sources",
+        "definition_pointer": "/raw_comparison_reference/definitions/13",
+        "condition": "原topologyのcurrent_attempt_refがnull/既存未確定値",
+        "declared_result": "predecessor_target/current_attempt_ref unknown",
+        "coverage": "current_attempt_ref Absentのmissing対照はあるが、Present未確定は未対照。"
+      },
+      {
+        "function": "compare_predecessor_target_sources",
+        "definition_pointer": "/raw_comparison_reference/definitions/13",
+        "condition": "一意選択したoccurrence itemのsource memberがAbsent",
+        "declared_result": "該当occurrence/source missing_original_information",
+        "coverage": "source列全体のAbsent、0/複数index、source state unknownと区別する。"
+      },
+      {
+        "function": "compare_predecessor_target_sources",
+        "definition_pointer": "/raw_comparison_reference/definitions/13",
+        "condition": "選択predecessor sourceの解決したvalueがobjectでない",
+        "declared_result": "該当occurrence/source unknown",
+        "coverage": "F07 source value非objectの対照を、このF02の分岐対照として転用しない。"
+      },
+      {
+        "function": "compare_predecessor_target_sources",
+        "definition_pointer": "/raw_comparison_reference/definitions/13",
+        "condition": "一意選択したoccurrence itemのattempt_refがAbsent",
+        "declared_result": "該当occurrence/attempt_ref missing_original_information",
+        "coverage": "他attempt/自己先行/再利用の既知比較とは別の不足guard。"
+      },
+      {
+        "function": "compare_predecessor_target_sources",
+        "definition_pointer": "/raw_comparison_reference/definitions/13",
+        "condition": "一意選択したoccurrence itemのattempt_refがnull/既存未確定値",
+        "declared_result": "該当occurrence/attempt_ref unknown",
+        "coverage": "attempt_ref Absentと区別し、現有限wholeに対照を持たない。"
+      }
+    ],
+    "untested_branch_scope": "列挙分岐は規範ASTに挙動を持つが、現389wholeで各条件を独立に識別する対照は置いていない。未対照範囲を明示する記録であり、全変異体検出や全入力域の保証を要求する新gateではない。"
   }
 }

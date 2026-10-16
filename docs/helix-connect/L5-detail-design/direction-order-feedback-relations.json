@@ -32560,7 +32560,66 @@
   },
   "verification_limits": {
     "current_scope": "全389wholeの有限宣言比較。L9由来288例、保存local/独立例、追加21対照を含む。変更前のraw/wholeはexact revisionで保持し、旧有限摂動履歴を現全入力域/全mutation識別力へ転用しない。",
-    "independent_binding_scope": "F07のL9由来26更新、local 12分類、既存16独立対照と追加21対照を有限比較する。全source/全domain/全mutation kill/実資格/実runtime/Readyの成立を主張しない。"
+    "independent_binding_scope": "F07のL9由来26更新、local 12分類、既存16独立対照と追加21対照を有限比較する。全source/全domain/全mutation kill/実資格/実runtime/Readyの成立を主張しない。",
+    "untested_source_binding_branches": [
+      {
+        "function": "resolve_original_target_record",
+        "definition_pointer": "/raw_comparison_reference/definitions/11",
+        "condition": "source stateが未宣言値（null/列挙外を含む）",
+        "declared_result": "unknown",
+        "coverage": "state unknown/stale/conflictの既存対照と区別し、このguardの未宣言state側は未対照。"
+      },
+      {
+        "function": "resolve_original_target_record",
+        "definition_pointer": "/raw_comparison_reference/definitions/11",
+        "condition": "known_fixture_only source wrapperのvalue memberがAbsent",
+        "declared_result": "unknown",
+        "coverage": "解決済value内部の必須member Absentとは別のsource wrapper guard。"
+      },
+      {
+        "function": "resolve_original_target_record",
+        "definition_pointer": "/raw_comparison_reference/definitions/11",
+        "condition": "known_fixture_only source wrapperのvalueが明示null",
+        "declared_result": "unknown",
+        "coverage": "source口全体のnullやvalue内部member nullとは別のguard。"
+      },
+      {
+        "function": "compare_predecessor_target_sources",
+        "definition_pointer": "/raw_comparison_reference/definitions/13",
+        "condition": "原topologyのcurrent_attempt_refがnull/既存未確定値",
+        "declared_result": "predecessor_target/current_attempt_ref unknown",
+        "coverage": "current_attempt_ref Absentのmissing対照はあるが、Present未確定は未対照。"
+      },
+      {
+        "function": "compare_predecessor_target_sources",
+        "definition_pointer": "/raw_comparison_reference/definitions/13",
+        "condition": "一意選択したoccurrence itemのsource memberがAbsent",
+        "declared_result": "該当occurrence/source missing_original_information",
+        "coverage": "source列全体のAbsent、0/複数index、source state unknownと区別する。"
+      },
+      {
+        "function": "compare_predecessor_target_sources",
+        "definition_pointer": "/raw_comparison_reference/definitions/13",
+        "condition": "選択predecessor sourceの解決したvalueがobjectでない",
+        "declared_result": "該当occurrence/source unknown",
+        "coverage": "F07 source value非objectの対照を、このF02の分岐対照として転用しない。"
+      },
+      {
+        "function": "compare_predecessor_target_sources",
+        "definition_pointer": "/raw_comparison_reference/definitions/13",
+        "condition": "一意選択したoccurrence itemのattempt_refがAbsent",
+        "declared_result": "該当occurrence/attempt_ref missing_original_information",
+        "coverage": "他attempt/自己先行/再利用の既知比較とは別の不足guard。"
+      },
+      {
+        "function": "compare_predecessor_target_sources",
+        "definition_pointer": "/raw_comparison_reference/definitions/13",
+        "condition": "一意選択したoccurrence itemのattempt_refがnull/既存未確定値",
+        "declared_result": "該当occurrence/attempt_ref unknown",
+        "coverage": "attempt_ref Absentと区別し、現有限wholeに対照を持たない。"
+      }
+    ],
+    "untested_branch_scope": "列挙分岐は規範ASTに挙動を持つが、現389wholeで各条件を独立に識別する対照は置いていない。未対照範囲を明示する記録であり、全変異体検出や全入力域の保証を要求する新gateではない。"
   },
   "independent_target_binding_detail": {
     "scope_ja": "F02/F07の既存独立原comparandを純粋な詳細入力・resolver・既存比較へ接続する。新public API、registry、workflow、authority/実資格gateを作らない。",
