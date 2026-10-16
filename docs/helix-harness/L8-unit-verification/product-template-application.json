@@ -95248,7 +95248,7 @@
       "design_ref": "HARNESS-L5-009-WIRE-CODEC",
       "schema_ref": {
         "document_id": "HARNESS-L5-009-PRODUCT-TEMPLATE-APPLICATION",
-        "pointer": "/wire_codec_contract/schema/$defs/ApplicationAnalysis",
+        "pointer": "/wire_codec_contract/schema",
         "canonical_sha256": "288541888420b48ebc1dcbe63279920caa42b437b0de53adbddbec1472a7f992"
       },
       "scope_ja": "source_result_reference_projection optional fieldのclosed schema適合だけを確認する。業務関数、builder、encoder、実資格を実行・成立させない。",
@@ -99243,6 +99243,12 @@
               }
             ],
             "input_findings": []
+          },
+          "source_pin": {
+            "revision": "1b50e0e105f0d51b902b26ba0e48d66381705360",
+            "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+            "pointer": "/cases/4/source_result_reference_cases/cases/0/expected_rows",
+            "canonical_sha256": "1a102082a79697b0a4d43d6fa60bae50977496ae718342a58432d08aa169df83"
           }
         },
         {
@@ -99312,7 +99318,8 @@
             "expected_accepted": false
           }
         ]
-      }
+      },
+      "freeze_material_scope_ja": "snapshot_sha256はrepository外local/に保全した独立review材料の識別子。下記case値は本文に固定し、FOUR-ROWSの原L9出典をsource_pinで辿れる。snapshot単独をrepository内の再取得可能な正本参照としない。"
     }
   },
   "cross_design_candidate_ref_projection": {
