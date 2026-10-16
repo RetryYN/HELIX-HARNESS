@@ -95251,7 +95251,7 @@
         "pointer": "/wire_codec_contract/schema",
         "canonical_sha256": "288541888420b48ebc1dcbe63279920caa42b437b0de53adbddbec1472a7f992"
       },
-      "scope_ja": "source_result_reference_projection optional fieldのclosed schema適合だけを確認する。業務関数、builder、encoder、実資格を実行・成立させない。",
+      "scope_ja": "source_result_reference_projection optional fieldのclosed schema適合と、既存RFC6901型を表すJSONPointer patternのPython/ECMAScript差を確認する。業務関数、builder、encoder、実資格を実行・成立させない。",
       "cases": [
         {
           "case_id": "CORE009-ANALYSIS-PROJECTION-ABSENT",
@@ -99291,31 +99291,45 @@
         "cases": [
           {
             "value": "",
-            "expected_accepted": true
+            "expected_accepted": true,
+            "case_id": "CORE009-JSONPOINTER-SHAPE-01",
+            "schema_pointer": "#/$defs/JSONPointer"
           },
           {
             "value": "\n",
-            "expected_accepted": false
+            "expected_accepted": false,
+            "case_id": "CORE009-JSONPOINTER-SHAPE-02",
+            "schema_pointer": "#/$defs/JSONPointer"
           },
           {
             "value": "\r\n",
-            "expected_accepted": false
+            "expected_accepted": false,
+            "case_id": "CORE009-JSONPOINTER-SHAPE-03",
+            "schema_pointer": "#/$defs/JSONPointer"
           },
           {
             "value": "/a\n",
-            "expected_accepted": true
+            "expected_accepted": true,
+            "case_id": "CORE009-JSONPOINTER-SHAPE-04",
+            "schema_pointer": "#/$defs/JSONPointer"
           },
           {
             "value": "/~0~1",
-            "expected_accepted": true
+            "expected_accepted": true,
+            "case_id": "CORE009-JSONPOINTER-SHAPE-05",
+            "schema_pointer": "#/$defs/JSONPointer"
           },
           {
             "value": "/~2",
-            "expected_accepted": false
+            "expected_accepted": false,
+            "case_id": "CORE009-JSONPOINTER-SHAPE-06",
+            "schema_pointer": "#/$defs/JSONPointer"
           },
           {
             "value": "x",
-            "expected_accepted": false
+            "expected_accepted": false,
+            "case_id": "CORE009-JSONPOINTER-SHAPE-07",
+            "schema_pointer": "#/$defs/JSONPointer"
           }
         ]
       },
