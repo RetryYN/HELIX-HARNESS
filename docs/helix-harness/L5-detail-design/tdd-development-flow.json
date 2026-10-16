@@ -327,14 +327,14 @@
     },
     {
       "id": "pipeline_ordered",
-      "condition": "6つの工程kindがL4記載順に並び、各隣接sequenceが厳密増加する",
-      "required_presence": "stepsは6件のrecord配列、各kind stringとsequence有限数値。",
-      "operation": "kind配列が[freeze, pre_body_red, minimal_body, green, local_refactor, atomic_ci]と完全一致し、各iでsteps[i].sequence < steps[i+1].sequence。連番や特定数値は要求しない。",
-      "supported_when": "kind順と全隣接数値順が真。",
-      "contradicted_when": "配列shape/valueが揃い順序条件が偽。",
-      "not_observed_when": "steps/member absent/null、6件でない、または必要field不在。",
-      "l4_basis": "HARNESS-L4-015-F03.output_contract.order",
-      "fixture_value_only": "工程名は契約の段階名。sequenceはL9に記録された順序値。"
+      "condition": "6つの工程kindと厳密sequence順に加え、本体前Redの対象headから最小本体のfrom_head、最小本体のto_headからGreenの対象headがそれぞれ同じ文字列として接続する",
+      "required_presence": "stepsは6件のrecord配列、各kindはstring、各sequenceは有限数値。steps[1].head、steps[2].from_head、steps[2].to_head、steps[3].headはstring。FieldValueのabsent/null/誤型は未観測。emptyのstringも原値として比較し、HEAD形式/長さ/固定H0等を要求しない。",
+      "operation": "kind配列が[freeze, pre_body_red, minimal_body, green, local_refactor, atomic_ci]と完全一致し、各iでsteps[i].sequence < steps[i+1].sequence。さらにsteps[1].head == steps[2].from_head AND steps[2].to_head == steps[3].headを文字列完全一致で比較する。連番/特定sequence/HEAD文字列形式は要求しない。Refactor又はCIのhead連結条件をこのpredicateへ追加しない。",
+      "supported_when": "必要shape/valueが揃い、kind順・全隣接sequence順・Redから本体へのhead接続・本体からGreenへのhead接続がすべて真。",
+      "contradicted_when": "全必要shape/valueが揃い、kind順/sequence順/二つのhead接続のいずれかが偽。",
+      "not_observed_when": "steps/memberがabsent/null、6件でない、必要kind/sequence/head fieldが不在/null/誤型、又は数値が有限でない。必要shape/valueが揃わない場合は、欠落headを他step/oracle/candidateから補完せずnot_observed。",
+      "l4_basis": "HARNESS-L3-015-F03; HARNESS-L10-015-F03.expected_observation; HARNESS-L4-015-F03.output_contract.order; architecture.component_connections[1]の実装前対象・凍結oracle・本体変更との因果順序。",
+      "fixture_value_only": "工程名は契約の段階名。sequenceとheadは供給sourceの原値を比較する。実Red/Greenの実行、実owner資格、現実のHEAD存在/形式/凍結を生成しない。"
     },
     {
       "id": "refactor_meaning_preserved",
@@ -4134,5 +4134,132 @@
     "L4_bytes_at_authoring_main_sha256": "738a76b4753a8c51d1c684ae2ffa18d91b7bdbc2794961cde66a47c585aa299b",
     "L9_bytes_at_authoring_main_sha256": "512746cb3096f9d7dd1c58bfdee12b3161e38946d3d8f810ba84f798963df303",
     "note": "L4/L9の現在bytesはsource_main宣言のhistorical pinとは別に、authoring source_mainの286695409fcea78e2441d5aa85b008f7a8ad2e1fでpinした。"
+  },
+  "f03_head_connection_detail": {
+    "requirement_ref": "HARNESS-L3-015-F03",
+    "function_ref": "F-015-04",
+    "normative_predicate_pointer": "/semantic_predicate_catalog/12",
+    "current_authoring": {
+      "base_main": "69cda1984e0a42c2a8b0d800c593bb4dff135683",
+      "scope": "既存pipeline_orderedの二つのhead因果接続と観測hash技術明確化のみ。definition-only。",
+      "authority_effect": "none",
+      "execution_state": "not_executed"
+    },
+    "historical_source": {
+      "read_revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+      "source_bindings": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/requirements/42",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "value_canonical_sha256": "b641eb43bd5164ab55101bac10aaa0fbf0fb24a55d4429ad0f013af9594cd6ce"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/cases/42",
+          "file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+          "value_canonical_sha256": "c41bc44981b5cdd6abe939405535a44c163d9714374e168dfe589dac4ce7cd7a"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/architecture/component_connections/1",
+          "file_sha256": "738a76b4753a8c51d1c684ae2ffa18d91b7bdbc2794961cde66a47c585aa299b",
+          "value_canonical_sha256": "e80aa5f1f91a94455c3f4bff9fc5767419afe08cc7008ba7cce38e311ea242a9"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/contracts/3",
+          "file_sha256": "738a76b4753a8c51d1c684ae2ffa18d91b7bdbc2794961cde66a47c585aa299b",
+          "value_canonical_sha256": "e9d1285ef360f491921cb2a6b414ca3e8380be6172feb791121b6e6d03e10366"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/pure_function_signatures/3",
+          "file_sha256": "0516b410625b325fe5bf7fccd156e4199c0aa194adb4a0bd4c4eb309ab13f5bd",
+          "value_canonical_sha256": "bc3a45b9ab5eed20392e44747276c61c2db6faaf58d5a4118061b7762cc26a87"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/semantic_predicate_catalog/12",
+          "file_sha256": "0516b410625b325fe5bf7fccd156e4199c0aa194adb4a0bd4c4eb309ab13f5bd",
+          "value_canonical_sha256": "aebb2044b81c41d54e44cc5200df464271d0eb0d86ce22cdad5f542190fbaca7"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/semantic_predicate_catalog/15",
+          "file_sha256": "0516b410625b325fe5bf7fccd156e4199c0aa194adb4a0bd4c4eb309ab13f5bd",
+          "value_canonical_sha256": "ec5f73f80476631125941e787c2a80c3e46a14457902adc9518b9ffe51c0b070"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/semantic_predicate_catalog/16",
+          "file_sha256": "0516b410625b325fe5bf7fccd156e4199c0aa194adb4a0bd4c4eb309ab13f5bd",
+          "value_canonical_sha256": "84e436d6c100980518c629511dfeaccf605c0427bc31403b65f35e6d6490ed52"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/contracts/3/semantic_rule_set",
+          "file_sha256": "0516b410625b325fe5bf7fccd156e4199c0aa194adb4a0bd4c4eb309ab13f5bd",
+          "value_canonical_sha256": "b7111b08c5156bbd00a695436e6ae16444a52130e739317e73c2bd77c40a149a"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/cases/19/typed_semantic_function_io",
+          "file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
+          "value_canonical_sha256": "85f6ad9eca2cc92e03a70a09da10d55d5c4264fe490f41fff1a01429a0643ade"
+        }
+      ],
+      "oracle_freeze_file_sha256": "58af683e644e86b79cad67945e3b158d3606e7995c4e31103d62bb7a8c04dbd1",
+      "old_predicate_canonical_sha256": "aebb2044b81c41d54e44cc5200df464271d0eb0d86ce22cdad5f542190fbaca7",
+      "old_l5_file_sha256": "0516b410625b325fe5bf7fccd156e4199c0aa194adb4a0bd4c4eb309ab13f5bd",
+      "old_l8_file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
+      "meaning": "過去source/凍結期待の保存。現関数を旧kind/sequenceだけの意味で二重定義しない。"
+    },
+    "call_binding": "既存evaluate_contract_semantics(input:SemanticEvaluationInput,rules:SemanticRuleSet)の同一F03 branch。headは既存PayloadF03_steps_itemのFieldValue<string>を読む。関数名/引数/返却型/他predicate/他4rootは変更しない。",
+    "reads": [
+      "steps[*].kind",
+      "steps[*].sequence",
+      "steps[1].head",
+      "steps[2].from_head",
+      "steps[2].to_head",
+      "steps[3].head"
+    ],
+    "returns": "既存order Findingだけsource_statusを上記三値条件で計算する。他7Finding/candidate比較/return_to_owners/semantic_state/他返却fieldは既存契約どおり。source_field_paths=[steps]を保持し、原headを観測hashへ残す。",
+    "observation_hash_technical_clarification": {
+      "status": "明示されていなかったserializationの技術的明確化。独立freeze著述時に既存正常F03全8hashと同値を確認した。",
+      "source_observation": "source_field_paths宣言順に、raw pathの値をtop-level FieldValue観測へ包んだ配列を作る。key不在は{state:absent}、明示nullは{state:null}、空string/array/objectは{state:empty,value:原値}、他は{state:provided,value:原値}。nested値自体を再帰FieldValue化せず原logical値を保持。",
+      "encoding": "有限JSONのrecord keyはUnicode code point順、array順は保持、UTF8非ASCIIを原文字で出力しcomma/colonの余分空白なし。文字列escapeは既存正常hashと同じJSON encoding。SHA-256を小文字hexで保持。実transport bytesの資格とは区別する。",
+      "compatibility": "旧正常8hashを変更しない。head変異はsteps観測hashへ反映するが、hash相違だけで因果を判定しない。"
+    },
+    "oracle_location": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/f03_head_connection_oracles",
+    "legacy_relation": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+        "lines": [
+          20,
+          24
+        ],
+        "use": "read_only; 契約先行/意図欠陥Red→最小Green→同oracle Refactorを保持。旧runtimeを実行しない。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": [
+          70,
+          86
+        ],
+        "use": "read_only; UTW005対象HEAD再束縛とUTW021自己申告の失敗を照らす。要求の追加根拠にしない。"
+      }
+    ],
+    "preservation": "旧35case全値・他4義務の型/関数/期待・F03他7所見・他head条件・実作用境界を保持。F02観測test軸不足は別候補であり本差分に含めない。"
   }
 }
