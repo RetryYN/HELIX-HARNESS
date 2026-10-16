@@ -149,6 +149,18 @@
       "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
       "sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
       "role": "四判定/N/A member対応の現基本正本。既存source pinは歴史契約として保持する。"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+      "revision": "fed4701ea97c53ed5edfcfb54925e6aa6339db51",
+      "sha256": "ae413e997a19c66c76e776924f84ac7272b4dc345be7509f30673baf2f013efe",
+      "role": "原条件/義務対応の現基本候補。PR3256の独立review/merge結果に追随し、歴史pinは保持する。"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+      "revision": "fed4701ea97c53ed5edfcfb54925e6aa6339db51",
+      "sha256": "bfa307c8d2aed303085e34cb910714212705f3b5f7cf214f3eb3fa3f52b5de04",
+      "role": "原条件/義務対応の現基本候補。PR3256の独立review/merge結果に追随し、歴史pinは保持する。"
     }
   ],
   "authority_boundary": {
@@ -952,7 +964,8 @@
           "core_disposition_records": "Field<(F04RecordInputcoreoutputsItem)[]>",
           "unfinished_obligation_records": "Field<(F04RecordInputobligationoriginalstatesItem)[]>",
           "source_output_association": "Field<SourceOutputAssociationResult>",
-          "source_projection_join": "Field<F04SourceProjectionJoinResult>"
+          "source_projection_join": "Field<F04SourceProjectionJoinResult>",
+          "source_original_correspondence": "Field<F04OriginalCorrespondenceResult>"
         },
         "meaning": "内容は対応関数と原要求に従い比較する。F04の既存CORE判定・義務観測とsource-output endpoint比較を同じsectionに保持する。associationの内容対応はCORE/OSの意味一致、source資格、実接続を成立させない。 明示source-projection operation profileの場合だけsource_projection_joinを追加し、missing/valid emptyではmemberを省略する。"
       },
@@ -1208,7 +1221,7 @@
       },
       "SourceSectionValue": {
         "variant": "CaseInput child fields (typed scalar/Ref/Scope/nested domain record/array/null)",
-        "meaning": "input_types_by_contractのselector先の型へdecodeする。任意RawValueのまま意味比較しない。unknown/null/missingはFieldで保持。 F04 original_trace_sectionのcore_outputs selectorはF04RecordInputcoreoutputsItem、明示profile candidateはF04ProjectionCandidateItemへ解決し、reentryは両方でField<JsonValue>としてAbsent/null/非null JSONを原保持する。RawValue wire受理だけでこのdomain child decode成功を認定しない。"
+        "meaning": "input_types_by_contractのselector先の型へdecodeする。任意RawValueのまま意味比較しない。unknown/null/missingはFieldで保持。 F04 original_trace_sectionのcore_outputs selectorはF04RecordInputcoreoutputsItem、明示profile candidateはF04ProjectionCandidateItemへ解決し、reentryは両方でField<JsonValue>としてAbsent/null/非null JSONを原保持する。RawValue wire受理だけでこのdomain child decode成功を認定しない。 OS002.CoreOutputOriginalCorrespondenceは別kindのclosed raw4member→structured domain viewへ二段decodeする。旧association5memberを緩めない。"
       },
       "JsonValue": {
         "variant": "null | boolean | number | string | JsonValue[] | object<string,JsonValue>",
@@ -1377,9 +1390,10 @@
           "local_decode_states": "F04ProjectionSelectorDecodeState[]",
           "selection_input": "Field<JsonValue>（operation profile caller input。candidate/sourceから推定しない）",
           "candidate_raw_occurrences": "F04CandidateItemOccurrence[]（raw candidate.core_outputsがarrayのとき全要素を元index順に保持。無い/不正なら空）",
-          "validated_raw_occurrences": "F04CandidateItemOccurrence[]（ValidatedRecordTrace.input.candidate.core_outputsがarrayのとき全要素を元index順に保持。無い/不正なら空）"
+          "validated_raw_occurrences": "F04CandidateItemOccurrence[]（ValidatedRecordTrace.input.candidate.core_outputsがarrayのとき全要素を元index順に保持。無い/不正なら空）",
+          "original_decode_context": "Field<F04OriginalDecodeContext>"
         },
-        "meaning": "F04 profile専用selector decoderの結果。candidate_input_stateはraw candidate全体とValidatedRecordTrace.input.candidate全体の比較状態。両値がcorrespondingの場合だけ両typed item配列をdecodeする。conflict/unknownではtyped配列をField.missingのまま保ち、各raw側はraw_candidate/validated_candidate_rawから独立保持する。選択Refと完全一致するraw output_ref occurrenceのraw item memberは、typed化せず各側別に結果へ転写できる。0件はmissing、複数は元順/重複を保持した配列であり、片側を選択・補完しない。OS/CORE recordはvalidatorが返すqualified_recordsだけから選び、candidateや未資格payloadで資格記録を補完しない。 raw candidateとValidatedRecordTrace.input.candidateのcore_outputs occurrenceは、別のcandidate_raw_occurrences/validated_raw_occurrencesへ元indexとraw_item全体を保持する。このraw preservationは既存typed candidate_input/validated_input_candidate Fieldの意味を変えない。"
+        "meaning": "F04 profile専用selector decoderの結果。candidate_input_stateはraw candidate全体とValidatedRecordTrace.input.candidate全体の比較状態。両値がcorrespondingの場合だけ両typed item配列をdecodeする。conflict/unknownではtyped配列をField.missingのまま保ち、各raw側はraw_candidate/validated_candidate_rawから独立保持する。選択Refと完全一致するraw output_ref occurrenceのraw item memberは、typed化せず各側別に結果へ転写できる。0件はmissing、複数は元順/重複を保持した配列であり、片側を選択・補完しない。OS/CORE recordはvalidatorが返すqualified_recordsだけから選び、candidateや未資格payloadで資格記録を補完しない。 raw candidateとValidatedRecordTrace.input.candidateのcore_outputs occurrenceは、別のcandidate_raw_occurrences/validated_raw_occurrencesへ元indexとraw_item全体を保持する。このraw preservationは既存typed candidate_input/validated_input_candidate Fieldの意味を変えない。 original_decode_contextはraw runnerが同walkで取得したoriginからのみ供給。旧direct typed inputの省略はlegacy境界であり、新comparerの未実装fallbackでない。"
       },
       "F04OSCoreOutputAssociationPayload": {
         "fields": {
@@ -1413,7 +1427,7 @@
           "record_index": "Natural",
           "record": "OwnerRecord"
         },
-        "meaning": "validate_record_trace_inputが資格済みとして返した原OwnerRecordのsource内occurrence。record_index/source_ref/OwnerRecord payloadを保ち、同じRefの重複occurrenceを統合しない。"
+        "meaning": "旧join用内部projection。source_ref/record_index/recordは同walk QualifiedRecordOriginOccurrenceから写す。OwnerRecord[]の値/Ref一致からoriginを再検索しない。旧direct typed unitの所在claimはそのunit入力に限り、実validator origin取得とは称さない。"
       },
       "F04ProjectionSelectorDecodeState": {
         "fields": {
@@ -1459,6 +1473,305 @@
           "raw_item": "JsonValue"
         },
         "meaning": "一つのraw core_outputs occurrenceを元indexと原JSON item全体で保持する。raw配列内のitem順・重複・member presence/nullは変換せず保持し、output_ref/source_projectionの値を根拠に別occurrenceへ統合しない。"
+      },
+      "F04OriginalQualifiedOwnerRecordOccurrence": {
+        "fields": {
+          "source_occurrence_index": "Natural",
+          "source_ref": "Ref",
+          "record_index": "Natural",
+          "record": "OwnerRecord"
+        },
+        "meaning": "既存source qualificationが当該source occurrenceを処理する時に所在を保持する。同値recordの先頭をqualified_recordsから再検索しない。"
+      },
+      "F04OriginalSourceRecordLocator": {
+        "fields": {
+          "source_occurrence_index": "Natural",
+          "source_ref": "Ref",
+          "record_index": "Natural",
+          "subject_ref": "Ref",
+          "payload_pointer": "RFC6901"
+        },
+        "meaning": "原位置と完全Refを両方保持する。位置をidentityとせず、同値の先頭source/recordへ置換しない。source内record_indexとqualified_records flat indexを混同しない。"
+      },
+      "F04OriginalConditionCorrespondence": {
+        "fields": {
+          "expected_condition_pairs": "CORE009PresenceJsonValue",
+          "native_output": "F04OriginalSourceRecordLocator"
+        },
+        "meaning": "ordered条件列全体→元ownerが提供したnative原観測への対応。列からbooleanを演算しない。native item.output_refをpayload.output_refと完全照合し、item.original_conditionをField<boolean|null>として読む。単一pairの場合も同じ。"
+      },
+      "F04OriginalObligationCorrespondence": {
+        "fields": {
+          "core_occurrence_index": "Natural",
+          "expected_core_obligation_ref": "CORE009Ref",
+          "native_output": "F04OriginalSourceRecordLocator",
+          "native_state": "F04OriginalSourceRecordLocator",
+          "expected_os_obligation_ref": "Ref"
+        },
+        "meaning": "原CORE occurrenceとOS原stateを既存原operationが明示的に結ぶedge。原index/Ref6、native output_ref、native state Ref4をそれぞれ照合する。相互Ref castや末尾/name規約で対応を作らない。"
+      },
+      "F04OriginalCorrespondencePayload": {
+        "fields": {
+          "output_ref": "Field<Ref>",
+          "core_row_locator": "Field<F04OriginalCORELocator>",
+          "condition": "Field<F04OriginalConditionCorrespondence>",
+          "obligations": "Field<F04OriginalObligationCorrespondence[]>"
+        },
+        "meaning": "fn14のstructured domain view。新raw carrierのqualified headerがexact一致し、この閉型decodeが成功した場合だけnative locatorを意味比較へ用いる。CORE locatorは既存joinのtrusted locatorとの比較対象であり、source選択の代替にしない。"
+      },
+      "F04OriginalCorrespondenceRawPayload": {
+        "fields": {
+          "output_ref": "Field<JsonValue>",
+          "core_row_locator": "Field<JsonValue>",
+          "condition": "Field<JsonValue>",
+          "obligations": "Field<JsonValue>"
+        },
+        "meaning": "新kind専用のwire carrier。4member以外を許可しない。既存OS002.CoreOutputAssociationの5memberとは別型。全structured domain viewの成功、native locator採用、資格成立を意味しない。"
+      },
+      "RFC6901": {
+        "json_kind": "string",
+        "meaning": "空文字列は指定root自身。非空は/で始まるJSON Pointerで、token内escapeは~0/~1のみ。URI fragmentではない。構文妥当性と、そのrootで対象を解決できるかは別に保持する。"
+      },
+      "F04OriginalCorrespondenceResult": {
+        "fields": {
+          "records": "F04OriginalCorrespondenceRecord[]",
+          "source_issues": "InputIssue[]"
+        },
+        "meaning": "既存明示F04 profileの妥当なnonempty選択で原対応を追跡する場合だけ追加する。"
+      },
+      "F04OriginalCorrespondenceRecord": {
+        "fields": {
+          "selected_output_ref": "Ref",
+          "correspondence_resolution_state": "enum<not_compared|not_requested|unique|missing|ambiguous|unknown|conflict>",
+          "correspondence_record_candidates": "F04OriginalQualifiedOwnerRecordOccurrence[]",
+          "core_row_locator": "Field<F04OriginalCORELocator>",
+          "raw_condition_pairs": "Field<CORE009PresenceJsonValue>",
+          "raw_obligation_refs": "Field<CORE009PresenceJsonValue>",
+          "condition_relations": "F04OriginalConditionObservation[]",
+          "obligation_occurrences": "F04OriginalObligationOccurrenceObservation[]",
+          "source_refs": "Ref[]",
+          "condition_source_state": "enum<not_compared|empty|supplied|missing|unknown>",
+          "obligation_source_state": "enum<not_compared|empty|supplied|missing|unknown>",
+          "condition_activation_state": "enum<not_requested|requested|unresolved|not_compared>",
+          "condition_correspondence_state": "enum<not_requested|not_compared|corresponding|missing|unknown|conflict>",
+          "profile_decode_states": "F04OriginalSelectorDecodeState[]"
+        },
+        "meaning": "新relationship/native sourceの関連原材料を保存する。既存joinや意味比較not_establishedを置換しない。"
+      },
+      "F04OriginalConditionObservation": {
+        "fields": {
+          "relationship_occurrence": "F04OriginalQualifiedOwnerRecordOccurrence",
+          "native_output_locator": "F04OriginalSourceRecordLocator",
+          "native_raw_item": "Field<JsonValue>",
+          "native_original_condition": "Field<boolean|null>",
+          "relation_content_state": "enum<not_compared|corresponding|missing|unknown|conflict>",
+          "original_condition_state": "enum<not_compared|corresponding|missing|unknown|conflict>"
+        },
+        "meaning": "CORE列mirror/原所在の対応とboolean原判断の既知性は別state。null原値は保存しunknown。candidate比較は既存fn17返却を維持。"
+      },
+      "F04OriginalObligationOccurrenceObservation": {
+        "fields": {
+          "core_occurrence_index": "Natural",
+          "core_raw_ref": "JsonValue",
+          "core_ref_decode_state": "enum<corresponding|unknown>",
+          "assignment_presence_state": "enum<missing|supplied|unknown>",
+          "assignments": "F04OriginalObligationEdgeObservation[]"
+        },
+        "meaning": "CORE raw列の実出現を全件保存。Ref6として解釈不能でも原JSONを失わない。対応数をstate又は完了へ集約しない。"
+      },
+      "F04OriginalObligationEdgeObservation": {
+        "fields": {
+          "relationship_occurrence": "F04OriginalQualifiedOwnerRecordOccurrence",
+          "edge_index": "Natural",
+          "native_output_locator": "F04OriginalSourceRecordLocator",
+          "native_state_locator": "F04OriginalSourceRecordLocator",
+          "native_raw_item": "Field<JsonValue>",
+          "native_obligation_ref": "Field<Ref>",
+          "native_original_state": "Field<string>",
+          "core_ref_state": "enum<not_compared|corresponding|missing|unknown|conflict>",
+          "native_output_state": "enum<not_compared|corresponding|missing|unknown|conflict>",
+          "native_state_ref_state": "enum<not_compared|corresponding|missing|unknown|conflict>",
+          "source_issues": "InputIssue[]"
+        },
+        "meaning": "各独立比較結果を保持する。not_started/failed/not_evaluatedはnative原状態の値であり、内容対応correspondingからcompletedを生成しない。"
+      },
+      "F04OriginalSelectorDecodeState": {
+        "fields": {
+          "occurrence": "F04OriginalQualifiedOwnerRecordOccurrence",
+          "selector_state": "enum<corresponding|missing|unknown|conflict>",
+          "raw_payload": "JsonValue"
+        },
+        "meaning": "新kindのprofile追加decode状態。元InputIssue/source分類を変更せずraw payloadを保持する。"
+      },
+      "CORE009Ref": {
+        "external_type": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "d6a3c2e1bba751d4254fd039e86599dbbdbdc235",
+          "file_sha256": "bd031871e97f05b871a04a90bb51658a6875128aa467160ca432c8a4702985c8",
+          "pointer": "/type_contract/types/Ref"
+        },
+        "meaning": "CORE原Ref6。OS Ref4とは別型。省略/null/raw scopeを外部型のまま保持する。"
+      },
+      "CORE009PresenceJsonValue": {
+        "external_type": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "d6a3c2e1bba751d4254fd039e86599dbbdbdc235",
+          "file_sha256": "bd031871e97f05b871a04a90bb51658a6875128aa467160ca432c8a4702985c8",
+          "pointer": "/type_contract/types/Presence<JsonValue>"
+        },
+        "meaning": "absentとpresent(null)を区別する外部Presence。Fieldのmissing/nullとは別の層。"
+      },
+      "CORE009SourceResultProjectionRow": {
+        "external_type": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "d6a3c2e1bba751d4254fd039e86599dbbdbdc235",
+          "file_sha256": "bd031871e97f05b871a04a90bb51658a6875128aa467160ca432c8a4702985c8",
+          "pointer": "/type_contract/types/SourceResultProjectionRow"
+        }
+      },
+      "Natural": {
+        "json_kind": "integer",
+        "minimum": 0,
+        "meaning": "原配列index用。boolをintegerとして受け付けない。"
+      },
+      "QualifiedRecordOriginOccurrence": {
+        "fields": {
+          "source_occurrence_index": "Natural",
+          "source_ref": "Ref",
+          "record_index": "Natural",
+          "qualified_record_index": "Natural",
+          "record": "OwnerRecord"
+        },
+        "meaning": "同じ資格/衝突walkの残存record。flat indexと原indexは別。全値同じでも別原出現は保持する。"
+      },
+      "SourceWalkOrigin": {
+        "fields": {
+          "source_occurrence_index": "Natural",
+          "source_ref": "Ref",
+          "qualified_record_indices": "Natural[]",
+          "input_issue_indices": "Natural[]",
+          "source_issue_indices": "Natural[]",
+          "classification_flags": "enum<qualified|unqualified|conflicting|unresolved>[]"
+        },
+        "meaning": "資格分類は排他化しない。issueは元配列indexで保持し、同Ref別sourceへ移さない。"
+      },
+      "F04ValidatedOriginSupport": {
+        "fields": {
+          "qualified_occurrences": "QualifiedRecordOriginOccurrence[]",
+          "source_walks": "SourceWalkOrigin[]"
+        },
+        "meaning": "同一private validator invocationから得た内部値。外部wire/caller claimではない。"
+      },
+      "F04ValidationBundle": {
+        "fields": {
+          "validated_trace": "ValidatedRecordTrace",
+          "origin_support": "F04ValidatedOriginSupport"
+        },
+        "meaning": "private validator coreの全返却。input=null/資格0件もorigin_supportを必須供給する。public fn0はvalidated_traceだけを返すため旧全返却を保持する。"
+      },
+      "F04ProfileDecodeRequest": {
+        "fields": {
+          "validated_trace": "ValidatedRecordTrace",
+          "origin_support": "Field<F04ValidatedOriginSupport>",
+          "legacy_selector_inputs": "Field<F04LegacySourceSelectorInputs>"
+        },
+        "meaning": "raw runnerは同bundleからsuppliedで構築。旧direct decoder unitだけmissingを明示でき、新original比較へ進まない。",
+        "invariants": [
+          "raw constructorはorigin_support supplied、legacy_selector_inputs missing。同bundleだけから構成する。",
+          "旧direct constructorはorigin_support missing、legacy_selector_inputs supplied。後者は旧unitの選択source比較だけに用い新original contextを生成しない。",
+          "両方supplied又は両方missingはconstructor対象外。外部operation wireにこの型を追加しない。"
+        ]
+      },
+      "F04LegacySourceSelectorInputs": {
+        "fields": {
+          "qualified_os_associations": "F04QualifiedOwnerRecordOccurrence[]",
+          "qualified_core_projection_sources": "F04QualifiedOwnerRecordOccurrence[]",
+          "local_decode_states": "F04ProjectionSelectorDecodeState[]"
+        },
+        "meaning": "旧direct fn14 unitが明示供給する旧selector inputsだけ。実資格又はsource occurrence取得の証拠でなく、raw runnerでは受けない。"
+      },
+      "F04OriginalCORELocator": {
+        "fields": {
+          "projection_snapshot_ref": "Ref",
+          "row_pointer": "RFC6901"
+        },
+        "meaning": "既存joinのtrusted locatorとの比較対象。新relationshipからCORE取得先を作らない。"
+      },
+      "F04OriginalDecodedRelationship": {
+        "fields": {
+          "origin": "QualifiedRecordOriginOccurrence",
+          "raw_payload": "F04OriginalCorrespondenceRawPayload",
+          "selector_state": "enum<corresponding|missing|unknown|conflict>",
+          "domain_payload": "Field<F04OriginalCorrespondencePayload>"
+        },
+        "meaning": "qualified raw header候補はdomain失敗でも保持。closed raw4member失敗によるfn0 dropはここで復元しない。"
+      },
+      "F04OriginalDecodeContext": {
+        "fields": {
+          "origin_support": "F04ValidatedOriginSupport",
+          "relationships": "F04OriginalDecodedRelationship[]"
+        },
+        "meaning": "origin取得済みconstructorだけが生成する。空配列も取得済みを意味し、未取得とは区別する。"
+      },
+      "F04ResolvedSelectedSource": {
+        "fields": {
+          "selected_occurrence_index": "Natural",
+          "selected_output_ref": "Ref",
+          "qualified_os_association_origins": "QualifiedRecordOriginOccurrence[]",
+          "qualified_os_association_origin": "Field<QualifiedRecordOriginOccurrence>",
+          "core_origin": "Field<QualifiedRecordOriginOccurrence>",
+          "trusted_core_row_locator": "Field<{projection_snapshot_ref:Ref,row_pointer:RFC6901}>",
+          "resolved_core_row": "Field<CORE009SourceResultProjectionRow>",
+          "reached_source_indices": "Natural[]"
+        },
+        "meaning": "private既存join resolverが原row取得の事実を保持。candidate pair/carrier状態の成功は取得条件でない。"
+      },
+      "F04OriginalComparisonContext": {
+        "fields": {
+          "decoded": "F04OriginalDecodeContext",
+          "selected_sources": "F04ResolvedSelectedSource[]"
+        },
+        "meaning": "取得済みoriginが非null必須。legacy typed direct unitから暗黙生成せず、rawの同一trace/selectionに束縛する。"
+      },
+      "F04ProjectionResolution": {
+        "fields": {
+          "join": "Field<F04SourceProjectionJoinResult>",
+          "original_context": "Field<F04OriginalComparisonContext>"
+        },
+        "meaning": "旧public fn15はjoinだけを返す。raw fn18は同resolverの両値を一回取得する。"
+      },
+      "F04NativeLookupResult": {
+        "fields": {
+          "binding_state": "enum<corresponding|missing|unknown|conflict>",
+          "raw_item": "Field<JsonValue>",
+          "origin": "Field<QualifiedRecordOriginOccurrence>",
+          "reached_source_indices": "Natural[]",
+          "input_issue_indices": "Natural[]",
+          "source_issue_indices": "Natural[]",
+          "diagnostic_location": "string",
+          "backflow_owner": "string",
+          "failure_cause": "enum<none|source_absent|source_unqualified|source_conflict|source_unresolved|source_ref|record_absent|subject_ref|selector|pointer|raw_shape>"
+        },
+        "meaning": "原所在の資格/Ref/selector/pointerを解決する。output_ref/obligation Ref/scalarは呼出側の別比較。元issue原因で新semantic findingを重複しない。"
+      },
+      "F04OriginalFindingDraft": {
+        "fields": {
+          "code": "string",
+          "contract_ref": "string",
+          "axis": "string",
+          "state": "string",
+          "target_path": "string",
+          "source_refs": "Ref[]",
+          "backflow_owner": "string"
+        },
+        "meaning": "TraceFindingの既存7field。新original findingだけに最終F04保存観測を後付けする内部値。"
+      },
+      "F04OriginalComparisonOutput": {
+        "fields": {
+          "observation_component": "Field<F04OriginalCorrespondenceResult>",
+          "diagnostic_drafts": "F04OriginalFindingDraft[]"
+        },
+        "meaning": "全componentを先に構成してから新findingへ同一観測を束縛する。"
       }
     },
     "input_types_by_contract": {
@@ -1531,11 +1844,7 @@
       ],
       "effect": "none",
       "algorithm": [
-        "RawValueのroot/candidate構造を先にdecode。profile contextがない場合は既存closed decoderを使う。明示F04 profileではcandidate raw object全体を保存し、declared_member_projectionの宣言3memberを別値へ投影してF04SourceProjectionRecordInputへclosed decodeする。非対象memberのunrelated_raw等を宣言型へ入れず、元RecordTraceInput.candidateを投影値で置換しない。root/candidate構造が不正ならinput_issuesのinvalid_shape、input=null、qualified_records/各source分類ref=[]。",
-        "decode可能時はSourceEnvelopeのbytes/parse/body/独立資格root/owner/subject/ref/hashを個別照合。未資格sourceはsource_issues、unqualified_source_refs/unresolved_source_refsと依存sectionへ結ぶ。",
-        "有資格原record同士が同subject/sectionで相反する場合は双方のsourceをconflicting_source_refs/unresolved_source_refsへ記録し、双方をqualified_recordsから外す。原payloadを捨てずissue evidenceに保持し、片方を正しい元として採用しない。",
-        "残る有資格sourceだけqualified_source_refs/qualified_recordsへ保持する。CORE不足で無関係なOS/Qの記録を失効させない。",
-        "RecordTraceInput.context.selected_sectionsにF04があり、かつ内部F04ProfileDecodeContext.profileがHELIXOS-F04-qualified-source-projection-joinの場合は、candidate raw全体と別に宣言3memberの投影値をF04SourceProjectionRecordInputへdecodeする。source_output_associationと各item.source_projectionの欠落/null/その他JSON値をFieldとして無損失に保持する。profile contextなしは既存F04RecordInput selector/closed decodeを維持し、source_projectionを新たに許可しない。profile contextは候補memberを資格sourceへ転写しない。"
+        "private validate_record_trace_with_origins(raw, optional_context)を一回呼び、そのF04ValidationBundle.validated_traceだけをそのまま返す。公開返却member/順/Field/issue/Ref配列は既存ValidatedRecordTrace全体と同じ。origin_supportをpublic返却へ追加しない。"
       ],
       "unit_case_refs": [
         "HELIXOS-L8-002-ADD-01",
@@ -1564,7 +1873,7 @@
       "oracle_ref": "HELIXOS-L8-002-NORMAL-validate_record_trace_input",
       "f04_candidate_decode_binding": {
         "default": "profile context省略時は従来のF04RecordInput closed decodeを維持する。",
-        "explicit_profile": "run_f04_source_projection_operationだけが閉じたprofile literalを持つF04ProfileDecodeContextを作り、validate_record_trace_input(raw RecordTraceInput, context)の第2引数へ渡す。contextはwireから受けず、qualified result/authorityの主張でもない。",
+        "explicit_profile": "public fn0の第2引数も従来どおり受ける。raw runnerは同じprivate validator coreを一度呼び、public projectionと同値のvalidated_trace及び同walk originを得る。wireからcontext/originを受けない。",
         "wire_candidate_pointer": "/candidate",
         "logical_variant": "profileなしは選択sectionに対応する既存CaseInput variant。明示F04 profileではF04SourceProjectionRecordInputを選ぶ。",
         "member_projection": "ValidatedRecordTrace.input.candidateには元raw CaseInput object全体を型/presence/非対象member込みで保持し、後続whole比較に使う。declared F04 childは別のlogical viewであり、このraw保存値を上書きしない。",
@@ -1577,6 +1886,17 @@
           "logical_selected_child": "wire_codec_contract.f04_source_projection_profile_dispatch.declared_member_projectionに従い、core_outputs・obligation_original_states・source_output_associationの存在する値だけをF04SourceProjectionRecordInputへ別投影",
           "item_mapping": "core_outputs occurrenceをF04ProjectionCandidateItemへclosed decode。output_ref等の既存F04 fieldsとsource_projection raw Fieldを分けて保持。外側unrelated_rawをchildに含めない。"
         }
+      },
+      "private_core_call": {
+        "callee": "HELIXOS-L5-002-validate_record_trace_with_origins",
+        "arity": 2,
+        "arguments": [
+          "raw",
+          "optional_context"
+        ],
+        "return_type": "F04ValidationBundle",
+        "guard": "全branch（省略第2引数は旧default）",
+        "return_use": "bundle.validated_trace全値のみをpublic return。"
       }
     },
     {
@@ -1863,7 +2183,7 @@
     {
       "id": "HELIXOS-L5-002-decode_f04_source_projection_profile",
       "symbol": "decode_f04_source_projection_profile",
-      "input": "F04SourceProjectionOperationInput + ValidatedRecordTrace + candidate_pair_precheck: enum<corresponding|conflict|unknown>（validator前のraw全体比較結果）",
+      "input": "F04SourceProjectionOperationInput + F04ProfileDecodeRequest + candidate_pair_precheck:enum<corresponding|conflict|unknown>（3引数）",
       "output": "F04ProjectionTypedInputs（candidate_input_stateと両raw candidateを保持し、状態に応じて選択item配列を持つ）",
       "contract_refs": [
         "HELIXOS-L5-002-F04"
@@ -1871,12 +2191,14 @@
       "effect": "none",
       "algorithm": [
         "operation profile literalと閉じたoperation envelopeを照合する。profileの選択をcandidate/sourceから推定しない。",
-        "呼出し元がoperation.candidate全体とrecord_trace_input.candidate全体をvalidator前に比較し、そのcandidate_pair_precheckと明示profile contextでvalidate_record_trace_inputへ元RecordTraceInputを渡したValidatedRecordTraceを受け取る。入力上のqualified_records claimを受け取らず、資格・source分類を再構成しない。",
+        "request.validated_traceは同一raw RecordTraceInputのpublic validator projection。raw runnerではorigin_supportを同private validator bundleからsuppliedにする。旧direct decoder unitだけorigin未取得を明示できる。その入力から資格を再認定せず、新original comparerへ流さない。",
         "candidate_pair_precheckは選択item decodeの可否だけに使い、最終状態の証拠にはしない。ここでValidatedRecordTrace.input.candidate Fieldの存在/shapeを確認し、operation.candidate全体とvalidator後のcandidate全体をJSON値比較する。object key順は無視し、配列順/重複・member presence/nullは保持する。後比較のcorresponding/conflict/unknownが最終candidate_input_stateとなり、validated input/candidate Fieldがmissing/invalidならunknownとする。",
         "candidate_pair_precheckと検証後比較がともにcorrespondingの場合だけ、宣言3memberを投影して両core_outputsをF04ProjectionCandidateItemへclosed decodeする。conflict/unknownでは両typed arraysをField.missingにして片側itemをtyped選択しない。 raw itemの局所転写は後続compare_f04_source_projection_joinで独立に行い、raw全体も両保存元へ保持する。",
-        "ValidatedRecordTrace.qualified_recordsだけを読み、section_key + record_kind + payload selectorの固定bindingでqualified OS002.CoreOutputAssociationとCORE009.SourceResultProjectionRow occurrenceをprofile型へdecodeする。元OwnerRecord/source classification/issue配列は変更しない。",
+        "request.origin_supportがsuppliedならそのqualified_occurrencesを原順で走査し、OS/CORE selectorを追加decodeする。旧join用occurrenceにはsource_ref/record_index/recordだけを写す。flat qualified_records値から原indexを再検索しない。legacy direct requestでorigin missingなら、request.legacy_selector_inputsの明示された旧selector配列/局所decodeだけを使い、新original contextを作らない。raw runnerはlegacy constructorを使わない。",
         "operation.source_projection_selectionをField<JsonValue>としてraw保存する。nonempty/empty/invalid分岐はjoin comparerに渡し、selector入力をcandidate/sourceから導出しない。",
-        "raw candidateとValidatedRecordTrace.input.candidateの各core_outputsがarrayの場合、selector評価用typed decodeと独立して、全raw itemを側別F04CandidateItemOccurrence(item_index, raw_item)へ元index順・重複保持で写しF04ProjectionTypedInputs.candidate_raw_occurrences/validated_raw_occurrencesに渡す。arrayでない側からoccurrenceを合成しない。元ValidatedRecordTrace.qualified_records、source classification、issue配列は変更しない。"
+        "raw candidateとValidatedRecordTrace.input.candidateの各core_outputsがarrayの場合、selector評価用typed decodeと独立して、全raw itemを側別F04CandidateItemOccurrence(item_index, raw_item)へ元index順・重複保持で写しF04ProjectionTypedInputs.candidate_raw_occurrences/validated_raw_occurrencesに渡す。arrayでない側からoccurrenceを合成しない。元ValidatedRecordTrace.qualified_records、source classification、issue配列は変更しない。",
+        "origin suppliedの場合、new kindの全qualified raw occurrenceを列挙しraw4member payloadを保持。output_refとselected Refのexact header選択に先立ち、structured domain viewの成功/失敗を別Fieldでdecodeする。domain失敗でもqualified headerを候補列から落とさない。fn0 raw閉型dropは除外済みであり復元しない。",
+        "F04OriginalDecodeContextは同origin_supportと全decoded relationship列から構成しsuppliedへ。qualified0件でも取得済み空列を供給する。candidate pair conflict/unknownはこのsource context取得を抑止しない。legacy direct missingだけoriginal_decode_contextをmissingにする。"
       ],
       "source_bindings": [
         {
@@ -1888,6 +2210,11 @@
           "owner_contract_ref": "HARNESS-L5-009-F03",
           "selector": "CORE009.source_result_reference_projection / CORE009.SourceResultProjectionRow / payload.rows",
           "type_ref": "F04COREProjectionContainerPayload"
+        },
+        {
+          "owner_contract_ref": "HELIXOS-L5-002-F04",
+          "selector": "OS002.project_template_trace / OS002.CoreOutputOriginalCorrespondence / payload",
+          "type_ref": "F04OriginalCorrespondenceRawPayload → F04OriginalCorrespondencePayload"
         }
       ],
       "unit_case_refs": [
@@ -1925,11 +2252,24 @@
         "HELIXOS-L8-002-F04-SOURCE-MEMBER-06",
         "HELIXOS-L8-002-F04-SOURCE-MEMBER-07",
         "HELIXOS-L8-002-F04-SOURCE-MEMBER-08",
-        "HELIXOS-L8-002-F04-SOURCE-MEMBER-09"
+        "HELIXOS-L8-002-F04-SOURCE-MEMBER-09",
+        "HELIXOS-L8-002-F04-ORIGINAL-01",
+        "HELIXOS-L8-002-F04-ORIGINAL-02",
+        "HELIXOS-L8-002-F04-ORIGINAL-03",
+        "HELIXOS-L8-002-F04-ORIGINAL-04",
+        "HELIXOS-L8-002-F04-ORIGINAL-05",
+        "HELIXOS-L8-002-F04-ORIGINAL-06",
+        "HELIXOS-L8-002-F04-ORIGINAL-07",
+        "HELIXOS-L8-002-F04-ORIGINAL-08",
+        "HELIXOS-L8-002-F04-ORIGINAL-09",
+        "HELIXOS-L8-002-F04-ORIGINAL-10",
+        "HELIXOS-L8-002-F04-ORIGINAL-11",
+        "HELIXOS-L8-002-F04-ORIGINAL-12"
       ],
       "oracle_ref": "HELIXOS-L8-002-NORMAL-run_f04_source_projection_operation",
       "oracle_binding": "既存18ケースにL9統合occurrence 7ケースを加えた25件のvalidator到達可能integration入力で関数経路を照合する。direct PAIR-UNKNOWNとdispatch境界例はそれぞれ別のunit boundary oracleであり、この25件の件数へ混ぜない。",
-      "typed_decode_sequence_ref": "/wire_codec_contract/f04_source_projection_profile_dispatch/typed_decode_sequence"
+      "typed_decode_sequence_ref": "/wire_codec_contract/f04_source_projection_profile_dispatch/typed_decode_sequence",
+      "original_oracle_scope": "L8 f04_source_original_correspondence_verification。raw経路のcomponent/suffix/保存観測又は旧9全Analysisを比較。内部context/lookupの全返却wholeを固定したという主張ではない。"
     },
     {
       "id": "HELIXOS-L5-002-compare_f04_source_projection_join",
@@ -1941,15 +2281,7 @@
       ],
       "effect": "none",
       "algorithm": [
-        "F04ProjectionTypedInputs.selection_inputがmissingまたは閉じたF04SourceProjectionSelectionでoutput_refs=[]ならField.missingを返し、empty object/sentinelを生成しない。invalidはraw selectionを保持する局所unknown result。",
-        "candidate_input_stateはcandidate_state_priorityの最優先条件。conflict/unknownならcandidate側二状態はunknown。corresponding時も、選択Refに一致する候補occurrenceが各側で複数ならcandidate側二状態をunknownとし、association missing/ambiguous等のnot_comparedで上書きしない。candidate_raw_occurrences/validated_raw_occurrencesは別側で走査し、selected_output_refとraw_itemがobjectでitem.output_refが存在するときselected_output_refとのJSON値同値（object key順無視、array順保持）だけで各occurrenceを選ぶ。0件ならその側のsingular Fieldとoccurrence memberを省略、1件ならL4定義のsingular raw Fieldだけを原値/presenceで返す（元indexはraw traversalの内部用で、1件の場合wireへ加えない）、複数ならsingular Fieldを省略し全{item_index,raw_item}を元index順/重複のまま該当側のL4 optional memberへ返す。 複数件時のraw occurrence wire memberはcandidate側がcandidate_item_occurrences、trace側がvalidated_input_item_occurrencesである。両memberはL4の閉じたRecordObservationに定義されたoptional memberだけを用いる。",
-        "nonempty selectionはcaller順・重複を保ち各Ref出現に一record。typed item valueはpair correspondingで単一itemのtyped decodeがある場合だけ比較に使う。conflict/unknown又はmulti-occurrenceでは型付き単一carrierを選ばず、raw occurrence表現をL4規則どおり返す。item.output_refはselected_output_refとの完全JSON値等値で照合する。object key順だけ無視し、array順・重複・presence/nullは保持する。 candidate側とValidatedRecordTrace.input.candidate側のraw occurrence配列は独立に選択・保持し、二側をzip/mergeせず件数/順序を相互に合わせない。",
-        "qualified OS associationはValidatedRecordTrace.qualified_records内のOS section/kindに一致するrecordを列挙し、payload.output_refとselected_output_refの完全JSON値一致だけで関連付ける。既知のqualified_records列挙で完全一致0件ならassociation_state=missing。payload.output_refのnull/欠落/wrong-kind/別Refは不一致として全て親traceへ保持するが、候補association/qualified_os_record_candidates/source_refsへは採用せずunknownへ分類しない。複数一致は全候補を元順に保持してambiguous。trace列挙又は資格/decode対応自体を確定できない既存unknown根拠がある場合だけunknownを保持する。",
-        "一意qualified OS associationからだけCORE snapshot Ref/pointerを得る。OS carrier/pointer/CORE qualification欠落時は対応L4 ruleへ局所分類し、candidateや未資格payloadからCORE locatorを補完しない。",
-        "candidate CORE carrierとqualified OS carrierを同じqualified CORE rowへ別々に比較する。carrier_core_row_stateはcandidate_core_row_stateとqualified_os_core_row_stateだけをL4順位で集約する。candidate pair conflict/unknownとcandidate occurrence multipleの優先unknownはcandidate側状態に残し、association stateで上書きしない。",
-        "context、project_scope、obligation_original_statesはqualified OS OwnerRecordからraw値として保持し、CORE product scope/obligation refsに写像しない。",
-        "source refs/classification arrays/source issuesは一意・曖昧なqualified OS associationから明示snapshotへ辿る関連source occurrence集合で元traceをfilterし、元順と重複を保持する。0 qualified OS associationではすべて空。無関係Qは親traceのみに残す。",
-        "finding_refs=[]、effects=none。結果を既存source_output_association、CORE disposition、unfinished obligation、findings、effect_requestsへ代替/逆流させない。"
+        "private resolve_f04_projection_sources(trace,typed_inputs)を呼び、そのjoinだけをそのまま返す。新original comparerは呼ばない。旧join全値/順/Field/finding_refs=[]/effects=noneを保持する。"
       ],
       "source_l4_ref": {
         "revision": "30d0df41916694206c05b269080a1795b96dc2d0",
@@ -2016,7 +2348,19 @@
           "unique": "上記association_state_rules/uniqueを適用し、欠落/null/wrong-kind、未資格/相反CORE source、pointer unresolved、解決済みrowの各状態を同じL4規則の出力へ写す。candidate側はcandidate_state_priorityに従い、OS側を上書きしない。"
         }
       },
-      "oracle_binding": "既存18ケースにL9統合occurrence 7ケースを加えた25件のvalidator到達可能integration入力で関数経路を照合する。direct PAIR-UNKNOWNとdispatch境界例はそれぞれ別のunit boundary oracleであり、この25件の件数へ混ぜない。"
+      "oracle_binding": "既存18ケースにL9統合occurrence 7ケースを加えた25件のvalidator到達可能integration入力で関数経路を照合する。direct PAIR-UNKNOWNとdispatch境界例はそれぞれ別のunit boundary oracleであり、この25件の件数へ混ぜない。",
+      "shared_resolver_ref": "/functions/20",
+      "private_resolver_call": {
+        "callee": "HELIXOS-L5-002-resolve_f04_projection_sources",
+        "arity": 2,
+        "arguments": [
+          "same_validated_trace",
+          "same_typed_inputs"
+        ],
+        "return_type": "F04ProjectionResolution",
+        "guard": "全branch",
+        "return_use": "resolution.joinだけをpublic return。"
+      }
     },
     {
       "id": "HELIXOS-L5-002-run_f04_source_projection_operation",
@@ -2029,12 +2373,13 @@
       "effect": "none",
       "algorithm": [
         "F04SourceProjectionOperationInputのprofile/envelopeだけをclosed decodeする。operation.candidate全体とrecord_trace_input.candidate全体を、object key順を無視し配列順/重複/member presence/nullを保つraw JSON比較へ渡し、内部candidate_pair_precheckをcorresponding/conflict/unknownとする。この比較はdecoder選択用で、後段の検証後比較を満たしたことにしない。",
-        "closed profile literalとraw RecordTraceInputからF04ProfileDecodeContextを内部生成し、validate_record_trace_input(record_trace_input, context)を呼んでValidatedRecordTraceを得る。contextをcallerから受けたり、qualified_recordsを入力から作らない。validatorはtrace側raw candidate全体を保存し、その宣言3memberを別値へ投影してF04SourceProjectionRecordInputへclosed decodeする。既存source qualificationは同じraw envelopeから通常どおり導出する。",
-        "同じoperation、validator出力、validator前のcandidate_pair_precheckをdecode_f04_source_projection_profileへ渡す。decoderは必ずoperation.candidate全体とValidatedRecordTrace.input.candidate全体を再比較する。trace input/candidate Fieldがmissingまたはinvalidなら最終状態unknownとし、rawとvalidator input_issuesを保持する。",
+        "closed profile contextを内部生成しprivate validate_record_trace_with_origins(operation.record_trace_input,context)を一度呼ぶ。bundle.validated_traceはpublic fn0と全値同一、bundle.origin_supportは同じ資格/衝突walk由来（empty含む）。別のfn0呼出し/同Ref再lookup/期待trace注入を行わない。",
+        "同operation、F04ProfileDecodeRequest{validated_trace:bundle.validated_trace,origin_support:supplied(bundle.origin_support),legacy_selector_inputs:missing}、precheckの3引数でfn14を呼ぶ。input=nullでもbundle自体にoriginはあるが、既存invalid-root returnへ進みnewfield/newcomparisonは作らない。",
         "ValidatedRecordTrace.inputがmissing/invalidならselected_sectionsを成立させられないため、既存invalid-root経路どおりF04 section dispatchとjoin生成を行わず、input_issuesをRecordTraceAnalysisへ保持する。input全体は成立しcandidate pair比較だけunknown/conflictの場合はF04局所joinを評価し、qualified OS/CORE観測を独立に保持する。",
         "入力が成立した場合だけbuild_record_trace_analysisへ同一ValidatedRecordTraceとF04ProjectionTypedInputsを渡す。builderは明示profile時のF04だけcompare_core_dispositions_with_source_projection_profileへdispatchし、他sectionの既存dispatchは維持する。",
         "profile F04 comparatorはValidatedRecordTrace.input.candidateのraw全体を保持したまま、declared_member_projectionの宣言3memberを別値へ投影し、core_outputs itemからsource_projectionだけを除いたclosed F04RecordInputを構成して既存typed comparison coreを呼ぶ。base inputを構成できない時は既存invalid input issueを保持しtyped core結果を推測で作らない。source_projection_joinがmissingならmemberを省略し、suppliedならjoin結果本体だけをF04 observationへ加える。",
-        "関数18が既存joinだけでなくf04_source_member_detailのmember findingを同じF04 sectionへ構成する。関数17の通常返却/旧findingを置換せず、型変更はreentryだけ。"
+        "関数18が既存joinだけでなくf04_source_member_detailのmember findingを同じF04 sectionへ構成する。関数17の通常返却/旧findingを置換せず、型変更はreentryだけ。",
+        "new original比較はfn18の後段で同じtyped inputs/非null origin contextに対して実行する。通常fn17/memberの旧保存観測には新componentを遡及注入しない。"
       ],
       "unit_case_refs": [
         "HELIXOS-L8-002-F04-PROJECTION-01",
@@ -2070,11 +2415,23 @@
         "HELIXOS-L8-002-F04-SOURCE-MEMBER-06",
         "HELIXOS-L8-002-F04-SOURCE-MEMBER-07",
         "HELIXOS-L8-002-F04-SOURCE-MEMBER-08",
-        "HELIXOS-L8-002-F04-SOURCE-MEMBER-09"
+        "HELIXOS-L8-002-F04-SOURCE-MEMBER-09",
+        "HELIXOS-L8-002-F04-ORIGINAL-01",
+        "HELIXOS-L8-002-F04-ORIGINAL-02",
+        "HELIXOS-L8-002-F04-ORIGINAL-03",
+        "HELIXOS-L8-002-F04-ORIGINAL-04",
+        "HELIXOS-L8-002-F04-ORIGINAL-05",
+        "HELIXOS-L8-002-F04-ORIGINAL-06",
+        "HELIXOS-L8-002-F04-ORIGINAL-07",
+        "HELIXOS-L8-002-F04-ORIGINAL-08",
+        "HELIXOS-L8-002-F04-ORIGINAL-09",
+        "HELIXOS-L8-002-F04-ORIGINAL-10",
+        "HELIXOS-L8-002-F04-ORIGINAL-11",
+        "HELIXOS-L8-002-F04-ORIGINAL-12"
       ],
       "oracle_ref": "HELIXOS-L8-002-NORMAL-run_f04_source_projection_operation",
       "validator_call_binding": {
-        "callee": "functions[0] validate_record_trace_input",
+        "callee": "private functions[19] validate_record_trace_with_origins",
         "arity": 2,
         "arguments": [
           {
@@ -2089,7 +2446,8 @@
           }
         ],
         "default_compatibility": "profile contextを省略する既存呼出しは旧closed decode/return挙動を維持する。",
-        "post_validation_comparison": "decoderへvalidator前raw比較結果も渡すが、ValidatedRecordTrace.input.candidate全体を別途再比較する。validatorのprofile分岐/precheckを最終対応判定の証拠にしない。"
+        "post_validation_comparison": "decoderへvalidator前raw比較結果も渡すが、ValidatedRecordTrace.input.candidate全体を別途再比較する。validatorのprofile分岐/precheckを最終対応判定の証拠にしない。",
+        "return": "F04ValidationBundle。validated_traceはpublic fn0の全返却と同一。origin_supportはprivate同walk値。"
       },
       "profile_decoder_call_binding": {
         "callee": "functions[14] decode_f04_source_projection_profile",
@@ -2102,8 +2460,13 @@
           },
           {
             "position": 2,
-            "type": "ValidatedRecordTrace",
-            "value": "同一raw RecordTraceInputからvalidatorが返した出力。"
+            "type": "F04ProfileDecodeRequest",
+            "value": "F04ProfileDecodeRequest{validated_trace:bundle.validated_trace,origin_support:supplied(bundle.origin_support),legacy_selector_inputs:missing}。empty originsもsupplied。",
+            "constructor": {
+              "validated_trace": "bundle.validated_trace",
+              "origin_support": "Field.supplied(bundle.origin_support)",
+              "legacy_selector_inputs": "Field.missing"
+            }
           },
           {
             "position": 3,
@@ -2113,7 +2476,8 @@
         ],
         "return": "最終状態はdecoder内でValidatedRecordTrace.input.candidateとの全体比較を再実行して決める。"
       },
-      "oracle_binding": "既存18ケースにL9統合occurrence 7ケースを加えた25件のvalidator到達可能integration入力で関数経路を照合する。direct PAIR-UNKNOWNとdispatch境界例はそれぞれ別のunit boundary oracleであり、この25件の件数へ混ぜない。"
+      "oracle_binding": "既存18ケースにL9統合occurrence 7ケースを加えた25件のvalidator到達可能integration入力で関数経路を照合する。direct PAIR-UNKNOWNとdispatch境界例はそれぞれ別のunit boundary oracleであり、この25件の件数へ混ぜない。",
+      "original_oracle_scope": "L8 f04_source_original_correspondence_verification。raw経路のcomponent/suffix/保存観測又は旧9全Analysisを比較。内部context/lookupの全返却wholeを固定したという主張ではない。"
     },
     {
       "id": "HELIXOS-L5-002-compare_core_dispositions_typed",
@@ -2202,8 +2566,10 @@
       "algorithm": [
         "ValidatedRecordTrace.input.candidateから既存F04RecordInputを構成する際は、raw全体を保持したまま、declared_member_projectionの宣言3memberを別値へ投影する。candidate.core_outputsの各itemではprofile拡張member source_projectionだけを除き、それ以外のF04 memberのpresence/value/orderを保持して既存F04RecordInputへclosed decodeする。obligation_original_statesとsource_output_associationも同じvalidated raw candidateからそのまま写す。unrelated_raw等の外側非対象memberは元rawへ保持し、base childへ入れない。F04ProjectionTypedInputs.candidate_inputのraw値からbase inputを作らない。",
         "compare_core_dispositions_typedへ引数を正確に2つ、(1)同一ValidatedRecordTrace、(2)上記のclosed F04RecordInputとして渡す。profile固有source_projection raw値はtyped coreへ混入させない。candidate pair conflict/unknownでもvalidated trace側から既存F04 base inputを作るため、既存観測を省略しない。",
-        "compare_f04_source_projection_joinへ同一ValidatedRecordTraceとprofile固有typed inputsを渡す。返却Field.missingはoutput member省略、supplied(result)はF04RecordObservation.source_projection_joinへresult本体を追加する。",
-        "関数15の実joinを付加した同じ最終F04 observationに対し、f04_source_member_detailの内部context/field_algorithm/return_bindingを実行する。新findingは既存findingsの後ろへ追加する。旧47 endpoint観測・通常F04観測・既存findingの原provenanceとunresolved/effect要求を保持する。effects=[],authority_generated=false。"
+        "private resolve_f04_projection_sourcesへ同trace/typed inputsを渡しjoinとorigin取得済みoriginal contextを一回得る。join Fieldは従来どおりF04観測へ投影。public fn15 wrapperを別に実呼出ししたとは記録しない。",
+        "実joinを付加したmember段階観測へ既存f04_source_member_detailを適用し、そのfinding suffix/保存観測を固定する。次にoriginal_contextがsuppliedならprivate compare_f04_source_original_correspondence(trace,context)を呼ぶ。legacy directでcontext未取得の場合は新comparerを呼ばず、旧public fn15/unit境界と同じ旧結果に限る。",
+        "新component FieldがsuppliedならF04観測へ追加し、全component完成後に新diagnostic_draftsへ同じ最終F04 observationをpreserved_observationとして付ける。newfield missing時はmember省略。旧native/member findingの既存保存観測/原値/順/重複は書換えず、新suffixだけ最後に追加する。",
+        "input/selector不正、selector absent/empty、F04未選択はL4 activationに従いnewfield省略。valid selectedで原CORE row取得不能はselectedごとnot_compared recordを返す。原row取得事実はcandidate pair/carrierの成功と独立で、候補不一致を原対応比較のgateにしない。"
       ],
       "preservation_invariant": "全raw candidate比較と状態判定の後も、既存F04 base観測はValidatedRecordTrace側rawを上書きせず宣言3memberへ別途投影し、core_outputs itemのsource_projectionだけを除いたpresence-preserving F04RecordInputを用いて実行する。source_projectionと外側非対象raw値は原保存元へ保持し、既存F04 resultをcandidate pair状態で置換しない。 通常結果/旧findingsは原prefixとして保持し、selected source-member findingだけをsuffixへ追加する。旧25のうち8入力はcandidate disposition未供給のためsuffixが増える。",
       "typed_core_call_binding": {
@@ -2221,7 +2587,7 @@
             "value": "ValidatedRecordTrace.input.candidateのraw全体とは別にdeclared_member_projectionでcore_outputs、obligation_original_states、source_output_associationをpresence-preservingに射影。core_outputs itemで除外するprofile-only memberはsource_projectionのみ。"
           }
         ],
-        "return": "通常TraceSectionResult[]と旧finding prefixを保持し、実source_projection_joinを観測へ付加した後、f04_source_member_detailに従う新member finding suffixを追加する。joinを除いて全findings不変とはしない。"
+        "return": "通常TraceSectionResult[]と旧finding prefixを保持し、実source_projection_joinを観測へ付加した後、f04_source_member_detailに従う新member finding suffixを追加する。joinを除いて全findings不変とはしない。 旧保存観測を固定後、別phaseの原対応component/new suffixを追加する。"
       },
       "unit_case_refs": [
         "HELIXOS-L8-002-F04-PROJECTION-01",
@@ -2267,10 +2633,308 @@
         "HELIXOS-L8-002-F04-MEMBER-UNIT-06",
         "HELIXOS-L8-002-F04-MEMBER-UNIT-07",
         "HELIXOS-L8-002-F04-MEMBER-UNIT-08",
-        "HELIXOS-L8-002-F04-MEMBER-UNIT-09"
+        "HELIXOS-L8-002-F04-MEMBER-UNIT-09",
+        "HELIXOS-L8-002-F04-ORIGINAL-01",
+        "HELIXOS-L8-002-F04-ORIGINAL-02",
+        "HELIXOS-L8-002-F04-ORIGINAL-03",
+        "HELIXOS-L8-002-F04-ORIGINAL-04",
+        "HELIXOS-L8-002-F04-ORIGINAL-05",
+        "HELIXOS-L8-002-F04-ORIGINAL-06",
+        "HELIXOS-L8-002-F04-ORIGINAL-07",
+        "HELIXOS-L8-002-F04-ORIGINAL-08",
+        "HELIXOS-L8-002-F04-ORIGINAL-09",
+        "HELIXOS-L8-002-F04-ORIGINAL-10",
+        "HELIXOS-L8-002-F04-ORIGINAL-11",
+        "HELIXOS-L8-002-F04-ORIGINAL-12"
       ],
       "oracle_ref": "HELIXOS-L8-002-NORMAL-run_f04_source_projection_operation",
-      "oracle_binding": "既存18ケースにL9統合occurrence 7ケースを加えた25件のvalidator到達可能integration入力で関数経路を照合する。direct PAIR-UNKNOWNとdispatch境界例はそれぞれ別のunit boundary oracleであり、この25件の件数へ混ぜない。"
+      "oracle_binding": "既存18ケースにL9統合occurrence 7ケースを加えた25件のvalidator到達可能integration入力で関数経路を照合する。direct PAIR-UNKNOWNとdispatch境界例はそれぞれ別のunit boundary oracleであり、この25件の件数へ混ぜない。",
+      "private_call_bindings": [
+        {
+          "callee": "HELIXOS-L5-002-resolve_f04_projection_sources",
+          "arity": 2,
+          "arguments": [
+            "same_validated_trace",
+            "same_typed_inputs"
+          ],
+          "return_type": "F04ProjectionResolution",
+          "guard": "F04 profileの既存wrapper経路",
+          "return_use": "joinを旧member段階観測へ。original_contextは新比較だけに使う。"
+        },
+        {
+          "callee": "HELIXOS-L5-002-compare_f04_source_original_correspondence",
+          "arity": 2,
+          "arguments": [
+            "same_validated_trace",
+            "resolution.original_context.supplied_value"
+          ],
+          "return_type": "F04OriginalComparisonOutput",
+          "guard": "original_contextがsupplied。raw runnerは取得済みoriginを必ず供給。legacy directは未呼出し。",
+          "return_use": "componentを最終F04へ、draftsを新suffixへ。旧finding保存観測は不変。"
+        }
+      ],
+      "original_oracle_scope": "L8 f04_source_original_correspondence_verification。raw経路のcomponent/suffix/保存観測又は旧9全Analysisを比較。内部context/lookupの全返却wholeを固定したという主張ではない。"
+    },
+    {
+      "id": "HELIXOS-L5-002-validate_record_trace_with_origins",
+      "symbol": "validate_record_trace_with_origins",
+      "visibility": "private",
+      "input": "RawValue + optional F04ProfileDecodeContext",
+      "output": "F04ValidationBundle",
+      "effect": "none",
+      "contract_refs": [
+        "HELIXOS-L5-002-F04"
+      ],
+      "algorithm": [
+        "RawValueのroot/candidate構造を先にdecode。profile contextがない場合は既存closed decoderを使う。明示F04 profileではcandidate raw object全体を保存し、declared_member_projectionの宣言3memberを別値へ投影してF04SourceProjectionRecordInputへclosed decodeする。非対象memberのunrelated_raw等を宣言型へ入れず、元RecordTraceInput.candidateを投影値で置換しない。root/candidate構造が不正ならinput_issuesのinvalid_shape、input=null、qualified_records/各source分類ref=[]。 この構造失敗分岐ではF04ValidationBundle{validated_trace:上記の旧invalid全返却,origin_support:{qualified_occurrences:[],source_walks:実際の処理済みwalk列（未処理なら[]）}}を返し、ValidatedRecordTrace単体を返さない。",
+        "decode可能時はSourceEnvelopeのbytes/parse/body/独立資格root/owner/subject/ref/hashを個別照合。未資格sourceはsource_issues、unqualified_source_refs/unresolved_source_refsと依存sectionへ結ぶ。",
+        "有資格原record同士が同subject/sectionで相反する場合は双方のsourceをconflicting_source_refs/unresolved_source_refsへ記録し、双方をqualified_recordsから外す。原payloadを捨てずissue evidenceに保持し、片方を正しい元として採用しない。",
+        "残る有資格sourceだけqualified_source_refs/qualified_recordsへ保持する。CORE不足で無関係なOS/Qの記録を失効させない。",
+        "RecordTraceInput.context.selected_sectionsにF04があり、かつ内部F04ProfileDecodeContext.profileがHELIXOS-F04-qualified-source-projection-joinの場合は、candidate raw全体と別に宣言3memberの投影値をF04SourceProjectionRecordInputへdecodeする。source_output_associationと各item.source_projectionの欠落/null/その他JSON値をFieldとして無損失に保持する。profile contextなしは既存F04RecordInput selector/closed decodeを維持し、source_projectionを新たに許可しない。profile contextは候補memberを資格sourceへ転写しない。",
+        "sourcesを原index、decoded_recordsを原indexで列挙する同じsource qualification/衝突walkでoriginを保持する。source_ref同値membershipから別walk結果を再構成しない。既存InputIssueを追加する瞬間の元indexを関係source walkへ保持する。",
+        "既存subject/section conflictの双方source除外後、残存source順/record順だけを一度flat採番する。qualified_occurrences[j].qualified_record_index=j、.record=validated_trace.qualified_records[j]。同値recordの重複を保持し、原record_indexは採番し直さない。",
+        "各sourceの元index/完全Ref/残存flat index列/元input_issue_indices/source_issue_indices/既存非排他classification flagsをSourceWalkOriginへ返す。equal Refでもsource occurrenceごとに別walkと資格rootを保持する。共有issueは同index参照可、同文言別indexは統合しない。",
+        "input null/root decode failureではvalidated_traceは既存invalid返却全値。origin_supportは空qualified_occurrencesと実際に処理済みsource_walks（未walkなら空）。後段にraw targetを復元させない。public fn0はこのbundleのvalidated_traceのみを返す。",
+        "新kind raw4member閉型不整合はsource_shape_localityの既存処理へ渡す。対象sourceをtyped qualified recordsから除外し、原raw/既存InputIssueを保持する。drop recordをheader候補へ救済しない。nested domain不正はここで新raw shape不正へ広げない。"
+      ],
+      "source_l4_ref": {
+        "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+        "revision": "fed4701ea97c53ed5edfcfb54925e6aa6339db51",
+        "file_sha256": "ae413e997a19c66c76e776924f84ac7272b4dc345be7509f30673baf2f013efe",
+        "pointer": "/contracts/5/source_original_correspondence"
+      },
+      "return_branches": [
+        {
+          "branch": "root/candidate decode失敗",
+          "return_type": "F04ValidationBundle",
+          "validated_trace": "同じ入力の旧fn0 invalid返却全値",
+          "origin_support": "qualified_occurrences=[]、実処理済みsource_walks。未walkは[]。"
+        },
+        {
+          "branch": "source局所shape/資格/衝突issueあり、rootは成立",
+          "return_type": "F04ValidationBundle",
+          "validated_trace": "旧同branchのinput/issue/資格Ref列/残存OwnerRecord列の全値",
+          "origin_support": "同walkの処理済みsource列と最終残存qualified_occurrences。"
+        },
+        {
+          "branch": "正常/資格0件を含む",
+          "return_type": "F04ValidationBundle",
+          "validated_trace": "旧同branchの全返却値",
+          "origin_support": "同walkの全source列/残存qualified_occurrences。emptyも必須。"
+        }
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-F04-ORIGINAL-01",
+        "HELIXOS-L8-002-F04-ORIGINAL-02",
+        "HELIXOS-L8-002-F04-ORIGINAL-03",
+        "HELIXOS-L8-002-F04-ORIGINAL-04",
+        "HELIXOS-L8-002-F04-ORIGINAL-05",
+        "HELIXOS-L8-002-F04-ORIGINAL-06",
+        "HELIXOS-L8-002-F04-ORIGINAL-07",
+        "HELIXOS-L8-002-F04-ORIGINAL-08",
+        "HELIXOS-L8-002-F04-ORIGINAL-09",
+        "HELIXOS-L8-002-F04-ORIGINAL-10",
+        "HELIXOS-L8-002-F04-ORIGINAL-11",
+        "HELIXOS-L8-002-F04-ORIGINAL-12"
+      ],
+      "original_oracle_scope": "L8 f04_source_original_correspondence_verification。raw経路のcomponent/suffix/保存観測又は旧9全Analysisを比較。内部context/lookupの全返却wholeを固定したという主張ではない。"
+    },
+    {
+      "id": "HELIXOS-L5-002-resolve_f04_projection_sources",
+      "symbol": "resolve_f04_projection_sources",
+      "visibility": "private",
+      "input": "ValidatedRecordTrace + F04ProjectionTypedInputs",
+      "output": "F04ProjectionResolution",
+      "effect": "none",
+      "contract_refs": [
+        "HELIXOS-L5-002-F04"
+      ],
+      "algorithm": [
+        "selection_inputがmissing又は妥当emptyならF04ProjectionResolution{join:Field.missing,original_context:Field.missing}を返す。invalid selectorならF04ProjectionResolution{join:Field.supplied(旧fn15のselection局所unknown結果全値),original_context:Field.missing}を返す。new comparerにtarget集合を渡さない。Field又はjoin result単体をprivate返却にしない。",
+        "candidate_input_stateはcandidate_state_priorityの最優先条件。conflict/unknownならcandidate側二状態はunknown。corresponding時も、選択Refに一致する候補occurrenceが各側で複数ならcandidate側二状態をunknownとし、association missing/ambiguous等のnot_comparedで上書きしない。candidate_raw_occurrences/validated_raw_occurrencesは別側で走査し、selected_output_refとraw_itemがobjectでitem.output_refが存在するときselected_output_refとのJSON値同値（object key順無視、array順保持）だけで各occurrenceを選ぶ。0件ならその側のsingular Fieldとoccurrence memberを省略、1件ならL4定義のsingular raw Fieldだけを原値/presenceで返す（元indexはraw traversalの内部用で、1件の場合wireへ加えない）、複数ならsingular Fieldを省略し全{item_index,raw_item}を元index順/重複のまま該当側のL4 optional memberへ返す。 複数件時のraw occurrence wire memberはcandidate側がcandidate_item_occurrences、trace側がvalidated_input_item_occurrencesである。両memberはL4の閉じたRecordObservationに定義されたoptional memberだけを用いる。",
+        "nonempty selectionはcaller順・重複を保ち各Ref出現に一record。typed item valueはpair correspondingで単一itemのtyped decodeがある場合だけ比較に使う。conflict/unknown又はmulti-occurrenceでは型付き単一carrierを選ばず、raw occurrence表現をL4規則どおり返す。item.output_refはselected_output_refとの完全JSON値等値で照合する。object key順だけ無視し、array順・重複・presence/nullは保持する。 candidate側とValidatedRecordTrace.input.candidate側のraw occurrence配列は独立に選択・保持し、二側をzip/mergeせず件数/順序を相互に合わせない。",
+        "qualified OS associationはValidatedRecordTrace.qualified_records内のOS section/kindに一致するrecordを列挙し、payload.output_refとselected_output_refの完全JSON値一致だけで関連付ける。既知のqualified_records列挙で完全一致0件ならassociation_state=missing。payload.output_refのnull/欠落/wrong-kind/別Refは不一致として全て親traceへ保持するが、候補association/qualified_os_record_candidates/source_refsへは採用せずunknownへ分類しない。複数一致は全候補を元順に保持してambiguous。trace列挙又は資格/decode対応自体を確定できない既存unknown根拠がある場合だけunknownを保持する。",
+        "一意qualified OS associationからだけCORE snapshot Ref/pointerを得る。OS carrier/pointer/CORE qualification欠落時は対応L4 ruleへ局所分類し、candidateや未資格payloadからCORE locatorを補完しない。",
+        "candidate CORE carrierとqualified OS carrierを同じqualified CORE rowへ別々に比較する。carrier_core_row_stateはcandidate_core_row_stateとqualified_os_core_row_stateだけをL4順位で集約する。candidate pair conflict/unknownとcandidate occurrence multipleの優先unknownはcandidate側状態に残し、association stateで上書きしない。",
+        "context、project_scope、obligation_original_statesはqualified OS OwnerRecordからraw値として保持し、CORE product scope/obligation refsに写像しない。",
+        "source refs/classification arrays/source issuesは一意・曖昧なqualified OS associationから明示snapshotへ辿る関連source occurrence集合で元traceをfilterし、元順と重複を保持する。0 qualified OS associationではすべて空。無関係Qは親traceのみに残す。",
+        "finding_refs=[]、effects=none。結果を既存source_output_association、CORE disposition、unfinished obligation、findings、effect_requestsへ代替/逆流させない。",
+        "旧join recordを構成する同じ取得過程でselected source originsとtrusted CORE locator/解決済みraw rowをF04ResolvedSelectedSourceへ保持する。候補carrierのdecode/一致状態を取得事実へ混ぜない。CORE取得元はunique qualified OS associationだけであり、新relationshipのlocatorは比較対象に限る。",
+        "新original_decode_contextがsuppliedなら、同一traceに束縛された非null F04OriginalComparisonContextを構築する。source未取得selectedにもresolved_core_row missingのcontextを返す。旧legacy context missingは新context missingとし、その制限をraw runner経路へ持ち込まない。",
+        "返却joinは旧fn15と全値同一。source refsとraw OwnerRecord candidate配列へ新origin wrapperを漏らさない。private取得contextは公開wire/返却へ新規追加しない。"
+      ],
+      "source_l4_ref": {
+        "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+        "revision": "fed4701ea97c53ed5edfcfb54925e6aa6339db51",
+        "file_sha256": "ae413e997a19c66c76e776924f84ac7272b4dc345be7509f30673baf2f013efe",
+        "pointer": "/contracts/5/source_original_correspondence"
+      },
+      "return_branches": [
+        {
+          "branch": "selector absent/valid empty",
+          "return_type": "F04ProjectionResolution",
+          "join": "Field.missing（旧fn15全値）",
+          "original_context": "Field.missing"
+        },
+        {
+          "branch": "selector invalid",
+          "return_type": "F04ProjectionResolution",
+          "join": "Field.supplied(旧fn15 invalid selection結果全値)",
+          "original_context": "Field.missing"
+        },
+        {
+          "branch": "selector valid nonempty + samewalk origin取得済み",
+          "return_type": "F04ProjectionResolution",
+          "join": "Field.supplied(旧fn15全join結果)",
+          "original_context": "Field.supplied(同traceの非null取得context)。CORE原row未取得も各resolved_core_row=Field.missingとして保持。"
+        },
+        {
+          "branch": "selector valid nonempty + legacy direct origin未取得",
+          "return_type": "F04ProjectionResolution",
+          "join": "Field.supplied(旧fn15全join結果)",
+          "original_context": "Field.missing。public fn15は.joinのみを返す。"
+        }
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-F04-ORIGINAL-01",
+        "HELIXOS-L8-002-F04-ORIGINAL-02",
+        "HELIXOS-L8-002-F04-ORIGINAL-03",
+        "HELIXOS-L8-002-F04-ORIGINAL-04",
+        "HELIXOS-L8-002-F04-ORIGINAL-05",
+        "HELIXOS-L8-002-F04-ORIGINAL-06",
+        "HELIXOS-L8-002-F04-ORIGINAL-07",
+        "HELIXOS-L8-002-F04-ORIGINAL-08",
+        "HELIXOS-L8-002-F04-ORIGINAL-09",
+        "HELIXOS-L8-002-F04-ORIGINAL-10",
+        "HELIXOS-L8-002-F04-ORIGINAL-11",
+        "HELIXOS-L8-002-F04-ORIGINAL-12"
+      ],
+      "original_oracle_scope": "L8 f04_source_original_correspondence_verification。raw経路のcomponent/suffix/保存観測又は旧9全Analysisを比較。内部context/lookupの全返却wholeを固定したという主張ではない。"
+    },
+    {
+      "id": "HELIXOS-L5-002-lookup_f04_original_native",
+      "symbol": "lookup_f04_original_native",
+      "visibility": "private",
+      "input": "ValidatedRecordTrace + F04ValidatedOriginSupport + F04OriginalSourceRecordLocator",
+      "output": "F04NativeLookupResult",
+      "effect": "none",
+      "contract_refs": [
+        "HELIXOS-L5-002-F04"
+      ],
+      "algorithm": [
+        "locator.source_occurrence_indexで同一trace.input.sourcesの原出現を直接指定する。out of rangeはmissing。source存在時は完全source_refを照合し既知差conflict、未確定unknown、別同Ref/twinへfallbackしない。資格/衝突は同indexのSourceWalkOriginだけで確認する。",
+        "指定sourceがunqualified/unresolved/conflictingなら元分類/issue indexを保持しraw意味値を採用しない。同Refの他source issueを配送せず、別のqualified twinで救済しない。元資格/decode issueがある原因には新semantic findingを重複させない。",
+        "record_indexで当該sourceの残存qualified originを指定しsubject_ref全値を照合する。native CORE outputは既存F04 original_trace_sectionのcore_outputs、native OS stateは同selectorのobligation_original_statesであることを確認する。他record/別sectionへnameで解決しない。",
+        "payload_pointerは当該OwnerRecord.payload rootのRFC6901として一度decodeし、配列の実index/escape/presenceを保持する。構文・解決不能・raw item形不足は別原因で保持し、最も近い実locator/原parentの所在を返す。表示target_pathをRFC6901として実行しない。",
+        "存在するnative raw itemはその原値をFieldで返す。output_refやstate ref/scalarの正否は呼出comparerが独立に照合する。このlookupだけで原判断のknown/完成又はcandidate一致を生成しない。"
+      ],
+      "source_l4_ref": {
+        "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+        "revision": "fed4701ea97c53ed5edfcfb54925e6aa6339db51",
+        "file_sha256": "ae413e997a19c66c76e776924f84ac7272b4dc345be7509f30673baf2f013efe",
+        "pointer": "/contracts/5/source_original_correspondence"
+      },
+      "unit_case_refs": [
+        "HELIXOS-L8-002-F04-ORIGINAL-01",
+        "HELIXOS-L8-002-F04-ORIGINAL-02",
+        "HELIXOS-L8-002-F04-ORIGINAL-03",
+        "HELIXOS-L8-002-F04-ORIGINAL-04",
+        "HELIXOS-L8-002-F04-ORIGINAL-05",
+        "HELIXOS-L8-002-F04-ORIGINAL-06",
+        "HELIXOS-L8-002-F04-ORIGINAL-07",
+        "HELIXOS-L8-002-F04-ORIGINAL-08",
+        "HELIXOS-L8-002-F04-ORIGINAL-09",
+        "HELIXOS-L8-002-F04-ORIGINAL-10",
+        "HELIXOS-L8-002-F04-ORIGINAL-11",
+        "HELIXOS-L8-002-F04-ORIGINAL-12"
+      ],
+      "original_oracle_scope": "L8 f04_source_original_correspondence_verification。raw経路のcomponent/suffix/保存観測又は旧9全Analysisを比較。内部context/lookupの全返却wholeを固定したという主張ではない。"
+    },
+    {
+      "id": "HELIXOS-L5-002-compare_f04_source_original_correspondence",
+      "symbol": "compare_f04_source_original_correspondence",
+      "visibility": "private",
+      "input": "ValidatedRecordTrace + F04OriginalComparisonContext（origin取得済み非null）",
+      "output": "F04OriginalComparisonOutput",
+      "effect": "none",
+      "contract_refs": [
+        "HELIXOS-L5-002-F04"
+      ],
+      "algorithm": [
+        "L4 activation.scope_tableに従う。input null、F04未選択、selector missing/empty/invalidはcomponent Field.missing、drafts=[]。valid nonempty selectionは原順/重複を保ち各出現に一recordを生成する。",
+        "各selected contextの同CORE row未取得はnot_compared closed tuple。raw collection Field missing、全role/collection state not_compared、候補/関係/edge/decode列は空、new semantic draftsなし。原join/native観測は独立保持する。",
+        "取得rowのcomputed_condition_pairs/computed_obligation_refsを外部Presenceのままraw保存。absentはmissing、present(null/nonarray)はunknown、present[]はempty、nonempty arrayは各item型を原index順で確認する。条件pair不正itemは列unknown、義務Ref6不正itemはその出現だけunknown。false/0/nullをemptyへ丸めない。",
+        "condition requestedは既知conditional又は非empty解釈可能条件列。empty+既知非conditionalはnot_requested、empty+未知disposition又は不明列はunresolved。obligation requestedは原非empty列、既知emptyはnot_requested。不明列から仮想edge/元indexを作らない。両role not_requestedならresolution=not_requestedで新sourceを要求せず、CORE raw/locatorと元source refsを保持する。",
+        "少なくとも一role requestedの場合だけ、qualified新kindのraw payload.output_refとselected RefがJSON完全値一致する全headerを数える。0 missing、複数ambiguousで全候補/全decode保持。null/absent/foreign headerやfn0 dropをunknown対象へ割当てない。1header nested domain失敗はunknown/raw/decode保存、新semantic draftなし。",
+        "unique domain成功時はrelationship.core_row_locatorと既存trusted locatorを別値として照合。既知相反はresolution conflictで新CORE対応のみnot_compared。新locatorから別CORE sourceを選ばない。正常native比較/他selectedは独立継続する。",
+        "condition role absent→missing、null→unknown、object→expected_condition_pairsと元CORE Presence列をJSON意味等値で比較（bool≠number、1=1.0、object key順だけ無視、array順/重複/presence/nullは区別）。mirrorとnative endpointは独立に取得し、mirror不一致でnative値/義務側を消さない。",
+        "condition native_outputはprivate lookupで解決し、item.output_refとselected Refを完全照合する。condition relation_content_stateはmirror state。親condition_correspondence_stateはmirrorとnative所在/output_ref binding stateだけを同関係内conflict>unknown>missing>両corresponding>otherwise not_comparedで縮約する。native scalar boolは親へ混ぜない。",
+        "native original_conditionはAbsent missing、null unknown、true/falseは両方correspondingとして原値保持。型外は既存typed decode/local issueを保持。parent correspondingとnative scalar unknownは併存でき、条件充足/完了を生成しない。native endpoint既知差のfindingは既存core_source_condition_relation_conflict、原condition所在/原対応provider ownerとし新codeを作らない。",
+        "原obligation列の全実出現にcore_occurrence_index/raw_ref/decode_stateを返す。Ref6 decode失敗はraw保持、assignment unknown/[]で仮想missing assignment draftを作らない。valid Ref6はrelationship.obligationsのcore_occurrence_index一致edgeを原index順/重複のまま全件比較する。Ref6→Ref4 cast、zip、first-wins、dedup、全edge成功foldを行わない。",
+        "obligations absent又は[]はvalid CORE各原occurrenceのassignment missing。present nullは各assignment unknownで親collection unknown draftを一件。valid非empty edge列はassignment supplied、各edgeでexpected_core_ref全Ref6比較→native output lookup/output_ref比較→native state lookup/expected OSRef4比較→原state値を独立保存する。not_started/failed/not_evaluatedは原値でcorresponding、completedへ昇格しない。",
+        "診断code/owner/pathはL4 diagnostics.code_familiesとpath_rootsから構成。CORE collection問題→shared relation問題→condition mirror/endpoint/scalar→CORE原index/edge原indexにcore claim/native output/native state Ref/値の順。原sourceのissue原因が既にある比較だけsemantic draftを抑止し独立問題は続行する。",
+        "source refsは旧qualified OS/COREと実到達relationship/native sourceの原index集合を親sources元順で射影し、Ref値dedupしない。global source_issuesは到達sourceの元issue indexだけを元順一回ずつ射影。同文言別indexは両保持。edge.source_issuesはそのedgeが実到達したissueだけ。",
+        "各closed14field/子closed全fieldをL4 logical_return/state_derivationの既定tupleで構築する。newcomponentとdraftsを返し、candidate/OSのraw資格/source classificationや既存source_output_association.meaning_comparison=not_established/oldjoin.finding_refs=[]を書換えない。"
+      ],
+      "source_l4_ref": {
+        "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+        "revision": "fed4701ea97c53ed5edfcfb54925e6aa6339db51",
+        "file_sha256": "ae413e997a19c66c76e776924f84ac7272b4dc345be7509f30673baf2f013efe",
+        "pointer": "/contracts/5/source_original_correspondence"
+      },
+      "native_lookup_calls": [
+        {
+          "callee": "HELIXOS-L5-002-lookup_f04_original_native",
+          "arity": 3,
+          "arguments": [
+            "same_validated_trace",
+            "context.decoded.origin_support",
+            "condition.native_output"
+          ],
+          "return_type": "F04NativeLookupResult",
+          "guard": "unique domain/shared locator成功かつ妥当なcondition object",
+          "return_use": "mirrorと独立にnative endpoint/valueを観測。"
+        },
+        {
+          "callee": "HELIXOS-L5-002-lookup_f04_original_native",
+          "arity": 3,
+          "arguments": [
+            "same_validated_trace",
+            "context.decoded.origin_support",
+            "edge.native_output"
+          ],
+          "return_type": "F04NativeLookupResult",
+          "guard": "unique domain/shared locator成功かつ各原CORE occurrenceに対応する明示edge",
+          "return_use": "各edgeのnative output stateと原issueへ。"
+        },
+        {
+          "callee": "HELIXOS-L5-002-lookup_f04_original_native",
+          "arity": 3,
+          "arguments": [
+            "same_validated_trace",
+            "context.decoded.origin_support",
+            "edge.native_state"
+          ],
+          "return_type": "F04NativeLookupResult",
+          "guard": "同じ明示edge。CORE claim/outputの不成立で独立state lookupを省略しない。",
+          "return_use": "各edgeのnative state Ref/valueと原issueへ。"
+        }
+      ],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-F04-ORIGINAL-01",
+        "HELIXOS-L8-002-F04-ORIGINAL-02",
+        "HELIXOS-L8-002-F04-ORIGINAL-03",
+        "HELIXOS-L8-002-F04-ORIGINAL-04",
+        "HELIXOS-L8-002-F04-ORIGINAL-05",
+        "HELIXOS-L8-002-F04-ORIGINAL-06",
+        "HELIXOS-L8-002-F04-ORIGINAL-07",
+        "HELIXOS-L8-002-F04-ORIGINAL-08",
+        "HELIXOS-L8-002-F04-ORIGINAL-09",
+        "HELIXOS-L8-002-F04-ORIGINAL-10",
+        "HELIXOS-L8-002-F04-ORIGINAL-11",
+        "HELIXOS-L8-002-F04-ORIGINAL-12"
+      ],
+      "original_oracle_scope": "L8 f04_source_original_correspondence_verification。raw経路のcomponent/suffix/保存観測又は旧9全Analysisを比較。内部context/lookupの全返却wholeを固定したという主張ではない。"
     }
   ],
   "contracts": [
@@ -8050,6 +8714,16 @@
             },
             "source_projection_join": {
               "$ref": "#/$defs/F04SourceProjectionJoinResult"
+            },
+            "source_original_correspondence": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F04OriginalCorrespondenceResult"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             }
           },
           "additionalProperties": false
@@ -9187,6 +9861,643 @@
             "item_index",
             "raw_item"
           ]
+        },
+        "F04OriginalQualifiedOwnerRecordOccurrence": {
+          "type": "object",
+          "properties": {
+            "source_occurrence_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "record_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "record": {
+              "$ref": "#/$defs/OwnerRecord"
+            }
+          },
+          "required": [
+            "source_occurrence_index",
+            "source_ref",
+            "record_index",
+            "record"
+          ],
+          "additionalProperties": false
+        },
+        "F04OriginalSourceRecordLocator": {
+          "type": "object",
+          "properties": {
+            "source_occurrence_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "record_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "payload_pointer": {
+              "type": "string",
+              "pattern": "^(?:/(?:[^~]|~[01])*)*$"
+            }
+          },
+          "required": [
+            "source_occurrence_index",
+            "source_ref",
+            "record_index",
+            "subject_ref",
+            "payload_pointer"
+          ],
+          "additionalProperties": false
+        },
+        "CORE009PresenceJsonValue": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "absent"
+                }
+              },
+              "required": [
+                "presence"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "present"
+                },
+                "value": {
+                  "$ref": "#/$defs/RawValue"
+                }
+              },
+              "required": [
+                "presence",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "F04OriginalCORELocator": {
+          "type": "object",
+          "properties": {
+            "projection_snapshot_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "row_pointer": {
+              "type": "string",
+              "description": "RFC6901 JSON Pointer。payload rootから解決する。構文と解決成否は別。",
+              "pattern": "^(?:/(?:[^~]|~[01])*)*$"
+            }
+          },
+          "required": [
+            "projection_snapshot_ref",
+            "row_pointer"
+          ],
+          "additionalProperties": false
+        },
+        "F04OriginalConditionObservation": {
+          "type": "object",
+          "properties": {
+            "relationship_occurrence": {
+              "$ref": "#/$defs/F04OriginalQualifiedOwnerRecordOccurrence"
+            },
+            "native_output_locator": {
+              "$ref": "#/$defs/F04OriginalSourceRecordLocator"
+            },
+            "native_raw_item": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "native_original_condition": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "relation_content_state": {
+              "enum": [
+                "not_compared",
+                "corresponding",
+                "missing",
+                "unknown",
+                "conflict"
+              ]
+            },
+            "original_condition_state": {
+              "enum": [
+                "not_compared",
+                "corresponding",
+                "missing",
+                "unknown",
+                "conflict"
+              ]
+            }
+          },
+          "required": [
+            "relationship_occurrence",
+            "native_output_locator",
+            "relation_content_state",
+            "original_condition_state"
+          ],
+          "additionalProperties": false
+        },
+        "F04OriginalObligationEdgeObservation": {
+          "type": "object",
+          "properties": {
+            "relationship_occurrence": {
+              "$ref": "#/$defs/F04OriginalQualifiedOwnerRecordOccurrence"
+            },
+            "edge_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "native_output_locator": {
+              "$ref": "#/$defs/F04OriginalSourceRecordLocator"
+            },
+            "native_state_locator": {
+              "$ref": "#/$defs/F04OriginalSourceRecordLocator"
+            },
+            "native_raw_item": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "native_obligation_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "native_original_state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "core_ref_state": {
+              "enum": [
+                "not_compared",
+                "corresponding",
+                "missing",
+                "unknown",
+                "conflict"
+              ]
+            },
+            "native_output_state": {
+              "enum": [
+                "not_compared",
+                "corresponding",
+                "missing",
+                "unknown",
+                "conflict"
+              ]
+            },
+            "native_state_ref_state": {
+              "enum": [
+                "not_compared",
+                "corresponding",
+                "missing",
+                "unknown",
+                "conflict"
+              ]
+            },
+            "source_issues": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/InputIssue"
+              }
+            }
+          },
+          "required": [
+            "relationship_occurrence",
+            "edge_index",
+            "native_output_locator",
+            "native_state_locator",
+            "core_ref_state",
+            "native_output_state",
+            "native_state_ref_state",
+            "source_issues"
+          ],
+          "additionalProperties": false
+        },
+        "F04OriginalObligationOccurrenceObservation": {
+          "type": "object",
+          "properties": {
+            "core_occurrence_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "core_raw_ref": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "core_ref_decode_state": {
+              "enum": [
+                "corresponding",
+                "unknown"
+              ]
+            },
+            "assignment_presence_state": {
+              "enum": [
+                "missing",
+                "supplied",
+                "unknown"
+              ]
+            },
+            "assignments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/F04OriginalObligationEdgeObservation"
+              }
+            }
+          },
+          "required": [
+            "core_occurrence_index",
+            "core_raw_ref",
+            "core_ref_decode_state",
+            "assignment_presence_state",
+            "assignments"
+          ],
+          "additionalProperties": false
+        },
+        "F04OriginalSelectorDecodeState": {
+          "type": "object",
+          "properties": {
+            "occurrence": {
+              "$ref": "#/$defs/F04OriginalQualifiedOwnerRecordOccurrence"
+            },
+            "selector_state": {
+              "enum": [
+                "corresponding",
+                "missing",
+                "unknown",
+                "conflict"
+              ]
+            },
+            "raw_payload": {
+              "$ref": "#/$defs/RawValue"
+            }
+          },
+          "required": [
+            "occurrence",
+            "selector_state",
+            "raw_payload"
+          ],
+          "additionalProperties": false
+        },
+        "F04OriginalCorrespondenceRecord": {
+          "type": "object",
+          "properties": {
+            "selected_output_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "correspondence_resolution_state": {
+              "enum": [
+                "not_compared",
+                "not_requested",
+                "unique",
+                "missing",
+                "ambiguous",
+                "unknown",
+                "conflict"
+              ]
+            },
+            "correspondence_record_candidates": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/F04OriginalQualifiedOwnerRecordOccurrence"
+              }
+            },
+            "core_row_locator": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F04OriginalCORELocator"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw_condition_pairs": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/CORE009PresenceJsonValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw_obligation_refs": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/CORE009PresenceJsonValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "condition_relations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/F04OriginalConditionObservation"
+              }
+            },
+            "obligation_occurrences": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/F04OriginalObligationOccurrenceObservation"
+              }
+            },
+            "source_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "condition_source_state": {
+              "enum": [
+                "not_compared",
+                "empty",
+                "supplied",
+                "missing",
+                "unknown"
+              ]
+            },
+            "obligation_source_state": {
+              "enum": [
+                "not_compared",
+                "empty",
+                "supplied",
+                "missing",
+                "unknown"
+              ]
+            },
+            "condition_activation_state": {
+              "enum": [
+                "not_requested",
+                "requested",
+                "unresolved",
+                "not_compared"
+              ]
+            },
+            "condition_correspondence_state": {
+              "enum": [
+                "not_requested",
+                "not_compared",
+                "corresponding",
+                "missing",
+                "unknown",
+                "conflict"
+              ]
+            },
+            "profile_decode_states": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/F04OriginalSelectorDecodeState"
+              }
+            }
+          },
+          "required": [
+            "selected_output_ref",
+            "correspondence_resolution_state",
+            "correspondence_record_candidates",
+            "condition_relations",
+            "obligation_occurrences",
+            "source_refs",
+            "condition_source_state",
+            "obligation_source_state",
+            "condition_activation_state",
+            "condition_correspondence_state",
+            "profile_decode_states"
+          ],
+          "additionalProperties": false
+        },
+        "CORE009Ref": {
+          "type": "object",
+          "properties": {
+            "identity": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "revision": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "scope": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_locator": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F04OriginalCorrespondenceResult": {
+          "type": "object",
+          "properties": {
+            "records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/F04OriginalCorrespondenceRecord"
+              }
+            },
+            "source_issues": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/InputIssue"
+              }
+            }
+          },
+          "required": [
+            "records",
+            "source_issues"
+          ],
+          "additionalProperties": false
+        },
+        "F04OriginalCorrespondenceRawPayload": {
+          "type": "object",
+          "properties": {
+            "output_ref": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "core_row_locator": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "condition": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "obligations": {
+              "$ref": "#/$defs/RawValue"
+            }
+          },
+          "additionalProperties": false
+        },
+        "F04OriginalConditionCorrespondence": {
+          "type": "object",
+          "properties": {
+            "expected_condition_pairs": {
+              "$ref": "#/$defs/CORE009PresenceJsonValue"
+            },
+            "native_output": {
+              "$ref": "#/$defs/F04OriginalSourceRecordLocator"
+            }
+          },
+          "required": [
+            "expected_condition_pairs",
+            "native_output"
+          ],
+          "additionalProperties": false
+        },
+        "F04OriginalObligationCorrespondence": {
+          "type": "object",
+          "properties": {
+            "core_occurrence_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "expected_core_obligation_ref": {
+              "$ref": "#/$defs/CORE009Ref"
+            },
+            "native_output": {
+              "$ref": "#/$defs/F04OriginalSourceRecordLocator"
+            },
+            "native_state": {
+              "$ref": "#/$defs/F04OriginalSourceRecordLocator"
+            },
+            "expected_os_obligation_ref": {
+              "$ref": "#/$defs/Ref"
+            }
+          },
+          "required": [
+            "core_occurrence_index",
+            "expected_core_obligation_ref",
+            "native_output",
+            "native_state",
+            "expected_os_obligation_ref"
+          ],
+          "additionalProperties": false
+        },
+        "F04OriginalCorrespondencePayload": {
+          "type": "object",
+          "properties": {
+            "output_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "core_row_locator": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F04OriginalCORELocator"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "condition": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F04OriginalConditionCorrespondence"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "obligations": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F04OriginalObligationCorrespondence"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
         }
       }
     },
@@ -9476,9 +10787,20 @@
           "payload_field_selectors": [
             "rows"
           ]
+        },
+        {
+          "section_key": "OS002.project_template_trace",
+          "record_kind": "OS002.CoreOutputOriginalCorrespondence",
+          "payload_type": "#/$defs/F04OriginalCorrespondenceRawPayload",
+          "payload_field_selectors": [
+            "output_ref",
+            "core_row_locator",
+            "condition",
+            "obligations"
+          ]
         }
       ],
-      "source_owner_record_flow": "先に既存validate_record_trace_inputが元RecordTraceInputからqualified_records/source分類/issuesを生成する。その後、明示profile decoderはqualified_recordsだけを対象にsection_key/record_kind/payload selectorを閉じてdecodeし、元OwnerRecord全体/raw payload/全未資格・相反・未解決材料はValidatedRecordTraceへ保持する。資格済みと主張された外部ValidatedRecordTraceを入力しない。",
+      "source_owner_record_flow": "private validate_record_trace_with_originsが元RecordTraceInputの同一資格/衝突walkからF04ValidationBundleを生成する。public fn0はvalidated_trace全値だけを返し旧返却を保持。raw runnerは同bundleのorigin_supportをsuppliedとしてfn14へ渡す。decoderはそのqualified_occurrencesから旧selector用source_ref/record_index/recordと新原出現metadataを分離投影し、OwnerRecord[]からoriginを再検索しない。元raw/全未資格・相反・未解決/issueは同traceへ保持する。",
       "external_core_type_binding": {
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "revision": "d6a3c2e1bba751d4254fd039e86599dbbdbdc235",
@@ -9489,8 +10811,8 @@
       "malformed_value_behavior": "source_projectionのabsent/null/wrong-kind、payload selectorの欠落/unknown kind、row pointer unresolvedは該当RecordObservationのraw Fieldと局所stateを保持し、source全体や無関係sectionをinvalid_shapeへ拡大しない。宣言外memberは原値を保持して該当carrierの局所decode状態をunknownにし、findingを追加せずcoercion/default/dedupもしない。",
       "legacy_f04_compatibility": "通常F04の閉じたF04RecordInput decode、compare_core_dispositions、47件source_output_association oracleは変更しない。通常F04へprofile拡張itemを直接decodeさせない。明示profileではdeclared_member_projectionに従う宣言3memberの別値を構成し、itemのsource_projectionだけを除いた値をF04RecordInputへ渡す。元raw全体のunrelated_raw等とprofile memberを原保存元へ保持する。",
       "typed_decode_sequence": [
-        "既存validatorが元RecordTraceInputに含まれるSourceEnvelope/Qualification/QualificationRootを検証し、qualified_recordsと各source classificationを生成する。",
-        "selected decoderはqualified_recordsのsource_ref/record_index/OwnerRecord全体を保持したまま、OS002/CORE009のsection_key・record_kind・payload selectorだけを閉じて追加decodeする。",
+        "private validate_record_trace_with_originsが同一資格/衝突walkからF04ValidationBundleを生成。public fn0はvalidated_traceだけを返す。raw runnerはorigin_supportをsuppliedでfn14へ渡す。",
+        "selected decoderはbundleのqualified_occurrencesを用い原source index/source_ref/record_index/flat index/OwnerRecordを保持する。OwnerRecord[]自身にoriginがあるとは仮定しない。旧OS/CORE selectorと別new kind raw4member→structured domainをdecodeする。",
         "外部SourceResultProjectionRow decoderは固定CORE L5型/bytesへ委譲し、そのclosed 21-field shapeを同値比較の意味正本とする。OS側へfield定義を複製しない。",
         "未資格/相反/未解決recordは対象selector配列へ入れず、既存traceの状態を保つ。候補payloadからqualified occurrenceを追加しない。"
       ],
@@ -9525,6 +10847,25 @@
           "declared_child_projection": "profile本呼出しとbaselineは同一の宣言3memberを別child値へ投影する。baseline childではcore_outputs itemのsource_projectionだけを除く。外側raw carrierは双方で保存し、F04 typed observationに含めない。"
         },
         "basis": "既存CaseInputのopaque wire領域と固定sectionによる宣言子型selectorを分離し、L4 input_roles.candidate_input_pairのraw全体比較およびL9 base_input.candidate.unrelated_rawの保持を満たす。新しい許容memberやqualificationを作らない。"
+      },
+      "original_correspondence_domain_decode": {
+        "source_l4_ref": {
+          "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+          "revision": "fed4701ea97c53ed5edfcfb54925e6aa6339db51",
+          "file_sha256": "ae413e997a19c66c76e776924f84ac7272b4dc345be7509f30673baf2f013efe",
+          "pointer": "/contracts/5/source_original_correspondence/types"
+        },
+        "field_rule": "member absent=Field.missing、null=Field.supplied(null)、非nullは閉じた子型へdecode。RawValue wire受理はdomain成功でない。",
+        "types": [
+          "F04OriginalCorrespondencePayload",
+          "F04OriginalConditionCorrespondence",
+          "F04OriginalObligationCorrespondence",
+          "F04OriginalSourceRecordLocator",
+          "CORE009Ref",
+          "CORE009PresenceJsonValue"
+        ],
+        "header_rule": "qualified raw exact output_refを先に数える。domain失敗でもheader候補を保持する。",
+        "issue_boundary": "fn0 raw4member shape失敗の元InputIssueとfn14 domain追加decode状態を別channelに保持する。"
       }
     },
     "profile_dispatch": {
@@ -9544,14 +10885,12 @@
     "id": "HELIXOS-L5-002-F04-source-projection-profile",
     "source_l4_pointer": "/contracts/5/qualified_source_projection_join",
     "call_path": [
-      "F04SourceProjectionOperationInput（profile、raw candidate、元RecordTraceInput、caller選択）",
-      "validate_record_trace_input",
-      "decode_f04_source_projection_profile",
-      "build_record_trace_analysis",
-      "compare_f04_source_projection_join",
-      "source_projection_joinをF04 observationへ付加",
-      "同じ最終F04 observationを保持して四判定/NA4 memberを局所比較",
-      "旧finding prefixの後へ新TraceFinding suffixを追加して関数13のsectionsへ返す"
+      "raw operation→private validator bundle（public trace projectionは旧全値）",
+      "origin supplied request→fn14",
+      "fn13→fn18→fn17旧native",
+      "private resolver→旧join→旧member phase",
+      "origin取得済みcontext→新original comparer",
+      "新最終観測→neworiginal finding suffix"
     ],
     "owner_payload_types": {
       "F04OSCoreOutputAssociationPayload": {
@@ -9857,5 +11196,498 @@
       "実provider/custody/owner資格/製品codec/runtime/CI/L11、全入力域や全mutationは成立主張しない。以下のL8 whole/partialは各明示した有限観測範囲だけである。",
       "有限対照で未観測の分岐: source computed_dispositionのAbsent/不正Presence/型外/未宣言語、candidate dispositionの未宣言語/非string、computed_na_attributesのAbsent/present非object、JSON値trueと1の型差、同一fieldでsource/candidateがともに不成立となる組合せ（既存null役割順序の対照を除く）。source取得抑止の各条件も全分岐を網羅していない。これらを検証済み又は全mutation識別済みとしない。"
     ]
+  },
+  "f04_source_original_correspondence_detail": {
+    "id": "HELIXOS-L5-002-F04-source-original-correspondence",
+    "source_l4_ref": {
+      "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+      "revision": "fed4701ea97c53ed5edfcfb54925e6aa6339db51",
+      "file_sha256": "ae413e997a19c66c76e776924f84ac7272b4dc345be7509f30673baf2f013efe",
+      "pointer": "/contracts/5/source_original_correspondence"
+    },
+    "source_l9_ref": {
+      "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+      "revision": "fed4701ea97c53ed5edfcfb54925e6aa6339db51",
+      "file_sha256": "bfa307c8d2aed303085e34cb910714212705f3b5f7cf214f3eb3fa3f52b5de04",
+      "pointer": "/cases/5/source_original_correspondence_oracles"
+    },
+    "public_compatibility": {
+      "fn0": "既存ValidatedRecordTrace全返却と型を保持。private bundleから全値projectionする。旧25のfn0 /input以外全member比較及びmember9全trace hashを弱めない。",
+      "fn15": "既存Field<Join>全返却。旧direct unitは新comparerを呼ばない。",
+      "raw": "同walk origin取得済みcontextを必須供給。未取得Fieldを恒久unknown fallbackとしてraw実装の代用にしない。"
+    },
+    "state_tables": {
+      "activation": {
+        "definitions": {
+          "source_state": "CORE原rowから対象collectionを読み取れた状態。対応の有無とは別。",
+          "condition_requested": "CORE computed_condition_pairsがpresent非empty array、又はCORE computed_dispositionが既知conditional。",
+          "obligation_requested": "CORE computed_obligation_refsがpresent非empty array。その原indexごとの対応を要求する。",
+          "unresolved_activation": "CORE原Presence/collectionが不明で対象件数を決められない。不明をemptyにして未選択扱いにしない。"
+        },
+        "scope_table": [
+          {
+            "input": "通常F04/profile未指定、selector absent又はvalid empty",
+            "newfield": "Absent",
+            "new_comparison": "not_requested",
+            "new_findings": "none",
+            "preserve": "通常F04全返却。新source必須条件を作らない。"
+          },
+          {
+            "input": "明示profileだがselector malformed",
+            "newfield": "Absent",
+            "new_comparison": "not_compared",
+            "new_findings": "none（既存join selection unknownだけを保持）",
+            "preserve": "不正selectorからoutput集合を生成しない。"
+          },
+          {
+            "input": "既存validator input=null",
+            "newfield": "Absent",
+            "new_comparison": "not_compared",
+            "new_findings": "none",
+            "preserve": "元input_issues/元return routeを保持。raw selector/破損sourceからtarget観測を復元しない。"
+          },
+          {
+            "input": "valid nonempty selector、同じCORE原row取得不能",
+            "newfield": "supplied result内にselected outputごとのrecord",
+            "new_comparison": "not_compared",
+            "new_findings": "none（元join/source issueを保持）",
+            "preserve": "CORE source/OS associationの既存分類を保持。raw collection Fieldはmissingで、[]を生成しない。既存native F04は独立継続。"
+          },
+          {
+            "input": "valid nonempty selector、原row取得済み",
+            "newfield": "supplied result/record",
+            "new_comparison": "下表のsource状態と原対応状態を別々に保持",
+            "new_findings": "下記返却規則だけ",
+            "preserve": "空collectionであっても元Presenceを観測に残す。newfieldのAbsentを不足の隠蔽に使わない。"
+          }
+        ],
+        "CORE_collection_table": [
+          {
+            "raw": "member absent又は{presence:absent}",
+            "condition_source_state": "missing",
+            "obligation_source_state": "missing",
+            "activation": "unresolved",
+            "comparison": "collection対応の値比較not_compared。相手の既知collection/独立native値は保存。",
+            "finding": "各欠落source collectionのmissing。CORE source ownerへ返す。"
+          },
+          {
+            "raw": "{presence:present,value:null}",
+            "condition_source_state": "unknown",
+            "obligation_source_state": "unknown",
+            "activation": "unresolved",
+            "comparison": "nullはpresentだがordered collectionとして未確定。emptyに変換せず値比較not_compared。",
+            "finding": "source collection unknown。CORE条件側は既存collection_validationのpresent nonarray→unresolvedを再利用。obligation側はOSの各出現追跡に必要な配列表現をこの追補で明示する技術導出。"
+          },
+          {
+            "raw": "不正Presence object、又はpresentの非array scalar/object",
+            "condition_source_state": "unknown",
+            "obligation_source_state": "unknown",
+            "activation": "unresolved",
+            "comparison": "原値/不正parent位置を保存し、原indexを合成しない。",
+            "finding": "source collection unknown。既存decodeが先に落としてissueを返す場合はその元channelを保持し、存在しないCORE rowに本所見を生成しない。"
+          },
+          {
+            "raw": "present []、computed_disposition=既知conditional",
+            "condition_source_state": "empty",
+            "obligation_source_state": "empty",
+            "activation": "condition=requested、obligation=not_requested",
+            "comparison": "conditional原booleanとの対応は元ownerへ求める。empty all=true又は不適用を生成しない。obligationの出現は0だが全義務完了とはしない。",
+            "finding": "原対応が不足すればcondition側だけmissing。"
+          },
+          {
+            "raw": "present []、computed_disposition=既知required/na/unresolved",
+            "condition_source_state": "empty",
+            "obligation_source_state": "empty",
+            "activation": "not_requested（当該collectionから新規source対応対象なし）",
+            "comparison": "新条件/義務対応を捏造しない。元disposition/native条件/未完の通常比較はそのまま。unresolvedを成功又はNAへ変更しない。",
+            "finding": "collection対応の追加findingなし。"
+          },
+          {
+            "raw": "condition present []、computed_dispositionもAbsent/null/型外/未宣言",
+            "condition_source_state": "empty",
+            "obligation_source_state": "empty",
+            "activation": "condition=unresolved、obligation=not_requested",
+            "comparison": "conditionalか否かを推測しない。原dispositionの現member findingを保持。",
+            "finding": "新しいcondition required推測所見は重ねず、condition_correspondence_state=not_compared。"
+          },
+          {
+            "raw": "present 非empty array、全condition pair/Ref6が解釈可能",
+            "condition_source_state": "supplied",
+            "obligation_source_state": "supplied",
+            "activation": "requested",
+            "comparison": "conditionは列全体の原対応を比較。obligationは原indexごとの全出現を比較。",
+            "finding": "対応/原観測の不足・相反を返す。"
+          },
+          {
+            "raw": "present arrayだがcondition pair/Ref6に不正itemがある",
+            "condition_source_state": "unknown",
+            "obligation_source_state": "supplied",
+            "obligation_occurrence_state": "各不正CORE Ref occurrenceだけunknown",
+            "activation": "requested",
+            "comparison": "不正をemptyにせず原itemを保持。条件列全体の内容対応はnot_compared、独立native条件観測は取得可能なら保持。obligationの他の正しいoccurrence/edgeは継続。",
+            "finding": "CORE条件列の不正item又はCORE義務不正occurrenceに局所unknown。CORE rowのraw Presenceがtyped decode前に拒否された場合は既存issueを保持する。"
+          }
+        ],
+        "relationship_role_presence_table": [
+          {
+            "role": "condition",
+            "value": "Absent",
+            "when": "condition requested / parent relationship domain decode成功",
+            "state": "missing",
+            "finding": "core_source_condition_relation_missing（原対応provider）"
+          },
+          {
+            "role": "condition",
+            "value": "present null",
+            "when": "condition requested / Field nullとしてdecode成功",
+            "state": "unknown",
+            "finding": "core_source_condition_relation_unknown（原対応provider）。nullからnative locatorを作らない。"
+          },
+          {
+            "role": "condition",
+            "value": "objectだがdomain closed decode失敗",
+            "state": "関係unknown、意味比較not_compared",
+            "finding": "新semantic findingなし。qualified header exact matchの場合だけ局所decode状態へ保持。下記decode表参照。"
+          },
+          {
+            "role": "obligations",
+            "value": "Absent",
+            "when": "CORE nonempty obligations",
+            "state": "CORE各原occurrenceのassignment missing",
+            "finding": "各原occurrenceにcore_source_obligation_assignment_missing。"
+          },
+          {
+            "role": "obligations",
+            "value": "present null",
+            "when": "Field nullとしてdecode成功 / CORE nonempty obligations",
+            "state": "各原occurrence assignment unknown",
+            "finding": "core_source_obligation_assignment_collection_unknownを原parentに1件。nullが同じ原因のためN件の仮想edge所見を作らない。"
+          },
+          {
+            "role": "obligations",
+            "value": "present []",
+            "when": "CORE nonempty obligations",
+            "state": "各原occurrenceのassignment missing",
+            "finding": "各原occurrenceにcore_source_obligation_assignment_missing。明示空対応列で原CORE義務を消込まない。"
+          },
+          {
+            "role": "obligations",
+            "value": "present nonempty valid array",
+            "state": "各原CORE index/Ref6と各明示edge/native所在を独立比較",
+            "finding": "各不成立だけ。複数edgeのall/any/成功aggregateなし。"
+          },
+          {
+            "role": "obligations",
+            "value": "非array又はelement domain型不正",
+            "state": "関係unknown、意味比較not_compared",
+            "finding": "新semantic findingなし。profile decode状態/rawを保持。正常native比較は継続。"
+          }
+        ],
+        "native_null_and_absence": "native original_conditionのAbsentはmissing、明示nullはunknown。condition_value RawValue nullはそれ自体有効なpair値であり、native boolean nullへ転用しない。OS native stateのAbsentはmissing、明示nullはunknown、型外は既存typed decode失敗を保持。known false/not_started/failed/not_evaluatedはその原値のまま。"
+      },
+      "resolution_and_decode": {
+        "table": [
+          {
+            "fn0_visible_result": "input=null",
+            "qualified_header_count": "not_read",
+            "result": "newfield Absent / not_compared",
+            "return": "既存InputIssue/元returnを保持。raw source/issue detailからtargetを復元しない。"
+          },
+          {
+            "fn0_visible_result": "inputあり、new kindがqualified_recordsに0件",
+            "qualified_header_count": 0,
+            "result": "元rowから要求された原対応はmissing",
+            "return": "core_source_original_relation_missingをselected output位置へ1件。元InputIssue/source issue/unqualified rawは既存channelへ保持。未資格raw headerからtarget unknownを作らない。"
+          },
+          {
+            "fn0_visible_result": "閉型失敗でfn0がrecordをqualified_recordsから除外した",
+            "qualified_header_count": "残ったqualified recordだけ数える",
+            "result": "0ならmissing、他の妥当な同target recordがあればそれだけを比較",
+            "return": "dropのInputIssueは元channelへ保持。drop recordのpayload/issue detailを読み戻してtarget unknown/ambiguousへ加算しない。"
+          },
+          {
+            "fn0_visible_result": "qualified new kindは残るがoutput_refがAbsent/null/異型/別Ref",
+            "qualified_header_count": "当該selectorは0",
+            "result": "当該selectorの原対応はmissing。他selectorをunknownにしない。",
+            "return": "raw qualified recordと存在する元issue/局所decode状態を保持。"
+          },
+          {
+            "fn0_visible_result": "qualified raw header exactが1件、fn14 full domain payloadはvalid",
+            "qualified_header_count": 1,
+            "result": "unique。その後core locator/各role原値を独立比較。",
+            "return": "semantic比較の実不成立だけ新finding。"
+          },
+          {
+            "fn0_visible_result": "qualified raw header exactが1件、fn14 full domain payloadはclosed decode失敗",
+            "qualified_header_count": 1,
+            "result": "correspondence_resolution_state=unknown、全新semantic relation比較not_compared",
+            "return": "原qualified OwnerRecord/raw payloadとlocal_decode_states=unknownを保存。新semantic findingなし。fn0が既に返したInputIssueは元のinput_issues/source_issues channelに保持し、fn14がそれを上書き・追加生成したと主張しない。native locatorは採用しない。"
+          },
+          {
+            "fn0_visible_result": "qualified raw header exactが複数（valid/invalid domain payload混在を含む）",
+            "qualified_header_count": ">1",
+            "result": "ambiguous（比較状態unknown）、全候補/出所保持、意味比較not_compared",
+            "return": "core_source_original_relation_unknownをselected output位置へ1件。良い方/先頭だけ採用しない。存在する各decode状態/元issueも保持する。"
+          },
+          {
+            "fn0_visible_result": "unique domain成功、core_row_locatorが既存trusted joinと相反",
+            "qualified_header_count": 1,
+            "result": "原関係binding conflict。new condition/obligationのCORE対応だけnot_compared。",
+            "return": "core_source_original_relation_conflictを原locator位置へ1件。旧native F04、旧join/CORE原row/他outputは維持。"
+          },
+          {
+            "fn0_visible_result": "qualified原対応はあるが参照先native sourceが未資格/競合/未解決",
+            "qualified_header_count": 1,
+            "result": "該当native lookupにunknown/conflictを元分類のまま保持、他channelは独立",
+            "return": "既存source issueがある時はnewfieldの関係source_issuesと既存unresolved_source_refsへ到達分だけ保持し、同じ資格/decode原因のnewsemantic findingは増やさない。必要native sourceそのもの不在で元issueが無い場合だけ局所missing finding。"
+          }
+        ],
+        "channel_preservation": "RecordTraceAnalysis.input_issuesは同じvalidator.input_issuesを保持する。source_issuesは元ValidatedRecordTrace.source_issuesに保持し、原対応から実到達した関連issueだけ新観測へ写す。profile追加decode unknownはlocal_decode_states/rawとして保存し、別channelのInputIssueを捏造しない。",
+        "boundary": "fn0の実返却だけから後段を選ぶ。input=null/drop recordを後段で救済せず、qualified raw header exactだがdomain decode失敗のときだけtarget局所unknown/semantic not_comparedとしてraw/decode状態を保存する。新semantic findingは生成せず、既存InputIssueは元channelのまま保持する。"
+      },
+      "condition_semantics": "原ordered condition_ref/value列全体のmirrorとnative output_ref付き原itemを、元ownerの原対応で結ぶ。native original_conditionはField<boolean|null>で読み、列からall/any/first/truthiness/単一pair castでbooleanを作らない。raw condition_value=nullとnative boolean nullは別であり転用しない。",
+      "obligation_semantics": "CORE原computed_obligation_refsの各index/完全Ref6と独立native output/OS stateの完全Ref4/所在を明示edgeで照合する。配列順/重複を保存し、many-to-one/one-to-manyを型で禁止せず各edgeを比較する。zip/dedup/Ref cast/他kindによる代償消込/全state成功foldをしない。未対応CORE occurrenceはその位置の不足として保持する。"
+    },
+    "state_reduction": {
+      "purpose": "既存enumと独立状態の返却意味を具体化する。元booleanや義務stateを演算せず、原対応の存在から既知判断・充足・完成を認定しない。",
+      "correspondence_resolution_state": [
+        {
+          "when": "妥当なselected outputはあるがtrusted CORE原row取得不能",
+          "state": "not_compared",
+          "preserve": "元join/issueを保持し、原collection Fieldはmissing。"
+        },
+        {
+          "when": "原row取得済みでcondition/obligationの両roleが既知not_requested",
+          "state": "not_requested",
+          "preserve": "原empty Presenceを保持。新必要sourceを増やさず、対応header/native locatorの取得を要求しない。"
+        },
+        {
+          "when": "要求が確定したroleがなく、少なくとも一つのcollection/条件活性がunresolved",
+          "state": "not_compared",
+          "preserve": "不明collectionの元状態/原Presence/所見を保持し、empty又は新関係missingへ置換しない。"
+        },
+        {
+          "when": "少なくとも一つのroleがrequested",
+          "state": "resolution_and_decode.tableに従う",
+          "preserve": "他roleのempty/不明/既知原観測は独立に残す。"
+        }
+      ],
+      "condition_correspondence_state": {
+        "meaning": "原ordered mirrorと同targetのnative所在対応の要約。native scalar original_conditionの既知性又はtrue/falseの要約ではない。",
+        "role_order": [
+          "condition not_requestedならnot_requested。活性unresolved又はcollectionの内容比較不能ならnot_compared。原collection/活性の元状態は別fieldへ残す。",
+          "要求された関係header0件ならmissing。ambiguous/full domain失敗/shared locator相反で新semantic比較を行わない場合はnot_comparedとし、resolution state/decode/rawを別fieldへ保存する。",
+          "unique domain成功/shared locator対応後、condition roleのAbsentはmissing、present nullはunknown。妥当なcondition objectなら下記二つの状態から要約する。"
+        ],
+        "internal_operands": {
+          "mirror_state": "CORE原ordered condition_pairs全体とexpected_condition_pairsの対応。Field/Presence/array順/重複/原Ref6/valueを保ち、既知値差はconflict。",
+          "native_endpoint_binding_state": "当該native locatorの原source occurrence/source_ref/record index/subject_ref/既存F04 role/payload pointer/原item.output_refの所在対応。独立資格未成立は元source分類へ従う。scalar original_conditionの値・presenceは含めない。"
+        },
+        "same_relation_state_reduction": "二つの同じ原対応に必要な比較状態に限り、conflictがあればconflict、なければunknown、なければmissing、両方correspondingならcorresponding、それ以外はnot_compared。入力となる二状態・原値・各診断は保持する。この順位を他axis/原state又は既存CORE-row carrier aggregateへ適用しない。",
+        "independent_native_value": "native_endpoint_binding_state=correspondingなら、native original_conditionのAbsentはoriginal_condition_state=missing、明示nullはunknown、boolean false/trueはいずれもcorrespondingとして原値保持。native endpoint自体が不成立ならその元状態をoriginal_condition_stateへ保持する。",
+        "counterexample": "mirrorと所在が対応しnative original_condition=nullなら親condition_correspondence_state=corresponding、child original_condition_state=unknown、native_original_condition=nullを同時に返す。親correspondingから既知判断/充足/適用/完了を認定しない。",
+        "comparison_with_alternatives": [
+          "mirrorだけのprojectionは同target native所在の不成立を親で表さないため採らない。",
+          "native scalarのunknownを親へも集約する案はmirror/所在対応と原判断の既知性を混合するため採らない。",
+          "true/falseのboolean foldは原判断を新判定へ変更するため採らない。"
+        ]
+      },
+      "closed_record_tuple_rules": {
+        "not_requested": "取得済みtrusted core_row_locator/raw collection Presence/source refsを保持、原対応候補/role観測/edge/decode配列は空、condition roleはnot_requested。source state emptyをnot_comparedへ変換しない。",
+        "not_compared_before_raw_row": "selected Refと取得できたtrusted locator/source refsは保持可能。raw collection Fieldはmissing、condition/obligation source stateと条件活性/対応stateはnot_compared、関係候補/role/edge/decode配列は空。",
+        "shared_relation_semantic_suppression": "ambiguous/domain失敗/shared locator相反ではcondition_correspondence_state=not_compared。既知CORE義務出現は原index/Refのまま保持しassignment_presence_state=unknown、assignments=[]。これは関係未成立を空成功又は任意edgeへ変換しないための返却表現。raw relation候補/decode状態/共有findingは元規則へ従う。",
+        "invalid_core_ref_occurrence": "COREの配列内Ref6が型外のその出現だけcore_ref_decode_state=unknown/assignment_presence_state=unknown/assignments=[]としraw core_raw_refを保持する。存在しないassignmentのmissing診断を重ねず、元collectionの局所unknownを保持する。"
+      }
+    },
+    "diagnostic_contract": {
+      "contract_ref": "HELIXOS-L5-002-F04",
+      "axis": "disposition_obligation",
+      "code_families": [
+        {
+          "code": "core_source_condition_collection_{missing|unknown}",
+          "path": "原CORE source内のcomputed_condition_pairs（不正itemなら実indexまで）",
+          "owner": "取得済みCORE projection source owner"
+        },
+        {
+          "code": "core_source_obligation_collection_{missing|unknown}",
+          "path": "原CORE source内のcomputed_obligation_refs（不正Refなら実indexまで）",
+          "owner": "取得済みCORE projection source owner"
+        },
+        {
+          "code": "core_source_original_relation_{missing|unknown}",
+          "path": "source_projection_selection/output_refs/{selected occurrence index}",
+          "owner": "同selected outputを結ぶ既存qualified OS associationのowner（原対応provider役割）"
+        },
+        {
+          "code": "core_source_original_relation_conflict",
+          "path": "原対応OwnerRecord.payload.core_row_locator",
+          "owner": "当該原対応OwnerRecord.owner"
+        },
+        {
+          "code": "core_source_condition_relation_{missing|unknown|conflict}",
+          "path": "原対応payload.condition又は/condition/expected_condition_pairs（親未供給/nullなら親まで）",
+          "owner": "当該原対応OwnerRecord.owner"
+        },
+        {
+          "code": "core_source_condition_observation_{missing|unknown}",
+          "path": "解決済みnative原item.original_condition。native source/pointer自体を解決不能なら原対応condition.native_outputの該当locator memberまで",
+          "owner": "実native source.owner、source不在なら既知locator.source_ref.owner、いずれも原値が無ければ原対応provider owner"
+        },
+        {
+          "code": "core_source_obligation_assignment_collection_unknown",
+          "path": "原対応payload.obligations（present nullの親まで）",
+          "owner": "原対応OwnerRecord.owner"
+        },
+        {
+          "code": "core_source_obligation_assignment_missing",
+          "path": "原CORE sourceのcomputed_obligation_refs/value/{original occurrence index}",
+          "owner": "原対応provider owner"
+        },
+        {
+          "code": "core_source_obligation_assignment_conflict",
+          "path": "原対応payload.obligations/{original edge index}/expected_core_obligation_ref",
+          "owner": "原対応OwnerRecord.owner"
+        },
+        {
+          "code": "core_source_obligation_native_output_{missing|unknown|conflict}",
+          "path": "原対応edge.native_outputのlocator member、又は実native item.output_ref",
+          "owner": "実native source.owner、未取得なら既知locator.source_ref.owner、それも原値無しなら原対応provider owner"
+        },
+        {
+          "code": "core_source_obligation_native_state_{missing|unknown|conflict}",
+          "path": "原対応edge.native_stateのlocator member、実native state item.ref/state、又はedge.expected_os_obligation_ref",
+          "owner": "原値そのものの不足/未決はnative source owner、expected Ref claimの既知相反は原対応provider owner"
+        }
+      ],
+      "path_roots": {
+        "CORE_raw": "validated_record_trace/input/sources/{source occurrence index}/decoded_records/{source record index}/payload{row_pointer}/computed_condition_pairs又は/computed_obligation_refs",
+        "relationship_raw": "validated_record_trace/input/sources/{relationship source occurrence index}/decoded_records/{source record index}/payload",
+        "native_raw": "validated_record_trace/input/sources/{native source occurrence index}/decoded_records/{source record index}/payload{payload_pointer}",
+        "source_index_rule": "source/recordの原indexと完全Refを併せて確認する。qualified_records flat indexや絞込後の連番へ置換しない。",
+        "unresolved_pointer_rule": "不在/型外のnative親へ架空の子pathを作らず、供給されたlocator source_ref/payload_pointerの実位置へ返す。",
+        "diagnostic_scope": "上記は2引数内部比較のValidatedRecordTrace/typed contextをrootとする所在。製品path/location権限ではない。",
+        "location_coordinate_systems": {
+          "locator_operands": "core_row_locator.row_pointerとnative locator.payload_pointerは、それぞれのOwnerRecord.payloadをrootとするRFC6901型。返却型にも同じ型を用いる。",
+          "new_raw_diagnostic_path": "本原対応diagnosticのtarget_pathはvalidated_record_trace/input/sources/{原source index}/decoded_records/{原record index}/payloadから始まる既存typed所在記法。root名を含む所在表示であり、文字列全体をpayload rootのRFC6901として実行しない。",
+          "existing_member_diagnostic_path": "既存四判定/NA member findingはvalidated_record_trace/qualified_records/{flat index}/payloadをrootとする所在表示を保持する。旧findingのpath/順/保存観測を書換えない。",
+          "occurrence_correspondence": "前者は親inputの原source/record出現、後者は資格処理後のflat record出現。後続詳細は資格処理時のsource occurrence/record indexと完全source_ref/subject_refの対応を保持し、両所在を同じ原出現へ結ぶ。同値値の先頭再検索やflat indexを原indexへ代入しない。具体typed decode/対応保持はL5/L8追随未成立。"
+        }
+      },
+      "order": [
+        "既存通常F04 finding prefixを元値/順/重複/保存観測ごと保持する。",
+        "現在の四判定/NA member suffixを同順で保持し、その後に本source-original対応suffixを追加する。",
+        "本suffixはsource_projection_selection.output_refsの元出現順。重複選択も保持する。",
+        "各selected outputでCORE condition collection issue、CORE obligation collection issue、shared relationship resolution/core-locator issueの順。共有のparent未供給/曖昧は一つの実原因として1件とし、仮想child issueへ展開しない。",
+        "unique domain原対応がありshared core locatorが対応した場合、condition roleのmirror/role presence問題→native output所在/Ref→native scalar presence/unknownの順に各独立問題を返す。条件mirror問題で取得可能な独立native値/obligation branchを消さない。",
+        "次にCORE obligationの原index順。各原occurrenceで、edge不在の問題、又は原対応payload.obligations内で対応する各edgeの元index順にCORE Ref claim→native output locator/Ref→native state locator/Ref→native state値の順。複数edgeをdedup/aggregateしない。",
+        "既存InputIssue/source issue/profile decode stateと同じdecode/資格原因をnewsemantic findingへ重複生成しない。native semantic Field missing/nullで既存issueが無い場合は上記局所findingを返す。",
+        "全観測を構成してから新findingへ同じ最終F04 observationをpreserved_observationとして付ける。旧finding内の過去観測は書換えない。"
+      ],
+      "source_refs": "既存qualified OS association/CORE rowとqualified原対応から実際に辿ったsource occurrence集合だけを親sources元順/元重複で保持する。未資格原対応payloadから関係source集合を作らず、Q/別output/親trace全sourceを流し込まない。"
+    },
+    "phase_binding": [
+      "旧fn17 finding保存観測を固定",
+      "旧join付きmember finding保存観測を固定",
+      "neworiginal全component完成",
+      "neworiginal draftsだけへ同じ最終観測を保存"
+    ],
+    "issue_producer": {
+      "scope": "新technical producer literal。既存issue/detailは保持し、同原因既存issueがある時は原issueを使う。",
+      "missing_qualification": {
+        "axis": "qualification",
+        "state": "missing",
+        "path": "qualifications/{source_occurrence_index}",
+        "detail": "独立資格参照に一致するQualificationが供給されていない。",
+        "backflow_owner": "source.owner",
+        "source_ref": "source.source_ref",
+        "related_source_refs": []
+      },
+      "missing_root": {
+        "axis": "qualification",
+        "state": "unknown",
+        "path": "qualification_roots/{source_occurrence_index}",
+        "detail": "独立資格root参照に一致するQualificationRootが供給されていない。",
+        "backflow_owner": "source.owner",
+        "source_ref": "source.source_ref",
+        "related_source_refs": []
+      }
+    },
+    "legacy_rederivation": {
+      "mode": "semantic_rederivation",
+      "sources": [
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+          "read_lines": [
+            24,
+            30,
+            37,
+            58,
+            80,
+            81,
+            86
+          ],
+          "quote": "| Design Instance JSON | 選択済みtemplateとrequirement/obligationを束縛した設計値 | 後続L5 episode |\n画像、Markdown、tool node ID、file pathだけをtemplate identityや設計意味の主キーにしない。\n| `ApplicabilityEvaluator` | requirement atom、obligation、risk、style/layer、typed predicate | applicable/non-applicable＋理由 | `all`/`any`/`not`のfail-close評価 | unknown operator/field/enum、自由文条件 |\nback-propagationはfindingまたはproposal eventとしてRequirement Engine／template revisionへ戻す。\nfield、operator、value type、enumはschema registryのallowlistで閉じる。unknownは`false`へ丸めず\nevaluation errorとしてfail-closeする。N/Aはreason、authority、re-evaluation triggerを必須にする。\n- requirement/obligation trace\n",
+          "selected_lines_sha256": "be6fb2236020448a4136bc52f75728d5a3d60c5e02d8f068d84ea3d17ec98d3f",
+          "use": "原source/instance結合・scope分離・未知保持・局所診断を保持。旧runtime/test/CIは実行せず移植しない。"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+          "sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+          "read_lines": [
+            56
+          ],
+          "quote": "| **HBR-P7** | **責務別の記録と共有可能な継続情報** — harness/projectのscopeを分離し、Claude/Codexから同じ正本revisionへ戻れるbounded recallを提供する。要件v1.3 HR-FR-HYB-005に従い、active memoryの内容を責務正本へ反映してからbody-free receiptへretireし、期限切れ・消費済み指示を再提示しない。要求の意味は指定文書・JSON、継続状態はDB projectionで確認する。provider delegation evidenceは委譲証拠でありprogress/continuation正本ではない | FR-L1-19/36/38/46/47（learning/skill・model 評価 projection/roster/skill — memory は impl detail 止まり） | 2 層 memory **architecture FR・cross-agent 共有 access・Glossary SSoT 無し** → architecture は **PLAN-L7-175/176 で充足済**、残=**Glossary SSoT 連結 / Codex SessionStart surface と Claude surface の同一 bounded recall 検証** |\n",
+          "selected_lines_sha256": "89f629581aff8b9188d1903ef1b8206a63e393918df194fe7a195d0ba53f7bb4",
+          "use": "原source/instance結合・scope分離・未知保持・局所診断を保持。旧runtime/test/CIは実行せず移植しない。"
+        },
+        {
+          "asset_id": "UTW-014/020/021",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+          "read_lines": [
+            80,
+            86,
+            87
+          ],
+          "quote": "| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |\n| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |\n| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |\n",
+          "selected_lines_sha256": "de357c472a4a407b57a7989df436a260b3db4f2ce38d01a5746088a39c2a8886",
+          "use": "原source/instance結合・scope分離・未知保持・局所診断を保持。旧runtime/test/CIは実行せず移植しない。"
+        }
+      ],
+      "preserve": "選択instance/原source/義務trace、scope分離、unknownをfalseへ丸めない、局所原因とowner返却。",
+      "change": "現CORE RawPresence/Ref6列とOS native原boolean/Ref4 stateとの原対応を別kindと明示locatorで具体化する。旧predicate/runtime/registryを移植しない。",
+      "reason": "source rowのcopy/候補自己一致だけではF04の原条件/各未完義務への追跡を閉じず、値の自動cast/zipでは原意味を失う。"
+    },
+    "remaining": [
+      "型・schemaと論理呼出しの契約を記述したもので、業務evaluator・実codecの成立証拠は未供給。有限期待の型適合だけで実行成立を認定しない。",
+      "型外Presence2callerの新component/semantic suffixだけ先固定。旧join全値/最終F04 wholeは未固定。",
+      "旧25は元のjoin/native/member各phase比較を保持するが新original全Analysis whole25は未導出。旧fn0全返却比較はprivate projection設計でそのまま保持する。",
+      "実provider/caller/原operation/custody/実資格/transport/L6/L7/runtime/CIは未成立。論理詳細の新入場gateにしない。",
+      "remaining basicのnative endpoint不成立・混在縮約・closed tuple等は有限対照外を全域成立としない。"
+    ],
+    "diagnostic_code_binding": {
+      "condition_native_endpoint_conflict": {
+        "source_l4_ref": {
+          "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+          "revision": "fed4701ea97c53ed5edfcfb54925e6aa6339db51",
+          "file_sha256": "ae413e997a19c66c76e776924f84ac7272b4dc345be7509f30673baf2f013efe",
+          "pointer": "/contracts/5/source_original_correspondence"
+        },
+        "source_pointers": [
+          "/contracts/5/source_original_correspondence/logical_return/state_derivation/condition_correspondence_state/internal_operands/native_endpoint_binding_state",
+          "/contracts/5/source_original_correspondence/logical_return/state_derivation/condition_correspondence_state/same_relation_state_reduction",
+          "/contracts/5/source_original_correspondence/diagnostics/code_families/4",
+          "/contracts/5/source_original_correspondence/diagnostics/code_families/5"
+        ],
+        "derivation": "L4はnative所在・原item.output_refの既知相反をcondition対応のconflictとして保持するが、その枝専用のcode名は列挙していない。本詳細はその未命名枝を、原対応providerが主張するconditionのtarget接続の既知相反として、既存condition relation conflict familyへ対応付ける。native scalar original_conditionの欠落/未決を表すobservation missing/unknownとは区別する。これはL4にこの対応の逐語記載があるという主張ではなく、既存の状態・責務・code familyを保つ技術的な導出である。",
+        "code": "core_source_condition_relation_conflict",
+        "path": "原対応payload.condition.native_outputの当該locator/target対応の所在。既存diagnostics.path_roots.relationship_rawをrootとする。",
+        "owner": "当該原対応OwnerRecord.owner（誤ったtarget接続を主張したprovider）",
+        "preserves": "CORE原rowやnative scalarを再判定せず、親condition対応の既知相反を保持する。独立資格の元issueが原因の枝では既存issueを保持し重複semantic findingを作らない。"
+      }
+    }
   }
 }
