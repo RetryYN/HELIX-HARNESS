@@ -1613,7 +1613,7 @@
     "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは未成立。",
     "F09の018/020固定写像と025原操作scopeは本基本pair候補で具体化。L5/L8の未決記述/producer/input/返却契約への反映、実source/資格と実接続、独立reviewは未成立。",
     "各ownerの原operation producer/供給contract、正式carrier/schema/owner-qualified bindingは未成立。未供給で025 unknownを返すが、欠落を理由に新approval/全stage gateを追加しない。",
-    "F09のcanonical全body read/Claim intent・origin incomingはdependency_semantic_portsに論理型/分岐として具体化。L5/L8の同snapshot producer/公開返却への追随と030/OS供給側pair、実source/custody/資格稼働、F09 Comparison/SupplyAnalysis全返却の独立期待は別に残る。"
+    "F09のcanonical全body read/Claim intent・origin incomingはdependency_semantic_portsに論理型/分岐として具体化。L5/L8の同snapshot producer/公開返却への追随と030/OS供給側pair、実source/custody/資格稼働、F09 Comparison/SupplyAnalysis全返却の独立期待は別に残る。 L5/L8追随ではclaim_intent_protocolのkind別値語彙・supplied/absent/null・typed origin/全field返却と順序を採用する。現failure ruleにその語彙が実装済みとはしない。"
   ],
   "conditional_source_dependency_contract": {
     "id": "HELIXBRAIN-L4-032-F09-CONDITIONAL-SOURCE",
@@ -2648,7 +2648,8 @@
           "pointer": "/logical_input_structure/schema",
           "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
           "object_canonical_sha256": "465953b0e46c6edfad4ef5303dc17ed65df2f171a139ab316affda4e96b2d9dc",
-          "projection": "$schema/$id/$defsだけを除く既存root schemaをPortSupplyInput名で再利用。"
+          "projection": "$schema/$id/$defsだけを除く既存root schemaをPortSupplyInput名で再利用。",
+          "object_canonical_sha256_scope": "pointer先のprojection前root schema本文全体（$schema/$id/$defsを含む）のcanonical hash。projection後のPortSupplyInput objectだけのhashではない。"
         },
         {
           "name": "Port030_",
@@ -3402,52 +3403,86 @@
       {
         "order": 1,
         "condition": "validated.input=null 又はinput binding自体がabsent/null",
-        "return": "新しいBinding/body recordを捏造しない。原presenceのBodyReadProblem unknownを保持。公開Axis subject形成限界は既存L5規則へ従い、raw/source traceを削除しない。"
+        "return": "新しいBinding/body recordを捏造しない。原presenceのBodyReadProblem unknownを保持。公開Axis subject形成限界は既存L5規則へ従い、raw/source traceを削除しない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/0",
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/1"
+        ]
       },
       {
         "order": 2,
         "condition": "対象条件selectorが未確定又はfalse",
-        "return": "callerが当該条件集合のbody portを呼ばない。既存selector unknown/null owner又はunobservedを保持。always/別既知条件は独立に評価。"
+        "return": "callerが当該条件集合のbody portを呼ばない。既存selector unknown/null owner又はunobservedを保持。always/別既知条件は独立に評価。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/2"
+        ]
       },
       {
         "order": 3,
         "condition": "必要identityが当該categoryに不在",
-        "return": "既存missingを先に確定。欠落Refの版/scope/owner/digestを生成せず、他body/aggregateで補償しない。"
+        "return": "既存missingを先に確定。欠落Refの版/scope/owner/digestを生成せず、他body/aggregateで補償しない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/3"
+        ]
       },
       {
         "order": 4,
         "condition": "原Refのidentity/revision/scope/ownerにabsent/null",
-        "return": "unknown＋原presence/Ref全値。既知frame相反は既存比較のconflictを保持。source一覧の別版だけで相反を作らない。"
+        "return": "unknown＋原presence/Ref全値。既知frame相反は既存比較のconflictを保持。source一覧の別版だけで相反を作らない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/4",
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/5"
+        ]
       },
       {
         "order": 5,
         "condition": "既存fullRef対応semantic_json sourceがない、又はそのsourceがValidatedSupply.unusable_source_refsにある",
-        "return": "unknown。原category refsと限定nested record/source原値は保持し、dependency_meaningsという所在traceをcanonical契約bodyへ昇格しない。"
+        "return": "unknown。原category refsと限定nested record/source原値は保持し、dependency_meaningsという所在traceをcanonical契約bodyへ昇格しない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/6",
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/7"
+        ]
       },
       {
         "order": 6,
         "condition": "対応sourceのbytes/body/digest/独立owner/root/対象scopeが既存validateで適合",
-        "return": "CanonicalBodyRecordへtarget_ref、source_ref、同caller binding、content全RawValue、原body_locator、実source_refだけのbasis_refsを返す。全bodyをrequired意味へ再採点する自然文adapterを必須にしない。"
+        "return": "CanonicalBodyRecordへtarget_ref、source_ref、同caller binding、content全RawValue、原body_locator、実source_refだけのbasis_refsを返す。全bodyをrequired意味へ再採点する自然文adapterを必須にしない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/8"
+        ]
       },
       {
         "order": 7,
         "condition": "対応contentが明示null",
-        "return": "null原値をrecordへ保持するが原意味未供給unknown。absentと同一にはせず、null replacement Claimの存在とは分ける。"
+        "return": "null原値をrecordへ保持するが原意味未供給unknown。absentと同一にはせず、null replacement Claimの存在とは分ける。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/9"
+        ]
       },
       {
         "order": 8,
         "condition": "同target/frameのsourceが複数",
-        "return": "全record/原source順保持。完全同値複写で不足を増やさず、異bodyで一意解決不能ならsource解決unknown。文面/digest差だけで意味conflictを作らない。"
+        "return": "全record/原source順保持。完全同値複写で不足を増やさず、異bodyで一意解決不能ならsource解決unknown。文面/digest差だけで意味conflictを作らない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/10",
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/11"
+        ]
       },
       {
         "order": 9,
         "condition": "canonical原body参照/内容提供だけが必要",
-        "return": "resolvedは当該owner原契約bodyを対象版/scopeへ解決して全値提供できた意味。第二Fact/独立同義命題を追加必須にしない。適用/採用/実義務完成の認定ではない。"
+        "return": "resolvedは当該owner原契約bodyを対象版/scopeへ解決して全値提供できた意味。第二Fact/独立同義命題を追加必須にしない。適用/採用/実義務完成の認定ではない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/12"
+        ]
       },
       {
         "order": 10,
         "condition": "実際に異なるFactの同義/相反を扱う操作/主張がある",
-        "return": "既存MeaningFact/MeaningComparisonへ実pairだけ接続。qualified false優先conflict、false無しqualified true known、他unknown。必要でないpairを創作しない。"
+        "return": "既存MeaningFact/MeaningComparisonへ実pairだけ接続。qualified false優先conflict、false無しqualified true known、他unknown。必要でないpairを創作しない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/13"
+        ]
       }
     ],
     "canonical_trace_fields": {
@@ -3462,32 +3497,51 @@
       {
         "order": 1,
         "condition": "carrier locator/body/schema又はrequired origin/frame/input/returnが未供給/型不成立",
-        "return": "ClaimProjectionRead unknown、claim absent、原所在/不足を保持。missing/null boolをtrueへ補完しない。"
+        "return": "ClaimProjectionRead unknown、claim absent、原所在/不足を保持。missing/null boolをtrueへ補完しない。",
+        "reason_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/origin_reason_mapping/0"
+        ]
       },
       {
         "order": 2,
         "condition": "consumer target/fullBinding比較に必要なmember未供給/null",
-        "return": "unknown。原carrier/030 bool/input/returnは保持し、Claim frameを補わない。"
+        "return": "unknown。原carrier/030 bool/input/returnは保持し、Claim frameを補わない。",
+        "reason_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/origin_reason_mapping/1"
+        ]
       },
       {
         "order": 3,
         "condition": "元origin.subject_refとconsumer subject_ref、又はorigin.bindingとconsumer bindingが既知不一致",
-        "return": "conflict、claim absent。boolが同じでも別target/別scopeへ転記しない。"
+        "return": "conflict、claim absent。boolが同じでも別target/別scopeへ転記しない。",
+        "reason_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/origin_reason_mapping/2",
+          "/dependency_semantic_ports/diagnostic_return_contract/origin_reason_mapping/3"
+        ]
       },
       {
         "order": 4,
         "condition": "同target/fullBinding、同元生成recordにproducer_input/returnとoriginが保持される",
-        "return": "Claim subject_ref/binding/actor/basis_refsはorigin原値、kind=project_obligation_discharge、proposed_value=producer_input.claims.receipt_obligation_completed exact bool。producer_return全値は元bodyへ保持。"
+        "return": "Claim subject_ref/binding/actor/basis_refsはorigin原値、kind=project_obligation_discharge、proposed_value=producer_input.claims.receipt_obligation_completed exact bool。producer_return全値は元bodyへ保持。",
+        "reason_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/origin_reason_mapping/4"
+        ]
       },
       {
         "order": 5,
         "condition": "当該Claim意図を読む",
-        "return": "未資格Claimでも任意主張としてdecodeできる。実義務成立/receipt-only/CORE適用の判定に使う根拠部分だけ既存source/body/owner/target資格へ照合。"
+        "return": "未資格Claimでも任意主張としてdecodeできる。実義務成立/receipt-only/CORE適用の判定に使う根拠部分だけ既存source/body/owner/target資格へ照合。",
+        "reason_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/origin_reason_mapping/5"
+        ]
       },
       {
         "order": 6,
         "condition": "複数元carrier/原handoff",
-        "return": "全元record/Claimを原順保持。raw state又はboolの違いだけから追加conflict Findingを作らない。"
+        "return": "全元record/Claimを原順保持。raw state又はboolの違いだけから追加conflict Findingを作らない。",
+        "reason_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/origin_reason_mapping/6"
+        ]
       }
     ],
     "claim_intent_protocol": {
@@ -3498,55 +3552,63 @@
           "positive": "supplied(true)",
           "negative": "supplied(false)",
           "unresolved": "absent/null/非boolean",
-          "basis": "030 B01Input.claims.receipt_obligation_completed及びB01 claim_results AST。値解釈と実義務成立は別。"
+          "basis": "030 B01Input.claims.receipt_obligation_completed及びB01 claim_results AST。値解釈と実義務成立は別。",
+          "reason_mapping_ref": "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/0"
         },
         {
           "kind": "field_not_applicable",
           "positive": "supplied(\"not_applicable\")",
           "negative": "supplied(\"applicable\")",
           "unresolved": "absent/null/\"unknown\"/他RawValue",
-          "basis": "既存ApplicabilityRecord.decisionの値表現を任意Claimへ写した032技術表現。旧NEGのproposed欠落を補完しない。"
+          "basis": "既存ApplicabilityRecord.decisionの値表現を任意Claimへ写した032技術表現。旧NEGのproposed欠落を補完しない。",
+          "reason_mapping_ref": "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/1"
         },
         {
           "kind": "definition_missing_from_receipt",
           "positive": "supplied(\"missing\")",
           "negative": "supplied(\"known\")",
           "unresolved": "absent/null/他RawValue",
-          "basis": "既存definition stateを使う032技術表現。元definition known/原handoff not_receivedは別に照合。"
+          "basis": "既存definition stateを使う032技術表現。元definition known/原handoff not_receivedは別に照合。",
+          "reason_mapping_ref": "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/2"
         },
         {
           "kind": "upstream_authority",
           "positive": "supplied(true)",
           "negative": "supplied(false)",
           "unresolved": "absent/null/非boolean",
-          "basis": "当該basisをauthorityへ使う/使わないという032技術表現。旧kindだけで肯定にしない。"
+          "basis": "当該basisをauthorityへ使う/使わないという032技術表現。旧kindだけで肯定にしない。",
+          "reason_mapping_ref": "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/3"
         },
         {
           "kind": "fill_definition",
           "positive": "proposed_valueキー供給済みの全RawValue。明示null/false/0/空文字/空配列も原replacement内容。",
           "negative": "共通negative tokenなし。Claim自体非供給はこのClaimの対象外。",
           "unresolved": "proposed_valueキー欠落のみ",
-          "basis": "RawValueはnullを含み欠落と明示nullを区別。Claim schemaはproposed_value:RawValue。既存reference_as_required_definition/unknown_fallbackに非null限定は無い。"
+          "basis": "RawValueはnullを含み欠落と明示nullを区別。Claim schemaはproposed_value:RawValue。既存reference_as_required_definition/unknown_fallbackに非null限定は無い。",
+          "reason_mapping_ref": "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/4"
         },
         {
           "kind": "require_before_supply",
           "positive": "supplied(\"future-receiver-completion-receipt\")",
           "negative": "supplied(false)",
           "unresolved": "absent/null/true/他RawValue",
-          "basis": "既存F09-NEG-05のexact文字列を保持。falseは当該前提を要求しない032技術表現。"
+          "basis": "既存F09-NEG-05のexact文字列を保持。falseは当該前提を要求しない032技術表現。",
+          "reason_mapping_ref": "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/5"
         },
         {
           "kind": "labo_evaluated",
           "positive": "supplied(true)",
           "negative": "supplied(false)",
           "unresolved": "absent/null/非boolean",
-          "basis": "評価済みと主張する/しないという032技術表現。030 LABO_evaluationのopaque文字列やkindだけから実評価成功を作らない。"
+          "basis": "評価済みと主張する/しないという032技術表現。030 LABO_evaluationのopaque文字列やkindだけから実評価成功を作らない。",
+          "reason_mapping_ref": "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/6"
         }
       ],
       "unrecognized_kind": "原Claim/RawValueを保持してintent unresolved。新kindを補完しない。",
       "null_boundary": "fill_definitionはキー供給済みならnullを含む全RawValueをreplacement保持。元MeaningFact.meaning=null→元definition unknownと、Claim.proposed_value=nullの存在を混同しない。nullable定義を対象外にしない。",
       "old_controls": "既存L8 logical typed_mutation_planのclaim_kind/basis_role/string basisラベルはその元意図を示す。proposed_value欠落を持つ実RawValueケースへ改称/転記しない。新表現規約を使う素材は独立の新素材として明示する。",
-      "claim_locator": "raw Claimを読む場合はその原Claim pointer。投影Claimを読む場合は原carrierのproducer_input.claims.receipt_obligation_completedへのRFC6901 pointerとする。投影Claim全frameはClaimProjectionReadの元carrier source_locatorsへ結び、rawに存在しない合成Claim pointerを作らない。"
+      "claim_locator": "raw Claimを読む場合はその原Claim pointer。投影Claimを読む場合は原carrierのproducer_input.claims.receipt_obligation_completedへのRFC6901 pointerとする。投影Claim全frameはClaimProjectionReadの元carrier source_locatorsへ結び、rawに存在しない合成Claim pointerを作らない。",
+      "unrecognized_reason_ref": "/dependency_semantic_ports/diagnostic_return_contract/common_rules/intent_fields"
     },
     "producer_incoming": {
       "030": {
@@ -3568,7 +3630,7 @@
           "030 knowledge-query-receipt L4/L9: 元caller対象を同invocationへ束縛するincoming/outgoing責務",
           "同L5/L8: ReceiptInvocationOrigin＋B01Input→ReceiptClaimCarrier全field/presence/相反返却"
         ],
-        "current_scope": "本pairは032 consumer incomingを定義する。030本体の公開I/O追加/実接続を成立済みとはしない。限定同raw Claim→030 bool→同Claim経路は同originを保持できる場合だけの別代案。"
+        "current_scope": "本pairは032 consumer incomingを定義する。030本体の公開I/O追加/実接続を成立済みとはしない。同raw Claim由来の030呼出しも生成時originを保持する同一recordからのみ接続する。"
       },
       "OS": {
         "type": "OSObligationMeaningIncoming",
@@ -3724,7 +3786,311 @@
     "limits": [
       "本sectionはlogical portsと有限統合観測。L5/L8 producer内部への追随、正式codec/実provider/custody/resolverと実資格稼働は別。実稼働証明をlogical設計の開始条件にしない。",
       "030/OSの元producer側typed供給契約は上記追随先が必要。本pairでその実供給/運用成立を認定しない。",
-      "既存22conditional reasonの未観測13語は旧scopeどおり保持。本port7例は全shape/全case/全mutationの新gateやF09全体完成の証拠ではない。"
-    ]
+      "既存22conditional reasonの未観測13語は旧scopeどおり保持。本port10例は全shape/全case/全mutationの新gateやF09全体完成の証拠ではない。"
+    ],
+    "diagnostic_return_contract": {
+      "common_rules": {
+        "presence": "P(object,key)=key欠落なら{presence:absent}、供給なら{presence:supplied,value:原RawValue}。明示null/false/空値をabsenceにしない。memberは診断対象の意味名又は原member名。",
+        "request_locator": "BodyReadProblem.request_locatorは当該CanonicalReadRequest.request_ref_locatorのliteral原値。",
+        "source_locator": "source_locatorsは当該問題を支持する原raw RFC6901のみ。非対応の別版/source候補のlocatorを対応済みとして返さない。",
+        "branch_order": "caller no-callと既存required missing確定を先行。frame不明/相反は先行確定。対応集合を5で確定し、6でrecords、7/8で不足判定、9で残余resolved。10は実必要時だけ別比較。branch numberを独立成功判定として重複適用しない。",
+        "problem_order": "枝1→3→4→5→7→8、同branchは明記member順、sourceは原index順。問題stateのconflict→unknown→missingをaggregateで不足の補償に使わない。先行required missingは後続へ進めない。",
+        "reason_format": "reason/reason_templateだけを規範とし全byte比較。{member}は指定されたliteral member名のみ補間。任意raw値/自然文を補間しない。no_problem枝ではreason fieldを新設しない。",
+        "origin_fields": "ClaimProjectionRead.source_locators=[carrier_locator]（所在が未解決でも指定literalを保持）。origin_ref=P(carrier.origin,origin_ref)、不能ならabsent。unknown/conflictのclaimはabsent、resolvedのClaim6memberは既存branch4の元値全copy。",
+        "intent_fields": "ClaimIntentRead.claim/claim_locatorは直接引数とtrace原値。kind=P(claim,kind)、proposed_value=P(claim,proposed_value)。intent/reasonはkind別閉表。kind欠落/null/未認識はunresolved、reasonは「Claim kindを認識できない。原Claim/RawValueを保持し意図を補完しない。」。"
+      },
+      "canonical_diagnostic_mapping": [
+        {
+          "branch": 1,
+          "subcase": "validated.input=null",
+          "state": "unknown",
+          "member": "validated.input",
+          "presence_from": "validated.input のkey presence/原値（nullをsupplied(null)）",
+          "source_locators": [],
+          "reason": "validated.inputが未解決。原Binding/bodyを補完しない。"
+        },
+        {
+          "branch": 1,
+          "subcase": "input binding absent/null",
+          "state": "unknown",
+          "member": "binding",
+          "presence_from": "同inputの/binding key presence/原値",
+          "source_locators": [],
+          "reason": "同callerのbindingが未供給又はnull。Binding/bodyを補完しない。"
+        },
+        {
+          "branch": 2,
+          "subcase": "selector未確定/false",
+          "state": "no_call",
+          "member": null,
+          "presence_from": "not_applicable",
+          "source_locators": [],
+          "reason": null,
+          "rule": "caller抑止。CanonicalBodyRead/Problemを作らず既存selector診断を保持。"
+        },
+        {
+          "branch": 3,
+          "subcase": "必要identity不在",
+          "state": "missing",
+          "member": "required_identity",
+          "presence_from": "absent（必要identityに対応する原Refが無い）",
+          "source_locators": [],
+          "reason": "必要identityに対応する原Refは当該categoryに未供給。他bodyで補償しない。"
+        },
+        {
+          "branch": 4,
+          "subcase": "request Ref必須frame absent/null",
+          "state": "unknown",
+          "member": "当該member名 identity/revision/scope/owner",
+          "presence_from": "request_ref_locator先の当該key presence/原値",
+          "source_locators": [],
+          "reason_template": "原Refの{member}が未供給又はnull。原frameを補完しない。",
+          "order": "identity,revision,scope,owner順、該当member各1problem。"
+        },
+        {
+          "branch": 4,
+          "subcase": "caller既存比較で要求frameの既知相反が確定",
+          "state": "conflict",
+          "member": "既存比較で相反した当該member名 identity/revision/scope/owner/sha256",
+          "presence_from": "request Ref内当該key presence/原値",
+          "source_locators": "既存比較が実際に対応付けたsource locatorだけを原source順",
+          "reason_template": "原Refの{member}は既存frame比較で既知相反。原値を保持する。",
+          "rule": "source一覧に別frameがあるだけでは本subcaseを成立させない。"
+        },
+        {
+          "branch": 5,
+          "subcase": "ref_same対応semantic_json source無し",
+          "state": "unknown",
+          "member": "canonical_source",
+          "presence_from": "absent（対応集合0件。別frame sourceは供給として数えない）",
+          "source_locators": [],
+          "reason": "当該fullRefへ対応するcanonical原source bodyは未供給。限定nested recordは原bodyを代替しない。"
+        },
+        {
+          "branch": 5,
+          "subcase": "対応sourceはあるが既存ValidatedSupply.unusable_source_refsに該当",
+          "state": "unknown",
+          "member": "canonical_source",
+          "presence_from": "supplied(当該QualifiedSource原全値)",
+          "source_locators": "当該/sources/iを原source順",
+          "reason": "対応canonical原sourceは保持するが既存validateで使用不能。資格/bytesを補完しない。",
+          "order": "該当source各1problem。対応Ref無しのabsent問題とは重ねない。"
+        },
+        {
+          "branch": 6,
+          "subcase": "既存validate適合source",
+          "state": "continue",
+          "member": null,
+          "presence_from": "not_applicable",
+          "source_locators": "当該source順",
+          "reason": null,
+          "rule": "CanonicalBodyRecord全fieldを現canonical_trace_fieldsからコピー。Problem無し。後続7/8へ。"
+        },
+        {
+          "branch": 7,
+          "subcase": "対応source.content明示null",
+          "state": "unknown",
+          "member": "content",
+          "presence_from": "supplied(null)",
+          "source_locators": "当該/sources/i/contentを原source順",
+          "reason": "対応canonical原sourceのcontentは明示null。原値を保持し原意味供給へ補完しない。",
+          "rule": "nullのrecordも保持。absenceと同一視しない。"
+        },
+        {
+          "branch": 8,
+          "subcase": "同target/frame複数sourceでbodyが型付きJSON同値",
+          "state": "continue",
+          "member": null,
+          "presence_from": "not_applicable",
+          "source_locators": "全対応source原順",
+          "reason": null,
+          "rule": "全record保持、追加Problem無し。"
+        },
+        {
+          "branch": 8,
+          "subcase": "同target/frame複数sourceの異bodyで一意解決不能",
+          "state": "unknown",
+          "member": "canonical_body",
+          "presence_from": "supplied(原source順の全canonical_body配列)",
+          "source_locators": "全対応/sources/i/content原順",
+          "reason": "同target/frameに異なるcanonical原bodyが複数あり一意に解決できない。文面差だけで意味相反を作らない。",
+          "rule": "全record保持。原順body集合に対し1problem。"
+        },
+        {
+          "branch": 9,
+          "subcase": "通常原body提供完了",
+          "state": "resolved",
+          "member": null,
+          "presence_from": "not_applicable",
+          "source_locators": "recordに保持",
+          "reason": null,
+          "rule": "problems=[]。他の問題が存在する場合resolvedへ上書きしない。"
+        },
+        {
+          "branch": 10,
+          "subcase": "実pairの意味同義/相反比較が必要",
+          "state": "separate_existing_comparison",
+          "member": null,
+          "presence_from": "not_applicable",
+          "source_locators": "実pair根拠のみ",
+          "reason": null,
+          "rule": "MeaningFact/MeaningComparisonの既存比較責務へ接続。通常body portへ新Problem/常時pair gateを追加しない。"
+        }
+      ],
+      "origin_reason_mapping": [
+        {
+          "branch": 1,
+          "state": "unknown",
+          "reason": "元carrierのrequired origin/frame/input/returnが未供給又は型不成立。Claimを補完しない。"
+        },
+        {
+          "branch": 2,
+          "state": "unknown",
+          "reason": "consumer target又はbindingの比較必須memberが未供給又はnull。Claim frameを補完しない。"
+        },
+        {
+          "branch": 3,
+          "subcase": "subject既知不一致（bindingも相反ならこちら優先）",
+          "state": "conflict",
+          "reason": "元carrierのsubject_refと同callerのconsumer subject_refがfullRef不一致。030 flagを別targetへ投影しない。"
+        },
+        {
+          "branch": 3,
+          "subcase": "subject同一かつbinding既知不一致",
+          "state": "conflict",
+          "reason": "元carrierのbindingと同callerのconsumer bindingが既知不一致。030 flagを別bindingへ投影しない。"
+        },
+        {
+          "branch": 4,
+          "state": "resolved",
+          "reason": "同元生成recordのtargetとfull Bindingを保持し、030 boolean flagを原値でClaimへ投影した。実義務成立を認定しない。"
+        },
+        {
+          "branch": 5,
+          "state": "no_additional_projection",
+          "reason": null,
+          "rule": "Claim意図は別port。projection reasonを書き換えない。"
+        },
+        {
+          "branch": 6,
+          "state": "per_record",
+          "reason": null,
+          "rule": "複数carrierは上記1〜4を原順適用。複数という理由の追加返却/相反reasonは作らない。"
+        }
+      ],
+      "intent_reason_mapping": [
+        {
+          "kind": "project_obligation_discharge",
+          "positive": {
+            "condition": "supplied(true)",
+            "reason": "既存030 boolean flag trueの肯定主張を保持する。"
+          },
+          "negative": {
+            "condition": "supplied(false)",
+            "reason": "既存030 boolean flag falseの非主張を保持する。"
+          },
+          "unresolved": {
+            "condition": "absent/null/非boolean",
+            "reason": "project_obligation_dischargeのproposed_valueはboolean肯定/否定へ解決できない。原値を保持する。"
+          }
+        },
+        {
+          "kind": "field_not_applicable",
+          "positive": {
+            "condition": "supplied(\"not_applicable\")",
+            "reason": "Claim kind=field_not_applicable の値表現は肯定。原値を保持しdomain成立を認定しない。"
+          },
+          "negative": {
+            "condition": "supplied(\"applicable\")",
+            "reason": "Claim kind=field_not_applicable の値表現は否定。原値を保持しdomain成立を認定しない。"
+          },
+          "unresolved": {
+            "condition": "absent/null/\"unknown\"/他RawValue",
+            "reason": "Claim kind=field_not_applicable の値表現は未解決。原値を保持しdomain成立を認定しない。"
+          }
+        },
+        {
+          "kind": "definition_missing_from_receipt",
+          "positive": {
+            "condition": "supplied(\"missing\")",
+            "reason": "Claim kind=definition_missing_from_receipt の値表現は肯定。原値を保持しdomain成立を認定しない。"
+          },
+          "negative": {
+            "condition": "supplied(\"known\")",
+            "reason": "Claim kind=definition_missing_from_receipt の値表現は否定。原値を保持しdomain成立を認定しない。"
+          },
+          "unresolved": {
+            "condition": "absent/null/他RawValue",
+            "reason": "Claim kind=definition_missing_from_receipt の値表現は未解決。原値を保持しdomain成立を認定しない。"
+          }
+        },
+        {
+          "kind": "upstream_authority",
+          "positive": {
+            "condition": "supplied(true)",
+            "reason": "Claim kind=upstream_authority の値表現は肯定。原値を保持しdomain成立を認定しない。"
+          },
+          "negative": {
+            "condition": "supplied(false)",
+            "reason": "Claim kind=upstream_authority の値表現は否定。原値を保持しdomain成立を認定しない。"
+          },
+          "unresolved": {
+            "condition": "absent/null/非boolean",
+            "reason": "Claim kind=upstream_authority の値表現は未解決。原値を保持しdomain成立を認定しない。"
+          }
+        },
+        {
+          "kind": "fill_definition",
+          "positive": {
+            "condition": "proposed_valueキー供給済みの全RawValue。明示null/false/0/空文字/空配列も原replacement内容。",
+            "reason": "供給済みRawValueをnullも含めreplacement内容として保持する。"
+          },
+          "negative": {
+            "condition": "共通negative tokenなし。Claim自体非供給はこのClaimの対象外。",
+            "reason": null,
+            "return": "not_a_branch"
+          },
+          "unresolved": {
+            "condition": "proposed_valueキー欠落のみ",
+            "reason": "proposed_valueキー未供給。kindからreplacementを補完しない。"
+          }
+        },
+        {
+          "kind": "require_before_supply",
+          "positive": {
+            "condition": "supplied(\"future-receiver-completion-receipt\")",
+            "reason": "Claim kind=require_before_supply の値表現は肯定。原値を保持しdomain成立を認定しない。"
+          },
+          "negative": {
+            "condition": "supplied(false)",
+            "reason": "Claim kind=require_before_supply の値表現は否定。原値を保持しdomain成立を認定しない。"
+          },
+          "unresolved": {
+            "condition": "absent/null/true/他RawValue",
+            "reason": "Claim kind=require_before_supply の値表現は未解決。原値を保持しdomain成立を認定しない。"
+          }
+        },
+        {
+          "kind": "labo_evaluated",
+          "positive": {
+            "condition": "supplied(true)",
+            "reason": "Claim kind=labo_evaluated の値表現は肯定。原値を保持しdomain成立を認定しない。"
+          },
+          "negative": {
+            "condition": "supplied(false)",
+            "reason": "Claim kind=labo_evaluated の値表現は否定。原値を保持しdomain成立を認定しない。"
+          },
+          "unresolved": {
+            "condition": "absent/null/非boolean",
+            "reason": "Claim kind=labo_evaluated の値表現は未解決。原値を保持しdomain成立を認定しない。"
+          }
+        }
+      ],
+      "fullRef_clarification": {
+        "source": "docs/helix-brain/L5-detail-design/template-semantic-supply.json#/type_contract/reference_comparison",
+        "reference_equality": "docs/helix-brain/L5-detail-design/template-semantic-supply.json#/source_return_contract/constructor_meaning/reference_equality",
+        "meaning": "fullRef対応はRef全6member literal JSON一致ではない。identity/revision/scope/owner双方供給non-null同値、sha256は双方供給non-null時だけ比較、source_locatorは所在。Ref原全値は比較に使わないmemberも出力で保持。request側null locator/digestをsource側供給値で埋めず、新必須gateにしない。"
+      }
+    }
   }
 }
