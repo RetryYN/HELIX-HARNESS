@@ -101,6 +101,16 @@
       "path": "docs/governance/audits/requirement-registration/os-template-trace-002-source-lines-2026-10-10.jsonl",
       "revision": "0f0d086c72f94ebc3542560651dda537042a61bf",
       "sha256": "a567a88929afedd83d28e95202125526972286341280395e41357b08e15652a2"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "revision": "1b50e0e105f0d51b902b26ba0e48d66381705360",
+      "sha256": "a8164bd513a72c59fc2c1f121737f664070ccc10e4658f57defe22d85fe6f76d"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "revision": "d6a3c2e1bba751d4254fd039e86599dbbdbdc235",
+      "sha256": "bd031871e97f05b871a04a90bb51658a6875128aa467160ca432c8a4702985c8"
     }
   ],
   "authority_boundary": {
@@ -1082,6 +1092,256 @@
           "read_after": "https://github.com/RetryYN/HELIX-HARNESS/pull/3199#issuecomment-6198427477",
           "merge_revision": "1b50e0e105f0d51b902b26ba0e48d66381705360",
           "limit": "固定sourceのreview/統合事実だけを示す。OS側実source関係、意味対応、実資格、後続改訂への追従を認定しない。"
+        }
+      },
+      "qualified_source_projection_join": {
+        "requirement_ref": "HELIXOS-L3-002-F03 / HELIXOS-L3-002-F04",
+        "system_oracle_refs": [
+          "HELIXOS-L10-002-F04",
+          "HELIXOS-L10-002-B01",
+          "HELIXOS-L10-002-B02"
+        ],
+        "source_refs": [
+          {
+            "role": "現行CORE009 source-result投影契約",
+            "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+            "revision": "1b50e0e105f0d51b902b26ba0e48d66381705360",
+            "pointer": "/contracts/4/source_result_reference_projection",
+            "file_sha256": "a8164bd513a72c59fc2c1f121737f664070ccc10e4658f57defe22d85fe6f76d",
+            "source_review": "CORE009のsource-result投影契約を固定した参照。"
+          },
+          {
+            "role": "現行CORE009詳細行型。意味正本として複製せず参照する",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "revision": "d6a3c2e1bba751d4254fd039e86599dbbdbdc235",
+            "pointer": "/type_contract/types/SourceResultProjectionRow",
+            "file_sha256": "bd031871e97f05b871a04a90bb51658a6875128aa467160ca432c8a4702985c8"
+          },
+          {
+            "role": "既存OS owner-qualified source/record選択モデルを再利用する。runtime qualificationへ昇格させない",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "revision": "77a206a1ecbb387bb5c315bfab2ce14a225fb6a8",
+            "pointer": "/type_contract/types/SourceEnvelope",
+            "file_sha256": "32e93f5920a088d39baf1a598dcf8a1994af280d4d8dbf9ee38029d8080ce54c"
+          },
+          {
+            "role": "既存owner-qualified record traceとselector解決の型",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "revision": "77a206a1ecbb387bb5c315bfab2ce14a225fb6a8",
+            "pointer": "/type_contract/types/Qualification",
+            "file_sha256": "32e93f5920a088d39baf1a598dcf8a1994af280d4d8dbf9ee38029d8080ce54c"
+          },
+          {
+            "role": "既存owner-qualified record traceとselector解決の型",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "revision": "77a206a1ecbb387bb5c315bfab2ce14a225fb6a8",
+            "pointer": "/type_contract/types/QualificationRoot",
+            "file_sha256": "32e93f5920a088d39baf1a598dcf8a1994af280d4d8dbf9ee38029d8080ce54c"
+          },
+          {
+            "role": "既存owner-qualified record traceとselector解決の型",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "revision": "77a206a1ecbb387bb5c315bfab2ce14a225fb6a8",
+            "pointer": "/type_contract/types/ValidatedRecordTrace",
+            "file_sha256": "32e93f5920a088d39baf1a598dcf8a1994af280d4d8dbf9ee38029d8080ce54c"
+          }
+        ],
+        "scope": "OS002 F04の選択操作におけるCORE009投影行とOS原案件記録のsource associationを、既存owner-qualified原recordを通して観測する。既存source_output_associationのendpoint診断とは別の観測であり、meaning_comparison=not_establishedを変更しない。COREの19軸比較と四判定、OSの案件scope/context/義務stateを再計算・統合しない。",
+        "activation": {
+          "selection_input": "選択対象のF04 operationへcallerが任意指定するsource_projection_selection={output_refs:Ref[]}。各RefはOS側の四軸Ref表現で、宣言されたownerを保持する。owner=OSは必須としない。source projectionを追跡するCORE所有output_refの対象集合を明示する。この値はcallerが指定するoperation/profile入力であり、candidate JSONには含めない。candidateのclaimやqualified sourceの存在から推定しない。",
+          "absent_or_empty": "Field.missingは追加のsource-projection operationが未選択であることを示す。明示された空のoutput_refs配列は対象recordなしを示す。いずれも通常のF04動作を保ち、findingやrequired inputを追加しない。",
+          "malformed": "selectorが存在するが不正な場合、raw入力を保持し、その位置だけに局所selection-input unknownを返す。candidate field、qualified record、他sectionから対象を推定せず、operation全体を有効化しない。",
+          "selection_matching": "選択されたoutput_refはcallerの原順で保持する。対応するqualified OS OwnerRecordはrecord_kind=OS002.CoreOutputAssociationかつpayload.output_refが選択output_refとJSON型付きで一致するものから解決する。record自身のRefは独立保持し、selectorに使わない。0件はmissing、複数件はduplicate/conflictとして全件を保持し、先頭を選ばない。 複数一致時は全候補OwnerRecordを元順で保持し、各候補が対応するqualified source_refの全出現を元source順でsource_refsへ列挙する。先頭選択・source_refの捏造・候補間の相殺をしない。"
+        },
+        "input_roles": {
+          "candidate_projection_field": "明示選択された各candidate core_outputs itemについて、source_projectionをField<JsonValue>として読む。absent、present null、wrong-kind、objectの各状態を区別する。明示scope内でcandidate memberが欠けている場合は局所missingとし、qualified sourceから補完しない。",
+          "qualified_os_original_record": "選択されたoutput_refについて、qualified_records内のrecord_kind=OS002.CoreOutputAssociationかつpayload.output_refが一致する独立qualified OS OwnerRecordを全件列挙する。一致0件はmissing、1件はunique、複数件はambiguousとして候補全件を保持し先頭を選ばない。各候補の出所source occurrenceは、対応Qualification.source_refとSourceEnvelope.source_ref、QualificationRoot、decoded recordを既存qualification traceで結べるものに限る。qualified候補が0件ならOS payload locatorを読まず、candidate carrierや未資格OS payloadからCORE sourceを選択しない。record self Refは別に保持する。",
+          "qualified_core_source_container": "qualified OS original recordに含まれるsource_projection.projection_snapshot_refをsource containerのlocatorとして用い、既存qualified/unqualified/conflicting/unresolved traceにある対応source occurrenceを特定する。row_pointerは当該container payload内だけでRFC6901解決する。candidate carrierのRef/pointerはsource locatorとして使わず、OS recordが指定したlocatorの置換にも使わない。",
+          "source_qualification": "既存のSourceEnvelope、Qualification、QualificationRoot、ValidatedRecordTrace.qualified_recordsの選択・conflict処理を再利用する。candidate claim、値の一致、source rowだけでqualification、custody、実write、利用許可を作らない。",
+          "candidate_input_pair": "raw candidate全体とValidatedRecordTrace.input.candidate全体は同一操作の二つの保存値である。処理前にJSON型付きで完全比較し、両方の原値を保持する。不一致はconflictとして記録し、片方を選んで一致扱いにしない。対応が確認できた後に限り、candidate.core_outputsの各出現を選択Refと照合する。"
+        },
+        "carrier_and_ref_roles": {
+          "logical_carrier": "candidate source_projectionとqualified OS original source_projectionを別々のField<CoreProjectionSource> carrierとして保持する。各carrierのrow_pointerはlocatorではなく、qualified OS original recordが明示したlocatorとの一致比較対象。CORE rowはqualified OS original locatorから一度だけ解決し、各supplied carrier rowと独立比較する。",
+          "projection_snapshot_ref": "CORE projection rowを含むsource containerの四軸OS Ref表現。ownerはsourceの宣言値を使う。OS association recordのself Ref、選択されたCORE-owned output_ref、SourceResultProjectionRow内に保持する六軸semantic Refとは別物である。",
+          "row_pointer": "CORE sourceの唯一のlocatorはuniqueなqualified OS original record内のsource_projection.projection_snapshot_refとrow_pointer。対応associationがambiguousなら各候補locatorは個別に保持するがprimaryを選ばない。candidate側locatorが異なる場合はcarrier disagreementとして値を保持しlocatorを切り替えない。RFC6901で解決し、row内容からpointerを導出しない。",
+          "row_copy": "carrier rowはsourceが提供した未変更のmirrorである。pointer解決したCORE SourceResultProjectionRowとJSON型付き等価性で比較する（object key順は無視し、array順と重複は保持し、booleanとnumber、absentとpresent nullを区別する）。不一致時は両方の原値を保持する。"
+        },
+        "comparison_order": [
+          "callerのsource_projection_selectionをmissing、valid empty、invalid、valid nonemptyへ分類する。missingとvalid emptyは新joinを選択せず、完全F04 returnのsource_projection_join memberを省略する（Field.missing）。valid emptyは内部の選択分類として保持するがresult object/record/empty sentinelをwireへ出さない。invalidはraw selectorを保持した局所unknown結果を返す。いずれも通常F04の入力・既存結果を変えない。",
+          "raw candidate全体とValidatedRecordTrace.input.candidate全体を完全比較し、両方の原値を保持する。不一致があればcandidate_input_state=conflictとし、片側を使って一致・選択・補完しない。全体の対応を確認した後、candidate.core_outputs内の各出現を選択output_refと照合する。",
+          "妥当な各output_refについて、qualified_records内のOS002.CoreOutputAssociationをoutput_refと照合する。record self Refは別保持し、複数一致は全候補を元順で保持して先頭を採用しない。OS associationが0件ならos_association_state=missingとし、候補・未資格recordのpayloadをsource selectionに使わない。複数件ならambiguousとする。これらのassociation状態はCORE row状態へ混ぜず、RecordObservation.association_state_rulesに定める個別状態を使う。",
+          "一意のqualified OS recordからのみsource_projectionのsnapshot Ref/pointerを得て、対応する独立CORE source occurrenceとqualification状態を解決する。candidate carrierはlocator選択に用いない。OS source carrier欠落/null/wrong-kind、CORE source欠落/未資格/競合、pointer未解決は個別状態として返しcandidate側から補完しない。associationがambiguousなら全qualified候補と各候補が示すsource occurrenceを保持し、配列順を根拠にOS carrierを一件へ絞らない。candidate_input_stateがconflict/unknownならcandidate側二状態をunknownとし、OS側判断は独立して続ける。",
+          "OS carrierのprojection_snapshot_refと、既存Qualification.subject_refsがJSON型付きで一致するsourceを対応付ける。そのsource_refがconflicting_source_refsに含まれ、source_issuesにも該当source_conflictが記録されている場合、qualified_recordsから行が除外されていてもqualified_os_core_row_state=conflict、carrier_core_row_state=conflictとする。candidate carrier rowは資格済みCORE rowとの比較ができないためcandidate_core_row_state=unknownとし、両carrier raw値、該当Qualification/Root、conflicting_source_refs、source_issuesを保持する。該当するsource_refが存在しない場合のmissing、unqualified_source_refsにのみ存在する場合のunknownとは区別する。",
+          "candidate_core_row_stateとqualified_os_core_row_stateを個別算出し、carrier_core_row_stateはこの二状態だけを上記順位で集約する。candidate_input_state、candidate_os_field_state、os_association_stateは各memberの意味を保持し、CORE row比較aggregateへ含めない。candidate対OS carrier差が既知conflictでも、qualified CORE rowが解決せず二つのCORE row状態がnot_compared/missingならaggregateはmissingとなる。",
+          "OS owner recordのproject_scope/context/obligation_original_statesは独立に追跡する。CORE product_scope/condition/disposition/obligation refsから補完しない。新しいfindingは生成せずfinding_refs=[]とし、局所状態/source_issuesへ記録する。既存F04 findingsと無関係Qは保持する。"
+        ],
+        "projection_and_independence": {
+          "lossless_CORE": "SourceResultProjectionRowの全fieldを保持する。内部の六軸Ref、四判定、順序付きcondition_ref/value pair、raw N/A Presence属性、obligation-refの出現を含め、短縮・sort・deduplicate・cast・再導出をしない。",
+          "independent_OS": "OS owner recordにあるoutput_ref、project scope、context、元のnot_started/failed/not_evaluated状態を保持する。CORE product_scopeとOS project_scopeを同一視せず、その因果関係はqualified source associationで明示的に結ぶ。",
+          "no_axis_conflation": "明示されたsource associationにない七軸すべてのqualified semantic mapping、field equality、one-to-one identity規則を追加しない。source copyと明示選択されたRef bindingだけを照合する。",
+          "result": "局所的なF04 source_projection観測を、source_output_associationおよび既存のcore_disposition_records/unfinished_obligation_recordsの隣へ追加する（内包・置換しない）。candidate原値、qualified source原値、source issue、無関係recordを保持する。effects=noneとし、applicability判定、registration、evaluation、acceptance、authority、実source qualificationを成立させない。"
+        },
+        "logical_input_shape": {
+          "selection": "Field<{output_refs:Ref[]}>。欠落は未選択、明示空配列は対象なし、不正なpresent値はrawのまま保持し局所unknownだけを返す。",
+          "candidate_record": "output_refとsource_projection:Field<JsonValue>を持つ選択済みcore_outputs item。decode前のraw Fieldを保持する。",
+          "qualified_OS_record": "output_refへの明示qualified associationで選ぶ既存OwnerRecord。self RefとpayloadはOS所有値として保持する。",
+          "qualified_CORE_container": "sourceが指定した四軸container Refを用いてCORE-qualified recordsから選ぶ既存OwnerRecord。payloadはRFC6901で指定したrowを含む。",
+          "CoreProjectionSource": "{projection_snapshot_ref:Ref,row_pointer:JSONPointer,row:SourceResultProjectionRow}。owner-qualified OS original record内のcarrier配置をcandidate入力と区別し、candidateへは明示されたraw input値としてのみ複写する。"
+        },
+        "locality": {
+          "candidate_missing": "明示選択されたoutput_refの範囲でcandidate source_projectionが欠落した場合、局所missingを返す。既知のqualified OS/CORE original source、それぞれの原payload、candidateの欠落を併存して保持し、補完しない。",
+          "source_missing_or_unqualified": "選択output_refに一致するqualified OS associationが0件の場合、source locatorは信頼せずCORE lookupをせず、record内source_refsとjoin全体のsource classification arrays/source_issuesは空にする。複数qualified associationが一致するambiguousの場合は、候補を全件保持し、各候補sourceと明示snapshot refから同一の関係source occurrence集合を作り、元traceの配列順・重複を保ってsource_refs/classification arrays/関連原issueへ反映する。先頭候補を選ばない。source associationが一意で、そのqualified carrierが明示するCORE sourceが未資格/競合/未解決なら、そのCORE occurrenceと対応する原issueだけを保持し、candidate/未資格OS payload/元traceの無関係内容から補完しない。全sourceとissueは親ValidatedRecordTraceに原値で保持し、無関係Qをjoinへ含めない。",
+          "conflicting_source": "OS carrierのprojection_snapshot_refと既存Qualification.subject_refsの対応を確認し、そのQualification.source_refがconflicting_source_refsにあり、source_issuesが同source_conflictを示す場合は、qualified_recordsからrowが除外されてもaggregate conflictへ伝播する。candidate rowを代用せずunknownのまま保持する。source_ref不在のmissing、unqualified_source_refsにのみあるunknownとは区別する。qualification/source issueの根拠、両carrier、無関係なOS/Q sourceを保持する。 association 0件の場合は候補に含めない。uniqueなqualified OS carrierが明示する場合だけ、そのCORE source occurrenceを関係集合に入れ、元traceの分類をfilterして保持する。",
+          "no_scope": "未選択の通常F04、未選択OS record、無関係Qには変更を加えず、source_projectionのrequired-input義務も発生させない。"
+        },
+        "limits": [
+          "論理的なsource associationは、実provider実行、実owner credential、custody、write発生、runtime qualification、BRAIN採用、CORE適用承認、LABO評価、POのL11受入を成立させない。",
+          "L5/L8のcallerおよびreturn接続は後続の詳細設計で扱う。この基本契約はcodecやproviderの実装成立を主張しない。",
+          "新carrier/CORE row payloadのclosed型とselector decodeの導出は後続L5/L8詳細設計で行う。既存L5 SourceSectionValueはinput_types_by_contractのselector先CaseInput child型へdecodeする現行契約であり、新carrier/CORE row selectorは未追加のため、既存L5 codecが今回の追加入力を受理するとは主張しない。source wire型は緩めない。",
+          "candidate carrierはsourceを選ばない。qualified OS recordが一意に選ばれない場合、candidate値からCORE sourceを推測せず、既知のcandidate/OS/CORE原値だけを保持する。複数OS associationは既存duplicate/conflictとして全件保持し、順序による先頭選択をしない。"
+        ],
+        "logical_return_shape": {
+          "attachment": "F04RecordObservation.source_projection_join:Field<SourceProjectionJoinResult>として、source_output_associationと既存のdisposition/obligation結果に並べて追加する。",
+          "Field<T>": "Field<T>の論理状態はmissing | supplied(T) | supplied(null)。wire出力ではmissingのmemberを省略し、supplied(T)はTの値そのものを出力し、supplied(null)はJSON nullを出力する。{presence,value} wrapperをwireへ追加しない。suppliedされたraw値は補完せず保持する。",
+          "SourceProjectionSelection": {
+            "closed_fields": {
+              "output_refs": "Ref[]（OS側の四軸Ref表現。各Refの元ownerを保持する）"
+            },
+            "meaning": "callerが選ぶ対象集合に限る。Ref表現のownerはOSを必須としない。 valid emptyは分類だけに用い、新join wire member/空resultは生成しない。"
+          },
+          "CoreProjectionSource": {
+            "closed_fields": {
+              "projection_snapshot_ref": "Ref（OS側の四軸Ref表現。元source ownerを保持する）",
+              "row_pointer": "JSONPointer (RFC6901)",
+              "row": "SourceResultProjectionRow（pin済みCORE L5型全体）"
+            },
+            "meaning": "外側Fieldの存在状態と、row内部のPresence memberは独立している。"
+          },
+          "RecordObservation": {
+            "closed_fields": {
+              "selected_output_ref": "Ref",
+              "candidate_output_ref": "Field<JsonValue>",
+              "candidate_source_projection": "Field<JsonValue>",
+              "qualified_os_record": "Field<JsonValue>。一意の場合だけ単一OwnerRecord。missing/ambiguous/unknownでは補完せず省略し、候補集合は別memberに保持する。",
+              "qualified_os_source_projection": "Field<JsonValue>",
+              "qualified_core_record": "Field<JsonValue>（資格確認済みのCORE OwnerRecord全体。資格なしでは省略）",
+              "projection_snapshot_ref": "Field<JsonValue>",
+              "row_pointer": "Field<JsonValue>",
+              "resolved_core_row": "Field<JsonValue>（既知の場合はpointer解決した行全体）",
+              "os_project_scope": "Field<JsonValue>",
+              "os_context": "Field<JsonValue>",
+              "obligation_original_states": "Field<JsonValue>",
+              "candidate_os_field_state": "enum<not_compared|corresponding|missing|conflict|unknown>。candidate_input_state=correspondingの場合だけ比較する。不一致または不正trace入力ではunknownとし、既知の別比較conflictはRecordObservationに残す。",
+              "carrier_core_row_state": "enum<not_compared|corresponding|missing|conflict|unknown>。集約対象はcandidate_core_row_stateとqualified_os_core_row_stateの二つだけ。入力全体がraw/validated不一致でもcandidate_input_stateへ、candidate/OS carrier同士の値差はcandidate_os_field_stateへ、association cardinalityはos_association_stateへ個別に保持し、このaggregateに混ぜない。順位はconflict > unknown > corresponding > missing > not_compared。二入力のいずれかにconflictがあればconflict、なければunknownがあればunknown、なければcorrespondingがあればcorresponding、なければmissingがあればmissing、両方not_comparedならnot_compared。対応値とmissing/not_comparedの混在はcorresponding。二つのCORE row比較状態以外の状態をこの計算へ射影しない。",
+              "finding_refs": "Array<JsonValue>。本joinでは常に[]。既存F04 findingの保存先ではない。",
+              "source_refs": "Array<JsonValue>。このselected_output_refに関係するsource occurrenceのsource_refだけを元traceのsource順・重複のまま保持する。出所は資格済みOS候補と、その候補の明示snapshot Refが指すsource occurrenceに限る。association候補0件なら空配列。candidateまたは未資格OS payloadだけからの追加は禁止。",
+              "candidate_core_row_state": "enum<not_compared|corresponding|missing|conflict|unknown>。candidate carrierを解決済みCORE rowと比較した結果。",
+              "qualified_os_core_row_state": "enum<not_compared|corresponding|missing|conflict|unknown>。qualified OS carrierを解決済みCORE rowと比較した結果。",
+              "os_association_state": "enum<not_compared|unique|missing|ambiguous|unknown>。qualified_records中OS002.CoreOutputAssociationと選択output_refの一致件数を示す。",
+              "qualified_os_record_candidates": "Array<JsonValue>（一致したqualified OS原recordの全出現。元順・重複を保持し、一意以外でも候補を失わない。0件なら空配列）",
+              "validated_input_candidate": "Field<JsonValue>（ValidatedRecordTrace.input.candidate内の対応candidate item全体を原値で保持）",
+              "validated_candidate_source_projection": "Field<JsonValue>。trace入力candidate itemにあるsource_projectionをraw値のまま保持する。",
+              "candidate_input_state": "enum<not_compared|corresponding|missing|conflict|unknown>。raw candidate全体とValidatedRecordTrace.input.candidate全体の一致状態。"
+            },
+            "meaning": "Field memberはpresent nullやwrong-kindを含むraw値を保持する。whole OwnerRecordと選択されたpointer値の双方を、局所診断可能な形で残す。各carrierとCORE rowの個別比較は別々に保持し、carrier_core_row_stateには集約状態を示す。carrier_core_row_stateはcandidate_core_row_stateとqualified_os_core_row_stateの2つのCORE row比較状態だけを集約し、conflict > unknown > corresponding > missing > not_comparedの順で決める。candidate/OS carrier間の既知不一致はcandidate_os_field_stateへ保持し、このCORE row aggregateへ混ぜない。raw carrierとprimary CORE rowはそれぞれ原値で保持する。 OS associationが複数一致する場合、qualified_os_record_candidatesへ全候補を原順で保持し、qualified_os_recordは省略する。 candidateとtrace input candidateの重複保存値は別々に保持する。candidate_input_stateがcorrespondingの場合だけ、candidate側carrierとしてOS/CORE比較へ進める。不一致時に一方を採用しない。 source locatorに対応するCORE sourceがconflicting_source_refsにのみ存在するときはconflictとして伝播し、単なる未観測/未資格とは区別する。 association cardinalityごとの個別CORE-row stateはassociation_state_rulesで固定し、association不足/曖昧を別のCORE locatorが存在しないことと混同しない。",
+            "required_members": [
+              "selected_output_ref",
+              "candidate_input_state",
+              "candidate_os_field_state",
+              "candidate_core_row_state",
+              "qualified_os_core_row_state",
+              "carrier_core_row_state",
+              "finding_refs",
+              "source_refs",
+              "os_association_state",
+              "qualified_os_record_candidates"
+            ],
+            "optional_members": [
+              "candidate_output_ref",
+              "candidate_source_projection",
+              "qualified_os_record",
+              "qualified_os_source_projection",
+              "qualified_core_record",
+              "projection_snapshot_ref",
+              "row_pointer",
+              "resolved_core_row",
+              "os_project_scope",
+              "os_context",
+              "obligation_original_states",
+              "validated_input_candidate",
+              "validated_candidate_source_projection"
+            ],
+            "association_state_rules": {
+              "missing": "選択output_refに一致するqualified OS associationが0件。candidate_os_field_state=not_compared、candidate_core_row_state=not_compared、qualified_os_core_row_state=missing、carrier_core_row_state=missing。OS payload/candidate locatorからCORE sourceを選ばない。",
+              "ambiguous": "一致するqualified OS associationが複数件。候補と各候補の関連sourceを全保持して単一OS carrierを選ばない。candidate_os_field_state=not_compared、candidate_core_row_state=not_compared、qualified_os_core_row_state=not_compared、carrier_core_row_state=not_compared。",
+              "unknown": "qualified OS associationの一意性をsource資格・record decode・選択との対応から確定できない状態。candidate_input_state=correspondingならcandidate_os_field_state=not_compared、candidate_core_row_state=not_compared、qualified_os_core_row_state=unknown、carrier_core_row_state=unknown。candidate_input_stateがconflict/unknownならcandidate側二状態はunknownとし、OS側は独立にunknownを保つ。候補または未資格OS payloadからsourceを補完しない。",
+              "unique": "一意のqualified OS associationを確定した場合の分岐。OS source_projectionが欠落ならcandidate_os_field_state=missing、candidate_core_row_state=not_compared、qualified_os_core_row_state=missing、aggregate=missing。present null/wrong-kindならcandidate_os_field_state=unknown、candidate_core_row_state=not_compared、qualified_os_core_row_state=unknown、aggregate=unknown。OS carrierが有効でsnapshot sourceが無い場合はcandidate_os_field_stateを独立比較し、candidate_core_row_state=not_compared、qualified_os_core_row_state=missing。CORE sourceがunqualifiedならcandidate_core_row_state=unknown、qualified_os_core_row_state=unknown。CORE sourceがconflictingならcandidate_core_row_state=unknown、qualified_os_core_row_state=conflict。CORE sourceはqualifiedだがOS指定row_pointerが解決しない場合はcandidate_core_row_state=not_compared、qualified_os_core_row_state=missing。qualified rowが解決した場合、candidate carrier rowとqualified OS carrier rowをそれぞれその同じ解決済みrowと比較し、各比較状態とaggregateをcomparison_order/4-5に従って保持する。"
+            },
+            "candidate_state_priority": "candidate_input_stateを最初に判定する。candidate_input_state=conflict/unknownならcandidate_os_field_stateとcandidate_core_row_stateはunknownとし、一方のcandidate保存値を採用しない。candidate_input_state=correspondingの場合に限りcandidate側の次段比較を行い、association_state_rulesに従う。OS側のqualification・carrier・CORE row状態はcandidate側の状態で上書きしない。"
+          },
+          "SourceProjectionJoinResult": {
+            "closed_fields": {
+              "selection_input": "Field<JsonValue>（変更していないcaller selector）",
+              "selection_state": "内部分類 enum<valid_nonempty|invalid>。missing/valid emptyではjoin member自体を省略するため、返却resultにselection_stateを出さない。",
+              "selected_output_refs": "Array<JsonValue>（重複を保持したcaller順の選択Ref出現）",
+              "records": "Array<RecordObservation>（有効な非空選択の各出現につき1件。selector missingまたは妥当なvalid emptyではjoin member自体を省略する。selector invalidでは局所unknown resultを返しrecords=[]とする。valid emptyのempty result/sentinelは出力しない。）",
+              "source_issues": "Array<JsonValue>。関係source occurrence集合にsource_refまたはrelated_source_refsで結び付く原issueだけを元trace順・重複のまま保持する。候補0件なら空配列。全trace issueをcopyしない。",
+              "qualified_source_refs": "Array<JsonValue>。選択されたqualified OS association候補と、その候補が明示するCORE snapshot source occurrenceだけを関係集合とする。元ValidatedRecordTraceの各source分類配列をこの関係集合でfilterし、元配列の順序・同じRef出現の重複を保持する。候補0件なら空配列。candidate carrierと未資格OS payloadからsource occurrenceを推測しない。Q等の無関係sourceは新joinへ含めず既存trace側で保持する。",
+              "unqualified_source_refs": "Array<JsonValue>。選択されたqualified OS association候補と、その候補が明示するCORE snapshot source occurrenceだけを関係集合とする。元ValidatedRecordTraceの各source分類配列をこの関係集合でfilterし、元配列の順序・同じRef出現の重複を保持する。候補0件なら空配列。candidate carrierと未資格OS payloadからsource occurrenceを推測しない。Q等の無関係sourceは新joinへ含めず既存trace側で保持する。",
+              "conflicting_source_refs": "Array<JsonValue>。選択されたqualified OS association候補と、その候補が明示するCORE snapshot source occurrenceだけを関係集合とする。元ValidatedRecordTraceの各source分類配列をこの関係集合でfilterし、元配列の順序・同じRef出現の重複を保持する。候補0件なら空配列。candidate carrierと未資格OS payloadからsource occurrenceを推測しない。Q等の無関係sourceは新joinへ含めず既存trace側で保持する。",
+              "unresolved_source_refs": "Array<JsonValue>。選択されたqualified OS association候補と、その候補が明示するCORE snapshot source occurrenceだけを関係集合とする。元ValidatedRecordTraceの各source分類配列をこの関係集合でfilterし、元配列の順序・同じRef出現の重複を保持する。候補0件なら空配列。candidate carrierと未資格OS payloadからsource occurrenceを推測しない。Q等の無関係sourceは新joinへ含めず既存trace側で保持する。",
+              "effects": "none（副作用なし）"
+            },
+            "meaning": "F04内に閉じた結果である。無関係sourceと既存F04 observationは既存出力で保持する。この結果がそれらを置換・再分類することはない。 source_refsと4つのsource分類配列/source_issuesは、qualified OS候補からたどれる同一の関係source occurrence集合に限定し、元配列順と元の重複を保持する。複数selector/候補の個別列挙を連結して原配列に無い重複を作らない。",
+            "required_members": [
+              "selection_input",
+              "selection_state",
+              "selected_output_refs",
+              "records",
+              "source_issues",
+              "qualified_source_refs",
+              "unqualified_source_refs",
+              "conflicting_source_refs",
+              "unresolved_source_refs",
+              "effects"
+            ],
+            "optional_members": []
+          },
+          "wire_presence": "caller selectorが欠落または妥当な空配列の場合、F04のsource_projection_join memberを省略する。妥当な空配列は内部でvalid emptyと分類するが空result objectやsentinelを返さない。選択済みでselectorが不正、または有効な非空選択の場合はresult objectを出力する。RecordObservationのField memberはmissingなら省略し、suppliedなら値そのものを出力し、supplied(null)ならmember:nullとする。CORE SourceResultProjectionRow内のPresence<JsonValue>は独自の{presence:absent|present,value}表現を保持し、外側Fieldへ畳み込まない。",
+          "closed_result_composition": "選択済みcallの完全wire結果では、既存F04 observationを変更せず、source_projection_joinのresult objectを1件並べる。既存source_output_associationは独立したField/resultのまま保持し、core_disposition_records、unfinished_obligation_records、既存findings/unresolved refs/effect_requestsも維持する。新しい結果でそれらを置換・削除しない。",
+          "finding_generation": "この補助joinはfindingを新規生成しない。各RecordObservation.finding_refs=[]を返し、既存F04 findingは親の既存出力で保持する。"
+        },
+        "legacy_basis": {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": [
+            24,
+            30,
+            36,
+            58,
+            86
+          ],
+          "preserve": "選択対象の明示、原値とidentityの保持、未解決時の局所未完とBackflowを保つ。",
+          "change": "旧instance schema/graph/runtimeは移植せず、CORE投影とOS原associationを別のqualified sourceから結ぶ限定的なF04観測を追加する。",
+          "pending": "旧authorityを新規資格や実行時認可として扱わず、現行source qualificationの既存境界を維持する。"
+        },
+        "legacy_requirement_basis": {
+          "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+          "lines": [
+            22,
+            26,
+            27,
+            29,
+            35,
+            37,
+            38,
+            39
+          ],
+          "role": "旧要求sourceの読取参照。要求の意味・承認状態を本設計やIssue/fixtureから昇格しない。",
+          "preserve": "既存要求をsourceとconsumerへ結び、未確認を未完として残す。",
+          "change": "この限定観測が旧要求の意味やauthorityを再解釈・承認しない。",
+          "pending": "旧source snapshotはread-only参照であり、現行OS要求への自動authority移行や実受入を示さない。"
         }
       }
     },
