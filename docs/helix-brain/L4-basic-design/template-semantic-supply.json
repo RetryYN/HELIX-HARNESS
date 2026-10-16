@@ -2051,13 +2051,13 @@
       "backflow_owner_existing_basis": [
         {
           "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "6677ca5ec62d6a2b2973b1beaad5d5accc5e7d90",
+          "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
           "pointer": "/failure_rules/105/backflow_owner_semantics",
           "exact_value": "knowledge_ownerは戻し先の論理的roleであり、個別owner値/受領者identityではない。原knowledge_refが欠落またはowner未決でもowner値をtemplate_ref.ownerから代用しない。"
         },
         {
           "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "6677ca5ec62d6a2b2973b1beaad5d5accc5e7d90",
+          "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
           "pointer": "/failure_rules/106/backflow_owner",
           "exact_value": null
         }
@@ -2296,12 +2296,13 @@
     "limits": [
       "既存L3/L10意味を変更せず、025 mandatory boolean/全stage完了gate/将来receipt gate/追加人間approvalを作らない。",
       "10有限integration projectionは実source資格、全operation kind/shape/owner、全case/全mutation、全14義務/全92親430対の閉包ではない。",
-      "L5/L8のproducer/input/返却組込、formal codec/resolver、L6/L7、実TDD/CI/L11は未成立。"
+      "L5/L8のproducer/input/返却組込、formal codec/resolver、L6/L7、実TDD/CI/L11は未成立。",
+      "10有限projectionの期待で実使用するreason_codeは22語中9語。未観測の13語はselector_unknown, reference_frame_unknown, source_binding_unknown, source_body_conflict, contract_body_unknown, contract_body_mismatch, original_contract_binding_absent, original_contract_binding_unknown, original_contract_binding_conflict, operation_kind_unknown, operation_scope_unknown, operation_fields_unknown, operation_kind_fields_conflict。これらの分岐の対照実行は未成立であり、宣言22語の全分岐検証を意味しない。"
     ],
     "channel_mapping_derivation_basis": [
       {
         "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
-        "revision": "6677ca5ec62d6a2b2973b1beaad5d5accc5e7d90",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
         "lines": [
           394,
           402
@@ -2312,7 +2313,7 @@
       },
       {
         "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
-        "revision": "6677ca5ec62d6a2b2973b1beaad5d5accc5e7d90",
+        "revision": "3022b439a880adc8a794a8b63a96a86d312f3fce",
         "lines": [
           414,
           422

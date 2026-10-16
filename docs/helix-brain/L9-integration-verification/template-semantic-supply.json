@@ -8703,12 +8703,12 @@
     },
     "freeze_boundary": "この10caseのcandidate input/期待を固定する。全oracle/全mutation/全wholeゼロを新入場gateにしない。case/hash数を意味閉包や全14義務完成率にしない。",
     "product_execution": "not_executed",
-    "remaining": "L5/L8/実source producer/resolver/資格と全形/全operation範囲は未成立。独立reviewとexact候補検収は別。 各ownerの原operation producer/供給contract、正式carrier/schema/owner-qualified bindingは未成立。未供給で025 unknownを返すが、欠落を理由に新approval/全stage gateを追加しない。",
+    "remaining": "L5/L8/実source producer/resolver/資格と全形/全operation範囲は未成立。 各ownerの原operation producer/供給contract、正式carrier/schema/owner-qualified bindingは未成立。未供給で025 unknownを返すが、欠落を理由に新approval/全stage gateを追加しない。",
     "observation_field_mapping_ref": "docs/helix-brain/L4-basic-design/template-semantic-supply.json#/conditional_source_dependency_contract/projection_material/observation_field_mapping",
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "61f00d0506e361e5d79996deab1ff79a610c28f8d5023d62c45b8764daa69198",
+      "sha256": "76f6da1ba7c6e883477d685ad103a7e31991ad8cb7c79404108e6dd449f54509",
       "meaning": "このL9と同候補のL4全UTF-8 bytesへのbinding。base source_pinsは原sourceの履歴根拠であり、このbindingを代替しない。commit revisionや上流承認をここから生成しない。"
     }
   }
