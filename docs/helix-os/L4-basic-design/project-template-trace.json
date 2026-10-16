@@ -1487,14 +1487,24 @@
         ],
         "return_contract": {
           "scope": "新しい結果sidecarや公開APIは設けず、既存TraceSectionResult/F04RecordObservationを使用する。ここで宣言するlocal stateはfield単位の比較状態で、全field aggregateを新設しない。",
-          "observation": "candidate原項目はcore_disposition_recordsへsource_projectionだけを除いた原presence/原JSON値で保持。CORE原row/locator/association/関連sourceは既存source_projection_joinへ保持。元unfinished_obligation_records、conditional_original_value、OS_new_judgment_countとendpoint観測は残す。",
+          "observation": "core_disposition_records、unfinished_obligation_records、conditional_original_value、OS_new_judgment_countは、同callの既存native F04比較が返した原観測のまま保持する。selected member比較がcandidateの値や欠落でこれらを上書きしない。candidate原項目は本return_contract.candidate_evidence_bindingに従い、source_projection_joinの既存raw item/occurrenceと同call原入力へ原presence/全raw値/元indexを別に保持する。CORE投影の原row/locator/association/関連sourceも同joinに保持し、native原sourceと投影sourceを同一originと推定しない。endpoint観測も既存値を維持する。",
           "findings": "member比較のmissing/conflict/unknownは既存TraceSectionResult.findingsのTraceFindingへ返す。codeはdispositionならcore_source_disposition_{state}、N/Aならcore_source_na_{candidate_member}_{state}。axisはdisposition_obligation又は上表のNA軸、contract_ref=HELIXOS-L5-002-F04、backflow_owner=CORE。corresponding/not_comparedは新findingを生成しないが成功/適用/完了を認定しない。",
-          "target_path": "candidate側はcandidate/core_outputs/{実index}/{member}。source側はvalidated_record_trace/qualified_records/{実record index}/payload{row_pointer}/computed_disposition又は/computed_na_attributes[/value/{member}]。不在親/型外親はその親までとし架空の子を加えない。ここで示すpathは本比較入力rootからの所在文字列。配列indexは原occurrenceの所在であってidentityではない。",
+          "target_path": "candidate側はcandidate/core_outputs/{実index}/{member}。source側はvalidated_record_trace/qualified_records/{実record index}/payload{row_pointer}/computed_disposition又は/computed_na_attributes[/value/{member}]。不在親/型外親はその親までとし架空の子を加えない。ここで示すpathは本比較入力rootからの所在文字列。配列indexは原occurrenceの所在であってidentityではない。 candidate側pathのrootは同callのValidatedRecordTrace.input.candidateであり、source由来のcore_disposition_recordsを指すpathではない。保存native値がpresentでもcandidate missingを解消したとはしない。新member finding生成時は原index/selected Refと同joinの保存raw candidateを照合し、該当memberのAbsent/null/異値へ戻れることを確認する。",
           "source_refs": "既存joinの当該record.source_refs（関連SourceEnvelope.source_refの元順/重複）を用いる。container subject Refやassociation self Refをsource_refへcastしない。row locatorや両端原recordはpreserved_observationから辿る。",
           "preserved_observation": "新member findingには同じ最終F04 observation（source_projection_joinを含む）を保存する。既存通常F04 findingのpreserved_observation/原provenanceは変えず先に保持し、新findingを後へ追加する。同軸でも別source原因を黙って重複除去/上書きしない。",
           "order": "選択output_refの元occurrence順、次にdisposition、reason、decider、target_revision、reentry。各fieldではsource所在の問題、candidate所在の問題、比較値の差の順。既存通常F04 findingsはこの前に保持する。",
           "terminal": "共通typed F04 coreの通常返却とselected member比較を同じTraceSectionResultへ構成し、build_record_trace_analysisがsectionsへ全体を配置する。effects=[],authority_generated=false。qualification/raw/source分類を生成結果で上書きしない。",
-          "unchanged": "source_output_association.meaning_comparison=not_establishedとqualified_source_projection_join.finding_refs=[]、carrier比較aggregateを維持する。新findingをcarrier aggregateへ混ぜず、無関係Q/未選択recordを保持する。"
+          "unchanged": "source_output_association.meaning_comparison=not_establishedとqualified_source_projection_join.finding_refs=[]、carrier比較aggregateを維持する。新findingをcarrier aggregateへ混ぜず、無関係Q/未選択recordを保持する。",
+          "candidate_evidence_binding": {
+            "provenance_root": "同callのoperation.candidateとValidatedRecordTrace.input.candidateを個別に保持する。target_pathのcandidateは後者の原位置。別callの入力、source観測、候補の片側で代用しない。ここでの保持はlogical call内の原資料保持であり、実保存・新public sidecarを追加しない。",
+            "valid_selected_one": "各側を独立走査し、selected Refへ一致するitemが1件なら既存candidate_occurrence_rules/oneに従う。validated_input_candidateにvalidated側item全raw値を保持し、candidate側はcandidate_output_ref/source_projectionの既存singular Fieldを保持する。member比較が参照するcandidateはvalidated側であり、その全member有無/原JSON値はvalidated_input_candidateへ残る。元indexはtarget_pathと同call入力で結び、singular Fieldへ架空indexを加えない。",
+            "valid_selected_multiple": "singular Fieldを省略しcandidate_item_occurrences又はvalidated_input_item_occurrencesへ全{item_index,raw_item}を元順・重複保持で返す。二側をzip/mergeしない。既存member source_acquisitionは一意candidate条件を満たさないため新member findingを推定しない。native原観測をduplicate候補で置換しない。",
+            "valid_selected_zero": "当該側のsingular Fieldとoccurrence列を省略する。不在itemを作らず、raw候補全体は同call入力へ保持する。0件から他refのitemをselected candidateへ採用しない。",
+            "source_unavailable": "OS association欠落/曖昧、CORE source未資格/競合/不在、row_pointer未解決、carrier domain不成立でも、candidate raw occurrence転写はsource取得と独立して継続する。source側の状態/issueを保持し、candidate rawをsourceへ採用しない。元row取得不能時は新member findingを作らない。",
+            "no_join": "selector absent/valid emptyはjoin Field.missing、F04未選択はjoin未生成、invalid selectorは局所unknown result/records=[]、validator input無効はF04 dispatchをしない。これらに仮想candidate保存recordを作らない。原candidateは同call入力と既存InputIssue/decode資料から追跡し、Analysis単体が全raw入力を内包すると主張しない。InputIssue.detailのstringを原raw全値と見なさない。",
+            "diagnostic_responsibility": "新member findingを構成する側はtarget_pathの元index/memberを同call validated raw candidateへ結び、selected join recordのvalidated_input_candidate又は元index付きoccurrenceに同じ原presence/値が保持されていることを確認する。missingはobject内keyの不在として辿り、source観測の補完値をcandidateの供給値と誤認しない。旧native findingの保存観測/provenanceは後段で書換えない。",
+            "limits": "未選択/invalid root等でjoinが無い場合の既存入力trace責務を拡大せず、新source必須条件・全体gate・資格・実保存を作らない。source不明時の既存native未知結果をcandidateで埋めない。この役割追補はnative source未取得時の未固定Field/diagnostic全値を新たに凍結するものではない。"
+          }
         },
         "detail_rederivation_remaining": [
           "この四判定/NA基本追補の初回時点ではL5 reentryはField<string>だった。元基本source bytes/pinは歴史参照として保持し、現在のL5/L8固定bytesはsource_original_correspondence.current_detail_source_bindingを参照する。",
@@ -1509,7 +1519,8 @@
           "未対照（この9wholeの有限範囲）: N/A reason・decider・target_revisionの比較可能な値同士のconflict。属性conflictの観測はreentryだけであり、他3属性の単独欠落/型不足対照を値conflictの対照と同一視しない。",
           "未対照（この9wholeの有限範囲）: member値比較での数値等値（例: 1と1.0）、object key順の差。同一の型付き等値規則を宣言しているが、この9件にそれらを変える専用対照は無い。",
           "未対照（この9wholeの有限範囲）: 同一fieldでsource側とcandidate側が同時に不成立となる場合の、source所在の問題→candidate所在の問題→比較値の差という返却順。既存native findingと新member findingのprovenance併存を、両端同時不成立の順序対照とはしない。",
-          "上記は対照済み範囲と未対照分岐の開示であり、全case追加・全mutation kill・全入力域閉包の新gateではない。今回の9入力/whole/判定規則は維持する。"
+          "上記は対照済み範囲と未対照分岐の開示であり、全case追加・全mutation kill・全入力域閉包の新gateではない。今回の9入力/whole/判定規則は維持する。",
+          "観測役割訂正のL5/L8追随は別pair。現f04_source_member_detail.return_binding.observationのcandidate格納文と旧4wholeの観測/全phase保存観測は、本節のnative4観測不変・candidate evidence分離へ追随が必要。旧固定revisionと未対照範囲は履歴として保持し、期待だけを訂正して下流契約整合済みとはしない。"
         ],
         "legacy_rederivation": {
           "mode": "semantic_rederivation",
@@ -1607,6 +1618,38 @@
           ],
           "legacy_relation": "legacy_rederivation.source_documentsの旧L4 line 81はN/Aの必要根拠/authority/再評価triggerを保持する。旧のunknownをfalseへ丸めない点を維持し、旧runtime/predicateや全source資格gateは移さない。",
           "boundary": "全field/全ownerでnullを一律missing又はunknownへ変更する規則ではない。上位L3/L10がこの非対称ラベル自体を規定しているとは主張せず、必要原値と供給済み未定義値を区別して不足を返す詳細化である。"
+        },
+        "observation_role_reconciliation": {
+          "old_source": {
+            "revision": "f3ea10e98f3a800bdb1295fefb610f7e251d4b26",
+            "pointer": "/contracts/5/selected_source_member_correspondence/return_contract/observation",
+            "text": "candidate原項目はcore_disposition_recordsへsource_projectionだけを除いた原presence/原JSON値で保持。CORE原row/locator/association/関連sourceは既存source_projection_joinへ保持。元unfinished_obligation_records、conditional_original_value、OS_new_judgment_countとendpoint観測は残す。"
+          },
+          "conflict": "旧条項はcore_disposition_recordsへcandidateを置く一方、qualified_source_projection_joinの既存F04観測不変と現L5 native原source再構築はsource観測を保持する。L9だけsource値へ差し替えた初回案ではこの衝突を解消できていなかった。",
+          "retained": "native4観測とnative finding保存観測、candidate欠落/異値/重複、CORE投影raw、原source分類、旧finding条件/順序、L3/L10の原判定・原未完追跡と新裁定禁止。",
+          "changed": "既存memberの役割を分離する。native4観測を既存native結果として維持し、candidate evidenceは既存join raw item/occurrenceと同call入力へ置く。新wire member/public API/sidecarは追加しない。",
+          "reason": "同一memberへcandidateとnative値を混成せず、原presenceと有資格元観測をそれぞれ辿れるようにする技術訂正。L3/L10の意味変更ではない。",
+          "upstream_originals": {
+            "L3": {
+              "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/11/obligation",
+              "text": "CORE009のrequired/conditional/N/A/unresolved、根拠・判定者・対象revision・再評価条件を出力参照へ結ぶ。conditional未充足、義務の未実施/不合格/未評価を分け、OSが適用規則やN/A判断を新設しない。"
+            },
+            "L10": {
+              "path": "docs/helix-os/L10-verification/functional-verification.json",
+              "pointer": "/cases/11",
+              "positive_input": "四判定と属性、conditional条件、義務の未実施/不合格/未評価を各々照合する。",
+              "expected_observation": "判定属性と元のCORE出力、各未完状態を区別して辿れる。",
+              "failure_observation": "不足属性/義務/kindを保持し、未完を適用/完了へ変換しない。"
+            }
+          },
+          "legacy_basis": {
+            "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+            "lines": "110-147",
+            "retained": "source_pointerとtarget_json_pointerを別に保持し、candidate normative fieldの原source traceとowner付きunmappedを区別する。source authorityをcandidate defaultへ自動昇格しない。",
+            "changed": "旧shadow runtimeは実行/移植せず、既存F04 native観測とcandidate raw証拠の配置へ意味再導出する。"
+          }
         }
       },
       "source_original_correspondence": {
