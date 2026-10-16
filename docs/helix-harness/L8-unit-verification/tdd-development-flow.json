@@ -55285,7 +55285,12 @@
       "existing_L9_mapped_cases": 35,
       "additional_F03_head_cases": 3,
       "total_declared_comparison_cases": 38,
-      "count_boundary": "既存verification_scopeの35はL9 source mapへ対応するcasesの範囲。本追加3件はこの別sectionの独立著述材料であり、原L9のcase数/内容を変更しない。"
+      "count_boundary": "既存verification_scopeの35はL9 source mapへ対応するcasesの範囲。本追加3件はこの別sectionの独立著述材料であり、原L9のcase数/内容を変更しない。",
+      "unverified_input_branches": {
+        "required_head_absent": "not_observedの内容規則は定義済みだが、この3試料には欠落headの全返却例がなく、試料による検証は未実施。",
+        "required_head_null": "同様に、この3試料にはnull headの全返却例がなく、試料による検証は未実施。",
+        "required_head_wrong_type": "同様に、この3試料には誤型headの全返却例がなく、試料による検証は未実施。"
+      }
     },
     "candidate_l5_binding": {
       "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
