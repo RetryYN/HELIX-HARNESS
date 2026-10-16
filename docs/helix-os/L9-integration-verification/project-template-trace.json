@@ -16459,7 +16459,7 @@
             "pointer": "/type_contract/types/ValidatedRecordTrace"
           },
           {
-            "role": "このL9補助oracleが照合する、同worktreeのL4基本設計候補バイト。source pointerの照合用で、対象revisionの承認・独立review成立を示さない。",
+            "role": "この対検証が照合するL4基本設計の対象本文。file bytesとpointerの対応を確認し、承認・独立reviewの成立は別に確認する。",
             "binding_kind": "candidate_file_bytes",
             "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
             "pointer": "/contracts/5/qualified_source_projection_join",
@@ -32657,6 +32657,18 @@
                     "$copy": {
                       "root": "case_input",
                       "pointer": "/validated_record_trace/input/candidate/core_outputs/0/source_projection"
+                    }
+                  },
+                  "projection_snapshot_ref": {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/validated_record_trace/qualified_records/0/payload/source_projection/projection_snapshot_ref"
+                    }
+                  },
+                  "row_pointer": {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/validated_record_trace/qualified_records/0/payload/source_projection/row_pointer"
                     }
                   }
                 }
