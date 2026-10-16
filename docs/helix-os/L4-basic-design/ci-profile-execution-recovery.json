@@ -2022,7 +2022,7 @@
       "状態の循環参照を除いた7段DAGと9軸の出力対応を単一契約に統合"
     ]
   },
-  "selection_producer_revision": "R10 source-contract correction of immutable R9. Scope: finding owner, three source_bound connections with parent presence, owner outer Field priority.",
+  "selection_producer_revision": "固定済みR9に対するR10のsource契約訂正。対象はfindingの責務、親presenceを保持する3箇所のsource_bound接続、owner外側Fieldの優先順。",
   "r9_source_readback": {
     "revision": "c3994c92d43ab49264a75f7aae9622484d082659",
     "source_hashes": {
