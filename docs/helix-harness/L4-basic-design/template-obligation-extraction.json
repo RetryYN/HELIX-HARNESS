@@ -122,7 +122,7 @@
   "remaining": [
     "初回合成oracle起草済み。追加source資格/必要集合/内容組合せ・実未見比較と独立意味reviewは未完。",
     "009/BRAIN選択入力・040相当ledger/pair・対象scopeへのowner-qualified exact binding、正式schema/codec/extractorは未binding。",
-    "L5/L8内部処理/edge cases、実oracle凍結→実装前Red→最小Green→Refactorと再検証、実L9/L10・PO L11は未成立。",
+    "L5/L8内部処理/edge cases、実oracle凍結→実装前Red→最小Green→Refactorと再検証、実L9/L10・PO L11は未成立。 source_duplicateと各原行の通常診断後に付加する順序のL5/L8追随は未成立。",
     "全限定92親430対の設計閉包・実装準備は未成立。"
   ],
   "document_id": "HARNESS-L4-041",
