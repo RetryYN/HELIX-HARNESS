@@ -691133,7 +691133,7 @@
       "source_pins": {
         "L8": {
           "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
-          "pin_scope": "only exact input objects consumed; whole L8 file hash is historical archive identity, not a current pin",
+          "pin_scope": "実際に消費する入力objectだけを固定する。L8全体のfile hashは過去のarchiveを特定する値であり、現行入力の固定値ではない。",
           "base_raw_input_pointer": "/definition_meaning_walk_verification/materials/1/raw_input",
           "base_raw_input_canonical_sha256": "6cd0dc78d931154f9931f950a4fceca68806dde03f5da6a0a22deb7cbca3d084",
           "ordered_case_raw_patch_projection_canonical_sha256": {
