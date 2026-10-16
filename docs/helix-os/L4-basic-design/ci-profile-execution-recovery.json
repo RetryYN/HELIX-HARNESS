@@ -1340,6 +1340,44 @@
               ],
               "change": "曖昧だったcause配列のpointer identity/order/repetitionだけを指定する。既存9軸/status/relation/selection/owner outer優先は変更しない。"
             }
+          },
+          "relation_comparison_units": {
+            "kind": "既存relationの可比較単位を明示する技術補足",
+            "applies_to": [
+              "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/7/statuses/conflict",
+              "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/2",
+              "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/3"
+            ],
+            "no_new_identity": "item_id、target文字列、source_ref、source_pointerの一致だけから排他的なrelation identityを推定しない。別原rowの異obligationを単一targetという理由で相反にしない。catalogはmembershipの正本にしない。",
+            "input_scope": "既存PlanSelectionRowObservation<PlanSelectionRelation>と、元OS016 TraceResult/OS017 WorkflowProposalのsource対応を使う。新public field/actor/資格gate/型付きunknown graph row carrierを追加しない。foreign/partial tupleは既存exact_binding_and_selection[1]で扱い、全raw occurrenceを保持する。",
+            "comparison_units": [
+              {
+                "id": "原rowとそのdecode",
+                "origin": "同じ実在source container/indexから捕捉したraw_rowとdecoded_row。pointer文字列そのものを意味主キーにしない。",
+                "known_relation": "元rowの宣言memberと、その同じ元rowを表すtyped memberが双方knownなら比較可能。",
+                "corresponding": "required memberの元値とtyped projectionが原Field境界で対応する。",
+                "conflict": "双方knownのtarget_ref/obligation_ref等の元値とtyped viewが相違する。別rowの異obligationとは区別する。",
+                "unknown": "比較が必要な元member/decodeが不明なら補完せず局所unknown。別known source/row比較は残す。"
+              },
+              {
+                "id": "OS016 canonical target",
+                "origin": "原project/nodeでnode_correspondence.relationとretained_source_records.target_idを解決する。",
+                "corresponding": "元relation=correspondingかつcanonical targetとrow.target_refがknownで一致。",
+                "conflict": "比較可能なcanonical targetとrow.target_refがknownで相違。",
+                "unknown": "原source/指定node/relation/target operandが未供給又は不明。known row自身のtargetからcanonical targetを作らない。"
+              },
+              {
+                "id": "OS017 graph pair存在",
+                "origin": "原workflow_material_correspondingとcandidate_materialの適用を既存規則で確認し、ticket_graph全rowで(ticket_ref,target_ref)の完全一致を読む。",
+                "corresponding": "適用sourceの宣言graphに一致pairが一つ以上ある。全一致rowとその他raw rowを保持し、先頭勝者にしない。",
+                "conflict": "原sourceのgraphが既知の完全な宣言集合で、照合するticket_ref/target_refもknownであり、一致pairが無い。",
+                "unknown": "workflow proposalの親Field不在/null、原proposal不成立/欠落等の既存unknown枝。読み取れていない元sourceを完全な空集合にしない。",
+                "typed_row_boundary": "現TicketBodyのticket_ref/targetはplain stringで、Field/null/unknown variantを持たない。空文字を理由とする局所unknownを追加しない。部分unknown graph rowの別表現は現portで未供給であり、本補足ではtyped形を拡張しない。"
+              }
+            ],
+            "independent_obligation_rows": "各原rowのtarget/source対応が成立しているなら、同じtarget/item_idを持つ別obligation_refのrowも独立寄与として元順に保持する。public selected IDだけ既存規則で一度出力し、原row・候補・source・参照・順・反復をdedupしない。",
+            "precedence": "同じ評価範囲でknown相反があれば既存conflict優先。独立unknown cause/rawも保持する。foreignを新たなconflictにしない。",
+            "scope_limit": "この技術補足と6局所projectionから、pure3全体/Invocation9/consumer14+3の新wholeや全OS020/実資格成立を主張しない。OS017の未知graph rowを供給する新adapter/資格機構はここで創作しない。"
           }
         }
       }
