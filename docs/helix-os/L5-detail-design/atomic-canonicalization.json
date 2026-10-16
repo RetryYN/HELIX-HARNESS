@@ -936,7 +936,43 @@
         "IdentityResultは閉shape→classificationのText型→bases配列→prior_operation_refの閉Locator→各Base閉shape→nested Refのpointer順照合→Text型/非空のpointer順→classification enumの順。nullable prior_*はmember必須、null値のみ許す。",
         "Refのsha256は既存lowercase64hex、他4軸は既存非空Text。Locatorはsha256を持たない4軸。原payload_digestは型検査して全文を保存し、このcodecで意味digestを計算・補完しない。",
         "入力domainは既存S01/S04のPlan/Resolution供給とrow projection。L8の不一致入力は結線を意図的に変えた局所観測で、S01を通ったvalid operationの実証ではない。"
-      ]
+      ],
+      "failure_projection": {
+        "pointer_roots": {
+          "ref_blob": "Ref BLOBのdecode/型診断は/identity_result_ref_bytesをrootとする。",
+          "axes_blob": "IdentityResult BLOBのdecode/型診断は/identity_axesをrootとする。",
+          "row": "row command_id不一致は/command_id。"
+        },
+        "checks": [
+          {
+            "check": "plan_identity_result_ref_matches_resolution_ref",
+            "field_pointer": "Plan.identity_result_refがaxes.result_refと一致する場合は/resolution/ref。それ以外は/plan/identity_result_ref。",
+            "expected": "Plan.identity_result_refがaxes.result_refと一致する場合はPlan.identity_result_ref。それ以外はResolution.ref。",
+            "actual": "Plan.identity_result_refがaxes.result_refと一致する場合はResolution.ref。それ以外はPlan.identity_result_ref。"
+          },
+          {
+            "check": "resolution_ref_matches_axes_result_ref",
+            "field_pointer": "/resolution/ref",
+            "expected": "axes.result_ref",
+            "actual": "Resolution.ref"
+          },
+          {
+            "check": "plan_command_scope_bases_match_axes",
+            "field_pointer": "/plan",
+            "group": "command_scope_bases",
+            "expected": "axesのcommand_id/scope_ref/basesを持つ3member record。",
+            "actual": "Planのcommand_id/scope_ref/basesを持つ3member record。"
+          },
+          {
+            "check": "resolution_value_matches_axes",
+            "field_pointer": "/resolution/value",
+            "expected": "axesの完全IdentityResult。",
+            "actual": "Resolution.valueの完全値。"
+          }
+        ],
+        "selection": "4 checkの全booleanを保存し、codec_orderが定める順の最初のfalseだけをfailureへ投影する。check1で両側ともaxes.result_refと異なる場合も上記の「それ以外」枝を使う。ここで一方の資格・意味の正当性を再認定しない。",
+        "blob_pair": "Ref BLOBとaxes.result_refが不一致ならcodec_decode.state=mismatch、failure.kind=result_ref_mismatch、field_pointer=/identity_axes/result_ref。row/Planの後段はnot_evaluated。"
+      }
     }
   },
   "functions": [

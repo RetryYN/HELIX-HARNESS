@@ -4610,7 +4610,7 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
-    "sha256": "561f1181d7a7efbdbf802093f06f3bced0c815061588445fb1de5f16d78a5ea9"
+    "sha256": "bb814e4ca598a593523e090b32665b11c1c2981a49ec321f3a0afbd776bc00be"
   },
   "command_binding_codec_oracles": {
     "oracle_id": "OS-L8-053-COMMANDBINDING-2BLOB-CODEC",
