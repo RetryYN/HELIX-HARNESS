@@ -4606,7 +4606,7 @@
   },
   "definition_meaning_resolution_contract": {
     "id": "HELIXBRAIN-L4-032-DEFINITION-MEANING-RESOLUTION",
-    "status": "scratch技術契約候補。新raw/期待/oracle/actualを未作成、正式未採用。",
+    "status": "原meaning取得の基本技術契約候補。新raw/期待/oracle/actualは未作成。",
     "requirements": [
       "HELIXBRAIN-L3-032-F01",
       "HELIXBRAIN-L3-032-F02",
@@ -5413,7 +5413,7 @@
       "raw_runner": "fn0は同snapshotの既存資格判定を一度行う。fn1 private coreは同validatedから全slot/domain、規範frame、原owner意味/NA readと既存比較を一walkで計算する。元Comparisonと全assessmentを返し、fn6/7は同call indexを消費する。rawrunner又はpublicwrapperを連鎖して再計算しない。",
       "public_types": "Claim6field/SupplyInput/Comparison/AnalysisContext/既存9公開関数署名を変更しない。新記録はsource.content RawValueとprivate context内。builderに新index必須引数を足さない。",
       "state_locality": "帰属/規範原評価/定義/NA判断の原因は全保持し、同kind sibling/target住所resolvedを意味knownへ借りない。rule87/93は既存同Claim担当分離に従い、全assessment保持と公開Finding一件化を混同しない。",
-      "not_finished": "現L5 fn1全Comparison/全reason/形成/順序とL8 wholeは未追随。scratch候補02は変更せず、本新契約に沿う次差分を別に用意する。"
+      "not_finished": "現行L5のfn1全Comparison・全reason・形成・順序とL8 wholeは未追随。現行の詳細設計と原meaning取得の基本契約との対応は未成立として保持する。"
     },
     "preservation_and_limits": [
       "旧L8 79constructor/5builderのraw/全返却を保存する。これらはprimary fn1全意味計算/新owner readのwhole証拠ではない。旧Comparison shape/値を無断上書きしない。",
@@ -5457,6 +5457,54 @@
         },
         "same_invocation": "原argumentsと原returnをDefinitionMeaningOperationの同recordに保持し、別operationのbody/basisを取り合わせない。実稼働証拠を今求める規則ではなく、将来logical callerで供給する原資料の役割/型を定義する。"
       }
+    },
+    "legacy_rederivation": {
+      "disposition": "意味の再導出",
+      "sources": [
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+          "retained": "JSON構造意味/原owner/source/独立根拠、NA理由と再評価条件、欠落/未知と非適用の分離。",
+          "changed": "旧schema/式/lifecycle/parity全条件を移植せず、現032の原meaning operation/独立規範frame/同call原因へ論理再導出。",
+          "reason": "現在のqualified原意味とsource資格を別の比較入力へ具体化し、提出側/原側の追従改変又はlabel/shapeだけのknownを防ぐ。新authorityを作らない。",
+          "read_ranges": [
+            {
+              "start": 16,
+              "end": 45,
+              "selected_lines_sha256": "7b1eb27c5499104149e45c6c07ea6490854fea9bd977758e3b513b24fd24b32a"
+            },
+            {
+              "start": 61,
+              "end": 92,
+              "selected_lines_sha256": "7c5a9bb4f0089dcda28751b146bd22db89f2094063645decd8e8d71f0a7aadc6"
+            }
+          ]
+        },
+        {
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+          "retained": "JSON構造意味/原owner/source/独立根拠、NA理由と再評価条件、欠落/未知と非適用の分離。",
+          "changed": "旧schema/式/lifecycle/parity全条件を移植せず、現032の原meaning operation/独立規範frame/同call原因へ論理再導出。",
+          "reason": "現在のqualified原意味とsource資格を別の比較入力へ具体化し、提出側/原側の追従改変又はlabel/shapeだけのknownを防ぐ。新authorityを作らない。",
+          "read_ranges": [
+            {
+              "start": 30,
+              "end": 78,
+              "selected_lines_sha256": "b459c2d42df1dbe2139b77f8f004b9e111d785b7c26e762eea3f4078d49005ce"
+            },
+            {
+              "start": 110,
+              "end": 148,
+              "selected_lines_sha256": "b352b74e86219a4328e8ee87b02ccd0dc280fe5f87d7b6be8cfcd570fe9a277f"
+            }
+          ]
+        }
+      ],
+      "contract_scope": "原規範・owner意味解釈・理由付き定義非適用の提供と比較。旧runtime・CI・schema・承認lifecycleを実行又は移植しない。"
     }
   }
 }
