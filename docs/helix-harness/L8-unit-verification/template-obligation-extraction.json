@@ -451,13 +451,14 @@
     }
   ],
   "fixture_contract": {
-    "original_cases": 33,
-    "local_material_cases": 30,
+    "original_cases": 36,
+    "local_material_cases": 32,
     "source_attribute_cases": 16,
     "scope": "原wholeの書換なし。局所wholeはL4から独立に手固定。全argument/read/returnを型と値で照合しcase ID/完成期待lookupを判定へ使わない。",
     "execution_state": "not_executed",
     "effect": "none",
-    "template_domain_cases": 12
+    "template_domain_cases": 12,
+    "case_count_basis": "現行L8のcase材料はsource_pointer 36件とbaseline_case_ref 32件に分類する。以前の33件/33件は過去の集計値として履歴に残し、現行配列の件数を表さない。"
   },
   "cases": [
     {
@@ -18797,6 +18798,1538 @@
       "execution_state": "not_executed",
       "effect": "none",
       "expected_canonical_sha256": "debfc8d31ccc4335d34ac6d5ed3c744a2557739bef26f1971bd9f8ce386f5bae"
+    },
+    {
+      "id": "H041-F03-DUPLICATE-NA-SOURCE-OCCURRENCES",
+      "root": "F03",
+      "function_ref": "compare_f03",
+      "source_pointer": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json#/verification_obligations/2/concrete_cases/6",
+      "source_case_sha256": "59a0ac15235512b1505b367cf825bc8783718e6c01685446be8f100232a87b6e",
+      "raw_utf8_sha256": "6367a2d5c2e1f94ccd4ca49a28790a032c5d77ddf943350b0cbdad11d23ef808",
+      "arguments": {
+        "packet": {
+          "applicability_input": {
+            "screen": false
+          },
+          "candidate_atoms": [
+            {
+              "atom_id": "ATOM-E1",
+              "candidate_row": {
+                "atom_ref": "ATOM-E1",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "chapter",
+                "meaning": "独立義務1",
+                "source_element_id": "E1",
+                "source_span": {
+                  "end_line": 1,
+                  "start_line": 1
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "6f928d496a99da15977633bea18419e30c7c3a86a7088cbefc5033afe81f46b0"
+            },
+            {
+              "atom_id": "ATOM-E2",
+              "candidate_row": {
+                "atom_ref": "ATOM-E2",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "chapter",
+                "meaning": "独立義務2",
+                "source_element_id": "E2",
+                "source_span": {
+                  "end_line": 2,
+                  "start_line": 2
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "8c1ac0b3ef65656d238e994ed6bb8a8103c2ac69fc72239a66e9525ed1a157c1"
+            },
+            {
+              "atom_id": "ATOM-E3",
+              "candidate_row": {
+                "atom_ref": "ATOM-E3",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "field",
+                "meaning": "独立義務3",
+                "source_element_id": "E3",
+                "source_span": {
+                  "end_line": 3,
+                  "start_line": 3
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "9ed7a3ab8cd00bd678bd0b7110a1c698506c797b815b029ea368f1c40a4cfef5"
+            },
+            {
+              "atom_id": "ATOM-E4",
+              "candidate_row": {
+                "atom_ref": "ATOM-E4",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "table_row",
+                "meaning": "独立義務4",
+                "source_element_id": "E4",
+                "source_span": {
+                  "end_line": 4,
+                  "start_line": 4
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "5ac63b1fe3ab775cb70e44e3b7ebc33f8461578334c55924db95595be1620b8c"
+            },
+            {
+              "atom_id": "ATOM-E5",
+              "candidate_row": {
+                "atom_ref": "ATOM-E5",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "applicability_rule",
+                "meaning": "独立義務5",
+                "source_element_id": "E5",
+                "source_span": {
+                  "end_line": 5,
+                  "start_line": 5
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "a6760cf6cfe0e0ecf458a9c645655595f72bd9114db913c953cd087769364b7e"
+            },
+            {
+              "atom_id": "ATOM-E6",
+              "candidate_row": {
+                "atom_ref": "ATOM-E6",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "done_when",
+                "meaning": "独立義務6",
+                "source_element_id": "E6",
+                "source_span": {
+                  "end_line": 6,
+                  "start_line": 6
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "e27d1ef944fb8adfa6f8947bfaf3b3097188cfb75afb68d5ad2b358bba3b3506"
+            },
+            {
+              "atom_id": "ATOM-E7",
+              "candidate_row": {
+                "atom_ref": "ATOM-E7",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "pair_contract",
+                "meaning": "独立義務7",
+                "source_element_id": "E7",
+                "source_span": {
+                  "end_line": 7,
+                  "start_line": 7
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "dc812ef203dee66a97717359115fbfae9b709d07fd0156fb66c5263dffe559e2"
+            }
+          ],
+          "material_kind": "synthetic_extractor_candidate_not_real_mechanical_execution",
+          "original_template": {
+            "raw_utf8": "{\"id\":\"E1\",\"kind\":\"chapter\",\"meaning\":\"独立義務1\",\"requires_screen\":false}\n{\"id\":\"E2\",\"kind\":\"chapter\",\"meaning\":\"独立義務2\",\"requires_screen\":false}\n{\"id\":\"E3\",\"kind\":\"field\",\"meaning\":\"独立義務3\",\"requires_screen\":false}\n{\"id\":\"E4\",\"kind\":\"table_row\",\"meaning\":\"独立義務4\",\"requires_screen\":false}\n{\"id\":\"E5\",\"kind\":\"applicability_rule\",\"meaning\":\"独立義務5\",\"requires_screen\":false}\n{\"id\":\"E6\",\"kind\":\"done_when\",\"meaning\":\"独立義務6\",\"requires_screen\":false}\n{\"id\":\"E7\",\"kind\":\"pair_contract\",\"meaning\":\"独立義務7\",\"requires_screen\":false}\n{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true}\n{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true}\n",
+            "revision": "TPL-P@duplicate-E8-r2",
+            "sha256": "531682ec3ea05aeae4c0c908f1d15aa9935fac987363bee1215d1e4aa8fd1e28"
+          },
+          "reasoned_NA": {
+            "E8": {
+              "decider": "synthetic-applicability-owner",
+              "reason": "原条件requires_screen=trueをscreen=falseが満たさない",
+              "reassessment": "screen input/template revision変更",
+              "target_revision": "TPL-P@duplicate-E8-r2"
+            }
+          }
+        },
+        "context": {
+          "unaffected_Q": {
+            "state": "known",
+            "value": "original_Q"
+          }
+        }
+      },
+      "retained_context_basis": {
+        "source": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json#/verification_obligations/2/concrete_cases/6/expected_material/unaffected_Q",
+        "meaning": "原fixtureのunaffected_Qだけを明示contextへ供給する。expected_returnはargumentへ含めない。"
+      },
+      "expected_return": {
+        "element_dispositions": {
+          "E1": {
+            "kind": "atom",
+            "atom_id": "ATOM-E1"
+          },
+          "E2": {
+            "kind": "atom",
+            "atom_id": "ATOM-E2"
+          },
+          "E3": {
+            "kind": "atom",
+            "atom_id": "ATOM-E3"
+          },
+          "E4": {
+            "kind": "atom",
+            "atom_id": "ATOM-E4"
+          },
+          "E5": {
+            "kind": "atom",
+            "atom_id": "ATOM-E5"
+          },
+          "E6": {
+            "kind": "atom",
+            "atom_id": "ATOM-E6"
+          },
+          "E7": {
+            "kind": "atom",
+            "atom_id": "ATOM-E7"
+          },
+          "E8": {
+            "kind": "reasoned_not_applicable",
+            "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+          }
+        },
+        "gaps": [
+          {
+            "element_id": "E8",
+            "kind": "source_duplicate",
+            "source_span": {
+              "start_line": 8,
+              "end_line": 8
+            },
+            "occurrence_count": 2
+          },
+          {
+            "element_id": "E8",
+            "kind": "source_duplicate",
+            "source_span": {
+              "start_line": 9,
+              "end_line": 9
+            },
+            "occurrence_count": 2
+          }
+        ],
+        "fixture_content_complete": false,
+        "effects": {
+          "actual_extraction_executed": false,
+          "actual_ledger_registered": false,
+          "actual_OS_execution": false,
+          "actual_template_authority": false,
+          "actual_design_complete": false,
+          "actual_requirement_agreement": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": {
+          "state": "known",
+          "value": "original_Q"
+        }
+      },
+      "expected_canonical_sha256": "c1a936579d31928fb99f0e8f510808ed0aba44bd4b55e5ea55cee94aaf580ecf",
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "id": "H041-F03-DUPLICATE-ACTIVE-SOURCE-NO-CANDIDATE",
+      "root": "F03",
+      "function_ref": "compare_f03",
+      "source_pointer": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json#/verification_obligations/2/concrete_cases/7",
+      "source_case_sha256": "7fd87e97c33e3d4801673d9ac3e17b526f12b22d58a048622b6ee3456d441740",
+      "raw_utf8_sha256": "a005afeb319475b20080a3cc741f2d28a8a2bfe8fe30d9f21f83d47e46aa0435",
+      "arguments": {
+        "packet": {
+          "applicability_input": {
+            "screen": true
+          },
+          "candidate_atoms": [
+            {
+              "atom_id": "ATOM-E1",
+              "candidate_row": {
+                "atom_ref": "ATOM-E1",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "chapter",
+                "meaning": "独立義務1",
+                "source_element_id": "E1",
+                "source_span": {
+                  "end_line": 1,
+                  "start_line": 1
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "6f928d496a99da15977633bea18419e30c7c3a86a7088cbefc5033afe81f46b0"
+            },
+            {
+              "atom_id": "ATOM-E2",
+              "candidate_row": {
+                "atom_ref": "ATOM-E2",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "chapter",
+                "meaning": "独立義務2",
+                "source_element_id": "E2",
+                "source_span": {
+                  "end_line": 2,
+                  "start_line": 2
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "8c1ac0b3ef65656d238e994ed6bb8a8103c2ac69fc72239a66e9525ed1a157c1"
+            },
+            {
+              "atom_id": "ATOM-E3",
+              "candidate_row": {
+                "atom_ref": "ATOM-E3",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "field",
+                "meaning": "独立義務3",
+                "source_element_id": "E3",
+                "source_span": {
+                  "end_line": 3,
+                  "start_line": 3
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "9ed7a3ab8cd00bd678bd0b7110a1c698506c797b815b029ea368f1c40a4cfef5"
+            },
+            {
+              "atom_id": "ATOM-E4",
+              "candidate_row": {
+                "atom_ref": "ATOM-E4",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "table_row",
+                "meaning": "独立義務4",
+                "source_element_id": "E4",
+                "source_span": {
+                  "end_line": 4,
+                  "start_line": 4
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "5ac63b1fe3ab775cb70e44e3b7ebc33f8461578334c55924db95595be1620b8c"
+            },
+            {
+              "atom_id": "ATOM-E5",
+              "candidate_row": {
+                "atom_ref": "ATOM-E5",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "applicability_rule",
+                "meaning": "独立義務5",
+                "source_element_id": "E5",
+                "source_span": {
+                  "end_line": 5,
+                  "start_line": 5
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "a6760cf6cfe0e0ecf458a9c645655595f72bd9114db913c953cd087769364b7e"
+            },
+            {
+              "atom_id": "ATOM-E6",
+              "candidate_row": {
+                "atom_ref": "ATOM-E6",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "done_when",
+                "meaning": "独立義務6",
+                "source_element_id": "E6",
+                "source_span": {
+                  "end_line": 6,
+                  "start_line": 6
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "e27d1ef944fb8adfa6f8947bfaf3b3097188cfb75afb68d5ad2b358bba3b3506"
+            },
+            {
+              "atom_id": "ATOM-E7",
+              "candidate_row": {
+                "atom_ref": "ATOM-E7",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "pair_contract",
+                "meaning": "独立義務7",
+                "source_element_id": "E7",
+                "source_span": {
+                  "end_line": 7,
+                  "start_line": 7
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "dc812ef203dee66a97717359115fbfae9b709d07fd0156fb66c5263dffe559e2"
+            }
+          ],
+          "material_kind": "synthetic_extractor_candidate_not_real_mechanical_execution",
+          "original_template": {
+            "raw_utf8": "{\"id\":\"E1\",\"kind\":\"chapter\",\"meaning\":\"独立義務1\",\"requires_screen\":false}\n{\"id\":\"E2\",\"kind\":\"chapter\",\"meaning\":\"独立義務2\",\"requires_screen\":false}\n{\"id\":\"E3\",\"kind\":\"field\",\"meaning\":\"独立義務3\",\"requires_screen\":false}\n{\"id\":\"E4\",\"kind\":\"table_row\",\"meaning\":\"独立義務4\",\"requires_screen\":false}\n{\"id\":\"E5\",\"kind\":\"applicability_rule\",\"meaning\":\"独立義務5\",\"requires_screen\":false}\n{\"id\":\"E6\",\"kind\":\"done_when\",\"meaning\":\"独立義務6\",\"requires_screen\":false}\n{\"id\":\"E7\",\"kind\":\"pair_contract\",\"meaning\":\"独立義務7\",\"requires_screen\":false}\n{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true}\n{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true}\n",
+            "revision": "TPL-P@duplicate-E8-r2",
+            "sha256": "531682ec3ea05aeae4c0c908f1d15aa9935fac987363bee1215d1e4aa8fd1e28"
+          },
+          "reasoned_NA": {}
+        },
+        "context": {
+          "unaffected_Q": {
+            "state": "known",
+            "value": "original_Q"
+          }
+        }
+      },
+      "retained_context_basis": {
+        "source": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json#/verification_obligations/2/concrete_cases/7/expected_material/unaffected_Q",
+        "meaning": "原fixtureのunaffected_Qだけを明示contextへ供給する。expected_returnはargumentへ含めない。"
+      },
+      "expected_return": {
+        "element_dispositions": {
+          "E1": {
+            "kind": "atom",
+            "atom_id": "ATOM-E1"
+          },
+          "E2": {
+            "kind": "atom",
+            "atom_id": "ATOM-E2"
+          },
+          "E3": {
+            "kind": "atom",
+            "atom_id": "ATOM-E3"
+          },
+          "E4": {
+            "kind": "atom",
+            "atom_id": "ATOM-E4"
+          },
+          "E5": {
+            "kind": "atom",
+            "atom_id": "ATOM-E5"
+          },
+          "E6": {
+            "kind": "atom",
+            "atom_id": "ATOM-E6"
+          },
+          "E7": {
+            "kind": "atom",
+            "atom_id": "ATOM-E7"
+          },
+          "E8": {
+            "kind": "gap",
+            "gap_kind": "uncovered"
+          }
+        },
+        "gaps": [
+          {
+            "element_id": "E8",
+            "kind": "uncovered",
+            "source_span": {
+              "start_line": 8,
+              "end_line": 8
+            },
+            "occurrence_count": 1
+          },
+          {
+            "element_id": "E8",
+            "kind": "source_duplicate",
+            "source_span": {
+              "start_line": 8,
+              "end_line": 8
+            },
+            "occurrence_count": 2
+          },
+          {
+            "element_id": "E8",
+            "kind": "uncovered",
+            "source_span": {
+              "start_line": 9,
+              "end_line": 9
+            },
+            "occurrence_count": 1
+          },
+          {
+            "element_id": "E8",
+            "kind": "source_duplicate",
+            "source_span": {
+              "start_line": 9,
+              "end_line": 9
+            },
+            "occurrence_count": 2
+          }
+        ],
+        "fixture_content_complete": false,
+        "effects": {
+          "actual_extraction_executed": false,
+          "actual_ledger_registered": false,
+          "actual_OS_execution": false,
+          "actual_template_authority": false,
+          "actual_design_complete": false,
+          "actual_requirement_agreement": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": {
+          "state": "known",
+          "value": "original_Q"
+        }
+      },
+      "expected_canonical_sha256": "eabd7f3f3bb38b022c653dd2bd2b27e249c3a0ae57f52b335e02d7b12fc92d56",
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "id": "H041-F03-DUPLICATE-ACTIVE-SOURCE-AND-CANDIDATE",
+      "root": "F03",
+      "function_ref": "compare_f03",
+      "source_pointer": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json#/verification_obligations/2/concrete_cases/8",
+      "source_case_sha256": "ccc91bd8f37a0b49268ed6e3ac0f52ff3de23d5b78e4a58a31771b346c680827",
+      "raw_utf8_sha256": "b11ce40bfe03ea5ad6ce8cf67b8e87b72008eef000908ad270c7e93a3af243ee",
+      "arguments": {
+        "packet": {
+          "applicability_input": {
+            "screen": true
+          },
+          "candidate_atoms": [
+            {
+              "atom_id": "ATOM-E1",
+              "candidate_row": {
+                "atom_ref": "ATOM-E1",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "chapter",
+                "meaning": "独立義務1",
+                "source_element_id": "E1",
+                "source_span": {
+                  "end_line": 1,
+                  "start_line": 1
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "6f928d496a99da15977633bea18419e30c7c3a86a7088cbefc5033afe81f46b0"
+            },
+            {
+              "atom_id": "ATOM-E2",
+              "candidate_row": {
+                "atom_ref": "ATOM-E2",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "chapter",
+                "meaning": "独立義務2",
+                "source_element_id": "E2",
+                "source_span": {
+                  "end_line": 2,
+                  "start_line": 2
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "8c1ac0b3ef65656d238e994ed6bb8a8103c2ac69fc72239a66e9525ed1a157c1"
+            },
+            {
+              "atom_id": "ATOM-E3",
+              "candidate_row": {
+                "atom_ref": "ATOM-E3",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "field",
+                "meaning": "独立義務3",
+                "source_element_id": "E3",
+                "source_span": {
+                  "end_line": 3,
+                  "start_line": 3
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "9ed7a3ab8cd00bd678bd0b7110a1c698506c797b815b029ea368f1c40a4cfef5"
+            },
+            {
+              "atom_id": "ATOM-E4",
+              "candidate_row": {
+                "atom_ref": "ATOM-E4",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "table_row",
+                "meaning": "独立義務4",
+                "source_element_id": "E4",
+                "source_span": {
+                  "end_line": 4,
+                  "start_line": 4
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "5ac63b1fe3ab775cb70e44e3b7ebc33f8461578334c55924db95595be1620b8c"
+            },
+            {
+              "atom_id": "ATOM-E5",
+              "candidate_row": {
+                "atom_ref": "ATOM-E5",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "applicability_rule",
+                "meaning": "独立義務5",
+                "source_element_id": "E5",
+                "source_span": {
+                  "end_line": 5,
+                  "start_line": 5
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "a6760cf6cfe0e0ecf458a9c645655595f72bd9114db913c953cd087769364b7e"
+            },
+            {
+              "atom_id": "ATOM-E6",
+              "candidate_row": {
+                "atom_ref": "ATOM-E6",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "done_when",
+                "meaning": "独立義務6",
+                "source_element_id": "E6",
+                "source_span": {
+                  "end_line": 6,
+                  "start_line": 6
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "e27d1ef944fb8adfa6f8947bfaf3b3097188cfb75afb68d5ad2b358bba3b3506"
+            },
+            {
+              "atom_id": "ATOM-E7",
+              "candidate_row": {
+                "atom_ref": "ATOM-E7",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "pair_contract",
+                "meaning": "独立義務7",
+                "source_element_id": "E7",
+                "source_span": {
+                  "end_line": 7,
+                  "start_line": 7
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "dc812ef203dee66a97717359115fbfae9b709d07fd0156fb66c5263dffe559e2"
+            },
+            {
+              "atom_id": "ATOM-E8-C1",
+              "candidate_row": {
+                "atom_ref": "ATOM-E8-C1",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "field",
+                "meaning": "独立義務8",
+                "source_element_id": "E8",
+                "source_span": {
+                  "start_line": 8,
+                  "end_line": 8
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "81a6668aabb93ccdbfe094c91746da70617ea0c4105fe7ac45d7e97f5115dd9c"
+            },
+            {
+              "atom_id": "ATOM-E8-C2",
+              "candidate_row": {
+                "atom_ref": "ATOM-E8-C2",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "field",
+                "meaning": "独立義務8",
+                "source_element_id": "E8",
+                "source_span": {
+                  "start_line": 8,
+                  "end_line": 8
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "81a6668aabb93ccdbfe094c91746da70617ea0c4105fe7ac45d7e97f5115dd9c"
+            }
+          ],
+          "material_kind": "synthetic_extractor_candidate_not_real_mechanical_execution",
+          "original_template": {
+            "raw_utf8": "{\"id\":\"E1\",\"kind\":\"chapter\",\"meaning\":\"独立義務1\",\"requires_screen\":false}\n{\"id\":\"E2\",\"kind\":\"chapter\",\"meaning\":\"独立義務2\",\"requires_screen\":false}\n{\"id\":\"E3\",\"kind\":\"field\",\"meaning\":\"独立義務3\",\"requires_screen\":false}\n{\"id\":\"E4\",\"kind\":\"table_row\",\"meaning\":\"独立義務4\",\"requires_screen\":false}\n{\"id\":\"E5\",\"kind\":\"applicability_rule\",\"meaning\":\"独立義務5\",\"requires_screen\":false}\n{\"id\":\"E6\",\"kind\":\"done_when\",\"meaning\":\"独立義務6\",\"requires_screen\":false}\n{\"id\":\"E7\",\"kind\":\"pair_contract\",\"meaning\":\"独立義務7\",\"requires_screen\":false}\n{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true}\n{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true}\n",
+            "revision": "TPL-P@duplicate-E8-r2",
+            "sha256": "531682ec3ea05aeae4c0c908f1d15aa9935fac987363bee1215d1e4aa8fd1e28"
+          },
+          "reasoned_NA": {}
+        },
+        "context": {
+          "unaffected_Q": {
+            "state": "known",
+            "value": "original_Q"
+          }
+        }
+      },
+      "retained_context_basis": {
+        "source": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json#/verification_obligations/2/concrete_cases/8/expected_material/unaffected_Q",
+        "meaning": "原fixtureのunaffected_Qだけを明示contextへ供給する。expected_returnはargumentへ含めない。"
+      },
+      "expected_return": {
+        "element_dispositions": {
+          "E1": {
+            "kind": "atom",
+            "atom_id": "ATOM-E1"
+          },
+          "E2": {
+            "kind": "atom",
+            "atom_id": "ATOM-E2"
+          },
+          "E3": {
+            "kind": "atom",
+            "atom_id": "ATOM-E3"
+          },
+          "E4": {
+            "kind": "atom",
+            "atom_id": "ATOM-E4"
+          },
+          "E5": {
+            "kind": "atom",
+            "atom_id": "ATOM-E5"
+          },
+          "E6": {
+            "kind": "atom",
+            "atom_id": "ATOM-E6"
+          },
+          "E7": {
+            "kind": "atom",
+            "atom_id": "ATOM-E7"
+          },
+          "E8": {
+            "kind": "gap",
+            "gap_kind": "duplicate"
+          }
+        },
+        "gaps": [
+          {
+            "element_id": "E8",
+            "kind": "duplicate",
+            "source_span": {
+              "start_line": 8,
+              "end_line": 8
+            },
+            "occurrence_count": 2
+          },
+          {
+            "element_id": "E8",
+            "kind": "source_duplicate",
+            "source_span": {
+              "start_line": 8,
+              "end_line": 8
+            },
+            "occurrence_count": 2
+          },
+          {
+            "element_id": "E8",
+            "kind": "duplicate",
+            "source_span": {
+              "start_line": 9,
+              "end_line": 9
+            },
+            "occurrence_count": 2
+          },
+          {
+            "element_id": "E8",
+            "kind": "source_duplicate",
+            "source_span": {
+              "start_line": 9,
+              "end_line": 9
+            },
+            "occurrence_count": 2
+          }
+        ],
+        "fixture_content_complete": false,
+        "effects": {
+          "actual_extraction_executed": false,
+          "actual_ledger_registered": false,
+          "actual_OS_execution": false,
+          "actual_template_authority": false,
+          "actual_design_complete": false,
+          "actual_requirement_agreement": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": {
+          "state": "known",
+          "value": "original_Q"
+        }
+      },
+      "expected_canonical_sha256": "b326e586570a27cb467c3b2700721c4da9acc037e7959f5f0dca95a1f71c77f1",
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "id": "R1-NA-SAME-ID-DIFFERENT-MEANING",
+      "root": "F03",
+      "function_ref": "compare_f03",
+      "baseline_case_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/template-obligation-extraction.json",
+        "pointer": "/cases/63",
+        "id": "H041-F03-DUPLICATE-NA-SOURCE-OCCURRENCES"
+      },
+      "patch": {
+        "kind": "replace_only_second_E8_meaning",
+        "target": "arguments.packet.original_template.raw_utf8 の第9行（1始まり）",
+        "expected_old_line": "{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true}",
+        "replacement_line": "{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8-別\",\"requires_screen\":true}",
+        "template_sha256_recomputed_from_raw_utf8": "7d200a982883c144fad777d65d3adc65e8b7a5b66552dd7dbea5bb86c4c2bdbd",
+        "rationale": "同一identityのままmeaningだけを変え、ID-only groupingとID+meaning groupingの差を識別する。"
+      },
+      "arguments": {
+        "packet": {
+          "applicability_input": {
+            "screen": false
+          },
+          "candidate_atoms": [
+            {
+              "atom_id": "ATOM-E1",
+              "candidate_row": {
+                "atom_ref": "ATOM-E1",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "chapter",
+                "meaning": "独立義務1",
+                "source_element_id": "E1",
+                "source_span": {
+                  "end_line": 1,
+                  "start_line": 1
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "6f928d496a99da15977633bea18419e30c7c3a86a7088cbefc5033afe81f46b0"
+            },
+            {
+              "atom_id": "ATOM-E2",
+              "candidate_row": {
+                "atom_ref": "ATOM-E2",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "chapter",
+                "meaning": "独立義務2",
+                "source_element_id": "E2",
+                "source_span": {
+                  "end_line": 2,
+                  "start_line": 2
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "8c1ac0b3ef65656d238e994ed6bb8a8103c2ac69fc72239a66e9525ed1a157c1"
+            },
+            {
+              "atom_id": "ATOM-E3",
+              "candidate_row": {
+                "atom_ref": "ATOM-E3",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "field",
+                "meaning": "独立義務3",
+                "source_element_id": "E3",
+                "source_span": {
+                  "end_line": 3,
+                  "start_line": 3
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "9ed7a3ab8cd00bd678bd0b7110a1c698506c797b815b029ea368f1c40a4cfef5"
+            },
+            {
+              "atom_id": "ATOM-E4",
+              "candidate_row": {
+                "atom_ref": "ATOM-E4",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "table_row",
+                "meaning": "独立義務4",
+                "source_element_id": "E4",
+                "source_span": {
+                  "end_line": 4,
+                  "start_line": 4
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "5ac63b1fe3ab775cb70e44e3b7ebc33f8461578334c55924db95595be1620b8c"
+            },
+            {
+              "atom_id": "ATOM-E5",
+              "candidate_row": {
+                "atom_ref": "ATOM-E5",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "applicability_rule",
+                "meaning": "独立義務5",
+                "source_element_id": "E5",
+                "source_span": {
+                  "end_line": 5,
+                  "start_line": 5
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "a6760cf6cfe0e0ecf458a9c645655595f72bd9114db913c953cd087769364b7e"
+            },
+            {
+              "atom_id": "ATOM-E6",
+              "candidate_row": {
+                "atom_ref": "ATOM-E6",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "done_when",
+                "meaning": "独立義務6",
+                "source_element_id": "E6",
+                "source_span": {
+                  "end_line": 6,
+                  "start_line": 6
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "e27d1ef944fb8adfa6f8947bfaf3b3097188cfb75afb68d5ad2b358bba3b3506"
+            },
+            {
+              "atom_id": "ATOM-E7",
+              "candidate_row": {
+                "atom_ref": "ATOM-E7",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "pair_contract",
+                "meaning": "独立義務7",
+                "source_element_id": "E7",
+                "source_span": {
+                  "end_line": 7,
+                  "start_line": 7
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "dc812ef203dee66a97717359115fbfae9b709d07fd0156fb66c5263dffe559e2"
+            }
+          ],
+          "material_kind": "synthetic_extractor_candidate_not_real_mechanical_execution",
+          "original_template": {
+            "raw_utf8": "{\"id\":\"E1\",\"kind\":\"chapter\",\"meaning\":\"独立義務1\",\"requires_screen\":false}\n{\"id\":\"E2\",\"kind\":\"chapter\",\"meaning\":\"独立義務2\",\"requires_screen\":false}\n{\"id\":\"E3\",\"kind\":\"field\",\"meaning\":\"独立義務3\",\"requires_screen\":false}\n{\"id\":\"E4\",\"kind\":\"table_row\",\"meaning\":\"独立義務4\",\"requires_screen\":false}\n{\"id\":\"E5\",\"kind\":\"applicability_rule\",\"meaning\":\"独立義務5\",\"requires_screen\":false}\n{\"id\":\"E6\",\"kind\":\"done_when\",\"meaning\":\"独立義務6\",\"requires_screen\":false}\n{\"id\":\"E7\",\"kind\":\"pair_contract\",\"meaning\":\"独立義務7\",\"requires_screen\":false}\n{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true}\n{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8-別\",\"requires_screen\":true}\n",
+            "revision": "TPL-P@duplicate-E8-r2",
+            "sha256": "7d200a982883c144fad777d65d3adc65e8b7a5b66552dd7dbea5bb86c4c2bdbd"
+          },
+          "reasoned_NA": {
+            "E8": {
+              "decider": "synthetic-applicability-owner",
+              "reason": "原条件requires_screen=trueをscreen=falseが満たさない",
+              "reassessment": "screen input/template revision変更",
+              "target_revision": "TPL-P@duplicate-E8-r2"
+            }
+          }
+        },
+        "context": {
+          "unaffected_Q": {
+            "state": "known",
+            "value": "original_Q"
+          }
+        }
+      },
+      "raw_utf8_sha256": "7d200a982883c144fad777d65d3adc65e8b7a5b66552dd7dbea5bb86c4c2bdbd",
+      "arguments_packet_canonical_sha256": "0f5260cc21cc468aa47a5a103ec2cc114edf5731be73dc25e8e778b025468fa0",
+      "expected_return": {
+        "element_dispositions": {
+          "E1": {
+            "kind": "atom",
+            "atom_id": "ATOM-E1"
+          },
+          "E2": {
+            "kind": "atom",
+            "atom_id": "ATOM-E2"
+          },
+          "E3": {
+            "kind": "atom",
+            "atom_id": "ATOM-E3"
+          },
+          "E4": {
+            "kind": "atom",
+            "atom_id": "ATOM-E4"
+          },
+          "E5": {
+            "kind": "atom",
+            "atom_id": "ATOM-E5"
+          },
+          "E6": {
+            "kind": "atom",
+            "atom_id": "ATOM-E6"
+          },
+          "E7": {
+            "kind": "atom",
+            "atom_id": "ATOM-E7"
+          },
+          "E8": {
+            "kind": "reasoned_not_applicable",
+            "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+          }
+        },
+        "gaps": [],
+        "fixture_content_complete": true,
+        "effects": {
+          "actual_extraction_executed": false,
+          "actual_ledger_registered": false,
+          "actual_OS_execution": false,
+          "actual_template_authority": false,
+          "actual_design_complete": false,
+          "actual_requirement_agreement": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": {
+          "state": "known",
+          "value": "original_Q"
+        }
+      },
+      "expected_canonical_sha256": "1352b992cde240dbc6b5afe8d0a92a847e039ec712b22b83b30d600b7c13ea10",
+      "expected_basis": "固定済みL8 case63のnormal control入力を一箇所だけ明示patch。L4 source occurrence条件は型付き原行全体同値だけをsource duplicateとする。変更後の2行は完全同値ではなく、かつ両方とも既存reasoned_NA条件を満たすため、E1–E7 atom、E8の理由付きNA、空gaps/complete、effects/Qを保持する有限局所期待。これはsource occurrence完全追跡の成立主張ではない。",
+      "counterfactual_grouping_discriminator": {
+        "scope": "原sourceのgroup化を比較するモデルの範囲。固定した全返却期待を越える製品期待は定義しない。",
+        "wrong_mutation_id_only": {
+          "key": [
+            "row.id"
+          ],
+          "row_group_counts": [
+            2
+          ],
+          "would_add_source_duplicate_at_lines": [
+            8,
+            9
+          ]
+        },
+        "wrong_mutation_id_and_meaning": {
+          "key": [
+            "row.id",
+            "row.meaning"
+          ],
+          "row_group_counts": [
+            1,
+            1
+          ],
+          "would_add_source_duplicate_at_lines": []
+        },
+        "accepted_basic_rule_full_typed_row": {
+          "key": "型付き原行全体のcanonical同値",
+          "row_group_counts": [
+            1,
+            1
+          ],
+          "would_add_source_duplicate_at_lines": []
+        },
+        "discrimination": "IDだけの誤group化はID＋meaningおよび原行全体の比較と異なる。meaningが異なるため固定wholeにはsource gapがない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "id": "R1-NA-SAME-ID-MEANING-NULL-EXTRA-MEMBER",
+      "root": "F03",
+      "function_ref": "compare_f03",
+      "baseline_case_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/template-obligation-extraction.json",
+        "pointer": "/cases/63",
+        "id": "H041-F03-DUPLICATE-NA-SOURCE-OCCURRENCES"
+      },
+      "patch": {
+        "kind": "add_null_synthetic_shape_marker_only_to_second_E8",
+        "target": "arguments.packet.original_template.raw_utf8 の第9行（1始まり）",
+        "expected_old_line": "{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true}",
+        "replacement_line": "{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true,\"synthetic_shape_marker\":null}",
+        "template_sha256_recomputed_from_raw_utf8": "a5766b29ae791c2aa66f2bdc879e37bc4073d97fe30adae695e2a57d34b0a208",
+        "rationale": "identity/meaningを保ち、null-valued additional memberだけを加えてID+meaning groupingとfull-row groupingの差を識別する。"
+      },
+      "arguments": {
+        "packet": {
+          "applicability_input": {
+            "screen": false
+          },
+          "candidate_atoms": [
+            {
+              "atom_id": "ATOM-E1",
+              "candidate_row": {
+                "atom_ref": "ATOM-E1",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "chapter",
+                "meaning": "独立義務1",
+                "source_element_id": "E1",
+                "source_span": {
+                  "end_line": 1,
+                  "start_line": 1
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "6f928d496a99da15977633bea18419e30c7c3a86a7088cbefc5033afe81f46b0"
+            },
+            {
+              "atom_id": "ATOM-E2",
+              "candidate_row": {
+                "atom_ref": "ATOM-E2",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "chapter",
+                "meaning": "独立義務2",
+                "source_element_id": "E2",
+                "source_span": {
+                  "end_line": 2,
+                  "start_line": 2
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "8c1ac0b3ef65656d238e994ed6bb8a8103c2ac69fc72239a66e9525ed1a157c1"
+            },
+            {
+              "atom_id": "ATOM-E3",
+              "candidate_row": {
+                "atom_ref": "ATOM-E3",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "field",
+                "meaning": "独立義務3",
+                "source_element_id": "E3",
+                "source_span": {
+                  "end_line": 3,
+                  "start_line": 3
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "9ed7a3ab8cd00bd678bd0b7110a1c698506c797b815b029ea368f1c40a4cfef5"
+            },
+            {
+              "atom_id": "ATOM-E4",
+              "candidate_row": {
+                "atom_ref": "ATOM-E4",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "table_row",
+                "meaning": "独立義務4",
+                "source_element_id": "E4",
+                "source_span": {
+                  "end_line": 4,
+                  "start_line": 4
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "5ac63b1fe3ab775cb70e44e3b7ebc33f8461578334c55924db95595be1620b8c"
+            },
+            {
+              "atom_id": "ATOM-E5",
+              "candidate_row": {
+                "atom_ref": "ATOM-E5",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "applicability_rule",
+                "meaning": "独立義務5",
+                "source_element_id": "E5",
+                "source_span": {
+                  "end_line": 5,
+                  "start_line": 5
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "a6760cf6cfe0e0ecf458a9c645655595f72bd9114db913c953cd087769364b7e"
+            },
+            {
+              "atom_id": "ATOM-E6",
+              "candidate_row": {
+                "atom_ref": "ATOM-E6",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "done_when",
+                "meaning": "独立義務6",
+                "source_element_id": "E6",
+                "source_span": {
+                  "end_line": 6,
+                  "start_line": 6
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "e27d1ef944fb8adfa6f8947bfaf3b3097188cfb75afb68d5ad2b358bba3b3506"
+            },
+            {
+              "atom_id": "ATOM-E7",
+              "candidate_row": {
+                "atom_ref": "ATOM-E7",
+                "ledger_contract": "040-compatible@fixture-r1"
+              },
+              "content": {
+                "applicability": {
+                  "screen": false
+                },
+                "extractor_identity": "EXTRACTOR-P",
+                "extractor_version": "fixture-r1",
+                "kind": "pair_contract",
+                "meaning": "独立義務7",
+                "source_element_id": "E7",
+                "source_span": {
+                  "end_line": 7,
+                  "start_line": 7
+                },
+                "template_revision": "TPL-P@duplicate-E8-r2"
+              },
+              "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054",
+              "semantic_digest": "dc812ef203dee66a97717359115fbfae9b709d07fd0156fb66c5263dffe559e2"
+            }
+          ],
+          "material_kind": "synthetic_extractor_candidate_not_real_mechanical_execution",
+          "original_template": {
+            "raw_utf8": "{\"id\":\"E1\",\"kind\":\"chapter\",\"meaning\":\"独立義務1\",\"requires_screen\":false}\n{\"id\":\"E2\",\"kind\":\"chapter\",\"meaning\":\"独立義務2\",\"requires_screen\":false}\n{\"id\":\"E3\",\"kind\":\"field\",\"meaning\":\"独立義務3\",\"requires_screen\":false}\n{\"id\":\"E4\",\"kind\":\"table_row\",\"meaning\":\"独立義務4\",\"requires_screen\":false}\n{\"id\":\"E5\",\"kind\":\"applicability_rule\",\"meaning\":\"独立義務5\",\"requires_screen\":false}\n{\"id\":\"E6\",\"kind\":\"done_when\",\"meaning\":\"独立義務6\",\"requires_screen\":false}\n{\"id\":\"E7\",\"kind\":\"pair_contract\",\"meaning\":\"独立義務7\",\"requires_screen\":false}\n{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true}\n{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true,\"synthetic_shape_marker\":null}\n",
+            "revision": "TPL-P@duplicate-E8-r2",
+            "sha256": "a5766b29ae791c2aa66f2bdc879e37bc4073d97fe30adae695e2a57d34b0a208"
+          },
+          "reasoned_NA": {
+            "E8": {
+              "decider": "synthetic-applicability-owner",
+              "reason": "原条件requires_screen=trueをscreen=falseが満たさない",
+              "reassessment": "screen input/template revision変更",
+              "target_revision": "TPL-P@duplicate-E8-r2"
+            }
+          }
+        },
+        "context": {
+          "unaffected_Q": {
+            "state": "known",
+            "value": "original_Q"
+          }
+        }
+      },
+      "raw_utf8_sha256": "a5766b29ae791c2aa66f2bdc879e37bc4073d97fe30adae695e2a57d34b0a208",
+      "arguments_packet_canonical_sha256": "161b6c23dc6c46f09199d06e007bd42f1bad1f4275d64b85604d8974082c82c4",
+      "expected_return": {
+        "element_dispositions": {
+          "E1": {
+            "kind": "atom",
+            "atom_id": "ATOM-E1"
+          },
+          "E2": {
+            "kind": "atom",
+            "atom_id": "ATOM-E2"
+          },
+          "E3": {
+            "kind": "atom",
+            "atom_id": "ATOM-E3"
+          },
+          "E4": {
+            "kind": "atom",
+            "atom_id": "ATOM-E4"
+          },
+          "E5": {
+            "kind": "atom",
+            "atom_id": "ATOM-E5"
+          },
+          "E6": {
+            "kind": "atom",
+            "atom_id": "ATOM-E6"
+          },
+          "E7": {
+            "kind": "atom",
+            "atom_id": "ATOM-E7"
+          },
+          "E8": {
+            "kind": "reasoned_not_applicable",
+            "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+          }
+        },
+        "gaps": [],
+        "fixture_content_complete": true,
+        "effects": {
+          "actual_extraction_executed": false,
+          "actual_ledger_registered": false,
+          "actual_OS_execution": false,
+          "actual_template_authority": false,
+          "actual_design_complete": false,
+          "actual_requirement_agreement": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": {
+          "state": "known",
+          "value": "original_Q"
+        }
+      },
+      "expected_canonical_sha256": "1352b992cde240dbc6b5afe8d0a92a847e039ec712b22b83b30d600b7c13ea10",
+      "expected_basis": "固定済みL8 case63のnormal control入力を一箇所だけ明示patch。L4 source occurrence条件は型付き原行全体同値だけをsource duplicateとする。変更後の2行は完全同値ではなく、かつ両方とも既存reasoned_NA条件を満たすため、E1–E7 atom、E8の理由付きNA、空gaps/complete、effects/Qを保持する有限局所期待。これはsource occurrence完全追跡の成立主張ではない。",
+      "counterfactual_grouping_discriminator": {
+        "scope": "原sourceのgroup化を比較するモデルの範囲。固定した全返却期待を越える製品期待は定義しない。",
+        "wrong_mutation_id_only": {
+          "key": [
+            "row.id"
+          ],
+          "row_group_counts": [
+            2
+          ],
+          "would_add_source_duplicate_at_lines": [
+            8,
+            9
+          ]
+        },
+        "wrong_mutation_id_and_meaning": {
+          "key": [
+            "row.id",
+            "row.meaning"
+          ],
+          "row_group_counts": [
+            2
+          ],
+          "would_add_source_duplicate_at_lines": [
+            8,
+            9
+          ]
+        },
+        "accepted_basic_rule_full_typed_row": {
+          "key": "型付き原行全体のcanonical同値",
+          "row_group_counts": [
+            1,
+            1
+          ],
+          "would_add_source_duplicate_at_lines": []
+        },
+        "discrimination": "ID＋meaningの誤group化は原行全体の比較と異なる。nullは供給済みJSON値であり、原行の内容として保持する。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
     }
   ],
   "source_attribute_cases": [
@@ -20412,5 +21945,42 @@
     "official_comment": 6182639928,
     "finding": "H41D-04",
     "change": "SOURCE-IDENTITY-ABSENTをMISSINGへ統合し、旧IDは引数/期待を重複保存しないalias metadataへ。91独立完全IO=33+30+16+12。原33/元期待値は不変。"
+  },
+  "current_pair_binding": {
+    "accepted_basic_pair_revision": "bf9643181987fc4be248a0dc86b658ff1e5e3344",
+    "l4": {
+      "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+      "revision": "bf9643181987fc4be248a0dc86b658ff1e5e3344",
+      "sha256": "7fd802b52a8979561a4f86a70dec07b84862333e70245e04f7934929a42c6396",
+      "pointer": "/contracts/2"
+    },
+    "l9": {
+      "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+      "revision": "bf9643181987fc4be248a0dc86b658ff1e5e3344",
+      "sha256": "dca5aa7554e167013bc4b5b361e809665825b32ebdb37502a81cd40140fd7e28",
+      "pointer": "/verification_obligations/2"
+    },
+    "reason": "統合済み基本対のF03 source_duplicate規則を現行の詳細契約・有限照合へ接続する。source_mainは元の起草基準として保持し、current pair pinとは役割を分ける。",
+    "remaining": [
+      "R1の2つのreasoned_NA対照では、型付き原行全体が異なるE8の2行はsource_duplicateにならず、返却はE8のreasoned_not_applicable一件、gaps=[]、fixture_content_complete=trueとなる。このwholeからは2原行の個別出現やmeaning差を確認できない。これは現返却の観測可能性の限界であり、2行を同一義務または正常な完全追跡と分類する根拠ではない。同ID・異内容の意味分類は未導出である。",
+      "N01 held-out occurrenceの重複処理はこのF03差分の対象外であり、N01の入力・返却・期待を変更しない。",
+      "外部source qualificationとcodec bindingは未成立。3件の有限synthetic wholeから全F03の意味閉包や実資格を主張しない。"
+    ]
+  },
+  "r1_na_source_identity_followup": {
+    "case_refs": [
+      "R1-NA-SAME-ID-DIFFERENT-MEANING",
+      "R1-NA-SAME-ID-MEANING-NULL-EXTRA-MEMBER"
+    ],
+    "purpose": "同一IDのreasoned_NA原行について、meaning差とnull追加memberを区別する限定whole対照。",
+    "scope": {
+      "original_source_pointer_case_count": 36,
+      "baseline_case_ref_case_count_before_append": 30,
+      "baseline_case_ref_case_count_after_append": 32,
+      "classification": "source_pointer由来36例とbaseline_case_ref由来32例に分類する。追加2例は既存baselineから作った局所素材であり、新たなL9 source_pointer例ではない。",
+      "total_case_count_after_append": 68
+    },
+    "observed_na_limit": "R1の2つのreasoned_NA対照では、型付き原行全体が異なるE8の2行はsource_duplicateにならず、返却はE8のreasoned_not_applicable一件、gaps=[]、fixture_content_complete=trueとなる。このwholeからは2原行の個別出現やmeaning差を確認できない。これは現返却の観測可能性の限界であり、2行を同一義務または正常な完全追跡と分類する根拠ではない。同ID・異内容の意味分類は未導出である。",
+    "followup_boundary": "L5のアルゴリズム・型、採択済み基本対、上流要求を保持する。完全typed-row重複規則を越える原出現ごとの意味の扱いは後続基本対で具体化し、この有限対だけでF03の原出現追跡全体の成立を認定しない。"
   }
 }
