@@ -14529,7 +14529,7 @@
   "actual_state_updated": false,
   "normative_calculation_binding": {
     "L5_path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
-    "L5_sha256": "cff23ce7bf82b90ef105384fcc32be494b9bb5f67d14875ab4d397c09904f7a7",
+    "L5_sha256": "e46491e3718a6e55952880e5d44e5399613ed79511b2fc506378323b5df184b9",
     "program_sha256": "31af7009ef9627435834947a736469a9bda57c727627e597583406d7c1ef8690",
     "entrypoints": [
       "expand_case",
@@ -28217,7 +28217,7 @@
       ],
       "expected_ref": "cases[*].expected_ref (計算終了後のみ)",
       "output_type": "SelectedTraceResult",
-      "absent_target_probe": "selected専用evaluate_portfolio_selected(input, diagnostic_contract)を使い、targets省略を明示nullと区別する。2引数evaluate_portfolioはbaseline profileのまま。"
+      "absent_target_probe": "selected専用evaluate_portfolio_selected(input, diagnostic_contract)で省略入力を渡す。明示nullとの呼出し形状は異なるが、L4に従い両方の診断出力は同じ局所unknown。2引数evaluate_portfolioはbaseline profileのまま。"
     },
     "object_bindings": [
       {
@@ -28448,7 +28448,7 @@
     ],
     "regression_probes": [
       {
-        "id": "R1-KIND-PAIR-CONFLICT",
+        "id": "OS016-KIND-PAIR-CONFLICT",
         "input_ref": "/domain_extension_cases/0/input/portfolio",
         "targets_ref": "/domain_extension_cases/0/input/targets",
         "input_operations": [
@@ -29212,7 +29212,7 @@
         }
       },
       {
-        "id": "R1-OWNER-AMBIGUOUS",
+        "id": "OS016-OWNER-AMBIGUOUS",
         "input_ref": "/domain_extension_cases/0/input/portfolio",
         "targets_ref": "/domain_extension_cases/0/input/targets",
         "input_operations": [
@@ -29246,7 +29246,7 @@
         "execution_state": "not_executed"
       },
       {
-        "id": "R1-HISTORY-LOST",
+        "id": "OS016-HISTORY-LOST",
         "input_ref": "/domain_extension_cases/0/input/portfolio",
         "targets_ref": "/domain_extension_cases/0/input/targets",
         "input_operations": [
@@ -29279,7 +29279,7 @@
         "execution_state": "not_executed"
       },
       {
-        "id": "R1-STALE-REASON",
+        "id": "OS016-STALE-REASON",
         "input_ref": "/domain_extension_cases/0/input/portfolio",
         "targets_ref": "/domain_extension_cases/0/input/targets",
         "input_operations": [
@@ -29315,7 +29315,7 @@
         "execution_state": "not_executed"
       },
       {
-        "id": "R1-VERIFICATION-STATE",
+        "id": "OS016-VERIFICATION-STATE",
         "input_ref": "/domain_extension_cases/0/input/portfolio",
         "targets_ref": "/domain_extension_cases/0/input/targets",
         "input_operations": [
@@ -29346,7 +29346,7 @@
         "execution_state": "not_executed"
       },
       {
-        "id": "R1-RECEIPT-SOURCE",
+        "id": "OS016-RECEIPT-SOURCE",
         "input_ref": "/domain_extension_cases/0/input/portfolio",
         "targets_ref": "/domain_extension_cases/0/input/targets",
         "input_operations": [
@@ -29382,7 +29382,7 @@
         "execution_state": "not_executed"
       },
       {
-        "id": "R1-KANBAN-RECORD",
+        "id": "OS016-KANBAN-RECORD",
         "input_ref": "/domain_extension_cases/0/input/portfolio",
         "targets_ref": "/domain_extension_cases/0/input/targets",
         "input_operations": [
@@ -29423,7 +29423,7 @@
         "execution_state": "not_executed"
       },
       {
-        "id": "R1-STATE-CONFLICT",
+        "id": "OS016-STATE-CONFLICT",
         "input_ref": "/domain_extension_cases/0/input/portfolio",
         "targets_ref": "/domain_extension_cases/0/input/targets",
         "input_operations": [
@@ -29454,7 +29454,7 @@
         "execution_state": "not_executed"
       },
       {
-        "id": "R1-RESULT-CONFLICT",
+        "id": "OS016-RESULT-CONFLICT",
         "input_ref": "/domain_extension_cases/0/input/portfolio",
         "targets_ref": "/domain_extension_cases/0/input/targets",
         "input_operations": [
@@ -29485,7 +29485,7 @@
         "execution_state": "not_executed"
       },
       {
-        "id": "R1-RELATION-ENDPOINT",
+        "id": "OS016-RELATION-ENDPOINT",
         "input_ref": "/domain_extension_cases/0/input/portfolio",
         "targets_ref": "/domain_extension_cases/0/input/targets",
         "input_operations": [
@@ -29530,7 +29530,7 @@
         "execution_state": "not_executed"
       },
       {
-        "id": "R1-STATE-UNKNOWN",
+        "id": "OS016-STATE-UNKNOWN",
         "input_ref": "/domain_extension_cases/0/input/portfolio",
         "targets_ref": "/domain_extension_cases/0/input/targets",
         "input_operations": [
@@ -29571,7 +29571,7 @@
         "execution_state": "not_executed"
       },
       {
-        "id": "R1-WHOLE-CLAIM-UNKNOWN",
+        "id": "OS016-WHOLE-CLAIM-UNKNOWN",
         "input_ref": "/domain_extension_cases/0/input/portfolio",
         "targets_ref": "/domain_extension_cases/0/input/targets",
         "input_operations": [
@@ -29602,7 +29602,7 @@
         "execution_state": "not_executed"
       },
       {
-        "id": "R1-AMBIGUOUS-ENDPOINT",
+        "id": "OS016-AMBIGUOUS-ENDPOINT",
         "input_ref": "/domain_extension_cases/0/input/portfolio",
         "targets_ref": "/domain_extension_cases/0/input/targets",
         "input_operations": [
@@ -29693,7 +29693,7 @@
         "execution_state": "not_executed"
       },
       {
-        "id": "R1-MIXED-EMPTY-INVALID-NODES",
+        "id": "OS016-MIXED-EMPTY-INVALID-NODES",
         "input_ref": "/domain_extension_cases/9/input/portfolio",
         "targets_ref": "/domain_extension_cases/9/input/targets",
         "input_operations": [],
@@ -29716,8 +29716,121 @@
         },
         "basis": "R17:全選択nodes mapが既知空の時だけR10の空domain result_unknownを加える。nodes:nullは既知空ではない。",
         "execution_state": "not_executed"
+      },
+      {
+        "id": "OS016-INVALID-SELECTOR-UNIT-RELATION",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [],
+        "target_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/south/nodes/store/kind",
+            "value": {}
+          }
+        ],
+        "expected_partial": {
+          "condition": "trace_material_unknown",
+          "findings_exact": [
+            {
+              "code": "kind_unknown",
+              "pointer": "/targets/projects/south/nodes/store/kind",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "south",
+            "node_locator": "store",
+            "facet": "relation",
+            "state": "corresponding"
+          }
+        },
+        "basis": "L4 R04のunit空relationは正常。R12の不正selector kindはsourceだけunknownで、既知unit sourceのrelationへ波及させない。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "OS016-UNKNOWN-STATE-GAP-RETAINED",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/states/connection/state",
+            "value": "unsupported"
+          },
+          {
+            "op": "replace",
+            "path": "/context/projects/lab/batch/states/connection/state",
+            "value": "unsupported"
+          }
+        ],
+        "target_operations": [],
+        "expected_partial": {
+          "condition": "trace_material_unknown",
+          "findings_include": [
+            {
+              "code": "state_unknown",
+              "pointer": "/projects/lab/batch/states/connection/state",
+              "return_owner": "portfolio-trace-owner"
+            },
+            {
+              "code": "state_unknown",
+              "pointer": "/context/projects/lab/batch/states/connection/state",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "observed_gap_axes": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "axes": [
+              "connection",
+              "agreement",
+              "implementation",
+              "verification",
+              "provision"
+            ]
+          }
+        },
+        "basis": "L4 R11はactual axisがclosed先頭値以外なら未知でもgapへ保持する。元batch gapの4軸にconnectionだけが先頭追加され、他軸の値は保持される。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "OS016-PROVISION-STATE-CONFLICT",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/provision/state",
+            "value": "provided_material"
+          },
+          {
+            "op": "replace",
+            "path": "/context/projects/lab/batch/provision/state",
+            "value": "provided_material"
+          }
+        ],
+        "target_operations": [],
+        "expected_partial": {
+          "condition": "trace_material_violation",
+          "findings_exact": [
+            {
+              "code": "provision_state_conflict",
+              "pointer": "/projects/lab/batch/provision/state",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "facet": "provision",
+            "state": "violation"
+          }
+        },
+        "basis": "L4 R07: actual provided_materialとstate not_providedの同時表示はprovision_state_conflict。receipt同士は同値にして、相反条件だけを識別する。",
+        "execution_state": "not_executed"
       }
     ],
-    "regression_limits": "実反例をR01–R17へ対照する固定probe。mutant件数、mutation score、全probe通過を新しい要求・資格・merge gateにしない。13領域のうちinvalid selector relation_unitは既存kind object/array boundary wholeで対照する。"
+    "regression_limits": "既存14反例は入力・期待を維持し、IDだけを内容を示すOS016 prefixへ変更した。追加3対照は不正selector時のunit relation facet、未知stateのgap保持、提供state相反を直接照合する。既存kind boundaryのpartial確認だけをrelation識別の証拠にしない。有限な識別力の改善であり、mutation件数/scoreや全probe通過を新しい要求・資格・merge gateにしない。"
   }
 }
