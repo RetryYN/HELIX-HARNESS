@@ -2264,7 +2264,59 @@
           }
         }
       ],
-      "original_material_storage": "各case固有exact source packetに全入力bytesを保持。原材料とcandidateの変更を分ける。"
+      "original_material_storage": "各case固有exact source packetに全入力bytesを保持。原材料とcandidateの変更を分ける。",
+      "semantic_input_connection_oracle": {
+        "kind": "logical_connection_contract_not_executed_fixture",
+        "source_history": "既存source_pins/approved_l10/原case bytesは歴史sourceとして保持する。このbindingは追加する現在の論理接続契約だけを対象にする。",
+        "return_members": [
+          "partial_values",
+          "owner_returns",
+          "unaffected_scope",
+          "operation_effect",
+          "source_qualification_results",
+          "qualification_returns",
+          "definition_return",
+          "readable_original_materials",
+          "candidate_comparison"
+        ],
+        "observe_each_member": "partial_values、意味owner返却、全資格state、資格診断、定義返却有無、読取範囲、candidate差、非対象scope、noneを個別に観測する。意味返却と資格診断をaliasせず、一方の成功で他方を消さない。",
+        "candidate_and_view_observation": "原評価を先に確定し、明示候補の値/state/Ref/理由の差を別に返す。旧4/5member viewの未提示memberを提案/観測したとみなさない。",
+        "partial_and_effect_observation": "既知の他条件/原資料/非対象scopeを保持し、実ticket/進行/承認/受入/完了/上流writeを生成しない。",
+        "historical_fixture_scope": "既存normal_cases/negative_casesは原入力/返却の全値を保全した従来scopeの合成証拠。新scope/所見/profile引数なしで追加契約を満たしたことにしない。現在の詳細型/全wholeへの対応は統合後のL5/L8で具体化する。",
+        "l4_contract_pointer": "/contracts/0",
+        "supplied_inputs": "HARNESS意味ownerの独立scope適用契約/役割別所見と個別SourceCell資格、OS原反応、技術owner原結果、candidateを別供給として接続する。",
+        "independent_expected_basis": "批准HARNESS-L10-003-B01とL4の既存meaning_owner/各owner境界。所見の期待をcandidate/旧expectedへ逆束縛しない。",
+        "connection_conditions": [
+          {
+            "given": "scopeがrequiredとした役割について、資格・role・対象・原材料Ref/全内容が対応し所見sufficient",
+            "observe": "当該scopeの意味条件候補を返す。source資格/人の受入/実researchを成立させたことにはしない。"
+          },
+          {
+            "given": "対応一致の所見insufficient又はunresolved、原source資格はknown",
+            "observe": "既知意味不足と意味未決を区別し、資格knownを維持してHARNESS論理ownerへ不足を返す。"
+          },
+          {
+            "given": "原材料又は所見の個別資格未成立、別sourceはknown",
+            "observe": "当該資格state/Ref/理由を保持し、所見や別owner成功で資格を補完せず、別結果は保持する。"
+          },
+          {
+            "given": "既存scopeがnot_required又は根拠付きN/Aとした役割の資料不足",
+            "observe": "資格診断を保持しても必要集合へ入れず、この不足でgroundingを止めない。scope理由/出典自体の未供給/型外は別の局所未決/相反として返す。"
+          },
+          {
+            "given": "所見のrole/target/Ref/materialのいずれかが原対象と異なる、又は欠落/null/型外",
+            "observe": "各比較軸のmissing/unknown/conflict/staleを局所返却し、そのconclusionを原材料へ適用しない。"
+          },
+          {
+            "given": "技術成功だが人が未受容、又は受容済みだが技術不足",
+            "observe": "元不足と受容済み軸を独立保持し、所見・品質・受容を相殺しない。"
+          }
+        ],
+        "l4_candidate_binding": {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "sha256": "34caacf28e931e1506a9ad4cca91c4b1afc4195b6f062d6259363734b66d543e"
+        }
+      }
     },
     {
       "id": "HARNESS-L9-003-F01",
@@ -3814,7 +3866,63 @@
           ]
         }
       ],
-      "original_material_storage": "各case固有exact source packetに全入力bytesを保持。原材料とcandidateの変更を分ける。"
+      "original_material_storage": "各case固有exact source packetに全入力bytesを保持。原材料とcandidateの変更を分ける。",
+      "semantic_input_connection_oracle": {
+        "kind": "logical_connection_contract_not_executed_fixture",
+        "source_history": "既存source_pins/approved_l10/原case bytesは歴史sourceとして保持する。このbindingは追加する現在の論理接続契約だけを対象にする。",
+        "return_members": [
+          "partial_values",
+          "owner_returns",
+          "unaffected_scope",
+          "operation_effect",
+          "source_qualification_results",
+          "qualification_returns",
+          "definition_return",
+          "readable_original_materials",
+          "candidate_comparison"
+        ],
+        "observe_each_member": "partial_values、意味owner返却、全資格state、資格診断、定義返却有無、読取範囲、candidate差、非対象scope、noneを個別に観測する。意味返却と資格診断をaliasせず、一方の成功で他方を消さない。",
+        "candidate_and_view_observation": "原評価を先に確定し、明示候補の値/state/Ref/理由の差を別に返す。旧4/5member viewの未提示memberを提案/観測したとみなさない。",
+        "partial_and_effect_observation": "既知の他条件/原資料/非対象scopeを保持し、実ticket/進行/承認/受入/完了/上流writeを生成しない。",
+        "historical_fixture_scope": "既存normal_cases/negative_casesは原入力/返却の全値を保全した従来scopeの合成証拠。新scope/所見/profile引数なしで追加契約を満たしたことにしない。現在の詳細型/全wholeへの対応は統合後のL5/L8で具体化する。",
+        "l4_contract_pointer": "/contracts/1",
+        "supplied_inputs": "phase原契約の必要membership、同じ工程ownerの独立具体expected profile、各材料原内容/資格、委任原値、candidateを別供給として接続する。",
+        "independent_expected_basis": "批准HARNESS-L10-003-F01と既存condition_provider/authority owner/OS責務。具体expectedを必要identity名や観測値から作らない。",
+        "connection_conditions": [
+          {
+            "given": "当該actionの必要membershipと独立profile/原材料が同対象へ対応する",
+            "observe": "必要identity別の結果と委任内具体化候補を返し、新承認や実進行を生成しない。"
+          },
+          {
+            "given": "外側bindingは同じだがagreement等の具体値が独立expectedと異なる",
+            "observe": "当該原内容相反だけを保持し、資格knownや外側binding一致で充足扱いにしない。"
+          },
+          {
+            "given": "verification原資料の期待owner/観測ownerが同値だが独立profile期待とは異なる",
+            "observe": "観測2値を独立expectedへ別々に照合し、自己一致で成立にしない。"
+          },
+          {
+            "given": "新opaque必要identityをproviderが明示profileへ結ぶ、又は必要profileが欠落/未対応/role型外",
+            "observe": "明示対応は読取り、未供給/未対応はunknownと当該定義返却にし、identity削除・推測・型例外にしない。他の必要条件は保持する。"
+          },
+          {
+            "given": "profile source資格が未成立、又は非必要資料の資格が未成立",
+            "observe": "資格診断の全state/Ref/owner_targetを保持し、前者は必要条件だけへ局所接続、後者はproceedを止めない。"
+          },
+          {
+            "given": "known roleへ相談等を承認kindとして誤供給、又は別revision根拠を供給",
+            "observe": "資格knownや文字列同値で承認に変換せず、未対応定義/対象相反を局所保持する。"
+          },
+          {
+            "given": "未委任の意味/権限差分、又は原phase/action定義不足",
+            "observe": "当該authority/定義ownerへの論理返却を保持し、必要membership不明を空や別actionで補完しない。"
+          }
+        ],
+        "l4_candidate_binding": {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "sha256": "34caacf28e931e1506a9ad4cca91c4b1afc4195b6f062d6259363734b66d543e"
+        }
+      }
     },
     {
       "id": "HARNESS-L9-003-F02",
