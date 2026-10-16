@@ -9429,11 +9429,11 @@
                             },
                             "field": {
                               "op": "const",
-                              "value": "original_handoff.original_unfinished.obligations.owner_or_recovery_ref"
+                              "value": "original_handoff.original_unfinished.obligations.identity_owner_or_recovery_ref"
                             },
                             "result": {
                               "op": "const",
-                              "value": "obligation_binding_incomplete_or_mismatched"
+                              "value": "obligation_binding_incomplete"
                             },
                             "return_owner": {
                               "op": "const",
@@ -9553,11 +9553,11 @@
                             },
                             "field": {
                               "op": "const",
-                              "value": "submitted_handoff.original_unfinished.obligations.owner_or_recovery_ref"
+                              "value": "submitted_handoff.original_unfinished.obligations.identity_owner_or_recovery_ref"
                             },
                             "result": {
                               "op": "const",
-                              "value": "obligation_binding_incomplete_or_mismatched"
+                              "value": "obligation_binding_incomplete"
                             },
                             "return_owner": {
                               "op": "const",
@@ -9886,6 +9886,106 @@
                             "field": {
                               "op": "const",
                               "value": "submitted_handoff.recovery_ref"
+                            },
+                            "result": {
+                              "op": "const",
+                              "value": "unknown_original_information"
+                            },
+                            "return_owner": {
+                              "op": "const",
+                              "value": "operation-owner"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "else": {
+                      "op": "array",
+                      "items": []
+                    }
+                  },
+                  {
+                    "op": "if",
+                    "condition": {
+                      "op": "is_placeholder",
+                      "value": {
+                        "op": "path",
+                        "path": "/original_handoff/owner"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN"
+                        ]
+                      }
+                    },
+                    "then": {
+                      "op": "array",
+                      "items": [
+                        {
+                          "op": "object",
+                          "fields": {
+                            "area": {
+                              "op": "const",
+                              "value": "unresolved_binding"
+                            },
+                            "field": {
+                              "op": "const",
+                              "value": "original_handoff.owner"
+                            },
+                            "result": {
+                              "op": "const",
+                              "value": "unknown_original_information"
+                            },
+                            "return_owner": {
+                              "op": "const",
+                              "value": "operation-owner"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "else": {
+                      "op": "array",
+                      "items": []
+                    }
+                  },
+                  {
+                    "op": "if",
+                    "condition": {
+                      "op": "is_placeholder",
+                      "value": {
+                        "op": "path",
+                        "path": "/submitted_handoff/owner"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN"
+                        ]
+                      }
+                    },
+                    "then": {
+                      "op": "array",
+                      "items": [
+                        {
+                          "op": "object",
+                          "fields": {
+                            "area": {
+                              "op": "const",
+                              "value": "unresolved_binding"
+                            },
+                            "field": {
+                              "op": "const",
+                              "value": "submitted_handoff.owner"
                             },
                             "result": {
                               "op": "const",
@@ -10617,7 +10717,8 @@
     "scopeはfinite_rule_catalog.scope_marker_valuesをscope_resolution.pathsで列挙したfieldに適用する。その他の識別子/reference marker検出はfinite_rule_catalog.identifier_placeholder_valuesをASTで列挙したfieldに限る。自由語全般のgrammar・実ID資格は定義しない。",
     "unresolved_scopeはsourceにあるscope不足を説明する局所failure-area labelであり、L2/L3/L4の新しいstate、承認gate、許可拒否語彙ではない。",
     "failure判定はASTに列挙した順に行う。F01のfailure_reasonsは同値recordを最初の一件にまとめる元L9互換の投影であり、原receiptと提出receiptのtargetが同じ診断になる場合の発生元は区別できない。F02は同値recordも列挙順に保持するが、unfinished_content/recordの原対提出とhandoff対原の二比較は同じfield表示になる。全失敗へ一意のsource locatorを付ける設計は未成立であり、発生元別の識別力を原whole一致から主張しない。",
-    "F01のprofile revision/digestとF02のoperation_identityなど、identifier_placeholder_valuesのAST対象外fieldに対するmarker値の資格判定は未実現。単純な値一致からscope/identityの意味を推測しない。"
+    "F01のprofile revision/digestとF02のoperation_identityなど、identifier_placeholder_valuesのAST対象外fieldに対するmarker値の資格判定は未実現。単純な値一致からscope/identityの意味を推測しない。",
+    "F02の宣言signatureはhandoff.owner、obligation.identity/owner/recovery_refをstring、obligationsをarrayとして要求する。null/absentは型内placeholder値や成功例ではなく、入力型境界で拒否される。"
   ],
   "diagnostic_vocabulary": {
     "unresolved_scope": "L2-006 unknown/stale時に通信停止しrecovery先を記録する義務と、L4-006のscope material比較に基づく診断label。資格やowner認可を表さない。",
@@ -10627,12 +10728,12 @@
     "negative_attempt_count": "要求されたattempt数が非負条件に合わない場合の局所診断値。「負の累積attempt」ではなくrequest countの比較結果を表す。",
     "rolled_back_done": "合成packetに存在するrollback_state値。独立receiptなしでこの値が主張されても実rollback事実へ昇格しない。",
     "duplicate_obligation_identity": "批准HELIXCONNECT-L3-006-F02の未完義務引継ぎとL4-006-F02の原未完保持を、同じ合成packet内のobligation identity重複として表示する局所診断値。新しいwire stateや外部identity資格ではない。",
-    "obligation_binding_incomplete_or_mismatched": "HELIXCONNECT-L3-006-F02とL4-006-F02の明示recovery先/未完由来保持を、packet内owner/recovery_refの不足・不一致として表示する局所診断値。",
     "unconfirmed_rollback_state_without_receipt": "HELIXCONNECT-L10-006-F02の未確認rollback済み負例とL4-006-F02の未観測を完了へ推測しない条件を表す局所診断値。",
     "unconfirmed_rollback_done_claim": "HELIXCONNECT-L10-006-F02の未確認rollback済み負例をclaim欄から観測した局所診断値。claimを実rollback事実へ変換しない。",
     "no_selected_component_change": "HELIXCONNECT-L3-006-F01の選択交換とL4-006-F01の許容変更scopeを、選択済みなのに対応する変更が無い合成packetとして表示する局所診断値。実交換義務を全operationへ追加しない。",
     "registration_target": "HELIXCONNECT-L4-006-F01の新版登録とtarget materialの対応を表す局所failure-area。入力にない登録対象の資格を推定しない。",
-    "permission_target": "HELIXCONNECT-L4-006-F01/F02の許可と操作対象の対応を表す局所failure-area。実authorityの証明ではない。"
+    "permission_target": "HELIXCONNECT-L4-006-F01/F02の許可と操作対象の対応を表す局所failure-area。実authorityの証明ではない。",
+    "obligation_binding_incomplete": "L3 F02の未完義務とL4 F02の原未完保持を、handoff内の各項目についてidentity/owner/recovery_refのいずれかが空または有限placeholder値である場合に表示する局所finding値。handoff全体のowner/recovery_refとの等値比較は表さない。"
   },
   "fixture_consistency_boundary": [
     "登録・許可・提出receiptの全target比較と固定bytes/profile比較をfailure_reasonsへ結ぶ。",
@@ -10643,7 +10744,7 @@
   ],
   "handoff_role_semantics": {
     "handoff": {
-      "owner": "当該handoff全体が明示する受渡し先owner。各未完義務のownerと同一であることを推測しない。",
+      "owner": "当該handoff全体が明示する受渡し先owner。各未完義務のownerとは同一であることを推測しない。ownerが空または有限placeholder値なら unresolved_binding として保留する。",
       "recovery_ref": "当該handoff全体の明示recovery参照。各未完義務のrecovery_refと同一であることを推測しない。"
     },
     "unfinished_obligation": {
@@ -10652,6 +10753,6 @@
       "recovery_ref": "当該identityの元の義務recovery参照。handoff全体のrecovery_refへ置換しない。"
     },
     "source_to_submission": "原handoffと提出handoffの内容比較で個別owner/refを含む変更を検出し、元と提出の値をそれぞれ保持する。実配送・権限・再開資格はこの比較から生成しない。",
-    "basis": "HELIXCONNECT-L2/L3/L4-006-F02の未完義務・明示handoff保持と役割別戻し、および旧PDC/impact CI recoveryの個別義務owner保持を意味再導出。"
+    "basis": "HELIXCONNECT-L3-006-F02の明示recovery先への引継ぎと、L4-006-F02の局所owner・handoff/未完保持および役割別戻しを意味再導出。旧PDC/impact CIは個別未完義務owner保持の根拠として用いない。"
   }
 }
