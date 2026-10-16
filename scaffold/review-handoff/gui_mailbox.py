@@ -132,11 +132,20 @@ def append_closed_log(store, records):
         day = time.strftime("%Y-%m-%d", time.gmtime(record["closed"]))
         path = store / ("closed-" + day + ".jsonl")
         p.require(not path.is_symlink(), "監査記録symlink禁止")
-        fd = os.open(path, os.O_WRONLY | os.O_APPEND | os.O_CREAT, 0o600)
-        with os.fdopen(fd, "a") as stream:
-            stream.write(json.dumps(record, ensure_ascii=True, sort_keys=True) + "\n")
-            stream.flush()
-            os.fsync(stream.fileno())
+        line = (json.dumps(record, ensure_ascii=True, sort_keys=True) + "\n").encode()
+        fd = os.open(path, os.O_RDWR | os.O_APPEND | os.O_CREAT, 0o600)
+        try:
+            size = os.fstat(fd).st_size
+            # 前回の追記が途中で失敗して改行で終わっていなければ、その断片を独立した1行として閉じてから書く。
+            # 既存の行は書き換えず、断片はJSONとして読めない行として残る（読む側は読めない行を飛ばす）。
+            if size and os.pread(fd, 1, size - 1) != b"\n":
+                line = b"\n" + line
+            written = 0
+            while written < len(line):
+                written += os.write(fd, line[written:])
+            os.fsync(fd)
+        finally:
+            os.close(fd)
 
 
 def remove_orphan_temps(store, now):

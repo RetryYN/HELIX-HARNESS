@@ -99,7 +99,7 @@ retry時は同じ宛先sessionを維持する。新claim nonceが発行され、
 | 未期限の`queued`／`claimed` | そのまま残す | なし |
 
 - `closed`は、event ID、digest、内容の照合値（kind・送受信session・request・responseのcanonical SHA-256）、送受信のruntime／session、claim nonce、終わった時刻だけを持つ。保持期間中は、同じevent IDの再送、同じ内容の別ID再送、同じACKの再送を今までどおり見分ける（再送は重複配送せず、`acked`／`expired`を返す。同じevent IDの異なるpayloadは拒否する）。`inspect`は本文を外した通知を拒否する。
-- 監査記録は`local/gui/closed-YYYY-MM-DD.jsonl`（終わった時刻のUTC日付、mode 0600）へのappend-only記録で、書き換え・刈込みをしない。1行に、event ID、kind、status、digest、送受信のruntime／session、request ID、PR番号、base／content SHA、作成・期限・claim・ACK・終了の時刻を持つ。依頼・応答の本文（purpose、scope、findings等）は書かない。state置換の前に追記するため、置換前に落ちた場合は次の書込で同じ行が重ねて書かれることがある（失うことはない）。
+- 監査記録は`local/gui/closed-YYYY-MM-DD.jsonl`（終わった時刻のUTC日付、mode 0600）へのappend-only記録で、書き換え・刈込みをしない。1行に、event ID、kind、status、digest、送受信のruntime／session、request ID、PR番号、base／content SHA、作成・期限・claim・ACK・終了の時刻を持つ。依頼・応答の本文（purpose、scope、findings等）は書かない。state置換の前に追記するため、置換前に落ちた場合は次の書込で同じ行が重ねて書かれることがある（失うことはない）。追記が行の途中で失敗した場合も、次の書込はfile末尾が改行で終わっていなければ先に改行を書いて断片を独立した1行として閉じ、その後に完全な行を書く。既存の行は書き換えない。断片はJSONとして読めない行として残るので、監査記録を読む側は読めない行を飛ばす。
 - 書込中に強制終了された一時file（`local/gui/state-*`）は、lock保持中の書込時に、10分以上前のものだけを消す。
 - 既存の大きな`state.json`は、変更後のコードで最初に書き込んだときに同じ規則で整理される。移行用の別手順は持たない。2026-10-16の実測（live stateの複製を対象。liveは変更していない）では、8,368件・31,090,203 byteが、`messages` 0件（未期限の`queued`／`claimed`は無かった）・`closed` 499件・244,475 byteになり、監査記録27 file・8,368行（5,596,353 byte）へ全件残った。1回の読取は約0.76秒から約3ミリ秒になった。
 

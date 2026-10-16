@@ -583,6 +583,47 @@ class GuiChecks(unittest.TestCase):
             logged = [json.loads(line)["event_id"] for path in store.glob("closed-*.jsonl") for line in path.read_text().splitlines()]
             self.assertEqual(sorted(logged), sorted("old-%d" % n for n in range(50)))
 
+    def test_partial_audit_append_is_isolated_on_retry(self):
+        # 監査行の追記が途中で失敗してもstateは置換されず、次の書込で断片を独立行にしてから全件を完全な行で書く。
+        with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
+            store = Path(directory)
+            with g.state(store) as data:
+                data.update(copy.deepcopy(self.data))
+                self.data = data
+                for event in ("event-a", "event-b"):
+                    m = g.send(data, "codex", "codex-gui", event, "review_request",
+                               dict(self.request, purpose=event), None, 60, self.now)
+                    m["status"] = "claimed"; m["claim"] = dict(session="claude-gui", at=self.now, nonce="1" * 32)
+            before = (store / "state.json").read_bytes()
+            real_write = g.os.write
+            calls = []
+            def failing_write(fd, data):
+                calls.append(1)
+                if len(calls) == 1:
+                    real_write(fd, data[:len(data) // 2])
+                    raise OSError("injected partial write")
+                return real_write(fd, data)
+            with patch.object(g.os, "write", side_effect=failing_write):
+                with self.assertRaises(OSError):
+                    with g.state(store) as data:
+                        for event in ("event-a", "event-b"):
+                            m = data["messages"][event]
+                            g.ack(data, event, "claude", "claude-gui", m["digest"], "1" * 32, self.now)
+            self.assertEqual((store / "state.json").read_bytes(), before)
+            with g.state(store) as data:
+                for event in ("event-a", "event-b"):
+                    m = data["messages"][event]
+                    g.ack(data, event, "claude", "claude-gui", m["digest"], "1" * 32, self.now)
+            with g.state(store) as data:
+                self.assertEqual(data["messages"], {})
+            lines = [line for path in sorted(store.glob("closed-*.jsonl")) for line in path.read_text().splitlines()]
+            valid = []
+            for line in lines:
+                try: valid.append(json.loads(line)["event_id"])
+                except ValueError: pass
+            self.assertEqual(sorted(valid), ["event-a", "event-b"])
+            self.assertEqual(len(lines) - len(valid), 1)
+
     def test_policy_claim_guard_sets_match(self):
         import importlib.util
         spec=importlib.util.spec_from_file_location("scfctl",g.HERE.parent / "tools/scfctl.py")
