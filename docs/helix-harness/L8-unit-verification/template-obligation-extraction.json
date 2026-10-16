@@ -19726,7 +19726,7 @@
       },
       "patch": {
         "kind": "replace_only_second_E8_meaning",
-        "target": "arguments.packet.original_template.raw_utf8 line 9 (1-based)",
+        "target": "arguments.packet.original_template.raw_utf8 の第9行（1始まり）",
         "expected_old_line": "{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true}",
         "replacement_line": "{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8-別\",\"requires_screen\":true}",
         "template_sha256_recomputed_from_raw_utf8": "7d200a982883c144fad777d65d3adc65e8b7a5b66552dd7dbea5bb86c4c2bdbd",
@@ -19985,7 +19985,7 @@
       "expected_canonical_sha256": "1352b992cde240dbc6b5afe8d0a92a847e039ec712b22b83b30d600b7c13ea10",
       "expected_basis": "固定済みL8 case63のnormal control入力を一箇所だけ明示patch。L4 source occurrence条件は型付き原行全体同値だけをsource duplicateとする。変更後の2行は完全同値ではなく、かつ両方とも既存reasoned_NA条件を満たすため、E1–E7 atom、E8の理由付きNA、空gaps/complete、effects/Qを保持する有限局所期待。これはsource occurrence完全追跡の成立主張ではない。",
       "counterfactual_grouping_discriminator": {
-        "scope": "source grouping model only; not a product expectation beyond the fixed whole return",
+        "scope": "原sourceのgroup化を比較するモデルの範囲。固定した全返却期待を越える製品期待は定義しない。",
         "wrong_mutation_id_only": {
           "key": [
             "row.id"
@@ -20010,14 +20010,14 @@
           "would_add_source_duplicate_at_lines": []
         },
         "accepted_basic_rule_full_typed_row": {
-          "key": "canonical typed full row equality",
+          "key": "型付き原行全体のcanonical同値",
           "row_group_counts": [
             1,
             1
           ],
           "would_add_source_duplicate_at_lines": []
         },
-        "discrimination": "ID-only mutation differs from both ID+meaning and full-row relation; the whole expectation remains no source gap because meaning differs."
+        "discrimination": "IDだけの誤group化はID＋meaningおよび原行全体の比較と異なる。meaningが異なるため固定wholeにはsource gapがない。"
       },
       "execution_state": "not_executed",
       "effect": "none"
@@ -20033,7 +20033,7 @@
       },
       "patch": {
         "kind": "add_null_synthetic_shape_marker_only_to_second_E8",
-        "target": "arguments.packet.original_template.raw_utf8 line 9 (1-based)",
+        "target": "arguments.packet.original_template.raw_utf8 の第9行（1始まり）",
         "expected_old_line": "{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true}",
         "replacement_line": "{\"id\":\"E8\",\"kind\":\"field\",\"meaning\":\"独立義務8\",\"requires_screen\":true,\"synthetic_shape_marker\":null}",
         "template_sha256_recomputed_from_raw_utf8": "a5766b29ae791c2aa66f2bdc879e37bc4073d97fe30adae695e2a57d34b0a208",
@@ -20292,7 +20292,7 @@
       "expected_canonical_sha256": "1352b992cde240dbc6b5afe8d0a92a847e039ec712b22b83b30d600b7c13ea10",
       "expected_basis": "固定済みL8 case63のnormal control入力を一箇所だけ明示patch。L4 source occurrence条件は型付き原行全体同値だけをsource duplicateとする。変更後の2行は完全同値ではなく、かつ両方とも既存reasoned_NA条件を満たすため、E1–E7 atom、E8の理由付きNA、空gaps/complete、effects/Qを保持する有限局所期待。これはsource occurrence完全追跡の成立主張ではない。",
       "counterfactual_grouping_discriminator": {
-        "scope": "source grouping model only; not a product expectation beyond the fixed whole return",
+        "scope": "原sourceのgroup化を比較するモデルの範囲。固定した全返却期待を越える製品期待は定義しない。",
         "wrong_mutation_id_only": {
           "key": [
             "row.id"
@@ -20319,14 +20319,14 @@
           ]
         },
         "accepted_basic_rule_full_typed_row": {
-          "key": "canonical typed full row equality",
+          "key": "型付き原行全体のcanonical同値",
           "row_group_counts": [
             1,
             1
           ],
           "would_add_source_duplicate_at_lines": []
         },
-        "discrimination": "ID+meaning mutation differs from full-row relation; null is a present JSON value and is retained as row content."
+        "discrimination": "ID＋meaningの誤group化は原行全体の比較と異なる。nullは供給済みJSON値であり、原行の内容として保持する。"
       },
       "execution_state": "not_executed",
       "effect": "none"
@@ -21977,10 +21977,10 @@
       "original_source_pointer_case_count": 36,
       "baseline_case_ref_case_count_before_append": 30,
       "baseline_case_ref_case_count_after_append": 32,
-      "classification": "formally declared source_pointer cases 36 and baseline_case_ref cases 32; appended two cases are local baseline-derived material, not new L9 source_pointer cases.",
+      "classification": "source_pointer由来36例とbaseline_case_ref由来32例に分類する。追加2例は既存baselineから作った局所素材であり、新たなL9 source_pointer例ではない。",
       "total_case_count_after_append": 68
     },
     "observed_na_limit": "R1の2つのreasoned_NA対照では、型付き原行全体が異なるE8の2行はsource_duplicateにならず、返却はE8のreasoned_not_applicable一件、gaps=[]、fixture_content_complete=trueとなる。このwholeからは2原行の個別出現やmeaning差を確認できない。これは現返却の観測可能性の限界であり、2行を同一義務または正常な完全追跡と分類する根拠ではない。同ID・異内容の意味分類は未導出である。",
-    "followup_boundary": "L5 algorithm/type/accepted basic pair and upstream requirements are unchanged. Occurrence-level meaning treatment beyond the accepted full typed-row duplicate rule remains a separate basic-pair follow-up; this finite pair does not claim complete F03 occurrence tracking."
+    "followup_boundary": "L5のアルゴリズム・型、採択済み基本対、上流要求を保持する。完全typed-row重複規則を越える原出現ごとの意味の扱いは後続基本対で具体化し、この有限対だけでF03の原出現追跡全体の成立を認定しない。"
   }
 }
