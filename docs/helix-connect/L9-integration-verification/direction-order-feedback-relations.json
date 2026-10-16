@@ -45927,7 +45927,7 @@
           "comparison_basis_ja": "原source明示nullはAbsentのmissingと区別しrawに保持。"
         }
       ],
-      "coverage_limit": "F07原26例を独立original-only source供給付きの内容対照へ具体化し、独立source欠落/両側foreign/原provider差/unknown/nullの7合成反例を追加する。実source資格/正式codec/runtime/伝送/受領/実lineage/全意味域閉包を証明しない。6業務役割と初回結果保持は維持する。",
+      "coverage_limit": "F07原26例を独立original-only source供給付きの内容対照へ具体化し、独立source欠落/両側foreign/原provider差/unknown/nullの7合成反例を追加する。実source資格/正式codec/runtime/伝送/受領/実lineage/全意味域閉包を証明しない。6業務役割と初回結果保持は維持する。 L9 F07では、原source stateのstale/conflict、wrapperのowner/target欠落、対象と不一致のtarget、objectでないvalue、必須memberの欠落/nullを個別に識別するscenarioは未追加である。これらの分岐は本33例の被覆に含めず、詳細の局所対照で追跡する。",
       "source_input_refinement": {
         "basic_contract_pointer": "/contracts/6/original_source_ports",
         "business_role_count": 6,
