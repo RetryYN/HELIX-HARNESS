@@ -1052,7 +1052,8 @@
       "output": "Comparison",
       "effect": "none",
       "algorithm": [
-        "常時/CORE返却/CORE由来source/LABO評価選択の条件から既存参照を照合。選択source欠落はmissing、未選択sourceはunobserved。別source成功は補償にならない。",
+        "照合を始める前にselectorの存在を判定する。core_return_requested/core_source_selected/labo_evaluation_selectedのいずれかが欠落なら、falseへ既定せずaxis=dependency_selection,state=unknownを局所返却し、そのselectorが選ぶ条件集合だけを評価しない。",
+        "HELIXBRAIN-L3-032-F09の常時必須集合003/005/007/008/028と、core_return_requested=true時の019/022/030を、各々のalways_refs/core_return_refsでidentity照合する。必要Ref[]またはmemberが欠けた場合、欠けた各identityについてaxis=dependency_reference,state=missingを返す。空配列・欠落を充足としない。subject_refには入力binding.knowledge_refを用い、AxisResult.original_refs/Finding.source_refsには実際に供給された同category Refだけを入れる。欠落Refの他fieldを合成しない。identityが供給されてもqualification/current revision/scope/owner/digestは既存full-Ref比較で別途検査する。既存のcore_source_selected/labo_evaluation_selected選択時のsource/evaluation参照・qualification照合、選択source欠落のmissing、未選択sourceのunobservedはそのまま適用する。返却の決定順は、常時必須identityをHELIXBRAIN-L3-032-F09の列挙順003/005/007/008/028、選択済みCORE返却identityを同義務の列挙順019/022/030、selector由来所見をcore_return_requested、core_source_selected、labo_evaluation_selectedの順とする。同一axisに複数所見があってもaggregateで統合・上書きせず、各所見のreasonとidentityを保持する。",
         "受渡しstateをdefinitionから分離しnot_receivedを保存する。候補供給前の相手完了receipt要求claimは既存順序とconflict。receipt単独の製品N/A/義務消込claimはunknown。",
         "参照資料roleをsemantic authorityに変換しない。旧template/seed/設計例はreference_onlyのまま保持し不足definition/authorityを補わない。"
       ],
@@ -1064,7 +1065,9 @@
         "HELIXBRAIN-L5-032-R-reference_as_authority",
         "HELIXBRAIN-L5-032-R-reference_as_required_definition",
         "HELIXBRAIN-L5-032-R-future_receipt_as_precondition",
-        "HELIXBRAIN-L5-032-R-unselected_source_success"
+        "HELIXBRAIN-L5-032-R-unselected_source_success",
+        "HELIXBRAIN-L5-032-R-required_dependency_missing",
+        "HELIXBRAIN-L5-032-R-dependency_selector_unknown"
       ],
       "unit_case_refs": [
         "HELIXBRAIN-L8-032-B02-NEG-01",
@@ -1077,7 +1080,14 @@
         "HELIXBRAIN-L8-032-F09-NEG-06",
         "HELIXBRAIN-L8-032-ADD-17",
         "HELIXBRAIN-L8-032-ADD-18",
-        "HELIXBRAIN-L8-032-ADD-19"
+        "HELIXBRAIN-L8-032-ADD-19",
+        "HELIXBRAIN-L8-032-F09-NEG-07",
+        "HELIXBRAIN-L8-032-F09-NEG-08",
+        "HELIXBRAIN-L8-032-F09-NEG-09",
+        "HELIXBRAIN-L8-032-F09-NEG-10",
+        "HELIXBRAIN-L8-032-F09-NEG-11",
+        "HELIXBRAIN-L8-032-F09-NEG-12",
+        "HELIXBRAIN-L8-032-ADD-25"
       ],
       "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_dependencies_and_handoff"
     },
@@ -2953,6 +2963,34 @@
       "expected_state": "unknown",
       "backflow_owner": "infrastructure_owner",
       "effect": "元axisとclaimを独立保持。実作用なし。"
+    },
+    {
+      "id": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+      "code": "required_dependency_missing",
+      "contract_ref": "HELIXBRAIN-L5-032-F09",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "oracle_ref": "HELIXBRAIN-L8-032-F09-NEG-07",
+      "condition": "L3-F09で常時必須、または選択済みCORE返却で必要なRef identityが該当Ref[]にない。",
+      "predicate": "常時identity 003/005/007/008/028、core_return_requested=trueの場合のidentity 019/022/030を該当Ref[]と照合する。list/member欠落を空集合の成功にせず、欠落identityごとdependency_reference=missingを返す。欠落Refを合成せず、同条件の供給済みRefとその他の比較を保持する。",
+      "predicate_status": "defined_candidate",
+      "expected_axis": "dependency_reference",
+      "expected_state": "missing",
+      "backflow_owner": "knowledge_owner",
+      "effect": "対象条件の不足だけを返し、他category・元binding・handoff・他candidateを変更しない。実作用なし。"
+    },
+    {
+      "id": "HELIXBRAIN-L5-032-R-dependency_selector_unknown",
+      "code": "dependency_selector_unknown",
+      "contract_ref": "HELIXBRAIN-L5-032-F09",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "oracle_ref": "HELIXBRAIN-L8-032-F09-NEG-10",
+      "condition": "core_return_requested、core_source_selected、labo_evaluation_selectedの条件selectorが欠落し、入力decoderが意味欠落を保持する。",
+      "predicate": "欠落selectorをfalseへ既定せずdependency_selection=unknownで返し、そのselectorの条件付きRef集合だけを評価しない。常時必須集合、他の明示selector、handoff状態は独立に保持する。",
+      "predicate_status": "defined_candidate",
+      "expected_axis": "dependency_selection",
+      "expected_state": "unknown",
+      "backflow_owner": null,
+      "effect": "欠落selectorをunknownとして局所保持し、他条件やhandoffを変更しない。実作用なし。"
     }
   ],
   "determinism": "供給immutable snapshotだけを読みtemplate/knowledge identity/revision、descriptor identity、source Ref、axisで決定的に並べる。異scope/版を併合しない。時計/env/fs/network/DB参照なし。",
