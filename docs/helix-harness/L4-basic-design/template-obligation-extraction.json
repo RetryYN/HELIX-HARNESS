@@ -877,7 +877,7 @@
               "source_span:SourceSpan|null",
               "outcome:{kind:atom,atom:HeldOutAtomEvidence}|{kind:gap,gap:HeldOutGap,rejected_atom:Presence<RawValue>}",
               "source_ordinal:integer",
-              "source_row_sha256:string",
+              "source_row_sha256:string。正確な原source rowの行終端を含まないbytesのSHA-256。source_parse_and_diagnosis/raw_parseを参照。whole sourceの終端を含む全bytes digestとは別。",
               "source_element:RawValue。正確にparseした原source行をverbatimで保持。",
               "candidate_batch_indices:integer[] (batch原順のindex)"
             ],
@@ -1005,7 +1005,7 @@
               "source_ordinal": "integer (正確にparseした原source rowの1-based ordinal。booleanはintegerとして扱わない)",
               "source_element_id": "string (parse済み原source rowから導出したid)",
               "source_span": "SourceSpan (正確にparseした原source rowから導出したspan)",
-              "source_row_sha256": "string (正確な原source row bytesのSHA-256)",
+              "source_row_sha256": "string (正確な原source rowの行終端を含まないbytesのSHA-256。source_parse_and_diagnosis/raw_parseを参照。whole sourceの終端を含む全bytes digestとは別。)",
               "outcome": "{kind:atom,atom:HeldOutAtomEvidence}|{kind:gap,gap:HeldOutGap}"
             },
             "additional_properties": false,
@@ -1344,7 +1344,97 @@
             "unobserved": [
               "原source複数findingの元順以外の新収集は定めない。",
               "複数field状態の全組合せ、revoked/indeterminate元決定全branch、applicability no/unknownと候補欠陥の重なり、producer gapとatom複数候補の全混在は未観測。"
-            ]
+            ],
+            "gap_kind_catalogue": {
+              "scope": "現在のsource診断および段階別写像から返すkindの索引。追加の判定順序、許否gate又はraw producer gap.kindの閉enumではない。既存HeldOutGap.kind:stringとraw観測を保持し、宣言外のproducer kindという理由で新たに拒否しない。producer gap-onlyは既定のproducer_reported_gapへ正規化し元kindをbatch echoへ保持する。",
+              "rows": [
+                {
+                  "source_pointer": "/contracts/3/held_out_occurrence_contract/source_parse_and_diagnosis/diagnosis_order",
+                  "stages": [
+                    1
+                  ],
+                  "returned_kinds": [
+                    "template_source_missing",
+                    "scope_missing",
+                    "scope_unknown",
+                    "scope_conflict",
+                    "source_revision_missing",
+                    "source_revision_unknown",
+                    "source_digest_conflict",
+                    "unsupported_element"
+                  ],
+                  "note": "template_source_missingはraw_utf8不足時の既存source診断。他は原row診断。scopeはrevision=falseのstate_ofからmissing/unknown/conflictを返す。"
+                },
+                {
+                  "source_pointer": "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison/ordered_row_classification/binding_state_to_kind",
+                  "stages": [
+                    2
+                  ],
+                  "returned_kinds": [
+                    "source_binding_missing",
+                    "source_binding_unknown",
+                    "source_revision_stale",
+                    "source_binding_conflict"
+                  ]
+                },
+                {
+                  "source_pointer": "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison/ordered_row_classification/stages/3",
+                  "stages": [
+                    3
+                  ],
+                  "returned_kinds": [
+                    "applicability_no",
+                    "applicability_unknown"
+                  ]
+                },
+                {
+                  "source_pointer": "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison/ordered_row_classification/stages/4",
+                  "stages": [
+                    4
+                  ],
+                  "returned_kinds": [
+                    "extraction_result_missing",
+                    "atom_source_conflict"
+                  ]
+                },
+                {
+                  "source_pointer": "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison/ordered_row_classification/stages/5",
+                  "stages": [
+                    5
+                  ],
+                  "returned_kinds": [
+                    "extraction_result_missing",
+                    "extraction_result_invalid",
+                    "producer_reported_gap"
+                  ]
+                },
+                {
+                  "source_pointer": "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison/ordered_row_classification/stages/6",
+                  "stages": [
+                    6
+                  ],
+                  "returned_kinds": [
+                    "atom_content_missing",
+                    "atom_content_unknown",
+                    "source_revision_stale",
+                    "atom_content_conflict"
+                  ]
+                },
+                {
+                  "source_pointer": "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison/ordered_row_classification/stages/7",
+                  "stages": [
+                    7
+                  ],
+                  "returned_kinds": [
+                    "atom_digest_missing",
+                    "atom_digest_unknown",
+                    "atom_digest_conflict"
+                  ]
+                }
+              ],
+              "legacy_projection_pointer": "/contracts/3/held_out_occurrence_contract/return_and_compatibility/legacy_gap_projection",
+              "ordering": "原rowのprimary判定順は既存stagesが正本。stage0は候補発見、stage8は返却射影であり新kindを作らない。上の反復kindを重複findingへ増やさない。"
+            }
           }
         },
         "return_and_compatibility": {
@@ -1676,7 +1766,8 @@
                   },
                   "source_row_sha256": {
                     "type": "string",
-                    "pattern": "^[0-9a-f]{64}$"
+                    "pattern": "^[0-9a-f]{64}$",
+                    "description": "正確な原source rowの行終端を含まないbytesのSHA-256。source_parse_and_diagnosis/raw_parseを参照。whole sourceの終端を含む全bytes digestとは別。"
                   },
                   "source_element": true,
                   "candidate_batch_indices": {
@@ -2200,7 +2291,8 @@
                   },
                   "source_row_sha256": {
                     "type": "string",
-                    "pattern": "^[0-9a-f]{64}$"
+                    "pattern": "^[0-9a-f]{64}$",
+                    "description": "正確な原source rowの行終端を含まないbytesのSHA-256。source_parse_and_diagnosis/raw_parseを参照。whole sourceの終端を含む全bytes digestとは別。"
                   },
                   "outcome": {
                     "oneOf": [
@@ -2387,9 +2479,7 @@
             },
             "CommonRef6": {
               "alias_source": {
-                "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
-                "revision": "5293f842c46e1bcd965cd69e8b71ea037d5210ce",
-                "pointer": "/contracts/3/held_out_occurrence_contract/closed_types/CommonRef"
+                "local_pointer": "/contracts/3/held_out_occurrence_contract/closed_types/CommonRef"
               },
               "meaning": "現CommonRefの全6fieldの別名。新universal Ref/API/資格型ではない。"
             },

@@ -6024,7 +6024,7 @@
       "current_occurrence_binding": {
         "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
         "pointer": "/contracts/2/occurrence_return_contract",
-        "working_bytes_sha256": "fd38b5c8d093d8f2a9b2480a2f01d16706bc4dbeb0d7319b94f2d242399630e7",
+        "working_bytes_sha256": "aedc100766284cffd495533410e8d6ec764a5106bababfa80e0135970b973074",
         "binding_kind": "paired_current_file_bytes",
         "meaning": "新trace規範の現L4 bytes。同caseの旧l4_source_bindingは元bytes歴史参照として別保持する。"
       }
@@ -19294,7 +19294,8 @@
           "same_invocation_observation_sha256": "b2bdb0fc78b61ca28fd9557e41f623b5dff2a1d694a11fd37428987ed1e1b82b",
           "basis": {
             "logical_contract_pointer": "/contracts/3/held_out_occurrence_contract",
-            "owner_source_boundary": "元ownerが保有する独立原source/原資格決定の合成caller返却。outer fixture Ref又はraw packet/batchから資格を生成した証拠ではない。"
+            "owner_source_boundary": "元ownerが保有する独立原source/原資格決定の合成caller返却。outer fixture Ref又はraw packet/batchから資格を生成した証拠ではない。",
+            "qualification_unknown_case": "元資格owner portが解決不能の理由を追加提示せずunresolved/state:unknownを返す負例。observedの原decision.outcome:applicableと揃ったoperandはraw観測として保存するが、portが当該対象への有効適用をresolvedとして返したこと又は資格成立を推定しない。pure_adapter/failure_ruleおよびselection_and_decode/1に従い元portのunknownと全原観測を保持する。qualification_decision_projectionの肯定resolved行を成立させた正常producer対照ではない。"
           }
         },
         {
@@ -20988,7 +20989,7 @@
       "effect": "none",
       "current_basic_binding": {
         "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
-        "file_sha256": "fd38b5c8d093d8f2a9b2480a2f01d16706bc4dbeb0d7319b94f2d242399630e7",
+        "file_sha256": "aedc100766284cffd495533410e8d6ec764a5106bababfa80e0135970b973074",
         "pointer": "/contracts/3/held_out_occurrence_contract",
         "binding": "同候補の現在bytes。historical source_pinsのgit固定原文とは別。"
       },
