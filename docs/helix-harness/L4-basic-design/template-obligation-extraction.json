@@ -955,19 +955,19 @@
             "meaning": "N01Return内で期待binding、raw batch全体、関連付けられなかった配列indexを保持する一つのcarrier。batch payloadは一度だけ保存し、HeldOutOccurrenceResult.candidate_batch_indicesはその配列を指す。"
           },
           "N01Return": {
-            "kind": "既存compare_n01のclosed return shapeにheld_out_batch_association memberを加えた型。",
+            "kind": "新private traced8member surfaceのbasic名。詳細側名N01TracedReturn。旧公開compare_n01のL5 N01Return6とは別surface。",
             "fields": {
               "comparison_result": "{state:string,value:string|null}",
               "general_determinism_guaranteed": "boolean",
               "all_templates_supported": "boolean",
               "held_out_gap": "null|HeldOutGap|HeldOutGap[]",
               "effects": "{actual_extraction_executed:boolean,actual_ledger_registered:boolean,actual_OS_execution:boolean,actual_template_authority:boolean,actual_design_complete:boolean,actual_requirement_agreement:boolean,actual_acceptance:boolean}",
-              "unaffected_Q": "{state:string,value:string|null}",
+              "unaffected_Q": "RawValue（required member。null/emptyを含む全JSON値を原値保持）",
               "held_out_occurrence_results": "HeldOutOccurrenceResult[]",
               "held_out_batch_association": "HeldOutBatchAssociation"
             },
             "additional_properties": "closed_declared_carrier",
-            "meaning": "既存N01Return fieldは既存値を保持する。raw batchとunmatched indexは個別のtop-level追加ではなく、一つのclosed carrier内に置く。"
+            "meaning": "traced8memberの返却。comparison_result/保証false/effects/Qは共通の原値を保持。held_out_gapはtraced採用gap viewであり、旧公開6memberのsource-only gap viewと同一集合とは限らない。raw batch/indexは同closed carrierへ保持。"
           },
           "DecodedHeldOutExtractionBatchView": {
             "kind": "consumer側decoded view。raw input schemaや第二のraw sourceではない。",
@@ -1136,7 +1136,7 @@
           }
         },
         "source_parse_and_diagnosis": {
-          "raw_parse": "既存elements()が返すexact bytes解析順とspanを使い、各parsed row全体、1-based ordinal、全source SHA-256、source_row_sha256を保持する。batch側claimをsourceの正本にしない。 source_row_sha256はsplitlinesで得た行終端を含まないexact行bytes、whole source sha256は終端を含むraw_utf8全bytesに別々に結ぶ。",
+          "raw_parse": "既存elements()が返すexact bytes解析順とspanを使い、各parsed row全体、1-based ordinal、全source SHA-256、source_row_sha256を保持する。batch側claimをsourceの正本にしない。 source_row_sha256はsplitlinesで得た行終端を含まないexact行bytes、whole source sha256は終端を含むraw_utf8全bytesに別々に結ぶ。 元packet snapshotからevaluate_n01_sharedが一度だけ解析し、N01SourceRowObservationへ全値を保存する。caller eligibility/両return projectorはこの同じ観測を消費する。",
           "existing_local_rules": [
             "heldout scopeは従来通りinput_frame.scopeと比較し、局所gapにする。comparison_resultは独立result_sourcesの判定を保持する。",
             "atom applicabilityはinput_frame.applicability_inputへ、extractor identity/versionはinput_frameへ完全一致させる。original result_sourcesへfallbackしない。",
@@ -1235,7 +1235,8 @@
               "sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
               "pointer": "/finite_reference/definitions/19"
             }
-          }
+          },
+          "single_evaluation": "diagnosis_orderのsource-levelとscope→revision→digest→unsupportedはevaluate_n01_sharedのsource_finding生成順。native callerとtraced stage1/legacy projectorはこの原findingの消費だけを行い、同callで再parse/再診断しない。"
         },
         "batch_association": {
           "scope": "保留対象のextraction batch配列の観測・関連付け・採用に限る。source diagnosisとraw association discoveryはbinding qualificationから独立。既存F02 atom meaning、N01 output責務、owner資格、原source rowごとのatom-or-gap責務は変えない。",
@@ -1258,7 +1259,7 @@
         },
         "fieldwise_atom_comparison": {
           "comparison_pipeline": [
-            "ordered_row_classificationを唯一のprimary outcome順序とする。原source診断とraw関連候補発見を独立保持。",
+            "ordered_row_classificationを唯一のprimary outcome順序とする。shared.sourceの原source診断を再計算せず消費し、raw関連候補発見を独立保持。",
             "eligible rowだけでowner_resolution_contractが供給した独立原source/原決定とexpected/batch raw bindingを比較する。構造typed statusは意味stateではない。",
             "shape-validを資格成立へ昇格させず、shape不一致だけでraw leafのstate_of比較を消さない。raw consumer field境界はsource_binding_and_decode.consumer_field_boundaryに従う。",
             "候補count/claim、container、F02 field、digestの段階順で原rowのatom又はgapを返す。raw batchと全indices、元row/span/拒否atomを保持。"
@@ -1291,12 +1292,12 @@
               {
                 "stage": 0,
                 "name": "association_discovery",
-                "rule": "raw batchをPresenceで完全保持し、ordinalがboolean以外のintegerかつ原row範囲内の全候補index/unmatchedを元順で発見する。binding/資格前の観測であり意味採用ではない。"
+                "rule": "raw batchをPresenceで完全保持し、ordinalがboolean以外のintegerかつ原row範囲内の全候補index/unmatchedを元順で発見する。binding/資格前の観測であり意味採用ではない。 原row範囲と順序はshared.source.rowsを使い、raw sourceを再parseしない。"
               },
               {
                 "stage": 1,
                 "name": "existing_source_diagnosis",
-                "rule": "原rowごとに既存source診断をscope→revision missing/unknown→raw digest→unsupportedの順で適用し、最初のsource findingを保持。後段はこれを置換しない。"
+                "rule": "shared.source.rowsの当該row.source_findingを全値保持して消費する。生成時は既存scope→revision missing/unknown→raw digest→unsupported順で最初の診断を一回評価済み。ここで再診断せず、後段も置換しない。"
               },
               {
                 "stage": 2,
@@ -1331,7 +1332,7 @@
               {
                 "stage": 8,
                 "name": "canonical_return",
-                "rule": "各parse済rowのprimary atom/gapを原順で1件ずつ返す。全raw batch/index/拒否値を保持する。held_out_gapはreturn_and_compatibility.legacy_gap_projectionに従い、原row無しのsource-level template_source_missingだけは元診断を保持し、それ以外はcanonical occurrence listから旧0/1/複数形へ射影する。comparison_result/Q/effectsは独立保持。"
+                "rule": "各parse済rowのprimary atom/gapを原順で1件ずつ返す。全raw batch/index/拒否値を保持する。held_out_gapはreturn_and_compatibility.legacy_gap_projectionに従い、原row無しのsource-level template_source_missingだけは元診断を保持し、それ以外はcanonical occurrence listから旧0/1/複数形へ射影する。comparison_result/Q/effectsは独立保持。 common5memberはshared.commonを全値copyする。旧public6のgapは本段の採用gapをdropして作らずlegacy_public_surface/project_n01_legacyで別射影する。"
               }
             ],
             "binding_state_to_kind": {
@@ -1439,12 +1440,25 @@
         },
         "return_and_compatibility": {
           "canonical_truth": "held_out_occurrence_resultsは実際にparseしたsource rowごとのsource-order canonical atom|gap list。母sourceのraw_utf8不足によるsource-level template_source_missingは原rowが無いためこのlistへ入れず、既存held_out_gapへ保持する。",
-          "legacy_gap_projection": "原source-level template_source_missingがある場合はその既存HeldOutGapをheld_out_gapへ保持する。その他はcanonical occurrence list内のgap variantだけをsource orderで投影し、gap 0件=null、1件=既存単一record、2件以上=既存listとする。raw不足のsource-level診断とparse済rowは当該母sourceで排他的であり、同診断をrow gapへ重ねない。二結果比較/Q/effectsは独立保持する。",
+          "legacy_gap_projection": "原source-level template_source_missingがある場合はその既存HeldOutGapをheld_out_gapへ保持する。その他はcanonical occurrence list内のgap variantだけをsource orderで投影し、gap 0件=null、1件=既存単一record、2件以上=既存listとする。raw不足のsource-level診断とparse済rowは当該母sourceで排他的であり、同診断をrow gapへ重ねない。二結果比較/Q/effectsは独立保持する。 このkeyはtraced8 surface内の旧gap形への互換射影である。旧public6のsource-only gap集合はlegacy_public_surface/project_n01_legacyで別に定義し、traced採用gapから単純dropしない。",
           "zero_one_many": "上記legacy_gap_projectionを一度だけ実施する。",
           "batch_projection": "raw batch全体と未関連indexはheld_out_batch_associationの一か所に保持し、各行のcandidate indicesはそのcarrierを参照する。",
           "batch_absent_or_null": "batch Absent/nullからextraction_result_missingを作るのは、既存source診断が無く、eligible supported source rowであり、expected bindingが構造decodeおよび意味比較の双方で有効な場合だけ。先行source finding、unsupported row、binding Absent/null/wrong-kind/known mismatchでは元findingまたはsource_binding_missing/unknown/conflict/staleを保持し、batch不在由来gapを追加しない。すべての枝でbatch_inputのPresence/raw値、候補index、原span/idを保持する。held_out_source Absent/nullでsource診断もparsed rowも無ければoccurrence list empty/held_out_gap null。母source objectのraw_utf8 absent/null/emptyはsource-level template_source_missingを既存shapeで保持し、occurrence listは空。owner両portは非呼出しとし、owner/binding/candidate不足gapで元source診断を置換しない。raw expected/batchのPresenceと未関連indexは独立に保持する。",
-          "old_callers": "旧callerのraw不在を勝手に補完しない。元source finding/比較結果/全返却を保存し、新logical contextが必要なeligible raw経路では同invocationの独立原operandを供給する。旧L5型/codec追随は未成立である。",
-          "limits": "有限carrier/design範囲。全template対応、実資格、実extractor実行、全域入力保証を意味しない。"
+          "old_callers": "旧public compare_n01の2引数/closed6member/全declared domainとrawQを保持し、shared原診断からlegacy source-only gap viewを返す。旧13wholeは丸ごと保持。new raw consumerと独立owner contextは新private traced8へ明示接続し、旧caller rawへ不足operandを補完しない。formal L5/L8追随は未成立。",
+          "limits": "有限carrier/design範囲。全template対応、実資格、実extractor実行、全域入力保証を意味しない。",
+          "shared_views": {
+            "common_fields": [
+              "comparison_result",
+              "general_determinism_guaranteed",
+              "all_templates_supported",
+              "effects",
+              "unaffected_Q"
+            ],
+            "common_origin": "shared.common全原値。unaffected_QはRawValue全域でopaque copy。",
+            "legacy": "owner_resolution_contract/legacy_public_surface/project_n01_legacyのsource-only gap",
+            "traced": "legacy_gap_projectionのsource-level又はcanonical採用gap。別viewなのでeligible rowでは旧source-only gapと異なり得る。",
+            "no_new_member": "sharedはprivate引数。旧公開6member/new private8memberのどちらへも第9memberを増設しない。"
+          }
         },
         "return_json_schema": {
           "source_mapping": "N01Returnの全closed $defsをこのschemaへ同梱する。CommonRefとEffectFlagsは宣言済み元shapeを保持する。expected bindingだけをrowの厳格型fieldから一度だけ行うinput Presence echo＋typed discriminatorへ移す。",
@@ -1901,25 +1915,7 @@
                   "effects": {
                     "$ref": "#/$defs/EffectFlags"
                   },
-                  "unaffected_Q": {
-                    "type": "object",
-                    "properties": {
-                      "state": {
-                        "type": "string"
-                      },
-                      "value": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      }
-                    },
-                    "required": [
-                      "state",
-                      "value"
-                    ],
-                    "additionalProperties": false
-                  },
+                  "unaffected_Q": true,
                   "held_out_occurrence_results": {
                     "type": "array",
                     "items": {
@@ -2524,10 +2520,10 @@
                 "qualification_call": "{arguments:N01QualificationRequest,returned:N01NativeQualificationPortResult}|{not_called_reason:no_eligible_held_source|source_request_missing|source_unresolved}",
                 "resolution": "N01OwnerSourceResolution|{presence:absent}",
                 "context": "N01ResolvedContext",
-                "n01_arguments": "{packet:N01Arguments.packet,context:N01ResolvedContext}"
+                "n01_arguments": "{packet:N01TracePacket,context:N01ResolvedContext,shared:N01SharedEvaluation}"
               },
               "consumer": "N01を呼ぶ同一論理callerが、L9のsame_invocation_observationへ引数・原返却・constructor値を全値保持する。別のregistry又はcaller外での暗黙保持を仮定しない。",
-              "scope": "公開N01Returnは変更しない。原source/資格決定の生成・適用・引渡しの観測を同一呼出しへ結ぶ。"
+              "scope": "traced private coreの実3引数と原native両端/constructorの保存観測。業務N01TracedReturn8/旧public N01Return6へmemberを追加しない。旧2引数観測のimmutable履歴と区別する。"
             }
           },
           "native_ports": [
@@ -2621,19 +2617,23 @@
             "raw_to_private_conversion": "禁止。raw packetにowner_qualification/state等を追加しても無視/原raw保持の対象であり、private constructorはそれを読む引数を持たない。"
           },
           "pure_comparator": {
-            "signature": "(packet:N01Arguments.packet,context:N01ResolvedContext)->N01Return",
-            "compare": "原source/原資格決定のsubject Ref6/owner/body適用を先に保持し、原source snapshotとraw expected binding/batch claimを別比較する。expectedとbatchが同じforeign値へ変わっても原operandを追従生成しない。",
-            "locality": "eligible supported rowの採用だけに適用する。二結果comparison_result、Q、effects、非選択source、元source findingは独立保持。"
+            "symbol": "compare_n01_with_held_out_trace",
+            "signature": "(packet:N01TracePacket, context:N01ResolvedContext, shared:N01SharedEvaluation)->N01TracedReturn",
+            "compare": "原source診断はshared.sourceを消費するだけ。batch候補発見と原Binding/owner/適用性/atom field/digestの既存traced段階を実行し、canonical結果とraw echoを作る。",
+            "same_call_binding": "同callerはpacket=shared.input_snapshotをそのまま渡し、retained.Qから同contextを構成する。別call shared/手書きstateの再利用を正当化するraw decoder/registry/隠しcacheは置かない。",
+            "return_mapping": "common5memberはshared.common全値、held_out_gapはsource-level又はtraced canonical gaps、残る2memberは原source/batch trace。QもRawValue原値で返し8strict record schemaを受理gateにしない。",
+            "locality": "eligible supported rowの採用だけに適用する。二結果comparison_result、Q、effects、非選択source、元source findingは独立保持。",
+            "shared_consumption": "shared.sourceの原診断を再実行しない。source rowsはordinal/span/rowSHA/element/source finding全値のまま使い、common5memberもshared.commonから全値copy。canonical row stage2以降のみtraced固有に計算。"
           },
           "caller_constructor": {
-            "inputs": "元packet、RetainedContext、既存ownerが原source選択時に持つPresence<N01OwnerSourceRequest>。outer fixture packet Ref又はbatch claimをrequestへaliasしない。",
+            "inputs": "元packet、RetainedContext、既存ownerが原source選択時に持つPresence<N01OwnerSourceRequest>。callerはevaluate_n01_shared(packet,retained)を先に一度呼ぶ。outer fixture packet Ref又はbatch claimをrequestへaliasしない。",
             "branches": [
-              "held sourceなし/解析rowなし/全rowが先行source findingならowner両port非呼出し、resolutionとcontext.held_out_owner_resolutionはAbsent。元source観測と各行findingは保持。",
-              "eligible rowがあるがowner source requestがAbsentならowner両port非呼出し、resolution Absent。純比較はそのrowのsource_binding_missingを保持し、別scopeへ伝播しない。",
+              "shared.sourceにsource-level gap present、rows empty、又は全rowにsource_finding presentならowner両port/adapter非呼出し。resolution/context.held_out_owner_resolutionはAbsent。no_eligible_held_sourceを観測し、元source-level/全row findingを保持。",
+              "shared.sourceのeligible rowがあるがrequest Absentならowner両port/adapter非呼出し、source_request_missingを観測、resolution Absent。traced純比較は当該rowのsource_binding_missingを保持し別row/sourceへ伝播しない。",
               "eligible rowかつrequest供給時はread_n01_owner_source(request)。unresolved返却ならそのstate/observed/basis_refsをresolution.unresolvedへそのまま保存し、qualification_observation=Absent。原record_ref/body未取得のため資格requestを構築せず資格port/adapterは非呼出し。",
               "source返却resolvedの場合だけ原source_ref/record_ref/exact raw_utf8 digestからN01QualificationRequestを構築し、別ownerのread_n01_owner_qualificationへ渡す。元決定not_applicable/revoked/indeterminate/欠落は原recordを保持したunresolved返却へ写す。",
               "resolved-source branchだけresolve_n01_owner_sourceを呼び、原source/原決定/対象owner/bodyの対応とdecision適用を保持。hash一致で否定原決定を肯定へ変えない。",
-              "全branchでmake_n01_resolved_context(retained, resolutionのPresence)を通し、その同じcontextと元packetをcompare_n01へ渡す。"
+              "全branchでmake_n01_resolved_context(retained,resolutionのPresence)を通し、compare_n01_with_held_out_trace(shared.input_snapshot,context,shared)へ実3引数を渡す。原診断/二結果比較をここで再計算しない。旧public compare_n01(packet,RetainedContext)は同shared処理からproject_n01_legacyを返しnative portを呼ばない。"
             ],
             "unresolved_resolution": {
               "kind": "unresolved",
@@ -2645,13 +2645,137 @@
               },
               "basis_refs": "source port原basis_refs"
             },
-            "retention": "同一callerがN01InvocationObservationの全値を保持する。実行前fixtureではnative portの固定引数と合成原返却を明示し、実観測と称さない。raw packetは変更しない。"
+            "retention": "同一callerがN01InvocationObservationの全値を保持する。実行前fixtureではnative portの固定引数と合成原返却を明示し、実観測と称さない。raw packetは変更しない。 N01InvocationObservation.n01_argumentsはこの実3引数全値を保持。旧2引数観測wholeは履歴として残し、新観測wholeと同じと称さない。",
+            "eligibility": "shared.source.rowsのsource_findingがabsentである実rowが1件以上ある場合だけeligible。source-level gap present、rows empty、又は全row finding presentなら非eligible。raw sourceを再parse/再診断しない。"
           },
-          "representation_limit": "新logical projection/constructor契約である。現L5のRetainedContext/関数署名/正式codec/provider/runtimeがこの型を実装済みとはしない。SourceAttributesReturnの5stateは属性比較専用、qualification_provider=unknown/actual_qualification_established=falseの既存境界を保つ。",
+          "representation_limit": "新logical projection/constructor契約である。現L5のRetainedContext/関数署名/正式codec/provider/runtimeがこの型を実装済みとはしない。SourceAttributesReturnの5stateは属性比較専用、qualification_provider=unknown/actual_qualification_established=falseの既存境界を保つ。 旧public6、new private8、shared評価/射影のlogical契約を分離する。Q RawValueは両surfaceで全域保持。正式L5/L8の型/署名/codec/constructor/定義19追随は別の未完対象。",
           "source_rules": [
             "/contracts/3/qualification_rule",
             "/contracts/3/held_out_occurrence_contract/source_binding_and_decode/source_binding_comparison"
-          ]
+          ],
+          "legacy_public_surface": {
+            "symbol": "compare_n01",
+            "signature": "(packet:N01Arguments.packet, context:RetainedContext)->N01Return",
+            "unchanged": "既存2引数/closed6member/旧input domain/RawValue Q全域。旧13wholeを丸ごと保存。",
+            "assembly": [
+              "shared=evaluate_n01_shared(packet,context)",
+              "return project_n01_legacy(shared)"
+            ],
+            "native_calls": "一切しない。元署名が持たないowner request/expected binding/batchを新gateにしない。",
+            "guarantee": "D_legacy（現L5型とmaterial preconditionの全domain）で原definition19と全6memberが同値でなければならない。13素材だけの同値へ縮めない。",
+            "project_n01_legacy": {
+              "symbol": "project_n01_legacy",
+              "visibility": "private pure projection",
+              "signature": "(shared:N01SharedEvaluation)->N01Return（旧L5 closed6member）",
+              "common_field_mapping": {
+                "comparison_result": "clone(shared.common.comparison_result)",
+                "general_determinism_guaranteed": "clone(shared.common.general_determinism_guaranteed)",
+                "all_templates_supported": "clone(shared.common.all_templates_supported)",
+                "effects": "clone(shared.common.effects)",
+                "unaffected_Q": "clone(shared.common.unaffected_Q)"
+              },
+              "held_out_gap": {
+                "source_level": "shared.source.source_level_gapがpresentならそのvalueの全field原値をclone。rowsは空であり架空rowを作らない。",
+                "source_rows": "source-levelがabsentなら、shared.source.rowsを原順で走査しsource_finding.presentのvalueだけを全field clone。binding/applicability/batch/atom由来findingを足さない。",
+                "zero_one_many": "0件=null、1件=そのrecord、2件以上=原行順list。"
+              },
+              "closed_members": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "held_out_gap",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_basis": {
+                "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+                "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+                "sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+                "pointers": [
+                  "/functions/3",
+                  "/finite_reference/definitions/19",
+                  "/finite_reference/definitions/11",
+                  "/types/N01Return",
+                  "/types/RetainedContext"
+                ]
+              },
+              "domain": "旧署名のtyped packet/domainに対する射影。new8 schema又はnew owner/native operandの供給を旧6の受理gateにしない。Qはcommonから全値保持。"
+            }
+          },
+          "shared_evaluation_contract": {
+            "types": {
+              "N01CommonResult": {
+                "kind": "closed private logical record",
+                "fields": {
+                  "comparison_result": "旧N01Return.comparison_resultの原state/value",
+                  "general_determinism_guaranteed": "false（既存値）",
+                  "all_templates_supported": "false（既存値）",
+                  "effects": "既存EffectFlagsの7false",
+                  "unaffected_Q": "RawValue（required member、null/empty/scalar/array/objectを原値保持）"
+                },
+                "origin": "旧definition19の二結果比較とcommon(context)を同callで一度計算。Qの内容は判定に読まない。"
+              },
+              "N01SourceRowObservation": {
+                "kind": "closed private logical record",
+                "fields": {
+                  "source_ordinal": "integer（実parse行の1-based ordinal）",
+                  "source_span": "SourceSpan（実splitlines行span）",
+                  "source_row_sha256": "string（当該原行の終端を含まないexact bytes SHA-256）",
+                  "source_element": "RawValue（元parse行object全値。未知memberをopaqueで保持）",
+                  "source_finding": "Presence<HeldOutGap>（元scope→revision→digest→unsupportedの最初の診断又はAbsent）"
+                },
+                "origin": "既存elements/原bytesと旧definition19 source分岐。body不足で架空rowを生成しない。"
+              },
+              "N01SourceEvaluation": {
+                "kind": "closed private logical record",
+                "fields": {
+                  "source_level_gap": "Presence<HeldOutGap>（S01のraw不足診断だけ。元rowとは排他的）",
+                  "rows": "N01SourceRowObservation[]（原解析順、全原出現保持）"
+                },
+                "origin": "source_level_gapとrow source_findingを一度だけ作る。legacyとtracedはこの原診断を再計算しない。"
+              },
+              "N01SharedEvaluation": {
+                "kind": "closed private logical record",
+                "fields": {
+                  "input_snapshot": "RawValue（このcallの元packet全値のimmutable snapshot）",
+                  "common": "N01CommonResult",
+                  "source": "N01SourceEvaluation"
+                },
+                "producer": "evaluate_n01_sharedだけが元packet/RetainedContextから生成する。raw JSONのstate/同名memberをdecodeして生成しない。",
+                "visibility": "private typed logical resultであり新public返却member/外部codec payloadではない。"
+              }
+            },
+            "signature": "(packet:N01LegacyPacket|N01TracePacket, retained:RetainedContext)->N01SharedEvaluation",
+            "source_steps": [
+              {
+                "order": 0,
+                "rule": "legacyは既存N01Arguments型とcheck_template_domain preconditionを保持。traceは既存基本のraw consumer境界を使う。source型外の未定義域をtyped成功castで拡大しない。QのJSON全域は判定対象にしない。"
+              },
+              {
+                "order": 1,
+                "rule": "元packet全値を一回snapshotし、retained.unaffected_Qを原値保持。default/false/null/emptyへの補完はしない。"
+              },
+              {
+                "order": 2,
+                "rule": "原definition19前半を同順で計算: 独立性条件→二結果数→run identity→元frame/template revision→原template bytes digest→各input/content digest→二semantic digest。state_of/aggregateの意味と7false/effects/Qを保持。"
+              },
+              {
+                "order": 3,
+                "rule": "held source absent/nullはno source、source-level gap Absent/rows empty。raw null/emptyはS01 source-level gap Present/rows empty。非空rawは既存elements/splitlines/domainに従い全原行/row bytes/span/ordinalを保持。原sourceを補修しない。"
+              },
+              {
+                "order": 4,
+                "rule": "各実rowについて旧definition19のscope→revision不足/TBD→raw bytes digest→unsupportedの最初の診断だけを一回source_findingへ保存。kindがsupportedならsource_finding Absent。owner/binding/atom判定をこのsource-only診断へ混ぜない。"
+              }
+            ],
+            "producer": "same-call evaluate_n01_shared。raw packet/claim labelをdecodeして生成しない。",
+            "aliases": {
+              "N01LegacyPacket": "現L5 /types/N01Arguments/fields/packet/type。元material domain preconditionを保持。",
+              "N01TracePacket": "本基本raw consumerのpacket。shared source処理の未具体化domainを拡張するaliasではない。",
+              "N01TracedReturn": "本基本 /closed_types/N01Return の8member型。旧L5 N01Return6とは別surface。",
+              "RawValue": "JSON解析済み全値。null/empty/scalar/array/objectを含む。Qはcloneでopaque保持。"
+            }
+          }
         },
         "legacy_basis": [
           {
@@ -2670,7 +2794,25 @@
             "pointer": "/legacy_comparison/3",
             "meaning": "provenance不足、非決定性、旧版、空/TBD、未対応、重複の原失敗を保持。"
           }
-        ]
+        ],
+        "shared_projection_derivation": {
+          "classification": "既存意味の技術再導出候補。上流要求/owner資格/追加gateは変更しない。",
+          "old_source": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+            "sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+            "pointers": [
+              "/functions/3",
+              "/finite_reference/definitions/19",
+              "/types/RetainedContext",
+              "/types/N01Return"
+            ]
+          },
+          "preserve": "二結果比較順、source診断順/source raw全値、旧6全domain/13whole、Q全JSON、既存29 traced全返却/7partialを保持。",
+          "change": "source所見を一回共有し、source-only/採用gapを別射影。Q record限定をRawValueへ戻し、同call観測を実3引数へ明示。",
+          "reason": "traced採用gapの単純dropはsupported旧domainを変え、8member closed schemaは旧6を受理できずrecordQ schemaは旧RawQ全域を縮めるため。",
+          "failure_consumer": "既存 /contracts/3/failure_returns と現source_rule_pointersを維持。legacy_comparison/旧HIL-FR-47等の原source/failure/consumer参照をそのまま残す。"
+        }
       }
     },
     {
