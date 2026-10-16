@@ -22877,7 +22877,7 @@
       "legacy_controls": "既存6negative及びB02 negativeのlogical typed_mutation_planはその元意味/入力段階を維持。新null/Absent対照は新規有限素材である。"
     },
     "product_execution": "not_executed",
-    "limits": "port logical schema/source/type/inverseの静的検査に限る。F09全体、他6producer、全shape/全mutation、実資格/実provider/codec/resolver、全14義務完成を示さない。 OSObligationMeaningIncoming、OS Field presence、original_project_bindingとconsumer Bindingの分離、原stateからdischargeを生成しない分岐は本10件では未観測である。当該mutantを本期待が識別するとは主張せず、OS供給側pairと032 L5/L8の追随へ残す。",
+    "limits": "port logical schema/source/type/inverseの静的検査に限る。F09全体、他6producer、全shape/全mutation、実資格/実provider/codec/resolver、全14義務完成を示さない。 OSObligationMeaningIncoming、OS Field presence、original_project_bindingとconsumer Bindingの分離、原stateからdischargeを生成しない分岐は本10件では未観測である。当該mutantを本期待が識別するとは主張せず、OS供給側pairと032 L5/L8の追随へ残す。 診断写像の未観測範囲: canonical_ordered_branchesの1・3・4・5のunusable・7・8、origin_ordered_branchesの1・2、claim_intent_protocolのfield_not_applicable・definition_missing_from_receipt・upstream_authority・require_before_supply・labo_evaluatedの各kind。観測済みのcanonical 5の対応source無し/9のresolved、origin 3のsubject又はbinding不一致/4のresolved、project_obligation_dischargeの正負、fill_definitionの正/未解決を、それ以外の分岐の検証済み根拠には用いない。",
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
