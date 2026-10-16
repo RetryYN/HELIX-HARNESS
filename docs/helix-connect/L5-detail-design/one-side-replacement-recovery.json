@@ -5883,36 +5883,6 @@
                         ]
                       }
                     }
-                  },
-                  {
-                    "op": "json_equal",
-                    "left": {
-                      "op": "path_from_value",
-                      "value": {
-                        "op": "var",
-                        "name": "obligation"
-                      },
-                      "path": "/owner"
-                    },
-                    "right": {
-                      "op": "path",
-                      "path": "/original_handoff/owner"
-                    }
-                  },
-                  {
-                    "op": "json_equal",
-                    "left": {
-                      "op": "path_from_value",
-                      "value": {
-                        "op": "var",
-                        "name": "obligation"
-                      },
-                      "path": "/recovery_ref"
-                    },
-                    "right": {
-                      "op": "path",
-                      "path": "/original_handoff/recovery_ref"
-                    }
                   }
                 ]
               }
@@ -6019,36 +5989,6 @@
                           "UNKNOWN"
                         ]
                       }
-                    }
-                  },
-                  {
-                    "op": "json_equal",
-                    "left": {
-                      "op": "path_from_value",
-                      "value": {
-                        "op": "var",
-                        "name": "obligation"
-                      },
-                      "path": "/owner"
-                    },
-                    "right": {
-                      "op": "path",
-                      "path": "/submitted_handoff/owner"
-                    }
-                  },
-                  {
-                    "op": "json_equal",
-                    "left": {
-                      "op": "path_from_value",
-                      "value": {
-                        "op": "var",
-                        "name": "obligation"
-                      },
-                      "path": "/recovery_ref"
-                    },
-                    "right": {
-                      "op": "path",
-                      "path": "/submitted_handoff/recovery_ref"
                     }
                   }
                 ]
@@ -9471,36 +9411,6 @@
                                     ]
                                   }
                                 }
-                              },
-                              {
-                                "op": "json_equal",
-                                "left": {
-                                  "op": "path_from_value",
-                                  "value": {
-                                    "op": "var",
-                                    "name": "obligation"
-                                  },
-                                  "path": "/owner"
-                                },
-                                "right": {
-                                  "op": "path",
-                                  "path": "/original_handoff/owner"
-                                }
-                              },
-                              {
-                                "op": "json_equal",
-                                "left": {
-                                  "op": "path_from_value",
-                                  "value": {
-                                    "op": "var",
-                                    "name": "obligation"
-                                  },
-                                  "path": "/recovery_ref"
-                                },
-                                "right": {
-                                  "op": "path",
-                                  "path": "/original_handoff/recovery_ref"
-                                }
                               }
                             ]
                           }
@@ -9624,36 +9534,6 @@
                                       "UNKNOWN"
                                     ]
                                   }
-                                }
-                              },
-                              {
-                                "op": "json_equal",
-                                "left": {
-                                  "op": "path_from_value",
-                                  "value": {
-                                    "op": "var",
-                                    "name": "obligation"
-                                  },
-                                  "path": "/owner"
-                                },
-                                "right": {
-                                  "op": "path",
-                                  "path": "/submitted_handoff/owner"
-                                }
-                              },
-                              {
-                                "op": "json_equal",
-                                "left": {
-                                  "op": "path_from_value",
-                                  "value": {
-                                    "op": "var",
-                                    "name": "obligation"
-                                  },
-                                  "path": "/recovery_ref"
-                                },
-                                "right": {
-                                  "op": "path",
-                                  "path": "/submitted_handoff/recovery_ref"
                                 }
                               }
                             ]
@@ -10576,7 +10456,7 @@
           }
         }
       },
-      "meaning": "選択時に元unfinished・handoff・resumeと提出値を独立比較し、target/operation bindingと単一contract revision、互換/meaning/permission/expiry/recovery/resume条件を順序付けて照合する。未完の消去やattempt実行を行わない。",
+      "meaning": "選択時に元unfinished・handoff・resumeと提出値を独立比較し、target/operation bindingと単一contract revision、互換/meaning/permission/expiry/recovery/resume条件を順序付けて照合する。handoff.owner/recovery_refはhandoff全体の明示受渡し先、各UnfinishedObligation.owner/recovery_refはidentityごとの未完義務の担当・参照として保持し、役割間の普遍的な等値は要求しない。提出差分は原対提出の内容比較で検出する。未完の消去やattempt実行を行わない。",
       "postconditions": [
         "交換非選択なら診断なし・not_selected_unobserved。選択時はfailure判定ASTの列挙順で発生記録を返し、同じresult/ownerでも値だけで重複除去しない。明示したfield表示は保持するが、unfinished_content/recordの二比較は表示が共通で、全発生元を一意に識別するlocatorではない。",
         "条件不成立ではheld_with_original_unfinishedを返し、candidate追加attemptは0。",
@@ -10760,5 +10640,18 @@
     "F02では元kindとexchange/handoff/resume targetのkind、connection lineage、義務identity/owner/recovery_refと非空/一意を比較する。実HARNESS010/011資格は別の未閉包。",
     "未確認rollback claim・独立receiptを伴わないrolled_back_done観測を保留所見へ結ぶ。実rollback/retry操作を生成しない。",
     "列挙したidentity/reference fieldだけを有限marker集合と比較する。列挙外field/自由語、型外wire、実owner/source資格、実通信・権限は未成立。"
-  ]
+  ],
+  "handoff_role_semantics": {
+    "handoff": {
+      "owner": "当該handoff全体が明示する受渡し先owner。各未完義務のownerと同一であることを推測しない。",
+      "recovery_ref": "当該handoff全体の明示recovery参照。各未完義務のrecovery_refと同一であることを推測しない。"
+    },
+    "unfinished_obligation": {
+      "identity": "handoffで保持される個別未完義務の識別子。空・placeholder・重複を拒否する。",
+      "owner": "当該identityの元の義務owner。handoff全体のownerへ再所有しない。",
+      "recovery_ref": "当該identityの元の義務recovery参照。handoff全体のrecovery_refへ置換しない。"
+    },
+    "source_to_submission": "原handoffと提出handoffの内容比較で個別owner/refを含む変更を検出し、元と提出の値をそれぞれ保持する。実配送・権限・再開資格はこの比較から生成しない。",
+    "basis": "HELIXCONNECT-L2/L3/L4-006-F02の未完義務・明示handoff保持と役割別戻し、および旧PDC/impact CI recoveryの個別義務owner保持を意味再導出。"
+  }
 }

@@ -310,7 +310,7 @@
   "candidate_document_bindings": [
     {
       "path": "docs/helix-connect/L5-detail-design/one-side-replacement-recovery.json",
-      "sha256": "fc0b8aec43a79b6f6d9a86f88f731f1cb5f5f82475475d4dfe116c43c24281e2"
+      "sha256": "f0d989b0ea6504e79cbd7e4df30b0540d9b8d8f09f3e7f07aa201f79e486efa3"
     }
   ],
   "cases": [
@@ -36661,12 +36661,1837 @@
       "expected_sha256": "c3c1778b812e297272c892db1b34e5c7fe830ee08a0e8a998d96b9ba02dae564",
       "execution_state": "not_executed",
       "effect": "none"
+    },
+    {
+      "case_ref": "C006-F02-HETEROGENEOUS-ITEM-OWNERS-REFS-PRESERVED",
+      "function_ref": "HELIXCONNECT-L5-006-F02",
+      "obligation_ref": "HELIXCONNECT-L9-006-F02",
+      "requirement_ref": "HELIXCONNECT-L3-006-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-006-F02",
+      "l4_ref": "HELIXCONNECT-L4-006-F02",
+      "source_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+      "source_revision": "10b6477a82d5af336dfb35a018cb126a270ad8bf",
+      "source_raw_sha256": "de39079d81ae4e1d27d34a9cbc59bce1efd6e770323c77e1dfa0004d67fd512b",
+      "raw_utf8": "{\"claims\":{\"attempt_reset\":false,\"fixed_side_fake_update\":false,\"mixed_old_new_revision\":false,\"unconfirmed_rollback_done\":false},\"original_exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"original_handoff\":{\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"original_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}},\"owner\":\"operation-owner\",\"recovery_ref\":\"COMMON-RECOVERY-P@r1\",\"rollback_state\":\"not_observed\"},\"original_kind\":\"SOURCE-MECHANISM\",\"original_resume\":{\"active_contract_revision\":\"connection-r3\",\"compatibility_state\":\"stale\",\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"expiry_state\":\"valid_in_fixture_only\",\"meaning_state\":\"preserved_in_fixture_only\",\"operation_target\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"},\"permission_state\":\"valid_in_fixture_only\",\"recovery_state\":\"handoff_recorded_in_fixture_only\",\"resume_state\":\"not_established\"},\"original_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}},\"replacement_selected\":true,\"submitted_handoff\":{\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"original_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}},\"owner\":\"operation-owner\",\"recovery_ref\":\"COMMON-RECOVERY-P@r1\",\"rollback_state\":\"not_observed\"},\"submitted_requested_attempts\":0,\"submitted_resume\":{\"active_contract_revision\":\"connection-r3\",\"compatibility_state\":\"stale\",\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"expiry_state\":\"valid_in_fixture_only\",\"meaning_state\":\"preserved_in_fixture_only\",\"operation_target\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"},\"permission_state\":\"valid_in_fixture_only\",\"recovery_state\":\"handoff_recorded_in_fixture_only\",\"resume_state\":\"not_established\"},\"submitted_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}}}",
+      "raw_sha256": "59de41a529830c95bcedbc319fa5fdaeeb039355a31b129910185e5e77fdc7a6",
+      "input_derivation": {
+        "source_raw_sha256": "de39079d81ae4e1d27d34a9cbc59bce1efd6e770323c77e1dfa0004d67fd512b",
+        "source_path": "docs/helix-connect/L9-integration-verification/one-side-replacement-recovery.json",
+        "source_revision": "10b6477a82d5af336dfb35a018cb126a270ad8bf",
+        "operation": "固定source packetを複製し、対応する四つの義務配列だけを事前固定した二項目のsource集合へ置き換える。負例は指定した一fieldだけを変更する。",
+        "changed_input_field": "HETEROGENEOUS-ITEM-OWNERS-AND-REFS-PRESERVED"
+      },
+      "typed_arguments": {
+        "packet": {
+          "claims": {
+            "attempt_reset": false,
+            "fixed_side_fake_update": false,
+            "mixed_old_new_revision": false,
+            "unconfirmed_rollback_done": false
+          },
+          "original_exchange_target": {
+            "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+            "connection_contract_revision": "connection-r3",
+            "connection_identity": "CONNECTION-P",
+            "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+            "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+            "kind": "SOURCE-MECHANISM",
+            "new_revision": "source-mechanism-r2",
+            "old_revision": "source-mechanism-r1",
+            "scope": "PRODUCT-P/replacement"
+          },
+          "original_handoff": {
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "original_unfinished": {
+              "ack_state": "unknown",
+              "cumulative_attempts": 2,
+              "obligations": [
+                {
+                  "identity": "OBLIGATION-SENDER",
+                  "owner": "sender-domain-owner",
+                  "recovery_ref": "SENDER-RECEIPT-17@r1"
+                },
+                {
+                  "identity": "OBLIGATION-RECEIVER",
+                  "owner": "receiver-domain-owner",
+                  "recovery_ref": "RECEIVER-CASE-09@r1"
+                }
+              ],
+              "old_contract_revision": "connection-r2",
+              "operation": {
+                "connection_identity": "CONNECTION-P",
+                "content_digest": "CONTENT-P-digest",
+                "correlation": "CORRELATION-P",
+                "expiry_ref": "EXPIRY-P@r1",
+                "idempotency": "KEY-P",
+                "operation_identity": "UNFINISHED-OP-P",
+                "permission_ref": "PERMIT-P@r1",
+                "scope": "PRODUCT-P/query"
+              }
+            },
+            "owner": "operation-owner",
+            "recovery_ref": "COMMON-RECOVERY-P@r1",
+            "rollback_state": "not_observed"
+          },
+          "original_kind": "SOURCE-MECHANISM",
+          "original_resume": {
+            "active_contract_revision": "connection-r3",
+            "compatibility_state": "stale",
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "expiry_state": "valid_in_fixture_only",
+            "meaning_state": "preserved_in_fixture_only",
+            "operation_target": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            },
+            "permission_state": "valid_in_fixture_only",
+            "recovery_state": "handoff_recorded_in_fixture_only",
+            "resume_state": "not_established"
+          },
+          "original_unfinished": {
+            "ack_state": "unknown",
+            "cumulative_attempts": 2,
+            "obligations": [
+              {
+                "identity": "OBLIGATION-SENDER",
+                "owner": "sender-domain-owner",
+                "recovery_ref": "SENDER-RECEIPT-17@r1"
+              },
+              {
+                "identity": "OBLIGATION-RECEIVER",
+                "owner": "receiver-domain-owner",
+                "recovery_ref": "RECEIVER-CASE-09@r1"
+              }
+            ],
+            "old_contract_revision": "connection-r2",
+            "operation": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          "replacement_selected": true,
+          "submitted_handoff": {
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "original_unfinished": {
+              "ack_state": "unknown",
+              "cumulative_attempts": 2,
+              "obligations": [
+                {
+                  "identity": "OBLIGATION-SENDER",
+                  "owner": "sender-domain-owner",
+                  "recovery_ref": "SENDER-RECEIPT-17@r1"
+                },
+                {
+                  "identity": "OBLIGATION-RECEIVER",
+                  "owner": "receiver-domain-owner",
+                  "recovery_ref": "RECEIVER-CASE-09@r1"
+                }
+              ],
+              "old_contract_revision": "connection-r2",
+              "operation": {
+                "connection_identity": "CONNECTION-P",
+                "content_digest": "CONTENT-P-digest",
+                "correlation": "CORRELATION-P",
+                "expiry_ref": "EXPIRY-P@r1",
+                "idempotency": "KEY-P",
+                "operation_identity": "UNFINISHED-OP-P",
+                "permission_ref": "PERMIT-P@r1",
+                "scope": "PRODUCT-P/query"
+              }
+            },
+            "owner": "operation-owner",
+            "recovery_ref": "COMMON-RECOVERY-P@r1",
+            "rollback_state": "not_observed"
+          },
+          "submitted_requested_attempts": 0,
+          "submitted_resume": {
+            "active_contract_revision": "connection-r3",
+            "compatibility_state": "stale",
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "expiry_state": "valid_in_fixture_only",
+            "meaning_state": "preserved_in_fixture_only",
+            "operation_target": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            },
+            "permission_state": "valid_in_fixture_only",
+            "recovery_state": "handoff_recorded_in_fixture_only",
+            "resume_state": "not_established"
+          },
+          "submitted_unfinished": {
+            "ack_state": "unknown",
+            "cumulative_attempts": 2,
+            "obligations": [
+              {
+                "identity": "OBLIGATION-SENDER",
+                "owner": "sender-domain-owner",
+                "recovery_ref": "SENDER-RECEIPT-17@r1"
+              },
+              {
+                "identity": "OBLIGATION-RECEIVER",
+                "owner": "receiver-domain-owner",
+                "recovery_ref": "RECEIVER-CASE-09@r1"
+              }
+            ],
+            "old_contract_revision": "connection-r2",
+            "operation": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        }
+      },
+      "expected_source_pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+      "expected_material": {
+        "unfinished_content_result": "content_corresponding_in_fixture",
+        "handoff_content_result": "content_corresponding_in_fixture",
+        "resume_content_result": "content_corresponding_in_fixture",
+        "handoff_exchange_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "exchange_operation": "content_corresponding_in_fixture",
+          "kind": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "old_revision": "content_corresponding_in_fixture",
+          "new_revision": "content_corresponding_in_fixture",
+          "fixed_side_digest": "content_corresponding_in_fixture",
+          "changed_side_digest": "content_corresponding_in_fixture",
+          "connection_contract_revision": "content_corresponding_in_fixture"
+        },
+        "resume_exchange_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "exchange_operation": "content_corresponding_in_fixture",
+          "kind": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "old_revision": "content_corresponding_in_fixture",
+          "new_revision": "content_corresponding_in_fixture",
+          "fixed_side_digest": "content_corresponding_in_fixture",
+          "changed_side_digest": "content_corresponding_in_fixture",
+          "connection_contract_revision": "content_corresponding_in_fixture"
+        },
+        "resume_operation_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "operation_identity": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "expiry_ref": "content_corresponding_in_fixture",
+          "permission_ref": "content_corresponding_in_fixture",
+          "correlation": "content_corresponding_in_fixture",
+          "idempotency": "content_corresponding_in_fixture",
+          "content_digest": "content_corresponding_in_fixture"
+        },
+        "handoff_unfinished_result": "content_corresponding_in_fixture",
+        "single_revision_result": "content_corresponding_in_fixture",
+        "retained_exchange_target": {
+          "connection_identity": "CONNECTION-P",
+          "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+          "kind": "SOURCE-MECHANISM",
+          "scope": "PRODUCT-P/replacement",
+          "old_revision": "source-mechanism-r1",
+          "new_revision": "source-mechanism-r2",
+          "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+          "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+          "connection_contract_revision": "connection-r3"
+        },
+        "retained_unfinished": {
+          "operation": {
+            "connection_identity": "CONNECTION-P",
+            "operation_identity": "UNFINISHED-OP-P",
+            "scope": "PRODUCT-P/query",
+            "expiry_ref": "EXPIRY-P@r1",
+            "permission_ref": "PERMIT-P@r1",
+            "correlation": "CORRELATION-P",
+            "idempotency": "KEY-P",
+            "content_digest": "CONTENT-P-digest"
+          },
+          "cumulative_attempts": 2,
+          "ack_state": "unknown",
+          "obligations": [
+            {
+              "identity": "OBLIGATION-SENDER",
+              "owner": "sender-domain-owner",
+              "recovery_ref": "SENDER-RECEIPT-17@r1"
+            },
+            {
+              "identity": "OBLIGATION-RECEIVER",
+              "owner": "receiver-domain-owner",
+              "recovery_ref": "RECEIVER-CASE-09@r1"
+            }
+          ],
+          "old_contract_revision": "connection-r2"
+        },
+        "retained_handoff": {
+          "exchange_target": {
+            "connection_identity": "CONNECTION-P",
+            "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+            "kind": "SOURCE-MECHANISM",
+            "scope": "PRODUCT-P/replacement",
+            "old_revision": "source-mechanism-r1",
+            "new_revision": "source-mechanism-r2",
+            "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+            "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+            "connection_contract_revision": "connection-r3"
+          },
+          "original_unfinished": {
+            "operation": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "scope": "PRODUCT-P/query",
+              "expiry_ref": "EXPIRY-P@r1",
+              "permission_ref": "PERMIT-P@r1",
+              "correlation": "CORRELATION-P",
+              "idempotency": "KEY-P",
+              "content_digest": "CONTENT-P-digest"
+            },
+            "cumulative_attempts": 2,
+            "ack_state": "unknown",
+            "obligations": [
+              {
+                "identity": "OBLIGATION-SENDER",
+                "owner": "sender-domain-owner",
+                "recovery_ref": "SENDER-RECEIPT-17@r1"
+              },
+              {
+                "identity": "OBLIGATION-RECEIVER",
+                "owner": "receiver-domain-owner",
+                "recovery_ref": "RECEIVER-CASE-09@r1"
+              }
+            ],
+            "old_contract_revision": "connection-r2"
+          },
+          "recovery_ref": "COMMON-RECOVERY-P@r1",
+          "owner": "operation-owner",
+          "rollback_state": "not_observed"
+        },
+        "retained_resume": {
+          "exchange_target": {
+            "connection_identity": "CONNECTION-P",
+            "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+            "kind": "SOURCE-MECHANISM",
+            "scope": "PRODUCT-P/replacement",
+            "old_revision": "source-mechanism-r1",
+            "new_revision": "source-mechanism-r2",
+            "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+            "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+            "connection_contract_revision": "connection-r3"
+          },
+          "operation_target": {
+            "connection_identity": "CONNECTION-P",
+            "operation_identity": "UNFINISHED-OP-P",
+            "scope": "PRODUCT-P/query",
+            "expiry_ref": "EXPIRY-P@r1",
+            "permission_ref": "PERMIT-P@r1",
+            "correlation": "CORRELATION-P",
+            "idempotency": "KEY-P",
+            "content_digest": "CONTENT-P-digest"
+          },
+          "active_contract_revision": "connection-r3",
+          "compatibility_state": "stale",
+          "meaning_state": "preserved_in_fixture_only",
+          "permission_state": "valid_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "recovery_state": "handoff_recorded_in_fixture_only",
+          "resume_state": "not_established"
+        },
+        "retained_rollback_state": "not_observed",
+        "candidate_resume_state": "held_with_original_unfinished",
+        "candidate_additional_attempts": 0,
+        "failure_reasons": [
+          {
+            "area": "resume_condition",
+            "field": "compatibility_state",
+            "result": "stale",
+            "return_owner": "adapter-owner"
+          },
+          {
+            "area": "resume_condition",
+            "field": "resume_state",
+            "result": "not_established",
+            "return_owner": "connection-contract-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "adapter-owner",
+          "connection-contract-owner"
+        ],
+        "effects": {
+          "actual_replacement": false,
+          "actual_transmission": false,
+          "actual_retry": false,
+          "actual_rollback": false,
+          "actual_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "actual_attempt_count": 0,
+        "claim_results": {
+          "mixed_old_new_revision": "none",
+          "attempt_reset": "none",
+          "unconfirmed_rollback_done": "none",
+          "fixed_side_fake_update": "none"
+        }
+      },
+      "expected_sha256": "44fb6ac9bdee56937b0d6fcaf58887144ef28a241c7e7f5299fb30694cbfbed2",
+      "independent_expectation_basis": {
+        "existing_whole_result": "L9 concrete caseのexpected_materialを既存L8 F02完全期待と照合した。期待の形成にはevaluator出力を使わない。",
+        "heterogeneous_projection": "四つの入力義務配列の原値をretained_unfinished/retained_handoffへ保持する。個別owner/refとhandoff全体owner/refの違いは、原記録と提出記録の相反ではない。",
+        "submitted_mutation_projection": "原/提出handoffの全record比較はcontent_conflictとなる。L5宣言順にhandoff_content/recordをstale再開所見より先に返し、原値と他の返却memberを保持する。",
+        "unknown_recovery_projection": "原/提出handoffのrecovery_refは同じunknown markerとして保持し、既存stale/未成立の二所見と二つのunresolved_bindingをL5宣言順に返す。candidateは保留、追加attemptと作用は0のまま。",
+        "type_basis": [
+          "F02RawPacket",
+          "Handoff",
+          "UnfinishedOperation",
+          "UnfinishedObligation",
+          "F02Result"
+        ]
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_ref": "C006-F02-SUBMITTED-HANDOFF-OBLIGATION-OWNER-CHANGED",
+      "function_ref": "HELIXCONNECT-L5-006-F02",
+      "obligation_ref": "HELIXCONNECT-L9-006-F02",
+      "requirement_ref": "HELIXCONNECT-L3-006-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-006-F02",
+      "l4_ref": "HELIXCONNECT-L4-006-F02",
+      "source_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+      "source_revision": "10b6477a82d5af336dfb35a018cb126a270ad8bf",
+      "source_raw_sha256": "de39079d81ae4e1d27d34a9cbc59bce1efd6e770323c77e1dfa0004d67fd512b",
+      "raw_utf8": "{\"claims\":{\"attempt_reset\":false,\"fixed_side_fake_update\":false,\"mixed_old_new_revision\":false,\"unconfirmed_rollback_done\":false},\"original_exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"original_handoff\":{\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"original_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}},\"owner\":\"operation-owner\",\"recovery_ref\":\"COMMON-RECOVERY-P@r1\",\"rollback_state\":\"not_observed\"},\"original_kind\":\"SOURCE-MECHANISM\",\"original_resume\":{\"active_contract_revision\":\"connection-r3\",\"compatibility_state\":\"stale\",\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"expiry_state\":\"valid_in_fixture_only\",\"meaning_state\":\"preserved_in_fixture_only\",\"operation_target\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"},\"permission_state\":\"valid_in_fixture_only\",\"recovery_state\":\"handoff_recorded_in_fixture_only\",\"resume_state\":\"not_established\"},\"original_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}},\"replacement_selected\":true,\"submitted_handoff\":{\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"original_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"submitted-owner-drift\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}},\"owner\":\"operation-owner\",\"recovery_ref\":\"COMMON-RECOVERY-P@r1\",\"rollback_state\":\"not_observed\"},\"submitted_requested_attempts\":0,\"submitted_resume\":{\"active_contract_revision\":\"connection-r3\",\"compatibility_state\":\"stale\",\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"expiry_state\":\"valid_in_fixture_only\",\"meaning_state\":\"preserved_in_fixture_only\",\"operation_target\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"},\"permission_state\":\"valid_in_fixture_only\",\"recovery_state\":\"handoff_recorded_in_fixture_only\",\"resume_state\":\"not_established\"},\"submitted_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}}}",
+      "raw_sha256": "c25c71a4868efdd5d5dd6b8993884aff29cec95e0949ded3f974ea0ea6490155",
+      "input_derivation": {
+        "source_raw_sha256": "de39079d81ae4e1d27d34a9cbc59bce1efd6e770323c77e1dfa0004d67fd512b",
+        "source_path": "docs/helix-connect/L9-integration-verification/one-side-replacement-recovery.json",
+        "source_revision": "10b6477a82d5af336dfb35a018cb126a270ad8bf",
+        "operation": "固定source packetを複製し、対応する四つの義務配列だけを事前固定した二項目のsource集合へ置き換える。負例は指定した一fieldだけを変更する。",
+        "changed_input_field": "SUBMITTED-OBLIGATION-OWNER-ONLY-DRIFT"
+      },
+      "typed_arguments": {
+        "packet": {
+          "claims": {
+            "attempt_reset": false,
+            "fixed_side_fake_update": false,
+            "mixed_old_new_revision": false,
+            "unconfirmed_rollback_done": false
+          },
+          "original_exchange_target": {
+            "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+            "connection_contract_revision": "connection-r3",
+            "connection_identity": "CONNECTION-P",
+            "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+            "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+            "kind": "SOURCE-MECHANISM",
+            "new_revision": "source-mechanism-r2",
+            "old_revision": "source-mechanism-r1",
+            "scope": "PRODUCT-P/replacement"
+          },
+          "original_handoff": {
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "original_unfinished": {
+              "ack_state": "unknown",
+              "cumulative_attempts": 2,
+              "obligations": [
+                {
+                  "identity": "OBLIGATION-SENDER",
+                  "owner": "sender-domain-owner",
+                  "recovery_ref": "SENDER-RECEIPT-17@r1"
+                },
+                {
+                  "identity": "OBLIGATION-RECEIVER",
+                  "owner": "receiver-domain-owner",
+                  "recovery_ref": "RECEIVER-CASE-09@r1"
+                }
+              ],
+              "old_contract_revision": "connection-r2",
+              "operation": {
+                "connection_identity": "CONNECTION-P",
+                "content_digest": "CONTENT-P-digest",
+                "correlation": "CORRELATION-P",
+                "expiry_ref": "EXPIRY-P@r1",
+                "idempotency": "KEY-P",
+                "operation_identity": "UNFINISHED-OP-P",
+                "permission_ref": "PERMIT-P@r1",
+                "scope": "PRODUCT-P/query"
+              }
+            },
+            "owner": "operation-owner",
+            "recovery_ref": "COMMON-RECOVERY-P@r1",
+            "rollback_state": "not_observed"
+          },
+          "original_kind": "SOURCE-MECHANISM",
+          "original_resume": {
+            "active_contract_revision": "connection-r3",
+            "compatibility_state": "stale",
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "expiry_state": "valid_in_fixture_only",
+            "meaning_state": "preserved_in_fixture_only",
+            "operation_target": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            },
+            "permission_state": "valid_in_fixture_only",
+            "recovery_state": "handoff_recorded_in_fixture_only",
+            "resume_state": "not_established"
+          },
+          "original_unfinished": {
+            "ack_state": "unknown",
+            "cumulative_attempts": 2,
+            "obligations": [
+              {
+                "identity": "OBLIGATION-SENDER",
+                "owner": "sender-domain-owner",
+                "recovery_ref": "SENDER-RECEIPT-17@r1"
+              },
+              {
+                "identity": "OBLIGATION-RECEIVER",
+                "owner": "receiver-domain-owner",
+                "recovery_ref": "RECEIVER-CASE-09@r1"
+              }
+            ],
+            "old_contract_revision": "connection-r2",
+            "operation": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          "replacement_selected": true,
+          "submitted_handoff": {
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "original_unfinished": {
+              "ack_state": "unknown",
+              "cumulative_attempts": 2,
+              "obligations": [
+                {
+                  "identity": "OBLIGATION-SENDER",
+                  "owner": "submitted-owner-drift",
+                  "recovery_ref": "SENDER-RECEIPT-17@r1"
+                },
+                {
+                  "identity": "OBLIGATION-RECEIVER",
+                  "owner": "receiver-domain-owner",
+                  "recovery_ref": "RECEIVER-CASE-09@r1"
+                }
+              ],
+              "old_contract_revision": "connection-r2",
+              "operation": {
+                "connection_identity": "CONNECTION-P",
+                "content_digest": "CONTENT-P-digest",
+                "correlation": "CORRELATION-P",
+                "expiry_ref": "EXPIRY-P@r1",
+                "idempotency": "KEY-P",
+                "operation_identity": "UNFINISHED-OP-P",
+                "permission_ref": "PERMIT-P@r1",
+                "scope": "PRODUCT-P/query"
+              }
+            },
+            "owner": "operation-owner",
+            "recovery_ref": "COMMON-RECOVERY-P@r1",
+            "rollback_state": "not_observed"
+          },
+          "submitted_requested_attempts": 0,
+          "submitted_resume": {
+            "active_contract_revision": "connection-r3",
+            "compatibility_state": "stale",
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "expiry_state": "valid_in_fixture_only",
+            "meaning_state": "preserved_in_fixture_only",
+            "operation_target": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            },
+            "permission_state": "valid_in_fixture_only",
+            "recovery_state": "handoff_recorded_in_fixture_only",
+            "resume_state": "not_established"
+          },
+          "submitted_unfinished": {
+            "ack_state": "unknown",
+            "cumulative_attempts": 2,
+            "obligations": [
+              {
+                "identity": "OBLIGATION-SENDER",
+                "owner": "sender-domain-owner",
+                "recovery_ref": "SENDER-RECEIPT-17@r1"
+              },
+              {
+                "identity": "OBLIGATION-RECEIVER",
+                "owner": "receiver-domain-owner",
+                "recovery_ref": "RECEIVER-CASE-09@r1"
+              }
+            ],
+            "old_contract_revision": "connection-r2",
+            "operation": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        }
+      },
+      "expected_source_pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+      "expected_material": {
+        "unfinished_content_result": "content_corresponding_in_fixture",
+        "handoff_content_result": "content_conflict",
+        "resume_content_result": "content_corresponding_in_fixture",
+        "handoff_exchange_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "exchange_operation": "content_corresponding_in_fixture",
+          "kind": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "old_revision": "content_corresponding_in_fixture",
+          "new_revision": "content_corresponding_in_fixture",
+          "fixed_side_digest": "content_corresponding_in_fixture",
+          "changed_side_digest": "content_corresponding_in_fixture",
+          "connection_contract_revision": "content_corresponding_in_fixture"
+        },
+        "resume_exchange_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "exchange_operation": "content_corresponding_in_fixture",
+          "kind": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "old_revision": "content_corresponding_in_fixture",
+          "new_revision": "content_corresponding_in_fixture",
+          "fixed_side_digest": "content_corresponding_in_fixture",
+          "changed_side_digest": "content_corresponding_in_fixture",
+          "connection_contract_revision": "content_corresponding_in_fixture"
+        },
+        "resume_operation_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "operation_identity": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "expiry_ref": "content_corresponding_in_fixture",
+          "permission_ref": "content_corresponding_in_fixture",
+          "correlation": "content_corresponding_in_fixture",
+          "idempotency": "content_corresponding_in_fixture",
+          "content_digest": "content_corresponding_in_fixture"
+        },
+        "handoff_unfinished_result": "content_corresponding_in_fixture",
+        "single_revision_result": "content_corresponding_in_fixture",
+        "retained_exchange_target": {
+          "connection_identity": "CONNECTION-P",
+          "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+          "kind": "SOURCE-MECHANISM",
+          "scope": "PRODUCT-P/replacement",
+          "old_revision": "source-mechanism-r1",
+          "new_revision": "source-mechanism-r2",
+          "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+          "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+          "connection_contract_revision": "connection-r3"
+        },
+        "retained_unfinished": {
+          "operation": {
+            "connection_identity": "CONNECTION-P",
+            "operation_identity": "UNFINISHED-OP-P",
+            "scope": "PRODUCT-P/query",
+            "expiry_ref": "EXPIRY-P@r1",
+            "permission_ref": "PERMIT-P@r1",
+            "correlation": "CORRELATION-P",
+            "idempotency": "KEY-P",
+            "content_digest": "CONTENT-P-digest"
+          },
+          "cumulative_attempts": 2,
+          "ack_state": "unknown",
+          "obligations": [
+            {
+              "identity": "OBLIGATION-SENDER",
+              "owner": "sender-domain-owner",
+              "recovery_ref": "SENDER-RECEIPT-17@r1"
+            },
+            {
+              "identity": "OBLIGATION-RECEIVER",
+              "owner": "receiver-domain-owner",
+              "recovery_ref": "RECEIVER-CASE-09@r1"
+            }
+          ],
+          "old_contract_revision": "connection-r2"
+        },
+        "retained_handoff": {
+          "exchange_target": {
+            "connection_identity": "CONNECTION-P",
+            "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+            "kind": "SOURCE-MECHANISM",
+            "scope": "PRODUCT-P/replacement",
+            "old_revision": "source-mechanism-r1",
+            "new_revision": "source-mechanism-r2",
+            "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+            "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+            "connection_contract_revision": "connection-r3"
+          },
+          "original_unfinished": {
+            "operation": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "scope": "PRODUCT-P/query",
+              "expiry_ref": "EXPIRY-P@r1",
+              "permission_ref": "PERMIT-P@r1",
+              "correlation": "CORRELATION-P",
+              "idempotency": "KEY-P",
+              "content_digest": "CONTENT-P-digest"
+            },
+            "cumulative_attempts": 2,
+            "ack_state": "unknown",
+            "obligations": [
+              {
+                "identity": "OBLIGATION-SENDER",
+                "owner": "sender-domain-owner",
+                "recovery_ref": "SENDER-RECEIPT-17@r1"
+              },
+              {
+                "identity": "OBLIGATION-RECEIVER",
+                "owner": "receiver-domain-owner",
+                "recovery_ref": "RECEIVER-CASE-09@r1"
+              }
+            ],
+            "old_contract_revision": "connection-r2"
+          },
+          "recovery_ref": "COMMON-RECOVERY-P@r1",
+          "owner": "operation-owner",
+          "rollback_state": "not_observed"
+        },
+        "retained_resume": {
+          "exchange_target": {
+            "connection_identity": "CONNECTION-P",
+            "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+            "kind": "SOURCE-MECHANISM",
+            "scope": "PRODUCT-P/replacement",
+            "old_revision": "source-mechanism-r1",
+            "new_revision": "source-mechanism-r2",
+            "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+            "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+            "connection_contract_revision": "connection-r3"
+          },
+          "operation_target": {
+            "connection_identity": "CONNECTION-P",
+            "operation_identity": "UNFINISHED-OP-P",
+            "scope": "PRODUCT-P/query",
+            "expiry_ref": "EXPIRY-P@r1",
+            "permission_ref": "PERMIT-P@r1",
+            "correlation": "CORRELATION-P",
+            "idempotency": "KEY-P",
+            "content_digest": "CONTENT-P-digest"
+          },
+          "active_contract_revision": "connection-r3",
+          "compatibility_state": "stale",
+          "meaning_state": "preserved_in_fixture_only",
+          "permission_state": "valid_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "recovery_state": "handoff_recorded_in_fixture_only",
+          "resume_state": "not_established"
+        },
+        "retained_rollback_state": "not_observed",
+        "candidate_resume_state": "held_with_original_unfinished",
+        "candidate_additional_attempts": 0,
+        "failure_reasons": [
+          {
+            "area": "handoff_content",
+            "field": "record",
+            "result": "content_conflict",
+            "return_owner": "operation-owner"
+          },
+          {
+            "area": "resume_condition",
+            "field": "compatibility_state",
+            "result": "stale",
+            "return_owner": "adapter-owner"
+          },
+          {
+            "area": "resume_condition",
+            "field": "resume_state",
+            "result": "not_established",
+            "return_owner": "connection-contract-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "adapter-owner",
+          "connection-contract-owner",
+          "operation-owner"
+        ],
+        "effects": {
+          "actual_replacement": false,
+          "actual_transmission": false,
+          "actual_retry": false,
+          "actual_rollback": false,
+          "actual_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "actual_attempt_count": 0,
+        "claim_results": {
+          "mixed_old_new_revision": "none",
+          "attempt_reset": "none",
+          "unconfirmed_rollback_done": "none",
+          "fixed_side_fake_update": "none"
+        }
+      },
+      "expected_sha256": "24740515581700cf950ca9cb308eba344ad86f61bcf777bcd6bf30e2a8396910",
+      "independent_expectation_basis": {
+        "existing_whole_result": "L9 concrete caseのexpected_materialを既存L8 F02完全期待と照合した。期待の形成にはevaluator出力を使わない。",
+        "heterogeneous_projection": "四つの入力義務配列の原値をretained_unfinished/retained_handoffへ保持する。個別owner/refとhandoff全体owner/refの違いは、原記録と提出記録の相反ではない。",
+        "submitted_mutation_projection": "原/提出handoffの全record比較はcontent_conflictとなる。L5宣言順にhandoff_content/recordをstale再開所見より先に返し、原値と他の返却memberを保持する。",
+        "unknown_recovery_projection": "原/提出handoffのrecovery_refは同じunknown markerとして保持し、既存stale/未成立の二所見と二つのunresolved_bindingをL5宣言順に返す。candidateは保留、追加attemptと作用は0のまま。",
+        "type_basis": [
+          "F02RawPacket",
+          "Handoff",
+          "UnfinishedOperation",
+          "UnfinishedObligation",
+          "F02Result"
+        ]
+      },
+      "execution_state": "not_executed",
+      "effect": "none",
+      "expectation_correction_ref": "scaffold/review-handoff/local/connect006-handoff-role-preservation/expectation-correction-001.json"
+    },
+    {
+      "case_ref": "C006-F02-SUBMITTED-HANDOFF-OBLIGATION-RECOVERY-REF-CHANGED",
+      "function_ref": "HELIXCONNECT-L5-006-F02",
+      "obligation_ref": "HELIXCONNECT-L9-006-F02",
+      "requirement_ref": "HELIXCONNECT-L3-006-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-006-F02",
+      "l4_ref": "HELIXCONNECT-L4-006-F02",
+      "source_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+      "source_revision": "10b6477a82d5af336dfb35a018cb126a270ad8bf",
+      "source_raw_sha256": "de39079d81ae4e1d27d34a9cbc59bce1efd6e770323c77e1dfa0004d67fd512b",
+      "raw_utf8": "{\"claims\":{\"attempt_reset\":false,\"fixed_side_fake_update\":false,\"mixed_old_new_revision\":false,\"unconfirmed_rollback_done\":false},\"original_exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"original_handoff\":{\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"original_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}},\"owner\":\"operation-owner\",\"recovery_ref\":\"COMMON-RECOVERY-P@r1\",\"rollback_state\":\"not_observed\"},\"original_kind\":\"SOURCE-MECHANISM\",\"original_resume\":{\"active_contract_revision\":\"connection-r3\",\"compatibility_state\":\"stale\",\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"expiry_state\":\"valid_in_fixture_only\",\"meaning_state\":\"preserved_in_fixture_only\",\"operation_target\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"},\"permission_state\":\"valid_in_fixture_only\",\"recovery_state\":\"handoff_recorded_in_fixture_only\",\"resume_state\":\"not_established\"},\"original_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}},\"replacement_selected\":true,\"submitted_handoff\":{\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"original_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SUBMITTED-RECEIPT-DRIFT@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}},\"owner\":\"operation-owner\",\"recovery_ref\":\"COMMON-RECOVERY-P@r1\",\"rollback_state\":\"not_observed\"},\"submitted_requested_attempts\":0,\"submitted_resume\":{\"active_contract_revision\":\"connection-r3\",\"compatibility_state\":\"stale\",\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"expiry_state\":\"valid_in_fixture_only\",\"meaning_state\":\"preserved_in_fixture_only\",\"operation_target\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"},\"permission_state\":\"valid_in_fixture_only\",\"recovery_state\":\"handoff_recorded_in_fixture_only\",\"resume_state\":\"not_established\"},\"submitted_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}}}",
+      "raw_sha256": "a386c912888a63ceb5cc9c6d9eb0aa39a3effa00229054e4f383c20b948ff484",
+      "input_derivation": {
+        "source_raw_sha256": "de39079d81ae4e1d27d34a9cbc59bce1efd6e770323c77e1dfa0004d67fd512b",
+        "source_path": "docs/helix-connect/L9-integration-verification/one-side-replacement-recovery.json",
+        "source_revision": "10b6477a82d5af336dfb35a018cb126a270ad8bf",
+        "operation": "固定source packetを複製し、対応する四つの義務配列だけを事前固定した二項目のsource集合へ置き換える。負例は指定した一fieldだけを変更する。",
+        "changed_input_field": "SUBMITTED-OBLIGATION-RECOVERY-REF-ONLY-DRIFT"
+      },
+      "typed_arguments": {
+        "packet": {
+          "claims": {
+            "attempt_reset": false,
+            "fixed_side_fake_update": false,
+            "mixed_old_new_revision": false,
+            "unconfirmed_rollback_done": false
+          },
+          "original_exchange_target": {
+            "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+            "connection_contract_revision": "connection-r3",
+            "connection_identity": "CONNECTION-P",
+            "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+            "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+            "kind": "SOURCE-MECHANISM",
+            "new_revision": "source-mechanism-r2",
+            "old_revision": "source-mechanism-r1",
+            "scope": "PRODUCT-P/replacement"
+          },
+          "original_handoff": {
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "original_unfinished": {
+              "ack_state": "unknown",
+              "cumulative_attempts": 2,
+              "obligations": [
+                {
+                  "identity": "OBLIGATION-SENDER",
+                  "owner": "sender-domain-owner",
+                  "recovery_ref": "SENDER-RECEIPT-17@r1"
+                },
+                {
+                  "identity": "OBLIGATION-RECEIVER",
+                  "owner": "receiver-domain-owner",
+                  "recovery_ref": "RECEIVER-CASE-09@r1"
+                }
+              ],
+              "old_contract_revision": "connection-r2",
+              "operation": {
+                "connection_identity": "CONNECTION-P",
+                "content_digest": "CONTENT-P-digest",
+                "correlation": "CORRELATION-P",
+                "expiry_ref": "EXPIRY-P@r1",
+                "idempotency": "KEY-P",
+                "operation_identity": "UNFINISHED-OP-P",
+                "permission_ref": "PERMIT-P@r1",
+                "scope": "PRODUCT-P/query"
+              }
+            },
+            "owner": "operation-owner",
+            "recovery_ref": "COMMON-RECOVERY-P@r1",
+            "rollback_state": "not_observed"
+          },
+          "original_kind": "SOURCE-MECHANISM",
+          "original_resume": {
+            "active_contract_revision": "connection-r3",
+            "compatibility_state": "stale",
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "expiry_state": "valid_in_fixture_only",
+            "meaning_state": "preserved_in_fixture_only",
+            "operation_target": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            },
+            "permission_state": "valid_in_fixture_only",
+            "recovery_state": "handoff_recorded_in_fixture_only",
+            "resume_state": "not_established"
+          },
+          "original_unfinished": {
+            "ack_state": "unknown",
+            "cumulative_attempts": 2,
+            "obligations": [
+              {
+                "identity": "OBLIGATION-SENDER",
+                "owner": "sender-domain-owner",
+                "recovery_ref": "SENDER-RECEIPT-17@r1"
+              },
+              {
+                "identity": "OBLIGATION-RECEIVER",
+                "owner": "receiver-domain-owner",
+                "recovery_ref": "RECEIVER-CASE-09@r1"
+              }
+            ],
+            "old_contract_revision": "connection-r2",
+            "operation": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          "replacement_selected": true,
+          "submitted_handoff": {
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "original_unfinished": {
+              "ack_state": "unknown",
+              "cumulative_attempts": 2,
+              "obligations": [
+                {
+                  "identity": "OBLIGATION-SENDER",
+                  "owner": "sender-domain-owner",
+                  "recovery_ref": "SUBMITTED-RECEIPT-DRIFT@r1"
+                },
+                {
+                  "identity": "OBLIGATION-RECEIVER",
+                  "owner": "receiver-domain-owner",
+                  "recovery_ref": "RECEIVER-CASE-09@r1"
+                }
+              ],
+              "old_contract_revision": "connection-r2",
+              "operation": {
+                "connection_identity": "CONNECTION-P",
+                "content_digest": "CONTENT-P-digest",
+                "correlation": "CORRELATION-P",
+                "expiry_ref": "EXPIRY-P@r1",
+                "idempotency": "KEY-P",
+                "operation_identity": "UNFINISHED-OP-P",
+                "permission_ref": "PERMIT-P@r1",
+                "scope": "PRODUCT-P/query"
+              }
+            },
+            "owner": "operation-owner",
+            "recovery_ref": "COMMON-RECOVERY-P@r1",
+            "rollback_state": "not_observed"
+          },
+          "submitted_requested_attempts": 0,
+          "submitted_resume": {
+            "active_contract_revision": "connection-r3",
+            "compatibility_state": "stale",
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "expiry_state": "valid_in_fixture_only",
+            "meaning_state": "preserved_in_fixture_only",
+            "operation_target": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            },
+            "permission_state": "valid_in_fixture_only",
+            "recovery_state": "handoff_recorded_in_fixture_only",
+            "resume_state": "not_established"
+          },
+          "submitted_unfinished": {
+            "ack_state": "unknown",
+            "cumulative_attempts": 2,
+            "obligations": [
+              {
+                "identity": "OBLIGATION-SENDER",
+                "owner": "sender-domain-owner",
+                "recovery_ref": "SENDER-RECEIPT-17@r1"
+              },
+              {
+                "identity": "OBLIGATION-RECEIVER",
+                "owner": "receiver-domain-owner",
+                "recovery_ref": "RECEIVER-CASE-09@r1"
+              }
+            ],
+            "old_contract_revision": "connection-r2",
+            "operation": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        }
+      },
+      "expected_source_pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+      "expected_material": {
+        "unfinished_content_result": "content_corresponding_in_fixture",
+        "handoff_content_result": "content_conflict",
+        "resume_content_result": "content_corresponding_in_fixture",
+        "handoff_exchange_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "exchange_operation": "content_corresponding_in_fixture",
+          "kind": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "old_revision": "content_corresponding_in_fixture",
+          "new_revision": "content_corresponding_in_fixture",
+          "fixed_side_digest": "content_corresponding_in_fixture",
+          "changed_side_digest": "content_corresponding_in_fixture",
+          "connection_contract_revision": "content_corresponding_in_fixture"
+        },
+        "resume_exchange_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "exchange_operation": "content_corresponding_in_fixture",
+          "kind": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "old_revision": "content_corresponding_in_fixture",
+          "new_revision": "content_corresponding_in_fixture",
+          "fixed_side_digest": "content_corresponding_in_fixture",
+          "changed_side_digest": "content_corresponding_in_fixture",
+          "connection_contract_revision": "content_corresponding_in_fixture"
+        },
+        "resume_operation_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "operation_identity": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "expiry_ref": "content_corresponding_in_fixture",
+          "permission_ref": "content_corresponding_in_fixture",
+          "correlation": "content_corresponding_in_fixture",
+          "idempotency": "content_corresponding_in_fixture",
+          "content_digest": "content_corresponding_in_fixture"
+        },
+        "handoff_unfinished_result": "content_corresponding_in_fixture",
+        "single_revision_result": "content_corresponding_in_fixture",
+        "retained_exchange_target": {
+          "connection_identity": "CONNECTION-P",
+          "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+          "kind": "SOURCE-MECHANISM",
+          "scope": "PRODUCT-P/replacement",
+          "old_revision": "source-mechanism-r1",
+          "new_revision": "source-mechanism-r2",
+          "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+          "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+          "connection_contract_revision": "connection-r3"
+        },
+        "retained_unfinished": {
+          "operation": {
+            "connection_identity": "CONNECTION-P",
+            "operation_identity": "UNFINISHED-OP-P",
+            "scope": "PRODUCT-P/query",
+            "expiry_ref": "EXPIRY-P@r1",
+            "permission_ref": "PERMIT-P@r1",
+            "correlation": "CORRELATION-P",
+            "idempotency": "KEY-P",
+            "content_digest": "CONTENT-P-digest"
+          },
+          "cumulative_attempts": 2,
+          "ack_state": "unknown",
+          "obligations": [
+            {
+              "identity": "OBLIGATION-SENDER",
+              "owner": "sender-domain-owner",
+              "recovery_ref": "SENDER-RECEIPT-17@r1"
+            },
+            {
+              "identity": "OBLIGATION-RECEIVER",
+              "owner": "receiver-domain-owner",
+              "recovery_ref": "RECEIVER-CASE-09@r1"
+            }
+          ],
+          "old_contract_revision": "connection-r2"
+        },
+        "retained_handoff": {
+          "exchange_target": {
+            "connection_identity": "CONNECTION-P",
+            "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+            "kind": "SOURCE-MECHANISM",
+            "scope": "PRODUCT-P/replacement",
+            "old_revision": "source-mechanism-r1",
+            "new_revision": "source-mechanism-r2",
+            "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+            "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+            "connection_contract_revision": "connection-r3"
+          },
+          "original_unfinished": {
+            "operation": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "scope": "PRODUCT-P/query",
+              "expiry_ref": "EXPIRY-P@r1",
+              "permission_ref": "PERMIT-P@r1",
+              "correlation": "CORRELATION-P",
+              "idempotency": "KEY-P",
+              "content_digest": "CONTENT-P-digest"
+            },
+            "cumulative_attempts": 2,
+            "ack_state": "unknown",
+            "obligations": [
+              {
+                "identity": "OBLIGATION-SENDER",
+                "owner": "sender-domain-owner",
+                "recovery_ref": "SENDER-RECEIPT-17@r1"
+              },
+              {
+                "identity": "OBLIGATION-RECEIVER",
+                "owner": "receiver-domain-owner",
+                "recovery_ref": "RECEIVER-CASE-09@r1"
+              }
+            ],
+            "old_contract_revision": "connection-r2"
+          },
+          "recovery_ref": "COMMON-RECOVERY-P@r1",
+          "owner": "operation-owner",
+          "rollback_state": "not_observed"
+        },
+        "retained_resume": {
+          "exchange_target": {
+            "connection_identity": "CONNECTION-P",
+            "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+            "kind": "SOURCE-MECHANISM",
+            "scope": "PRODUCT-P/replacement",
+            "old_revision": "source-mechanism-r1",
+            "new_revision": "source-mechanism-r2",
+            "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+            "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+            "connection_contract_revision": "connection-r3"
+          },
+          "operation_target": {
+            "connection_identity": "CONNECTION-P",
+            "operation_identity": "UNFINISHED-OP-P",
+            "scope": "PRODUCT-P/query",
+            "expiry_ref": "EXPIRY-P@r1",
+            "permission_ref": "PERMIT-P@r1",
+            "correlation": "CORRELATION-P",
+            "idempotency": "KEY-P",
+            "content_digest": "CONTENT-P-digest"
+          },
+          "active_contract_revision": "connection-r3",
+          "compatibility_state": "stale",
+          "meaning_state": "preserved_in_fixture_only",
+          "permission_state": "valid_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "recovery_state": "handoff_recorded_in_fixture_only",
+          "resume_state": "not_established"
+        },
+        "retained_rollback_state": "not_observed",
+        "candidate_resume_state": "held_with_original_unfinished",
+        "candidate_additional_attempts": 0,
+        "failure_reasons": [
+          {
+            "area": "handoff_content",
+            "field": "record",
+            "result": "content_conflict",
+            "return_owner": "operation-owner"
+          },
+          {
+            "area": "resume_condition",
+            "field": "compatibility_state",
+            "result": "stale",
+            "return_owner": "adapter-owner"
+          },
+          {
+            "area": "resume_condition",
+            "field": "resume_state",
+            "result": "not_established",
+            "return_owner": "connection-contract-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "adapter-owner",
+          "connection-contract-owner",
+          "operation-owner"
+        ],
+        "effects": {
+          "actual_replacement": false,
+          "actual_transmission": false,
+          "actual_retry": false,
+          "actual_rollback": false,
+          "actual_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "actual_attempt_count": 0,
+        "claim_results": {
+          "mixed_old_new_revision": "none",
+          "attempt_reset": "none",
+          "unconfirmed_rollback_done": "none",
+          "fixed_side_fake_update": "none"
+        }
+      },
+      "expected_sha256": "24740515581700cf950ca9cb308eba344ad86f61bcf777bcd6bf30e2a8396910",
+      "independent_expectation_basis": {
+        "existing_whole_result": "L9 concrete caseのexpected_materialを既存L8 F02完全期待と照合した。期待の形成にはevaluator出力を使わない。",
+        "heterogeneous_projection": "四つの入力義務配列の原値をretained_unfinished/retained_handoffへ保持する。個別owner/refとhandoff全体owner/refの違いは、原記録と提出記録の相反ではない。",
+        "submitted_mutation_projection": "原/提出handoffの全record比較はcontent_conflictとなる。L5宣言順にhandoff_content/recordをstale再開所見より先に返し、原値と他の返却memberを保持する。",
+        "unknown_recovery_projection": "原/提出handoffのrecovery_refは同じunknown markerとして保持し、既存stale/未成立の二所見と二つのunresolved_bindingをL5宣言順に返す。candidateは保留、追加attemptと作用は0のまま。",
+        "type_basis": [
+          "F02RawPacket",
+          "Handoff",
+          "UnfinishedOperation",
+          "UnfinishedObligation",
+          "F02Result"
+        ]
+      },
+      "execution_state": "not_executed",
+      "effect": "none",
+      "expectation_correction_ref": "scaffold/review-handoff/local/connect006-handoff-role-preservation/expectation-correction-001.json"
+    },
+    {
+      "case_ref": "C006-F02-HANDOFF-RECOVERY-UNKNOWN-STOPS",
+      "function_ref": "HELIXCONNECT-L5-006-F02",
+      "obligation_ref": "HELIXCONNECT-L9-006-F02",
+      "requirement_ref": "HELIXCONNECT-L3-006-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-006-F02",
+      "l4_ref": "HELIXCONNECT-L4-006-F02",
+      "source_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+      "source_revision": "10b6477a82d5af336dfb35a018cb126a270ad8bf",
+      "source_raw_sha256": "de39079d81ae4e1d27d34a9cbc59bce1efd6e770323c77e1dfa0004d67fd512b",
+      "raw_utf8": "{\"claims\":{\"attempt_reset\":false,\"fixed_side_fake_update\":false,\"mixed_old_new_revision\":false,\"unconfirmed_rollback_done\":false},\"original_exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"original_handoff\":{\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"original_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}},\"owner\":\"operation-owner\",\"recovery_ref\":\"unknown\",\"rollback_state\":\"not_observed\"},\"original_kind\":\"SOURCE-MECHANISM\",\"original_resume\":{\"active_contract_revision\":\"connection-r3\",\"compatibility_state\":\"stale\",\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"expiry_state\":\"valid_in_fixture_only\",\"meaning_state\":\"preserved_in_fixture_only\",\"operation_target\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"},\"permission_state\":\"valid_in_fixture_only\",\"recovery_state\":\"handoff_recorded_in_fixture_only\",\"resume_state\":\"not_established\"},\"original_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}},\"replacement_selected\":true,\"submitted_handoff\":{\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"original_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}},\"owner\":\"operation-owner\",\"recovery_ref\":\"unknown\",\"rollback_state\":\"not_observed\"},\"submitted_requested_attempts\":0,\"submitted_resume\":{\"active_contract_revision\":\"connection-r3\",\"compatibility_state\":\"stale\",\"exchange_target\":{\"changed_side_digest\":\"60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4\",\"connection_contract_revision\":\"connection-r3\",\"connection_identity\":\"CONNECTION-P\",\"exchange_operation\":\"EXCHANGE-P-SOURCE-MECHANISM\",\"fixed_side_digest\":\"bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c\",\"kind\":\"SOURCE-MECHANISM\",\"new_revision\":\"source-mechanism-r2\",\"old_revision\":\"source-mechanism-r1\",\"scope\":\"PRODUCT-P/replacement\"},\"expiry_state\":\"valid_in_fixture_only\",\"meaning_state\":\"preserved_in_fixture_only\",\"operation_target\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"},\"permission_state\":\"valid_in_fixture_only\",\"recovery_state\":\"handoff_recorded_in_fixture_only\",\"resume_state\":\"not_established\"},\"submitted_unfinished\":{\"ack_state\":\"unknown\",\"cumulative_attempts\":2,\"obligations\":[{\"identity\":\"OBLIGATION-SENDER\",\"owner\":\"sender-domain-owner\",\"recovery_ref\":\"SENDER-RECEIPT-17@r1\"},{\"identity\":\"OBLIGATION-RECEIVER\",\"owner\":\"receiver-domain-owner\",\"recovery_ref\":\"RECEIVER-CASE-09@r1\"}],\"old_contract_revision\":\"connection-r2\",\"operation\":{\"connection_identity\":\"CONNECTION-P\",\"content_digest\":\"CONTENT-P-digest\",\"correlation\":\"CORRELATION-P\",\"expiry_ref\":\"EXPIRY-P@r1\",\"idempotency\":\"KEY-P\",\"operation_identity\":\"UNFINISHED-OP-P\",\"permission_ref\":\"PERMIT-P@r1\",\"scope\":\"PRODUCT-P/query\"}}}",
+      "raw_sha256": "5b8e11f42f8cd24b5ed36aa5535bcb9855b6b3a9a35e8d3fc0f866252c017f5f",
+      "input_derivation": {
+        "source_raw_sha256": "de39079d81ae4e1d27d34a9cbc59bce1efd6e770323c77e1dfa0004d67fd512b",
+        "source_path": "docs/helix-connect/L9-integration-verification/one-side-replacement-recovery.json",
+        "source_revision": "10b6477a82d5af336dfb35a018cb126a270ad8bf",
+        "operation": "固定source packetを複製し、対応する四つの義務配列だけを事前固定した二項目のsource集合へ置き換える。負例は指定した一fieldだけを変更する。",
+        "changed_input_field": "UNKNOWN-ORIGINAL-AND-SUBMITTED-HANDOFF-RECOVERY"
+      },
+      "typed_arguments": {
+        "packet": {
+          "claims": {
+            "attempt_reset": false,
+            "fixed_side_fake_update": false,
+            "mixed_old_new_revision": false,
+            "unconfirmed_rollback_done": false
+          },
+          "original_exchange_target": {
+            "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+            "connection_contract_revision": "connection-r3",
+            "connection_identity": "CONNECTION-P",
+            "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+            "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+            "kind": "SOURCE-MECHANISM",
+            "new_revision": "source-mechanism-r2",
+            "old_revision": "source-mechanism-r1",
+            "scope": "PRODUCT-P/replacement"
+          },
+          "original_handoff": {
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "original_unfinished": {
+              "ack_state": "unknown",
+              "cumulative_attempts": 2,
+              "obligations": [
+                {
+                  "identity": "OBLIGATION-SENDER",
+                  "owner": "sender-domain-owner",
+                  "recovery_ref": "SENDER-RECEIPT-17@r1"
+                },
+                {
+                  "identity": "OBLIGATION-RECEIVER",
+                  "owner": "receiver-domain-owner",
+                  "recovery_ref": "RECEIVER-CASE-09@r1"
+                }
+              ],
+              "old_contract_revision": "connection-r2",
+              "operation": {
+                "connection_identity": "CONNECTION-P",
+                "content_digest": "CONTENT-P-digest",
+                "correlation": "CORRELATION-P",
+                "expiry_ref": "EXPIRY-P@r1",
+                "idempotency": "KEY-P",
+                "operation_identity": "UNFINISHED-OP-P",
+                "permission_ref": "PERMIT-P@r1",
+                "scope": "PRODUCT-P/query"
+              }
+            },
+            "owner": "operation-owner",
+            "recovery_ref": "unknown",
+            "rollback_state": "not_observed"
+          },
+          "original_kind": "SOURCE-MECHANISM",
+          "original_resume": {
+            "active_contract_revision": "connection-r3",
+            "compatibility_state": "stale",
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "expiry_state": "valid_in_fixture_only",
+            "meaning_state": "preserved_in_fixture_only",
+            "operation_target": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            },
+            "permission_state": "valid_in_fixture_only",
+            "recovery_state": "handoff_recorded_in_fixture_only",
+            "resume_state": "not_established"
+          },
+          "original_unfinished": {
+            "ack_state": "unknown",
+            "cumulative_attempts": 2,
+            "obligations": [
+              {
+                "identity": "OBLIGATION-SENDER",
+                "owner": "sender-domain-owner",
+                "recovery_ref": "SENDER-RECEIPT-17@r1"
+              },
+              {
+                "identity": "OBLIGATION-RECEIVER",
+                "owner": "receiver-domain-owner",
+                "recovery_ref": "RECEIVER-CASE-09@r1"
+              }
+            ],
+            "old_contract_revision": "connection-r2",
+            "operation": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          "replacement_selected": true,
+          "submitted_handoff": {
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "original_unfinished": {
+              "ack_state": "unknown",
+              "cumulative_attempts": 2,
+              "obligations": [
+                {
+                  "identity": "OBLIGATION-SENDER",
+                  "owner": "sender-domain-owner",
+                  "recovery_ref": "SENDER-RECEIPT-17@r1"
+                },
+                {
+                  "identity": "OBLIGATION-RECEIVER",
+                  "owner": "receiver-domain-owner",
+                  "recovery_ref": "RECEIVER-CASE-09@r1"
+                }
+              ],
+              "old_contract_revision": "connection-r2",
+              "operation": {
+                "connection_identity": "CONNECTION-P",
+                "content_digest": "CONTENT-P-digest",
+                "correlation": "CORRELATION-P",
+                "expiry_ref": "EXPIRY-P@r1",
+                "idempotency": "KEY-P",
+                "operation_identity": "UNFINISHED-OP-P",
+                "permission_ref": "PERMIT-P@r1",
+                "scope": "PRODUCT-P/query"
+              }
+            },
+            "owner": "operation-owner",
+            "recovery_ref": "unknown",
+            "rollback_state": "not_observed"
+          },
+          "submitted_requested_attempts": 0,
+          "submitted_resume": {
+            "active_contract_revision": "connection-r3",
+            "compatibility_state": "stale",
+            "exchange_target": {
+              "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+              "connection_contract_revision": "connection-r3",
+              "connection_identity": "CONNECTION-P",
+              "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+              "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+              "kind": "SOURCE-MECHANISM",
+              "new_revision": "source-mechanism-r2",
+              "old_revision": "source-mechanism-r1",
+              "scope": "PRODUCT-P/replacement"
+            },
+            "expiry_state": "valid_in_fixture_only",
+            "meaning_state": "preserved_in_fixture_only",
+            "operation_target": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            },
+            "permission_state": "valid_in_fixture_only",
+            "recovery_state": "handoff_recorded_in_fixture_only",
+            "resume_state": "not_established"
+          },
+          "submitted_unfinished": {
+            "ack_state": "unknown",
+            "cumulative_attempts": 2,
+            "obligations": [
+              {
+                "identity": "OBLIGATION-SENDER",
+                "owner": "sender-domain-owner",
+                "recovery_ref": "SENDER-RECEIPT-17@r1"
+              },
+              {
+                "identity": "OBLIGATION-RECEIVER",
+                "owner": "receiver-domain-owner",
+                "recovery_ref": "RECEIVER-CASE-09@r1"
+              }
+            ],
+            "old_contract_revision": "connection-r2",
+            "operation": {
+              "connection_identity": "CONNECTION-P",
+              "content_digest": "CONTENT-P-digest",
+              "correlation": "CORRELATION-P",
+              "expiry_ref": "EXPIRY-P@r1",
+              "idempotency": "KEY-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "permission_ref": "PERMIT-P@r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        }
+      },
+      "expected_source_pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+      "expected_material": {
+        "unfinished_content_result": "content_corresponding_in_fixture",
+        "handoff_content_result": "content_corresponding_in_fixture",
+        "resume_content_result": "content_corresponding_in_fixture",
+        "handoff_exchange_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "exchange_operation": "content_corresponding_in_fixture",
+          "kind": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "old_revision": "content_corresponding_in_fixture",
+          "new_revision": "content_corresponding_in_fixture",
+          "fixed_side_digest": "content_corresponding_in_fixture",
+          "changed_side_digest": "content_corresponding_in_fixture",
+          "connection_contract_revision": "content_corresponding_in_fixture"
+        },
+        "resume_exchange_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "exchange_operation": "content_corresponding_in_fixture",
+          "kind": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "old_revision": "content_corresponding_in_fixture",
+          "new_revision": "content_corresponding_in_fixture",
+          "fixed_side_digest": "content_corresponding_in_fixture",
+          "changed_side_digest": "content_corresponding_in_fixture",
+          "connection_contract_revision": "content_corresponding_in_fixture"
+        },
+        "resume_operation_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "operation_identity": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "expiry_ref": "content_corresponding_in_fixture",
+          "permission_ref": "content_corresponding_in_fixture",
+          "correlation": "content_corresponding_in_fixture",
+          "idempotency": "content_corresponding_in_fixture",
+          "content_digest": "content_corresponding_in_fixture"
+        },
+        "handoff_unfinished_result": "content_corresponding_in_fixture",
+        "single_revision_result": "content_corresponding_in_fixture",
+        "retained_exchange_target": {
+          "connection_identity": "CONNECTION-P",
+          "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+          "kind": "SOURCE-MECHANISM",
+          "scope": "PRODUCT-P/replacement",
+          "old_revision": "source-mechanism-r1",
+          "new_revision": "source-mechanism-r2",
+          "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+          "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+          "connection_contract_revision": "connection-r3"
+        },
+        "retained_unfinished": {
+          "operation": {
+            "connection_identity": "CONNECTION-P",
+            "operation_identity": "UNFINISHED-OP-P",
+            "scope": "PRODUCT-P/query",
+            "expiry_ref": "EXPIRY-P@r1",
+            "permission_ref": "PERMIT-P@r1",
+            "correlation": "CORRELATION-P",
+            "idempotency": "KEY-P",
+            "content_digest": "CONTENT-P-digest"
+          },
+          "cumulative_attempts": 2,
+          "ack_state": "unknown",
+          "obligations": [
+            {
+              "identity": "OBLIGATION-SENDER",
+              "owner": "sender-domain-owner",
+              "recovery_ref": "SENDER-RECEIPT-17@r1"
+            },
+            {
+              "identity": "OBLIGATION-RECEIVER",
+              "owner": "receiver-domain-owner",
+              "recovery_ref": "RECEIVER-CASE-09@r1"
+            }
+          ],
+          "old_contract_revision": "connection-r2"
+        },
+        "retained_handoff": {
+          "exchange_target": {
+            "connection_identity": "CONNECTION-P",
+            "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+            "kind": "SOURCE-MECHANISM",
+            "scope": "PRODUCT-P/replacement",
+            "old_revision": "source-mechanism-r1",
+            "new_revision": "source-mechanism-r2",
+            "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+            "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+            "connection_contract_revision": "connection-r3"
+          },
+          "original_unfinished": {
+            "operation": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "UNFINISHED-OP-P",
+              "scope": "PRODUCT-P/query",
+              "expiry_ref": "EXPIRY-P@r1",
+              "permission_ref": "PERMIT-P@r1",
+              "correlation": "CORRELATION-P",
+              "idempotency": "KEY-P",
+              "content_digest": "CONTENT-P-digest"
+            },
+            "cumulative_attempts": 2,
+            "ack_state": "unknown",
+            "obligations": [
+              {
+                "identity": "OBLIGATION-SENDER",
+                "owner": "sender-domain-owner",
+                "recovery_ref": "SENDER-RECEIPT-17@r1"
+              },
+              {
+                "identity": "OBLIGATION-RECEIVER",
+                "owner": "receiver-domain-owner",
+                "recovery_ref": "RECEIVER-CASE-09@r1"
+              }
+            ],
+            "old_contract_revision": "connection-r2"
+          },
+          "recovery_ref": "unknown",
+          "owner": "operation-owner",
+          "rollback_state": "not_observed"
+        },
+        "retained_resume": {
+          "exchange_target": {
+            "connection_identity": "CONNECTION-P",
+            "exchange_operation": "EXCHANGE-P-SOURCE-MECHANISM",
+            "kind": "SOURCE-MECHANISM",
+            "scope": "PRODUCT-P/replacement",
+            "old_revision": "source-mechanism-r1",
+            "new_revision": "source-mechanism-r2",
+            "fixed_side_digest": "bbee160bcd0ebe3fcf1272a6998f8663e2b3b602ff53c056876f3807f46e131c",
+            "changed_side_digest": "60d1d9931148fc8ab6db36d7b5411754e3c89e5e1965d41bcaf704e134114fa4",
+            "connection_contract_revision": "connection-r3"
+          },
+          "operation_target": {
+            "connection_identity": "CONNECTION-P",
+            "operation_identity": "UNFINISHED-OP-P",
+            "scope": "PRODUCT-P/query",
+            "expiry_ref": "EXPIRY-P@r1",
+            "permission_ref": "PERMIT-P@r1",
+            "correlation": "CORRELATION-P",
+            "idempotency": "KEY-P",
+            "content_digest": "CONTENT-P-digest"
+          },
+          "active_contract_revision": "connection-r3",
+          "compatibility_state": "stale",
+          "meaning_state": "preserved_in_fixture_only",
+          "permission_state": "valid_in_fixture_only",
+          "expiry_state": "valid_in_fixture_only",
+          "recovery_state": "handoff_recorded_in_fixture_only",
+          "resume_state": "not_established"
+        },
+        "retained_rollback_state": "not_observed",
+        "candidate_resume_state": "held_with_original_unfinished",
+        "candidate_additional_attempts": 0,
+        "failure_reasons": [
+          {
+            "area": "resume_condition",
+            "field": "compatibility_state",
+            "result": "stale",
+            "return_owner": "adapter-owner"
+          },
+          {
+            "area": "resume_condition",
+            "field": "resume_state",
+            "result": "not_established",
+            "return_owner": "connection-contract-owner"
+          },
+          {
+            "area": "unresolved_binding",
+            "field": "original_handoff.recovery_ref",
+            "result": "unknown_original_information",
+            "return_owner": "operation-owner"
+          },
+          {
+            "area": "unresolved_binding",
+            "field": "submitted_handoff.recovery_ref",
+            "result": "unknown_original_information",
+            "return_owner": "operation-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "adapter-owner",
+          "connection-contract-owner",
+          "operation-owner"
+        ],
+        "effects": {
+          "actual_replacement": false,
+          "actual_transmission": false,
+          "actual_retry": false,
+          "actual_rollback": false,
+          "actual_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "actual_attempt_count": 0,
+        "claim_results": {
+          "mixed_old_new_revision": "none",
+          "attempt_reset": "none",
+          "unconfirmed_rollback_done": "none",
+          "fixed_side_fake_update": "none"
+        }
+      },
+      "expected_sha256": "78b599856ec15565610ab347e1ca18da2f5ac2fa6b3c0bbd4c0e12930b9b253c",
+      "independent_expectation_basis": {
+        "existing_whole_result": "L9 concrete caseのexpected_materialを既存L8 F02完全期待と照合した。期待の形成にはevaluator出力を使わない。",
+        "heterogeneous_projection": "四つの入力義務配列の原値をretained_unfinished/retained_handoffへ保持する。個別owner/refとhandoff全体owner/refの違いは、原記録と提出記録の相反ではない。",
+        "submitted_mutation_projection": "原/提出handoffの全record比較はcontent_conflictとなる。L5宣言順にhandoff_content/recordをstale再開所見より先に返し、原値と他の返却memberを保持する。",
+        "unknown_recovery_projection": "原/提出handoffのrecovery_refは同じunknown markerとして保持し、既存stale/未成立の二所見と二つのunresolved_bindingをL5宣言順に返す。candidateは保留、追加attemptと作用は0のまま。",
+        "type_basis": [
+          "F02RawPacket",
+          "Handoff",
+          "UnfinishedOperation",
+          "UnfinishedObligation",
+          "F02Result"
+        ]
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
     }
   ],
   "case_counts": {
     "F01": 50,
-    "F02": 49,
-    "total": 99,
+    "F02": 53,
+    "total": 103,
     "original_l9_cases": 99,
     "existing_unselected_whole_probes": 1,
     "scope_resolution_whole_probes": 12,
@@ -49509,18 +51334,6 @@
             "field": "submitted_handoff.exchange_target.connection_identity",
             "result": "content_conflict",
             "return_owner": "operation-owner"
-          },
-          {
-            "area": "handoff_lineage",
-            "field": "original_handoff.original_unfinished.obligations.owner_or_recovery_ref",
-            "result": "obligation_binding_incomplete_or_mismatched",
-            "return_owner": "operation-owner"
-          },
-          {
-            "area": "handoff_lineage",
-            "field": "submitted_handoff.original_unfinished.obligations.owner_or_recovery_ref",
-            "result": "obligation_binding_incomplete_or_mismatched",
-            "return_owner": "operation-owner"
           }
         ],
         "failure_return_owners": [
@@ -49545,8 +51358,8 @@
           "fixed_side_fake_update": "none"
         }
       },
-      "expected_sha256": "c41c3cc41475cc5f9afd5f0424e3d00c1dc09fbc1cbebc094854515461bfda36",
-      "expected_basis": "L9のsource packetと原wholeを保持し、元handoffと提出handoffのtarget identity、および両方のhandoff内未完義務ownerを独立に変えた。L4のtarget binding/lineage/unfinished義務比較から各出力fieldと二つのownerを個別に固定したwhole。",
+      "expected_sha256": "6f5ac0620a51488ae40d0c9dbd1f7245d5db905687342e649193a0969a861926",
+      "expected_basis": "既存のL9 F02 whole入力へのownerだけの提出変更。上位L3 F02とL4 F02により原未完義務は各項目のowner/refを保ち、handoff全体の明示recovery先とは役割を分ける。全項目をhandoff owner/refへ等値化するpredicateはない。handoff全record・接続identityなど他の不一致findingは保持し、削除したcross-role owner/ref 2所見だけを期待から除く。全whole訂正はscaffoldのprobe-expectation-correction-001.jsonに旧期待とsource根拠付きで追記。期待は候補reader実行値から生成していない。",
       "defect_clause": "元側と提出側の未完義務差を別field locatorで保持し、target照合はconnection-contract-owner、handoff/unfinished lineageはoperation-ownerへ返す。",
       "execution_state": "not_executed",
       "source_qualification": "synthetic_counterexample_only",
