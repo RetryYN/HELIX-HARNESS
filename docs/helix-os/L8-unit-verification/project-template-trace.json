@@ -167139,15 +167139,15 @@
   "f04_source_member_verification": {
     "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-VERIFICATION",
     "source_l4_ref": {
-      "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+      "revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
       "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
-      "file_sha256": "d9395488dd4508ec52f26bd8849e1d7ce521f6a23f128135b24a3f55a327ec99",
+      "file_sha256": "523313394dacd4bbadbec5eea0972271ad080b7f3e7cc478da71edbd666c88d7",
       "pointer": "/contracts/5/selected_source_member_correspondence"
     },
     "source_l9_ref": {
-      "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+      "revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
       "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
-      "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+      "file_sha256": "35e825e5031995b7c73b4950af6445b12732e67ac2d918a86c2c959d43e1945b",
       "pointer": "/cases/5/selected_source_member_correspondence_oracles"
     },
     "whole_cases": [
@@ -167155,9 +167155,9 @@
         "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-01",
         "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
         "source_case_ref": {
-          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
           "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
-          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "file_sha256": "35e825e5031995b7c73b4950af6445b12732e67ac2d918a86c2c959d43e1945b",
           "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/0"
         },
         "materialization": "固定L9の同oracles内fixture_material_recipesを元順で展開しbase_input_recipeへ接続、該当case.input_patchを適用。legacy/f04 observation recipeとcase.expected_complete_return_recipeは同じL9内で完結する。",
@@ -167229,9 +167229,9 @@
         "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-02",
         "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
         "source_case_ref": {
-          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
           "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
-          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "file_sha256": "35e825e5031995b7c73b4950af6445b12732e67ac2d918a86c2c959d43e1945b",
           "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/1"
         },
         "materialization": "固定L9の同oracles内fixture_material_recipesを元順で展開しbase_input_recipeへ接続、該当case.input_patchを適用。legacy/f04 observation recipeとcase.expected_complete_return_recipeは同じL9内で完結する。",
@@ -167316,9 +167316,9 @@
         "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-03",
         "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
         "source_case_ref": {
-          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
           "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
-          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "file_sha256": "35e825e5031995b7c73b4950af6445b12732e67ac2d918a86c2c959d43e1945b",
           "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/2"
         },
         "materialization": "固定L9の同oracles内fixture_material_recipesを元順で展開しbase_input_recipeへ接続、該当case.input_patchを適用。legacy/f04 observation recipeとcase.expected_complete_return_recipeは同じL9内で完結する。",
@@ -167403,9 +167403,9 @@
         "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-04",
         "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
         "source_case_ref": {
-          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
           "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
-          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "file_sha256": "35e825e5031995b7c73b4950af6445b12732e67ac2d918a86c2c959d43e1945b",
           "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/3"
         },
         "materialization": "固定L9の同oracles内fixture_material_recipesを元順で展開しbase_input_recipeへ接続、該当case.input_patchを適用。legacy/f04 observation recipeとcase.expected_complete_return_recipeは同じL9内で完結する。",
@@ -167490,9 +167490,9 @@
         "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-05",
         "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
         "source_case_ref": {
-          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
           "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
-          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "file_sha256": "35e825e5031995b7c73b4950af6445b12732e67ac2d918a86c2c959d43e1945b",
           "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/4"
         },
         "materialization": "固定L9の同oracles内fixture_material_recipesを元順で展開しbase_input_recipeへ接続、該当case.input_patchを適用。legacy/f04 observation recipeとcase.expected_complete_return_recipeは同じL9内で完結する。",
@@ -167577,9 +167577,9 @@
         "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-06",
         "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
         "source_case_ref": {
-          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
           "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
-          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "file_sha256": "35e825e5031995b7c73b4950af6445b12732e67ac2d918a86c2c959d43e1945b",
           "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/5"
         },
         "materialization": "固定L9の同oracles内fixture_material_recipesを元順で展開しbase_input_recipeへ接続、該当case.input_patchを適用。legacy/f04 observation recipeとcase.expected_complete_return_recipeは同じL9内で完結する。",
@@ -167612,7 +167612,7 @@
         "input_canonical_sha256": "d01518e1265f9b7c5aa2000e1aa77b3741d8ea78f2d527361cd0b92c7032b864",
         "operation_canonical_sha256": "252ec94354fcd62af2f8aac81e66c60601f07432fec88437f77e2c884d09975b",
         "expected_validator_trace_canonical_sha256": "a10f369bcf223b06421b05bdf84a4927854a2fa3bd60bfbf1394b396b9a1aae3",
-        "expected_whole_canonical_sha256": "734a0967cf7d4896ce50d3beca8af6aa3648e19689dfede01e154d443ab557af",
+        "expected_whole_canonical_sha256": "3d38276b1a3fd1917acc020730ed0de7e26c67f8b0cf9e6f5b7ae07292023096",
         "expected_new_findings": [
           {
             "axis": "NA_reason",
@@ -167664,9 +167664,9 @@
         "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-07",
         "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
         "source_case_ref": {
-          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
           "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
-          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "file_sha256": "35e825e5031995b7c73b4950af6445b12732e67ac2d918a86c2c959d43e1945b",
           "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/6"
         },
         "materialization": "固定L9の同oracles内fixture_material_recipesを元順で展開しbase_input_recipeへ接続、該当case.input_patchを適用。legacy/f04 observation recipeとcase.expected_complete_return_recipeは同じL9内で完結する。",
@@ -167699,7 +167699,7 @@
         "input_canonical_sha256": "ab45f543a26910b70568c2670da1d7cd0758e231ce908fc19fa88c61aeef2f78",
         "operation_canonical_sha256": "aedeedce2e822aebe898d60e3641d9a31a6f3b4a538058c7e2fbe31f49dc652b",
         "expected_validator_trace_canonical_sha256": "e9ff111d93af2d3f43725845208bd3f51d111ec5615d22bfa8c11ba6109f82e1",
-        "expected_whole_canonical_sha256": "67563e51f900a5011de21f29b58d9d6e7ff97494bd4a52100d692562af9467db",
+        "expected_whole_canonical_sha256": "38f4b2716177d6e45723a385b2d362b98e8992217cd9b2305b4be707ca85053d",
         "expected_new_findings": [
           {
             "axis": "NA_decider",
@@ -167751,9 +167751,9 @@
         "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-08",
         "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
         "source_case_ref": {
-          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
           "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
-          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "file_sha256": "35e825e5031995b7c73b4950af6445b12732e67ac2d918a86c2c959d43e1945b",
           "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/7"
         },
         "materialization": "固定L9の同oracles内fixture_material_recipesを元順で展開しbase_input_recipeへ接続、該当case.input_patchを適用。legacy/f04 observation recipeとcase.expected_complete_return_recipeは同じL9内で完結する。",
@@ -167786,7 +167786,7 @@
         "input_canonical_sha256": "6b82650fd636b4290c4b5c76765b8e7b36fbaf0308f0054bceb24adf1c0b0e2d",
         "operation_canonical_sha256": "478b7d6d14ebfb21f0b073d2d29e25627755631c9ce41c081338b1c739df3804",
         "expected_validator_trace_canonical_sha256": "38fee66cbd6349a87fd2021903a0bf5609d655bb2a2e4e226c70819de10e4bdf",
-        "expected_whole_canonical_sha256": "7695b119b00e591d19b7443821b323aa5423114c18170dad38e42816c34572fb",
+        "expected_whole_canonical_sha256": "1f99fb662c68eb0249446ad969d864c885dbc0c4a5182565ababca16af57f3d8",
         "expected_new_findings": [
           {
             "axis": "NA_target_revision",
@@ -167838,9 +167838,9 @@
         "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-09",
         "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
         "source_case_ref": {
-          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
           "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
-          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "file_sha256": "35e825e5031995b7c73b4950af6445b12732e67ac2d918a86c2c959d43e1945b",
           "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/8"
         },
         "materialization": "固定L9の同oracles内fixture_material_recipesを元順で展開しbase_input_recipeへ接続、該当case.input_patchを適用。legacy/f04 observation recipeとcase.expected_complete_return_recipeは同じL9内で完結する。",
@@ -167873,7 +167873,7 @@
         "input_canonical_sha256": "625447316ee28c3f840699e38cd7a01136f1807a1a3f5cb78af661f69c788e58",
         "operation_canonical_sha256": "8d5bb48275e098cabb9ba2f68cd347a6e0f3dfd4a57369abd0b2ff8983fdc058",
         "expected_validator_trace_canonical_sha256": "79575759f0084d8edf6bf30dbc0a9a78f6c90634ece05319765b178c6d9dc0ef",
-        "expected_whole_canonical_sha256": "628cedd15a6b007c1ddc81002e6fc34fc5420d516d1dad79412c2d50bb8dfc8c",
+        "expected_whole_canonical_sha256": "59b468fdc2739bfeca4425755521853c039dc5cf8aa984fde043d549cbfe2db8",
         "expected_new_findings": [
           {
             "axis": "NA_reentry",
@@ -170511,7 +170511,752 @@
       "9wholeは四語彙/object保存・独立CORE差・不足/型不足の有限範囲。private9は局所返却だけ。旧25は新suffix関係と旧join保存。source取得抑止の全分岐、全Presence/全JSON形/全mutationの網羅を新gateにしない。",
       "有限対照で未観測の分岐: source computed_dispositionのAbsent/不正Presence/型外/未宣言語、candidate dispositionの未宣言語/非string、computed_na_attributesのAbsent/present非object、JSON値trueと1の型差、同一fieldでsource/candidateがともに不成立となる組合せ（既存null役割順序の対照を除く）。source取得抑止の各条件も全分岐を網羅していない。これらを検証済み又は全mutation識別済みとしない。"
     ],
-    "execution_state": "詳細設計の期待。製品runtime/provider実行・実資格・CIの成立を示さない。"
+    "execution_state": "詳細設計の期待。製品runtime/provider実行・実資格・CIの成立を示さない。",
+    "observation_role_preservation_oracles": {
+      "id": "HELIXOS-L8-002-F04-OBSERVATION-ROLE-PRESERVATION",
+      "execution_state": "not_executed",
+      "scope": "4反例はnative4観測不変とcandidateの原presence/異値/多重/取得失敗時保持というprojection期待。native・profile全Analysisの新whole合格を主張しない。",
+      "base_input_basis": {
+        "revision": "f3ea10e98f3a800bdb1295fefb610f7e251d4b26",
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "oracle_pointer": "/cases/5/selected_source_member_correspondence_oracles",
+        "case_index": 0,
+        "case_id": "HELIXOS-L9-002-F04-MEMBERS-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+        "materialization": "同節expectation_rule.inputを適用したcase0の固定case_input。expected値を関数へ渡さない。後述input_patchだけをこのraw材料へ適用し、operation.candidate=/candidate、record_trace_input=/validated_record_trace/input、selection=/source_projection_selectionをcallへ投影。",
+        "file_sha256": "bfa307c8d2aed303085e34cb910714212705f3b5f7cf214f3eb3fa3f52b5de04"
+      },
+      "recipe_roots": {
+        "role_base_case_input": "baseに示すcase0の固定case_input。input_patch_recipeの$copy値はこのrootから先に展開し、得たliteral patchを順に適用。これはfixture復元だけで比較関数ではない。",
+        "role_case_input": "role_base_case_inputに固定input_patch/input_patch_recipeを適用した同caseのraw材料。candidate raw保存期待のcopyだけに使い、source観測期待は固定native literalを用いる。",
+        "role_native_expected": "同oracles.native_expected_literalの独立固定4観測全値。業務出力から作らず、各caseで値を変更しない。"
+      },
+      "cases": [
+        {
+          "id": "CANDIDATE-ABSENT-SOURCE-PRESENT",
+          "input_patch": [
+            {
+              "op": "replace",
+              "path": "/source_projection_selection/output_refs",
+              "value": [
+                {
+                  "identity": "CORE-D3",
+                  "revision": "core-members-r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "CORE"
+                }
+              ]
+            },
+            {
+              "op": "remove",
+              "path": "/candidate/core_outputs/2/reason"
+            },
+            {
+              "op": "remove",
+              "path": "/validated_record_trace/input/candidate/core_outputs/2/reason"
+            }
+          ],
+          "expected": {
+            "native_four_observations": {
+              "$copy": {
+                "root": "role_native_expected",
+                "pointer": ""
+              }
+            },
+            "core_reason_presence": "present",
+            "core_reason_value": "限定対象外",
+            "validated_candidate_item_presence": "single",
+            "validated_candidate_item_pointer": "/source_projection_join/records/0/validated_input_candidate",
+            "validated_candidate_reason_presence": "absent",
+            "candidate_occurrence_arrays": "both omitted",
+            "member_finding": {
+              "code": "core_source_na_reason_missing",
+              "state": "missing",
+              "target_path": "candidate/core_outputs/2/reason"
+            },
+            "finding_path_interpretation": "元validated candidateのrow2にreasonが無いことを指す。source観測のreasonがpresentであることとは役割が違う。",
+            "validated_candidate_item_full_raw_recipe": {
+              "$copy": {
+                "root": "role_case_input",
+                "pointer": "/validated_record_trace/input/candidate/core_outputs/2"
+              }
+            }
+          }
+        },
+        {
+          "id": "CANDIDATE-DIFFERENT-SOURCE-PRESENT",
+          "input_patch": [
+            {
+              "op": "replace",
+              "path": "/source_projection_selection/output_refs",
+              "value": [
+                {
+                  "identity": "CORE-D3",
+                  "revision": "core-members-r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "CORE"
+                }
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/candidate/core_outputs/2/reason",
+              "value": "synthetic candidate different reason"
+            },
+            {
+              "op": "replace",
+              "path": "/validated_record_trace/input/candidate/core_outputs/2/reason",
+              "value": "synthetic candidate different reason"
+            }
+          ],
+          "expected": {
+            "native_four_observations": {
+              "$copy": {
+                "root": "role_native_expected",
+                "pointer": ""
+              }
+            },
+            "core_reason_presence": "present",
+            "core_reason_value": "限定対象外",
+            "validated_candidate_item_presence": "single",
+            "validated_candidate_item_pointer": "/source_projection_join/records/0/validated_input_candidate",
+            "validated_candidate_reason_presence": "present",
+            "validated_candidate_reason_value": "synthetic candidate different reason",
+            "member_finding": {
+              "code": "core_source_na_reason_conflict",
+              "state": "conflict",
+              "target_path": "candidate/core_outputs/2/reason"
+            },
+            "native_findings": "既存native比較の結果を別prefixとして保持。本対照はその全codeを新規定せず、member suffixと候補/原値分離だけを固定。",
+            "validated_candidate_item_full_raw_recipe": {
+              "$copy": {
+                "root": "role_case_input",
+                "pointer": "/validated_record_trace/input/candidate/core_outputs/2"
+              }
+            }
+          }
+        },
+        {
+          "id": "CANDIDATE-MULTIPLE",
+          "input_patch_recipe": [
+            {
+              "op": "replace",
+              "path": "/source_projection_selection/output_refs",
+              "value": [
+                {
+                  "identity": "CORE-D3",
+                  "revision": "core-members-r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "CORE"
+                }
+              ]
+            },
+            {
+              "op": "add",
+              "path": "/candidate/core_outputs/4",
+              "value": {
+                "$copy": {
+                  "root": "role_base_case_input",
+                  "pointer": "/candidate/core_outputs/2"
+                }
+              }
+            },
+            {
+              "op": "add",
+              "path": "/validated_record_trace/input/candidate/core_outputs/4",
+              "value": {
+                "$copy": {
+                  "root": "role_base_case_input",
+                  "pointer": "/validated_record_trace/input/candidate/core_outputs/2"
+                }
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/candidate/core_outputs/4/reason",
+              "value": "synthetic second candidate reason"
+            },
+            {
+              "op": "replace",
+              "path": "/validated_record_trace/input/candidate/core_outputs/4/reason",
+              "value": "synthetic second candidate reason"
+            }
+          ],
+          "expected": {
+            "native_four_observations": {
+              "$copy": {
+                "root": "role_native_expected",
+                "pointer": ""
+              }
+            },
+            "candidate_input_state": "corresponding",
+            "singular_candidate_members": "candidate_output_ref/candidate_source_projection/validated_input_candidate/validated_candidate_source_projection omitted",
+            "candidate_item_occurrences_indices": [
+              2,
+              4
+            ],
+            "validated_input_item_occurrences_indices": [
+              2,
+              4
+            ],
+            "all_raw_items_retained": true,
+            "candidate_os_field_state": "unknown",
+            "candidate_core_row_state": "unknown",
+            "qualified_os_core_row_state": "corresponding",
+            "carrier_core_row_state": "unknown",
+            "member_suffix": [],
+            "reason": "元candidateの同Ref複数出現をcore sourceへ採用しない。各raw item全値/異値/元indexをoccurrence列へ保持。",
+            "candidate_item_occurrences": [
+              {
+                "item_index": 2,
+                "raw_item": {
+                  "$copy": {
+                    "root": "role_case_input",
+                    "pointer": "/candidate/core_outputs/2"
+                  }
+                }
+              },
+              {
+                "item_index": 4,
+                "raw_item": {
+                  "$copy": {
+                    "root": "role_case_input",
+                    "pointer": "/candidate/core_outputs/4"
+                  }
+                }
+              }
+            ],
+            "validated_input_item_occurrences": [
+              {
+                "item_index": 2,
+                "raw_item": {
+                  "$copy": {
+                    "root": "role_case_input",
+                    "pointer": "/validated_record_trace/input/candidate/core_outputs/2"
+                  }
+                }
+              },
+              {
+                "item_index": 4,
+                "raw_item": {
+                  "$copy": {
+                    "root": "role_case_input",
+                    "pointer": "/validated_record_trace/input/candidate/core_outputs/4"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "PROJECTION-SOURCE-UNQUALIFIED-NATIVE-SOURCE-PRESENT",
+          "input_patch": [
+            {
+              "op": "replace",
+              "path": "/source_projection_selection/output_refs",
+              "value": [
+                {
+                  "identity": "CORE-D3",
+                  "revision": "core-members-r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "CORE"
+                }
+              ]
+            },
+            {
+              "op": "remove",
+              "path": "/validated_record_trace/input/qualifications/2"
+            }
+          ],
+          "expected": {
+            "native_four_observations": {
+              "$copy": {
+                "root": "role_native_expected",
+                "pointer": ""
+              }
+            },
+            "validated_candidate_item_presence": "single",
+            "validated_candidate_item_pointer": "/source_projection_join/records/0/validated_input_candidate",
+            "validated_candidate_item_value": "同callのinput candidate/core_outputs/2全raw値",
+            "candidate_core_row_state": "unknown",
+            "qualified_os_core_row_state": "unknown",
+            "carrier_core_row_state": "unknown",
+            "member_suffix": [],
+            "source_classification": "projection source2だけ既存unqualified/source issueへ。native source0/1を失効させない。",
+            "scope": "このsource不明はprojection sourceの未資格。native source自体不在時のField/diagnostic新詳細をこの対照で固定しない。",
+            "validated_candidate_item_full_raw_recipe": {
+              "$copy": {
+                "root": "role_case_input",
+                "pointer": "/validated_record_trace/input/candidate/core_outputs/2"
+              }
+            }
+          }
+        }
+      ],
+      "non_join_boundaries": [
+        {
+          "branch": "selector absent/valid empty",
+          "join": "Field.missing",
+          "candidate_evidence": "同callのoperation raw candidateとValidatedRecordTrace.input.candidate。joinへの仮想recordは作らない。",
+          "member_findings": "新生成なし"
+        },
+        {
+          "branch": "selector invalid",
+          "join": "supplied局所unknown result、records=[]",
+          "candidate_evidence": "同callのraw input/validated traceと既存input/decode診断。",
+          "member_findings": "新生成なし"
+        },
+        {
+          "branch": "F04 unselected",
+          "join": "未生成",
+          "candidate_evidence": "既存call入力の責務。F04候補観測を合成しない。",
+          "member_findings": "新生成なし"
+        },
+        {
+          "branch": "input invalid/null",
+          "join": "未生成",
+          "candidate_evidence": "元raw callと既存InputIssue。InputIssue.detailはstringであり原raw全値を内包するとは主張しない。Analysis単体で原inputを再構築できるとは言わない。",
+          "member_findings": "新生成なし"
+        }
+      ],
+      "upstream_originals": {
+        "L3": {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/11/obligation",
+          "text": "CORE009のrequired/conditional/N/A/unresolved、根拠・判定者・対象revision・再評価条件を出力参照へ結ぶ。conditional未充足、義務の未実施/不合格/未評価を分け、OSが適用規則やN/A判断を新設しない。"
+        },
+        "L10": {
+          "path": "docs/helix-os/L10-verification/functional-verification.json",
+          "pointer": "/cases/11",
+          "positive_input": "四判定と属性、conditional条件、義務の未実施/不合格/未評価を各々照合する。",
+          "expected_observation": "判定属性と元のCORE出力、各未完状態を区別して辿れる。",
+          "failure_observation": "不足属性/義務/kindを保持し、未完を適用/完了へ変換しない。"
+        }
+      },
+      "source_expected_value_basis": "元mainのsource0/1原payloadから固定したnative全値。関数出力や現在のsource-only候補wholeから生成していない。",
+      "reviewer_reentry_readback": {
+        "revision": "f3ea10e98f3a800bdb1295fefb610f7e251d4b26",
+        "case_index": 8,
+        "base_whole_pointer": "/sections/0/observation/source_projection_join/records/2/resolved_core_row/computed_na_attributes/value/reentry_condition",
+        "value": {
+          "when": "revision-change",
+          "minimum": 2
+        },
+        "meaning": "baseのCORE projection側にも存在。native source0と同一originという証明ではなく、M1の観測役割衝突は残る。"
+      },
+      "native_expected_literal": {
+        "conditional_original_value": false,
+        "OS_new_judgment_count": 0,
+        "core_disposition_records": [
+          {
+            "output_ref": {
+              "identity": "CORE-D1",
+              "revision": "core-members-r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            },
+            "binding": {
+              "project_scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "requirement_ref": {
+                "identity": "R",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "requirement-owner"
+              },
+              "HARNESS_contract_ref": {
+                "identity": "HARNESS-CONTRACT",
+                "revision": "h1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "HARNESS"
+              },
+              "template_ref": {
+                "identity": "T1",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "BRAIN"
+              },
+              "semantic_contract_ref": {
+                "identity": "MEANING-T1",
+                "revision": "m1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "BRAIN"
+              }
+            },
+            "template_ref": {
+              "identity": "T1",
+              "revision": "v1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "BRAIN"
+            },
+            "disposition": "required",
+            "reason": "synthetic qualified owner applicability grounds",
+            "decider": "CORE fixture owner",
+            "target_revision": "r1",
+            "reentry": "condition/revision/scope change",
+            "original_condition": true,
+            "unfinished_obligation_ref": {
+              "identity": "U1",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            }
+          },
+          {
+            "output_ref": {
+              "identity": "CORE-D2",
+              "revision": "core-members-r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            },
+            "binding": {
+              "project_scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "requirement_ref": {
+                "identity": "R",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "requirement-owner"
+              },
+              "HARNESS_contract_ref": {
+                "identity": "HARNESS-CONTRACT",
+                "revision": "h1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "HARNESS"
+              },
+              "template_ref": {
+                "identity": "T1",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "BRAIN"
+              },
+              "semantic_contract_ref": {
+                "identity": "MEANING-T1",
+                "revision": "m1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "BRAIN"
+              }
+            },
+            "template_ref": {
+              "identity": "T2",
+              "revision": "v1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "BRAIN"
+            },
+            "disposition": "conditional",
+            "reason": "synthetic qualified owner applicability grounds",
+            "decider": "CORE fixture owner",
+            "target_revision": "r1",
+            "reentry": "condition/revision/scope change",
+            "original_condition": false,
+            "unfinished_obligation_ref": {
+              "identity": "U2",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            }
+          },
+          {
+            "output_ref": {
+              "identity": "CORE-D3",
+              "revision": "core-members-r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            },
+            "binding": {
+              "project_scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "requirement_ref": {
+                "identity": "R",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "requirement-owner"
+              },
+              "HARNESS_contract_ref": {
+                "identity": "HARNESS-CONTRACT",
+                "revision": "h1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "HARNESS"
+              },
+              "template_ref": {
+                "identity": "T1",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "BRAIN"
+              },
+              "semantic_contract_ref": {
+                "identity": "MEANING-T1",
+                "revision": "m1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "BRAIN"
+              }
+            },
+            "template_ref": {
+              "identity": "T3",
+              "revision": "v1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "BRAIN"
+            },
+            "disposition": "NA",
+            "reason": "限定対象外",
+            "decider": "synthetic-core-reviewer",
+            "target_revision": "rev-A",
+            "reentry": {
+              "when": "revision-change",
+              "minimum": 2
+            },
+            "original_condition": false,
+            "unfinished_obligation_ref": {
+              "identity": "U3",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            }
+          },
+          {
+            "output_ref": {
+              "identity": "CORE-D4",
+              "revision": "core-members-r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            },
+            "binding": {
+              "project_scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "requirement_ref": {
+                "identity": "R",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "requirement-owner"
+              },
+              "HARNESS_contract_ref": {
+                "identity": "HARNESS-CONTRACT",
+                "revision": "h1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "HARNESS"
+              },
+              "template_ref": {
+                "identity": "T1",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "BRAIN"
+              },
+              "semantic_contract_ref": {
+                "identity": "MEANING-T1",
+                "revision": "m1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "BRAIN"
+              }
+            },
+            "template_ref": {
+              "identity": "T4",
+              "revision": "v1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "BRAIN"
+            },
+            "disposition": "unresolved",
+            "reason": "synthetic qualified owner applicability grounds",
+            "decider": "CORE fixture owner",
+            "target_revision": "r1",
+            "reentry": "condition/revision/scope change",
+            "original_condition": null,
+            "unfinished_obligation_ref": {
+              "identity": "U4",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            }
+          }
+        ],
+        "unfinished_obligation_records": [
+          {
+            "ref": {
+              "identity": "U1",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_started"
+          },
+          {
+            "ref": {
+              "identity": "C1",
+              "revision": "c1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "failed"
+          },
+          {
+            "ref": {
+              "identity": "S1",
+              "revision": "s1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_evaluated"
+          }
+        ]
+      },
+      "current_source_ref": {
+        "revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "35e825e5031995b7c73b4950af6445b12732e67ac2d918a86c2c959d43e1945b",
+        "pointer": "/cases/5/selected_source_member_correspondence_oracles/observation_role_preservation_oracles"
+      },
+      "materialization": "base_input_basisは旧固定raw材料の明示revision参照として保持。現source_ref先の同じcase0材料とも型付き全値一致を確認する。recipe_rootsに従いrawとprojection期待を復元するだけで、期待validatorをcallerへ供給せず、業務actual/全Analysis wholeを生成しない。"
+    }
   },
   "f04_source_original_correspondence_verification": {
     "id": "HELIXOS-L8-002-F04-original-correspondence",
@@ -273674,6 +274419,2442 @@
             "pointer": "/m_14ebd3e44a7128895d61e917531141fe8c58f35febaf1eab9bdac893e965ade7"
           }
         }
+      },
+      "m_04a91ea027d9816ab2a8ee411df465c2d743a4346a88d376f0c18a00dd463681": {
+        "output_ref": {
+          "identity": "CORE-D3",
+          "revision": "core-members-r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "CORE"
+        },
+        "binding": {
+          "project_scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "requirement_ref": {
+            "identity": "R",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "HARNESS_contract_ref": {
+            "identity": "HARNESS-CONTRACT",
+            "revision": "h1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "HARNESS"
+          },
+          "template_ref": {
+            "identity": "T1",
+            "revision": "v1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "BRAIN"
+          },
+          "semantic_contract_ref": {
+            "identity": "MEANING-T1",
+            "revision": "m1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "BRAIN"
+          }
+        },
+        "template_ref": {
+          "identity": "T3",
+          "revision": "v1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "BRAIN"
+        },
+        "disposition": "NA",
+        "decider": "synthetic-core-reviewer",
+        "target_revision": "rev-A",
+        "reentry": {
+          "when": "revision-change",
+          "minimum": 2
+        },
+        "original_condition": false,
+        "unfinished_obligation_ref": {
+          "identity": "U3",
+          "revision": "u1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "OS-original-owner"
+        },
+        "reason": "限定対象外"
+      },
+      "m_509c75d735745867bf5e14468a123206126e3170d139f6e9fff94b5663abcd75": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_21f652ddf93e6c04614a4b3e03bf5be17a7096267961474552982af66ce58bae"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_a349a1da115ff05ace957111451fb9d7a0fcae3948ebee1141806bd818ae445a"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_04a91ea027d9816ab2a8ee411df465c2d743a4346a88d376f0c18a00dd463681"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_a935e7e39d35c05c51f23521d102ec58bf7a694947ddc3a6470b882efcc682cb"
+          }
+        }
+      ],
+      "m_98f903c54075fc792505e5b0f8f5655b808a13b4018f3e9f2605f204cd35bb7b": {
+        "conditional_original_value": false,
+        "OS_new_judgment_count": 0,
+        "core_disposition_records": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_509c75d735745867bf5e14468a123206126e3170d139f6e9fff94b5663abcd75"
+          }
+        },
+        "unfinished_obligation_records": [
+          {
+            "ref": {
+              "identity": "U1",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_started"
+          },
+          {
+            "ref": {
+              "identity": "C1",
+              "revision": "c1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "failed"
+          },
+          {
+            "ref": {
+              "identity": "S1",
+              "revision": "s1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_evaluated"
+          }
+        ],
+        "source_projection_join": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_8b7e34cf8b5d6fca533a01729be7d0af63e1b9f96b76b320911221bbf3c3b330"
+          }
+        }
+      },
+      "m_d01c8f143523675d1051a0a197251c65332b7da0807e95ddb65c1494e680d817": {
+        "conditional_original_value": false,
+        "OS_new_judgment_count": 0,
+        "core_disposition_records": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_509c75d735745867bf5e14468a123206126e3170d139f6e9fff94b5663abcd75"
+          }
+        },
+        "unfinished_obligation_records": [
+          {
+            "ref": {
+              "identity": "U1",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_started"
+          },
+          {
+            "ref": {
+              "identity": "C1",
+              "revision": "c1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "failed"
+          },
+          {
+            "ref": {
+              "identity": "S1",
+              "revision": "s1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_evaluated"
+          }
+        ]
+      },
+      "m_22b3c0e624cb9c2b1027d6af7f859d99400bccc33f5026cf4b15bc156542d161": {
+        "code": "na_reason_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "NA_reason",
+        "state": "missing",
+        "target_path": "candidate/core_outputs/2/reason",
+        "backflow_owner": "CORE",
+        "source_refs": [
+          {
+            "identity": "SOURCE-F04-CORE",
+            "revision": "members-CANDIDATE-ABSENT-reason",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          },
+          {
+            "identity": "SOURCE-F04-OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_d01c8f143523675d1051a0a197251c65332b7da0807e95ddb65c1494e680d817"
+          }
+        }
+      },
+      "m_a421786057f40cef5b95ee895582d84e025a9b8e5acaf26b8e70e42fbb6a1d3c": {
+        "code": "core_source_na_reason_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "NA_reason",
+        "state": "missing",
+        "target_path": "candidate/core_outputs/2/reason",
+        "backflow_owner": "CORE",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-reason",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-reason",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_98f903c54075fc792505e5b0f8f5655b808a13b4018f3e9f2605f204cd35bb7b"
+          }
+        }
+      },
+      "m_b48d8ca80b29b0042f49b6b17e5f176827e9c1278df7997f8a6f6499d443e802": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_22b3c0e624cb9c2b1027d6af7f859d99400bccc33f5026cf4b15bc156542d161"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_a421786057f40cef5b95ee895582d84e025a9b8e5acaf26b8e70e42fbb6a1d3c"
+          }
+        }
+      ],
+      "m_466e5cd7921ce03ff58e64c0a7e61e29410bfcee9f841d220d3fa31e1110f510": {
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_98f903c54075fc792505e5b0f8f5655b808a13b4018f3e9f2605f204cd35bb7b"
+          }
+        },
+        "findings": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_b48d8ca80b29b0042f49b6b17e5f176827e9c1278df7997f8a6f6499d443e802"
+          }
+        },
+        "unresolved_source_refs": [],
+        "effect_requests": []
+      },
+      "m_c9ae422276585439c21f5894778886f0c46c37b285d14b67ac5e8409c40835d3": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_466e5cd7921ce03ff58e64c0a7e61e29410bfcee9f841d220d3fa31e1110f510"
+          }
+        }
+      ],
+      "m_4c58a8190a4ad89ff8478dcda7ddd26b92317a5c0283f4ee01f50db00f78622c": {
+        "sections": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_c9ae422276585439c21f5894778886f0c46c37b285d14b67ac5e8409c40835d3"
+          }
+        },
+        "input_issues": [],
+        "effects": [],
+        "authority_generated": false
+      },
+      "m_800dc612d83bf4fd51d9514b98f7150a97df0a4b6fc9b49d309ab72e56994910": {
+        "conditional_original_value": false,
+        "OS_new_judgment_count": 0,
+        "core_disposition_records": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_509c75d735745867bf5e14468a123206126e3170d139f6e9fff94b5663abcd75"
+          }
+        },
+        "unfinished_obligation_records": [
+          {
+            "ref": {
+              "identity": "U1",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_started"
+          },
+          {
+            "ref": {
+              "identity": "C1",
+              "revision": "c1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "failed"
+          },
+          {
+            "ref": {
+              "identity": "S1",
+              "revision": "s1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_evaluated"
+          }
+        ],
+        "source_projection_join": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_8b7e34cf8b5d6fca533a01729be7d0af63e1b9f96b76b320911221bbf3c3b330"
+          }
+        },
+        "source_original_correspondence": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_e22115c7b51bd4fa7347687e5d1b60ee74f2b89e1bf7159f1d7b8fb3939c14a0"
+          }
+        }
+      },
+      "m_c1b778403b5e22201ccf39587c0b514545beb5721eb70a75a21266cb4b8e1feb": {
+        "code": "core_source_original_relation_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "disposition_obligation",
+        "state": "missing",
+        "target_path": "source_projection_selection/output_refs/0",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-reason",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-reason",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "backflow_owner": "OS-source-owner",
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_800dc612d83bf4fd51d9514b98f7150a97df0a4b6fc9b49d309ab72e56994910"
+          }
+        }
+      },
+      "m_7638aa1b9726084fbd73473913b5985a16c05b8f41236a161b9303a35f2079cc": {
+        "code": "core_source_original_relation_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "disposition_obligation",
+        "state": "missing",
+        "target_path": "source_projection_selection/output_refs/1",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-reason",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-reason",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "backflow_owner": "OS-source-owner",
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_800dc612d83bf4fd51d9514b98f7150a97df0a4b6fc9b49d309ab72e56994910"
+          }
+        }
+      },
+      "m_0fdbb583379f7a7ab9d7ae192bdf97ceb7a44aff4a1233faf4d0ce9e4d06ca0b": {
+        "code": "core_source_original_relation_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "disposition_obligation",
+        "state": "missing",
+        "target_path": "source_projection_selection/output_refs/3",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-reason",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-reason",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "backflow_owner": "OS-source-owner",
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_800dc612d83bf4fd51d9514b98f7150a97df0a4b6fc9b49d309ab72e56994910"
+          }
+        }
+      },
+      "m_a7a9dd3f21e9b488f534a078439d2406ec79c7a30cf30e237973c637485f8e86": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_22b3c0e624cb9c2b1027d6af7f859d99400bccc33f5026cf4b15bc156542d161"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_a421786057f40cef5b95ee895582d84e025a9b8e5acaf26b8e70e42fbb6a1d3c"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_c1b778403b5e22201ccf39587c0b514545beb5721eb70a75a21266cb4b8e1feb"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_7638aa1b9726084fbd73473913b5985a16c05b8f41236a161b9303a35f2079cc"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_0fdbb583379f7a7ab9d7ae192bdf97ceb7a44aff4a1233faf4d0ce9e4d06ca0b"
+          }
+        }
+      ],
+      "m_9a2e8df7261c386bc414c260ad513c73fb3be6abe0e9f0980b8286f9b6e7e3aa": {
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_800dc612d83bf4fd51d9514b98f7150a97df0a4b6fc9b49d309ab72e56994910"
+          }
+        },
+        "findings": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_a7a9dd3f21e9b488f534a078439d2406ec79c7a30cf30e237973c637485f8e86"
+          }
+        },
+        "unresolved_source_refs": [],
+        "effect_requests": []
+      },
+      "m_98de5229d0a946ecf537af402ec2991be9402253a8b863c48ea2844df1755aa0": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_9a2e8df7261c386bc414c260ad513c73fb3be6abe0e9f0980b8286f9b6e7e3aa"
+          }
+        }
+      ],
+      "m_2b3814ff710614166b86055d991ee27bf57bac97310a149c669ca0418e9fbe8f": {
+        "sections": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_98de5229d0a946ecf537af402ec2991be9402253a8b863c48ea2844df1755aa0"
+          }
+        },
+        "input_issues": [],
+        "effects": [],
+        "authority_generated": false
+      },
+      "m_68e7f45860d16b62e8b5c6732f81a6a42b5b12311c48b5c56ea4fd0288ac005d": {
+        "raw_caller": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_57a3e358bb95cbe9fd0d177b8150ba87d144d0e953f235f9a3a70e761b125269"
+          }
+        },
+        "old_whole": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_4c58a8190a4ad89ff8478dcda7ddd26b92317a5c0283f4ee01f50db00f78622c"
+          }
+        },
+        "expected_component": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_e22115c7b51bd4fa7347687e5d1b60ee74f2b89e1bf7159f1d7b8fb3939c14a0"
+          }
+        },
+        "expected_new_whole": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_2b3814ff710614166b86055d991ee27bf57bac97310a149c669ca0418e9fbe8f"
+          }
+        }
+      },
+      "m_f4ba09b2c2f7736817c93ea6af549634c5bf5d3ce0abf1936fb5fd99d23470e1": {
+        "output_ref": {
+          "identity": "CORE-D3",
+          "revision": "core-members-r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "CORE"
+        },
+        "binding": {
+          "project_scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "requirement_ref": {
+            "identity": "R",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "HARNESS_contract_ref": {
+            "identity": "HARNESS-CONTRACT",
+            "revision": "h1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "HARNESS"
+          },
+          "template_ref": {
+            "identity": "T1",
+            "revision": "v1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "BRAIN"
+          },
+          "semantic_contract_ref": {
+            "identity": "MEANING-T1",
+            "revision": "m1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "BRAIN"
+          }
+        },
+        "template_ref": {
+          "identity": "T3",
+          "revision": "v1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "BRAIN"
+        },
+        "disposition": "NA",
+        "reason": "限定対象外",
+        "target_revision": "rev-A",
+        "reentry": {
+          "when": "revision-change",
+          "minimum": 2
+        },
+        "original_condition": false,
+        "unfinished_obligation_ref": {
+          "identity": "U3",
+          "revision": "u1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "OS-original-owner"
+        },
+        "decider": "synthetic-core-reviewer"
+      },
+      "m_20b79b813cabbbde15c05edafc815c714d690a55d5f52706a28f2cefdb74826d": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_21f652ddf93e6c04614a4b3e03bf5be17a7096267961474552982af66ce58bae"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_a349a1da115ff05ace957111451fb9d7a0fcae3948ebee1141806bd818ae445a"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_f4ba09b2c2f7736817c93ea6af549634c5bf5d3ce0abf1936fb5fd99d23470e1"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_a935e7e39d35c05c51f23521d102ec58bf7a694947ddc3a6470b882efcc682cb"
+          }
+        }
+      ],
+      "m_b8a4cdeae999359c8d73f5863269921a72b5dfd1370537a48cba117a1d7a569a": {
+        "conditional_original_value": false,
+        "OS_new_judgment_count": 0,
+        "core_disposition_records": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_20b79b813cabbbde15c05edafc815c714d690a55d5f52706a28f2cefdb74826d"
+          }
+        },
+        "unfinished_obligation_records": [
+          {
+            "ref": {
+              "identity": "U1",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_started"
+          },
+          {
+            "ref": {
+              "identity": "C1",
+              "revision": "c1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "failed"
+          },
+          {
+            "ref": {
+              "identity": "S1",
+              "revision": "s1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_evaluated"
+          }
+        ],
+        "source_projection_join": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_76d03412f68e509ff7941b8c3a5ad6a0de4ce13c2105eaf7738c4fd2e56d0bcc"
+          }
+        }
+      },
+      "m_480ecc01e4e83066ce635f0e8ab523b240ac0f131cf72429c05bd3c2b34055af": {
+        "conditional_original_value": false,
+        "OS_new_judgment_count": 0,
+        "core_disposition_records": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_20b79b813cabbbde15c05edafc815c714d690a55d5f52706a28f2cefdb74826d"
+          }
+        },
+        "unfinished_obligation_records": [
+          {
+            "ref": {
+              "identity": "U1",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_started"
+          },
+          {
+            "ref": {
+              "identity": "C1",
+              "revision": "c1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "failed"
+          },
+          {
+            "ref": {
+              "identity": "S1",
+              "revision": "s1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_evaluated"
+          }
+        ]
+      },
+      "m_ac5b3b10b4a9f42b6bea3ddf4bc502c484abf6d94bdae52f1c5a67d7db3b1f3a": {
+        "code": "na_decider_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "NA_decider",
+        "state": "missing",
+        "target_path": "candidate/core_outputs/2/decider",
+        "backflow_owner": "CORE",
+        "source_refs": [
+          {
+            "identity": "SOURCE-F04-CORE",
+            "revision": "members-CANDIDATE-ABSENT-decider",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          },
+          {
+            "identity": "SOURCE-F04-OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_480ecc01e4e83066ce635f0e8ab523b240ac0f131cf72429c05bd3c2b34055af"
+          }
+        }
+      },
+      "m_bd4c7cc3a65f543aa2c347fc8acdbeaa4a902e7ae5f9c266094e81ece2a0866e": {
+        "code": "core_source_na_decider_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "NA_decider",
+        "state": "missing",
+        "target_path": "candidate/core_outputs/2/decider",
+        "backflow_owner": "CORE",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-decider",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-decider",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_b8a4cdeae999359c8d73f5863269921a72b5dfd1370537a48cba117a1d7a569a"
+          }
+        }
+      },
+      "m_87060679c2c8600cafd9c776a2b4e6e8c4310befde023d7fcdbc645cfdf06985": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_ac5b3b10b4a9f42b6bea3ddf4bc502c484abf6d94bdae52f1c5a67d7db3b1f3a"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_bd4c7cc3a65f543aa2c347fc8acdbeaa4a902e7ae5f9c266094e81ece2a0866e"
+          }
+        }
+      ],
+      "m_5215815c7375309f2b90c84db75f009e8f13c9fd2e8780922e428e7b471843bc": {
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_b8a4cdeae999359c8d73f5863269921a72b5dfd1370537a48cba117a1d7a569a"
+          }
+        },
+        "findings": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_87060679c2c8600cafd9c776a2b4e6e8c4310befde023d7fcdbc645cfdf06985"
+          }
+        },
+        "unresolved_source_refs": [],
+        "effect_requests": []
+      },
+      "m_60183945f6a2555873ba1148bcde57956b5041d8b9d559c828ec1f8ba918d9d2": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_5215815c7375309f2b90c84db75f009e8f13c9fd2e8780922e428e7b471843bc"
+          }
+        }
+      ],
+      "m_377ed67c41dce5fa7ee493d5f4d4cef56baebcadbe773ed3f5e2b418bb65f1a4": {
+        "sections": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_60183945f6a2555873ba1148bcde57956b5041d8b9d559c828ec1f8ba918d9d2"
+          }
+        },
+        "input_issues": [],
+        "effects": [],
+        "authority_generated": false
+      },
+      "m_716c6436eb5418bb2c0dd7b4edc8c719788fbe716dff3a1b23f703e287c41e33": {
+        "conditional_original_value": false,
+        "OS_new_judgment_count": 0,
+        "core_disposition_records": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_20b79b813cabbbde15c05edafc815c714d690a55d5f52706a28f2cefdb74826d"
+          }
+        },
+        "unfinished_obligation_records": [
+          {
+            "ref": {
+              "identity": "U1",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_started"
+          },
+          {
+            "ref": {
+              "identity": "C1",
+              "revision": "c1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "failed"
+          },
+          {
+            "ref": {
+              "identity": "S1",
+              "revision": "s1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_evaluated"
+          }
+        ],
+        "source_projection_join": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_76d03412f68e509ff7941b8c3a5ad6a0de4ce13c2105eaf7738c4fd2e56d0bcc"
+          }
+        },
+        "source_original_correspondence": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_00c5b110f896a1f543455667f9aebe3a8802b51a1e4c13a4f6b5d5b51ad90b1a"
+          }
+        }
+      },
+      "m_abf5658cbfad325ef246b2b8d63c8b4f33d9a1050278133e843502ed37f29351": {
+        "code": "core_source_original_relation_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "disposition_obligation",
+        "state": "missing",
+        "target_path": "source_projection_selection/output_refs/0",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-decider",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-decider",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "backflow_owner": "OS-source-owner",
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_716c6436eb5418bb2c0dd7b4edc8c719788fbe716dff3a1b23f703e287c41e33"
+          }
+        }
+      },
+      "m_69dd277552f9bdb27ff0397ca55c4e0ec20529243b8f01ac2aa7c7ab4c11fe40": {
+        "code": "core_source_original_relation_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "disposition_obligation",
+        "state": "missing",
+        "target_path": "source_projection_selection/output_refs/1",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-decider",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-decider",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "backflow_owner": "OS-source-owner",
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_716c6436eb5418bb2c0dd7b4edc8c719788fbe716dff3a1b23f703e287c41e33"
+          }
+        }
+      },
+      "m_4a6b702711e6718ae85fc3b4cd54cf802a670c2e1b2e449bd2c7b735feeabee7": {
+        "code": "core_source_original_relation_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "disposition_obligation",
+        "state": "missing",
+        "target_path": "source_projection_selection/output_refs/3",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-decider",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-decider",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "backflow_owner": "OS-source-owner",
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_716c6436eb5418bb2c0dd7b4edc8c719788fbe716dff3a1b23f703e287c41e33"
+          }
+        }
+      },
+      "m_788842218f3c9c112474dbd0a8a5e20b7ceba8763a926ff9a17c53a2736a2e8d": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_ac5b3b10b4a9f42b6bea3ddf4bc502c484abf6d94bdae52f1c5a67d7db3b1f3a"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_bd4c7cc3a65f543aa2c347fc8acdbeaa4a902e7ae5f9c266094e81ece2a0866e"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_abf5658cbfad325ef246b2b8d63c8b4f33d9a1050278133e843502ed37f29351"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_69dd277552f9bdb27ff0397ca55c4e0ec20529243b8f01ac2aa7c7ab4c11fe40"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_4a6b702711e6718ae85fc3b4cd54cf802a670c2e1b2e449bd2c7b735feeabee7"
+          }
+        }
+      ],
+      "m_abfa169ab51b683060e4d7dab25c395791f5edb9edb76d829ff1a8aaa8715b54": {
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_716c6436eb5418bb2c0dd7b4edc8c719788fbe716dff3a1b23f703e287c41e33"
+          }
+        },
+        "findings": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_788842218f3c9c112474dbd0a8a5e20b7ceba8763a926ff9a17c53a2736a2e8d"
+          }
+        },
+        "unresolved_source_refs": [],
+        "effect_requests": []
+      },
+      "m_dbcdfb16a59650528f149bac6536a90ee969c37a913333430e42eb2f25e817d1": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_abfa169ab51b683060e4d7dab25c395791f5edb9edb76d829ff1a8aaa8715b54"
+          }
+        }
+      ],
+      "m_f70b810ccbcb0d57f7d0373005794c017c811ba3189def0ee6179327ebeadfb4": {
+        "sections": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_dbcdfb16a59650528f149bac6536a90ee969c37a913333430e42eb2f25e817d1"
+          }
+        },
+        "input_issues": [],
+        "effects": [],
+        "authority_generated": false
+      },
+      "m_443d257cfabd561d96536fabd426328fa417272b0407dcd6a3cf47d1cd46c6dd": {
+        "raw_caller": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_93326937940204a6e043dc4fd235e066ef058dad4b4617cdf9e9084ea0e091fa"
+          }
+        },
+        "old_whole": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_377ed67c41dce5fa7ee493d5f4d4cef56baebcadbe773ed3f5e2b418bb65f1a4"
+          }
+        },
+        "expected_component": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_00c5b110f896a1f543455667f9aebe3a8802b51a1e4c13a4f6b5d5b51ad90b1a"
+          }
+        },
+        "expected_new_whole": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_f70b810ccbcb0d57f7d0373005794c017c811ba3189def0ee6179327ebeadfb4"
+          }
+        }
+      },
+      "m_0a6d4f15c691adec8f80ae36edfe2c0f96638f2d52bb3c98cf61f16556d9dfeb": {
+        "output_ref": {
+          "identity": "CORE-D3",
+          "revision": "core-members-r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "CORE"
+        },
+        "binding": {
+          "project_scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "requirement_ref": {
+            "identity": "R",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "HARNESS_contract_ref": {
+            "identity": "HARNESS-CONTRACT",
+            "revision": "h1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "HARNESS"
+          },
+          "template_ref": {
+            "identity": "T1",
+            "revision": "v1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "BRAIN"
+          },
+          "semantic_contract_ref": {
+            "identity": "MEANING-T1",
+            "revision": "m1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "BRAIN"
+          }
+        },
+        "template_ref": {
+          "identity": "T3",
+          "revision": "v1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "BRAIN"
+        },
+        "disposition": "NA",
+        "reason": "限定対象外",
+        "decider": "synthetic-core-reviewer",
+        "reentry": {
+          "when": "revision-change",
+          "minimum": 2
+        },
+        "original_condition": false,
+        "unfinished_obligation_ref": {
+          "identity": "U3",
+          "revision": "u1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "OS-original-owner"
+        },
+        "target_revision": "rev-A"
+      },
+      "m_c7079e1b3da69e7d471273dcec831457aaf2d4bca8cbd17c9721d8bfac0b1a51": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_21f652ddf93e6c04614a4b3e03bf5be17a7096267961474552982af66ce58bae"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_a349a1da115ff05ace957111451fb9d7a0fcae3948ebee1141806bd818ae445a"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_0a6d4f15c691adec8f80ae36edfe2c0f96638f2d52bb3c98cf61f16556d9dfeb"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_a935e7e39d35c05c51f23521d102ec58bf7a694947ddc3a6470b882efcc682cb"
+          }
+        }
+      ],
+      "m_821b4644fd9e18bdd038b0d525435181600f861156d22ac217900056b6d5aa27": {
+        "conditional_original_value": false,
+        "OS_new_judgment_count": 0,
+        "core_disposition_records": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_c7079e1b3da69e7d471273dcec831457aaf2d4bca8cbd17c9721d8bfac0b1a51"
+          }
+        },
+        "unfinished_obligation_records": [
+          {
+            "ref": {
+              "identity": "U1",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_started"
+          },
+          {
+            "ref": {
+              "identity": "C1",
+              "revision": "c1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "failed"
+          },
+          {
+            "ref": {
+              "identity": "S1",
+              "revision": "s1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_evaluated"
+          }
+        ],
+        "source_projection_join": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_2addadd80775dc70dd34b8c37b5882e7a963ab95409c8d6ec0f51e1d3ed3fc63"
+          }
+        }
+      },
+      "m_fc250a2107e1b2db1cbc13b82e38e6cc9ac808b64dbdd9bc9d9523271591a162": {
+        "conditional_original_value": false,
+        "OS_new_judgment_count": 0,
+        "core_disposition_records": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_c7079e1b3da69e7d471273dcec831457aaf2d4bca8cbd17c9721d8bfac0b1a51"
+          }
+        },
+        "unfinished_obligation_records": [
+          {
+            "ref": {
+              "identity": "U1",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_started"
+          },
+          {
+            "ref": {
+              "identity": "C1",
+              "revision": "c1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "failed"
+          },
+          {
+            "ref": {
+              "identity": "S1",
+              "revision": "s1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_evaluated"
+          }
+        ]
+      },
+      "m_5a3ae9f8b90ef1adcd286f728411fbe86488adfc6a9d99e6aa69cf020b4cb7f7": {
+        "code": "na_target_revision_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "NA_target_revision",
+        "state": "missing",
+        "target_path": "candidate/core_outputs/2/target_revision",
+        "backflow_owner": "CORE",
+        "source_refs": [
+          {
+            "identity": "SOURCE-F04-CORE",
+            "revision": "members-CANDIDATE-ABSENT-target_revision",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          },
+          {
+            "identity": "SOURCE-F04-OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_fc250a2107e1b2db1cbc13b82e38e6cc9ac808b64dbdd9bc9d9523271591a162"
+          }
+        }
+      },
+      "m_417284bda07410d6fb1e850ac42b33cac0b02b0459fff1e9b0f7fc84d8b46064": {
+        "code": "core_source_na_target_revision_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "NA_target_revision",
+        "state": "missing",
+        "target_path": "candidate/core_outputs/2/target_revision",
+        "backflow_owner": "CORE",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-target_revision",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-target_revision",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_821b4644fd9e18bdd038b0d525435181600f861156d22ac217900056b6d5aa27"
+          }
+        }
+      },
+      "m_d694900661dcf80444551b1b26a97b507280857cae6c94411c41c0b64ea9195e": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_5a3ae9f8b90ef1adcd286f728411fbe86488adfc6a9d99e6aa69cf020b4cb7f7"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_417284bda07410d6fb1e850ac42b33cac0b02b0459fff1e9b0f7fc84d8b46064"
+          }
+        }
+      ],
+      "m_8296526389f7adcf91b47a6b07fccd24f538a2de8a74f2d9302e03f945305a83": {
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_821b4644fd9e18bdd038b0d525435181600f861156d22ac217900056b6d5aa27"
+          }
+        },
+        "findings": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_d694900661dcf80444551b1b26a97b507280857cae6c94411c41c0b64ea9195e"
+          }
+        },
+        "unresolved_source_refs": [],
+        "effect_requests": []
+      },
+      "m_614b233ec554471c7e6aa3e1c252612eadad2919193e99bb0fafc7ccffbde7c7": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_8296526389f7adcf91b47a6b07fccd24f538a2de8a74f2d9302e03f945305a83"
+          }
+        }
+      ],
+      "m_772ecca975c75e59a626a1944a1c18cd72f65af7cb4eaca9be841ce167b42473": {
+        "sections": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_614b233ec554471c7e6aa3e1c252612eadad2919193e99bb0fafc7ccffbde7c7"
+          }
+        },
+        "input_issues": [],
+        "effects": [],
+        "authority_generated": false
+      },
+      "m_32ec29f1183c56175754c93b22cc97eb7e4c08a8be81c43a1afcc2de4179f0a9": {
+        "conditional_original_value": false,
+        "OS_new_judgment_count": 0,
+        "core_disposition_records": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_c7079e1b3da69e7d471273dcec831457aaf2d4bca8cbd17c9721d8bfac0b1a51"
+          }
+        },
+        "unfinished_obligation_records": [
+          {
+            "ref": {
+              "identity": "U1",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_started"
+          },
+          {
+            "ref": {
+              "identity": "C1",
+              "revision": "c1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "failed"
+          },
+          {
+            "ref": {
+              "identity": "S1",
+              "revision": "s1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_evaluated"
+          }
+        ],
+        "source_projection_join": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_2addadd80775dc70dd34b8c37b5882e7a963ab95409c8d6ec0f51e1d3ed3fc63"
+          }
+        },
+        "source_original_correspondence": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_8792a356e8e2b217a4ea0e983b98c75e7ac0ac20d07a631875b0300c8c98af77"
+          }
+        }
+      },
+      "m_9660c6260b8e91c73efe160b8220e462e64553976cd6007a8cd19f5c7330391a": {
+        "code": "core_source_original_relation_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "disposition_obligation",
+        "state": "missing",
+        "target_path": "source_projection_selection/output_refs/0",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-target_revision",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-target_revision",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "backflow_owner": "OS-source-owner",
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_32ec29f1183c56175754c93b22cc97eb7e4c08a8be81c43a1afcc2de4179f0a9"
+          }
+        }
+      },
+      "m_2b6b642f7448a7b4484dacabc1ebfc4a617d7e8bc6ae117d570822c2b52f1c28": {
+        "code": "core_source_original_relation_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "disposition_obligation",
+        "state": "missing",
+        "target_path": "source_projection_selection/output_refs/1",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-target_revision",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-target_revision",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "backflow_owner": "OS-source-owner",
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_32ec29f1183c56175754c93b22cc97eb7e4c08a8be81c43a1afcc2de4179f0a9"
+          }
+        }
+      },
+      "m_5b726ba5db40fe3b470ea4e1ac4dee249bc11763dbc79179eb3aece906a42564": {
+        "code": "core_source_original_relation_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "disposition_obligation",
+        "state": "missing",
+        "target_path": "source_projection_selection/output_refs/3",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-target_revision",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-target_revision",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "backflow_owner": "OS-source-owner",
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_32ec29f1183c56175754c93b22cc97eb7e4c08a8be81c43a1afcc2de4179f0a9"
+          }
+        }
+      },
+      "m_07aa1fa7f76c8fbb44780f1c4b8ac3e5e06b2d6d2fedb5cb2d59d5a4c6f0f934": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_5a3ae9f8b90ef1adcd286f728411fbe86488adfc6a9d99e6aa69cf020b4cb7f7"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_417284bda07410d6fb1e850ac42b33cac0b02b0459fff1e9b0f7fc84d8b46064"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_9660c6260b8e91c73efe160b8220e462e64553976cd6007a8cd19f5c7330391a"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_2b6b642f7448a7b4484dacabc1ebfc4a617d7e8bc6ae117d570822c2b52f1c28"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_5b726ba5db40fe3b470ea4e1ac4dee249bc11763dbc79179eb3aece906a42564"
+          }
+        }
+      ],
+      "m_6e89422a409057e31fdb5e4e946097d79674ddb84003c2baf4e14980ccc93013": {
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_32ec29f1183c56175754c93b22cc97eb7e4c08a8be81c43a1afcc2de4179f0a9"
+          }
+        },
+        "findings": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_07aa1fa7f76c8fbb44780f1c4b8ac3e5e06b2d6d2fedb5cb2d59d5a4c6f0f934"
+          }
+        },
+        "unresolved_source_refs": [],
+        "effect_requests": []
+      },
+      "m_a77e2710ed02b1a4bf45208e4d95ced5695682dfcb5122c7e74be6ba972115b3": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_6e89422a409057e31fdb5e4e946097d79674ddb84003c2baf4e14980ccc93013"
+          }
+        }
+      ],
+      "m_358947bee851c710fb96956db3fe22c8f60217a29f843671ee58ebab32870301": {
+        "sections": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_a77e2710ed02b1a4bf45208e4d95ced5695682dfcb5122c7e74be6ba972115b3"
+          }
+        },
+        "input_issues": [],
+        "effects": [],
+        "authority_generated": false
+      },
+      "m_95d6cfd36f812ddf42f8e293259a47962becff73956e226c912b6ce33756e574": {
+        "raw_caller": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_21ba236b68597b251b69463b383bbdb204f5d8de893284efee07c2868c355bd1"
+          }
+        },
+        "old_whole": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_772ecca975c75e59a626a1944a1c18cd72f65af7cb4eaca9be841ce167b42473"
+          }
+        },
+        "expected_component": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_8792a356e8e2b217a4ea0e983b98c75e7ac0ac20d07a631875b0300c8c98af77"
+          }
+        },
+        "expected_new_whole": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_358947bee851c710fb96956db3fe22c8f60217a29f843671ee58ebab32870301"
+          }
+        }
+      },
+      "m_496a839b2ccabdbf0c2184c313d585cb44e35a5d594ba68043fabe10cee2a531": {
+        "output_ref": {
+          "identity": "CORE-D3",
+          "revision": "core-members-r1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "CORE"
+        },
+        "binding": {
+          "project_scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "requirement_ref": {
+            "identity": "R",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "requirement-owner"
+          },
+          "HARNESS_contract_ref": {
+            "identity": "HARNESS-CONTRACT",
+            "revision": "h1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "HARNESS"
+          },
+          "template_ref": {
+            "identity": "T1",
+            "revision": "v1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "BRAIN"
+          },
+          "semantic_contract_ref": {
+            "identity": "MEANING-T1",
+            "revision": "m1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "BRAIN"
+          }
+        },
+        "template_ref": {
+          "identity": "T3",
+          "revision": "v1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "BRAIN"
+        },
+        "disposition": "NA",
+        "reason": "限定対象外",
+        "decider": "synthetic-core-reviewer",
+        "target_revision": "rev-A",
+        "original_condition": false,
+        "unfinished_obligation_ref": {
+          "identity": "U3",
+          "revision": "u1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "OS-original-owner"
+        },
+        "reentry": {
+          "when": "revision-change",
+          "minimum": 2
+        }
+      },
+      "m_bdfd35d57d13e597c38ca6470b7dde48197b16d21e6ce1179a48373c3e2ea927": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_21f652ddf93e6c04614a4b3e03bf5be17a7096267961474552982af66ce58bae"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_a349a1da115ff05ace957111451fb9d7a0fcae3948ebee1141806bd818ae445a"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_496a839b2ccabdbf0c2184c313d585cb44e35a5d594ba68043fabe10cee2a531"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_a935e7e39d35c05c51f23521d102ec58bf7a694947ddc3a6470b882efcc682cb"
+          }
+        }
+      ],
+      "m_21066a917d62fb3c03bb3dc635cd200b2e9219e9f8c7fe43f2b7b209fc887a35": {
+        "conditional_original_value": false,
+        "OS_new_judgment_count": 0,
+        "core_disposition_records": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_bdfd35d57d13e597c38ca6470b7dde48197b16d21e6ce1179a48373c3e2ea927"
+          }
+        },
+        "unfinished_obligation_records": [
+          {
+            "ref": {
+              "identity": "U1",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_started"
+          },
+          {
+            "ref": {
+              "identity": "C1",
+              "revision": "c1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "failed"
+          },
+          {
+            "ref": {
+              "identity": "S1",
+              "revision": "s1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_evaluated"
+          }
+        ],
+        "source_projection_join": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_ea755261bfc0d56b42fded80d6a43a9caca603ded2ca78de48a971bd9c4960c0"
+          }
+        }
+      },
+      "m_2bff94799431e0cf172d9175af61cda56291bcbc95d086d505f1e1421f1f3c43": {
+        "conditional_original_value": false,
+        "OS_new_judgment_count": 0,
+        "core_disposition_records": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_bdfd35d57d13e597c38ca6470b7dde48197b16d21e6ce1179a48373c3e2ea927"
+          }
+        },
+        "unfinished_obligation_records": [
+          {
+            "ref": {
+              "identity": "U1",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_started"
+          },
+          {
+            "ref": {
+              "identity": "C1",
+              "revision": "c1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "failed"
+          },
+          {
+            "ref": {
+              "identity": "S1",
+              "revision": "s1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_evaluated"
+          }
+        ]
+      },
+      "m_5a16f2ef4a8fcf227d9cd94edf830fc96c2d7c4d08233e763987dbcf11490ce0": {
+        "code": "na_reentry_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "NA_reentry",
+        "state": "missing",
+        "target_path": "candidate/core_outputs/2/reentry",
+        "backflow_owner": "CORE",
+        "source_refs": [
+          {
+            "identity": "SOURCE-F04-CORE",
+            "revision": "members-CANDIDATE-ABSENT-reentry",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          },
+          {
+            "identity": "SOURCE-F04-OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          }
+        ],
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_2bff94799431e0cf172d9175af61cda56291bcbc95d086d505f1e1421f1f3c43"
+          }
+        }
+      },
+      "m_eee223298addb527bb8e527fb238f73198790489d9571951182839da22b4c5dd": {
+        "code": "core_source_na_reentry_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "NA_reentry",
+        "state": "missing",
+        "target_path": "candidate/core_outputs/2/reentry",
+        "backflow_owner": "CORE",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-reentry",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-reentry",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_21066a917d62fb3c03bb3dc635cd200b2e9219e9f8c7fe43f2b7b209fc887a35"
+          }
+        }
+      },
+      "m_a8e9b7c25c76c7dcc5fdb329547de2a29f1e5a8d9b262ec2bb1a67fcbc58abc2": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_5a16f2ef4a8fcf227d9cd94edf830fc96c2d7c4d08233e763987dbcf11490ce0"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_eee223298addb527bb8e527fb238f73198790489d9571951182839da22b4c5dd"
+          }
+        }
+      ],
+      "m_df5a7c802d54bdd7b5883027c5ed64dd404586ede5868210ed342bdf07fb059a": {
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_21066a917d62fb3c03bb3dc635cd200b2e9219e9f8c7fe43f2b7b209fc887a35"
+          }
+        },
+        "findings": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_a8e9b7c25c76c7dcc5fdb329547de2a29f1e5a8d9b262ec2bb1a67fcbc58abc2"
+          }
+        },
+        "unresolved_source_refs": [],
+        "effect_requests": []
+      },
+      "m_1eb483ffbccea17986369babd583e9a2f986f29838d71eed2b5f513586153fd2": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_df5a7c802d54bdd7b5883027c5ed64dd404586ede5868210ed342bdf07fb059a"
+          }
+        }
+      ],
+      "m_97d79c588de7a623e9de32e74caa2426acd3a7dff435a4fec2f2561413cc116a": {
+        "sections": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_1eb483ffbccea17986369babd583e9a2f986f29838d71eed2b5f513586153fd2"
+          }
+        },
+        "input_issues": [],
+        "effects": [],
+        "authority_generated": false
+      },
+      "m_1187ac013e30dd978a2338cce592d809d8b82190b1959694ce2da7063e27fbc6": {
+        "conditional_original_value": false,
+        "OS_new_judgment_count": 0,
+        "core_disposition_records": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_bdfd35d57d13e597c38ca6470b7dde48197b16d21e6ce1179a48373c3e2ea927"
+          }
+        },
+        "unfinished_obligation_records": [
+          {
+            "ref": {
+              "identity": "U1",
+              "revision": "u1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_started"
+          },
+          {
+            "ref": {
+              "identity": "C1",
+              "revision": "c1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "failed"
+          },
+          {
+            "ref": {
+              "identity": "S1",
+              "revision": "s1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "state": "not_evaluated"
+          }
+        ],
+        "source_projection_join": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_ea755261bfc0d56b42fded80d6a43a9caca603ded2ca78de48a971bd9c4960c0"
+          }
+        },
+        "source_original_correspondence": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_e154e10a389ae2843de3c1332d5bfd14787df6c855ca757086d172cb1f153275"
+          }
+        }
+      },
+      "m_b3d601415d066a1f0f2e7f8ad43b48a29896dd968497fb0f7b57fcb35b460a89": {
+        "code": "core_source_original_relation_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "disposition_obligation",
+        "state": "missing",
+        "target_path": "source_projection_selection/output_refs/0",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-reentry",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-reentry",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "backflow_owner": "OS-source-owner",
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_1187ac013e30dd978a2338cce592d809d8b82190b1959694ce2da7063e27fbc6"
+          }
+        }
+      },
+      "m_6735fdb81e63fd19c907bbc02c17d9e3174f135bd1938b5b51f31e76b8a7efaf": {
+        "code": "core_source_original_relation_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "disposition_obligation",
+        "state": "missing",
+        "target_path": "source_projection_selection/output_refs/1",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-reentry",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-reentry",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "backflow_owner": "OS-source-owner",
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_1187ac013e30dd978a2338cce592d809d8b82190b1959694ce2da7063e27fbc6"
+          }
+        }
+      },
+      "m_02c642b103543a731862ff61972f188e76f0466e6b06b0aa451123b79a651f48": {
+        "code": "core_source_original_relation_missing",
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "axis": "disposition_obligation",
+        "state": "missing",
+        "target_path": "source_projection_selection/output_refs/3",
+        "source_refs": [
+          {
+            "identity": "CORE-PROJECTION-SOURCE",
+            "revision": "members-core-r1-CANDIDATE-ABSENT-reentry",
+            "scope": {
+              "project": "CORE-PROJECTION-PROJECT",
+              "tenant": "CORE-PROJECTION-TENANT",
+              "environment": "CORE-PROJECTION-ENV"
+            },
+            "owner": "CORE-source-owner"
+          },
+          {
+            "identity": "OS-ASSOCIATION-SOURCE",
+            "revision": "members-os-r1-CANDIDATE-ABSENT-reentry",
+            "scope": {
+              "project": "OS-PROJECT-7",
+              "tenant": "OS-TENANT",
+              "environment": "OS-TEST"
+            },
+            "owner": "OS-source-owner"
+          }
+        ],
+        "backflow_owner": "OS-source-owner",
+        "preserved_observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_1187ac013e30dd978a2338cce592d809d8b82190b1959694ce2da7063e27fbc6"
+          }
+        }
+      },
+      "m_6a794366f5a4a947c589d6c306e12071c3c60317799a107ad712180747eb415d": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_5a16f2ef4a8fcf227d9cd94edf830fc96c2d7c4d08233e763987dbcf11490ce0"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_eee223298addb527bb8e527fb238f73198790489d9571951182839da22b4c5dd"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_b3d601415d066a1f0f2e7f8ad43b48a29896dd968497fb0f7b57fcb35b460a89"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_6735fdb81e63fd19c907bbc02c17d9e3174f135bd1938b5b51f31e76b8a7efaf"
+          }
+        },
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_02c642b103543a731862ff61972f188e76f0466e6b06b0aa451123b79a651f48"
+          }
+        }
+      ],
+      "m_c802645e214b8dbeed9f05677d52b662e932815446ad93cda82d63a2d0eca4e5": {
+        "contract_ref": "HELIXOS-L5-002-F04",
+        "observation": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_1187ac013e30dd978a2338cce592d809d8b82190b1959694ce2da7063e27fbc6"
+          }
+        },
+        "findings": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_6a794366f5a4a947c589d6c306e12071c3c60317799a107ad712180747eb415d"
+          }
+        },
+        "unresolved_source_refs": [],
+        "effect_requests": []
+      },
+      "m_bde1f9f13276a50ebe2d6c5d896e438678d84d72280dde8e2e2952e88002bdd2": [
+        {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_c802645e214b8dbeed9f05677d52b662e932815446ad93cda82d63a2d0eca4e5"
+          }
+        }
+      ],
+      "m_dc9a0e13820d0dbb4880a75bd5b234a15607af584c7f580139fce007ef2a12a5": {
+        "sections": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_bde1f9f13276a50ebe2d6c5d896e438678d84d72280dde8e2e2952e88002bdd2"
+          }
+        },
+        "input_issues": [],
+        "effects": [],
+        "authority_generated": false
+      },
+      "m_bb1ad034410c01c02c8c7e2ac3d89b1a83bb4a19f8531813be82523b7a3d6970": {
+        "raw_caller": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_439a2163c8e9e3b2a8a0d03ad74b2412c27aae6e03aa40b615182e0916b49df6"
+          }
+        },
+        "old_whole": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_97d79c588de7a623e9de32e74caa2426acd3a7dff435a4fec2f2561413cc116a"
+          }
+        },
+        "expected_component": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_e154e10a389ae2843de3c1332d5bfd14787df6c855ca757086d172cb1f153275"
+          }
+        },
+        "expected_new_whole": {
+          "$copy": {
+            "root": "f04_original_materials",
+            "pointer": "/m_dc9a0e13820d0dbb4880a75bd5b234a15607af584c7f580139fce007ef2a12a5"
+          }
+        }
       }
     },
     "component_cases": [
@@ -274147,11 +277328,11 @@
         "values_recipe": {
           "$copy": {
             "root": "f04_original_materials",
-            "pointer": "/m_28395786e9b6b79d06d84f71cf3a8d7fc293237e3a7793be820da3f87c874195"
+            "pointer": "/m_68e7f45860d16b62e8b5c6732f81a6a42b5b12311c48b5c56ea4fd0288ac005d"
           }
         },
-        "expected_new_whole_canonical_sha256": "734a0967cf7d4896ce50d3beca8af6aa3648e19689dfede01e154d443ab557af",
-        "expected_old_whole_canonical_sha256": "69f9428da339e09d4e301488a40292e29e1e112ebeee2fa4a88b54f58cf33fd8"
+        "expected_new_whole_canonical_sha256": "3d38276b1a3fd1917acc020730ed0de7e26c67f8b0cf9e6f5b7ae07292023096",
+        "expected_old_whole_canonical_sha256": "bae5ebb169761645fb764ec0460354e3d82e740be0f4fbb97c04f6ebee4fa999"
       },
       {
         "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-07",
@@ -274160,11 +277341,11 @@
         "values_recipe": {
           "$copy": {
             "root": "f04_original_materials",
-            "pointer": "/m_638ae86e902998375754c57018f981ac3dfdbd203429786f0f75035fbdd2718d"
+            "pointer": "/m_443d257cfabd561d96536fabd426328fa417272b0407dcd6a3cf47d1cd46c6dd"
           }
         },
-        "expected_new_whole_canonical_sha256": "67563e51f900a5011de21f29b58d9d6e7ff97494bd4a52100d692562af9467db",
-        "expected_old_whole_canonical_sha256": "33ca1b94d06c63fb04da77cf4a0e10e4c908a66fff0bb905bb6134338b903c5d"
+        "expected_new_whole_canonical_sha256": "38f4b2716177d6e45723a385b2d362b98e8992217cd9b2305b4be707ca85053d",
+        "expected_old_whole_canonical_sha256": "fc2d7a34b1806c8e164b2708d2497909bf1f08399cd7991f9ccc06d0c9158f6c"
       },
       {
         "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-08",
@@ -274173,11 +277354,11 @@
         "values_recipe": {
           "$copy": {
             "root": "f04_original_materials",
-            "pointer": "/m_9c458b8bc1383c4c8ba2cf9415a47f13acf3d05e774535c7f215df1b97fc541b"
+            "pointer": "/m_95d6cfd36f812ddf42f8e293259a47962becff73956e226c912b6ce33756e574"
           }
         },
-        "expected_new_whole_canonical_sha256": "7695b119b00e591d19b7443821b323aa5423114c18170dad38e42816c34572fb",
-        "expected_old_whole_canonical_sha256": "674e4ca4611ce961517c21e577c267996513777a0d0141ad217fbaa53f5c63fe"
+        "expected_new_whole_canonical_sha256": "1f99fb662c68eb0249446ad969d864c885dbc0c4a5182565ababca16af57f3d8",
+        "expected_old_whole_canonical_sha256": "11bda7cd6db4d42db219abbf17b760cc8dfd2fb9c8fb1397e29cb2f198c6b27d"
       },
       {
         "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-09",
@@ -274186,11 +277367,11 @@
         "values_recipe": {
           "$copy": {
             "root": "f04_original_materials",
-            "pointer": "/m_c494eb7b7071efd32c91db70bcae77c714b1f58d12d72ad155aaa7afeee87499"
+            "pointer": "/m_bb1ad034410c01c02c8c7e2ac3d89b1a83bb4a19f8531813be82523b7a3d6970"
           }
         },
-        "expected_new_whole_canonical_sha256": "628cedd15a6b007c1ddc81002e6fc34fc5420d516d1dad79412c2d50bb8dfc8c",
-        "expected_old_whole_canonical_sha256": "2f94e6640da0f4bf9b2ea36821334115ad1a69359f46ec2257c299f162d76cca"
+        "expected_new_whole_canonical_sha256": "59b468fdc2739bfeca4425755521853c039dc5cf8aa984fde043d549cbfe2db8",
+        "expected_old_whole_canonical_sha256": "fdf22c779bac155e89d0cff266744c411d2bbb0a3184a724a25cbc0f0f4d8e6a"
       }
     ],
     "recipe_semantics": {
@@ -274205,19 +277386,705 @@
       "原12は新component/全新suffix/保存元最終F04観測。全Analysis wholeではない。",
       "branch17の型外Presence2件はcomponent/semantic suffixのみ。旧join/最終F04 wholeは未固定。",
       "origin4はcomponent/新suffix/保存元F04観測/同walk origin全列/既存分類を比較。全public validator返却を代替しない。",
-      "旧member9は同じrawから全Analysis新whole。旧finding prefixと各phase保存観測は全値保持。",
+      "旧member9は同じrawから全Analysis新whole。現active期待はnative4を元source値へ追随し、4歴史case各9phaseの観測だけ訂正。旧期待/素材/履歴は別に保持し、finding非観測値/順序と各到達phaseのfield集合は不変。",
       "旧25のpublic fn0全返却は全member比較を維持する。join/native/member既存各phaseの部分比較はその元範囲を保持し、新original全Analysis whole25とは称さない。",
       "新private関数は規範/型/全値期待の候補であり、業務evaluator/実codec/資格/runtimeを実行していない。"
     ],
     "historical_whole_extension": {
       "reason": "新L4原条件/義務対応を選択済み旧9rawにも適用する。原対応source未供給のD1/D2/D4を各missingとし新component/3所見を追加。旧wholeを導入前scopeへ逃がさない。",
-      "inverse": "新componentと新original finding suffixだけを除去すると同file old_wholeへ全値一致。旧finding内の保存観測へ新fieldを注入しない。"
+      "inverse": "新componentと新original finding suffixだけを除去すると同fileの現active old_whole（pre-original phase）へ全値一致する。old_wholeはphase名であり旧revision固定bytesとは別。旧finding保存観測へ後段fieldを注入しない。役割訂正前の旧wholeはnative_observation_correction_historyの旧root/shaから逆追跡する。"
     },
     "internal_oracle_bindings": {
       "validator_core": "旧public fn0全返却の既存oracleはそのまま。origin全列はorigin4で別比較。旧全validator期待をorigin部分比較へ置換しない。",
       "resolver": "旧public fn15全join期待はそのまま。private acquisition contextの全返却wholeではない。",
       "native_lookup": "各componentの原raw/所在/状態/issueへの投影を比較。lookup全返却wholeではない。",
       "comparer": "原12/通常branch15/origin4のcomponent/全新suffix/最終F04保存元、型外Presence2の限定面、旧9全Analysisを区別。"
+    },
+    "native_observation_correction_history": {
+      "classification": "技術役割訂正の追随。旧証拠と現規範を区別し、過去を正常だったと書換えない。",
+      "previous_revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
+      "normative_basis": {
+        "L4": {
+          "revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
+          "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+          "file_sha256": "523313394dacd4bbadbec5eea0972271ad080b7f3e7cc478da71edbd666c88d7",
+          "pointer": "/contracts/5/selected_source_member_correspondence"
+        },
+        "L9": {
+          "revision": "039fcd451b95a32989fbef83bce4b2951bea6da5",
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "35e825e5031995b7c73b4950af6445b12732e67ac2d918a86c2c959d43e1945b",
+          "pointer": "/cases/5/selected_source_member_correspondence_oracles"
+        }
+      },
+      "reason": "旧candidate格納条項とnative source再構築の衝突を先行L4/L9で解消したため、L5配置とL8期待を追随。L9期待のみ変更した初回案は撤回済み。",
+      "legacy_basis": {
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "lines": "110-147",
+        "retained": "source_pointerとtarget_json_pointerを別に保持し、candidate normative fieldの原source traceとowner付きunmappedを区別する。source authorityをcandidate defaultへ自動昇格しない。",
+        "changed": "旧shadow runtimeは実行/移植せず、既存F04 native観測とcandidate raw証拠の配置へ意味再導出する。"
+      },
+      "upstream_originals": {
+        "L3": {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/11/obligation",
+          "text": "CORE009のrequired/conditional/N/A/unresolved、根拠・判定者・対象revision・再評価条件を出力参照へ結ぶ。conditional未充足、義務の未実施/不合格/未評価を分け、OSが適用規則やN/A判断を新設しない。"
+        },
+        "L10": {
+          "path": "docs/helix-os/L10-verification/functional-verification.json",
+          "pointer": "/cases/11",
+          "positive_input": "四判定と属性、conditional条件、義務の未実施/不合格/未評価を各々照合する。",
+          "expected_observation": "判定属性と元のCORE出力、各未完状態を区別して辿れる。",
+          "failure_observation": "不足属性/義務/kindを保持し、未完を適用/完了へ変換しない。"
+        }
+      },
+      "retained": "原raw入力・旧素材・明示過去revisionの参照・candidate欠落finding条件/非観測値/順序・正常native結果・公開型/署名・L3/L10意味。",
+      "changed": "native4は元source観測、candidate証拠は既存join carrier及び同call原入力。source不足の未知をcandidateで補完しない。",
+      "unresolved": [
+        "native-source-unavailableのField/diagnostic全値",
+        "malformed Presence2件の全Analysis",
+        "旧25の新whole、private全返却、実provider/runtime/CI/L11等の既存未完"
+      ],
+      "execution_state": "not_executed",
+      "previous_file_sha256": "aea66dc9d4719701ddd8c125731844e2f397f063d891cc53081e4ed7240367c9",
+      "previous_source_l4_ref": {
+        "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+        "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+        "file_sha256": "d9395488dd4508ec52f26bd8849e1d7ce521f6a23f128135b24a3f55a327ec99",
+        "pointer": "/contracts/5/selected_source_member_correspondence"
+      },
+      "previous_source_l9_ref": {
+        "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+        "pointer": "/cases/5/selected_source_member_correspondence_oracles"
+      },
+      "previous_case_source_refs": [
+        {
+          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/0"
+        },
+        {
+          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/1"
+        },
+        {
+          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/2"
+        },
+        {
+          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/3"
+        },
+        {
+          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/4"
+        },
+        {
+          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/5"
+        },
+        {
+          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/6"
+        },
+        {
+          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/7"
+        },
+        {
+          "revision": "14440cdfcce7d4364c0b70a3a632167a50d18c9b",
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "7ca9306a01257ab38cae498f934445bf9034c212aa2c3a25420d37415276988e",
+          "pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/8"
+        }
+      ],
+      "cases": [
+        {
+          "case_index": 5,
+          "case_id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-06",
+          "member": "reason",
+          "previous_values_recipe": {
+            "$copy": {
+              "root": "f04_original_materials",
+              "pointer": "/m_28395786e9b6b79d06d84f71cf3a8d7fc293237e3a7793be820da3f87c874195"
+            }
+          },
+          "previous_metadata": {
+            "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-06",
+            "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+            "comparison_scope": "旧raw同一の全RecordTraceAnalysis。旧prefix全値と各phase保存観測を保持し、newfield＋3neworiginal findingだけ追加。",
+            "values_recipe": {
+              "$copy": {
+                "root": "f04_original_materials",
+                "pointer": "/m_28395786e9b6b79d06d84f71cf3a8d7fc293237e3a7793be820da3f87c874195"
+              }
+            },
+            "expected_new_whole_canonical_sha256": "734a0967cf7d4896ce50d3beca8af6aa3648e19689dfede01e154d443ab557af",
+            "expected_old_whole_canonical_sha256": "69f9428da339e09d4e301488a40292e29e1e112ebeee2fa4a88b54f58cf33fd8"
+          },
+          "correction": {
+            "patch_base": "frozen_original_wholesのold_whole/expected_new_wholeのvalueを同名keyへ展開したobject。",
+            "json_patch": [
+              {
+                "op": "add",
+                "path": "/old_whole/sections/0/observation/core_disposition_records/2/reason",
+                "value": "限定対象外"
+              },
+              {
+                "op": "add",
+                "path": "/old_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/reason",
+                "value": "限定対象外"
+              },
+              {
+                "op": "add",
+                "path": "/old_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/reason",
+                "value": "限定対象外"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/observation/core_disposition_records/2/reason",
+                "value": "限定対象外"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/reason",
+                "value": "限定対象外"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/reason",
+                "value": "限定対象外"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/2/preserved_observation/core_disposition_records/2/reason",
+                "value": "限定対象外"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/3/preserved_observation/core_disposition_records/2/reason",
+                "value": "限定対象外"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/4/preserved_observation/core_disposition_records/2/reason",
+                "value": "限定対象外"
+              }
+            ],
+            "inverse_json_patch": [
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/4/preserved_observation/core_disposition_records/2/reason"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/3/preserved_observation/core_disposition_records/2/reason"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/2/preserved_observation/core_disposition_records/2/reason"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/reason"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/reason"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/observation/core_disposition_records/2/reason"
+              },
+              {
+                "op": "remove",
+                "path": "/old_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/reason"
+              },
+              {
+                "op": "remove",
+                "path": "/old_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/reason"
+              },
+              {
+                "op": "remove",
+                "path": "/old_whole/sections/0/observation/core_disposition_records/2/reason"
+              }
+            ],
+            "phase_reachable_observation_paths": [
+              "/old_whole/sections/0/observation/core_disposition_records/2/reason",
+              "/old_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/reason",
+              "/old_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/reason",
+              "/expected_new_whole/sections/0/observation/core_disposition_records/2/reason",
+              "/expected_new_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/reason",
+              "/expected_new_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/reason",
+              "/expected_new_whole/sections/0/findings/2/preserved_observation/core_disposition_records/2/reason",
+              "/expected_new_whole/sections/0/findings/3/preserved_observation/core_disposition_records/2/reason",
+              "/expected_new_whole/sections/0/findings/4/preserved_observation/core_disposition_records/2/reason"
+            ],
+            "corrected_old_whole_canonical_sha256": "bae5ebb169761645fb764ec0460354e3d82e740be0f4fbb97c04f6ebee4fa999",
+            "corrected_new_whole_canonical_sha256": "3d38276b1a3fd1917acc020730ed0de7e26c67f8b0cf9e6f5b7ae07292023096",
+            "expected_native_observation_source_member": {
+              "presence": "present",
+              "value": "限定対象外"
+            },
+            "diagnostics_preserved": "candidate欠落を対象とする既存N/A native/member findingのcode/state/path/source_refs/routingと順序は不変。変更はsource由来観測と到達する全preserved_observationだけ。",
+            "limit": "候補の静的document patchであり正式期待でも実測でもない。native正常functioncase、要求意味、N/A条件は変更しない。"
+          },
+          "native_source_value_root": "raw_caller",
+          "native_source_value_pointer": "/record_trace_input/sources/0/decoded_records/0/payload/core_outputs/2/reason",
+          "basis": "CORE native source全core_outputs配列との照合。candidate欠落findingと保存rawは維持。"
+        },
+        {
+          "case_index": 6,
+          "case_id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-07",
+          "member": "decider",
+          "previous_values_recipe": {
+            "$copy": {
+              "root": "f04_original_materials",
+              "pointer": "/m_638ae86e902998375754c57018f981ac3dfdbd203429786f0f75035fbdd2718d"
+            }
+          },
+          "previous_metadata": {
+            "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-07",
+            "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+            "comparison_scope": "旧raw同一の全RecordTraceAnalysis。旧prefix全値と各phase保存観測を保持し、newfield＋3neworiginal findingだけ追加。",
+            "values_recipe": {
+              "$copy": {
+                "root": "f04_original_materials",
+                "pointer": "/m_638ae86e902998375754c57018f981ac3dfdbd203429786f0f75035fbdd2718d"
+              }
+            },
+            "expected_new_whole_canonical_sha256": "67563e51f900a5011de21f29b58d9d6e7ff97494bd4a52100d692562af9467db",
+            "expected_old_whole_canonical_sha256": "33ca1b94d06c63fb04da77cf4a0e10e4c908a66fff0bb905bb6134338b903c5d"
+          },
+          "correction": {
+            "patch_base": "frozen_original_wholesのold_whole/expected_new_wholeのvalueを同名keyへ展開したobject。",
+            "json_patch": [
+              {
+                "op": "add",
+                "path": "/old_whole/sections/0/observation/core_disposition_records/2/decider",
+                "value": "synthetic-core-reviewer"
+              },
+              {
+                "op": "add",
+                "path": "/old_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/decider",
+                "value": "synthetic-core-reviewer"
+              },
+              {
+                "op": "add",
+                "path": "/old_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/decider",
+                "value": "synthetic-core-reviewer"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/observation/core_disposition_records/2/decider",
+                "value": "synthetic-core-reviewer"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/decider",
+                "value": "synthetic-core-reviewer"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/decider",
+                "value": "synthetic-core-reviewer"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/2/preserved_observation/core_disposition_records/2/decider",
+                "value": "synthetic-core-reviewer"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/3/preserved_observation/core_disposition_records/2/decider",
+                "value": "synthetic-core-reviewer"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/4/preserved_observation/core_disposition_records/2/decider",
+                "value": "synthetic-core-reviewer"
+              }
+            ],
+            "inverse_json_patch": [
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/4/preserved_observation/core_disposition_records/2/decider"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/3/preserved_observation/core_disposition_records/2/decider"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/2/preserved_observation/core_disposition_records/2/decider"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/decider"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/decider"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/observation/core_disposition_records/2/decider"
+              },
+              {
+                "op": "remove",
+                "path": "/old_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/decider"
+              },
+              {
+                "op": "remove",
+                "path": "/old_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/decider"
+              },
+              {
+                "op": "remove",
+                "path": "/old_whole/sections/0/observation/core_disposition_records/2/decider"
+              }
+            ],
+            "phase_reachable_observation_paths": [
+              "/old_whole/sections/0/observation/core_disposition_records/2/decider",
+              "/old_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/decider",
+              "/old_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/decider",
+              "/expected_new_whole/sections/0/observation/core_disposition_records/2/decider",
+              "/expected_new_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/decider",
+              "/expected_new_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/decider",
+              "/expected_new_whole/sections/0/findings/2/preserved_observation/core_disposition_records/2/decider",
+              "/expected_new_whole/sections/0/findings/3/preserved_observation/core_disposition_records/2/decider",
+              "/expected_new_whole/sections/0/findings/4/preserved_observation/core_disposition_records/2/decider"
+            ],
+            "corrected_old_whole_canonical_sha256": "fc2d7a34b1806c8e164b2708d2497909bf1f08399cd7991f9ccc06d0c9158f6c",
+            "corrected_new_whole_canonical_sha256": "38f4b2716177d6e45723a385b2d362b98e8992217cd9b2305b4be707ca85053d",
+            "expected_native_observation_source_member": {
+              "presence": "present",
+              "value": "synthetic-core-reviewer"
+            },
+            "diagnostics_preserved": "candidate欠落を対象とする既存N/A native/member findingのcode/state/path/source_refs/routingと順序は不変。変更はsource由来観測と到達する全preserved_observationだけ。",
+            "limit": "候補の静的document patchであり正式期待でも実測でもない。native正常functioncase、要求意味、N/A条件は変更しない。"
+          },
+          "native_source_value_root": "raw_caller",
+          "native_source_value_pointer": "/record_trace_input/sources/0/decoded_records/0/payload/core_outputs/2/decider",
+          "basis": "CORE native source全core_outputs配列との照合。candidate欠落findingと保存rawは維持。"
+        },
+        {
+          "case_index": 7,
+          "case_id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-08",
+          "member": "target_revision",
+          "previous_values_recipe": {
+            "$copy": {
+              "root": "f04_original_materials",
+              "pointer": "/m_9c458b8bc1383c4c8ba2cf9415a47f13acf3d05e774535c7f215df1b97fc541b"
+            }
+          },
+          "previous_metadata": {
+            "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-08",
+            "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+            "comparison_scope": "旧raw同一の全RecordTraceAnalysis。旧prefix全値と各phase保存観測を保持し、newfield＋3neworiginal findingだけ追加。",
+            "values_recipe": {
+              "$copy": {
+                "root": "f04_original_materials",
+                "pointer": "/m_9c458b8bc1383c4c8ba2cf9415a47f13acf3d05e774535c7f215df1b97fc541b"
+              }
+            },
+            "expected_new_whole_canonical_sha256": "7695b119b00e591d19b7443821b323aa5423114c18170dad38e42816c34572fb",
+            "expected_old_whole_canonical_sha256": "674e4ca4611ce961517c21e577c267996513777a0d0141ad217fbaa53f5c63fe"
+          },
+          "correction": {
+            "patch_base": "frozen_original_wholesのold_whole/expected_new_wholeのvalueを同名keyへ展開したobject。",
+            "json_patch": [
+              {
+                "op": "add",
+                "path": "/old_whole/sections/0/observation/core_disposition_records/2/target_revision",
+                "value": "rev-A"
+              },
+              {
+                "op": "add",
+                "path": "/old_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/target_revision",
+                "value": "rev-A"
+              },
+              {
+                "op": "add",
+                "path": "/old_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/target_revision",
+                "value": "rev-A"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/observation/core_disposition_records/2/target_revision",
+                "value": "rev-A"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/target_revision",
+                "value": "rev-A"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/target_revision",
+                "value": "rev-A"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/2/preserved_observation/core_disposition_records/2/target_revision",
+                "value": "rev-A"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/3/preserved_observation/core_disposition_records/2/target_revision",
+                "value": "rev-A"
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/4/preserved_observation/core_disposition_records/2/target_revision",
+                "value": "rev-A"
+              }
+            ],
+            "inverse_json_patch": [
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/4/preserved_observation/core_disposition_records/2/target_revision"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/3/preserved_observation/core_disposition_records/2/target_revision"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/2/preserved_observation/core_disposition_records/2/target_revision"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/target_revision"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/target_revision"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/observation/core_disposition_records/2/target_revision"
+              },
+              {
+                "op": "remove",
+                "path": "/old_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/target_revision"
+              },
+              {
+                "op": "remove",
+                "path": "/old_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/target_revision"
+              },
+              {
+                "op": "remove",
+                "path": "/old_whole/sections/0/observation/core_disposition_records/2/target_revision"
+              }
+            ],
+            "phase_reachable_observation_paths": [
+              "/old_whole/sections/0/observation/core_disposition_records/2/target_revision",
+              "/old_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/target_revision",
+              "/old_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/target_revision",
+              "/expected_new_whole/sections/0/observation/core_disposition_records/2/target_revision",
+              "/expected_new_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/target_revision",
+              "/expected_new_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/target_revision",
+              "/expected_new_whole/sections/0/findings/2/preserved_observation/core_disposition_records/2/target_revision",
+              "/expected_new_whole/sections/0/findings/3/preserved_observation/core_disposition_records/2/target_revision",
+              "/expected_new_whole/sections/0/findings/4/preserved_observation/core_disposition_records/2/target_revision"
+            ],
+            "corrected_old_whole_canonical_sha256": "11bda7cd6db4d42db219abbf17b760cc8dfd2fb9c8fb1397e29cb2f198c6b27d",
+            "corrected_new_whole_canonical_sha256": "1f99fb662c68eb0249446ad969d864c885dbc0c4a5182565ababca16af57f3d8",
+            "expected_native_observation_source_member": {
+              "presence": "present",
+              "value": "rev-A"
+            },
+            "diagnostics_preserved": "candidate欠落を対象とする既存N/A native/member findingのcode/state/path/source_refs/routingと順序は不変。変更はsource由来観測と到達する全preserved_observationだけ。",
+            "limit": "候補の静的document patchであり正式期待でも実測でもない。native正常functioncase、要求意味、N/A条件は変更しない。"
+          },
+          "native_source_value_root": "raw_caller",
+          "native_source_value_pointer": "/record_trace_input/sources/0/decoded_records/0/payload/core_outputs/2/target_revision",
+          "basis": "CORE native source全core_outputs配列との照合。candidate欠落findingと保存rawは維持。"
+        },
+        {
+          "case_index": 8,
+          "case_id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-09",
+          "member": "reentry",
+          "previous_values_recipe": {
+            "$copy": {
+              "root": "f04_original_materials",
+              "pointer": "/m_c494eb7b7071efd32c91db70bcae77c714b1f58d12d72ad155aaa7afeee87499"
+            }
+          },
+          "previous_metadata": {
+            "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-09",
+            "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+            "comparison_scope": "旧raw同一の全RecordTraceAnalysis。旧prefix全値と各phase保存観測を保持し、newfield＋3neworiginal findingだけ追加。",
+            "values_recipe": {
+              "$copy": {
+                "root": "f04_original_materials",
+                "pointer": "/m_c494eb7b7071efd32c91db70bcae77c714b1f58d12d72ad155aaa7afeee87499"
+              }
+            },
+            "expected_new_whole_canonical_sha256": "628cedd15a6b007c1ddc81002e6fc34fc5420d516d1dad79412c2d50bb8dfc8c",
+            "expected_old_whole_canonical_sha256": "2f94e6640da0f4bf9b2ea36821334115ad1a69359f46ec2257c299f162d76cca"
+          },
+          "correction": {
+            "patch_base": "frozen_original_wholesのold_whole/expected_new_wholeのvalueを同名keyへ展開したobject。",
+            "json_patch": [
+              {
+                "op": "add",
+                "path": "/old_whole/sections/0/observation/core_disposition_records/2/reentry",
+                "value": {
+                  "when": "revision-change",
+                  "minimum": 2
+                }
+              },
+              {
+                "op": "add",
+                "path": "/old_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/reentry",
+                "value": {
+                  "when": "revision-change",
+                  "minimum": 2
+                }
+              },
+              {
+                "op": "add",
+                "path": "/old_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/reentry",
+                "value": {
+                  "when": "revision-change",
+                  "minimum": 2
+                }
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/observation/core_disposition_records/2/reentry",
+                "value": {
+                  "when": "revision-change",
+                  "minimum": 2
+                }
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/reentry",
+                "value": {
+                  "when": "revision-change",
+                  "minimum": 2
+                }
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/reentry",
+                "value": {
+                  "when": "revision-change",
+                  "minimum": 2
+                }
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/2/preserved_observation/core_disposition_records/2/reentry",
+                "value": {
+                  "when": "revision-change",
+                  "minimum": 2
+                }
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/3/preserved_observation/core_disposition_records/2/reentry",
+                "value": {
+                  "when": "revision-change",
+                  "minimum": 2
+                }
+              },
+              {
+                "op": "add",
+                "path": "/expected_new_whole/sections/0/findings/4/preserved_observation/core_disposition_records/2/reentry",
+                "value": {
+                  "when": "revision-change",
+                  "minimum": 2
+                }
+              }
+            ],
+            "inverse_json_patch": [
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/4/preserved_observation/core_disposition_records/2/reentry"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/3/preserved_observation/core_disposition_records/2/reentry"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/2/preserved_observation/core_disposition_records/2/reentry"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/reentry"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/reentry"
+              },
+              {
+                "op": "remove",
+                "path": "/expected_new_whole/sections/0/observation/core_disposition_records/2/reentry"
+              },
+              {
+                "op": "remove",
+                "path": "/old_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/reentry"
+              },
+              {
+                "op": "remove",
+                "path": "/old_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/reentry"
+              },
+              {
+                "op": "remove",
+                "path": "/old_whole/sections/0/observation/core_disposition_records/2/reentry"
+              }
+            ],
+            "phase_reachable_observation_paths": [
+              "/old_whole/sections/0/observation/core_disposition_records/2/reentry",
+              "/old_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/reentry",
+              "/old_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/reentry",
+              "/expected_new_whole/sections/0/observation/core_disposition_records/2/reentry",
+              "/expected_new_whole/sections/0/findings/0/preserved_observation/core_disposition_records/2/reentry",
+              "/expected_new_whole/sections/0/findings/1/preserved_observation/core_disposition_records/2/reentry",
+              "/expected_new_whole/sections/0/findings/2/preserved_observation/core_disposition_records/2/reentry",
+              "/expected_new_whole/sections/0/findings/3/preserved_observation/core_disposition_records/2/reentry",
+              "/expected_new_whole/sections/0/findings/4/preserved_observation/core_disposition_records/2/reentry"
+            ],
+            "corrected_old_whole_canonical_sha256": "fdf22c779bac155e89d0cff266744c411d2bbb0a3184a724a25cbc0f0f4d8e6a",
+            "corrected_new_whole_canonical_sha256": "59b468fdc2739bfeca4425755521853c039dc5cf8aa984fde043d549cbfe2db8",
+            "expected_native_observation_source_member": {
+              "presence": "present",
+              "value": {
+                "when": "revision-change",
+                "minimum": 2
+              }
+            },
+            "diagnostics_preserved": "candidate欠落を対象とする既存N/A native/member findingのcode/state/path/source_refs/routingと順序は不変。変更はsource由来観測と到達する全preserved_observationだけ。",
+            "limit": "候補の静的document patchであり正式期待でも実測でもない。native正常functioncase、要求意味、N/A条件は変更しない。"
+          },
+          "native_source_value_root": "raw_caller",
+          "native_source_value_pointer": "/record_trace_input/sources/0/decoded_records/0/payload/core_outputs/2/reentry",
+          "basis": "CORE native source全core_outputs配列との照合。candidate欠落findingと保存rawは維持。"
+        }
+      ],
+      "history_policy": "旧9raw/旧materials/元history全値を保持。旧4whole期待は当時のcandidate格納条項とsource invariantが衝突していたbytesとして保存し、現active期待では訂正する。正常native case0..4は不変。現original source refsは元componentの固定過去revisionを保持。"
     }
   }
 }
