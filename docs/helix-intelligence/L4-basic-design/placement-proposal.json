@@ -143,6 +143,57 @@
         "ledger_decision_record_ref": null,
         "use": "個別source行の読取と既批准意味の再導出。asset採用/移管/権利確認済みを生成しない。",
         "consumer": "旧router/control-plane consumerは隔離。新consumerはINTの論理提案をOS/SECの既存責務へ渡す境界であり実dispatchではない。"
+      },
+      "source_search": {
+        "purpose": "F02の同一packet内task identity/revision直接照合について、旧sourceに同等field joinの記述があるかを調べた範囲と結果。",
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+        "ledger_line": 477,
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "source_generation": "legacy-generation-2026-09-14",
+        "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "line_count": 1225,
+        "literal_search_terms": [
+          "reason_refs",
+          "original_task.identity",
+          "original_scope.task",
+          "original_task.revision",
+          "original_scope.revision",
+          "foreign_revision"
+        ],
+        "literal_search_result": "全1225行を固定部分文字列で検索。各termの一致は0件。",
+        "read_line_ranges": [
+          [
+            42,
+            55
+          ],
+          [
+            114,
+            128
+          ],
+          [
+            193,
+            246
+          ],
+          [
+            306,
+            434
+          ],
+          [
+            520,
+            594
+          ],
+          [
+            627,
+            700
+          ],
+          [
+            788,
+            871
+          ]
+        ],
+        "read_result": "task dispatch、scope正本、Issue/PLAN、assignment、RLO-FR-034/040を読んだ。RLO-INV-001はassignment scope正本を一つ参照する。旧sourceはtask dispatchやBench task-class/model-generationを扱うが、同一packetのoriginal_task identity/revisionとoriginal_scope task/revisionの直接join、foreign/foreign_revision返却、reason_refs parserは記述しない。",
+        "search_boundary": "この記録は上記assetと行範囲・固定語の調査結果であり、archive全体に同等記述がないとの主張ではない。"
       }
     },
     {
@@ -182,7 +233,8 @@
   "remaining": [
     "task/Worker実績/Bench/quality-priority原判断と入力契約のowner-qualified exact bindingは未成立。",
     "正式schema/codec/適合条件・Evidence・decision resolver/比較選択閉包/並行revision/全組合せ/L5L8/oracle凍結は未完。",
-    "実装前Red→Green→Refactor→再検証、実配置/実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。"
+    "実装前Red→Green→Refactor→再検証、実配置/実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。",
+    "L5/L8にはF02 task_anchorの関数入力・診断返却と対oracle追補が未反映であり、後続の当該pair更新が必要。"
   ],
   "document_id": "HELIXINTELLIGENCE-L4-010",
   "layer": "L4",
@@ -238,7 +290,7 @@
         "推薦identityを原Worker集合へ結び、対応するWorkerが無い提出要素は実array位置から案ownerへ返す。原/提出の除外内容が一致しなければ案ownerへ返し、data所見のstate/fitへの接続を保持する。",
         "原/提出の推薦内容も除外内容と独立に照合し、元根拠と内容が異なる推薦（提出側の消去・異型化・要素の重複化を含む）を案ownerへ返す。原/提出が同じ重複配列なら内容差の所見は生成しない。重複を持つ案の実有効性は別に未成立として保持し、形状判定と実資格を混同しない。原/提出の除外内容不一致と推薦/除外の同時成立は別のfieldで追跡する。",
         "推薦が原と同じ値であっても、Absent/null/非配列は内容照合未成立、空配列は候補なしとして所見と未評価を保持する。候補材料の欠落から肯定的な適合を生成しない。",
-        "F02は同一PlacementPacket内のoriginal_task.identityとoriginal_scope.task、original_task.revisionとoriginal_scope.revisionをそれぞれtask_anchorの宣言計算で照合する。左側identity/revisionのAbsent/nullはmissing、非空文字列以外は既存F01と同じinvalid_value_kind。右側Absent/nullもmissing。左右が比較可能なときはJSON意味等値を用い、差をtask.identity=foreign、task.revision=foreign_revisionとしてOS-task-ownerへ返す。右側を文字列化・parseせず、新たな型資格は設けない。F01の実行・成功を前提にせず、F01および性能・Benchの所見と根拠を消去しない。reason_refs要素の書式やtaskとの関係は推測せず、不透明値のまま扱う。"
+        "F02は同じ入力のoriginal_task.identityとoriginal_scope.task、original_task.revisionとoriginal_scope.revisionをそれぞれ直接照合する。各側のAbsent/nullはmissingとする。左側task identity/revisionが供給される場合、非空文字列以外はinvalid_value_kind（本規則では左側task値が非空文字列でない所見）とする。両側が供給され左側が有効ならJSON意味等値で比較し、不一致をtask.identity=foreign、task.revision=foreign_revisionとしてOS-task-ownerへ返す。右側を文字列化・parseせず、新しい型資格を要求しない。F01の実行・成功を前提にせず、F01、性能・Benchの所見と根拠を消去しない。reason_refs要素の書式やtaskとの関係は推測せず、不透明値のまま扱う。"
       ],
       "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
     },
@@ -498,7 +550,7 @@
             "return_owner": "OS-task-owner"
           }
         ],
-        "member_extraction": "同一PlacementPacketから宣言済みRFC6901 pathを読み、途中memberのAbsent/nonobject/arrayまたは葉のAbsent/nullはAbsent/nullとして保持する。左側(original_task)のidentity/revisionは既存F01のnonempty_string規則を再利用し、Absent/nullならmissing、非空文字列以外ならinvalid_value_kind。右側(original_scope)はJSON値をparse/castせず保持する。どちらかAbsent/nullならmissing、そうでなければ左側型規則後にJSON意味等値で比較し、不一致を軸別resultで返す。F01の実行・成功は前提にしない。",
+        "member_extraction": "各固定RFC 6901 pathを同じ入力から独立に読み、途中memberがAbsent/nonobject/arrayの場合はpath結果をAbsentとし、葉のAbsent/nullは欠損として保持する。左右いずれかの欠損は、その比較軸の未成立として同じfield/result/owner（missing）で返す。左右の原値は入力保持対象のoriginal_task/original_scopeから辿れるため、missing表示だけから欠損側を示す別fieldを推測しない。左側task値が供給され非空文字列でなければinvalid_value_kindとする。右側scope値はJSON値のまま保持し、parse/castしない。両側が供給され左側が有効な場合だけJSON意味等値で比較し、差をidentity/revision別resultで返す。F01の実行や成功を前提にしない。",
         "ordering": "identity軸、revision軸の順。各軸はmissing判定、左側invalid判定、比較不一致判定の順で高々1所見。各所見は既存F02 orderingに従ってselected_identity_bindingの後、Worker domain/tools所見の前へ置く。別のF02所見を相殺しない。"
       }
     },
