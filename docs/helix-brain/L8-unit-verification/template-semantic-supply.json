@@ -691064,7 +691064,7 @@
       ],
       "unresolved_digest": "d0c896ee64d5340d7dbc85d4a760c90e03bcbbcc908cac0bc2e95734aa6d8316",
       "provenance_state": "unknown",
-      "source_limit": "このdigestの元file bytesとrevisionは保持資料から回収できず、由来は未確定。現在L5へ照合できるbinding、確認済みの中間版・歴史資料・外部資料として扱わない。",
+      "source_limit": "このdigestと完全一致するbytesは、ローカルの未追跡draft candidateから回収し、監査用source snapshotとして保全した（docs/governance/audits/source-rebaseline/source-snapshots/brain032-na-spec-d0c896ee-recovery.json）。ただし、対象21件がこのcandidateを仕様根拠として使ったことを示す採択済みrevision・authoritative source記録は回収できておらず、由来は未確定。snapshotの保全は当時の根拠仕様の真正性、期待値の正しさ、現在L5へのbindingを証明しない。対象caseのraw・期待・call・basisは変更せず保持する。",
       "pointer_resolution_limit": "対象21caseの各4本の仕様pointerは現在のdefinition_meaning_coreへ解決できるが、所在の解決はこのdigestの真正性を証明しない。",
       "preservation": "対象caseの凍結raw・期待・call・basisを変更せず保持する。現在L5のfile bytesへの明示bindingは別のcandidate_L5_bindingに限る。"
     }
