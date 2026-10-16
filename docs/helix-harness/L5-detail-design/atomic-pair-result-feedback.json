@@ -3,15 +3,15 @@
   "document_id": "HARNESS-L5-056",
   "layer": "L5",
   "pair": "L8",
-  "status": "draft_logical_rules_pending_independent_review",
+  "status": "draft_logical_contract_closure_pending_independent_review",
   "scope": {
     "version_target": "1.0",
     "historical_sequence_stage": "Stage 5",
     "authoring_stage": "Stage 1",
-    "source_main": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+    "source_main": "aef2a236e07aab42e83296f22549ee518f3d1209",
     "approved_content_revision": "71c22542e119f5a3c2f0f07e0d4141c3ca05475f",
     "admitted_decision_record": "docs/governance/decisions/helix-harness-extraction-naming-pair-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
-    "boundary": "固定source packet上の比較意味のみ。実catalog/resolver/source qualification/OS feedback運転/実oracle実行・gate/approval/acceptanceを成立させない。"
+    "boundary": "批准5義務の論理型/引数/読取/全返却とsource未供給分岐。実runtime/資格/実操作を生成しない。"
   },
   "source_pins": [
     {
@@ -123,7 +123,7 @@
   "peer_binding": {
     "paired_document_id": "HARNESS-L8-056",
     "path": "docs/helix-harness/L8-unit-verification/atomic-pair-result-feedback.json",
-    "binding": "同じsource_mainと同じapproved objectsを相互参照。候補文書自体は固定source pin扱いしない。"
+    "binding": "同一candidateのcurrent normative contractと19独立whole。過去137wholeは固定source証拠だけ。"
   },
   "approval_binding": {
     "decision_record": "docs/governance/decisions/helix-harness-extraction-naming-pair-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
@@ -530,7 +530,7 @@
     ],
     "current_meanings_source": "docs/helix-harness/L4-basic-design/v12-layer-contract.json at source_main（現行L6関数設計・L7対関数検証。実装は層外）。layer-ledger-catalogのpair台帳責務とは区別する。"
   },
-  "human_readable_contracts": [
+  "historical_scope_human_readable_contracts": [
     {
       "id": "R056-F01-ATOMIC-BIDIRECTIONAL",
       "説明": "各required oracleを一意なoracle identityでprovided rowへ結ぶ。forwardとreverse edgeはそれぞれ独立に、design obligation / oracle / verification evidenceの三値を比較する。片側欠落はmissing、値の不一致はconflictとして残し、他oracleやpairで補填しない。"
@@ -552,7 +552,7 @@
       "説明": "HARNESSのpair/feedback意味条件とOSのexecution/save/registration運転条件を別recordで保持し、各不足をその責務owner候補へ戻す。catalogやgate claimから承認、実行許可、Stage完了を作らない。"
     }
   ],
-  "logical_types": {
+  "historical_scope_logical_types": {
     "PairPacket": {
       "representation": "原L9固定synthetic JSONとsource由来の局所反例を材料とする有限論理型。observed_valuesは原fixtureだけでなく明示した局所probeの値も含む。正式wire schema/codecや一般入力域ではない。",
       "schema": {
@@ -2215,7 +2215,7 @@
       }
     }
   },
-  "functions": [
+  "historical_scope_functions": [
     {
       "id": "FN056-F01",
       "requirement_ref": "HARNESS-L3-056-F01",
@@ -2661,7 +2661,7 @@
       }
     }
   ],
-  "calculation_programs": {
+  "historical_scope_calculation_programs": {
     "input_presence_and_json_comparison": {
       "objects": "JSON objectのmember順は意味に影響しない。配列順は意味を持ち、固定順を保つ。JSON scalarは型と値を比較し、trueと1は同値にしない。",
       "presence": "memberをabsent（内部Absent sentinel）/null（明示JSON null）/valueで区別する。空map/listはvalue。required_oracles自体はrequired、配列は空を許すが空集合を成立結果にしない。",
@@ -6040,10 +6040,10 @@
     "normative_precedence": "全5関数F01/F02/F03/N01/B01の機械判定の唯一の定義は、各function.program_refが指すprogramsとprogram_definitionsのASTである。条件説明・step・要約は読み方を補足し、別の判定規則や優先順を生成しない。"
   },
   "implementation_readiness": "not_ready",
-  "qualification_state": "synthetic_fixture_only_no_actual_source_qualification",
+  "qualification_state": "logical_contract_no_actual_runtime_or_source_qualification",
   "authority_effect": "none",
   "operation_effect": "none",
-  "unresolved_obligations": [
+  "historical_scope_unresolved_obligations": [
     "F03原L9 packet/wholeにはL12 source revision/scopeとedgeの比較値がなく、source frame consistencyは未閉包",
     "同一oracleの複数row前提違反が重なる合成domainは原L9固定fixture外であり、単一欠陥以上の合成枝を未閉包保持",
     "正式wire schema/codec未成立",
@@ -6059,7 +6059,7 @@
     "F01 unknown/staleの個別返却は原L9有限診断では未実現。raw保持とconflictへの局所縮約の範囲を区別する。",
     "独立mutation素材の全raw packetは未供給。追加局所wholeは列挙した有限分岐に限られ、全単独枝/複合枝を網羅したとはしない。"
   ],
-  "unclosed_comparison_and_owner_obligations": {
+  "historical_scope_unclosed_comparison_and_owner_obligations": {
     "N01": {
       "source_refs": [
         "HARNESS-L3-056-N01",
@@ -6102,7 +6102,7 @@
       "meaning": "これら個別入力は計算の判定に使わない。受入/設計/許可の成立を写さず、固定falseで非推論を示す。入力schemaは有限closed domainで型外stateは未評価。"
     }
   },
-  "mutation_observation_limit": {
+  "historical_scope_mutation_observation_limit": {
     "new_material": "L8には原107 whole、局所7 whole、独立23 whole、未閉包witness 1件がある。独立wholeはresult oracle/state/frame、row値/edge内容、欠落/null/duplicate、L6/L7の有限比較を含む。",
     "remaining": "F03 source frame/owner、N01独立required tuple、F02owner、一般未知必要集合と複合欠陥全域、実資格/codec/TDD/CI/L11/Readyは未成立。L9原期待一致とこれら義務の達成を区別。",
     "unobserved_or_type_excluded_branches": [
@@ -6114,7 +6114,7 @@
     ],
     "unprovided_mutation_observation": "独立mutation観測に使われた元packet群は本pair資料に含まれず、全variationをこの有限wholeから網羅済みとはしない。"
   },
-  "literal_and_output_basis": {
+  "historical_scope_literal_and_output_basis": {
     "source": {
       "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
       "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
@@ -6198,5 +6198,1676 @@
       }
     ],
     "new_rule_basis": "両方向edgeのdesign/oracle/verification内容比較はL4 F01のcontent comparisonを根拠とする。結果frameのrevision/scope/snapshotはL3 N01とL4 qualification、L6/L7 layer意味は現行v12-layer-contract、duplicateは一意joinの不成立として局所conflict。新gate/一般禁止条件は追加しない。"
-  }
+  },
+  "logical_types": {
+    "Id": {
+      "kind": "string",
+      "meaning_ja": "opaqueな供給値。空/字面/prefixを資格や関係へ読み替えない。"
+    },
+    "JSONValue": {
+      "kind": "json_value"
+    },
+    "Pair": {
+      "kind": "enum",
+      "values": [
+        "L1-L12",
+        "L2-L11",
+        "L3-L10",
+        "L4-L9",
+        "L5-L8",
+        "L6-L7"
+      ]
+    },
+    "LayerDestination": {
+      "kind": "enum",
+      "values": [
+        "L1",
+        "L0"
+      ]
+    },
+    "State": {
+      "kind": "enum",
+      "values": [
+        "known",
+        "missing",
+        "unknown",
+        "conflict",
+        "stale"
+      ]
+    },
+    "Role": {
+      "kind": "enum",
+      "values": [
+        "harness_pair",
+        "harness_feedback",
+        "os_operation",
+        "unresolved"
+      ]
+    },
+    "SourceRef": {
+      "kind": "record",
+      "fields": {
+        "path": "Id",
+        "revision": "Id",
+        "json_pointer": "Id",
+        "use": "SourceUse"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "SourceUse": {
+      "kind": "enum",
+      "values": [
+        "fixture_content_only_not_qualification",
+        "source_content_only_not_qualification"
+      ]
+    },
+    "Supply<T>": {
+      "kind": "generic_union",
+      "parameter": "T",
+      "variants": [
+        {
+          "kind": "record",
+          "fields": {
+            "state": "Literal<supplied>",
+            "value": "T",
+            "source_ref": "SourceRef"
+          },
+          "optional": [],
+          "additional_fields": "reject"
+        },
+        {
+          "kind": "record",
+          "fields": {
+            "state": "UnavailableState",
+            "raw": "JSONValue",
+            "source_ref": "Nullable<SourceRef>"
+          },
+          "optional": [],
+          "additional_fields": "reject"
+        }
+      ]
+    },
+    "UnavailableState": {
+      "kind": "enum",
+      "values": [
+        "missing",
+        "unknown",
+        "conflict",
+        "stale"
+      ]
+    },
+    "Frame": {
+      "kind": "record",
+      "fields": {
+        "revision": "Nullable<Id>",
+        "scope": "JSONValue",
+        "snapshot": "Nullable<Id>"
+      },
+      "optional": [
+        "revision",
+        "scope",
+        "snapshot"
+      ],
+      "additional_fields": "reject"
+    },
+    "FeedbackFrame": {
+      "kind": "record",
+      "fields": {
+        "layer": "Nullable<Id>",
+        "revision": "Nullable<Id>",
+        "scope": "JSONValue"
+      },
+      "optional": [
+        "layer",
+        "revision",
+        "scope"
+      ],
+      "additional_fields": "reject"
+    },
+    "Tuple": {
+      "kind": "record",
+      "fields": {
+        "pair": "Pair",
+        "design": "Id",
+        "oracle": "Id",
+        "verification": "Id"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "Meanings": {
+      "kind": "record",
+      "fields": {
+        "L6": "Nullable<Id>",
+        "L7": "Nullable<Id>"
+      },
+      "optional": [
+        "L6",
+        "L7"
+      ],
+      "additional_fields": "reject"
+    },
+    "Edge": {
+      "kind": "record",
+      "fields": {
+        "design": "Nullable<Id>",
+        "oracle": "Nullable<Id>",
+        "verification": "Nullable<Id>"
+      },
+      "optional": [
+        "design",
+        "oracle",
+        "verification"
+      ],
+      "additional_fields": "reject"
+    },
+    "Result": {
+      "kind": "record",
+      "fields": {
+        "oracle": "Nullable<Id>",
+        "revision": "Nullable<Id>",
+        "scope": "JSONValue",
+        "snapshot": "Nullable<Id>",
+        "state": "Nullable<Id>"
+      },
+      "optional": [
+        "oracle",
+        "revision",
+        "scope",
+        "snapshot",
+        "state"
+      ],
+      "additional_fields": "reject"
+    },
+    "Row": {
+      "kind": "record",
+      "fields": {
+        "oracle": "Nullable<Id>",
+        "pair": "Nullable<Id>",
+        "design_obligation": "Nullable<Id>",
+        "verification_evidence": "Nullable<Id>",
+        "forward": "Nullable<Edge>",
+        "reverse": "Nullable<Edge>",
+        "result": "Nullable<Result>",
+        "applicability": "Nullable<Id>",
+        "pair_definition": "Nullable<Id>"
+      },
+      "optional": [
+        "oracle",
+        "pair",
+        "design_obligation",
+        "verification_evidence",
+        "forward",
+        "reverse",
+        "result",
+        "applicability",
+        "pair_definition"
+      ],
+      "additional_fields": "reject"
+    },
+    "RequiredBasis": {
+      "kind": "record",
+      "fields": {
+        "entries": "List<Tuple>",
+        "frame": "Frame",
+        "pair_definition": "Id",
+        "layer_meanings": "Meanings"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "Subject": {
+      "kind": "record",
+      "fields": {
+        "kind": "SubjectKind",
+        "pair": "Nullable<Pair>",
+        "oracle": "Nullable<Id>",
+        "destination": "Nullable<LayerDestination>"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "SubjectKind": {
+      "kind": "enum",
+      "values": [
+        "atomic",
+        "feedback",
+        "basis",
+        "responsibility"
+      ]
+    },
+    "Diagnostic": {
+      "kind": "record",
+      "fields": {
+        "subject": "Subject",
+        "condition": "Id",
+        "source_state": "Id",
+        "responsibility_role": "Role",
+        "observed_pointer": "Id",
+        "basis_pointer": "Id"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "DiagnosticRoleMap": {
+      "kind": "map",
+      "key": "Id",
+      "value": "Role",
+      "meaning_ja": "condition完全一致keyから供給された役割claim。実資格/責務権威ではない。F02_claim_checkへ照合し、未知keyは保持するが使用せず、known役割反転を正当化しない。"
+    },
+    "Directions": {
+      "kind": "record",
+      "fields": {
+        "forward": "DirectionState",
+        "reverse": "DirectionState"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "DirectionState": {
+      "kind": "enum",
+      "values": [
+        "bound_in_fixture",
+        "missing",
+        "conflict"
+      ]
+    },
+    "PairCorrespondence": {
+      "kind": "enum",
+      "values": [
+        "corresponding_in_fixture_only",
+        "incomplete",
+        "meaning_conflict"
+      ]
+    },
+    "ConditionState": {
+      "kind": "enum",
+      "values": [
+        "supported_synthetic_condition",
+        "missing",
+        "unknown",
+        "conflict",
+        "stale",
+        "not_executed"
+      ]
+    },
+    "ConditionResults": {
+      "kind": "record",
+      "fields": {
+        "design": "ConditionState",
+        "verification": "ConditionState",
+        "oracle_identity": "ConditionState",
+        "execution": "ConditionState",
+        "applicability": "ConditionState",
+        "pair_definition": "ConditionState"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "PairCondition": {
+      "kind": "enum",
+      "values": [
+        "supported_synthetic_condition",
+        "incomplete"
+      ]
+    },
+    "FeedbackEdge": {
+      "kind": "record",
+      "fields": {
+        "destination": "Nullable<Id>",
+        "revision": "Nullable<Id>",
+        "source_layer": "Nullable<Id>",
+        "source": "Nullable<FeedbackFrame>"
+      },
+      "optional": [
+        "destination",
+        "revision",
+        "source_layer",
+        "source"
+      ],
+      "additional_fields": "reject"
+    },
+    "Destination": {
+      "kind": "record",
+      "fields": {
+        "identity": "Nullable<Id>",
+        "revision": "Nullable<Id>"
+      },
+      "optional": [
+        "identity",
+        "revision"
+      ],
+      "additional_fields": "reject"
+    },
+    "DestinationState": {
+      "kind": "enum",
+      "values": [
+        "bound_in_fixture",
+        "missing",
+        "unknown",
+        "conflict",
+        "stale"
+      ]
+    },
+    "SourceResults": {
+      "kind": "record",
+      "fields": {
+        "root": "State",
+        "L1": "State",
+        "L0": "State"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "AtomicTarget": {
+      "kind": "record",
+      "fields": {
+        "tuple": "Tuple",
+        "frame": "Frame"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "HeldSelection": {
+      "kind": "union",
+      "variants": [
+        {
+          "kind": "record",
+          "fields": {
+            "selected": "Literal<false>",
+            "target": "Literal<null>"
+          },
+          "optional": [],
+          "additional_fields": "reject"
+        },
+        {
+          "kind": "record",
+          "fields": {
+            "selected": "Literal<true>",
+            "target": "AtomicTarget"
+          },
+          "optional": [],
+          "additional_fields": "reject"
+        }
+      ]
+    },
+    "Evidence": {
+      "kind": "record",
+      "fields": {
+        "frame": "Nullable<Frame>",
+        "oracle": "Nullable<Id>",
+        "origin": "Nullable<Id>",
+        "state": "Nullable<Id>"
+      },
+      "optional": [
+        "frame",
+        "oracle",
+        "origin",
+        "state"
+      ],
+      "additional_fields": "reject"
+    },
+    "Held": {
+      "kind": "record",
+      "fields": {
+        "pair": "Nullable<Id>",
+        "oracle": "Nullable<Id>",
+        "design_obligation": "Nullable<Id>",
+        "verification_evidence": "Nullable<Id>"
+      },
+      "optional": [
+        "pair",
+        "oracle",
+        "design_obligation",
+        "verification_evidence"
+      ],
+      "additional_fields": "reject"
+    },
+    "Gap": {
+      "kind": "record",
+      "fields": {
+        "pair": "Nullable<Id>",
+        "oracle": "Nullable<Id>",
+        "condition": "GapCondition"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "GapCondition": {
+      "kind": "enum",
+      "values": [
+        "held_out_missing",
+        "design_missing",
+        "verification_missing",
+        "design_and_verification_missing"
+      ]
+    },
+    "TargetState": {
+      "kind": "enum",
+      "values": [
+        "known",
+        "missing",
+        "unknown",
+        "conflict",
+        "stale",
+        "not_selected"
+      ]
+    },
+    "EvidenceState": {
+      "kind": "enum",
+      "values": [
+        "supported_synthetic_condition",
+        "missing",
+        "unknown",
+        "conflict",
+        "stale",
+        "not_executed"
+      ]
+    },
+    "MeaningConditions": {
+      "kind": "record",
+      "fields": {
+        "pair_contract": "Id",
+        "feedback_contract": "Id"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "OperationConditions": {
+      "kind": "record",
+      "fields": {
+        "execution": "Id",
+        "save": "Id",
+        "registration": "Id"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "OwnerRef": {
+      "kind": "record",
+      "fields": {
+        "identity": "Id",
+        "source_ref": "SourceRef"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "OwnerRouteMap": {
+      "kind": "map",
+      "key": "Role",
+      "value": "OwnerRef"
+    },
+    "OwnerCandidate": {
+      "kind": "record",
+      "fields": {
+        "diagnostic": "Diagnostic",
+        "owner_state": "State",
+        "owner_ref": "Nullable<OwnerRef>",
+        "owner_qualification": "Literal<not_evaluated>"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "Effects": {
+      "kind": "literal",
+      "value": {
+        "actual_oracle_executed": false,
+        "actual_gate_complete": false,
+        "actual_feedback_written": false,
+        "actual_OS_execution": false,
+        "actual_authority": false,
+        "actual_requirement_stage_end": false,
+        "actual_design_complete": false,
+        "actual_acceptance": false
+      }
+    },
+    "PairPacket": {
+      "kind": "record",
+      "fields": {
+        "claims": "Map<Id,JSONValue>",
+        "frame": "Frame",
+        "layer_meanings": "Meanings",
+        "pair_definition": "Nullable<Id>",
+        "provided_rows": "List<Row>",
+        "required_oracles": "List<Tuple>",
+        "required_source": "Supply<RequiredBasis>",
+        "diagnostic_roles": "Supply<DiagnosticRoleMap>"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "FeedbackPacket": {
+      "kind": "record",
+      "fields": {
+        "edges": "DestMap<Nullable<FeedbackEdge>>",
+        "proposed_pairs": "List<Id>",
+        "requested_upstream_effect": "JSONValue",
+        "required_destinations": "DestMap<Destination>",
+        "source": "Nullable<FeedbackFrame>",
+        "required_source": "Supply<FeedbackFrame>",
+        "required_destination_sources": "DestMap<Supply<Destination>>"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "EvidenceHoldingPacket": {
+      "kind": "record",
+      "fields": {
+        "claimed_NFR29_adopted": "Boolean",
+        "evidence": "Nullable<Evidence>",
+        "held_out": "Nullable<Held>",
+        "holding_NFR29": "JSONValue",
+        "required_frame": "Frame",
+        "required_evidence_source": "Supply<AtomicTarget>",
+        "required_held_out_source": "Supply<HeldSelection>"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "ResponsibilityPacket": {
+      "kind": "record",
+      "fields": {
+        "OS_conditions": "OperationConditions",
+        "acceptance022": "JSONValue",
+        "catalog_present": "Boolean",
+        "design025026": "JSONValue",
+        "gate_claims": "Map<Id,JSONValue>",
+        "meaning_conditions": "MeaningConditions",
+        "diagnostics": "List<Diagnostic>",
+        "owner_routes": "Supply<OwnerRouteMap>"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "AtomicCorrespondenceResult": {
+      "kind": "record",
+      "fields": {
+        "basis_state": "State",
+        "basis_occurrences": "Map<Id,List<Integer>>",
+        "oracle_results": "Map<Id,Directions>",
+        "pair_results": "PairMap<PairCorrespondence>",
+        "diagnostics": "List<Diagnostic>",
+        "effects": "Effects",
+        "unaffected_Q": "Literal<original_Q>"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "LocalConditionResult": {
+      "kind": "record",
+      "fields": {
+        "basis_state": "State",
+        "basis_occurrences": "Map<Id,List<Integer>>",
+        "oracle_condition_results": "Map<Id,ConditionResults>",
+        "pair_results": "PairMap<PairCondition>",
+        "all_six_supported_in_fixture": "Boolean",
+        "diagnostics": "List<Diagnostic>",
+        "effects": "Effects",
+        "unaffected_Q": "Literal<original_Q>"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "FeedbackDestinationResult": {
+      "kind": "record",
+      "fields": {
+        "source_results": "SourceResults",
+        "destination_results": "DestMap<DestinationState>",
+        "feedback_complete_in_fixture": "Boolean",
+        "pair_count": "Literal<6>",
+        "extra_pair_rejected": "Boolean",
+        "upstream_effect": "Literal<none>",
+        "diagnostics": "List<Diagnostic>",
+        "effects": "Effects",
+        "unaffected_Q": "Literal<original_Q>"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    },
+    "EvidenceHoldingResult": {
+      "kind": "record",
+      "fields": {
+        "evidence_result": "EvidenceState",
+        "evidence_target_result": "State",
+        "held_out_target_result": "TargetState",
+        "NFR29_holding": "Literal<unmigrated>",
+        "NFR29_adoption_claim": "ClaimState",
+        "held_out_gap": "Nullable<Gap>",
+        "diagnostics": "List<Diagnostic>",
+        "effects": "Effects",
+        "unaffected_Q": "Literal<original_Q>"
+      },
+      "optional": [],
+      "additional_fields": "reject",
+      "field_meanings_ja": {
+        "evidence_target_result": "oracle軸のみの局所結果。未観測pair/design/verificationは未比較。",
+        "held_out_target_result": "held四値同一性の局所結果。未観測frameは未比較。"
+      }
+    },
+    "ClaimState": {
+      "kind": "enum",
+      "values": [
+        "none",
+        "rejected"
+      ]
+    },
+    "ResponsibilityBoundaryResult": {
+      "kind": "record",
+      "fields": {
+        "owner_return_candidates": "List<OwnerCandidate>",
+        "retained_meaning_conditions": "MeaningConditions",
+        "retained_OS_conditions": "OperationConditions",
+        "catalog_implies_gate_success": "Literal<false>",
+        "save_implies_execution_success": "Literal<false>",
+        "requires_025026_completion_to_author": "Literal<false>",
+        "effects": "Effects",
+        "unaffected_Q": "Literal<original_Q>"
+      },
+      "optional": [],
+      "additional_fields": "reject"
+    }
+  },
+  "common_rules": {
+    "type_language": {
+      "record": "fieldsは必須、optional列だけ省略可。nullableは明示nullのみ。追加fieldはreject。",
+      "Map<K,V>": "供給string keyとVのmap。keyの字面を意味へ変換しない。",
+      "PairMap<T>": "六canonical pair全keyが必須で他key禁止。",
+      "DestMap<T>": "L1/L0両key必須で他key禁止。",
+      "List<T>": "順序保持。Integerは0以上の整数。",
+      "Supply<T>": "suppliedはvalueとsource_refを持ち、未供給variantはrawとnullable source_refを持つ。raw値/有無は消さず、実資格を意味しない。",
+      "Id": "文字列型のみ。非空、prefix、UUID、実identity資格のgateを追加しない。",
+      "Boolean": "JSON booleanのみ。trueと1を同値にしない。",
+      "Literal<X>": "false/true/null/6は各JSON primitive、それ以外は示した文字列。"
+    },
+    "equality": "strict JSON型/値。object key順を無視、list順を保持。boolean/numberを区別。Idの正規化/補完/部分一致をしない。",
+    "presence": "optional key不在とnullを別に原入力へ保持。比較では双方とも不足になり得るが生値を変換しない。",
+    "supply_state": [
+      "supplied→known（内容/source参照の論理供給のみ）",
+      "missing/unknown/conflict/stale→同じstate。raw/source_refを保持。suppliedでないvalueをpacket/expectedから補完しない。"
+    ],
+    "frame_compare": [
+      "requiredのrevision/scope/snapshotに不在/nullが一つでもある→unknown。",
+      "requiredが既知でobservedに不在/nullが一つでもある→missing。",
+      "両方既知でrevisionが異なる→stale。",
+      "revision一致後scope又はsnapshotが異なる→conflict。",
+      "全一致→known。先頭で成立した枝だけを返す。"
+    ],
+    "feedback_frame_compare": [
+      "requiredのlayer/revision/scopeに不在/null→unknown。",
+      "required.layerがL12でない→conflict（現L4がL12 sourceを要求）。",
+      "required既知でobservedのlayer/revision/scope不在/null→missing。",
+      "observed.layer!=required.layer→conflict。",
+      "layer一致後revision差→stale。",
+      "layer/revision一致後scope差→conflict。",
+      "全一致→known。"
+    ],
+    "required_normalisation": [
+      "entriesを元配列順にoracle完全一致でgroup化し、各groupの元indexをbasis_occurrencesへ全件保持。",
+      "同一完全四値tupleの反復は一つの比較対象へ束ねる。元出現を消さず、新規根拠/oracle数を増やさない。",
+      "同oracleのgroupに異なる完全tupleがあれば当該oracleはconflict。どのtupleも選ばず、group内で挙がったpairだけを未完にする。",
+      "別oracleは同pairでも独立に保持。件数を2へ固定しない。",
+      "packet.required_oraclesも同じ四値集合として照合。sourceにあるが宣言にないtupleはmissing、宣言だけにある又は同oracleで異なるtupleはconflict。source分母は宣言側で増減しない。",
+      "source unavailable時はsource分母を作れずoracle map/occurrence mapは空、全pairはincomplete。packet.required_oraclesを代用しない。"
+    ],
+    "diagnostics": {
+      "record": "元subject/condition/source_state/observed_pointer/basis_pointerを構成する。source_stateはB01で再解釈せず文字列をそのまま返す。",
+      "ordering": "F01/F02はbasis→source oracle初出順→定義condition順。F02役割反転診断は元condition直後。F03はroot source→L1 source→L0 source→L1 destination→L0 destination。N01はN01_raw_cause_diagnostics.ordering。B01は既存5条件順→入力診断順。統合/上書きしない。",
+      "roles": "responsibility_protocolの閉じた境界へ照合する。F01 executionのみos_operation、他原子意味はharness_pair。F03はharness_feedback。F02の供給roleはclaimであり権威ではなく、欠落/既知反転はF02_claim_checkで未解決化する。B01も独立にB01_route_checkを適用。source_stateからownerを推測しない。",
+      "basis_failure": "source未供給は一件のbasis diagnosticで当該評価限界を表す。存在しないatomic subject/ownerは作らずsubject.kind=basis、他subject欄null。"
+    },
+    "total_return": "全result型の全必須rootを返す。effectsは8項目全false、unaffected_Q=original_Q。入力は不変、観測値は入力とsource_ref/診断pointerに保持。typed domain外のJSONを成功へ補完しない。正式wire codecや実行資格の規則をこの論理型から生成しない。",
+    "frame_diagnostic_pointer_rule": {
+      "field_order": [
+        "revision",
+        "scope",
+        "snapshot"
+      ],
+      "feedback_field_order": [
+        "layer",
+        "revision",
+        "scope"
+      ],
+      "rule_ja": "stateを決めた比較の先頭fieldをobserved_pointer/basis_pointerへ結ぶ。required不足ではbasis側の先頭不足field、observed不足ではobserved側の先頭不足fieldを使う。既知差ではrevision、scope、snapshotの既定優先順、feedbackではlayer、revision、scope。source aggregateが同stateで競合したら独立required比較を先、root sourceとの比較を後にして先頭を採る。source未供給はfieldを捏造せずSupply全体のpointer。"
+    },
+    "diagnostic_conditions": {
+      "F01_basis": [
+        "required_source unavailable→required_set/同state/basis subject/harness_pair",
+        "same oracle different full tuple→required_set/conflict/当該atomic subject/harness_pair",
+        "required申告との差→required_set/missing又はconflict/当該atomic subject/harness_pair",
+        "対象frameの差→required_frame/元state/basis subject/harness_pair"
+      ],
+      "F01_atomic_order": [
+        "design",
+        "verification",
+        "oracle_identity",
+        "pair_definition",
+        "applicability",
+        "execution",
+        "forward",
+        "reverse"
+      ],
+      "F01_atomic": "各前提を元rawへ独立照合し非成立conditionを順番に残す。directionsの粗粒度missing/conflictは元stateを消さない。design/verificationの欠落はmissing、値差はconflict。pair差はoracle_identity conflict。result全体欠落はexecution not_executed、result frame差はexecutionの元state、result oracle差はoracle_identity conflict。edge欠落はforward/reverse missing、値差はconflict。既知current mean差はpair_definition meaning_conflict。roleはexecution=os_operation、他=harness_pair。",
+      "F02_conditions": [
+        "design",
+        "verification",
+        "oracle_identity",
+        "execution",
+        "applicability",
+        "pair_definition"
+      ],
+      "F02_role": "非supported conditionの元stateを一件返しF02_claim_checkを適用。既知反転の場合だけ直後へdiagnostic_role conflictを加える。basis failureはharness_pair。診断を重ねて元source_stateをcastしない。",
+      "F03": "source_results root非known→condition=root_source、L1/L0非known→edge_source、destination_results非bound→destination。いずれも元state/該当出口subject/harness_feedback。required_source未供給時はrequired_source basis診断一件のみをsource側診断とする。宛先source未供給は該当destinationの診断一件。",
+      "N01": "N01_raw_cause_diagnosticsのraw原因別診断を先に生成する。evidence_target/held各軸/gapは既存規則を保持。実証拠frame/不在はOS、required基準/申告/provenance限定意味はHARNESSへ別に返す。集約stateからroleを推定しない。",
+      "B01": "旧5条件と入力診断を全件保持した後B01_route_check。既知反転はcandidate.owner_state=conflict/owner_ref=null。元source_state/roleは変更せず返す。"
+    },
+    "source_ref_resolution_boundary": "Supplyのsource_refはdecoded valueのprovenance参照であり、関数が外部sourceをfetch/資格確認する引数ではない。fixtureの具体projectionは対L8のauthoring_source_bindingsにraw field単位で固定する。実source producerもtyped値への明示projectionを供給し、未供給時はSupply不足variantで完全返却する。",
+    "responsibility_protocol": {
+      "meaning_ja": "既承認B01の責務を本5関数の診断名へ投影した閉じた比較表。ownerの実資格/実配送は含まない。診断名の未知値を意味推定しない。",
+      "condition_roles": {
+        "harness_pair": [
+          "required_set",
+          "required_frame",
+          "design",
+          "verification",
+          "oracle_identity",
+          "pair_definition",
+          "applicability",
+          "forward",
+          "reverse",
+          "evidence_target",
+          "held_out_target",
+          "held_out_gap",
+          "pair_contract",
+          "diagnostic_role",
+          "evidence_provenance"
+        ],
+        "harness_feedback": [
+          "required_source",
+          "root_source",
+          "edge_source",
+          "destination",
+          "feedback_contract"
+        ],
+        "os_operation": [
+          "execution",
+          "save",
+          "registration",
+          "evidence_frame",
+          "evidence_execution"
+        ]
+      },
+      "subject_kinds": {
+        "harness_pair": [
+          "atomic",
+          "basis",
+          "responsibility"
+        ],
+        "harness_feedback": [
+          "feedback",
+          "basis",
+          "responsibility"
+        ],
+        "os_operation": [
+          "atomic",
+          "basis",
+          "responsibility"
+        ]
+      },
+      "basis": {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+        "json_pointer": "/requirements/10/obligation",
+        "quote": "要求意味不足はHARNESS owner、実行/保存/登録証拠不足はOS ownerへ戻す。"
+      },
+      "verification_axis_ja": "verificationは本F02で設計義務とのID/双方向edge対応を照合する意味条件。実行結果の有無/current frame/stateはexecutionへ別に返す。したがってverificationをOS実行証拠そのものへ読み替えない。",
+      "F02_claim_check": [
+        "非supported conditionごとに、diagnostic_roles非supplied、key不在、又はclaim=unresolved→元condition診断role=unresolved。Supply原state/rawは入力に保持し、既知roleへ補完しない。",
+        "claimが閉表の当該condition roleと一致→元condition診断role=claim。",
+        "claimが別の既知role→元condition診断role=unresolved。直後へcondition=diagnostic_role/source_state=conflict/role=harness_pairを一件追加。observed_pointer=/diagnostic_roles/value/<condition>、basis_pointer=/approved/HARNESS-L3-056-B01/obligation。元conditionのstateを変えない。",
+        "未発火conditionのclaimや未知keyは原入力に保持するが診断/ownerを生成する根拠にしない。"
+      ],
+      "B01_route_check": [
+        "conditionが閉表に無い→owner_state=unknown/owner_ref=null。roleが既知でも正当化しない。",
+        "conditionは既知だがsubject.kindが当該許容集合外→owner_state=conflict/owner_ref=null。",
+        "上記既知許容subjectでrole=unresolved→owner_state=unknown/owner_ref=null。",
+        "既知roleが閉表roleと異なる→owner_state=conflict/owner_ref=null。入力diagnosticのclaimはそのまま返す。",
+        "一致する既知roleのみowner_routesへ照会。Supply非supplied→同state/null、suppliedかつkeyなし→missing/null、keyあり→known/供給OwnerRef。全てowner_qualification=not_evaluated。"
+      ]
+    },
+    "held_tuple_compare": {
+      "axes": [
+        {
+          "required": "pair",
+          "observed": "pair"
+        },
+        {
+          "required": "oracle",
+          "observed": "oracle"
+        },
+        {
+          "required": "design",
+          "observed": "design_obligation"
+        },
+        {
+          "required": "verification",
+          "observed": "verification_evidence"
+        }
+      ],
+      "axis_states": [
+        "observed absent/null→missing",
+        "observedと独立required完全一致→known",
+        "その他→conflict"
+      ],
+      "aggregate": "全4軸を独立比較しconflict>missing>knownでheld_out_target_resultへ局所集約。二つ以上の異値/不足を先頭一つで隠さない。",
+      "diagnostics": "pair/oracleのmissingと全4軸のconflictは各軸に一件held_out_targetを返す。subjectは独立targetのatomic tuple、observed_pointerは/held_out/<observed>、basis_pointerは/required_held_out_source/value/target/tuple/<required>。design/verification missingはheld_out_gapへ一件（両欠落なら一件に両欠落条件とdesign先頭pointer）。",
+      "no_observed_frame": "held_outにframe観測は無い。required target.frameを観測したことにせず、held_out_target_resultは四値同一性のみ。",
+      "application_domain": "required_held_out_source supplied / selected=true / held_out objectの場合だけ。selected=falseのtarget=nullやsource unavailableへ適用しない。その他はN01_held_selection_and_gapへ従う。"
+    },
+    "N01_comparison_scope": {
+      "evidence_target_result": {
+        "compared_axes": [
+          "oracle"
+        ],
+        "unobserved_axes": [
+          "pair",
+          "design",
+          "verification"
+        ],
+        "known_means": "観測oracleが独立tuple.oracleに一致することだけ。四値対応/実結果資格のknownではない。observedに無い軸はrequiredからcopyしない。"
+      },
+      "evidence_result": {
+        "compared_axes": [
+          "frame.revision",
+          "frame.scope",
+          "frame.snapshot",
+          "origin",
+          "state"
+        ],
+        "separate_from": "oracle一致/四値対応とは独立の限定結果意味"
+      },
+      "held_out_target_result": {
+        "compared_axes": [
+          "pair",
+          "oracle",
+          "design_obligation↔design",
+          "verification_evidence↔verification"
+        ],
+        "unobserved_axes": [
+          "frame"
+        ],
+        "known_means": "選択済みheld tuple全四値の一致のみ。frameは別sourceから観測補完しない。"
+      }
+    },
+    "N01_raw_cause_diagnostics": {
+      "required_source_unavailable": "既存のevidence_target basis診断一件を保持し、以下frame/provenance診断を作らない（独立必要基準なし）。",
+      "required_frame_basis": "独立required_evidence_source.value.frameのrevision/scope/snapshotに不在/nullがあればrequired_frame/unknown/harness_pairを一件。observed_pointerとbasis_pointerはその最初の独立基準不足field。原基準frameが未知なら下記raw/declarationのframe比較は行わず補完しない。rawの有無とprovenanceはなお独立に読む。",
+      "actual_absence": "evidence又はevidence.frameが不在/nullならevidence_execution/not_executed/os_operationを一件。observed_pointerは/evidence又は/evidence/frameの最初の欠落object、basis_pointer=/required_evidence_source/value/frame。required基準不足でも観測自体の不在は保持。",
+      "actual_frame": "raw object/frameが存在しかつ独立基準frame既知ならframe_compare(required基準, evidence.frame)を適用。known以外をevidence_frame/元state/os_operationとして一件。field pointerは既存frame_diagnostic_pointer_ruleでobserved=/evidence/frame/<field>、basis=/required_evidence_source/value/frame/<field>。",
+      "declared_required_frame": "独立基準frame既知ならframe_compare(required基準, packet.required_frame)を別に適用。known以外をrequired_frame/元state/harness_pairとして一件。observed=/required_frame/<field>、basis=/required_evidence_source/value/frame/<field>。宣言全体欠落ならobserved=/required_frame。raw証拠frameとの差で上書きしない。",
+      "provenance": "evidence objectが存在すればframe比較の成否から独立にorigin/stateを読む。origin=legacy_assertion032ならevidence_provenance/not_executed/harness_pair、observed=/evidence/origin。そうでなくstate=design-defined/not-implementedなら同診断、observed=/evidence/state。origin=new_generation_fixtureかつstate=observed_pass_in_fixture_onlyなら診断なし。その他はevidence_provenance/unknown/harness_pair、observedはoriginがnew_generation_fixture以外（不在/null含む）なら/evidence/origin、それ以外/evidence/state。basisは/approved/HARNESS-L3-056-N01/obligation。legacy origin/stateが双方該当でも一件に保持し先のoriginをpointerとする。",
+      "ordering": "required基準不足→raw実証拠object/frame不足又はraw frame差→required申告差→provenance→既存evidence target→held target各軸→held gap。元target/gap診断の条件/値/役割は変更しない。",
+      "aggregate_return": "既存fa77e7c3のevidence_result/target/holding等の全root判定を保持する。追加診断のsource_stateは集約結果へcastせず保持する。たとえばraw frame staleと申告frame conflictの同時入力ではevidence_result=conflictでもraw診断state=staleを残す。"
+    },
+    "N01_held_selection_and_gap": {
+      "target_return_and_diagnostics": [
+        "required_held_out_source非supplied→held_out_target_resultはSupplyの同state。condition=held_out_target/source_state=同state/role=harness_pair/subject={kind:basis,pair:null,oracle:null,destination:null}を一件。observed_pointerとbasis_pointerは/required_held_out_source。rawがobjectかどうかに関係なくtargetを読まない。",
+        "supplied selected=falseかつheld_out不在/null→held_out_target_result=not_selected、target診断なし。target=nullは参照しない。",
+        "supplied selected=falseかつheld_out object→held_out_target_result=conflict。condition=held_out_target/source_state=conflict/role=harness_pair/subject={kind:basis,pair:null,oracle:null,destination:null}を一件。observed_pointer=/held_out、basis_pointer=/required_held_out_source/value/selected。target=nullへtuple比較しない。",
+        "supplied selected=trueかつheld_out不在/null→held_out_target_result=missing。condition=held_out_target/source_state=missing/role=harness_pair、subjectは独立target tupleのatomic pair/oracle、observed_pointer=/held_out、basis_pointer=/required_held_out_source/value/target/tuple。",
+        "supplied selected=trueかつheld_out object→既存held_tuple_compareの全四軸照合と局所診断。target.tupleへの参照はこの枝だけ。"
+      ],
+      "gap_return_and_diagnostic": [
+        "raw held_outが不在/null→supplied selected=trueの場合だけ、独立target pair/oracleでheld_out_gap={pair,oracle,condition:held_out_missing}。condition=held_out_gap/source_state=missing/role=harness_pair、subjectは独立target atomic、observed_pointer=/held_out、basis_pointer=/required_held_out_source/value/target/tuple。それ以外はgap=nullでgap診断なし。",
+        "raw held_outがobject→selection/Supply stateから独立にdesign_obligation/verification_evidenceのpresenceを読む。両不在/nullならdesign_and_verification_missing、designだけならdesign_missing、verificationだけならverification_missing、両存在非nullならgap=null。",
+        "raw objectのgap非null→output.pair/oracleはraw原値を保持（不在はnull）。diagnosticはcondition=held_out_gap/source_state=missing/role=harness_pair。subject.kind=atomic、pairはrawがcanonicalの場合だけ同値で他はnull、oracleはraw値又はnull、destination=null。両欠落/design欠落のobserved_pointer=/held_out/design_obligation、verification欠落だけなら/held_out/verification_evidence。",
+        "raw objectのgap basis_pointer→supplied selected=trueなら既存の/required_held_out_source/value/target/tuple/design又はverification（両欠落はdesign先頭）を保持。それ以外はdocs/helix-harness/L3-requirements/functional-requirements.json#/requirements/51/obligation。null target/未供給sourceを読まない。これはraw counterpartの局所presence観測であり、選択済み/正tuple対応/実行実績を意味しない。"
+      ],
+      "ordering": "target/source/selection診断を先、raw gap診断を後。evidence側と独立に全件保持し、target stateでgapを消さない。",
+      "other_returns": "evidence/holding/effects/未比較軸の既存判定は変更しない。原17 input/expected wholeは全値保存。",
+      "B01": "既存held_out_target/held_out_gapのharness_pair境界とbasis/atomic許容型を使用。新condition/role/authorityを追加しない。"
+    }
+  },
+  "functions": [
+    {
+      "id": "FN056-F01",
+      "arguments": {
+        "packet": "PairPacket"
+      },
+      "returns": "AtomicCorrespondenceResult",
+      "read_paths": [
+        "required_source.*",
+        "required_oracles[*].*",
+        "provided_rows[*].*",
+        "frame.*",
+        "pair_definition",
+        "layer_meanings.*"
+      ],
+      "nonreads": [
+        "claims.*",
+        "diagnostic_roles.*",
+        "expected whole",
+        "case id"
+      ],
+      "decision_order": [
+        "required_source非supplied→basis_stateは同じ不足state、occurrence/oracle map空、六pair全incomplete、required_set basis diagnostic一件を返す。",
+        "supplied→required_normalisationを適用。basis_stateはsource/宣言の不一致をconflict>stale>unknown>missing>knownで集約するが、局所結果を全消去しない。required frame未完はunknown、packet.frameとの差はframe_compareへ従い、当該必要entryを未完とする。",
+        "同oracle異tuple又は宣言の局所conflict→当該両direction conflict。宣言missing→当該両direction missing。他groupは継続。",
+        "一意source tupleごとにoracle完全一致のprovided rowを集める。0件→両missing、2件以上→両conflict、1件だけを以下へ渡す。provided duplicateについては原contractを保持。",
+        "design_obligation/verification_evidence/resultのabsent/nullが一つでもある→両missing。欠落無しでdesign/verification/pair/required pair_definition/required frame/result.oracleの差、非pass結果、applicability未成立が一つでもある→両conflict。expected wholeは読まない。frameのstale/unknown等は別diagnosticへ元stateで保持する。",
+        "前提一致後、各direction edge absent/null→missing。edgeの3memberに不在/null/差があればconflict、三値完全一致→bound_in_fixture。",
+        "各pairは必要source entryが1以上、当該宣言/source/frame前提がknown、全entryの両direction boundのときだけcorresponding_in_fixture_only。それ以外incomplete。L6-L7でobserved meaningsが現行L6設計/L7検証に一致しない場合は当該pairだけmeaning_conflict。",
+        "basis/source矛盾はharness_pair。方向/前提失敗も原条件とsource_stateを保持し、executionだけはos_operation、他はharness_pairで診断する。全result rootを返す。"
+      ],
+      "canonical_input_mapping": "同原子意味のIdをopaque stringへ一般化。fixtureの語彙から新しい正当性を生成せず、独立sourceの四値/版/対象frameを比較根拠にする。",
+      "requirement_ref": "HARNESS-L3-056-F01",
+      "oracle_ref": "HARNESS-L10-056-F01",
+      "l4_ref": "HARNESS-L4-056-F01",
+      "l9_ref": "HARNESS-L9-056-F01",
+      "input_type": "PairPacket",
+      "return_type": "AtomicCorrespondenceResult",
+      "rule_id": "R056-F01-ATOMIC-BIDIRECTIONAL",
+      "signature": {
+        "arguments": [
+          {
+            "name": "packet",
+            "type": "PairPacket",
+            "presence": "required"
+          }
+        ],
+        "returns": {
+          "name": "result",
+          "type": "AtomicCorrespondenceResult",
+          "presence": "value"
+        }
+      },
+      "computation_binding": {
+        "kind": "declarative_logical_contract",
+        "function_pointer": "/functions/0",
+        "common_rules_pointer": "/common_rules",
+        "executable_program_ref": null,
+        "historical_AST_binding": "none",
+        "external_reads": false,
+        "external_writes": false
+      },
+      "read_return_boundary": {
+        "read_paths": [
+          "required_source.*",
+          "required_oracles[*].*",
+          "provided_rows[*].*",
+          "frame.*",
+          "pair_definition",
+          "layer_meanings.*"
+        ],
+        "unread": [
+          "claims.*",
+          "diagnostic_roles.*",
+          "expected whole",
+          "case id"
+        ],
+        "return_roots": [
+          "basis_state",
+          "basis_occurrences",
+          "oracle_results",
+          "pair_results",
+          "diagnostics",
+          "effects",
+          "unaffected_Q"
+        ],
+        "notation": "各pathはpacket引数の宣言fieldだけ。source_refはprovenanceで外部fetchしない。全返却は閉じたlogical_typesとdeclarative決定表に従う。"
+      }
+    },
+    {
+      "id": "FN056-F02",
+      "arguments": {
+        "packet": "PairPacket"
+      },
+      "returns": "LocalConditionResult",
+      "read_paths": [
+        "required_source.*",
+        "required_oracles[*].*",
+        "provided_rows[*].*",
+        "frame.*",
+        "pair_definition",
+        "layer_meanings.*",
+        "diagnostic_roles.*"
+      ],
+      "nonreads": [
+        "claims.*",
+        "expected whole",
+        "case id"
+      ],
+      "decision_order": [
+        "required_source非supplied→basis_stateは同じstate、occurrence/oracle map空、六pair全incomplete、all_six_supported=false、required_set basis diagnostic一件。",
+        "supplied→F01と同じrequired_normalisation/source frame/宣言照合を行い、per-pairの不成立と原出現を保持。",
+        "oracle group自体がconflict又はprovided行が複数→design/verification/oracle_identity=conflict、execution=not_executed、applicability/pair_definition=unknown。rowを選ばない。provided0件→前3条件missing、execution not_executed、後2条件unknown。",
+        "provided1件ではcondition_tableの六条件を独立に計算。全六条件supportedかつsource/宣言/対象frameの当該条件がknownで、必要entryが1以上のpairだけsupported_synthetic_condition。空pairはincomplete。全六pair supportedの場合だけall_six_supported=true。",
+        "非supported conditionの原stateとatomic subjectを診断へ返す。required_source診断はharness_pair。その他はresponsibility_protocol.F02_claim_checkにより供給role claimを検査し、既知反転もunresolvedへ落として直後へdiagnostic_role conflictを追加する。元stale/not_executedを消さない。"
+      ],
+      "condition_table": {
+        "design": [
+          "design_obligation absent/null→missing",
+          "required design一致→supported_synthetic_condition",
+          "その他→conflict"
+        ],
+        "verification": [
+          "verification_evidence又はforward/reverseどちらかがabsent/null→missing",
+          "全部存在してrequired verificationと両edge三値全一致→supported_synthetic_condition",
+          "その他→conflict"
+        ],
+        "oracle_identity": [
+          "row.oracle/pairがabsent/null、又は存在するresult.oracleがabsent/null→missing",
+          "row.oracle/pair/result.oracle(存在時)/forward.oracle/reverse.oracleの差又はedge欠落→conflict",
+          "その他→supported_synthetic_condition。result全体欠落はexecutionへ分離"
+        ],
+        "execution": [
+          "result absent/null→not_executed",
+          "result frameを独立required_source.frameへframe_compareしknown以外ならそのstate",
+          "frame knownでstate=observed_pass_in_fixture_only→supported_synthetic_condition",
+          "state=design-defined/not-implemented→not_executed",
+          "その他の値/不在/null→unknown"
+        ],
+        "applicability": [
+          "applicability=required_in_fixture→supported_synthetic_condition",
+          "その他の値/不在/null→unknown。fixture外の文字列を勝手にnon-applicableへ確定しない"
+        ],
+        "pair_definition": [
+          "L6-L7のobserved meaningsがcurrent_layer_design/current_layer_verificationに不一致→conflict",
+          "top又はrow pair_definition absent/null/TBD/unknown→unknown",
+          "両方がrequired_source.pair_definitionへ一致→supported_synthetic_condition",
+          "その他→conflict"
+        ]
+      },
+      "requirement_ref": "HARNESS-L3-056-F02",
+      "oracle_ref": "HARNESS-L10-056-F02",
+      "l4_ref": "HARNESS-L4-056-F02",
+      "l9_ref": "HARNESS-L9-056-F02",
+      "input_type": "PairPacket",
+      "return_type": "LocalConditionResult",
+      "rule_id": "R056-F02-LOCAL-CONDITIONS",
+      "signature": {
+        "arguments": [
+          {
+            "name": "packet",
+            "type": "PairPacket",
+            "presence": "required"
+          }
+        ],
+        "returns": {
+          "name": "result",
+          "type": "LocalConditionResult",
+          "presence": "value"
+        }
+      },
+      "computation_binding": {
+        "kind": "declarative_logical_contract",
+        "function_pointer": "/functions/1",
+        "common_rules_pointer": "/common_rules",
+        "executable_program_ref": null,
+        "historical_AST_binding": "none",
+        "external_reads": false,
+        "external_writes": false
+      },
+      "read_return_boundary": {
+        "read_paths": [
+          "required_source.*",
+          "required_oracles[*].*",
+          "provided_rows[*].*",
+          "frame.*",
+          "pair_definition",
+          "layer_meanings.*",
+          "diagnostic_roles.*"
+        ],
+        "unread": [
+          "claims.*",
+          "expected whole",
+          "case id"
+        ],
+        "return_roots": [
+          "basis_state",
+          "basis_occurrences",
+          "oracle_condition_results",
+          "pair_results",
+          "all_six_supported_in_fixture",
+          "diagnostics",
+          "effects",
+          "unaffected_Q"
+        ],
+        "notation": "各pathはpacket引数の宣言fieldだけ。source_refはprovenanceで外部fetchしない。全返却は閉じたlogical_typesとdeclarative決定表に従う。"
+      }
+    },
+    {
+      "id": "FN056-F03",
+      "arguments": {
+        "packet": "FeedbackPacket"
+      },
+      "returns": "FeedbackDestinationResult",
+      "read_paths": [
+        "required_source.*",
+        "source.*",
+        "edges.{L1,L0}.*",
+        "required_destinations.{L1,L0}.*",
+        "required_destination_sources.{L1,L0}.*",
+        "proposed_pairs[*]"
+      ],
+      "nonreads": [
+        "requested_upstream_effect",
+        "expected whole",
+        "case id"
+      ],
+      "decision_order": [
+        "required_source非supplied→source_resultsのroot/L1/L0を同stateとし、required_source basis diagnostic一件。宛先比較は独立に続ける。",
+        "required_source supplied→root sourceと各edge.sourceを別々にfeedback_frame_compareへ渡す。edge absent/null、edge.source absent/null、又はedge.source_layer absent/nullは当該edge source missing。両layerが存在してedge.source_layerとedge.source.layerに差があれば当該edge source conflict。root sourceとのframe差も別に照合し、edgeごとにconflict>stale>unknown>missing>knownで局所集約。root結果で他edge/宛先結果を上書きしない。",
+        "L1,L0ごとに、宛先source非supplied→同state。suppliedだがrequired identity/revision absent/null→unknown。既存required_destinations申告のidentity/revision absent/null→missing。観測edge absent/null又はdestination/revision absent/null→missing。ここまで不足無しで既存申告と独立宛先sourceが違う→conflict、観測edge destination/revisionが独立sourceと違う→conflict、全一致→bound_in_fixture。先頭で成立した枝を採る。",
+        "sourceのrevisionとdestinationのrevisionは別の比較軸。edge.revisionをsource版に流用しない。source原値未供給をrootからcopyしない。",
+        "feedback_complete_in_fixtureはsource_results全3がknownかつdestination_results両方boundのときだけtrue。pair_count常に6。proposed_pairsに六pair外の値が一つでもあればextra_pair_rejected=true。upstream_effect常にnone。",
+        "各source/宛先不成立を局所subject/元state付きdiagnosticへ返す。responsibility_role=harness_feedback。無関係な既知結果を保持する。"
+      ],
+      "requirement_ref": "HARNESS-L3-056-F03",
+      "oracle_ref": "HARNESS-L10-056-F03",
+      "l4_ref": "HARNESS-L4-056-F03",
+      "l9_ref": "HARNESS-L9-056-F03",
+      "input_type": "FeedbackPacket",
+      "return_type": "FeedbackDestinationResult",
+      "rule_id": "R056-F03-DUAL-DESTINATION",
+      "signature": {
+        "arguments": [
+          {
+            "name": "packet",
+            "type": "FeedbackPacket",
+            "presence": "required"
+          }
+        ],
+        "returns": {
+          "name": "result",
+          "type": "FeedbackDestinationResult",
+          "presence": "value"
+        }
+      },
+      "computation_binding": {
+        "kind": "declarative_logical_contract",
+        "function_pointer": "/functions/2",
+        "common_rules_pointer": "/common_rules",
+        "executable_program_ref": null,
+        "historical_AST_binding": "none",
+        "external_reads": false,
+        "external_writes": false
+      },
+      "read_return_boundary": {
+        "read_paths": [
+          "required_source.*",
+          "source.*",
+          "edges.{L1,L0}.*",
+          "required_destinations.{L1,L0}.*",
+          "required_destination_sources.{L1,L0}.*",
+          "proposed_pairs[*]"
+        ],
+        "unread": [
+          "requested_upstream_effect",
+          "expected whole",
+          "case id"
+        ],
+        "return_roots": [
+          "source_results",
+          "destination_results",
+          "feedback_complete_in_fixture",
+          "pair_count",
+          "extra_pair_rejected",
+          "upstream_effect",
+          "diagnostics",
+          "effects",
+          "unaffected_Q"
+        ],
+        "notation": "各pathはpacket引数の宣言fieldだけ。source_refはprovenanceで外部fetchしない。全返却は閉じたlogical_typesとdeclarative決定表に従う。"
+      }
+    },
+    {
+      "id": "FN056-N01",
+      "arguments": {
+        "packet": "EvidenceHoldingPacket"
+      },
+      "returns": "EvidenceHoldingResult",
+      "read_paths": [
+        "required_evidence_source.*",
+        "required_held_out_source.*",
+        "required_frame.*",
+        "evidence.*",
+        "held_out.*",
+        "claimed_NFR29_adopted"
+      ],
+      "nonreads": [
+        "holding_NFR29（意味入力として採用しない）",
+        "expected whole",
+        "case id"
+      ],
+      "decision_order": [
+        "required_evidence_source非supplied→evidence_result/evidence_target_resultを同stateとし、evidence_target basis diagnostic一件。packet.required_frame又はevidence自身からrequired tuple/frameを作らない。",
+        "evidence source supplied→evidence_target_resultはevidence absent/null/oracle absent/nullならmissing、oracleが独立target.tuple.oracleと違えばconflict、同一ならknown。evidence_resultはevidence/frame absent/nullならnot_executed、独立target.frameにframe_compareしてknown以外なら同state。packet.required_frameの申告と独立target.frameの差も同じ比較で保持しconflict>stale>unknown>missing>knownを局所集約。両frame既知一致後、origin=legacy_assertion032又はstate=design-defined/not-implementedならnot_executed、origin=new_generation_fixtureかつstate=observed_pass_in_fixture_onlyならsupported_synthetic_condition、その他unknown。target不一致はframe結果を消さず別欄へ返す。",
+        "required_held_out_source/選択/held raw objectの組をN01_held_selection_and_gap.target_return_and_diagnosticsへ渡す。source非suppliedは同stateとbasis診断一件、supplied false+objectはconflictとselection basis診断。null targetを参照しない。",
+        "supplied selected=trueだけをheld_tuple_compareへ渡す。held absent/nullはtarget missingのatomic診断、held objectは全四軸比較と軸別診断。詳細はN01_held_selection_and_gap。",
+        "held_out_gapはN01_held_selection_and_gap.gap_return_and_diagnosticを適用。raw objectはselection/source供給状態から独立に局所presenceを読み、非選択/未供給では批准F01原文locatorをgap basisとする。raw absent/nullはsupplied selected=trueの場合だけheld_out_missing、それ以外null。",
+        "N01_raw_cause_diagnosticsに従ってraw証拠不足/frame差とrequired意味/provenanceを分けて診断する。evidence source非供給はevidence basis一件だけとし、held側は独立に処理。N01_held_selection_and_gapのtarget/source診断→gap診断も元順/全値で保持。N01_comparison_scopeを超える観測を生成しない。",
+        "NFR29_holding=unmigrated。claimed_NFR29_adopted=trueならrejected、falseならnone。実観測/authority/holding採用を生成しない。"
+      ],
+      "comparison_scope": "#/common_rules/N01_comparison_scope",
+      "requirement_ref": "HARNESS-L3-056-N01",
+      "oracle_ref": "HARNESS-L10-056-N01",
+      "l4_ref": "HARNESS-L4-056-N01",
+      "l9_ref": "HARNESS-L9-056-N01",
+      "input_type": "EvidenceHoldingPacket",
+      "return_type": "EvidenceHoldingResult",
+      "rule_id": "R056-N01-EVIDENCE-VS-HOLDING",
+      "signature": {
+        "arguments": [
+          {
+            "name": "packet",
+            "type": "EvidenceHoldingPacket",
+            "presence": "required"
+          }
+        ],
+        "returns": {
+          "name": "result",
+          "type": "EvidenceHoldingResult",
+          "presence": "value"
+        }
+      },
+      "computation_binding": {
+        "kind": "declarative_logical_contract",
+        "function_pointer": "/functions/3",
+        "common_rules_pointer": "/common_rules",
+        "executable_program_ref": null,
+        "historical_AST_binding": "none",
+        "external_reads": false,
+        "external_writes": false
+      },
+      "read_return_boundary": {
+        "read_paths": [
+          "required_evidence_source.*",
+          "required_held_out_source.*",
+          "required_frame.*",
+          "evidence.*",
+          "held_out.*",
+          "claimed_NFR29_adopted"
+        ],
+        "unread": [
+          "holding_NFR29（意味入力として採用しない）",
+          "expected whole",
+          "case id"
+        ],
+        "return_roots": [
+          "evidence_result",
+          "evidence_target_result",
+          "held_out_target_result",
+          "NFR29_holding",
+          "NFR29_adoption_claim",
+          "held_out_gap",
+          "diagnostics",
+          "effects",
+          "unaffected_Q"
+        ],
+        "notation": "各pathはpacket引数の宣言fieldだけ。source_refはprovenanceで外部fetchしない。全返却は閉じたlogical_typesとdeclarative決定表に従う。",
+        "diagnostic_role_rule": "/common_rules/N01_raw_cause_diagnostics"
+      }
+    },
+    {
+      "id": "FN056-B01",
+      "arguments": {
+        "packet": "ResponsibilityPacket"
+      },
+      "returns": "ResponsibilityBoundaryResult",
+      "read_paths": [
+        "meaning_conditions.*",
+        "OS_conditions.*",
+        "diagnostics[*].*",
+        "owner_routes.*"
+      ],
+      "nonreads": [
+        "acceptance022",
+        "design025026",
+        "catalog_present",
+        "gate_claims.*",
+        "expected whole",
+        "case id"
+      ],
+      "decision_order": [
+        "既存conditionの順はOS.execution→meaning.pair_contract→meaning.feedback_contract→OS.save→OS.registration。knownでない各値を元文字列のまま診断化する。roleはOS3条件=os_operation、pair=harness_pair、feedback=harness_feedback。subject.kind=responsibility、他欄null、observed_pointerは当該packet field、basis_pointerは同field。condition名は既存名を保持。",
+        "その後packet.diagnosticsを入力順で全件そのまま連結する。既存診断と重複しても統合せず、subject/condition/source_state/role/pointerを変更しない。",
+        "全診断にresponsibility_protocol.B01_route_checkを順に適用。未知condition/役割未解決はunknown/null、既知role反転又はsubject不適合はconflict/null。境界一致後だけowner_routesのsource状態/key有無を照合する。元diagnostic/source_state/roleを一切書換えずcandidateへ保持。",
+        "全candidateのowner_qualification=not_evaluated。HARNESS-pair-owner等のfixture値を実account/資格/許可/配送へ読み替えない。owner不在でも診断を捨てず完全candidateを返す。",
+        "retained_meaning_conditionsとretained_OS_conditionsは供給record全体の完全copy。catalog_implies_gate_success/save_implies_execution_success/requires_025026_completion_to_authorは全false。全effects false。stateラベルからauthority/受入/Stage終了を生成しない。"
+      ],
+      "requirement_ref": "HARNESS-L3-056-B01",
+      "oracle_ref": "HARNESS-L10-056-B01",
+      "l4_ref": "HARNESS-L4-056-B01",
+      "l9_ref": "HARNESS-L9-056-B01",
+      "input_type": "ResponsibilityPacket",
+      "return_type": "ResponsibilityBoundaryResult",
+      "rule_id": "R056-B01-OWNER-SEPARATION",
+      "signature": {
+        "arguments": [
+          {
+            "name": "packet",
+            "type": "ResponsibilityPacket",
+            "presence": "required"
+          }
+        ],
+        "returns": {
+          "name": "result",
+          "type": "ResponsibilityBoundaryResult",
+          "presence": "value"
+        }
+      },
+      "computation_binding": {
+        "kind": "declarative_logical_contract",
+        "function_pointer": "/functions/4",
+        "common_rules_pointer": "/common_rules",
+        "executable_program_ref": null,
+        "historical_AST_binding": "none",
+        "external_reads": false,
+        "external_writes": false
+      },
+      "read_return_boundary": {
+        "read_paths": [
+          "meaning_conditions.*",
+          "OS_conditions.*",
+          "diagnostics[*].*",
+          "owner_routes.*"
+        ],
+        "unread": [
+          "acceptance022",
+          "design025026",
+          "catalog_present",
+          "gate_claims.*",
+          "expected whole",
+          "case id"
+        ],
+        "return_roots": [
+          "owner_return_candidates",
+          "retained_meaning_conditions",
+          "retained_OS_conditions",
+          "catalog_implies_gate_success",
+          "save_implies_execution_success",
+          "requires_025026_completion_to_author",
+          "effects",
+          "unaffected_Q"
+        ],
+        "notation": "各pathはpacket引数の宣言fieldだけ。source_refはprovenanceで外部fetchしない。全返却は閉じたlogical_typesとdeclarative決定表に従う。"
+      }
+    }
+  ],
+  "independent_supply_contract": {
+    "producer": "対象pairの設計義務sourceと対検証/oracle sourceを所有する既存owner。sourceが四値/対象frameを明示供給する。実runtimeや資格issuerの存在を論理関数の返却前提にしない。",
+    "040_projection": "040はcanonical pair/row/source/owner/edge/target契約の参照先。040 pair_resultsは状態結果でありrequired tuple producerではない。既存四値への明示source locatorが無い場合はSupplyの不足variantを渡す。",
+    "source_ref": "静的内容の参照。identity認可/署名/receiptを意味しない。fixture材料も供給できるが結果はfixture内容比較のみ。",
+    "observed_vs_required": "供給者はrequired_sourceとobservedを独立memberで渡す。observed、expected whole、oracle名/pair名からrequiredを作らない。source未供給でも各関数は上記完全返却を行う。",
+    "source_and_target_revision": "SourceRef.revisionはsource本文版、frame.revisionは検査対象版。相互にコピー/比較代用しない。",
+    "source_shape_failure": "原sourceのvalueを上記Tへ解釈できない場合はSupply<...>のunknown variantに原JSON全値とsource_refを保持して渡す。正式codecを導入せず、unknownをsuppliedへ偽装しない。"
+  },
+  "human_readable_contracts": [
+    {
+      "id": "R056-F01-ATOMIC-BIDIRECTIONAL",
+      "説明": "/functions/0と/common_rulesの型付き論理判定が現行の唯一の契約。実装ASTは未binding。"
+    },
+    {
+      "id": "R056-F02-LOCAL-CONDITIONS",
+      "説明": "/functions/1と/common_rulesの型付き論理判定が現行の唯一の契約。実装ASTは未binding。"
+    },
+    {
+      "id": "R056-F03-DUAL-DESTINATION",
+      "説明": "/functions/2と/common_rulesの型付き論理判定が現行の唯一の契約。実装ASTは未binding。"
+    },
+    {
+      "id": "R056-N01-EVIDENCE-VS-HOLDING",
+      "説明": "/functions/3と/common_rulesの型付き論理判定が現行の唯一の契約。実装ASTは未binding。"
+    },
+    {
+      "id": "R056-B01-OWNER-SEPARATION",
+      "説明": "/functions/4と/common_rulesの型付き論理判定が現行の唯一の契約。実装ASTは未binding。"
+    }
+  ],
+  "normative_precedence": {
+    "current": "logical_types/common_rules/functions/independent_supply_contract/producer_consumer_bindingsが現行5関数の論理契約。全必須返却field/優先順/未供給枝を定める。",
+    "machine_execution": "実行可能AST/programを現在の契約へbindしない。候補計算/製品runtimeをこの宣言から生成したとは数えない。",
+    "historical": "historical_scope_*で始まるroot key全体は固定sourceからの引用証拠。内側のfunction ID/program_ref/normative_precedenceを現在の関数解決へ使用しない。互換経路/fallbackではない。"
+  },
+  "producer_consumer_bindings": {
+    "required_atomic_source": {
+      "producer": "対象設計義務sourceと対検証/oracle sourceの既存ownerが明示した四値/対象frameを、呼出し側がSupply<RequiredBasis>/Supply<AtomicTarget>へ供給する。source値の解釈不能はrawを保持するunknown variant。",
+      "consumers": [
+        "FN056-F01.packet.required_source",
+        "FN056-F02.packet.required_source",
+        "FN056-N01.packet.required_evidence_source",
+        "FN056-N01.packet.required_held_out_source"
+      ],
+      "not_a_producer": "040 pair_resultsは比較結果で必要tupleではない。pair/oracleの字面から必要sourceを生成しない。",
+      "owner_or_source_unavailable": "実owner値/原四値を供給できない場合はSupplyのmissing/unknown/conflict/staleを返し、観測/expected/実runtimeから補完しない。"
+    },
+    "feedback_sources": {
+      "producer": "L12 sourceとL1企画/L0 anchorの原sourceを持つownerの明示値を呼出し側が別Supplyとして供給。edge producerは当該edge.sourceを独立memberへ供給。",
+      "consumer": "FN056-F03.packet.required_source/required_destination_sources/source/edges[*].source",
+      "separation": "edge.revisionはdestination revision、edge.source.revisionはsource revision。片方からcopyしない。"
+    },
+    "diagnostic_consumer": {
+      "producers": [
+        "FN056-F01",
+        "FN056-F02",
+        "FN056-F03",
+        "FN056-N01"
+      ],
+      "producer_member": "return.diagnostics : List<Diagnostic>",
+      "consumer": "FN056-B01.packet.diagnostics : List<Diagnostic>",
+      "projection": "全recordを元順で無変換コピー。subject/condition/source_state/role/pointerを削除/再分類/重複排除しない。B01がrole境界を再照合してowner_stateへ返す。"
+    },
+    "owner_routes": {
+      "producer": "既存HARNESS pair/feedback意味ownerとOS運転ownerのsource locator/identityを持つ呼出し側がSupply<Map<Role,OwnerRef>>として明示供給する。",
+      "consumer": "FN056-B01.packet.owner_routes",
+      "responsibility": "実identityの認可/資格/配送を関数内で発行しない。未供給は各Supply stateとnull ownerを返す。fixture literalを実ownerにしない。"
+    },
+    "diagnostic_role_claim": {
+      "producer": "呼出し側が原sourceのrole claimをF02.packet.diagnostic_rolesへ供給する。",
+      "consumer": "F02はB01批准境界の閉じたcondition-role表へ照合、B01も返却診断の境界を独立再照合。",
+      "unavailable_or_inverted": "不在/未解決はunresolved、既知反転はunresolved+diagnostic_role conflict。未知の意味/ownerを推定しない。"
+    }
+  },
+  "historical_scope_evidence": {
+    "role": "fixed_source_content_only_non_normative_not_current_function_binding",
+    "source": {
+      "revision": "cd31e054bea822e39f8f563e0ca37566bd77554f",
+      "path": "docs/helix-harness/L5-detail-design/atomic-pair-result-feedback.json",
+      "sha256": "9962dd8863731b116cd02177e2a869fadc705a353b94cf63028dfe962632c681"
+    },
+    "preserved_values": "原9型/5関数/13AST definition/5programを含む原L5全値を無変更保存。",
+    "current_execution_binding": "none",
+    "root_key_map": {
+      "logical_types": "historical_scope_logical_types",
+      "functions": "historical_scope_functions",
+      "calculation_programs": "historical_scope_calculation_programs",
+      "human_readable_contracts": "historical_scope_human_readable_contracts",
+      "unclosed_comparison_and_owner_obligations": "historical_scope_unclosed_comparison_and_owner_obligations",
+      "mutation_observation_limit": "historical_scope_mutation_observation_limit",
+      "literal_and_output_basis": "historical_scope_literal_and_output_basis",
+      "unresolved_obligations": "historical_scope_unresolved_obligations"
+    },
+    "preserved_root_values": {
+      "status": "draft_logical_rules_pending_independent_review",
+      "scope": {
+        "version_target": "1.0",
+        "historical_sequence_stage": "Stage 5",
+        "authoring_stage": "Stage 1",
+        "source_main": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "approved_content_revision": "71c22542e119f5a3c2f0f07e0d4141c3ca05475f",
+        "admitted_decision_record": "docs/governance/decisions/helix-harness-extraction-naming-pair-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+        "boundary": "固定source packet上の比較意味のみ。実catalog/resolver/source qualification/OS feedback運転/実oracle実行・gate/approval/acceptanceを成立させない。"
+      },
+      "peer_binding": {
+        "paired_document_id": "HARNESS-L8-056",
+        "path": "docs/helix-harness/L8-unit-verification/atomic-pair-result-feedback.json",
+        "binding": "同じsource_mainと同じapproved objectsを相互参照。候補文書自体は固定source pin扱いしない。"
+      },
+      "qualification_state": "synthetic_fixture_only_no_actual_source_qualification"
+    },
+    "unchanged_root_fields": [
+      "parent",
+      "document_id",
+      "layer",
+      "pair",
+      "source_pins",
+      "approval_binding",
+      "legacy_comparison",
+      "full_goal_scope_preserved",
+      "canonical_pair_domain",
+      "implementation_readiness",
+      "authority_effect",
+      "operation_effect"
+    ],
+    "reconstruction": "原source documentはroot_key_map先の全値、preserved_root_values、unchanged_root_fieldsの三部分だけから再構成して照合。historical_scope_*全体は引用scopeで現在のfunction/type/program bindingに使わない。"
+  },
+  "design_delta_basis": {
+    "source_revision": "cd31e054bea822e39f8f563e0ca37566bd77554f",
+    "contract_authoring_sha256": "fa77e7c34e62cac45fbe0dbc39e987d74b1afa917fd7af78ec00c96a517dd844",
+    "N01_role_delta_sha256": "0d1425bc88f4f71dabbea2864add0366090bd8f4044efe8fea6a640a6fdea9a2",
+    "N01_held_boundary_delta_sha256": "862f67b16679c8368c6cc6a6549ca381037170bfff47e3a2b20056860295c1de",
+    "approved_sources": [
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+        "pointer": "/requirements/8/obligation",
+        "quote": "異snapshot/stale revisionは適用されたcurrent証拠条件の不足として扱う",
+        "derivation": "供給された観測evidence frameと独立必要frameの差は実証拠の適用不足。独立必要frame自体の未指定や申告との差は必要意味の不足。元原因を分ける。"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+        "pointer": "/requirements/8/obligation",
+        "quote": "旧design-defined/not-implementedを実行実績にしない。",
+        "derivation": "legacy sourceの結果意味の限定は、OSを起動すれば旧assertionが新実績になるという運転不足ではない。HARNESS意味として保持。"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+        "pointer": "/requirements/10/obligation",
+        "quote": "要求意味不足はHARNESS owner、実行/保存/登録証拠不足はOS ownerへ戻す。",
+        "derivation": "raw証拠の不足・適用frame差はOS、required意味source/申告の差とlegacyの限定意味はHARNESS。source_stateラベルの字面から役割を選ばず、読んだraw比較軸/原因から生成する。"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+        "pointer": "/cases/8/expected_observation",
+        "quote": "未実行と不一致/未観測を局所化し、sourceの限定とcurrent契約の適用が辿れる。",
+        "derivation": "粗粒度evidence_resultの優先集約とは別に、同時に存在するraw観測差/required申告差/legacy限定を全件返す。"
+      },
+      {
+        "path": "docs/helix-harness/L4-basic-design/atomic-pair-result-feedback.json",
+        "pointer": "/contracts/4/content_comparison/0",
+        "quote": "意味不足をHARNESS、運転証拠不足をOSへ別々に返す。",
+        "derivation": "B01のrole表はevidence_frame/evidence_executionをOS、evidence_provenance/required_frameをHARNESSとし、元診断を保持してownerを独立に照合する。"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+        "pointer": "/requirements/8/obligation",
+        "quote": "未見の欠落pairは同じatomic oracleへ照合する。",
+        "consequence": "独立選択がfalse又は供給不能ならrequired tupleを参照できない。raw objectの存在は選択を生成せず、矛盾/比較不能をbasis subjectにする。"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/51/obligation",
+        "quote": "pairごとの設計義務と検証証拠/実結果のatomic oracle identityで双方向に対応づける。",
+        "consequence": "観測raw counterpartの設計/検証欠落は局所presenceの不足として記録できる。ただしselection/targetの正対応を生成しない。tuple不能時のgap basisはこの批准意味を直接指す。"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+        "pointer": "/cases/8/expected_observation",
+        "quote": "未実行と不一致/未観測を局所化し、sourceの限定とcurrent契約の適用が辿れる。",
+        "consequence": "sourceのunknownとraw片側欠落を別診断に残す。source不能をraw gapの不存在へ書き換えない。"
+      }
+    ],
+    "new_gate": false,
+    "upstream_meaning_change": false
+  },
+  "remaining": {
+    "design_review": "現candidateの独立意味review/正式admissionは未成立。全92親430義務の全検収を本親から外挿しない。",
+    "runtime_only": "実source値/資格/正式wire codec/実OS保存登録配送/実oracle実行/製品CI/L11実受入は本論理候補で成立させない。実runtime待ちを論理未定義の理由にしない。"
+  },
+  "parent_pair_comparison": [
+    {
+      "obligation": "F01",
+      "L4": {
+        "path": "docs/helix-harness/L4-basic-design/atomic-pair-result-feedback.json",
+        "revision": "cd31e054bea822e39f8f563e0ca37566bd77554f",
+        "pointer": "/contracts/0",
+        "whole_sha256": "446ecb403f8854a49eef9451e3b66e4b84b9aea47837edbdf045462b67fe3fd0"
+      },
+      "L9": {
+        "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+        "revision": "cd31e054bea822e39f8f563e0ca37566bd77554f",
+        "pointer": "/verification_obligations/0",
+        "whole_sha256": "c6acf94e0d89da7e2ae681f649b4b05ed0b498b9536c98ce93b55fc4c4bbbac0"
+      },
+      "current_function_pointer": "/functions/0",
+      "historical_case_scope": "原L9 concrete_casesは固定sourceの有限比較scope。新root/独立source/診断/consumerの期待へ補完しない。"
+    },
+    {
+      "obligation": "F02",
+      "L4": {
+        "path": "docs/helix-harness/L4-basic-design/atomic-pair-result-feedback.json",
+        "revision": "cd31e054bea822e39f8f563e0ca37566bd77554f",
+        "pointer": "/contracts/1",
+        "whole_sha256": "cfba470b9fd840ec39c4637f429abe5ddf540d85f837bd84ea13143fe574f719"
+      },
+      "L9": {
+        "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+        "revision": "cd31e054bea822e39f8f563e0ca37566bd77554f",
+        "pointer": "/verification_obligations/1",
+        "whole_sha256": "2b7505d258da5407e818c9216963e878936813c58362909244fc45d783b10f87"
+      },
+      "current_function_pointer": "/functions/1",
+      "historical_case_scope": "原L9 concrete_casesは固定sourceの有限比較scope。新root/独立source/診断/consumerの期待へ補完しない。"
+    },
+    {
+      "obligation": "F03",
+      "L4": {
+        "path": "docs/helix-harness/L4-basic-design/atomic-pair-result-feedback.json",
+        "revision": "cd31e054bea822e39f8f563e0ca37566bd77554f",
+        "pointer": "/contracts/2",
+        "whole_sha256": "999be807a80ac890457eccbad9d4147855343574def36a0e8faa599c581f08f1"
+      },
+      "L9": {
+        "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+        "revision": "cd31e054bea822e39f8f563e0ca37566bd77554f",
+        "pointer": "/verification_obligations/2",
+        "whole_sha256": "af82f4c8b48a5e0e77b3cab2236b661b2cc3c13696728f8cc0db2a6242527bc7"
+      },
+      "current_function_pointer": "/functions/2",
+      "historical_case_scope": "原L9 concrete_casesは固定sourceの有限比較scope。新root/独立source/診断/consumerの期待へ補完しない。"
+    },
+    {
+      "obligation": "N01",
+      "L4": {
+        "path": "docs/helix-harness/L4-basic-design/atomic-pair-result-feedback.json",
+        "revision": "cd31e054bea822e39f8f563e0ca37566bd77554f",
+        "pointer": "/contracts/3",
+        "whole_sha256": "c3893cf4d90aa42df3e7680ca3d1f0b4f05ffa07ced06c9d5505b337f736630a"
+      },
+      "L9": {
+        "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+        "revision": "cd31e054bea822e39f8f563e0ca37566bd77554f",
+        "pointer": "/verification_obligations/3",
+        "whole_sha256": "fb1230c19399b11c462144b1e25ee7f621b05b26cdcc6322d3c998b708295ff2"
+      },
+      "current_function_pointer": "/functions/3",
+      "historical_case_scope": "原L9 concrete_casesは固定sourceの有限比較scope。新root/独立source/診断/consumerの期待へ補完しない。"
+    },
+    {
+      "obligation": "B01",
+      "L4": {
+        "path": "docs/helix-harness/L4-basic-design/atomic-pair-result-feedback.json",
+        "revision": "cd31e054bea822e39f8f563e0ca37566bd77554f",
+        "pointer": "/contracts/4",
+        "whole_sha256": "e740326e5fc9bb5fff2ec407a6261dccdbdffb184593b6a79b5cf5df13f305a8"
+      },
+      "L9": {
+        "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+        "revision": "cd31e054bea822e39f8f563e0ca37566bd77554f",
+        "pointer": "/verification_obligations/4",
+        "whole_sha256": "0e544753ec8b5d1747cfe11af72738db25e2de848658dd298a4a74cb27d0408f"
+      },
+      "current_function_pointer": "/functions/4",
+      "historical_case_scope": "原L9 concrete_casesは固定sourceの有限比較scope。新root/独立source/診断/consumerの期待へ補完しない。"
+    }
+  ]
 }
