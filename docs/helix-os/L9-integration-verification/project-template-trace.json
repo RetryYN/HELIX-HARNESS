@@ -53291,7 +53291,7 @@
           "new_component_paths": "F04OriginalCorrespondenceResult.recordsはselector元順。D1=records/0、D2=records/1、D4=records/3。native_original_condition=false/nullは原値であり、充足/NA/保存成功flagへ言い換えない。",
           "input_retention": "retained_input_checksは原caller保存のassertionであり出力fieldでない。元3state raw配列をnewcomponent全3state返却としない。",
           "preservation_invariants": "preservation_invariantsは既存native比較/旧prefix/非生成等の規範上の保持条件。散文sentinelを返却値として期待しない。具体的な既存prefix全code/path/全配列をここから生成しない。",
-          "typed_field_presence": "Field missingはpointer先keyがAbsent。supplied(null)/supplied(false)/supplied([])とは区別する。未資格native sourceのraw値をtyped native Fieldへ写さない。"
+          "typed_field_presence": "assertionのpresence=absentは、指定rootのpointer先にkeyが存在しないことを表す。これはfixture assertionの語彙であり、製品Fieldのstate値ではない。製品Field missingを検査するときはそのkey不在をこのassertionで検査し、Fieldでない一般のkey不在にも同じassertionを使う。presence=suppliedではpointer先keyが存在し、その原値をvalueへ照合する。supplied(null)/supplied(false)/supplied([])をkey不在へ丸めない。未資格native sourceのraw値をtyped native Fieldへ写さない。"
         },
         "D2_component_case": {
           "id": "HELIXOS-L9-002-F04-ORIGINAL-D2-COMPONENT-01",
@@ -53532,139 +53532,6 @@
           "working_bytes_sha256": "f7fe6a25a1e69bfd54dfb6a4c02c3b6d23d6575e3d1dad5779873ee12beb7094",
           "binding_kind": "paired_current_file_bytes",
           "meaning": "同一候補pairの規範節を現L4 bytesへ結ぶ。元source_basisは固定git bytesの歴史参照として別保持し、現候補を当該git revisionの本文だと偽らない。"
-        },
-        "representation_correction_history": {
-          "basis": {
-            "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
-            "revision": "c2c130c43082ecd11460c1a024c3df0b3794c88c",
-            "file_sha256": "625d05c976675542f738c367df93a93b07ad065089f7d84861057bc405dc4706"
-          },
-          "meaning": "局所projectionの非typed語/散文sentinelをtyped root/pointer/value/Presenceと原input保持条件へ写像する。元c2本文/旧hashを歴史参照として保持し、actualから期待を生成しない。",
-          "old_input_expected_whole_values_changed": false,
-          "whole_scope_change": {
-            "pointer": "/cases/5/selected_source_member_correspondence_oracles/expectation_rule",
-            "before": {
-              "input": "fixture_material_recipesを配列順に展開する。各nameは展開済みの同名rootとなり、recipe内$copyは先行rootだけを参照する。次にbase_input_recipeをこれらのrootで展開してbase_inputを得る。各case input_patchをそのbaseへ宣言順に適用する。source wire/hash/root許容は固定入力で、patch後に補完/再hash/再資格化しない。全recipe/materialはこのL9内にありscratchを参照しない。",
-              "roots": "各caseでlegacy_observation_recipe_templateとf04_observation_recipe_templateのそれぞれへobservation_recipe_patchを適用し、patch後case_inputだけをrootとして展開する。得たlegacy_observation/f04_observationとcase_inputをrootにexpected_complete_return_recipeを展開する。空pointerはroot全体。state/code/ownerはliteral期待で、copyは原値保存の表現だけ。",
-              "whole": "expected_complete_return_recipeはRecordTraceAnalysis全root/sections/F04 observation/findings/input_issues/effects/authority_generatedを固定する。expected_new_findingsは補助でありwholeの代替でない。",
-              "canonical_whole_hash": "本書内のinput/observation/完全返却recipeをexpectation_ruleの順に展開し、各caseのwhole_expectation_sha256へ照合する。canonical JSONはUTF-8、object keyをsort_keysで整列、separatorsはcomma/colon、ensure_ascii=falseとする。state/code/ownerのliteral期待を評価器出力で補完しない。検証根拠はこの自己完結した9recipeとhashであり、本書外の作業物を必須参照としない。"
-            },
-            "after": {
-              "input": "fixture_material_recipesを配列順に展開する。各nameは展開済みの同名rootとなり、recipe内$copyは先行rootだけを参照する。次にbase_input_recipeをこれらのrootで展開してbase_inputを得る。各case input_patchをそのbaseへ宣言順に適用する。source wire/hash/root許容は固定入力で、patch後に補完/再hash/再資格化しない。全recipe/materialはこのL9内にありscratchを参照しない。",
-              "roots": "各caseでlegacy_observation_recipe_templateとf04_observation_recipe_templateのそれぞれへobservation_recipe_patchを適用し、patch後case_inputだけをrootとして展開する。得たlegacy_observation/f04_observationとcase_inputをrootにexpected_complete_return_recipeを展開する。空pointerはroot全体。state/code/ownerはliteral期待で、copyは原値保存の表現だけ。",
-              "whole": "expected_complete_return_recipeはsource_original_correspondence導入前のRecordTraceAnalysis全root/sections/F04 observation/findings/input_issues/effects/authority_generatedを固定する。新source_original_correspondence fieldとそれに由来する新findingを含む導入後wholeではない。旧9期待の値/hashは歴史的範囲として保持し、新field/新finding込みのwholeは後続L5/L8で個別再導出する。expected_new_findingsは旧範囲の補助であり、当該旧wholeの代替でない。",
-              "canonical_whole_hash": "本書内のinput/observation/完全返却recipeをexpectation_ruleの順に展開し、各caseのwhole_expectation_sha256へ照合する。canonical JSONはUTF-8、object keyをsort_keysで整列、separatorsはcomma/colon、ensure_ascii=falseとする。state/code/ownerのliteral期待を評価器出力で補完しない。検証根拠はこの自己完結した9recipeとhashであり、本書外の作業物を必須参照としない。 このhashは上記の導入前範囲を表し、新規範下の追加field/findingを省略してもwholeが成立するという主張ではない。"
-            },
-            "reason": "新field/新finding導入前のwhole範囲を明示。旧9値/hashを保持し導入後wholeと称さない。"
-          },
-          "D2_diagnostic_change": {
-            "before_recipe_key": "expected_new_diagnostic_suffix_recipe",
-            "after_recipe_key": "expected_D2_diagnostic_subsequence_recipe",
-            "before_hash_key": "expected_new_diagnostic_suffix_canonical_sha256",
-            "after_hash_key": "expected_D2_diagnostic_subsequence_canonical_sha256",
-            "canonical_sha256": "45c7e4a49f7470c6591fd3e203c4f665120f06ea48eb99487e4168d82574c5be",
-            "values_changed": false,
-            "reason": "D2新2findingは全呼出しsuffixではなくD2由来の部分列。他output由来診断の後続を否定しない。"
-          },
-          "partial_changes": [
-            {
-              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-01",
-              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/0/expected_partial_recipe",
-              "old_expected_partial_canonical_sha256": "6cfa7a8bf54c2ff93007cdf814c468adcb9b956dab3451c9570481fd033d9c83",
-              "new_expected_partial_canonical_sha256": "78306095299d2bdc0ba4d24e89d12b8d7f24d6324ce1eed7b6ed18855511001c",
-              "input_canonical_sha256": "2217e19c0ddd478fb94d248ce883e149cb0a2c2ae361d5d75f696f2d2acf86a6",
-              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
-            },
-            {
-              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-02",
-              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/1/expected_partial_recipe",
-              "old_expected_partial_canonical_sha256": "b0b8a3af1254a859b13b57e064b372362aae651736d65064fbb7100b19b9fb78",
-              "new_expected_partial_canonical_sha256": "b9ff2917c23fe181f70f68f0d11de4bdb723feece1e3748b465fc6c09807721c",
-              "input_canonical_sha256": "f4a31c5f0fa5f9f7a844bff92d8c5f9c754d38cade0a4966d753175673e68514",
-              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
-            },
-            {
-              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-03",
-              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/2/expected_partial_recipe",
-              "old_expected_partial_canonical_sha256": "2d69c4d3a30f2b32b1f685435db28f74a7a84aa1b676e533d437af6f2dcc7fd8",
-              "new_expected_partial_canonical_sha256": "ec1ada6abd823db588de6c51caa66b4cbdb451a2acee006ea7925c5f76b4d893",
-              "input_canonical_sha256": "3b8db44c8c680d68964be2e693467e58db8a5b74ce45acb0b6e33a617f67043a",
-              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
-            },
-            {
-              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-04",
-              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/3/expected_partial_recipe",
-              "old_expected_partial_canonical_sha256": "c493c5981ade8bd822cc9ed7b1abdbf40d688238c33ec48c59e4c52f46c71d60",
-              "new_expected_partial_canonical_sha256": "812fa63119c2d467fb4c49f57c8840844d553819dc6284882b40abd860343cad",
-              "input_canonical_sha256": "4cf7d0b54b87b7fdb52d6461a1bca341df0089c4c816c2242432085c8d73a0df",
-              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
-            },
-            {
-              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-05",
-              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/4/expected_partial_recipe",
-              "old_expected_partial_canonical_sha256": "b30b138743687fac702dcf56e3b8208177a1ccbef2cc9b9132e20dab500a1232",
-              "new_expected_partial_canonical_sha256": "2a1780ef50c0cec542416d95c26d7c3db27c69cf31bf54de9b78d2f10188b773",
-              "input_canonical_sha256": "01b7650591949a8328665d3e900a7f0336f03f75d8f2900782b7de7d39e5e188",
-              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
-            },
-            {
-              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-06",
-              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/5/expected_partial_recipe",
-              "old_expected_partial_canonical_sha256": "385a6475ea0b3201336bcfde2e4054974c793eb967a63609abe01cc9aa44f890",
-              "new_expected_partial_canonical_sha256": "c98661f034bcc68a5b24bc8468854077d49355f377ca2234b1412b27a2c3fd6e",
-              "input_canonical_sha256": "4fce18f7b73d29cf55f018a5f99647d5ef66e1e27d03ae31ad31469551bc0f16",
-              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
-            },
-            {
-              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-07",
-              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/6/expected_partial_recipe",
-              "old_expected_partial_canonical_sha256": "cacf5b915f075d7df102cc33b6d4b3cb03d80747ab84a80a3fd33e1bcb4d4e88",
-              "new_expected_partial_canonical_sha256": "e85e1d0c71ff425a3ce0260476d905c3cbf2a4cf4d0f12d7f1d4a09fc2236c27",
-              "input_canonical_sha256": "f035e658486edeb7a3e3ea96bbd751cb8ad043dccc1dcdafa0912c5b81a3fd7a",
-              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
-            },
-            {
-              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-08",
-              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/7/expected_partial_recipe",
-              "old_expected_partial_canonical_sha256": "05ce6d8d8c82a16406acf40aaa1465ca157769ed6c87423e862a6be87207787f",
-              "new_expected_partial_canonical_sha256": "822383261b257bcec63b2ebc2ed999018c3dbef6c98aed762d8cfedf2c820c52",
-              "input_canonical_sha256": "2328009519d75c93baf55004afae3c780d609da436b74e88104b899aae753aec",
-              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
-            },
-            {
-              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-09",
-              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/8/expected_partial_recipe",
-              "old_expected_partial_canonical_sha256": "29864843cd61f197755e93c06018902dab3d5add6c07b7d9de0b77fc9dc9ee88",
-              "new_expected_partial_canonical_sha256": "f5b5018c4881bd54c4030129a9ff814820f8cdc052d1f80bdb2434e799e08bfc",
-              "input_canonical_sha256": "1fcbb92509ec490df5f3d73140392f53ee29fc90dc023c211a5869526987fa02",
-              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
-            },
-            {
-              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-10",
-              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/9/expected_partial_recipe",
-              "old_expected_partial_canonical_sha256": "c15c60f86d3108898b718970782c1d01ee041b5a48569d771127c7dfad580986",
-              "new_expected_partial_canonical_sha256": "1569fc33e99fc743ec881084e7d261daf4193bd28face1d3d0562787d4fcf1a5",
-              "input_canonical_sha256": "0b752098475088ba5d4074d6c3861e55df8b53519af0b2cae893e9578cdea0ec",
-              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
-            },
-            {
-              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-11",
-              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/10/expected_partial_recipe",
-              "old_expected_partial_canonical_sha256": "38e664ecf8c79cb99151e6de4b304984604497dbcfd87a447ac3fd9e66543846",
-              "new_expected_partial_canonical_sha256": "ddac752412a2bf7ac7477547f3991aa0af71c092f6988ab034c0fa2bccf9d200",
-              "input_canonical_sha256": "b49bd2ba4e56a8a709360e471579d11a9e7d7ba2ca932f6c71a4e83a1b716c1a",
-              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
-            },
-            {
-              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-12",
-              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/11/expected_partial_recipe",
-              "old_expected_partial_canonical_sha256": "c6c7dc91ff15554e6efd1f62bfdeb552d067bedc15cd35004f6b0367d384acc2",
-              "new_expected_partial_canonical_sha256": "fd8d6b3e9df554f3c38c7a45598c8299f36fd066f9b962af38c97c0860abbfbb",
-              "input_canonical_sha256": "39ecdccaf9165b5ecdb4f3ee5ba1739b8e74e3db1c8b39ec8cd8891c2749aa5c",
-              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
-            }
-          ],
-          "actual_evaluator_executed": false
         }
       }
     },
