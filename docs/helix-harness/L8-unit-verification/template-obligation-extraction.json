@@ -29658,7 +29658,7 @@
     },
     "detail_pair_binding": {
       "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
-      "body_sha256": "5ac4ccc8d404f2d6c21a395645f55fc183863a90c178e1bb7df0e2bd82750d33",
+      "body_sha256": "348acf0b167b2337bc29fc66d18208d7ecf1d16391a8a45bb20299f4e2e0ae28",
       "pointers": [
         "/n01_private_type_contract",
         "/n01_private_functions",
@@ -86789,7 +86789,7 @@
           },
           {
             "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
-            "body_sha256": "5ac4ccc8d404f2d6c21a395645f55fc183863a90c178e1bb7df0e2bd82750d33",
+            "body_sha256": "348acf0b167b2337bc29fc66d18208d7ecf1d16391a8a45bb20299f4e2e0ae28",
             "pointer": "/n01_private_failure_contract",
             "binding": "same candidate/publication L5 bytes"
           }
@@ -87181,13 +87181,13 @@
         "basis_pointers": [
           {
             "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
-            "body_sha256": "5ac4ccc8d404f2d6c21a395645f55fc183863a90c178e1bb7df0e2bd82750d33",
+            "body_sha256": "348acf0b167b2337bc29fc66d18208d7ecf1d16391a8a45bb20299f4e2e0ae28",
             "pointer": "/n01_private_failure_contract",
             "binding": "same candidate/publication L5 bytes"
           },
           {
             "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
-            "body_sha256": "5ac4ccc8d404f2d6c21a395645f55fc183863a90c178e1bb7df0e2bd82750d33",
+            "body_sha256": "348acf0b167b2337bc29fc66d18208d7ecf1d16391a8a45bb20299f4e2e0ae28",
             "pointer": "/n01_private_type_contract/grammar/types/N01PrivateContractProblem",
             "binding": "same candidate/publication L5 bytes"
           }
@@ -87224,7 +87224,7 @@
           },
           {
             "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
-            "body_sha256": "5ac4ccc8d404f2d6c21a395645f55fc183863a90c178e1bb7df0e2bd82750d33",
+            "body_sha256": "348acf0b167b2337bc29fc66d18208d7ecf1d16391a8a45bb20299f4e2e0ae28",
             "pointer": "/n01_private_type_contract/grammar/types/N01DomainObservation",
             "binding": "same candidate/publication L5 bytes"
           }
@@ -87252,7 +87252,7 @@
           },
           {
             "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
-            "body_sha256": "5ac4ccc8d404f2d6c21a395645f55fc183863a90c178e1bb7df0e2bd82750d33",
+            "body_sha256": "348acf0b167b2337bc29fc66d18208d7ecf1d16391a8a45bb20299f4e2e0ae28",
             "pointer": "/n01_caller_structure_contract/entry_contract",
             "binding": "same candidate/publication L5 bytes"
           }
@@ -87277,7 +87277,7 @@
       "runtime_TDD_CI_L11": "not established; 既存readiness_boundaryは不変。",
       "counts_are_not_completion_rate": true,
       "root_replay_summary_sha256": "e6baf4fe37259f684fd229280f272c906ac115d0a71067d06974755c0130fb37",
-      "candidate_metadata_difference_from_evaluated": "実行済c7からprimitive_operators[8]説明だけをre.fullmatch/現3pattern限定へ追随。全definitions/型/schema/署名/独立期待は同一。",
+      "candidate_metadata_difference_from_evaluated": "実行済c7からprimitive_operators[8]の説明を追随し、静的構成検証器の許可methodへfullmatchを追加した。全業務definitions・型/schema・署名・独立期待は同一。",
       "prior_replay_history": {
         "candidate_sha256": "fd3db585fa5398365c1369eb61bcdc6cf9b183b714af103f839bda464b396c45",
         "driver_sha256": "2153c383c399649ed9ab38c5f8a4f1188940cc21fb12db407a7acda810f148b9",
@@ -87361,7 +87361,7 @@
     "existing_obligation_pointer": "/verification_obligations/3",
     "detail_pair_binding": {
       "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
-      "body_sha256": "5ac4ccc8d404f2d6c21a395645f55fc183863a90c178e1bb7df0e2bd82750d33",
+      "body_sha256": "348acf0b167b2337bc29fc66d18208d7ecf1d16391a8a45bb20299f4e2e0ae28",
       "pointers": [
         "/finite_reference/definitions/23",
         "/finite_reference/primitive_operators/8",
@@ -87518,7 +87518,7 @@
           "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054"
         },
         "expected": false,
-        "basis": "Declared anchored 64-lowercase-hex schema pattern under ECMAScript excludes trailing LF. Other fields unchanged from a fixed positive whole."
+        "basis": "ECMAScriptで宣言した64桁の小文字hex全体一致patternは末尾LFを含む値を受理しない。他のフィールドは固定済みの正常例から変えていない。"
       },
       {
         "id": "HeldOutAtomEvidence-extractor_version_digest-trailing-LF",
@@ -87544,7 +87544,7 @@
           "extractor_version_digest": "162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054\n"
         },
         "expected": false,
-        "basis": "Declared anchored 64-lowercase-hex schema pattern under ECMAScript excludes trailing LF. Other fields unchanged from a fixed positive whole."
+        "basis": "ECMAScriptで宣言した64桁の小文字hex全体一致patternは末尾LFを含む値を受理しない。他のフィールドは固定済みの正常例から変えていない。"
       },
       {
         "id": "HeldOutOccurrenceResult-source_row_sha256-trailing-LF",
@@ -87607,7 +87607,7 @@
           ]
         },
         "expected": false,
-        "basis": "Declared anchored 64-lowercase-hex schema pattern under ECMAScript excludes trailing LF. Other fields unchanged from a fixed positive whole."
+        "basis": "ECMAScriptで宣言した64桁の小文字hex全体一致patternは末尾LFを含む値を受理しない。他のフィールドは固定済みの正常例から変えていない。"
       }
     ],
     "independent_prefreeze": {
