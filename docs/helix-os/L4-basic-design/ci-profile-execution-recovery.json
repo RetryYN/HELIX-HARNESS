@@ -1,7 +1,7 @@
 {
-  "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+  "status": "draft_R7_source_bundle_opaque_and_status_dag_complete_candidate_pending_independent_review",
   "parent": "HELIXOS-L2-020",
-  "source_main": "aacaa54ed28d169569ce61f6573d10075a55299a",
+  "source_main": "c3994c92d43ab49264a75f7aae9622484d082659",
   "scope": {
     "version_target": "1.0",
     "historical_sequence_stage": "Stage 2a",
@@ -408,7 +408,941 @@
       "input_meaning": "承認済み要求/pair/oracle、HARNESS版/検証義務、ticket graph、実差分/base、runner/環境、必要connection/evidenceから、当該変更に必要なCI profileを組み立てる。exact HEAD/oracle/環境/run identityへ束縛し、全案件固定段数や検証義務の欠落を許さない。",
       "output_meaning": "7facet別素材対応/unknown/違反、原状態/未完/戻し先素材。実operation none。",
       "operation_effect": "none",
-      "selection_interpretation": "承認済み要求/pair/oracle、HARNESS版/全検証義務、ticket graph、phase/risk由来の必要最小集合、OS計画の選択実行集合、実差分/base、runner/環境、必要connection/evidenceから、当該変更に必要なCI profileを組み立てる。HARNESSの全義務、現在profileの最小必要集合、OSの選択集合、未選択/回収集合を別のsourceとして保持し、選択profileの義務とitemsはOS計画の選択集合に一致させる。exact HEAD/oracle/環境/run identityへ束縛し、必要義務の未選択を許さない。"
+      "selection_interpretation": "承認済み要求/pair/oracle、HARNESS版/全検証義務、ticket graph、HARNESS所有のphase/risk必要最小集合、OS planの選択集合、実差分/base、runner/環境、必要connection/evidenceを別々に保持して当該変更のprofileを組み立てる。必要最小集合と選択集合を等置せず、集合関係・source state・ownerの対応を規則ごとに評価する。",
+      "selection_producer_contract": {
+        "purpose": "OS plan owner境界で、元OS/OS016/OS017の関係とHARNESS F03同一呼出しを lossless に受け、既存 PlanSelectionSource を導出する純粋private producerの完全設計。source_bundleは既存型のRawValue保持のみで意味入力にしない。",
+        "existing_public_output": {
+          "type": "PlanSelectionSource",
+          "source_pin": {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+            "pointer": "/logical_types/51"
+          },
+          "fields": {
+            "plan_ref": "Field<string>",
+            "binding": "Field<PlanSelectionBinding>",
+            "selected_obligation_refs": "Field<list<string>>",
+            "items": "Field<list<CheckItem>>"
+          },
+          "binding_type": {
+            "pointer": "/logical_types/50",
+            "fields": [
+              "project",
+              "requirement_revision",
+              "scope",
+              "ticket_graph_ref"
+            ]
+          },
+          "item_type": {
+            "pointer": "/logical_types/5",
+            "fields": [
+              "id",
+              "obligation_ref",
+              "oracle_ref",
+              "environment_ref"
+            ]
+          },
+          "no_public_extension": "既存recordへproducer status、unknown/conflict Field tag、または新しいpublic fieldを追加しない。"
+        },
+        "private_types_are_transient": "private型は同一OS plan owner呼出しの入力/trace/返却に限る。public outputは既存PlanSelectionSourceのまま。",
+        "private_call_contract": {
+          "function": "derive_os_plan_selection(input: PlanSelectionDerivationInput) -> PlanSelectionDerivationResult",
+          "private_types_are_transient": "OS020内のpure producer/assembler境界。F02009公開signatureと既存CIInput/ExpectedContext型は変更しない。",
+          "input_fields": {
+            "original_packet": "RawPacket: F02001が保持する元packet。",
+            "projected_ci_input": "CIInput: 同一snapshotからF02001が投影した値。",
+            "plan_owner": "PlanSelectionOwnerObservation: owner境界からのraw Fieldとtyped view。",
+            "impact_result": "Field<TraceResult>: OS016 L5 /logical_types/15 の完全返却。",
+            "workflow_proposal": "Field<WorkflowProposal>: OS017 L5 /logical_types/39 の完全返却。",
+            "harness_selection_source": "CIInput.context.harness_selection_source: Field<HarnessSelectionSource>; nested値全体と各Fieldを保持。source_bundleもRawValueとして保持する。",
+            "harness_f03_invocation": "同一HARNESS F03関数呼出しのraw呼出し記録とoriginal/sources/candidate/Comparison全体。",
+            "check_item_catalog": "PlanSelectionRows<PlanCheckItemRecord>: owner catalogの元containerと各原行。",
+            "selection_relations": "PlanSelectionRows<PlanSelectionRelation>: owner relationの元containerと各原行。"
+          },
+          "private_closed_types": [
+            {
+              "name": "PlanSelectionRowObservation<T>",
+              "kind": "record",
+              "fields": {
+                "source_pointer": "string",
+                "raw_row": "RawValue",
+                "decoded_row": "Field<T>"
+              }
+            },
+            {
+              "name": "PlanSelectionRows<T>",
+              "kind": "record",
+              "fields": {
+                "source_value": "Field<RawValue>",
+                "rows": "list<PlanSelectionRowObservation<T>>"
+              }
+            },
+            {
+              "name": "PlanSelectionOwnerObservation",
+              "kind": "record",
+              "fields": {
+                "raw_value": "Field<RawValue>",
+                "decoded_owner": "Field<PlanSelectionOwnerContext>",
+                "source_pointer": "string"
+              }
+            },
+            {
+              "name": "PlanSelectionOwnerContext",
+              "kind": "record",
+              "fields": {
+                "owner_role": "Field<string>",
+                "plan_ref": "Field<string>",
+                "binding": "Field<PlanSelectionBinding>"
+              }
+            },
+            {
+              "name": "PlanSelectionSourceLocator",
+              "kind": "record",
+              "fields": {
+                "owner_role": "Field<string>",
+                "plan_ref": "Field<string>",
+                "binding": "Field<PlanSelectionBinding>",
+                "source_ref": "Field<string>",
+                "source_pointer": "string"
+              }
+            },
+            {
+              "name": "PlanCheckItemRecord",
+              "kind": "record",
+              "fields": {
+                "source": "PlanSelectionSourceLocator",
+                "item": "CheckItem"
+              }
+            },
+            {
+              "name": "PlanSelectionRelation",
+              "kind": "record",
+              "fields": {
+                "source": "PlanSelectionSourceLocator",
+                "relation_kind": "changed_target | ticket_companion",
+                "item_id": "Field<string>",
+                "obligation_ref": "Field<string>",
+                "target_ref": "Field<string>",
+                "ticket_ref": "Field<string>",
+                "obligation_ref_source_pointer": "string",
+                "impact_project_id": "Field<string>",
+                "impact_node_id": "Field<string>",
+                "target_ref_source_pointer": "string",
+                "impact_project_id_source_pointer": "string",
+                "impact_node_id_source_pointer": "string",
+                "ticket_ref_source_pointer": "string"
+              }
+            },
+            {
+              "name": "HarnessF03MinimumEvaluation",
+              "kind": "record",
+              "fields": {
+                "original": "F03VerificationInput",
+                "sources": "VerificationSources",
+                "candidate": "Field<F03VerificationObservation>",
+                "comparison": "Comparison<F03VerificationObservation>",
+                "minimum_projection": "ObservationField<list<string>>",
+                "source_pointer": "string"
+              }
+            },
+            {
+              "name": "HarnessF03InvocationObservation",
+              "kind": "record",
+              "fields": {
+                "raw_invocation": "Field<RawValue>",
+                "decoded_invocation": "Field<HarnessF03MinimumEvaluation>",
+                "source_pointer": "string",
+                "decode_issue": "Field<string>"
+              }
+            },
+            {
+              "name": "PlanSelectionDerivationInput",
+              "kind": "record",
+              "fields": {
+                "original_packet": "RawPacket",
+                "projected_ci_input": "CIInput",
+                "plan_owner": "PlanSelectionOwnerObservation",
+                "impact_result": "Field<TraceResult>",
+                "workflow_proposal": "Field<WorkflowProposal>",
+                "harness_selection_source": "Field<HarnessSelectionSource>",
+                "harness_f03_invocation": "HarnessF03InvocationObservation",
+                "check_item_catalog": "PlanSelectionRows<PlanCheckItemRecord>",
+                "selection_relations": "PlanSelectionRows<PlanSelectionRelation>"
+              }
+            },
+            {
+              "name": "PlanSelectionDerivationTrace",
+              "kind": "record",
+              "fields": {
+                "status": "SelectionComparisonStatus",
+                "input_snapshot": "PlanSelectionDerivationInput",
+                "candidate_relations": "list<PlanSelectionRowObservation<PlanSelectionRelation>>",
+                "candidate_catalog_rows": "list<PlanSelectionRowObservation<PlanCheckItemRecord>>",
+                "selected_relation_pointers": "list<string>",
+                "unresolved_pointers": "list<string>",
+                "conflict_pointers": "list<string>",
+                "owner_raw_value": "Field<RawValue>",
+                "owner_decode": "Field<PlanSelectionOwnerContext>",
+                "owner_source_pointer": "string",
+                "owner_status": "SelectionComparisonStatus",
+                "harness_source_status": "SelectionComparisonStatus",
+                "harness_f03_source_status": "SelectionComparisonStatus",
+                "f03_invocation_status": "SelectionComparisonStatus",
+                "f03_source_join_status": "SelectionComparisonStatus",
+                "nested_minimum_status": "SelectionComparisonStatus",
+                "os016_relation_status": "SelectionComparisonStatus",
+                "os017_relation_status": "SelectionComparisonStatus",
+                "membership_status": "SelectionComparisonStatus",
+                "item_resolution_status": "SelectionComparisonStatus",
+                "item_resolution_evaluated": "boolean",
+                "item_resolution_not_evaluated_reason": "Field<string>",
+                "raw_source_bundle": "Field<RawValue>",
+                "f03_minimum_projection_status": "SelectionComparisonStatus"
+              }
+            },
+            {
+              "name": "PlanSelectionDerivationResult",
+              "kind": "record",
+              "fields": {
+                "selection": "Field<PlanSelectionSource>",
+                "trace": "PlanSelectionDerivationTrace",
+                "harness_f03_minimum_evaluation": "Field<HarnessF03MinimumEvaluation>"
+              }
+            },
+            {
+              "name": "PlanSelectionInvocation",
+              "kind": "record",
+              "fields": {
+                "new_caller_input": "PlanSelectionDerivationInput",
+                "derivation": "PlanSelectionDerivationResult",
+                "assembled_caller": "CIInput",
+                "f02009_input": "CIInput",
+                "consumer_input_pointer": "/functions/8/arguments/caller",
+                "consumer_return": "SourceBoundProfile",
+                "f02002_input": "CIInput",
+                "f02002_input_pointer": "/functions/1/arguments/input",
+                "f02002_return": "MetadataAssessment"
+              }
+            }
+          ],
+          "field_tag_mapping": {
+            "existing_tags": [
+              "absent",
+              "null",
+              "empty",
+              "supplied"
+            ],
+            "no_new_tags_or_enum_values": "unknown/conflictは既存SelectionComparisonStatusとraw traceで表す。Fieldに新tagを追加しない。{}や[]はRawValueでありField.empty tagと同一視しない。",
+            "status_enum": {
+              "name": "SelectionComparisonStatus",
+              "source_path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "source_revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "source_sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+              "source_pointer": "/logical_types/49",
+              "values": [
+                "not_supplied",
+                "unknown",
+                "corresponding",
+                "conflict"
+              ]
+            },
+            "summary_axes": [
+              {
+                "axis": "plan_owner_field",
+                "trace_field": "owner_status",
+                "source": "PlanSelectionOwnerObservation.raw_valueとdecoded_owner。",
+                "statuses": {
+                  "not_supplied": "raw Fieldとdecoded ownerの双方がAbsent。",
+                  "unknown": "rawがnull/empty/不正、decode失敗、または必須owner memberがAbsent/null/不正。raw tag/valueとissueを保持する。",
+                  "corresponding": "typed ownerが供給raw ownerの正確なdecode結果で、必須tuple fieldが供給されている。",
+                  "conflict": "raw ownerとtyped ownerが双方存在し、JSON値またはField tagの比較で相違する。"
+                }
+              },
+              {
+                "axis": "harness_selection_source_field",
+                "trace_field": "harness_source_status",
+                "source": "F02001が投影したCIInput.context.harness_selection_source。",
+                "statuses": {
+                  "not_supplied": "outer FieldがAbsent。",
+                  "unknown": "outer null/empty、不正record、またはraw packetとprojected typed memberをdecodeできない。",
+                  "corresponding": "raw packet sourceとtyped CIInput sourceが双方供給され、既存projection上で一致する。",
+                  "conflict": "raw/projection値が双方既知で相違する。"
+                }
+              },
+              {
+                "axis": "harness_f03_selection_source_field",
+                "trace_field": "harness_f03_source_status",
+                "source": "HarnessSelectionSource.f03のnested Field。",
+                "statuses": {
+                  "not_supplied": "outer sourceは供給されているがnested f03 FieldがAbsent。",
+                  "unknown": "nested f03がnull/empty/不正、または必須memberをdecodeできない。tag/rawをそのまま保持する。",
+                  "corresponding": "nested f03 recordが供給され、原nested sourceから補修なしにdecodeされている。",
+                  "conflict": "raw nested f03 sourceとtyped projectionが双方既知で相違する。"
+                }
+              },
+              {
+                "axis": "f03_invocation_field",
+                "trace_field": "f03_invocation_status",
+                "source": "HarnessF03InvocationObservation.raw_invocationとdecoded_invocation。",
+                "statuses": {
+                  "not_supplied": "raw invocation FieldがAbsentで、decoded invocationも供給されていない。",
+                  "unknown": "raw null/empty、invocation decode失敗、または必須operand不在。raw値とdecode issueを保持する。",
+                  "corresponding": "raw invocationが同一F03呼出しのoriginal/sources/candidateとcomplete Comparisonへdecodeされる。",
+                  "conflict": "raw invocationと供給decoded call arguments/resultがJSON意味等値で相違する。"
+                }
+              },
+              {
+                "axis": "f03_source_join",
+                "trace_field": "f03_source_join_status",
+                "source": "同一F03呼出しのoriginal、sources、candidateと、HARNESS F03が宣言する全Ref/content/qualification資料。",
+                "statuses": {
+                  "not_supplied": "必須source側がAbsent。",
+                  "unknown": "必須source/reference/content/qualification operandがnull、不正、unknownまたはstale。状態とpointerを保持する。",
+                  "corresponding": "必須full Refと宣言済みsource/content/qualification比較の全operandが供給され、対応している。",
+                  "conflict": "比較可能なfull Ref、宣言済みcontent/bytes、qualification subjectのいずれかが既知の相違。両source側を保持する。"
+                }
+              },
+              {
+                "axis": "f03_minimum_projection_join",
+                "trace_field": "f03_minimum_projection_status",
+                "source": "同じF03呼出しのComparison.observation.pre_pr_required_refsと、projected CIInput.context.harness_selection_source.f03.pre_pr_required_refsだけを比較する。",
+                "statuses": {
+                  "not_supplied": "F03呼出し、返却ObservationField、またはnested projection operandのいずれかがAbsent。各元Field状態を保持する。",
+                  "unknown": "いずれかのprojection operandがnull、不正、stale、または既知string setでない。raw値、Field状態、pointerを保持する。",
+                  "corresponding": "両projection operandがknownでunique-string setが等しい。この状態はsourceからprojectionへの対応だけを表す。",
+                  "conflict": "両projection operandがknownでunique-string setが異なる。両値を保持し、この差だけでsource-derived membership/selectionを抑止しない。"
+                }
+              },
+              {
+                "axis": "nested_os_minimum_field",
+                "trace_field": "nested_minimum_status",
+                "source": "HarnessSelectionSource.f03.pre_pr_required_refsのField<list<string>>。",
+                "statuses": {
+                  "not_supplied": "nested f03 recordは供給されているが、このmember FieldがAbsent。",
+                  "unknown": "null、不正、または文字列listでない値。raw/tagを保持する。",
+                  "corresponding": "known list（known empty listを含む）。operandが供給されたことだけを示し、比較成功を意味しない。",
+                  "conflict": "raw nested memberとtyped decoded listが双方供給され、既知値が相違する。"
+                }
+              },
+              {
+                "axis": "membership",
+                "trace_field": "membership_status",
+                "source": "owner-qualified OS016/OS017 relation rowsとsource-join済み同一HARNESS F03呼出しのknown minimum projection。F02009 consumer comparison statusは入力にしない。",
+                "statuses": {
+                  "not_supplied": "selection contributor source（owner、OS016/OS017 source record、F03 minimum）がすべてAbsentで、membership評価の入力がない。",
+                  "unknown": "一部contributorは供給されているが、適用source/row/owner tuple/minimumを解決できない。根拠欠落から寄与なしと推定しない。",
+                  "corresponding": "owner tuple、必須source relation rows、F03 source joinおよび原F03 minimum値がknownでselected refsをすべて導出できる。context/actual consumer operandの比較成立は条件にしない。",
+                  "conflict": "対応資格のある既知relation rowのtarget/obligation対応が既知の同一関係と相反する場合。foreign/non-applicable rowはconflictにせず全てtraceへ保持する。"
+                }
+              },
+              {
+                "axis": "item_resolution",
+                "trace_field": "item_resolution_status",
+                "source": "membershipがcorrespondingになった後の、現ownerに束縛されたcatalog全row。",
+                "statuses": {
+                  "not_supplied": "membershipがcorrespondingでないためcatalog解決を行わない。item_resolution_evaluated=falseとし依存理由を記録する。",
+                  "unknown": "membershipはcorrespondingだが、selected refのcatalog itemを解決できない、またはcandidate rowが不正/未供給。",
+                  "corresponding": "各selected refに現行owner binding済みのCheckItem候補が供給され、全候補のCheckItem値がJSON意味等値。source rowをすべてtraceに残し、selected refごとに出力itemを1件返す。",
+                  "conflict": "selected refに対応しcurrent owner tupleも一致する複数CheckItem候補が既知の全JSON値で相違する場合。foreign/non-applicable rowは候補から除外しtraceには保持する。"
+                }
+              }
+            ],
+            "status_reduction": {
+              "trace_status": "全producer source軸を conflict > unknown > not_supplied > corresponding で集約する。consumer F02009の比較結果はPlanSelectionInvocation.consumer_returnへ分け、producer trace/selectionの要件にしない。item_resolutionはmembership不成立時に非実行/not_suppliedとして明示する。",
+              "required_axes": [
+                "plan_owner_field",
+                "harness_selection_source_field",
+                "harness_f03_selection_source_field",
+                "f03_invocation_field",
+                "f03_source_join",
+                "f03_minimum_projection_join",
+                "nested_os_minimum_field",
+                "membership",
+                "item_resolution"
+              ],
+              "subdiagnostics_not_summary_axes": [
+                "os016_relation_status",
+                "os017_relation_status"
+              ],
+              "non_short_circuit": "owner absentや上流軸不成立でも、独立に供給済みのsource/ F03 / relation operandは評価し、raw結果をtraceへ保持する。依存するmembershipとitem resolutionだけを規定順に扱う。"
+            },
+            "trace_field_mapping": {
+              "plan_owner_field": "owner_status",
+              "harness_selection_source_field": "harness_source_status",
+              "harness_f03_selection_source_field": "harness_f03_source_status",
+              "f03_invocation_field": "f03_invocation_status",
+              "f03_source_join": "f03_source_join_status",
+              "nested_os_minimum_field": "nested_minimum_status",
+              "membership": "membership_status",
+              "item_resolution": "item_resolution_status",
+              "f03_minimum_projection_join": "f03_minimum_projection_status"
+            },
+            "relation_subdiagnostics": [
+              "os016_relation_status",
+              "os017_relation_status"
+            ],
+            "trace_only": [
+              "PlanSelectionDerivationTrace.raw_source_bundle: Field<RawValue>。source_bundleのタグ/原値を保持し、意味status/summary/member selectionへ寄与させない。"
+            ],
+            "trace_only_fields": [
+              "PlanSelectionDerivationTrace.raw_source_bundle: CIInput.context.harness_selection_source.source_bundleのField<RawValue>を原タグ/値で保持。semantic axis, membership, minimum, summaryへ寄与しない。"
+            ],
+            "raw_source_bundle": {
+              "trace_field": "PlanSelectionDerivationTrace.raw_source_bundle",
+              "semantic_axis": "なし",
+              "source_path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "source_revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "source_sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+              "source_pointer": "/logical_types/53/fields/source_bundle"
+            },
+            "axis_definition_rule": "summary_axesの9軸を状態定義の唯一の列とする。status_reduction.required_axesが評価/集約順、trace_field_mappingが返却memberへの対応を定める。旧英語separate_axesの重複状態定義は削除し、過去本文は訂正履歴に保存する。foreign/non-applicable行の候補除外と全原行trace保持はsummary_axesおよびexact_binding_and_selection[1]を維持し、foreign binding差だけからmembership/item conflictを作らない。"
+          },
+          "exact_binding_and_selection": [
+            "最優先でplan_owner.raw_valueのouter Fieldを判定する。raw ownerがabsentならselection outer Field=absent、raw null/empty又はtyped decode失敗ならouter Field=nullとし、後段membership/item規則で上書きしない。raw/typedの不一致や供給済の独立軸/全raw候補はtraceへ保持し省略しない。typed owner内plan_ref/bindingの原Field tag/値は保持する。",
+            "OS016/OS017 relationとcatalog rowは、source owner_role/plan_ref/bindingのproject・requirement_revision・scope・ticket_graph_refが双方で供給される場合にJSON値として比較する。双方の同じnull/absenceを対応成功にしない。完全供給で現owner tupleと異なる行はforeign/non-applicableとして候補に採用せず原行を保持する。片側不明はunknownとして残す。source_refはprovenance原値でありbinding tupleと混同しない。",
+            "OS016 relationはimpact_project_id/node_idからTraceResult.node_correspondence[project][node].relationとretained_source_records[project][node].target_idをRFC6901 segment escapingで取得。correspondingとtarget_idが存在する場合だけrelation.target_refと比較し、欠落/相反をそのrowの診断に保持する。",
+            "OS017 relationはworkflow_material_corresponding=trueかつcandidate_materialがある場合にticket_graph全rowのticket_ref/targetをrelation.ticket_ref/target_refと比較する。同じticket_ref/targetに複数rowが合致すれば全rowを保持し、先頭勝者を作らない。proposal不成立/欠落は当該relationをunknownにする。",
+            "membershipの寄与元は有効なOS016 changed-target relation、OS017 ticket-companion relation、および同一HARNESS F03呼出しから得たpre_pr_required_refs。catalog rowは既選択refに対するCheckItem解決だけを行い、単独ではmembershipへ加えない。無関係catalog rowも選択させない。",
+            "selected_obligation_refsの候補順はselection_relationsの元配列順にある対応済みrelation由来ref、その後にF03 pre_pr_required_refsの元順。重複するpublic ID stringは一度だけ出力するが、原行・重複・pointer・入力順はtraceに全保持。新たな順序一致判定は追加しない。",
+            "owner outer/decode優先規則（exact_binding_and_selection[0]）を先に適用し、その対象外のtyped owner入力にだけ以下を適用する。membership_status=correspondingならselection outer=supplied、selected_obligation_refs=Field.supplied(既知の完全な選択集合)。item_resolution_status=correspondingならitemsもField.supplied、unknown/conflictならitemsだけField.null。membershipがnot_supplied/unknown/conflictならouter=null（owner raw absentのouter=absentを上書きしない）。known emptyはselected refs/itemsともField.supplied([])。部分候補/原因/重複/原順をtraceへ全保持し、F02009/F02002のconsumer結果をField tag条件に含めない。",
+            "catalog解決は全候補をowner tuple/selected id/CheckItemの既存memberで照合し、同一候補複数/相反候補をtraceへ全保持する。missingはunknown、known incompatible duplicatesはconflict。最初のrowだけ採用しない。"
+          ],
+          "minimum_relations": {
+            "operand_preservation": "F03 ObservationField全体/source_refs、nested HarnessSelectionSource.f03.pre_pr_required_refs、CIInput.context.required_obligations、CIInput.context.profile.obligations（consumerの独立期待）、CIInput.profile.obligations（consumerが検査する実選択値）、nested f03.inventory_refsを別々に捕捉する。比較評価の担当と、producerの選択入力を混同しない。各raw listの原順と重複を保持する。",
+            "f03_to_nested": {
+              "left": "Comparison.observation.pre_pr_required_refs",
+              "right": "HarnessSelectionSource.f03.pre_pr_required_refs",
+              "relation": "双方knownの場合、HARNESS F03が出力した必要最小集合と同じnested必要最小集合かをunique-string-set equalityで比較する。順序/重複の一致は要求しない。",
+              "unknown": "いずれかがnot_supplied/unknownなら比較不能として原状態保持。",
+              "evaluation_owner": "derive_os_plan_selection のsource projection対応観測。membership/resultの前提ではない。",
+              "purpose": "F03同一呼出しminimumと既存nested projectionの差をtraceへ残す。known mismatchは原値で示すが、F03 sourceから導くplan選択をcontext値へ置換/抑止しない。"
+            },
+            "nested_to_required": {
+              "left": "HarnessSelectionSource.f03.pre_pr_required_refs",
+              "right": "CIInput.context.required_obligations",
+              "relation": "既存F02009 minimum comparisonどおりunique-string-set equality。",
+              "unknown": "いずれかがnot_supplied/unknownなら比較不能として原状態保持。",
+              "evaluation_owner": "既存F02009 consumerのみ。producerは同じ比較を再実行せず、producer selectionの成立条件にもしない。"
+            },
+            "nested_to_actual": {
+              "left": "HarnessSelectionSource.f03.pre_pr_required_refs",
+              "right": "CIInput.profile.obligations",
+              "relation": "既存F02009 consumerで、HARNESS F03 nested minimumが実CIInput.profile.obligationsの部分集合かを判定する。これはproducerのselection導出条件ではない。",
+              "unknown": "いずれかがnot_supplied/unknownなら比較不能として原状態保持。",
+              "evaluation_owner": "既存F02009 consumerのみ。"
+            },
+            "actual_to_inventory": {
+              "left": "CIInput.profile.obligations",
+              "right": "HarnessSelectionSource.f03.inventory_refs",
+              "relation": "既存F02009 consumerで、実CIInput.profile.obligationsがnested F03 inventory_refsの部分集合かを判定する。これはproducerのselection導出条件ではない。",
+              "unknown": "いずれかがnot_supplied/unknownなら比較不能として原状態保持。",
+              "evaluation_owner": "既存F02009 consumerのみ。"
+            },
+            "result": "f03_to_nested projection statusはproducer traceだけに保持する。nested_to_required、nested_to_actual、actual_to_inventoryはproducerが再計算せず、assembled callerに対して既存F02009が既存規則どおり計算し、SourceBoundProfileのstatus/delta/pointersへ返す。F02009のprofile関係は独立plan source selected対context.profile.obligationsであり、actual_to_expected（actual profile.obligations対context.profile.obligations）は既存F02002の通常比較である。F02009はfindingsを返さない。次に3接続先への同一R/親Field presence規則を保って既存F02002へ渡し、供給source_bound_selectionのstatusをsource_selection_statusesへ保持し、actual_to_expectedと通常profile/minimum比較から既存findingを返す。producer membership/selectionはF02009 status/deltaまたはF02002 findingで抑止・再生成しない。例: minimum=[A]、独立source plan=[A]、expected/context required=[A]、actual=[]ならproducer selection=[A]、F02009 missing_minimum_refs=[A]、F02002は通常actual/expected相反およびprofile_required_obligation_missingを各既存規則で返す。",
+            "actual_to_expected": {
+              "left": "CIInput.profile.obligations",
+              "right": "CIInput.context.profile.obligations",
+              "relation": "既存F02002の通常actual profile.obligations対独立context.profile.obligationsのunique-string-set equality。F02009のplan source selected対context.profile.obligations関係とは別の原operandを比較する。",
+              "evaluation_owner": "既存F02002 compare_profile_metadataのみ。producerが再計算せずselectionの成立条件にしない。F02009の5関係statusへこの通常比較を追加しない。"
+            }
+          },
+          "source_bundle": {
+            "source": "HarnessSelectionSource.source_bundle: Field<RawValue>。",
+            "copy": "outer Field tagとRawValueをtraceに保存し、HarnessSelectionSource snapshot内の同一値を保持。",
+            "semantic_use": "内側schema/decode/Ref/hash/content joinは行わず、selection relation/minimum/member/summaryのoperandに含めない。",
+            "source_path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "source_revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+            "source_sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+            "source_pointer": "/logical_types/53/fields/source_bundle"
+          },
+          "execution_order": [
+            "1. 同一packetから元RawPacketとprojected CIInputを受け、owner、OS016/OS017全返却、HARNESS nested source、F03呼出し、全relation/catalog container/rowをraw値・Field tag・pointer・原順でcaptureする。source_bundleだけはField<RawValue>のtrace保存に限定する。",
+            "2. F03 invocation rawをtyped same-call invocationへdecodeし、original/sources/candidate/complete Comparisonを保存する。raw/typed mismatchは修復せずinvocation軸のconflict/unknownへ分類する。",
+            "3. association discoveryを行う。全relation rowとcatalog rowをselection候補とはまだ確定せず、OS016/OS017側の参照候補、item id候補、原行、重複、未知/壊れた行をすべてindex/pointer付きでtraceへ列挙する。",
+            "4. F03 original/sources/candidateに含まれる元Ref、content/bytes、owner qualification/source stateをHARNESS F03の宣言比較ごとに独立に照合しf03_source_join_statusを確定する。minimum/membership statusやsource_bundleを比較材料にしない。",
+            "5. F03 observationとnested minimum projectionを原値/Field tagでsource-sideに分類し、その直接projection joinだけをproducer traceへ記録する。nested minimum対context.required_obligations、nested minimum⊆actual profile.obligations、actual profile.obligations⊆inventoryの既存比較は後段F02009へ渡す。actual profile対独立context.profileの通常比較は既存F02002の担当でありF02009へ追加しない。いずれもここでは再計算せずproducer membership/selectionの成立条件にしない。",
+            "6. OS016/OS017 relation candidatesを個別に対応付けてsubstatusと全一致/不一致候補を保存し、owner tuple・関係の有効性・source join済み同一呼出しF03 minimumの値からmembershipを導出する。minimum projectionとconsumer relationのfindingをmembershipへ逆流させない。catalogはmembershipへ寄与させない。",
+            "7. membership correspondingの場合だけcatalog候補全件からitemsを解決し、source selectionを組み立てる。その後で既存contextへplan_selection_sourceを設定したCIInputを作り、F02009を一度呼ぶ。F02009のSourceBoundProfile全返却をPlanSelectionInvocation.consumer_returnに保持し、producer selection/trace statusを上書きしない。"
+          ],
+          "summary_and_publication": {
+            "public_signature": "OS L5 /functions/8 bind_harness_profile_to_os_plan(caller: CIInput) -> SourceBoundProfile は既存のまま。新producerはpublic API/memberを追加しない。",
+            "assembler": "既存contextのField tags/valuesを保ち、context.plan_selection_sourceのみを生成した既存PlanSelectionSourceへ設定する。context.harness_selection_source/source_bundle等は同一snapshotのまま。",
+            "consumer": "producer selection設定後CIInputをF02009へ渡し全SourceBoundProfileを保存する。その後のF02002接続はexisting_consumer.same_call_assembly.source_bound_assemblyに従う。Rは同じassembled_callerから得たF02009の14field全返却そのもの。F02002 inputはそのcallerのcloneから、/profile/source_bound、/context/profile/source_bound、/context/source_bound_selectionの既存3接続先へ同じField.supplied(R)を明示接続する。各親がField.suppliedの宣言recordである場合だけ既存memberを設定し、親profile/context/context.profileのabsent/null/emptyは原Fieldをそのまま保持してrecordを捏造しない。source_bound以外のactual profile/context.profile原member、required_obligationsと全他caller値は同じsnapshotのまま保持する。3箇所の親が全て利用可能なときだけsource-bound branchの同一返却接続前提成立と扱い、片側接続しかできないときはその成立を主張しない。独立した通常actual/expected/minimum比較と原不足operandの扱いは既存F02002規則を保持し、欠落profileをRや他profileから補わない。",
+            "effects": "none。qualification_state=not_established、execution_state=not_executed。",
+            "producer_selection_rule": "PlanSelectionDerivationResult.selectionは独立source membership/item_resolutionから決める。trace.statusがconsumer以外の別軸でconflict/unknownを含むことと、selectionを既存consumer検査へ渡せることは分ける。F02009 returnはinvocation.consumer_returnに別保存し、selection生成の入力にしない。"
+          },
+          "source_basis": {
+            "os_current_design": {
+              "revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+              "f02009": "/functions/8",
+              "selection_status": "/logical_types/49",
+              "harness_selection_source": "/logical_types/53",
+              "harness_f03": "/logical_types/52",
+              "expected_context": "/logical_types/15"
+            },
+            "harness_meaning": {
+              "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "function": "/functions/3",
+              "rules": [
+                "/ticket_verification_detail/comparison_steps",
+                "/ticket_verification_detail/independent_fixtures/selection_rules"
+              ]
+            },
+            "os016": "docs/helix-os/L5-detail-design/portfolio-state-trace.jsonのOS016 L5 /logical_types/15。原TraceResult全返却を保持する。",
+            "os017": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.jsonのOS017 L5 /logical_types/39。原WorkflowProposal全返却を保持する。"
+          },
+          "limits": [
+            "新producer入力/返却は論理設計案であり、実provider/資格/runtime成立を示さない。",
+            "L9既存26 probeはF02009 consumer-only raw/expectedであり、新producer chainの評価とはしない。",
+            "同一mainのsource_bundle inner schemaは宣言されていないため、その内部内容から意味を導出しない。"
+          ],
+          "required_evaluated_not_evaluated": {
+            "always_capture": [
+              "元RawPacket/CIInput",
+              "plan ownerのraw/typed値。",
+              "HarnessSelectionSourceのnested record全体。",
+              "source_bundleのraw Field。",
+              "F03 invocationのraw/typed値。",
+              "OS016/OS017の全返却値。",
+              "relation/catalogのcontainerと全row。"
+            ],
+            "independent_axis_evaluation": [
+              "plan_owner_field",
+              "harness_selection_source_field",
+              "harness_f03_selection_source_field",
+              "f03_invocation_field",
+              "f03_source_join",
+              "f03_minimum_projection_join",
+              "nested_os_minimum_field"
+            ],
+            "membership_evaluation": "owner/relation/source-join済み同一呼出しF03 minimum値を使いsource membershipを導出する。F03 projection mismatchは独立traceに残し、context.required_obligations、expected/actual profile、inventory比較（F02009 consumer結果）をmembership gateへ使わない。各OS016/OS017 row subdiagnosticはsuppliedなら保持する。",
+            "conditional_item_resolution": "membership_status=correspondingの場合に限りcatalogを評価する。それ以外はitem_resolution_status=not_supplied, item_resolution_evaluated=false, reason=membership_not_correspondingとし全catalog raw rowsを保持する。",
+            "summary": "source_bundle raw traceは意味軸ではない。OS016/OS017個別row subdiagnosticsはmembershipの証拠でありsummary軸へ重ねて数えない。F02009 SourceBoundProfileはproducer summaryへ合成せず次段F02002の3接続先へ同一値/親Field presence規則で渡し、その全返却はPlanSelectionInvocationで保存する。"
+          },
+          "r7_axis_mapping_from_r6": {
+            "old_axis_count": 11,
+            "r7_semantic_axis_count": 9,
+            "mapping": [
+              {
+                "old": "plan_owner_field",
+                "new": "plan_owner_field",
+                "change": "同じ意味軸を保持。"
+              },
+              {
+                "old": "harness_selection_source_field",
+                "new": "harness_selection_source_field",
+                "change": "外側source Field軸を保持。"
+              },
+              {
+                "old": "source_bundle_entry",
+                "new": "raw_source_bundleはtrace保持のみ。",
+                "change": "inner entry schemaがないためentry意味軸を削除。"
+              },
+              {
+                "old": "source_bundle_field",
+                "new": "raw_source_bundleはtrace保持のみ。",
+                "change": "原Field/raw値を保持するが意味statusから除く。"
+              },
+              {
+                "old": "harness_f03_selection_source_field",
+                "new": "harness_f03_selection_source_field",
+                "change": "nested f03 outer Field軸を独立に保持。"
+              },
+              {
+                "old": "f03_source_join",
+                "new": "f03_source_join",
+                "change": "同一呼出しのF03 source/full Ref joinを保持。"
+              },
+              {
+                "old": "f03_invocation_field",
+                "new": "f03_invocation_field",
+                "change": "raw/typed invocation状態を保持。"
+              },
+              {
+                "old": "observation_field",
+                "new": "f03_minimum_projection_join",
+                "change": "F03同一呼出し出力とnested projectionのsource対応を保持。F02009のminimum/actual/inventory比較はconsumerへ分離。"
+              },
+              {
+                "old": "nested_os_minimum",
+                "new": "nested_os_minimum_field",
+                "change": "nested minimum Fieldのavailabilityを独立保持。"
+              },
+              {
+                "old": "membership",
+                "new": "membership",
+                "change": "OS016/OS017の行別subdiagnosticを含む。"
+              },
+              {
+                "old": "item_resolution",
+                "new": "item_resolution",
+                "change": "membership成立後の条件付き軸として保持。"
+              }
+            ],
+            "no_loss": "R6から継承したraw/source軸を保持する。R8ではConsumer比較をproducerの観測軸から分離し、F03 source projection joinをproducer軸として明示する。producerとconsumerの元operand/返却は別に保持する。",
+            "current_candidate_note": "R7のobservation_and_minimum_relations集約はconsumer比較をproducer軸へ混入させたため、R8ではF03 source projection joinに限定し、既存F02009の比較結果はconsumer_returnに分離する。"
+          },
+          "external_type_bindings": [
+            {
+              "type": "RawPacket",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+              "pointer": "/functions/0/arguments"
+            },
+            {
+              "type": "CIInput",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+              "pointer": "/logical_types/16"
+            },
+            {
+              "type": "PlanSelectionSource",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+              "pointer": "/logical_types/51"
+            },
+            {
+              "type": "PlanSelectionBinding",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+              "pointer": "/logical_types/50"
+            },
+            {
+              "type": "CheckItem",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+              "pointer": "/logical_types/5"
+            },
+            {
+              "type": "SourceBoundProfile",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+              "pointer": "/logical_types/47"
+            },
+            {
+              "type": "HarnessSelectionSource",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+              "pointer": "/logical_types/53"
+            },
+            {
+              "type": "HarnessF03SelectionSource",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+              "pointer": "/logical_types/52"
+            },
+            {
+              "type": "SelectionComparisonStatus",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+              "pointer": "/logical_types/49"
+            },
+            {
+              "type": "TraceResult",
+              "path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
+              "revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "sha256": "e46491e3718a6e55952880e5d44e5399613ed79511b2fc506378323b5df184b9",
+              "pointer": "/logical_types/15"
+            },
+            {
+              "type": "WorkflowProposal",
+              "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+              "revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "sha256": "86a1a7addf3dd0a6c436ae79fb166d685ab7ffc45b08b43b037333d1628650d2",
+              "pointer": "/logical_types/39"
+            },
+            {
+              "type": "F03VerificationInput",
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+              "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/F03VerificationInput"
+            },
+            {
+              "type": "VerificationSources",
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+              "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/VerificationSources"
+            },
+            {
+              "type": "F03VerificationObservation",
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+              "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/F03VerificationObservation"
+            },
+            {
+              "type": "Comparison",
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+              "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/Comparison"
+            },
+            {
+              "type": "ObservationField",
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+              "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/ObservationField"
+            },
+            {
+              "type": "Ref",
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+              "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/Ref"
+            },
+            {
+              "type": "FixtureSourcePacket",
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+              "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/FixtureSourcePacket"
+            },
+            {
+              "type": "OriginalSourceEntry",
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+              "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/OriginalSourceEntry"
+            },
+            {
+              "type": "MetadataAssessment",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "37062d40b16ba6a1d4d2574b8b9a9c67b7b231c4",
+              "sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+              "pointer": "/logical_types/30"
+            }
+          ],
+          "source_type_resolution": "external_type_bindingsの各pointerは source revisionのJSONで実在を照合する。型名だけを根拠にsignatureを成立扱いしない。",
+          "producer_consumer_boundary": {
+            "source_plan_producer": {
+              "inputs": "現OS owner、OS016/OS017のowner-qualified relation返却、および同一HARNESS F03呼出しのsource join済み原返却/known pre_pr_required_refs。",
+              "does_not_use_as_selection_gate": [
+                "CIInput.context.profile.obligations",
+                "CIInput.profile.obligations",
+                "CIInput.context.required_obligations",
+                "nested F03 inventoryの比較結果。",
+                "F02009 SourceBoundProfileのstatus/delta/pointers"
+              ],
+              "membership": "OS016/OS017の有効relationとF03同一呼出しminimumを原順/重複保持で導出する。既知のsource contributorが不一致ならtraceに残すが、consumer比較結果をmembershipへ逆流させない。",
+              "selection_field": "owner outer/decode優先規則（exact_binding_and_selection[0]）を先に適用し、その対象外のtyped owner入力にだけ以下を適用する。membership_status=correspondingならselection outer=supplied、selected_obligation_refs=Field.supplied(既知の完全な選択集合)。item_resolution_status=correspondingならitemsもField.supplied、unknown/conflictならitemsだけField.null。membershipがnot_supplied/unknown/conflictならouter=null（owner raw absentのouter=absentを上書きしない）。known emptyはselected refs/itemsともField.supplied([])。部分候補/原因/重複/原順をtraceへ全保持し、F02009/F02002のconsumer結果をField tag条件に含めない。"
+            },
+            "existing_consumer": {
+              "call_order": [
+                "同一producer invocationからassembled_caller: CIInputを作る。context.plan_selection_sourceへ上記selectionを反映し、profile/context.profile/required_obligations/harness_selection_sourceの原値は保つ。",
+                "F02009(bind_harness_profile_to_os_plan(caller: CIInput) -> SourceBoundProfile)をassembled_callerで呼び、14fieldのSourceBoundProfile全体を受け取る。これは状態・delta・source追跡情報であり、Finding配列を持たない。",
+                "F02002(compare_profile_metadata(input: CIInput) -> MetadataAssessment)へ渡す入力の3接続と親presenceはsame_call_assembly.source_bound_assemblyに従う。Rは同じassembled_callerから得たF02009の14field全返却そのもの。F02002 inputはそのcallerのcloneから、/profile/source_bound、/context/profile/source_bound、/context/source_bound_selectionの既存3接続先へ同じField.supplied(R)を明示接続する。各親がField.suppliedの宣言recordである場合だけ既存memberを設定し、親profile/context/context.profileのabsent/null/emptyは原Fieldをそのまま保持してrecordを捏造しない。source_bound以外のactual profile/context.profile原member、required_obligationsと全他caller値は同じsnapshotのまま保持する。3箇所の親が全て利用可能なときだけsource-bound branchの同一返却接続前提成立と扱い、片側接続しかできないときはその成立を主張しない。独立した通常actual/expected/minimum比較と原不足operandの扱いは既存F02002規則を保持し、欠落profileをRや他profileから補わない。",
+                "F02002は通常のactual profile vs expected context.profile、およびcontext.required_obligations⊆actual profile.obligationsを既存L4どおり計算する。既知不足はF02002.findingsへprofile_required_obligation_missingとして返す。F02009 SourceBoundProfileのstatus/deltaはsource_selection_statusesへ対応する既存伝播規則で保持する。"
+              ],
+              "f02009": {
+                "source_path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+                "source_revision": "c3994c92d43ab49264a75f7aae9622484d082659",
+                "source_sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+                "pointer": "/functions/8",
+                "signature": "bind_harness_profile_to_os_plan(caller: CIInput) -> SourceBoundProfile",
+                "return_type_source_pointer": "/logical_types/47",
+                "returns": "SourceBoundProfile全体。findingsは返さない。status、5 relation status、delta arrays、原source refs/pointers、qualification_state、execution_stateを保持する。"
+              },
+              "f02002": {
+                "source_path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+                "source_revision": "c3994c92d43ab49264a75f7aae9622484d082659",
+                "source_sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+                "pointer": "/functions/1",
+                "signature": "compare_profile_metadata(input: CIInput) -> MetadataAssessment",
+                "reads": "/functions/1/reads/input（配列にprofile.source_bound、context.profile.source_bound、context.source_bound_selectionと独立actual/expected/minimum operandを明記）。",
+                "finding_owner": "F02002の既存L4診断。context.required_obligationsがknownで実profile.obligationsに含まれない場合、既存返却は/profile/obligationsのprofile_required_obligation_missingを含む。",
+                "source_bound_status_projection": "3箇所接続と親presence規則はsame_call_assembly.source_bound_assembly。供給されたF02009全返却のselection statusは既存MetadataAssessment.source_selection_statusesへ原規則で伝播し、独立の通常findingはF02002が返す。F02009自身はfindingを作らない。"
+              },
+              "same_call_assembly": {
+                "producer_input": "PlanSelectionDerivationInputはoriginal_packet、projected_ci_input、owner、OS016/OS017原返却、catalog/relations、HarnessF03InvocationObservationを含む。",
+                "harness_f03_input_and_return": "HarnessF03InvocationObservation.raw_invocationとdecoded_invocationは、同じF03呼出しのF03VerificationInput.original、VerificationSources、candidate Field、Comparison<F03VerificationObservation>全返却、ObservationField minimum投影、source pointerを保持する。",
+                "consumer_inputs_and_returns": "PlanSelectionInvocationはF02009へ渡すassembled CIInput/SourceBoundProfile全返却、F02002へ渡す3接続後CIInput/MetadataAssessment全返却を原presenceごと保持する。Rは同じassembled_callerから得たF02009の14field全返却そのもの。F02002 inputはそのcallerのcloneから、/profile/source_bound、/context/profile/source_bound、/context/source_bound_selectionの既存3接続先へ同じField.supplied(R)を明示接続する。各親がField.suppliedの宣言recordである場合だけ既存memberを設定し、親profile/context/context.profileのabsent/null/emptyは原Fieldをそのまま保持してrecordを捏造しない。source_bound以外のactual profile/context.profile原member、required_obligationsと全他caller値は同じsnapshotのまま保持する。3箇所の親が全て利用可能なときだけsource-bound branchの同一返却接続前提成立と扱い、片側接続しかできないときはその成立を主張しない。独立した通常actual/expected/minimum比較と原不足operandの扱いは既存F02002規則を保持し、欠落profileをRや他profileから補わない。",
+                "no_cross_generation": "F03入力/返却を期待値、F02009 status、F02002 finding、actual profile、expected context profile、source_bundleから導出しない。",
+                "source_bound_assembly": {
+                  "source": {
+                    "revision": "c3994c92d43ab49264a75f7aae9622484d082659",
+                    "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+                    "body_sha256": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+                    "precondition_pointer": "/functions/1/preconditions/2",
+                    "profile_type_pointer": "/logical_types/6/fields/source_bound",
+                    "context_type_pointer": "/logical_types/15/fields/source_bound_selection",
+                    "field_tags_pointer": "/logical_types/1"
+                  },
+                  "same_return_symbol": "R = F02009(assembled_caller)の全SourceBoundProfile。consumer_returnへ原全値保存し再生成しない。",
+                  "destinations": [
+                    {
+                      "destination": "/profile/source_bound",
+                      "parents": [
+                        "/profile"
+                      ],
+                      "parent_requirement": "Field.supplied(Profile)"
+                    },
+                    {
+                      "destination": "/context/profile/source_bound",
+                      "parents": [
+                        "/context",
+                        "/context/profile"
+                      ],
+                      "parent_requirement": "各親がField.supplied(ExpectedContext/Profile)"
+                    },
+                    {
+                      "destination": "/context/source_bound_selection",
+                      "parents": [
+                        "/context"
+                      ],
+                      "parent_requirement": "Field.supplied(ExpectedContext)"
+                    }
+                  ],
+                  "parent_presence_rules": {
+                    "supplied_declared_record": "原recordをcloneし接続先既存source_bound memberだけField.supplied(R)へ設定。他memberは全値保持。",
+                    "absent": "元親Field.absentのまま。子record/memberを作らない。",
+                    "null": "元親Field.nullのまま。子record/memberを作らない。",
+                    "empty": "元親Field.emptyのまま。供給recordへ変換しない。"
+                  },
+                  "complete_source_bound_precondition": "3接続先が全て利用可能なとき同一Rへ接続。partial接続は/functions/1/preconditions/2の成立又は比較成功と認定しない。",
+                  "incomplete_parent_scope": "利用可能な接続先と不在の親Fieldをそのまま渡す原入力保存までを定める。新status/finding/成功値を追加せず、F02002の独立した通常profile/required比較と原不足処理を維持する。",
+                  "independent_values": "original_packet/projected_ci_input/assembled_callerの元値とF02009全返却をInvocationに保持。actual/expectedのobligations/items/binding、context.required_obligationsは一切相互コピー・補完・書換えしない。",
+                  "summary": "Rは同じassembled_callerから得たF02009の14field全返却そのもの。F02002 inputはそのcallerのcloneから、/profile/source_bound、/context/profile/source_bound、/context/source_bound_selectionの既存3接続先へ同じField.supplied(R)を明示接続する。各親がField.suppliedの宣言recordである場合だけ既存memberを設定し、親profile/context/context.profileのabsent/null/emptyは原Fieldをそのまま保持してrecordを捏造しない。source_bound以外のactual profile/context.profile原member、required_obligationsと全他caller値は同じsnapshotのまま保持する。3箇所の親が全て利用可能なときだけsource-bound branchの同一返却接続前提成立と扱い、片側接続しかできないときはその成立を主張しない。独立した通常actual/expected/minimum比較と原不足operandの扱いは既存F02002規則を保持し、欠落profileをRや他profileから補わない。"
+                }
+              },
+              "discriminating_relation": {
+                "minimum": [
+                  "A"
+                ],
+                "independent_owner_qualified_plan_selection": [
+                  "A"
+                ],
+                "expected_context_profile_obligations": [
+                  "A"
+                ],
+                "context_required_obligations": [
+                  "A"
+                ],
+                "actual_profile_obligations": [],
+                "producer_selection": "selected_obligation_refs=[A]を保持し、itemsはcatalogが利用可能な場合に独立に解決する。",
+                "f02009_return": "SourceBoundProfileは既存missing_minimum_refs=[A]の差分と当該関係のstatus/pointersを保持する。findings fieldは持たない。",
+                "f02002_return": "MetadataAssessmentは/profile/obligationsの既存profile_required_obligation_missing findingを含み、供給されたF02009関係statusを運ぶ。",
+                "meaning": "独立sourceから導いた選択値を保持し、consumer側の選択不足も観測に残す。これは契約関係の例示に限り、新L9 caseや評価済み結果ではない。"
+              }
+            },
+            "discriminating_input": {
+              "harness_f03_minimum": [
+                "A"
+              ],
+              "independent_os_plan_selection": [
+                "A"
+              ],
+              "expected_context_profile_obligations": [
+                "A"
+              ],
+              "actual_profile_obligations": [],
+              "producer_selected_obligation_refs": [
+                "A"
+              ],
+              "consumer_obligation": "F02009はSourceBoundProfileの既存missing_minimum_refs/status/pointerを返しfindingsを持たない。実profile不足のprofile_required_obligation_missingは既存F02002 MetadataAssessment.findingsが返す。",
+              "purpose": "actual underselectionがproducerの独立source selectionを消さないことを関係として示す。これは新L9 expected/実reader結果ではない。"
+            }
+          },
+          "pointer_array_contract": {
+            "kind": "producer_trace_pointer_array_contract",
+            "applies_to": [
+              "PlanSelectionDerivationTrace.unresolved_pointers",
+              "PlanSelectionDerivationTrace.conflict_pointers"
+            ],
+            "common_rules": {
+              "choice": "A",
+              "scope": "既存比較が既に生んだcauseの投影だけ。状態/選択/比較operand/適用条件/資格/診断codeを新設又は変更しない。",
+              "array_identity": "unresolvedとconflictは別の列。各列で全pointer文字列が完全一致するときだけ最初の出現を残す。同pointerが両列へ異なる比較原因で現れた場合は各列に残し、片方で相殺しない。",
+              "order": "宣言された比較group順→そのgroup内の既存比較/operand順でemitした列へstable first occurrenceを適用する。字句sort・path正規化・parentへの任意集約・部分文字列同一視をしない。",
+              "original_values": "pointerは元operand/元containerの所在。原raw/Field tag/value/source record/row/ref/relation重複と原順は他の既存carrierへ全保持し、cause出現回数を元row数の代替にしない。",
+              "missing_container": "実在containerが空で対象rowが無い場合はそのcontainerの原pointerへ返す。不存在row indexや架空elementを作らない。missing memberはそのdeclared operandの元Field/原pathを保持し、代替値を作らない。",
+              "dependency_not_evaluated": "既存規則がnot_evaluated/not_suppliedとする比較を実行したふりでcauseを作らない。別の既存依存比較がその不足を実際にunknownと判定したときだけ、その元原因pointerをemitする。",
+              "not_finding_policy": "F02002等のFacetFinding/finding列には適用しない。既存tuple/異facet/disposition保持・tuple sortは不変。",
+              "first_unknown_parent_field": "declared operandのpathを親から辿り、途中の最初のFieldがabsent/null又は既存比較上decode不能なら、その原Field所在をunknown原因の最長利用可能prefixとして保持し以降のchild/member/index pathを作らない。例/context/plan_selection_source/bindingがnullなら原因はそのbinding所在であり/projectではない。元Field tag/raw値/全snapshotを保持し、親不明を子のsupplied値へ補完しない。source全体absentのnot_supplied規則/比較非適用は先行し、新たなunknown causeを発火しない。Field.emptyとsupplied([])/supplied({})は区別し、既存宣言domainを拡大せずdomain外rawをtyped成功castしない。"
+            },
+            "output_domains": "producerの2列だけ。F02009のconsumer返却cause/statusはproducerへ入力せず、同pointerでも両producer/consumer列間で一意化しない。",
+            "group_order": [
+              {
+                "axis": "plan_owner_field",
+                "trace_status": "owner_status",
+                "within": "raw owner/decoded ownerの既存presence/decode/値比較。比較を要したowner_role→plan_ref→binding(project,requirement_revision,scope,ticket_graph_ref)の順。元plan_owner.source_pointerをraw ownerの原因所在として使用。"
+              },
+              {
+                "axis": "harness_selection_source_field",
+                "trace_status": "harness_source_status",
+                "within": "元rawとprojected outer Fieldの順。原Fieldがabsentのみなら追加unknown root causeを作らず、既存statusを保持。"
+              },
+              {
+                "axis": "harness_f03_selection_source_field",
+                "trace_status": "harness_f03_source_status",
+                "within": "元nested f03 raw→typed Fieldの順。"
+              },
+              {
+                "axis": "f03_invocation_field",
+                "trace_status": "f03_invocation_status",
+                "within": "raw invocation→decoded invocation。比較する既存component順はoriginal→sources→candidate→comparison→minimum_projection。source_pointer自体を意味operandにしない。"
+              },
+              {
+                "axis": "f03_source_join",
+                "trace_status": "f03_source_join_status",
+                "within": "HARNESS F03が要求するsource/reference/content/qualification比較だけ。root fixture→元declared role順(ticket,risk,inventory,joining_ticket,recovery,port)、各原source配列順、Ref member宣言順(identity,revision,scope,owner)。非適用/未要求比較を新たに発火させない。"
+              },
+              {
+                "axis": "f03_minimum_projection_join",
+                "trace_status": "f03_minimum_projection_status",
+                "within": "同call Comparison.observation.pre_pr_required_refs側→projected nested minimum側の順。既存known不一致は両原operand pointerを保持し、consumer結果へ置き換えない。"
+              },
+              {
+                "axis": "nested_os_minimum_field",
+                "trace_status": "nested_minimum_status",
+                "within": "元nested minimum Fieldの原pointer。"
+              },
+              {
+                "axis": "membership",
+                "trace_status": "membership_status",
+                "within": "既存membershipで必要なowner→OS016 source→OS017 source→selection_relations原container/元row順→同call F03 minimum。row内はsource owner tuple→元target relation→obligation_refの既存評価順。共有owner不足が複数rowへ寄与しても各列で同pointer first occurrenceだけを投影。"
+              },
+              {
+                "axis": "item_resolution",
+                "trace_status": "item_resolution_status",
+                "within": "membership correspondingのときだけselected refsの既存出力順→各catalog原row順。item memberはid→obligation_ref→oracle_ref→environment_ref。全catalog raw rowは別traceへ反復ごと保持。"
+              }
+            ],
+            "finite_input_locator_bindings": {
+              "owner_raw_cause": "plan_owner.source_pointer（今回の原callerでは/plan_owner/raw_value）。owner absentだけで無条件にunknownを追加せず、他contributor既知でmembershipがowner不足をunknownと判定した場合はこの元pointerを使う。",
+              "missing_selected_catalog_item": "check_item_catalog.source_valueの原container所在（今回/check_item_catalog/source_value）。source_value=supplied([]), rows=[]でも/rows/0を作らない。",
+              "row_causes": "既存PlanSelectionRowObservation.source_pointerおよびPlanSelectionRelationの*_source_pointerをそのまま使う。原rowが不在ならrow pointerは生成しない。"
+            },
+            "source_basis": {
+              "source_candidate_L4_sha256": "66f83a6a9406900359f9b53c96315e54289258940804d2b317a02f18de416821",
+              "pointers": [
+                "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/10",
+                "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/status_reduction/required_axes",
+                "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection",
+                "/contracts/0/selection_producer_contract/private_call_contract/execution_order",
+                "/contracts/0/selection_producer_contract/private_call_contract/required_evaluated_not_evaluated"
+              ],
+              "change": "曖昧だったcause配列のpointer identity/order/repetitionだけを指定する。既存9軸/status/relation/selection/owner outer優先は変更しない。"
+            }
+          }
+        }
+      }
     },
     {
       "id": "HELIXOS-L4-020-F02",
@@ -1076,5 +2010,34 @@
         "status": "原正常fixture。選択集合が最小集合と等しい例のみで、extra-selection分岐を検証していない。"
       }
     ]
+  },
+  "r7_supersedes": {
+    "kind": "complete_candidate_replacement",
+    "meaning": "本候補はR6本文と並置するamendmentではなく、selection producer契約全体の一貫したR7候補である。R6は不変の比較履歴として別保存する。",
+    "replaced_r6_artifact": "candidate-L4-R6preimage.json",
+    "replaced_r6_sha256": "45a67de79f47b982bc8268cdba197e54dc694016f52526f439b36d18911e164b",
+    "R7_changes": [
+      "source_bundle内側の仮想schema/decode/joinを削除しraw Fieldをtraceに限定",
+      "minimum関係を関係別集合比較/包含へ分け、raw順と重複は保持",
+      "状態の循環参照を除いた7段DAGと9軸の出力対応を単一契約に統合"
+    ]
+  },
+  "selection_producer_revision": "固定済みR9に対するR10のsource契約訂正。対象はfindingの責務、親presenceを保持する3箇所のsource_bound接続、owner外側Fieldの優先順。",
+  "r9_source_readback": {
+    "revision": "c3994c92d43ab49264a75f7aae9622484d082659",
+    "source_hashes": {
+      "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json": "a08e1d0c8e82f5381765563182f96176580041a2e701d0b03c6c4878325eb13b",
+      "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json": "929a864266bd1b5c433474d689c9f3b2f999fc5a39b5d90c7bdd9e9c51a2428c",
+      "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json": "f3a724140d5e010940e7e6c52c4e0736f7bc20759aff6fbbe77b2f7acd1b068c",
+      "docs/helix-harness/L5-detail-design/verification-discipline.json": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e"
+    },
+    "note": "R8の過去source pinは変更しない。このreadbackは、今回の訂正に用いた当時のL4/L5/L9/HARNESS F03 source本文を照合した記録である。"
+  },
+  "r10_source_contract_correction": {
+    "source_revision": "c3994c92d43ab49264a75f7aae9622484d082659",
+    "source_findings_sha256": "0ed1db92416de0e8cb01ce97c635e8a82810383f8d94522e478c424956dc18bb",
+    "scope": "独立actual/expected/requiredおよび既存278cases/26probesは不変。型/署名/public member/業務gate追加なし。",
+    "prior_r9_readback_preserved": true,
+    "review_material_reproducibility_limit": "R6旧本文・削除前の重複9軸定義・R7/R9/R10の局所readback/findingsはrepository外scratchのreview材料であり、現在意味の正本ではない。記載hashだけではGit単独で過去本文や照合過程を再現できない。現在の意味は本L4本文と対応L9に収載した契約/素材に限る。"
   }
 }
