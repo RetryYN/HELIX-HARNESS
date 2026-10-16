@@ -101,15 +101,15 @@
   "source_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
-      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
-      "sha256": "5b36f8068624b526eba319f8258f561a7f2e242a2e72b5247758567b3e130439",
-      "role": "現行source L4基本設計"
+      "revision": "dceecf904c6c5d616547cdc2f6dc31a5d5590c76",
+      "sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+      "role": "現行baseline互換とcaller-selectedの基本契約/固定期待をともに含む親source。"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
-      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
-      "sha256": "7c1a1398c18a7dcf2743e566dfda7fb8d6df9c1fc5888a6a05345f68d372f9b4",
-      "role": "現行source L9 integration oracle"
+      "revision": "dceecf904c6c5d616547cdc2f6dc31a5d5590c76",
+      "sha256": "b1052688ca79d2fde6ebe9785919c1611a32cb1107d99f54a2b1d1d7c58a9e5a",
+      "role": "現行baseline互換とcaller-selectedの基本契約/固定期待をともに含む親source。"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
@@ -520,13 +520,15 @@
   "parent_basic_source_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
-      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
-      "sha256": "5b36f8068624b526eba319f8258f561a7f2e242a2e72b5247758567b3e130439"
+      "revision": "dceecf904c6c5d616547cdc2f6dc31a5d5590c76",
+      "sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+      "role": "現行baseline互換とcaller-selectedの基本契約/固定期待をともに含む親source。"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
-      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
-      "sha256": "7c1a1398c18a7dcf2743e566dfda7fb8d6df9c1fc5888a6a05345f68d372f9b4"
+      "revision": "dceecf904c6c5d616547cdc2f6dc31a5d5590c76",
+      "sha256": "b1052688ca79d2fde6ebe9785919c1611a32cb1107d99f54a2b1d1d7c58a9e5a",
+      "role": "現行baseline互換とcaller-selectedの基本契約/固定期待をともに含む親source。"
     }
   ],
   "legacy_comparison": {
@@ -735,9 +737,9 @@
         "HELIXOS-L10-016-F02",
         "HELIXOS-L10-016-F03"
       ],
-      "operation": "二project/三kind/七状態の文書契約・対検証。実状態更新はしない。"
+      "operation": "複数project/三kind/七状態の文書契約・対検証。baseline固定domainとcaller-selected domainを分け、実状態更新はしない。"
     },
-    "detail_scope": "L5関数設計とL8対検証の論理record。有限な2project×4node L9 fixtureに限り、実状態更新・source資格・writer/codecを作らない。"
+    "detail_scope": "L5純粋関数とL8対検証。元356件は固定2project×4node baseline互換として保持し、明示targetsを持つselected29件と局所回帰反例を別profileで扱う。実状態更新・source資格・writer/codecを作らない。"
   },
   "unclosed_source_supply": [
     "正式trace/graph/schema/codec・任意node集合/typed relation/missing node/graph cycle・source custody/資格をL5/L8で閉じる。",
@@ -793,20 +795,14 @@
     "diagnostic_contract_ref": {
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
       "pointer": "/diagnostic_contract",
-      "sha256": "5b36f8068624b526eba319f8258f561a7f2e242a2e72b5247758567b3e130439"
+      "sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+      "hash_scope": "sha256/file_sha256はL4 file bytes、object_canonical_sha256はpointer先のcanonical JSON bytes。",
+      "file_sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+      "object_canonical_sha256": "862b8918b5d55fdc2a96aae0a1f1e29c908211769a3df5218c3c2b374d02854d",
+      "role": "baseline/selectedの規範計算に明示供給する現行L4診断契約。"
     },
     "diagnostic_contract": {
-      "input_domain": "合成fixtureの固定2project×4node形のみ。対象集合欠落/任意JSONvalidationは未設計。contextは独立原sourceの文書代理で、実source資格証明ではない。",
-      "projects": [
-        "project_a",
-        "project_b"
-      ],
-      "node_kinds": {
-        "unit_a": "unit",
-        "unit_b": "unit",
-        "connection_ab": "connection",
-        "composite_all": "composite"
-      },
+      "input_domain": "既存356 baseline fixtureの固定locator/kind宣言はbaseline_fixture_compatibilityだけで使い、caller-selected domainの既定値やfallbackにしない。caller-selectedはevaluate_portfolioの独立targets引数で選択する。",
       "source_fields": [
         "project_id",
         "requirement_id",
@@ -942,7 +938,8 @@
         {
           "code": "result_unknown",
           "facet": "comparison",
-          "disposition": "unknown"
+          "disposition": "unknown",
+          "scope_note": "R06では結果facetの未知を示す。R10/R17のlocator合併が空の場合は比較対象の結果を一件も観測できないため、同じcomparison facetのunknown理由として各既知空nodes mapへ用いる。結果state、field欠落、coverage成功を捏造しない。"
         },
         {
           "code": "result_conflict",
@@ -1012,7 +1009,7 @@
         },
         {
           "id": "R02",
-          "rule": "kindはunit/connection/composite closed。未知はkind_unknown、fixture nodeの宣言kindに既知不一致はkind_conflict。同一target_idを別nodeに使えば両nodeにidentity_aliased。"
+          "rule": "kindはunit/connection/composite closed。caller-selected domainではtargets node宣言kind、元356 baseline caseではbaseline_fixture_compatibility.node_kindsの宣言kindを使う。未知はkind_unknown、宣言kindとknown actual/context source.kindの不一致はkind_conflict。同一sideのobserved portfolio全体でtarget_idが重複すれば両nodeにidentity_aliasedを出す（selection範囲のkind/identity比較とは別）。actual/context間の同identityは正常な照合でありaliasにしない。locator keyからkind/identityを推定しない。"
         },
         {
           "id": "R03",
@@ -1040,11 +1037,11 @@
         },
         {
           "id": "R09",
-          "rule": "claims 3種はtrueならinferred_completion_forbidden、false以外の不明ならclaim_unknown。whole_completion_claimはtrueならwhole_completion_forbidden、不明ならwhole_claim_unknown。projection表示値は判定に使わない。素材が対応しても正式完了を作らない。"
+          "rule": "actual sideの全observed nodeについてclaims 3種はtrueならinferred_completion_forbidden、false以外の不明ならclaim_unknown。whole_completion_claimはtrueならwhole_completion_forbidden、不明ならwhole_claim_unknown。projection表示値は判定に使わない。素材が対応しても正式完了を作らない。selection binding比較は選択locatorに限るが、observed actual claim検査は選択有無で除外しない。"
         },
         {
           "id": "R10",
-          "rule": "facet/全体はviolation > unknown > corresponding。全体conditionはtrace_material_*。findingはcode/pointer/return_ownerで重複排除し同3field辞書順。owner名はportfolio-trace-owner、実解消先は出力の要求/source/ownersへ辿り、実資格を仮定しない。"
+          "rule": "facet/全体はviolation > unknown > corresponding。全体conditionはtrace_material_*。findingはcode/pointer/return_ownerで重複排除し同3field辞書順。owner名はportfolio-trace-owner、実解消先は出力の要求/source/ownersへ辿り、実資格を仮定しない。 選択domainに評価nodeが一件もなくnodes mapが既知空の場合、各空の/targets/projects/{project_key}/nodesへ既存result_unknownを返し、全体unknownの理由を示す。 ここで「評価nodeが一件もない」とは、R14で構成するnode_correspondenceのactual/context/selected locator合併にnode locatorが一件も無いことをいう。選択nodesだけが空でも未選択の観測locatorがあれば、この空domain理由は追加しない。"
         },
         {
           "id": "R11",
@@ -1086,8 +1083,163 @@
         "kanban_ref",
         "record_ref"
       ],
-      "identity_alias_scope": "actual/context各sideでportfolio全体のnodeを比較する。同じside内のtarget_id重複を両nodeに出す。actualとcontext間の同identityは正常な照合でありaliasにしない。"
-    }
+      "identity_alias_scope": "actual/context各sideでportfolio全体のobserved nodeを比較する。同じside内のtarget_id重複を両nodeに出す。actualとcontext間の同identityは正常な照合でありaliasにしない。このportfolio-wide診断はR01–R08のselected-locator比較範囲と独立する。",
+      "selected_target_contract": {
+        "caller_signature": "evaluate_portfolio(input: PortfolioInput, diagnostic_contract: DiagnosticContract, targets: PortfolioTargets) -> TraceResult",
+        "targets_shape": {
+          "selection_source_ref": "非空string: callerが選択に用いた宣言sourceの参照。",
+          "selection_source_revision": "非空string: 同sourceのrevision。",
+          "selection_source_digest": "非空stringのcaller-supplied opaque digest claim。外部source bodyはこの契約入力に含まれず、ref/revision/digestをtargets値から検証・資格認定しない。L9のtargets_canonical_sha256は合成fixtureの全input.targets引数を測る別の再現性hashであり、claimの検証ではない。",
+          "projects": "project locator keyからProjectTargetへ写すobject。locator key数はproject identity数とみなさず、distinct known project_idの最低数確認はR17に従う。未解決IDや不足数を局所target処理の拒否・成功へ変換しない。",
+          "ProjectTarget": {
+            "project_id": "非空string",
+            "requirement_id": "非空string",
+            "requirement_revision": "非空string",
+            "scope": "非空string",
+            "harness_contract_revision": "非空string",
+            "nodes": "node locator keyからNodeTargetへ写すobject。"
+          },
+          "NodeTarget": {
+            "target_id": "非空string",
+            "target_revision": "非空string",
+            "target_digest": "非空string",
+            "kind": "unit|connection|composite",
+            "source_ref": "非空string",
+            "source_revision": "非空string"
+          }
+        },
+        "identity_and_binding": {
+          "project_axes": [
+            "project_id",
+            "requirement_id",
+            "requirement_revision",
+            "scope",
+            "harness_contract_revision"
+          ],
+          "node_axes": [
+            "target_id",
+            "target_revision",
+            "target_digest",
+            "kind",
+            "source_ref",
+            "source_revision"
+          ],
+          "comparison": "選択ProjectTargetのproject_axesを、該当locatorの各actual.source/context.sourceの同名fieldと個別比較する。各nodeのproject_idも当該project locatorのProjectTarget.project_idと照合し、locator keyからproject_idを推定しない。NodeTargetのnode_axesも同様に比較する。project/node map keyからsource identityやkindを補完しない。source、scope、revision、identity、kindは別軸で保持し、同じ軸へ畳まない。",
+          "selector_source_limit": "selection_source_ref/revision/digestと各target fieldは呼出元が渡す合成可能な入力値である。digestはopaque claimで、source bodyの同一性、custody、発行者・owner資格、acceptance、release、実際のoperationを証明しない。L9 fixtureの全targets引数canonical hashは測定値でありsource資格証明ではない。"
+        },
+        "pointer_basis": {
+          "PortfolioInput": "第一引数PortfolioInputをrootとする。actualは/projects/{project_locator}/{node_locator}、contextは/context/projects/{project_locator}/{node_locator}。Absent keyはその実shapeを辿った最初の欠落ancestor keyをpointer leafとして指し、present null/誤型は既存値の位置を指す。containerからnodeまで各段階を区別し、invalid/missing nodeを通常NodeRecordへ変換しない。context/projects欠落は/context/projects、context欠落は/context、actual projects欠落は/projectsを指す。",
+          "PortfolioTargets": "evaluate_portfolio(input, diagnostic_contract, targets)の第三引数PortfolioTargetsに正規化root /targets を付けてpointer化する。",
+          "selection_binding": "選択側の欠落bindingは/targets/projects/{RFC6901-escaped-project_key}/nodes/{RFC6901-escaped-node_key}を指す。project_key/node_keyは各targets mapの実locator object key。",
+          "escaping": "全tokenにRFC 6901 escape（~→~0、/→~1）を適用する。ancestorは第三引数の実shapeに存在し、欠落対象leafだけが不在であることを検証する。",
+          "missing_ancestor_selection": "Absent keyは実targets引数shapeをroot /targetsから辿り、最初に存在しないancestor key自体をpointer leafとして指す。targets引数欠落は/targets、projects member欠落は/targets/projects、project entry欠落は/targets/projects/{escaped project_key}、nodes member欠落は/targets/projects/{escaped project_key}/nodes、個別node binding欠落は/targets/projects/{escaped project_key}/nodes/{escaped node_key}。",
+          "present_invalid_selection": "nullまたはshape/type不正の値は欠落ancestorとして扱わず、その値が実targets引数shape内に存在する位置をpointerにする。例: targets:nullは/targets、projects:nullやprojects誤型は/targets/projects、project entry null/誤型は/targets/projects/{escaped project_key}、project_id null/空/誤型は/targets/projects/{escaped project_key}/project_id、nodes:null/誤型は/targets/projects/{escaped project_key}/nodes。"
+        }
+      },
+      "baseline_fixture_compatibility": {
+        "projects": [
+          "project_a",
+          "project_b"
+        ],
+        "node_kinds": {
+          "unit_a": "unit",
+          "unit_b": "unit",
+          "connection_ab": "connection",
+          "composite_all": "composite"
+        },
+        "meaning": "既存L9 356 caseの原入力/原期待を再解釈せず保持するための固定fixture locator。caller-selected domainの既定値やfallbackではない。 旧呼出元がprojects/node_kindsを読む場合は356 baseline互換profileに限る。caller-selected domainではそれらをDiagnosticContractから取り出してtarget代替にせず、第三引数PortfolioTargetsを渡す。"
+      },
+      "project_keys": "callerのtargets.projects objectのkey集合。keyはlocatorでありproject_idと別の値。JSON Pointerでは各keyをRFC 6901に従い~→~0、/→~1へescapeする。",
+      "node_keys": "各targets.projects[project_key].nodes objectのkey集合。keyはlocatorでありtarget_idと別の値。JSON PointerではRFC 6901 escapeを行う。",
+      "node_kind_values": [
+        "unit",
+        "connection",
+        "composite"
+      ],
+      "selected_target_rules": [
+        {
+          "id": "R12",
+          "rule": "targetsが渡された選択domainでは、選択project/node mapの各keyと、project_id/requirement_id/requirement_revision/scope/harness_contract_revisionおよびtarget_id/target_revision/target_digest/kind/source_ref/source_revisionを別々に読む。既知値をactual/context sourceと比較する。既知の不一致はkind以外では既存field_conflict、kindでは専用のkind_conflictだけを相違したactual/context source fieldのpointerへ返し、同じkind不一致についてgeneric field_conflictを重ねず、affected nodeのsource facetをviolationにする。選択fieldがAbsent/null/空/型外なら、kindはR02のkind_unknown、kind以外のidentity/source fieldはfield_unknownを選択field pointerへ返し、affected source facetだけをunknownにし、空値やlocator keyで埋めない。project_id field自体の不正はR12のsource facet unknownであり、project entry/nodes/node bindingの構造欠損扱いにしない。selection_source_ref/revision/digestがAbsent/invalidなら既存入力契約に応じfield_unknownを該当pointerへ返し、全selected node source facetをunknownにする。digestはopaque claimであり、projects bodyから自己検証しない。R01–R08の比較は選択locatorに限り、既存facet ordering/重複排除を保つ。Absentのselector pointerはpointer_basis.missing_ancestor_selectionの最初の不在ancestor、present invalidはpointer_basis.present_invalid_selectionの既存値位置を指す。",
+          "source_basis": [
+            "HELIXOS-L3-016-F01",
+            "HELIXOS-L3-016-F02",
+            "HELIXOS-L10-016-F01",
+            "HELIXOS-L10-016-F02",
+            "R01",
+            "R02",
+            "R06",
+            "R10"
+          ]
+        },
+        {
+          "id": "R13",
+          "rule": "selected locatorがactualまたはcontextの一方に無いとき、そのlocatorの全facetをunknownにする。field_unknownのpointerはpointer_basis.PortfolioInputに従い、Absentなら実shape上の最初のmissing ancestor、present null/誤型なら実在するinvalid値の位置を指す。存在側のNodeRecordはselection bindingと既知軸を比較し、保持対象であるactual側recordは原値のまま返す。両側に無い選択locatorはactualとcontext双方のpointerをunknownとして示す。invalid/absent recordを通常NodeRecordや空recordとして作らない。 actual/context memberがpresent nullまたは型外なら、その実引数位置をunknown pointerにする。未選択actual locatorでもraw node値がnull/型外ならactual側input pointerを別途示し、NodeRecordへ変換せずretained source/stateを生成しない。",
+          "source_basis": [
+            "HELIXOS-L3-016-F01",
+            "HELIXOS-L10-016-F01",
+            "R01",
+            "R10",
+            "R11"
+          ]
+        },
+        {
+          "id": "R14",
+          "rule": "actual/contextのlocator unionにあり、targetsにproject/node binding構造が無いlocatorは、selection側binding不足をfield_unknownで返し、該当node facetsをunknownとする。Absent keyはpointer_basis.missing_ancestor_selectionの最初の不在ancestor keyを指し、present null/誤型はpointer_basis.present_invalid_selectionの既存値位置を指す。project_idなど個別identity fieldのAbsent/null/空/型外はR12のsource facetだけに適用し、この構造欠損規則へ広げない。kind/identityはinput map keyから推定しない。未選択actual nodeのsource/state/receipt/owner/relation/historyはretained_source_records/retained_state_traceへactual原値として保持し、選択外であることを理由に削除しない。 actual/context unionにある未選択actual nodeがpresent null/誤型なら、targets binding欠落pointerに加えてactual実引数の当該member pointerをfield_unknownで示す。invalid raw memberはretained_source_records/retained_state_traceにNodeRecordとして作らない。 未選択nodeの原因位置について、actualのpresent null/誤型は原記録を保持できない実入力側の原因としてactual pointerも返す。context側だけの未選択null/誤型は選択比較の根拠として用いないため、従来のtargets側binding不足pointerだけを返す。元context値は呼出しの原引数に残し、未知を成功や実記録へ補完しない。",
+          "source_basis": [
+            "HELIXOS-L3-016-F01",
+            "HELIXOS-L10-016-F01",
+            "R01",
+            "R02",
+            "R08",
+            "R11"
+          ]
+        },
+        {
+          "id": "R15",
+          "rule": "node_correspondenceはtargets、actual、contextのlocator unionをproject/node keyごとに持つ。retained_source_recordsとretained_state_traceは既存R11どおりactual側に実在する値だけを既存root shapeへ原値を写す。context-only record/stateをactualへ転記せず、実在しないactual nodeやstateを空recordとして生成しない。observed_gap_axesもactual側に実在するstateだけを既存R11で投影し、actualに無いlocatorの通常空gap entryを作らない。",
+          "source_basis": [
+            "HELIXOS-L3-016-F01",
+            "HELIXOS-L3-016-F02",
+            "HELIXOS-L10-016-F01",
+            "R11"
+          ]
+        },
+        {
+          "id": "R16",
+          "rule": "project/node map keyはlocatorのまま保持し、project/node keyの走査順はRFC 6901 escape前のUnicode codepoint辞書順とする。これは評価/finding生成の決定性のためで、JSON objectのmember表示順は意味契約に含めず、mapはkey/valueで比較する。全output pointerはRFC 6901でescapeし、finding最終順はR10のcode/pointer/return_owner辞書順による。重複identityの先行/後続locatorという順序依存findingを作らない。selection provenance不足はfield_unknownで該当targets fieldへ示すが、選択値を資格済みsourceや実ownerへ昇格させない。各node/facetは既存R10のviolation > unknown > correspondingで集約し、全体も既存R10を適用する。実state更新/受入/提供/authorizationは常に生成しない。全pointerはpointer_basisに従い実引数shapeへ結ぶ。",
+          "source_basis": [
+            "HELIXOS-L3-016-F01",
+            "HELIXOS-L3-016-F03",
+            "R10",
+            "R11"
+          ]
+        },
+        {
+          "id": "R17",
+          "rule": "選択projectの複数project保証はL3 F01の「二つ以上」に従うが、locator key件数をproject identity件数として数えない。ProjectTarget.project_idが既知の値はdistinct identity数だけ数え、同じknown project_idを持つ複数locatorはdistinct数へ重複算入しない。distinct known identityが二つ未満なら、選択domain全体の複数project保証をfield_unknownとしてaggregate pointer /targets/projectsへ示し、局所の既知record/state照合は保持する。project_idが一つでもAbsent/null/空/型外ならR12のfield_unknownを維持し、未解決identityを既知の別projectとも同一projectとも断定しない。重複locatorの一つを“後続”として特定するfindingは作らず、各locatorとnodeの原記録は個別に保持する。distinct known identityが二つ以上でも、それだけで成功/coverage/accepted/completionを示さない。targets/projectsのAbsent/null/誤型はpointer_basisに従うfield_unknownとし、空へ変換しない。明示projects:{}も二project保証の根拠にならずfield_unknown /targets/projectsとする。project targetまたはnodes memberがAbsentなら最初の不在ancestor、present null/誤型ならその既存値位置をfield_unknownで示す。一方nodes:{}は既知の空node mapであり、そのproject selection pointerにfield_unknownを出さず、coverage/Accepted/corresponding/completionへ昇格しない。全selected node mapが既知空で評価nodeが0件なら、R10に従い各empty nodes mapへのresult_unknownでaggregate unknown理由を示す。actual/contextに存在する未選択nodeはR14で処理する。 ここで「評価nodeが一件もない」とは、R14で構成するnode_correspondenceのactual/context/selected locator合併にnode locatorが一件も無いことをいう。選択nodesだけが空でも未選択の観測locatorがあれば、この空domain理由は追加しない。",
+          "source_basis": [
+            "HELIXOS-L3-016-F01",
+            "HELIXOS-L10-016-F01",
+            "R10",
+            "R11"
+          ]
+        }
+      ],
+      "selected_target_domain_limit": "呼出元の選択値は比較scopeを示すが、全projectの網羅や発行者資格を証明しない。任意graph閉包/cycle、実selector provider、実source custody/資格、実consumerは未成立。",
+      "call_profiles": {
+        "baseline_fixture_compatibility": {
+          "signature": "evaluate_portfolio(input: PortfolioInput, diagnostic_contract: DiagnosticContract) -> TraceResult",
+          "scope": "元L9 cases配列の356基準caseだけ。固定locatorの宣言値はbaseline_fixture_compatibilityに格納し、caller-selected domainの既定値には使わない。",
+          "raw_and_expected": "既存L9 356caseのraw/expected whole値をそのまま維持する。"
+        },
+        "caller_selected_domain": {
+          "signature": "evaluate_portfolio(input: PortfolioInput, diagnostic_contract: DiagnosticContract, targets: PortfolioTargets) -> TraceResult",
+          "scope": "L9 domain_extension_casesの明示targets入力を持つ選択domain。targetsのAbsent/nullはbaseline fixtureへfallbackしない。",
+          "caller_binding_effect": "旧diagnostic_contract.projects/node_kindsをselected-domain入力に使う呼出元はPortfolioTargetsを構築して第三引数へ渡す。baseline_fixture_compatibilityから自動補完/fallbackしない。"
+        }
+      }
+    },
+    "diagnostic_contract_copy_rule": "この本文はparent_basic_source_pinsの現行L4 /diagnostic_contractと完全一致する参照用複写。計算の第二引数はpinしたL4 objectから明示供給し、この複写から別の規範やselected selectorを作らない。旧固定本文と追記の混合snapshotはgit履歴で辿る。"
   },
   "logical_types": [
     {
@@ -1586,6 +1738,124 @@
         "path": "array<string>",
         "value": "JSONValue"
       }
+    },
+    {
+      "name": "SelectedPortfolioInput",
+      "kind": "raw_json_wire_boundary",
+      "wire_type": "JSONValue",
+      "required_wire_members": [],
+      "recognized_members": {
+        "projects": "Presence<JSONValue>",
+        "context": "Presence<JSONValue>",
+        "whole_completion_claim": "Presence<JSONValue>"
+      },
+      "unknown_member_policy": "L4 selected profileが参照しないmemberは入力に保持し、その値から診断対象・選択key・資格を推測しない。",
+      "purpose": "選択profileではAbsent/null/誤型のactual/context階層を診断できるよう、入力全体をJSON kind/presenceを失わず受け取る。baseline PortfolioInputの固定型検査へ流用しない。"
+    },
+    {
+      "name": "PortfolioTargetsWire",
+      "kind": "raw_json_wire_boundary",
+      "wire_type": "Presence<JSONValue>",
+      "purpose": "第三引数のAbsent/null/誤型/空objectを区別し、L4のfirst-missing/present-invalid pointer規則を適用する。存在する有効値はL4 selected_target_contract.targets_shapeの閉じた形で解釈し、未知memberをlocatorやsource値へ変換しない。"
+    },
+    {
+      "name": "SelectedProjectMap",
+      "kind": "map",
+      "key": "string (literal project locator)",
+      "value": "JSONValue (ProjectTarget candidate)",
+      "key_semantics": "keyはcallerが与えたlocator。project_idや他fieldからkeyを生成・補完・正規化しない。",
+      "iteration_order": "未escape Unicode codepoint辞書順。JSON object表示順は意味に含めない。"
+    },
+    {
+      "name": "SelectedNodeMap",
+      "kind": "map",
+      "key": "string (literal node locator)",
+      "value": "JSONValue (NodeTarget candidate)",
+      "key_semantics": "keyはcallerが与えたlocator。target_idやkindからkeyを生成・補完・正規化しない。",
+      "iteration_order": "未escape Unicode codepoint辞書順。JSON object表示順は意味に含めない。"
+    },
+    {
+      "name": "SelectedTraceResult",
+      "kind": "record",
+      "required": [
+        "condition",
+        "node_correspondence",
+        "retained_source_records",
+        "retained_state_trace",
+        "observed_gap_axes",
+        "findings",
+        "actual_state_updated",
+        "actual_acceptance_created",
+        "actual_release_authorized",
+        "whole_portfolio_complete",
+        "operation_effect"
+      ],
+      "fields": {
+        "condition": {
+          "enum": [
+            "trace_material_corresponding",
+            "trace_material_unknown",
+            "trace_material_violation"
+          ]
+        },
+        "node_correspondence": "map(string,map(string,NodeDisposition))",
+        "retained_source_records": "map(string,map(string,JSONValue))",
+        "retained_state_trace": "map(string,map(string,SelectedRetainedNodeState))",
+        "observed_gap_axes": "map(string,map(string,array<StateAxis>))",
+        "findings": "array<Finding>",
+        "actual_state_updated": {
+          "literal": false
+        },
+        "actual_acceptance_created": {
+          "literal": false
+        },
+        "actual_release_authorized": {
+          "literal": false
+        },
+        "whole_portfolio_complete": {
+          "literal": false
+        },
+        "operation_effect": {
+          "literal": "none"
+        }
+      },
+      "closed": true,
+      "same_output_roots_as": "TraceResult",
+      "purpose": "選択profileのlocator keyを保持しながら、既存TraceResultと同じ11 root/false effect契約を返す。"
+    },
+    {
+      "name": "SelectedRetainedNodeState",
+      "kind": "record",
+      "required": [],
+      "fields": {
+        "states": "JSONValue",
+        "kind": "JSONValue",
+        "verification": "JSONValue",
+        "acceptance": "JSONValue",
+        "provision": "JSONValue",
+        "unresolved_edges": "JSONValue",
+        "stale_reasons": "JSONValue",
+        "relations": "JSONValue",
+        "owners": "JSONValue"
+      },
+      "optional": [
+        "states",
+        "kind",
+        "verification",
+        "acceptance",
+        "provision",
+        "unresolved_edges",
+        "stale_reasons",
+        "relations",
+        "owners"
+      ],
+      "meaning": "actual object nodeに存在する保持対象memberだけを元JSON値でdeepcopyする。contextから補完せず、absentとnullを保つ。baseline RetainedNodeStateは緩めない。"
+    },
+    {
+      "name": "SelectedLocatorKey",
+      "kind": "string_alias",
+      "wire_type": "string",
+      "meaning": "callerのproject/node literal map key。固定ProjectId/NodeIdの拡張やidentityへのcastに使わない。"
     }
   ],
   "functions": [
@@ -1610,7 +1880,7 @@
     },
     {
       "id": "compare_node",
-      "signature": "compare_node(project_id: ProjectId, node_id: NodeId, actual: NodeRecord, context: NodeRecord) -> NodeComparison (evaluate_portfolio内pure closure)",
+      "signature": "compare_node(project:ProjectId, node:NodeId, actual:NodeRecord, context:NodeRecord) -> NodeComparison (baseline内pure closure)",
       "reads": [
         "actual.source.*",
         "context.source.*",
@@ -1630,10 +1900,7 @@
         "NodeComparison{facet_results:NodeDisposition,findings:array<Finding>}"
       ],
       "algorithm": [
-        "evaluate_portfolio内のpure closure。入力NodeRecordと固定L4診断domainからfacet_resultsと局所findingsを返し、node間共有のfinding accumulatorを直接変更しない。",
-        "R01はsource_fieldsと七stateのsource_ref/source_revisionを既知の非空stringとして比較する。kindはR02に従い、closed setとfixtureで宣言したkindの双方を判定する。",
-        "R04はrelationの欠落/null/不正/重複とconnection/compositeの空集合をrelation_unknownにする。known setの差はrelation_conflict。各sideのknown endpointを同projectのcontext側target_id@target_revision集合と照合し、候補が無ければそのsideのrelation pointerへrelation_endpoint_conflictを返す。target_idまたはtarget_revisionに@が含まれる候補はこの表記から一意に復元できないためrelation_unknownとし、対応済みとしない。",
-        "R05はstate closed domain、R06はresult/receipt fieldとcontext sourceの結合、R07は矛盾する組、R08は保持history/loss/stale reason、R09はboundary claimを診断contractに宣言した順に評価する。R01でcontext sourceのjoin対象値がunknownなら、そのsource pointerへfield_unknownを追加し、R06は該当facetをunknownに保つ。receipt自身のactual/context値がunknownの場合も各receipt pointerへfield_unknownを追加する。"
+        "baseline型検査済みのNodeRecord、固定宣言kind、同project context mapとL4診断契約をcompare_node_materialへ渡す純粋wrapper。比較規則を複製しない。"
       ],
       "source_rule": "HELIXOS-L4-016 diagnostic_contract R01–R09。",
       "branch_table": [
@@ -1720,11 +1987,11 @@
           ]
         }
       ],
-      "formal_entrypoint": "evaluate_portfolio.compare_node（局所純粋closure）"
+      "formal_entrypoint": "evaluate_portfolio.compare_node -> compare_node_material"
     },
     {
       "id": "evaluate_portfolio",
-      "signature": "evaluate_portfolio(input: PortfolioInput, diagnostic_contract: JSONValue) -> TraceResult",
+      "signature": "evaluate_portfolio(input, diagnostic_contract, *selected_targets) -> TraceResult | SelectedTraceResult; selected_targets長0=baseline、長1=selected、長2以上はValueError",
       "reads": [
         "input.projects[*][*]",
         "input.context.projects[*][*]",
@@ -1752,8 +2019,9 @@
         "operation_effect"
       ],
       "algorithm": [
-        "normative_program.source_codeのevaluate_portfolioを診断契約の固定project/node/facet/state/code domainで実行する。case IDやL9 expectedから分岐しない。",
-        "返却全rootをL8 original expected_proposalと独立にdeep structural equality比較する。"
+        "引数2個はbaseline互換domain、3個は明示targetsのselected domainへdispatchする。2個未満はPython呼出しエラー、4個以上はValueError。",
+        "baselineは固定互換locatorとcompare_node wrapperを使い、selectedはevaluate_portfolio_selectedへそのraw値を渡す。両wrapperはcompare_node_materialを実際に呼ぶ。",
+        "期待wholeは返却後にだけJSON型付き全体比較する。"
       ],
       "postconditions": [
         "L4 diagnostic_contract.output_fieldsの全fieldを返す。",
@@ -1762,6 +2030,33 @@
       ],
       "source_rule": "HELIXOS-L4-016 diagnostic_contract R01–R11。",
       "formal_entrypoint": "evaluate_portfolio"
+    },
+    {
+      "id": "evaluate_portfolio_selected",
+      "signature": "evaluate_portfolio_selected(input, diagnostic_contract, *supplied_targets) -> SelectedTraceResult; supplied_targets長0=内部Absent診断、長1=raw targets、長2以上はValueError",
+      "reads": [
+        "第一引数JSON treeの/projectsおよび/context/projectsの実locator map",
+        "第三引数targetsの実projects/nodes mapと全target field",
+        "L4 selected_target_contract R12-R17",
+        "既存diagnostic_contractのfacet/state/code順序とaggregation規則"
+      ],
+      "returns": [
+        "SelectedTraceResult: existing TraceResultと同一のclosed 11 root。locator-keyed mapsを返し、5つのeffect値はfalse/none。"
+      ],
+      "algorithm": [
+        "引数個数でprofileを明示選択する。2引数は既存baseline、3引数は本selected profile。3引数のtargetsがAbsent/null/誤型でもbaselineへ戻さず、実shape上の最初の欠落ancestorまたはpresent-invalid位置をL4 pointer_basisで診断する。",
+        "selector locatorはtargets.projects/nodesの実map keyからのみ列挙し、実map keyをUnicode codepoint辞書順で走査する。actual/context locator unionも別に取り、R14で選択外/selector欠落の観測nodeを処理する。locator keyをproject_id/target_id/kindとして使わない。",
+        "JSON object mapはstring-keyed dynamic mapとして扱う。AbsentとnullはPresenceとして保持し、null/誤型recordをNodeRecordへdecodeしない。first missing ancestorとpresent invalid valueはそれぞれ実引数上のpointerに結ぶ。全pointer tokenはRFC6901 escapeを適用する。",
+        "R12はProjectTargetの5 project axes、NodeTargetの6 node axesを独立比較する。kindは既存R02専用diagnostic、その他のselector field mismatchは既存診断を用いる。project_id field invalidは構造欠損へ拡張しない。",
+        "R13-R15に従いlocator unionごとのfacet、actual-only retention、実在nodeのみのgap projectionを生成する。context-only dataをactualへ転記せず、invalid raw nodeからrecordを捏造しない。",
+        "R16のalias/claim global checksは選択範囲と区別して既存規則どおり全observed actual nodesを扱う。findingは既存dedupe/final orderingを適用し、map display orderに依存させない。",
+        "R17のproject数はdistinct known project_idで数える。selector不足/duplicate/unknown identityをfalse conflictやsuccessへ変換しない。nodes:{}は既知emptyで、coverage/accepted/completionを生成しない。",
+        "既存TraceResultと同じ11 required rootsを全て返す。実state/acceptance/release/whole completionをfalse、operation_effectをnoneに固定する。",
+        "selector kindが不正でもR04の各side relation domainは独立に判定する。valid selector時の分岐は保持し、invalid selector時だけ当該side source.kindが既知unitなら空relationを正常とする。未知source kindからunitを推定せず、selector宣言をsourceで補完しない。",
+        "compare_selected_node wrapperはraw object node、selector宣言kind、実context project mapを同じcompare_node_materialへ渡す。baselineとの間でR01–R09のsource比較本文を複製しない。selector対sourceのkind比較はR12専用診断を使う。R01 actual/contextのkind既知差にはfield_conflictを保持する。"
+      ],
+      "source_rule": "HELIXOS-L4-016 selected_target_contract/call_profiles/selected_target_rules R12-R17; 3arg profileはL4 caller-selected domainの詳細型写像。",
+      "formal_entrypoint": "evaluate_portfolio_selected (evaluate_portfolioの3引数dispatch先)"
     },
     {
       "id": "route_failure",
@@ -1779,6 +2074,42 @@
         "return_ownerはL4 R10に記録されたportfolio-trace-owner固定値。実主体の資格を発行しない。"
       ],
       "formal_entrypoint": "route_failure"
+    },
+    {
+      "id": "compare_selected_node",
+      "signature": "compare_selected_node(project:SelectedLocatorKey, node:SelectedLocatorKey, actual:JSONValue object, context:JSONValue object, declared:JSONValue) -> NodeComparison (selected内pure closure)",
+      "reads": [
+        "両node原値",
+        "selector kind原値",
+        "L4 diagnostic_contract",
+        "同project context map"
+      ],
+      "returns": [
+        "NodeComparison"
+      ],
+      "algorithm": [
+        "compare_node_materialへの純粋wrapper。node欠落/型外はcallerでR13診断し、ここへ空NodeRecordを捏造して渡さない。"
+      ],
+      "formal_entrypoint": "evaluate_portfolio_selected.compare_selected_node -> compare_node_material"
+    },
+    {
+      "id": "compare_node_material",
+      "signature": "compare_node_material(project, node, actual, context, diagnostic_contract, declared, context_project) -> NodeComparison (両profile共通)",
+      "reads": [
+        "actual/context node fieldの原値",
+        "L4 R01–R09",
+        "独立した宣言kind",
+        "context_project原node map"
+      ],
+      "returns": [
+        "NodeComparison"
+      ],
+      "algorithm": [
+        "唯一の共有比較本文。R01はsource_fields全件（kindを含む）をactual/context間で比較する。R02宣言kind比較とR12 selector binding比較を別に保持する。",
+        "R03–R09のowner/relation/state/receipt/history/claimを同じ本文で評価し、局所findingとfacet結果だけを返す。",
+        "invalid selectorのrelation独立分類と@表記の曖昧性はsemantic_rederivationsに出典・保持点・技術理由を記録する。"
+      ],
+      "formal_entrypoint": "compare_node_material"
     }
   ],
   "diagnostic_policy": {
@@ -1951,9 +2282,10 @@
     }
   },
   "design_limits": [
-    "任意project/node集合、任意graphのcycle/closure、欠落nodeの一般処理、source custody、実owner資格、他pairのrecord全consumerは未閉包。",
+    "selected profileはL4 R12–R17に従いcaller指定のliteral locator集合、actual/context/selected合併と欠落・null/誤型nodeの局所診断を導出し、固定29件と追加境界で対照する。任意graphのcycle/closure、未列挙JSON全域の閉包、source custody、実owner資格、他pairの全consumer成立は未閉包である。",
     "L9のexpected proposalは上流の期待wholeを保持するもので、実行観測や独立qualificationではない。",
-    "L6は関数設計、L7は対関数検証。製品実装、codec/runtime、実資格、CIは本pairで成立させない。"
+    "L6は関数設計、L7は対関数検証。製品実装、codec/runtime、実資格、CIは本pairで成立させない。",
+    "selected 29件の純粋計算は固定source wholeとの比較対象であり、未列挙JSON全域の閉包、実行時資格、運用consumer成立を示さない。"
   ],
   "failure_basis": {
     "source": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
@@ -2007,7 +2339,19 @@
         "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
         "object_canonical_sha256": "256f22745af197e88d2ef8b8fe1cea80589af36a4f4240ceeba90481f450f190"
       }
-    ]
+    ],
+    "selected_rule_basis": {
+      "source": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+      "pointer": "/diagnostic_contract/selected_target_rules",
+      "rules": [
+        "R12",
+        "R13",
+        "R14",
+        "R15",
+        "R16",
+        "R17"
+      ]
+    }
   },
   "consumer_connections": [
     {
@@ -2035,15 +2379,15 @@
       "meaning": "provided state referenceのみ記録し、release permit/actual actionを生成しない。"
     }
   ],
-  "logical_schema_boundary": "純関数の入力は宣言済みPortfolioInput型を満たす有限fixture recordである。recordの未宣言memberはL8 /input_type_validationの再帰規則で対象外として拒否し、関数の計算域へ渡さない。Presence<JSONValue>はabsentとpresent nullを区別し、宣言されたJSONValue memberはobject/listを含む任意JSON値を型内で保持する。source.kind、owner、relation、stateのfield-level規則はnormative_program.source_codeだけに従う。R11の保持対象である定義済みsource/state/history/memberはdeep copyし、入力とのobject identityを共有しない。",
+  "logical_schema_boundary": "純関数の入力は宣言済みPortfolioInput型を満たす有限fixture recordである。recordの未宣言memberはL8 /input_type_validationの再帰規則で対象外として拒否し、関数の計算域へ渡さない。Presence<JSONValue>はabsentとpresent nullを区別し、宣言されたJSONValue memberはobject/listを含む任意JSON値を型内で保持する。source.kind、owner、relation、stateのfield-level規則はnormative_program.source_codeだけに従う。R11の保持対象である定義済みsource/state/history/memberはdeep copyし、入力とのobject identityを共有しない。 selected profileは別型SelectedPortfolioInput/PortfolioTargetsWireのraw JSON境界で受け、baselineの固定ProjectId/NodeIdおよびNodeRecordの検査を緩めない。selected outputはSelectedTraceResultのclosed 11 rootとdynamic string locator mapsを検査し、raw保持用SelectedRetainedNodeStateを別に使う。",
   "typed_function_contract": {
     "compare_node": {
-      "input": "project_id:ProjectId、node_id:NodeId、actual:NodeRecord、context:NodeRecord。evaluate_portfolioがDiagnosticContractと局所findings蓄積を供給する。",
+      "input": "project:ProjectId、node:NodeId、actual:NodeRecord、context:NodeRecord。baseline callerが固定L4 DiagnosticContractとdeclared kind/context project mapを共有kernelへ供給する。",
       "output": "NodeComparison{facet_results:NodeDisposition, findings:array<Finding>}"
     },
     "evaluate_portfolio": {
-      "input": "PortfolioInputとdiagnostic_contract:JSONValue（固定したL4 diagnostic_contractの原object）。",
-      "output": "TraceResult"
+      "input": "evaluate_portfolio(input, diagnostic_contract, *selected_targets)。selected_targets長0はPortfolioInput baseline、長1はSelectedPortfolioInputとraw PortfolioTargetsWireのselected。長2以上はValueError。",
+      "output": "baselineはTraceResult、selectedはSelectedTraceResult。closed 11 rootとfalse/none effectは共通。"
     },
     "route_failure": {
       "input": "array<Finding> + return_owner literal portfolio-trace-owner",
@@ -2053,25 +2397,40 @@
     "expand_case": {
       "input": "FixtureInputs + CaseInput",
       "output": "PortfolioInput"
+    },
+    "evaluate_portfolio_selected": {
+      "input": "evaluate_portfolio_selected(input:SelectedPortfolioInput, diagnostic_contract:JSONValue, *supplied_targets)。長0は内部Presence.absent診断、長1は渡されたraw targets（nullを含む）、長2以上はValueError。公開3引数dispatchと同じ計算。",
+      "output": "SelectedTraceResult (TraceResultと同一closed 11 root、動的locator map key、false/none effect)。"
+    },
+    "compare_selected_node": {
+      "input": "SelectedLocatorKey二つ、actual/context raw object、declared_kind:JSONValue。欠落/型外nodeはcallerが処理する。",
+      "output": "NodeComparison。compare_node_materialへ同じ原値を渡す。"
+    },
+    "compare_node_material": {
+      "input": "project/node literal locator、actual/context object node、固定L4 diagnostic_contract、宣言kind raw JSON値、同project context object map。baseline型境界とselected raw境界はcallerが分ける。",
+      "output": "NodeComparison{facet_results:NodeDisposition,findings:array<Finding>}。入力は変更しない。"
     }
   },
   "normative_program": {
     "language": "Python 3 pure expression/function subset",
     "entrypoints": {
       "expand_case": "expand_case(fixture_inputs, case_input) -> PortfolioInput",
-      "evaluate_portfolio": "evaluate_portfolio(input: PortfolioInput, diagnostic_contract: JSONValue) -> TraceResult",
-      "route_failure": "route_failure(findings: array<Finding>, return_owner: 'portfolio-trace-owner') -> array<Finding>"
+      "evaluate_portfolio": "evaluate_portfolio(input, diagnostic_contract, *selected_targets) -> TraceResult | SelectedTraceResult; selected_targets長0=baseline、長1=selected、長2以上はValueError",
+      "route_failure": "route_failure(findings: array<Finding>, return_owner: 'portfolio-trace-owner') -> array<Finding>",
+      "evaluate_portfolio_selected": "evaluate_portfolio_selected(input, diagnostic_contract, *supplied_targets) -> SelectedTraceResult; supplied_targets長0=内部Absent診断、長1=raw targets、長2以上はValueError",
+      "compare_node_material": "compare_node_material(project, node, actual, context, diagnostic_contract, declared, context_project) -> NodeComparison (両profile共通)"
     },
-    "source_rule": "このsource stringがL4 R01–R11を固定fixture領域で評価する唯一の関数規則である。検証器はcase IDによる分岐をせず、L9 rawを展開してentrypointを呼び、L9 expected wholeは返却後に比較する。",
+    "source_rule": "このsource stringがL4 R01–R17の有限fixture計算の唯一の関数規則である。2引数はbaseline、3引数はcaller-selectedを明示dispatchし、両profileが共有compare_node_materialを呼ぶ。selected専用entrypointはtargets引数個数と内部targets_presenceでAbsent/null/presentを区別する。期待wholeは返却後にだけ比較する。",
     "purity": "入力を変更しない。I/O、import、時計、乱数、外部状態変更を含まない。expand_caseはcopy後のローカル値のみ変更する。",
-    "source_code": "def deep_copy(value):\n    if isinstance(value, dict):\n        return {key: deep_copy(item) for key, item in value.items()}\n    if isinstance(value, list):\n        return [deep_copy(item) for item in value]\n    return value\n\ndef expand_case(fixture_inputs, case_input):\n    if case_input.get(\"base_ref\") != \"portfolio\":\n        raise ValueError(\"未定義base_ref\")\n    expanded = deep_copy(fixture_inputs[\"portfolio\"])\n    for replacement in case_input[\"replacements\"]:\n        path = replacement[\"path\"]\n        if not path:\n            raise ValueError(\"空path\")\n        cursor = expanded\n        for member in path[:-1]:\n            if not isinstance(cursor, dict) or member not in cursor:\n                raise ValueError(\"未定義path\")\n            cursor = cursor[member]\n        if not isinstance(cursor, dict) or path[-1] not in cursor:\n            raise ValueError(\"未定義終端\")\n        cursor[path[-1]] = deep_copy(replacement[\"value\"])\n    return expanded\n\ndef route_failure(findings, return_owner):\n    unique = {(item['code'], item['pointer'], return_owner) for item in findings}\n    ordered = sorted(unique)\n    return [{'code': code, 'pointer': pointer, 'return_owner': owner} for code, pointer, owner in ordered]\n\ndef evaluate_portfolio(input, diagnostic_contract):\n    data = input\n    rules = diagnostic_contract\n    return_owner = 'portfolio-trace-owner'\n    projects = rules['projects']\n    nodes = rules['node_kinds']\n    axes = rules['state_axes']\n    facets = rules['facet_order']\n    source_fields = rules['source_fields']\n    receipt_fields = rules['receipt_fields']\n    node_corr = {}\n    retained_source = {}\n    retained_state = {}\n    gaps = {}\n    findings = []\n    def pointer(side, project, node, *parts):\n        prefix = '/projects/' if side == 'actual' else '/context/projects/'\n        return prefix + project + '/' + node + ''.join('/' + str(p).replace('~','~0').replace('/','~1') for p in parts)\n    def add(code, ptr):\n        findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n    def known(v):\n        return isinstance(v,str) and len(v)>0\n    def classify_set(value, ptr, allow_empty):\n        if not isinstance(value,list) or any(not known(x) for x in value) or len(set(value)) != len(value):\n            return None\n        if not value and not allow_empty:\n            return None\n        return set(value)\n    def compare_node(project, node, actual, context):\n        result={f:'corresponding' for f in facets}\n        local_findings=[]\n        def add(code, ptr):\n            local_findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n        def compare_string(a,b,pa,pb):\n            a_known=known(a); b_known=known(b)\n            if not a_known: add('field_unknown',pa)\n            if not b_known: add('field_unknown',pb)\n            if not a_known or not b_known: return 'unknown'\n            if a != b:\n                add('field_conflict',pa); return 'violation'\n            return 'corresponding'\n        def mark(f, disp):\n            rank={'corresponding':0,'unknown':1,'violation':2}\n            if rank[disp]>rank[result[f]]: result[f]=disp\n        ap=pointer('actual',project,node); cp=pointer('context',project,node)\n        for field in source_fields:\n            d=compare_string(actual.get('source',{}).get(field),context.get('source',{}).get(field),ap+'/source/'+field,cp+'/source/'+field)\n            mark('source',d)\n        ak=actual.get('source',{}).get('kind'); ck=context.get('source',{}).get('kind'); declared=nodes[node]\n        for value,side in [(ak,'actual'),(ck,'context')]:\n            if not isinstance(value,str) or value not in {'unit','connection','composite'}:\n                add('kind_unknown',pointer(side,project,node,'source','kind')); mark('source','unknown')\n            elif value != declared:\n                add('kind_conflict',pointer(side,project,node,'source','kind')); mark('source','violation')\n        # R03: 各sideのowner集合を分類し、既知集合同士は件数に関わらず集合差を比較する。\n        owners=[]\n        for obj,side in [(actual,'actual'),(context,'context')]:\n            val=obj.get('owners'); p=pointer(side,project,node,'owners')\n            s=classify_set(val,p,False)\n            if s is None:\n                add('owner_unknown',p); mark('owner','unknown'); owners.append(None)\n            elif len(s)>1:\n                add('owner_ambiguous',p); mark('owner','violation'); owners.append(s)\n            else: owners.append(s)\n        if owners[0] is not None and owners[1] is not None and owners[0]!=owners[1]:\n            add('owner_conflict',ap+'/owners');mark('owner','violation')\n        # R04 relation sets and context-side endpoint existence.\n        relations=[]\n        for obj,side in [(actual,'actual'),(context,'context')]:\n            val=obj.get('relations'); p=pointer(side,project,node,'relations')\n            s=classify_set(val,p,declared=='unit')\n            if s is None:\n                add('relation_unknown',p);mark('relation','unknown');relations.append(None)\n            else: relations.append(s)\n        if relations[0] is not None and relations[1] is not None and relations[0]!=relations[1]:\n            add('relation_conflict',ap+'/relations');mark('relation','violation')\n        for obj,side in [(actual,'actual'),(context,'context')]:\n            rel=obj.get('relations')\n            rel_ptr=pointer(side,project,node,'relations')\n            if isinstance(rel,list) and all(known(x) for x in rel) and len(set(rel))==len(rel):\n                rendered={}\n                # L4のtarget_id@target_revision表記が一意に解ける文脈nodeだけをendpoint候補にする。\n                portfolio=data['context']['projects'][project]\n                for other in portfolio.values():\n                    src=other.get('source',{}); tid=src.get('target_id'); rev=src.get('target_revision')\n                    if not known(tid) or not known(rev):\n                        continue\n                    elif '@' in tid or '@' in rev:\n                        rendered.setdefault(tid+'@'+rev,[]).append((tid,rev,'ambiguous_encoding'))\n                    else:\n                        rendered.setdefault(tid+'@'+rev,[]).append((tid,rev,'unique'))\n                unresolved=False; missing=False\n                for endpoint in rel:\n                    candidates=rendered.get(endpoint,[])\n                    identities={(row[0],row[1]) for row in candidates}\n                    if len(identities)>1 or any(row[2]=='ambiguous_encoding' for row in candidates):\n                        unresolved=True\n                    elif not candidates:\n                        missing=True\n                if unresolved:\n                    add('relation_unknown',rel_ptr);mark('relation','unknown')\n                if missing:\n                    add('relation_endpoint_conflict',rel_ptr);mark('relation','violation')\n        # R05 states and state source references.\n        for axis,allowed in axes.items():\n            aa=actual.get('states',{}).get(axis,{}); cc=context.get('states',{}).get(axis,{})\n            av=aa.get('state'); cv=cc.get('state'); pa=ap+'/states/'+axis+'/state'; pc=cp+'/states/'+axis+'/state'\n            if av not in allowed:\n                add('state_unknown',pa);mark('state','unknown')\n            if cv not in allowed:\n                add('state_unknown',pc);mark('state','unknown')\n            if av in allowed and cv in allowed and av!=cv:\n                add('state_conflict',pa);mark('state','violation')\n            for key in ['source_ref','source_revision']:\n                d=compare_string(aa.get(key),cc.get(key),ap+'/states/'+axis+'/'+key,cp+'/states/'+axis+'/'+key);mark('state',d)\n        av=actual.get('states',{}).get('knowledge',{}).get('state')\n        if av=='unknown': add('knowledge_unknown',ap+'/states/knowledge/state');mark('state','unknown')\n        av=actual.get('states',{}).get('freshness',{}).get('state')\n        if av=='stale': add('state_stale',ap+'/states/freshness/state');mark('state','unknown')\n        # R06 receipt/result states and field joins.\n        for facet in ['verification','acceptance','provision']:\n            ar=actual.get(facet,{}); cr=context.get(facet,{})\n            allowed=rules['result_states'][facet]\n            ast=ar.get('state'); cst=cr.get('state'); p=ap+'/'+facet+'/state'; q=cp+'/'+facet+'/state'\n            if ast not in allowed:\n                add('result_unknown',p);mark(facet,'unknown')\n            if cst not in allowed:\n                add('result_unknown',q);mark(facet,'unknown')\n            if ast in allowed and cst in allowed and ast!=cst:\n                add('result_conflict',p);mark(facet,'violation')\n            # Receipt identity fields bind against context receipt and node source.\n            for field in receipt_fields:\n                d=compare_string(ar.get(field),cr.get(field),ap+'/'+facet+'/'+field,cp+'/'+facet+'/'+field);mark(facet,d)\n                if field in ['project_id','requirement_revision','scope','target_id','target_revision','kind']:\n                    expected=context.get('source',{}).get(field)\n                    if not known(expected):\n                        mark(facet,'unknown')\n                    elif known(ar.get(field)) and ar.get(field)!=expected:\n                        add('field_conflict',ap+'/'+facet+'/'+field);mark(facet,'violation')\n            if facet=='provision':\n                for field in rules['provision_additional_comparison_fields']:\n                    d=compare_string(ar.get(field),cr.get(field),ap+'/'+facet+'/'+field,cp+'/'+facet+'/'+field)\n                    mark(facet,d)\n        if actual.get('verification',{}).get('state')=='pass_material' and actual.get('states',{}).get('verification',{}).get('state')=='not_verified':\n            add('verification_state_conflict',ap+'/verification/state');mark('verification','violation')\n        if actual.get('provision',{}).get('state')=='provided_material' and actual.get('states',{}).get('provision',{}).get('state')=='not_provided':\n            add('provision_state_conflict',ap+'/provision/state');mark('provision','violation')\n        # R08 history sets; context entries may not be erased.\n        for field in ['unresolved_edges','stale_reasons']:\n            av=actual.get(field);cv=context.get(field);pa=ap+'/'+field;pc=cp+'/'+field\n            aset=classify_set(av,pa,True);cset=classify_set(cv,pc,True)\n            if aset is None: add('history_unknown',pa);mark('history','unknown')\n            if cset is None: add('history_unknown',pc);mark('history','unknown')\n            if aset is not None and cset is not None and not cset.issubset(aset): add('history_lost',pa);mark('history','violation')\n        if actual.get('states',{}).get('freshness',{}).get('state')=='stale' and actual.get('stale_reasons')==[]:\n            add('stale_reason_missing',ap+'/stale_reasons');mark('history','unknown')\n        # R09 boundary claims are checked on actual source only.\n        for field in ['from_unit_success','from_pr_ci_plan','whole_node_complete']:\n            value=actual.get('claims',{}).get(field);p=ap+'/claims/'+field\n            if value is True: add('inferred_completion_forbidden',p);mark('boundary','violation')\n            elif value is not False: add('claim_unknown',p);mark('boundary','unknown')\n        return {'facet_results':result,'findings':local_findings}\n    for project in projects:\n        node_corr[project]={};retained_source[project]={};retained_state[project]={};gaps[project]={}\n        for node in nodes:\n            a=data['projects'][project][node];c=data['context']['projects'][project][node]\n            compared=compare_node(project,node,a,c)\n            node_corr[project][node]=compared['facet_results']\n            for finding in compared['findings']: findings.append(finding)\n            retained_source[project][node]=deep_copy(a['source'])\n            retained_state[project][node]=deep_copy({k:a[k] for k in ['states','verification','acceptance','provision','unresolved_edges','stale_reasons','relations','owners']})\n            if 'kind' in a['source']:\n                retained_state[project][node]['kind']=deep_copy(a['source']['kind'])\n            gaps[project][node]=[axis for axis,allowed in axes.items() if a.get('states',{}).get(axis,{}).get('state')!=allowed[0]]\n    # Same-side target ID collisions are alias violations on both nodes.\n    for side,root in [('actual',data['projects']),('context',data['context']['projects'])]:\n        buckets={}\n        for project in projects:\n            for node in nodes:\n                tid=root[project][node].get('source',{}).get('target_id')\n                if known(tid): buckets.setdefault(tid,[]).append((project,node))\n        for colliding in buckets.values():\n            if len(colliding)>1:\n                for project,node in colliding:\n                    add('identity_aliased',pointer(side,project,node,'source','target_id'))\n                    node_corr[project][node]['source']='violation'\n    claim=data.get('whole_completion_claim')\n    if claim is True:add('whole_completion_forbidden','/whole_completion_claim')\n    elif claim is not False:add('whole_claim_unknown','/whole_completion_claim')\n    rank={'corresponding':0,'unknown':1,'violation':2}\n    values=[x for p in projects for n in nodes for x in node_corr[p][n].values()]\n    if claim is True: values.append('violation')\n    elif claim is not False: values.append('unknown')\n    highest=values[0]\n    for value in values[1:]:\n        if rank[value]>rank[highest]: highest=value\n    condition={'corresponding':'trace_material_corresponding','unknown':'trace_material_unknown','violation':'trace_material_violation'}[highest]\n    findings=route_failure(findings, return_owner)\n    return {'condition':condition,'node_correspondence':node_corr,'retained_source_records':retained_source,'retained_state_trace':retained_state,'observed_gap_axes':gaps,'findings':findings,'actual_state_updated':False,'actual_acceptance_created':False,'actual_release_authorized':False,'whole_portfolio_complete':False,'operation_effect':'none'}\n"
+    "source_code": "def deep_copy(value):\n    if isinstance(value, dict):\n        return {key: deep_copy(item) for key, item in value.items()}\n    if isinstance(value, list):\n        return [deep_copy(item) for item in value]\n    return value\n\ndef expand_case(fixture_inputs, case_input):\n    if case_input.get(\"base_ref\") != \"portfolio\":\n        raise ValueError(\"未定義base_ref\")\n    expanded = deep_copy(fixture_inputs[\"portfolio\"])\n    for replacement in case_input[\"replacements\"]:\n        path = replacement[\"path\"]\n        if not path:\n            raise ValueError(\"空path\")\n        cursor = expanded\n        for member in path[:-1]:\n            if not isinstance(cursor, dict) or member not in cursor:\n                raise ValueError(\"未定義path\")\n            cursor = cursor[member]\n        if not isinstance(cursor, dict) or path[-1] not in cursor:\n            raise ValueError(\"未定義終端\")\n        cursor[path[-1]] = deep_copy(replacement[\"value\"])\n    return expanded\n\ndef route_failure(findings, return_owner):\n    unique = {(item['code'], item['pointer'], return_owner) for item in findings}\n    ordered = sorted(unique)\n    return [{'code': code, 'pointer': pointer, 'return_owner': owner} for code, pointer, owner in ordered]\n\ndef compare_node_material(project, node, actual, context, diagnostic_contract, declared, context_project):\n    rules=diagnostic_contract\n    return_owner='portfolio-trace-owner'\n    facets=rules['facet_order']\n    source_fields=rules['source_fields']\n    receipt_fields=rules['receipt_fields']\n    axes=rules['state_axes']\n    def as_map(value):\n        return value if isinstance(value,dict) else {}\n    def known(value):\n        return isinstance(value,str) and len(value)>0\n    def pointer(side,project,node,*parts):\n        prefix='/projects/' if side=='actual' else '/context/projects/'\n        return prefix+str(project).replace('~','~0').replace('/','~1')+'/'+str(node).replace('~','~0').replace('/','~1')+''.join('/'+str(part).replace('~','~0').replace('/','~1') for part in parts)\n    def classify_set(value,ptr,allow_empty):\n        if not isinstance(value,list) or any(not known(item) for item in value) or len(set(value))!=len(value):\n            return None\n        if not value and not allow_empty:\n            return None\n        return set(value)\n    result={f:'corresponding' for f in facets}\n    local_findings=[]\n    def add(code, ptr):\n        local_findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n    def compare_string(a,b,pa,pb):\n        a_known=known(a); b_known=known(b)\n        if not a_known: add('field_unknown',pa)\n        if not b_known: add('field_unknown',pb)\n        if not a_known or not b_known: return 'unknown'\n        if a != b:\n            add('field_conflict',pa); return 'violation'\n        return 'corresponding'\n    def mark(f, disp):\n        rank={'corresponding':0,'unknown':1,'violation':2}\n        if rank[disp]>rank[result[f]]: result[f]=disp\n    ap=pointer('actual',project,node); cp=pointer('context',project,node)\n    for field in source_fields:\n        d=compare_string(as_map(actual.get('source')).get(field),as_map(context.get('source')).get(field),ap+'/source/'+field,cp+'/source/'+field)\n        mark('source',d)\n    ak=as_map(actual.get('source')).get('kind'); ck=as_map(context.get('source')).get('kind')\n    for value,side in [(ak,'actual'),(ck,'context')]:\n        if not isinstance(value,str) or value not in {'unit','connection','composite'}:\n            add('kind_unknown',pointer(side,project,node,'source','kind')); mark('source','unknown')\n        elif isinstance(declared,str) and declared in {'unit','connection','composite'} and value != declared:\n            add('kind_conflict',pointer(side,project,node,'source','kind')); mark('source','violation')\n    # R03: 各sideのowner集合を分類し、既知集合同士は件数に関わらず集合差を比較する。\n    owners=[]\n    for obj,side in [(actual,'actual'),(context,'context')]:\n        val=obj.get('owners'); p=pointer(side,project,node,'owners')\n        s=classify_set(val,p,False)\n        if s is None:\n            add('owner_unknown',p); mark('owner','unknown'); owners.append(None)\n        elif len(s)>1:\n            add('owner_ambiguous',p); mark('owner','violation'); owners.append(s)\n        else: owners.append(s)\n    if owners[0] is not None and owners[1] is not None and owners[0]!=owners[1]:\n        add('owner_conflict',ap+'/owners');mark('owner','violation')\n    # R04 relation sets and context-side endpoint existence.\n    relations=[]\n    for obj,side in [(actual,'actual'),(context,'context')]:\n        val=obj.get('relations'); p=pointer(side,project,node,'relations')\n        # R04のrelation domainをR12のselector資格と分離する。selector値は補完しない。\n        selector_kind_known=isinstance(declared,str) and declared in {'unit','connection','composite'}\n        relation_unit=declared=='unit' if selector_kind_known else as_map(obj.get('source')).get('kind')=='unit'\n        s=classify_set(val,p,relation_unit)\n        if s is None:\n            add('relation_unknown',p);mark('relation','unknown');relations.append(None)\n        else: relations.append(s)\n    if relations[0] is not None and relations[1] is not None and relations[0]!=relations[1]:\n        add('relation_conflict',ap+'/relations');mark('relation','violation')\n    for obj,side in [(actual,'actual'),(context,'context')]:\n        rel=obj.get('relations')\n        rel_ptr=pointer(side,project,node,'relations')\n        if isinstance(rel,list) and all(known(x) for x in rel) and len(set(rel))==len(rel):\n            rendered={}\n            # L4のtarget_id@target_revision表記が一意に解ける文脈nodeだけをendpoint候補にする。\n            portfolio=context_project\n            for other in portfolio.values():\n                src=as_map(other).get('source',{}); src=as_map(src); tid=src.get('target_id'); rev=src.get('target_revision')\n                if not known(tid) or not known(rev):\n                    continue\n                elif '@' in tid or '@' in rev:\n                    rendered.setdefault(tid+'@'+rev,[]).append((tid,rev,'ambiguous_encoding'))\n                else:\n                    rendered.setdefault(tid+'@'+rev,[]).append((tid,rev,'unique'))\n            unresolved=False; missing=False\n            for endpoint in rel:\n                candidates=rendered.get(endpoint,[])\n                identities={(row[0],row[1]) for row in candidates}\n                if len(identities)>1 or any(row[2]=='ambiguous_encoding' for row in candidates):\n                    unresolved=True\n                elif not candidates:\n                    missing=True\n            if unresolved:\n                add('relation_unknown',rel_ptr);mark('relation','unknown')\n            if missing:\n                add('relation_endpoint_conflict',rel_ptr);mark('relation','violation')\n    # R05 states and state source references.\n    for axis,allowed in axes.items():\n        aa=as_map(as_map(actual.get('states')).get(axis)); cc=as_map(as_map(context.get('states')).get(axis))\n        av=aa.get('state'); cv=cc.get('state'); pa=ap+'/states/'+axis+'/state'; pc=cp+'/states/'+axis+'/state'\n        if av not in allowed:\n            add('state_unknown',pa);mark('state','unknown')\n        if cv not in allowed:\n            add('state_unknown',pc);mark('state','unknown')\n        if av in allowed and cv in allowed and av!=cv:\n            add('state_conflict',pa);mark('state','violation')\n        for key in ['source_ref','source_revision']:\n            d=compare_string(aa.get(key),cc.get(key),ap+'/states/'+axis+'/'+key,cp+'/states/'+axis+'/'+key);mark('state',d)\n    av=as_map(as_map(actual.get('states')).get('knowledge')).get('state')\n    if av=='unknown': add('knowledge_unknown',ap+'/states/knowledge/state');mark('state','unknown')\n    av=as_map(as_map(actual.get('states')).get('freshness')).get('state')\n    if av=='stale': add('state_stale',ap+'/states/freshness/state');mark('state','unknown')\n    # R06 receipt/result states and field joins.\n    for facet in ['verification','acceptance','provision']:\n        ar=as_map(actual.get(facet)); cr=as_map(context.get(facet))\n        allowed=rules['result_states'][facet]\n        ast=ar.get('state'); cst=cr.get('state'); p=ap+'/'+facet+'/state'; q=cp+'/'+facet+'/state'\n        if ast not in allowed:\n            add('result_unknown',p);mark(facet,'unknown')\n        if cst not in allowed:\n            add('result_unknown',q);mark(facet,'unknown')\n        if ast in allowed and cst in allowed and ast!=cst:\n            add('result_conflict',p);mark(facet,'violation')\n        # Receipt identity fields bind against context receipt and node source.\n        for field in receipt_fields:\n            d=compare_string(ar.get(field),cr.get(field),ap+'/'+facet+'/'+field,cp+'/'+facet+'/'+field);mark(facet,d)\n            if field in ['project_id','requirement_revision','scope','target_id','target_revision','kind']:\n                expected=as_map(context.get('source')).get(field)\n                if not known(expected):\n                    mark(facet,'unknown')\n                elif known(ar.get(field)) and ar.get(field)!=expected:\n                    add('field_conflict',ap+'/'+facet+'/'+field);mark(facet,'violation')\n        if facet=='provision':\n            for field in rules['provision_additional_comparison_fields']:\n                d=compare_string(ar.get(field),cr.get(field),ap+'/'+facet+'/'+field,cp+'/'+facet+'/'+field)\n                mark(facet,d)\n    if as_map(actual.get('verification')).get('state')=='pass_material' and as_map(as_map(actual.get('states')).get('verification')).get('state')=='not_verified':\n        add('verification_state_conflict',ap+'/verification/state');mark('verification','violation')\n    if as_map(actual.get('provision')).get('state')=='provided_material' and as_map(as_map(actual.get('states')).get('provision')).get('state')=='not_provided':\n        add('provision_state_conflict',ap+'/provision/state');mark('provision','violation')\n    # R08 history sets; context entries may not be erased.\n    for field in ['unresolved_edges','stale_reasons']:\n        av=actual.get(field);cv=context.get(field);pa=ap+'/'+field;pc=cp+'/'+field\n        aset=classify_set(av,pa,True);cset=classify_set(cv,pc,True)\n        if aset is None: add('history_unknown',pa);mark('history','unknown')\n        if cset is None: add('history_unknown',pc);mark('history','unknown')\n        if aset is not None and cset is not None and not cset.issubset(aset): add('history_lost',pa);mark('history','violation')\n    if as_map(as_map(actual.get('states')).get('freshness')).get('state')=='stale' and actual.get('stale_reasons')==[]:\n        add('stale_reason_missing',ap+'/stale_reasons');mark('history','unknown')\n    # R09 boundary claims are checked on actual source only.\n    for field in ['from_unit_success','from_pr_ci_plan','whole_node_complete']:\n        value=as_map(actual.get('claims')).get(field);p=ap+'/claims/'+field\n        if value is True: add('inferred_completion_forbidden',p);mark('boundary','violation')\n        elif value is not False: add('claim_unknown',p);mark('boundary','unknown')\n    return {'facet_results':result,'findings':local_findings}\n\ndef evaluate_portfolio(input, diagnostic_contract, *selected_targets):\n    if len(selected_targets)==1:\n        return evaluate_portfolio_selected(input,diagnostic_contract,selected_targets[0])\n    if len(selected_targets)>1:\n        raise ValueError('evaluate_portfolio引数個数不正')\n    data = input\n    rules = diagnostic_contract\n    return_owner = 'portfolio-trace-owner'\n    compatibility=rules.get('baseline_fixture_compatibility',{})\n    projects = rules.get('projects',compatibility.get('projects'))\n    nodes = rules.get('node_kinds',compatibility.get('node_kinds'))\n    axes = rules['state_axes']\n    facets = rules['facet_order']\n    source_fields = rules['source_fields']\n    receipt_fields = rules['receipt_fields']\n    node_corr = {}\n    retained_source = {}\n    retained_state = {}\n    gaps = {}\n    findings = []\n    def pointer(side, project, node, *parts):\n        prefix = '/projects/' if side == 'actual' else '/context/projects/'\n        return prefix + project + '/' + node + ''.join('/' + str(p).replace('~','~0').replace('/','~1') for p in parts)\n    def add(code, ptr):\n        findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n    def known(v):\n        return isinstance(v,str) and len(v)>0\n    def classify_set(value, ptr, allow_empty):\n        if not isinstance(value,list) or any(not known(x) for x in value) or len(set(value)) != len(value):\n            return None\n        if not value and not allow_empty:\n            return None\n        return set(value)\n    def compare_node(project, node, actual, context):\n        return compare_node_material(project,node,actual,context,rules,nodes[node],data['context']['projects'][project])\n    for project in projects:\n        node_corr[project]={};retained_source[project]={};retained_state[project]={};gaps[project]={}\n        for node in nodes:\n            a=data['projects'][project][node];c=data['context']['projects'][project][node]\n            compared=compare_node(project,node,a,c)\n            node_corr[project][node]=compared['facet_results']\n            for finding in compared['findings']: findings.append(finding)\n            retained_source[project][node]=deep_copy(a['source'])\n            retained_state[project][node]=deep_copy({k:a[k] for k in ['states','verification','acceptance','provision','unresolved_edges','stale_reasons','relations','owners']})\n            if 'kind' in a['source']:\n                retained_state[project][node]['kind']=deep_copy(a['source']['kind'])\n            gaps[project][node]=[axis for axis,allowed in axes.items() if a.get('states',{}).get(axis,{}).get('state')!=allowed[0]]\n    # Same-side target ID collisions are alias violations on both nodes.\n    for side,root in [('actual',data['projects']),('context',data['context']['projects'])]:\n        buckets={}\n        for project in projects:\n            for node in nodes:\n                tid=root[project][node].get('source',{}).get('target_id')\n                if known(tid): buckets.setdefault(tid,[]).append((project,node))\n        for colliding in buckets.values():\n            if len(colliding)>1:\n                for project,node in colliding:\n                    add('identity_aliased',pointer(side,project,node,'source','target_id'))\n                    node_corr[project][node]['source']='violation'\n    claim=data.get('whole_completion_claim')\n    if claim is True:add('whole_completion_forbidden','/whole_completion_claim')\n    elif claim is not False:add('whole_claim_unknown','/whole_completion_claim')\n    rank={'corresponding':0,'unknown':1,'violation':2}\n    values=[x for p in projects for n in nodes for x in node_corr[p][n].values()]\n    if claim is True: values.append('violation')\n    elif claim is not False: values.append('unknown')\n    highest=values[0]\n    for value in values[1:]:\n        if rank[value]>rank[highest]: highest=value\n    condition={'corresponding':'trace_material_corresponding','unknown':'trace_material_unknown','violation':'trace_material_violation'}[highest]\n    findings=route_failure(findings, return_owner)\n    return {'condition':condition,'node_correspondence':node_corr,'retained_source_records':retained_source,'retained_state_trace':retained_state,'observed_gap_axes':gaps,'findings':findings,'actual_state_updated':False,'actual_acceptance_created':False,'actual_release_authorized':False,'whole_portfolio_complete':False,'operation_effect':'none'}\n\ndef evaluate_portfolio_selected(input, diagnostic_contract, *supplied_targets):\n    # 0 supplied targetsはselected専用entrypointのAbsent。Noneはpresent null。\n    if len(supplied_targets)>1:\n        raise ValueError('selected targets引数は最大1件')\n    targets_presence='absent' if not supplied_targets else 'null' if supplied_targets[0] is None else 'present'\n    targets=supplied_targets[0] if targets_presence!='absent' else None\n    rules=diagnostic_contract\n    return_owner='portfolio-trace-owner'\n    axes=rules['state_axes']\n    facets=rules['facet_order']\n    source_fields=rules['source_fields']\n    receipt_fields=rules['receipt_fields']\n    rank={'corresponding':0,'unknown':1,'violation':2}\n    findings=[]\n    node_corr={}\n    retained_source={}\n    retained_state={}\n    gaps={}\n    def as_map(value):\n        return value if isinstance(value,dict) else {}\n    def known(value):\n        return isinstance(value,str) and len(value)>0\n    def token(value):\n        return str(value).replace('~','~0').replace('/','~1')\n    def pointer(side,project,node,*parts):\n        prefix='/projects/' if side=='actual' else '/context/projects/'\n        return prefix+token(project)+'/'+token(node)+''.join('/'+token(part) for part in parts)\n    def add(code,ptr):\n        findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n    def locate(root,path,prefix):\n        cursor=root\n        ptr=prefix\n        for key in path:\n            if not isinstance(cursor,dict):\n                return {'present':False,'value':None,'pointer':ptr}\n            ptr=ptr+'/'+token(key)\n            if key not in cursor:\n                return {'present':False,'value':None,'pointer':ptr}\n            cursor=cursor[key]\n        return {'present':True,'value':cursor,'pointer':ptr}\n    def map_value(located):\n        return as_map(located['value'])\n    def valid_record(located):\n        return located['present'] and isinstance(located['value'],dict)\n    def mark(project,node,facet,state):\n        old=node_corr[project][node][facet]\n        if rank[state]>rank[old]:\n            node_corr[project][node][facet]=state\n    def classify_set(value,ptr,allow_empty):\n        if not isinstance(value,list) or any(not known(item) for item in value) or len(set(value))!=len(value):\n            return None\n        if not value and not allow_empty:\n            return None\n        return set(value)\n    actual_projects=map_value(locate(input,['projects'],''))\n    context_projects=map_value(locate(input,['context','projects'],''))\n    selected_projects_location=locate(targets,['projects'],'/targets')\n    selected_projects=map_value(selected_projects_location)\n    def compare_selected_node(project, node, actual, context, declared):\n        return compare_node_material(project,node,actual,context,rules,declared,as_map(context_projects.get(project)))\n    # R12/R17: 選択のprovenanceとproject集合はraw target引数だけから読む。\n    provenance_unknown=False\n    for field in ['selection_source_ref','selection_source_revision','selection_source_digest']:\n        location=locate(targets,[field],'/targets')\n        if not location['present'] or not known(location['value']):\n            add('field_unknown',location['pointer'])\n            provenance_unknown=True\n    if not valid_record(selected_projects_location):\n        add('field_unknown',selected_projects_location['pointer'])\n    identities=set()\n    empty_nodes=[]\n    for project in sorted(selected_projects):\n        project_location=locate(targets,['projects',project],'/targets')\n        project_target=map_value(project_location)\n        if not valid_record(project_location):\n            add('field_unknown',project_location['pointer'])\n            continue\n        if known(project_target.get('project_id')):\n            identities.add(project_target['project_id'])\n        nodes_location=locate(targets,['projects',project,'nodes'],'/targets')\n        if not valid_record(nodes_location):\n            add('field_unknown',nodes_location['pointer'])\n        elif not nodes_location['value']:\n            empty_nodes.append(nodes_location['pointer'])\n    if valid_record(selected_projects_location) and len(identities)<2:\n        add('field_unknown','/targets/projects')\n    project_keys=sorted(set(list(actual_projects)+list(context_projects)+list(selected_projects)))\n    for project in project_keys:\n        actual_nodes=as_map(actual_projects.get(project))\n        context_nodes=as_map(context_projects.get(project))\n        project_target=as_map(selected_projects.get(project))\n        selected_nodes=as_map(project_target.get('nodes'))\n        node_corr[project]={}\n        # R15: 存在しないactual projectの保持entryを作らない。\n        if project in actual_projects and isinstance(actual_projects[project],dict):\n            retained_source[project]={}\n            retained_state[project]={}\n            gaps[project]={}\n        node_keys=sorted(set(list(actual_nodes)+list(context_nodes)+list(selected_nodes)))\n        for node in node_keys:\n            actual_location=locate(input,['projects',project,node],'')\n            context_location=locate(input,['context','projects',project,node],'')\n            selection_location=locate(targets,['projects',project,'nodes',node],'/targets')\n            a=actual_location['value']\n            c=context_location['value']\n            target=map_value(selection_location)\n            selected=valid_record(selection_location)\n            both=valid_record(actual_location) and valid_record(context_location)\n            node_corr[project][node]={facet:'corresponding' if selected and both else 'unknown' for facet in facets}\n            if not selected:\n                add('field_unknown',selection_location['pointer'])\n                if node in actual_nodes and not valid_record(actual_location):\n                    add('field_unknown',actual_location['pointer'])\n            else:\n                for location in [actual_location,context_location]:\n                    if not valid_record(location):\n                        add('field_unknown',location['pointer'])\n                if both:\n                    compared=compare_selected_node(project,node,a,c,target.get('kind'))\n                    node_corr[project][node]=compared['facet_results']\n                    for finding in compared['findings']:\n                        findings.append(finding)\n                if provenance_unknown:\n                    mark(project,node,'source','unknown')\n                project_axes=rules['selected_target_contract']['identity_and_binding']['project_axes']\n                node_axes=rules['selected_target_contract']['identity_and_binding']['node_axes']\n                for fields,selection,path in [(project_axes,project_target,['projects',project]),(node_axes,target,['projects',project,'nodes',node])]:\n                    for field in fields:\n                        value=selection.get(field)\n                        is_kind=field=='kind'\n                        is_known=known(value) and (not is_kind or value in {'unit','connection','composite'})\n                        if not is_known:\n                            location=locate(targets,path+[field],'/targets')\n                            add('kind_unknown' if is_kind else 'field_unknown',location['pointer'])\n                            mark(project,node,'source','unknown')\n                        else:\n                            for side,location in [('actual',actual_location),('context',context_location)]:\n                                if valid_record(location):\n                                    source=as_map(location['value'].get('source'))\n                                    actual_value=source.get(field)\n                                    p=pointer(side,project,node,'source',field)\n                                    if not known(actual_value) or (is_kind and actual_value not in {'unit','connection','composite'}):\n                                        add('kind_unknown' if is_kind else 'field_unknown',p)\n                                        mark(project,node,'source','unknown')\n                                    elif actual_value!=value:\n                                        add('kind_conflict' if is_kind else 'field_conflict',p)\n                                        mark(project,node,'source','violation')\n            # R11/R15: actualの元memberだけをdeepcopyし、contextから埋めない。\n            if node in actual_nodes and isinstance(a,dict):\n                if 'source' in a:\n                    retained_source[project][node]=deep_copy(a['source'])\n                retained_state[project][node]=deep_copy({key:a[key] for key in ['states','verification','acceptance','provision','unresolved_edges','stale_reasons','relations','owners'] if key in a})\n                if isinstance(a.get('source'),dict) and 'kind' in a['source']:\n                    retained_state[project][node]['kind']=deep_copy(a['source']['kind'])\n                if 'states' in a:\n                    gaps[project][node]=[axis for axis,allowed in axes.items() if as_map(as_map(a['states']).get(axis)).get('state')!=allowed[0]]\n    # R02/R09: selection外も含む全observed node。sideをまたいだaliasは作らない。\n    for side,projects in [('actual',actual_projects),('context',context_projects)]:\n        buckets={}\n        for project in sorted(projects):\n            for node in sorted(as_map(projects[project])):\n                raw=projects[project][node]\n                if not isinstance(raw,dict):\n                    continue\n                tid=as_map(raw.get('source')).get('target_id')\n                if known(tid):\n                    buckets.setdefault(tid,[]).append((project,node))\n                if side=='actual':\n                    for field in ['from_unit_success','from_pr_ci_plan','whole_node_complete']:\n                        value=as_map(raw.get('claims')).get(field)\n                        if value is True:\n                            add('inferred_completion_forbidden',pointer(side,project,node,'claims',field))\n                            mark(project,node,'boundary','violation')\n                        elif value is not False:\n                            add('claim_unknown',pointer(side,project,node,'claims',field))\n                            mark(project,node,'boundary','unknown')\n        for colliding in buckets.values():\n            if len(colliding)>1:\n                for project,node in colliding:\n                    add('identity_aliased',pointer(side,project,node,'source','target_id'))\n                    mark(project,node,'source','violation')\n    if not any(node_corr[project] for project in node_corr) and selected_projects and len(empty_nodes)==len(selected_projects):\n        for ptr in empty_nodes:\n            add('result_unknown',ptr)\n    claim=as_map(input).get('whole_completion_claim')\n    if claim is True:\n        add('whole_completion_forbidden','/whole_completion_claim')\n    elif claim is not False:\n        add('whole_claim_unknown','/whole_completion_claim')\n    values=[value for project in node_corr.values() for node in project.values() for value in node.values()]\n    # nodeを持たない選択domainの局所診断もaggregateの理由として保持する。\n    code_rank={item['code']:item['disposition'] for item in rules['codes']}\n    for finding in findings:\n        values.append(code_rank[finding['code']])\n    highest='unknown' if not values else 'corresponding'\n    for value in values:\n        if rank[value]>rank[highest]:\n            highest=value\n    condition={'corresponding':'trace_material_corresponding','unknown':'trace_material_unknown','violation':'trace_material_violation'}[highest]\n    return {'condition':condition,'node_correspondence':node_corr,'retained_source_records':retained_source,'retained_state_trace':retained_state,'observed_gap_axes':gaps,'findings':route_failure(findings,return_owner),'actual_state_updated':False,'actual_acceptance_created':False,'actual_release_authorized':False,'whole_portfolio_complete':False,'operation_effect':'none'}\n"
   },
   "formal_calculation_contract": {
     "authority": "normative_program.source_codeがL5有限fixture計算の唯一の規範である。branch_table、diagnostic_policy、logical_schema_boundary等は型・入力・説明であり、計算結果を別に定義しない。コードと説明の不一致は解消し、期待wholeは計算後にだけ比較する。",
     "calculation_order": [
-      "L9 given.inputをnormative_program.expand_caseで展開",
-      "展開rawとdiagnostic_contractをnormative_program.evaluate_portfolioへ渡す",
-      "L8が示すL9 expected_proposal wholeと計算後に比較"
+      "2引数baselineはL9 given.inputをexpand_caseで展開し、evaluate_portfolioへ渡す。固定domainはdiagnostic_contract.baseline_fixture_compatibilityだけで読む。",
+      "3引数selectedはL8 selected_domain_profile.casesのinput_ref/targets_refを各L9 sourceへ解決し、raw portfolioとtargetsおよびL4 diagnostic_contractをevaluate_portfolioへ渡す。dispatcherはevaluate_portfolio_selectedへ結線する。",
+      "selected専用entrypointのtargets省略は内部Absentの診断用経路。2引数evaluate_portfolioのbaseline呼出しとは別のentrypointであり、selectedからbaselineへfallbackしない。",
+      "全11 rootを返してから、baseline expected_proposalまたはselected expected_wholeの凍結済みsourceをJSON型付き全体比較する。"
     ],
     "expected_data_is_not_an_operand": true,
     "all_output_fields": [
@@ -2087,7 +2446,7 @@
       "whole_portfolio_complete",
       "operation_effect"
     ],
-    "scope": "有限L9 fixture契約とL4 diagnostic_contract。未知入力domainの資格・実consumer bindingはこの計算から成立しない。"
+    "scope": "既存356 baseline fixtureとselected profile 29 fixtureについて、L4 diagnostic_contract R01–R17から純粋計算を導出する。これは詳細設計の宣言計算正本であり、製品runtime、実source資格、実provider/codec/CI、PO受入、全入力域の閉包は成立させない。"
   },
   "domain_totality_rules": {
     "source.kind": {
@@ -2173,5 +2532,85 @@
       "対oracle": "L8の356元whole、独立境界部分期待、domain wholeと型外/guard/保持独立性probeへ結ぶ。"
     },
     "limit": "限定採用済み意味内容のみ参照。運用knowledge昇格、正式schema、全template採用、設計正しさを生成しない。"
-  }
+  },
+  "semantic_rederivations": [
+    {
+      "id": "RELATION-DOMAIN-INDEPENDENCE",
+      "reuse_class": "semantic_rederive",
+      "current_basis": [
+        {
+          "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+          "revision": "dceecf904c6c5d616547cdc2f6dc31a5d5590c76",
+          "sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+          "pointer": "/diagnostic_contract/rules/3",
+          "role": "R04:unitのrelation空集合は正常。"
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+          "revision": "dceecf904c6c5d616547cdc2f6dc31a5d5590c76",
+          "sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+          "pointer": "/diagnostic_contract/selected_target_rules/0",
+          "role": "R12:selector field invalidはaffected source facetだけunknown。"
+        }
+      ],
+      "legacy_basis": {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": [
+          24,
+          30,
+          58,
+          86
+        ]
+      },
+      "preserve": "kind/identityとlocator、独立fieldの役割を分離し、selector一項目の不正から他の既知fieldを消さない。",
+      "change": "R12のselector kindがinvalidでも、R04の各side既存source.kindが既知unitなら当該sideのrelation空集合を正常値として比較する。selector kind自体は補完しない。",
+      "reason": "R12はaffected source facetだけunknownと明示し、R04はunitの空relationを正常とする。片方のsource.kindも未知ならunitへ推定しない。旧sourceがこの新selectorを持つという主張ではなく、責務分離原則を現行二規則へ再導出する。"
+    },
+    {
+      "id": "RELATION-AT-ENCODING",
+      "reuse_class": "semantic_rederive",
+      "current_basis": [
+        {
+          "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+          "revision": "dceecf904c6c5d616547cdc2f6dc31a5d5590c76",
+          "sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+          "pointer": "/diagnostic_contract/rules/3",
+          "role": "R04:同project contextのidentity/revisionへの関係照合。"
+        },
+        {
+          "document": "L5",
+          "pointer": "/functions/1/branch_table/11",
+          "role": "既存baselineの@表記規則。"
+        },
+        {
+          "document": "L8",
+          "pointer": "/domain_probes/cases/11",
+          "role": "既存LOCAL-OS016-AT-SIGN-AMBIGUOUS-ENDPOINT。"
+        }
+      ],
+      "legacy_basis": {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": [
+          30,
+          36,
+          86,
+          91
+        ]
+      },
+      "preserve": "identity/revisionの原値を保持し、不可逆な表示から対応identityを捏造しない。既存baseline期待を維持する。",
+      "change": "@を含むatomがある単一連結stringのendpointはrelation_unknownとする既存詳細設計の表現境界を、共有kernelへそのまま移す。",
+      "reason": "target_id=a@b, revision=cとtarget_id=a, revision=b@cはいずれもa@b@cとなり、escape grammarを持たない連結値だけでは一意に逆変換できない。R04のidentity/revision照合を成功へ丸めないための技術的な未解決扱いであり、旧sourceやL4が@ codecを指定したとの主張、新source資格、常時必須gateではない。",
+      "remaining": "構造化endpoint型やescape codecの選定は本差分で追加しない。",
+      "history_basis": {
+        "path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
+        "revision": "dceecf904c6c5d616547cdc2f6dc31a5d5590c76",
+        "pointer": "/functions/1/branch_table/11",
+        "role": "selected追加前の既存baseline詳細規則をそのまま保持する読取source。",
+        "sha256": "97a7ebdb8a39609ab4a2b985533ceb9b7ed3873ad26d262418154bdf7eb58c3e",
+        "object_canonical_sha256": "07fbe7e17cccdcd5b9492569be4a8104b1ca70750872b1c9a1f6c969ca6e1706"
+      }
+    }
+  ]
 }
