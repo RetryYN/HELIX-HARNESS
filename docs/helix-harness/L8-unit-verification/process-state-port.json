@@ -125790,21 +125790,21 @@
                           },
                           "source_pointer": "/original_sources/022_difference/original_contents/target_operation/consumer_target",
                           "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。",
-                          "operation_source_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                          "input_source_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                          "argument_context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
+                          "operation_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                          "input_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                          "argument_context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
                           "role_adapter_projection": {
                             "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                            "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                            "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                            "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                            "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
+                            "input_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                            "context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                            "candidate_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/candidate",
+                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/ref",
+                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
+                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/ref",
+                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/raw_utf8",
+                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                            "function_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/function_ref",
                             "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
                             "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
                             "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
@@ -125812,7 +125812,17 @@
                             "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
                             "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
                             "source_packet_utf8_byte_length": 10171,
-                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。"
+                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。",
+                            "caller_pointer_root": {
+                              "kind": "caller_input",
+                              "pointer": ""
+                            },
+                            "pinned_fixture_pointer_root": {
+                              "kind": "pinned_source_file",
+                              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                              "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+                              "file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362"
+                            }
                           }
                         }
                       ],
@@ -127436,21 +127446,21 @@
                           },
                           "source_pointer": "/original_sources/022_difference/original_contents/target_operation/consumer_target",
                           "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。",
-                          "operation_source_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                          "input_source_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                          "argument_context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
+                          "operation_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                          "input_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                          "argument_context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
                           "role_adapter_projection": {
                             "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                            "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                            "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                            "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                            "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
+                            "input_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                            "context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                            "candidate_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/candidate",
+                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/ref",
+                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
+                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/ref",
+                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/raw_utf8",
+                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                            "function_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/function_ref",
                             "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
                             "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
                             "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
@@ -127458,7 +127468,17 @@
                             "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
                             "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
                             "source_packet_utf8_byte_length": 10171,
-                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。"
+                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。",
+                            "caller_pointer_root": {
+                              "kind": "caller_input",
+                              "pointer": ""
+                            },
+                            "pinned_fixture_pointer_root": {
+                              "kind": "pinned_source_file",
+                              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                              "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+                              "file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362"
+                            }
                           }
                         }
                       ],
@@ -129737,21 +129757,21 @@
                           },
                           "source_pointer": "/original_sources/022_difference/original_contents/target_operation/consumer_target",
                           "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。",
-                          "operation_source_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                          "input_source_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                          "argument_context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
+                          "operation_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                          "input_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                          "argument_context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
                           "role_adapter_projection": {
                             "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                            "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                            "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                            "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                            "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
+                            "input_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                            "context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                            "candidate_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/candidate",
+                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/ref",
+                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
+                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/ref",
+                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/raw_utf8",
+                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                            "function_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/function_ref",
                             "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
                             "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
                             "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
@@ -129759,7 +129779,17 @@
                             "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
                             "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
                             "source_packet_utf8_byte_length": 10171,
-                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。"
+                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。",
+                            "caller_pointer_root": {
+                              "kind": "caller_input",
+                              "pointer": ""
+                            },
+                            "pinned_fixture_pointer_root": {
+                              "kind": "pinned_source_file",
+                              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                              "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+                              "file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362"
+                            }
                           }
                         }
                       ],
@@ -129905,7 +129935,6 @@
                       "scope": "PRODUCT-P",
                       "owner": "synthetic-independent-design-source"
                     },
-                    "profile_context_association_pointer": "/original_sources/assignment_relation/original_contents/profile_context_associations/3",
                     "native_call_binding_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding",
                     "synthetic_association_basis": "この原operation associationは有限合成設計入力。実lineage/実資格/実runtimeを証明しない。",
                     "request_association": {
@@ -129973,14 +130002,14 @@
                         }
                       },
                       "business_obligation_mapping": {
-                        "business_obligations_pointer": "/original_sources/business_packet/original_contents/parsed_target/state_proofs/Verified/original_contents/content/system_specific_obligations",
-                        "business_observation_pointer": "/original_sources/business_packet/original_contents/parsed_target/state_proofs/Verified/original_contents/content/system_observations/0",
-                        "business_difference_pointer": "/original_sources/business_packet/original_contents/parsed_target/state_proofs/Verified/original_contents/content/005_022_difference",
+                        "business_obligations_pointer": "/state_proofs/Verified/content/system_specific_obligations",
+                        "business_observation_pointer": "/state_proofs/Verified/content/system_observations/0",
+                        "business_difference_pointer": "/state_proofs/Verified/content/005_022_difference",
                         "native_obligation_key": "global_balance_conservation",
-                        "native_context_obligation_pointer": "/original_sources/022_difference/original_contents/arguments/context/expected_profiles/L3_contract/obligations/global_balance_conservation",
-                        "native_material_pointer": "/original_sources/022_difference/original_contents/arguments/input/materials/unique_quality/contents/global_balance_conservation",
-                        "native_evidence_selector_pointer": "/original_sources/022_difference/original_contents/arguments/input/materials/unique_quality/evidence_id",
-                        "native_evidence_contents_pointer": "/original_sources/022_difference/original_contents/arguments/input/evidence_materials/<selected evidence identity>/contents/global_balance_conservation",
+                        "native_context_obligation_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context/expected_profiles/L3_contract/obligations/global_balance_conservation",
+                        "native_material_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input/materials/unique_quality/contents/global_balance_conservation",
+                        "native_evidence_selector_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input/materials/unique_quality/evidence_id",
+                        "native_evidence_contents_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input/evidence_materials/H003-BALANCE-EVIDENCE-unique_quality/contents/global_balance_conservation",
                         "business_value": {
                           "id": "global_balance_conservation",
                           "before_total": 10,
@@ -129992,7 +130021,15 @@
                           "expected_total": 10,
                           "observed_total": 10
                         },
-                        "basis": "H022 pending fixtureとの合成対応を全comparandで個別に検証する。実source lineage/資格ではない。"
+                        "basis": "H022 pending fixtureとの合成対応を全comparandで個別に検証する。実source lineage/資格ではない。",
+                        "business_pointer_root": {
+                          "kind": "strict_json_decode",
+                          "caller_source_pointer": "/original_sources/business_packet/original_contents/raw_utf8"
+                        },
+                        "native_pointer_root": {
+                          "kind": "caller_input",
+                          "pointer": ""
+                        }
                       },
                       "scope_limit": "合成fixtureの独立比較元。assignment_refや同値shapeだけで、実lineage、実owner資格、実承認、実runtimeを成立扱いしない。",
                       "source_role": "このcanonical target_operationが直接保持する合成operation/request対応。独立assignment SourceCellや資格は要求しない。",
@@ -130524,15 +130561,15 @@
                           "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
                           "role_adapter_projection": {
                             "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                            "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                            "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                            "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                            "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
+                            "input_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                            "context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                            "candidate_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/candidate",
+                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/ref",
+                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
+                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/ref",
+                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/raw_utf8",
+                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                            "function_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/function_ref",
                             "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
                             "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
                             "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
@@ -130540,7 +130577,17 @@
                             "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
                             "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
                             "source_packet_utf8_byte_length": 10171,
-                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。"
+                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。",
+                            "caller_pointer_root": {
+                              "kind": "caller_input",
+                              "pointer": ""
+                            },
+                            "pinned_fixture_pointer_root": {
+                              "kind": "pinned_source_file",
+                              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                              "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+                              "file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362"
+                            }
                           }
                         }
                       ]
@@ -131323,7 +131370,7 @@
             },
             "candidate": null
           },
-          "input_canonical_sha256": "627cd044044e2b1903f614cb74d0617491abd0fc31d0f6709d10a14373e41c02",
+          "input_canonical_sha256": "4c3bae076e4a42495fd60ff952f12d41e960e5fd93822fd265c53f32ad98ccd5",
           "input_rule": "このcaller inputの原SourceCellからcallee typed argumentsを導出し、pure callの完全返却・L4 source-binding局所状態・既存whole結果を別々に照合する。期待値はtest側であり、実行資格やruntime結果ではない。",
           "expected_private_call_records": [
             {
@@ -132297,7 +132344,7 @@
                 },
                 "owner": "source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "0816154f82d004116c95642b909bd5ef541d8fbc7039776a8cb7686eaa0ebba9",
+              "source_cell_snapshot_sha256": "465ba29aa5ce76f10e05be3006f6289ee6f0c56158bd3536fed4d85f722da38f",
               "argument_snapshot_sha256": "5ff93d8b8abe7fb5fc7d35703512adc9a15fe96d8c55488267faab4f14dd6852",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -133267,7 +133314,7 @@
                   "execution_kind": "synthetic_design_comparison"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "0816154f82d004116c95642b909bd5ef541d8fbc7039776a8cb7686eaa0ebba9"
+                "source_cell_snapshot_sha256": "465ba29aa5ce76f10e05be3006f6289ee6f0c56158bd3536fed4d85f722da38f"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -134238,7 +134285,7 @@
                   "execution_kind": "synthetic_design_comparison"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "0816154f82d004116c95642b909bd5ef541d8fbc7039776a8cb7686eaa0ebba9"
+                "source_cell_snapshot_sha256": "465ba29aa5ce76f10e05be3006f6289ee6f0c56158bd3536fed4d85f722da38f"
               },
               "native_source_cell_ref": {
                 "identity": "CARRIER-005_valley",
@@ -134349,7 +134396,7 @@
                 },
                 "owner": "source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "65e50a2bf222228981e6dc7c9c359730196a15081a14bcddb3173461eb20c0aa",
+              "source_cell_snapshot_sha256": "cf5ecdd508ed6e888b191035d788411114d94624ac19191ce5dca56175a26b31",
               "argument_snapshot_sha256": "c651fcadb62f9e8b69984b3f37a8ec5a4a802b82491a2c62c7545bc769d63972",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -134446,7 +134493,7 @@
                   "authority_effect": "none"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "65e50a2bf222228981e6dc7c9c359730196a15081a14bcddb3173461eb20c0aa"
+                "source_cell_snapshot_sha256": "cf5ecdd508ed6e888b191035d788411114d94624ac19191ce5dca56175a26b31"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -134544,7 +134591,7 @@
                   "authority_effect": "none"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "65e50a2bf222228981e6dc7c9c359730196a15081a14bcddb3173461eb20c0aa"
+                "source_cell_snapshot_sha256": "cf5ecdd508ed6e888b191035d788411114d94624ac19191ce5dca56175a26b31"
               },
               "source_file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
               "native_source_cell_ref": {
@@ -135583,7 +135630,7 @@
                 },
                 "owner": "source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "65e50a2bf222228981e6dc7c9c359730196a15081a14bcddb3173461eb20c0aa",
+              "source_cell_snapshot_sha256": "cf5ecdd508ed6e888b191035d788411114d94624ac19191ce5dca56175a26b31",
               "argument_snapshot_sha256": "3179b8ecc1764c64f876c107963614047b0217c5b2f996002c601f996f0d431a",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -136607,7 +136654,7 @@
                   ]
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "65e50a2bf222228981e6dc7c9c359730196a15081a14bcddb3173461eb20c0aa"
+                "source_cell_snapshot_sha256": "cf5ecdd508ed6e888b191035d788411114d94624ac19191ce5dca56175a26b31"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -137632,7 +137679,7 @@
                   ]
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "65e50a2bf222228981e6dc7c9c359730196a15081a14bcddb3173461eb20c0aa"
+                "source_cell_snapshot_sha256": "cf5ecdd508ed6e888b191035d788411114d94624ac19191ce5dca56175a26b31"
               },
               "source_file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
               "native_source_cell_ref": {
@@ -139982,7 +140029,7 @@
                 },
                 "owner": "synthetic-source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "81ed099a35aac3d201d95de33de1026ca3893c33789ad587992a4e67d0c70ba8",
+              "source_cell_snapshot_sha256": "2bdb451fe0de53df992c9fff7c624f5895c1fa7a1f3f2b6f676314cc3dec7c9a",
               "argument_snapshot_sha256": "9192eb4e76d065a740699d7f2824468daa1917f124445e296334f63234cd2a7b",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -141896,7 +141943,7 @@
                   "execution_kind": "synthetic_design_comparison"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "ef69477588c875a193f9113e3e62a4089c2da0781e8ca7564121870420f1839d"
+                "source_cell_snapshot_sha256": "2bdb451fe0de53df992c9fff7c624f5895c1fa7a1f3f2b6f676314cc3dec7c9a"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -143811,7 +143858,7 @@
                   "execution_kind": "synthetic_design_comparison"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "ef69477588c875a193f9113e3e62a4089c2da0781e8ca7564121870420f1839d"
+                "source_cell_snapshot_sha256": "2bdb451fe0de53df992c9fff7c624f5895c1fa7a1f3f2b6f676314cc3dec7c9a"
               },
               "native_source_cell_ref": {
                 "identity": "CARRIER-005_composition",
@@ -144520,7 +144567,7 @@
                 "scope": "PRODUCT-P",
                 "owner": "synthetic-h003-canonical-carrier-owner"
               },
-              "source_cell_snapshot_sha256": "603750649e03eb01007768a237779c0c9840aaf452262cbf0dae271e1fb31e67",
+              "source_cell_snapshot_sha256": "dfd21f7e24bae50f382d4d6a271e8efef2bd13e4f3a291f31ccb49151cd4fa40",
               "argument_snapshot_sha256": "67021157cec5eaf02fca1fd995737997865aa63463a625067af50bafb98a2bcd",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -145215,7 +145262,7 @@
                   "candidate_conflicting_paths": []
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "603750649e03eb01007768a237779c0c9840aaf452262cbf0dae271e1fb31e67"
+                "source_cell_snapshot_sha256": "dfd21f7e24bae50f382d4d6a271e8efef2bd13e4f3a291f31ccb49151cd4fa40"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -145911,7 +145958,7 @@
                   "candidate_conflicting_paths": []
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "603750649e03eb01007768a237779c0c9840aaf452262cbf0dae271e1fb31e67"
+                "source_cell_snapshot_sha256": "dfd21f7e24bae50f382d4d6a271e8efef2bd13e4f3a291f31ccb49151cd4fa40"
               },
               "native_source_cell_ref": {
                 "identity": "SOURCE-H022-F03-H003-BALANCE",
@@ -147799,21 +147846,21 @@
                           },
                           "source_pointer": "/original_sources/022_difference/original_contents/target_operation/consumer_target",
                           "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。",
-                          "operation_source_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                          "input_source_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                          "argument_context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
+                          "operation_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                          "input_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                          "argument_context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
                           "role_adapter_projection": {
                             "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                            "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                            "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                            "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                            "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
+                            "input_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                            "context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                            "candidate_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/candidate",
+                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/ref",
+                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
+                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/ref",
+                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/raw_utf8",
+                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                            "function_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/function_ref",
                             "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
                             "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
                             "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
@@ -147821,7 +147868,17 @@
                             "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
                             "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
                             "source_packet_utf8_byte_length": 10171,
-                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。"
+                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。",
+                            "caller_pointer_root": {
+                              "kind": "caller_input",
+                              "pointer": ""
+                            },
+                            "pinned_fixture_pointer_root": {
+                              "kind": "pinned_source_file",
+                              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                              "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+                              "file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362"
+                            }
                           }
                         }
                       ],
@@ -149445,21 +149502,21 @@
                           },
                           "source_pointer": "/original_sources/022_difference/original_contents/target_operation/consumer_target",
                           "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。",
-                          "operation_source_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                          "input_source_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                          "argument_context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
+                          "operation_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                          "input_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                          "argument_context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
                           "role_adapter_projection": {
                             "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                            "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                            "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                            "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                            "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
+                            "input_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                            "context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                            "candidate_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/candidate",
+                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/ref",
+                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
+                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/ref",
+                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/raw_utf8",
+                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                            "function_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/function_ref",
                             "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
                             "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
                             "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
@@ -149467,7 +149524,17 @@
                             "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
                             "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
                             "source_packet_utf8_byte_length": 10171,
-                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。"
+                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。",
+                            "caller_pointer_root": {
+                              "kind": "caller_input",
+                              "pointer": ""
+                            },
+                            "pinned_fixture_pointer_root": {
+                              "kind": "pinned_source_file",
+                              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                              "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+                              "file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362"
+                            }
                           }
                         }
                       ],
@@ -151746,21 +151813,21 @@
                           },
                           "source_pointer": "/original_sources/022_difference/original_contents/target_operation/consumer_target",
                           "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。",
-                          "operation_source_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                          "input_source_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                          "argument_context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
+                          "operation_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                          "input_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                          "argument_context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
                           "role_adapter_projection": {
                             "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                            "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                            "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                            "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                            "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
+                            "input_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                            "context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                            "candidate_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/candidate",
+                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/ref",
+                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
+                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/ref",
+                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/raw_utf8",
+                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                            "function_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/function_ref",
                             "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
                             "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
                             "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
@@ -151768,7 +151835,17 @@
                             "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
                             "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
                             "source_packet_utf8_byte_length": 10171,
-                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。"
+                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。",
+                            "caller_pointer_root": {
+                              "kind": "caller_input",
+                              "pointer": ""
+                            },
+                            "pinned_fixture_pointer_root": {
+                              "kind": "pinned_source_file",
+                              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                              "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+                              "file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362"
+                            }
                           }
                         }
                       ],
@@ -151914,7 +151991,6 @@
                       "scope": "PRODUCT-P",
                       "owner": "synthetic-independent-design-source"
                     },
-                    "profile_context_association_pointer": "/original_sources/assignment_relation/original_contents/profile_context_associations/3",
                     "native_call_binding_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding",
                     "synthetic_association_basis": "この原operation associationは有限合成設計入力。実lineage/実資格/実runtimeを証明しない。",
                     "request_association": {
@@ -151982,14 +152058,14 @@
                         }
                       },
                       "business_obligation_mapping": {
-                        "business_obligations_pointer": "/original_sources/business_packet/original_contents/parsed_target/state_proofs/Verified/original_contents/content/system_specific_obligations",
-                        "business_observation_pointer": "/original_sources/business_packet/original_contents/parsed_target/state_proofs/Verified/original_contents/content/system_observations/0",
-                        "business_difference_pointer": "/original_sources/business_packet/original_contents/parsed_target/state_proofs/Verified/original_contents/content/005_022_difference",
+                        "business_obligations_pointer": "/state_proofs/Verified/content/system_specific_obligations",
+                        "business_observation_pointer": "/state_proofs/Verified/content/system_observations/0",
+                        "business_difference_pointer": "/state_proofs/Verified/content/005_022_difference",
                         "native_obligation_key": "global_balance_conservation",
-                        "native_context_obligation_pointer": "/original_sources/022_difference/original_contents/arguments/context/expected_profiles/L3_contract/obligations/global_balance_conservation",
-                        "native_material_pointer": "/original_sources/022_difference/original_contents/arguments/input/materials/unique_quality/contents/global_balance_conservation",
-                        "native_evidence_selector_pointer": "/original_sources/022_difference/original_contents/arguments/input/materials/unique_quality/evidence_id",
-                        "native_evidence_contents_pointer": "/original_sources/022_difference/original_contents/arguments/input/evidence_materials/<selected evidence identity>/contents/global_balance_conservation",
+                        "native_context_obligation_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context/expected_profiles/L3_contract/obligations/global_balance_conservation",
+                        "native_material_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input/materials/unique_quality/contents/global_balance_conservation",
+                        "native_evidence_selector_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input/materials/unique_quality/evidence_id",
+                        "native_evidence_contents_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input/evidence_materials/H003-BALANCE-EVIDENCE-unique_quality/contents/global_balance_conservation",
                         "business_value": {
                           "id": "global_balance_conservation",
                           "before_total": 10,
@@ -152001,7 +152077,15 @@
                           "expected_total": 10,
                           "observed_total": 10
                         },
-                        "basis": "H022 pending fixtureとの合成対応を全comparandで個別に検証する。実source lineage/資格ではない。"
+                        "basis": "H022 pending fixtureとの合成対応を全comparandで個別に検証する。実source lineage/資格ではない。",
+                        "business_pointer_root": {
+                          "kind": "strict_json_decode",
+                          "caller_source_pointer": "/original_sources/business_packet/original_contents/raw_utf8"
+                        },
+                        "native_pointer_root": {
+                          "kind": "caller_input",
+                          "pointer": ""
+                        }
                       },
                       "scope_limit": "合成fixtureの独立比較元。assignment_refや同値shapeだけで、実lineage、実owner資格、実承認、実runtimeを成立扱いしない。",
                       "source_role": "このcanonical target_operationが直接保持する合成operation/request対応。独立assignment SourceCellや資格は要求しない。",
@@ -152533,15 +152617,15 @@
                           "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
                           "role_adapter_projection": {
                             "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                            "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                            "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                            "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                            "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
+                            "input_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                            "context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                            "candidate_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/candidate",
+                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/ref",
+                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
+                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/ref",
+                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/raw_utf8",
+                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                            "function_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/function_ref",
                             "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
                             "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
                             "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
@@ -152549,7 +152633,17 @@
                             "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
                             "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
                             "source_packet_utf8_byte_length": 10171,
-                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。"
+                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。",
+                            "caller_pointer_root": {
+                              "kind": "caller_input",
+                              "pointer": ""
+                            },
+                            "pinned_fixture_pointer_root": {
+                              "kind": "pinned_source_file",
+                              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                              "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+                              "file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362"
+                            }
                           }
                         }
                       ]
@@ -153330,7 +153424,7 @@
             },
             "candidate": null
           },
-          "input_canonical_sha256": "491c6e71351eb9b673f93b0db6207cc7fa79b7497b52f5d3b3ea6cd89453ac90",
+          "input_canonical_sha256": "2b645e2b5647c7e5134a398e023ff5ad060eaa9548e0c816e9a3ed345ace7305",
           "input_rule": "このcaller inputの原SourceCellからcallee typed argumentsを導出し、pure callの完全返却・L4 source-binding局所状態・既存whole結果を別々に照合する。期待値はtest側であり、実行資格やruntime結果ではない。",
           "expected_private_call_records": [
             {
@@ -154304,7 +154398,7 @@
                 },
                 "owner": "source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "6229ca38e2e2c6b6ab28de2d9a234c78d921ff18fa099274d020260a94939652",
+              "source_cell_snapshot_sha256": "dfc9e4d0a0a08bd5fb9ee8e65cd1d7032e781076e6864546d10467a89a10527e",
               "argument_snapshot_sha256": "5ff93d8b8abe7fb5fc7d35703512adc9a15fe96d8c55488267faab4f14dd6852",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -155274,7 +155368,7 @@
                   "execution_kind": "synthetic_design_comparison"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "6229ca38e2e2c6b6ab28de2d9a234c78d921ff18fa099274d020260a94939652"
+                "source_cell_snapshot_sha256": "dfc9e4d0a0a08bd5fb9ee8e65cd1d7032e781076e6864546d10467a89a10527e"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -156245,7 +156339,7 @@
                   "execution_kind": "synthetic_design_comparison"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "6229ca38e2e2c6b6ab28de2d9a234c78d921ff18fa099274d020260a94939652"
+                "source_cell_snapshot_sha256": "dfc9e4d0a0a08bd5fb9ee8e65cd1d7032e781076e6864546d10467a89a10527e"
               },
               "native_source_cell_ref": {
                 "identity": "CARRIER-005_valley",
@@ -156356,7 +156450,7 @@
                 },
                 "owner": "source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "c6f426cb405e753519f055990a46a6aeba14c3bb114c7548c3f54f14c3b05ffa",
+              "source_cell_snapshot_sha256": "4f59de3b61de363d932157cd69cb709a1640cd351c6f3d5ab344cb616f74a3c6",
               "argument_snapshot_sha256": "c651fcadb62f9e8b69984b3f37a8ec5a4a802b82491a2c62c7545bc769d63972",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -156453,7 +156547,7 @@
                   "authority_effect": "none"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "c6f426cb405e753519f055990a46a6aeba14c3bb114c7548c3f54f14c3b05ffa"
+                "source_cell_snapshot_sha256": "4f59de3b61de363d932157cd69cb709a1640cd351c6f3d5ab344cb616f74a3c6"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -156551,7 +156645,7 @@
                   "authority_effect": "none"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "c6f426cb405e753519f055990a46a6aeba14c3bb114c7548c3f54f14c3b05ffa"
+                "source_cell_snapshot_sha256": "4f59de3b61de363d932157cd69cb709a1640cd351c6f3d5ab344cb616f74a3c6"
               },
               "source_file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
               "native_source_cell_ref": {
@@ -157590,7 +157684,7 @@
                 },
                 "owner": "source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "c6f426cb405e753519f055990a46a6aeba14c3bb114c7548c3f54f14c3b05ffa",
+              "source_cell_snapshot_sha256": "4f59de3b61de363d932157cd69cb709a1640cd351c6f3d5ab344cb616f74a3c6",
               "argument_snapshot_sha256": "3179b8ecc1764c64f876c107963614047b0217c5b2f996002c601f996f0d431a",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -158614,7 +158708,7 @@
                   ]
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "c6f426cb405e753519f055990a46a6aeba14c3bb114c7548c3f54f14c3b05ffa"
+                "source_cell_snapshot_sha256": "4f59de3b61de363d932157cd69cb709a1640cd351c6f3d5ab344cb616f74a3c6"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -159639,7 +159733,7 @@
                   ]
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "c6f426cb405e753519f055990a46a6aeba14c3bb114c7548c3f54f14c3b05ffa"
+                "source_cell_snapshot_sha256": "4f59de3b61de363d932157cd69cb709a1640cd351c6f3d5ab344cb616f74a3c6"
               },
               "source_file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
               "native_source_cell_ref": {
@@ -161989,7 +162083,7 @@
                 },
                 "owner": "synthetic-source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "b1f1a1a21828bcc1b67137b00520c360433d62f1a512cba39c958512116f501e",
+              "source_cell_snapshot_sha256": "2fcf2fd013ec3d5ebe2a914f9988f493ba1927bad056f1d1fceacc172891539d",
               "argument_snapshot_sha256": "9192eb4e76d065a740699d7f2824468daa1917f124445e296334f63234cd2a7b",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -163903,7 +163997,7 @@
                   "execution_kind": "synthetic_design_comparison"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "f2e9fb6ae8b03b25cbebc09f15a4649276d006e6c70a7704fc4c60e624601c81"
+                "source_cell_snapshot_sha256": "2fcf2fd013ec3d5ebe2a914f9988f493ba1927bad056f1d1fceacc172891539d"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -165818,7 +165912,7 @@
                   "execution_kind": "synthetic_design_comparison"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "f2e9fb6ae8b03b25cbebc09f15a4649276d006e6c70a7704fc4c60e624601c81"
+                "source_cell_snapshot_sha256": "2fcf2fd013ec3d5ebe2a914f9988f493ba1927bad056f1d1fceacc172891539d"
               },
               "native_source_cell_ref": {
                 "identity": "CARRIER-005_composition",
@@ -166527,7 +166621,7 @@
                 "scope": "PRODUCT-P",
                 "owner": "synthetic-h003-canonical-carrier-owner"
               },
-              "source_cell_snapshot_sha256": "d35b9b48126e08f9c1edb7a83464112cdef717fb98d12ee8e4a124a9c3723704",
+              "source_cell_snapshot_sha256": "09985fd4fae07ba3282cde88bd8d83102ce10e51472f97dda6a5e30e140c5e5f",
               "argument_snapshot_sha256": "67021157cec5eaf02fca1fd995737997865aa63463a625067af50bafb98a2bcd",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -167222,7 +167316,7 @@
                   "candidate_conflicting_paths": []
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "d35b9b48126e08f9c1edb7a83464112cdef717fb98d12ee8e4a124a9c3723704"
+                "source_cell_snapshot_sha256": "09985fd4fae07ba3282cde88bd8d83102ce10e51472f97dda6a5e30e140c5e5f"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -167918,7 +168012,7 @@
                   "candidate_conflicting_paths": []
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "d35b9b48126e08f9c1edb7a83464112cdef717fb98d12ee8e4a124a9c3723704"
+                "source_cell_snapshot_sha256": "09985fd4fae07ba3282cde88bd8d83102ce10e51472f97dda6a5e30e140c5e5f"
               },
               "native_source_cell_ref": {
                 "identity": "SOURCE-H022-F03-H003-BALANCE",
@@ -168026,7 +168120,7 @@
                     "scope": "PRODUCT-P",
                     "owner": "independent-fixture-owner"
                   },
-                  "reason": "Verified has both source-qualification and own-basis dependencies; the missing 022 carrier qualification makes only Verified basis missing. Later raw proofs remain independently retained; the contiguous frontier stops before Verified."
+                  "reason": "Verifiedにはsource資格とown-basisの両依存があり、022 carrierの資格状態member欠落によりVerified basisのみmissingとなる。後続raw proofは独立に保持し、連続frontierはVerifiedの前で止まる。"
                 },
                 "Accepted": {
                   "state": "missing",
@@ -169812,21 +169906,21 @@
                           },
                           "source_pointer": "/original_sources/022_difference/original_contents/target_operation/consumer_target",
                           "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。",
-                          "operation_source_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                          "input_source_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                          "argument_context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
+                          "operation_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                          "input_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                          "argument_context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
                           "role_adapter_projection": {
                             "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                            "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                            "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                            "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                            "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
+                            "input_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                            "context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                            "candidate_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/candidate",
+                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/ref",
+                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
+                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/ref",
+                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/raw_utf8",
+                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                            "function_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/function_ref",
                             "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
                             "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
                             "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
@@ -169834,7 +169928,17 @@
                             "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
                             "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
                             "source_packet_utf8_byte_length": 10171,
-                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。"
+                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。",
+                            "caller_pointer_root": {
+                              "kind": "caller_input",
+                              "pointer": ""
+                            },
+                            "pinned_fixture_pointer_root": {
+                              "kind": "pinned_source_file",
+                              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                              "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+                              "file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362"
+                            }
                           }
                         }
                       ],
@@ -171458,21 +171562,21 @@
                           },
                           "source_pointer": "/original_sources/022_difference/original_contents/target_operation/consumer_target",
                           "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。",
-                          "operation_source_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                          "input_source_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                          "argument_context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
+                          "operation_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                          "input_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                          "argument_context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
                           "role_adapter_projection": {
                             "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                            "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                            "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                            "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                            "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
+                            "input_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                            "context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                            "candidate_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/candidate",
+                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/ref",
+                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
+                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/ref",
+                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/raw_utf8",
+                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                            "function_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/function_ref",
                             "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
                             "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
                             "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
@@ -171480,7 +171584,17 @@
                             "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
                             "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
                             "source_packet_utf8_byte_length": 10171,
-                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。"
+                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。",
+                            "caller_pointer_root": {
+                              "kind": "caller_input",
+                              "pointer": ""
+                            },
+                            "pinned_fixture_pointer_root": {
+                              "kind": "pinned_source_file",
+                              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                              "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+                              "file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362"
+                            }
                           }
                         }
                       ],
@@ -173759,21 +173873,21 @@
                           },
                           "source_pointer": "/original_sources/022_difference/original_contents/target_operation/consumer_target",
                           "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。",
-                          "operation_source_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                          "input_source_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                          "argument_context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
+                          "operation_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                          "input_source_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                          "argument_context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                          "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
                           "role_adapter_projection": {
                             "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                            "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                            "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                            "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                            "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
+                            "input_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                            "context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                            "candidate_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/candidate",
+                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/ref",
+                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
+                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/ref",
+                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/raw_utf8",
+                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                            "function_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/function_ref",
                             "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
                             "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
                             "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
@@ -173781,7 +173895,17 @@
                             "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
                             "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
                             "source_packet_utf8_byte_length": 10171,
-                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。"
+                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。",
+                            "caller_pointer_root": {
+                              "kind": "caller_input",
+                              "pointer": ""
+                            },
+                            "pinned_fixture_pointer_root": {
+                              "kind": "pinned_source_file",
+                              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                              "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+                              "file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362"
+                            }
                           }
                         }
                       ],
@@ -173927,7 +174051,6 @@
                       "scope": "PRODUCT-P",
                       "owner": "synthetic-independent-design-source"
                     },
-                    "profile_context_association_pointer": "/original_sources/assignment_relation/original_contents/profile_context_associations/3",
                     "native_call_binding_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding",
                     "synthetic_association_basis": "この原operation associationは有限合成設計入力。実lineage/実資格/実runtimeを証明しない。",
                     "request_association": {
@@ -173995,14 +174118,14 @@
                         }
                       },
                       "business_obligation_mapping": {
-                        "business_obligations_pointer": "/original_sources/business_packet/original_contents/parsed_target/state_proofs/Verified/original_contents/content/system_specific_obligations",
-                        "business_observation_pointer": "/original_sources/business_packet/original_contents/parsed_target/state_proofs/Verified/original_contents/content/system_observations/0",
-                        "business_difference_pointer": "/original_sources/business_packet/original_contents/parsed_target/state_proofs/Verified/original_contents/content/005_022_difference",
+                        "business_obligations_pointer": "/state_proofs/Verified/content/system_specific_obligations",
+                        "business_observation_pointer": "/state_proofs/Verified/content/system_observations/0",
+                        "business_difference_pointer": "/state_proofs/Verified/content/005_022_difference",
                         "native_obligation_key": "global_balance_conservation",
-                        "native_context_obligation_pointer": "/original_sources/022_difference/original_contents/arguments/context/expected_profiles/L3_contract/obligations/global_balance_conservation",
-                        "native_material_pointer": "/original_sources/022_difference/original_contents/arguments/input/materials/unique_quality/contents/global_balance_conservation",
-                        "native_evidence_selector_pointer": "/original_sources/022_difference/original_contents/arguments/input/materials/unique_quality/evidence_id",
-                        "native_evidence_contents_pointer": "/original_sources/022_difference/original_contents/arguments/input/evidence_materials/<selected evidence identity>/contents/global_balance_conservation",
+                        "native_context_obligation_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context/expected_profiles/L3_contract/obligations/global_balance_conservation",
+                        "native_material_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input/materials/unique_quality/contents/global_balance_conservation",
+                        "native_evidence_selector_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input/materials/unique_quality/evidence_id",
+                        "native_evidence_contents_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input/evidence_materials/H003-BALANCE-EVIDENCE-unique_quality/contents/global_balance_conservation",
                         "business_value": {
                           "id": "global_balance_conservation",
                           "before_total": 10,
@@ -174014,7 +174137,15 @@
                           "expected_total": 10,
                           "observed_total": 10
                         },
-                        "basis": "H022 pending fixtureとの合成対応を全comparandで個別に検証する。実source lineage/資格ではない。"
+                        "basis": "H022 pending fixtureとの合成対応を全comparandで個別に検証する。実source lineage/資格ではない。",
+                        "business_pointer_root": {
+                          "kind": "strict_json_decode",
+                          "caller_source_pointer": "/original_sources/business_packet/original_contents/raw_utf8"
+                        },
+                        "native_pointer_root": {
+                          "kind": "caller_input",
+                          "pointer": ""
+                        }
                       },
                       "scope_limit": "合成fixtureの独立比較元。assignment_refや同値shapeだけで、実lineage、実owner資格、実承認、実runtimeを成立扱いしない。",
                       "source_role": "このcanonical target_operationが直接保持する合成operation/request対応。独立assignment SourceCellや資格は要求しない。",
@@ -174546,15 +174677,15 @@
                           "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
                           "role_adapter_projection": {
                             "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                            "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                            "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                            "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                            "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
+                            "input_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/input",
+                            "context_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/context",
+                            "candidate_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/arguments/candidate",
+                            "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/ref",
+                            "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/source_packet/raw_utf8",
+                            "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/ref",
+                            "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/context_packet/raw_utf8",
+                            "operation_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/operation_ref",
+                            "function_ref_pointer": "/original_sources/022_difference/original_contents/native_source_cell/original_contents/call_binding/function_ref",
                             "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
                             "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
                             "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
@@ -174562,7 +174693,17 @@
                             "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
                             "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
                             "source_packet_utf8_byte_length": 10171,
-                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。"
+                            "relation": "H022 source packet rawをarguments.inputへ、context packet rawをarguments.contextへ対応づけ、それぞれを個別照合する。同一snapshotから作る合成比較元であり、物理的なsource独立性やruntime資格を示さない。",
+                            "caller_pointer_root": {
+                              "kind": "caller_input",
+                              "pointer": ""
+                            },
+                            "pinned_fixture_pointer_root": {
+                              "kind": "pinned_source_file",
+                              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                              "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+                              "file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362"
+                            }
                           }
                         }
                       ]
@@ -175345,7 +175486,7 @@
             },
             "candidate": null
           },
-          "input_canonical_sha256": "4fd02f76f465be9b2a2e01b5f08fcc9826214078c47900e43f09957a82bed2ff",
+          "input_canonical_sha256": "022a3bf7ec9ae0a2ae2d79e0209eae0362434e74298424c6544410a1ed44d06c",
           "input_rule": "このcaller inputの原SourceCellからcallee typed argumentsを導出し、pure callの完全返却・L4 source-binding局所状態・既存whole結果を別々に照合する。期待値はtest側であり、実行資格やruntime結果ではない。",
           "expected_private_call_records": [
             {
@@ -176319,7 +176460,7 @@
                 },
                 "owner": "source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "1382307196b105a2b0cc5fa47aa0633645acf8ea88f202079cba2f984f1c3563",
+              "source_cell_snapshot_sha256": "a07cbece68fc79f1aeab02638beedf968163fed820f69347c47e0546b8e23644",
               "argument_snapshot_sha256": "5ff93d8b8abe7fb5fc7d35703512adc9a15fe96d8c55488267faab4f14dd6852",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -177289,7 +177430,7 @@
                   "execution_kind": "synthetic_design_comparison"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "1382307196b105a2b0cc5fa47aa0633645acf8ea88f202079cba2f984f1c3563"
+                "source_cell_snapshot_sha256": "a07cbece68fc79f1aeab02638beedf968163fed820f69347c47e0546b8e23644"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -178260,7 +178401,7 @@
                   "execution_kind": "synthetic_design_comparison"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "1382307196b105a2b0cc5fa47aa0633645acf8ea88f202079cba2f984f1c3563"
+                "source_cell_snapshot_sha256": "a07cbece68fc79f1aeab02638beedf968163fed820f69347c47e0546b8e23644"
               },
               "native_source_cell_ref": {
                 "identity": "CARRIER-005_valley",
@@ -178371,7 +178512,7 @@
                 },
                 "owner": "source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "4cefe10b59e6bc54dfebd5fe896a782797bbd5e26f390f87e6d1a5d2c590a25e",
+              "source_cell_snapshot_sha256": "9c84d938b7bdfdbc9e997e12600297b372378611223783abf30a6a6c6804d04f",
               "argument_snapshot_sha256": "c651fcadb62f9e8b69984b3f37a8ec5a4a802b82491a2c62c7545bc769d63972",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -178468,7 +178609,7 @@
                   "authority_effect": "none"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "4cefe10b59e6bc54dfebd5fe896a782797bbd5e26f390f87e6d1a5d2c590a25e"
+                "source_cell_snapshot_sha256": "9c84d938b7bdfdbc9e997e12600297b372378611223783abf30a6a6c6804d04f"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -178566,7 +178707,7 @@
                   "authority_effect": "none"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "4cefe10b59e6bc54dfebd5fe896a782797bbd5e26f390f87e6d1a5d2c590a25e"
+                "source_cell_snapshot_sha256": "9c84d938b7bdfdbc9e997e12600297b372378611223783abf30a6a6c6804d04f"
               },
               "source_file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
               "native_source_cell_ref": {
@@ -179605,7 +179746,7 @@
                 },
                 "owner": "source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "4cefe10b59e6bc54dfebd5fe896a782797bbd5e26f390f87e6d1a5d2c590a25e",
+              "source_cell_snapshot_sha256": "9c84d938b7bdfdbc9e997e12600297b372378611223783abf30a6a6c6804d04f",
               "argument_snapshot_sha256": "3179b8ecc1764c64f876c107963614047b0217c5b2f996002c601f996f0d431a",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -180629,7 +180770,7 @@
                   ]
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "4cefe10b59e6bc54dfebd5fe896a782797bbd5e26f390f87e6d1a5d2c590a25e"
+                "source_cell_snapshot_sha256": "9c84d938b7bdfdbc9e997e12600297b372378611223783abf30a6a6c6804d04f"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -181654,7 +181795,7 @@
                   ]
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "4cefe10b59e6bc54dfebd5fe896a782797bbd5e26f390f87e6d1a5d2c590a25e"
+                "source_cell_snapshot_sha256": "9c84d938b7bdfdbc9e997e12600297b372378611223783abf30a6a6c6804d04f"
               },
               "source_file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
               "native_source_cell_ref": {
@@ -184004,7 +184145,7 @@
                 },
                 "owner": "synthetic-source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "a027c7dbdea0e4c44c0015a8da02961e41e1adfeaa2d06d7d71f3f291b0d0f5f",
+              "source_cell_snapshot_sha256": "812d5eeea10acce3fc8e922c06671e02e6556e1d801069f7f2a5200c3253c44d",
               "argument_snapshot_sha256": "9192eb4e76d065a740699d7f2824468daa1917f124445e296334f63234cd2a7b",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -185918,7 +186059,7 @@
                   "execution_kind": "synthetic_design_comparison"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "496c6579319f832a81a4a24d6acfed26d6b70c17f5f982696809c127ec57c8e7"
+                "source_cell_snapshot_sha256": "812d5eeea10acce3fc8e922c06671e02e6556e1d801069f7f2a5200c3253c44d"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -187833,7 +187974,7 @@
                   "execution_kind": "synthetic_design_comparison"
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "496c6579319f832a81a4a24d6acfed26d6b70c17f5f982696809c127ec57c8e7"
+                "source_cell_snapshot_sha256": "812d5eeea10acce3fc8e922c06671e02e6556e1d801069f7f2a5200c3253c44d"
               },
               "native_source_cell_ref": {
                 "identity": "CARRIER-005_composition",
@@ -188542,7 +188683,7 @@
                 "scope": "PRODUCT-P",
                 "owner": "synthetic-h003-canonical-carrier-owner"
               },
-              "source_cell_snapshot_sha256": "b795883fee99e13736451f83f103c9613ae38a83c60c4eeae89784d60eaa6d4f",
+              "source_cell_snapshot_sha256": "af6bed57a1735ed35aadfe18ad0204cb197b57aea352f831142da26cc9be1e30",
               "argument_snapshot_sha256": "67021157cec5eaf02fca1fd995737997865aa63463a625067af50bafb98a2bcd",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -189237,7 +189378,7 @@
                   "candidate_conflicting_paths": []
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "b795883fee99e13736451f83f103c9613ae38a83c60c4eeae89784d60eaa6d4f"
+                "source_cell_snapshot_sha256": "af6bed57a1735ed35aadfe18ad0204cb197b57aea352f831142da26cc9be1e30"
               },
               "expected_return_basis": "L8に固定したcallee返却期待。test oracleとしてのみ使い、caller inputや実行証拠として扱わない。",
               "private_call_record_shape": {
@@ -189933,7 +190074,7 @@
                   "candidate_conflicting_paths": []
                 },
                 "effects": [],
-                "source_cell_snapshot_sha256": "b795883fee99e13736451f83f103c9613ae38a83c60c4eeae89784d60eaa6d4f"
+                "source_cell_snapshot_sha256": "af6bed57a1735ed35aadfe18ad0204cb197b57aea352f831142da26cc9be1e30"
               },
               "native_source_cell_ref": {
                 "identity": "SOURCE-H022-F03-H003-BALANCE",
@@ -236982,6 +237123,7 @@
     "reviewed_head": "89e08fd64237c2b106c7611dd42625f9b72c35a4",
     "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2993#issuecomment-6130558104",
     "F1": "43case/fieldのflat→typed写像をexact basic hashと理由付きで記録。L9原bytes無改変。独立再review未成立。",
-    "F2": "Green未実行/期待不一致の谷原内容反例2件を追加。実TDD未実行。"
+    "F2": "Green未実行/期待不一致の谷原内容反例2件を追加。実TDD未実行。",
+    "R3": "PR3237 R3の訂正: 022 outer SourceCellを日本語化した後のsnapshot hashを全call-record形へ再束縛し、caller/native/decoded/source-file root別にL8説明pointerを修正した。015のproducer-native locator文字列とnative SourceCell raw値は変更していない。これらのproducer-native locatorはcaller-root RFC 6901 pointerとして解決したとは主張しない。case H003-L8-F04-VERIFIED-022-CARRIER-QUALIFICATION-MISSING のVerified理由は日本語へ訂正し、旧英文と差分根拠をscaffold/review-handoff/local/h003-binding-detail/r3/r3-final-correction-summary.jsonへ保存。"
   }
 }
