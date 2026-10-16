@@ -395880,7 +395880,11 @@
       "6期待は業務コード/actual前に原sourceとこの技術補足案から独立著述した。今回actualは未実行。",
       "部分unknown graph rowは現portで未表現。親workflow_proposal Field.nullは既存unknown枝であり、未知row存在を観測したものではない。",
       "OS016/OS017の全producer関数を実行又は資格認定した資料ではない。原型付きsource-returnを読む合成局所反例であり、実provider/実資格を生成しない。",
-      "旧278global/26probeと元6integration wholeの全値は保持し、今回再実行済とはしない。L5/L8追随と全domain閉包は未完。"
+      "旧278global/26probeと元6integration wholeの全値は保持し、今回再実行済とはしない。L5/L8追随と全domain閉包は未完。",
+      "同じ評価範囲でknown相反と独立unknownが併存する場合のconflict優先、およびunknown cause/rawの併存保持は、この6局所projectionでは未観測。",
+      "foreign/non-applicable rowを新たなconflictにしない規則は、この6局所projectionでは未観測。",
+      "OS017の未読sourceを既知の完全な空graph集合にしない規則、および既知の空graphとの区別は、この6局所projectionでは未観測。親workflow_proposal:nullのcaseだけからその区別の成立を推定しない。",
+      "OS016の原source/指定node/relationが未供給の場合のunknown保持は、この6局所projectionでは未観測。"
     ]
   }
 }
