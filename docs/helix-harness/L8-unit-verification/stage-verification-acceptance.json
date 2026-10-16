@@ -85,6 +85,12 @@
       "revision": "369f512ba9b5583fcaedcc6a6a0fb5b36d8f9318",
       "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
       "use": "現mainのB01 business要件/対L10。B01 objectはff5f0667承認対象と一致。文書wholeから後続追加の承認を継承しない。"
+    },
+    {
+      "revision": "52c44b1a04bce0cdf9e2a6704c060ae74c3d87c3",
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "sha256": "3bb4ed1800617d872cb2795942c5d0dd100f9f6c0037a33d0cb3d65965a963b0",
+      "use": "global balance原義務と観測の固定参照。旧source pinを置換せず本追加例だけへ適用。"
     }
   ],
   "legacy_comparison": [
@@ -549,7 +555,7 @@
     "F01の143原例/4Context例と必要集合/pairを具体化。全構造/複合/実資格/codecと凍結は未完。",
     "F02の113原例/2Context/5Context否定例と境界/意味保存Refactor後再検証を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
     "H22F-m1対応：未変異REFACTOR Contextとperformed=falseの原NORMAL inputを結合した反例を追加。必要3proof欠落と未成立Integratedを保持、全oracle閉包は未完。",
-    "F03の103原例/2Context/6否定例と全義務-下位表現-固有差分を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
+    "F03の既存103原例・2固定Context・6否定例に、global balanceの別固定Contextと正常全返却1例・部分観測2例を追加。全構造/複合/実資格/正式codec/関数設計と対検証の凍結は後続で扱う。",
     "N01の36原例/1Context/6否定例と今回未評価/原期限/過去receipt限定scopeを具体化。全構造/複合/正式期限schema/codec/実owner/実holdout/凍結は未完。",
     "H22H-m1対応：独立Context期待1とinputの宣言oracle/body/result/evidenceが2で自己整合する反例で未評価/Q/原入力保全/実作用falseを固定。作成側発見のU6 conflict_content時evaluated_scope=null訂正を対L8/L9へ結ぶ。",
     "B01の42原例/2Context/8否定例と原stage caseの内容解決、意味差route/同段階再検証/owner分離を具体化。全設計/正式binding/実装準備は未完。"
@@ -65933,7 +65939,913 @@
         "全構造/複合/全finding/順序/不変性/副作用observer/義務とcoverageの自己整合偽装/未知義務mapping",
         "正式schema/codec/実owner/適用原資料/実system観測とL6L7 oracle凍結"
       ],
-      "coverage_limit": "103原例、2固定Context、6否定例の部分詳細。実Verified/受入/全022閉包は未成立。"
+      "coverage_limit": "既存103原例・2固定Context・6否定例を保持し、別固定Context一つと正常全返却1例・部分観測2例を追加した部分詳細。実Verified/受入/全022閉包は未成立。",
+      "bounded_context_oracles": {
+        "id": "HARNESS-L8-022-F03-H003-BALANCE",
+        "design_ref": "HARNESS-L5-022-F03",
+        "application_ref": "H022-F03-H003-BALANCE-APPLICATION",
+        "function_symbol": "compare_verified_system_difference",
+        "argument_order": [
+          "input",
+          "context",
+          "candidate"
+        ],
+        "source_basis": [
+          {
+            "revision": "52c44b1a04bce0cdf9e2a6704c060ae74c3d87c3",
+            "path": "docs/helix-harness/L4-basic-design/stage-verification-acceptance.json",
+            "pointer": "/contracts/2/verified_difference_detail",
+            "file_sha256": "db5e0e57c793deccaf6a5a0c3292473de2de79031798567c7e3cda859cd306a7"
+          },
+          {
+            "revision": "52c44b1a04bce0cdf9e2a6704c060ae74c3d87c3",
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/62",
+            "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+          },
+          {
+            "revision": "52c44b1a04bce0cdf9e2a6704c060ae74c3d87c3",
+            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+            "pointer": "/verification_obligations/4/normal_cases/3/independent_source_packet",
+            "file_sha256": "3bb4ed1800617d872cb2795942c5d0dd100f9f6c0037a33d0cb3d65965a963b0"
+          }
+        ],
+        "fixture": {
+          "id": "H022-F03-H003-BALANCE-FIXTURE",
+          "arguments": {
+            "input": {
+              "context": {
+                "artifact_identity": "ARTIFACT-1",
+                "artifact_revision": "ART@r1",
+                "requirement_revision": "REQ@r1",
+                "scope": "PRODUCT-P"
+              },
+              "executor": "OS",
+              "producer": "service_4",
+              "trace_present": true,
+              "unrelated_scope": {
+                "id": "Q",
+                "valid": true
+              },
+              "independent_profiles": {
+                "Integrated_basis": {
+                  "basis": "same_revision_boundary_combination_and_post_refactor_reverification_synthetic",
+                  "stage": "Integrated"
+                },
+                "L3_contract": {
+                  "obligations": {
+                    "UNIT-A": {
+                      "command_identity_retained": true
+                    },
+                    "UNIT-B": {
+                      "one_commit_per_identity": true
+                    },
+                    "CONNECTION-AB": {
+                      "retry_identity_retained": true
+                    },
+                    "global_balance_conservation": {
+                      "before_total": 10,
+                      "expected_total": 10,
+                      "observed_total": 10
+                    }
+                  }
+                },
+                "L10_design": {
+                  "target": "L3@r1",
+                  "oracles": {
+                    "UNIT-A": {
+                      "command_identity_retained": true
+                    },
+                    "UNIT-B": {
+                      "one_commit_per_identity": true
+                    },
+                    "CONNECTION-AB": {
+                      "retry_identity_retained": true
+                    },
+                    "global_balance_conservation": {
+                      "before_total": 10,
+                      "expected_total": 10,
+                      "observed_total": 10
+                    }
+                  }
+                },
+                "combination_contract": {
+                  "coverage": {
+                    "connection_AB": [
+                      "CONNECTION-AB"
+                    ],
+                    "unit_A": [
+                      "UNIT-A"
+                    ],
+                    "unit_B": [
+                      "UNIT-B"
+                    ]
+                  },
+                  "required_subjects": [
+                    "unit_A",
+                    "unit_B",
+                    "connection_AB"
+                  ],
+                  "whole_obligations": [
+                    "UNIT-A",
+                    "UNIT-B",
+                    "CONNECTION-AB",
+                    "global_balance_conservation"
+                  ]
+                },
+                "unit_A": {
+                  "UNIT-A": {
+                    "command_identity_retained": true
+                  }
+                },
+                "unit_B": {
+                  "UNIT-B": {
+                    "one_commit_per_identity": true
+                  }
+                },
+                "connection_AB": {
+                  "CONNECTION-AB": {
+                    "retry_identity_retained": true
+                  }
+                },
+                "unique_quality": {
+                  "global_balance_conservation": {
+                    "before_total": 10,
+                    "expected_total": 10,
+                    "observed_total": 10
+                  }
+                }
+              },
+              "materials": {
+                "Integrated_basis": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "basis": "same_revision_boundary_combination_and_post_refactor_reverification_synthetic",
+                    "stage": "Integrated"
+                  },
+                  "evidence_id": "H003-BALANCE-EVIDENCE-Integrated_basis",
+                  "execution": "observed_synthetic",
+                  "identity": "H003-BALANCE-MATERIAL-Integrated_basis",
+                  "oracle_revision": "H003-BALANCE-ORACLE-Integrated_basis@r1",
+                  "owner": "synthetic-h003-Integrated_basis-owner",
+                  "pair": null,
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-SOURCE-Integrated_basis"
+                },
+                "L3_contract": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "obligations": {
+                      "UNIT-A": {
+                        "command_identity_retained": true
+                      },
+                      "UNIT-B": {
+                        "one_commit_per_identity": true
+                      },
+                      "CONNECTION-AB": {
+                        "retry_identity_retained": true
+                      },
+                      "global_balance_conservation": {
+                        "before_total": 10,
+                        "expected_total": 10,
+                        "observed_total": 10
+                      }
+                    }
+                  },
+                  "evidence_id": "H003-BALANCE-EVIDENCE-L3_contract",
+                  "execution": "observed_synthetic",
+                  "identity": "H003-BALANCE-MATERIAL-L3_contract",
+                  "oracle_revision": "H003-BALANCE-ORACLE-L3_contract@r1",
+                  "owner": "synthetic-h003-L3_contract-owner",
+                  "pair": null,
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-SOURCE-L3_contract"
+                },
+                "L10_design": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "target": "L3@r1",
+                    "oracles": {
+                      "UNIT-A": {
+                        "command_identity_retained": true
+                      },
+                      "UNIT-B": {
+                        "one_commit_per_identity": true
+                      },
+                      "CONNECTION-AB": {
+                        "retry_identity_retained": true
+                      },
+                      "global_balance_conservation": {
+                        "before_total": 10,
+                        "expected_total": 10,
+                        "observed_total": 10
+                      }
+                    }
+                  },
+                  "evidence_id": "H003-BALANCE-EVIDENCE-L10_design",
+                  "execution": "observed_synthetic",
+                  "identity": "H003-BALANCE-MATERIAL-L10_design",
+                  "oracle_revision": "H003-BALANCE-ORACLE-L10_design@r1",
+                  "owner": "synthetic-h003-L10_design-owner",
+                  "pair": "L10:L3",
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-SOURCE-L10_design"
+                },
+                "combination_contract": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "coverage": {
+                      "connection_AB": [
+                        "CONNECTION-AB"
+                      ],
+                      "unit_A": [
+                        "UNIT-A"
+                      ],
+                      "unit_B": [
+                        "UNIT-B"
+                      ]
+                    },
+                    "required_subjects": [
+                      "unit_A",
+                      "unit_B",
+                      "connection_AB"
+                    ],
+                    "whole_obligations": [
+                      "UNIT-A",
+                      "UNIT-B",
+                      "CONNECTION-AB",
+                      "global_balance_conservation"
+                    ]
+                  },
+                  "evidence_id": "H003-BALANCE-EVIDENCE-combination_contract",
+                  "execution": "observed_synthetic",
+                  "identity": "H003-BALANCE-MATERIAL-combination_contract",
+                  "oracle_revision": "H003-BALANCE-ORACLE-combination_contract@r1",
+                  "owner": "synthetic-h003-combination_contract-owner",
+                  "pair": null,
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-SOURCE-combination_contract"
+                },
+                "unit_A": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "UNIT-A": {
+                      "command_identity_retained": true
+                    }
+                  },
+                  "evidence_id": "H003-BALANCE-EVIDENCE-unit_A",
+                  "execution": "observed_synthetic",
+                  "identity": "H003-BALANCE-MATERIAL-unit_A",
+                  "oracle_revision": "H003-BALANCE-ORACLE-unit_A@r1",
+                  "owner": "synthetic-h003-unit_A-owner",
+                  "pair": "L8:L5",
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-SOURCE-unit_A"
+                },
+                "unit_B": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "UNIT-B": {
+                      "one_commit_per_identity": true
+                    }
+                  },
+                  "evidence_id": "H003-BALANCE-EVIDENCE-unit_B",
+                  "execution": "observed_synthetic",
+                  "identity": "H003-BALANCE-MATERIAL-unit_B",
+                  "oracle_revision": "H003-BALANCE-ORACLE-unit_B@r1",
+                  "owner": "synthetic-h003-unit_B-owner",
+                  "pair": "L8:L5",
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-SOURCE-unit_B"
+                },
+                "connection_AB": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "CONNECTION-AB": {
+                      "retry_identity_retained": true
+                    }
+                  },
+                  "evidence_id": "H003-BALANCE-EVIDENCE-connection_AB",
+                  "execution": "observed_synthetic",
+                  "identity": "H003-BALANCE-MATERIAL-connection_AB",
+                  "oracle_revision": "H003-BALANCE-ORACLE-connection_AB@r1",
+                  "owner": "synthetic-h003-connection_AB-owner",
+                  "pair": "L9:L4",
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-SOURCE-connection_AB"
+                },
+                "unique_quality": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "global_balance_conservation": {
+                      "before_total": 10,
+                      "expected_total": 10,
+                      "observed_total": 10
+                    }
+                  },
+                  "evidence_id": "H003-BALANCE-EVIDENCE-unique_quality",
+                  "execution": "observed_synthetic",
+                  "identity": "H003-BALANCE-MATERIAL-unique_quality",
+                  "oracle_revision": "H003-BALANCE-ORACLE-unique_quality@r1",
+                  "owner": "synthetic-h003-unique_quality-owner",
+                  "pair": "L10:L3",
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-SOURCE-unique_quality"
+                }
+              },
+              "evidence_materials": {
+                "H003-BALANCE-EVIDENCE-Integrated_basis": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "basis": "same_revision_boundary_combination_and_post_refactor_reverification_synthetic",
+                    "stage": "Integrated"
+                  },
+                  "identity": "H003-BALANCE-EVIDENCE-Integrated_basis",
+                  "oracle_revision": "H003-BALANCE-ORACLE-Integrated_basis@r1",
+                  "owner": "synthetic-h003-Integrated_basis-owner",
+                  "pair": null,
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-EVIDENCE-SOURCE-Integrated_basis"
+                },
+                "H003-BALANCE-EVIDENCE-L3_contract": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "obligations": {
+                      "UNIT-A": {
+                        "command_identity_retained": true
+                      },
+                      "UNIT-B": {
+                        "one_commit_per_identity": true
+                      },
+                      "CONNECTION-AB": {
+                        "retry_identity_retained": true
+                      },
+                      "global_balance_conservation": {
+                        "before_total": 10,
+                        "expected_total": 10,
+                        "observed_total": 10
+                      }
+                    }
+                  },
+                  "identity": "H003-BALANCE-EVIDENCE-L3_contract",
+                  "oracle_revision": "H003-BALANCE-ORACLE-L3_contract@r1",
+                  "owner": "synthetic-h003-L3_contract-owner",
+                  "pair": null,
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-EVIDENCE-SOURCE-L3_contract"
+                },
+                "H003-BALANCE-EVIDENCE-L10_design": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "target": "L3@r1",
+                    "oracles": {
+                      "UNIT-A": {
+                        "command_identity_retained": true
+                      },
+                      "UNIT-B": {
+                        "one_commit_per_identity": true
+                      },
+                      "CONNECTION-AB": {
+                        "retry_identity_retained": true
+                      },
+                      "global_balance_conservation": {
+                        "before_total": 10,
+                        "expected_total": 10,
+                        "observed_total": 10
+                      }
+                    }
+                  },
+                  "identity": "H003-BALANCE-EVIDENCE-L10_design",
+                  "oracle_revision": "H003-BALANCE-ORACLE-L10_design@r1",
+                  "owner": "synthetic-h003-L10_design-owner",
+                  "pair": "L10:L3",
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-EVIDENCE-SOURCE-L10_design"
+                },
+                "H003-BALANCE-EVIDENCE-combination_contract": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "coverage": {
+                      "connection_AB": [
+                        "CONNECTION-AB"
+                      ],
+                      "unit_A": [
+                        "UNIT-A"
+                      ],
+                      "unit_B": [
+                        "UNIT-B"
+                      ]
+                    },
+                    "required_subjects": [
+                      "unit_A",
+                      "unit_B",
+                      "connection_AB"
+                    ],
+                    "whole_obligations": [
+                      "UNIT-A",
+                      "UNIT-B",
+                      "CONNECTION-AB",
+                      "global_balance_conservation"
+                    ]
+                  },
+                  "identity": "H003-BALANCE-EVIDENCE-combination_contract",
+                  "oracle_revision": "H003-BALANCE-ORACLE-combination_contract@r1",
+                  "owner": "synthetic-h003-combination_contract-owner",
+                  "pair": null,
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-EVIDENCE-SOURCE-combination_contract"
+                },
+                "H003-BALANCE-EVIDENCE-unit_A": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "UNIT-A": {
+                      "command_identity_retained": true
+                    }
+                  },
+                  "identity": "H003-BALANCE-EVIDENCE-unit_A",
+                  "oracle_revision": "H003-BALANCE-ORACLE-unit_A@r1",
+                  "owner": "synthetic-h003-unit_A-owner",
+                  "pair": "L8:L5",
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-EVIDENCE-SOURCE-unit_A"
+                },
+                "H003-BALANCE-EVIDENCE-unit_B": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "UNIT-B": {
+                      "one_commit_per_identity": true
+                    }
+                  },
+                  "identity": "H003-BALANCE-EVIDENCE-unit_B",
+                  "oracle_revision": "H003-BALANCE-ORACLE-unit_B@r1",
+                  "owner": "synthetic-h003-unit_B-owner",
+                  "pair": "L8:L5",
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-EVIDENCE-SOURCE-unit_B"
+                },
+                "H003-BALANCE-EVIDENCE-connection_AB": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "CONNECTION-AB": {
+                      "retry_identity_retained": true
+                    }
+                  },
+                  "identity": "H003-BALANCE-EVIDENCE-connection_AB",
+                  "oracle_revision": "H003-BALANCE-ORACLE-connection_AB@r1",
+                  "owner": "synthetic-h003-connection_AB-owner",
+                  "pair": "L9:L4",
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-EVIDENCE-SOURCE-connection_AB"
+                },
+                "H003-BALANCE-EVIDENCE-unique_quality": {
+                  "artifact_identity": "ARTIFACT-1",
+                  "artifact_revision": "ART@r1",
+                  "contents": {
+                    "global_balance_conservation": {
+                      "before_total": 10,
+                      "expected_total": 10,
+                      "observed_total": 10
+                    }
+                  },
+                  "identity": "H003-BALANCE-EVIDENCE-unique_quality",
+                  "oracle_revision": "H003-BALANCE-ORACLE-unique_quality@r1",
+                  "owner": "synthetic-h003-unique_quality-owner",
+                  "pair": "L10:L3",
+                  "requirement_revision": "REQ@r1",
+                  "scope": "PRODUCT-P",
+                  "source_id": "H003-BALANCE-EVIDENCE-SOURCE-unique_quality"
+                }
+              }
+            },
+            "context": {
+              "target": {
+                "artifact_identity": "ARTIFACT-1",
+                "artifact_revision": "ART@r1",
+                "requirement_revision": "REQ@r1",
+                "scope": "PRODUCT-P"
+              },
+              "expected_profiles": {
+                "Integrated_basis": {
+                  "basis": "same_revision_boundary_combination_and_post_refactor_reverification_synthetic",
+                  "stage": "Integrated"
+                },
+                "L3_contract": {
+                  "obligations": {
+                    "UNIT-A": {
+                      "command_identity_retained": true
+                    },
+                    "UNIT-B": {
+                      "one_commit_per_identity": true
+                    },
+                    "CONNECTION-AB": {
+                      "retry_identity_retained": true
+                    },
+                    "global_balance_conservation": {
+                      "before_total": 10,
+                      "expected_total": 10,
+                      "observed_total": 10
+                    }
+                  }
+                },
+                "L10_design": {
+                  "target": "L3@r1",
+                  "oracles": {
+                    "UNIT-A": {
+                      "command_identity_retained": true
+                    },
+                    "UNIT-B": {
+                      "one_commit_per_identity": true
+                    },
+                    "CONNECTION-AB": {
+                      "retry_identity_retained": true
+                    },
+                    "global_balance_conservation": {
+                      "before_total": 10,
+                      "expected_total": 10,
+                      "observed_total": 10
+                    }
+                  }
+                },
+                "combination_contract": {
+                  "coverage": {
+                    "connection_AB": [
+                      "CONNECTION-AB"
+                    ],
+                    "unit_A": [
+                      "UNIT-A"
+                    ],
+                    "unit_B": [
+                      "UNIT-B"
+                    ]
+                  },
+                  "required_subjects": [
+                    "unit_A",
+                    "unit_B",
+                    "connection_AB"
+                  ],
+                  "whole_obligations": [
+                    "UNIT-A",
+                    "UNIT-B",
+                    "CONNECTION-AB",
+                    "global_balance_conservation"
+                  ]
+                },
+                "unit_A": {
+                  "UNIT-A": {
+                    "command_identity_retained": true
+                  }
+                },
+                "unit_B": {
+                  "UNIT-B": {
+                    "one_commit_per_identity": true
+                  }
+                },
+                "connection_AB": {
+                  "CONNECTION-AB": {
+                    "retry_identity_retained": true
+                  }
+                },
+                "unique_quality": {
+                  "global_balance_conservation": {
+                    "before_total": 10,
+                    "expected_total": 10,
+                    "observed_total": 10
+                  }
+                }
+              },
+              "expected_material_owners": {
+                "Integrated_basis": "synthetic-h003-Integrated_basis-owner",
+                "L3_contract": "synthetic-h003-L3_contract-owner",
+                "L10_design": "synthetic-h003-L10_design-owner",
+                "combination_contract": "synthetic-h003-combination_contract-owner",
+                "unit_A": "synthetic-h003-unit_A-owner",
+                "unit_B": "synthetic-h003-unit_B-owner",
+                "connection_AB": "synthetic-h003-connection_AB-owner",
+                "unique_quality": "synthetic-h003-unique_quality-owner"
+              },
+              "expected_source_ids": {
+                "Integrated_basis": "H003-BALANCE-SOURCE-Integrated_basis",
+                "L3_contract": "H003-BALANCE-SOURCE-L3_contract",
+                "L10_design": "H003-BALANCE-SOURCE-L10_design",
+                "combination_contract": "H003-BALANCE-SOURCE-combination_contract",
+                "unit_A": "H003-BALANCE-SOURCE-unit_A",
+                "unit_B": "H003-BALANCE-SOURCE-unit_B",
+                "connection_AB": "H003-BALANCE-SOURCE-connection_AB",
+                "unique_quality": "H003-BALANCE-SOURCE-unique_quality"
+              },
+              "expected_oracle_revisions": {
+                "Integrated_basis": "H003-BALANCE-ORACLE-Integrated_basis@r1",
+                "L3_contract": "H003-BALANCE-ORACLE-L3_contract@r1",
+                "L10_design": "H003-BALANCE-ORACLE-L10_design@r1",
+                "combination_contract": "H003-BALANCE-ORACLE-combination_contract@r1",
+                "unit_A": "H003-BALANCE-ORACLE-unit_A@r1",
+                "unit_B": "H003-BALANCE-ORACLE-unit_B@r1",
+                "connection_AB": "H003-BALANCE-ORACLE-connection_AB@r1",
+                "unique_quality": "H003-BALANCE-ORACLE-unique_quality@r1"
+              },
+              "pairs": {
+                "Integrated_basis": null,
+                "L3_contract": null,
+                "L10_design": "L10:L3",
+                "combination_contract": null,
+                "unit_A": "L8:L5",
+                "unit_B": "L8:L5",
+                "connection_AB": "L9:L4",
+                "unique_quality": "L10:L3"
+              },
+              "common_roles": [
+                "Integrated_basis",
+                "L3_contract",
+                "L10_design",
+                "combination_contract",
+                "unit_A",
+                "unit_B",
+                "connection_AB"
+              ],
+              "unique_role_mapping": {
+                "global_balance_conservation": "unique_quality"
+              },
+              "selection": "difference_required",
+              "evidence_kind": "synthetic",
+              "snapshot_revision": "FIXTURE-H022-F03-H003-BALANCE-r1",
+              "original_owner_qualification": null
+            },
+            "candidate": null
+          },
+          "source_packet": {
+            "ref": {
+              "identity": "SOURCE-H022-F03-H003-BALANCE",
+              "revision": "synthetic-design-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-design-source"
+            },
+            "raw_utf8": "{\"context\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"executor\":\"OS\",\"producer\":\"service_4\",\"trace_present\":true,\"unrelated_scope\":{\"id\":\"Q\",\"valid\":true},\"independent_profiles\":{\"Integrated_basis\":{\"basis\":\"same_revision_boundary_combination_and_post_refactor_reverification_synthetic\",\"stage\":\"Integrated\"},\"L3_contract\":{\"obligations\":{\"UNIT-A\":{\"command_identity_retained\":true},\"UNIT-B\":{\"one_commit_per_identity\":true},\"CONNECTION-AB\":{\"retry_identity_retained\":true},\"global_balance_conservation\":{\"before_total\":10,\"expected_total\":10,\"observed_total\":10}}},\"L10_design\":{\"target\":\"L3@r1\",\"oracles\":{\"UNIT-A\":{\"command_identity_retained\":true},\"UNIT-B\":{\"one_commit_per_identity\":true},\"CONNECTION-AB\":{\"retry_identity_retained\":true},\"global_balance_conservation\":{\"before_total\":10,\"expected_total\":10,\"observed_total\":10}}},\"combination_contract\":{\"coverage\":{\"connection_AB\":[\"CONNECTION-AB\"],\"unit_A\":[\"UNIT-A\"],\"unit_B\":[\"UNIT-B\"]},\"required_subjects\":[\"unit_A\",\"unit_B\",\"connection_AB\"],\"whole_obligations\":[\"UNIT-A\",\"UNIT-B\",\"CONNECTION-AB\",\"global_balance_conservation\"]},\"unit_A\":{\"UNIT-A\":{\"command_identity_retained\":true}},\"unit_B\":{\"UNIT-B\":{\"one_commit_per_identity\":true}},\"connection_AB\":{\"CONNECTION-AB\":{\"retry_identity_retained\":true}},\"unique_quality\":{\"global_balance_conservation\":{\"before_total\":10,\"expected_total\":10,\"observed_total\":10}}},\"materials\":{\"Integrated_basis\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"basis\":\"same_revision_boundary_combination_and_post_refactor_reverification_synthetic\",\"stage\":\"Integrated\"},\"evidence_id\":\"H003-BALANCE-EVIDENCE-Integrated_basis\",\"execution\":\"observed_synthetic\",\"identity\":\"H003-BALANCE-MATERIAL-Integrated_basis\",\"oracle_revision\":\"H003-BALANCE-ORACLE-Integrated_basis@r1\",\"owner\":\"synthetic-h003-Integrated_basis-owner\",\"pair\":null,\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-SOURCE-Integrated_basis\"},\"L3_contract\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"obligations\":{\"UNIT-A\":{\"command_identity_retained\":true},\"UNIT-B\":{\"one_commit_per_identity\":true},\"CONNECTION-AB\":{\"retry_identity_retained\":true},\"global_balance_conservation\":{\"before_total\":10,\"expected_total\":10,\"observed_total\":10}}},\"evidence_id\":\"H003-BALANCE-EVIDENCE-L3_contract\",\"execution\":\"observed_synthetic\",\"identity\":\"H003-BALANCE-MATERIAL-L3_contract\",\"oracle_revision\":\"H003-BALANCE-ORACLE-L3_contract@r1\",\"owner\":\"synthetic-h003-L3_contract-owner\",\"pair\":null,\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-SOURCE-L3_contract\"},\"L10_design\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"target\":\"L3@r1\",\"oracles\":{\"UNIT-A\":{\"command_identity_retained\":true},\"UNIT-B\":{\"one_commit_per_identity\":true},\"CONNECTION-AB\":{\"retry_identity_retained\":true},\"global_balance_conservation\":{\"before_total\":10,\"expected_total\":10,\"observed_total\":10}}},\"evidence_id\":\"H003-BALANCE-EVIDENCE-L10_design\",\"execution\":\"observed_synthetic\",\"identity\":\"H003-BALANCE-MATERIAL-L10_design\",\"oracle_revision\":\"H003-BALANCE-ORACLE-L10_design@r1\",\"owner\":\"synthetic-h003-L10_design-owner\",\"pair\":\"L10:L3\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-SOURCE-L10_design\"},\"combination_contract\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"coverage\":{\"connection_AB\":[\"CONNECTION-AB\"],\"unit_A\":[\"UNIT-A\"],\"unit_B\":[\"UNIT-B\"]},\"required_subjects\":[\"unit_A\",\"unit_B\",\"connection_AB\"],\"whole_obligations\":[\"UNIT-A\",\"UNIT-B\",\"CONNECTION-AB\",\"global_balance_conservation\"]},\"evidence_id\":\"H003-BALANCE-EVIDENCE-combination_contract\",\"execution\":\"observed_synthetic\",\"identity\":\"H003-BALANCE-MATERIAL-combination_contract\",\"oracle_revision\":\"H003-BALANCE-ORACLE-combination_contract@r1\",\"owner\":\"synthetic-h003-combination_contract-owner\",\"pair\":null,\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-SOURCE-combination_contract\"},\"unit_A\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"UNIT-A\":{\"command_identity_retained\":true}},\"evidence_id\":\"H003-BALANCE-EVIDENCE-unit_A\",\"execution\":\"observed_synthetic\",\"identity\":\"H003-BALANCE-MATERIAL-unit_A\",\"oracle_revision\":\"H003-BALANCE-ORACLE-unit_A@r1\",\"owner\":\"synthetic-h003-unit_A-owner\",\"pair\":\"L8:L5\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-SOURCE-unit_A\"},\"unit_B\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"UNIT-B\":{\"one_commit_per_identity\":true}},\"evidence_id\":\"H003-BALANCE-EVIDENCE-unit_B\",\"execution\":\"observed_synthetic\",\"identity\":\"H003-BALANCE-MATERIAL-unit_B\",\"oracle_revision\":\"H003-BALANCE-ORACLE-unit_B@r1\",\"owner\":\"synthetic-h003-unit_B-owner\",\"pair\":\"L8:L5\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-SOURCE-unit_B\"},\"connection_AB\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"CONNECTION-AB\":{\"retry_identity_retained\":true}},\"evidence_id\":\"H003-BALANCE-EVIDENCE-connection_AB\",\"execution\":\"observed_synthetic\",\"identity\":\"H003-BALANCE-MATERIAL-connection_AB\",\"oracle_revision\":\"H003-BALANCE-ORACLE-connection_AB@r1\",\"owner\":\"synthetic-h003-connection_AB-owner\",\"pair\":\"L9:L4\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-SOURCE-connection_AB\"},\"unique_quality\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"global_balance_conservation\":{\"before_total\":10,\"expected_total\":10,\"observed_total\":10}},\"evidence_id\":\"H003-BALANCE-EVIDENCE-unique_quality\",\"execution\":\"observed_synthetic\",\"identity\":\"H003-BALANCE-MATERIAL-unique_quality\",\"oracle_revision\":\"H003-BALANCE-ORACLE-unique_quality@r1\",\"owner\":\"synthetic-h003-unique_quality-owner\",\"pair\":\"L10:L3\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-SOURCE-unique_quality\"}},\"evidence_materials\":{\"H003-BALANCE-EVIDENCE-Integrated_basis\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"basis\":\"same_revision_boundary_combination_and_post_refactor_reverification_synthetic\",\"stage\":\"Integrated\"},\"identity\":\"H003-BALANCE-EVIDENCE-Integrated_basis\",\"oracle_revision\":\"H003-BALANCE-ORACLE-Integrated_basis@r1\",\"owner\":\"synthetic-h003-Integrated_basis-owner\",\"pair\":null,\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-EVIDENCE-SOURCE-Integrated_basis\"},\"H003-BALANCE-EVIDENCE-L3_contract\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"obligations\":{\"UNIT-A\":{\"command_identity_retained\":true},\"UNIT-B\":{\"one_commit_per_identity\":true},\"CONNECTION-AB\":{\"retry_identity_retained\":true},\"global_balance_conservation\":{\"before_total\":10,\"expected_total\":10,\"observed_total\":10}}},\"identity\":\"H003-BALANCE-EVIDENCE-L3_contract\",\"oracle_revision\":\"H003-BALANCE-ORACLE-L3_contract@r1\",\"owner\":\"synthetic-h003-L3_contract-owner\",\"pair\":null,\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-EVIDENCE-SOURCE-L3_contract\"},\"H003-BALANCE-EVIDENCE-L10_design\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"target\":\"L3@r1\",\"oracles\":{\"UNIT-A\":{\"command_identity_retained\":true},\"UNIT-B\":{\"one_commit_per_identity\":true},\"CONNECTION-AB\":{\"retry_identity_retained\":true},\"global_balance_conservation\":{\"before_total\":10,\"expected_total\":10,\"observed_total\":10}}},\"identity\":\"H003-BALANCE-EVIDENCE-L10_design\",\"oracle_revision\":\"H003-BALANCE-ORACLE-L10_design@r1\",\"owner\":\"synthetic-h003-L10_design-owner\",\"pair\":\"L10:L3\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-EVIDENCE-SOURCE-L10_design\"},\"H003-BALANCE-EVIDENCE-combination_contract\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"coverage\":{\"connection_AB\":[\"CONNECTION-AB\"],\"unit_A\":[\"UNIT-A\"],\"unit_B\":[\"UNIT-B\"]},\"required_subjects\":[\"unit_A\",\"unit_B\",\"connection_AB\"],\"whole_obligations\":[\"UNIT-A\",\"UNIT-B\",\"CONNECTION-AB\",\"global_balance_conservation\"]},\"identity\":\"H003-BALANCE-EVIDENCE-combination_contract\",\"oracle_revision\":\"H003-BALANCE-ORACLE-combination_contract@r1\",\"owner\":\"synthetic-h003-combination_contract-owner\",\"pair\":null,\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-EVIDENCE-SOURCE-combination_contract\"},\"H003-BALANCE-EVIDENCE-unit_A\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"UNIT-A\":{\"command_identity_retained\":true}},\"identity\":\"H003-BALANCE-EVIDENCE-unit_A\",\"oracle_revision\":\"H003-BALANCE-ORACLE-unit_A@r1\",\"owner\":\"synthetic-h003-unit_A-owner\",\"pair\":\"L8:L5\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-EVIDENCE-SOURCE-unit_A\"},\"H003-BALANCE-EVIDENCE-unit_B\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"UNIT-B\":{\"one_commit_per_identity\":true}},\"identity\":\"H003-BALANCE-EVIDENCE-unit_B\",\"oracle_revision\":\"H003-BALANCE-ORACLE-unit_B@r1\",\"owner\":\"synthetic-h003-unit_B-owner\",\"pair\":\"L8:L5\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-EVIDENCE-SOURCE-unit_B\"},\"H003-BALANCE-EVIDENCE-connection_AB\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"CONNECTION-AB\":{\"retry_identity_retained\":true}},\"identity\":\"H003-BALANCE-EVIDENCE-connection_AB\",\"oracle_revision\":\"H003-BALANCE-ORACLE-connection_AB@r1\",\"owner\":\"synthetic-h003-connection_AB-owner\",\"pair\":\"L9:L4\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-EVIDENCE-SOURCE-connection_AB\"},\"H003-BALANCE-EVIDENCE-unique_quality\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"contents\":{\"global_balance_conservation\":{\"before_total\":10,\"expected_total\":10,\"observed_total\":10}},\"identity\":\"H003-BALANCE-EVIDENCE-unique_quality\",\"oracle_revision\":\"H003-BALANCE-ORACLE-unique_quality@r1\",\"owner\":\"synthetic-h003-unique_quality-owner\",\"pair\":\"L10:L3\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"H003-BALANCE-EVIDENCE-SOURCE-unique_quality\"}}}",
+            "sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
+            "evidence_kind": "synthetic"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "CONTEXT-H022-F03-H003-BALANCE",
+              "revision": "synthetic-design-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-design-source"
+            },
+            "raw_utf8": "{\"target\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"expected_profiles\":{\"Integrated_basis\":{\"basis\":\"same_revision_boundary_combination_and_post_refactor_reverification_synthetic\",\"stage\":\"Integrated\"},\"L3_contract\":{\"obligations\":{\"UNIT-A\":{\"command_identity_retained\":true},\"UNIT-B\":{\"one_commit_per_identity\":true},\"CONNECTION-AB\":{\"retry_identity_retained\":true},\"global_balance_conservation\":{\"before_total\":10,\"expected_total\":10,\"observed_total\":10}}},\"L10_design\":{\"target\":\"L3@r1\",\"oracles\":{\"UNIT-A\":{\"command_identity_retained\":true},\"UNIT-B\":{\"one_commit_per_identity\":true},\"CONNECTION-AB\":{\"retry_identity_retained\":true},\"global_balance_conservation\":{\"before_total\":10,\"expected_total\":10,\"observed_total\":10}}},\"combination_contract\":{\"coverage\":{\"connection_AB\":[\"CONNECTION-AB\"],\"unit_A\":[\"UNIT-A\"],\"unit_B\":[\"UNIT-B\"]},\"required_subjects\":[\"unit_A\",\"unit_B\",\"connection_AB\"],\"whole_obligations\":[\"UNIT-A\",\"UNIT-B\",\"CONNECTION-AB\",\"global_balance_conservation\"]},\"unit_A\":{\"UNIT-A\":{\"command_identity_retained\":true}},\"unit_B\":{\"UNIT-B\":{\"one_commit_per_identity\":true}},\"connection_AB\":{\"CONNECTION-AB\":{\"retry_identity_retained\":true}},\"unique_quality\":{\"global_balance_conservation\":{\"before_total\":10,\"expected_total\":10,\"observed_total\":10}}},\"expected_material_owners\":{\"Integrated_basis\":\"synthetic-h003-Integrated_basis-owner\",\"L3_contract\":\"synthetic-h003-L3_contract-owner\",\"L10_design\":\"synthetic-h003-L10_design-owner\",\"combination_contract\":\"synthetic-h003-combination_contract-owner\",\"unit_A\":\"synthetic-h003-unit_A-owner\",\"unit_B\":\"synthetic-h003-unit_B-owner\",\"connection_AB\":\"synthetic-h003-connection_AB-owner\",\"unique_quality\":\"synthetic-h003-unique_quality-owner\"},\"expected_source_ids\":{\"Integrated_basis\":\"H003-BALANCE-SOURCE-Integrated_basis\",\"L3_contract\":\"H003-BALANCE-SOURCE-L3_contract\",\"L10_design\":\"H003-BALANCE-SOURCE-L10_design\",\"combination_contract\":\"H003-BALANCE-SOURCE-combination_contract\",\"unit_A\":\"H003-BALANCE-SOURCE-unit_A\",\"unit_B\":\"H003-BALANCE-SOURCE-unit_B\",\"connection_AB\":\"H003-BALANCE-SOURCE-connection_AB\",\"unique_quality\":\"H003-BALANCE-SOURCE-unique_quality\"},\"expected_oracle_revisions\":{\"Integrated_basis\":\"H003-BALANCE-ORACLE-Integrated_basis@r1\",\"L3_contract\":\"H003-BALANCE-ORACLE-L3_contract@r1\",\"L10_design\":\"H003-BALANCE-ORACLE-L10_design@r1\",\"combination_contract\":\"H003-BALANCE-ORACLE-combination_contract@r1\",\"unit_A\":\"H003-BALANCE-ORACLE-unit_A@r1\",\"unit_B\":\"H003-BALANCE-ORACLE-unit_B@r1\",\"connection_AB\":\"H003-BALANCE-ORACLE-connection_AB@r1\",\"unique_quality\":\"H003-BALANCE-ORACLE-unique_quality@r1\"},\"pairs\":{\"Integrated_basis\":null,\"L3_contract\":null,\"L10_design\":\"L10:L3\",\"combination_contract\":null,\"unit_A\":\"L8:L5\",\"unit_B\":\"L8:L5\",\"connection_AB\":\"L9:L4\",\"unique_quality\":\"L10:L3\"},\"common_roles\":[\"Integrated_basis\",\"L3_contract\",\"L10_design\",\"combination_contract\",\"unit_A\",\"unit_B\",\"connection_AB\"],\"unique_role_mapping\":{\"global_balance_conservation\":\"unique_quality\"},\"selection\":\"difference_required\",\"evidence_kind\":\"synthetic\",\"snapshot_revision\":\"FIXTURE-H022-F03-H003-BALANCE-r1\",\"original_owner_qualification\":null}",
+            "sha256": "313f5c7c48525175a07b0377f9e561f00506ebe6fd9aebc720a5da04faa4169e",
+            "evidence_kind": "synthetic"
+          },
+          "call_binding": {
+            "function_ref": "HARNESS-L5-022-F03",
+            "operation_ref": {
+              "identity": "H022-H003-BALANCE-ORIGINAL-CALL",
+              "revision": "synthetic-design-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-system-verification-owner"
+            },
+            "argument_canonical_sha256": "67021157cec5eaf02fca1fd995737997865aa63463a625067af50bafb98a2bcd",
+            "return_kind": "synthetic_design_expected_return_not_execution",
+            "source_packet_ref": "SOURCE-H022-F03-H003-BALANCE"
+          },
+          "expected_evidence_selectors": {
+            "Integrated_basis": {
+              "identity": "H003-BALANCE-EVIDENCE-Integrated_basis",
+              "owner": "synthetic-h003-Integrated_basis-owner",
+              "source_id": "H003-BALANCE-EVIDENCE-SOURCE-Integrated_basis",
+              "oracle_revision": "H003-BALANCE-ORACLE-Integrated_basis@r1",
+              "pair": null
+            },
+            "L3_contract": {
+              "identity": "H003-BALANCE-EVIDENCE-L3_contract",
+              "owner": "synthetic-h003-L3_contract-owner",
+              "source_id": "H003-BALANCE-EVIDENCE-SOURCE-L3_contract",
+              "oracle_revision": "H003-BALANCE-ORACLE-L3_contract@r1",
+              "pair": null
+            },
+            "L10_design": {
+              "identity": "H003-BALANCE-EVIDENCE-L10_design",
+              "owner": "synthetic-h003-L10_design-owner",
+              "source_id": "H003-BALANCE-EVIDENCE-SOURCE-L10_design",
+              "oracle_revision": "H003-BALANCE-ORACLE-L10_design@r1",
+              "pair": "L10:L3"
+            },
+            "combination_contract": {
+              "identity": "H003-BALANCE-EVIDENCE-combination_contract",
+              "owner": "synthetic-h003-combination_contract-owner",
+              "source_id": "H003-BALANCE-EVIDENCE-SOURCE-combination_contract",
+              "oracle_revision": "H003-BALANCE-ORACLE-combination_contract@r1",
+              "pair": null
+            },
+            "unit_A": {
+              "identity": "H003-BALANCE-EVIDENCE-unit_A",
+              "owner": "synthetic-h003-unit_A-owner",
+              "source_id": "H003-BALANCE-EVIDENCE-SOURCE-unit_A",
+              "oracle_revision": "H003-BALANCE-ORACLE-unit_A@r1",
+              "pair": "L8:L5"
+            },
+            "unit_B": {
+              "identity": "H003-BALANCE-EVIDENCE-unit_B",
+              "owner": "synthetic-h003-unit_B-owner",
+              "source_id": "H003-BALANCE-EVIDENCE-SOURCE-unit_B",
+              "oracle_revision": "H003-BALANCE-ORACLE-unit_B@r1",
+              "pair": "L8:L5"
+            },
+            "connection_AB": {
+              "identity": "H003-BALANCE-EVIDENCE-connection_AB",
+              "owner": "synthetic-h003-connection_AB-owner",
+              "source_id": "H003-BALANCE-EVIDENCE-SOURCE-connection_AB",
+              "oracle_revision": "H003-BALANCE-ORACLE-connection_AB@r1",
+              "pair": "L9:L4"
+            },
+            "unique_quality": {
+              "identity": "H003-BALANCE-EVIDENCE-unique_quality",
+              "owner": "synthetic-h003-unique_quality-owner",
+              "source_id": "H003-BALANCE-EVIDENCE-SOURCE-unique_quality",
+              "oracle_revision": "H003-BALANCE-ORACLE-unique_quality@r1",
+              "pair": "L10:L3"
+            }
+          }
+        },
+        "construction": "fixture.argumentsは完全三引数。case.argument_patchはそのdeep copyへ順序どおり適用し、Context/原値/qualifierを比較時に再生成・補完しない。raw source_packetは正常inputを保持する別固定原packetであり、case変異後のinputに再copyしない。",
+        "cases": [
+          {
+            "id": "H022-L8-F03-H003-BALANCE-COMPLETE",
+            "fixture_ref": "H022-F03-H003-BALANCE-FIXTURE",
+            "argument_patch": [],
+            "expected_complete_result": {
+              "outcome": "content_compared",
+              "value": {
+                "whole_obligations": [
+                  "UNIT-A",
+                  "UNIT-B",
+                  "CONNECTION-AB",
+                  "global_balance_conservation"
+                ],
+                "lower_expressible_obligations": [
+                  "UNIT-A",
+                  "UNIT-B",
+                  "CONNECTION-AB"
+                ],
+                "system_unique_obligations": [
+                  "global_balance_conservation"
+                ],
+                "proof_results": {
+                  "Integrated_basis": "supported_synthetic",
+                  "L3_contract": "supported_synthetic",
+                  "L10_design": "supported_synthetic",
+                  "combination_contract": "supported_synthetic",
+                  "unit_A": "supported_synthetic",
+                  "unit_B": "supported_synthetic",
+                  "connection_AB": "supported_synthetic",
+                  "unique_quality": "supported_synthetic"
+                },
+                "proof_findings": {},
+                "unresolved_proofs": [],
+                "owner_return_candidates": {},
+                "verified_candidate": "supported_synthetic_only",
+                "derivation_kind": "difference_proof_required",
+                "integrated_candidate": "supported_synthetic",
+                "trace_is_system_proof": false,
+                "external_and_internal_same_contract": true,
+                "unrelated_Q": {
+                  "id": "Q",
+                  "valid": true
+                },
+                "actual_stage_promoted": false,
+                "actual_CI_executed": false,
+                "actual_accepted": false
+              },
+              "findings": [],
+              "candidate_disposition": "not_submitted",
+              "candidate_conflicting_paths": []
+            },
+            "expectation_basis": "独立固定W4/E3/D1と同revision/scopeの8必要roleが個別に対応する。global_balanceはbusiness原期待10/観測10へ明示対応する新合成例。実system試験/Verified/資格を生成しない。",
+            "design_ref": "HARNESS-L5-022-F03",
+            "application_ref": "H022-F03-H003-BALANCE-APPLICATION",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H022-L8-F03-H003-BALANCE-UNIQUE-MISSING",
+            "fixture_ref": "H022-F03-H003-BALANCE-FIXTURE",
+            "argument_patch": [
+              {
+                "op": "replace",
+                "path": "/input/materials/unique_quality",
+                "value": null
+              }
+            ],
+            "expected_partial_result": {
+              "required_value_fields": {
+                "proof_results": {
+                  "unique_quality": "missing",
+                  "Integrated_basis": "supported_synthetic"
+                },
+                "unresolved_proofs": [
+                  "unique_quality"
+                ],
+                "verified_candidate": "not_established",
+                "integrated_candidate": "supported_synthetic",
+                "unrelated_Q": {
+                  "id": "Q",
+                  "valid": true
+                },
+                "actual_stage_promoted": false,
+                "actual_CI_executed": false,
+                "actual_accepted": false
+              },
+              "required_findings": [
+                {
+                  "code": "proof_missing",
+                  "pointer": "/input/materials/unique_quality",
+                  "proof_id": "unique_quality",
+                  "return_owner": "synthetic-h003-unique_quality-owner"
+                }
+              ],
+              "candidate_disposition": "not_submitted",
+              "retained_input_unmodified": true
+            },
+            "expectation_basis": "S5/S7: 固有roleのnullはmissing。別の有効Integrated原根拠を保持し、system不足を下位成功で相殺しない。proof欠落時の最上位outcome全般は既存S5/S7に明示がないため固定対象に含めない。",
+            "design_ref": "HARNESS-L5-022-F03",
+            "application_ref": "H022-F03-H003-BALANCE-APPLICATION",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H022-L8-F03-H003-BALANCE-CONTEXT-UNRECOGNIZED",
+            "fixture_ref": "H022-F03-H003-BALANCE-FIXTURE",
+            "argument_patch": [
+              {
+                "op": "replace",
+                "path": "/context/snapshot_revision",
+                "value": "UNSELECTED-H003-BALANCE-CONTEXT"
+              }
+            ],
+            "expected_partial_result": {
+              "outcome": "unresolved",
+              "required_value_fields": {
+                "verified_candidate": "not_established",
+                "actual_stage_promoted": false,
+                "actual_CI_executed": false,
+                "actual_accepted": false,
+                "unrelated_Q": {
+                  "id": "Q",
+                  "valid": true
+                }
+              },
+              "required_findings": [
+                {
+                  "code": "context_unresolved",
+                  "pointer": "/context/snapshot_revision",
+                  "proof_id": null,
+                  "return_owner": "independent-context-source-owner"
+                }
+              ],
+              "candidate_disposition": "not_submitted",
+              "retained_input_unmodified": true
+            },
+            "expectation_basis": "S2: 宣言型内でも別固定選択契約に結べないContextをinput/実結果から補完して受理しない。全返却や未定義副次findingは固定しない。",
+            "design_ref": "HARNESS-L5-022-F03",
+            "application_ref": "H022-F03-H003-BALANCE-APPLICATION",
+            "execution_state": "not_executed",
+            "effect": "none"
+          }
+        ],
+        "expected_freeze_canonical_sha256": "8171201df2dbc1e6c63498f2e1a762fcf51ac85237c1c8c8ef82301704e4361e",
+        "independence": "入力と期待は正式編集前に上流規範/既存H003原wholeから別固定。新原packetは新合成設計sourceであり、旧packet ref/hashや実lineageを継承しない。正常返却は全SystemDifferenceResult field、2負例は明記partialのみ。",
+        "verification_limit": "限定新合成Context一例。旧W5/D2不変、任意W受理/実runtime/実owner資格/実lineage/全返却域は未主張。未知Context/欠落対照は部分観測oracleに限定。",
+        "expected_freeze_hash_recipe": "同じobjectのcases配列全体（全caseの全field、配列順序を保持）を対象とする。object keyはUnicode文字列順へ再帰sort、区切りはcompact comma/colon、ensure_ascii=false、NaN/Infinity禁止、strict UTF-8へencode、末尾改行なしのSHA-256。",
+        "oracle_observation_boundary": "required_value_fieldsはSystemDifferenceResult.value内の既存fieldだけ。retained_input_unmodifiedはtestの独立した入力before/after観測であり関数返却のfieldではない。元計画のactual_effectsはvalue.actual_stage_promoted/actual_CI_executed/actual_acceptedを個別観測する。"
+      }
     },
     {
       "id": "HARNESS-L8-022-N01",

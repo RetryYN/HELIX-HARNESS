@@ -85,6 +85,12 @@
       "revision": "369f512ba9b5583fcaedcc6a6a0fb5b36d8f9318",
       "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
       "use": "現mainのB01 business要件/対L10。B01 objectはff5f0667承認対象と一致。文書wholeから後続追加の承認を継承しない。"
+    },
+    {
+      "revision": "52c44b1a04bce0cdf9e2a6704c060ae74c3d87c3",
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "sha256": "3bb4ed1800617d872cb2795942c5d0dd100f9f6c0037a33d0cb3d65965a963b0",
+      "use": "global balance原義務と観測の固定参照。旧source pinを置換せず本追加例だけへ適用。"
     }
   ],
   "legacy_comparison": [
@@ -549,7 +555,7 @@
     "F01の143原例/4Context例と必要集合/pairを具体化。全構造/複合/実資格/codecと凍結は未完。",
     "F02の113原例/2Context/5Context否定例と境界/意味保存Refactor後再検証を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
     "H22F-m1対応：未変異REFACTOR Contextとperformed=falseの原NORMAL inputを結合した反例を追加。必要3proof欠落と未成立Integratedを保持、全oracle閉包は未完。",
-    "F03の103原例/2Context/6否定例と全義務-下位表現-固有差分を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
+    "F03の既存103原例・2固定Context・6否定例に、global balanceの別固定Contextと正常全返却1例・部分観測2例を追加。全構造/複合/実資格/正式codec/関数設計と対検証の凍結は後続で扱う。",
     "N01の36原例/1Context/6否定例と今回未評価/原期限/過去receipt限定scopeを具体化。全構造/複合/正式期限schema/codec/実owner/実holdout/凍結は未完。",
     "H22H-m1対応：独立Context期待1とinputの宣言oracle/body/result/evidenceが2で自己整合する反例で未評価/Q/原入力保全/実作用falseを固定。作成側発見のU6 conflict_content時evaluated_scope=null訂正を対L8/L9へ結ぶ。",
     "B01の42原例/2Context/8否定例と原stage caseの内容解決、意味差route/同段階再検証/owner分離を具体化。全設計/正式binding/実装準備は未完。"
@@ -1481,7 +1487,7 @@
       },
       "preconditions": [
         "input/Context/candidateは別immutable。独立適用sourceがContextを供給し、runtimeでinputのprofile/coverage/実結果から必要集合又は2modeを選択しない。",
-        "Contextは原L9 normalとcompositionalの設計時固定仮説。同sourceの別hashは実独立lineage/owner資格ではない。実適用範囲と原記録bindingは未完。",
+        "Contextは原L9 normalとcompositionalの設計時固定仮説。同sourceの別hashは実独立lineage/owner資格ではない。実適用範囲と原記録bindingは未完。本節bounded_context_applicationのglobal_balance例も、独立原資料と上流汎用規範から設計時に別固定した合成Contextとして追加する。実適用/実lineage成立の意味は持たない。",
         "正式JSON codec/owner/hostを設計合成自己一致から成立扱いしない。"
       ],
       "algorithm": [
@@ -1491,7 +1497,7 @@
         },
         {
           "id": "S2",
-          "rule": "Contextのtarget/profile/common roles/unique mapping/pairsを別固定選択契約へ照合。input.context/independent_profilesはContextの原値へ内容比較。unknown選択/actual_owner_inputで資格不足はcontext_unresolved。自己申告coverageで独立差分義務を減らさず、全findingと下位有効原証拠を保持。"
+          "rule": "Contextのtarget/profile/common roles/unique mapping/pairsを別固定選択契約へ照合。input.context/independent_profilesはContextの原値へ内容比較。unknown選択/actual_owner_inputで資格不足はcontext_unresolved。自己申告coverageで独立差分義務を減らさず、全findingと下位有効原証拠を保持。bounded_context_applicationに固定した一つの別Contextはその全原値/宣言Wへ照合する。任意Contextへの普遍化、input由来の選択、既存固定契約の置換は行わない。"
         },
         {
           "id": "S3",
@@ -1539,7 +1545,346 @@
         "candidate_conflict",
         "projection_not_authority"
       ],
-      "scope_limit": "F03部分詳細/先行test設計。全構造/複合/全typedfinding、正式schema/codec、実owner/適用source、L6L7凍結は未完。"
+      "scope_limit": "F03部分詳細/先行test設計。全構造/複合/全typedfinding、正式schema/codec、実owner/適用source、L6L7凍結は未完。global_balanceの追加はbounded_context_application一例とL8対照に限り、旧W5/D2/既存oracleは保持する。",
+      "bounded_context_application": {
+        "id": "H022-F03-H003-BALANCE-APPLICATION",
+        "derivation_kind": "既存汎用 W−Eの限定合成例への意味再導出",
+        "source_basis": [
+          {
+            "revision": "52c44b1a04bce0cdf9e2a6704c060ae74c3d87c3",
+            "path": "docs/helix-harness/L4-basic-design/stage-verification-acceptance.json",
+            "pointer": "/contracts/2/verified_difference_detail",
+            "file_sha256": "db5e0e57c793deccaf6a5a0c3292473de2de79031798567c7e3cda859cd306a7"
+          },
+          {
+            "revision": "52c44b1a04bce0cdf9e2a6704c060ae74c3d87c3",
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/62",
+            "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+          },
+          {
+            "revision": "52c44b1a04bce0cdf9e2a6704c060ae74c3d87c3",
+            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+            "pointer": "/verification_obligations/4/normal_cases/3/independent_source_packet",
+            "file_sha256": "3bb4ed1800617d872cb2795942c5d0dd100f9f6c0037a33d0cb3d65965a963b0"
+          }
+        ],
+        "upstream_rule": "L4 /contracts/2/verified_difference_detail/comparison と compositional_case の独立全義務・内容による下位coverage・残差の個別証明を用いる。型が受理できるだけで新Contextを受理せず、本節で一つの別固定契約を明示する。L3/L10の意味、実stage/authority/資格は変更しない。",
+        "preserved_selected_contract": "既存selected_difference_contractのc14b920固定W5/D2、normal/compositional Context、既存L8全期待を保持する。新例をその2固有義務の同義の別名又は置換にしない。",
+        "context": {
+          "target": {
+            "artifact_identity": "ARTIFACT-1",
+            "artifact_revision": "ART@r1",
+            "requirement_revision": "REQ@r1",
+            "scope": "PRODUCT-P"
+          },
+          "expected_profiles": {
+            "Integrated_basis": {
+              "basis": "same_revision_boundary_combination_and_post_refactor_reverification_synthetic",
+              "stage": "Integrated"
+            },
+            "L3_contract": {
+              "obligations": {
+                "UNIT-A": {
+                  "command_identity_retained": true
+                },
+                "UNIT-B": {
+                  "one_commit_per_identity": true
+                },
+                "CONNECTION-AB": {
+                  "retry_identity_retained": true
+                },
+                "global_balance_conservation": {
+                  "before_total": 10,
+                  "expected_total": 10,
+                  "observed_total": 10
+                }
+              }
+            },
+            "L10_design": {
+              "target": "L3@r1",
+              "oracles": {
+                "UNIT-A": {
+                  "command_identity_retained": true
+                },
+                "UNIT-B": {
+                  "one_commit_per_identity": true
+                },
+                "CONNECTION-AB": {
+                  "retry_identity_retained": true
+                },
+                "global_balance_conservation": {
+                  "before_total": 10,
+                  "expected_total": 10,
+                  "observed_total": 10
+                }
+              }
+            },
+            "combination_contract": {
+              "coverage": {
+                "connection_AB": [
+                  "CONNECTION-AB"
+                ],
+                "unit_A": [
+                  "UNIT-A"
+                ],
+                "unit_B": [
+                  "UNIT-B"
+                ]
+              },
+              "required_subjects": [
+                "unit_A",
+                "unit_B",
+                "connection_AB"
+              ],
+              "whole_obligations": [
+                "UNIT-A",
+                "UNIT-B",
+                "CONNECTION-AB",
+                "global_balance_conservation"
+              ]
+            },
+            "unit_A": {
+              "UNIT-A": {
+                "command_identity_retained": true
+              }
+            },
+            "unit_B": {
+              "UNIT-B": {
+                "one_commit_per_identity": true
+              }
+            },
+            "connection_AB": {
+              "CONNECTION-AB": {
+                "retry_identity_retained": true
+              }
+            },
+            "unique_quality": {
+              "global_balance_conservation": {
+                "before_total": 10,
+                "expected_total": 10,
+                "observed_total": 10
+              }
+            }
+          },
+          "expected_material_owners": {
+            "Integrated_basis": "synthetic-h003-Integrated_basis-owner",
+            "L3_contract": "synthetic-h003-L3_contract-owner",
+            "L10_design": "synthetic-h003-L10_design-owner",
+            "combination_contract": "synthetic-h003-combination_contract-owner",
+            "unit_A": "synthetic-h003-unit_A-owner",
+            "unit_B": "synthetic-h003-unit_B-owner",
+            "connection_AB": "synthetic-h003-connection_AB-owner",
+            "unique_quality": "synthetic-h003-unique_quality-owner"
+          },
+          "expected_source_ids": {
+            "Integrated_basis": "H003-BALANCE-SOURCE-Integrated_basis",
+            "L3_contract": "H003-BALANCE-SOURCE-L3_contract",
+            "L10_design": "H003-BALANCE-SOURCE-L10_design",
+            "combination_contract": "H003-BALANCE-SOURCE-combination_contract",
+            "unit_A": "H003-BALANCE-SOURCE-unit_A",
+            "unit_B": "H003-BALANCE-SOURCE-unit_B",
+            "connection_AB": "H003-BALANCE-SOURCE-connection_AB",
+            "unique_quality": "H003-BALANCE-SOURCE-unique_quality"
+          },
+          "expected_oracle_revisions": {
+            "Integrated_basis": "H003-BALANCE-ORACLE-Integrated_basis@r1",
+            "L3_contract": "H003-BALANCE-ORACLE-L3_contract@r1",
+            "L10_design": "H003-BALANCE-ORACLE-L10_design@r1",
+            "combination_contract": "H003-BALANCE-ORACLE-combination_contract@r1",
+            "unit_A": "H003-BALANCE-ORACLE-unit_A@r1",
+            "unit_B": "H003-BALANCE-ORACLE-unit_B@r1",
+            "connection_AB": "H003-BALANCE-ORACLE-connection_AB@r1",
+            "unique_quality": "H003-BALANCE-ORACLE-unique_quality@r1"
+          },
+          "pairs": {
+            "Integrated_basis": null,
+            "L3_contract": null,
+            "L10_design": "L10:L3",
+            "combination_contract": null,
+            "unit_A": "L8:L5",
+            "unit_B": "L8:L5",
+            "connection_AB": "L9:L4",
+            "unique_quality": "L10:L3"
+          },
+          "common_roles": [
+            "Integrated_basis",
+            "L3_contract",
+            "L10_design",
+            "combination_contract",
+            "unit_A",
+            "unit_B",
+            "connection_AB"
+          ],
+          "unique_role_mapping": {
+            "global_balance_conservation": "unique_quality"
+          },
+          "selection": "difference_required",
+          "evidence_kind": "synthetic",
+          "snapshot_revision": "FIXTURE-H022-F03-H003-BALANCE-r1",
+          "original_owner_qualification": null
+        },
+        "context_canonical_sha256": "8c1991280042c4d852b5fb4d2a76f6050de5af5febdf5d0581262508b3c3aa8b",
+        "whole_obligations": [
+          "UNIT-A",
+          "UNIT-B",
+          "CONNECTION-AB",
+          "global_balance_conservation"
+        ],
+        "lower_expressible_obligations": [
+          "UNIT-A",
+          "UNIT-B",
+          "CONNECTION-AB"
+        ],
+        "system_unique_obligations": [
+          "global_balance_conservation"
+        ],
+        "required_role_order": [
+          "Integrated_basis",
+          "L3_contract",
+          "L10_design",
+          "combination_contract",
+          "unit_A",
+          "unit_B",
+          "connection_AB",
+          "unique_quality"
+        ],
+        "expected_evidence_selectors": {
+          "Integrated_basis": {
+            "identity": "H003-BALANCE-EVIDENCE-Integrated_basis",
+            "owner": "synthetic-h003-Integrated_basis-owner",
+            "source_id": "H003-BALANCE-EVIDENCE-SOURCE-Integrated_basis",
+            "oracle_revision": "H003-BALANCE-ORACLE-Integrated_basis@r1",
+            "pair": null
+          },
+          "L3_contract": {
+            "identity": "H003-BALANCE-EVIDENCE-L3_contract",
+            "owner": "synthetic-h003-L3_contract-owner",
+            "source_id": "H003-BALANCE-EVIDENCE-SOURCE-L3_contract",
+            "oracle_revision": "H003-BALANCE-ORACLE-L3_contract@r1",
+            "pair": null
+          },
+          "L10_design": {
+            "identity": "H003-BALANCE-EVIDENCE-L10_design",
+            "owner": "synthetic-h003-L10_design-owner",
+            "source_id": "H003-BALANCE-EVIDENCE-SOURCE-L10_design",
+            "oracle_revision": "H003-BALANCE-ORACLE-L10_design@r1",
+            "pair": "L10:L3"
+          },
+          "combination_contract": {
+            "identity": "H003-BALANCE-EVIDENCE-combination_contract",
+            "owner": "synthetic-h003-combination_contract-owner",
+            "source_id": "H003-BALANCE-EVIDENCE-SOURCE-combination_contract",
+            "oracle_revision": "H003-BALANCE-ORACLE-combination_contract@r1",
+            "pair": null
+          },
+          "unit_A": {
+            "identity": "H003-BALANCE-EVIDENCE-unit_A",
+            "owner": "synthetic-h003-unit_A-owner",
+            "source_id": "H003-BALANCE-EVIDENCE-SOURCE-unit_A",
+            "oracle_revision": "H003-BALANCE-ORACLE-unit_A@r1",
+            "pair": "L8:L5"
+          },
+          "unit_B": {
+            "identity": "H003-BALANCE-EVIDENCE-unit_B",
+            "owner": "synthetic-h003-unit_B-owner",
+            "source_id": "H003-BALANCE-EVIDENCE-SOURCE-unit_B",
+            "oracle_revision": "H003-BALANCE-ORACLE-unit_B@r1",
+            "pair": "L8:L5"
+          },
+          "connection_AB": {
+            "identity": "H003-BALANCE-EVIDENCE-connection_AB",
+            "owner": "synthetic-h003-connection_AB-owner",
+            "source_id": "H003-BALANCE-EVIDENCE-SOURCE-connection_AB",
+            "oracle_revision": "H003-BALANCE-ORACLE-connection_AB@r1",
+            "pair": "L9:L4"
+          },
+          "unique_quality": {
+            "identity": "H003-BALANCE-EVIDENCE-unique_quality",
+            "owner": "synthetic-h003-unique_quality-owner",
+            "source_id": "H003-BALANCE-EVIDENCE-SOURCE-unique_quality",
+            "oracle_revision": "H003-BALANCE-ORACLE-unique_quality@r1",
+            "pair": "L10:L3"
+          }
+        },
+        "selection_rule": "本例は独立適用sourceから明示供給されたContext引数の全member/presence/JSON型付き値と本節context、及び宣言W順序を照合して選択する。snapshot_revision又は名前だけでは受理しない。input.context/independent_profiles/candidate/実結果からContext又は必要集合を生成しない。既存normal/compositionalの選択規則は保持し、本例と既存固定契約のいずれにも結べない型内ContextはS2のcontext_unresolvedとする。任意のW/role/profileを受理する一般化ではない。",
+        "algorithm": [
+          "Contextの原期待W4を取得し、L10_design.oraclesとcombination_contract.whole_obligationsを同じ全義務へ内容比較する。数値10はこの合成例だけの値とし全製品要件へ固定しない。",
+          "Eは既存S4どおりunit_A/B及びconnection_ABの独立coverageと同内容profileから先3義務だけを導出する。D=W−Eのglobal_balance_conservationをunique_qualityへ結ぶ。名前/件数だけでEを広げない。",
+          "common7とunique_qualityをS5/S6で個別に比較する。各Material SOURCE/oracle/owner/pairとContextを照合し、Material.evidence_idでinput.evidence_materialsの同identityを一意解決する。Evidenceのidentity/owner/EVIDENCE-SOURCE/oracle/pairは本節expected_evidence_selectorsの同role原値へ、対象二revision/scopeはContext.targetへ、contentsは独立Context.expected_profilesの同roleへ照合する。Material SOURCEとEvidence SOURCEを相互代入しない。",
+          "全必要roleがsupported_syntheticで、全W/coverage/Dの対応が揃う正常例はoutcome=content_compared、findings=[]、candidate未提出はcandidate_disposition=not_submitted/candidate_conflicting_paths=[]を返す。valueはS3–S8から導出し、proof_findings/unresolved_proofs/owner_return_candidatesはこの正常例で空、実作用3項目falseを保つ。",
+          "本例のvalue.unrelated_Qはinput.unrelated_scopeの原LogicalJson全値を保持する。既存例の限定保全表示や既存expectedを変更しない。",
+          "unique_qualityのnullは当該proof missing、unresolved_proofsに同roleを保持しverified_candidate=not_establishedとする。読めたIntegrated_basisはsupported_syntheticとして保持する。欠落対照は最上位outcome/全副次findingの全域規則を新設しない。本例の欠落findingはcode=proof_missing、proof_id=unique_quality、pointer=/input/materials/unique_quality、return_owner=Context.expected_material_owners.unique_qualityとする。",
+          "型内でもsnapshot_revisionだけ未知へ変えたContextは本固定契約へ結べずoutcome=unresolved、context_unresolved findingのpointer=/context/snapshot_revision、proof_id=null、return_owner=independent-context-source-ownerを保持する。verified_candidateはnot_established。独立原input/Q/読めた下位資料を全体の早期返却で消さない。未知選択の全value/副次findingは今回の部分観測oracleの外に残す。本例では不足又は未知Contextでもvalue.unrelated_Qへinput.unrelated_scopeの原LogicalJsonを保持し、value.actual_stage_promoted/value.actual_CI_executed/value.actual_acceptedはS8と同じfalseを返す。入力引数を変更しないことは対testのbefore/afterで観測し、返却型に新fieldを追加しない。"
+        ],
+        "business_correspondence": {
+          "source_packet_pointer": {
+            "revision": "52c44b1a04bce0cdf9e2a6704c060ae74c3d87c3",
+            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+            "pointer": "/verification_obligations/4/normal_cases/3/independent_source_packet",
+            "file_sha256": "3bb4ed1800617d872cb2795942c5d0dd100f9f6c0037a33d0cb3d65965a963b0"
+          },
+          "business_required_pointer": "/state_proofs/Verified/content/system_specific_obligations",
+          "business_observation_pointer": "/state_proofs/Verified/content/system_observations/0",
+          "business_difference_pointer": "/state_proofs/Verified/content/005_022_difference",
+          "obligation_key": "global_balance_conservation",
+          "expected_observation": {
+            "before_total": 10,
+            "expected_total": 10,
+            "observed_total": 10
+          },
+          "native_context_pointer": "/expected_profiles/L3_contract/obligations/global_balance_conservation",
+          "native_role": "unique_quality",
+          "native_material_contents_pointer": "/materials/unique_quality/contents/global_balance_conservation",
+          "comparison": "独立business原packetのglobal_balance義務と三値を本固定契約の同義務/三値へexact比較する。原target/operation/consumer assignmentの対応はcallerが別に供給・照合し、ARTIFACT-A@h2等の文字列分解や同名だけでRefを作らない。005 UX1やSYSTEM-QUALITYのcount1をglobal_balanceへ同義の別名しない。"
+        },
+        "producer_call_binding": "L8の完全三引数snapshotと同関数id/原operation ref/argument hashを一体として保持する。期待返却はsynthetic design expected returnであり実run/実source取得ではない。別call成功を代入しない。",
+        "legacy_rederivation": {
+          "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "lines": "29–61",
+          "preserved": "L5/L8内部契約と先行局所対照、上流要求/正規pair/原sourceを保持。個別下位成功を上位全体保証へ直接昇格しない。",
+          "changed": "旧sourceに無いglobal_balance用の具体Context/三引数/完全正常返却を既存022 W−Eの一合成例として詳細化する。",
+          "reason": "H003既存合成wholeのglobal_balance原義務を、別の意味を持つ022 W5/D2や005 UX1へ黙って同一視しないため。要求意味/新authority/全工程gateを追加しない。",
+          "read_line_locators": [
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61
+          ]
+        },
+        "limits": "新規一bounded Contextの宣言計算と先行test設計。実runtime/実owner/実lineage/CI/Verified運転/任意全入力域/全副次finding/全Result閉包は主張しない。",
+        "q_representation_rule": "旧normal/compositional例のunrelated_Q表示は元の限定保全表現を保持する。本追加例は原LogicalJsonの保持を直接照合するためinput.unrelated_scopeの値を返す。どちらも同じ実運用状態を主張せず、既存例の返却期待を変更しない。"
+      }
     },
     {
       "id": "HARNESS-L5-022-N01",
