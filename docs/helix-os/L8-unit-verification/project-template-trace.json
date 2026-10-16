@@ -147312,7 +147312,10 @@
         "expected_projection_ref": "/dispatch_boundary_cases/cases/0/expected_projection"
       },
       "oracle_ref": "HELIXOS-L8-002-ADD-02",
-      "expected_scope": "ValidatedRecordTraceの全memberを固定し、runnerは直接呼出し対象外であることだけを示す。"
+      "expected_scope": "ValidatedRecordTraceの全memberを固定し、runnerは直接呼出し対象外であることだけを示す。",
+      "expected_nonoutput_presence": {
+        "/runner/source_projection_join": "実行対象外（invalid rootでrunner/F04 join未呼出し）"
+      }
     },
     {
       "id": "HELIXOS-L8-002-F04-DISPATCH-NO-F04",
@@ -147323,7 +147326,6 @@
       "expected": {
         "selected_sections": [],
         "section_results": [],
-        "F04.source_projection_join": "omitted",
         "profile_decoder_calls": 0,
         "effects": [],
         "authority_generated": false
@@ -147334,7 +147336,10 @@
         "oracle_ref": "/dispatch_boundary_cases/cases/1/expected_projection",
         "expected_projection_ref": "/dispatch_boundary_cases/cases/1/expected_projection"
       },
-      "expected_scope": "dispatch_boundary_casesの同一期待projection全体。これは該当分岐の局所投影であり、関数の全戻り値や製品実行結果を表さない。"
+      "expected_scope": "dispatch_boundary_casesの同一期待projection全体。これは該当分岐の局所投影であり、関数の全戻り値や製品実行結果を表さない。",
+      "expected_field_presence": {
+        "/F04/source_projection_join": "実行対象外（F04 section未選択）"
+      }
     },
     {
       "id": "HELIXOS-L8-002-F04-DISPATCH-PAIR-UNKNOWN",
@@ -147344,19 +147349,13 @@
       ],
       "expected": {
         "candidate_input_state": "unknown",
-        "candidate_input": {
-          "presence": "missing"
-        },
-        "validated_input_candidate": {
-          "presence": "missing"
-        },
-        "raw_candidate": "原operation.candidate全体を変更せず保持",
-        "validated_candidate_raw": {
-          "presence": "missing"
+        "raw_candidate": {
+          "$copy": {
+            "root": "case_input",
+            "pointer": "/candidate"
+          }
         },
         "candidate_item_decode": "not_performed",
-        "candidate_side_output_states": "unknown",
-        "os_core_source_evaluation": "独立に継続",
         "effects": []
       },
       "execution_state": "not_executed",
@@ -147365,7 +147364,25 @@
         "oracle_ref": "/dispatch_boundary_cases/cases/2/expected_projection",
         "expected_projection_ref": "/dispatch_boundary_cases/cases/2/expected_projection"
       },
-      "expected_scope": "dispatch_boundary_casesの同一期待projection全体。これは該当分岐の局所投影であり、関数の全戻り値や製品実行結果を表さない。"
+      "expected_scope": "dispatch_boundary_casesの同一期待projection全体。これは該当分岐の局所投影であり、関数の全戻り値や製品実行結果を表さない。",
+      "expected_field_presence": {
+        "/candidate_input": "Field.missing",
+        "/validated_input_candidate": "Field.missing",
+        "/validated_candidate_raw": "Field.missing"
+      },
+      "expected_projection_materialization": {
+        "root_ref": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "candidate_value_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/candidate",
+        "copy_rule": "expected_projection.raw_candidate の $copy はroot_refをcase_inputとしcandidate_value_refを解決したJSON値。reference式とmaterialized valueを区別する。"
+      },
+      "downstream_join_expectation": {
+        "candidate_side_output_states": {
+          "candidate_os_field_state": "unknown",
+          "candidate_core_row_state": "unknown"
+        },
+        "os_core_evaluation": "candidate_input_stateと独立にqualified sourceを評価する。",
+        "L4_ref": "/contracts/5/qualified_source_projection_join/logical_return_shape/RecordObservation/candidate_state_priority"
+      }
     },
     {
       "id": "HELIXOS-L8-002-F04-DISPATCH-ASSOCIATION-UNKNOWN",
@@ -154407,7 +154424,7 @@
     ],
     "completion_limit": "旧sourcehash/quotes/承認objects/既存member/固定raw/schema/declaredpresenceの静的照合のみ。CaseInput/Observation各sectionとselector実binding/root供給元/custodyは未閉包。小数/指数/1e400/encode非JSON値/具体float/resourceは範囲未固定。実codec/library採用/資格/保存/外部作用/旧test/CI、全92親430対閉包と実装Readyは未成立。",
     "association_wire_connection": {
-      "design_ref": "HELIXOS-L5-002-compare_core_dispositions/source_output_association_rule",
+      "design_ref": "HELIXOS-L5-002-compare_core_dispositions_typed/source_output_association_rule",
       "scope": "追加済みlogical型のschema結線。全F04/builderや実codecの検証とは分離。",
       "field_rule": "wireのraw memberをlogical Field<JsonValue>へ結ぶ。省略と明示nullを保持し、source record shapeを前段で狭めない。",
       "cases": [
@@ -154716,7 +154733,7 @@
   },
   "candidate_l5_binding": {
     "paired_document": "docs/helix-os/L5-detail-design/project-template-trace.json",
-    "working_bytes_sha256": "80d3df4ff3bf38d9f1725063ee9f01db9833f2163a8600a99ea29cf2b33e02e5",
+    "working_bytes_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
     "binding_scope": "同一候補pairのL5 bytes。既存L8 source pinsは保持し、source projection profileの今回対象L4/L9はcurrent candidate pinsへ結ぶ。",
     "revision_note": "同一候補pairのL5 file bytes。対象source revisionの承認やruntime実装を示さない。",
     "binding_kind": "candidate_file_bytes"
@@ -154778,7 +154795,6 @@
           "validator.qualified_records": [],
           "validator.qualified_source_refs": [],
           "runner.f04_dispatch": "not_applicable_direct_validator_only",
-          "runner.source_projection_join": "omitted",
           "runner.effects": [],
           "runner.authority_generated": false
         },
@@ -154786,15 +154802,18 @@
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "80d3df4ff3bf38d9f1725063ee9f01db9833f2163a8600a99ea29cf2b33e02e5",
+            "file_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
             "pointer": "/functions/16/algorithm/3"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "80d3df4ff3bf38d9f1725063ee9f01db9833f2163a8600a99ea29cf2b33e02e5",
+            "file_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
             "pointer": "/functions/13/algorithm/2"
           }
-        ]
+        ],
+        "expected_field_presence": {
+          "/runner/source_projection_join": "実行対象外（invalid rootでrunner/F04 join未呼出し）"
+        }
       },
       {
         "id": "HELIXOS-L8-002-F04-DISPATCH-NO-F04",
@@ -154808,7 +154827,6 @@
         "expected_projection": {
           "selected_sections": [],
           "section_results": [],
-          "F04.source_projection_join": "omitted",
           "profile_decoder_calls": 0,
           "effects": [],
           "authority_generated": false
@@ -154817,10 +154835,13 @@
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "80d3df4ff3bf38d9f1725063ee9f01db9833f2163a8600a99ea29cf2b33e02e5",
+            "file_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
             "pointer": "/functions/13/algorithm/2"
           }
-        ]
+        ],
+        "expected_field_presence": {
+          "/F04/source_projection_join": "実行対象外（F04 section未選択）"
+        }
       },
       {
         "id": "HELIXOS-L8-002-F04-DISPATCH-PAIR-UNKNOWN",
@@ -154833,19 +154854,13 @@
         },
         "expected_projection": {
           "candidate_input_state": "unknown",
-          "candidate_input": {
-            "presence": "missing"
-          },
-          "validated_input_candidate": {
-            "presence": "missing"
-          },
-          "raw_candidate": "原operation.candidate全体を変更せず保持",
-          "validated_candidate_raw": {
-            "presence": "missing"
+          "raw_candidate": {
+            "$copy": {
+              "root": "case_input",
+              "pointer": "/candidate"
+            }
           },
           "candidate_item_decode": "not_performed",
-          "candidate_side_output_states": "unknown",
-          "os_core_source_evaluation": "独立に継続",
           "effects": []
         },
         "expected_basis": "validator後inputがmissingならcandidate pairをunknownとする。",
@@ -154855,25 +154870,44 @@
           "validated_candidate_raw": "Field.missing",
           "candidate_pair_state": "unknown",
           "typed_candidate_arrays": "candidate_inputとvalidated_input_candidateはField.missing",
-          "source_qualification": "L9 base_inputの期待qualified recordsを各qualified selector occurrenceへ写し、validator outputとして再評価した結果とは呼ばない。"
+          "source_qualification": "L9 base_inputの期待qualified recordsを各qualified selector occurrenceへ写し、validator outputとして再評価した結果とは呼ばない。",
+          "os_source_basis_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/qualified_records"
         },
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "80d3df4ff3bf38d9f1725063ee9f01db9833f2163a8600a99ea29cf2b33e02e5",
+            "file_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
             "pointer": "/functions/14/algorithm/2"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "80d3df4ff3bf38d9f1725063ee9f01db9833f2163a8600a99ea29cf2b33e02e5",
+            "file_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
             "pointer": "/functions/14/algorithm/3"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "80d3df4ff3bf38d9f1725063ee9f01db9833f2163a8600a99ea29cf2b33e02e5",
+            "file_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
             "pointer": "/functions/15/algorithm/1"
           }
-        ]
+        ],
+        "expected_field_presence": {
+          "/candidate_input": "Field.missing",
+          "/validated_input_candidate": "Field.missing",
+          "/validated_candidate_raw": "Field.missing"
+        },
+        "expected_projection_materialization": {
+          "root_ref": "/cases/5/qualified_source_projection_join_oracles/base_input",
+          "candidate_value_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/candidate",
+          "copy_rule": "expected_projection.raw_candidate の $copy はroot_refをcase_inputとしcandidate_value_refを解決したJSON値。reference式とmaterialized valueを区別する。"
+        },
+        "downstream_join_expectation": {
+          "candidate_side_output_states": {
+            "candidate_os_field_state": "unknown",
+            "candidate_core_row_state": "unknown"
+          },
+          "os_core_evaluation": "candidate_input_stateと独立にqualified sourceを評価する。",
+          "L4_ref": "/contracts/5/qualified_source_projection_join/logical_return_shape/RecordObservation/candidate_state_priority"
+        }
       },
       {
         "id": "HELIXOS-L8-002-F04-DISPATCH-ASSOCIATION-UNKNOWN",
@@ -154979,12 +155013,12 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "80d3df4ff3bf38d9f1725063ee9f01db9833f2163a8600a99ea29cf2b33e02e5",
+            "file_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
             "pointer": "/functions/15/algorithm/3"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "80d3df4ff3bf38d9f1725063ee9f01db9833f2163a8600a99ea29cf2b33e02e5",
+            "file_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
             "pointer": "/functions/15/algorithm/4"
           }
         ]

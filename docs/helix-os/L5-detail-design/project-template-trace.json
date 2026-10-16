@@ -208,7 +208,7 @@
       "reuse_class": "semantic_rederivation",
       "preserve": "参照class/trace、未知の保持、原versionへの解決とpairの検証を分ける。",
       "change": "今回002の承認義務をlogical型/関数/局所単体oracleへ導く。旧TPL grammar/整数版/lifecycle/式木/registry方式を採用しない。保留6facetは変更しない。profile差分として、外側raw carrierと選択されたclosed childを分離し、profile固有のdeclared-member projectionを追加する。",
-      "reason": "L9固定入力はunrelated_rawをraw保持しvalidator input_issues=[]を期待する。R1でfull-envelope baseline等値の不成立が示されたため、上流L4/L9を変えずraw carrierとtyped childの境界を明示する。これはprofile専用の詳細化であり通常F04のclosed decoderには適用しない。"
+      "reason": "L9固定入力にはunrelated_rawがあり、対応するvalidator期待はinput_issues=[]である。明示profileでは外側のraw carrierを保持しつつ宣言childだけをdecodeし、通常F04のclosed decoderを変えない。"
     }
   ],
   "legacy_facet_dispositions": [
@@ -2067,7 +2067,7 @@
         "non_effect": "meaning_comparison=not_established, actual_source_qualification=not_established, effects=none。endpoint content_correspondingは既存F04の判定/義務比較を省略せず、実資格を作らない。",
         "raw_wire_input_path": "RecordTraceInput.candidate.source_output_association",
         "decoded_input_path": "ValidatedRecordTrace.input.candidate.variant.source_output_association",
-        "wire_to_logical_binding_ref": "/functions/0/f04_candidate_decode_binding/field_mapping",
+        "wire_to_logical_binding_ref": "/functions/17/source_output_association_rule/outer_field_semantics",
         "outer_field_semantics": "wire key absentならField.missingを維持し、F04RecordObservationにもmissingを返す。wire key present nullならField.supplied(null)としてL4 endpoint規則へ渡し、presentなSourceOutputAssociationResultを返す。wire key present JSON値なら全値をL4のassociation packetとして渡す。",
         "packet_inner_presence": "outer fieldがpresentのときだけpacket内部をL4規則へ渡す。packetのassociation member欠落はouter Field.missingではない。両endpointのunresolved、原packetのsnapshot配列、association_inputのL4表示を保ったpresent resultを返す。",
         "logical_return_field": "内部F04RecordObservation.source_output_associationはField<SourceOutputAssociationResult>。L8期待値はwire projectionで照合し、missingはmember省略、supplied(result)は結果本体、supplied(null)はnullを記録する。",
@@ -2094,7 +2094,7 @@
       "unit_case_refs": [
         "HELIXOS-L8-002-F04-NORMAL-TYPED-CORE-PRESERVATION"
       ],
-      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_core_dispositions_typed"
+      "oracle_ref": "HELIXOS-L8-002-F04-NORMAL-TYPED-CORE-PRESERVATION"
     },
     {
       "id": "HELIXOS-L5-002-compare_core_dispositions_with_source_projection_profile",
@@ -9311,7 +9311,7 @@
         },
         "preserved": "選択された宣言childと通常F04RecordInput、item内の閉型検査、定義外child memberのpointer付きInputIssue、missing/null保持を維持する。profile未指定の通常F04 decoderは変更しない。",
         "changed": "明示F04 source-projection profileに限り、外側CaseInput raw carrierは宣言F04 childの一部としてdecodeしない。外側unrelated_raw等はraw carrierへ保持し、childのInputIssueへ加えず、宣言3memberとitem内だけを閉型decodeする。これはprofile wire pathで外側の定義外値を意味処理しない境界であり、値の意味的受容や型検証成功を主張しない。",
-        "reason": "L9の固定raw candidateに外側unrelated_rawが含まれ、同じL9 validator期待ではinput_issues=[]である。旧profile比較がこれをF04 childへ混ぜたため、R1でprofileとbaselineの比較関係が成立しないことが確認された。L4/L9期待を変更せず、raw保持とchild観測を分離するため。",
+        "reason": "L9固定raw candidateの外側にはunrelated_rawがあり、同じfixtureのvalidator期待はinput_issues=[]である。profileの外側raw carrierと宣言childを分離し、外側memberをchild Issueに変換しない。L4/L9の意味と通常F04 decoderは保持する。",
         "boundary": "この差分を通常F04のclosed decoderへ広げない。外側raw memberがCORE/F04意味入力になることや、child内の定義外memberを許すことを意味しない。"
       }
     },
