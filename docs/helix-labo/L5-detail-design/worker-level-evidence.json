@@ -1070,7 +1070,7 @@
         {
           "name": "numerator_position_ids",
           "type": "FieldValue<list<string>>",
-          "meaning": "count_ratioで分子に使ったposition ID集合。arithmetic_meanでは明示empty listを返す。"
+          "meaning": "count_ratioで分子に使ったposition ID集合。arithmetic_meanでは分子集合を定義しないためabsentとし、既知の空集合と混同しない。"
         },
         {
           "name": "numerator_exclusion_reasons",
@@ -1776,7 +1776,7 @@
   "pure_reference_contract": {
     "normative_representation": "program_ast",
     "definition_source_role": "program_astと同一ASTである技術的な読取表示。二重の判定正本ではない。",
-    "definition_source": "# 文書の純粋参照記法。実装/module/APIではなく、型検査済みの明示引数だけを扱う。\n# clone/json_text/same/json_kind/number は下記言語契約の汎用JSON演算。\n\ndef present(field):\n    return field['tag'] == 'provided'\n\ndef known(field):\n    return present(field) and field['value'] != 'unknown'\n\ndef collection_known(field):\n    return (present(field) and json_kind(field['value']) == 'array') or (field['tag'] == 'empty' and field['empty_kind'] == 'empty_list')\n\ndef field_locator(field):\n    if field['source_ref_id'] is None or field['parent_node_locator'] is None:\n        return None\n    pointer = field['parent_node_locator']['json_pointer'] + '/' + field['member_name'].replace('~', '~0').replace('/', '~1')\n    return {'source_ref_id': clone(field['source_ref_id']), 'json_pointer': pointer}\n\ndef values(field):\n    if field['tag'] == 'provided':\n        return field['value']\n    return []\n\ndef state_value(field):\n    result = {'tag': field['tag']}\n    if field['tag'] == 'provided':\n        result['value'] = clone(field['value'])\n    if field['tag'] == 'empty':\n        result['empty_kind'] = field['empty_kind']\n    return result\n\ndef derived(template, member, value, available):\n    field = {'tag': 'absent', 'source_ref_id': clone(template['source_ref_id']), 'parent_node_locator': clone(template['parent_node_locator']), 'member_name': member, 'origin': 'derived_result'}\n    if available:\n        if value is None:\n            field['tag'] = 'explicit_null'\n        elif same(value, ''):\n            field['tag'] = 'empty'\n            field['empty_kind'] = 'empty_string'\n        elif same(value, []):\n            field['tag'] = 'empty'\n            field['empty_kind'] = 'empty_list'\n        elif same(value, {}):\n            field['tag'] = 'empty'\n            field['empty_kind'] = 'empty_object'\n        else:\n            field['tag'] = 'provided'\n            field['value'] = clone(value)\n    return field\n\ndef observed(field):\n    kind = derived(field, 'json_kind', None, False)\n    raw = derived(field, 'raw_json_utf8', None, False)\n    if field['tag'] == 'provided':\n        kind = derived(field, 'json_kind', json_kind(field['value']), True)\n        raw = derived(field, 'raw_json_utf8', json_text(field['value']), True)\n    elif field['tag'] == 'explicit_null':\n        kind = derived(field, 'json_kind', 'null', True)\n        raw = derived(field, 'raw_json_utf8', 'null', True)\n    elif field['tag'] == 'empty':\n        kinds = {'empty_string': 'string', 'empty_list': 'array', 'empty_object': 'object'}\n        texts = {'empty_string': '\"\"', 'empty_list': '[]', 'empty_object': '{}'}\n        kind = derived(field, 'json_kind', kinds[field['empty_kind']], True)\n        raw = derived(field, 'raw_json_utf8', texts[field['empty_kind']], True)\n    return {'presence': field['tag'], 'json_kind': kind, 'raw_json_utf8': raw, 'source_ref_id': clone(field['source_ref_id']), 'node_locator': field_locator(field)}\n\ndef issue(reason, paths, fields, source):\n    return {'reason': reason, 'affected_fields': clone(paths), 'source_refs': [clone(source)], 'node_refs': [clone(f['parent_node_locator']) for f in fields if f['parent_node_locator'] is not None], 'return_to_owner_ref': clone(source['owner_ref']), 'observed_values': [observed(f) for f in fields], 'logical_backflow_role_candidates': []}\n\ndef field_issue(field, path, source):\n    if field['tag'] != 'provided':\n        return [issue('missing_evidence', [path], [field], source)]\n    if same(field['value'], 'unknown'):\n        return [issue('unknown_state', [path], [field], source)]\n    return []\n\ndef resolve_source_map(source_ref_id, source_map):\n    records = [r for r in source_map['records'] if same(r['source_id'], source_ref_id['value'])]\n    frame = {'tag': 'provided', 'source_ref_id': None, 'parent_node_locator': None, 'member_name': 'value', 'origin': 'caller_input', 'value': source_ref_id['value']}\n    if same(source_ref_id['value'], ''):\n        frame = {'tag': 'empty', 'empty_kind': 'empty_string', 'source_ref_id': None, 'parent_node_locator': None, 'member_name': 'value', 'origin': 'caller_input'}\n    if len(records) == 1:\n        return {'state': 'resolved', 'source': derived(frame, 'source', records[0], True), 'unresolved': []}\n    missing = {'reason': 'source_reference_unbound', 'affected_fields': ['SourceRefID.value'], 'source_refs': [], 'node_refs': [], 'return_to_owner_ref': derived(frame, 'return_to_owner_ref', None, False), 'observed_values': [observed(frame)], 'logical_backflow_role_candidates': []}\n    return {'state': 'source_reference_unbound', 'source': derived(frame, 'source', None, False), 'unresolved': [missing]}\n\ndef partition_by_class(snapshot):\n    result = {'partitions': [], 'unresolved': [], 'unpartitioned_entries': [], 'entry_input_state': clone(snapshot['entries'])}\n    if snapshot['entries']['tag'] != 'provided':\n        if not collection_known(snapshot['entries']):\n            result['unresolved'] += field_issue(snapshot['entries'], 'HistorySnapshot.entries', snapshot['source_ref'])\n        return result\n    axes = ['task_class', 'model_class', 'source_revision', 'evaluation_period', 'scope']\n    for index in range(len(snapshot['entries']['value'])):\n        entry = snapshot['entries']['value'][index]\n        bad = [name for name in ['task_class', 'model_class'] if not known(entry[name])]\n        if len(bad) > 0:\n            result['unpartitioned_entries'].append(clone(entry))\n            for name in bad:\n                reason = 'unknown_applicability' if present(entry[name]) else 'missing_evidence'\n                result['unresolved'].append(issue(reason, ['HistorySnapshot.entries[' + str(index) + '].' + name], [entry[name]], entry['snapshot_ref']))\n        else:\n            key = {name: clone(entry[name]) for name in axes}\n            matching = [p for p in result['partitions'] if all(same(state_value(p['key'][name]), state_value(key[name])) for name in axes)]\n            if len(matching) == 0:\n                result['partitions'].append({'key': key, 'entries': [clone(entry)]})\n            else:\n                matching[0]['entries'].append(clone(entry))\n    return result\n\ndef bind_evidence(partition, source_map):\n    anchor = partition['key']['task_class']\n    entries = []\n    refs = []\n    unresolved = []\n    for index in range(len(partition['entries'])):\n        entry = partition['entries'][index]\n        resolution = resolve_source_map({'value': entry['snapshot_ref']['source_id']}, source_map)\n        unresolved += resolution['unresolved']\n        if resolution['state'] == 'resolved':\n            source = resolution['source']['value']\n            refs.append(clone(source))\n            entries.append({'entry': clone(entry), 'source_node_refs': [clone(entry['source_node_ref'])], 'evaluation_ref': clone(entry['evaluation_ref']), 'receipt_ref': clone(source['receipt_ref'])})\n        if present(entry['assignment_ref']):\n            assigned = entry['assignment_ref']['value']\n            assignment_resolution = resolve_source_map({'value': assigned['source_id']}, source_map)\n            unresolved += assignment_resolution['unresolved']\n            if assignment_resolution['state'] == 'resolved':\n                refs.append(clone(assignment_resolution['source']['value']))\n    body = {'partition_key': clone(partition['key']), 'entries': entries, 'evidence_refs': refs}\n    return {'bound': derived(anchor, 'bound', body, len(entries) > 0), 'unresolved': unresolved}\n\ndef assessment(entry, state, level, source, node, portion):\n    result = {name: clone(entry[name]) for name in ['task_class', 'model_class', 'source_revision', 'evaluation_period', 'scope']}\n    result.update({'evaluation_state': state, 'basis_refs': [clone(source)], 'applicability_condition': clone(entry['applicability_condition']) if 'applicability_condition' in entry else derived(entry['scope'], 'applicability_condition', None, False), 'basis_ref': clone(entry['basis_ref']) if 'basis_ref' in entry else derived(entry['scope'], 'basis_ref', None, False), 'level': clone(level), 'unassessed_portion': clone(portion), 'source_node_refs': [clone(node)]})\n    return result\n\ndef resolve_applicability(group, claims):\n    result = {'assessments': [], 'unresolved': []}\n    axes = ['task_class', 'model_class', 'source_revision', 'evaluation_period', 'scope']\n    matching = [c for c in claims if all(known(c[name]) and known(group['key'][name]) and same(c[name]['value'], group['key'][name]['value']) for name in axes)]\n    if len(matching) > 0:\n        explicit_levels = [c['level']['value'] for c in matching if known(c['evaluation_state']) and c['evaluation_state']['value'] == 'evaluated' and known(c['level'])]\n        conflicting = any(not same(left, right) for left in explicit_levels for right in explicit_levels)\n        for claim in matching:\n            rendered = render_qualitative(claim)\n            if conflicting:\n                for row in rendered['assessments']:\n                    row['evaluation_state'] = 'unknown'\n                    row['level'] = derived(claim['level'], 'level', None, False)\n                rendered['unresolved'].append(issue('conflicting_evidence', ['QualitativeClaim.level'], [c['level'] for c in matching], claim['snapshot_ref']))\n            result['assessments'] += rendered['assessments']\n            result['unresolved'] += rendered['unresolved']\n        return result\n    for index in range(len(group['entries'])):\n        entry = group['entries'][index]\n        source = entry['snapshot_ref']\n        template = entry['outcome_state']\n        state = 'unknown'\n        required = ['evaluation_ref', 'source_revision', 'evaluation_period', 'scope']\n        for name in required:\n            result['unresolved'] += field_issue(entry[name], 'HistoryPartition.entries[' + str(index) + '].' + name, source)\n        if known(template) and same(template['value'], 'unassessed'):\n            state = 'unassessed'\n        elif known(template) and same(template['value'], 'success') and all(known(entry[name]) for name in required):\n            state = 'evaluated'\n        else:\n            result['unresolved'] += field_issue(template, 'HistoryPartition.entries[' + str(index) + '].outcome_state', source)\n            if present(template) and not same(template['value'], 'unknown') and not same(template['value'], 'success'):\n                result['unresolved'].append(issue('unknown_applicability', ['HistoryPartition.entries[' + str(index) + '].outcome_state'], [template], source))\n        result['assessments'].append(assessment(entry, state, derived(template, 'level', None, False), source, entry['source_node_ref'], derived(template, 'unassessed_portion', None, False)))\n    return result\n\n\n\ndef field_semantics(field):\n    if field['tag'] == 'provided':\n        return ['provided', field['value']]\n    if field['tag'] == 'empty':\n        return ['empty', field['empty_kind']]\n    return [field['tag']]\n\ndef id_set_semantics(field):\n    if field['tag'] == 'provided' and json_kind(field['value']) == 'array':\n        members = {}\n        for identity in field['value']:\n            members[identity] = True\n        return json_text(['known_set', json_text(members)])\n    if field['tag'] == 'empty' and field['empty_kind'] == 'empty_list':\n        return json_text(['known_set', json_text({})])\n    return field_semantics(field)\n\ndef value_binding_semantics(bindings):\n    by_position_id = {}\n    for binding in bindings:\n        value = binding['value']\n        locator = field_locator(value)\n        locator_value = None if locator is None else [locator['source_ref_id']['value'], locator['json_pointer']]\n        record = [field_semantics(value), locator_value]\n        position_id = binding['position_id']\n        if position_id in by_position_id:\n            by_position_id[position_id].append(record)\n        else:\n            by_position_id[position_id] = [record]\n    return {'binding_count': len(bindings), 'by_position_id': by_position_id}\n\ndef same_value_bindings(source_bindings, caller_bindings):\n    if len(source_bindings) != len(caller_bindings):\n        return False\n    matched = [False for _ in range(len(caller_bindings))]\n    for source_binding in source_bindings:\n        source_value = source_binding['value']\n        source_locator = field_locator(source_value)\n        source_locator_value = None if source_locator is None else [source_locator['source_ref_id']['value'], source_locator['json_pointer']]\n        found = False\n        for index in range(len(caller_bindings)):\n            if not matched[index] and not found:\n                caller_binding = caller_bindings[index]\n                caller_value = caller_binding['value']\n                caller_locator = field_locator(caller_value)\n                caller_locator_value = None if caller_locator is None else [caller_locator['source_ref_id']['value'], caller_locator['json_pointer']]\n                if source_binding['position_id'] == caller_binding['position_id'] and same(field_semantics(source_value), field_semantics(caller_value)) and same(source_locator_value, caller_locator_value):\n                    matched[index] = True\n                    found = True\n        if not found:\n            return False\n    return all(matched)\n\n\n\ndef position_reason_semantics(field):\n    if field['tag'] != 'provided':\n        return field_semantics(field)\n    by_position_id = {}\n    for item in field['value']:\n        record = field_semantics(item['reason'])\n        position_id = item['position_id']\n        if position_id in by_position_id:\n            by_position_id[position_id].append(record)\n        else:\n            by_position_id[position_id] = [record]\n    return {'tag': 'provided', 'by_position_id': by_position_id, 'count': len(field['value'])}\n\ndef operation_differences(source_operation, caller_operation):\n    differences = []\n    if not same(source_operation['operation_kind'], caller_operation['operation_kind']):\n        differences.append('operation_kind')\n        return differences\n    if not same(source_operation['source_definition_locator'], caller_operation['source_definition_locator']):\n        differences.append('source_definition_locator')\n    if not same(field_semantics(source_operation['source_rule_revision']), field_semantics(caller_operation['source_rule_revision'])):\n        differences.append('source_rule_revision')\n    if not same(id_set_semantics(source_operation['eligible_position_ids']), id_set_semantics(caller_operation['eligible_position_ids'])):\n        differences.append('eligible_position_ids')\n    if caller_operation['operation_kind'] == 'count_ratio':\n        for name in ['numerator_position_ids', 'denominator_position_ids']:\n            if not same(id_set_semantics(source_operation[name]), id_set_semantics(caller_operation[name])):\n                differences.append(name)\n        if not same(source_operation['numerator_conditions'], caller_operation['numerator_conditions']):\n            differences.append('numerator_conditions')\n    elif caller_operation['operation_kind'] == 'arithmetic_mean':\n        if not same(id_set_semantics(source_operation['mean_position_ids']), id_set_semantics(caller_operation['mean_position_ids'])):\n            differences.append('mean_position_ids')\n        if not same_value_bindings(source_operation['value_bindings'], caller_operation['value_bindings']):\n            differences.append('value_bindings')\n    if not same(field_semantics(source_operation['exclusion_allowed']), field_semantics(caller_operation['exclusion_allowed'])):\n        differences.append('exclusion_allowed')\n    if not same(position_reason_semantics(source_operation['denominator_exclusion_reasons']), position_reason_semantics(caller_operation['denominator_exclusion_reasons'])):\n        differences.append('denominator_exclusion_reasons')\n    return differences\n\n\n\n\ndef finish_metric_source_findings(result, findings):\n    for finding in findings:\n        duplicate = False\n        if finding['reason'] == 'conflicting_evidence':\n            for existing in result['unresolved']:\n                if same(existing, finding):\n                    duplicate = True\n        if not duplicate:\n            result['unresolved'].append(finding)\n    return result\n\ndef reconstruct_metric(claim, source_definition_input, operation_input):\n    source = claim['snapshot_ref']\n    result = {'summary': derived(claim['scope'], 'summary', None, False), 'unresolved': []}\n    source_findings = []\n    for name in ['scope', 'positions', 'rule_scorer']:\n        result['unresolved'] += field_issue(claim[name], 'MetricClaim.' + name, source)\n    if not present(claim['rule_scorer']):\n        return finish_metric_source_findings(result, source_findings)\n    rule = claim['rule_scorer']['value']\n    for name in ['rule_revision', 'scorer_oracle_revision', 'calculation_definition']:\n        result['unresolved'] += field_issue(rule[name], 'MetricClaim.rule_scorer.' + name, source)\n    source_definition = None\n    source_operation = None\n    if source_definition_input['tag'] != 'provided':\n        source_findings.append(issue('rule_not_supplied', ['SourceCalculationDefinition'], [source_definition_input], source))\n    else:\n        source_definition = source_definition_input['value']\n        if source_definition['binding_state'] == 'unknown':\n            source_findings.append(issue('unknown_state', ['SourceCalculationDefinition.binding_state'], [source_definition_input], source))\n        else:\n            source_operation_field = source_definition['operation']\n            if source_operation_field['tag'] != 'provided':\n                source_findings.append(issue('rule_not_supplied', ['SourceCalculationDefinition.operation'], [source_definition_input], source))\n            else:\n                source_operation = source_operation_field['value']\n    if operation_input['tag'] != 'provided':\n        result['unresolved'].append(issue('rule_not_supplied', ['MetricOperationInput'], [operation_input], source))\n        return finish_metric_source_findings(result, source_findings)\n    op = operation_input['value']\n    source_differences = []\n    if source_definition is not None and not same(source_definition['source_definition_locator'], field_locator(rule['calculation_definition'])):\n        source_differences.append('source_definition_locator')\n    if source_definition is not None and not same(field_semantics(source_definition['source_rule_revision']), field_semantics(rule['rule_revision'])):\n        source_differences.append('source_rule_revision')\n    if source_operation is not None:\n        if not same(source_definition['source_definition_locator'], source_operation['source_definition_locator']):\n            source_differences.append('source_definition_locator')\n        if not same(field_semantics(source_definition['source_rule_revision']), field_semantics(source_operation['source_rule_revision'])):\n            source_differences.append('source_rule_revision')\n        source_differences.extend(['operation.' + name for name in operation_differences(source_operation, op)])\n    if len(source_differences) > 0:\n        paths = []\n        for name in source_differences:\n            source_path = 'SourceCalculationDefinition.' + name\n            if name.startswith('operation.'):\n                source_path = 'SourceCalculationDefinition.' + name\n                caller_name = name[len('operation.'): ]\n            else:\n                caller_name = name\n            paths.extend([source_path, 'MetricOperationInput.' + caller_name])\n        source_findings.append(issue('conflicting_evidence', paths, [source_definition_input, operation_input], source))\n    if op['operation_kind'] == 'unsupported':\n        result['unresolved'].append(issue('rule_not_supplied', ['MetricOperationInput.operation_kind'], [operation_input], source))\n        return finish_metric_source_findings(result, source_findings)\n    if field_locator(rule['calculation_definition']) is None:\n        result['unresolved'].append(issue('source_reference_unbound', ['MetricClaim.rule_scorer.calculation_definition'], [rule['calculation_definition']], source))\n        return finish_metric_source_findings(result, source_findings)\n    if not same(op['source_definition_locator'], field_locator(rule['calculation_definition'])) or not same(state_value(op['source_rule_revision']), state_value(rule['rule_revision'])):\n        result['unresolved'].append(issue('conflicting_evidence', ['MetricOperationInput.source_definition_locator', 'MetricOperationInput.source_rule_revision'], [operation_input, rule['calculation_definition'], rule['rule_revision']], source))\n    if known(rule['applicability_scope']) and known(claim['scope']) and not same(rule['applicability_scope']['value'], claim['scope']['value']):\n        result['unresolved'].append(issue('conflicting_evidence', ['MetricClaim.rule_scorer.applicability_scope', 'MetricClaim.scope'], [rule['applicability_scope'], claim['scope']], source))\n    if len(result['unresolved']) > 0:\n        return finish_metric_source_findings(result, source_findings)\n    if not collection_known(op['eligible_position_ids']):\n        result['unresolved'] += field_issue(op['eligible_position_ids'], 'MetricOperationInput.eligible_position_ids', source)\n        return finish_metric_source_findings(result, source_findings)\n    eligible = values(op['eligible_position_ids'])\n    positions = values(claim['positions'])\n    ids = [p['position_id']['value'] for p in positions if present(p['position_id'])]\n    if len(ids) != len(positions) or len(set(ids)) != len(ids) or len(set(eligible)) != len(eligible) or any(identity not in ids for identity in eligible) or len(eligible) == 0:\n        result['unresolved'].append(issue('eligible_set_mismatch', ['MetricOperationInput.eligible_position_ids', 'MetricClaim.positions'], [op['eligible_position_ids'], claim['positions']], source))\n        return finish_metric_source_findings(result, source_findings)\n    if present(claim['eligible_position_ids']) and set(claim['eligible_position_ids']['value']) != set(eligible):\n        result['unresolved'].append(issue('eligible_set_mismatch', ['MetricClaim.eligible_position_ids', 'MetricOperationInput.eligible_position_ids'], [claim['eligible_position_ids'], op['eligible_position_ids']], source))\n        return finish_metric_source_findings(result, source_findings)\n    by_id = {p['position_id']['value']: p for p in positions}\n    selected_field = op['denominator_position_ids'] if op['operation_kind'] == 'count_ratio' else op['mean_position_ids']\n    selected_path = 'MetricOperationInput.denominator_position_ids' if op['operation_kind'] == 'count_ratio' else 'MetricOperationInput.mean_position_ids'\n    if not collection_known(selected_field):\n        result['unresolved'] += field_issue(selected_field, selected_path, source)\n        return finish_metric_source_findings(result, source_findings)\n    selected = values(selected_field)\n    if len(selected) == 0 or len(selected) != len(set(selected)) or any(identity not in eligible for identity in selected):\n        result['unresolved'].append(issue('eligible_set_mismatch', [selected_path], [selected_field], source))\n        return finish_metric_source_findings(result, source_findings)\n    if present(rule['eligible_position_ids']) and set(rule['eligible_position_ids']['value']) != set(eligible):\n        result['unresolved'].append(issue('eligible_set_mismatch', ['MetricClaim.rule_scorer.eligible_position_ids', 'MetricOperationInput.eligible_position_ids'], [rule['eligible_position_ids'], op['eligible_position_ids']], source))\n    for index in range(len(positions)):\n        position = positions[index]\n        if position['position_id']['value'] in eligible and present(position['eligible']) and position['eligible']['value'] is False:\n            result['unresolved'].append(issue('eligible_set_mismatch', ['MetricClaim.positions[' + str(index) + '].eligible', 'MetricOperationInput.eligible_position_ids'], [position['eligible'], op['eligible_position_ids']], source))\n    if len(result['unresolved']) > 0:\n        return finish_metric_source_findings(result, source_findings)\n    excluded_from_denominator = [identity for identity in eligible if identity not in selected]\n    denominator_exclusion_values = values(op['denominator_exclusion_reasons']) if collection_known(op['denominator_exclusion_reasons']) else []\n    denominator_exclusion_ids = [item['position_id'] for item in denominator_exclusion_values]\n    if len(excluded_from_denominator) > 0:\n        if not known(op['exclusion_allowed']) or op['exclusion_allowed']['value'] is not True:\n            result['unresolved'].append(issue('eligible_set_mismatch', [selected_path, 'MetricOperationInput.exclusion_allowed'], [selected_field, op['exclusion_allowed']], source))\n        if not collection_known(op['denominator_exclusion_reasons']):\n            result['unresolved'] += field_issue(op['denominator_exclusion_reasons'], 'MetricOperationInput.denominator_exclusion_reasons', source)\n        elif len(denominator_exclusion_ids) != len(set(denominator_exclusion_ids)) or set(denominator_exclusion_ids) != set(excluded_from_denominator):\n            result['unresolved'].append(issue('eligible_set_mismatch', ['MetricOperationInput.denominator_exclusion_reasons', selected_path], [op['denominator_exclusion_reasons'], selected_field], source))\n        else:\n            for exclusion in denominator_exclusion_values:\n                if not known(exclusion['reason']):\n                    result['unresolved'] += field_issue(exclusion['reason'], 'MetricOperationInput.denominator_exclusion_reasons[' + exclusion['position_id'] + '].reason', source)\n    if len(result['unresolved']) > 0:\n        return finish_metric_source_findings(result, source_findings)\n    if op['operation_kind'] == 'count_ratio':\n        if not collection_known(op['numerator_position_ids']):\n            result['unresolved'] += field_issue(op['numerator_position_ids'], 'MetricOperationInput.numerator_position_ids', source)\n            return finish_metric_source_findings(result, source_findings)\n        numerator = values(op['numerator_position_ids'])\n        if len(numerator) != len(set(numerator)) or any(identity not in selected for identity in numerator):\n            result['unresolved'].append(issue('eligible_set_mismatch', ['MetricOperationInput.numerator_position_ids'], [op['numerator_position_ids']], source))\n            return finish_metric_source_findings(result, source_findings)\n        expected_ids = []\n        for identity in selected:\n            p = by_id[identity]\n            matches = all(p[c['field']]['tag'] == 'provided' and any(same(p[c['field']]['value'], value) for value in c['allowed_values']) for c in op['numerator_conditions'])\n            if matches:\n                expected_ids.append(identity)\n            reason_name = 'inclusion_reason' if identity in numerator else 'exclusion_reason'\n            if not known(p[reason_name]):\n                index = ids.index(identity)\n                result['unresolved'] += field_issue(p[reason_name], 'MetricClaim.positions[' + str(index) + '].' + reason_name, source)\n        if set(expected_ids) != set(numerator):\n            result['unresolved'].append(issue('conflicting_evidence', ['MetricOperationInput.numerator_position_ids', 'MetricOperationInput.numerator_conditions'], [op['numerator_position_ids']], source))\n        calculated = len(numerator) / len(selected)\n        included = numerator\n        numerator_exclusion_reasons = []\n        for identity in selected:\n            if identity not in numerator:\n                numerator_exclusion_reasons.append({'position_id': identity, 'reason': clone(by_id[identity]['exclusion_reason'])})\n    else:\n        bindings = op['value_bindings']\n        binding_ids = [b['position_id'] for b in bindings]\n        if len(binding_ids) != len(set(binding_ids)) or set(binding_ids) != set(selected):\n            result['unresolved'].append(issue('eligible_set_mismatch', ['MetricOperationInput.value_bindings'], [operation_input], source))\n            return finish_metric_source_findings(result, source_findings)\n        numeric = []\n        for binding in bindings:\n            if not known(binding['value']) or not number(binding['value']['value']):\n                result['unresolved'] += field_issue(binding['value'], 'MetricOperationInput.value_bindings[' + str(binding_ids.index(binding['position_id'])) + '].value', source)\n                if known(binding['value']):\n                    result['unresolved'].append(issue('conflicting_evidence', ['MetricOperationInput.value_bindings[' + str(binding_ids.index(binding['position_id'])) + '].value'], [binding['value']], source))\n            else:\n                numeric.append(binding['value']['value'])\n            p = by_id[binding['position_id']]\n            node = p['source_node_ref']\n            value = binding['value']\n            parent = value['parent_node_locator']\n            if parent is None or value['source_ref_id'] is None:\n                result['unresolved'].append(issue('source_reference_unbound', ['MetricOperationInput.value_bindings[' + str(binding_ids.index(binding['position_id'])) + '].value'], [value], source))\n            elif not same(value['source_ref_id'], node['source_ref_id']) or not (parent['json_pointer'] == node['json_pointer'] or parent['json_pointer'].startswith(node['json_pointer'] + '/')):\n                result['unresolved'].append(issue('conflicting_evidence', ['MetricOperationInput.value_bindings[' + str(binding_ids.index(binding['position_id'])) + '].value', 'MetricClaim.positions[' + str(ids.index(binding['position_id'])) + '].source_node_ref'], [value], source))\n            if not known(p['inclusion_reason']):\n                result['unresolved'] += field_issue(p['inclusion_reason'], 'MetricClaim.positions[' + str(ids.index(binding['position_id'])) + '].inclusion_reason', source)\n        if len(result['unresolved']) > 0:\n            return finish_metric_source_findings(result, source_findings)\n        calculated = sum(numeric) / len(selected)\n        included = selected\n        numerator = []\n        numerator_exclusion_reasons = []\n    result = finish_metric_source_findings(result, source_findings)\n    if len(result['unresolved']) > 0:\n        return result\n    summary = {'snapshot_ref': clone(source), 'scope': clone(claim['scope']), 'eligible_denominator': derived(op['eligible_position_ids'], 'eligible_denominator', len(eligible), True), 'eligible_position_ids': derived(op['eligible_position_ids'], 'eligible_position_ids', clone(op['eligible_position_ids']['value']), True), 'denominator_position_ids': derived(selected_field, 'denominator_position_ids', clone(selected), True), 'numerator_position_ids': derived(op['numerator_position_ids'] if op['operation_kind'] == 'count_ratio' else op['mean_position_ids'], 'numerator_position_ids', clone(numerator), True), 'numerator_exclusion_reasons': derived(claim['positions'], 'numerator_exclusion_reasons', clone(numerator_exclusion_reasons), True), 'denominator_exclusion_reasons': clone(op['denominator_exclusion_reasons']), 'included_position_ids': clone(included), 'position_dispositions': clone(claim['positions']), 'calculation_definition_ref': derived(rule['calculation_definition'], 'calculation_definition_ref', field_locator(rule['calculation_definition']), True), 'calculated_value': derived(rule['calculation_definition'], 'calculated_value', calculated, True), 'rule_revision': clone(rule['rule_revision']), 'scorer_oracle_revision': clone(rule['scorer_oracle_revision']), 'source_node_refs': [clone(claim['source_node_ref'])], 'display_label': clone(claim['display_label']), 'failure_dispositions': derived(claim['positions'], 'failure_dispositions', [p for p in positions if present(p['outcome_state']) and same(p['outcome_state']['value'], 'failure')], True)}\n    result['summary'] = derived(claim['scope'], 'summary', summary, True)\n    return result\n\ndef render_metric_and_failures(claim, reconstruction):\n    return {'assessments': [], 'metric_summaries': [clone(reconstruction['summary']['value'])] if present(reconstruction['summary']) else [], 'failure_observations': [clone(p) for p in values(claim['positions']) if present(p['outcome_state']) and same(p['outcome_state']['value'], 'failure')], 'unresolved': clone(reconstruction['unresolved']), 'existing_assignment_refs': clone(claim['existing_assignment_refs']), 'authority_effect': 'none'}\n\ndef classifier_walk(value, typename, path, source, types, selected):\n    result = []\n    if typename.startswith('FieldValue<'):\n        inner = typename[11:-1]\n        if selected and not (path == 'HistorySnapshot.entries' and value['tag'] == 'empty' and value['empty_kind'] == 'empty_list'):\n            result += field_issue(value, path, source)\n        if present(value):\n            result += classifier_walk(value['value'], inner, path, source, types, False)\n        return result\n    if typename.startswith('list<'):\n        inner = typename[5:-1]\n        for index in range(len(value)):\n            result += classifier_walk(value[index], inner, path + '[' + str(index) + ']', source, types, False)\n        return result\n    if typename not in types:\n        return []\n    if typename in ['SourceRef', 'SourceRefID', 'NodeLocator', 'FieldValue', 'MetricCalculationOperation']:\n        return []\n    if 'source_ref' in value and typename == 'HistorySnapshot':\n        source = value['source_ref']\n    if 'snapshot_ref' in value:\n        source = value['snapshot_ref']\n    profiles = {'HistorySnapshot': ['entries'], 'HistoryEntry': ['outcome_state', 'evaluation_ref', 'source_revision', 'evaluation_period', 'scope'], 'MetricClaim': ['scope', 'positions', 'rule_scorer'], 'MetricPosition': ['outcome_state', 'disposition'], 'RuleScorer': ['rule_revision', 'scorer_oracle_revision', 'applicability_scope', 'calculation_definition']}\n    for field in types[typename]['fields']:\n        name = field['name']\n        result += classifier_walk(value[name], field['type'], path + '.' + name, source, types, name in profiles.get(typename, []))\n    return result\n\ndef classify_unknown(snapshot):\n    if 'entries' in snapshot:\n        return classifier_walk(snapshot, 'HistorySnapshot', 'HistorySnapshot', snapshot['source_ref'], TYPE_DEFINITIONS, False)\n    return classifier_walk(snapshot, 'MetricClaim', 'MetricClaim', snapshot['snapshot_ref'], TYPE_DEFINITIONS, False)\n\ndef render_qualitative(claim):\n    source = claim['snapshot_ref']\n    unresolved = []\n    required = ['scope', 'applicability_condition', 'basis_ref']\n    for name in required:\n        unresolved += field_issue(claim[name], 'QualitativeClaim.' + name, source)\n    explicit = claim['evaluation_state']\n    state = 'unknown'\n    raw_fields = [explicit, claim['level'], claim['applicability_condition'], claim['basis_ref'], claim['unassessed_portion']]\n    if explicit['tag'] != 'provided':\n        unresolved.append(issue('missing_evidence', ['QualitativeClaim.evaluation_state'], raw_fields, source))\n    elif explicit['value'] in ['evaluated', 'unassessed', 'unknown']:\n        state = explicit['value']\n        if state == 'unknown':\n            unresolved.append(issue('unknown_state', ['QualitativeClaim.evaluation_state'], raw_fields, source))\n    else:\n        unresolved.append(issue('unknown_state', ['QualitativeClaim.evaluation_state'], raw_fields, source))\n    valid = all(known(claim[name]) for name in required)\n    if not valid:\n        state = 'unknown'\n    if valid and state == 'evaluated':\n        level = clone(claim['level'])\n        unresolved += field_issue(level, 'QualitativeClaim.level', source)\n    else:\n        level = derived(claim['level'], 'level', None, False)\n        if state == 'unassessed' and present(claim['level']):\n            unresolved.append(issue('unknown_applicability', ['QualitativeClaim.level'], raw_fields, source))\n        elif not valid and len(unresolved) > 0:\n            unresolved[0]['observed_values'].append(observed(claim['level']))\n    row = assessment(claim, state, level, source, claim['source_node_ref'], claim['unassessed_portion'])\n    return {'assessments': [row], 'metric_summaries': [], 'failure_observations': [], 'unresolved': unresolved, 'existing_assignment_refs': derived(claim['level'], 'existing_assignment_refs', None, False), 'authority_effect': 'none'}\n\ndef assemble_evaluation_material(input):\n    result = {'assessments': [], 'metric_summaries': [], 'failure_observations': [], 'unresolved': [], 'existing_assignment_refs': clone(input['existing_assignment_refs']), 'authority_effect': 'none'}\n    for values_ in [input['applicability_results'], input['metric_renderings'], input['qualitative_renderings']]:\n        for item in values_:\n            result['assessments'] += clone(item['assessments'])\n    for values_ in [input['metric_renderings'], input['qualitative_renderings']]:\n        for item in values_:\n            result['metric_summaries'] += clone(item['metric_summaries'])\n    for item in input['metric_renderings']:\n        result['failure_observations'] += clone(item['failure_observations'])\n    for values_ in [input['partitions'], input['bindings'], input['applicability_results'], input['metric_renderings'], input['qualitative_renderings']]:\n        for item in values_:\n            result['unresolved'] += clone(item['unresolved'])\n    result['unresolved'] += clone(input['unknown_results'])\n    for item in result['unresolved']:\n        item['logical_backflow_role_candidates'] += clone(input['logical_backflow_role_candidates'])\n    return result\n",
+    "definition_source": "# 文書の純粋参照記法。実装/module/APIではなく、型検査済みの明示引数だけを扱う。\n# clone/json_text/same/json_kind/number は下記言語契約の汎用JSON演算。\n\ndef present(field):\n    return field['tag'] == 'provided'\n\ndef known(field):\n    return present(field) and field['value'] != 'unknown'\n\ndef collection_known(field):\n    return (present(field) and json_kind(field['value']) == 'array') or (field['tag'] == 'empty' and field['empty_kind'] == 'empty_list')\n\ndef field_locator(field):\n    if field['source_ref_id'] is None or field['parent_node_locator'] is None:\n        return None\n    pointer = field['parent_node_locator']['json_pointer'] + '/' + field['member_name'].replace('~', '~0').replace('/', '~1')\n    return {'source_ref_id': clone(field['source_ref_id']), 'json_pointer': pointer}\n\ndef values(field):\n    if field['tag'] == 'provided':\n        return field['value']\n    return []\n\ndef state_value(field):\n    result = {'tag': field['tag']}\n    if field['tag'] == 'provided':\n        result['value'] = clone(field['value'])\n    if field['tag'] == 'empty':\n        result['empty_kind'] = field['empty_kind']\n    return result\n\ndef derived(template, member, value, available):\n    field = {'tag': 'absent', 'source_ref_id': clone(template['source_ref_id']), 'parent_node_locator': clone(template['parent_node_locator']), 'member_name': member, 'origin': 'derived_result'}\n    if available:\n        if value is None:\n            field['tag'] = 'explicit_null'\n        elif same(value, ''):\n            field['tag'] = 'empty'\n            field['empty_kind'] = 'empty_string'\n        elif same(value, []):\n            field['tag'] = 'empty'\n            field['empty_kind'] = 'empty_list'\n        elif same(value, {}):\n            field['tag'] = 'empty'\n            field['empty_kind'] = 'empty_object'\n        else:\n            field['tag'] = 'provided'\n            field['value'] = clone(value)\n    return field\n\ndef observed(field):\n    kind = derived(field, 'json_kind', None, False)\n    raw = derived(field, 'raw_json_utf8', None, False)\n    if field['tag'] == 'provided':\n        kind = derived(field, 'json_kind', json_kind(field['value']), True)\n        raw = derived(field, 'raw_json_utf8', json_text(field['value']), True)\n    elif field['tag'] == 'explicit_null':\n        kind = derived(field, 'json_kind', 'null', True)\n        raw = derived(field, 'raw_json_utf8', 'null', True)\n    elif field['tag'] == 'empty':\n        kinds = {'empty_string': 'string', 'empty_list': 'array', 'empty_object': 'object'}\n        texts = {'empty_string': '\"\"', 'empty_list': '[]', 'empty_object': '{}'}\n        kind = derived(field, 'json_kind', kinds[field['empty_kind']], True)\n        raw = derived(field, 'raw_json_utf8', texts[field['empty_kind']], True)\n    return {'presence': field['tag'], 'json_kind': kind, 'raw_json_utf8': raw, 'source_ref_id': clone(field['source_ref_id']), 'node_locator': field_locator(field)}\n\ndef issue(reason, paths, fields, source):\n    return {'reason': reason, 'affected_fields': clone(paths), 'source_refs': [clone(source)], 'node_refs': [clone(f['parent_node_locator']) for f in fields if f['parent_node_locator'] is not None], 'return_to_owner_ref': clone(source['owner_ref']), 'observed_values': [observed(f) for f in fields], 'logical_backflow_role_candidates': []}\n\ndef field_issue(field, path, source):\n    if field['tag'] != 'provided':\n        return [issue('missing_evidence', [path], [field], source)]\n    if same(field['value'], 'unknown'):\n        return [issue('unknown_state', [path], [field], source)]\n    return []\n\ndef resolve_source_map(source_ref_id, source_map):\n    records = [r for r in source_map['records'] if same(r['source_id'], source_ref_id['value'])]\n    frame = {'tag': 'provided', 'source_ref_id': None, 'parent_node_locator': None, 'member_name': 'value', 'origin': 'caller_input', 'value': source_ref_id['value']}\n    if same(source_ref_id['value'], ''):\n        frame = {'tag': 'empty', 'empty_kind': 'empty_string', 'source_ref_id': None, 'parent_node_locator': None, 'member_name': 'value', 'origin': 'caller_input'}\n    if len(records) == 1:\n        return {'state': 'resolved', 'source': derived(frame, 'source', records[0], True), 'unresolved': []}\n    missing = {'reason': 'source_reference_unbound', 'affected_fields': ['SourceRefID.value'], 'source_refs': [], 'node_refs': [], 'return_to_owner_ref': derived(frame, 'return_to_owner_ref', None, False), 'observed_values': [observed(frame)], 'logical_backflow_role_candidates': []}\n    return {'state': 'source_reference_unbound', 'source': derived(frame, 'source', None, False), 'unresolved': [missing]}\n\ndef partition_by_class(snapshot):\n    result = {'partitions': [], 'unresolved': [], 'unpartitioned_entries': [], 'entry_input_state': clone(snapshot['entries'])}\n    if snapshot['entries']['tag'] != 'provided':\n        if not collection_known(snapshot['entries']):\n            result['unresolved'] += field_issue(snapshot['entries'], 'HistorySnapshot.entries', snapshot['source_ref'])\n        return result\n    axes = ['task_class', 'model_class', 'source_revision', 'evaluation_period', 'scope']\n    for index in range(len(snapshot['entries']['value'])):\n        entry = snapshot['entries']['value'][index]\n        bad = [name for name in ['task_class', 'model_class'] if not known(entry[name])]\n        if len(bad) > 0:\n            result['unpartitioned_entries'].append(clone(entry))\n            for name in bad:\n                reason = 'unknown_applicability' if present(entry[name]) else 'missing_evidence'\n                result['unresolved'].append(issue(reason, ['HistorySnapshot.entries[' + str(index) + '].' + name], [entry[name]], entry['snapshot_ref']))\n        else:\n            key = {name: clone(entry[name]) for name in axes}\n            matching = [p for p in result['partitions'] if all(same(state_value(p['key'][name]), state_value(key[name])) for name in axes)]\n            if len(matching) == 0:\n                result['partitions'].append({'key': key, 'entries': [clone(entry)]})\n            else:\n                matching[0]['entries'].append(clone(entry))\n    return result\n\ndef bind_evidence(partition, source_map):\n    anchor = partition['key']['task_class']\n    entries = []\n    refs = []\n    unresolved = []\n    for index in range(len(partition['entries'])):\n        entry = partition['entries'][index]\n        resolution = resolve_source_map({'value': entry['snapshot_ref']['source_id']}, source_map)\n        unresolved += resolution['unresolved']\n        if resolution['state'] == 'resolved':\n            source = resolution['source']['value']\n            refs.append(clone(source))\n            entries.append({'entry': clone(entry), 'source_node_refs': [clone(entry['source_node_ref'])], 'evaluation_ref': clone(entry['evaluation_ref']), 'receipt_ref': clone(source['receipt_ref'])})\n        if present(entry['assignment_ref']):\n            assigned = entry['assignment_ref']['value']\n            assignment_resolution = resolve_source_map({'value': assigned['source_id']}, source_map)\n            unresolved += assignment_resolution['unresolved']\n            if assignment_resolution['state'] == 'resolved':\n                refs.append(clone(assignment_resolution['source']['value']))\n    body = {'partition_key': clone(partition['key']), 'entries': entries, 'evidence_refs': refs}\n    return {'bound': derived(anchor, 'bound', body, len(entries) > 0), 'unresolved': unresolved}\n\ndef assessment(entry, state, level, source, node, portion):\n    result = {name: clone(entry[name]) for name in ['task_class', 'model_class', 'source_revision', 'evaluation_period', 'scope']}\n    result.update({'evaluation_state': state, 'basis_refs': [clone(source)], 'applicability_condition': clone(entry['applicability_condition']) if 'applicability_condition' in entry else derived(entry['scope'], 'applicability_condition', None, False), 'basis_ref': clone(entry['basis_ref']) if 'basis_ref' in entry else derived(entry['scope'], 'basis_ref', None, False), 'level': clone(level), 'unassessed_portion': clone(portion), 'source_node_refs': [clone(node)]})\n    return result\n\ndef resolve_applicability(group, claims):\n    result = {'assessments': [], 'unresolved': []}\n    axes = ['task_class', 'model_class', 'source_revision', 'evaluation_period', 'scope']\n    matching = [c for c in claims if all(known(c[name]) and known(group['key'][name]) and same(c[name]['value'], group['key'][name]['value']) for name in axes)]\n    if len(matching) > 0:\n        explicit_levels = [c['level']['value'] for c in matching if known(c['evaluation_state']) and c['evaluation_state']['value'] == 'evaluated' and known(c['level'])]\n        conflicting = any(not same(left, right) for left in explicit_levels for right in explicit_levels)\n        for claim in matching:\n            rendered = render_qualitative(claim)\n            if conflicting:\n                for row in rendered['assessments']:\n                    row['evaluation_state'] = 'unknown'\n                    row['level'] = derived(claim['level'], 'level', None, False)\n                rendered['unresolved'].append(issue('conflicting_evidence', ['QualitativeClaim.level'], [c['level'] for c in matching], claim['snapshot_ref']))\n            result['assessments'] += rendered['assessments']\n            result['unresolved'] += rendered['unresolved']\n        return result\n    for index in range(len(group['entries'])):\n        entry = group['entries'][index]\n        source = entry['snapshot_ref']\n        template = entry['outcome_state']\n        state = 'unknown'\n        required = ['evaluation_ref', 'source_revision', 'evaluation_period', 'scope']\n        for name in required:\n            result['unresolved'] += field_issue(entry[name], 'HistoryPartition.entries[' + str(index) + '].' + name, source)\n        if known(template) and same(template['value'], 'unassessed'):\n            state = 'unassessed'\n        elif known(template) and same(template['value'], 'success') and all(known(entry[name]) for name in required):\n            state = 'evaluated'\n        else:\n            result['unresolved'] += field_issue(template, 'HistoryPartition.entries[' + str(index) + '].outcome_state', source)\n            if present(template) and not same(template['value'], 'unknown') and not same(template['value'], 'success'):\n                result['unresolved'].append(issue('unknown_applicability', ['HistoryPartition.entries[' + str(index) + '].outcome_state'], [template], source))\n        result['assessments'].append(assessment(entry, state, derived(template, 'level', None, False), source, entry['source_node_ref'], derived(template, 'unassessed_portion', None, False)))\n    return result\n\n\n\ndef field_semantics(field):\n    if field['tag'] == 'provided':\n        return ['provided', field['value']]\n    if field['tag'] == 'empty':\n        return ['empty', field['empty_kind']]\n    return [field['tag']]\n\ndef id_set_semantics(field):\n    if field['tag'] == 'provided' and json_kind(field['value']) == 'array':\n        members = {}\n        for identity in field['value']:\n            members[identity] = True\n        return json_text(['known_set', json_text(members)])\n    if field['tag'] == 'empty' and field['empty_kind'] == 'empty_list':\n        return json_text(['known_set', json_text({})])\n    return field_semantics(field)\n\ndef value_binding_semantics(bindings):\n    by_position_id = {}\n    for binding in bindings:\n        value = binding['value']\n        locator = field_locator(value)\n        locator_value = None if locator is None else [locator['source_ref_id']['value'], locator['json_pointer']]\n        record = [field_semantics(value), locator_value]\n        position_id = binding['position_id']\n        if position_id in by_position_id:\n            by_position_id[position_id].append(record)\n        else:\n            by_position_id[position_id] = [record]\n    return {'binding_count': len(bindings), 'by_position_id': by_position_id}\n\ndef same_value_bindings(source_bindings, caller_bindings):\n    if len(source_bindings) != len(caller_bindings):\n        return False\n    matched = [False for _ in range(len(caller_bindings))]\n    for source_binding in source_bindings:\n        source_value = source_binding['value']\n        source_locator = field_locator(source_value)\n        source_locator_value = None if source_locator is None else [source_locator['source_ref_id']['value'], source_locator['json_pointer']]\n        found = False\n        for index in range(len(caller_bindings)):\n            if not matched[index] and not found:\n                caller_binding = caller_bindings[index]\n                caller_value = caller_binding['value']\n                caller_locator = field_locator(caller_value)\n                caller_locator_value = None if caller_locator is None else [caller_locator['source_ref_id']['value'], caller_locator['json_pointer']]\n                if source_binding['position_id'] == caller_binding['position_id'] and same(field_semantics(source_value), field_semantics(caller_value)) and same(source_locator_value, caller_locator_value):\n                    matched[index] = True\n                    found = True\n        if not found:\n            return False\n    return all(matched)\n\n\n\ndef position_reason_semantics(field):\n    if field['tag'] != 'provided':\n        return field_semantics(field)\n    by_position_id = {}\n    for item in field['value']:\n        record = {'field': field_semantics(item['reason']), 'locator': field_locator(item['reason'])}\n        position_id = item['position_id']\n        if position_id in by_position_id:\n            by_position_id[position_id].append(record)\n        else:\n            by_position_id[position_id] = [record]\n    return {'tag': 'provided', 'by_position_id': by_position_id, 'count': len(field['value'])}\n\ndef operation_differences(source_operation, caller_operation):\n    differences = []\n    if not same(source_operation['operation_kind'], caller_operation['operation_kind']):\n        differences.append('operation_kind')\n        return differences\n    if not same(source_operation['source_definition_locator'], caller_operation['source_definition_locator']):\n        differences.append('source_definition_locator')\n    if not same(field_semantics(source_operation['source_rule_revision']), field_semantics(caller_operation['source_rule_revision'])):\n        differences.append('source_rule_revision')\n    if not same(id_set_semantics(source_operation['eligible_position_ids']), id_set_semantics(caller_operation['eligible_position_ids'])):\n        differences.append('eligible_position_ids')\n    if caller_operation['operation_kind'] == 'count_ratio':\n        for name in ['numerator_position_ids', 'denominator_position_ids']:\n            if not same(id_set_semantics(source_operation[name]), id_set_semantics(caller_operation[name])):\n                differences.append(name)\n        if not same(source_operation['numerator_conditions'], caller_operation['numerator_conditions']):\n            differences.append('numerator_conditions')\n    elif caller_operation['operation_kind'] == 'arithmetic_mean':\n        if not same(id_set_semantics(source_operation['mean_position_ids']), id_set_semantics(caller_operation['mean_position_ids'])):\n            differences.append('mean_position_ids')\n        if not same_value_bindings(source_operation['value_bindings'], caller_operation['value_bindings']):\n            differences.append('value_bindings')\n    if not same(field_semantics(source_operation['exclusion_allowed']), field_semantics(caller_operation['exclusion_allowed'])):\n        differences.append('exclusion_allowed')\n    if not same(position_reason_semantics(source_operation['denominator_exclusion_reasons']), position_reason_semantics(caller_operation['denominator_exclusion_reasons'])):\n        differences.append('denominator_exclusion_reasons')\n    return differences\n\n\n\n\ndef finish_metric_source_findings(result, findings):\n    for finding in findings:\n        duplicate = False\n        if finding['reason'] == 'conflicting_evidence':\n            for existing in result['unresolved']:\n                if same(existing, finding):\n                    duplicate = True\n        if not duplicate:\n            result['unresolved'].append(finding)\n    return result\n\ndef reconstruct_metric(claim, source_definition_input, operation_input):\n    source = claim['snapshot_ref']\n    result = {'summary': derived(claim['scope'], 'summary', None, False), 'unresolved': []}\n    source_findings = []\n    for name in ['scope', 'positions', 'rule_scorer']:\n        result['unresolved'] += field_issue(claim[name], 'MetricClaim.' + name, source)\n    if not present(claim['rule_scorer']):\n        return finish_metric_source_findings(result, source_findings)\n    rule = claim['rule_scorer']['value']\n    for name in ['rule_revision', 'scorer_oracle_revision', 'calculation_definition']:\n        result['unresolved'] += field_issue(rule[name], 'MetricClaim.rule_scorer.' + name, source)\n    source_definition = None\n    source_operation = None\n    if source_definition_input['tag'] != 'provided':\n        source_findings.append(issue('rule_not_supplied', ['SourceCalculationDefinition'], [source_definition_input], source))\n    else:\n        source_definition = source_definition_input['value']\n        if source_definition['binding_state'] == 'unknown':\n            source_findings.append(issue('unknown_state', ['SourceCalculationDefinition.binding_state'], [source_definition_input], source))\n        else:\n            source_operation_field = source_definition['operation']\n            if source_operation_field['tag'] != 'provided':\n                source_findings.append(issue('rule_not_supplied', ['SourceCalculationDefinition.operation'], [source_definition_input], source))\n            else:\n                source_operation = source_operation_field['value']\n    if operation_input['tag'] != 'provided':\n        result['unresolved'].append(issue('rule_not_supplied', ['MetricOperationInput'], [operation_input], source))\n        return finish_metric_source_findings(result, source_findings)\n    op = operation_input['value']\n    source_differences = []\n    if source_definition is not None and not same(source_definition['source_definition_locator'], field_locator(rule['calculation_definition'])):\n        source_differences.append('source_definition_locator')\n    if source_definition is not None and not same(field_semantics(source_definition['source_rule_revision']), field_semantics(rule['rule_revision'])):\n        source_differences.append('source_rule_revision')\n    if source_operation is not None:\n        if not same(source_definition['source_definition_locator'], source_operation['source_definition_locator']):\n            source_differences.append('source_definition_locator')\n        if not same(field_semantics(source_definition['source_rule_revision']), field_semantics(source_operation['source_rule_revision'])):\n            source_differences.append('source_rule_revision')\n        source_differences.extend(['operation.' + name for name in operation_differences(source_operation, op)])\n    if len(source_differences) > 0:\n        paths = []\n        for name in source_differences:\n            source_path = 'SourceCalculationDefinition.' + name\n            if name.startswith('operation.'):\n                source_path = 'SourceCalculationDefinition.' + name\n                caller_name = name[len('operation.'): ]\n            else:\n                caller_name = name\n            paths.extend([source_path, 'MetricOperationInput.' + caller_name])\n        source_findings.append(issue('conflicting_evidence', paths, [source_definition_input, operation_input], source))\n    if op['operation_kind'] == 'unsupported':\n        result['unresolved'].append(issue('rule_not_supplied', ['MetricOperationInput.operation_kind'], [operation_input], source))\n        return finish_metric_source_findings(result, source_findings)\n    if field_locator(rule['calculation_definition']) is None:\n        result['unresolved'].append(issue('source_reference_unbound', ['MetricClaim.rule_scorer.calculation_definition'], [rule['calculation_definition']], source))\n        return finish_metric_source_findings(result, source_findings)\n    if not same(op['source_definition_locator'], field_locator(rule['calculation_definition'])) or not same(state_value(op['source_rule_revision']), state_value(rule['rule_revision'])):\n        result['unresolved'].append(issue('conflicting_evidence', ['MetricOperationInput.source_definition_locator', 'MetricOperationInput.source_rule_revision'], [operation_input, rule['calculation_definition'], rule['rule_revision']], source))\n    if known(rule['applicability_scope']) and known(claim['scope']) and not same(rule['applicability_scope']['value'], claim['scope']['value']):\n        result['unresolved'].append(issue('conflicting_evidence', ['MetricClaim.rule_scorer.applicability_scope', 'MetricClaim.scope'], [rule['applicability_scope'], claim['scope']], source))\n    if len(result['unresolved']) > 0:\n        return finish_metric_source_findings(result, source_findings)\n    if not collection_known(op['eligible_position_ids']):\n        result['unresolved'] += field_issue(op['eligible_position_ids'], 'MetricOperationInput.eligible_position_ids', source)\n        return finish_metric_source_findings(result, source_findings)\n    eligible = values(op['eligible_position_ids'])\n    positions = values(claim['positions'])\n    ids = [p['position_id']['value'] for p in positions if present(p['position_id'])]\n    if len(ids) != len(positions) or len(set(ids)) != len(ids) or len(set(eligible)) != len(eligible) or any(identity not in ids for identity in eligible) or len(eligible) == 0:\n        result['unresolved'].append(issue('eligible_set_mismatch', ['MetricOperationInput.eligible_position_ids', 'MetricClaim.positions'], [op['eligible_position_ids'], claim['positions']], source))\n        return finish_metric_source_findings(result, source_findings)\n    if present(claim['eligible_position_ids']) and set(claim['eligible_position_ids']['value']) != set(eligible):\n        result['unresolved'].append(issue('eligible_set_mismatch', ['MetricClaim.eligible_position_ids', 'MetricOperationInput.eligible_position_ids'], [claim['eligible_position_ids'], op['eligible_position_ids']], source))\n        return finish_metric_source_findings(result, source_findings)\n    by_id = {p['position_id']['value']: p for p in positions}\n    selected_field = op['denominator_position_ids'] if op['operation_kind'] == 'count_ratio' else op['mean_position_ids']\n    selected_path = 'MetricOperationInput.denominator_position_ids' if op['operation_kind'] == 'count_ratio' else 'MetricOperationInput.mean_position_ids'\n    if not collection_known(selected_field):\n        result['unresolved'] += field_issue(selected_field, selected_path, source)\n        return finish_metric_source_findings(result, source_findings)\n    selected = values(selected_field)\n    if len(selected) == 0 or len(selected) != len(set(selected)) or any(identity not in eligible for identity in selected):\n        result['unresolved'].append(issue('eligible_set_mismatch', [selected_path], [selected_field], source))\n        return finish_metric_source_findings(result, source_findings)\n    if present(rule['eligible_position_ids']) and set(rule['eligible_position_ids']['value']) != set(eligible):\n        result['unresolved'].append(issue('eligible_set_mismatch', ['MetricClaim.rule_scorer.eligible_position_ids', 'MetricOperationInput.eligible_position_ids'], [rule['eligible_position_ids'], op['eligible_position_ids']], source))\n    for index in range(len(positions)):\n        position = positions[index]\n        if position['position_id']['value'] in eligible and present(position['eligible']) and position['eligible']['value'] is False:\n            result['unresolved'].append(issue('eligible_set_mismatch', ['MetricClaim.positions[' + str(index) + '].eligible', 'MetricOperationInput.eligible_position_ids'], [position['eligible'], op['eligible_position_ids']], source))\n    if len(result['unresolved']) > 0:\n        return finish_metric_source_findings(result, source_findings)\n    excluded_from_denominator = [identity for identity in eligible if identity not in selected]\n    denominator_reason_field = op['denominator_exclusion_reasons']\n    denominator_exclusion_values = values(denominator_reason_field) if collection_known(denominator_reason_field) else []\n    denominator_exclusion_ids = [item['position_id'] for item in denominator_exclusion_values]\n    if len(excluded_from_denominator) > 0:\n        if not known(op['exclusion_allowed']) or op['exclusion_allowed']['value'] is not True:\n            result['unresolved'].append(issue('eligible_set_mismatch', [selected_path, 'MetricOperationInput.exclusion_allowed'], [selected_field, op['exclusion_allowed']], source))\n        if not collection_known(denominator_reason_field):\n            result['unresolved'] += field_issue(denominator_reason_field, 'MetricOperationInput.denominator_exclusion_reasons', source)\n        elif len(denominator_exclusion_ids) != len(set(denominator_exclusion_ids)) or set(denominator_exclusion_ids) != set(excluded_from_denominator):\n            result['unresolved'].append(issue('eligible_set_mismatch', ['MetricOperationInput.denominator_exclusion_reasons', selected_path], [denominator_reason_field, selected_field], source))\n        else:\n            for exclusion in denominator_exclusion_values:\n                if not known(exclusion['reason']):\n                    result['unresolved'] += field_issue(exclusion['reason'], 'MetricOperationInput.denominator_exclusion_reasons[' + exclusion['position_id'] + '].reason', source)\n    elif denominator_reason_field['tag'] == 'provided' and not collection_known(denominator_reason_field):\n        result['unresolved'].append(issue('eligible_set_mismatch', ['MetricOperationInput.denominator_exclusion_reasons', selected_path], [denominator_reason_field, selected_field], source))\n    elif collection_known(denominator_reason_field) and len(denominator_exclusion_ids) > 0:\n        result['unresolved'].append(issue('eligible_set_mismatch', ['MetricOperationInput.denominator_exclusion_reasons', selected_path], [denominator_reason_field, selected_field], source))\n    elif denominator_reason_field['tag'] not in ['absent', 'empty']:\n        result['unresolved'] += field_issue(denominator_reason_field, 'MetricOperationInput.denominator_exclusion_reasons', source)\n    elif denominator_reason_field['tag'] == 'empty' and denominator_reason_field['empty_kind'] != 'empty_list':\n        result['unresolved'] += field_issue(denominator_reason_field, 'MetricOperationInput.denominator_exclusion_reasons', source)\n    if len(result['unresolved']) > 0:\n        return finish_metric_source_findings(result, source_findings)\n    if op['operation_kind'] == 'count_ratio':\n        if not collection_known(op['numerator_position_ids']):\n            result['unresolved'] += field_issue(op['numerator_position_ids'], 'MetricOperationInput.numerator_position_ids', source)\n            return finish_metric_source_findings(result, source_findings)\n        numerator = values(op['numerator_position_ids'])\n        if len(numerator) != len(set(numerator)) or any(identity not in selected for identity in numerator):\n            result['unresolved'].append(issue('eligible_set_mismatch', ['MetricOperationInput.numerator_position_ids'], [op['numerator_position_ids']], source))\n            return finish_metric_source_findings(result, source_findings)\n        expected_ids = []\n        for identity in selected:\n            p = by_id[identity]\n            matches = all(p[c['field']]['tag'] == 'provided' and any(same(p[c['field']]['value'], value) for value in c['allowed_values']) for c in op['numerator_conditions'])\n            if matches:\n                expected_ids.append(identity)\n            reason_name = 'inclusion_reason' if identity in numerator else 'exclusion_reason'\n            if not known(p[reason_name]):\n                index = ids.index(identity)\n                result['unresolved'] += field_issue(p[reason_name], 'MetricClaim.positions[' + str(index) + '].' + reason_name, source)\n        if set(expected_ids) != set(numerator):\n            result['unresolved'].append(issue('conflicting_evidence', ['MetricOperationInput.numerator_position_ids', 'MetricOperationInput.numerator_conditions'], [op['numerator_position_ids']], source))\n        calculated = len(numerator) / len(selected)\n        included = numerator\n        numerator_exclusion_reasons = []\n        for identity in selected:\n            if identity not in numerator:\n                numerator_exclusion_reasons.append({'position_id': identity, 'reason': clone(by_id[identity]['exclusion_reason'])})\n    else:\n        bindings = op['value_bindings']\n        binding_ids = [b['position_id'] for b in bindings]\n        if len(binding_ids) != len(set(binding_ids)) or set(binding_ids) != set(selected):\n            result['unresolved'].append(issue('eligible_set_mismatch', ['MetricOperationInput.value_bindings'], [operation_input], source))\n            return finish_metric_source_findings(result, source_findings)\n        numeric = []\n        for binding in bindings:\n            if not known(binding['value']) or not number(binding['value']['value']):\n                result['unresolved'] += field_issue(binding['value'], 'MetricOperationInput.value_bindings[' + str(binding_ids.index(binding['position_id'])) + '].value', source)\n                if known(binding['value']):\n                    result['unresolved'].append(issue('conflicting_evidence', ['MetricOperationInput.value_bindings[' + str(binding_ids.index(binding['position_id'])) + '].value'], [binding['value']], source))\n            else:\n                numeric.append(binding['value']['value'])\n            p = by_id[binding['position_id']]\n            node = p['source_node_ref']\n            value = binding['value']\n            parent = value['parent_node_locator']\n            if parent is None or value['source_ref_id'] is None:\n                result['unresolved'].append(issue('source_reference_unbound', ['MetricOperationInput.value_bindings[' + str(binding_ids.index(binding['position_id'])) + '].value'], [value], source))\n            elif not same(value['source_ref_id'], node['source_ref_id']) or not (parent['json_pointer'] == node['json_pointer'] or parent['json_pointer'].startswith(node['json_pointer'] + '/')):\n                result['unresolved'].append(issue('conflicting_evidence', ['MetricOperationInput.value_bindings[' + str(binding_ids.index(binding['position_id'])) + '].value', 'MetricClaim.positions[' + str(ids.index(binding['position_id'])) + '].source_node_ref'], [value], source))\n            if not known(p['inclusion_reason']):\n                result['unresolved'] += field_issue(p['inclusion_reason'], 'MetricClaim.positions[' + str(ids.index(binding['position_id'])) + '].inclusion_reason', source)\n        if len(result['unresolved']) > 0:\n            return finish_metric_source_findings(result, source_findings)\n        calculated = sum(numeric) / len(selected)\n        included = selected\n        numerator = []\n        numerator_exclusion_reasons = []\n    result = finish_metric_source_findings(result, source_findings)\n    if len(result['unresolved']) > 0:\n        return result\n    summary = {'snapshot_ref': clone(source), 'scope': clone(claim['scope']), 'eligible_denominator': derived(op['eligible_position_ids'], 'eligible_denominator', len(eligible), True), 'eligible_position_ids': derived(op['eligible_position_ids'], 'eligible_position_ids', clone(op['eligible_position_ids']['value']), True), 'denominator_position_ids': derived(selected_field, 'denominator_position_ids', clone(selected), True), 'numerator_position_ids': derived(op['numerator_position_ids'], 'numerator_position_ids', clone(numerator) if op['operation_kind'] == 'count_ratio' else None, op['operation_kind'] == 'count_ratio'), 'numerator_exclusion_reasons': derived(claim['positions'], 'numerator_exclusion_reasons', clone(numerator_exclusion_reasons), True), 'denominator_exclusion_reasons': clone(op['denominator_exclusion_reasons']), 'included_position_ids': clone(included), 'position_dispositions': clone(claim['positions']), 'calculation_definition_ref': derived(rule['calculation_definition'], 'calculation_definition_ref', field_locator(rule['calculation_definition']), True), 'calculated_value': derived(rule['calculation_definition'], 'calculated_value', calculated, True), 'rule_revision': clone(rule['rule_revision']), 'scorer_oracle_revision': clone(rule['scorer_oracle_revision']), 'source_node_refs': [clone(claim['source_node_ref'])], 'display_label': clone(claim['display_label']), 'failure_dispositions': derived(claim['positions'], 'failure_dispositions', [p for p in positions if present(p['outcome_state']) and same(p['outcome_state']['value'], 'failure')], True)}\n    result['summary'] = derived(claim['scope'], 'summary', summary, True)\n    return result\n\ndef render_metric_and_failures(claim, reconstruction):\n    return {'assessments': [], 'metric_summaries': [clone(reconstruction['summary']['value'])] if present(reconstruction['summary']) else [], 'failure_observations': [clone(p) for p in values(claim['positions']) if present(p['outcome_state']) and same(p['outcome_state']['value'], 'failure')], 'unresolved': clone(reconstruction['unresolved']), 'existing_assignment_refs': clone(claim['existing_assignment_refs']), 'authority_effect': 'none'}\n\ndef classifier_walk(value, typename, path, source, types, selected):\n    result = []\n    if typename.startswith('FieldValue<'):\n        inner = typename[11:-1]\n        if selected and not (path == 'HistorySnapshot.entries' and value['tag'] == 'empty' and value['empty_kind'] == 'empty_list'):\n            result += field_issue(value, path, source)\n        if present(value):\n            result += classifier_walk(value['value'], inner, path, source, types, False)\n        return result\n    if typename.startswith('list<'):\n        inner = typename[5:-1]\n        for index in range(len(value)):\n            result += classifier_walk(value[index], inner, path + '[' + str(index) + ']', source, types, False)\n        return result\n    if typename not in types:\n        return []\n    if typename in ['SourceRef', 'SourceRefID', 'NodeLocator', 'FieldValue', 'MetricCalculationOperation']:\n        return []\n    if 'source_ref' in value and typename == 'HistorySnapshot':\n        source = value['source_ref']\n    if 'snapshot_ref' in value:\n        source = value['snapshot_ref']\n    profiles = {'HistorySnapshot': ['entries'], 'HistoryEntry': ['outcome_state', 'evaluation_ref', 'source_revision', 'evaluation_period', 'scope'], 'MetricClaim': ['scope', 'positions', 'rule_scorer'], 'MetricPosition': ['outcome_state', 'disposition'], 'RuleScorer': ['rule_revision', 'scorer_oracle_revision', 'applicability_scope', 'calculation_definition']}\n    for field in types[typename]['fields']:\n        name = field['name']\n        result += classifier_walk(value[name], field['type'], path + '.' + name, source, types, name in profiles.get(typename, []))\n    return result\n\ndef classify_unknown(snapshot):\n    if 'entries' in snapshot:\n        return classifier_walk(snapshot, 'HistorySnapshot', 'HistorySnapshot', snapshot['source_ref'], TYPE_DEFINITIONS, False)\n    return classifier_walk(snapshot, 'MetricClaim', 'MetricClaim', snapshot['snapshot_ref'], TYPE_DEFINITIONS, False)\n\ndef render_qualitative(claim):\n    source = claim['snapshot_ref']\n    unresolved = []\n    required = ['scope', 'applicability_condition', 'basis_ref']\n    for name in required:\n        unresolved += field_issue(claim[name], 'QualitativeClaim.' + name, source)\n    explicit = claim['evaluation_state']\n    state = 'unknown'\n    raw_fields = [explicit, claim['level'], claim['applicability_condition'], claim['basis_ref'], claim['unassessed_portion']]\n    if explicit['tag'] != 'provided':\n        unresolved.append(issue('missing_evidence', ['QualitativeClaim.evaluation_state'], raw_fields, source))\n    elif explicit['value'] in ['evaluated', 'unassessed', 'unknown']:\n        state = explicit['value']\n        if state == 'unknown':\n            unresolved.append(issue('unknown_state', ['QualitativeClaim.evaluation_state'], raw_fields, source))\n    else:\n        unresolved.append(issue('unknown_state', ['QualitativeClaim.evaluation_state'], raw_fields, source))\n    valid = all(known(claim[name]) for name in required)\n    if not valid:\n        state = 'unknown'\n    if valid and state == 'evaluated':\n        level = clone(claim['level'])\n        unresolved += field_issue(level, 'QualitativeClaim.level', source)\n    else:\n        level = derived(claim['level'], 'level', None, False)\n        if state == 'unassessed' and present(claim['level']):\n            unresolved.append(issue('unknown_applicability', ['QualitativeClaim.level'], raw_fields, source))\n        elif not valid and len(unresolved) > 0:\n            unresolved[0]['observed_values'].append(observed(claim['level']))\n    row = assessment(claim, state, level, source, claim['source_node_ref'], claim['unassessed_portion'])\n    return {'assessments': [row], 'metric_summaries': [], 'failure_observations': [], 'unresolved': unresolved, 'existing_assignment_refs': derived(claim['level'], 'existing_assignment_refs', None, False), 'authority_effect': 'none'}\n\ndef assemble_evaluation_material(input):\n    result = {'assessments': [], 'metric_summaries': [], 'failure_observations': [], 'unresolved': [], 'existing_assignment_refs': clone(input['existing_assignment_refs']), 'authority_effect': 'none'}\n    for values_ in [input['applicability_results'], input['metric_renderings'], input['qualitative_renderings']]:\n        for item in values_:\n            result['assessments'] += clone(item['assessments'])\n    for values_ in [input['metric_renderings'], input['qualitative_renderings']]:\n        for item in values_:\n            result['metric_summaries'] += clone(item['metric_summaries'])\n    for item in input['metric_renderings']:\n        result['failure_observations'] += clone(item['failure_observations'])\n    for values_ in [input['partitions'], input['bindings'], input['applicability_results'], input['metric_renderings'], input['qualitative_renderings']]:\n        for item in values_:\n            result['unresolved'] += clone(item['unresolved'])\n    result['unresolved'] += clone(input['unknown_results'])\n    for item in result['unresolved']:\n        item['logical_backflow_role_candidates'] += clone(input['logical_backflow_role_candidates'])\n    return result\n",
     "program_ast": {
       "node": "Module",
       "body": [
@@ -12847,35 +12847,83 @@
                     }
                   ],
                   "value": {
-                    "node": "Call",
-                    "func": {
-                      "node": "Name",
-                      "id": "field_semantics",
-                      "ctx": {
-                        "node": "Load"
-                      }
-                    },
-                    "args": [
+                    "node": "Dict",
+                    "keys": [
                       {
-                        "node": "Subscript",
-                        "value": {
+                        "node": "Constant",
+                        "value": "field",
+                        "kind": null
+                      },
+                      {
+                        "node": "Constant",
+                        "value": "locator",
+                        "kind": null
+                      }
+                    ],
+                    "values": [
+                      {
+                        "node": "Call",
+                        "func": {
                           "node": "Name",
-                          "id": "item",
+                          "id": "field_semantics",
                           "ctx": {
                             "node": "Load"
                           }
                         },
-                        "slice": {
-                          "node": "Constant",
-                          "value": "reason",
-                          "kind": null
+                        "args": [
+                          {
+                            "node": "Subscript",
+                            "value": {
+                              "node": "Name",
+                              "id": "item",
+                              "ctx": {
+                                "node": "Load"
+                              }
+                            },
+                            "slice": {
+                              "node": "Constant",
+                              "value": "reason",
+                              "kind": null
+                            },
+                            "ctx": {
+                              "node": "Load"
+                            }
+                          }
+                        ],
+                        "keywords": []
+                      },
+                      {
+                        "node": "Call",
+                        "func": {
+                          "node": "Name",
+                          "id": "field_locator",
+                          "ctx": {
+                            "node": "Load"
+                          }
                         },
-                        "ctx": {
-                          "node": "Load"
-                        }
+                        "args": [
+                          {
+                            "node": "Subscript",
+                            "value": {
+                              "node": "Name",
+                              "id": "item",
+                              "ctx": {
+                                "node": "Load"
+                              }
+                            },
+                            "slice": {
+                              "node": "Constant",
+                              "value": "reason",
+                              "kind": null
+                            },
+                            "ctx": {
+                              "node": "Load"
+                            }
+                          }
+                        ],
+                        "keywords": []
                       }
-                    ],
-                    "keywords": []
+                    ]
                   },
                   "type_comment": null
                 },
@@ -20222,6 +20270,37 @@
               "targets": [
                 {
                   "node": "Name",
+                  "id": "denominator_reason_field",
+                  "ctx": {
+                    "node": "Store"
+                  }
+                }
+              ],
+              "value": {
+                "node": "Subscript",
+                "value": {
+                  "node": "Name",
+                  "id": "op",
+                  "ctx": {
+                    "node": "Load"
+                  }
+                },
+                "slice": {
+                  "node": "Constant",
+                  "value": "denominator_exclusion_reasons",
+                  "kind": null
+                },
+                "ctx": {
+                  "node": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "node": "Assign",
+              "targets": [
+                {
+                  "node": "Name",
                   "id": "denominator_exclusion_values",
                   "ctx": {
                     "node": "Store"
@@ -20241,19 +20320,8 @@
                   },
                   "args": [
                     {
-                      "node": "Subscript",
-                      "value": {
-                        "node": "Name",
-                        "id": "op",
-                        "ctx": {
-                          "node": "Load"
-                        }
-                      },
-                      "slice": {
-                        "node": "Constant",
-                        "value": "denominator_exclusion_reasons",
-                        "kind": null
-                      },
+                      "node": "Name",
+                      "id": "denominator_reason_field",
                       "ctx": {
                         "node": "Load"
                       }
@@ -20272,19 +20340,8 @@
                   },
                   "args": [
                     {
-                      "node": "Subscript",
-                      "value": {
-                        "node": "Name",
-                        "id": "op",
-                        "ctx": {
-                          "node": "Load"
-                        }
-                      },
-                      "slice": {
-                        "node": "Constant",
-                        "value": "denominator_exclusion_reasons",
-                        "kind": null
-                      },
+                      "node": "Name",
+                      "id": "denominator_reason_field",
                       "ctx": {
                         "node": "Load"
                       }
@@ -20620,19 +20677,8 @@
                       },
                       "args": [
                         {
-                          "node": "Subscript",
-                          "value": {
-                            "node": "Name",
-                            "id": "op",
-                            "ctx": {
-                              "node": "Load"
-                            }
-                          },
-                          "slice": {
-                            "node": "Constant",
-                            "value": "denominator_exclusion_reasons",
-                            "kind": null
-                          },
+                          "node": "Name",
+                          "id": "denominator_reason_field",
                           "ctx": {
                             "node": "Load"
                           }
@@ -20676,19 +20722,8 @@
                         },
                         "args": [
                           {
-                            "node": "Subscript",
-                            "value": {
-                              "node": "Name",
-                              "id": "op",
-                              "ctx": {
-                                "node": "Load"
-                              }
-                            },
-                            "slice": {
-                              "node": "Constant",
-                              "value": "denominator_exclusion_reasons",
-                              "kind": null
-                            },
+                            "node": "Name",
+                            "id": "denominator_reason_field",
                             "ctx": {
                               "node": "Load"
                             }
@@ -20904,19 +20939,8 @@
                                     "node": "List",
                                     "elts": [
                                       {
-                                        "node": "Subscript",
-                                        "value": {
-                                          "node": "Name",
-                                          "id": "op",
-                                          "ctx": {
-                                            "node": "Load"
-                                          }
-                                        },
-                                        "slice": {
-                                          "node": "Constant",
-                                          "value": "denominator_exclusion_reasons",
-                                          "kind": null
-                                        },
+                                        "node": "Name",
+                                        "id": "denominator_reason_field",
                                         "ctx": {
                                           "node": "Load"
                                         }
@@ -21120,7 +21144,599 @@
                   ]
                 }
               ],
-              "orelse": []
+              "orelse": [
+                {
+                  "node": "If",
+                  "test": {
+                    "node": "BoolOp",
+                    "op": {
+                      "node": "And"
+                    },
+                    "values": [
+                      {
+                        "node": "Compare",
+                        "left": {
+                          "node": "Subscript",
+                          "value": {
+                            "node": "Name",
+                            "id": "denominator_reason_field",
+                            "ctx": {
+                              "node": "Load"
+                            }
+                          },
+                          "slice": {
+                            "node": "Constant",
+                            "value": "tag",
+                            "kind": null
+                          },
+                          "ctx": {
+                            "node": "Load"
+                          }
+                        },
+                        "ops": [
+                          {
+                            "node": "Eq"
+                          }
+                        ],
+                        "comparators": [
+                          {
+                            "node": "Constant",
+                            "value": "provided",
+                            "kind": null
+                          }
+                        ]
+                      },
+                      {
+                        "node": "UnaryOp",
+                        "op": {
+                          "node": "Not"
+                        },
+                        "operand": {
+                          "node": "Call",
+                          "func": {
+                            "node": "Name",
+                            "id": "collection_known",
+                            "ctx": {
+                              "node": "Load"
+                            }
+                          },
+                          "args": [
+                            {
+                              "node": "Name",
+                              "id": "denominator_reason_field",
+                              "ctx": {
+                                "node": "Load"
+                              }
+                            }
+                          ],
+                          "keywords": []
+                        }
+                      }
+                    ]
+                  },
+                  "body": [
+                    {
+                      "node": "Expr",
+                      "value": {
+                        "node": "Call",
+                        "func": {
+                          "node": "Attribute",
+                          "value": {
+                            "node": "Subscript",
+                            "value": {
+                              "node": "Name",
+                              "id": "result",
+                              "ctx": {
+                                "node": "Load"
+                              }
+                            },
+                            "slice": {
+                              "node": "Constant",
+                              "value": "unresolved",
+                              "kind": null
+                            },
+                            "ctx": {
+                              "node": "Load"
+                            }
+                          },
+                          "attr": "append",
+                          "ctx": {
+                            "node": "Load"
+                          }
+                        },
+                        "args": [
+                          {
+                            "node": "Call",
+                            "func": {
+                              "node": "Name",
+                              "id": "issue",
+                              "ctx": {
+                                "node": "Load"
+                              }
+                            },
+                            "args": [
+                              {
+                                "node": "Constant",
+                                "value": "eligible_set_mismatch",
+                                "kind": null
+                              },
+                              {
+                                "node": "List",
+                                "elts": [
+                                  {
+                                    "node": "Constant",
+                                    "value": "MetricOperationInput.denominator_exclusion_reasons",
+                                    "kind": null
+                                  },
+                                  {
+                                    "node": "Name",
+                                    "id": "selected_path",
+                                    "ctx": {
+                                      "node": "Load"
+                                    }
+                                  }
+                                ],
+                                "ctx": {
+                                  "node": "Load"
+                                }
+                              },
+                              {
+                                "node": "List",
+                                "elts": [
+                                  {
+                                    "node": "Name",
+                                    "id": "denominator_reason_field",
+                                    "ctx": {
+                                      "node": "Load"
+                                    }
+                                  },
+                                  {
+                                    "node": "Name",
+                                    "id": "selected_field",
+                                    "ctx": {
+                                      "node": "Load"
+                                    }
+                                  }
+                                ],
+                                "ctx": {
+                                  "node": "Load"
+                                }
+                              },
+                              {
+                                "node": "Name",
+                                "id": "source",
+                                "ctx": {
+                                  "node": "Load"
+                                }
+                              }
+                            ],
+                            "keywords": []
+                          }
+                        ],
+                        "keywords": []
+                      }
+                    }
+                  ],
+                  "orelse": [
+                    {
+                      "node": "If",
+                      "test": {
+                        "node": "BoolOp",
+                        "op": {
+                          "node": "And"
+                        },
+                        "values": [
+                          {
+                            "node": "Call",
+                            "func": {
+                              "node": "Name",
+                              "id": "collection_known",
+                              "ctx": {
+                                "node": "Load"
+                              }
+                            },
+                            "args": [
+                              {
+                                "node": "Name",
+                                "id": "denominator_reason_field",
+                                "ctx": {
+                                  "node": "Load"
+                                }
+                              }
+                            ],
+                            "keywords": []
+                          },
+                          {
+                            "node": "Compare",
+                            "left": {
+                              "node": "Call",
+                              "func": {
+                                "node": "Name",
+                                "id": "len",
+                                "ctx": {
+                                  "node": "Load"
+                                }
+                              },
+                              "args": [
+                                {
+                                  "node": "Name",
+                                  "id": "denominator_exclusion_ids",
+                                  "ctx": {
+                                    "node": "Load"
+                                  }
+                                }
+                              ],
+                              "keywords": []
+                            },
+                            "ops": [
+                              {
+                                "node": "Gt"
+                              }
+                            ],
+                            "comparators": [
+                              {
+                                "node": "Constant",
+                                "value": 0,
+                                "kind": null
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "body": [
+                        {
+                          "node": "Expr",
+                          "value": {
+                            "node": "Call",
+                            "func": {
+                              "node": "Attribute",
+                              "value": {
+                                "node": "Subscript",
+                                "value": {
+                                  "node": "Name",
+                                  "id": "result",
+                                  "ctx": {
+                                    "node": "Load"
+                                  }
+                                },
+                                "slice": {
+                                  "node": "Constant",
+                                  "value": "unresolved",
+                                  "kind": null
+                                },
+                                "ctx": {
+                                  "node": "Load"
+                                }
+                              },
+                              "attr": "append",
+                              "ctx": {
+                                "node": "Load"
+                              }
+                            },
+                            "args": [
+                              {
+                                "node": "Call",
+                                "func": {
+                                  "node": "Name",
+                                  "id": "issue",
+                                  "ctx": {
+                                    "node": "Load"
+                                  }
+                                },
+                                "args": [
+                                  {
+                                    "node": "Constant",
+                                    "value": "eligible_set_mismatch",
+                                    "kind": null
+                                  },
+                                  {
+                                    "node": "List",
+                                    "elts": [
+                                      {
+                                        "node": "Constant",
+                                        "value": "MetricOperationInput.denominator_exclusion_reasons",
+                                        "kind": null
+                                      },
+                                      {
+                                        "node": "Name",
+                                        "id": "selected_path",
+                                        "ctx": {
+                                          "node": "Load"
+                                        }
+                                      }
+                                    ],
+                                    "ctx": {
+                                      "node": "Load"
+                                    }
+                                  },
+                                  {
+                                    "node": "List",
+                                    "elts": [
+                                      {
+                                        "node": "Name",
+                                        "id": "denominator_reason_field",
+                                        "ctx": {
+                                          "node": "Load"
+                                        }
+                                      },
+                                      {
+                                        "node": "Name",
+                                        "id": "selected_field",
+                                        "ctx": {
+                                          "node": "Load"
+                                        }
+                                      }
+                                    ],
+                                    "ctx": {
+                                      "node": "Load"
+                                    }
+                                  },
+                                  {
+                                    "node": "Name",
+                                    "id": "source",
+                                    "ctx": {
+                                      "node": "Load"
+                                    }
+                                  }
+                                ],
+                                "keywords": []
+                              }
+                            ],
+                            "keywords": []
+                          }
+                        }
+                      ],
+                      "orelse": [
+                        {
+                          "node": "If",
+                          "test": {
+                            "node": "Compare",
+                            "left": {
+                              "node": "Subscript",
+                              "value": {
+                                "node": "Name",
+                                "id": "denominator_reason_field",
+                                "ctx": {
+                                  "node": "Load"
+                                }
+                              },
+                              "slice": {
+                                "node": "Constant",
+                                "value": "tag",
+                                "kind": null
+                              },
+                              "ctx": {
+                                "node": "Load"
+                              }
+                            },
+                            "ops": [
+                              {
+                                "node": "NotIn"
+                              }
+                            ],
+                            "comparators": [
+                              {
+                                "node": "List",
+                                "elts": [
+                                  {
+                                    "node": "Constant",
+                                    "value": "absent",
+                                    "kind": null
+                                  },
+                                  {
+                                    "node": "Constant",
+                                    "value": "empty",
+                                    "kind": null
+                                  }
+                                ],
+                                "ctx": {
+                                  "node": "Load"
+                                }
+                              }
+                            ]
+                          },
+                          "body": [
+                            {
+                              "node": "AugAssign",
+                              "target": {
+                                "node": "Subscript",
+                                "value": {
+                                  "node": "Name",
+                                  "id": "result",
+                                  "ctx": {
+                                    "node": "Load"
+                                  }
+                                },
+                                "slice": {
+                                  "node": "Constant",
+                                  "value": "unresolved",
+                                  "kind": null
+                                },
+                                "ctx": {
+                                  "node": "Store"
+                                }
+                              },
+                              "op": {
+                                "node": "Add"
+                              },
+                              "value": {
+                                "node": "Call",
+                                "func": {
+                                  "node": "Name",
+                                  "id": "field_issue",
+                                  "ctx": {
+                                    "node": "Load"
+                                  }
+                                },
+                                "args": [
+                                  {
+                                    "node": "Name",
+                                    "id": "denominator_reason_field",
+                                    "ctx": {
+                                      "node": "Load"
+                                    }
+                                  },
+                                  {
+                                    "node": "Constant",
+                                    "value": "MetricOperationInput.denominator_exclusion_reasons",
+                                    "kind": null
+                                  },
+                                  {
+                                    "node": "Name",
+                                    "id": "source",
+                                    "ctx": {
+                                      "node": "Load"
+                                    }
+                                  }
+                                ],
+                                "keywords": []
+                              }
+                            }
+                          ],
+                          "orelse": [
+                            {
+                              "node": "If",
+                              "test": {
+                                "node": "BoolOp",
+                                "op": {
+                                  "node": "And"
+                                },
+                                "values": [
+                                  {
+                                    "node": "Compare",
+                                    "left": {
+                                      "node": "Subscript",
+                                      "value": {
+                                        "node": "Name",
+                                        "id": "denominator_reason_field",
+                                        "ctx": {
+                                          "node": "Load"
+                                        }
+                                      },
+                                      "slice": {
+                                        "node": "Constant",
+                                        "value": "tag",
+                                        "kind": null
+                                      },
+                                      "ctx": {
+                                        "node": "Load"
+                                      }
+                                    },
+                                    "ops": [
+                                      {
+                                        "node": "Eq"
+                                      }
+                                    ],
+                                    "comparators": [
+                                      {
+                                        "node": "Constant",
+                                        "value": "empty",
+                                        "kind": null
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "node": "Compare",
+                                    "left": {
+                                      "node": "Subscript",
+                                      "value": {
+                                        "node": "Name",
+                                        "id": "denominator_reason_field",
+                                        "ctx": {
+                                          "node": "Load"
+                                        }
+                                      },
+                                      "slice": {
+                                        "node": "Constant",
+                                        "value": "empty_kind",
+                                        "kind": null
+                                      },
+                                      "ctx": {
+                                        "node": "Load"
+                                      }
+                                    },
+                                    "ops": [
+                                      {
+                                        "node": "NotEq"
+                                      }
+                                    ],
+                                    "comparators": [
+                                      {
+                                        "node": "Constant",
+                                        "value": "empty_list",
+                                        "kind": null
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              "body": [
+                                {
+                                  "node": "AugAssign",
+                                  "target": {
+                                    "node": "Subscript",
+                                    "value": {
+                                      "node": "Name",
+                                      "id": "result",
+                                      "ctx": {
+                                        "node": "Load"
+                                      }
+                                    },
+                                    "slice": {
+                                      "node": "Constant",
+                                      "value": "unresolved",
+                                      "kind": null
+                                    },
+                                    "ctx": {
+                                      "node": "Store"
+                                    }
+                                  },
+                                  "op": {
+                                    "node": "Add"
+                                  },
+                                  "value": {
+                                    "node": "Call",
+                                    "func": {
+                                      "node": "Name",
+                                      "id": "field_issue",
+                                      "ctx": {
+                                        "node": "Load"
+                                      }
+                                    },
+                                    "args": [
+                                      {
+                                        "node": "Name",
+                                        "id": "denominator_reason_field",
+                                        "ctx": {
+                                          "node": "Load"
+                                        }
+                                      },
+                                      {
+                                        "node": "Constant",
+                                        "value": "MetricOperationInput.denominator_exclusion_reasons",
+                                        "kind": null
+                                      },
+                                      {
+                                        "node": "Name",
+                                        "id": "source",
+                                        "ctx": {
+                                          "node": "Load"
+                                        }
+                                      }
+                                    ],
+                                    "keywords": []
+                                  }
+                                }
+                              ],
+                              "orelse": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             },
             {
               "node": "If",
@@ -25179,6 +25795,29 @@
                     },
                     "args": [
                       {
+                        "node": "Subscript",
+                        "value": {
+                          "node": "Name",
+                          "id": "op",
+                          "ctx": {
+                            "node": "Load"
+                          }
+                        },
+                        "slice": {
+                          "node": "Constant",
+                          "value": "numerator_position_ids",
+                          "kind": null
+                        },
+                        "ctx": {
+                          "node": "Load"
+                        }
+                      },
+                      {
+                        "node": "Constant",
+                        "value": "numerator_position_ids",
+                        "kind": null
+                      },
+                      {
                         "node": "IfExp",
                         "test": {
                           "node": "Compare",
@@ -25214,71 +25853,63 @@
                           ]
                         },
                         "body": {
-                          "node": "Subscript",
-                          "value": {
+                          "node": "Call",
+                          "func": {
                             "node": "Name",
-                            "id": "op",
+                            "id": "clone",
                             "ctx": {
                               "node": "Load"
                             }
                           },
-                          "slice": {
-                            "node": "Constant",
-                            "value": "numerator_position_ids",
-                            "kind": null
-                          },
-                          "ctx": {
-                            "node": "Load"
-                          }
+                          "args": [
+                            {
+                              "node": "Name",
+                              "id": "numerator",
+                              "ctx": {
+                                "node": "Load"
+                              }
+                            }
+                          ],
+                          "keywords": []
                         },
                         "orelse": {
-                          "node": "Subscript",
-                          "value": {
-                            "node": "Name",
-                            "id": "op",
-                            "ctx": {
-                              "node": "Load"
-                            }
-                          },
-                          "slice": {
-                            "node": "Constant",
-                            "value": "mean_position_ids",
-                            "kind": null
-                          },
-                          "ctx": {
-                            "node": "Load"
-                          }
+                          "node": "Constant",
+                          "value": null,
+                          "kind": null
                         }
                       },
                       {
-                        "node": "Constant",
-                        "value": "numerator_position_ids",
-                        "kind": null
-                      },
-                      {
-                        "node": "Call",
-                        "func": {
-                          "node": "Name",
-                          "id": "clone",
+                        "node": "Compare",
+                        "left": {
+                          "node": "Subscript",
+                          "value": {
+                            "node": "Name",
+                            "id": "op",
+                            "ctx": {
+                              "node": "Load"
+                            }
+                          },
+                          "slice": {
+                            "node": "Constant",
+                            "value": "operation_kind",
+                            "kind": null
+                          },
                           "ctx": {
                             "node": "Load"
                           }
                         },
-                        "args": [
+                        "ops": [
                           {
-                            "node": "Name",
-                            "id": "numerator",
-                            "ctx": {
-                              "node": "Load"
-                            }
+                            "node": "Eq"
                           }
                         ],
-                        "keywords": []
-                      },
-                      {
-                        "node": "Constant",
-                        "value": true,
-                        "kind": null
+                        "comparators": [
+                          {
+                            "node": "Constant",
+                            "value": "count_ratio",
+                            "kind": null
+                          }
+                        ]
                       }
                     ],
                     "keywords": []
@@ -30237,7 +30868,7 @@
       ],
       "type_ignores": []
     },
-    "program_ast_canonical_sha256": "7bc95dda33c7a1146b0b803c19f569c64cdb4531e1f73886e464a67bdb93d022",
+    "program_ast_canonical_sha256": "4c0d0c5045b78be7528dcc58776be8ac3b86f71a814c87c22e56e02ed084b934",
     "constant_bindings": {
       "TYPE_DEFINITIONS": "同一文書 /logical_type_definitions のfield宣言順をそのまま使用"
     },
