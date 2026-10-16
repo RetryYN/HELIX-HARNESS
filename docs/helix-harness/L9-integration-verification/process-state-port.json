@@ -10815,6 +10815,126 @@
             "expectation_basis": "producer binding、独立original producer target、raw owner_materialをsynthetic-Tのまま保持し、consumer assignmentから別供給されたproducer_facing_consumer_scopeだけtenantをOTHER-Tへ変える。005 producer scopeとの独立比較でscope_state=conflict、target_state=knownとなり、015のknownを保持する。合成入力で実ownerの供給・資格を示さない。",
             "execution_state": "not_executed",
             "effect": "none"
+          },
+          {
+            "id": "H003-F03-TARGET-CONFLICT-BEFORE-STALE",
+            "contract_ref": "HARNESS-L4-003-F03",
+            "input_base": "F03_provisional",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/0/binding/consumer_target/artifact_ref/identity",
+                "value": "OTHER-ARTIFACT"
+              },
+              {
+                "op": "replace",
+                "path": "/source_cells/0/original_contents/target_operation/producer_target/revision",
+                "value": "r0"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_valley",
+                  "target_state": "conflict",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "conflict"
+                },
+                {
+                  "role": "015_flow",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "retained_qualification_observations": {
+                "$copy": "/qualification_observations"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "SB02のidentity/owner相反=conflictと005同一identity/ownerのtarget revision差=staleを同一target_stateへ集約する。022 S7の軸内優先conflict>stale>unknown>missing>knownを適用し、target_state=conflict。raw値と各原因を保持する。これは上流意味の変更ではなく比較結果をtarget軸へ一意に還元する技術規則。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F03-RAW005-SCOPE-CONFLICT-AND-QUALIFICATION-STALE",
+            "contract_ref": "HARNESS-L4-003-F03",
+            "input_base": "F03_provisional",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/0/original_contents/original/binding/scope/tenant",
+                "value": "OTHER-T"
+              },
+              {
+                "op": "replace",
+                "path": "/qualification_observations/by_source_cell/0/producer",
+                "value": "stale"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_valley",
+                  "target_state": "known",
+                  "scope_state": "conflict",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "stale",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "unknown"
+                },
+                {
+                  "role": "015_flow",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "retained_qualification_observations": {
+                "$copy": "/qualification_observations"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "005のL8 original.binding.scopeだけをcandidate/binding側から独立して読み、既知tenant差をscope_state=conflictとする。別軸のqualificationはstaleを保持し、SB06の不成立集合{conflict,stale}によりbinding_state=unknown。raw005読取の省略ではscopeがknownとなり期待が変わる。",
+            "execution_state": "not_executed",
+            "effect": "none"
           }
         ],
         "expected_recipe_rule": "$copyはbaseのfixture参照を一度束縛してからinput_patchを適用した後のcase inputをrootとするRFC6901 pointer。raw input retentionはコピーし、state/reasonは固定expectedから照合する。$sourceは固定source material用でexpected値を入力から生成しない。",
@@ -15835,7 +15955,7 @@
           },
           {
             "id": "H003-F04-022-MATERIAL-OWNER-DIFFERS",
-            "contract_ref": "HARNESS-L4-003-SOURCE-BINDING",
+            "contract_ref": "HARNESS-L4-003-F04",
             "input_base": "F04_verified",
             "input_patch": [
               {
@@ -15890,7 +16010,7 @@
           },
           {
             "id": "H003-F04-022-ESB-SOURCE-REF-DIFFERS",
-            "contract_ref": "HARNESS-L4-003-SOURCE-BINDING",
+            "contract_ref": "HARNESS-L4-003-F04",
             "input_base": "F04_verified",
             "input_patch": [
               {
@@ -15945,7 +16065,7 @@
           },
           {
             "id": "H003-F04-022-ESB-RAW-SHA256-DIFFERS",
-            "contract_ref": "HARNESS-L4-003-SOURCE-BINDING",
+            "contract_ref": "HARNESS-L4-003-F04",
             "input_base": "F04_verified",
             "input_patch": [
               {
@@ -16000,7 +16120,7 @@
           },
           {
             "id": "H003-F04-022-ESB-BYTE-LENGTH-DIFFERS",
-            "contract_ref": "HARNESS-L4-003-SOURCE-BINDING",
+            "contract_ref": "HARNESS-L4-003-F04",
             "input_base": "F04_verified",
             "input_patch": [
               {
@@ -16055,7 +16175,7 @@
           },
           {
             "id": "H003-F04-022-ESB-SOURCE-FILE-SHA256-DIFFERS",
-            "contract_ref": "HARNESS-L4-003-SOURCE-BINDING",
+            "contract_ref": "HARNESS-L4-003-F04",
             "input_base": "F04_verified",
             "input_patch": [
               {
@@ -16110,7 +16230,7 @@
           },
           {
             "id": "H003-F04-022-ESB-SAME-REF-DIFFERENT-RAW",
-            "contract_ref": "HARNESS-L4-003-SOURCE-BINDING",
+            "contract_ref": "HARNESS-L4-003-F04",
             "input_base": "F04_verified",
             "input_patch": [
               {
@@ -16170,6 +16290,75 @@
               "effects": []
             },
             "expectation_basis": "source_refは固定packet object.refと一致させたまま、basis.raw_utf8だけを有効なJSON本文{}へ変え、sha256/UTF-8 byte lengthもその値に一致させる。取得sourceの同一Refに既知別payloadがあるためtarget_state=conflict、binding_stateはSB06 foldからconflict。raw source packet自体は変えず、他軸は保持する。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F04-ESB-CONFLICT-AND-INDEPENDENT-PAIR-MISSING",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "F04_verified",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/1/original_contents/evidence_selection_basis/raw_utf8",
+                "value": "{}"
+              },
+              {
+                "op": "replace",
+                "path": "/source_cells/1/original_contents/evidence_selection_basis/sha256",
+                "value": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+              },
+              {
+                "op": "replace",
+                "path": "/source_cells/1/original_contents/evidence_selection_basis/utf8_byte_length",
+                "value": 2
+              },
+              {
+                "op": "remove",
+                "path": "/source_cells/1/original_contents/input/materials/unique_quality/pair"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "known",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "conflict",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "known",
+                  "requirement_revision_state": "known",
+                  "binding_state": "unknown"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "retained_qualification_observations": {
+                "$copy": "/qualification_observations"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "同じ固定source_refでpacket raw payloadが異なるためbasis取得はconflict。取得失敗後はbasis依存のexpected Material/Evidence selector・内容比較を未実施としmissingを合成しない。candidate inputのMaterial.pairと独立Context.pairsは取得basisに依存せず照合継続し、候補pair欠落をcontent missingとして保持する。SB06ではtarget conflictと独立content missingの異種状態がbinding_state=unknown。",
             "execution_state": "not_executed",
             "effect": "none"
           }

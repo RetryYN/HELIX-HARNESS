@@ -815,11 +815,11 @@
           },
           {
             "id": "SB02",
-            "rule": "binding.consumer_targetを独立Contextのconsumer endpointへ、binding.producer_targetをproducer契約で指定される原selectorへ別々に照合する。consumerのartifact_refとrequirement_refは同役割の原targetへ独立比較し、相互に代用しない。Fieldまたは有効な参照object内のrevision欠落はmissing、明示null/型外はunknownとしてraw値と理由を保持する。identity/ownerの既知差はtarget_state=conflict、scopeの既知差はscope_state=conflict。005/015ではidentity/ownerが一致する同役割target revisionの差をtarget_state=stale、一致をknownとする。022のartifact/requirement endpoint revisionの既知不一致は、それぞれartifact_revision_state/requirement_revision_state=conflictとする。順序/世代根拠が独立入力にある場合だけ旧版を判定できる。今回の限定接続入力にはその根拠がないため、artifact revisionの既知差はSB05に従いconflictとし、staleを推定しない。Context.snapshot_revisionは別roleとして保持し、target revisionへ代入しない。015 producer_targetのFieldValue absentはmissing、explicit null/型外はunknown。consumer/producer各端の相反理由は別保持し、他端の一致で隠さない。 022のMaterial SOURCE selector差、MaterialRecord.evidence_idによるEvidence selector差、EvidenceRecord identity/EVIDENCE-SOURCE差は選択対象の対応相反としてtarget_state=conflictへ出す。pair/contents等、選択record内の比較値差はbinding_state=conflictへ出し、pairのnull/欠落/型外もSB05の宣言型規則でbinding_stateへ局所化する。 022のexpected_material_ownersは選択されたMaterialRecord.ownerの独立selectorであり、known不一致はtarget_state=conflictへ出す。MaterialRecord/EvidenceRecordのidentity・owner・source/evidence/oracle selectorはbinding内容差へ分類しない。 022のindependent_source_packet取得では、evidence_selection_basis各必須memberの個別欠落をtarget_state=missing、member型外/不正pointer/sha・長さ不一致をtarget_state=unknown、source_refとpointer先packet.refの既知不一致をtarget_state=conflictへ局所化する。これらの取得状態はbinding内容差へ直接混ぜず、binding_stateはSB06のfoldで導く。MaterialRecord.owner selectorの既知不一致もtarget_state=conflict。"
+            "rule": "binding.consumer_targetを独立Contextのconsumer endpointへ、binding.producer_targetをproducer契約で指定される原selectorへ別々に照合する。consumerのartifact_refとrequirement_refは同役割の原targetへ独立比較し、相互に代用しない。Fieldまたは有効な参照object内のrevision欠落はmissing、明示null/型外はunknownとしてraw値と理由を保持する。identity/ownerの既知差はtarget_state=conflict、scopeの既知差はscope_state=conflict。005/015ではidentity/ownerが一致する同役割target revisionの差をtarget_state=stale、一致をknownとする。022のartifact/requirement endpoint revisionの既知不一致は、それぞれartifact_revision_state/requirement_revision_state=conflictとする。順序/世代根拠が独立入力にある場合だけ旧版を判定できる。今回の限定接続入力にはその根拠がないため、artifact revisionの既知差はSB05に従いconflictとし、staleを推定しない。Context.snapshot_revisionは別roleとして保持し、target revisionへ代入しない。015 producer_targetのFieldValue absentはmissing、explicit null/型外はunknown。consumer/producer各端の相反理由は別保持し、他端の一致で隠さない。 022のMaterial SOURCE selector差、MaterialRecord.evidence_idによるEvidence selector差、EvidenceRecord identity/EVIDENCE-SOURCE差は選択対象の対応相反としてtarget_state=conflictへ出す。pair/contents等、選択record内の比較値差はbinding_state=conflictへ出し、pairのnull/欠落/型外もSB05の宣言型規則でbinding_stateへ局所化する。 022のexpected_material_ownersは選択されたMaterialRecord.ownerの独立selectorであり、known不一致はtarget_state=conflictへ出す。MaterialRecord/EvidenceRecordのidentity・owner・source/evidence/oracle selectorはbinding内容差へ分類しない。 022のindependent_source_packet取得では、evidence_selection_basis各必須memberの個別欠落をtarget_state=missing、member型外/不正pointer/sha・長さ不一致をtarget_state=unknown、source_refとpointer先packet.refの既知不一致をtarget_state=conflictへ局所化する。これらの取得状態はbinding内容差へ直接混ぜず、binding_stateはSB06のfoldで導く。MaterialRecord.owner selectorの既知不一致もtarget_state=conflict。 同一target_state内の複数比較はtarget_state_reductionに従って軸内集約する。各比較結果・原値・原因は集約前後に保持し、別軸の状態はここで混合しない。"
           },
           {
             "id": "SB03",
-            "rule": "consumer raw scopeは003原Context/original consumer_targetへ独立照合する。producer raw scopeはproducer roleのoriginal targetへ照合し、さらに原operationに独立供給されたproducer_facing_consumer_scopeと同じnative型/presenceで比較する。この比較値はconsumer assignmentをadapterが当該producer roleへ表現した原入力であり、binding/candidate/producer actualから複写しない。005=Scope、015=PayloadF03 nested FieldValue scope、022=Text。consumer raw shapeから別roleへcastしない。既知差はscope conflict、比較値欠落はmissing、null/型外/role不明は局所unknown。 015 producer raw scopeはowner_materialのtyped semantic source payload.value.binding.scope（L8 pinの/cases/19/typed_semantic_function_io/typed_input/input/source_payload/value/binding/scope）から取得し、各nested FieldValueを保持する。binding.producer_target.scopeとは別の原値であるため、producer_target absentはtarget_stateへ局所化し、owner_material raw scopeが解決できる場合はscope_state比較を続ける。"
+            "rule": "consumer raw scopeは003原Context/original consumer_targetへ独立照合する。producer raw scopeはproducer roleのoriginal targetへ照合し、さらに原operationに独立供給されたproducer_facing_consumer_scopeと同じnative型/presenceで比較する。この比較値はconsumer assignmentをadapterが当該producer roleへ表現した原入力であり、binding/candidate/producer actualから複写しない。005=Scope、015=PayloadF03 nested FieldValue scope、022=Text。consumer raw shapeから別roleへcastしない。既知差はscope conflict、比較値欠落はmissing、null/型外/role不明は局所unknown。 015 producer raw scopeはowner_materialのtyped semantic source payload.value.binding.value.scope（L8 pinの/cases/19/typed_semantic_function_io/typed_input/input/source_payload/value/binding/value/scope）から取得し、各nested FieldValueを保持する。binding.producer_target.scopeとは別の原値であるため、producer_target absentはtarget_stateへ局所化し、owner_material raw scopeが解決できる場合はscope_state比較を続ける。 005のproducer raw scopeはL8のoriginal/binding/scopeから読み、candidate側へ代入しない。022のproducer raw scopeはSystemDifferenceInput.context.scope、独立した比較先はSystemDifferenceContext.target.scopeから別々に読む。各取得元が欠落/null/型外の場合はその比較だけmissing/unknownとし、別の端・独立comparandから得たscope比較とtarget/qualification等の他軸を消さない。"
           },
           {
             "id": "SB04",
@@ -827,7 +827,7 @@
           },
           {
             "id": "SB05",
-            "rule": "022 Contextの選択profile/roleと選択されたMaterialRecord/EvidenceRecordのidentity/owner/source_id/oracle_revision/pairを各同役割の独立selectorへ照合する。MaterialRecordはContext.expected_source_idsのMaterial SOURCE roleで選択する。期待側MaterialRecordはoriginal_contents.evidence_selection_basisの別入力raw UTF-8取得snapshotから同Material SOURCE値で解決する。snapshot欠落はselector局所missing、null/型外/長さ・digest不整合は局所unknownとし、candidate inputから補完しない。合成L9の別入力snapshotは同じ固定L8 packet bytesの複製であり物理的独立取得・実lineage・資格の証明ではない。期待側MaterialRecord.evidence_idとcandidate MaterialRecord.evidence_idを比較し、期待側evidence_idで原取得record内のEvidenceRecord.identityを解決してcandidate EvidenceRecordと照合する。candidate側evidence_idやevidence map keyだけでexpected evidenceを選ばない。EvidenceRecord.source_idをMaterial SOURCE role、map key、接頭辞または文字列規則から導出しない。順序/世代根拠が入力にないartifact_revisionの既知差はconflictとし、@r<N>等の文字列から旧版順序を推定しない。この限定observerではstaleを導出しない。requirement_revisionの既知差はrequirement_revision_state=conflict。宣言型がnullableなpairはMaterialRecord.pair (RawText|null)、EvidenceRecord.pair (RawText|null)、SystemDifferenceContext.pairs (Text|null)の3箇所に限る。各pairはnull/nullならknown、nullと既知Textの不一致ならconflict、member欠落ならmissing、宣言union外ならunknown。EvidenceRecord.pairにも同じ規則を適用する。他の非nullable memberへnull例外を広げない。各同役割値一致はknown、member欠落missing、明示null/型外unknown。その他既知metadata/contents/pair差はconflict。Context.snapshot_revisionはsource Context版として別保存しtarget二revisionへ代入しない。同じrevision軸内の複数比較は022 S7 conflict>stale>unknown>missing>knownで集約し、原因/rawを別保持する。これは異種軸をbinding_stateへ集約するSB06のknown除外foldとは別。 選択対象のMaterial SOURCE/evidence selector・record identityの不一致はtarget_state=conflict、pairやその他選択record内容の不一致はbinding_state=conflict。pair欠落はbinding_state=missing、宣言union外はbinding_state=unknown。これらの内容差をtarget_stateへ混ぜない。 expected_material_ownersと選択MaterialRecord.ownerの既知不一致はtarget_state=conflictへ分類する。selector identity/owner/source/evidence/oracle対応と、pair/contents等のrecord内容比較を分け、後者だけをbinding_stateへ渡す。 evidence_selection_basis.source_pathは固定source_revision上のindependent_source_packet objectを指し、その同一objectからrefとraw_utf8を読む。basis.source_refはobject.ref、basis.raw_utf8はobject.raw_utf8と個別照合する。Context.expected_material_ownersはMaterialRecord.owner selectorであり、owner差はtarget_state=conflict。selectorとpair/contents等のrecord内容を区別し、basis取得memberの状態はtarget_stateへ局所化してSB06 foldへ渡す。",
+            "rule": "022 Contextの選択profile/roleと選択されたMaterialRecord/EvidenceRecordのidentity/owner/source_id/oracle_revision/pairを各同役割の独立selectorへ照合する。MaterialRecordはContext.expected_source_idsのMaterial SOURCE roleで選択する。期待側MaterialRecordはoriginal_contents.evidence_selection_basisの別入力raw UTF-8取得snapshotから同Material SOURCE値で解決する。snapshot欠落はselector局所missing、null/型外/長さ・digest不整合は局所unknownとし、candidate inputから補完しない。合成L9の別入力snapshotは同じ固定L8 packet bytesの複製であり物理的独立取得・実lineage・資格の証明ではない。期待側MaterialRecord.evidence_idとcandidate MaterialRecord.evidence_idを比較し、期待側evidence_idで原取得record内のEvidenceRecord.identityを解決してcandidate EvidenceRecordと照合する。candidate側evidence_idやevidence map keyだけでexpected evidenceを選ばない。EvidenceRecord.source_idをMaterial SOURCE role、map key、接頭辞または文字列規則から導出しない。順序/世代根拠が入力にないartifact_revisionの既知差はconflictとし、@r<N>等の文字列から旧版順序を推定しない。この限定observerではstaleを導出しない。requirement_revisionの既知差はrequirement_revision_state=conflict。宣言型がnullableなpairはMaterialRecord.pair (RawText|null)、EvidenceRecord.pair (RawText|null)、SystemDifferenceContext.pairs (Text|null)の3箇所に限る。各pairはnull/nullならknown、nullと既知Textの不一致ならconflict、member欠落ならmissing、宣言union外ならunknown。EvidenceRecord.pairにも同じ規則を適用する。他の非nullable memberへnull例外を広げない。各同役割値一致はknown、member欠落missing、明示null/型外unknown。その他既知metadata/contents/pair差はconflict。Context.snapshot_revisionはsource Context版として別保存しtarget二revisionへ代入しない。同じrevision軸内の複数比較は022 S7 conflict>stale>unknown>missing>knownで集約し、原因/rawを別保持する。これは異種軸をbinding_stateへ集約するSB06のknown除外foldとは別。 選択対象のMaterial SOURCE/evidence selector・record identityの不一致はtarget_state=conflict、pairやその他選択record内容の不一致はbinding_state=conflict。pair欠落はbinding_state=missing、宣言union外はbinding_state=unknown。これらの内容差をtarget_stateへ混ぜない。 expected_material_ownersと選択MaterialRecord.ownerの既知不一致はtarget_state=conflictへ分類する。selector identity/owner/source/evidence/oracle対応と、pair/contents等のrecord内容比較を分け、後者だけをbinding_stateへ渡す。 evidence_selection_basis.source_pathは固定source_revision上のindependent_source_packet objectを指し、その同一objectからrefとraw_utf8を読む。basis.source_refはobject.ref、basis.raw_utf8はobject.raw_utf8と個別照合する。Context.expected_material_ownersはMaterialRecord.owner selectorであり、owner差はtarget_state=conflict。selectorとpair/contents等のrecord内容を区別し、basis取得memberの状態はtarget_stateへ局所化してSB06 foldへ渡す。 evidence_selection_basisの取得・検証はcandidate側Materialの有無と独立して行う。basis snapshotを解決または検証できない場合、そこに依存するexpected Material/Evidenceの選択とselector/content比較は実施せず、それらの不実施を追加missingとして合成しない。candidate inputと独立Contextの双方から比較できるpair等の内容比較、他roleのsource、scope、qualification、および別軸の独立比較は継続する。basis取得状態は既定のtarget_stateへ保持し、binding_stateへ直接混ぜない。",
             "source_basis": {
               "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
               "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
@@ -1016,7 +1016,7 @@
             "raw_scope_acquisition": {
               "source_revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
               "source_path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
-              "source_pointer": "/cases/19/typed_semantic_function_io/typed_input/input/source_payload/value/binding/scope",
+              "source_pointer": "/cases/19/typed_semantic_function_io/typed_input/input/source_payload/value/binding/value/scope",
               "type_pointers": [
                 "/type_contract/other_types/79",
                 "/type_contract/other_types/80"
@@ -1117,48 +1117,58 @@
             "pinned_objects_same": true
           }
         },
-        "mutation_control_disposition": {
-          "source": "公式R3 review comment 6207885575はskip_pfcs、skip_raw005、axis_fold、first_fail、owner_in_targetの名称を挙げるが、実行可能な変異本体は定義していない。",
-          "source_grounded_controls": [
-            {
-              "name": "skip_pfcs",
-              "case": "H003-F03-005-PFCS-ONLY-SCOPE-DIFFERS",
-              "scope": "PFCSだけが既知不一致となる比較対照を追加した。"
+        "target_state_reduction": {
+          "source": {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+            "pointer": "/functions/3/algorithm/6",
+            "file_sha256": "477264632bf101d13d416eb1b17d5e7e77f8a30dd25c2c1c00b4391f605d95a6",
+            "object_canonical_sha256": "c26716df1fdf8204075a939e9056578661217af6f3d3ced962f3d484d94b334a"
+          },
+          "rule": "一つのtarget_state軸に対する複数の適用可能な比較状態はconflict > stale > unknown > missing > knownの順で一つの軸状態へ集約する。既存のnot_applicable/not_required適用規則は維持する。",
+          "retention": "軸状態の集約に使った各比較状態、原値、比較先、理由はすべて個別に保持する。優先順位はtarget_state内だけに適用し、scope_state、source_qualification_state、revision別state等の異なる軸を混合しない。",
+          "cross_axis": "異なる軸とrecord内容比較のbinding_state集約はSB06のknown/not_required/not_applicable除外規則に従う。S7の順位をSB06へ適用しない。",
+          "limit": "target軸内の複数結果を一意に表す技術的還元であり、対象要求の意味、資格、全体成立判定を追加しない。"
+        },
+        "scope_source_acquisition": {
+          "005_valley": {
+            "source": {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+              "pointer": "/cases/7/normal_call/original/binding/scope",
+              "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+              "object_canonical_sha256": "16481a2ce05ecf67c93fddf131eb9ea5c8c6770b12bbeeedb371f3640c2a2352"
             },
-            {
-              "name": "skip_raw005",
-              "case": "H003-F03-015-RAW-PRODUCER-TARGET-DIFFERS",
-              "scope": "この正式caseは015のraw owner_material比較を示す一般例で、005専用のraw読取省略を識別する正式対照ではない。005 raw-only差分は補助の先固定partialで有限照合した範囲に限り、正式005対照の収載は詳細再導出のunitへ追跡する。未定義mutant本体の実行・killは主張しない。"
+            "meaning": "005 producer endpointのraw scope比較元。original.binding.scopeを保持し、candidate bindingやproducer actualから再構成しない。"
+          },
+          "015_flow": {
+            "source": {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+              "pointer": "/cases/19/typed_semantic_function_io/typed_input/input/source_payload/value/binding/value/scope",
+              "file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b"
             },
-            {
-              "name": "axis_fold",
-              "cases": [
-                "H003-F04-022-PAIR-NULL-CANDIDATE-VS-BASIS",
-                "H003-F04-MULTIPLE-ROLE-CONFLICTS"
-              ],
-              "scope": "既存caseはrecord内容からbinding_stateへの集約と独立軸保持の比較材料を持つ。未定義の変異本体を実行したとは主張しない。"
+            "meaning": "owner_material typed semantic source payloadのnative nested FieldValue scope。outer/nested presenceを保つ。producer_targetの欠落はtarget_stateへ局所化し、独立取得できたこのscopeの比較を抑止しない。"
+          },
+          "022_difference": {
+            "input_scope_source": {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+              "pointer": "/verification_obligations/3/cases/0/source_case/independent_source_packet/raw_utf8",
+              "file_sha256": "78b0c5d952bdc0b12d6abf97dd0167e0ed4feffb1d9d6d97f559c57980410e75",
+              "object_canonical_sha256": "ad488c9b782a061ac6ab56e239c0e791ac72c3f18d2c5ab0efcc6817dd9eb98a",
+              "decoded_json_pointer": "/context/scope"
             },
-            {
-              "name": "first_fail",
-              "cases": [
-                "H003-F04-MULTIPLE-ROLE-CONFLICTS"
-              ],
-              "scope": "複数roleの観測を保持するcaseを示す。未定義の変異本体を実行したとは主張しない。"
+            "independent_context_scope_source": {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+              "pointer": "/context_fixtures/12/context/target/scope",
+              "file_sha256": "78b0c5d952bdc0b12d6abf97dd0167e0ed4feffb1d9d6d97f559c57980410e75",
+              "object_canonical_sha256": "76cb5e5e36456f1acdb680ddaa8956554896b8d50f253d4cfc667e0c5285343d"
             },
-            {
-              "name": "owner_in_target",
-              "cases": [
-                "H003-F04-022-MATERIAL-OWNER-DIFFERS"
-              ],
-              "scope": "owner selectorをtarget_stateへ分類する対照を追加した。未定義の変異本体を実行したとは主張しない。"
-            },
-            {
-              "name": "source_ref_and_payload_binding",
-              "case": "H003-F04-022-ESB-SAME-REF-DIFFERENT-RAW",
-              "scope": "固定source_refの同一packetに対するbasis raw payload差を観測する。005 resolverの同一Ref・異payload境界に対応する。"
-            }
-          ],
-          "limit": "全mutantの一律ゲートは追加しない。変異ツールの実行やmutant killは主張しない。公式reviewに変異本体の定義がないため、source由来の比較対照だけを示す。"
+            "meaning": "independent_source_packet.raw_utf8を厳密JSONとしてparseしたSystemDifferenceInput.context.scope（producer input role）。独立比較先SystemDifferenceContext.target.scopeとは別々に保持し、どちらもText roleのまま照合する。"
+          },
+          "absence_and_locality": "endpointの選択・解決不能はtarget_stateへ局所化する。別の独立raw scope source/comparandが解決できる場合、そのscope比較は続ける。scope軸で必要な比較元自体が欠落ならmissing、null/型外/不正pointerならunknown。未選択endpointを推測してscope値を作らない。"
         }
       }
     },
