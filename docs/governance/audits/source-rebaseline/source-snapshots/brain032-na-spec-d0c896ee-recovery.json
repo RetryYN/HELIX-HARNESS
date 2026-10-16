@@ -1,0 +1,86 @@
+{
+  "record_id": "BRAIN032-D0C896EE-DRAFT-BYTES-RECOVERY",
+  "record_kind": "immutable_source_snapshot_recovery",
+  "authority_effect": "none",
+  "observed_main": "25a1a7d96b2d3f33a5c994f0f0e1a58bd4e5aec7",
+  "purpose": "BRAIN032のcase8〜28が指す仕様digestと一致するdraft bytesを保全し、bytes回収と正式な根拠revisionの確定を区別する。",
+  "snapshot": {
+    "path": "docs/governance/audits/source-rebaseline/source-snapshots/brain032-na-spec-d0c896ee.json",
+    "sha256": "d0c896ee64d5340d7dbc85d4a760c90e03bcbbcc908cac0bc2e95734aa6d8316",
+    "byte_count": 621852,
+    "classification": "未採用draftの参照専用snapshot。現行L5正本でも検証oracleでもない。",
+    "preservation": "元bytesを再整形せず保全。過去のcandidate内metadata・source_pinsを修正しない。"
+  },
+  "recovered_from": {
+    "repository_relative_path": "scaffold/review-handoff/local/brain032-definition-meaning-prefreeze-03/L5-scratch-na-spec-candidate-11.json",
+    "tracking_state_at_recovery": "git check-ignoreでignoredを確認。Git追跡された正式なsource revisionとしては未確定。",
+    "declared_document_id": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
+    "declared_status": "draft_candidate_not_independently_reviewed",
+    "declared_source_main": "e1468f2570c89b526bbefeed16fdd27cdf6ecb46",
+    "metadata_limit": "snapshot内部のsource_mainやsource_pinsは当時のdraftの自己記述として保存し、正本revision・採択の証拠へ昇格しない。"
+  },
+  "commit_tree_observations": [
+    {
+      "revision": "e1468f2570c89b526bbefeed16fdd27cdf6ecb46",
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "observation": "このcommit treeに当該正規L5パスは存在しない。candidateの元revisionを確定する証拠にはならない。"
+    },
+    {
+      "revision": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "observation": "このcommit treeに当該正規L5パスは存在しない。candidateの元revisionを確定する証拠にはならない。"
+    }
+  ],
+  "affected_verification": {
+    "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+    "before_file_sha256": "5c800d6a55414e0829f6151ff9fac1762fd96bf3c9f86801920f134a686396e8",
+    "pointer": "/definition_meaning_walk_verification/unresolved_specification_provenance",
+    "case_indices": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ],
+    "retained_specification_sha256": "d0c896ee64d5340d7dbc85d4a760c90e03bcbbcc908cac0bc2e95734aa6d8316",
+    "provenance_state": "unknown",
+    "corrected_fact": "回収できなかったのは正式な出典・採択revisionとの結び付き。一致するdraft bytes自体は回収できた。",
+    "preserved": "全32caseのraw・期待・call・basis、材料、現在L5への別binding、既存のprovenance_stateとpointer_resolution_limitを保持する。"
+  },
+  "limits": [
+    "このcandidateが当時の21件の仕様根拠として実際に使われたことを証明していない。",
+    "21件の期待値を独立に再導出・検証した記録ではない。",
+    "旧reader・driverの実行環境や実行過程を再現していない。",
+    "要求・要件・設計の採択や承認、全体完成、実装準備成立、製品の実動作・CIの成功を示さない。"
+  ],
+  "next_unclosed_work": "対象revisionの承認済み上流意味とレビュー済み技術契約を特定し、同じ入力から期待値を独立に再導出して旧期待との差異を比較する。旧digestを現在L5へ付け替えない。",
+  "legacy_comparison": {
+    "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+    "file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+    "read_spans": [
+      "identity/lifecycleとtrace（54〜77行）",
+      "shadow mappingとsource authority（113〜147行）"
+    ],
+    "retained": "candidateとcanonical、historicalとcurrentを分離し、出典digestとauthorityを追跡する。",
+    "changed": "旧変換器やruntimeを移植せず、現行draftの一致bytesを一時点の監査資料として保全する。旧sourceの実行・採択は行わない。",
+    "reason": "#3277に残る根拠未確定digestについて、外部監査が指摘した来歴不足を解消済みと誤認せず、回収できた事実だけを訂正する。"
+  },
+  "placement_basis": "AGENTS.md「判断記録、監査・照合の証拠、source snapshotはその時点の記録として別に作り、書き換えない」。本snapshotは証拠資料であり、scaffold外の仮実装・仮設計として使用しない。"
+}
