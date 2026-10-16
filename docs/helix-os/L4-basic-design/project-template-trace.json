@@ -962,7 +962,7 @@
         },
         "remaining": [
           "source関係claimの意味と実資格、および具体的provider/caller。",
-          "binding frame、条件列と原boolean、N/A属性、義務occurrenceの意味対応の具体化。",
+          "binding frame、条件列と原boolean、義務occurrenceの意味対応は引き続き具体化対象。selected sourceの四判定とN/A4memberの基本対応だけはselected_source_member_correspondenceで宣言する。現L5/L8のreentry型/codec/共通関数への結線は未反映として同節remainingへ保持する。",
           "後続L5/L8の型、診断path、全呼出し/返却への結線。",
           "CORE/OS source改訂時は固定source_basisの役割、原body、pointer、出力Presence/Ref shapeを再照合する。metadata statusだけでreview/admission状態を推定しない。"
         ],
@@ -1360,6 +1360,253 @@
           "preserve": "既存要求をsourceとconsumerへ結び、未確認を未完として残す。",
           "change": "この限定観測が旧要求の意味やauthorityを再解釈・承認しない。",
           "pending": "旧source snapshotはread-only参照であり、現行OS要求への自動authority移行や実受入を示さない。"
+        }
+      },
+      "selected_source_member_correspondence": {
+        "id": "HELIXOS-L4-002-F04-SOURCE-MEMBER-CORRESPONDENCE",
+        "requirement_ref": "HELIXOS-L3-002-F04",
+        "system_oracle_ref": "HELIXOS-L10-002-F04",
+        "oracle_ref": "HELIXOS-L9-002-F04-SOURCE-MEMBERS",
+        "scope": "既存F04 selected source-projection操作で、CORE原投影行の四判定とN/A4属性をcandidate core_outputs原項目へ対応させる。通常F04と既存endpoint/carrier比較を置換しない。新public entrypoint、authority、実資格、採択/義務完了は生成しない。",
+        "source_basis": [
+          {
+            "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointers": [
+              "/requirements/11"
+            ]
+          },
+          {
+            "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointers": [
+              "/cases/11"
+            ]
+          },
+          {
+            "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
+            "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+            "file_sha256": "a8164bd513a72c59fc2c1f121737f664070ccc10e4658f57defe22d85fe6f76d",
+            "pointers": [
+              "/contracts/4/source_result_reference_projection/calculation_rules/na_required_attributes",
+              "/contracts/4/source_result_reference_projection/fixture_disposition_values"
+            ]
+          },
+          {
+            "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "file_sha256": "bd031871e97f05b871a04a90bb51658a6875128aa467160ca432c8a4702985c8",
+            "pointers": [
+              "/type_contract/types/SourceResultProjectionRow"
+            ]
+          },
+          {
+            "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "file_sha256": "2d14300906508f6f8ba93218d2f13bb5f6043be114fbd5cab779ed94263c6ff3",
+            "pointers": [
+              "/functions/17",
+              "/functions/18",
+              "/type_contract/types/F04RecordInputcoreoutputsItem",
+              "/type_contract/types/F04ProjectionCandidateItem"
+            ]
+          },
+          {
+            "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
+            "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+            "file_sha256": "43c472fc5a635459baacddc624ed39ef806e1e4a3b8bf7ec582566959ff79a87",
+            "pointers": [
+              "/normal_fixtures/5",
+              "/cases/5/negative_cases"
+            ]
+          }
+        ],
+        "source_acquisition": [
+          "callerの既存source_projection_selection/output_refsだけを対象にする。missing/valid emptyは新比較を実行せず通常F04を保つ。selector不正は既存joinの局所unknownに残しcandidateから対象を推定しない。",
+          "qualified_source_projection_joinと同一traceで、unique qualified OS associationの原container Ref/row_pointerから得たqualified CORE rowだけを比較根拠とする。candidate carrierのrow/locator、配列先頭、未資格payloadから代替しない。各Refはnative原型で保持しCORE/OS scopeの同値や6→4 Ref castを要求しない。",
+          "raw pair対応とcandidate occurrence一意性を確認し、ValidatedRecordTrace側の同output_ref itemを比較する。pair conflict/unknown、複数candidate、OS association missing/ambiguous、CORE source不在/未資格/競合又はpointer未解決では意味expectedを作らず、既存joinの原値と各局所状態/source issueを保持する。通常typed coreのvalidated側F04結果は消さない。",
+          "source rowが独立に得られれば、candidate carrier rowの不一致/欠落はそのcarrier診断へ保持し、取得済みsourceと通常candidate memberの比較を省略しない。原row、関連source envelope refs、OS association、output_refは同じF04 observationから辿れる。"
+        ],
+        "disposition_mapping": [
+          {
+            "core": "required",
+            "os": "required"
+          },
+          {
+            "core": "conditional",
+            "os": "conditional"
+          },
+          {
+            "core": "na",
+            "os": "NA"
+          },
+          {
+            "core": "unresolved",
+            "os": "unresolved"
+          }
+        ],
+        "disposition_rule": "sourceはresolved_core_row.computed_dispositionの厳密なPresenceを読む。Absentはmissing、present null/型外/未宣言lexeme/不正Presenceはunknown。candidate dispositionのAbsentはmissing、null/非string/未宣言lexemeはunknown。既知lexeme対は上表で対応すればcorresponding、異なればconflict。大小文字変換/unknown→NAを行わない。source側の原値とcandidate原値を両方保存する。",
+        "na_attribute_members": [
+          {
+            "axis": "NA_reason",
+            "source_member": "reason",
+            "candidate_member": "reason",
+            "comparison_value_type": "string",
+            "backflow_owner": "CORE"
+          },
+          {
+            "axis": "NA_decider",
+            "source_member": "decider",
+            "candidate_member": "decider",
+            "comparison_value_type": "string",
+            "backflow_owner": "CORE"
+          },
+          {
+            "axis": "NA_target_revision",
+            "source_member": "target_revision",
+            "candidate_member": "target_revision",
+            "comparison_value_type": "string",
+            "backflow_owner": "CORE"
+          },
+          {
+            "axis": "NA_reentry",
+            "source_member": "reentry_condition",
+            "candidate_member": "reentry",
+            "comparison_value_type": "JsonValue（明示nullは別途unknown/missing）",
+            "backflow_owner": "CORE"
+          }
+        ],
+        "na_activation": "CORE原dispositionがnaの場合だけ4属性を必須とする。candidateが別判定をclaimしても、原naの4属性の独立比較を続ける。他の原判定ではこのbridgeのNA4属性比較はnot_compared。既存通常F04の理由/判定者/版/再評価条件の比較は維持する。原disposition自体が不明ならNA必須性を推定せず、原行を保存してその不明をCOREへ返す。",
+        "na_presence_rules": [
+          "source computed_na_attributesはPresenceの原型を読む。Absent又はpresent nullは4属性の必要な親入力不足としてmissing、malformed Presence又はpresent非objectはunknown。子属性を捏造せず診断pathはその親。objectなら各memberのAbsent/nullはそのmemberのmissing。reason/decider/target_revisionのpresent非stringは既存OS string表現と対応不能な局所unknownとして元ownerへ返し、CORE自体へ新しい型gateを加えない。",
+          "candidate側は独立にAbsent=missing、明示null=unknownを保持する。source/candidate両方に不成立があれば一方で他方を相殺せず、それぞれの実所在で返す。比較可能な両側の非null値がJSON型付きで一致すればcorresponding、不一致ならconflict。N/A4属性を一括成功/失敗へ丸めない。",
+          "reentryだけをField<JsonValue>として再導出する。source原reentry_conditionのobject/array/string/number/booleanを無損失で保存・値比較できる。JSON構造の受理/一致だけで任意値のN/A属性としての意味妥当性、CORE原判断の有効性又は実source資格を認定しない。source ownerで判断未決なら元unresolved等を保持し、OSはN/Aへ裁定しない。",
+          "object key順は無視し、array順/重複、booleanとnumber、Absentとpresent nullを区別する。number同士は数値として比較する。objectを文字列化、条件式をboolean化、容器revision/owner等から属性補完しない。原rowのsource_relation/qualification claim/decision_impactをこの値比較で書換えない。"
+        ],
+        "return_contract": {
+          "scope": "新しい結果sidecarや公開APIは設けず、既存TraceSectionResult/F04RecordObservationを使用する。ここで宣言するlocal stateはfield単位の比較状態で、全field aggregateを新設しない。",
+          "observation": "candidate原項目はcore_disposition_recordsへsource_projectionだけを除いた原presence/原JSON値で保持。CORE原row/locator/association/関連sourceは既存source_projection_joinへ保持。元unfinished_obligation_records、conditional_original_value、OS_new_judgment_countとendpoint観測は残す。",
+          "findings": "member比較のmissing/conflict/unknownは既存TraceSectionResult.findingsのTraceFindingへ返す。codeはdispositionならcore_source_disposition_{state}、N/Aならcore_source_na_{candidate_member}_{state}。axisはdisposition_obligation又は上表のNA軸、contract_ref=HELIXOS-L5-002-F04、backflow_owner=CORE。corresponding/not_comparedは新findingを生成しないが成功/適用/完了を認定しない。",
+          "target_path": "candidate側はcandidate/core_outputs/{実index}/{member}。source側はvalidated_record_trace/qualified_records/{実record index}/payload{row_pointer}/computed_disposition又は/computed_na_attributes[/value/{member}]。不在親/型外親はその親までとし架空の子を加えない。ここで示すpathは本比較入力rootからの所在文字列。配列indexは原occurrenceの所在であってidentityではない。",
+          "source_refs": "既存joinの当該record.source_refs（関連SourceEnvelope.source_refの元順/重複）を用いる。container subject Refやassociation self Refをsource_refへcastしない。row locatorや両端原recordはpreserved_observationから辿る。",
+          "preserved_observation": "新member findingには同じ最終F04 observation（source_projection_joinを含む）を保存する。既存通常F04 findingのpreserved_observation/原provenanceは変えず先に保持し、新findingを後へ追加する。同軸でも別source原因を黙って重複除去/上書きしない。",
+          "order": "選択output_refの元occurrence順、次にdisposition、reason、decider、target_revision、reentry。各fieldではsource所在の問題、candidate所在の問題、比較値の差の順。既存通常F04 findingsはこの前に保持する。",
+          "terminal": "共通typed F04 coreの通常返却とselected member比較を同じTraceSectionResultへ構成し、build_record_trace_analysisがsectionsへ全体を配置する。effects=[],authority_generated=false。qualification/raw/source分類を生成結果で上書きしない。",
+          "unchanged": "source_output_association.meaning_comparison=not_establishedとqualified_source_projection_join.finding_refs=[]、carrier比較aggregateを維持する。新findingをcarrier aggregateへ混ぜず、無関係Q/未選択recordを保持する。"
+        },
+        "detail_rederivation_remaining": [
+          "本追補はL4/L9だけ。現L5のreentryはField<string>のままであり、新object入力を現codecが受理すると主張しない。",
+          "後続L5/L8でF04RecordInputcoreoutputsItemとF04ProjectionCandidateItemのreentryをField<JsonValue>へ揃え、両wire schema、OwnerRecord SourceSectionValue selector decode、共通関数17/18の入力/比較/返却とcore_disposition_recordsの出力を一体で更新する。通常string入力/原wholeとNA4欠落を保持する。",
+          "原condition_ref/value列→OS original_condition、およびCORE重複obligation occurrence→独立OS原state対応は未閉包。本追補では対応recordを導入せず、zip/first/any/all/cast/state生成をしない。",
+          "CORE非na原行の汎用grounds/decider等は本NA4member bridgeだけで閉じない。既存native F04と原sourceを保持し未供給意味を補完しない。",
+          "実provider/custody/実owner資格、codec/runtime/CI/L11や全入力域/全92親430対の完了は認定しない。",
+          "未対照（この9wholeの有限範囲）: source_acquisition/2の抑止分岐、すなわちraw pair conflict/unknown、candidate occurrence複数、OS association missing/ambiguous、CORE source不在/未資格/競合、row_pointer未解決。これらの新member比較の抑止と既存join/通常F04保持をこの9件で独立対照していない。",
+          "未対照（この9wholeの有限範囲）: source computed_dispositionのAbsent、不正Presence、present null/型外/未宣言lexeme、およびcandidate dispositionのAbsent/null/型外/未宣言語（例: OS側で小文字na）。既存のlexeme対応規則は維持するが、これらの状態/pathは9件では観測していない。",
+          "未対照（この9wholeの有限範囲）: computed_na_attributes親のAbsent、present null、malformed Presence、present非object。親pathへのmissing/unknownと架空の子属性を作らないことの専用対照は無い。",
+          "未対照（この9wholeの有限範囲）: source必要属性のpresent nullによるmissingと、candidate属性の明示nullによるunknown。原null保持と役割別状態をこの9件の専用対照で観測していない。",
+          "未対照（この9wholeの有限範囲）: N/A reason・decider・target_revisionの比較可能な値同士のconflict。属性conflictの観測はreentryだけであり、他3属性の単独欠落/型不足対照を値conflictの対照と同一視しない。",
+          "未対照（この9wholeの有限範囲）: member値比較での数値等値（例: 1と1.0）、object key順の差。同一の型付き等値規則を宣言しているが、この9件にそれらを変える専用対照は無い。",
+          "未対照（この9wholeの有限範囲）: 同一fieldでsource側とcandidate側が同時に不成立となる場合の、source所在の問題→candidate所在の問題→比較値の差という返却順。既存native findingと新member findingのprovenance併存を、両端同時不成立の順序対照とはしない。",
+          "上記は対照済み範囲と未対照分岐の開示であり、全case追加・全mutation kill・全入力域閉包の新gateではない。今回の9入力/whole/判定規則は維持する。"
+        ],
+        "legacy_rederivation": {
+          "mode": "semantic_rederivation",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "preserve": "原source/選択instance/義務の結合、N/A理由・authority・再評価trigger、局所unknownとtrace。旧L5 98372 §section/fieldのvalue_type/owner/traceも保持。",
+          "change": "現CORE raw再評価条件をOS reentryへ無損失で保存する基本member対応を具体化する。旧registry/predicate/runtime、整数版、completion gateを移植しない。",
+          "reason": "既存carrier/endpoint一致だけではF04の元判定属性保存を代替できず、object再評価条件をstringへ縮めると原値を失う。",
+          "failure_basis": [
+            "UTW-014: missingを空へ縮退させない",
+            "UTW-020: 局所原因/ownerを巨大aggregateへ隠さない",
+            "UTW-021: prose/自己申告で完成を作らない"
+          ],
+          "source_documents": [
+            {
+              "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+              "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+              "individual_lines": [
+                24,
+                30,
+                37,
+                81,
+                86
+              ],
+              "quote": "| Design Instance JSON | 選択済みtemplateとrequirement/obligationを束縛した設計値 | 後続L5 episode |\n画像、Markdown、tool node ID、file pathだけをtemplate identityや設計意味の主キーにしない。\n| `ApplicabilityEvaluator` | requirement atom、obligation、risk、style/layer、typed predicate | applicable/non-applicable＋理由 | `all`/`any`/`not`のfail-close評価 | unknown operator/field/enum、自由文条件 |\nevaluation errorとしてfail-closeする。N/Aはreason、authority、re-evaluation triggerを必須にする。\n- requirement/obligation trace\n",
+              "selected_lines_sha256": "3f99d28153eadb4c00a1db026f2e98c43be930bca33bfbb64fb8e8d3802fd356"
+            },
+            {
+              "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+              "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+              "individual_lines": [
+                65,
+                66,
+                67,
+                68,
+                69,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75,
+                76,
+                77
+              ],
+              "quote": "### sectionとfield\n\n`sections`は`section_id`をtemplate内で一意にし、`required`、`fields`、`completion_rule_ids`を持つ。\nfieldは`field_id`、`value_type`、`cardinality`、`required`、`trace_kind`、`validation_rule_ids`を持つ。\n自由文fieldも意味ownerとtraceを持ち、rationaleだけを構造fieldの代用にしない。\n\n### trace、verification、measurementの契約\n\n- `trace_contract`: requirement、system contract、acceptance、design obligationの必須参照class。\n- `verification`: pair template ID、required oracle class、negative oracle、stale条件。\n- `measurement`: metric ID、unit、threshold/operatorまたはauthority付きN/A。\n- `completion`: required coverage、unresolved policy、independent review、digest一致条件。\n- `downstream_artifact_kinds`: current layer/pairで生成可能な閉じたartifact kind。\n",
+              "selected_lines_sha256": "95fef26fd1708a2a55ce5fd9ccfc3cde44e2be1f313c0a45f52a212e559bda0b"
+            },
+            {
+              "asset_id": "UTW-014/020/021",
+              "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+              "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+              "individual_lines": [
+                80,
+                86,
+                87
+              ],
+              "quote": "| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |\n| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |\n| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |\n",
+              "selected_lines_sha256": "de357c472a4a407b57a7989df436a260b3db4f2ce38d01a5746088a39c2a8886"
+            }
+          ]
+        },
+        "na_null_role_basis": {
+          "scope": "N/A属性のsource/candidateという役割差を既存missing/unknownへ写す当該bridgeの診断理由。na_presence_rulesの判定、元Presence/値、原CORE dispositionを変更しない。",
+          "source_role": "sourceはcandidateとの比較に必要な原期待値を供給する側である。CORE na_required_attributesがN/A時に必要とする原属性がAbsent/nullなら、その必要な原値を得られないためmissingとする。computed_na_attributes自体がpresent nullの場合も、必要な属性集合の親入力が得られないためmissingをその親pathへ返す。これは元nullをmember欠落へ書換える意味ではなく、present nullは原rowにそのまま残す。",
+          "candidate_role": "candidateの明示nullは供給の痕跡がある一方で対応させる値が未定義な観測でありunknownとする。candidate memberのAbsentは必要値未供給のmissingと区別する。nullを任意JSONとして一致/known/N/A完成へ通さず、source/candidate両方の問題と原所在を保存する。",
+          "source_meaning_basis": [
+            {
+              "source_basis_index": 0,
+              "pointer": "/requirements/11",
+              "supports": "原四判定と根拠・判定者・対象revision・再評価条件を出力参照へ結び、OSがN/A判断を新設しない。"
+            },
+            {
+              "source_basis_index": 1,
+              "pointer": "/cases/11",
+              "supports": "判断不能をN/Aとしない。必要属性の欠落を保持し、未完を適用/完了へ変換しない。"
+            },
+            {
+              "source_basis_index": 2,
+              "pointer": "/contracts/4/source_result_reference_projection/calculation_rules/na_required_attributes",
+              "supports": "source/computed側の必要属性Absent/nullをそれぞれのpointerへ報告する。COREのこの規則は変更せず、本bridgeのsource必要原値とcandidate観測という役割別診断へ具体化する。"
+            },
+            {
+              "source_basis_index": 4,
+              "pointer": "/state_semantics/classifications",
+              "supports": "missingは必要原入力未供給、unknownは元判断/観測未決という既存語彙を再利用する。"
+            },
+            {
+              "source_basis_index": 4,
+              "pointer": "/type_contract/types/Field",
+              "supports": "missing/supplied(T)/supplied(null)を区別し、元明示null/unknownを保持する。"
+            }
+          ],
+          "legacy_relation": "legacy_rederivation.source_documentsの旧L4 line 81はN/Aの必要根拠/authority/再評価triggerを保持する。旧のunknownをfalseへ丸めない点を維持し、旧runtime/predicateや全source資格gateは移さない。",
+          "boundary": "全field/全ownerでnullを一律missing又はunknownへ変更する規則ではない。上位L3/L10がこの非対称ラベル自体を規定しているとは主張せず、必要原値と供給済み未定義値を区別して不足を返す詳細化である。"
         }
       }
     },
