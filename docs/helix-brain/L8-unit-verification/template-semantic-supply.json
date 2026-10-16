@@ -225,7 +225,7 @@
     "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
     "meaning": "UTW014の欠損→空集合、UTW020のaggregateで部分不足不可視、UTW021の自己申告/件数/hash完了を項目/義務/接続各軸で防ぐ。実再発防止は未証明。"
   },
-  "verification_scope": "14義務/105原L9負例、24追加unit分岐、9正常関数oracleの論理設計候補。formal fixture凍結/実行/意味完了証拠ではない。",
+  "verification_scope": "14義務、原L9負例105件、failure_rules 107件、additional_unit_cases 35件、正常関数oracle 9件の論理設計候補。F09のNEG-01〜06のみL9統合caseに対応し、NEG-07〜13とADD-25〜28はL8局所の反例/対照でL9対応なし。025のselector対応未決、018/020/025の条件割当未閉包を保持する。これはfixture凍結/実行/意味完了証拠ではない。",
   "fixture_contract": {
     "id": "TEMPLATE-SUPPLY-BASE-01",
     "scope": "合成project-P/tenant-T/environment-E、要求032と採用knowledgeのexact revisionを別参照で固定。",
@@ -10272,8 +10272,8 @@
       "requirement_ref": "HELIXBRAIN-L3-032-F09",
       "system_oracle_ref": "HELIXBRAIN-L10-032-F09",
       "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
-      "positive_input": "常時入力だけの局所候補、COREへ返す候補、CORE由来またはLABO評価を選んだ候補を分ける。",
-      "expected_observation": "選択条件で必要になる不足だけを返し、未選択source成功を主張しない。",
+      "positive_input": "常時入力だけの局所候補、COREへ返す候補、CORE由来またはLABO評価を選んだ候補を分ける。本限定候補は常時必須003/005/007/008/028、選択済みCORE返却019/022/030、既存source/evaluation selectorを扱う。025のconditional selector対応は未決のため範囲外とし、両selectorへの一律必須を定めない。 selector欠落対照はADD-26、knowledge_refと必須member同時欠落はNEG-13で、入力/返却の局所範囲に限って確認する。",
+      "expected_observation": "選択条件で必要になる不足だけを返し、未選択source成功を主張しない。F09局所のNEG-07〜13とADD-25〜28は明示された局所入力/期待だけを比較し、NEG-07〜13は原L9 integration caseへ接続しない。ADD-25は既知false、ADD-26はCORE返却member欠落と別selector不明の併存、ADD-27は常時member欠落とselector不明の併存、ADD-28はsubject Ref双方欠落時の型付きF09依存所見の形成限界と、既存builder InputIssueへの所在保持を別projectionで確認する。source_return_verification/cases/18の候補locator=/candidates/0 issueは別条件であり、NEG-13とは同時観測しない。",
       "original_system_negative_input": "receiver未受領を知識定義欠落へ変える、または選択sourceの欠落を別sourceで補う、または旧template/seed/設計例をauthorityや必須項目の代替にする。",
       "original_system_failure_observation": "定義欠落と接続未成立を分離し、知識owner/CORE/OSへ原因別に返す。参照資料からのauthority生成や必須項目の代替を成立させない。",
       "negative_cases": [
@@ -10437,6 +10437,33 @@
           },
           "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
           "predicate_ref": "HELIXBRAIN-L5-032-R-unselected_source_success"
+        },
+        {
+          "ref": "HELIXBRAIN-L8-032-F09-NEG-07"
+        },
+        {
+          "ref": "HELIXBRAIN-L8-032-F09-NEG-08"
+        },
+        {
+          "ref": "HELIXBRAIN-L8-032-F09-NEG-09"
+        },
+        {
+          "ref": "HELIXBRAIN-L8-032-F09-NEG-10"
+        },
+        {
+          "ref": "HELIXBRAIN-L8-032-F09-NEG-11"
+        },
+        {
+          "ref": "HELIXBRAIN-L8-032-F09-NEG-12"
+        },
+        {
+          "ref": "HELIXBRAIN-L8-032-F09-NEG-13"
+        },
+        {
+          "ref": "HELIXBRAIN-L8-032-ADD-27"
+        },
+        {
+          "ref": "HELIXBRAIN-L8-032-ADD-28"
         }
       ],
       "execution_state": "not_executed",
@@ -10906,9 +10933,24 @@
     "semantic_review": "not_requested",
     "meaning_coverage": "not_proven",
     "remaining_typed_case_refs": [],
-    "remaining": "合成source/ref資格と関数入出力対応の意味照合・追加fixtureの完全具体化・独立review、formal wire/parser/実root resolver/実資源、L6/L7凍結/RedGreen未成立。 19型のprovided-member shape/presence候補を追加。構造受理は意味oracle充足ではなく、欠落とnullと空配列を別に原状態保存する。",
-    "additional_unit_case_count": 24,
-    "normal_function_oracle_count": 9
+    "remaining": "合成source/ref資格と関数入出力対応の意味照合・追加fixtureの完全具体化・独立review、formal wire/parser/実root resolver/実資源、L6関数設計/L7対検証の成立条件は未成立。F09の追加unit局所ケースはNEG-07〜13とADD-25〜28。NEG-01〜06のみL9へ接続する。L2-018/020/025のselector条件mappingは未決で、025を両selectorへ一律必須としない。19型のprovided-member shape/presence候補を追加。構造受理は意味oracle充足ではなく、欠落とnullと空配列を別に原状態保存する。",
+    "additional_unit_case_count": 35,
+    "normal_function_oracle_count": 9,
+    "f09_local_negative_case_count": 13,
+    "f09_l9_integration_case_count": 6,
+    "f09_local_non_l9_case_ids": [
+      "HELIXBRAIN-L8-032-F09-NEG-07",
+      "HELIXBRAIN-L8-032-F09-NEG-08",
+      "HELIXBRAIN-L8-032-F09-NEG-09",
+      "HELIXBRAIN-L8-032-F09-NEG-10",
+      "HELIXBRAIN-L8-032-F09-NEG-11",
+      "HELIXBRAIN-L8-032-F09-NEG-12",
+      "HELIXBRAIN-L8-032-F09-NEG-13",
+      "HELIXBRAIN-L8-032-ADD-25",
+      "HELIXBRAIN-L8-032-ADD-26",
+      "HELIXBRAIN-L8-032-ADD-27",
+      "HELIXBRAIN-L8-032-ADD-28"
+    ]
   },
   "additional_unit_cases": [
     {
@@ -11174,6 +11216,3670 @@
       "expected_side_effect_count": 0,
       "execution_state": "not_executed",
       "fixture_refinement": "logical input construction plan; runtime fixture/oracle freeze unestablished"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F09-NEG-07",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "name": "f09-always-member-omitted",
+      "input_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "input_base_pointer": "/fixture_contract/normal_control/input",
+      "typed_mutation_plan": {
+        "notation": "RFC 6902 patchを正確なinput_base_pointer値へ適用し、得た同一immutable RawValueをvalidate_supply_inputへ一度渡してValidatedSupplyを得る。その同じValidatedSupplyをDefinitionContext.validatedとしてcompare_descriptor_definitionsへ渡し、返るComparisonをDependencyContext.definitionsへ、同じValidatedSupplyをDependencyContext.validatedへ設定してcompare_dependencies_and_handoffへ渡す。runtime field-path operatorは含意しない。",
+        "operations": [
+          {
+            "op": "remove",
+            "path": "/dependencies/always_refs/1"
+          }
+        ]
+      },
+      "materialized_input_sha256": "383ff62a21d0a1bd9cec6e3bf2d0d582e003078e7cc0c3a555cbf8c85498271e",
+      "expected_local_result_projection": {
+        "axes": [
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "original_refs": [
+              {
+                "identity": "HELIXBRAIN-L2-003",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-007",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-008",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-028",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              }
+            ],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-005 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          }
+        ],
+        "findings": [
+          {
+            "code": "required_dependency_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "source_refs": [
+              {
+                "identity": "HELIXBRAIN-L2-003",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-007",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-008",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-028",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              }
+            ],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-005 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          }
+        ],
+        "side_effect_count": 0
+      },
+      "expected_observation": "凍結したF09局所結果projectionと一致する。無関係comparison、handoff、元bindingは保持する。",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "fixture_refinement": "事前固定した入力・期待値を、既存normal fixtureとこのRFC 6902 patchから独立に再構成できる。実評価は未実施。"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F09-NEG-08",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "name": "f09-always-list-absent",
+      "input_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "input_base_pointer": "/fixture_contract/normal_control/input",
+      "typed_mutation_plan": {
+        "notation": "RFC 6902 patchを正確なinput_base_pointer値へ適用し、得た同一immutable RawValueをvalidate_supply_inputへ一度渡してValidatedSupplyを得る。その同じValidatedSupplyをDefinitionContext.validatedとしてcompare_descriptor_definitionsへ渡し、返るComparisonをDependencyContext.definitionsへ、同じValidatedSupplyをDependencyContext.validatedへ設定してcompare_dependencies_and_handoffへ渡す。runtime field-path operatorは含意しない。",
+        "operations": [
+          {
+            "op": "remove",
+            "path": "/dependencies/always_refs"
+          }
+        ]
+      },
+      "materialized_input_sha256": "32bf639cb79791ee3cfc5dd6ec1a984727c183b076f232a2d5d503146a010c2d",
+      "expected_local_result_projection": {
+        "axes": [
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "original_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-003 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "original_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-005 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "original_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-007 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "original_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-008 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "original_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-028 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          }
+        ],
+        "findings": [
+          {
+            "code": "required_dependency_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "source_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-003 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "required_dependency_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "source_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-005 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "required_dependency_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "source_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-007 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "required_dependency_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "source_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-008 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "required_dependency_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "source_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-028 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          }
+        ],
+        "side_effect_count": 0
+      },
+      "expected_observation": "凍結したF09局所結果projectionと一致する。無関係comparison、handoff、元bindingは保持する。",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "fixture_refinement": "事前固定した入力・期待値を、既存normal fixtureとこのRFC 6902 patchから独立に再構成できる。実評価は未実施。"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F09-NEG-09",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "name": "f09-core-return-list-absent",
+      "input_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "input_base_pointer": "/fixture_contract/normal_control/input",
+      "typed_mutation_plan": {
+        "notation": "RFC 6902 patchを正確なinput_base_pointer値へ適用し、得た同一immutable RawValueをvalidate_supply_inputへ一度渡してValidatedSupplyを得る。その同じValidatedSupplyをDefinitionContext.validatedとしてcompare_descriptor_definitionsへ渡し、返るComparisonをDependencyContext.definitionsへ、同じValidatedSupplyをDependencyContext.validatedへ設定してcompare_dependencies_and_handoffへ渡す。runtime field-path operatorは含意しない。",
+        "operations": [
+          {
+            "op": "replace",
+            "path": "/dependencies/core_return_requested",
+            "value": true
+          },
+          {
+            "op": "remove",
+            "path": "/dependencies/core_return_refs"
+          }
+        ]
+      },
+      "materialized_input_sha256": "c5b37043d41ebc8317224bb08d7ff845dfb13f8d69ca54d2e194bf21f06ad847",
+      "expected_local_result_projection": {
+        "axes": [
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "original_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-019 が入力 /dependencies/core_return_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "original_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-022 が入力 /dependencies/core_return_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "original_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-030 が入力 /dependencies/core_return_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          }
+        ],
+        "findings": [
+          {
+            "code": "required_dependency_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "source_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-019 が入力 /dependencies/core_return_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "required_dependency_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "source_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-022 が入力 /dependencies/core_return_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "required_dependency_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "source_refs": [],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-030 が入力 /dependencies/core_return_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          }
+        ],
+        "side_effect_count": 0
+      },
+      "expected_observation": "凍結したF09局所結果projectionと一致する。無関係comparison、handoff、元bindingは保持する。",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "fixture_refinement": "事前固定した入力・期待値を、既存normal fixtureとこのRFC 6902 patchから独立に再構成できる。実評価は未実施。"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F09-NEG-10",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "name": "f09-selector-absent-core_return_requested",
+      "input_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "input_base_pointer": "/fixture_contract/normal_control/input",
+      "typed_mutation_plan": {
+        "notation": "RFC 6902 patchを正確なinput_base_pointer値へ適用し、得た同一immutable RawValueをvalidate_supply_inputへ一度渡してValidatedSupplyを得る。その同じValidatedSupplyをDefinitionContext.validatedとしてcompare_descriptor_definitionsへ渡し、返るComparisonをDependencyContext.definitionsへ、同じValidatedSupplyをDependencyContext.validatedへ設定してcompare_dependencies_and_handoffへ渡す。runtime field-path operatorは含意しない。",
+        "operations": [
+          {
+            "op": "remove",
+            "path": "/dependencies/core_return_requested"
+          }
+        ]
+      },
+      "materialized_input_sha256": "15461a6fbca744ea8aa1b51df76e5e062a44d137328d3fcf0db7e61b1bcae41a",
+      "expected_local_result_projection": {
+        "axes": [
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "original_refs": [],
+            "reason": "条件selector core_return_requested が /dependencies/core_return_requested にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          }
+        ],
+        "findings": [
+          {
+            "code": "dependency_selector_unknown",
+            "rule_ref": "HELIXBRAIN-L5-032-R-dependency_selector_unknown",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "source_refs": [],
+            "reason": "条件selector core_return_requested が /dependencies/core_return_requested にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          }
+        ],
+        "side_effect_count": 0
+      },
+      "expected_observation": "凍結したF09局所結果projectionと一致する。無関係comparison、handoff、元bindingは保持する。",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "fixture_refinement": "事前固定した入力・期待値を、既存normal fixtureとこのRFC 6902 patchから独立に再構成できる。実評価は未実施。"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F09-NEG-11",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "name": "f09-selector-absent-core_source_selected",
+      "input_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "input_base_pointer": "/fixture_contract/normal_control/input",
+      "typed_mutation_plan": {
+        "notation": "RFC 6902 patchを正確なinput_base_pointer値へ適用し、得た同一immutable RawValueをvalidate_supply_inputへ一度渡してValidatedSupplyを得る。その同じValidatedSupplyをDefinitionContext.validatedとしてcompare_descriptor_definitionsへ渡し、返るComparisonをDependencyContext.definitionsへ、同じValidatedSupplyをDependencyContext.validatedへ設定してcompare_dependencies_and_handoffへ渡す。runtime field-path operatorは含意しない。",
+        "operations": [
+          {
+            "op": "remove",
+            "path": "/dependencies/core_source_selected"
+          }
+        ]
+      },
+      "materialized_input_sha256": "762b2c4b1f039ab2957f971ff3489892c887b83f649622d76e5f881edfa25235",
+      "expected_local_result_projection": {
+        "axes": [
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "original_refs": [],
+            "reason": "条件selector core_source_selected が /dependencies/core_source_selected にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          }
+        ],
+        "findings": [
+          {
+            "code": "dependency_selector_unknown",
+            "rule_ref": "HELIXBRAIN-L5-032-R-dependency_selector_unknown",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "source_refs": [],
+            "reason": "条件selector core_source_selected が /dependencies/core_source_selected にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          }
+        ],
+        "side_effect_count": 0
+      },
+      "expected_observation": "凍結したF09局所結果projectionと一致する。無関係comparison、handoff、元bindingは保持する。",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "fixture_refinement": "事前固定した入力・期待値を、既存normal fixtureとこのRFC 6902 patchから独立に再構成できる。実評価は未実施。"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F09-NEG-12",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "name": "f09-selector-absent-labo_evaluation_selected",
+      "input_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "input_base_pointer": "/fixture_contract/normal_control/input",
+      "typed_mutation_plan": {
+        "notation": "RFC 6902 patchを正確なinput_base_pointer値へ適用し、得た同一immutable RawValueをvalidate_supply_inputへ一度渡してValidatedSupplyを得る。その同じValidatedSupplyをDefinitionContext.validatedとしてcompare_descriptor_definitionsへ渡し、返るComparisonをDependencyContext.definitionsへ、同じValidatedSupplyをDependencyContext.validatedへ設定してcompare_dependencies_and_handoffへ渡す。runtime field-path operatorは含意しない。",
+        "operations": [
+          {
+            "op": "remove",
+            "path": "/dependencies/labo_evaluation_selected"
+          }
+        ]
+      },
+      "materialized_input_sha256": "a3ecaa187f7fee7de562359725386506ebabb30437194b2b92452903dc76cf94",
+      "expected_local_result_projection": {
+        "axes": [
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "original_refs": [],
+            "reason": "条件selector labo_evaluation_selected が /dependencies/labo_evaluation_selected にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          }
+        ],
+        "findings": [
+          {
+            "code": "dependency_selector_unknown",
+            "rule_ref": "HELIXBRAIN-L5-032-R-dependency_selector_unknown",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "source_refs": [],
+            "reason": "条件selector labo_evaluation_selected が /dependencies/labo_evaluation_selected にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          }
+        ],
+        "side_effect_count": 0
+      },
+      "expected_observation": "凍結したF09局所結果projectionと一致する。無関係comparison、handoff、元bindingは保持する。",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "fixture_refinement": "事前固定した入力・期待値を、既存normal fixtureとこのRFC 6902 patchから独立に再構成できる。実評価は未実施。"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-ADD-25",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "name": "known-false-selectors-preserve-unobserved",
+      "input_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "input_base_pointer": "/fixture_contract/normal_control/input",
+      "typed_mutation_plan": {
+        "notation": "RFC 6902 patchを正確なinput_base_pointer値へ適用し、得た同一immutable RawValueをvalidate_supply_inputへ一度渡してValidatedSupplyを得る。その同じValidatedSupplyをDefinitionContext.validatedとしてcompare_descriptor_definitionsへ渡し、返るComparisonをDependencyContext.definitionsへ、同じValidatedSupplyをDependencyContext.validatedへ設定してcompare_dependencies_and_handoffへ渡す。runtime field-path operatorは含意しない。",
+        "operations": []
+      },
+      "materialized_input_sha256": "5ca7f59502be1273bfc00c097a117d74a0e520d85b75eed50e158c044dcdef7a",
+      "expected_local_result_projection": {
+        "conditional_dependency_axes": [],
+        "unselected_source": "unobserved",
+        "handoff_state": "not_received",
+        "side_effect_count": 0
+      },
+      "expected_observation": "凍結したF09局所結果projectionと一致する。handoffは一致する原recordのliteral state not_receivedを保持する。無関係comparison、handoff、元bindingは保持する。",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "fixture_refinement": "事前固定した入力・期待値を、fixture_contract.normal_control.inputとtyped_mutation_plan.operationsから独立に再構成できる。実評価は未実施。expected_local_result_projectionはtest-side projectionでありComparison直下のpublic fieldではない。conditional_dependency_axesはComparison.axesからaxis=dependency_selectionと、明示選択条件に属するaxis=dependency_referenceだけを抽出する。unselected_sourceは対象bindingのaxis=unselected_source stateを投影する。handoff_stateはaxis=handoffのうちsubject_ref/bindingがinput.handoff_recordsの原recordへ完全一致するstateであり、本入力はnot_received。\"same as input\"は旧版の説明表現で、原記録のstateへ訂正した。side_effect_countはComparisonに含まれないtest-side外部作用観測で期待0。L2-025のselector対応は未決で、025を両selectorへ一律必須としない。"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-ADD-26",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "name": "core-return-member-missing-does-not-stop-independent-always-or-other-selector",
+      "input_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "input_base_pointer": "/fixture_contract/normal_control/input",
+      "typed_mutation_plan": {
+        "notation": "RFC 6902 operationsをinput_base_pointerの原値へ配列順に適用した同一immutable RawValueをvalidate_supply_inputへ一度渡す。得た同じValidatedSupplyをDependencyContext.validatedへ設定し、同じsnapshotからcompare_descriptor_definitionsのComparisonを計算してDependencyContext.definitionsへ渡す。runtime field-path operatorを含意しない。",
+        "operations": [
+          {
+            "op": "replace",
+            "path": "/dependencies/core_return_requested",
+            "value": true
+          },
+          {
+            "op": "add",
+            "path": "/dependencies/core_return_refs/-",
+            "value": {
+              "identity": "HELIXBRAIN-L2-019",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          },
+          {
+            "op": "add",
+            "path": "/dependencies/core_return_refs/-",
+            "value": {
+              "identity": "HELIXBRAIN-L2-030",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          },
+          {
+            "op": "remove",
+            "path": "/dependencies/labo_evaluation_selected"
+          }
+        ]
+      },
+      "materialized_input_sha256": "b6952609c4dae894994159452b8e6060e57bbf1bb694e74c9877c574362e3d94",
+      "expected_local_result_projection": {
+        "axes": [
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "original_refs": [
+              {
+                "identity": "HELIXBRAIN-L2-019",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-030",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              }
+            ],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-022 が入力 /dependencies/core_return_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "original_refs": [],
+            "reason": "条件selector labo_evaluation_selected が /dependencies/labo_evaluation_selected にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          }
+        ],
+        "findings": [
+          {
+            "code": "required_dependency_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "source_refs": [
+              {
+                "identity": "HELIXBRAIN-L2-019",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-030",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              }
+            ],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-022 が入力 /dependencies/core_return_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "dependency_selector_unknown",
+            "rule_ref": "HELIXBRAIN-L5-032-R-dependency_selector_unknown",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "source_refs": [],
+            "reason": "条件selector labo_evaluation_selected が /dependencies/labo_evaluation_selected にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          }
+        ],
+        "unselected_source_state": "unobserved",
+        "handoff_state": "not_received",
+        "side_effect_count": 0
+      },
+      "expected_observation": "CORE返却identity HELIXBRAIN-L2-022の局所missingと、別selector labo_evaluation_selectedの局所unknownを同時に返す。常時5 identityは供給済みで不足なし、CORE返却019/030は残り、未選択sourceはunobserved、handoffはnot_receivedを保つ。",
+      "expected_basis": [
+        "常時必須5 identityはすべて入力に残る。",
+        "core_return_requested=trueで019/030は供給、022だけが欠落する。欠落Refを作らない。",
+        "labo_evaluation_selectedだけが欠落し、その条件のみunknown。core_return_requested/core_source_selected/常時集合は別に評価される。",
+        "selector unknownと依存missingは異なるaxis/code/ruleとして両方返る。",
+        "他条件のsuccessは欠落022を補償しない。"
+      ],
+      "projection_contract": "Comparison.axes/findingsから対象F09 rulesの全結果を順序・全field付きで抽出する。unselected_source_stateはaxis=unselected_sourceのstate、handoff_stateはsubject_ref/bindingが入力handoff_recordsの同じ原記録と一致するaxis=handoffのstateから抽出する。side_effect_countはtest-side外部作用観測でありComparison fieldではない。",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F09-NEG-13",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "name": "knowledge-ref-absent-and-always-member-missing-use-existing-template-diagnostic",
+      "input_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "input_base_pointer": "/fixture_contract/normal_control/input",
+      "typed_mutation_plan": {
+        "notation": "RFC 6902 operationsをinput_base_pointerの原値へ配列順に適用した同一immutable RawValueをvalidate_supply_inputへ一度渡す。得た同じValidatedSupplyをDependencyContext.validatedへ設定し、同じsnapshotからcompare_descriptor_definitionsのComparisonを計算してDependencyContext.definitionsへ渡す。runtime field-path operatorを含意しない。",
+        "operations": [
+          {
+            "op": "remove",
+            "path": "/binding/knowledge_ref"
+          },
+          {
+            "op": "remove",
+            "path": "/dependencies/always_refs/1"
+          }
+        ]
+      },
+      "materialized_input_sha256": "b9589c7d5fcc9dfa062d62b1d58f71e8dedee261cf68948bb467c817123292b4",
+      "expected_local_result_projection": {
+        "axes": [
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-TEMPLATE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "original_refs": [
+              {
+                "identity": "HELIXBRAIN-L2-003",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-007",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-008",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-028",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              }
+            ],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-005 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          }
+        ],
+        "findings": [
+          {
+            "code": "required_dependency_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+            "subject_ref": {
+              "identity": "SYNTHETIC-TEMPLATE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "source_refs": [
+              {
+                "identity": "HELIXBRAIN-L2-003",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-007",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-008",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-028",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              }
+            ],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-005 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          }
+        ],
+        "side_effect_count": 0
+      },
+      "expected_observation": "常時必須identity HELIXBRAIN-L2-005の不足をmissingとして保持する。binding.knowledge_refは欠落のままにし、diagnostic subject_refだけに同じbindingの既存template_refを用いる。既存constructor fallbackはsource_return_verification/cases/18で別の原caseとして検証対象に残り、この最小F09局所入力へ合成しない。",
+      "expected_basis": [
+        "L3-F09の常時必須identity HELIXBRAIN-L2-005の欠落をmissingとして保持する。",
+        "subject_refにはbindingに既に供給されたtemplate_refを診断時だけ使う。",
+        "bindingおよびComparison.input_bindingのknowledge_ref欠落は原値として保持し、template_refで補完・aliasしない。",
+        "既存constructor issueの再利用根拠はsource_return_verification/cases/18にあり、この最小F09入力のComparison projectionへ混ぜない。"
+      ],
+      "projection_contract": "Comparison.axes/findingsからaxis=dependency_referenceかつrule_ref=HELIXBRAIN-L5-032-R-required_dependency_missingの全fieldを抽出する。constructor issueは本caseのComparison projection外であり、既存source_return_verification/cases/18を参照する。",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-ADD-27",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "name": "always-required-member-missing-and-independent-selector-unknown",
+      "input_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "input_base_pointer": "/fixture_contract/normal_control/input",
+      "typed_mutation_plan": {
+        "notation": "RFC 6902 operationsをinput_base_pointerの原値へ配列順に適用した同一immutable RawValueをvalidate_supply_inputへ一度渡す。得た同じValidatedSupplyをDependencyContext.validatedへ設定し、同じsnapshotからcompare_descriptor_definitionsのComparisonを計算してDependencyContext.definitionsへ渡す。runtime field-path operatorを含意しない。",
+        "operations": [
+          {
+            "op": "remove",
+            "path": "/dependencies/always_refs/1"
+          },
+          {
+            "op": "remove",
+            "path": "/dependencies/core_source_selected"
+          }
+        ]
+      },
+      "materialized_input_sha256": "179f17247dd715327caeaa3b14bb58019f3070c149ba010d20797a1ce2ee37a5",
+      "expected_local_result_projection": {
+        "axes": [
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "original_refs": [
+              {
+                "identity": "HELIXBRAIN-L2-003",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-007",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-008",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-028",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              }
+            ],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-005 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "original_refs": [],
+            "reason": "条件selector core_source_selected が /dependencies/core_source_selected にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          }
+        ],
+        "findings": [
+          {
+            "code": "required_dependency_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_reference",
+            "state": "missing",
+            "source_refs": [
+              {
+                "identity": "HELIXBRAIN-L2-003",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-007",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-008",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              {
+                "identity": "HELIXBRAIN-L2-028",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              }
+            ],
+            "reason": "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-005 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "dependency_selector_unknown",
+            "rule_ref": "HELIXBRAIN-L5-032-R-dependency_selector_unknown",
+            "subject_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "SYNTHETIC-TEMPLATE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-KNOWLEDGE-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-knowledge-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "requirement_ref": {
+                "identity": "synthetic-obligation-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-oracle-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_ref": {
+                "identity": "synthetic-pack-A",
+                "revision": "synthetic-rev-A",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-pack-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "pack_contract_version": "contract-A",
+              "pack_artifact_version": "artifact-A",
+              "pack_dependency_versions": [],
+              "version_target": "1.0"
+            },
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "source_refs": [],
+            "reason": "条件selector core_source_selected が /dependencies/core_source_selected にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          }
+        ]
+      },
+      "expected_observation": "常時必須HELIXBRAIN-L2-005のmissingとcore_source_selectedのunknownを別所見として返す。両者を相殺せず、他の明示selectorとhandoff/未選択sourceを保持する。",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "fixture_refinement": "事前freezeしたnormal control入力からRFC6902 patchを再構成する。expected projectionは既存NEG-07の常時member missing全fieldとNEG-11のcore_source_selected unknown全fieldを合成し、L5決定順（常時member→selector）で並べる。入力はnormal controlへalways_refs/1削除、core_source_selected削除を順に適用したもの。 これは有限の局所projectionであり、実関数実行・全入力閉包を主張しない。"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-ADD-28",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "name": "required-member-missing-without-either-binding-subject-ref",
+      "input_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
+      "input_base_pointer": "/fixture_contract/normal_control/input",
+      "typed_mutation_plan": {
+        "notation": "RFC 6902 operationsをinput_base_pointerの原値へ配列順に適用した同一immutable RawValueをvalidate_supply_inputへ一度渡す。得た同じValidatedSupplyをDependencyContext.validatedへ設定し、同じsnapshotからcompare_descriptor_definitionsのComparisonを計算してDependencyContext.definitionsへ渡す。runtime field-path operatorを含意しない。",
+        "operations": [
+          {
+            "op": "remove",
+            "path": "/binding/knowledge_ref"
+          },
+          {
+            "op": "remove",
+            "path": "/binding/template_ref"
+          },
+          {
+            "op": "remove",
+            "path": "/dependencies/always_refs/1"
+          }
+        ]
+      },
+      "materialized_input_sha256": "35c533dbca985f5bcd7e24cc97343b489c34fae46b705b9004e12ca12f200d22",
+      "expected_local_result_projection": {
+        "axes": [],
+        "findings": [],
+        "input_binding": {
+          "requirement_ref": {
+            "identity": "synthetic-obligation-A",
+            "revision": "synthetic-rev-A",
+            "scope": {
+              "project": "synthetic-P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-E"
+            },
+            "owner": "synthetic-requirement-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "oracle_ref": {
+            "identity": "synthetic-oracle-A",
+            "revision": "synthetic-rev-A",
+            "scope": {
+              "project": "synthetic-P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-E"
+            },
+            "owner": "synthetic-oracle-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "pack_ref": {
+            "identity": "synthetic-pack-A",
+            "revision": "synthetic-rev-A",
+            "scope": {
+              "project": "synthetic-P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-E"
+            },
+            "owner": "synthetic-pack-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "pack_contract_version": "contract-A",
+          "pack_artifact_version": "artifact-A",
+          "pack_dependency_versions": [],
+          "version_target": "1.0"
+        }
+      },
+      "expected_observation": "HELIXBRAIN-L2-005は入力always_refsから欠落したまま保持する。binding.template_refとbinding.knowledge_refの両方がobject RefでないためF09 Comparisonのsubject_ref:Ref必須のdependency AxisResult/Findingは形成せず、Refを捏造しない。別の既存constructor経路は同じ入力root bindingの両Ref欠落をlocator=/binding、source_ref=nullのInputIssueとして返し、build_supply_analysisのinput_issuesへ保持する。これはF09 missing AxisResult/Findingではなく、空のF09 dependency projectionも不足解消や成功を意味しない。",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "fixture_refinement": "事前freezeしたnormal control入力からRFC6902 patchを再構成する。normal controlからknowledge_ref/template_refとalways_refs/1だけを削除。expected input_bindingはその同じmaterialized inputのbindingで、二つのRef欠落を保つ。Comparisonのaxes/findingsはsubject Refを作れないため空とする。別のtest-side builder projectionは同じValidatedSupplyから既存construction_issuesが返すInputIssueのうちlocator=/bindingを全field比較し、SupplyAnalysis.input_issuesへの既存集約を照合する。これはComparison出力ではなく、実関数実行・全入力閉包も主張しない。",
+      "expected_builder_input_issues": [
+        {
+          "locator": "/binding",
+          "reason": "root bindingのknowledge_refとtemplate_refがどちらもRefとして供給されず、依存診断subjectを構成できない。元bindingを保持し、Refを生成しない。",
+          "source_ref": null
+        }
+      ]
     }
   ],
   "function_oracles": [
@@ -11374,7 +15080,7 @@
       "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
       "input_fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
       "input_context": "DependencyContext",
-      "expected_observation": "局所候補は常時参照だけを対象。非選択source unobserved、handoff not_received、原definition knownを併存。将来receiptやOS義務成立を入力gateにしない。",
+      "expected_observation": "局所候補は常時参照だけを対象。非選択source unobserved、handoff not_received、原definition knownを併存。将来receiptやOS義務成立を入力gateにしない。常時必須/選択済みCORE返却のRef欠落はdependency_reference=missing、条件selector欠落はdependency_selection=unknown、明示falseは条件依存missingなし。既存source/evaluation適用条件と未選択unobservedは維持する。F09局所suiteはNEG-07〜13とADD-25〜28で、NEG-07〜13はL9統合負例に接続しない。NEG-13は同bindingのtemplate_refが供給される場合の診断subjectを観測する。ADD-27/28はselector/常時不足の併存とsubject Refが両方欠落する場合をそれぞれ確認する。source_return_verification/cases/18の候補locator=/candidates/0 constructor issueはNEG-13を含むF09 Comparisonへ混ぜず、ADD-28のlocator=/binding InputIssueとも区別する。",
       "contract_refs": [
         "HELIXBRAIN-L5-032-B02",
         "HELIXBRAIN-L5-032-F09"
@@ -11390,9 +15096,53 @@
         "HELIXBRAIN-L8-032-F09-NEG-06",
         "HELIXBRAIN-L8-032-ADD-17",
         "HELIXBRAIN-L8-032-ADD-18",
-        "HELIXBRAIN-L8-032-ADD-19"
+        "HELIXBRAIN-L8-032-ADD-19",
+        "HELIXBRAIN-L8-032-F09-NEG-07",
+        "HELIXBRAIN-L8-032-F09-NEG-08",
+        "HELIXBRAIN-L8-032-F09-NEG-09",
+        "HELIXBRAIN-L8-032-F09-NEG-10",
+        "HELIXBRAIN-L8-032-F09-NEG-11",
+        "HELIXBRAIN-L8-032-F09-NEG-12",
+        "HELIXBRAIN-L8-032-ADD-25",
+        "HELIXBRAIN-L8-032-ADD-26",
+        "HELIXBRAIN-L8-032-F09-NEG-13",
+        "HELIXBRAIN-L8-032-ADD-27",
+        "HELIXBRAIN-L8-032-ADD-28"
       ],
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "materialized_input_sha256_contract": {
+        "base_input_pointer": "/fixture_contract/normal_control/input",
+        "operations_field": "/additional_unit_cases/{index}/typed_mutation_plan/operations",
+        "hash_field": "/additional_unit_cases/{index}/materialized_input_sha256",
+        "materialization": "base_input_pointerの原値へoperations_fieldのRFC 6902操作を配列順に適用した全RawValueを対象とする。",
+        "serialization": "このhash規則に限り、source object key順を保持し、UTF-8、ensure_ascii=false、compact JSON（空白なし）でserializeし、末尾LFを1個付けたbytesのSHA-256を取る。source_return_verification.argument_resolutionのhashは別field/scopeの規則であり、ここでは参照しない。"
+      },
+      "local_result_projection_contract": {
+        "axes": "expected_local_result_projection.axesはComparison.axesからaxisがdependency_referenceまたはdependency_selectionで、当該F09関数の入力bindingに属する全要素をL5の決定順に抽出したprojection。各AxisResultの7 fieldを全値比較する。",
+        "findings": "expected_local_result_projection.findingsは同一Comparison.findingsからrule_refがR-required_dependency_missingまたはR-dependency_selector_unknownである全要素をL5の決定順に抽出したprojection。各Findingの全fieldを比較する。",
+        "conditional_dependency_axes": "この任意projectionはdependency_selectionと、明示的に選択された条件に属するdependency_referenceのみをaxesから抽出する。selector欠落時に条件依存を追加しない。",
+        "unselected_source_state": "Comparison.axesのaxis=unselected_sourceで対象bindingに一致する原AxisResult.state。",
+        "handoff_state": "Comparison.axesのaxis=handoffのうちsubject_refとbindingがinput.handoff_recordsの原recordと完全に一致するstate。same as inputの説明語でなく原recordのstate値を比較する。",
+        "constructor_issue_projection": "source_return_verification/cases/18に定義された候補locator=/candidates/0のInputIssueは別入力・別出力であり、F09 Comparisonへの追加を求めない。NEG-13のnormal-control mutationはdescriptor bindingのknowledge_refを残すためこの候補issueを同時観測しない。",
+        "reason_rule": "reasonは期待値のliteralと全field一致させる。required_dependency_missingはL5 failure ruleのreason_templateへ完全identityと該当source pathを代入し、selector unknownはselectorと正確なinput pathを代入する。",
+        "side_effect_count": "Comparison fieldではないtest-side effect observation。no-effect function contractの期待0を保持する。",
+        "no_subject_ref_limit": "ADD-28ではbinding.template_ref/knowledge_ref双方がobject Refでない。dependency AxisResult/Findingのsubject_refはRef型なのでComparison.axes/findingsに捏造せず、test-side input_binding projectionで原欠落を保持する。別の既存construction_issues経路はroot binding両Ref欠落についてlocator=/bindingのInputIssueを返し、builderがSupplyAnalysis.input_issuesへ保持する。これはdependency missingのtyped所見とは別であり、空axes/findingsを不足解消と評価しない。",
+        "input_binding": "ADD-28だけ。Comparison.input_binding全fieldをmaterialized input.bindingと比較し、template_ref/knowledge_refのAbsentを保つ。",
+        "builder_input_issue_projection": "ADD-28の補助test-side projection。ADD-28と同じmaterialized inputからValidatedSupplyを得て既存build_supply_analysisへ渡し、SupplyAnalysis.input_issuesからlocator=/binding、reason、source_ref=nullのInputIssue全fieldを比較する。これはComparisonの公開fieldではなく、builder全体や他InputIssueの全返却比較も主張しない。"
+      },
+      "additional_unit_case_refs": [
+        "HELIXBRAIN-L8-032-F09-NEG-07",
+        "HELIXBRAIN-L8-032-F09-NEG-08",
+        "HELIXBRAIN-L8-032-F09-NEG-09",
+        "HELIXBRAIN-L8-032-F09-NEG-10",
+        "HELIXBRAIN-L8-032-F09-NEG-11",
+        "HELIXBRAIN-L8-032-F09-NEG-12",
+        "HELIXBRAIN-L8-032-F09-NEG-13",
+        "HELIXBRAIN-L8-032-ADD-25",
+        "HELIXBRAIN-L8-032-ADD-26",
+        "HELIXBRAIN-L8-032-ADD-27",
+        "HELIXBRAIN-L8-032-ADD-28"
+      ]
     },
     {
       "id": "HELIXBRAIN-L8-032-NORMAL-compare_claim_boundaries",
@@ -53086,8 +56836,9 @@
     ],
     "candidate_design_bytes_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "file_bytes_sha256": "98252680031e987b052b2b8356fcc6e28005e1474836863c74fa356354089e6e",
-      "meaning": "同一candidate文書の現在bytesを照合するbinding。過去revisionにこの追補が存在したというsource pinではない。"
+      "file_bytes_sha256": "8b42b107322b595ed694280bd2d7a7c49974291526be0b0e2f05a0f08ee52fa9",
+      "meaning": "同一candidate文書の現在bytesを照合するbinding。過去revisionにこの追補が存在したというsource pinではない。",
+      "scope": "このfieldは同じPR候補のcurrent L5ファイル全bytesを指す。旧資産source引用hashはlegacy_comparison.source_assetsにあり変更しない。"
     },
     "design_ref": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
