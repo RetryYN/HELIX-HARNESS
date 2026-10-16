@@ -775,7 +775,7 @@
       },
       "additional_properties": "closed_declared_carrier"
     },
-    "scope": "原33とL4から固定した24材料反例/17属性反例に対応する論理型。未見一般域は未閉包。",
+    "scope": "対L8の74material whole（F03 23、他51）、16属性対照、13domain対照に対応する論理型。materialとdomain-onlyの入力署名を分け、未見一般域/正式codec/実資格は未閉包。",
     "F01Arguments": {
       "kind": "record",
       "fields": {
@@ -2234,7 +2234,8 @@
                           {
                             "kind": "boolean",
                             "domain": [
-                              false
+                              false,
+                              true
                             ]
                           },
                           {
@@ -2312,7 +2313,8 @@
                                     "type": {
                                       "kind": "boolean",
                                       "domain": [
-                                        false
+                                        false,
+                                        true
                                       ]
                                     }
                                   }
@@ -2790,6 +2792,15 @@
           ],
           "type": {
             "kind": "json"
+          }
+        },
+        "element_occurrence_trace": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "ref",
+            "target": "F03ElementOccurrenceTrace"
           }
         }
       },
@@ -4106,6 +4117,244 @@
         }
       },
       "additional_properties": "closed_declared_carrier"
+    },
+    "F03JsonObject": {
+      "kind": "json",
+      "semantic_constraint": "JSON object全体。原値をprojection/castせず保持し、未解釈member/null/key欠落を消さない。"
+    },
+    "F03SourceSpan": {
+      "kind": "record",
+      "fields": {
+        "start_line": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "integer",
+            "minimum": 1
+          }
+        },
+        "end_line": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "integer",
+            "minimum": 1
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "F03OccurrenceDisposition": {
+      "kind": "union",
+      "tag_field": "kind",
+      "variants": [
+        {
+          "kind": "record",
+          "fields": {
+            "kind": {
+              "presence_states": [
+                "provided"
+              ],
+              "type": {
+                "kind": "string",
+                "domain": [
+                  "atom"
+                ]
+              }
+            },
+            "atom_id": {
+              "presence_states": [
+                "provided"
+              ],
+              "type": {
+                "kind": "string"
+              }
+            },
+            "candidate_input_index": {
+              "presence_states": [
+                "provided"
+              ],
+              "type": {
+                "kind": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "additional_properties": "closed_declared_carrier"
+        },
+        {
+          "kind": "record",
+          "fields": {
+            "kind": {
+              "presence_states": [
+                "provided"
+              ],
+              "type": {
+                "kind": "string",
+                "domain": [
+                  "reasoned_not_applicable"
+                ]
+              }
+            },
+            "reason": {
+              "presence_states": [
+                "provided"
+              ],
+              "type": {
+                "kind": "string"
+              }
+            }
+          },
+          "additional_properties": "closed_declared_carrier"
+        },
+        {
+          "kind": "record",
+          "fields": {
+            "kind": {
+              "presence_states": [
+                "provided"
+              ],
+              "type": {
+                "kind": "string",
+                "domain": [
+                  "gap"
+                ]
+              }
+            },
+            "normal_gap_index": {
+              "presence_states": [
+                "provided"
+              ],
+              "type": {
+                "kind": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "additional_properties": "closed_declared_carrier"
+        }
+      ]
+    },
+    "F03ElementOccurrence": {
+      "kind": "record",
+      "fields": {
+        "source_row_index": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "integer",
+            "minimum": 0
+          }
+        },
+        "source_span": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "ref",
+            "target": "F03SourceSpan"
+          }
+        },
+        "raw_line": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "string"
+          }
+        },
+        "parsed_element": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "ref",
+            "target": "F03JsonObject"
+          }
+        },
+        "matching_candidate_indices": {
+          "presence_states": [
+            "provided",
+            "empty"
+          ],
+          "type": {
+            "kind": "list",
+            "items": {
+              "kind": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "normal_disposition": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "ref",
+            "target": "F03OccurrenceDisposition"
+          }
+        },
+        "gap_indices": {
+          "presence_states": [
+            "provided",
+            "empty"
+          ],
+          "type": {
+            "kind": "list",
+            "items": {
+              "kind": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "na_input_pointer": {
+          "presence_states": [
+            "absent",
+            "provided"
+          ],
+          "type": {
+            "kind": "string"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier",
+      "semantic_constraints": [
+        "parsed_elementは元JSON object全値、idは非空string。未解釈memberは削除しない。",
+        "source_row_indexは物理line index、raw_lineは元splitlinesの当該原行。",
+        "normal_gap_index/gap_indicesは同返却gapsの実index。matching候補indexとatom候補indexは同snapshot candidate_atomsの原index。",
+        "na_input_pointerは元reasoned_NA key存在時のみ供給。null/emptyの原recordでもkeyがあればpointerは保持し、NA成功認定とは別。"
+      ]
+    },
+    "F03ElementOccurrenceTrace": {
+      "kind": "record",
+      "fields": {
+        "input_snapshot": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "ref",
+            "target": "F03JsonObject"
+          }
+        },
+        "occurrences": {
+          "presence_states": [
+            "provided",
+            "empty"
+          ],
+          "type": {
+            "kind": "list",
+            "items": {
+              "kind": "ref",
+              "target": "F03ElementOccurrence"
+            }
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
     }
   },
   "functions": [
@@ -4213,13 +4462,21 @@
         "原packetとlogical contextの値/出所を別保持する。contextのQは明示入力でありsourceに無い値を暗黙供給しない。",
         "NDJSON等は既存合成材料の正規化表現。正式schema/codec/実extractorは未成立。",
         "原sourceの実資格/009選択frame/consumer exact bindingを当該fixture比較だけで成立させない。",
-        "供給raw_utf8の有限意味域をcheck_template_domainで明示する。original_templateとN01 held_out_sourceの非空各行はobjectかつid非空string。違反は原行raw/parsed値/span付きTemplateDomainReturnへ返しmaterial評価をしない。任意string入力が無条件に有効とはしない。"
+        "供給raw_utf8の有限意味域をcheck_template_domainで明示する。original_templateとN01 held_out_sourceの非空各行はobjectかつid非空string。違反は原行raw/parsed値/span付きTemplateDomainReturnへ返しmaterial評価をしない。任意string入力が無条件に有効とはしない。",
+        "F03Argumentsのlogical carrier適合とtemplate domain_valid=trueを別々に確認する。domain-only受理又はsnapshot保存だけでmaterial引数受理を成立させず、型外rawをcastしない。"
       ],
       "steps": [
-        "原templateをNDJSON原行順で読み、各原行の型付きJSON objectとspanを保持する。各原行をunsupported→empty→placeholder→applicability unknown→NA不足→uncovered→duplicate→compound→content/metadata conflictの既存優先順で判定する。requires_screenを持たない義務へscreen不明を連鎖させない。",
-        "各原行の通常findingを原行順に追加し、gapはelement/kind/span/occurrence_countを値で返して重複と欠落を件数で相殺しない。",
-        "既存same()と同じcanonical JSON equalityによる完全な型付き原行同値groupを別途数え、各原行の通常判定の直後に、group countが2以上ならその原spanへelement_id・kind=source_duplicate・group countを持つ別gapを追加する。同一IDだけではgroupを作らない。valid reasoned_NAではidentity dispositionとreasonを維持し、NA分岐でもsource occurrence gapを飛ばさない。候補atom側kind=duplicateは既存findingのまま保持。",
-        "source null/空はID/span未確定のtemplate_source_missing gap、bytes/digest不一致も全体gapで残し、読める他要素を保持。gaps非空ならfixture_content_complete=false."
+        "同callのpacket/contextを受け、原packetをcloneしてinput_snapshotへ1回保存する。context.unaffected_Qは元common(context)から独立copy。snapshot用の保存は引数型受理/実資格/意味判定ではない。",
+        "元check_template_domain preconditionを維持。blank/nonobject/id不正は原raw/parsed/spanのTemplateDomainReturnでF03を呼ばない。母source null/emptyは既存material source-missing診断域。idに/や~を含むことはdomain違反にしない。",
+        "既存elements()の原line/spanと原raw_utf8.splitlines()を使い、source_row_index=span.start_line-1、raw_line=source_lines[source_row_index]、parsed_element=clone(entry.element)。shared elements()のfallbackや他F02/N01処理は変更しない。domain内F03だけを追随する。",
+        "canonical(entry.element)による完全typedrow同値group countを保持。同IDだけ又は文面の類似でgroupを作らない。",
+        "candidate_atomsの元index順に既存atom_matchesの候補index列を取り、normal比較にその列をそのまま使う。二度判定/並替え/ID dedupしない。",
+        "原行通常判定は既存18番定義の順序を維持: unsupported→empty→placeholder→applicability unknown→NA不足→uncovered→候補duplicate→compound→content conflict→candidate metadata conflict。それ以外はatom。各原行について一度だけF03OccurrenceDispositionを作る。NAはreason原値、atomは元atom_idと元candidate index、gapは今appendしたnormal gapのindexを持つ。",
+        "原行normal gapがあればgapsへappendし、そのindexをgap_indicesへ。完全typedrow同値count>=2なら同原行normal診断の後にsource_duplicate gapをappendし、そのindexもgap_indicesへ。NAでもsource_duplicateを省かない。",
+        "reasoned_NAに原id keyが存在するときだけna_input_pointerを生成。tokenは~→~0の後/→~1。NA recordがinvalid/nullでも所在pointerとNA有効判定を混同しない。key absenceではfieldを省略。",
+        "occurrenceを原行順にappendし、後からoccurrencesだけを原順にfoldしてelement_dispositionsを作る。atom→kind/atom_id、NA→kind/reason、gap→kind/gaps[normal_gap_index].kind。同ID最後行の互換summaryを保持し、第二比較器で旧mapを計算しない。",
+        "母source不足/digest conflictの既存global gapは従来の末尾位置に保持。global gapを架空occurrenceのgap_indicesへ配らない。source null/emptyはsnapshotに原値とoccurrences=[]。宣言SHA不一致をsource再hashで修復しない。",
+        "fixture_content_completeはgapsが空かの旧規則のみ。trace存在/ID一意性/候補数/全資格を新全域gateにしない。effects7false/unaffected_Qは元値。"
       ],
       "definition_pointer": "/finite_reference/definitions",
       "returns": [
@@ -4227,11 +4484,15 @@
         "gaps",
         "fixture_content_complete",
         "effects",
-        "unaffected_Q"
+        "unaffected_Q",
+        "element_occurrence_trace"
       ],
       "postconditions": [
         "完全返却型の全memberを返す。原入力を変更しない。",
-        "effects全false。fixture内容一致/完備は資格/実作用/全意味閉包ではない。"
+        "effects全false。fixture内容一致/完備は資格/実作用/全意味閉包ではない。",
+        "同call原packetをinput_snapshotへ1回保存し、全物理原出現のraw/parsed値・通常判定・元candidate/NA/gap所在を返す。",
+        "normal_dispositionは各原行で一度だけ決め、element_dispositionsはoccurrences/gapsのみを取るproject_f03_dispositionsから一方向に作る。",
+        "同IDの異rawを同義務/別義務と裁定せず、完全typedrow同値のsource_duplicate規則と旧5field値を保つ。"
       ]
     },
     {
@@ -4362,7 +4623,7 @@
       "def atom_matches(atom,identity):\n return (atom.get('content') or {}).get('source_element_id')==identity or identity in atom.get('source_element_ids',[])",
       "def na_valid(na,revision):return isinstance(na,dict) and all(na.get(k) not in [None,'','TBD'] for k in ['reason','decider','reassessment']) and na.get('target_revision')==revision",
       "def compare_f02(packet,context):\n atom_results={};rows={};template=packet.get('original_template') or {};contract=packet.get('independent_extractor_contract') or {};inputs=packet.get('applicability_input') or {};candidates=packet.get('candidate_atoms') or [];records=packet.get('mechanical_candidate_records') or {}\n for entry in elements(template):\n  original=entry['element'];identity=original['id'];applies=applicable(original,inputs)\n  if applies=='no' and na_valid((packet.get('reasoned_NA') or {}).get(identity),template.get('revision')):continue\n  matches=[atom for atom in candidates if atom_matches(atom,identity)];states=[]\n  if applies=='unknown':states.append('unknown')\n  if len(matches)==0:states.append('missing')\n  elif len(matches)!=1 or len(matches[0].get('source_element_ids',[identity]))!=1:states.append('conflict')\n  if states:state=aggregate(states);atom_results[identity]=result(state);rows[identity]=result(state);continue\n  atom=matches[0];content=atom.get('content') or {};material=records.get(identity)\n  expected={'source_element_id':identity,'source_span':entry['span'],'template_revision':template.get('revision'),'applicability':inputs,'kind':original.get('kind'),'meaning':original.get('meaning'),'extractor_identity':contract.get('identity'),'extractor_version':contract.get('version')}\n  states=[state_of(content.get(field),value,field in ['template_revision','extractor_version']) for field,value in expected.items()]\n  states += [state_of(atom.get('semantic_digest'),value_digest(content)),state_of(atom.get('extractor_version_digest'),value_digest(contract))]\n  if text_digest(template.get('raw_utf8',''))!=template.get('sha256'):states.append('conflict')\n  if material is None:states.append('conflict' if (packet.get('human_summary_candidates') or {}).get(identity) else 'missing')\n  else:\n   for field,value in {'source_element_id':identity,'candidate_ref':atom.get('atom_id'),'content_sha256':value_digest(content),'extractor_identity':contract.get('identity'),'extractor_version':contract.get('version'),'input_template_sha256':template.get('sha256'),'kind':'synthetic_mechanical_candidate_record','execution_state':'not_executed_fixture_only'}.items():states.append(state_of(material.get(field),value,field=='extractor_version'))\n  state=aggregate(states);atom_results[identity]=result(state,atom.get('atom_id') if state=='supported_synthetic_condition' else None)\n  row=atom.get('candidate_row') or {};row_state=state\n  if row_state=='supported_synthetic_condition':row_state=aggregate([state_of(row.get('atom_ref'),atom.get('atom_id')),state_of(row.get('ledger_contract'),packet.get('independent_ledger_contract'))])\n  rows[identity]=result(row_state,row.get('ledger_contract') if row_state=='supported_synthetic_condition' else None)\n return {'atom_results':atom_results,'candidate_row_results':rows,**common(context)}",
-      "def compare_f03(packet,context):\n template=packet.get('original_template') or {};inputs=packet.get('applicability_input') or {};dispositions={};gaps=[];atoms=packet.get('candidate_atoms') or []\n source_entries=elements(template);source_row_counts={}\n for source_entry in source_entries:\n  row_key=canonical(source_entry['element']);source_row_counts[row_key]=source_row_counts.get(row_key,0)+1\n for entry in source_entries:\n  original=entry['element'];identity=original['id'];applies=applicable(original,inputs);matches=[atom for atom in atoms if atom_matches(atom,identity)];kind=None;na_disposition=False\n  if original.get('kind') not in KINDS:kind='unsupported_element'\n  elif original.get('meaning') in [None,'']:kind='empty'\n  elif original.get('meaning')=='TBD':kind='placeholder'\n  elif applies=='unknown':kind='applicability_unknown'\n  elif applies=='no':\n   na=(packet.get('reasoned_NA') or {}).get(identity)\n   if na_valid(na,template.get('revision')):dispositions[identity]={'kind':'reasoned_not_applicable','reason':na['reason']};na_disposition=True\n   else:kind='non_applicability_unqualified'\n  elif len(matches)==0:kind='uncovered'\n  elif len(matches)>1:kind='duplicate'\n  elif len(matches[0].get('source_element_ids',[identity]))!=1:kind='compound'\n  elif (matches[0].get('content') or {}).get('meaning')!=original.get('meaning'):kind='content_conflict'\n  else:\n   atom=matches[0];content=atom.get('content') or {};checks={'source_element_id':identity,'source_span':entry['span'],'template_revision':template.get('revision'),'kind':original.get('kind')}\n   if original.get('requires_screen') is True:checks['applicability']=inputs\n   if any(not same(content.get(k),v) for k,v in checks.items()) or atom.get('semantic_digest')!=value_digest(content):kind='candidate_metadata_conflict'\n  if kind:\n   dispositions[identity]={'kind':'gap','gap_kind':kind};gaps.append({'element_id':identity,'kind':kind,'source_span':entry['span'],'occurrence_count':len(matches) if kind=='duplicate' else 1})\n  elif not na_disposition:dispositions[identity]={'kind':'atom','atom_id':matches[0]['atom_id']}\n  if source_row_counts[canonical(original)]>1:gaps.append({'element_id':identity,'kind':'source_duplicate','source_span':entry['span'],'occurrence_count':source_row_counts[canonical(original)]})\n if not isinstance(template.get('raw_utf8'),str) or template.get('raw_utf8')=='':gaps.append({'element_id':None,'kind':'template_source_missing','source_span':None,'occurrence_count':1})\n elif text_digest(template['raw_utf8'])!=template.get('sha256'):gaps.append({'element_id':None,'kind':'source_digest_conflict','source_span':None,'occurrence_count':1})\n return {'element_dispositions':dispositions,'gaps':gaps,'fixture_content_complete':len(gaps)==0,**common(context)}",
+      "def project_f03_dispositions(occurrences,gaps):\n dispositions={}\n for occurrence in occurrences:\n  identity=occurrence['parsed_element']['id'];normal=occurrence['normal_disposition']\n  if normal['kind']=='atom':dispositions[identity]={'kind':'atom','atom_id':normal['atom_id']}\n  elif normal['kind']=='reasoned_not_applicable':dispositions[identity]={'kind':'reasoned_not_applicable','reason':normal['reason']}\n  else:dispositions[identity]={'kind':'gap','gap_kind':gaps[normal['normal_gap_index']]['kind']}\n return dispositions\n\ndef compare_f03(packet,context):\n input_snapshot=clone(packet)\n template=packet.get('original_template') or {};inputs=packet.get('applicability_input') or {};gaps=[];atoms=packet.get('candidate_atoms') or [];occurrences=[]\n source_entries=elements(template);source_row_counts={};source_raw=template.get('raw_utf8');source_lines=source_raw.splitlines() if isinstance(source_raw,str) else []\n for source_entry in source_entries:\n  row_key=canonical(source_entry['element']);source_row_counts[row_key]=source_row_counts.get(row_key,0)+1\n for entry in source_entries:\n  original=entry['element'];identity=original['id'];applies=applicable(original,inputs);match_indices=[index for index,atom in enumerate(atoms) if atom_matches(atom,identity)];matches=[atoms[index] for index in match_indices];kind=None;normal=None;gap_indices=[]\n  if original.get('kind') not in KINDS:kind='unsupported_element'\n  elif original.get('meaning') in [None,'']:kind='empty'\n  elif original.get('meaning')=='TBD':kind='placeholder'\n  elif applies=='unknown':kind='applicability_unknown'\n  elif applies=='no':\n   na=(packet.get('reasoned_NA') or {}).get(identity)\n   if na_valid(na,template.get('revision')):normal={'kind':'reasoned_not_applicable','reason':na['reason']}\n   else:kind='non_applicability_unqualified'\n  elif len(matches)==0:kind='uncovered'\n  elif len(matches)>1:kind='duplicate'\n  elif len(matches[0].get('source_element_ids',[identity]))!=1:kind='compound'\n  elif (matches[0].get('content') or {}).get('meaning')!=original.get('meaning'):kind='content_conflict'\n  else:\n   atom=matches[0];content=atom.get('content') or {};checks={'source_element_id':identity,'source_span':entry['span'],'template_revision':template.get('revision'),'kind':original.get('kind')}\n   if original.get('requires_screen') is True:checks['applicability']=inputs\n   if any(not same(content.get(k),v) for k,v in checks.items()) or atom.get('semantic_digest')!=value_digest(content):kind='candidate_metadata_conflict'\n  if kind:\n   normal_gap_index=len(gaps);gaps.append({'element_id':identity,'kind':kind,'source_span':entry['span'],'occurrence_count':len(matches) if kind=='duplicate' else 1});gap_indices.append(normal_gap_index);normal={'kind':'gap','normal_gap_index':normal_gap_index}\n  elif normal is None:normal={'kind':'atom','atom_id':matches[0]['atom_id'],'candidate_input_index':match_indices[0]}\n  if source_row_counts[canonical(original)]>1:\n   gap_indices.append(len(gaps));gaps.append({'element_id':identity,'kind':'source_duplicate','source_span':entry['span'],'occurrence_count':source_row_counts[canonical(original)]})\n  source_row_index=entry['span']['start_line']-1\n  occurrence={'source_row_index':source_row_index,'source_span':clone(entry['span']),'raw_line':source_lines[source_row_index],'parsed_element':clone(original),'matching_candidate_indices':match_indices,'normal_disposition':normal,'gap_indices':gap_indices}\n  if identity in (packet.get('reasoned_NA') or {}):occurrence['na_input_pointer']='/reasoned_NA/'+identity.replace('~','~0').replace('/','~1')\n  occurrences.append(occurrence)\n if not isinstance(template.get('raw_utf8'),str) or template.get('raw_utf8')=='':gaps.append({'element_id':None,'kind':'template_source_missing','source_span':None,'occurrence_count':1})\n elif text_digest(template['raw_utf8'])!=template.get('sha256'):gaps.append({'element_id':None,'kind':'source_digest_conflict','source_span':None,'occurrence_count':1})\n return {'element_dispositions':project_f03_dispositions(occurrences,gaps),'gaps':gaps,'fixture_content_complete':len(gaps)==0,**common(context),'element_occurrence_trace':{'input_snapshot':input_snapshot,'occurrences':occurrences}}",
       "def compare_n01(packet,context):\n sources=packet.get('result_sources') or [];frame=packet.get('input_frame') or {};template=packet.get('original_template') or {};state='supported_synthetic_condition'\n if packet.get('independence_qualification')!='known_in_synthetic_fixture':state='unknown'\n elif len(sources)!=2:state='missing'\n elif sources[0].get('run_id') in [None,'','TBD'] or sources[0].get('run_id')==sources[1].get('run_id'):state='unknown'\n elif frame.get('template_revision')!=template.get('revision'):state='stale'\n elif text_digest(template.get('raw_utf8',''))!=template.get('sha256'):state='conflict'\n else:\n  input_digest=value_digest({'template':template,'input':frame});states=[]\n  for source in sources:\n   states.extend([state_of(source.get('input_sha256'),input_digest),state_of(source.get('semantic_digest'),value_digest(source.get('content')))])\n  states.append(state_of(sources[0].get('semantic_digest'),sources[1].get('semantic_digest')));state=aggregate(states)\n held=packet.get('held_out_source');gap=None;held_gaps=[]\n if held is not None:\n  if not isinstance(held.get('raw_utf8'),str) or held.get('raw_utf8')=='':held_gaps.append({'element_id':None,'kind':'template_source_missing','template_revision':held.get('revision'),'source_span':None})\n  for entry in elements(held):\n   kind=None;scope_state=state_of(held.get('scope'),frame.get('scope'))\n   if scope_state!='supported_synthetic_condition':kind='scope_'+scope_state\n   elif held.get('revision') in [None,'','TBD']:kind='source_revision_unknown' if held.get('revision')=='TBD' else 'source_revision_missing'\n   elif text_digest(held.get('raw_utf8',''))!=held.get('sha256'):kind='source_digest_conflict'\n   elif entry['element'].get('kind') not in KINDS:kind='unsupported_element'\n   if kind:held_gaps.append({'element_id':entry['element']['id'],'kind':kind,'template_revision':held.get('revision'),'source_span':entry['span']})\n  gap=held_gaps[0] if len(held_gaps)==1 else held_gaps if held_gaps else None\n return {'comparison_result':result(state,'equal_for_this_fixture_input_only' if state=='supported_synthetic_condition' else None),'general_determinism_guaranteed':False,'all_templates_supported':False,'held_out_gap':gap,**common(context)}",
       "def compare_b01(packet,context):\n returns=[]\n for field,owner in [('template_meaning','CORE009/template-owner'),('ledger_pair_contract','040-compatible-contract-owner'),('OS_observation','OS-operation-owner')]:\n  value=packet.get(field);value='missing' if value is None else value\n  if value!='known':returns.append({'owner':owner,'reason':field+':'+value})\n return {'owner_return_candidates':returns,'requires_025_026_completion_to_author':False,**common(context)}",
       "def compare_source_attributes(actual,required):\n actual=actual or {};required=required or {};fields={}\n for key in ['identity','revision','scope','owner']:\n  state=state_of(actual.get(key),required.get(key),key=='revision');fields[key]=result(state,actual.get(key) if state=='supported_synthetic_condition' else None)\n state=aggregate([v['state'] for v in fields.values()])\n return {'attribute_results':fields,'attribute_comparison':result(state,'attributes_compared_only' if state=='supported_synthetic_condition' else None),'actual_qualification_established':False,'qualification_provider':result('unknown')}",
@@ -4374,9 +4635,10 @@
       "try/except ValueError/TypeErrorは合成parse限界をunparsed診断へ写像する。正式format/backend/非JSON一般域の採用ではない。",
       "null/empty/TBD診断、known/unobservedとmissing/unknown/conflict/staleはstate_of/aggregateで定義。戻し先literal/理由はcompare_b01のfield+state構文で全定義。",
       "isinstance(str/dict)でlogical carrierを識別、truthinessはNone/空list/空map/空文字/Falseをfalseとする。get(... ) or {} / []はローカル探索だけで原presenceを書換えない。splitlines/1始点enumerateは合成source行span、encode(UTF8)/hexdigestはdigest。辞書**展開はcommonのeffects/Qとroot出力を結ぶ。",
-      "check_template_domainはisinstance(dict/str)、enumerate/splitlines、json.loads、try/exceptを用い、原行順の違反mapを返す。kind/meaningの解釈や代替IDを生成せず、有限引数域と元raw/parsed値/spanを明示する。"
+      "check_template_domainはisinstance(dict/str)、enumerate/splitlines、json.loads、try/exceptを用い、原行順の違反mapを返す。kind/meaningの解釈や代替IDを生成せず、有限引数域と元raw/parsed値/spanを明示する。",
+      "F03原NA pointerのstr.replaceは~→~0の後/→~1のRFC6901 token escapeだけに使う。元id/raw/recordは置換しない。"
     ],
-    "ordering": "原template行順/原candidate順を保持。FIELDSは明示順。gapは原行順、候補atom側kind=duplicateのoccurrence_countは実候補数。source_duplicateは完全な型付き原行同値groupに属する原source occurrence数を各原行の通常診断後に追加する。group keyは既存canonical JSON比較による局所処理であり、公開型へ出さない。owner候補はtemplate→ledger→OS。N01複数gapも原行順。",
+    "ordering": "原template行順/原candidate順を保持。FIELDSは明示順。gapは原行順、候補atom側kind=duplicateのoccurrence_countは実候補数。source_duplicateは完全な型付き原行同値groupに属する原source occurrence数を各原行の通常診断後に追加する。group keyは既存canonical JSON比較による局所処理であり、公開型へ出さない。owner候補はtemplate→ledger→OS。N01複数gapも原行順。 F03の各normal outcomeを一度だけoccurrenceへ保持し、互換ID mapはproject_f03_dispositions(occurrences,gaps)で原順foldする。同ID最後行のsummaryと各原出現traceを分ける。source全体gapは末尾のまま架空行へ配らない。",
     "context_boundary": "common(context)のQは明示入力。原fixtureのexpectedからQ制御値だけをテスト引数へ展開し、whole期待やcase IDを判定に使わない。実providerは未binding。 unaffected_Qはopaque JsonValueであり、他scopeのstate/原値を推測でknownへ変換しない。",
     "limits": [
       "既存合成NDJSON/screen条件の有限比較であり、任意format・全template/全applicability言語・全複合欠陥の一般化は未成立。",
@@ -4400,7 +4662,250 @@
       "elements": "(template:{raw_utf8:string|null,...}|null)->list<{element:JSON object,span:{start_line:positive integer,end_line:positive integer}}>。既存合成NDJSONの中間値。任意format/正式codecは未成立。",
       "applicable": "(element:{requires_screen?:boolean,...},inputs:{screen?:boolean|string|null})->yes|no|unknown",
       "atom_matches": "(atom:JSON object,identity:opaque string)->boolean。content.source_element_idまたはsource_element_idsへ比較。",
-      "na_valid": "(na:{reason?,decider?,reassessment?,target_revision?}|null,revision:string|null)->boolean。非空とsame revisionは合成比較必要条件で実owner資格ではない。"
+      "na_valid": "(na:{reason?,decider?,reassessment?,target_revision?}|null,revision:string|null)->boolean。非空とsame revisionは合成比較必要条件で実owner資格ではない。",
+      "project_f03_dispositions": "(occurrences:list<F03ElementOccurrence>,gaps:F03Return.gaps)->F03Return.element_dispositions。packet/candidate/適用条件を取らず、固定normal outcomeから原順に一方向fold。"
+    },
+    "f03_codec_contract": {
+      "scope": "logical引数/返却と原値保存の宣言。製品parser/backend/wire/library/実source資格を採用しない。",
+      "input": [
+        "decode_f03_argumentsは既存型＋必要screen域を確認し、受理した原packet全値を保持したまま比較へ渡す。型違反を空packet/空listへdefaultしない。",
+        "raw-template domain readerは各物理lineを保持し、blankをskipしない。check_template_domain=falseではF03Returnを構築しない。"
+      ],
+      "output": [
+        "encode_f03_returnは6top fieldsとclosed traceの全required fieldsを出し、na_input_pointer absentだけを省略。明示null原値をdrop/empty化しない。",
+        "raw_lineからsourceを再serializeしない。canonical JSONは既存同値group/hash比較だけでraw bytesやJSON number方式/library/正式wireを新採用しない。"
+      ],
+      "boundary_rows": [
+        {
+          "input_material": "original_template JSON null",
+          "typed_material_input": "accepted（既存nullable union）",
+          "domain": "true/empty violations（原domain contract）",
+          "material": "template_source_missing、snapshot null、occurrences=[]",
+          "observed": [
+            "F03-TEMPLATE-NULL"
+          ],
+          "basis": [
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/types/F03Arguments/fields/packet/type/fields/original_template",
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18"
+          ]
+        },
+        {
+          "input_material": "source raw_utf8 string内のkind/meaning不足/null/空/TBD/未解釈member",
+          "typed_material_input": "外側raw_utf8はstringのまま受理。原NDJSON行はcast/strict candidate型へ変換しない。",
+          "domain": "JSON objectかつid非空stringなら、kind/meaningの不足では排除しない。",
+          "material": "unsupported_element/empty/placeholder等は原branchの局所比較へ。null追加memberもparsed_element全値に保持。",
+          "observed": [
+            "H041-F03-EMPTY",
+            "H041-F03-TBD",
+            "R1-F03-UNSUPPORTED-KIND",
+            "R1-NA-SAME-ID-MEANING-NULL-EXTRA-MEMBER"
+          ],
+          "basis": [
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/template_domain_function/postconditions",
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18",
+            "docs/helix-harness/L4-basic-design/template-obligation-extraction.json#/contracts/2/occurrence_return_contract/input_boundary"
+          ]
+        },
+        {
+          "input_material": "source row nonobject/id absent/null/数値/空/blank/invalid JSON",
+          "typed_material_input": "raw_utf8 string自体はF03 carrierに入る場合があるが、型受理だけでmaterial callしない。",
+          "domain": "false、原raw/parsed/spanをTemplateDomainReturnへ全保持。",
+          "material": "F03非呼出し。F03Return又は代替ID/parsed ordinalを生成しない。",
+          "observed": [
+            "旧template_domain_cases/0〜6,11",
+            "新leading blank＋escaped-id"
+          ],
+          "basis": [
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/template_domain_function",
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/22"
+          ]
+        },
+        {
+          "input_material": "template root nonobject又はraw_utf8 nonstring",
+          "typed_material_input": "F03 strict carrier外。TemplateDomainArguments.template:JSONなら別readerが原値を受ける。",
+          "domain": "原domain signatureのfalse/violations保持。",
+          "material": "domain reader期待をF03 material wholeへ読み替えない。",
+          "observed": [
+            "R1-DOMAIN-ROOT-NONOBJECT",
+            "R1-DOMAIN-RAW-NONSTRING"
+          ],
+          "basis": [
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/types/TemplateDomainArguments",
+            "docs/helix-harness/L8-unit-verification/template-obligation-extraction.json#/template_domain_cases/9",
+            "docs/helix-harness/L8-unit-verification/template-obligation-extraction.json#/template_domain_cases/10"
+          ]
+        },
+        {
+          "input_material": "source原candidateと比べたdeclared SHA不一致",
+          "typed_material_input": "sha256はstring型で原値受理。再hashで修復しない。",
+          "domain": "行形とは別軸。domain trueをdigest適合にしない。",
+          "material": "source_digest_conflictのglobal gap保持。架空occurrenceに配らない。",
+          "observed": [
+            "F03-SOURCE-DIGEST"
+          ],
+          "basis": [
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18",
+            "docs/helix-harness/L4-basic-design/template-obligation-extraction.json#/contracts/2/occurrence_return_contract/observation_binding"
+          ]
+        },
+        {
+          "input_material": "candidate/content意味・span・revision等の既知異値、candidate重複又は候補なし",
+          "typed_material_input": "現23＋基本15の全素材は元carrier型に入る。meaning等は原stringの既知異値、spanは原integer、配列空/重複はlist。cast/defaultなし。",
+          "domain": "原template行shapeだけの判定。candidate negativeをdomain falseへ逃がさない。",
+          "material": "content_conflict/candidate_metadata_conflict/duplicate/uncoveredを既存優先順へ。",
+          "observed": [
+            "F03-MEANING-COLLUSION",
+            "F03-SPAN-FOREIGN",
+            "H041-F03-DUPLICATE",
+            "H041-F03-MISSING"
+          ],
+          "basis": [
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/types/F03Arguments",
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18"
+          ]
+        },
+        {
+          "input_material": "candidate.content自体又はrequired member absent/null等、現strict carrier外の一般raw",
+          "typed_material_input": "本追随で型受理済みとは称さない。元rawとして保存することとtyped material call成立は別。既存負例全件には該当しない。",
+          "domain": "template domain trueでもcandidate型受理は保証されない。",
+          "material": "strict F03Argumentsとしてcastしない。一般raw reader/typed viewの追加採用はこの有限追随の対象にせず、その入力へのgap成功返却を主張しない。",
+          "observed": [],
+          "basis": [
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/types/F03Arguments/fields/packet/type/fields/candidate_atoms",
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/types/scope",
+            "docs/helix-harness/L4-basic-design/template-obligation-extraction.json#/contracts/2/occurrence_return_contract/input_boundary/snapshot"
+          ]
+        },
+        {
+          "input_material": "screen false/true/TBD",
+          "typed_material_input": "boolean false/true＋元stringを受理する候補。元false-onlyから必要trueだけ拡張。",
+          "domain": "NDJSON shapeと独立。",
+          "material": "requires_screen is Trueの行だけapplicableを読む。TBDはunknown、trueはyes、falseはno。その他stringを一括unknownに変えない。",
+          "observed": [
+            "H041-F03-NA-UNKNOWN",
+            "H041-F03-DUPLICATE-ACTIVE-SOURCE-NO-CANDIDATE",
+            "H041-F03-DUPLICATE-ACTIVE-SOURCE-AND-CANDIDATE"
+          ],
+          "basis": [
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/14",
+            "docs/helix-harness/L4-basic-design/template-obligation-extraction.json#/contracts/2/occurrence_return_contract/detail_followup/boolean_axis"
+          ]
+        },
+        {
+          "input_material": "reasoned_NA内target_revision既知異版/空string又はID key欠落",
+          "typed_material_input": "typed string recordの異値又はmap key欠落を原値で受理。実owner資格を発行しない。",
+          "domain": "行shapeとは独立。",
+          "material": "当該非適用行へ旧na_validの局所比較。key存在ならinvalid revisionでも原NApointer保持、key absentではpointer fieldなし。",
+          "observed": [
+            "F03-NA-FOREIGN-REVISION",
+            "H041-F03-NA-UNKNOWN"
+          ],
+          "basis": [
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/16",
+            "docs/helix-harness/L4-basic-design/template-obligation-extraction.json#/contracts/2/occurrence_return_contract/observation_binding"
+          ]
+        },
+        {
+          "input_material": "NA record null/required member absent、screen null、original_template key欠落/raw key欠落/null等の一般raw",
+          "typed_material_input": "既存typed F03 carrierが受理しない形は受理済みとしない。helperのnullable広め署名やdomain trueだけで引数型へcastしない。",
+          "domain": "TemplateDomainArgumentsがnull/欠落rawを許す場合も、material signatureへの適合は別条件。",
+          "material": "既存38 callerはこれらの型外形を必要としない。将来その範囲を正式採用するときはraw保持/typed viewと局所不足の対応を別途具体化する。NApointerのkey存在保持規則は、その場合も元recordの成功判定とは分ける。",
+          "observed": [
+            "domain-only R1-DOMAIN-MISSINGはF03 wholeではない"
+          ],
+          "basis": [
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/types/F03Arguments",
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/types/TemplateDomainArguments",
+            "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/helper_signatures",
+            "docs/helix-harness/L4-basic-design/template-obligation-extraction.json#/contracts/2/occurrence_return_contract/input_boundary/snapshot"
+          ]
+        }
+      ],
+      "normal_ordered_branch_table": [
+        {
+          "order": 1,
+          "predicate": "original.kind not in KINDS",
+          "normal_outcome": "gap",
+          "source": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18",
+          "normal_gap_kind": "unsupported_element"
+        },
+        {
+          "order": 2,
+          "predicate": "original.meaning in [null, empty string]",
+          "normal_outcome": "gap",
+          "source": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18",
+          "normal_gap_kind": "empty"
+        },
+        {
+          "order": 3,
+          "predicate": "original.meaning == literal TBD",
+          "normal_outcome": "gap",
+          "source": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18",
+          "normal_gap_kind": "placeholder"
+        },
+        {
+          "order": 4,
+          "predicate": "applicable(original,inputs)==unknown",
+          "normal_outcome": "gap",
+          "source": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18",
+          "normal_gap_kind": "applicability_unknown"
+        },
+        {
+          "order": 5,
+          "predicate": "applicable==no and na_valid(reasoned_NA[id],template.revision)",
+          "normal_outcome": "reasoned_not_applicable",
+          "source": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18"
+        },
+        {
+          "order": 6,
+          "predicate": "applicable==no and not na_valid(reasoned_NA[id],template.revision)",
+          "normal_outcome": "gap",
+          "source": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18",
+          "normal_gap_kind": "non_applicability_unqualified"
+        },
+        {
+          "order": 7,
+          "predicate": "matching_candidate_indices has length0",
+          "normal_outcome": "gap",
+          "source": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18",
+          "normal_gap_kind": "uncovered"
+        },
+        {
+          "order": 8,
+          "predicate": "matching_candidate_indices has length>1",
+          "normal_outcome": "gap",
+          "source": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18",
+          "normal_gap_kind": "duplicate"
+        },
+        {
+          "order": 9,
+          "predicate": "single candidate source_element_ids (default [identity]) length !=1",
+          "normal_outcome": "gap",
+          "source": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18",
+          "normal_gap_kind": "compound"
+        },
+        {
+          "order": 10,
+          "predicate": "single candidate.content.meaning != original.meaning",
+          "normal_outcome": "gap",
+          "source": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18",
+          "normal_gap_kind": "content_conflict"
+        },
+        {
+          "order": 11,
+          "predicate": "existing same(content metadata, expected source id/span/template revision/kind/applicability as needed) fails OR original candidate semantic_digest != value_digest(content)",
+          "normal_outcome": "gap",
+          "source": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18",
+          "normal_gap_kind": "candidate_metadata_conflict"
+        },
+        {
+          "order": 12,
+          "predicate": "otherwise single matching candidate",
+          "normal_outcome": "atom",
+          "source": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json#/finite_reference/definitions/18"
+        }
+      ],
+      "qualification": "型/NDJSON domain/内容比較と実owner資格は独立。pure比較は実資格発行又は実consumer接続の証明を返さない。"
     }
   },
   "consumer_connections": [
@@ -4419,6 +4924,10 @@
     {
       "source": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json#/contracts/4",
       "meaning": "B01は原meaning/ledger/OS primitive所見を引数に受け各owner候補へ返す。source不明をこの草稿が実providerとして生成しない。"
+    },
+    {
+      "source": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json#/contracts/2/occurrence_return_contract/consumer_boundary",
+      "meaning": "F03同返却のsnapshot/occurrences/gapsで元callを辿る。互換ID mapの件数から同義務/別義務を裁定しない。B01の独立template_meaning/ledger_pair_contract/OS_observation引数は保持し、traceだけで009適用/BRAIN受領/OS実登録を生成しない。"
     }
   ],
   "template_domain_function": {
@@ -4460,24 +4969,24 @@
     "change": "SOURCE-IDENTITY-ABSENTをMISSINGへ統合し、旧IDは引数/期待を重複保存しないalias metadataへ。91独立完全IO=33+30+16+12。原33/元期待値は不変。"
   },
   "current_pair_binding": {
-    "accepted_basic_pair_revision": "bf9643181987fc4be248a0dc86b658ff1e5e3344",
+    "accepted_basic_pair_revision": "7294f554002c5d1f65754b132c5023d45bd18d1a",
     "l4": {
       "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
-      "revision": "bf9643181987fc4be248a0dc86b658ff1e5e3344",
-      "sha256": "7fd802b52a8979561a4f86a70dec07b84862333e70245e04f7934929a42c6396",
-      "pointer": "/contracts/2"
+      "revision": "7294f554002c5d1f65754b132c5023d45bd18d1a",
+      "sha256": "32934075f0e426076df8d206582b36b06e403afd9997e5315b77e59649a5dedc",
+      "pointer": "/contracts/2/occurrence_return_contract"
     },
     "l9": {
       "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
-      "revision": "bf9643181987fc4be248a0dc86b658ff1e5e3344",
-      "sha256": "dca5aa7554e167013bc4b5b361e809665825b32ebdb37502a81cd40140fd7e28",
+      "revision": "7294f554002c5d1f65754b132c5023d45bd18d1a",
+      "sha256": "077250c9aa4e4caacd1ac07a6f677c26ed4d019d04a184a896fa6d7a78190b36",
       "pointer": "/verification_obligations/2"
     },
-    "reason": "統合済み基本対のF03 source_duplicate規則を現行の詳細契約・有限照合へ接続する。source_mainは元の起草基準として保持し、current pair pinとは役割を分ける。",
+    "reason": "統合済み基本対の原packet snapshot/全原出現traceと一方向互換projectionを詳細へ接続する。source_duplicateと旧5field値を保ち、source_main/承認objectは元起草・承認履歴としてcurrent pair pinと分ける。",
     "remaining": [
-      "R1の2つのreasoned_NA対照では、型付き原行全体が異なるE8の2行はsource_duplicateにならず、返却はE8のreasoned_not_applicable一件、gaps=[]、fixture_content_complete=trueとなる。このwholeからは2原行の個別出現やmeaning差を確認できない。これは現返却の観測可能性の限界であり、2行を同一義務または正常な完全追跡と分類する根拠ではない。同ID・異内容の意味分類は未導出である。",
+      "R1の異内容同ID/未解釈null追加memberの2対照は、element_occurrence_trace.input_snapshotと原行順occurrencesから各raw/parsed値/通常NA/候補index/原NApointerを辿れる。element_dispositionsは同ID最後行の互換summaryであり、gaps=[]/fixture_content_complete=trueでも同一義務又は別義務の分類を意味しない。その意味分類/実source資格/実consumer成立をtraceから生成しない。",
       "N01 held-out occurrenceの重複処理はこのF03差分の対象外であり、N01の入力・返却・期待を変更しない。",
-      "外部source qualificationとcodec bindingは未成立。3件の有限synthetic wholeから全F03の意味閉包や実資格を主張しない。"
+      "外部source qualificationとcodec bindingは未成立。F03の有限synthetic whole/traceから全format/全入力域の意味閉包や実資格を主張しない。"
     ]
   }
 }
