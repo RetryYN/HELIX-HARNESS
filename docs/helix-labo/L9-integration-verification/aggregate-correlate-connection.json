@@ -12125,41 +12125,6 @@
         "meaning": "FN01はscope配下4memberを含む13個のConnectionFieldPresenceを常に返す。scopeがabsent/null/object外なら子4memberはabsent、親のraw presenceは別memberで保持し、全13項目がvalueの場合だけall_required=trueとする。"
       }
     ],
-    "review_resolution": [
-      {
-        "finding": "LABO011C-R1-m1",
-        "rule": "元fields mapと受信fields mapのJSON deep-equal全体を比較する。null、key欠落、状態差を除外せず、異なる場合received_content_conflictを返す。",
-        "failure_behavior": "原元/受信値とFN01観測値を保持し、成功・補完・資格成立を生成しない。",
-        "difference_from_prior_pr_wording": "PRの『非null値だけ』という説明は狭すぎたため訂正する。metadata群の比較範囲とは分ける。"
-      },
-      {
-        "finding": "LABO011C-R1-m2",
-        "rule": "一般metadataのreceived_content_conflictは元値・受信値がともにnon-nullでJSON不一致の場合だけ。受信nullは先行missing、元absent/nullから受信non-nullへの変化は一般conflictへ追加しない。",
-        "remaining": "generic metadata診断の全presence組合せ閉包は未成立。原値とFN01比較は保持する。"
-      },
-      {
-        "finding": "LABO011C-R1-m3",
-        "rule": "received nullのidentity/revision/source/scopeをこの順で先に確認し、null所見が無い場合だけsource revision mismatch、次に両側non-nullの一般metadata差を確認する。",
-        "control_case": "LABO011-F01-RECEIVED-SCOPE-NULL-SOURCE-REVISION-MISMATCH",
-        "expected_priority": "received.scope=nullとsource.revision mismatchが併存するとscope/missingを返し、source.revision/foreign_revisionを併記しない。"
-      },
-      {
-        "finding": "LABO011C-R1-m4",
-        "rule": "旧42件、先行追加3件、本追加1件の有限46件。既存42件のraw/期待を保持し、全域網羅を主張しない。"
-      },
-      {
-        "finding": "LABO011C-R1-m5",
-        "rule": "FN01 scope presence は固定sourceと同じ値意味を保つ。記述は設計内容としてのみ示す。"
-      },
-      {
-        "finding": "LABO011C-R1-m6",
-        "rule": "non-null non-object scopeの親/子診断の意味は未閉包。FN01 13-field presence/all_required=falseとFN04の現行返却を維持し、成功資格を付与しない。"
-      },
-      {
-        "finding": "LABO011C-R1-m7",
-        "rule": "旧assetと現在PO原文は役割・範囲の差を明示して意味を再導出する。旧sourceを現行規則へ直接写さない。"
-      }
-    ],
     "legacy_rederivation": {
       "legacy_source": {
         "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
@@ -12182,7 +12147,41 @@
         "kept": "成功だけでなくfailure/rejected/cancelled/blocked/unknown/not_observedを区別して観測し、個別eventを同じepisodeへ追跡する。",
         "limit": "PO原文はreceived metadata conflictやtyped receipt比較の直接predicateを定義しない。今回の詳細は対象L3/L4の既存owner/FailureResult責務から具体化し、PO原意を変更しない。"
       }
-    }
+    },
+    "comparison_rules": [
+      {
+        "topic": "fields比較の範囲",
+        "rule": "元fields mapと受信fields mapのJSON deep-equal全体を比較する。null、key欠落、状態差を除外せず、異なる場合received_content_conflictを返す。",
+        "failure_behavior": "原元/受信値とFN01観測値を保持し、成功・補完・資格成立を生成しない。"
+      },
+      {
+        "topic": "metadata比較の範囲",
+        "rule": "一般metadataのreceived_content_conflictは元値・受信値がともにnon-nullでJSON不一致の場合だけ。受信nullは先行missing、元absent/nullから受信non-nullへの変化は一般conflictへ追加しない。",
+        "remaining": "generic metadata診断の全presence組合せ閉包は未成立。原値とFN01比較は保持する。"
+      },
+      {
+        "topic": "観測診断の優先順",
+        "rule": "received nullのidentity/revision/source/scopeをこの順で先に確認し、null所見が無い場合だけsource revision mismatch、次に両側non-nullの一般metadata差を確認する。",
+        "control_case": "LABO011-F01-RECEIVED-SCOPE-NULL-SOURCE-REVISION-MISMATCH",
+        "expected_priority": "received.scope=nullとsource.revision mismatchが併存するとscope/missingを返し、source.revision/foreign_revisionを併記しない。"
+      },
+      {
+        "topic": "有限素材の範囲",
+        "rule": "旧42件、先行追加3件、本追加1件の有限46件。既存42件のraw/期待を保持し、全域網羅を主張しない。"
+      },
+      {
+        "topic": "接続presenceの保持",
+        "rule": "FN01 scope presence は固定sourceと同じ値意味を保つ。記述は設計内容としてのみ示す。"
+      },
+      {
+        "topic": "非object scopeの未閉包",
+        "rule": "non-null non-object scopeの親/子診断の意味は未閉包。FN01 13-field presence/all_required=falseとFN04の現行返却を維持し、成功資格を付与しない。"
+      },
+      {
+        "topic": "出典と意味の対応",
+        "rule": "旧assetと現在PO原文は役割・範囲の差を明示して意味を再導出する。旧sourceを現行規則へ直接写さない。"
+      }
+    ]
   },
   "candidate_followup_scope": {
     "old_case_count": 42,
