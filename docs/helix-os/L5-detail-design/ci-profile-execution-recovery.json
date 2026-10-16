@@ -585,6 +585,7 @@
       "source_contract_canonical_sha256": "9b5bada137604d98b4dee20ccc45049f9c817e097620b90fa44ddc4f87f5d212",
       "functions": [
         "F02001",
+        "F02009",
         "F02002",
         "F02008"
       ]
