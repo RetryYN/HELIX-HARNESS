@@ -150,6 +150,46 @@
       "preserve": "Serial main merge in old orchestration flow; general workflow sequence, not a CONNECT connection kind.",
       "change": "一般loopの停止/上限/未完checkpoint、直列後の再判定、左右対の追跡を参照する。旧runtime/四種budget必須化/旧merge順を接続実装へ移植しない。",
       "reason": "CONNECT009の型付き戻り辺は9/29条件付きAの既採択意味から導出し、既存ownerのpolicyと操作ごとのunknown境界を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "read_lines": [
+        60,
+        66
+      ],
+      "quote": "single-writer leaseをexactly once割り当て、実行中も次のREADY taskを計画する。\n\n#### MIC-R-02 TLの統合権限\n\nTLはmain、統合順序、merge queue、共有正本、combined CI、DB convergence、final merge authorityを\n所有する。ペア開発セルはmainへ直接mergeしてはならない。TLはlane-ready receiptを受理した候補だけを\n直列mergeし、先行merge後に残存laneのbase drift、CI、review、DB receiptを再判定する。",
+      "file_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "selected_lines_sha256": "860d523fe1359753e1272b4f487937dabc794f45404373268e6780f07c4d4714",
+      "selected_lines_recipe": "UTF-8本文をsplitlinesし、read_linesの1始まり閉区間をLFで連結。終端改行なし。",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+        "disposition": "unresolved",
+        "source_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6"
+      },
+      "reuse": "reference_only",
+      "preserve": "独立した統合ownerの原記録と先行統合後の再照合、consumerへの原対象/状態保持を参照する。",
+      "change": "CONNECTの独立原sourceは採択済みL2/L3のsource/target identityから導出する。旧runtime、DB receipt、main merge権限、workflowを移植しない。",
+      "reason": "旧一般loop/統合制御の役割と、CONNECT固有のtyped feedback原比較元の役割を分離する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "read_lines": [
+        125,
+        136
+      ],
+      "quote": "```text\ncanonical工程表 / harness.db\n  → dependency frontier / READY queue\n  → PM assignment / writer lease\n  → paired development cell / candidate PR\n  → exact-HEAD independent review / lane-ready receipt\n  → TL merge queue / combined CI / DB convergence\n  → serial main merge\n  → 工程表とProjectsのread-after-write projection\n  → frontier再計算 / 次task dispatch\n```\n",
+      "file_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "selected_lines_sha256": "113491c88e26a895fc39c3816d24eda656356f06791fa5ffd1804a243e5c2e18",
+      "selected_lines_recipe": "UTF-8本文をsplitlinesし、read_linesの1始まり閉区間をLFで連結。終端改行なし。",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+        "disposition": "unresolved",
+        "source_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6"
+      },
+      "reuse": "reference_only",
+      "preserve": "独立した統合ownerの原記録と先行統合後の再照合、consumerへの原対象/状態保持を参照する。",
+      "change": "CONNECTの独立原sourceは採択済みL2/L3のsource/target identityから導出する。旧runtime、DB receipt、main merge権限、workflowを移植しない。",
+      "reason": "旧一般loop/統合制御の役割と、CONNECT固有のtyped feedback原比較元の役割を分離する。"
     }
   ],
   "legacy_search_record": {
@@ -655,23 +695,21 @@
         },
         "legacy": [
           {
-            "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
-            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
-            "lines": "50",
-            "sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+            "legacy_comparison_ref": "/legacy_comparison/0",
             "keep_ja": "一般loopのreturn/continue/stop、terminalと未完を保つ意味。CONNECT固有のsource口や送信authorityをこの行から生成しない。"
           },
           {
-            "asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
-            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
-            "lines": "60-66,125-136",
-            "sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+            "legacy_comparison_ref": "/legacy_comparison/5",
+            "keep_ja": "独立原根拠へ再照合するserial統合consumerと、別主体の責務を参照する。旧runtime/DB receipt/merge workflowを転写しない。"
+          },
+          {
+            "legacy_comparison_ref": "/legacy_comparison/6",
             "keep_ja": "独立原根拠へ再照合するserial統合consumerと、別主体の責務を参照する。旧runtime/DB receipt/merge workflowを転写しない。"
           }
         ],
         "legacy_search_ref": "/legacy_search_record",
         "legacy_limit_ja": "旧sourceにCONNECT固有のdirection/order/typed feedbackを一体化したrelation型を確認できないという既存bounded searchを保持する。原source不在を理由に要求を増やさず、採択済み現L2/L3の原target照合を具体化する。",
-        "failure_basis_ja": "原/提出が同じforeign source operation又はreturn ownerでも、両側同値だけでは原feedback requestの対象と一致しない。旧L9 F07原26packetはこの独立比較元を供給せず、下流PR3238で不足を確定訂正した結果、旧L9正例と矛盾した。基本pairへ戻して原比較元を明示・供給してから詳細へ再導出する。旧L9期待や下流合格を上流authorityにしない。",
+        "failure_basis_ja": "原/提出が同じforeign source operation又はreturn ownerでも、両側同値だけでは原feedback requestの対象と一致しない。feedback source/target identityの対応は、6業務役割の内容比較に加え、独立原sourceに保持した原request/return endpointとの照合により観測する。独立原sourceの不足はfeedback送信だけの保留条件であり、初回結果や他scopeの不成立へ拡張しない。",
         "consumer_ja": "F07 feedback_send_readerが6役割比較と独立原target対応を分け、不足はfeedback送信だけ保留してfeedback endpoint/connection contract/SECの既存owner候補へ返す。初回辺の適格性・原初回結果・未完・他scopeは別責務として保持する。",
         "preserve_ja": "L3 F07の全保留条件、6提出役割、未送信relation、原資料と実権限の分離、実作用0、既存F07 old26の判定分類を保持。",
         "change_ja": "原source2口のprovider/原request/対象結合/局所不足を基本契約へ明示し、L9の26原例にsourceを実供給する。独立不足/両側foreignの合成反例を追加。",

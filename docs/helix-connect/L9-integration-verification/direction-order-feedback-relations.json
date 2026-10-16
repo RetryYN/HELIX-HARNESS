@@ -45940,11 +45940,12 @@
           "case_count": 26,
           "canonical_sha256": "53f5013c45ea6a8503f670268ba1a86b1c08f59d5c36335f86c47e3f2f261773"
         },
-        "new_scenarios_count": 33,
+        "new_scenarios_count": 7,
         "packet_reference_rule": "各packet.raw_utf8をUTF-8 encodeしたbytesのSHA-256をpacket.sha256とし、packet.ref.revision=fixture-content-<sha256>へ束縛する。identity/scope/ownerは役割を保持し、同exact Refへ異なるrawを結合しない。old packet ref/raw/wholeはhistorical_sourceのexact revisionとpointerへ保存。",
-        "expected_retention_ja": "旧26のfield/所見/state/作用の期待を保持し、retained_original_inputsだけ新原sourceの全値をechoする。追加7期待は正式編集前の独立source比較から凍結し、下流L5評価器の出力から作らない。",
+        "expected_retention_ja": "旧26のfield/所見/state/作用の期待を保持し、retained_original_inputsは独立原sourceの全値を保持する。追加7例の期待は基本契約の独立source比較に対応し、下流評価器の出力を期待の根拠にしない。",
         "qualification_ja": "source2口のknown_fixture_only等は合成論理観測。実owner/issuer/custody/authorityは未成立。",
-        "basic_detail_order_ja": "この基本pairを独立review/統合した後にL5/L8を同じsource/wholeへ再導出する。基本pair未解消のまま下流旧whole訂正を確定しない。"
+        "basic_detail_order_ja": "詳細側のsource解決・比較・所見は、この基本契約の原source供給と各whole期待に対応する。同一入力に対し基本側と詳細側で逆の判定を定義しない。",
+        "total_scenarios_count": 33
       }
     },
     {
