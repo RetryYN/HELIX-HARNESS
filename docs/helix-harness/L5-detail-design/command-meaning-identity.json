@@ -975,7 +975,31 @@
   ],
   "os_projection": {
     "request": "OSの収集/lookup snapshotからCommandInput/ResolutionをpureAPIへ渡す。transportはimmutablebytes/closed JSON envelopeのbase64 bytes、number payloadはrawUTF8を保持、JSON.parse等で数値/duplicate情報を落としてから渡さない。base64はRFC4648標準alphabet/padding、strictdecode、再encoding一致を検査。OS DB root/credential/API tokenを渡さない。",
-    "response": "Comparison本文bytesとそのdigestを返しOSがK Refへ束縛。OS053 IdentityResultはcommand_id/scope_ref/bases/payload_digest/rule_ref/result_ref=K/classification/prior_operation_ref/prior_result_refを同値projectionする。Kの解決内容にNormalizedPayloadと比較全根拠を残す。ResultRef Kとprior_result M1は別役割。",
+    "response": "Comparison本文bytesとそのdigestを返しOSがK Refへ束縛。OS053 IdentityResultの全9項目はidentity_result_projectionに従い同値projectionし、payload_digestはcurrent_identity.normalization.semantic_digestの全文を保持する。Kの解決内容にNormalizedPayloadと比較全根拠を残す。ResultRef Kとprior_result M1は別役割。",
+    "identity_result_projection": {
+      "responsibility": "HARNESSは意味比較とComparisonBody本文bytes/digestを返す。OSはその既存出力addressでK Refへ束縛し、同本文からOS053 IdentityResultを投影する。HARNESSの7 pure関数にIO、保存、認可、Ref発行又は新しい公開関数を追加しない。",
+      "basis": [
+        "HARNESS-L3-052-F01：正規化した意味payload digestを含む4軸。",
+        "HARNESS-L3-052-F02/F03：同じ規則・対象revisionの意味identityと再送。",
+        "HELIXOS-L3-053-F05：HARNESSの意味identityを保存境界で参照しOS独自正規化をしない。"
+      ],
+      "inputs": "build_comparison_traceが固定した閉じたComparisonBodyの原bytesと、そのbytesへOSが付した完全K Ref。既存metadata encodingをstrict decodeし、元bytesのsha256とK.sha256を照合する。K自身/未来OS結果を本文へ後書きしない。",
+      "projectable": "current_identityが既存Identity型として供給される場合にだけ全9項目を形成する。ComparisonBodyとcomparison内のcurrent_identityは同じ意味比較出力の原値を保持し、OSが修復・再解釈しない。",
+      "fields": {
+        "command_id": "ComparisonBody.current_identity.command_id",
+        "scope_ref": "ComparisonBody.current_identity.scope_refの完全Ref",
+        "bases": "ComparisonBody.current_identity.basesの全要素・原順・全Ref/null",
+        "payload_digest": "ComparisonBody.current_identity.normalization.semantic_digestの全文Text。sha256: prefixを含めcopyし、raw_digest又はOSが再計算したpayload hashへ置換しない。",
+        "rule_ref": "ComparisonBody.current_identity.rule_refの完全Ref",
+        "result_ref": "当該ComparisonBody原bytesへ束縛されたOSの完全K Ref",
+        "classification": "ComparisonBody.comparison.classification",
+        "prior_operation_ref": "ComparisonBody.comparison.prior_operation_refの原Locator又はnull。null memberを省略せず、Locatorへsha256軸を追加しない。",
+        "prior_result_ref": "ComparisonBody.comparison.prior_result_refの完全Ref又はnull。今回Kと先行M1を交換しない。"
+      },
+      "unformed": "current_identity=null又は必要な原値/本文とKの対応を確定できない場合は、有効な全9項目の投影を生成しない。元unknown/conflict・不足と返却先を保持し、空Text/空Ref/今回Planの別値でIdentityResult又はvalid Resolutionを補完しない。classification=unknownでもcurrent_identityの全原軸が供給される場合は、その原軸とunknownを別々に保持できる。既存Result/Findingを新しいpublic分類へ置換しない。",
+      "digest_domains": "K.sha256はComparisonBody原bytesのdigest。IdentityResultのmetadata BLOBを後から符号化したbytesのdigestとは別の対象であり、両者の一致を投影条件にしない。payload_digestもそのどちらかの保存BLOB hashではなく上記semantic_digestである。",
+      "preservation": "型・意味・sourceの保持を具体化する対応表であり、実OS保存、実owner資格、CAS、receipt結合又は全052/053接続の成立証拠ではない。既存L8原例・全7関数・旧source比較を保持し、対L8の局所投影期待で確認する。"
+    },
     "two_stage": "意味比較→comparison本文固定/KをOSが束縛→OS実結果またはreceipt結合観測を別pure bindへ供給。K本文に自身K/未来OS結果を含めずhash循環/receipt後書きを作らない。",
     "race": "実保存前OStransactionのlookup/CAS/全base再照合は053のowner。pureAPIはread snapshot時点だけ。",
     "boundary": "7関数に外部call port無し。OS reader/writerやprocess transportの実接続はL9、局所L8はIO禁止call検出と固定snapshotだけ。"
