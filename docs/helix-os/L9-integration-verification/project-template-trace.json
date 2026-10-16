@@ -31674,9 +31674,9 @@
           "qualified OS recordのpayload.output_refがnull/欠落/wrong-kindで選択Refに一致しない場合、同kind/section/sourceを対応根拠にしない。既知候補集合で0一致ならmissingとし、malformed siblingは親traceへ保持して別selectorの既知対応を不成立にしない。"
         ],
         "execution_state": "未実行。case inputと期待は固定fixtureであり、実runtime・codec・qualificationや業務成立を示さない。",
-        "expected_recipe_semantics": "`$copy`のみのobjectは指定rootとRFC6901 pointerから原JSON値をdeep copyする固定参照記法。`case_input`はbase_inputへ当該caseのRFC6902 patchを適用した値。原値保持は指定されたsource-side値を欠落なく保持する期待であり、state/finding/qualification/associationの意味期待は明示値で固定する。qualified CORE rowの期待はcandidateではなく独立qualified source pointerを参照する。各caseの完全なSourceProjectionJoinResult wire期待は`expected_complete_return_recipe`に置く。wire Fieldはmissing memberを省略し、supplied値はraw JSON値そのものを使う。`expected_observation`はflat補助projectionで完全returnではない。`branch_contrasts`は列挙したselector/source境界の期待だけを固定し、完全return評価を主張しない。recipeは記法でありsource実行codeではない。 追加occurrence_and_relevance_contrastsのinput_patchはRFC6902 copy/fromも使用し、指定pathの原値全体をその時点でdeep copyしてから後続patchを適用する。これは入力fixtureの重複を減らす参照で、期待stateの計算や観測出力の転用ではない。 統合occurrence対照はraw source bytes/decoded_records/qualification hash/qualified_recordsのsource順がvalidatorのwhole出力と一致する構成にする。 direct_boundary_contrastsはpure join関数境界へ与える合成入力であり、validatorから到達可能なtraceとは主張せず、#3228のvalidator whole-trace照合対象に含めない。",
+        "expected_recipe_semantics": "`$copy`のみのobjectは指定rootとRFC6901 pointerから原JSON値をdeep copyする固定参照記法。`case_input`はbase_inputへ当該caseのRFC6902 patchを適用した値。原値保持は指定されたsource-side値を欠落なく保持する期待であり、state/finding/qualification/associationの意味期待は明示値で固定する。qualified CORE rowの期待はcandidateではなく独立qualified source pointerを参照する。各caseの完全なSourceProjectionJoinResult wire期待は`expected_complete_return_recipe`に置く。wire Fieldはmissing memberを省略し、supplied値はraw JSON値そのものを使う。`expected_observation`はflat補助projectionで完全returnではない。`branch_contrasts`は列挙したselector/source境界の期待だけを固定し、完全return評価を主張しない。recipeは記法でありsource実行codeではない。 追加occurrence_and_relevance_contrastsのinput_patchはRFC6902 copy/fromも使用し、指定pathの原値全体をその時点でdeep copyしてから後続patchを適用する。これは入力fixtureの重複を減らす参照で、期待stateの計算や観測出力の転用ではない。 統合occurrence対照はraw source bytes/decoded_records/qualification hash/qualified_recordsのsource順がvalidatorのwhole出力と一致する構成にする。 direct_boundary_contrastsはpure join関数境界へ与える合成入力であり、validatorから到達可能なtraceとは主張せず、L5/L8のvalidator whole-trace照合対象に含めない。",
         "expected_return_shape_ref": "HELIXOS-L4-002-F04#/qualified_source_projection_join/logical_return_shape",
-        "complete_return_composition": "各caseの`expected_complete_return_recipe`がSourceProjectionJoinResultの完全wire returnを固定する。`expected_observation`と`branch_contrasts`は補助的な部分期待であり完全returnではない。既存F04 outputsとsource_output_association/disposition/obligation/findingsは同じcallで保持し、本joinで置換しない。 occurrence_and_relevance_contrastsは既存18例とは別の追加対照で、各expected_complete_source_projection_joinに当該join全wire期待を固定する。 occurrence_and_relevance_contrastsはvalidator到達可能な統合入力の全join wire期待を保持する。 direct_boundary_contrastsは直接関数境界への故障注入用合成入力であり、通常統合oracle及び#3228 validator whole-trace照合から除外する。",
+        "complete_return_composition": "各caseの`expected_complete_return_recipe`がSourceProjectionJoinResultの完全wire returnを固定する。`expected_observation`と`branch_contrasts`は補助的な部分期待であり完全returnではない。既存F04 outputsとsource_output_association/disposition/obligation/findingsは同じcallで保持し、本joinで置換しない。 occurrence_and_relevance_contrastsは既存18例とは別の追加対照で、各expected_complete_source_projection_joinに当該join全wire期待を固定する。 occurrence_and_relevance_contrastsはvalidator到達可能な統合入力の全join wire期待を保持する。 direct_boundary_contrastsは直接関数境界への故障注入用合成入力であり、通常統合oracle及びL5/L8 validator whole-trace照合から除外する。",
         "legacy_basis": {
           "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
           "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
@@ -42828,11 +42828,11 @@
             "execution_boundary": "direct_function_boundary_synthetic_input",
             "validator_reachable": false,
             "normal_integration_oracle": false,
-            "downstream_3228_validator_whole_trace_comparison": "excluded",
-            "provenance_note": "candidateとvalidated inputのcandidate=nullを含み、他のtrace fieldが残る入力は、直接pure関数境界へ与える意図的な故障注入である。validate_record_trace_inputが生成できる入力とは主張せず、validator成功traceの根拠にも用いない。"
+            "provenance_note": "candidateとvalidated inputのcandidate=nullを含み、他のtrace fieldが残る入力は、直接pure関数境界へ与える意図的な故障注入である。validate_record_trace_inputが生成できる入力とは主張せず、validator成功traceの根拠にも用いない。",
+            "downstream_validator_whole_trace_comparison": "excluded"
           }
         ],
-        "direct_boundary_scope": "direct_boundary_contrastsの入力は、validator出力であることを仮定しないpure SourceProjectionJoin call input。 candidate=null等の故障注入によりvalidator whole traceの成立を主張しない。期待はjoin関数出力に限り、#3228の統合validator期待と比較しない。"
+        "direct_boundary_scope": "direct_boundary_contrastsの入力は、validator出力であることを仮定しないpure SourceProjectionJoin call input。 candidate=null等の故障注入によりvalidator whole traceの成立を主張しない。期待はjoin関数出力に限り、L5/L8の統合validator期待と比較しない。"
       }
     },
     {
