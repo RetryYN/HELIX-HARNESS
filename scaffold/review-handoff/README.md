@@ -71,8 +71,7 @@ branchを切り替えても違う通知箱へ書かない。`local/`はGit対象
 待受期限まで1秒未満なら残り時間だけsleepする。`--wait 0`は1回だけ確認し、sleepしない。
 従来の0.25秒間隔から確認頻度を抑える応急処置で、通知の検出には次の確認までの待ち時間とJSON読取・lock待ちが加わる。
 1秒以内の配送保証やCPU負荷の固定削減率を意味しない。稼働中の待受processは起動時のコードを保持するため、変更は次に同じ経路から起動した待受に適用される。
-ACK済み記録の保持・移動・削除、payload、TTL、lease、watcher、明示retryの規則は変更しない。
-記録のライフサイクルとhot stateの縮小は[#3079](https://github.com/RetryYN/HELIX-HARNESS/issues/3079)の残作業であり、この応急処置で同Issueを完了にしない。
+payload、TTL、lease、watcher、明示retryの規則は変更しない。記録のライフサイクルは次節「通知のライフサイクル」に置く。
 
 旧`archive/legacy-generation-2026-09-14/root/src/runtime/claude-memory-wake.ts:1561–1647`
 （`LEGACY-ASSET-0F66E2A823A36187D315`）の待受は、世代照合・claim・timeoutと既定2秒のpollを分離していた。
@@ -87,6 +86,24 @@ retry時は同じ宛先sessionを維持する。新claim nonceが発行され、
 通知messageは期限付きで、期限切れを復活させない。保存値の`expired`は宛先sessionのclaim時に付くため、宛先sessionが交代した通知は`queued`のまま残る。`status`は保存値を書き換えず、期限を過ぎた未ACKの`queued`／`claimed`を`expired`と表示する。監視ではこの表示を使い、古いsession宛ての通知を処理対象にしない。レーンleaseは同じ登録済みsessionのhook activityで更新し、別sessionへの付替えは`bind`／`enroll`を要する。古い待受は新しい待受世代で無効化する。
 保存はfile lockとatomic replaceで直列化する。無変更のpollでは書込み・fsyncしない。observedは各runtime最大64件・2時間で、次のhook時に整理する。
 通知本文は128KiB以内。hook継続文へ相手の自由文を注入しない。これは同一OS利用者内の協調機構で、悪意ある同一UIDに対する認証ではない。
+
+## 通知のライフサイクル
+
+`queued` → `claimed` → `acked`、または期限切れの`expired`で終わる。終わった通知は、次に通知箱へ書き込むとき（send・claim・ACK・hook activity）に次のとおり整理する。無変更のpollでは整理せず、書込みもしない。
+
+| 対象 | hot state（`local/gui/state.json`）での扱い | 監査記録 |
+|---|---|---|
+| `acked`、`expired`、`cancelled` | `messages`から本文ごと外し、`closed`へ識別子だけを残す | 外したときに1行追記する |
+| 期限を過ぎた未ACKの`queued`／`claimed` | 期限から24時間は`messages`に残し、`status`で`expired`と表示する。その後に外す | 外したときに1行追記する |
+| `closed`の記録 | 終わった時刻（ACK時刻、未ACKなら期限）から24時間で捨てる | 書き換えない |
+| 未期限の`queued`／`claimed` | そのまま残す | なし |
+
+- `closed`は、event ID、digest、内容の照合値（kind・送受信session・request・responseのcanonical SHA-256）、送受信のruntime／session、claim nonce、終わった時刻だけを持つ。保持期間中は、同じevent IDの再送、同じ内容の別ID再送、同じACKの再送を今までどおり見分ける（再送は重複配送せず、`acked`／`expired`を返す。同じevent IDの異なるpayloadは拒否する）。`inspect`は本文を外した通知を拒否する。
+- 監査記録は`local/gui/closed-YYYY-MM-DD.jsonl`（終わった時刻のUTC日付、mode 0600）へのappend-only記録で、書き換え・刈込みをしない。1行に、event ID、kind、status、digest、送受信のruntime／session、request ID、PR番号、base／content SHA、作成・期限・claim・ACK・終了の時刻を持つ。依頼・応答の本文（purpose、scope、findings等）は書かない。state置換の前に追記するため、置換前に落ちた場合は次の書込で同じ行が重ねて書かれることがある（失うことはない）。追記が行の途中で失敗した場合も、次の書込はfile末尾が改行で終わっていなければ先に改行を書いて断片を独立した1行として閉じ、その後に完全な行を書く。既存の行は書き換えない。断片はJSONとして読めない行として残るので、監査記録を読む側は読めない行を飛ばす。
+- 書込中に強制終了された一時file（`local/gui/state-*`）は、lock保持中の書込時に、10分以上前のものだけを消す。
+- 既存の大きな`state.json`は、変更後のコードで最初に書き込んだときに同じ規則で整理される。移行用の別手順は持たない。2026-10-16の実測（live stateの複製を対象。liveは変更していない）では、8,368件・31,090,203 byteが、`messages` 0件（未期限の`queued`／`claimed`は無かった）・`closed` 499件・244,475 byteになり、監査記録27 file・8,368行（5,596,353 byte）へ全件残った。1回の読取は約0.76秒から約3ミリ秒になった。
+
+旧`archive/legacy-generation-2026-09-14/root/src/runtime/claude-memory-wake.ts`は、1件ごとのone-shot記録の状態（38〜45行：`OFF`〜`DELIVERED`・`REVIEWED`・`TERMINAL`・`SUPERSEDED`）と、配送の識別子と時刻だけを`delivered.jsonl`へ追記する受領記録（1338〜1345行）を分けていた。終端のある状態遷移と、本文を持たない追記専用の受領記録を分ける点を保持し、旧memory/runtimeは再利用・実行しない。変更点は、終わった通知の本文をhot stateから外すことと、重複判定用の記録を24時間で捨てることである。変更理由は[#3079](https://github.com/RetryYN/HELIX-HARNESS/issues/3079)の実測（hot stateの単調増加と、それによる待受の負荷）であり、新しいauthorityや承認経路は追加しない。
 
 ## 一時契約と検証
 

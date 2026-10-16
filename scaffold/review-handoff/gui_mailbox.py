@@ -18,6 +18,10 @@ STORE = HERE / "local" / "gui"
 BINDING = HERE.parent / "bindings" / "SCF-B-0003.json"
 RUNTIMES = ("claude", "codex")
 RECEIVE_POLL_SECONDS = 1.0
+# 対応済み（acked）・期限切れの通知は本文を消し、同じevent ID・同じ内容の再送を見分ける小さな記録だけをこの間残す。
+CLOSED_RETENTION_SECONDS = 86400
+TERMINAL = ("acked", "expired", "cancelled")
+ORPHAN_TEMP_SECONDS = 600
 
 
 def binding_active(path=BINDING):
@@ -65,6 +69,9 @@ def state(store=STORE):
         yield data
         if p.encode(data) == before:
             return
+        # 監査記録を先に追記する（at-least-once）。state置換前に落ちても次の書込で同じ行をもう一度書くだけで、記録は失わない。
+        append_closed_log(store, compact(data, time.time()))
+        remove_orphan_temps(store, time.time())
         fd, name = tempfile.mkstemp(dir=store, prefix="state-")
         try:
             with os.fdopen(fd, "w") as stream:
@@ -74,6 +81,81 @@ def state(store=STORE):
             os.replace(name, path)
         finally:
             if os.path.exists(name): os.unlink(name)
+
+
+def content_key(payload):
+    return p.sha(p.encode({key: payload[key] for key in ("kind", "sender_session", "receiver_session", "request", "response")}))
+
+
+def close(data, event_id, status, now):
+    # 本文（request・response）を消し、重複判定・再ACK照合に要る識別子だけを残す。
+    message = data["messages"].pop(event_id)
+    payload = message["payload"]
+    # 保持期間は実際に終わった時刻（ACK時刻、未ACKなら有効期限）から数え、溜まった古い記録を残し続けない。
+    ended = (message.get("ack") or {}).get("at") if status == "acked" else message["expires"]
+    ended = min(now, ended if isinstance(ended, (int, float)) else now)
+    claim = message.get("claim") or {}
+    data.setdefault("closed", {})[event_id] = dict(
+        status=status, digest=message["digest"], content=content_key(payload),
+        sender_runtime=payload["sender_runtime"], sender_session=payload["sender_session"],
+        receiver_runtime=payload["receiver_runtime"], receiver_session=payload["receiver_session"],
+        nonce=claim.get("nonce"), closed=ended)
+    request = payload["request"]
+    # 監査記録は識別子と時刻だけ。依頼・応答の本文（purpose、scope、findings等）は書かない。
+    return dict(event_id=event_id, kind=payload["kind"], status=status, digest=message["digest"],
+                sender_runtime=payload["sender_runtime"], sender_session=payload["sender_session"],
+                receiver_runtime=payload["receiver_runtime"], receiver_session=payload["receiver_session"],
+                request_id=request.get("request_id"), pr=request.get("pr"), base_sha=request.get("base_sha"),
+                content_sha=request.get("content_sha"), created=message.get("created"), expires=message["expires"],
+                claimed=claim.get("at"), acked=(message.get("ack") or {}).get("at"), closed=ended)
+
+
+def compact(data, now):
+    """書込時だけ、終了した通知の本文を消し、期限を過ぎた終了記録を捨てる。読取だけのpollでは書き換えない。
+    返り値は監査記録へ追記する行。"""
+    records = []
+    for event_id, message in list(data["messages"].items()):
+        if message["status"] in TERMINAL:
+            records.append(close(data, event_id, message["status"], now))
+        elif message["expires"] <= now - CLOSED_RETENTION_SECONDS:
+            # 宛先sessionが交代してclaimされない通知も、表示上のexpiredを保持期間だけ見せた後に閉じる。
+            records.append(close(data, event_id, "expired", now))
+    closed = data.get("closed", {})
+    for event_id in [key for key, value in closed.items() if value["closed"] <= now - CLOSED_RETENTION_SECONDS]:
+        del closed[event_id]
+    return records
+
+
+def append_closed_log(store, records):
+    # 終わった通知の監査記録。UTC日付ごとのappend-only JSONLで、書き換え・刈込みをしない。
+    for record in records:
+        day = time.strftime("%Y-%m-%d", time.gmtime(record["closed"]))
+        path = store / ("closed-" + day + ".jsonl")
+        p.require(not path.is_symlink(), "監査記録symlink禁止")
+        line = (json.dumps(record, ensure_ascii=True, sort_keys=True) + "\n").encode()
+        fd = os.open(path, os.O_RDWR | os.O_APPEND | os.O_CREAT, 0o600)
+        try:
+            size = os.fstat(fd).st_size
+            # 前回の追記が途中で失敗して改行で終わっていなければ、その断片を独立した1行として閉じてから書く。
+            # 既存の行は書き換えず、断片はJSONとして読めない行として残る（読む側は読めない行を飛ばす）。
+            if size and os.pread(fd, 1, size - 1) != b"\n":
+                line = b"\n" + line
+            written = 0
+            while written < len(line):
+                written += os.write(fd, line[written:])
+            os.fsync(fd)
+        finally:
+            os.close(fd)
+
+
+def remove_orphan_temps(store, now):
+    # 書込中に強制終了された一時fileだけを、lock保持中に消す。lock外の書込は無いので他processの書込中fileではない。
+    for path in store.glob("state-*"):
+        try:
+            if path.is_file() and not path.is_symlink() and path.stat().st_mtime <= now - ORPHAN_TEMP_SECONDS:
+                path.unlink()
+        except OSError:
+            pass
 
 
 def bind(data, runtime, session, lane, ttl, now):
@@ -115,6 +197,10 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now):
                    receiver_session=target["session"], request=request, response=response)
     p.require(len(p.encode(payload)) <= 131072, "payload上限128KiB")
     digest = p.sha(p.encode(payload))
+    closed = data.get("closed", {})
+    if event_id in closed:
+        p.require(closed[event_id]["digest"] == digest, "同じevent IDの異なるpayload")
+        return dict(payload=dict(event_id=event_id), digest=digest, status=closed[event_id]["status"])
     previous = data["messages"].get(event_id)
     if previous:
         p.require(previous["digest"] == digest, "同じevent IDの異なるpayload")
@@ -128,6 +214,10 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now):
             if message["expires"] <= now and message["status"] != "acked":
                 message["status"] = "expired"
             return message
+    key = content_key(payload)
+    for closed_id, value in closed.items():
+        if value["content"] == key:
+            return dict(payload=dict(event_id=closed_id), digest=value["digest"], status=value["status"])
     message = dict(payload=payload, digest=digest, created=now, expires=now + ttl,
                    status="queued", claim=None, ack=None)
     data["messages"][event_id] = message
@@ -164,6 +254,12 @@ def effective_status(message, now):
 
 def ack(data, event_id, runtime, session, digest, nonce, now):
     lane(data, runtime, session, now)
+    done = data.get("closed", {}).get(event_id)
+    if done and event_id not in data["messages"]:
+        # 本文を消した後の同じACKの再送だけを冪等に受ける。
+        p.require(done["receiver_runtime"] == runtime and done["receiver_session"] == session, "ACK宛先不一致")
+        p.require(done["status"] == "acked" and done["digest"] == digest and done["nonce"] == nonce, "ACK対象状態不正")
+        return
     message = data["messages"][event_id]
     payload = message["payload"]
     p.require(payload["receiver_runtime"] == runtime and payload["receiver_session"] == session, "ACK宛先不一致")
@@ -354,6 +450,7 @@ def main():
             elif args.command == "ack": ack(data, args.id, args.runtime, args.session, args.digest, args.nonce, now)
             elif args.command == "inspect":
                 lane(data, args.runtime, args.session, now)
+                p.require(args.id in data["messages"], "対応済み・期限切れで本文を消した通知")
                 m = data["messages"][args.id]
                 p.require(m["payload"]["receiver_runtime"] == args.runtime and m["payload"]["receiver_session"] == args.session, "inspect宛先不一致")
                 p.require(m["digest"] == p.sha(p.encode(m["payload"])), "保存payload破損")
@@ -361,7 +458,7 @@ def main():
             elif args.command == "retry":
                 retry(data, args.runtime, args.session, args.id, now)
             elif args.command == "status":
-                print(json.dumps(dict(lanes=data["lanes"], enrollment=data.get("enrollment",{}), observed=data["observed"], messages={key:dict(status=effective_status(m, now), expires=m["expires"], kind=m["payload"]["kind"]) for key,m in data["messages"].items()}), ensure_ascii=False, indent=2))
+                print(json.dumps(dict(lanes=data["lanes"], enrollment=data.get("enrollment",{}), observed=data["observed"], messages={key:dict(status=effective_status(m, now), expires=m["expires"], kind=m["payload"]["kind"]) for key,m in data["messages"].items()}, closed={key:dict(status=value["status"], closed=value["closed"]) for key,value in data.get("closed",{}).items()}), ensure_ascii=False, indent=2))
     except (ValueError, TypeError, KeyError, OSError) as error:
         parser.exit(1, "scaffold GUI: 拒否: " + str(error) + "\n")
 

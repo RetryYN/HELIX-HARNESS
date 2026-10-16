@@ -472,6 +472,158 @@ class GuiChecks(unittest.TestCase):
         self.assertIsNone(g.claim(self.data,"claude","claude-gui",self.now))
 
 
+    def test_lifecycle_removes_handled_body_and_keeps_identity(self):
+        # 対応（ACK）した通知は書込時に本文を消し、同じevent ID・同じ内容の再送と同じACKの再送だけを見分ける。
+        with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
+            store = Path(directory)
+            with g.state(store) as data:
+                data.update(copy.deepcopy(self.data))
+                self.data = data
+                self.send()
+                self.send("event-queued")
+            with g.state(store) as data:
+                m = g.claim(data, "claude", "claude-gui", self.now)
+            with g.state(store) as data:
+                g.ack(data, "event-1", "claude", "claude-gui", m["digest"], m["claim"]["nonce"], self.now)
+            raw = (store / "state.json").read_text()
+            self.assertNotIn("合成入力の通知試験", raw)
+            # 外した通知は、本文なしの監査記録としてappend-onlyに残る。
+            logs = list(store.glob("closed-*.jsonl"))
+            self.assertEqual(len(logs), 1)
+            self.assertEqual(stat.S_IMODE(logs[0].stat().st_mode), 0o600)
+            lines = [json.loads(line) for line in logs[0].read_text().splitlines()]
+            self.assertEqual([(x["event_id"], x["status"], x["digest"]) for x in lines], [("event-1", "acked", m["digest"])])
+            self.assertEqual(lines[0]["acked"], self.now)
+            self.assertEqual(set(lines[0]), {"event_id", "kind", "status", "digest", "sender_runtime", "sender_session",
+                                             "receiver_runtime", "receiver_session", "request_id", "pr", "base_sha",
+                                             "content_sha", "created", "expires", "claimed", "acked", "closed"})
+            self.assertNotIn("合成入力の通知試験", json.dumps(lines, ensure_ascii=False))
+            with g.state(store) as data:
+                self.assertEqual(list(data["messages"]), [])
+                self.assertEqual(data["closed"]["event-1"]["status"], "acked")
+                self.assertNotIn("payload", data["closed"]["event-1"])
+                g.ack(data, "event-1", "claude", "claude-gui", m["digest"], m["claim"]["nonce"], self.now)
+                with self.assertRaises(ValueError):
+                    g.ack(data, "event-1", "claude", "claude-gui", m["digest"], "wrong", self.now)
+                with self.assertRaises(ValueError):
+                    g.ack(data, "event-1", "codex", "codex-gui", m["digest"], m["claim"]["nonce"], self.now)
+                self.data = data
+                self.assertEqual(self.send()["status"], "acked")
+                self.assertEqual(self.send("event-again")["status"], "acked")
+                self.assertEqual(list(data["messages"]), [])
+                other = dict(self.request, purpose="別の依頼")
+                with self.assertRaises(ValueError):
+                    g.send(data, "codex", "codex-gui", "event-1", "review_request", other, None, 60, self.now)
+                self.assertIsNone(g.claim(data, "claude", "claude-gui", self.now))
+            result = subprocess.run([sys.executable, "-B", str(g.HERE / "gui_mailbox.py"), "status"], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0)
+
+    def test_lifecycle_expiry_and_retention(self):
+        m = self.send()
+        m["expires"] = self.now - 1
+        g.compact(self.data, self.now)
+        # 未claimの期限切れは、保持期間のあいだstatusでexpiredと見せる。
+        self.assertIn("event-1", self.data["messages"])
+        self.assertEqual(g.effective_status(m, self.now), "expired")
+        g.compact(self.data, self.now + g.CLOSED_RETENTION_SECONDS - 2)
+        self.assertIn("event-1", self.data["messages"])
+        # 保持期間は期限（終わった時刻）から数えるので、期限から保持期間を過ぎた書込で本文も記録も消える。
+        g.compact(self.data, self.now + g.CLOSED_RETENTION_SECONDS)
+        self.assertNotIn("event-1", self.data["messages"])
+        self.assertEqual(self.data["closed"], {})
+        # claimで期限切れと判定した通知は次の書込で閉じる。
+        self.send("event-2")["expires"] = self.now - 1
+        self.assertIsNone(g.claim(self.data, "claude", "claude-gui", self.now))
+        g.compact(self.data, self.now)
+        self.assertEqual(self.data["closed"]["event-2"]["status"], "expired")
+        self.assertEqual(self.send("event-2")["status"], "expired")
+
+    def test_lifecycle_live_messages_are_kept(self):
+        self.send()
+        self.send("event-claimed-source")
+        m = g.claim(self.data, "claude", "claude-gui", self.now)
+        g.compact(self.data, self.now + 30)
+        self.assertEqual(self.data["messages"]["event-1"]["status"], "claimed")
+        self.assertEqual(self.data.get("closed", {}), {})
+        g.ack(self.data, "event-1", "claude", "claude-gui", m["digest"], m["claim"]["nonce"], self.now)
+
+    def test_orphan_temp_removed_only_when_stale_and_writing(self):
+        with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
+            store = Path(directory)
+            with g.state(store) as data: data.update(copy.deepcopy(self.data))
+            stale, fresh = store / "state-stale", store / "state-fresh"
+            stale.write_text("{}"); fresh.write_text("{}")
+            old = time.time() - g.ORPHAN_TEMP_SECONDS - 5
+            import os
+            os.utime(stale, (old, old))
+            with g.state(store) as data: self.assertEqual(data["version"], 1)
+            self.assertTrue(stale.exists())
+            with g.state(store) as data: g.observe(data, "claude", "claude-gui", time.time())
+            self.assertFalse(stale.exists())
+            self.assertTrue(fresh.exists())
+
+    def test_existing_handled_backlog_is_compacted_on_write(self):
+        # 既存のstate.jsonに溜まった対応済み通知も、次の書込で本文を消す。
+        with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
+            store = Path(directory)
+            with g.state(store) as data:
+                data.update(copy.deepcopy(self.data))
+                for n in range(50):
+                    message = g.send(data, "codex", "codex-gui", "old-%d" % n, "review_request",
+                                     dict(self.request, purpose="古い依頼%d" % n), None, 60, self.now)
+                    message["status"] = "acked"
+                    message["claim"] = dict(session="claude-gui", at=self.now, nonce="0" * 32)
+                    message["ack"] = dict(session="claude-gui", at=self.now - (g.CLOSED_RETENTION_SECONDS + 1 if n % 2 else 10))
+            with g.state(store) as data:
+                self.assertEqual(len(data["messages"]), 0)
+                # 保持期間より前にACKされた記録は、移行時の書込で捨てる。
+                self.assertEqual(len(data["closed"]), 25)
+            self.assertNotIn("古い依頼", (store / "state.json").read_text())
+            # 保持期間を過ぎて捨てた記録も、監査記録には50件すべて残る。
+            logged = [json.loads(line)["event_id"] for path in store.glob("closed-*.jsonl") for line in path.read_text().splitlines()]
+            self.assertEqual(sorted(logged), sorted("old-%d" % n for n in range(50)))
+
+    def test_partial_audit_append_is_isolated_on_retry(self):
+        # 監査行の追記が途中で失敗してもstateは置換されず、次の書込で断片を独立行にしてから全件を完全な行で書く。
+        with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
+            store = Path(directory)
+            with g.state(store) as data:
+                data.update(copy.deepcopy(self.data))
+                self.data = data
+                for event in ("event-a", "event-b"):
+                    m = g.send(data, "codex", "codex-gui", event, "review_request",
+                               dict(self.request, purpose=event), None, 60, self.now)
+                    m["status"] = "claimed"; m["claim"] = dict(session="claude-gui", at=self.now, nonce="1" * 32)
+            before = (store / "state.json").read_bytes()
+            real_write = g.os.write
+            calls = []
+            def failing_write(fd, data):
+                calls.append(1)
+                if len(calls) == 1:
+                    real_write(fd, data[:len(data) // 2])
+                    raise OSError("injected partial write")
+                return real_write(fd, data)
+            with patch.object(g.os, "write", side_effect=failing_write):
+                with self.assertRaises(OSError):
+                    with g.state(store) as data:
+                        for event in ("event-a", "event-b"):
+                            m = data["messages"][event]
+                            g.ack(data, event, "claude", "claude-gui", m["digest"], "1" * 32, self.now)
+            self.assertEqual((store / "state.json").read_bytes(), before)
+            with g.state(store) as data:
+                for event in ("event-a", "event-b"):
+                    m = data["messages"][event]
+                    g.ack(data, event, "claude", "claude-gui", m["digest"], "1" * 32, self.now)
+            with g.state(store) as data:
+                self.assertEqual(data["messages"], {})
+            lines = [line for path in sorted(store.glob("closed-*.jsonl")) for line in path.read_text().splitlines()]
+            valid = []
+            for line in lines:
+                try: valid.append(json.loads(line)["event_id"])
+                except ValueError: pass
+            self.assertEqual(sorted(valid), ["event-a", "event-b"])
+            self.assertEqual(len(lines) - len(valid), 1)
+
     def test_policy_claim_guard_sets_match(self):
         import importlib.util
         spec=importlib.util.spec_from_file_location("scfctl",g.HERE.parent / "tools/scfctl.py")
