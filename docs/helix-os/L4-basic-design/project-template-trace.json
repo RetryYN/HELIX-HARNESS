@@ -1480,7 +1480,7 @@
         ],
         "na_activation": "CORE原dispositionがnaの場合だけ4属性を必須とする。candidateが別判定をclaimしても、原naの4属性の独立比較を続ける。他の原判定ではこのbridgeのNA4属性比較はnot_compared。既存通常F04の理由/判定者/版/再評価条件の比較は維持する。原disposition自体が不明ならNA必須性を推定せず、原行を保存してその不明をCOREへ返す。",
         "na_presence_rules": [
-          "source computed_na_attributesはPresenceの原型を読む。Absent又はpresent nullは4属性の必要な親入力不足、malformed Presence又はpresent非objectはunknown。子属性を捏造せず診断pathはその親。objectなら各memberのAbsent/nullはそのmemberのmissing。reason/decider/target_revisionのpresent非stringは既存OS string表現と対応不能な局所unknownとして元ownerへ返し、CORE自体へ新しい型gateを加えない。",
+          "source computed_na_attributesはPresenceの原型を読む。Absent又はpresent nullは4属性の必要な親入力不足としてmissing、malformed Presence又はpresent非objectはunknown。子属性を捏造せず診断pathはその親。objectなら各memberのAbsent/nullはそのmemberのmissing。reason/decider/target_revisionのpresent非stringは既存OS string表現と対応不能な局所unknownとして元ownerへ返し、CORE自体へ新しい型gateを加えない。",
           "candidate側は独立にAbsent=missing、明示null=unknownを保持する。source/candidate両方に不成立があれば一方で他方を相殺せず、それぞれの実所在で返す。比較可能な両側の非null値がJSON型付きで一致すればcorresponding、不一致ならconflict。N/A4属性を一括成功/失敗へ丸めない。",
           "reentryだけをField<JsonValue>として再導出する。source原reentry_conditionのobject/array/string/number/booleanを無損失で保存・値比較できる。JSON構造の受理/一致だけで任意値のN/A属性としての意味妥当性、CORE原判断の有効性又は実source資格を認定しない。source ownerで判断未決なら元unresolved等を保持し、OSはN/Aへ裁定しない。",
           "object key順は無視し、array順/重複、booleanとnumber、Absentとpresent nullを区別する。number同士は数値として比較する。objectを文字列化、条件式をboolean化、容器revision/owner等から属性補完しない。原rowのsource_relation/qualification claim/decision_impactをこの値比較で書換えない。"
@@ -1501,7 +1501,15 @@
           "後続L5/L8でF04RecordInputcoreoutputsItemとF04ProjectionCandidateItemのreentryをField<JsonValue>へ揃え、両wire schema、OwnerRecord SourceSectionValue selector decode、共通関数17/18の入力/比較/返却とcore_disposition_recordsの出力を一体で更新する。通常string入力/原wholeとNA4欠落を保持する。",
           "原condition_ref/value列→OS original_condition、およびCORE重複obligation occurrence→独立OS原state対応は未閉包。本追補では対応recordを導入せず、zip/first/any/all/cast/state生成をしない。",
           "CORE非na原行の汎用grounds/decider等は本NA4member bridgeだけで閉じない。既存native F04と原sourceを保持し未供給意味を補完しない。",
-          "実provider/custody/実owner資格、codec/runtime/CI/L11や全入力域/全92親430対の完了は認定しない。"
+          "実provider/custody/実owner資格、codec/runtime/CI/L11や全入力域/全92親430対の完了は認定しない。",
+          "未対照（この9wholeの有限範囲）: source_acquisition/2の抑止分岐、すなわちraw pair conflict/unknown、candidate occurrence複数、OS association missing/ambiguous、CORE source不在/未資格/競合、row_pointer未解決。これらの新member比較の抑止と既存join/通常F04保持をこの9件で独立対照していない。",
+          "未対照（この9wholeの有限範囲）: source computed_dispositionのAbsent、不正Presence、present null/型外/未宣言lexeme、およびcandidate dispositionのAbsent/null/型外/未宣言語（例: OS側で小文字na）。既存のlexeme対応規則は維持するが、これらの状態/pathは9件では観測していない。",
+          "未対照（この9wholeの有限範囲）: computed_na_attributes親のAbsent、present null、malformed Presence、present非object。親pathへのmissing/unknownと架空の子属性を作らないことの専用対照は無い。",
+          "未対照（この9wholeの有限範囲）: source必要属性のpresent nullによるmissingと、candidate属性の明示nullによるunknown。原null保持と役割別状態をこの9件の専用対照で観測していない。",
+          "未対照（この9wholeの有限範囲）: N/A reason・decider・target_revisionの比較可能な値同士のconflict。属性conflictの観測はreentryだけであり、他3属性の単独欠落/型不足対照を値conflictの対照と同一視しない。",
+          "未対照（この9wholeの有限範囲）: member値比較での数値等値（例: 1と1.0）、object key順の差。同一の型付き等値規則を宣言しているが、この9件にそれらを変える専用対照は無い。",
+          "未対照（この9wholeの有限範囲）: 同一fieldでsource側とcandidate側が同時に不成立となる場合の、source所在の問題→candidate所在の問題→比較値の差という返却順。既存native findingと新member findingのprovenance併存を、両端同時不成立の順序対照とはしない。",
+          "上記は対照済み範囲と未対照分岐の開示であり、全case追加・全mutation kill・全入力域閉包の新gateではない。今回の9入力/whole/判定規則は維持する。"
         ],
         "legacy_rederivation": {
           "mode": "semantic_rederivation",
@@ -1565,6 +1573,40 @@
               "selected_lines_sha256": "de357c472a4a407b57a7989df436a260b3db4f2ce38d01a5746088a39c2a8886"
             }
           ]
+        },
+        "na_null_role_basis": {
+          "scope": "N/A属性のsource/candidateという役割差を既存missing/unknownへ写す当該bridgeの診断理由。na_presence_rulesの判定、元Presence/値、原CORE dispositionを変更しない。",
+          "source_role": "sourceはcandidateとの比較に必要な原期待値を供給する側である。CORE na_required_attributesがN/A時に必要とする原属性がAbsent/nullなら、その必要な原値を得られないためmissingとする。computed_na_attributes自体がpresent nullの場合も、必要な属性集合の親入力が得られないためmissingをその親pathへ返す。これは元nullをmember欠落へ書換える意味ではなく、present nullは原rowにそのまま残す。",
+          "candidate_role": "candidateの明示nullは供給の痕跡がある一方で対応させる値が未定義な観測でありunknownとする。candidate memberのAbsentは必要値未供給のmissingと区別する。nullを任意JSONとして一致/known/N/A完成へ通さず、source/candidate両方の問題と原所在を保存する。",
+          "source_meaning_basis": [
+            {
+              "source_basis_index": 0,
+              "pointer": "/requirements/11",
+              "supports": "原四判定と根拠・判定者・対象revision・再評価条件を出力参照へ結び、OSがN/A判断を新設しない。"
+            },
+            {
+              "source_basis_index": 1,
+              "pointer": "/cases/11",
+              "supports": "判断不能をN/Aとしない。必要属性の欠落を保持し、未完を適用/完了へ変換しない。"
+            },
+            {
+              "source_basis_index": 2,
+              "pointer": "/contracts/4/source_result_reference_projection/calculation_rules/na_required_attributes",
+              "supports": "source/computed側の必要属性Absent/nullをそれぞれのpointerへ報告する。COREのこの規則は変更せず、本bridgeのsource必要原値とcandidate観測という役割別診断へ具体化する。"
+            },
+            {
+              "source_basis_index": 4,
+              "pointer": "/state_semantics/classifications",
+              "supports": "missingは必要原入力未供給、unknownは元判断/観測未決という既存語彙を再利用する。"
+            },
+            {
+              "source_basis_index": 4,
+              "pointer": "/type_contract/types/Field",
+              "supports": "missing/supplied(T)/supplied(null)を区別し、元明示null/unknownを保持する。"
+            }
+          ],
+          "legacy_relation": "legacy_rederivation.source_documentsの旧L4 line 81はN/Aの必要根拠/authority/再評価triggerを保持する。旧のunknownをfalseへ丸めない点を維持し、旧runtime/predicateや全source資格gateは移さない。",
+          "boundary": "全field/全ownerでnullを一律missing又はunknownへ変更する規則ではない。上位L3/L10がこの非対称ラベル自体を規定しているとは主張せず、必要原値と供給済み未定義値を区別して不足を返す詳細化である。"
         }
       }
     },

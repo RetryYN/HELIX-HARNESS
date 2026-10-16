@@ -45205,7 +45205,7 @@
           "input": "fixture_material_recipesを配列順に展開する。各nameは展開済みの同名rootとなり、recipe内$copyは先行rootだけを参照する。次にbase_input_recipeをこれらのrootで展開してbase_inputを得る。各case input_patchをそのbaseへ宣言順に適用する。source wire/hash/root許容は固定入力で、patch後に補完/再hash/再資格化しない。全recipe/materialはこのL9内にありscratchを参照しない。",
           "roots": "各caseでlegacy_observation_recipe_templateとf04_observation_recipe_templateのそれぞれへobservation_recipe_patchを適用し、patch後case_inputだけをrootとして展開する。得たlegacy_observation/f04_observationとcase_inputをrootにexpected_complete_return_recipeを展開する。空pointerはroot全体。state/code/ownerはliteral期待で、copyは原値保存の表現だけ。",
           "whole": "expected_complete_return_recipeはRecordTraceAnalysis全root/sections/F04 observation/findings/input_issues/effects/authority_generatedを固定する。expected_new_findingsは補助でありwholeの代替でない。",
-          "frozen_basis": "正式編集前に独立固定した9wholeからrecipe化。コピー展開後のcanonical SHA-256（UTF-8、sort_keys、separators comma/colon、ensure_ascii=false）は各whole_expectation_sha256で固定する。state計算やcase-ID分岐からexpectedを生成しない。"
+          "canonical_whole_hash": "本書内のinput/observation/完全返却recipeをexpectation_ruleの順に展開し、各caseのwhole_expectation_sha256へ照合する。canonical JSONはUTF-8、object keyをsort_keysで整列、separatorsはcomma/colon、ensure_ascii=falseとする。state/code/ownerのliteral期待を評価器出力で補完しない。検証根拠はこの自己完結した9recipeとhashであり、本書外の作業物を必須参照としない。"
         },
         "preservation": "既存F04 normal/負例/endpoint47/selected join18+occurrence7のraw/期待は変更しない。今回9件は新規合成値で、変更したowner原本文には新revision/source hashを付ける。元qualificationは各ownerの合成fixture前提のみ。",
         "remaining": [
@@ -45213,11 +45213,19 @@
           "後続L5/L8でF04RecordInputcoreoutputsItemとF04ProjectionCandidateItemのreentryをField<JsonValue>へ揃え、両wire schema、OwnerRecord SourceSectionValue selector decode、共通関数17/18の入力/比較/返却とcore_disposition_recordsの出力を一体で更新する。通常string入力/原wholeとNA4欠落を保持する。",
           "原condition_ref/value列→OS original_condition、およびCORE重複obligation occurrence→独立OS原state対応は未閉包。本追補では対応recordを導入せず、zip/first/any/all/cast/state生成をしない。",
           "CORE非na原行の汎用grounds/decider等は本NA4member bridgeだけで閉じない。既存native F04と原sourceを保持し未供給意味を補完しない。",
-          "実provider/custody/実owner資格、codec/runtime/CI/L11や全入力域/全92親430対の完了は認定しない。"
+          "実provider/custody/実owner資格、codec/runtime/CI/L11や全入力域/全92親430対の完了は認定しない。",
+          "未対照（この9wholeの有限範囲）: source_acquisition/2の抑止分岐、すなわちraw pair conflict/unknown、candidate occurrence複数、OS association missing/ambiguous、CORE source不在/未資格/競合、row_pointer未解決。これらの新member比較の抑止と既存join/通常F04保持をこの9件で独立対照していない。",
+          "未対照（この9wholeの有限範囲）: source computed_dispositionのAbsent、不正Presence、present null/型外/未宣言lexeme、およびcandidate dispositionのAbsent/null/型外/未宣言語（例: OS側で小文字na）。既存のlexeme対応規則は維持するが、これらの状態/pathは9件では観測していない。",
+          "未対照（この9wholeの有限範囲）: computed_na_attributes親のAbsent、present null、malformed Presence、present非object。親pathへのmissing/unknownと架空の子属性を作らないことの専用対照は無い。",
+          "未対照（この9wholeの有限範囲）: source必要属性のpresent nullによるmissingと、candidate属性の明示nullによるunknown。原null保持と役割別状態をこの9件の専用対照で観測していない。",
+          "未対照（この9wholeの有限範囲）: N/A reason・decider・target_revisionの比較可能な値同士のconflict。属性conflictの観測はreentryだけであり、他3属性の単独欠落/型不足対照を値conflictの対照と同一視しない。",
+          "未対照（この9wholeの有限範囲）: member値比較での数値等値（例: 1と1.0）、object key順の差。同一の型付き等値規則を宣言しているが、この9件にそれらを変える専用対照は無い。",
+          "未対照（この9wholeの有限範囲）: 同一fieldでsource側とcandidate側が同時に不成立となる場合の、source所在の問題→candidate所在の問題→比較値の差という返却順。既存native findingと新member findingのprovenance併存を、両端同時不成立の順序対照とはしない。",
+          "上記は対照済み範囲と未対照分岐の開示であり、全case追加・全mutation kill・全入力域閉包の新gateではない。今回の9入力/whole/判定規則は維持する。"
         ],
         "case_count": 9,
         "execution_state": "not_executed",
-        "expected_semantic_limits": "10local先固定対照は別の局所期待であり、この9wholeや全pipelineの実行証拠と同一視しない。source attribute JSON一致を任意N/A妥当性/実資格/全入力域の証明としない。",
+        "expected_semantic_limits": "本書に記載した9caseの入力recipe、完全返却recipe、whole_expectation_sha256による有限の照合範囲である。未対照分岐はremainingに列挙する。source attributeのJSON一致を任意N/A属性の意味妥当性、実資格、全入力域の証明としない。",
         "fixture_material_recipes": [
           {
             "name": "core_envelopes",
@@ -49655,8 +49663,8 @@
         "paired_candidate_l4_binding": {
           "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
           "pointer": "/contracts/5/selected_source_member_correspondence",
-          "file_sha256": "0bc058491a5a64f27bab6f92982ea975420f940ea5b29344259d1d9a5f01dde1",
-          "object_canonical_sha256": "9986e53bfd2d1497a16a536b4fd154c7bcf5b09528201d8fd5498a58804e66e0",
+          "file_sha256": "d9395488dd4508ec52f26bd8849e1d7ce521f6a23f128135b24a3f55a327ec99",
+          "object_canonical_sha256": "d41aee623ce88927c03d7e4ffd55d98794be980e2dfb609ed1260112383897f7",
           "revision_binding": "同じpair候補の固定bytesへ結ぶ。source_basisのc242005は過去source/旧wholeの固定参照であり、この新追補のcommitだとはしない。公開時は同一HEADの本文hashを照合する。"
         },
         "fixture_source_delta_history": {
