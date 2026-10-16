@@ -237124,6 +237124,6 @@
     "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2993#issuecomment-6130558104",
     "F1": "43case/fieldのflat→typed写像をexact basic hashと理由付きで記録。L9原bytes無改変。独立再review未成立。",
     "F2": "Green未実行/期待不一致の谷原内容反例2件を追加。実TDD未実行。",
-    "R3": "PR3237 R3の訂正: 022 outer SourceCellを日本語化した後のsnapshot hashを全call-record形へ再束縛し、caller/native/decoded/source-file root別にL8説明pointerを修正した。015のproducer-native locator文字列とnative SourceCell raw値は変更していない。これらのproducer-native locatorはcaller-root RFC 6901 pointerとして解決したとは主張しない。case H003-L8-F04-VERIFIED-022-CARRIER-QUALIFICATION-MISSING のVerified理由は日本語へ訂正し、旧英文と差分根拠をscaffold/review-handoff/local/h003-binding-detail/r3/r3-final-correction-summary.jsonへ保存。"
+    "R3": "参照整合性と理由表記の訂正。022 outer SourceCellの説明変更後のsnapshot hashを全call-record形へ再束縛し、caller/native/decoded/source-file root別に説明pointerを修正した。015のproducer-native locator文字列とnative SourceCell raw値は保持し、caller-root RFC 6901で解決済みとは扱わない。Verified理由の日本語化前の固定値はcommit e8b005bf779a561b9f1461569821fc90dcc4821e、docs/helix-harness/L8-unit-verification/process-state-port.json（file SHA-256 a3538a663faa75f8e032463be0401efec89f088e762b6fe04b35b0c807c75cb0）の /unit_oracles/4/cases/32/expected_partial_values/own_basis_support/value/Verified/reason で辿れる。資格member欠落によるVerified basis missing、後続原proof保持、frontier停止の意味は維持する。"
   }
 }
