@@ -123,7 +123,8 @@
     "初回合成oracle起草済み。追加source資格/必要集合/内容組合せ・実未見比較と独立意味reviewは未完。",
     "009/BRAIN選択入力・040相当ledger/pair・対象scopeへのowner-qualified exact binding、正式schema/codec/extractorは未binding。",
     "L5/L8内部処理/edge cases、実oracle凍結→実装前Red→最小Green→Refactorと再検証、実L9/L10・PO L11は未成立。 source_duplicateと各原行の通常診断後に付加する順序のL5/L8追随は未成立。",
-    "全限定92親430対の設計閉包・実装準備は未成立。"
+    "全限定92親430対の設計閉包・実装準備は未成立。",
+    "F03 15 wholeは新trace全値まで論理固定し、blank入口対照はdomain false/F03非呼出しとして別保持。L5/L8新返却・boolean true/false域の型追随と実consumer/extractor資格bindingは未成立。全入力域/実runtimeの成立とは別である。"
   ],
   "document_id": "HARNESS-L9-041",
   "layer": "L9",
@@ -2124,7 +2125,7 @@
         "failure_observation": "具体的gap集合と戻し先を保持し、根拠付き非適用とunknownを区別する。",
         "execution_state": "not_executed"
       },
-      "connection_scope": "独立原source/候補材料→当該pure意味比較→部分判定とowner返却候補。実resolver/extractor/OSは未binding。",
+      "connection_scope": "同呼出しimmutable原packet/context → 原行通常判定/原出現trace/互換ID summaryとgap。実resolver/extractor/OS/正式source資格は別binding。",
       "fixture_state": "initial_concrete_cases_authored_qualification_combinations_review_pending",
       "concrete_cases": [
         {
@@ -2193,11 +2194,250 @@
             "unaffected_Q": {
               "state": "known",
               "value": "original_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    0
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E1",
+                    "candidate_input_index": 0
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 1,
+                  "source_span": {
+                    "start_line": 2,
+                    "end_line": 2
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/1"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/1"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    1
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E2",
+                    "candidate_input_index": 1
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 2,
+                  "source_span": {
+                    "start_line": 3,
+                    "end_line": 3
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/2"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/2"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    2
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E3",
+                    "candidate_input_index": 2
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 3,
+                  "source_span": {
+                    "start_line": 4,
+                    "end_line": 4
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/3"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/3"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    3
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E4",
+                    "candidate_input_index": 3
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 4,
+                  "source_span": {
+                    "start_line": 5,
+                    "end_line": 5
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/4"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/4"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    4
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E5",
+                    "candidate_input_index": 4
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 5,
+                  "source_span": {
+                    "start_line": 6,
+                    "end_line": 6
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/5"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/5"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    5
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E6",
+                    "candidate_input_index": 5
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 6,
+                  "source_span": {
+                    "start_line": 7,
+                    "end_line": 7
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/6"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/6"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    6
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E7",
+                    "candidate_input_index": 6
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 7,
+                  "source_span": {
+                    "start_line": 8,
+                    "end_line": 8
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/7"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/7"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                }
+              ]
             }
           },
           "basis": "原要素集合8件と7atom/理由付き非適用1件を個別比較する。実抽出完了ではない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "original_Q"
+            }
+          },
+          "expected_material_canonical_sha256": "27ca4483b779623867c89359a2d629529ab77b70e7a9f43e91465202d14fdaf4"
         },
         {
           "id": "H041-F03-EMPTY",
@@ -2275,11 +2515,251 @@
             "unaffected_Q": {
               "state": "known",
               "value": "original_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    0
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E1",
+                    "candidate_input_index": 0
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 1,
+                  "source_span": {
+                    "start_line": 2,
+                    "end_line": 2
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/1"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/1"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    1
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E2",
+                    "candidate_input_index": 1
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 2,
+                  "source_span": {
+                    "start_line": 3,
+                    "end_line": 3
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/2"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/2"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    2
+                  ],
+                  "normal_disposition": {
+                    "kind": "gap",
+                    "normal_gap_index": 0
+                  },
+                  "gap_indices": [
+                    0
+                  ]
+                },
+                {
+                  "source_row_index": 3,
+                  "source_span": {
+                    "start_line": 4,
+                    "end_line": 4
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/3"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/3"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    3
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E4",
+                    "candidate_input_index": 3
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 4,
+                  "source_span": {
+                    "start_line": 5,
+                    "end_line": 5
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/4"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/4"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    4
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E5",
+                    "candidate_input_index": 4
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 5,
+                  "source_span": {
+                    "start_line": 6,
+                    "end_line": 6
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/5"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/5"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    5
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E6",
+                    "candidate_input_index": 5
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 6,
+                  "source_span": {
+                    "start_line": 7,
+                    "end_line": 7
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/6"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/6"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    6
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E7",
+                    "candidate_input_index": 6
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 7,
+                  "source_span": {
+                    "start_line": 8,
+                    "end_line": 8
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/7"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/7"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                }
+              ]
             }
           },
           "basis": "個別span/kind/数を残す。原空所を候補の値で補完せず、gapを完了にしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "original_Q"
+            }
+          },
+          "expected_material_canonical_sha256": "97ac9195c7bad9fa694f88088861eed904344ec1d9edb8ca6c66f3497dba70b3"
         },
         {
           "id": "H041-F03-TBD",
@@ -2357,11 +2837,251 @@
             "unaffected_Q": {
               "state": "known",
               "value": "original_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    0
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E1",
+                    "candidate_input_index": 0
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 1,
+                  "source_span": {
+                    "start_line": 2,
+                    "end_line": 2
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/1"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/1"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    1
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E2",
+                    "candidate_input_index": 1
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 2,
+                  "source_span": {
+                    "start_line": 3,
+                    "end_line": 3
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/2"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/2"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    2
+                  ],
+                  "normal_disposition": {
+                    "kind": "gap",
+                    "normal_gap_index": 0
+                  },
+                  "gap_indices": [
+                    0
+                  ]
+                },
+                {
+                  "source_row_index": 3,
+                  "source_span": {
+                    "start_line": 4,
+                    "end_line": 4
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/3"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/3"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    3
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E4",
+                    "candidate_input_index": 3
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 4,
+                  "source_span": {
+                    "start_line": 5,
+                    "end_line": 5
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/4"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/4"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    4
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E5",
+                    "candidate_input_index": 4
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 5,
+                  "source_span": {
+                    "start_line": 6,
+                    "end_line": 6
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/5"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/5"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    5
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E6",
+                    "candidate_input_index": 5
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 6,
+                  "source_span": {
+                    "start_line": 7,
+                    "end_line": 7
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/6"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/6"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    6
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E7",
+                    "candidate_input_index": 6
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 7,
+                  "source_span": {
+                    "start_line": 8,
+                    "end_line": 8
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/7"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/7"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                }
+              ]
             }
           },
           "basis": "個別span/kind/数を残す。原空所を候補の値で補完せず、gapを完了にしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "original_Q"
+            }
+          },
+          "expected_material_canonical_sha256": "fc29da5951a17c092e9c5577d6b54fa7e93b5d8040dba2056c87997748e3d732"
         },
         {
           "id": "H041-F03-DUPLICATE",
@@ -2439,11 +3159,252 @@
             "unaffected_Q": {
               "state": "known",
               "value": "original_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    0
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E1",
+                    "candidate_input_index": 0
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 1,
+                  "source_span": {
+                    "start_line": 2,
+                    "end_line": 2
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/1"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/1"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    1
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E2",
+                    "candidate_input_index": 1
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 2,
+                  "source_span": {
+                    "start_line": 3,
+                    "end_line": 3
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/2"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/2"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    2,
+                    7
+                  ],
+                  "normal_disposition": {
+                    "kind": "gap",
+                    "normal_gap_index": 0
+                  },
+                  "gap_indices": [
+                    0
+                  ]
+                },
+                {
+                  "source_row_index": 3,
+                  "source_span": {
+                    "start_line": 4,
+                    "end_line": 4
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/3"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/3"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    3
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E4",
+                    "candidate_input_index": 3
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 4,
+                  "source_span": {
+                    "start_line": 5,
+                    "end_line": 5
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/4"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/4"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    4
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E5",
+                    "candidate_input_index": 4
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 5,
+                  "source_span": {
+                    "start_line": 6,
+                    "end_line": 6
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/5"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/5"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    5
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E6",
+                    "candidate_input_index": 5
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 6,
+                  "source_span": {
+                    "start_line": 7,
+                    "end_line": 7
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/6"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/6"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    6
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E7",
+                    "candidate_input_index": 6
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 7,
+                  "source_span": {
+                    "start_line": 8,
+                    "end_line": 8
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/7"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/7"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                }
+              ]
             }
           },
           "basis": "個別span/kind/数を残す。原空所を候補の値で補完せず、gapを完了にしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "original_Q"
+            }
+          },
+          "expected_material_canonical_sha256": "d5048ebb2bd98c9f58c3cf4727cd805a882abef303db9578e476c868411af2e1"
         },
         {
           "id": "H041-F03-MISSING",
@@ -2521,11 +3482,249 @@
             "unaffected_Q": {
               "state": "known",
               "value": "original_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    0
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E1",
+                    "candidate_input_index": 0
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 1,
+                  "source_span": {
+                    "start_line": 2,
+                    "end_line": 2
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/1"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/1"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    1
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E2",
+                    "candidate_input_index": 1
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 2,
+                  "source_span": {
+                    "start_line": 3,
+                    "end_line": 3
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/2"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/2"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "gap",
+                    "normal_gap_index": 0
+                  },
+                  "gap_indices": [
+                    0
+                  ]
+                },
+                {
+                  "source_row_index": 3,
+                  "source_span": {
+                    "start_line": 4,
+                    "end_line": 4
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/3"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/3"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    2
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E4",
+                    "candidate_input_index": 2
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 4,
+                  "source_span": {
+                    "start_line": 5,
+                    "end_line": 5
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/4"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/4"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    3
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E5",
+                    "candidate_input_index": 3
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 5,
+                  "source_span": {
+                    "start_line": 6,
+                    "end_line": 6
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/5"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/5"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    4
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E6",
+                    "candidate_input_index": 4
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 6,
+                  "source_span": {
+                    "start_line": 7,
+                    "end_line": 7
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/6"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/6"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    5
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E7",
+                    "candidate_input_index": 5
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 7,
+                  "source_span": {
+                    "start_line": 8,
+                    "end_line": 8
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/7"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/7"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                }
+              ]
             }
           },
           "basis": "個別span/kind/数を残す。原空所を候補の値で補完せず、gapを完了にしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "original_Q"
+            }
+          },
+          "expected_material_canonical_sha256": "dbcc356d40f86b0c7d4950aa8c86951ff807a388971ec439101d1d6d28abffc3"
         },
         {
           "id": "H041-F03-NA-UNKNOWN",
@@ -2603,11 +3802,252 @@
             "unaffected_Q": {
               "state": "known",
               "value": "original_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    0
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E1",
+                    "candidate_input_index": 0
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 1,
+                  "source_span": {
+                    "start_line": 2,
+                    "end_line": 2
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/1"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/1"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    1
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E2",
+                    "candidate_input_index": 1
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 2,
+                  "source_span": {
+                    "start_line": 3,
+                    "end_line": 3
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/2"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/2"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    2
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E3",
+                    "candidate_input_index": 2
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 3,
+                  "source_span": {
+                    "start_line": 4,
+                    "end_line": 4
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/3"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/3"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    3
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E4",
+                    "candidate_input_index": 3
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 4,
+                  "source_span": {
+                    "start_line": 5,
+                    "end_line": 5
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/4"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/4"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    4
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E5",
+                    "candidate_input_index": 4
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 5,
+                  "source_span": {
+                    "start_line": 6,
+                    "end_line": 6
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/5"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/5"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    5
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E6",
+                    "candidate_input_index": 5
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 6,
+                  "source_span": {
+                    "start_line": 7,
+                    "end_line": 7
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/6"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/6"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    6
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E7",
+                    "candidate_input_index": 6
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 7,
+                  "source_span": {
+                    "start_line": 8,
+                    "end_line": 8
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/7"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/7"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "gap",
+                    "normal_gap_index": 0
+                  },
+                  "gap_indices": [
+                    0
+                  ],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                }
+              ]
             }
           },
           "basis": "個別span/kind/数を残す。原空所を候補の値で補完せず、gapを完了にしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "original_Q"
+            }
+          },
+          "expected_material_canonical_sha256": "550ea00aec556582011ae66670edafff7c5d51ca7ec848e19a43d355b445a1f4"
         },
         {
           "id": "H041-F03-DUPLICATE-NA-SOURCE-OCCURRENCES",
@@ -2696,6 +4136,268 @@
             "unaffected_Q": {
               "state": "known",
               "value": "original_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    0
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E1",
+                    "candidate_input_index": 0
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 1,
+                  "source_span": {
+                    "start_line": 2,
+                    "end_line": 2
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/1"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/1"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    1
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E2",
+                    "candidate_input_index": 1
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 2,
+                  "source_span": {
+                    "start_line": 3,
+                    "end_line": 3
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/2"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/2"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    2
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E3",
+                    "candidate_input_index": 2
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 3,
+                  "source_span": {
+                    "start_line": 4,
+                    "end_line": 4
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/3"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/3"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    3
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E4",
+                    "candidate_input_index": 3
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 4,
+                  "source_span": {
+                    "start_line": 5,
+                    "end_line": 5
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/4"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/4"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    4
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E5",
+                    "candidate_input_index": 4
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 5,
+                  "source_span": {
+                    "start_line": 6,
+                    "end_line": 6
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/5"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/5"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    5
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E6",
+                    "candidate_input_index": 5
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 6,
+                  "source_span": {
+                    "start_line": 7,
+                    "end_line": 7
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/6"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/6"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    6
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E7",
+                    "candidate_input_index": 6
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 7,
+                  "source_span": {
+                    "start_line": 8,
+                    "end_line": 8
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/7"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/7"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [
+                    0
+                  ],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                },
+                {
+                  "source_row_index": 8,
+                  "source_span": {
+                    "start_line": 9,
+                    "end_line": 9
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/8"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/8"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [
+                    1
+                  ],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                }
+              ]
             }
           },
           "basis": "独立packetの原template 9行を全て読取り、同一内容のE8が原span 8/9に各一件存在し、各原行はsource_duplicateで識別する。 L3/L4の同一義務重複をspan/kind/対象/countで残す期待を適用し、既存E8の理由付き非適用identity summary、E1–E7、unaffected_Q、effectsは保持する。 異なる内容の同一IDについては本caseで同一義務/正常と認定せず、意味分類は未確定範囲に残す。 有限合成例であり実抽出・資格・登録・OS処理の実行証拠ではない。 この期待はL4/L9 basic pairの有限記述であり、L5/L8でsource_duplicateを各原行の通常診断後に返す追随は未成立である。 source_duplicateは原source occurrenceの診断、duplicateは候補atom重複の診断として区別する。",
@@ -2703,7 +4405,8 @@
             "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
             "pointer": "/contracts/2",
             "candidate_file_sha256": "7fd802b52a8979561a4f86a70dec07b84862333e70245e04f7934929a42c6396",
-            "meaning": "L9の新合成caseが照合対象とする同一change-set上のL4 candidate file bytes。base commit 3022b439の旧L4 bytesとは区別する。"
+            "meaning": "このcase導入時の旧L4 bytesを固定した歴史参照。現原出現trace規範は同verification obligationのcurrent_occurrence_bindingへ結ぶ。",
+            "historical_revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8"
           },
           "expectation_correction_history": {
             "source_revision": "6d9bbfcb643e03e8b32a4f67f0fc1d23b9f36f82",
@@ -2720,7 +4423,14 @@
               "source_duplicate"
             ],
             "reason": "同じ原spanで原template occurrenceの重複と候補atom重複が同じgap kindで表現されると、whole resultから原因を区別できない。原source occurrenceの原因をsource_duplicateとし、候補側duplicateを維持することで両所見を識別できる。"
-          }
+          },
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "original_Q"
+            }
+          },
+          "expected_material_canonical_sha256": "bee20f9d8ded03b1bc0817aab71b4f4f20b97efe63f2e8924ce2b4ef4a6fc883"
         },
         {
           "id": "H041-F03-DUPLICATE-ACTIVE-SOURCE-NO-CANDIDATE",
@@ -2827,6 +4537,268 @@
             "unaffected_Q": {
               "state": "known",
               "value": "original_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    0
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E1",
+                    "candidate_input_index": 0
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 1,
+                  "source_span": {
+                    "start_line": 2,
+                    "end_line": 2
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/1"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/1"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    1
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E2",
+                    "candidate_input_index": 1
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 2,
+                  "source_span": {
+                    "start_line": 3,
+                    "end_line": 3
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/2"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/2"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    2
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E3",
+                    "candidate_input_index": 2
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 3,
+                  "source_span": {
+                    "start_line": 4,
+                    "end_line": 4
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/3"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/3"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    3
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E4",
+                    "candidate_input_index": 3
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 4,
+                  "source_span": {
+                    "start_line": 5,
+                    "end_line": 5
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/4"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/4"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    4
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E5",
+                    "candidate_input_index": 4
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 5,
+                  "source_span": {
+                    "start_line": 6,
+                    "end_line": 6
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/5"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/5"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    5
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E6",
+                    "candidate_input_index": 5
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 6,
+                  "source_span": {
+                    "start_line": 7,
+                    "end_line": 7
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/6"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/6"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    6
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E7",
+                    "candidate_input_index": 6
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 7,
+                  "source_span": {
+                    "start_line": 8,
+                    "end_line": 8
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/7"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/7"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "gap",
+                    "normal_gap_index": 0
+                  },
+                  "gap_indices": [
+                    0,
+                    1
+                  ]
+                },
+                {
+                  "source_row_index": 8,
+                  "source_span": {
+                    "start_line": 9,
+                    "end_line": 9
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/8"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/8"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "gap",
+                    "normal_gap_index": 2
+                  },
+                  "gap_indices": [
+                    2,
+                    3
+                  ]
+                }
+              ]
             }
           },
           "basis": "独立packetの同一E8原行がspan 8/9に各一件ある。screen=trueで候補E8 atomがないため、各原行について既存のuncovered診断を保持し、別種のsource_duplicate gapを追加する。source行ごとに通常診断、その後に原source重複診断の順とする。型付き原行の完全同値の反復のみをsource_duplicateと認定し、候補側duplicateはkind=duplicateのまま保持する。期待は実評価器から生成せず、L3/L4と既存whole返却から独立に固定した有限期待である。",
@@ -2834,8 +4806,16 @@
             "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
             "pointer": "/contracts/2",
             "candidate_file_sha256": "7fd802b52a8979561a4f86a70dec07b84862333e70245e04f7934929a42c6396",
-            "meaning": "同じchange setのcandidate L4 bytes。"
-          }
+            "meaning": "このcase導入時の旧L4 bytesを固定した歴史参照。現原出現trace規範は同verification obligationのcurrent_occurrence_bindingへ結ぶ。",
+            "historical_revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8"
+          },
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "original_Q"
+            }
+          },
+          "expected_material_canonical_sha256": "4825ce66794f3f97e9e7906871c14e37c6835823dc73178582f6809880b97cad"
         },
         {
           "id": "H041-F03-DUPLICATE-ACTIVE-SOURCE-AND-CANDIDATE",
@@ -2942,6 +4922,274 @@
             "unaffected_Q": {
               "state": "known",
               "value": "original_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    0
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E1",
+                    "candidate_input_index": 0
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 1,
+                  "source_span": {
+                    "start_line": 2,
+                    "end_line": 2
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/1"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/1"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    1
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E2",
+                    "candidate_input_index": 1
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 2,
+                  "source_span": {
+                    "start_line": 3,
+                    "end_line": 3
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/2"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/2"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    2
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E3",
+                    "candidate_input_index": 2
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 3,
+                  "source_span": {
+                    "start_line": 4,
+                    "end_line": 4
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/3"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/3"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    3
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E4",
+                    "candidate_input_index": 3
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 4,
+                  "source_span": {
+                    "start_line": 5,
+                    "end_line": 5
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/4"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/4"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    4
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E5",
+                    "candidate_input_index": 4
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 5,
+                  "source_span": {
+                    "start_line": 6,
+                    "end_line": 6
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/5"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/5"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    5
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E6",
+                    "candidate_input_index": 5
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 6,
+                  "source_span": {
+                    "start_line": 7,
+                    "end_line": 7
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/6"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/6"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    6
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-E7",
+                    "candidate_input_index": 6
+                  },
+                  "gap_indices": []
+                },
+                {
+                  "source_row_index": 7,
+                  "source_span": {
+                    "start_line": 8,
+                    "end_line": 8
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/7"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/7"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    7,
+                    8
+                  ],
+                  "normal_disposition": {
+                    "kind": "gap",
+                    "normal_gap_index": 0
+                  },
+                  "gap_indices": [
+                    0,
+                    1
+                  ]
+                },
+                {
+                  "source_row_index": 8,
+                  "source_span": {
+                    "start_line": 9,
+                    "end_line": 9
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/8"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/8"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    7,
+                    8
+                  ],
+                  "normal_disposition": {
+                    "kind": "gap",
+                    "normal_gap_index": 2
+                  },
+                  "gap_indices": [
+                    2,
+                    3
+                  ]
+                }
+              ]
             }
           },
           "basis": "独立packetの同一E8原行がspan 8/9に各一件あり、同じE8に対応する候補atomも2件ある。各原行に対する既存の候補側重複診断(kind=duplicate)を保持し、原source行の重複を別のkind=source_duplicate gapとして追加する。各span内は候補側診断、その後にsource側診断の順とし、2種類の原因を区別する。完全同値の型付き原行の反復のみを同一義務として扱う。有限合成入力であり、実抽出・資格・登録・OS処理の実行証拠ではない。",
@@ -2949,12 +5197,804 @@
             "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
             "pointer": "/contracts/2",
             "candidate_file_sha256": "7fd802b52a8979561a4f86a70dec07b84862333e70245e04f7934929a42c6396",
-            "meaning": "同じchange setのcandidate L4 bytes。"
-          }
+            "meaning": "このcase導入時の旧L4 bytesを固定した歴史参照。現原出現trace規範は同verification obligationのcurrent_occurrence_bindingへ結ぶ。",
+            "historical_revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8"
+          },
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "original_Q"
+            }
+          },
+          "expected_material_canonical_sha256": "b29758322d214c93cf141efa046caf75b43199284b4a520057089b3e298bef1f"
+        },
+        {
+          "id": "H041-F03-OCCURRENCE-DIFFERENT-MEANING-BOTH-NA",
+          "l4_ref": "HARNESS-L4-041-F03",
+          "requirement_ref": "HARNESS-L3-041-F03",
+          "system_oracle_ref": "HARNESS-L10-041-F03",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-H041-F03-OCCURRENCE-DIFFERENT-MEANING-BOTH-NA",
+              "revision": "fixture-content-31245c502a20d9fcabe104c82a138c0362d6a26aa1cc2fa69e659ffb82002120",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"applicability_input\":{\"screen\":false},\"candidate_atoms\":[],\"material_kind\":\"synthetic_extractor_candidate_not_real_mechanical_execution\",\"original_template\":{\"raw_utf8\":\"{\\\"id\\\":\\\"E8\\\",\\\"kind\\\":\\\"field\\\",\\\"meaning\\\":\\\"原義務A\\\",\\\"requires_screen\\\":true}\\n{\\\"id\\\":\\\"E8\\\",\\\"kind\\\":\\\"field\\\",\\\"meaning\\\":\\\"原義務B\\\",\\\"requires_screen\\\":true}\\n\",\"revision\":\"TPL-H041-UNRESOLVED@logical-SAME-ID-MEANING-UNRESOLVED\",\"sha256\":\"2a15dcda4a6ecd6d7de5fb1f14fe1dc1e4fde3b1d0bc724e9ce1767ea3e09e9f\"},\"reasoned_NA\":{\"E8\":{\"decider\":\"synthetic-template-applicability-owner\",\"reason\":\"原条件requires_screen=trueをscreen=falseが満たさない\",\"reassessment\":\"template revision又はscreen変更時\",\"target_revision\":\"TPL-H041-UNRESOLVED@logical-SAME-ID-MEANING-UNRESOLVED\"}}}",
+            "sha256": "31245c502a20d9fcabe104c82a138c0362d6a26aa1cc2fa69e659ffb82002120",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification",
+            "effect": "none"
+          },
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "independent_Q"
+            }
+          },
+          "expected_material": {
+            "element_dispositions": {
+              "E8": {
+                "kind": "reasoned_not_applicable",
+                "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+              }
+            },
+            "gaps": [],
+            "fixture_content_complete": true,
+            "effects": {
+              "actual_extraction_executed": false,
+              "actual_ledger_registered": false,
+              "actual_OS_execution": false,
+              "actual_template_authority": false,
+              "actual_design_complete": false,
+              "actual_requirement_agreement": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": {
+              "state": "known",
+              "value": "independent_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                },
+                {
+                  "source_row_index": 1,
+                  "source_span": {
+                    "start_line": 2,
+                    "end_line": 2
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/1"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/1"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                }
+              ]
+            }
+          },
+          "expected_material_canonical_sha256": "e806758864102e45cce4fe35d38b3c8f390ac88fe2bf77f537a0998ab795d8d3",
+          "basis": "原出現通常判定を一正本とし、同呼出し原snapshot/候補/NA所在を保存する先固定whole。異raw同IDから新unknownや同義務/別義務を生成しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H041-F03-OCCURRENCE-NULL-VS-ABSENT-BOTH-NA",
+          "l4_ref": "HARNESS-L4-041-F03",
+          "requirement_ref": "HARNESS-L3-041-F03",
+          "system_oracle_ref": "HARNESS-L10-041-F03",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-H041-F03-OCCURRENCE-NULL-VS-ABSENT-BOTH-NA",
+              "revision": "fixture-content-a49de0675d0c17720cecd0f7b1e03efac2969896fafb0f1ba6e6e2d77e10ddb9",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"applicability_input\":{\"screen\":false},\"candidate_atoms\":[],\"material_kind\":\"synthetic_extractor_candidate_not_real_mechanical_execution\",\"original_template\":{\"raw_utf8\":\"{\\\"id\\\":\\\"E8\\\",\\\"kind\\\":\\\"field\\\",\\\"meaning\\\":\\\"原義務A\\\",\\\"requires_screen\\\":true}\\n{\\\"id\\\":\\\"E8\\\",\\\"kind\\\":\\\"field\\\",\\\"meaning\\\":\\\"原義務A\\\",\\\"requires_screen\\\":true,\\\"uninterpreted_extension\\\":null}\\n\",\"revision\":\"TPL-H041-UNRESOLVED@logical-SAME-ID-UNINTERPRETED-NULL-VS-ABSENT\",\"sha256\":\"61c051adff0a5762185d25910012e8a61d143b103965e6c3706b726f063076aa\"},\"reasoned_NA\":{\"E8\":{\"decider\":\"synthetic-template-applicability-owner\",\"reason\":\"原条件requires_screen=trueをscreen=falseが満たさない\",\"reassessment\":\"template revision又はscreen変更時\",\"target_revision\":\"TPL-H041-UNRESOLVED@logical-SAME-ID-UNINTERPRETED-NULL-VS-ABSENT\"}}}",
+            "sha256": "a49de0675d0c17720cecd0f7b1e03efac2969896fafb0f1ba6e6e2d77e10ddb9",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification",
+            "effect": "none"
+          },
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "independent_Q"
+            }
+          },
+          "expected_material": {
+            "element_dispositions": {
+              "E8": {
+                "kind": "reasoned_not_applicable",
+                "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+              }
+            },
+            "gaps": [],
+            "fixture_content_complete": true,
+            "effects": {
+              "actual_extraction_executed": false,
+              "actual_ledger_registered": false,
+              "actual_OS_execution": false,
+              "actual_template_authority": false,
+              "actual_design_complete": false,
+              "actual_requirement_agreement": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": {
+              "state": "known",
+              "value": "independent_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                },
+                {
+                  "source_row_index": 1,
+                  "source_span": {
+                    "start_line": 2,
+                    "end_line": 2
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/1"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/1"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                }
+              ]
+            }
+          },
+          "expected_material_canonical_sha256": "15049bc666fdb7901d66045989d9ec945186fb7c6c129d769ade438dbd225824",
+          "basis": "原出現通常判定を一正本とし、同呼出し原snapshot/候補/NA所在を保存する先固定whole。異raw同IDから新unknownや同義務/別義務を生成しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H041-F03-OCCURRENCE-EXACT-ROWS-BOTH-NA-SOURCE-DUPLICATE",
+          "l4_ref": "HARNESS-L4-041-F03",
+          "requirement_ref": "HARNESS-L3-041-F03",
+          "system_oracle_ref": "HARNESS-L10-041-F03",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-H041-F03-OCCURRENCE-EXACT-ROWS-BOTH-NA-SOURCE-DUPLICATE",
+              "revision": "fixture-content-fadaff4331940f54be081f211837796dad8ca3443dde185012d9b8743f0dc640",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"applicability_input\":{\"screen\":false},\"candidate_atoms\":[],\"material_kind\":\"synthetic_extractor_candidate_not_real_mechanical_execution\",\"original_template\":{\"raw_utf8\":\"{\\\"id\\\":\\\"E8\\\",\\\"kind\\\":\\\"field\\\",\\\"meaning\\\":\\\"原義務A\\\",\\\"requires_screen\\\":true}\\n{\\\"id\\\":\\\"E8\\\",\\\"kind\\\":\\\"field\\\",\\\"meaning\\\":\\\"原義務A\\\",\\\"requires_screen\\\":true}\\n\",\"revision\":\"TPL-H041-B@exact-na\",\"sha256\":\"309710265e8e5d502c60f95061f4ac9944601a1696b4e0ea6bc8f5d49592c598\"},\"reasoned_NA\":{\"E8\":{\"decider\":\"synthetic-template-applicability-owner\",\"reason\":\"原条件requires_screen=trueをscreen=falseが満たさない\",\"reassessment\":\"template revision又はscreen変更時\",\"target_revision\":\"TPL-H041-B@exact-na\"}}}",
+            "sha256": "fadaff4331940f54be081f211837796dad8ca3443dde185012d9b8743f0dc640",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification",
+            "effect": "none"
+          },
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "independent_Q"
+            }
+          },
+          "expected_material": {
+            "element_dispositions": {
+              "E8": {
+                "kind": "reasoned_not_applicable",
+                "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+              }
+            },
+            "gaps": [
+              {
+                "element_id": "E8",
+                "kind": "source_duplicate",
+                "source_span": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "occurrence_count": 2
+              },
+              {
+                "element_id": "E8",
+                "kind": "source_duplicate",
+                "source_span": {
+                  "start_line": 2,
+                  "end_line": 2
+                },
+                "occurrence_count": 2
+              }
+            ],
+            "fixture_content_complete": false,
+            "effects": {
+              "actual_extraction_executed": false,
+              "actual_ledger_registered": false,
+              "actual_OS_execution": false,
+              "actual_template_authority": false,
+              "actual_design_complete": false,
+              "actual_requirement_agreement": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": {
+              "state": "known",
+              "value": "independent_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [
+                    0
+                  ],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                },
+                {
+                  "source_row_index": 1,
+                  "source_span": {
+                    "start_line": 2,
+                    "end_line": 2
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/1"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/1"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [
+                    1
+                  ],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                }
+              ]
+            }
+          },
+          "expected_material_canonical_sha256": "d94a6b4342aa2b1370634587503f8d929679867d457b3f197ad60babfdab632a",
+          "basis": "原出現通常判定を一正本とし、同呼出し原snapshot/候補/NA所在を保存する先固定whole。異raw同IDから新unknownや同義務/別義務を生成しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H041-F03-OCCURRENCE-ATOM-THEN-NA-SAME-ID",
+          "l4_ref": "HARNESS-L4-041-F03",
+          "requirement_ref": "HARNESS-L3-041-F03",
+          "system_oracle_ref": "HARNESS-L10-041-F03",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-H041-F03-OCCURRENCE-ATOM-THEN-NA-SAME-ID",
+              "revision": "fixture-content-d124238a8c8f2cecc21426cacbf5dedadef2562415a2a42fffd5a45ebc0ffb3d",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"applicability_input\":{\"screen\":false},\"candidate_atoms\":[{\"atom_id\":\"ATOM-B-E8\",\"candidate_row\":{\"atom_ref\":\"ATOM-B-E8\",\"ledger_contract\":\"040-compatible@fixture-r1\"},\"content\":{\"applicability\":{\"screen\":false},\"extractor_identity\":\"EXTRACTOR-P\",\"extractor_version\":\"fixture-r1\",\"kind\":\"field\",\"meaning\":\"原義務A\",\"source_element_id\":\"E8\",\"source_span\":{\"end_line\":1,\"start_line\":1},\"template_revision\":\"TPL-H041-B@atom-then-na\"},\"extractor_version_digest\":\"162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054\",\"semantic_digest\":\"a3780ce623be17c4f727ec61998b9ebd40c38434d1438c25bbf51d30c31029eb\"}],\"material_kind\":\"synthetic_extractor_candidate_not_real_mechanical_execution\",\"original_template\":{\"raw_utf8\":\"{\\\"id\\\":\\\"E8\\\",\\\"kind\\\":\\\"field\\\",\\\"meaning\\\":\\\"原義務A\\\",\\\"requires_screen\\\":false}\\n{\\\"id\\\":\\\"E8\\\",\\\"kind\\\":\\\"field\\\",\\\"meaning\\\":\\\"原義務B\\\",\\\"requires_screen\\\":true}\\n\",\"revision\":\"TPL-H041-B@atom-then-na\",\"sha256\":\"3943fc8942c546c5c00e5ee369ce08679eb377f3d4eaad97e907aa573f3efce7\"},\"reasoned_NA\":{\"E8\":{\"decider\":\"synthetic-template-applicability-owner\",\"reason\":\"原条件requires_screen=trueをscreen=falseが満たさない\",\"reassessment\":\"template revision又はscreen変更時\",\"target_revision\":\"TPL-H041-B@atom-then-na\"}}}",
+            "sha256": "d124238a8c8f2cecc21426cacbf5dedadef2562415a2a42fffd5a45ebc0ffb3d",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification",
+            "effect": "none"
+          },
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "independent_Q"
+            }
+          },
+          "expected_material": {
+            "element_dispositions": {
+              "E8": {
+                "kind": "reasoned_not_applicable",
+                "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+              }
+            },
+            "gaps": [],
+            "fixture_content_complete": true,
+            "effects": {
+              "actual_extraction_executed": false,
+              "actual_ledger_registered": false,
+              "actual_OS_execution": false,
+              "actual_template_authority": false,
+              "actual_design_complete": false,
+              "actual_requirement_agreement": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": {
+              "state": "known",
+              "value": "independent_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    0
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-B-E8",
+                    "candidate_input_index": 0
+                  },
+                  "gap_indices": [],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                },
+                {
+                  "source_row_index": 1,
+                  "source_span": {
+                    "start_line": 2,
+                    "end_line": 2
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/1"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/1"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    0
+                  ],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                }
+              ]
+            }
+          },
+          "expected_material_canonical_sha256": "60656949fb8faf7f15dd6df8f62b71b8a63ee22e61215b1857db49c5bd30275e",
+          "basis": "原出現通常判定を一正本とし、同呼出し原snapshot/候補/NA所在を保存する先固定whole。異raw同IDから新unknownや同義務/別義務を生成しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H041-F03-OCCURRENCE-ATOM-THEN-CONTENT-CONFLICT-SAME-ID",
+          "l4_ref": "HARNESS-L4-041-F03",
+          "requirement_ref": "HARNESS-L3-041-F03",
+          "system_oracle_ref": "HARNESS-L10-041-F03",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-H041-F03-OCCURRENCE-ATOM-THEN-CONTENT-CONFLICT-SAME-ID",
+              "revision": "fixture-content-a820c60518b59f52fe3d8fc2dae61d87f10c825f1fc06782618494c8485a66b7",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"applicability_input\":{\"screen\":false},\"candidate_atoms\":[{\"atom_id\":\"ATOM-B-E8\",\"candidate_row\":{\"atom_ref\":\"ATOM-B-E8\",\"ledger_contract\":\"040-compatible@fixture-r1\"},\"content\":{\"applicability\":{\"screen\":false},\"extractor_identity\":\"EXTRACTOR-P\",\"extractor_version\":\"fixture-r1\",\"kind\":\"field\",\"meaning\":\"原義務A\",\"source_element_id\":\"E8\",\"source_span\":{\"end_line\":1,\"start_line\":1},\"template_revision\":\"TPL-H041-B@atom-then-gap\"},\"extractor_version_digest\":\"162c26f3d616bff5b4e2ae14847ade10e5269766e7e00158ecc963f08109d054\",\"semantic_digest\":\"b64b5a9e6a684b2af6f0922d05bb204185e1b75d09efbefda979ebd6599935d8\"}],\"material_kind\":\"synthetic_extractor_candidate_not_real_mechanical_execution\",\"original_template\":{\"raw_utf8\":\"{\\\"id\\\":\\\"E8\\\",\\\"kind\\\":\\\"field\\\",\\\"meaning\\\":\\\"原義務A\\\",\\\"requires_screen\\\":false}\\n{\\\"id\\\":\\\"E8\\\",\\\"kind\\\":\\\"field\\\",\\\"meaning\\\":\\\"原義務B\\\",\\\"requires_screen\\\":false}\\n\",\"revision\":\"TPL-H041-B@atom-then-gap\",\"sha256\":\"0bda310c36c4fe90a83b371ead1b23239e7113ac778634ca97cbfe3655c130e7\"},\"reasoned_NA\":{\"E8\":{\"decider\":\"synthetic-template-applicability-owner\",\"reason\":\"原条件requires_screen=trueをscreen=falseが満たさない\",\"reassessment\":\"template revision又はscreen変更時\",\"target_revision\":\"TPL-H041-B@atom-then-gap\"}}}",
+            "sha256": "a820c60518b59f52fe3d8fc2dae61d87f10c825f1fc06782618494c8485a66b7",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification",
+            "effect": "none"
+          },
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "independent_Q"
+            }
+          },
+          "expected_material": {
+            "element_dispositions": {
+              "E8": {
+                "kind": "gap",
+                "gap_kind": "content_conflict"
+              }
+            },
+            "gaps": [
+              {
+                "element_id": "E8",
+                "kind": "content_conflict",
+                "source_span": {
+                  "start_line": 2,
+                  "end_line": 2
+                },
+                "occurrence_count": 1
+              }
+            ],
+            "fixture_content_complete": false,
+            "effects": {
+              "actual_extraction_executed": false,
+              "actual_ledger_registered": false,
+              "actual_OS_execution": false,
+              "actual_template_authority": false,
+              "actual_design_complete": false,
+              "actual_requirement_agreement": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": {
+              "state": "known",
+              "value": "independent_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    0
+                  ],
+                  "normal_disposition": {
+                    "kind": "atom",
+                    "atom_id": "ATOM-B-E8",
+                    "candidate_input_index": 0
+                  },
+                  "gap_indices": [],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                },
+                {
+                  "source_row_index": 1,
+                  "source_span": {
+                    "start_line": 2,
+                    "end_line": 2
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/1"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/1"
+                    }
+                  },
+                  "matching_candidate_indices": [
+                    0
+                  ],
+                  "normal_disposition": {
+                    "kind": "gap",
+                    "normal_gap_index": 0
+                  },
+                  "gap_indices": [
+                    0
+                  ],
+                  "na_input_pointer": "/reasoned_NA/E8"
+                }
+              ]
+            }
+          },
+          "expected_material_canonical_sha256": "f10d3868eb0b4257c0177d4f2dcdbdc347a7eafecfffc09032ccdad2c9f5b8e6",
+          "basis": "原出現通常判定を一正本とし、同呼出し原snapshot/候補/NA所在を保存する先固定whole。異raw同IDから新unknownや同義務/別義務を生成しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H041-F03-OCCURRENCE-ESCAPED-ID-NA",
+          "l4_ref": "HARNESS-L4-041-F03",
+          "requirement_ref": "HARNESS-L3-041-F03",
+          "system_oracle_ref": "HARNESS-L10-041-F03",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-H041-F03-OCCURRENCE-ESCAPED-ID-NA",
+              "revision": "fixture-content-7b35ea54b9d444854aefb4ae63f0ce5a9b00469b0ca0473d6eb924793a9d4e25",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"applicability_input\":{\"screen\":false},\"candidate_atoms\":[],\"material_kind\":\"synthetic_extractor_candidate_not_real_mechanical_execution\",\"original_template\":{\"raw_utf8\":\"{\\\"id\\\":\\\"E/~8\\\",\\\"kind\\\":\\\"field\\\",\\\"meaning\\\":\\\"原義務-escaped-ID\\\",\\\"requires_screen\\\":true}\\n\",\"revision\":\"TPL-H041-ESCAPED-ID@r1\",\"sha256\":\"e1a5fe096c24ed44939e2ba747351ad97f6b9406b9e4896c3bfbd42465d46109\"},\"reasoned_NA\":{\"E/~8\":{\"decider\":\"synthetic-template-applicability-owner\",\"reason\":\"原条件requires_screen=trueをscreen=falseが満たさない\",\"reassessment\":\"template revision又はscreen変更時\",\"target_revision\":\"TPL-H041-ESCAPED-ID@r1\"}}}",
+            "sha256": "7b35ea54b9d444854aefb4ae63f0ce5a9b00469b0ca0473d6eb924793a9d4e25",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification",
+            "effect": "none"
+          },
+          "retained_context": {
+            "unaffected_Q": {
+              "state": "known",
+              "value": "independent_Q"
+            }
+          },
+          "expected_material": {
+            "element_dispositions": {
+              "E/~8": {
+                "kind": "reasoned_not_applicable",
+                "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+              }
+            },
+            "gaps": [],
+            "fixture_content_complete": true,
+            "effects": {
+              "actual_extraction_executed": false,
+              "actual_ledger_registered": false,
+              "actual_OS_execution": false,
+              "actual_template_authority": false,
+              "actual_design_complete": false,
+              "actual_requirement_agreement": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": {
+              "state": "known",
+              "value": "independent_Q"
+            },
+            "element_occurrence_trace": {
+              "input_snapshot": {
+                "$copy": {
+                  "root": "source_packet",
+                  "pointer": ""
+                }
+              },
+              "occurrences": [
+                {
+                  "source_row_index": 0,
+                  "source_span": {
+                    "start_line": 1,
+                    "end_line": 1
+                  },
+                  "raw_line": {
+                    "$copy": {
+                      "root": "source_lines",
+                      "pointer": "/0"
+                    }
+                  },
+                  "parsed_element": {
+                    "$copy": {
+                      "root": "source_rows",
+                      "pointer": "/0"
+                    }
+                  },
+                  "matching_candidate_indices": [],
+                  "normal_disposition": {
+                    "kind": "reasoned_not_applicable",
+                    "reason": "原条件requires_screen=trueをscreen=falseが満たさない"
+                  },
+                  "gap_indices": [],
+                  "na_input_pointer": "/reasoned_NA/E~1~08"
+                }
+              ]
+            }
+          },
+          "expected_material_canonical_sha256": "58bc4d7f63a3102af6dfeca8b371760bd23aeae8b3efd44fbcd2d6989343fbd8",
+          "basis": "原出現通常判定を一正本とし、同呼出し原snapshot/候補/NA所在を保存する先固定whole。異raw同IDから新unknownや同義務/別義務を生成しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
         }
       ],
       "execution_state": "not_executed",
-      "effect": "none"
+      "effect": "none",
+      "occurrence_expectation_rule": {
+        "scope": "全15 caseのexpected_materialを新trace込みのF03Return wholeへ展開する。元9を導入前範囲へ限定して済ませない。",
+        "input": "independent_source_packet.raw_utf8をJSON parseしてsource_packet rootとする。retained_contextを独立したcaller contextとして同呼出しに供給する。原source body/ref/hashをrepairしない。",
+        "source_roots": "source_packet.original_template.raw_utf8を既存splitlinesで物理原行列source_linesへ、その各JSON object原値をsource_rowsへ展開する。全15はdomain内の固定入力。入口domain false対照をこれに混ぜずF03を呼ばない。",
+        "recipe": "expected_material内の単独{$copy:{root,pointer}}だけを先行rootからdeep copyする。他state/通常判定/gap/原index/理由は固定literal期待であり、実比較出力から補完しない。root/pointerは同file入力へ自己完結する。",
+        "whole_hash": "UTF-8 canonical JSON、sort_keys=true、separators comma/colon、ensure_ascii=false、NaN不可。展開wholeをexpected_material_canonical_sha256へ照合する。",
+        "schema": "現L4 occurrence_return_contract.logical_return.component_schemaは論理構造の静的照合だけ。現L5 narrow型の受理/実codec/実資格と同一視しない。"
+      },
+      "occurrence_historical_basis": {
+        "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "file_sha256": "dca5aa7554e167013bc4b5b361e809665825b32ebdb37502a81cd40140fd7e28",
+        "pointer": "/verification_obligations/2/concrete_cases",
+        "preservation": "元9の原source/旧5field値/順/分類を保持し、新traceだけを加えたwholeへ更新。新旧全値/hashと理由は固定git元値と新wholeを比較できる。",
+        "old_whole_canonical_sha256": [
+          "1352b992cde240dbc6b5afe8d0a92a847e039ec712b22b83b30d600b7c13ea10",
+          "476226f34233ecf1857c949c61ca180a83a698da39b211b59b65494c08b1b6eb",
+          "87b21a2c7a6971dd02791655953aa825c9babce32aa5e4ff267730559b3707da",
+          "7de0acb97b97ab54c149c774695e7b7d8419cbdd156092b018f4e3764d23a992",
+          "0c65272dac15ec54d8e10586b167dd22bdf3cb7d24c64b8e95d893a41ff36c99",
+          "62758093c4dfba9b2066efb2594498e69ad4b28b890d50a6a19c5fa6cd3700d8",
+          "c1a936579d31928fb99f0e8f510808ed0aba44bd4b55e5ea55cee94aaf580ecf",
+          "eabd7f3f3bb38b022c653dd2bd2b27e249c3a0ae57f52b335e02d7b12fc92d56",
+          "b326e586570a27cb467c3b2700721c4da9acc037e7959f5f0dca95a1f71c77f1"
+        ]
+      },
+      "entry_domain_controls": [
+        {
+          "id": "H041-F03-DOMAIN-LEADING-BLANK-ESCAPED-ID",
+          "call_input": {
+            "packet": {
+              "material_kind": "synthetic_extractor_candidate_not_real_mechanical_execution",
+              "original_template": {
+                "revision": "TPL-H041-ESCAPED-ID@r1",
+                "raw_utf8": "\n{\"id\":\"E/~8\",\"kind\":\"field\",\"meaning\":\"原義務-escaped-ID\",\"requires_screen\":true}\n",
+                "sha256": "3c6bf47188753109d2878143d63d99a97ac71d3501ff1d2b58677b1ab5eff47c"
+              },
+              "applicability_input": {
+                "screen": false
+              },
+              "candidate_atoms": [],
+              "reasoned_NA": {
+                "E/~8": {
+                  "reason": "原条件requires_screen=trueをscreen=falseが満たさない",
+                  "decider": "synthetic-template-applicability-owner",
+                  "reassessment": "template revision又はscreen変更時",
+                  "target_revision": "TPL-H041-ESCAPED-ID@r1"
+                }
+              }
+            },
+            "context": {
+              "unaffected_Q": {
+                "state": "known",
+                "value": "independent_Q"
+              }
+            }
+          },
+          "input_canonical_sha256": "d5da991a8a7ca2a3396d904246b8c82b1e1fa8462207ea0b0bb4418c8bbc0dda",
+          "expected_domain_return": {
+            "domain_valid": false,
+            "violations": [
+              {
+                "source_span": {
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "raw_line": "",
+                "parsed_value": null,
+                "id_presence": "not_an_object",
+                "reason": "line_not_json"
+              }
+            ],
+            "actual_validation_effect": false
+          },
+          "F03_call_permitted": false,
+          "F03_return_fixed": false,
+          "basis": "現check_template_domainは全行JSON objectを要求し先頭blankをline_not_jsonへ返す。raw2行目は物理index1/span2としてsource snapshotへ保持するが、domain falseのためF03Return/occurrenceを捏造しない。",
+          "execution_state": "not_executed"
+        }
+      ],
+      "current_occurrence_binding": {
+        "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+        "pointer": "/contracts/2/occurrence_return_contract",
+        "working_bytes_sha256": "32934075f0e426076df8d206582b36b06e403afd9997e5315b77e59649a5dedc",
+        "binding_kind": "paired_current_file_bytes",
+        "meaning": "新trace規範の現L4 bytes。同caseの旧l4_source_bindingは元bytes歴史参照として別保持する。"
+      }
     },
     {
       "id": "HARNESS-L9-041-N01",
@@ -3419,12 +6459,21 @@
     "cases_by_function": {
       "F01": 9,
       "F02": 9,
-      "F03": 9,
+      "F03": 15,
       "N01": 5,
       "B01": 4
     },
     "normal_and_counterexamples_are_synthetic": true,
-    "formal_schema_codec_or_actual_execution": false
+    "formal_schema_codec_or_actual_execution": false,
+    "occurrence_trace": {
+      "old_F03_wholes_extended": 9,
+      "escaped_ID_wholes": 1,
+      "F03_whole_total": 15,
+      "entry_domain_controls": 1,
+      "all_function_material_case_total": 42,
+      "actual_evaluator_executed": false,
+      "new_occurrence_wholes": 5
+    }
   },
   "review_corrections": {
     "reviewed_head": "5e1bb645db4f2feaa3785280a1a609758919dbc2",
