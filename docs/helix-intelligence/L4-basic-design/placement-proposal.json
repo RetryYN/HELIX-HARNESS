@@ -441,7 +441,29 @@
           ],
           "comparison": "JSON意味等値によるarray membershipでtask_domainを含む",
           "result": "incompatible",
-          "return_owner": "OS-task-fit-owner"
+          "return_owner": "OS-task-fit-owner",
+          "task_value_path": "/original_task/domain",
+          "task_value_field": "task.domain",
+          "when_task_value_is_absent_or_null": {
+            "condition": "/original_task/domain resolves to Absent or null",
+            "finding": {
+              "field": "task.domain",
+              "result": "missing",
+              "return_owner": "OS-task-owner"
+            },
+            "comparison_effect": "このtask値がAbsent/nullなら、このworker_checks項目のtask条件比較を未成立とし、当該項目のincompatibleを生成しない。別のtask条件field、もう一方のworker_checks項目、Worker配列の他要素、task_anchor、独立したclaimその他の所見は抑止しない。"
+          },
+          "scope_limit": "判定はAbsent/null→既存field predicateによるinvalid_value_kind→JSON意味等値membershipの順。task値のwrong kindをincompatibleへ分類せず、当該比較のみを未成立とする。",
+          "when_task_value_is_invalid_kind": {
+            "predicate": "nonempty_string",
+            "condition": "domainは非空JSON stringである",
+            "finding": {
+              "field": "task.domain",
+              "result": "invalid_value_kind",
+              "return_owner": "OS-task-owner"
+            },
+            "comparison_effect": "domainは非空JSON stringである。Absent/null以外でpredicateがfalseならinvalid_value_kind/OS-task-ownerとし、同じdomain membership比較だけを行わない。別のtask条件field、他のworker_checks項目、Worker配列の他要素、task_anchor、独立したclaimその他の所見は抑止しない。"
+          }
         },
         {
           "worker_members": [
@@ -450,7 +472,29 @@
           ],
           "comparison": "task_toolsの各必要値をJSON意味等値で含む",
           "result": "incompatible",
-          "return_owner": "OS-task-fit-owner"
+          "return_owner": "OS-task-fit-owner",
+          "task_value_path": "/original_task/tool_requirement",
+          "task_value_field": "task.tool_requirement",
+          "when_task_value_is_absent_or_null": {
+            "condition": "/original_task/tool_requirement resolves to Absent or null",
+            "finding": {
+              "field": "task.tool_requirement",
+              "result": "missing",
+              "return_owner": "OS-task-owner"
+            },
+            "comparison_effect": "このtask値がAbsent/nullなら、このworker_checks項目のtask条件比較を未成立とし、当該項目のincompatibleを生成しない。別のtask条件field、もう一方のworker_checks項目、Worker配列の他要素、task_anchor、独立したclaimその他の所見は抑止しない。"
+          },
+          "scope_limit": "判定はAbsent/null→既存field predicateによるinvalid_value_kind→JSON意味等値membershipの順。task値のwrong kindをincompatibleへ分類せず、当該比較のみを未成立とする。",
+          "when_task_value_is_invalid_kind": {
+            "predicate": "string_array",
+            "condition": "tool_requirementは全要素がstringであるJSON arrayである（空arrayも有効）",
+            "finding": {
+              "field": "task.tool_requirement",
+              "result": "invalid_value_kind",
+              "return_owner": "OS-task-owner"
+            },
+            "comparison_effect": "tool_requirementは全要素がstringであるJSON arrayである（空arrayも有効）。Absent/null以外でpredicateがfalseならinvalid_value_kind/OS-task-ownerとし、同じtools membership比較だけを行わない。別のtask条件field、他のworker_checks項目、Worker配列の他要素、task_anchor、独立したclaimその他の所見は抑止しない。"
+          }
         }
       ],
       "ordering": "提出推薦の形状→提出推薦の原Workerへのidentity bindingを提出index順→task identity/revision anchor（identity→revision）→raw Worker配列順の選択対象domain→tools→Bench class→理由対応→原/提出推薦内容→原/提出除外内容→推薦/除外対応→claim宣言順。task anchorは既存F02規則と並列に評価し、他のsource所見を抑止しない。",
