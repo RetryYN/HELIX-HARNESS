@@ -647,7 +647,7 @@
       },
       "source_binding_connection": {
         "id": "HARNESS-L4-003-SOURCE-BINDING",
-        "scope": "F03の005/015谷資料とF04の005/022固有差分を、既存source owners/adaptersが同targetへ結ぶ接続境界。F03/F04の既存工程条件/whole結果を置換しない。",
+        "scope": "F03/F04で選択された各producerの同target原対応を、consumer endpointとproducer endpointそれぞれの既存原資料へ結ぶ接続境界。既存工程条件・whole結果を置換しない。",
         "source_contracts": [
           {
             "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
@@ -725,14 +725,21 @@
             "pointer": "/common_contract",
             "file_sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a",
             "object_canonical_sha256": "effb0818f06c4bf2ea53baf5b24d31bc94db02d4ce8d48eacb7ff7a8f349ced4"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/types/SourceCell",
+            "file_sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a",
+            "object_canonical_sha256": "2d608a9efe7349bcf2aa8ad15ddba60ab8f06b3e06717a8a691b7167526e891c"
           }
         ],
         "representation_basis": {
-          "003": "pin済み003 L5 /types/Ref/fields と /types/ProcessContext/fields はfield名列挙のみ。scope型は未指定であり、旧fixtureの文字列scopeをText型宣言と解さない。",
+          "003": "pin済み003 L5 /types/Ref/fields と /types/ProcessContext/fields はfield名列挙のみでscope型を宣言しない。旧fixtureの文字列やJSON shapeからText/native/mixed domainを推測せず、raw値をその既存roleの原endpointとだけ比較する。",
           "005": "Ref.scopeはField<Scope>、Scopeはproject/tenant/environment各Field<string>。欠落/null/供給値の違いを保持。",
           "015": "SourceRef.scopeはScopeRef{project,tenant,environment}。SourceRef/packet pointer/hashは原型で保持する。",
           "022": "Target/MaterialRecord/EvidenceRecordのscopeはText系。artifact_revisionとrequirement_revision、Context.snapshot_revisionは別の役割。",
-          "lower_design": "003のscope型とrole別SourceCell.bindingの閉型/codecは後続L5/L8で導出する。本基本設計はproducer型を緩めず、scope文字列化・新共通Ref型・新registryを導入しない。"
+          "lower_design": "003 scopeの型とrole別binding閉型/codecは未指定。本基本設計では各端の原型/Field presenceを別々に保持し、端同士を同型と推測しない。既存producer型・資格・所有者は増やさない。"
         },
         "producer_roles": {
           "005_valley": {
@@ -747,7 +754,7 @@
             "source_function": "tdd-development-flow F-015-01 project_source_packet と F-015-04 evaluate_contract_semantics",
             "inputs": "SourcePacketInput、canonical_owner_byte_sha256、SemanticEvaluationInput、SemanticRuleSet。選択rootの原owner_materialとtarget bindingを保持。",
             "returns": "BoundSourcePacketとSemanticEvaluation全体。source_packet_ref/canonical_owner_ref/pointer/hash/payload_typeと原scopeを保持。qualification_kindは原metadataであり実資格ではない。",
-            "target_selector": "source_payload.tagに対応するowner_material.binding（既存FieldValueのpresenceを保持）。source_packet_refは資料carrierでありtarget Refの代用ではない。"
+            "target_selector": "source_payload.tagに対応するowner_material.bindingのFieldValueを原形で保持し、provided時だけvalue側をtarget selectorとして照合。source_packet_refは資料carrierでありtarget Refの代用ではない。"
           },
           "005_composition": {
             "consumer": "F04 Verified",
@@ -761,7 +768,7 @@
             "source_function": "stage-verification-acceptance /functions/3 compare_verified_system_difference",
             "inputs": "SystemDifferenceInputと独立SystemDifferenceContextを別々に保持。各MaterialRecord/EvidenceRecord、必要集合/selection、source_id/oracle_revision/pair/owner/contentsも保持。",
             "returns": "SystemDifferenceResult全体。内容対応と実Verified/Accepted/CI運転を区別。",
-            "target_selector": "input.contextと各material/evidenceのartifact identity/revision、requirement revision、scopeをContext.targetと独立に照合。F01 StageInputRecordをF03 MaterialRecordへ代用しない。"
+            "target_selector": "input.contextの選択条件/profile、expected material owner/source ID/oracle revision/pairと、選択MaterialRecordのidentity/artifact_revision/requirement_revision/scope/owner/source_id/oracle_revision/pairをMaterial role同士で照合する。独立原取得recordのMaterial SOURCE selectorで期待側MaterialRecordを解決し、そのrecordのevidence_idをcandidate MaterialRecord.evidence_idと照合する。期待側evidence_idで同原取得record内のEvidenceRecord.identityを解決し、candidate evidence recordを同identityの原recordへ照合する。EvidenceRecord.source_idはEVIDENCE-SOURCE roleとして同原recordから得る。Context.expected_source_idsのMaterial SOURCE値、candidate evidence_id、evidence map key、接頭辞からexpected Evidence SOURCE値を作らない。basis欠落/不解決は当該evidence比較だけunknownとし、candidate/Context/source全体を差し替えない。"
           }
         },
         "provider_boundary": {
@@ -771,48 +778,49 @@
             "選択されたproducer roleの原入力・原source・返却結果",
             "各原target/binding/carrier/embedded producerの既存独立source資格"
           ],
-          "generation": "adapterは原operation/requestが結んだconsumer targetとproducer targetを解決し、その二端と原operation Refを既存SourceCell.bindingのrole別recordへ保存する。取得したproducer値からText scopeの意味対応を推測しない。既存target対応を記録する処理であり、producer比較器のsummaryからassociationや資格を作らない。",
-          "generation_outputs": "SourceCell.refは原carrier Ref、bindingはconsumer_target/producer_target/operation_refと必要時のscope_relation、kindは上記role、original_contentsはproducer入力/source/返却全体。原target対応が取得できない場合も読めた資料と理由を保持する。 原target/operation recordはoriginal_contents内へbindingと別に保持し、bindingの二端/operation_refをこの原recordへ照合してからconsumer比較へ渡す。binding自体の自己一致だけを原association根拠にしない。",
-          "native_scope": "同じnative scope形の二端は全成分/presenceで直接比較する。Text同士はexact text、構造scope同士はproject/tenant/environmentを個別比較。scope_relation member/追加cross-scope資格資料を同型branchへ要求しない。",
-          "mixed_scope": "異型scopeを同targetへ結ぶ必要があるbranchだけ、既存bindingにscope_relation.consumer_scope/producer_scopeを両端原型で保存する。既存原target/operationのassociationであり新しい全入力共通evidenceや新authorityではない。原associationのbinding資格とembedded producer資格は独立に照合する。",
-          "qualification": "carrierのknown/bytes一致をbinding/各embedded recordへ継承しない。各原資格state/reasonを別保持し、既存原ownerによる関連付けが未解決ならそのbranchだけ未成立。資格供給・実resolver実装は本基本pairで認定しない。 original_contents.target_operationの原association資格はorigin_operationとしてbinding/producer/carrierと別に入力し、knownを相互継承しない。これは既存source-owner資格の対象を分離する詳細であり新authorityではない。",
+          "generation": "adapterは原operation/requestが結んだconsumer targetとproducer targetを各roleの原型で解決し、bindingへ保存する。scopeの形状・文字列化・scope_modeから端同士の意味対応を作らない。",
+          "generation_outputs": "SourceCellは003 L5の6 field（ref,binding,kind,original_contents,qualification_state,qualification_reason）を保持する。022 original_contentsには、候補入力と独立した原producer取得recordのevidence_materialsをevidence_selection_basisとして別保存し、同じ原取得snapshot内で選択MaterialRecord.evidence_id→EvidenceRecord.identityを解決する。有限L4接続fixtureの追加資格観測はSourceCell外のqualification_observations入力に置き、role/source-cell pointerで関連づける。bindingの各端とoperation_refはoriginal_contentsの独立原operationへ照合する。evidence_selection_basisは原資料保持であり、新資格・authority・実lineageを発行しない。",
+          "qualification": "SourceCell.qualification_state、sidecar.binding/producer/origin_operationを独立状態として保持し、qualification_input_shape.reductionに従って集約する。全状態がknownならknown。knownを除いた不成立状態集合が空ならknown、1種類ならその状態、2種類以上ならunknown。必須memberの欠落はmissing、null/型外はunknown。context資格はsource資格集約へ混ぜない。資格供給・新authority・実資格を作らない。",
           "producer_call_connection": {
             "input_supply": "上記roleの入力/source/必要な独立Contextを、同じ原operation/取得recordの参照とともにproducerへ渡す。candidateやL9 expectedは原sourceへ混入しない。",
             "returned_material": "返却値は同じfunction契約・原operationと引数snapshotへ結ばれた原producer呼出し記録から受け取り、original_contentsへ引数/sourceと並べて保持する。別call/別Contextの成功を当該roleへ代入しない。これは既存source owner/adapterのoriginal record責務であり、新しい全工程共通receipt/承認を要求しない。",
             "005": "Comparisonはobservation/issues/candidate_differences/non_target_preserved/effects/execution_kindを全保持する。返却型自体に元Refがないため、original/sourcesと同じ原call対応を保ち、observation boolからRefやsource資格を再構成しない。",
             "015": "BoundSourcePacket/SemanticEvaluationのcase_identity/root_id/source_packet_ref/pointer/hashを対応入力の同fieldへ結び、canonical_owner_ref/hashは別役割のまま保持。source_payloadは固定payload pointerの原owner_materialへ結ぶ。source_changeやcandidate_mutation、fixture結果を実証拠へ混ぜない。",
             "022": "SystemDifferenceResultを同一SystemDifferenceInput/独立Context/原operationに結び、Context.snapshot_revision・selectionと各原material/evidenceを保持。result.outcomeやverified_candidateだけで対象Ref/資格/実stateを生成しない。",
-            "test_scope": "本L9の追加14対照はsource-binding/資格/target軸の観測であり、producer返却全域や既存F03/F04 wholeの再実行証明ではない。producer固有L8/L9の固定oracleは独立に維持し、閉型/呼出し引数・返却の詳細は後続L5/L8で導出する。"
-          }
+            "test_scope": "追加対照はsource-binding/資格/target軸の局所観測であり、producer返却全域や既存F03/F04 wholeの再実行証明ではない。F04 Provisionalの005_valley/015_flowとVerifiedの005_composition/022_differenceを別roleとして保持する。producer固有L8/L9の固定oracleは独立に維持し、実資格は生成しない。"
+          },
+          "scope_endpoint_comparison": "consumer scopeとproducer scopeは各々そのroleの既存原Context/original target endpointへraw presence・値を独立照合する。JSON shapeやtype名だけで端間の同値性を推定しない。既知の同一role endpointとの差はconflict、原型がFieldValueならabsentはmissing/null・型外はunknown。003自体にscope型宣言がないため、他roleのText/Scope型へcastしない。",
+          "optional_scope_relation": "scope_relationは既存operation associationの補助観測で必須条件ではない。供給時はconsumer_scopeをconsumer原endpoint、producer_scopeをproducer原endpointへ各々比較し、両端の不一致は該当端conflict。省略時はrelation_state=not_requiredとし、既存原operationが同target両端を結び、各endpoint照合が成立すればscope/bindingを失敗にしない。relation単独で原operation/資格を作らない。",
+          "015": "015のPayloadF04.bindingとnested membersはFieldValueのpresence/valueを保つ。absentはtarget missing、explicit null/型外はtarget unknownとしてraw入力も保持し、Refへflattenしない。source packet Refはbinding targetの代用品にしない。"
         },
         "consumer_comparison": [
           {
             "id": "SB01",
-            "rule": "原Context/source cells/producer入力・返却とcandidateを別保存。role/元field selectorは固定producer契約へ解決し、map key/表示名やstatic doc pinからruntime Ref・scope・targetを推定しない。全source occurrence/配列順/重複、未選択Qを保持する。"
+            "rule": "原Context/source cells/producer入力・返却/candidateを別保存する。role/selectorは固定producer契約へ解決し、map key・表示名・JSON shape・static doc pinからruntime Ref/scope/targetを推定しない。SourceCellの6 fieldとqualification_observations sidecarを区別し、全source occurrence/配列順/重複/未選択Qを保持する。"
           },
           {
             "id": "SB02",
-            "rule": "binding.consumer_targetを独立Contextのartifact_ref/requirement_ref/scopeへ、binding.producer_targetを原producer target selectorへ別々に照合する。producerの変更target/packet carrier/CORE契約等のRefを同一役割へcastしない。identity/owner差はtarget conflictとして保持し、scopeとrevisionの独立原因を消さない。 original_contentsの独立原target_operation.consumer_target/producer_target/refとbinding二端/operation_refもそれぞれ対応させる。原recordはproviderが同target取得時に記録し、その既存資格入力をbinding/producerと分ける。 原target_operationのproducer_targetはidentity/ownerだけでなく全Ref成分を照合する。同identity/ownerのnative revision差はtarget_state=stale、既知scope差は独立scope_state=conflictとして保持する。"
+            "rule": "binding.consumer_targetを独立Contextのconsumer endpointへ、binding.producer_targetをproducer契約で指定される原selectorへ別々に照合する。consumerのartifact_refとrequirement_refは同役割の原targetへ独立比較し、相互に代用しない。Fieldまたは有効な参照object内のrevision欠落はmissing、明示null/型外はunknownとしてraw値と理由を保持する。identity/ownerの既知差はtarget_state=conflict、scopeの既知差はscope_state=conflict。005/015ではidentity/ownerが一致する同役割target revisionの差をtarget_state=stale、一致をknownとする。022のartifact/requirement endpoint revisionの既知不一致は、それぞれartifact_revision_state/requirement_revision_state=conflictとする。選択record自身のartifact revisionが固定原資料の対象より旧い場合だけはSB05のartifact_revision_state=staleとし、endpoint不一致から選択recordの旧版を推定しない。Context.snapshot_revisionは別roleとして保持し、target revisionへ代入しない。015 producer_targetのFieldValue absentはmissing、explicit null/型外はunknown。consumer/producer各端の相反理由は別保持し、他端の一致で隠さない。"
           },
           {
             "id": "SB03",
-            "rule": "scopeは同型native二端なら直接比較。binding内producer scopeも実際のproducer selector値へ対応させる。既知の成分差はscope conflict、不足/nullは原型のmissing/unknown。異型同士を自動等価にも一律成功不能にもせず、必要branchだけ原bindingのscope_relationへ進む。 原target_operation.producer_target.scopeもbinding.producer_target.scopeと原producer scopeへ独立に対応させる。原operation側だけのscope差をbindingの自己一致で無視しない。"
+            "rule": "consumer scopeとproducer scopeを各々、同じroleの独立原Context/original target scopeへ全raw値/presenceで比較する。端間が同じJSON shapeかどうかを判定条件にしない。既知の同role差はscope conflict。scope型未指定の003値を他role型へcastしない。"
           },
           {
             "id": "SB04",
-            "rule": "mixed scopeのscope_relation二端をContext scopeと原producer scopeへ各々型付き等値で照合し、binding独立資格がknownの時だけ対応known。member不在はmissing、資格unknownはunknown、既知端差異はconflict。両端rawと資格診断を保持し、native siblingの既知結果を消さない。"
+            "rule": "scope_relationは任意補助値。存在時はconsumer_scopeとproducer_scopeを各々対応する原endpointへ照合し、不一致端をconflictとして保持する。省略時はrelation_state=not_required。relation省略だけで、既存原operationによる同target対応と個別endpoint比較の成立をmissing/unknownへ落とさない。relationや資格自己申告から原associationを作らない。"
           },
           {
             "id": "SB05",
-            "rule": "022 artifact_identityをconsumer artifact_ref.identityへ、artifact_revisionをartifact_ref.revisionへ、requirement_revisionをrequirement_ref.revisionへ別比較する。artifact旧版はstale、requirement metadata差はconflict（022 S5）。Context.snapshot_revisionはsource Context snapshot版として別保存し、target二revisionへ代入しない。MaterialRecord.identity＋snapshot_revisionから既存full carrier Refを捏造せず、SourceCell.refは独立供給原carrierを保持。 原target_operation.producer_targetのartifact_revision/requirement_revisionもbindingと原producer contextの各対応軸へ別々に照合し、前者の差はstale、後者の差はconflictに保持する。"
+            "rule": "022 Contextの選択profile/roleと選択されたMaterialRecord/EvidenceRecordのidentity/owner/source_id/oracle_revision/pairを各同役割の独立selectorへ照合する。MaterialRecordはContext.expected_source_idsのMaterial SOURCE roleで選択する。期待側MaterialRecordはoriginal_contents.evidence_selection_basis内の原取得recordから同Material SOURCE値で解決する。期待側MaterialRecord.evidence_idとcandidate MaterialRecord.evidence_idを比較し、期待側evidence_idで原取得record内のEvidenceRecord.identityを解決してcandidate EvidenceRecordと照合する。candidate側evidence_idやevidence map keyだけでexpected evidenceを選ばない。EvidenceRecord.source_idをMaterial SOURCE role、map key、接頭辞または文字列規則から導出しない。固定原資料のtargetより古い選択MaterialRecord.artifact_revisionだけartifact_revision_state=stale。順序・世代根拠のない文字列差およびendpoint側revision不一致はartifact_revision_state=conflict。requirement_revisionの既知差はrequirement_revision_state=conflict。各同役割値の一致はknown、member欠落はmissing、明示null/型外はunknown。その他既知metadata/contents/pair差はconflict。同じrevision軸（artifact_revision_stateとrequirement_revision_stateは別々に扱う）内で複数の比較結果が生じた場合、HARNESS-L5-022-F03 S7（source pin docs/helix-harness/L5-detail-design/stage-verification-acceptance.json、sha256 477264632bf101d13d416eb1b17d5e7e77f8a30dd25c2c1c00b4391f605d95a6、pointer #/functions/3/algorithm/6）に従い、conflict>stale>unknown>missing>knownの順でそのrevision軸の集約状態を選ぶ。軸内の各比較のraw値・比較対象・原因は別々に保持し、優先状態で削除・上書きしない。これは異種のsource binding軸をbinding_stateへ集約するSB06のknown除外foldとは別の規則である。Context.snapshot_revisionはsource Context版として別保存しtarget二revisionへ代入しない。"
           },
           {
             "id": "SB06",
-            "rule": "target対応/scope/022二revision/source資格は個別状態で保持。binding_stateは対象軸がすべてknownの場合だけknown、単一種類の不成立はそのstate、複数異種不成立はunknownとし全原原因を保持。scope_relation_state=not_requiredとrevision_state=not_applicableは非対象軸であって原資料欠落の代用品ではない。"
+            "rule": "target対応・各scope endpoint・任意relation・artifact/requirement revision・source資格を個別保持する。source_qualification_stateはcarrier/binding/producer/origin_operationの4原状態の規則に従う。binding_stateは対象軸が全てknownのときknown、単一種類の不成立はそのstate、複数異種不成立はunknown。context資格はsource資格集約へ混ぜない。"
           },
           {
             "id": "SB07",
-            "rule": "source bindingのknownは原資料を当該工程比較へ結べるという局所材料のみ。005/015/022の業務結果を再計算・置換せず、既存F03/F04の全条件を引き続き比較する。Provisional/Verified/Accepted・実資格・CI実行・state/ticket更新を生成しない。"
+            "rule": "source bindingのknownは原資料を当該工程比較へ結べるという局所材料のみ。005/015/022の業務結果を再計算・置換せず、既存F03/F04の全条件を引き続き比較する。Provisional/Verified/Accepted・実資格・CI実行・state/ticket更新を生成しない。 022 selected material/evidence selectorの照合はこのroleの既存入力を対象とし、全製品共通の追加資格や追加工程gateを作らない。"
           }
         ],
         "connection_observation": {
@@ -821,6 +829,7 @@
             "records",
             "retained_context",
             "retained_source_cells",
+            "retained_qualification_observations",
             "unaffected_scope",
             "producer_results_recomputed",
             "actual_stage_updated",
@@ -837,7 +846,7 @@
             "requirement_revision_state",
             "binding_state"
           ],
-          "raw_retention": "retained_context/source_cellsは入力の全原値。refとbindingを相互置換せず、source資格原stateも残す。最後の4fieldはfalse,false,false,[]。"
+          "raw_retention": "retained_context/source_cells/qualification_observationsは各入力の全原値。SourceCellは003 L5の6 fieldのまま、資格sidecarは別保持する。refとbindingを相互置換せず、producer結果を再計算しない。"
         },
         "legacy_rederivation": {
           "mode": "semantic_rederivation",
@@ -873,10 +882,57 @@
           }
         ],
         "limits": [
-          "静的doc pinは契約本文のrevision/path/pointer/hash。runtime source Refの原identity/revision/native scope/ownerとは別。",
-          "provider責務と接続の基本設計であり、L5/L8のrole閉型/selector decoder/純粋計算正本・正式codec・実資格/実provider/CI/PO受入は未成立。",
+          "静的doc pinは契約本文のrevision/path/pointer/hashでありruntime Ref/資格とは別。",
+          "003 scope型とrole別binding codecは未指定。今回の有限L4接続では原値を各roleの同role endpointへ比較し、型を推測しない。",
+          "provider責務と接続の基本設計。role閉型/selector decoder/純粋計算正本・正式codec・実資格/実provider/CI/PO受入は未成立。",
           "既存7義務と旧fixtureは保持。scope差を新承認/普遍cross-scope証拠gate/全体停止へ変えない。"
-        ]
+        ],
+        "qualification_input_shape": {
+          "context_state": "QualificationStateの供給値。member不在はmissing、null/型外はunknown。",
+          "by_source_cell": "source_cellsと同じ長さの観測配列。各要素はsource_cell_pointer必須で、binding/producer/origin_operationは個別optional state値。欠落はmissing、null/列挙型外はunknown。配列順と重複を保持する。",
+          "states": [
+            "known",
+            "missing",
+            "unknown",
+            "conflict",
+            "stale"
+          ],
+          "reduction": "4つのsource状態（SourceCell.qualification_state、sidecar.binding、producer、origin_operation）を個別に保持する。全状態がknownならknown。knownを除いた不成立状態集合が空でなければ、その集合が1種類の時はその状態、2種類以上ならunknown。必須sidecar member欠落もmissing、null/型外値もunknown。各軸の原値と理由を残し、context_stateはsource資格集約へ混ぜない。"
+        },
+        "source_cell_contract": {
+          "source": {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/types/SourceCell"
+          },
+          "fields": [
+            "ref",
+            "binding",
+            "kind",
+            "original_contents",
+            "qualification_state",
+            "qualification_reason"
+          ],
+          "meaning": "この6 fieldをSourceCellとして保持し、fieldを追加しない。binding内role値は該当producer契約のraw presence/valueを保つ。003はscope型を宣言していない。",
+          "qualification_state": "carrier資格状態だけ。binding/producer/origin_operation資格を格納しない。資格理由はqualification_reasonに保持する。",
+          "qualification_sidecar": "有限L4接続入力qualification_observationsはSourceCellの外。rootはcontext_stateとby_source_cellを持つ。by_source_cellはSourceCell順の配列で各rowにsource_cell_pointerを必須とし、binding/producer/origin_operation stateは独立optional member。sidecarは合成観測入力で資格receipt/authorityではない。",
+          "binding_shape": {
+            "logical_members": [
+              "consumer_target",
+              "producer_target",
+              "operation_ref",
+              "scope_relation"
+            ],
+            "scope_relation_presence": "optional。省略は有効な原operation associationの代替欠落ではない。",
+            "role_native_values": "consumer_target/producer_targetは各roleの原型とpresenceを保持する。005はRef/Scope、015 producer_targetはFieldValue<...>を保持しabsent/nullを区別、022はartifact_revision/requirement_revision等の元選択軸を保持する。",
+            "not_members": [
+              "scope_mode",
+              "producer_snapshot_revision",
+              "資格4種のmap"
+            ],
+            "limit": "これは本L4の有限論理接続形であり、003 L5に未定義のbinding型や新codecを既存L5が受理済みとする宣言ではない。"
+          }
+        }
       }
     },
     {
