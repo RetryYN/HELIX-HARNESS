@@ -4521,37 +4521,37 @@
           {
             "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
             "pointer": "/source_return_contract/owner_descriptor_attribution/owner_mapping",
-            "retained": "owner samefullBinding/slot_identity/descriptor_kind explicit mapping, no index inference"
+            "retained": "owner・slot_identity・descriptor_kindの対応を同一のfull Bindingに結び付け、配列位置から推定しない。"
           },
           {
             "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
             "pointer": "/source_return_contract/owner_descriptor_attribution/join",
-            "retained": "existing source qualification/full Binding and source-backed exact mapping"
+            "retained": "既存のsource資格とfull Bindingを保ち、対応はsourceが示す明示mappingから導く。"
           },
           {
             "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
             "pointer": "/type_contract/types/DescriptorSlot",
-            "retained": "facts missing independent from descriptor kind and slot identity"
+            "retained": "factsの有無はdescriptor_kindおよびslot_identityとは独立して扱う。"
           },
           {
             "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
             "pointer": "/conditional_source_dependency_contract/source_types/DependencyOperation/origin",
-            "retained": "same knowledge record provenance -> owner semantic source origin, not submitted Claim/refs"
+            "retained": "同一KnowledgeRecordのprovenanceからowner semantic source originを得る。提出されたClaimやrefsをsource originとして扱わない。"
           },
           {
             "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
             "pointer": "/source_return_contract/constructor_meaning/reference_resolution",
-            "retained": "original KnowledgeRecord Ref join; references alone issue no qualification"
+            "retained": "元KnowledgeRecord Refを照合する。参照が存在するだけでは資格成立としない。"
           },
           {
             "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
             "pointer": "/failure_rules/87",
-            "retained": "only actual target semantic definition missing plus reference_only replacement is rule87"
+            "retained": "failure rule 87は、対象の意味定義が実際に欠落し、reference-onlyの代替が提示された場合に適用する。"
           },
           {
             "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
             "pointer": "/dependency_semantic_ports/public_projection/claim_subject",
-            "retained": "original Claim subject not aliased to template/knowledge"
+            "retained": "元Claimのsubjectをtemplateまたはknowledgeへaliasしない。"
           }
         ],
         "old_sources": [

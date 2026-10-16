@@ -8709,7 +8709,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "1aeecd0a1649baf4ca4e8900ed775af5a9e2a2af41f314f85b2acad88d95bc0d",
+      "sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
       "meaning": "このL9と同候補のL4全UTF-8 bytesへのbinding。base source_pinsは原sourceの履歴根拠であり、このbindingを代替しない。commit revisionや上流承認をここから生成しない。"
     }
   },
@@ -22881,7 +22881,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "1aeecd0a1649baf4ca4e8900ed775af5a9e2a2af41f314f85b2acad88d95bc0d"
+      "sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2"
     }
   },
   "descriptor_target_port_verification": {
@@ -22890,7 +22890,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "observed_source_revision": "64dc8a7032990e8f961f4e5e9601a1909d2e4f6d",
-      "sha256": "1aeecd0a1649baf4ca4e8900ed775af5a9e2a2af41f314f85b2acad88d95bc0d",
+      "sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
       "binding_kind": "このscaffold候補L4 whole本文bytesへのbinding。前提source revision/正式採用とは区別。"
     },
     "scope": "9素材の同call原input/Claim引数/全私的target port返却。旧10port/10conditionalの期待scopeを変更しない。",
@@ -84659,7 +84659,15 @@
           "expected_canonical_sha256": "82bb07726d3c14d748babf7f6abafdc8a6ec624788decf67a206f938344b5ebf"
         },
         "execution_state": "not_executed",
-        "observation_scope": "DescriptorTargetRead全field。F09全体/fn1全返却又は実qualification/provider接続のwholeではない。"
+        "observation_scope": "DescriptorTargetRead全field。F09全体/fn1全返却又は実qualification/provider接続のwholeではない。",
+        "basis": {
+          "説明": "callerのdescriptor一覧とqualified source factsは、同じ呼出しへ独立に供給される。callerのdescriptor一覧にはsynthetic-descriptor-5がなく、qualified source factsには同slotのfactがある。expected_wholeのslot_locatorsが空であるのはcaller descriptor listに対応する位置がないことを示し、source factsの欠落を意味しない。",
+          "caller_descriptor_pointer": "/input/descriptors",
+          "qualified_source_facts_pointer": "/input/sources/0/content/descriptor_facts",
+          "missing_caller_slot_identity": "synthetic-descriptor-5",
+          "qualified_source_fact_slot_identity": "synthetic-descriptor-5",
+          "期待の範囲": "期待はcaller descriptor listとqualified source factsの独立した値に対応する。slot_locatorsはcaller descriptor list内の位置を指す。"
+        }
       },
       {
         "id": "OWNER-TARGET-SLOT-ABSENT-OTHER-SAME-KIND",
@@ -92522,7 +92530,9 @@
       "名指し成功と無関係malformed/identity未帰属の混在",
       "exact同値宣言の複数出現と複数source資格/body相反の混在",
       "container明示null/型外、source未資格、binding member不明",
-      "全kind/fact/候補/全mutation/全shape"
+      "全kind/fact/候補/全mutation/全shape",
+      "混在未観測: 同一target/current full Bindingの同slot Aでk1/k2が相反し、別slot Bにk1がある組合せ（A/k1、A/k2、B/k1）。9件のwholeのどれにも含まれない。",
+      "13種のreason_templatesのうち9件のexpected_wholeに現れず、今回も未観測の8種: owner_source_unresolved、target_container_null、target_container_type、declaration_shape、target_ref_unresolved、binding_unresolved、target_mapping_conflict、target_not_declared。"
     ],
     "limits": "上記は論理分岐として設計したが9実行前素材の全返却で観測済みとはしない。全対照追加gateを作らない。正式採用/業務evaluator/実provider/14義務完了は未成立。"
   }
