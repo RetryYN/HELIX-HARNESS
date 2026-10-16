@@ -4519,9 +4519,9 @@
         "供給raw_utf8の有限意味域をcheck_template_domainで明示する。original_templateとN01 held_out_sourceの非空各行はobjectかつid非空string。違反は原行raw/parsed値/span付きTemplateDomainReturnへ返しmaterial評価をしない。任意string入力が無条件に有効とはしない。"
       ],
       "steps": [
-        "二結果の独立性条件/件数/run identity→元template/frame版/bytes→各input digestとcontent digest→二semantic digestの内容一致を比較。文字列一致だけで独立性/原入力を生成しない。",
-        "input digestはcanonical({template:original_template,input:input_frame})、result digestは原contentから導出。同run/独立性不明はunknown、件数不足missing、frame版差stale、不一致conflict。",
-        "held sourceのscope/版/bytesと全要素を読み、未対応は全spanのgapへ返す。原1件形とnullを保持し、複数gapは原行順listで返す。一般決定性/全template対応は常にfalse。"
+        "旧signature/型/domainのpacketとRetainedContextからevaluate_n01_sharedを一度生成する。domain外は有効shared生成前に元TemplateDomainReturn観測を保つprivate失敗channelへ出しmaterial評価しない。",
+        "shared.commonは旧definition19の独立二結果比較全順/false保証/effects/Q全値。shared.sourceは元scope→revision→digest→unsupportedの最初の診断と全原row/spanを保持。",
+        "project_n01_legacy(shared)が共通5fieldとsource-only gapを0=null/1=record/複数=原順listで返す。new8 schema/owner/native/binding/batchを旧6受理gateにしない。"
       ],
       "definition_pointer": "/finite_reference/definitions",
       "returns": [
@@ -4624,10 +4624,11 @@
       "def na_valid(na,revision):return isinstance(na,dict) and all(na.get(k) not in [None,'','TBD'] for k in ['reason','decider','reassessment']) and na.get('target_revision')==revision",
       "def compare_f02(packet,context):\n atom_results={};rows={};template=packet.get('original_template') or {};contract=packet.get('independent_extractor_contract') or {};inputs=packet.get('applicability_input') or {};candidates=packet.get('candidate_atoms') or [];records=packet.get('mechanical_candidate_records') or {}\n for entry in elements(template):\n  original=entry['element'];identity=original['id'];applies=applicable(original,inputs)\n  if applies=='no' and na_valid((packet.get('reasoned_NA') or {}).get(identity),template.get('revision')):continue\n  matches=[atom for atom in candidates if atom_matches(atom,identity)];states=[]\n  if applies=='unknown':states.append('unknown')\n  if len(matches)==0:states.append('missing')\n  elif len(matches)!=1 or len(matches[0].get('source_element_ids',[identity]))!=1:states.append('conflict')\n  if states:state=aggregate(states);atom_results[identity]=result(state);rows[identity]=result(state);continue\n  atom=matches[0];content=atom.get('content') or {};material=records.get(identity)\n  expected={'source_element_id':identity,'source_span':entry['span'],'template_revision':template.get('revision'),'applicability':inputs,'kind':original.get('kind'),'meaning':original.get('meaning'),'extractor_identity':contract.get('identity'),'extractor_version':contract.get('version')}\n  states=[state_of(content.get(field),value,field in ['template_revision','extractor_version']) for field,value in expected.items()]\n  states += [state_of(atom.get('semantic_digest'),value_digest(content)),state_of(atom.get('extractor_version_digest'),value_digest(contract))]\n  if text_digest(template.get('raw_utf8',''))!=template.get('sha256'):states.append('conflict')\n  if material is None:states.append('conflict' if (packet.get('human_summary_candidates') or {}).get(identity) else 'missing')\n  else:\n   for field,value in {'source_element_id':identity,'candidate_ref':atom.get('atom_id'),'content_sha256':value_digest(content),'extractor_identity':contract.get('identity'),'extractor_version':contract.get('version'),'input_template_sha256':template.get('sha256'),'kind':'synthetic_mechanical_candidate_record','execution_state':'not_executed_fixture_only'}.items():states.append(state_of(material.get(field),value,field=='extractor_version'))\n  state=aggregate(states);atom_results[identity]=result(state,atom.get('atom_id') if state=='supported_synthetic_condition' else None)\n  row=atom.get('candidate_row') or {};row_state=state\n  if row_state=='supported_synthetic_condition':row_state=aggregate([state_of(row.get('atom_ref'),atom.get('atom_id')),state_of(row.get('ledger_contract'),packet.get('independent_ledger_contract'))])\n  rows[identity]=result(row_state,row.get('ledger_contract') if row_state=='supported_synthetic_condition' else None)\n return {'atom_results':atom_results,'candidate_row_results':rows,**common(context)}",
       "def project_f03_dispositions(occurrences,gaps):\n dispositions={}\n for occurrence in occurrences:\n  identity=occurrence['parsed_element']['id'];normal=occurrence['normal_disposition']\n  if normal['kind']=='atom':dispositions[identity]={'kind':'atom','atom_id':normal['atom_id']}\n  elif normal['kind']=='reasoned_not_applicable':dispositions[identity]={'kind':'reasoned_not_applicable','reason':normal['reason']}\n  else:dispositions[identity]={'kind':'gap','gap_kind':gaps[normal['normal_gap_index']]['kind']}\n return dispositions\n\ndef compare_f03(packet,context):\n input_snapshot=clone(packet)\n template=packet.get('original_template') or {};inputs=packet.get('applicability_input') or {};gaps=[];atoms=packet.get('candidate_atoms') or [];occurrences=[]\n source_entries=elements(template);source_row_counts={};source_raw=template.get('raw_utf8');source_lines=source_raw.splitlines() if isinstance(source_raw,str) else []\n for source_entry in source_entries:\n  row_key=canonical(source_entry['element']);source_row_counts[row_key]=source_row_counts.get(row_key,0)+1\n for entry in source_entries:\n  original=entry['element'];identity=original['id'];applies=applicable(original,inputs);match_indices=[index for index,atom in enumerate(atoms) if atom_matches(atom,identity)];matches=[atoms[index] for index in match_indices];kind=None;normal=None;gap_indices=[]\n  if original.get('kind') not in KINDS:kind='unsupported_element'\n  elif original.get('meaning') in [None,'']:kind='empty'\n  elif original.get('meaning')=='TBD':kind='placeholder'\n  elif applies=='unknown':kind='applicability_unknown'\n  elif applies=='no':\n   na=(packet.get('reasoned_NA') or {}).get(identity)\n   if na_valid(na,template.get('revision')):normal={'kind':'reasoned_not_applicable','reason':na['reason']}\n   else:kind='non_applicability_unqualified'\n  elif len(matches)==0:kind='uncovered'\n  elif len(matches)>1:kind='duplicate'\n  elif len(matches[0].get('source_element_ids',[identity]))!=1:kind='compound'\n  elif (matches[0].get('content') or {}).get('meaning')!=original.get('meaning'):kind='content_conflict'\n  else:\n   atom=matches[0];content=atom.get('content') or {};checks={'source_element_id':identity,'source_span':entry['span'],'template_revision':template.get('revision'),'kind':original.get('kind')}\n   if original.get('requires_screen') is True:checks['applicability']=inputs\n   if any(not same(content.get(k),v) for k,v in checks.items()) or atom.get('semantic_digest')!=value_digest(content):kind='candidate_metadata_conflict'\n  if kind:\n   normal_gap_index=len(gaps);gaps.append({'element_id':identity,'kind':kind,'source_span':entry['span'],'occurrence_count':len(matches) if kind=='duplicate' else 1});gap_indices.append(normal_gap_index);normal={'kind':'gap','normal_gap_index':normal_gap_index}\n  elif normal is None:normal={'kind':'atom','atom_id':matches[0]['atom_id'],'candidate_input_index':match_indices[0]}\n  if source_row_counts[canonical(original)]>1:\n   gap_indices.append(len(gaps));gaps.append({'element_id':identity,'kind':'source_duplicate','source_span':entry['span'],'occurrence_count':source_row_counts[canonical(original)]})\n  source_row_index=entry['span']['start_line']-1\n  occurrence={'source_row_index':source_row_index,'source_span':clone(entry['span']),'raw_line':source_lines[source_row_index],'parsed_element':clone(original),'matching_candidate_indices':match_indices,'normal_disposition':normal,'gap_indices':gap_indices}\n  if identity in (packet.get('reasoned_NA') or {}):occurrence['na_input_pointer']='/reasoned_NA/'+identity.replace('~','~0').replace('/','~1')\n  occurrences.append(occurrence)\n if not isinstance(template.get('raw_utf8'),str) or template.get('raw_utf8')=='':gaps.append({'element_id':None,'kind':'template_source_missing','source_span':None,'occurrence_count':1})\n elif text_digest(template['raw_utf8'])!=template.get('sha256'):gaps.append({'element_id':None,'kind':'source_digest_conflict','source_span':None,'occurrence_count':1})\n return {'element_dispositions':project_f03_dispositions(occurrences,gaps),'gaps':gaps,'fixture_content_complete':len(gaps)==0,**common(context),'element_occurrence_trace':{'input_snapshot':input_snapshot,'occurrences':occurrences}}",
-      "def compare_n01(packet,context):\n sources=packet.get('result_sources') or [];frame=packet.get('input_frame') or {};template=packet.get('original_template') or {};state='supported_synthetic_condition'\n if packet.get('independence_qualification')!='known_in_synthetic_fixture':state='unknown'\n elif len(sources)!=2:state='missing'\n elif sources[0].get('run_id') in [None,'','TBD'] or sources[0].get('run_id')==sources[1].get('run_id'):state='unknown'\n elif frame.get('template_revision')!=template.get('revision'):state='stale'\n elif text_digest(template.get('raw_utf8',''))!=template.get('sha256'):state='conflict'\n else:\n  input_digest=value_digest({'template':template,'input':frame});states=[]\n  for source in sources:\n   states.extend([state_of(source.get('input_sha256'),input_digest),state_of(source.get('semantic_digest'),value_digest(source.get('content')))])\n  states.append(state_of(sources[0].get('semantic_digest'),sources[1].get('semantic_digest')));state=aggregate(states)\n held=packet.get('held_out_source');gap=None;held_gaps=[]\n if held is not None:\n  if not isinstance(held.get('raw_utf8'),str) or held.get('raw_utf8')=='':held_gaps.append({'element_id':None,'kind':'template_source_missing','template_revision':held.get('revision'),'source_span':None})\n  for entry in elements(held):\n   kind=None;scope_state=state_of(held.get('scope'),frame.get('scope'))\n   if scope_state!='supported_synthetic_condition':kind='scope_'+scope_state\n   elif held.get('revision') in [None,'','TBD']:kind='source_revision_unknown' if held.get('revision')=='TBD' else 'source_revision_missing'\n   elif text_digest(held.get('raw_utf8',''))!=held.get('sha256'):kind='source_digest_conflict'\n   elif entry['element'].get('kind') not in KINDS:kind='unsupported_element'\n   if kind:held_gaps.append({'element_id':entry['element']['id'],'kind':kind,'template_revision':held.get('revision'),'source_span':entry['span']})\n  gap=held_gaps[0] if len(held_gaps)==1 else held_gaps if held_gaps else None\n return {'comparison_result':result(state,'equal_for_this_fixture_input_only' if state=='supported_synthetic_condition' else None),'general_determinism_guaranteed':False,'all_templates_supported':False,'held_out_gap':gap,**common(context)}",
+      "def compare_n01(packet,context):\n n01_require_legacy_shape(packet,context)\n shared=evaluate_n01_shared(packet,context)\n return project_n01_legacy(shared)",
       "def compare_b01(packet,context):\n returns=[]\n for field,owner in [('template_meaning','CORE009/template-owner'),('ledger_pair_contract','040-compatible-contract-owner'),('OS_observation','OS-operation-owner')]:\n  value=packet.get(field);value='missing' if value is None else value\n  if value!='known':returns.append({'owner':owner,'reason':field+':'+value})\n return {'owner_return_candidates':returns,'requires_025_026_completion_to_author':False,**common(context)}",
       "def compare_source_attributes(actual,required):\n actual=actual or {};required=required or {};fields={}\n for key in ['identity','revision','scope','owner']:\n  state=state_of(actual.get(key),required.get(key),key=='revision');fields[key]=result(state,actual.get(key) if state=='supported_synthetic_condition' else None)\n state=aggregate([v['state'] for v in fields.values()])\n return {'attribute_results':fields,'attribute_comparison':result(state,'attributes_compared_only' if state=='supported_synthetic_condition' else None),'actual_qualification_established':False,'qualification_provider':result('unknown')}",
-      "def check_template_domain(template):\n violations=[]\n if template is None:return {'domain_valid':True,'violations':violations,'actual_validation_effect':False}\n if not isinstance(template,dict):\n  violations.append({'source_span':None,'raw_line':None,'parsed_value':clone(template),'id_presence':'not_an_object','reason':'template_not_object'})\n else:\n  raw=template.get('raw_utf8')\n  if raw is not None and not isinstance(raw,str):violations.append({'source_span':None,'raw_line':None,'parsed_value':clone(raw),'id_presence':'not_an_object','reason':'raw_not_string'})\n  elif isinstance(raw,str):\n   for line,text in enumerate(raw.splitlines(),1):\n    span={'start_line':line,'end_line':line};reason=None;presence='not_an_object'\n    try:value=json.loads(text)\n    except (ValueError,TypeError):value=None;reason='line_not_json'\n    if reason is None:\n     if not isinstance(value,dict):reason='element_not_object'\n     else:\n      presence='absent' if 'id' not in value else 'explicit_null' if value['id'] is None else 'supplied'\n      if 'id' not in value or value['id'] is None:reason='element_id_missing'\n      elif not isinstance(value['id'],str) or value['id']=='':reason='element_id_not_nonempty_string'\n    if reason is not None:violations.append({'source_span':span,'raw_line':text,'parsed_value':clone(value),'id_presence':presence,'reason':reason})\n return {'domain_valid':len(violations)==0,'violations':violations,'actual_validation_effect':False}"
+      "def check_template_domain(template):\n violations=[]\n if template is None:return {'domain_valid':True,'violations':violations,'actual_validation_effect':False}\n if not isinstance(template,dict):\n  violations.append({'source_span':None,'raw_line':None,'parsed_value':clone(template),'id_presence':'not_an_object','reason':'template_not_object'})\n else:\n  raw=template.get('raw_utf8')\n  if raw is not None and not isinstance(raw,str):violations.append({'source_span':None,'raw_line':None,'parsed_value':clone(raw),'id_presence':'not_an_object','reason':'raw_not_string'})\n  elif isinstance(raw,str):\n   for line,text in enumerate(raw.splitlines(),1):\n    span={'start_line':line,'end_line':line};reason=None;presence='not_an_object'\n    try:value=json.loads(text)\n    except (ValueError,TypeError):value=None;reason='line_not_json'\n    if reason is None:\n     if not isinstance(value,dict):reason='element_not_object'\n     else:\n      presence='absent' if 'id' not in value else 'explicit_null' if value['id'] is None else 'supplied'\n      if 'id' not in value or value['id'] is None:reason='element_id_missing'\n      elif not isinstance(value['id'],str) or value['id']=='':reason='element_id_not_nonempty_string'\n    if reason is not None:violations.append({'source_span':span,'raw_line':text,'parsed_value':clone(value),'id_presence':presence,'reason':reason})\n return {'domain_valid':len(violations)==0,'violations':violations,'actual_validation_effect':False}",
+      "# Proposed finite logical definitions only. Not imported or executed in this stage.\n# document_type and document_schema resolve the pinned same-document type/schema\n# objects; they are pure finite-model read operators, not runtime file IO.\nN01_ABSENT = object()\nN01_OK = 'supported_synthetic_condition'\nN01_EFFECTS = EFFECT_FIELDS\n\n\nclass N01PrivateContractError(Exception):\n    def __init__(self, kind, arguments, domain_observations):\n        self.problem = {'kind': kind, 'arguments': clone(arguments), 'domain_observations': clone(domain_observations)}\n        super().__init__(kind)\n\n\ndef n01_member(value, name):\n    return value.get(name, N01_ABSENT) if isinstance(value, dict) else N01_ABSENT\n\n\ndef n01_presence(value):\n    return {'presence': 'absent'} if value is N01_ABSENT else {'presence': 'present', 'value': clone(value)}\n\n\ndef n01_state_of(actual, expected, revision=False):\n    if actual is N01_ABSENT:\n        return 'missing'\n    return state_of(actual, None if expected is N01_ABSENT else expected, revision)\n\n\ndef n01_json_value(value):\n    if value is None or type(value) in (bool, str, int):\n        return True\n    if type(value) is float:\n        try:\n            canonical(value)\n            return True\n        except ValueError:\n            return False\n    if isinstance(value, list):\n        return all(n01_json_value(v) for v in value)\n    if isinstance(value, dict):\n        return all(type(k) is str and n01_json_value(v) for k, v in value.items())\n    return False\n\n\ndef n01_type_valid(t, value):\n    # Exact existing L5 grammar; normalized new logical kinds are not sent here.\n    kind = t['kind']\n    if kind == '論理JSON値':\n        if not same(t, document_type('/types/JsonValue')):\n            raise ValueError('unrecognized logical JSON alias')\n        return n01_json_value(value)\n    if kind == 'ref':\n        return n01_type_valid(document_type('/types/' + t['target']), value)\n    if kind == 'json':\n        return n01_json_value(value)\n    if kind == 'union':\n        return any(n01_type_valid(v, value) for v in t['variants'])\n    if kind in ('string', 'boolean', 'integer', 'null'):\n        ok = (type(value) is str if kind == 'string' else type(value) is bool if kind == 'boolean' else type(value) is int if kind == 'integer' else value is None)\n        return ok and ('domain' not in t or any(same(value, v) for v in t['domain']))\n    if kind == 'list':\n        return isinstance(value, list) and all(n01_type_valid(t['items'], v) for v in value)\n    if kind == 'map':\n        return isinstance(value, dict) and all(type(k) is str and n01_type_valid(t['values'], v) for k, v in value.items())\n    if kind == 'record':\n        if not isinstance(value, dict):\n            return False\n        fields = t['fields']\n        if t.get('additional_properties') == 'closed_declared_carrier' and set(value) - set(fields):\n            return False\n        for name, field in fields.items():\n            if name not in value:\n                if 'absent' not in field['presence_states']:\n                    return False\n            elif value[name] is None and 'null' not in field['presence_states']:\n                return False\n            elif not n01_type_valid(field['type'], value[name]):\n                return False\n        return True\n    raise ValueError('unsupported existing L5 type kind: ' + kind)\n\n\ndef n01_trace_packet_type():\n    # A read-only view derived from the original packet type. The original public\n    # type and the raw packet are not rewritten. Raw success carriers stay raw.\n    t = clone(document_type('/types/N01Arguments/fields/packet/type'))\n    t['additional_properties'] = 'preserve_raw_observation'\n    for name in ['held_out_source_binding', 'held_out_extraction_batch']:\n        t['fields'][name] = {'presence_states': ['absent', 'provided', 'null'], 'type': {'kind': 'json'}}\n    t['fields']['held_out_source']['presence_states'].append('absent')\n    for v in t['fields']['held_out_source']['type']['variants']:\n        if v['kind'] == 'record':\n            v['additional_properties'] = 'preserve_raw_observation'\n            v['fields']['raw_utf8']['presence_states'].append('absent')\n    # The existing applicable signature explicitly includes optional screen with\n    # boolean|string|null. Success atom schema still requires boolean applicability.\n    inputs = t['fields']['input_frame']['type']['fields']['applicability_input']['type']\n    inputs['additional_properties'] = 'preserve_raw_observation'\n    inputs['fields']['screen'] = {'presence_states': ['absent', 'provided', 'null'], 'type': {'kind': 'union', 'variants': [{'kind': 'boolean'}, {'kind': 'string'}, {'kind': 'null'}]}}\n    return t\n\n\ndef n01_trace_packet_domain(packet):\n    return n01_type_valid(n01_trace_packet_type(), packet)\n\n\ndef n01_raw_trace_domain(packet, retained):\n    return n01_trace_packet_domain(packet) and n01_type_valid(document_type('/types/RetainedContext'), retained)\n\n\ndef n01_domain_observations(packet):\n    observations = []\n    for name in ['original_template', 'held_out_source']:\n        value = n01_member(packet, name)\n        # The original nullable validator can inspect the absent projection, while\n        # the raw Presence remains absent in the independent saved observation.\n        report = check_template_domain(None if value is N01_ABSENT else value)\n        observations.append({'input_pointer': '/packet/' + name, 'input': n01_presence(value), 'returned': clone(report)})\n    return observations\n\n\ndef n01_require_legacy_shape(packet, retained):\n    # Public old2 never gains the broader private raw domain through the union\n    # shared producer. Valid legacy shapes do not reparse the source here.\n    if not (n01_type_valid(document_type('/types/N01Arguments/fields/packet/type'), packet) and n01_type_valid(document_type('/types/RetainedContext'), retained)):\n        raise N01PrivateContractError('declared_domain_violation', {'packet': packet, 'retained': retained}, n01_domain_observations(packet))\n\n\ndef n01_require_shared_domain(packet, retained):\n    reports = n01_domain_observations(packet)\n    legacy = n01_type_valid(document_type('/types/N01Arguments/fields/packet/type'), packet) and n01_type_valid(document_type('/types/RetainedContext'), retained)\n    if not (legacy or n01_raw_trace_domain(packet, retained)) or any(not v['returned']['domain_valid'] for v in reports):\n        raise N01PrivateContractError('declared_domain_violation', {'packet': packet, 'retained': retained}, reports)\n    return reports\n\n\ndef n01_require_same_values(packet, context, shared):\n    # Origin is established by the private caller graph, not inferred from values.\n    arguments = {'packet': packet, 'context': context, 'shared': shared}\n    if not same(packet, shared['input_snapshot']):\n        raise N01PrivateContractError('packet_snapshot_mismatch', arguments, [])\n    if not same(context['unaffected_Q'], shared['common']['unaffected_Q']):\n        raise N01PrivateContractError('retained_Q_mismatch', arguments, [])\n\n\ndef n01_shape_valid(name, value):\n    # Exact declared subset of the pinned basic return schema. No library choice.\n    root = document_schema('/n01_private_type_contract/return_schema')\n    def check(s, v):\n        if s is True:\n            return True\n        if s is False:\n            return False\n        if '$ref' in s:\n            return check(root['$defs'][s['$ref'].split('/')[-1]], v)\n        if 'oneOf' in s and sum(check(x, v) for x in s['oneOf']) != 1:\n            return False\n        if 'not' in s and check(s['not'], v):\n            return False\n        if 'const' in s and not same(v, s['const']):\n            return False\n        if 'enum' in s and not any(same(v, x) for x in s['enum']):\n            return False\n        def has_type(k):\n            return (isinstance(v, dict) if k == 'object' else isinstance(v, list) if k == 'array' else type(v) is str if k == 'string' else type(v) is int if k == 'integer' else type(v) in (int, float) if k == 'number' else type(v) is bool if k == 'boolean' else v is None if k == 'null' else False)\n        if 'type' in s and not any(has_type(k) for k in (s['type'] if isinstance(s['type'], list) else [s['type']])):\n            return False\n        if isinstance(v, dict):\n            if any(k not in v for k in s.get('required', [])):\n                return False\n            properties = s.get('properties', {})\n            if s.get('additionalProperties') is False and set(v) - set(properties):\n                return False\n            if any(not check(t, v[k]) for k, t in properties.items() if k in v):\n                return False\n        if isinstance(v, list) and 'items' in s and not all(check(s['items'], x) for x in v):\n            return False\n        if type(v) is str and 'pattern' in s and re.fullmatch(s['pattern'], v) is None:\n            return False\n        if type(v) in (int, float) and 'minimum' in s and v < s['minimum']:\n            return False\n        return True\n    return check(root['$defs'][name], value)\n\n\ndef n01_source_level_missing(held):\n    if not isinstance(held, dict):\n        return None\n    raw = n01_member(held, 'raw_utf8')\n    if raw is not N01_ABSENT and raw is not None and raw != '':\n        return None\n    return {'element_id': None, 'kind': 'template_source_missing', 'template_revision': held['revision'], 'source_span': None}\n\n\ndef n01_parsed_rows(held):\n    if held is N01_ABSENT or held is None:\n        return []\n    # The source domain was checked before shared generation. All nonempty lines\n    # are original JSON objects with a nonempty id; no fallback object is made.\n    return [{'element': json.loads(line), 'span': {'start_line': number, 'end_line': number}, 'ordinal': number, 'row_sha256': text_digest(line)} for number, line in enumerate(held['raw_utf8'].splitlines(), 1)]\n\n\ndef n01_source_diagnosis(held, frame, row):\n    scope_state = n01_state_of(n01_member(held, \"scope\"), n01_member(frame, \"scope\"))\n    if scope_state != N01_OK:\n        return \"scope_\" + scope_state\n    revision = n01_member(held, \"revision\")\n    if revision is N01_ABSENT or revision is None or revision == \"\":\n        return \"source_revision_missing\"\n    if revision == \"TBD\":\n        return \"source_revision_unknown\"\n    if text_digest(held[\"raw_utf8\"]) != held.get(\"sha256\"):\n        return \"source_digest_conflict\"\n    if row[\"element\"].get(\"kind\") not in KINDS:\n        return \"unsupported_element\"\n    return None\n\ndef n01_comparison_result(packet):\n    # 旧L5 definition19の独立二結果比較。held-out branchとは別計算。\n    sources = packet.get(\"result_sources\") or []\n    frame = packet.get(\"input_frame\") or {}\n    template = packet.get(\"original_template\") or {}\n    if packet.get(\"independence_qualification\") != \"known_in_synthetic_fixture\":\n        state = \"unknown\"\n    elif len(sources) != 2:\n        state = \"missing\"\n    elif sources[0].get(\"run_id\") in [None, \"\", \"TBD\"] or sources[0].get(\"run_id\") == sources[1].get(\"run_id\"):\n        state = \"unknown\"\n    elif frame.get(\"template_revision\") != template.get(\"revision\"):\n        state = \"stale\"\n    elif text_digest(template.get(\"raw_utf8\", \"\")) != template.get(\"sha256\"):\n        state = \"conflict\"\n    else:\n        input_digest = value_digest({\"template\": template, \"input\": frame})\n        states = []\n        for source in sources:\n            states += [n01_state_of(source.get(\"input_sha256\"), input_digest), n01_state_of(source.get(\"semantic_digest\"), value_digest(source.get(\"content\")))]\n        states.append(n01_state_of(sources[0].get(\"semantic_digest\"), sources[1].get(\"semantic_digest\")))\n        state = aggregate(states)\n    return {\"state\": state, \"value\": \"equal_for_this_fixture_input_only\" if state == N01_OK else None}\n\ndef n01_reference_states(actual, expected):\n    if actual is N01_ABSENT:\n        return [\"missing\"]\n    if not isinstance(actual, dict):\n        return [\"unknown\"]\n    states = [n01_state_of(n01_member(actual, field), n01_member(expected, field), field == \"revision\") for field in [\"identity\", \"revision\", \"scope\", \"owner\", \"sha256\"]]\n    # Optional locator is preserved in each original Ref. Without an independent\n    # resolver observation, its absence/difference alone produces no new state.\n    return states\n\ndef n01_unresolved(request, state, source_observation, qualification_observation, basis_refs):\n    return {\"kind\": \"unresolved\", \"request\": clone(request), \"state\": state, \"source_observation\": clone(source_observation), \"qualification_observation\": clone(qualification_observation), \"basis_refs\": clone(basis_refs)}\n\ndef resolve_n01_owner_source(request, source_return, qualifier_return):\n    \"\"\"原決定の適用と独立両端を計算。source取得失敗はcallerが別経路処理。\"\"\"\n    source = source_return[\"record\"]\n    if qualifier_return[\"kind\"] == \"unresolved\":\n        return n01_unresolved(request, qualifier_return[\"state\"], n01_presence(source), qualifier_return[\"observed\"], qualifier_return[\"basis_refs\"])\n    qualification = qualifier_return[\"record\"]\n    decision = qualification.get(\"decision\")\n    outcome = decision.get(\"outcome\") if isinstance(decision, dict) else None\n    if outcome != \"applicable\":\n        state = {\"not_applicable\": \"conflict\", \"revoked\": \"stale\", \"indeterminate\": \"unknown\"}.get(outcome, \"unknown\")\n        return n01_unresolved(request, state, n01_presence(source), n01_presence(qualification), qualification[\"basis_refs\"])\n    states = n01_reference_states(source[\"source_ref\"], request[\"source_ref\"])\n    states += n01_reference_states(qualification[\"subject_ref\"], source[\"source_ref\"])\n    states += [n01_state_of(source[\"source_ref\"].get(\"sha256\"), text_digest(source[\"raw_utf8\"])), n01_state_of(qualification.get(\"source_bytes_sha256\"), text_digest(source[\"raw_utf8\"])), n01_state_of(qualification.get(\"owner\"), source[\"source_ref\"].get(\"owner\"))]\n    state = aggregate(states)\n    if state != N01_OK:\n        return n01_unresolved(request, state, n01_presence(source), n01_presence(qualification), qualification[\"basis_refs\"])\n    return {\"kind\": \"resolved\", \"request\": clone(request), \"source\": {\"source_ref\": clone(source[\"source_ref\"]), \"raw_utf8\": source[\"raw_utf8\"]}, \"qualification\": {field: clone(qualification[field]) for field in [\"subject_ref\", \"owner\", \"source_bytes_sha256\", \"basis_refs\", \"decision\"]}, \"native_source_record\": clone(source), \"native_qualification_record\": clone(qualification)}\n\ndef n01_binding_leaf_states(binding, source, held):\n    if binding is N01_ABSENT:\n        return [\"missing\"]\n    if not isinstance(binding, dict):\n        return [\"unknown\"]\n    states = n01_reference_states(n01_member(binding, \"source_ref\"), source[\"source_ref\"])\n    expected = {\"raw_revision\": held.get(\"revision\"), \"raw_scope\": held.get(\"scope\"), \"raw_sha256\": text_digest(source[\"raw_utf8\"]), \"raw_source_pointer\": \"/held_out_source/raw_utf8\"}\n    states += [n01_state_of(n01_member(binding, field), value, field == \"raw_revision\") for field, value in expected.items()]\n    if set(binding) - {\"source_ref\", \"raw_revision\", \"raw_scope\", \"raw_sha256\", \"raw_source_pointer\"}:\n        states.append(\"unknown\")\n    return states\n\ndef n01_semantic_binding(packet, context):\n    binding = n01_member(packet, \"held_out_source_binding\")\n    if binding is N01_ABSENT:\n        return \"missing\"\n    if not isinstance(binding, dict):\n        return \"unknown\"\n    resolution_presence = context[\"held_out_owner_resolution\"]\n    if resolution_presence[\"presence\"] == \"absent\":\n        return \"missing\"\n    resolution = resolution_presence[\"value\"]\n    if resolution[\"kind\"] == \"unresolved\":\n        return resolution[\"state\"]\n    source = resolution[\"source\"]\n    held = packet[\"held_out_source\"]\n    states = n01_binding_leaf_states(binding, source, held)\n    states += [n01_state_of(held[\"raw_utf8\"], source[\"raw_utf8\"]), n01_state_of(held.get(\"revision\"), source[\"source_ref\"].get(\"revision\"), True), n01_state_of(held.get(\"scope\"), source[\"source_ref\"].get(\"scope\"))]\n    batch = n01_member(packet, \"held_out_extraction_batch\")\n    if batch is not N01_ABSENT and batch is not None:\n        if not isinstance(batch, dict):\n            states.append('unknown')\n        else:\n            states += n01_binding_leaf_states(n01_member(batch, \"source_binding\"), source, held)\n            frame = packet[\"input_frame\"]\n            contract = {\"identity\": frame.get(\"extractor_identity\"), \"version\": frame.get(\"extractor_version\")}\n            states += [n01_state_of(n01_member(batch, \"applicability_input\"), frame.get(\"applicability_input\")), n01_state_of(n01_member(batch, \"extractor_contract\"), contract), n01_state_of(n01_member(batch, \"extractor_version_digest\"), value_digest(contract))]\n    return aggregate(states)\n\ndef n01_discover(batch, row_count):\n    candidates = [[] for _ in range(row_count)]\n    unmatched = []\n    occurrences = n01_member(batch, \"occurrences\")\n    if isinstance(occurrences, list):\n        for index, value in enumerate(occurrences):\n            ordinal = n01_member(value, \"source_ordinal\")\n            if type(ordinal) is int and 1 <= ordinal <= row_count:\n                candidates[ordinal - 1].append(index)\n            else:\n                unmatched.append(index)\n    return candidates, unmatched, occurrences\n\ndef n01_rejected_atom(occurrences, indices):\n    if len(indices) == 1:\n        candidate = occurrences[indices[0]]\n        return n01_presence(n01_member(n01_member(candidate, \"outcome\"), \"atom\"))\n    return {\"presence\": \"absent\"}\n\ndef n01_gap_for(row, held, kind):\n    return {\"element_id\": row[\"element\"].get(\"id\"), \"kind\": kind, \"template_revision\": held.get(\"revision\"), \"source_span\": clone(row[\"span\"])}\n\ndef n01_row_outcome(packet, row, indices, occurrences, diagnosis, binding_state):\n    held = packet[\"held_out_source\"]\n    frame = packet[\"input_frame\"]\n    kind = diagnosis\n    if kind is None and binding_state != N01_OK:\n        kind = {\"missing\": \"source_binding_missing\", \"unknown\": \"source_binding_unknown\", \"stale\": \"source_revision_stale\", \"conflict\": \"source_binding_conflict\"}[binding_state]\n    if kind is None:\n        applies = applicable(row[\"element\"], frame.get(\"applicability_input\") or {})\n        if applies != \"yes\":\n            kind = \"applicability_\" + applies\n    if kind is None:\n        if len(indices) == 0:\n            kind = \"extraction_result_missing\"\n        elif len(indices) > 1:\n            kind = \"atom_source_conflict\"\n    if kind is None:\n        candidate = occurrences[indices[0]]\n        claims = {\"source_ordinal\": row[\"ordinal\"], \"source_element_id\": row[\"element\"].get(\"id\"), \"source_span\": row[\"span\"], \"source_row_sha256\": row[\"row_sha256\"]}\n        if any(n01_member(candidate, field) is N01_ABSENT or not same(candidate[field], value) for field, value in claims.items()):\n            kind = \"atom_source_conflict\"\n    atom = None\n    if kind is None:\n        outcome = n01_member(candidate, \"outcome\")\n        if outcome is N01_ABSENT or outcome is None:\n            kind = \"extraction_result_missing\"\n        elif not isinstance(outcome, dict):\n            kind = \"extraction_result_invalid\"\n        elif outcome.get(\"kind\") == \"gap\" and set(outcome) == {\"kind\", \"gap\"}:\n            gap = outcome[\"gap\"]\n            if not n01_shape_valid('HeldOutGap', gap):\n                kind = \"extraction_result_invalid\"\n            elif gap.get(\"element_id\") != row[\"element\"].get(\"id\") or not same(gap.get(\"source_span\"), row[\"span\"]) or gap.get(\"template_revision\") != held.get(\"revision\"):\n                kind = \"atom_source_conflict\"\n            else:\n                kind = \"producer_reported_gap\"\n        elif outcome.get(\"kind\") == \"atom\" and set(outcome) == {\"kind\", \"atom\"}:\n            atom = outcome[\"atom\"]\n            if not isinstance(atom, dict) or not isinstance(atom.get(\"atom_id\"), str) or not isinstance(atom.get(\"content\"), dict):\n                kind = \"extraction_result_invalid\"\n        else:\n            kind = \"extraction_result_invalid\"\n    if kind is None:\n        expected = {\"source_element_id\": row[\"element\"].get(\"id\"), \"source_span\": row[\"span\"], \"template_revision\": held.get(\"revision\"), \"applicability\": frame.get(\"applicability_input\"), \"kind\": row[\"element\"].get(\"kind\"), \"meaning\": row[\"element\"].get(\"meaning\"), \"extractor_identity\": frame.get(\"extractor_identity\"), \"extractor_version\": frame.get(\"extractor_version\")}\n        state = aggregate([n01_state_of(n01_member(atom[\"content\"], field), value, field in {\"template_revision\", \"extractor_version\"}) for field, value in expected.items()])\n        if state != N01_OK:\n            kind = {\"missing\": \"atom_content_missing\", \"unknown\": \"atom_content_unknown\", \"stale\": \"source_revision_stale\", \"conflict\": \"atom_content_conflict\"}[state]\n    if kind is None:\n        contract = {\"identity\": frame.get(\"extractor_identity\"), \"version\": frame.get(\"extractor_version\")}\n        for actual, expected in [(n01_member(atom, \"semantic_digest\"), value_digest(atom[\"content\"])), (n01_member(atom, \"extractor_version_digest\"), value_digest(contract))]:\n            state = n01_state_of(actual, expected)\n            if state != N01_OK:\n                kind = {\"missing\": \"atom_digest_missing\", \"unknown\": \"atom_digest_unknown\", \"conflict\": \"atom_digest_conflict\"}[state]\n                break\n    if kind is None:\n        if not n01_shape_valid('HeldOutAtomEvidence', atom):\n            kind = \"extraction_result_invalid\"\n    if kind:\n        return {\"kind\": \"gap\", \"gap\": n01_gap_for(row, held, kind), \"rejected_atom\": n01_rejected_atom(occurrences, indices)}\n    return {\"kind\": \"atom\", \"atom\": clone(atom)}\n\ndef n01_source_views(shared):\n    \"\"\"Rename stored observations for existing traced stages; no source parsing.\"\"\"\n    rows, diagnoses = [], []\n    for value in shared[\"source\"][\"rows\"]:\n        rows.append({\"element\": value[\"source_element\"], \"span\": value[\"source_span\"], \"ordinal\": value[\"source_ordinal\"], \"row_sha256\": value[\"source_row_sha256\"]})\n        finding = value[\"source_finding\"]\n        diagnoses.append(None if finding[\"presence\"] == \"absent\" else finding[\"value\"][\"kind\"])\n    return rows, diagnoses\n\ndef evaluate_n01_shared(packet, retained):\n    \"\"\"Same-call producer only. Q is opaque; source diagnosis is evaluated once.\"\"\"\n    n01_require_shared_domain(packet, retained)\n    snapshot = clone(packet)\n    common = {\n        \"comparison_result\": n01_comparison_result(snapshot),\n        \"general_determinism_guaranteed\": False,\n        \"all_templates_supported\": False,\n        \"effects\": {field: False for field in N01_EFFECTS},\n        \"unaffected_Q\": clone(retained[\"unaffected_Q\"]),\n    }\n    frame = snapshot.get(\"input_frame\") or {}\n    held = n01_member(snapshot, \"held_out_source\")\n    source_gap = n01_source_level_missing(held)\n    rows = [] if source_gap is not None else n01_parsed_rows(held)\n    source_rows = []\n    for row in rows:\n        diagnosis = n01_source_diagnosis(held, frame, row)\n        source_rows.append({\n            \"source_ordinal\": row[\"ordinal\"],\n            \"source_span\": clone(row[\"span\"]),\n            \"source_row_sha256\": row[\"row_sha256\"],\n            \"source_element\": clone(row[\"element\"]),\n            \"source_finding\": n01_presence(n01_gap_for(row, held, diagnosis)) if diagnosis is not None else n01_presence(N01_ABSENT),\n        })\n    return {\n        \"input_snapshot\": snapshot,\n        \"common\": common,\n        \"source\": {\"source_level_gap\": n01_presence(source_gap) if source_gap is not None else n01_presence(N01_ABSENT), \"rows\": source_rows},\n    }\n\ndef project_n01_legacy(shared):\n    \"\"\"Closed six-member view of source-only findings, without native operands.\"\"\"\n    source = shared[\"source\"]\n    source_gap = source[\"source_level_gap\"]\n    if source_gap[\"presence\"] == \"present\":\n        gap = clone(source_gap[\"value\"])\n    else:\n        gaps = [clone(row[\"source_finding\"][\"value\"]) for row in source[\"rows\"] if row[\"source_finding\"][\"presence\"] == \"present\"]\n        gap = None if not gaps else gaps[0] if len(gaps) == 1 else gaps\n    return {**clone(shared[\"common\"]), \"held_out_gap\": gap}\n\ndef compare_n01_with_held_out_trace(packet, context, shared):\n    n01_require_same_values(packet, context, shared)\n    # The same caller supplies packet=shared.input_snapshot and its context.\n    # Shared is a typed producer result; this is not a raw state decoder.\n    rows, diagnoses = n01_source_views(shared)\n    source_gap_presence = shared[\"source\"][\"source_level_gap\"]\n    source_gap = None if source_gap_presence[\"presence\"] == \"absent\" else source_gap_presence[\"value\"]\n    batch = n01_member(packet, \"held_out_extraction_batch\")\n    indices, unmatched, occurrences = n01_discover(batch, len(rows))\n    binding = n01_member(packet, \"held_out_source_binding\")\n    eligible = any(diagnosis is None for diagnosis in diagnoses)\n    if source_gap is not None:\n        typed = {\"state\": \"not_evaluated\", \"preceding_source_finding_kinds\": [source_gap[\"kind\"]], \"input_pointer\": \"/packet/held_out_source_binding\"}\n    elif not rows:\n        typed = {\"state\": \"not_applicable\", \"reason\": \"held_out_source has no parsed source row\"}\n    elif not eligible:\n        typed = {\"state\": \"not_evaluated\", \"preceding_source_finding_kinds\": clone(diagnoses), \"input_pointer\": \"/packet/held_out_source_binding\"}\n    elif binding is N01_ABSENT:\n        typed = {\"state\": \"missing\", \"finding_kind\": \"source_binding_missing\", \"input_pointer\": \"/packet/held_out_source_binding\"}\n    elif n01_shape_valid('N01HeldOutSourceBinding', binding):\n        typed = {\"state\": \"valid\", \"value\": clone(binding), \"input_pointer\": \"/packet/held_out_source_binding\"}\n    elif isinstance(binding, dict):\n        typed = {\"state\": \"unknown\", \"reason\": \"binding_field_not_strict\", \"input_pointer\": \"/packet/held_out_source_binding\", \"raw_value\": n01_presence(binding)}\n    else:\n        typed = {\"state\": \"unknown\", \"reason\": \"binding_outer_not_object\", \"input_pointer\": \"/packet/held_out_source_binding\", \"raw_value\": n01_presence(binding)}\n    binding_state = n01_semantic_binding(packet, context) if eligible else None\n    results = []\n    for row, diagnosis, candidate_indices in zip(rows, diagnoses, indices):\n        result = {\"observed_source_binding\": n01_presence(n01_member(batch, \"source_binding\")), \"source_element_id\": row[\"element\"].get(\"id\"), \"source_span\": clone(row[\"span\"]), \"outcome\": n01_row_outcome(packet, row, candidate_indices, occurrences, diagnosis, binding_state), \"source_ordinal\": row[\"ordinal\"], \"source_row_sha256\": row[\"row_sha256\"], \"source_element\": clone(row[\"element\"]), \"candidate_batch_indices\": clone(candidate_indices)}\n        results.append(result)\n    gaps = [clone(result[\"outcome\"][\"gap\"]) for result in results if result[\"outcome\"][\"kind\"] == \"gap\"]\n    gap_projection = clone(source_gap) if source_gap is not None else None if not gaps else gaps[0] if len(gaps) == 1 else gaps\n    result = {**clone(shared[\"common\"]), \"held_out_gap\": gap_projection, \"held_out_occurrence_results\": results, \"held_out_batch_association\": {\"expected_source_binding\": n01_presence(binding), \"typed_expected_source_binding\": typed, \"batch_input\": n01_presence(batch), \"unmatched_batch_indices\": unmatched}}\n    return result\n\ndef make_n01_resolved_context(retained, owner_result):\n    return {'unaffected_Q': clone(retained['unaffected_Q']), 'held_out_owner_resolution': clone(owner_result)}\n\n\ndef call_n01_with_held_out_trace(packet, retained, source_request, ports):\n    # This caller does not accept shared/context/resolution as incoming arguments.\n    shared = evaluate_n01_shared(packet, retained)\n    snapshot = shared['input_snapshot']\n    rows, diagnoses = n01_source_views(shared)\n    request = N01_ABSENT if source_request['presence'] == 'absent' else source_request['value']\n    eligible = any(d is None for d in diagnoses)\n    if not rows or not eligible:\n        source_call = qualification_call = {'not_called_reason': 'no_eligible_held_source'}\n        resolution = N01_ABSENT\n    elif request is N01_ABSENT:\n        source_call = qualification_call = {'not_called_reason': 'source_request_missing'}\n        resolution = N01_ABSENT\n    else:\n        source_return = ports['read_n01_owner_source'](clone(request))\n        source_call = {'arguments': clone(request), 'returned': clone(source_return)}\n        if source_return['kind'] == 'unresolved':\n            qualification_call = {'not_called_reason': 'source_unresolved'}\n            resolution = n01_unresolved(request, source_return['state'], source_return['observed'], {'presence': 'absent'}, source_return['basis_refs'])\n        else:\n            source = source_return['record']\n            qualification_request = {'subject_ref': clone(source['source_ref']), 'source_record_ref': clone(source['record_ref']), 'source_bytes_sha256': text_digest(source['raw_utf8'])}\n            qualification_return = ports['read_n01_owner_qualification'](clone(qualification_request))\n            qualification_call = {'arguments': clone(qualification_request), 'returned': clone(qualification_return)}\n            resolution = resolve_n01_owner_source(request, source_return, qualification_return)\n    context = make_n01_resolved_context(retained, n01_presence(resolution))\n    returned = compare_n01_with_held_out_trace(snapshot, context, shared)\n    observation = {'source_call': clone(source_call), 'qualification_call': clone(qualification_call), 'resolution': n01_presence(N01_ABSENT) if resolution is N01_ABSENT else clone(resolution), 'context': clone(context), 'n01_arguments': {'packet': clone(snapshot), 'context': clone(context), 'shared': clone(shared)}}\n    return {'returned': returned, 'observation': observation}\n\n"
     ],
     "primitive_operators": [
       "copy.deepcopyは値保持、json.loadsは合成NDJSON/bodyから中間JSON値、json.dumpsはsort_keys/compact/ensure_ascii=false/allow_nan=falseの比較専用表現。UTF8 SHA256はbytes追跡で資格を生成しない。",
@@ -4636,7 +4637,10 @@
       "null/empty/TBD診断、known/unobservedとmissing/unknown/conflict/staleはstate_of/aggregateで定義。戻し先literal/理由はcompare_b01のfield+state構文で全定義。",
       "isinstance(str/dict)でlogical carrierを識別、truthinessはNone/空list/空map/空文字/Falseをfalseとする。get(... ) or {} / []はローカル探索だけで原presenceを書換えない。splitlines/1始点enumerateは合成source行span、encode(UTF8)/hexdigestはdigest。辞書**展開はcommonのeffects/Qとroot出力を結ぶ。",
       "check_template_domainはisinstance(dict/str)、enumerate/splitlines、json.loads、try/exceptを用い、原行順の違反mapを返す。kind/meaningの解釈や代替IDを生成せず、有限引数域と元raw/parsed値/spanを明示する。",
-      "F03原NA pointerのstr.replaceは~→~0の後/→~1のRFC6901 token escapeだけに使う。元id/raw/recordは置換しない。"
+      "F03原NA pointerのstr.replaceは~→~0の後/→~1のRFC6901 token escapeだけに使う。元id/raw/recordは置換しない。",
+      "N01はbare member sentinelを私的比較の中で使い、返却ではPresenceへ射影する。原shared/source/Qをrawlabelから生成せず、same-call source graphを別静的検証する。",
+      "N01のdocument_type/document_schemaは固定local型/schemaを読む有限モデル演算子。schemaの既定keyword subset、typeの既存kind、型を区別するsame、stdlib re.fullmatch（return_schemaの現3個の ^[0-9a-f]{64}$ に限定してECMAScriptと同じ受理集合を保つ。異なるpatternは既証明外）、private exception payloadを明示する。実runtime/codec/backend/library採用は未成立。",
+      "N01 coreのzip(rows,diagnoses,candidates)はsource_viewsとrow_count指定discoverが同じ原rowsから作る等長3列だけを走査する。外部expected配列との黙示truncateや全域gateには用いない。"
     ],
     "ordering": "原template行順/原candidate順を保持。FIELDSは明示順。gapは原行順、候補atom側kind=duplicateのoccurrence_countは実候補数。source_duplicateは完全な型付き原行同値groupに属する原source occurrence数を各原行の通常診断後に追加する。group keyは既存canonical JSON比較による局所処理であり、公開型へ出さない。owner候補はtemplate→ledger→OS。N01複数gapも原行順。 F03の各normal outcomeを一度だけoccurrenceへ保持し、互換ID mapはproject_f03_dispositions(occurrences,gaps)で原順foldする。同ID最後行のsummaryと各原出現traceを分ける。source全体gapは末尾のまま架空行へ配らない。",
     "context_boundary": "common(context)のQは明示入力。原fixtureのexpectedからQ制御値だけをテスト引数へ展開し、whole期待やcase IDを判定に使わない。実providerは未binding。 unaffected_Qはopaque JsonValueであり、他scopeのstate/原値を推測でknownへ変換しない。",
@@ -4663,7 +4667,39 @@
       "applicable": "(element:{requires_screen?:boolean,...},inputs:{screen?:boolean|string|null})->yes|no|unknown",
       "atom_matches": "(atom:JSON object,identity:opaque string)->boolean。content.source_element_idまたはsource_element_idsへ比較。",
       "na_valid": "(na:{reason?,decider?,reassessment?,target_revision?}|null,revision:string|null)->boolean。非空とsame revisionは合成比較必要条件で実owner資格ではない。",
-      "project_f03_dispositions": "(occurrences:list<F03ElementOccurrence>,gaps:F03Return.gaps)->F03Return.element_dispositions。packet/candidate/適用条件を取らず、固定normal outcomeから原順に一方向fold。"
+      "project_f03_dispositions": "(occurrences:list<F03ElementOccurrence>,gaps:F03Return.gaps)->F03Return.element_dispositions。packet/candidate/適用条件を取らず、固定normal outcomeから原順に一方向fold。",
+      "n01_member": "(value,name)->normalized n01_private_functions signature",
+      "n01_presence": "(value)->normalized n01_private_functions signature",
+      "n01_state_of": "(actual,expected,revision)->normalized n01_private_functions signature",
+      "n01_json_value": "(value)->normalized n01_private_functions signature",
+      "n01_type_valid": "(t,value)->normalized n01_private_functions signature",
+      "n01_trace_packet_type": "()->normalized n01_private_functions signature",
+      "n01_raw_trace_domain": "(packet,retained)->normalized n01_private_functions signature",
+      "n01_domain_observations": "(packet)->normalized n01_private_functions signature",
+      "n01_require_shared_domain": "(packet,retained)->normalized n01_private_functions signature",
+      "n01_require_same_values": "(packet,context,shared)->normalized n01_private_functions signature",
+      "n01_shape_valid": "(name,value)->normalized n01_private_functions signature",
+      "n01_source_level_missing": "(held)->normalized n01_private_functions signature",
+      "n01_parsed_rows": "(held)->normalized n01_private_functions signature",
+      "n01_source_diagnosis": "(held,frame,row)->normalized n01_private_functions signature",
+      "n01_comparison_result": "(packet)->normalized n01_private_functions signature",
+      "n01_reference_states": "(actual,expected)->normalized n01_private_functions signature",
+      "n01_unresolved": "(request,state,source_observation,qualification_observation,basis_refs)->normalized n01_private_functions signature",
+      "resolve_n01_owner_source": "(request,source_return,qualifier_return)->normalized n01_private_functions signature",
+      "n01_binding_leaf_states": "(binding,source,held)->normalized n01_private_functions signature",
+      "n01_semantic_binding": "(packet,context)->normalized n01_private_functions signature",
+      "n01_discover": "(batch,row_count)->normalized n01_private_functions signature",
+      "n01_rejected_atom": "(occurrences,indices)->normalized n01_private_functions signature",
+      "n01_gap_for": "(row,held,kind)->normalized n01_private_functions signature",
+      "n01_row_outcome": "(packet,row,indices,occurrences,diagnosis,binding_state)->normalized n01_private_functions signature",
+      "n01_source_views": "(shared)->normalized n01_private_functions signature",
+      "evaluate_n01_shared": "(packet,retained)->normalized n01_private_functions signature",
+      "project_n01_legacy": "(shared)->normalized n01_private_functions signature",
+      "compare_n01_with_held_out_trace": "(packet,context,shared)->normalized n01_private_functions signature",
+      "make_n01_resolved_context": "(retained,owner_result)->normalized n01_private_functions signature",
+      "call_n01_with_held_out_trace": "(packet,retained,source_request,ports)->normalized n01_private_functions signature",
+      "n01_require_legacy_shape": "(packet,retained)->private domain failure or null; valid old shape does not reparse.",
+      "n01_trace_packet_domain": "(packet)->normalized n01_private_functions signature"
     },
     "f03_codec_contract": {
       "scope": "logical引数/返却と原値保存の宣言。製品parser/backend/wire/library/実source資格を採用しない。",
@@ -4906,6 +4942,14 @@
         }
       ],
       "qualification": "型/NDJSON domain/内容比較と実owner資格は独立。pure比較は実資格発行又は実consumer接続の証明を返さない。"
+    },
+    "n01_codec_contract": {
+      "legacy_public": "既存N01Arguments/RetainedContext/N01Return6の全値/domainは不変。new8 schema経由受理をしない。",
+      "private_trace": "N01TracePacketはraw consumer用の別domain。bind/batch/atomをstrict成功型へcastしない。new8はbasic schema同値/Q true。source finding優先と全原順raw保持。",
+      "applicability_domain_derivation": "新private frame screenのoptional/boolean|string|nullは既存helper_signatures.applicableとL4 stage3 yes/no/unknownから再導出。旧公開N01Argumentsのscreen=false domainは変更しない。成功atomのstrict ApplicabilityInput:boolean型とraw比較域は別。",
+      "private_shared": "typed直接引数のみ。raw decoder/serialized origin bool/token無し。schema/資格/出所を一つのvalidへ畳まない。",
+      "domain_report": "既存check_template_domainの原返却全値をprivate errorへ保持。valid inputのdomain parserと一回のbusiness source finding生成を区別し、consumerは原findingを再計算しない。",
+      "Q": "required JSON全域をcloneでopaque保持。null/emptyをabsence/defaultへ変えない。"
     }
   },
   "consumer_connections": [
@@ -4988,5 +5032,3919 @@
       "N01 held-out occurrenceの重複処理はこのF03差分の対象外であり、N01の入力・返却・期待を変更しない。",
       "外部source qualificationとcodec bindingは未成立。F03の有限synthetic whole/traceから全format/全入力域の意味閉包や実資格を主張しない。"
     ]
+  },
+  "n01_private_type_contract": {
+    "source_basic_revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+    "l4_body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+    "grammar": {
+      "source_revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+      "grammar_kinds": [
+        "ref",
+        "primitive",
+        "record",
+        "array",
+        "union",
+        "enum",
+        "generic",
+        "apply",
+        "function",
+        "import",
+        "integer",
+        "string",
+        "domain",
+        "exception",
+        "sentinel",
+        "tuple"
+      ],
+      "primitive_names": [
+        "string",
+        "null",
+        "boolean",
+        "integer"
+      ],
+      "types": {
+        "JsonValue": {
+          "kind": "import",
+          "language": "existing_L5_type",
+          "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+          "pointer": "/types/JsonValue"
+        },
+        "RetainedContext": {
+          "kind": "import",
+          "language": "existing_L5_type",
+          "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+          "pointer": "/types/RetainedContext"
+        },
+        "N01Arguments": {
+          "kind": "import",
+          "language": "existing_L5_type",
+          "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+          "pointer": "/types/N01Arguments"
+        },
+        "N01Return": {
+          "kind": "import",
+          "language": "existing_L5_type",
+          "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+          "pointer": "/types/N01Return"
+        },
+        "TemplateDomainReturn": {
+          "kind": "import",
+          "language": "existing_L5_type",
+          "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+          "pointer": "/types/TemplateDomainReturn"
+        },
+        "RawValue": {
+          "kind": "ref",
+          "name": "JsonValue"
+        },
+        "N01LegacyPacket": {
+          "kind": "import",
+          "language": "existing_L5_type",
+          "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+          "pointer": "/types/N01Arguments/fields/packet/type"
+        },
+        "PresenceRawValue": {
+          "kind": "import",
+          "language": "JSON_Schema_2020_12_declared_subset",
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/return_json_schema/schema/$defs/PresenceRawValue"
+        },
+        "SourceSpan": {
+          "kind": "import",
+          "language": "JSON_Schema_2020_12_declared_subset",
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/return_json_schema/schema/$defs/SourceSpan"
+        },
+        "CommonRef": {
+          "kind": "import",
+          "language": "JSON_Schema_2020_12_declared_subset",
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/return_json_schema/schema/$defs/CommonRef"
+        },
+        "N01HeldOutSourceBinding": {
+          "kind": "import",
+          "language": "JSON_Schema_2020_12_declared_subset",
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/return_json_schema/schema/$defs/N01HeldOutSourceBinding"
+        },
+        "ApplicabilityInput": {
+          "kind": "import",
+          "language": "JSON_Schema_2020_12_declared_subset",
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/return_json_schema/schema/$defs/ApplicabilityInput"
+        },
+        "HeldOutAtomEvidence": {
+          "kind": "import",
+          "language": "JSON_Schema_2020_12_declared_subset",
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/return_json_schema/schema/$defs/HeldOutAtomEvidence"
+        },
+        "HeldOutGap": {
+          "kind": "import",
+          "language": "JSON_Schema_2020_12_declared_subset",
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/return_json_schema/schema/$defs/HeldOutGap"
+        },
+        "OccurrenceOutcome": {
+          "kind": "import",
+          "language": "JSON_Schema_2020_12_declared_subset",
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/return_json_schema/schema/$defs/OccurrenceOutcome"
+        },
+        "HeldOutOccurrenceResult": {
+          "kind": "import",
+          "language": "JSON_Schema_2020_12_declared_subset",
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/return_json_schema/schema/$defs/HeldOutOccurrenceResult"
+        },
+        "EffectFlags": {
+          "kind": "import",
+          "language": "JSON_Schema_2020_12_declared_subset",
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/return_json_schema/schema/$defs/EffectFlags"
+        },
+        "BatchAssociation": {
+          "kind": "import",
+          "language": "JSON_Schema_2020_12_declared_subset",
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/return_json_schema/schema/$defs/BatchAssociation"
+        },
+        "N01TracedReturn": {
+          "kind": "import",
+          "language": "JSON_Schema_2020_12_declared_subset",
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/return_json_schema/schema/$defs/N01Return"
+        },
+        "TypedExpectedSourceBinding": {
+          "kind": "import",
+          "language": "JSON_Schema_2020_12_declared_subset",
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/return_json_schema/schema/$defs/TypedExpectedSourceBinding"
+        },
+        "CommonRef6": {
+          "kind": "ref",
+          "name": "CommonRef"
+        },
+        "Presence": {
+          "kind": "generic",
+          "parameters": [
+            "T"
+          ],
+          "body": {
+            "kind": "union",
+            "variants": [
+              {
+                "kind": "record",
+                "closed": true,
+                "fields": {
+                  "presence": {
+                    "kind": "enum",
+                    "values": [
+                      "absent"
+                    ]
+                  }
+                }
+              },
+              {
+                "kind": "record",
+                "closed": true,
+                "fields": {
+                  "presence": {
+                    "kind": "enum",
+                    "values": [
+                      "present"
+                    ]
+                  },
+                  "value": {
+                    "kind": "ref",
+                    "name": "T"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "N01OwnerReadResult": {
+          "kind": "generic",
+          "parameters": [
+            "T"
+          ],
+          "body": {
+            "kind": "union",
+            "variants": [
+              {
+                "kind": "record",
+                "closed": true,
+                "fields": {
+                  "kind": {
+                    "kind": "enum",
+                    "values": [
+                      "resolved"
+                    ]
+                  },
+                  "record": {
+                    "kind": "ref",
+                    "name": "T"
+                  }
+                }
+              },
+              {
+                "kind": "record",
+                "closed": true,
+                "fields": {
+                  "kind": {
+                    "kind": "enum",
+                    "values": [
+                      "unresolved"
+                    ]
+                  },
+                  "state": {
+                    "kind": "enum",
+                    "values": [
+                      "missing",
+                      "unknown",
+                      "conflict",
+                      "stale"
+                    ]
+                  },
+                  "observed": {
+                    "kind": "apply",
+                    "generic": "Presence",
+                    "arguments": [
+                      {
+                        "kind": "ref",
+                        "name": "RawValue"
+                      }
+                    ]
+                  },
+                  "basis_refs": {
+                    "kind": "array",
+                    "items": {
+                      "kind": "ref",
+                      "name": "CommonRef6"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "N01OwnerSourceRequest": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "source_ref": {
+              "kind": "ref",
+              "name": "CommonRef6"
+            }
+          }
+        },
+        "N01NativeSourceSnapshot": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "source_ref": {
+              "kind": "ref",
+              "name": "CommonRef6"
+            },
+            "raw_utf8": {
+              "kind": "primitive",
+              "name": "string"
+            }
+          }
+        },
+        "N01QualificationDecision": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "outcome": {
+              "kind": "enum",
+              "values": [
+                "applicable",
+                "not_applicable",
+                "revoked",
+                "indeterminate"
+              ]
+            },
+            "reason": {
+              "kind": "ref",
+              "name": "RawValue"
+            }
+          }
+        },
+        "N01NativeOwnerQualification": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "subject_ref": {
+              "kind": "ref",
+              "name": "CommonRef6"
+            },
+            "owner": {
+              "kind": "union",
+              "variants": [
+                {
+                  "kind": "primitive",
+                  "name": "string"
+                },
+                {
+                  "kind": "primitive",
+                  "name": "null"
+                }
+              ]
+            },
+            "source_bytes_sha256": {
+              "kind": "union",
+              "variants": [
+                {
+                  "kind": "primitive",
+                  "name": "string"
+                },
+                {
+                  "kind": "primitive",
+                  "name": "null"
+                }
+              ]
+            },
+            "basis_refs": {
+              "kind": "array",
+              "items": {
+                "kind": "ref",
+                "name": "CommonRef6"
+              }
+            },
+            "decision": {
+              "kind": "ref",
+              "name": "N01QualificationDecision"
+            }
+          }
+        },
+        "N01NativeSourceRecord": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "record_ref": {
+              "kind": "ref",
+              "name": "CommonRef6"
+            },
+            "source_ref": {
+              "kind": "ref",
+              "name": "CommonRef6"
+            },
+            "raw_utf8": {
+              "kind": "primitive",
+              "name": "string"
+            }
+          }
+        },
+        "N01NativeQualificationRecord": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "qualification_ref": {
+              "kind": "ref",
+              "name": "CommonRef6"
+            },
+            "subject_ref": {
+              "kind": "ref",
+              "name": "CommonRef6"
+            },
+            "source_bytes_sha256": {
+              "kind": "union",
+              "variants": [
+                {
+                  "kind": "primitive",
+                  "name": "string"
+                },
+                {
+                  "kind": "primitive",
+                  "name": "null"
+                }
+              ]
+            },
+            "owner": {
+              "kind": "union",
+              "variants": [
+                {
+                  "kind": "primitive",
+                  "name": "string"
+                },
+                {
+                  "kind": "primitive",
+                  "name": "null"
+                }
+              ]
+            },
+            "basis_refs": {
+              "kind": "array",
+              "items": {
+                "kind": "ref",
+                "name": "CommonRef6"
+              }
+            },
+            "decision": {
+              "kind": "ref",
+              "name": "N01QualificationDecision"
+            }
+          }
+        },
+        "N01NativeSourcePortResult": {
+          "kind": "apply",
+          "generic": "N01OwnerReadResult",
+          "arguments": [
+            {
+              "kind": "ref",
+              "name": "N01NativeSourceRecord"
+            }
+          ]
+        },
+        "N01NativeQualificationPortResult": {
+          "kind": "apply",
+          "generic": "N01OwnerReadResult",
+          "arguments": [
+            {
+              "kind": "ref",
+              "name": "N01NativeQualificationRecord"
+            }
+          ]
+        },
+        "N01QualificationRequest": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "subject_ref": {
+              "kind": "ref",
+              "name": "CommonRef6"
+            },
+            "source_record_ref": {
+              "kind": "ref",
+              "name": "CommonRef6"
+            },
+            "source_bytes_sha256": {
+              "kind": "primitive",
+              "name": "string"
+            }
+          }
+        },
+        "N01OwnerSourceResolution": {
+          "kind": "union",
+          "variants": [
+            {
+              "kind": "record",
+              "closed": true,
+              "fields": {
+                "kind": {
+                  "kind": "enum",
+                  "values": [
+                    "resolved"
+                  ]
+                },
+                "request": {
+                  "kind": "ref",
+                  "name": "N01OwnerSourceRequest"
+                },
+                "source": {
+                  "kind": "ref",
+                  "name": "N01NativeSourceSnapshot"
+                },
+                "qualification": {
+                  "kind": "ref",
+                  "name": "N01NativeOwnerQualification"
+                },
+                "native_source_record": {
+                  "kind": "ref",
+                  "name": "N01NativeSourceRecord"
+                },
+                "native_qualification_record": {
+                  "kind": "ref",
+                  "name": "N01NativeQualificationRecord"
+                }
+              }
+            },
+            {
+              "kind": "record",
+              "closed": true,
+              "fields": {
+                "kind": {
+                  "kind": "enum",
+                  "values": [
+                    "unresolved"
+                  ]
+                },
+                "request": {
+                  "kind": "ref",
+                  "name": "N01OwnerSourceRequest"
+                },
+                "state": {
+                  "kind": "enum",
+                  "values": [
+                    "missing",
+                    "unknown",
+                    "conflict",
+                    "stale"
+                  ]
+                },
+                "source_observation": {
+                  "kind": "apply",
+                  "generic": "Presence",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "name": "RawValue"
+                    }
+                  ]
+                },
+                "qualification_observation": {
+                  "kind": "apply",
+                  "generic": "Presence",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "name": "RawValue"
+                    }
+                  ]
+                },
+                "basis_refs": {
+                  "kind": "array",
+                  "items": {
+                    "kind": "ref",
+                    "name": "CommonRef6"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "N01ResolvedContext": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "unaffected_Q": {
+              "kind": "ref",
+              "name": "RawValue"
+            },
+            "held_out_owner_resolution": {
+              "kind": "apply",
+              "generic": "Presence",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "name": "N01OwnerSourceResolution"
+                }
+              ]
+            }
+          }
+        },
+        "N01ComparisonResult": {
+          "kind": "import",
+          "language": "existing_L5_type",
+          "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+          "pointer": "/types/N01Return/fields/comparison_result/type"
+        },
+        "N01CommonResult": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "comparison_result": {
+              "kind": "ref",
+              "name": "N01ComparisonResult"
+            },
+            "general_determinism_guaranteed": {
+              "kind": "enum",
+              "values": [
+                false
+              ]
+            },
+            "all_templates_supported": {
+              "kind": "enum",
+              "values": [
+                false
+              ]
+            },
+            "effects": {
+              "kind": "ref",
+              "name": "EffectFlags"
+            },
+            "unaffected_Q": {
+              "kind": "ref",
+              "name": "RawValue"
+            }
+          }
+        },
+        "N01SourceRowObservation": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "source_ordinal": {
+              "kind": "integer",
+              "minimum": 1
+            },
+            "source_span": {
+              "kind": "ref",
+              "name": "SourceSpan"
+            },
+            "source_row_sha256": {
+              "kind": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "source_element": {
+              "kind": "ref",
+              "name": "RawValue"
+            },
+            "source_finding": {
+              "kind": "apply",
+              "generic": "Presence",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "name": "HeldOutGap"
+                }
+              ]
+            }
+          }
+        },
+        "N01SourceEvaluation": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "source_level_gap": {
+              "kind": "apply",
+              "generic": "Presence",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "name": "HeldOutGap"
+                }
+              ]
+            },
+            "rows": {
+              "kind": "array",
+              "items": {
+                "kind": "ref",
+                "name": "N01SourceRowObservation"
+              }
+            }
+          }
+        },
+        "N01SharedEvaluation": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "input_snapshot": {
+              "kind": "ref",
+              "name": "RawValue"
+            },
+            "common": {
+              "kind": "ref",
+              "name": "N01CommonResult"
+            },
+            "source": {
+              "kind": "ref",
+              "name": "N01SourceEvaluation"
+            }
+          }
+        },
+        "N01TracePacket": {
+          "kind": "domain",
+          "base": {
+            "kind": "ref",
+            "name": "RawValue"
+          },
+          "predicate": "n01_trace_packet_domain"
+        },
+        "N01TraceArguments": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "packet": {
+              "kind": "ref",
+              "name": "N01TracePacket"
+            },
+            "context": {
+              "kind": "ref",
+              "name": "N01ResolvedContext"
+            },
+            "shared": {
+              "kind": "ref",
+              "name": "N01SharedEvaluation"
+            }
+          }
+        },
+        "N01TraceCallerArguments": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "packet": {
+              "kind": "ref",
+              "name": "N01TracePacket"
+            },
+            "retained": {
+              "kind": "ref",
+              "name": "RetainedContext"
+            },
+            "source_request": {
+              "kind": "apply",
+              "generic": "Presence",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "name": "N01OwnerSourceRequest"
+                }
+              ]
+            }
+          }
+        },
+        "N01InvocationObservation": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "source_call": {
+              "kind": "union",
+              "variants": [
+                {
+                  "kind": "record",
+                  "closed": true,
+                  "fields": {
+                    "arguments": {
+                      "kind": "ref",
+                      "name": "N01OwnerSourceRequest"
+                    },
+                    "returned": {
+                      "kind": "ref",
+                      "name": "N01NativeSourcePortResult"
+                    }
+                  }
+                },
+                {
+                  "kind": "record",
+                  "closed": true,
+                  "fields": {
+                    "not_called_reason": {
+                      "kind": "enum",
+                      "values": [
+                        "no_eligible_held_source",
+                        "source_request_missing"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "qualification_call": {
+              "kind": "union",
+              "variants": [
+                {
+                  "kind": "record",
+                  "closed": true,
+                  "fields": {
+                    "arguments": {
+                      "kind": "ref",
+                      "name": "N01QualificationRequest"
+                    },
+                    "returned": {
+                      "kind": "ref",
+                      "name": "N01NativeQualificationPortResult"
+                    }
+                  }
+                },
+                {
+                  "kind": "record",
+                  "closed": true,
+                  "fields": {
+                    "not_called_reason": {
+                      "kind": "enum",
+                      "values": [
+                        "no_eligible_held_source",
+                        "source_request_missing",
+                        "source_unresolved"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "resolution": {
+              "kind": "union",
+              "variants": [
+                {
+                  "kind": "ref",
+                  "name": "N01OwnerSourceResolution"
+                },
+                {
+                  "kind": "record",
+                  "closed": true,
+                  "fields": {
+                    "presence": {
+                      "kind": "enum",
+                      "values": [
+                        "absent"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "context": {
+              "kind": "ref",
+              "name": "N01ResolvedContext"
+            },
+            "n01_arguments": {
+              "kind": "ref",
+              "name": "N01TraceArguments"
+            }
+          }
+        },
+        "N01TraceCallResult": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "returned": {
+              "kind": "ref",
+              "name": "N01TracedReturn"
+            },
+            "observation": {
+              "kind": "ref",
+              "name": "N01InvocationObservation"
+            }
+          }
+        },
+        "N01NativePorts": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "read_n01_owner_source": {
+              "kind": "function",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "name": "N01OwnerSourceRequest"
+                }
+              ],
+              "returns": {
+                "kind": "ref",
+                "name": "N01NativeSourcePortResult"
+              }
+            },
+            "read_n01_owner_qualification": {
+              "kind": "function",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "name": "N01QualificationRequest"
+                }
+              ],
+              "returns": {
+                "kind": "ref",
+                "name": "N01NativeQualificationPortResult"
+              }
+            }
+          }
+        },
+        "N01DomainObservation": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "input_pointer": {
+              "kind": "enum",
+              "values": [
+                "/packet/original_template",
+                "/packet/held_out_source"
+              ]
+            },
+            "input": {
+              "kind": "apply",
+              "generic": "Presence",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "name": "RawValue"
+                }
+              ]
+            },
+            "returned": {
+              "kind": "ref",
+              "name": "TemplateDomainReturn"
+            }
+          }
+        },
+        "N01PrivateContractProblem": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "kind": {
+              "kind": "enum",
+              "values": [
+                "declared_domain_violation",
+                "packet_snapshot_mismatch",
+                "retained_Q_mismatch"
+              ]
+            },
+            "arguments": {
+              "kind": "ref",
+              "name": "RawValue"
+            },
+            "domain_observations": {
+              "kind": "array",
+              "items": {
+                "kind": "ref",
+                "name": "N01DomainObservation"
+              }
+            }
+          }
+        },
+        "N01PrivateContractError": {
+          "kind": "exception",
+          "payload": {
+            "kind": "ref",
+            "name": "N01PrivateContractProblem"
+          }
+        },
+        "N01CallerStructureProblem": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "kind": {
+              "kind": "enum",
+              "values": [
+                "external_shared_parameter",
+                "raw_private_decode",
+                "foreign_shared_in_callsite",
+                "multiple_shared_producers",
+                "missing_direct_call",
+                "duplicate_symbol",
+                "outside_closed_notation"
+              ]
+            },
+            "function_symbol": {
+              "kind": "primitive",
+              "name": "string"
+            },
+            "definition_index": {
+              "kind": "integer",
+              "minimum": 0
+            },
+            "source_line": {
+              "kind": "integer",
+              "minimum": 1
+            },
+            "source_excerpt": {
+              "kind": "primitive",
+              "name": "string"
+            }
+          }
+        },
+        "N01CallerStructureCheck": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "valid": {
+              "kind": "primitive",
+              "name": "boolean"
+            },
+            "problems": {
+              "kind": "array",
+              "items": {
+                "kind": "ref",
+                "name": "N01CallerStructureProblem"
+              }
+            }
+          }
+        },
+        "N01Absent": {
+          "kind": "sentinel",
+          "symbol": "N01_ABSENT",
+          "external_decode": false
+        },
+        "N01RawMember": {
+          "kind": "generic",
+          "parameters": [
+            "T"
+          ],
+          "body": {
+            "kind": "union",
+            "variants": [
+              {
+                "kind": "ref",
+                "name": "N01Absent"
+              },
+              {
+                "kind": "ref",
+                "name": "T"
+              }
+            ]
+          }
+        },
+        "N01ComparisonState": {
+          "kind": "enum",
+          "values": [
+            "missing",
+            "unknown",
+            "stale",
+            "conflict",
+            "supported_synthetic_condition"
+          ]
+        },
+        "N01ParsedElement": {
+          "kind": "record",
+          "closed": false,
+          "fields": {
+            "id": {
+              "kind": "string",
+              "min_length": 1
+            }
+          },
+          "additional_values": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        },
+        "N01SourceWorkingRow": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "element": {
+              "kind": "ref",
+              "name": "N01ParsedElement"
+            },
+            "span": {
+              "kind": "ref",
+              "name": "SourceSpan"
+            },
+            "ordinal": {
+              "kind": "integer",
+              "minimum": 1
+            },
+            "row_sha256": {
+              "kind": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "N01SourceViews": {
+          "kind": "tuple",
+          "elements": [
+            {
+              "kind": "array",
+              "items": {
+                "kind": "ref",
+                "name": "N01SourceWorkingRow"
+              }
+            },
+            {
+              "kind": "array",
+              "items": {
+                "kind": "union",
+                "variants": [
+                  {
+                    "kind": "primitive",
+                    "name": "string"
+                  },
+                  {
+                    "kind": "primitive",
+                    "name": "null"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "N01Discovery": {
+          "kind": "tuple",
+          "elements": [
+            {
+              "kind": "array",
+              "items": {
+                "kind": "array",
+                "items": {
+                  "kind": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            {
+              "kind": "array",
+              "items": {
+                "kind": "integer",
+                "minimum": 0
+              }
+            },
+            {
+              "kind": "apply",
+              "generic": "N01RawMember",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "name": "RawValue"
+                }
+              ]
+            }
+          ]
+        },
+        "N01SchemaName": {
+          "kind": "enum",
+          "values": [
+            "PresenceRawValue",
+            "SourceSpan",
+            "CommonRef",
+            "N01HeldOutSourceBinding",
+            "ApplicabilityInput",
+            "HeldOutAtomEvidence",
+            "HeldOutGap",
+            "OccurrenceOutcome",
+            "HeldOutOccurrenceResult",
+            "EffectFlags",
+            "BatchAssociation",
+            "N01Return",
+            "TypedExpectedSourceBinding"
+          ]
+        },
+        "N01ExistingTypeDescriptor": {
+          "kind": "ref",
+          "name": "RawValue"
+        },
+        "N01CallerDefinitions": {
+          "kind": "array",
+          "items": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "min_length": 1
+        },
+        "N01CallerEntryContract": {
+          "kind": "record",
+          "closed": true,
+          "fields": {
+            "caller": {
+              "kind": "primitive",
+              "name": "string"
+            },
+            "parameters": {
+              "kind": "array",
+              "items": {
+                "kind": "primitive",
+                "name": "string"
+              }
+            },
+            "core": {
+              "kind": "primitive",
+              "name": "string"
+            },
+            "forbidden_raw_decoders": {
+              "kind": "array",
+              "items": {
+                "kind": "primitive",
+                "name": "string"
+              }
+            },
+            "source_scope": {
+              "kind": "primitive",
+              "name": "string"
+            },
+            "caller_skeleton_ast_sha256": {
+              "kind": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        }
+      },
+      "domain_predicates": {
+        "n01_trace_packet_domain": {
+          "definition": "単一packet引数の型predicate。retained検査はn01_raw_trace_domain(packet,retained)の別合成前提。",
+          "basis": [
+            "現L5原N01Arguments base fields",
+            "原functions3 domain precondition",
+            "原helper_signatures.applicableのscreen boolean|string|null/optional",
+            "基本raw consumer/S01診断"
+          ]
+        }
+      },
+      "imports_field_basis": {
+        "N01OwnerSourceRequest": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/logical_types/N01OwnerSourceRequest"
+        },
+        "N01NativeSourceSnapshot": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/logical_types/N01NativeSourceSnapshot"
+        },
+        "N01NativeOwnerQualification": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/logical_types/N01NativeOwnerQualification"
+        },
+        "N01OwnerSourceResolution": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/logical_types/N01OwnerSourceResolution"
+        },
+        "N01ResolvedContext": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/logical_types/N01ResolvedContext"
+        },
+        "N01NativeSourceRecord": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/logical_types/N01NativeSourceRecord"
+        },
+        "N01NativeQualificationRecord": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/logical_types/N01NativeQualificationRecord"
+        },
+        "N01QualificationRequest": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/logical_types/N01QualificationRequest"
+        },
+        "N01OwnerReadResult<T>": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/logical_types/N01OwnerReadResult<T>"
+        },
+        "N01NativeSourcePortResult": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/logical_types/N01NativeSourcePortResult"
+        },
+        "N01NativeQualificationPortResult": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/logical_types/N01NativeQualificationPortResult"
+        },
+        "N01QualificationDecision": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/logical_types/N01QualificationDecision"
+        },
+        "N01InvocationObservation": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/logical_types/N01InvocationObservation"
+        },
+        "CommonRef6": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/return_json_schema/schema/$defs/CommonRef"
+        },
+        "N01CommonResult": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/shared_evaluation_contract/types/N01CommonResult"
+        },
+        "N01SourceRowObservation": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/shared_evaluation_contract/types/N01SourceRowObservation"
+        },
+        "N01SourceEvaluation": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/shared_evaluation_contract/types/N01SourceEvaluation"
+        },
+        "N01SharedEvaluation": {
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/shared_evaluation_contract/types/N01SharedEvaluation"
+        },
+        "N01DomainObservation": {
+          "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "body_sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+          "pointers": [
+            "/functions/3/preconditions/3",
+            "/template_domain_function",
+            "/types/TemplateDomainReturn"
+          ],
+          "derivation": "私的domain失敗に既存validatorの全返却と原Presenceを結ぶ技術投影。新business/public義務を追加しない。"
+        }
+      },
+      "source_schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "urn:helix:harness041:n01:return",
+        "title": "HARNESS041 N01Return",
+        "$ref": "#/$defs/N01Return",
+        "$defs": {
+          "PresenceRawValue": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "presence": {
+                    "const": "absent"
+                  }
+                },
+                "required": [
+                  "presence"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "presence": {
+                    "const": "present"
+                  },
+                  "value": true
+                },
+                "required": [
+                  "presence",
+                  "value"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "SourceSpan": {
+            "type": "object",
+            "properties": {
+              "start_line": {
+                "type": "integer"
+              },
+              "end_line": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "start_line",
+              "end_line"
+            ],
+            "additionalProperties": false
+          },
+          "CommonRef": {
+            "type": "object",
+            "properties": {
+              "identity": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "revision": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "scope": {},
+              "owner": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "source_locator": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sha256": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "identity",
+              "revision",
+              "scope",
+              "owner",
+              "source_locator",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "N01HeldOutSourceBinding": {
+            "type": "object",
+            "properties": {
+              "source_ref": {
+                "$ref": "#/$defs/CommonRef"
+              },
+              "raw_source_pointer": {
+                "type": "string"
+              },
+              "raw_revision": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "raw_scope": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "raw_sha256": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "source_ref",
+              "raw_source_pointer",
+              "raw_revision",
+              "raw_scope",
+              "raw_sha256"
+            ],
+            "additionalProperties": false
+          },
+          "ApplicabilityInput": {
+            "type": "object",
+            "properties": {
+              "screen": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "screen"
+            ],
+            "additionalProperties": false
+          },
+          "HeldOutAtomEvidence": {
+            "type": "object",
+            "properties": {
+              "atom_id": {
+                "type": "string"
+              },
+              "content": {
+                "type": "object",
+                "properties": {
+                  "source_element_id": {
+                    "type": "string"
+                  },
+                  "source_span": {
+                    "$ref": "#/$defs/SourceSpan"
+                  },
+                  "template_revision": {
+                    "type": "string"
+                  },
+                  "applicability": {
+                    "$ref": "#/$defs/ApplicabilityInput"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "meaning": {
+                    "type": "string"
+                  },
+                  "extractor_identity": {
+                    "type": "string"
+                  },
+                  "extractor_version": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "source_element_id",
+                  "source_span",
+                  "template_revision",
+                  "applicability",
+                  "kind",
+                  "meaning",
+                  "extractor_identity",
+                  "extractor_version"
+                ],
+                "additionalProperties": false
+              },
+              "semantic_digest": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "extractor_version_digest": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            },
+            "required": [
+              "atom_id",
+              "content",
+              "semantic_digest",
+              "extractor_version_digest"
+            ],
+            "additionalProperties": false
+          },
+          "HeldOutGap": {
+            "type": "object",
+            "properties": {
+              "element_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "kind": {
+                "type": "string"
+              },
+              "template_revision": {
+                "type": "string"
+              },
+              "source_span": {
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/SourceSpan"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "element_id",
+              "kind",
+              "template_revision",
+              "source_span"
+            ],
+            "additionalProperties": false
+          },
+          "OccurrenceOutcome": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "atom"
+                  },
+                  "atom": {
+                    "$ref": "#/$defs/HeldOutAtomEvidence"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "atom"
+                ],
+                "not": {
+                  "required": [
+                    "rejected_atom"
+                  ]
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "gap"
+                  },
+                  "gap": {
+                    "$ref": "#/$defs/HeldOutGap"
+                  },
+                  "rejected_atom": {
+                    "$ref": "#/$defs/PresenceRawValue"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "gap",
+                  "rejected_atom"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "HeldOutOccurrenceResult": {
+            "type": "object",
+            "properties": {
+              "observed_source_binding": {
+                "$ref": "#/$defs/PresenceRawValue"
+              },
+              "source_element_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "source_span": {
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/SourceSpan"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "outcome": {
+                "$ref": "#/$defs/OccurrenceOutcome"
+              },
+              "source_ordinal": {
+                "type": "integer"
+              },
+              "source_row_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$",
+                "description": "正確な原source rowの行終端を含まないbytesのSHA-256。source_parse_and_diagnosis/raw_parseを参照。whole sourceの終端を含む全bytes digestとは別。"
+              },
+              "source_element": true,
+              "candidate_batch_indices": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            "required": [
+              "observed_source_binding",
+              "source_element_id",
+              "source_span",
+              "outcome",
+              "source_ordinal",
+              "source_row_sha256",
+              "source_element",
+              "candidate_batch_indices"
+            ],
+            "additionalProperties": false
+          },
+          "EffectFlags": {
+            "type": "object",
+            "properties": {
+              "actual_extraction_executed": {
+                "const": false
+              },
+              "actual_ledger_registered": {
+                "const": false
+              },
+              "actual_OS_execution": {
+                "const": false
+              },
+              "actual_template_authority": {
+                "const": false
+              },
+              "actual_design_complete": {
+                "const": false
+              },
+              "actual_requirement_agreement": {
+                "const": false
+              },
+              "actual_acceptance": {
+                "const": false
+              }
+            },
+            "required": [
+              "actual_extraction_executed",
+              "actual_ledger_registered",
+              "actual_OS_execution",
+              "actual_template_authority",
+              "actual_design_complete",
+              "actual_requirement_agreement",
+              "actual_acceptance"
+            ],
+            "additionalProperties": false
+          },
+          "BatchAssociation": {
+            "type": "object",
+            "properties": {
+              "expected_source_binding": {
+                "$ref": "#/$defs/PresenceRawValue"
+              },
+              "typed_expected_source_binding": {
+                "$ref": "#/$defs/TypedExpectedSourceBinding"
+              },
+              "batch_input": {
+                "$ref": "#/$defs/PresenceRawValue"
+              },
+              "unmatched_batch_indices": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            "required": [
+              "expected_source_binding",
+              "typed_expected_source_binding",
+              "batch_input",
+              "unmatched_batch_indices"
+            ],
+            "additionalProperties": false
+          },
+          "N01Return": {
+            "type": "object",
+            "properties": {
+              "comparison_result": {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "state",
+                  "value"
+                ],
+                "additionalProperties": false
+              },
+              "general_determinism_guaranteed": {
+                "type": "boolean"
+              },
+              "all_templates_supported": {
+                "type": "boolean"
+              },
+              "held_out_gap": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/$defs/HeldOutGap"
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/HeldOutGap"
+                    }
+                  }
+                ]
+              },
+              "effects": {
+                "$ref": "#/$defs/EffectFlags"
+              },
+              "unaffected_Q": true,
+              "held_out_occurrence_results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/HeldOutOccurrenceResult"
+                }
+              },
+              "held_out_batch_association": {
+                "$ref": "#/$defs/BatchAssociation"
+              }
+            },
+            "required": [
+              "comparison_result",
+              "general_determinism_guaranteed",
+              "all_templates_supported",
+              "held_out_gap",
+              "effects",
+              "unaffected_Q",
+              "held_out_occurrence_results",
+              "held_out_batch_association"
+            ],
+            "additionalProperties": false
+          },
+          "TypedExpectedSourceBinding": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "const": "valid"
+                  },
+                  "value": {
+                    "$ref": "#/$defs/N01HeldOutSourceBinding"
+                  },
+                  "input_pointer": {
+                    "const": "/packet/held_out_source_binding"
+                  }
+                },
+                "required": [
+                  "state",
+                  "value",
+                  "input_pointer"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "const": "missing"
+                  },
+                  "finding_kind": {
+                    "const": "source_binding_missing"
+                  },
+                  "input_pointer": {
+                    "const": "/packet/held_out_source_binding"
+                  }
+                },
+                "required": [
+                  "state",
+                  "finding_kind",
+                  "input_pointer"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "const": "unknown"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "input_pointer": {
+                    "const": "/packet/held_out_source_binding"
+                  },
+                  "raw_value": {
+                    "$ref": "#/$defs/PresenceRawValue"
+                  }
+                },
+                "required": [
+                  "state",
+                  "reason",
+                  "input_pointer",
+                  "raw_value"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "const": "not_evaluated"
+                  },
+                  "preceding_source_finding_kinds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "input_pointer": {
+                    "const": "/packet/held_out_source_binding"
+                  }
+                },
+                "required": [
+                  "state",
+                  "preceding_source_finding_kinds",
+                  "input_pointer"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "const": "not_applicable"
+                  },
+                  "reason": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "state",
+                  "reason"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      },
+      "closed_symbol_policy": "全ref/apply/importをcheckerで解決する。unknown kind/predicate/schema refはfail。旧L5 validatorへこの新grammarを無検証で流さない。",
+      "origin": "runtime errorにorigin variant無し。JSON値によるorigin資格判定無し。静的caller構成検証の別型を用いる。"
+    },
+    "return_schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "urn:helix:harness041:n01:return",
+      "title": "HARNESS041 N01Return",
+      "$ref": "#/$defs/N01Return",
+      "$defs": {
+        "PresenceRawValue": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "absent"
+                }
+              },
+              "required": [
+                "presence"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "present"
+                },
+                "value": true
+              },
+              "required": [
+                "presence",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "SourceSpan": {
+          "type": "object",
+          "properties": {
+            "start_line": {
+              "type": "integer"
+            },
+            "end_line": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "start_line",
+            "end_line"
+          ],
+          "additionalProperties": false
+        },
+        "CommonRef": {
+          "type": "object",
+          "properties": {
+            "identity": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "revision": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "scope": {},
+            "owner": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source_locator": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "sha256": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "identity",
+            "revision",
+            "scope",
+            "owner",
+            "source_locator",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "N01HeldOutSourceBinding": {
+          "type": "object",
+          "properties": {
+            "source_ref": {
+              "$ref": "#/$defs/CommonRef"
+            },
+            "raw_source_pointer": {
+              "type": "string"
+            },
+            "raw_revision": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "raw_scope": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "raw_sha256": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "source_ref",
+            "raw_source_pointer",
+            "raw_revision",
+            "raw_scope",
+            "raw_sha256"
+          ],
+          "additionalProperties": false
+        },
+        "ApplicabilityInput": {
+          "type": "object",
+          "properties": {
+            "screen": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "screen"
+          ],
+          "additionalProperties": false
+        },
+        "HeldOutAtomEvidence": {
+          "type": "object",
+          "properties": {
+            "atom_id": {
+              "type": "string"
+            },
+            "content": {
+              "type": "object",
+              "properties": {
+                "source_element_id": {
+                  "type": "string"
+                },
+                "source_span": {
+                  "$ref": "#/$defs/SourceSpan"
+                },
+                "template_revision": {
+                  "type": "string"
+                },
+                "applicability": {
+                  "$ref": "#/$defs/ApplicabilityInput"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "meaning": {
+                  "type": "string"
+                },
+                "extractor_identity": {
+                  "type": "string"
+                },
+                "extractor_version": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "source_element_id",
+                "source_span",
+                "template_revision",
+                "applicability",
+                "kind",
+                "meaning",
+                "extractor_identity",
+                "extractor_version"
+              ],
+              "additionalProperties": false
+            },
+            "semantic_digest": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "extractor_version_digest": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "atom_id",
+            "content",
+            "semantic_digest",
+            "extractor_version_digest"
+          ],
+          "additionalProperties": false
+        },
+        "HeldOutGap": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "kind": {
+              "type": "string"
+            },
+            "template_revision": {
+              "type": "string"
+            },
+            "source_span": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/SourceSpan"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "element_id",
+            "kind",
+            "template_revision",
+            "source_span"
+          ],
+          "additionalProperties": false
+        },
+        "OccurrenceOutcome": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "atom"
+                },
+                "atom": {
+                  "$ref": "#/$defs/HeldOutAtomEvidence"
+                }
+              },
+              "required": [
+                "kind",
+                "atom"
+              ],
+              "not": {
+                "required": [
+                  "rejected_atom"
+                ]
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "gap"
+                },
+                "gap": {
+                  "$ref": "#/$defs/HeldOutGap"
+                },
+                "rejected_atom": {
+                  "$ref": "#/$defs/PresenceRawValue"
+                }
+              },
+              "required": [
+                "kind",
+                "gap",
+                "rejected_atom"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "HeldOutOccurrenceResult": {
+          "type": "object",
+          "properties": {
+            "observed_source_binding": {
+              "$ref": "#/$defs/PresenceRawValue"
+            },
+            "source_element_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source_span": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/SourceSpan"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "outcome": {
+              "$ref": "#/$defs/OccurrenceOutcome"
+            },
+            "source_ordinal": {
+              "type": "integer"
+            },
+            "source_row_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$",
+              "description": "正確な原source rowの行終端を含まないbytesのSHA-256。source_parse_and_diagnosis/raw_parseを参照。whole sourceの終端を含む全bytes digestとは別。"
+            },
+            "source_element": true,
+            "candidate_batch_indices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "required": [
+            "observed_source_binding",
+            "source_element_id",
+            "source_span",
+            "outcome",
+            "source_ordinal",
+            "source_row_sha256",
+            "source_element",
+            "candidate_batch_indices"
+          ],
+          "additionalProperties": false
+        },
+        "EffectFlags": {
+          "type": "object",
+          "properties": {
+            "actual_extraction_executed": {
+              "const": false
+            },
+            "actual_ledger_registered": {
+              "const": false
+            },
+            "actual_OS_execution": {
+              "const": false
+            },
+            "actual_template_authority": {
+              "const": false
+            },
+            "actual_design_complete": {
+              "const": false
+            },
+            "actual_requirement_agreement": {
+              "const": false
+            },
+            "actual_acceptance": {
+              "const": false
+            }
+          },
+          "required": [
+            "actual_extraction_executed",
+            "actual_ledger_registered",
+            "actual_OS_execution",
+            "actual_template_authority",
+            "actual_design_complete",
+            "actual_requirement_agreement",
+            "actual_acceptance"
+          ],
+          "additionalProperties": false
+        },
+        "BatchAssociation": {
+          "type": "object",
+          "properties": {
+            "expected_source_binding": {
+              "$ref": "#/$defs/PresenceRawValue"
+            },
+            "typed_expected_source_binding": {
+              "$ref": "#/$defs/TypedExpectedSourceBinding"
+            },
+            "batch_input": {
+              "$ref": "#/$defs/PresenceRawValue"
+            },
+            "unmatched_batch_indices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "required": [
+            "expected_source_binding",
+            "typed_expected_source_binding",
+            "batch_input",
+            "unmatched_batch_indices"
+          ],
+          "additionalProperties": false
+        },
+        "N01Return": {
+          "type": "object",
+          "properties": {
+            "comparison_result": {
+              "type": "object",
+              "properties": {
+                "state": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "state",
+                "value"
+              ],
+              "additionalProperties": false
+            },
+            "general_determinism_guaranteed": {
+              "type": "boolean"
+            },
+            "all_templates_supported": {
+              "type": "boolean"
+            },
+            "held_out_gap": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "$ref": "#/$defs/HeldOutGap"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/HeldOutGap"
+                  }
+                }
+              ]
+            },
+            "effects": {
+              "$ref": "#/$defs/EffectFlags"
+            },
+            "unaffected_Q": true,
+            "held_out_occurrence_results": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/HeldOutOccurrenceResult"
+              }
+            },
+            "held_out_batch_association": {
+              "$ref": "#/$defs/BatchAssociation"
+            }
+          },
+          "required": [
+            "comparison_result",
+            "general_determinism_guaranteed",
+            "all_templates_supported",
+            "held_out_gap",
+            "effects",
+            "unaffected_Q",
+            "held_out_occurrence_results",
+            "held_out_batch_association"
+          ],
+          "additionalProperties": false
+        },
+        "TypedExpectedSourceBinding": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "state": {
+                  "const": "valid"
+                },
+                "value": {
+                  "$ref": "#/$defs/N01HeldOutSourceBinding"
+                },
+                "input_pointer": {
+                  "const": "/packet/held_out_source_binding"
+                }
+              },
+              "required": [
+                "state",
+                "value",
+                "input_pointer"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "state": {
+                  "const": "missing"
+                },
+                "finding_kind": {
+                  "const": "source_binding_missing"
+                },
+                "input_pointer": {
+                  "const": "/packet/held_out_source_binding"
+                }
+              },
+              "required": [
+                "state",
+                "finding_kind",
+                "input_pointer"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "state": {
+                  "const": "unknown"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "input_pointer": {
+                  "const": "/packet/held_out_source_binding"
+                },
+                "raw_value": {
+                  "$ref": "#/$defs/PresenceRawValue"
+                }
+              },
+              "required": [
+                "state",
+                "reason",
+                "input_pointer",
+                "raw_value"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "state": {
+                  "const": "not_evaluated"
+                },
+                "preceding_source_finding_kinds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "input_pointer": {
+                  "const": "/packet/held_out_source_binding"
+                }
+              },
+              "required": [
+                "state",
+                "preceding_source_finding_kinds",
+                "input_pointer"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "state": {
+                  "const": "not_applicable"
+                },
+                "reason": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "state",
+                "reason"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      }
+    },
+    "primitive_imports": {
+      "document_type": "同L5 /types以下の原型定義を読むpure有限モデル演算子。runtime file IOではない。既存kind以外はn01_type_validで明示失敗。",
+      "document_schema": "同L5 /n01_private_type_contract/return_schemaだけを読むpure演算子。schema/library/実providerを動的選定しない。"
+    },
+    "static_origin": "caller_structure_contractを別のsource検証器で照合。runtimeのRawValue bool/tokenをorigin証拠にしない。",
+    "original_JsonValue_alias_resolution": {
+      "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+      "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+      "body_sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+      "pointer": "/types/JsonValue",
+      "original": {
+        "kind": "論理JSON値",
+        "meaning": "原packet値を保持。正式wire/codecの受理規則ではない。"
+      },
+      "resolution": "このexact原型objectだけをJSON logical valueへ解決。任意未知kindを受理せず、n01_type_validは元document_type exact objectと同一であることを確認する。RawValueはこのaliasの全JSON値を保持。"
+    }
+  },
+  "n01_private_functions": [
+    {
+      "symbol": "n01_member",
+      "parameters": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        },
+        {
+          "name": "name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "apply",
+        "generic": "N01RawMember",
+        "arguments": [
+          {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        ]
+      },
+      "definition_index": 23,
+      "source_lines": [
+        15,
+        16
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_presence",
+      "parameters": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "apply",
+            "generic": "N01RawMember",
+            "arguments": [
+              {
+                "kind": "ref",
+                "name": "RawValue"
+              }
+            ]
+          }
+        }
+      ],
+      "returns": {
+        "kind": "apply",
+        "generic": "Presence",
+        "arguments": [
+          {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        ]
+      },
+      "definition_index": 23,
+      "source_lines": [
+        19,
+        20
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_state_of",
+      "parameters": [
+        {
+          "name": "actual",
+          "type": {
+            "kind": "apply",
+            "generic": "N01RawMember",
+            "arguments": [
+              {
+                "kind": "ref",
+                "name": "RawValue"
+              }
+            ]
+          }
+        },
+        {
+          "name": "expected",
+          "type": {
+            "kind": "apply",
+            "generic": "N01RawMember",
+            "arguments": [
+              {
+                "kind": "ref",
+                "name": "RawValue"
+              }
+            ]
+          }
+        },
+        {
+          "name": "revision",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "ref",
+        "name": "N01ComparisonState"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        23,
+        26
+      ],
+      "private": true,
+      "default_argument_count": 1
+    },
+    {
+      "symbol": "n01_json_value",
+      "parameters": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "primitive",
+        "name": "boolean"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        29,
+        42
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_type_valid",
+      "parameters": [
+        {
+          "name": "t",
+          "type": {
+            "kind": "ref",
+            "name": "N01ExistingTypeDescriptor"
+          }
+        },
+        {
+          "name": "value",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "primitive",
+        "name": "boolean"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        45,
+        80
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_trace_packet_type",
+      "parameters": [],
+      "returns": {
+        "kind": "ref",
+        "name": "N01ExistingTypeDescriptor"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        83,
+        100
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_trace_packet_domain",
+      "parameters": [
+        {
+          "name": "packet",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "primitive",
+        "name": "boolean"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        103,
+        104
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_raw_trace_domain",
+      "parameters": [
+        {
+          "name": "packet",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        },
+        {
+          "name": "retained",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "primitive",
+        "name": "boolean"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        107,
+        108
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_domain_observations",
+      "parameters": [
+        {
+          "name": "packet",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "array",
+        "items": {
+          "kind": "ref",
+          "name": "N01DomainObservation"
+        }
+      },
+      "definition_index": 23,
+      "source_lines": [
+        111,
+        119
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_require_legacy_shape",
+      "parameters": [
+        {
+          "name": "packet",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        },
+        {
+          "name": "retained",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "primitive",
+        "name": "null"
+      },
+      "definition_index": 23,
+      "private": true,
+      "default_argument_count": 0,
+      "source_lines": [
+        122,
+        126
+      ]
+    },
+    {
+      "symbol": "n01_require_shared_domain",
+      "parameters": [
+        {
+          "name": "packet",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        },
+        {
+          "name": "retained",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "array",
+        "items": {
+          "kind": "ref",
+          "name": "N01DomainObservation"
+        }
+      },
+      "definition_index": 23,
+      "source_lines": [
+        129,
+        134
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_require_same_values",
+      "parameters": [
+        {
+          "name": "packet",
+          "type": {
+            "kind": "ref",
+            "name": "N01TracePacket"
+          }
+        },
+        {
+          "name": "context",
+          "type": {
+            "kind": "ref",
+            "name": "N01ResolvedContext"
+          }
+        },
+        {
+          "name": "shared",
+          "type": {
+            "kind": "ref",
+            "name": "N01SharedEvaluation"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "primitive",
+        "name": "null"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        137,
+        143
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_shape_valid",
+      "parameters": [
+        {
+          "name": "name",
+          "type": {
+            "kind": "ref",
+            "name": "N01SchemaName"
+          }
+        },
+        {
+          "name": "value",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "primitive",
+        "name": "boolean"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        146,
+        183
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_source_level_missing",
+      "parameters": [
+        {
+          "name": "held",
+          "type": {
+            "kind": "apply",
+            "generic": "N01RawMember",
+            "arguments": [
+              {
+                "kind": "ref",
+                "name": "RawValue"
+              }
+            ]
+          }
+        }
+      ],
+      "returns": {
+        "kind": "union",
+        "variants": [
+          {
+            "kind": "ref",
+            "name": "HeldOutGap"
+          },
+          {
+            "kind": "primitive",
+            "name": "null"
+          }
+        ]
+      },
+      "definition_index": 23,
+      "source_lines": [
+        186,
+        192
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_parsed_rows",
+      "parameters": [
+        {
+          "name": "held",
+          "type": {
+            "kind": "apply",
+            "generic": "N01RawMember",
+            "arguments": [
+              {
+                "kind": "ref",
+                "name": "RawValue"
+              }
+            ]
+          }
+        }
+      ],
+      "returns": {
+        "kind": "array",
+        "items": {
+          "kind": "ref",
+          "name": "N01SourceWorkingRow"
+        }
+      },
+      "definition_index": 23,
+      "source_lines": [
+        195,
+        200
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_source_diagnosis",
+      "parameters": [
+        {
+          "name": "held",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        },
+        {
+          "name": "frame",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        },
+        {
+          "name": "row",
+          "type": {
+            "kind": "ref",
+            "name": "N01SourceWorkingRow"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "union",
+        "variants": [
+          {
+            "kind": "primitive",
+            "name": "string"
+          },
+          {
+            "kind": "primitive",
+            "name": "null"
+          }
+        ]
+      },
+      "definition_index": 23,
+      "source_lines": [
+        203,
+        216
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_comparison_result",
+      "parameters": [
+        {
+          "name": "packet",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "ref",
+        "name": "N01ComparisonResult"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        218,
+        240
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_reference_states",
+      "parameters": [
+        {
+          "name": "actual",
+          "type": {
+            "kind": "apply",
+            "generic": "N01RawMember",
+            "arguments": [
+              {
+                "kind": "ref",
+                "name": "RawValue"
+              }
+            ]
+          }
+        },
+        {
+          "name": "expected",
+          "type": {
+            "kind": "ref",
+            "name": "CommonRef6"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "array",
+        "items": {
+          "kind": "ref",
+          "name": "N01ComparisonState"
+        }
+      },
+      "definition_index": 23,
+      "source_lines": [
+        242,
+        250
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_unresolved",
+      "parameters": [
+        {
+          "name": "request",
+          "type": {
+            "kind": "ref",
+            "name": "N01OwnerSourceRequest"
+          }
+        },
+        {
+          "name": "state",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "missing",
+              "unknown",
+              "conflict",
+              "stale"
+            ]
+          }
+        },
+        {
+          "name": "source_observation",
+          "type": {
+            "kind": "apply",
+            "generic": "Presence",
+            "arguments": [
+              {
+                "kind": "ref",
+                "name": "RawValue"
+              }
+            ]
+          }
+        },
+        {
+          "name": "qualification_observation",
+          "type": {
+            "kind": "apply",
+            "generic": "Presence",
+            "arguments": [
+              {
+                "kind": "ref",
+                "name": "RawValue"
+              }
+            ]
+          }
+        },
+        {
+          "name": "basis_refs",
+          "type": {
+            "kind": "array",
+            "items": {
+              "kind": "ref",
+              "name": "CommonRef6"
+            }
+          }
+        }
+      ],
+      "returns": {
+        "kind": "ref",
+        "name": "N01OwnerSourceResolution"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        252,
+        253
+      ],
+      "private": true,
+      "default_argument_count": 0,
+      "preconditions": [
+        "stateはnative unresolvedと同じmissing/unknown/conflict/staleの4状態。supported_synthetic_conditionはこのconstructorの入力域外。実callerは元portのunresolved分岐、decision非applicable分岐、又はaggregate != N01_OK分岐からのみ渡す。"
+      ]
+    },
+    {
+      "symbol": "resolve_n01_owner_source",
+      "parameters": [
+        {
+          "name": "request",
+          "type": {
+            "kind": "ref",
+            "name": "N01OwnerSourceRequest"
+          }
+        },
+        {
+          "name": "source_return",
+          "type": {
+            "kind": "ref",
+            "name": "N01NativeSourcePortResult"
+          }
+        },
+        {
+          "name": "qualifier_return",
+          "type": {
+            "kind": "ref",
+            "name": "N01NativeQualificationPortResult"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "ref",
+        "name": "N01OwnerSourceResolution"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        255,
+        272
+      ],
+      "private": true,
+      "default_argument_count": 0,
+      "preconditions": [
+        "source_return.kind=resolved。元call_n01_with_held_out_traceはkind=unresolvedをn01_unresolvedへ直接保存したelse内でのみ本adapterを呼ぶ。qualifier_returnは宣言native qualification result。任意RawValueを成功型へcastしない。"
+      ]
+    },
+    {
+      "symbol": "n01_binding_leaf_states",
+      "parameters": [
+        {
+          "name": "binding",
+          "type": {
+            "kind": "apply",
+            "generic": "N01RawMember",
+            "arguments": [
+              {
+                "kind": "ref",
+                "name": "RawValue"
+              }
+            ]
+          }
+        },
+        {
+          "name": "source",
+          "type": {
+            "kind": "ref",
+            "name": "N01NativeSourceSnapshot"
+          }
+        },
+        {
+          "name": "held",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "array",
+        "items": {
+          "kind": "ref",
+          "name": "N01ComparisonState"
+        }
+      },
+      "definition_index": 23,
+      "source_lines": [
+        274,
+        284
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_semantic_binding",
+      "parameters": [
+        {
+          "name": "packet",
+          "type": {
+            "kind": "ref",
+            "name": "N01TracePacket"
+          }
+        },
+        {
+          "name": "context",
+          "type": {
+            "kind": "ref",
+            "name": "N01ResolvedContext"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "ref",
+        "name": "N01ComparisonState"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        286,
+        311
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_discover",
+      "parameters": [
+        {
+          "name": "batch",
+          "type": {
+            "kind": "apply",
+            "generic": "N01RawMember",
+            "arguments": [
+              {
+                "kind": "ref",
+                "name": "RawValue"
+              }
+            ]
+          }
+        },
+        {
+          "name": "row_count",
+          "type": {
+            "kind": "primitive",
+            "name": "integer"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "ref",
+        "name": "N01Discovery"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        313,
+        324
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_rejected_atom",
+      "parameters": [
+        {
+          "name": "occurrences",
+          "type": {
+            "kind": "apply",
+            "generic": "N01RawMember",
+            "arguments": [
+              {
+                "kind": "ref",
+                "name": "RawValue"
+              }
+            ]
+          }
+        },
+        {
+          "name": "indices",
+          "type": {
+            "kind": "array",
+            "items": {
+              "kind": "primitive",
+              "name": "integer"
+            }
+          }
+        }
+      ],
+      "returns": {
+        "kind": "apply",
+        "generic": "Presence",
+        "arguments": [
+          {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        ]
+      },
+      "definition_index": 23,
+      "source_lines": [
+        326,
+        330
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_gap_for",
+      "parameters": [
+        {
+          "name": "row",
+          "type": {
+            "kind": "ref",
+            "name": "N01SourceWorkingRow"
+          }
+        },
+        {
+          "name": "held",
+          "type": {
+            "kind": "ref",
+            "name": "RawValue"
+          }
+        },
+        {
+          "name": "kind",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "ref",
+        "name": "HeldOutGap"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        332,
+        333
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_row_outcome",
+      "parameters": [
+        {
+          "name": "packet",
+          "type": {
+            "kind": "ref",
+            "name": "N01TracePacket"
+          }
+        },
+        {
+          "name": "row",
+          "type": {
+            "kind": "ref",
+            "name": "N01SourceWorkingRow"
+          }
+        },
+        {
+          "name": "indices",
+          "type": {
+            "kind": "array",
+            "items": {
+              "kind": "primitive",
+              "name": "integer"
+            }
+          }
+        },
+        {
+          "name": "occurrences",
+          "type": {
+            "kind": "apply",
+            "generic": "N01RawMember",
+            "arguments": [
+              {
+                "kind": "ref",
+                "name": "RawValue"
+              }
+            ]
+          }
+        },
+        {
+          "name": "diagnosis",
+          "type": {
+            "kind": "union",
+            "variants": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "null"
+              }
+            ]
+          }
+        },
+        {
+          "name": "binding_state",
+          "type": {
+            "kind": "union",
+            "variants": [
+              {
+                "kind": "ref",
+                "name": "N01ComparisonState"
+              },
+              {
+                "kind": "primitive",
+                "name": "null"
+              }
+            ]
+          }
+        }
+      ],
+      "returns": {
+        "kind": "ref",
+        "name": "OccurrenceOutcome"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        335,
+        393
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "n01_source_views",
+      "parameters": [
+        {
+          "name": "shared",
+          "type": {
+            "kind": "ref",
+            "name": "N01SharedEvaluation"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "ref",
+        "name": "N01SourceViews"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        395,
+        402
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "evaluate_n01_shared",
+      "parameters": [
+        {
+          "name": "packet",
+          "type": {
+            "kind": "union",
+            "variants": [
+              {
+                "kind": "ref",
+                "name": "N01LegacyPacket"
+              },
+              {
+                "kind": "ref",
+                "name": "N01TracePacket"
+              }
+            ]
+          }
+        },
+        {
+          "name": "retained",
+          "type": {
+            "kind": "ref",
+            "name": "RetainedContext"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "ref",
+        "name": "N01SharedEvaluation"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        404,
+        433
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "project_n01_legacy",
+      "parameters": [
+        {
+          "name": "shared",
+          "type": {
+            "kind": "ref",
+            "name": "N01SharedEvaluation"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "ref",
+        "name": "N01Return"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        435,
+        444
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "compare_n01_with_held_out_trace",
+      "parameters": [
+        {
+          "name": "packet",
+          "type": {
+            "kind": "ref",
+            "name": "N01TracePacket"
+          }
+        },
+        {
+          "name": "context",
+          "type": {
+            "kind": "ref",
+            "name": "N01ResolvedContext"
+          }
+        },
+        {
+          "name": "shared",
+          "type": {
+            "kind": "ref",
+            "name": "N01SharedEvaluation"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "ref",
+        "name": "N01TracedReturn"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        446,
+        479
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "make_n01_resolved_context",
+      "parameters": [
+        {
+          "name": "retained",
+          "type": {
+            "kind": "ref",
+            "name": "RetainedContext"
+          }
+        },
+        {
+          "name": "owner_result",
+          "type": {
+            "kind": "apply",
+            "generic": "Presence",
+            "arguments": [
+              {
+                "kind": "ref",
+                "name": "N01OwnerSourceResolution"
+              }
+            ]
+          }
+        }
+      ],
+      "returns": {
+        "kind": "ref",
+        "name": "N01ResolvedContext"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        481,
+        482
+      ],
+      "private": true,
+      "default_argument_count": 0
+    },
+    {
+      "symbol": "call_n01_with_held_out_trace",
+      "parameters": [
+        {
+          "name": "packet",
+          "type": {
+            "kind": "ref",
+            "name": "N01TracePacket"
+          }
+        },
+        {
+          "name": "retained",
+          "type": {
+            "kind": "ref",
+            "name": "RetainedContext"
+          }
+        },
+        {
+          "name": "source_request",
+          "type": {
+            "kind": "apply",
+            "generic": "Presence",
+            "arguments": [
+              {
+                "kind": "ref",
+                "name": "N01OwnerSourceRequest"
+              }
+            ]
+          }
+        },
+        {
+          "name": "ports",
+          "type": {
+            "kind": "ref",
+            "name": "N01NativePorts"
+          }
+        }
+      ],
+      "returns": {
+        "kind": "ref",
+        "name": "N01TraceCallResult"
+      },
+      "definition_index": 23,
+      "source_lines": [
+        485,
+        513
+      ],
+      "private": true,
+      "default_argument_count": 0
+    }
+  ],
+  "n01_private_failure_contract": {
+    "runtime_error": {
+      "kind": "ref",
+      "name": "N01PrivateContractError"
+    },
+    "runtime_problem": {
+      "kind": "ref",
+      "name": "N01PrivateContractProblem"
+    },
+    "domain": "生成前に両原templateのvalidator全返却をN01DomainObservationとして原Presence/原row raw/parsed/span/全violationsごと保持。domain不成立で有効/部分sharedとbusiness返却を生成しない。",
+    "core": "既存shared入力はpacket/context/sharedの原値として失敗payloadへ保持。packet/Q mismatchで新shared/business成功を生成しない。domain_observations=[]でsourceを再parseしない。",
+    "origin": "JSONから判定しない。runtime errorにorigin variant無し。静的構成checkのsource findingへ分離し、runtime原引数観測とは称さない。",
+    "old_public": "旧N01Return6にprivate error union/memberを追加しない。宣言domain内の旧6全域同値を保持。",
+    "error_kind_enum": [
+      "declared_domain_violation",
+      "packet_snapshot_mismatch",
+      "retained_Q_mismatch"
+    ],
+    "legacy_union_boundary": "compare_n01は最初にn01_require_legacy_shapeを通し、union shared producer経由でprivate raw domainを旧公開入口へ広げない。valid shapeはここでsourceをparseせず、元domain報告はshared producerで一度評価する。"
+  },
+  "n01_caller_structure_contract": {
+    "signature": "(definitions:N01CallerDefinitions,entry_contract:N01CallerEntryContract)->N01CallerStructureCheck",
+    "entry_contract": {
+      "caller": "call_n01_with_held_out_trace",
+      "parameters": [
+        "packet",
+        "retained",
+        "source_request",
+        "ports"
+      ],
+      "core": "compare_n01_with_held_out_trace",
+      "forbidden_raw_decoders": [
+        "decode_n01_shared",
+        "decode_n01_trace_arguments",
+        "decode_n01_resolved_context"
+      ],
+      "source_scope": "同L5 finite_reference definitions全体。runtime JSON入力を渡さない。caller本体は宣言したexact AST構成だけを受理し、制御フロー任意変換を検証しない。",
+      "caller_skeleton_ast_sha256": "942986e27305689e3c41030e1e8f7817f6c332efcfb96ab5c12b559cc59c820d"
+    },
+    "source_validator": "check_n01_caller_structure",
+    "validator_scope": "閉じた有限notationとcallerのexact AST構成を照合。shared生成→snapshot/source依存分岐→context→core→観測返却の順と直接引渡しはこの固定構成に限る。順序変更/条件内だけproducer/後書換え/alias/duplicate/dynamiccallは不適合finding。任意Pythonの支配関係やruntime originを証明するvalidatorではない。",
+    "validator_source": "\"\"\"Validate the declared closed finite notation and private direct caller graph.\nThis source checker runs no N01 business function and observes no runtime arguments.\n\"\"\"\nimport ast\nimport hashlib\n\n\ndef check_n01_caller_structure(definitions, entry_contract):\n    nodes, problems, modules = [], [], []\n    def problem(kind, owner, index, source, node=None, line=1):\n        if node is not None:\n            line = node.lineno\n            excerpt = ast.get_source_segment(source, node) or ''\n        else:\n            lines = source.splitlines()\n            excerpt = lines[line-1] if 0 < line <= len(lines) else ''\n        problems.append({'kind': kind, 'function_symbol': owner, 'definition_index': index, 'source_line': line, 'source_excerpt': excerpt})\n    for index, text in enumerate(definitions):\n        try:\n            tree = ast.parse(text)\n        except SyntaxError as error:\n            problem('outside_closed_notation', '<module>', index, text, line=error.lineno or 1)\n            continue\n        modules.append((index, text, tree))\n        nodes.extend((index, text, node) for node in tree.body if isinstance(node, (ast.FunctionDef, ast.ClassDef)))\n    seen = set()\n    for index, text, node in nodes:\n        if node.name in seen:\n            problem('duplicate_symbol', node.name, index, text, node)\n        seen.add(node.name)\n    if problems:\n        return {'valid': False, 'problems': problems}\n    by_name = {node.name: (index, text, node) for index, text, node in nodes}\n    symbol = entry_contract['caller']\n    if symbol not in by_name or not isinstance(by_name[symbol][2], ast.FunctionDef):\n        problem('missing_direct_call', symbol, 0, definitions[0] if definitions else '')\n        return {'valid': False, 'problems': problems}\n    # This notation allows direct calls to declared functions and fixed builtins,\n    # declared JSON/list/string methods, and exactly the two typed native ports.\n    # Callable aliases, reflection, imports and other dynamic calls are outside it.\n    declared = {n.name for _, _, tree in modules for n in ast.walk(tree) if isinstance(n, (ast.FunctionDef, ast.ClassDef))}\n    builtins = {'all','any','bool','dict','enumerate','Exception','int','isinstance','len','list','next','object','range','set','str','sum','super','tuple','type','zip','ValueError','TypeError','document_type','document_schema'}\n    methods = {'__init__','append','deepcopy','dumps','encode','fromkeys','get','hexdigest','items','loads','replace','search','fullmatch','sha256','split','splitlines','values','extend'}\n    protected = {'evaluate_n01_shared', entry_contract['core'], 'make_n01_resolved_context'}\n    unsupported = (ast.Lambda, ast.Import, ast.ImportFrom, ast.Await, ast.Yield, ast.YieldFrom, ast.Global, ast.Nonlocal, ast.Delete, ast.With, ast.AsyncWith, ast.AsyncFunctionDef)\n    for index, text, tree in modules:\n        parents = {child: parent for parent in ast.walk(tree) for child in ast.iter_child_nodes(parent)}\n        for node in ast.walk(tree):\n            if isinstance(node, unsupported):\n                problem('outside_closed_notation', '<module>', index, text, node)\n            if isinstance(node, ast.Name) and node.id in protected and isinstance(node.ctx, ast.Load):\n                parent = parents.get(node)\n                if not (isinstance(parent, ast.Call) and parent.func is node):\n                    problem('outside_closed_notation', '<module>', index, text, node)\n            if isinstance(node, ast.Name) and node.id in protected and isinstance(node.ctx, ast.Store):\n                problem('outside_closed_notation', '<module>', index, text, node)\n            if not isinstance(node, ast.Call):\n                continue\n            f = node.func\n            if isinstance(f, ast.Name):\n                if f.id not in declared | builtins or f.id in entry_contract['forbidden_raw_decoders']:\n                    problem('raw_private_decode' if f.id in entry_contract['forbidden_raw_decoders'] else 'outside_closed_notation', '<module>', index, text, node)\n            elif isinstance(f, ast.Attribute):\n                if f.attr not in methods:\n                    problem('outside_closed_notation', '<module>', index, text, node)\n            elif not (isinstance(f, ast.Subscript) and isinstance(f.value, ast.Name) and f.value.id == 'ports' and isinstance(f.slice, ast.Constant) and f.slice.value in {'read_n01_owner_source','read_n01_owner_qualification'}):\n                problem('outside_closed_notation', '<module>', index, text, node)\n    index, text, caller = by_name[symbol]\n    # Caller control flow is an exact declared AST skeleton. This closes order,\n    # dominance and mutation scope without claiming arbitrary Python proof.\n    # Line numbers/comments/formatting are irrelevant; executable structure is not.\n    caller_ast = ast.dump(caller, annotate_fields=True, include_attributes=False)\n    if hashlib.sha256(caller_ast.encode()).hexdigest() != entry_contract['caller_skeleton_ast_sha256']:\n        problem('outside_closed_notation', symbol, index, text, caller)\n    def issue(kind, node):\n        problem(kind, symbol, index, text, node)\n    args = [a.arg for a in caller.args.args]\n    if args != entry_contract['parameters'] or caller.args.vararg or caller.args.kwarg or caller.args.kwonlyargs or any(k in args for k in ['shared','context','resolution']):\n        issue('external_shared_parameter', caller)\n    def assigned(name):\n        return [n for n in ast.walk(caller) if isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == name for t in n.targets)]\n    producers = assigned('shared')\n    if len(producers) != 1:\n        issue('multiple_shared_producers', caller)\n    else:\n        value = producers[0].value\n        if not (isinstance(value, ast.Call) and isinstance(value.func, ast.Name) and value.func.id == 'evaluate_n01_shared' and len(value.args)==2 and not value.keywords and all(isinstance(v, ast.Name) and v.id == name for v,name in zip(value.args,['packet','retained']))):\n            issue('foreign_shared_in_callsite', producers[0])\n    snapshots = assigned('snapshot')\n    snapshot = snapshots[0].value if len(snapshots)==1 else None\n    if not (isinstance(snapshot, ast.Subscript) and isinstance(snapshot.value, ast.Name) and snapshot.value.id == 'shared' and isinstance(snapshot.slice, ast.Constant) and snapshot.slice.value == 'input_snapshot'):\n        issue('foreign_shared_in_callsite', caller)\n    contexts = assigned('context')\n    context = contexts[0].value if len(contexts)==1 else None\n    if not (isinstance(context, ast.Call) and isinstance(context.func, ast.Name) and context.func.id=='make_n01_resolved_context' and len(context.args)==2 and not context.keywords and isinstance(context.args[0], ast.Name) and context.args[0].id=='retained' and isinstance(context.args[1], ast.Call) and isinstance(context.args[1].func, ast.Name) and context.args[1].func.id=='n01_presence' and len(context.args[1].args)==1 and not context.args[1].keywords and isinstance(context.args[1].args[0], ast.Name) and context.args[1].args[0].id=='resolution'):\n        issue('foreign_shared_in_callsite', caller)\n    calls=[]\n    for idx, source, owner in nodes:\n        for node in ast.walk(owner):\n            if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id==entry_contract['core']:\n                calls.append(node)\n                if owner.name!=symbol or len(node.args)!=3 or node.keywords or [n.id if isinstance(n,ast.Name) else None for n in node.args]!=['snapshot','context','shared']:\n                    problem('foreign_shared_in_callsite',owner.name,idx,source,node)\n    if len(calls)!=1:\n        issue('missing_direct_call',caller)\n    for node in ast.walk(caller):\n        if isinstance(node,ast.Subscript) and isinstance(node.value,ast.Name) and node.value.id=='shared' and isinstance(node.ctx,ast.Store):\n            issue('foreign_shared_in_callsite',node)\n        if isinstance(node,ast.Call) and isinstance(node.func,ast.Attribute) and isinstance(node.func.value,ast.Name) and node.func.value.id=='shared':\n            issue('foreign_shared_in_callsite',node)\n    return {'valid':not problems,'problems':problems}\n",
+    "finding_observation": "定義index/静的行/原source excerptだけを返す。runtime argumentsや実source資格を観測したとは称さない。",
+    "caller_skeleton_derivation": {
+      "syntax": "ast.dump(FunctionDef,annotate_fields=True,include_attributes=False) UTF-8 SHA-256。コメント/位置/空白は除き、全実行構造・値・順序は保持。",
+      "sha256": "942986e27305689e3c41030e1e8f7817f6c332efcfb96ab5c12b559cc59c820d",
+      "origin": "本候補の宣言caller本文を静的callsite契約として固定。元packet/retainedからsharedを先に内製しsnapshotを取得、native依存結果の後にcontextを作り唯一のcore3argへ渡す。外部任意caller一般の同値性判定には使わない。"
+    }
+  },
+  "n01_basic_pair_binding": {
+    "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+    "l4": {
+      "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+      "sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+      "pointer": "/contracts/3/held_out_occurrence_contract"
+    },
+    "l9": {
+      "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+      "sha256": "c9aed356b19191e4e7a6dd2e20d4dbaa3f14eed44da1e342f555663027886dd4",
+      "pointer": "/verification_obligations/3"
+    },
+    "current_pair_binding": "旧F03の7294 bindingはその責務/履歴として不変。source_main/承認objectへ上書きしない。"
+  },
+  "n01_detail_followup": {
+    "scope": "HARNESS-L3-041-N01/対L10の既決意味を、統合済みbasicのprivate単回shared/別surface/native IOへ追随。新公開member・新上流義務・新資格gateは作らない。",
+    "accepted_basic_revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+    "current_formal_equivalence_observed": "c3994c92d43ab49264a75f7aae9622484d082659",
+    "derivation": [
+      {
+        "source": {
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+          "body_sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+          "pointer": "/finite_reference/definitions/19"
+        },
+        "preserve": "元二結果state/7false/Qとsource-only最初のgap/原順、旧公開2arg/6member/原全domain。",
+        "change": "元19をguard→shared→legacy projectorへ接続し、元計算をdefinitions23のprivate helpersへ移す。",
+        "reason": "traced8採用gapをdropしただけでは旧source-only gap意味を保てない。source診断を一度生成して独立viewへ射影する。"
+      },
+      {
+        "source": {
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+          "body_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
+          "pointer": "/contracts/3/held_out_occurrence_contract/owner_resolution_contract"
+        },
+        "preserve": "owner原source/原資格決定/適用対象を別取得し全Ref/body/decisionを保持。QはRawValue。",
+        "change": "元native logical portを32helper署名/61型/同caller構成/3runtime errorへ具体化。",
+        "reason": "raw自己申告又は属性helperを資格へ代用せず、private直接引数と検証観測で原入力から返却まで閉じる。"
+      },
+      {
+        "source": {
+          "revision": "dbf36b2c231344d13380f7ea23372bb07c9d7155",
+          "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+          "body_sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+          "pointer": "/finite_reference/definitions/22"
+        },
+        "preserve": "原domain全違反のraw/parsed/span/id_presence/原順とactual_validation_effect=false。",
+        "change": "生成前失敗payloadのN01DomainObservationへ原Presenceと全報告を保存。core値差では既存sharedを保持し再parseしない。",
+        "reason": "宣言domain外をtyped成功castせず、元報告をprivate failureで失わない。"
+      }
+    ],
+    "legacy_failure_consumer_basis": {
+      "existing_objects_preserved": [
+        "/legacy_basis",
+        "/failure_basis",
+        "/consumer_connections"
+      ],
+      "assets": [
+        "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-7B1C7AED3AA401868455"
+      ],
+      "technical_reuse": "原子的候補/gap/出所/span/版/非決定性/自由補完拒否の意味再導出。旧writer/runtime/故障code/CIを実行又は再採用しない。C35E93F2D36777CD7462は未解決資産の文脈参照に留める。"
+    },
+    "surface_map": {
+      "legacy_public": "/functions/3 と /finite_reference/definitions/19。原N01Arguments/RetainedContext/N01Return6を保持。",
+      "shared_private": "/n01_private_functions symbol=evaluate_n01_shared、宣言domain合成＋元単回common/source生成。",
+      "traced_core_private": "symbol=compare_n01_with_held_out_trace、実packet/context/shared3引数。",
+      "caller_private": "symbol=call_n01_with_held_out_trace。source_request Presenceと2typed native functionsを受けsharedを内製する。",
+      "verification": "対L8 /n01_private_followupの別collection。case ID/期待をbusinessへ渡さない。"
+    },
+    "remaining_comparison": [
+      {
+        "id": "N01-D01",
+        "category": "logical_design_provided",
+        "formal_before": "既存公開2arg/closed6/元definition19。traced8/native context/shared/private errorは未収載。",
+        "candidate_now": "61型/32私的関数/原domain報告/3runtime error/単回shared/legacy6とtraced8の別射影を定義。",
+        "basis": [
+          "/contracts/3/held_out_occurrence_contract/owner_resolution_contract",
+          "/n01_private_type_contract",
+          "/n01_private_functions",
+          "/finite_reference/definitions/19",
+          "/finite_reference/definitions/23"
+        ],
+        "finite_scope": "75caller全返却・5domain失敗・4core失敗と全同call/event、別面旧13closed6の有限一致。",
+        "remaining": "全JSON域/全mutation/全template/全041をこの有限一致から認定しない。"
+      },
+      {
+        "id": "N01-D02",
+        "category": "producer_and_current_caller_binding_remaining",
+        "formal_before": "実source/原owner資格/consumer exact binding未成立。",
+        "candidate_now": "source/qualification native logical input/outputとH041呼出し・適用adapterは定義。source requestはownerの元選択Ref、qualification requestは同source原record/bodyから構成。",
+        "basis": [
+          "/contracts/3/held_out_occurrence_contract/owner_resolution_contract/native_ports",
+          "/n01_private_functions",
+          "/consumer_connections"
+        ],
+        "remaining": "供給ownerの具体的原記録schema/path/member→native record投影、現行providerと実consumer callsiteへのexact bindingは別producer/caller追随。合成固定返却をその実接続又は資格稼働証拠へ昇格しない。"
+      },
+      {
+        "id": "N01-D03",
+        "category": "representation_and_runtime_remaining",
+        "formal_before": "正式codec/source qualification/runtime/TDD/CI/L11 not established。",
+        "candidate_now": "private型/declared domain/失敗channelとraw consumer/strict成功shapeの分離を定義。RawValue Qを両surfaceで保持。",
+        "basis": [
+          "/finite_reference/n01_codec_contract",
+          "/n01_private_failure_contract",
+          "/readiness_boundary"
+        ],
+        "remaining": "実wire/codec/backend/物理native schema/provider/custody、実extractor再実行と実独立未見比較、TDD/CI/L11/実装Readyは未成立。"
+      },
+      {
+        "id": "N01-D04",
+        "category": "same_id_meaning_and_unobserved_combinations_remaining",
+        "formal_before": "未見format/重複ID等の一般意味は未閉包。",
+        "candidate_now": "原出現をordinal/span/rowSHA/原elementと全候補indexで保持し同値反復を削除しない。",
+        "basis": [
+          "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison",
+          "/finite_reference/ordering"
+        ],
+        "remaining": "同ID異rawの同義務/別義務裁定、未知source memberの意味解釈、全source/field状態直積は認定しない。"
+      },
+      {
+        "id": "N01-D05",
+        "category": "other_041_scope_preserved_unproved",
+        "formal_before": "F01/F02/F03/B01 source資格/実primitive供給/consumer成立の限界。",
+        "candidate_now": "その原型/関数/返却/期待/readinessを変更しない。",
+        "basis": [
+          "/finite_reference/limits",
+          "/consumer_connections",
+          "/current_pair_binding"
+        ],
+        "remaining": "旧74全件/属性16/domain13/旧7partialを今回全件再実行済みとしない。F03 current_pair_binding.remainingのN01対象外は従来F03差分のscopeであり、本N01追随の否定ではない。"
+      },
+      {
+        "id": "N01-D06",
+        "category": "static_origin_scope",
+        "formal_before": "same call前提の具体失敗channel/構成検証は未収載。",
+        "candidate_now": "runtimeは値から判定できるdomain/packet/Qだけ。originは固定caller AST構成を別source検証で照合する。",
+        "basis": [
+          "/n01_caller_structure_contract",
+          "/n01_private_failure_contract"
+        ],
+        "remaining": "任意Python制御フロー/動的alias/値が等しいforeign callのruntime識別を主張しない。raw token/cache/新origin gateを作らない。"
+      }
+    ],
+    "readiness": "既存readiness_boundary/source_main/承認object/current_pair_bindingを上書きしない。有限一致を041/全430意味/実provider/実装Readyへ外挿しない。"
   }
 }
