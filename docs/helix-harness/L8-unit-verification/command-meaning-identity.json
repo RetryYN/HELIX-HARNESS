@@ -1234,7 +1234,7 @@
       "authoring_base": "9aeee4506a6b9b7e4e642fa839284620eaf087ea",
       "artifact_id": "HARNESS052-OS-IDENTITY-PROJECTION-ORACLES",
       "file_sha256": "934dc1a5f982d867b13ff708983898f300fb81524049b42c69e33ee5b43d97dd",
-      "scope": "現在の設計追補を著述する前に全入力と期待全値を固定した。元比較関数又は候補mapperは呼んでいない。全casesを本objectへ同値収載する。"
+      "scope": "現在の設計追補を著述する前に全入力と期待全値を固定した。元比較関数又は候補mapperは呼んでいない。全casesを本objectへ同値収載する。 artifact_idとfile_sha256はGit管理外の著述時固定資料を識別する来歴情報であり、Gitから解決できる参照又は意味の正本ではない。検証対象の入力・期待全値は本objectのcasesに収載し、意味の根拠はcandidate_L5_bindingが指すL5と既決上流に置く。"
     },
     "wire": "comparison_body_bytes_base64は既存metadata encodingの原UTF-8 bytesをstrict Base64で運ぶ。normalized_bytes等の内側bytesも既存ComparisonBody encodingどおり。assigned_K_refは本文shaへ束縛するOS出力address。Refは合成の局所値であり実資格を主張しない。",
     "observation_fields": {
