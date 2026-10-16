@@ -691036,6 +691036,37 @@
       "provenance_repaired_only_case_pointer": "/definition_meaning_walk_verification/cases/30",
       "independent_positive_case_pointer": "/definition_meaning_walk_verification/cases/31",
       "metadata_boundary": "scope15scalarはnative_owner_call_materialを原operation資料集合と呼ぶ訂正で、operation原値/全walk/判断を変えていない。元凍結の物理bytesと現在のcanonical値を分ける。"
+    },
+    "unresolved_specification_provenance": {
+      "target_pointer_range": "/definition_meaning_walk_verification/cases/8..28/basis/specification/file_sha256",
+      "case_indices": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "unresolved_digest": "d0c896ee64d5340d7dbc85d4a760c90e03bcbbcc908cac0bc2e95734aa6d8316",
+      "provenance_state": "unknown",
+      "source_limit": "このdigestの元file bytesとrevisionは保持資料から回収できず、由来は未確定。現在L5へ照合できるbinding、確認済みの中間版・歴史資料・外部資料として扱わない。",
+      "pointer_resolution_limit": "対象21caseの各4本の仕様pointerは現在のdefinition_meaning_coreへ解決できるが、所在の解決はこのdigestの真正性を証明しない。",
+      "preservation": "対象caseの凍結raw・期待・call・basisを変更せず保持する。現在L5のfile bytesへの明示bindingは別のcandidate_L5_bindingに限る。"
     }
   }
 }
