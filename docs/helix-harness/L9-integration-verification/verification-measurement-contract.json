@@ -111,7 +111,8 @@
     "L5/L8内部型・実oracle凍結→実装前Red→最小Green→Refactor→再検証、実L9/L10/計測/PO L11。",
     "全92親430対の基本/詳細設計閉包・実装準備。",
     "005のticket別未完義務へのrisk/選択/非適用根拠の対応は未確定。固定10列の妥当性は本例で確定せず、追加の一律suite gateも導入しない。",
-    "L5/L8の関数・型への追随、実関数のRed/Green、資格済みsource、runtime/CIは未成立。今回の新例はL4/L9のsource-derived有限対照であり、実行証拠ではない。"
+    "L5/L8の関数・型への追随、実関数のRed/Green、資格済みsource、runtime/CIは未成立。今回の新例はL4/L9のsource-derived有限対照であり、実行証拠ではない。",
+    "F09の追加selected=true対照はreason=nullだけを固定している。reason memberのAbsentと空文字列は規則上missing_selection_reasonだが、この追加例による独立観測は未実施である。nullだけを不足としAbsent/空文字列を通す変更の識別性は本例では証明せず、全組合せ/全mutation検出へ外挿しない。"
   ],
   "document_id": "HARNESS-L9-034",
   "layer": "L9",
