@@ -2620,7 +2620,7 @@
             "symbol": "compare_n01_with_held_out_trace",
             "signature": "(packet:N01TracePacket, context:N01ResolvedContext, shared:N01SharedEvaluation)->N01TracedReturn",
             "compare": "原source診断はshared.sourceを消費するだけ。batch候補発見と原Binding/owner/適用性/atom field/digestの既存traced段階を実行し、canonical結果とraw echoを作る。",
-            "same_call_binding": "同callerはpacket=shared.input_snapshotをそのまま渡し、retained.Qから同contextを構成する。別call shared/手書きstateの再利用を正当化するraw decoder/registry/隠しcacheは置かない。",
+            "same_call_binding": "private前提はpacketとshared.input_snapshotのJSON全値同一、context.unaffected_Qとshared.common.unaffected_QのJSON全値同一、かつsharedがこのcallerの同一evaluate_n01_shared呼出しで元packet/retainedから生成された値であること。全値一致だけを同producer callの出所証明に代えない。callerはその同snapshot/context/sharedを実3引数で渡す。前提違反の組を有効private invocationとしてtyped成功返却又は比較証拠の生成に使わない。具体的な失敗channel・型での形式化・負例はrepresentation_limitに残す。別call shared/手書きstateの再利用を正当化するraw decoder/registry/隠しcacheは置かない。",
             "return_mapping": "common5memberはshared.common全値、held_out_gapはsource-level又はtraced canonical gaps、残る2memberは原source/batch trace。QもRawValue原値で返し8strict record schemaを受理gateにしない。",
             "locality": "eligible supported rowの採用だけに適用する。二結果comparison_result、Q、effects、非選択source、元source findingは独立保持。",
             "shared_consumption": "shared.sourceの原診断を再実行しない。source rowsはordinal/span/rowSHA/element/source finding全値のまま使い、common5memberもshared.commonから全値copy。canonical row stage2以降のみtraced固有に計算。"
@@ -2648,7 +2648,7 @@
             "retention": "同一callerがN01InvocationObservationの全値を保持する。実行前fixtureではnative portの固定引数と合成原返却を明示し、実観測と称さない。raw packetは変更しない。 N01InvocationObservation.n01_argumentsはこの実3引数全値を保持。旧2引数観測wholeは履歴として残し、新観測wholeと同じと称さない。",
             "eligibility": "shared.source.rowsのsource_findingがabsentである実rowが1件以上ある場合だけeligible。source-level gap present、rows empty、又は全row finding presentなら非eligible。raw sourceを再parse/再診断しない。"
           },
-          "representation_limit": "新logical projection/constructor契約である。現L5のRetainedContext/関数署名/正式codec/provider/runtimeがこの型を実装済みとはしない。SourceAttributesReturnの5stateは属性比較専用、qualification_provider=unknown/actual_qualification_established=falseの既存境界を保つ。 旧public6、new private8、shared評価/射影のlogical契約を分離する。Q RawValueは両surfaceで全域保持。正式L5/L8の型/署名/codec/constructor/定義19追随は別の未完対象。",
+          "representation_limit": "新logical projection/constructor契約である。現L5のRetainedContext/関数署名/正式codec/provider/runtimeがこの型を実装済みとはしない。SourceAttributesReturnの5stateは属性比較専用、qualification_provider=unknown/actual_qualification_established=falseの既存境界を保つ。 旧public6、new private8、shared評価/射影のlogical契約を分離する。Q RawValueは両surfaceで全域保持。正式L5/L8の型/署名/codec/constructor/定義19追随は別の未完対象。 private三引数のsame_call_binding前提違反、およびLegacy/Trace宣言domain外の入力は、有効shared/typed成功返却/比較証拠を生成する経路ではない。両者の具体的な失敗channel、L5の型・caller・constructorでの形式化と独立負例は未完であり、この基本対は新しいbusiness gap/public返却member/error recordを定義しない。",
           "source_rules": [
             "/contracts/3/qualification_rule",
             "/contracts/3/held_out_occurrence_contract/source_binding_and_decode/source_binding_comparison"
@@ -2749,7 +2749,7 @@
             "source_steps": [
               {
                 "order": 0,
-                "rule": "legacyは既存N01Arguments型とcheck_template_domain preconditionを保持。traceは既存基本のraw consumer境界を使う。source型外の未定義域をtyped成功castで拡大しない。QのJSON全域は判定対象にしない。"
+                "rule": "legacyは既存N01Arguments型とcheck_template_domain preconditionを保持。traceは既存基本のraw consumer境界を使う。source型外の未定義域をtyped成功castで拡大しない。QのJSON全域は判定対象にしない。 Legacy/Traceのいずれも、それぞれの宣言domain内でだけ有効なN01SharedEvaluationを生成する。domain外では有効shared、部分shared、N01業務返却を定義せず、型外値を成功所見へcastしない。具体的な失敗channelはL5で形式化する未完範囲に残す。"
               },
               {
                 "order": 1,

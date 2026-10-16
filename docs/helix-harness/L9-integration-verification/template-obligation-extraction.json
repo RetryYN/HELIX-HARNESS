@@ -6024,7 +6024,7 @@
       "current_occurrence_binding": {
         "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
         "pointer": "/contracts/2/occurrence_return_contract",
-        "working_bytes_sha256": "395110e66080bc547e72a652427adc93abf4306a17918b441fff69e8658eba0a",
+        "working_bytes_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
         "binding_kind": "paired_current_file_bytes",
         "meaning": "新trace規範の現L4 bytes。同caseの旧l4_source_bindingは元bytes歴史参照として別保持する。"
       }
@@ -25267,7 +25267,7 @@
       "effect": "none",
       "current_basic_binding": {
         "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
-        "file_sha256": "395110e66080bc547e72a652427adc93abf4306a17918b441fff69e8658eba0a",
+        "file_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
         "pointer": "/contracts/3/held_out_occurrence_contract",
         "binding": "同候補の現在bytes。historical source_pinsのgit固定原文とは別。"
       },
@@ -26065,7 +26065,9 @@
         "既存27と追加source-level NULL/EMPTY 2の計29全返却は実評価前の論理whole期待、7controlはpartial。追加2は原rowなしのsource診断/8member/同call保存に限る。実資格/抽出/独立未見実行を示さない。",
         "元decision revoked/indeterminate、source request未供給、raw field missing/unknown/stale/conflictの全重なり、candidate union全不正形、applicability no/unknownとの全重なりは未観測。",
         "source findingとbinding findingの併発は原source findingを保持。原source複数原因の元順以外の全診断収集や全変異zeroは要求しない。",
-        "元L5 N01 contextはRetainedContextのまま。new logical context/port constructor/consumer raw leaf比較と新kindへの追随、正式codec/evaluatorは別の未完対象。"
+        "元L5 N01 contextはRetainedContextのまま。new logical context/port constructor/consumer raw leaf比較と新kindへの追随、正式codec/evaluatorは別の未完対象。",
+        "本L9の正式29 wholeに含まれるQは全て {state:known,value:original_Q} の単一値である。Qのnull/empty/scalar/array/別objectおよびRawValue全域の保存は、本29素材では未観測。cloneと非限定schemaによる全域保存義務は縮めない。",
+        "source-only projectorの2件以上=list、およびscope_unknownのsource-only gapは、本L9正式29 shared素材では未観測。旧L8のclosed6 whole13件に含まれるlist/scopeの全値は原値保持する。localの旧13全wholeとQ4＋旧eligible正常域1の両surface再計算は別の有限証拠であり、本L9正式29へ算入しない。旧domain全体との同値義務を有限例の一致へ置き換えない。"
       ],
       "shared_observation_scope": {
         "same_raw_and_business_return": "全29の入力/返却8memberと7partialは全値不変。sharedをraw callerへ追加しない。",
