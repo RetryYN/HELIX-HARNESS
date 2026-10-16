@@ -53086,7 +53086,7 @@
     ],
     "candidate_design_bytes_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "file_bytes_sha256": "291faeb822d7024387bea98ebba4a10a14699d2a8dcab439259f56347fcf5236",
+      "file_bytes_sha256": "98252680031e987b052b2b8356fcc6e28005e1474836863c74fa356354089e6e",
       "meaning": "同一candidate文書の現在bytesを照合するbinding。過去revisionにこの追補が存在したというsource pinではない。"
     },
     "design_ref": {
