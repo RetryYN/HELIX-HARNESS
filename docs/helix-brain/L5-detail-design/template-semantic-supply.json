@@ -1053,7 +1053,7 @@
       "effect": "none",
       "algorithm": [
         "照合を始める前にselectorの存在を判定する。core_return_requested/core_source_selected/labo_evaluation_selectedのいずれかが欠落なら、falseへ既定せずaxis=dependency_selection,state=unknownを局所返却し、そのselectorが選ぶ条件集合だけを評価しない。",
-        "HELIXBRAIN-L3-032-F09の常時必須集合003/005/007/008/028と、core_return_requested=true時の019/022/030を、各々のalways_refs/core_return_refsでidentity照合する。必要Ref[]またはmemberが欠けた場合、欠けた各identityについてaxis=dependency_reference,state=missingを返す。空配列・欠落を充足としない。subject_refには入力binding.knowledge_refを用い、AxisResult.original_refs/Finding.source_refsには実際に供給された同category Refだけを入れる。欠落Refの他fieldを合成しない。identityが供給されてもqualification/current revision/scope/owner/digestは既存full-Ref比較で別途検査する。既存のcore_source_selected/labo_evaluation_selected選択時のsource/evaluation参照・qualification照合、選択source欠落のmissing、未選択sourceのunobservedはそのまま適用する。返却の決定順は、常時必須identityをHELIXBRAIN-L3-032-F09の列挙順003/005/007/008/028、選択済みCORE返却identityを同義務の列挙順019/022/030、selector由来所見をcore_return_requested、core_source_selected、labo_evaluation_selectedの順とする。同一axisに複数所見があってもaggregateで統合・上書きせず、各所見のreasonとidentityを保持する。",
+        "HELIXBRAIN-L3-032-F09で常時必須とされた完全identityは、HELIXBRAIN-L2-003、HELIXBRAIN-L2-005、HELIXBRAIN-L2-007、HELIXBRAIN-L2-008、HELIXBRAIN-L2-028である。core_return_requested=trueの場合に追加で必要な完全identityは、HELIXBRAIN-L2-019、HELIXBRAIN-L2-022、HELIXBRAIN-L2-030である。Ref.identityはopaque値として完全一致で照合し、短縮表示から意味IDを推測しない。必要Ref[]またはmemberが欠けた場合、欠けた各identityについてaxis=dependency_reference,state=missingを返す。空配列・欠落を充足としない。欠落Refのrevision/scope/owner/source_locator/sha256を生成しない。subject_refは入力binding.knowledge_refがobjectとして供給されていればその原Ref、欠落していてbinding.template_refがobjectなら当該template_refを診断subjectとして用いる。後者はcandidate/template Refをknowledge_refへ代入・aliasするものではなく、bindingおよびComparison.input_binding内のknowledge_ref欠落をそのまま保つ。template_refもobjectでない場合はsubject_refを捏造せず、既存validation/construction issue経路へ欠落を残す。AxisResult.binding/Finding.binding/Comparison.input_bindingは同じ入力bindingの原memberを保ち、欠落knowledge_refを補わない。別の既存builder/constructor経路のconstruction_issues(context.validated)は、候補と同template/knowledge bindingが結べない場合に候補locatorのInputIssueを返し、source_refには供給済みcandidate/template Refを使う。このInputIssueは本関数のComparison出力に混ぜず、source_return_verificationの既存constructor観測へ保持する。依存診断のtemplate subjectとは異なる所見である。AxisResult.original_refsとFinding.source_refsには該当categoryに実際に供給されたRefだけを入れ、欠落identityのRefは追加しない。categoryがalways_refs/core_return_refsのどちらかを診断対象sourceから追跡する。identityが供給されてもqualification/current revision/scope/owner/digestは既存full-Ref比較で別途検査する。別sourceの成功はこの不足を補償しない（HELIXBRAIN-L5-032-R-selected_source_substitution）。既存core_source_selected/labo_evaluation_selected選択時のsource/evaluation参照・qualification照合、選択source欠落のmissing、未選択sourceのunobservedはそのまま適用する。返却決定順は常時identityのL3-F09列挙順003/005/007/008/028、選択済みCORE返却identityの列挙順019/022/030、selector所見順core_return_requested、core_source_selected、labo_evaluation_selectedとする。同一axisに複数所見があってもaggregateで統合・上書きせず、各所見のreasonとidentityを保持する。",
         "受渡しstateをdefinitionから分離しnot_receivedを保存する。候補供給前の相手完了receipt要求claimは既存順序とconflict。receipt単独の製品N/A/義務消込claimはunknown。",
         "参照資料roleをsemantic authorityに変換しない。旧template/seed/設計例はreference_onlyのまま保持し不足definition/authorityを補わない。"
       ],
@@ -1087,9 +1087,39 @@
         "HELIXBRAIN-L8-032-F09-NEG-10",
         "HELIXBRAIN-L8-032-F09-NEG-11",
         "HELIXBRAIN-L8-032-F09-NEG-12",
-        "HELIXBRAIN-L8-032-ADD-25"
+        "HELIXBRAIN-L8-032-ADD-25",
+        "HELIXBRAIN-L8-032-F09-NEG-13",
+        "HELIXBRAIN-L8-032-ADD-26"
       ],
-      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_dependencies_and_handoff"
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_dependencies_and_handoff",
+      "legacy_comparison": {
+        "disposition": "意味再導出。旧設計のdefault回避、元identity/sourceの保持、欠落を補完しない原則をF09のdependency比較へ適用する。",
+        "retained": [
+          "必要な項目を定義側から列挙し、候補の欠落を成功へ丸めない。",
+          "元のsource/identityを保持し、別sourceの成功で欠落を相殺しない。"
+        ],
+        "changed": [
+          "旧L5はtemplate field構造のschema validationとL4/L9 pair completionを扱い、現在L3-F09の条件別identity集合やDependencySelectionという意味軸を持たない。旧ID・旧schema・状態語を現在の意味IDとして移植しない。",
+          "欠けたknowledge_refではknowledge authorityを生成せず、診断subjectに限って既存template_refを使い、既存construction_issuesのcandidate/template Ref fallbackを併記する。"
+        ],
+        "reason": "現行L3-F09が完全なHELIXBRAIN-L2 identityと条件selectorを規定し、現L5 Ref.identityはopaque値であるため。旧記述をそのまま実行規則にせず、現在の意味と型へ限定して再導出する。",
+        "source_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+            "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+            "source_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+            "lines": "16-78"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+            "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+            "source_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+            "lines": "16-100"
+          }
+        ]
+      }
     },
     {
       "id": "HELIXBRAIN-L5-032-compare_claim_boundaries",
@@ -2970,13 +3000,19 @@
       "contract_ref": "HELIXBRAIN-L5-032-F09",
       "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
       "oracle_ref": "HELIXBRAIN-L8-032-F09-NEG-07",
-      "condition": "L3-F09で常時必須、または選択済みCORE返却で必要なRef identityが該当Ref[]にない。",
-      "predicate": "常時identity 003/005/007/008/028、core_return_requested=trueの場合のidentity 019/022/030を該当Ref[]と照合する。list/member欠落を空集合の成功にせず、欠落identityごとdependency_reference=missingを返す。欠落Refを合成せず、同条件の供給済みRefとその他の比較を保持する。",
+      "condition": "L3-F09で常時必須のHELIXBRAIN-L2-003/005/007/008/028、またはcore_return_requested=true時に必要なHELIXBRAIN-L2-019/022/030の完全identityが該当Ref[]にない。",
+      "predicate": "常時identityはHELIXBRAIN-L2-003、HELIXBRAIN-L2-005、HELIXBRAIN-L2-007、HELIXBRAIN-L2-008、HELIXBRAIN-L2-028をalways_refsと照合する。core_return_requested=trueの場合はHELIXBRAIN-L2-019、HELIXBRAIN-L2-022、HELIXBRAIN-L2-030をcore_return_refsと照合する。list/member欠落を空集合の成功にせず、欠落identityごとdependency_reference=missingを返す。subject_refは入力binding.knowledge_refが供給されればそれを、欠落時は同binding.template_refが供給されていれば診断subjectとして用いる。template_refはknowledge_refの代替値ではなく、原binding/input_bindingのknowledge_ref欠落は保つ。template_refも不在ならRefを作らず既存validation/construction issueへ委ねる。bindingとinput_bindingは原入力を保持する。original_refs/source_refsは該当categoryの供給済みRefだけを保持し、欠落Refや他category Refを足さない。別source成功は補償にならない。identity membershipとfull-Ref qualification/currentnessは別に扱う。",
       "predicate_status": "defined_candidate",
       "expected_axis": "dependency_reference",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "対象条件の不足だけを返し、他category・元binding・handoff・他candidateを変更しない。実作用なし。"
+      "effect": "対象条件の不足だけを返し、他category・元binding・handoff・他candidateを変更しない。実作用なし。",
+      "reason_template": "HELIXBRAIN-L3-032-F09で必要なidentity {identity} が入力 {source_path} にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+      "backflow_owner_semantics": "knowledge_ownerは戻し先の論理的roleであり、個別owner値/受領者identityではない。原knowledge_refが欠落またはowner未決でもowner値をtemplate_ref.ownerから代用しない。",
+      "additional_oracle_refs": [
+        "HELIXBRAIN-L8-032-F09-NEG-13",
+        "HELIXBRAIN-L8-032-ADD-26"
+      ]
     },
     {
       "id": "HELIXBRAIN-L5-032-R-dependency_selector_unknown",
@@ -2990,7 +3026,12 @@
       "expected_axis": "dependency_selection",
       "expected_state": "unknown",
       "backflow_owner": null,
-      "effect": "欠落selectorをunknownとして局所保持し、他条件やhandoffを変更しない。実作用なし。"
+      "effect": "欠落selectorをunknownとして局所保持し、他条件やhandoffを変更しない。実作用なし。",
+      "reason_template": "条件selector {selector} が {input_path} にない。falseを既定せず、その条件のref集合を評価しない。",
+      "additional_oracle_refs": [
+        "HELIXBRAIN-L8-032-F09-NEG-12",
+        "HELIXBRAIN-L8-032-ADD-26"
+      ]
     }
   ],
   "determinism": "供給immutable snapshotだけを読みtemplate/knowledge identity/revision、descriptor identity、source Ref、axisで決定的に並べる。異scope/版を併合しない。時計/env/fs/network/DB参照なし。",
@@ -3001,9 +3042,9 @@
   },
   "remaining": [
     "L5/L8候補で論理型、descriptor/source解決、claim、条件別依存とpure関数、単体oracleを具体化した。独立review待ち。",
-    "正式schema/key/型/式木/wire/registry/resolver、各field意味/要否/oracle最終照合、BRAIN運用promotionと全seed採用は未成立。",
+    "正式schema/key/型/式木/wire/registry/resolver、各field意味/要否/oracle最終照合、BRAIN運用promotionと全seed採用は未成立。L2-018/020/025のうち018/020/025をどのselectorが必要とするかの対応は未決で、025を両selectorへ一律必須としない。",
     "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは未成立。",
-    "105負例と24追加unit分岐・9正常function oracleをlogical候補として著述。source/ref/資格とbranch十分性の意味review未完。",
+    "failure_rules 107件、原L9負例105件、全L8 additional_unit_cases 33件（このF09で追加した局所NEG-07〜13とADD-25〜26を含む）、正常function oracle 9件を候補として記録。F09のNEG-01〜06はL9対応、NEG-07〜13とADD-25〜26はL8局所検証でL9入力/期待との統合照合ではない。有限例の意味識別力・全任意入力閉包は未証明。",
     "formal wire/parser/実source資格resolver/資源条件/言語・依存・配置と実fixture/oracle凍結/実装前Red/Greenは未成立。独立意味review未実施。",
     "032 inputの19型の供給member構造とpresenceを具体化した。欠落slot/required集合は入力を捨てず意味不足へ保持。全Context/Result/finding/codec/実owner/凍結と意味閉包は未完。"
   ],
