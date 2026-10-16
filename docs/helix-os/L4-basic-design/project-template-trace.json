@@ -2987,7 +2987,10 @@
               "core_row_locatorと既存unique qualified OS associationのtrusted locator相反。新原対応conflict・旧lookup/native独立。",
               "obligations memberがpresent null。assignment collection unknownと未供給/emptyの区別。",
               "CORE computed_condition_pairs/computed_obligation_refsのAbsent、present null、不正Presence/非array/不正itemという各collection分岐。",
-              "conditionがpresent []かつcomputed_disposition不明の場合のactivation unresolved/not_requestedの規範分岐。"
+              "conditionがpresent []かつcomputed_disposition不明の場合のactivation unresolved/not_requestedの規範分岐。",
+              "conditionのnative endpoint所在/Refが不成立の場合の親stateと原値/診断保持。親をmirrorだけで決める誤りは既存12局所期待/D2では識別しない。",
+              "mirror_stateとnative_endpoint_binding_stateの両方がcorresponding以外となる混在（conflict＋unknown、conflict＋missing、unknown＋missing等）のsame_relation_state_reduction順位。順位を入れ替える誤りは既存対照では識別しない。",
+              "両roleが既知not_requestedのcorrespondence_resolution_state=not_requested、及びclosed_record_tuple_rulesのnot_requested/not_compared_before_raw_row/shared_relation_semantic_suppression/invalid_core_ref_occurrenceの各返却表現。旧12局所対照の当該tuple全値成立を主張しない。"
             ],
             "limit": "既存12局所対照/D2全値は上記分岐を識別しない。全case追加/全mutation零の新gateではなく、現時点の未対照範囲として保持する。"
           }
