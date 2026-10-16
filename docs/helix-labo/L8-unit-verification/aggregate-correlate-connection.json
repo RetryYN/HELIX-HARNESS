@@ -199,7 +199,7 @@
     "形式schema/codecおよび実source資格は未成立。",
     "この論理契約は合成packetの静的比較だけで、実接続・実receipts・実authorityを認定しない。",
     "L11、正式実装・資格・実運用は未成立。",
-    "元42caseのMISSINGは明示nullであり、key absent/receipt object外/relations list外は原fixtureでは未検証。relation identity/revisionの非対称anchorは差分表示に限り、どちらが正しいsourceか・原因ownerかを認定しない。原fixture以外の正式anchorと診断の閉包は後続対設計の未完として保全する。"
+    "旧42caseのMISSINGは明示nullを含む固定範囲である。追加case42はconnection.scope.productのkey欠落を扱うが、他のkey absent、receipt object外、relations list外は46素材でも未検証である。relation identity/revisionの非対称anchorは差分表示に限り、どちらが正しいsourceか・原因ownerかを認定しない。原fixture以外の正式anchorと診断の閉包は後続対設計の未完として保全する。非null non-object scopeではFN01が13個presenceを保ちall_required=falseを返す一方、FN04はscope親/子の所見を返さず、現有限契約はreceipt unqualifiedのままinformation_stateを返す。この状態の診断意味は未閉包であり、成功資格にしない。"
   ],
   "document_id": "HELIXLABO-L8-011",
   "layer": "L8",
@@ -277,7 +277,7 @@
         "returns": "EpisodeRelationAssessment"
       },
       "algorithm": [
-        "候補episode.relationsとobservation_backlinksをそれぞれraw listとして保持する。listでなければ比較用には[]。この固定42素材は各list最大1 relationで、複数の照合意味は未閉包として保持する。",
+        "候補episode.relationsとobservation_backlinksをそれぞれraw listとして保持する。listでなければ比較用には[]。今回の46固定素材では各list最大1 relationで、複数の照合意味は未閉包として保持する。",
         "backlinksが空ならfield=observation_backlinks/result=missing/return_owner=LABO-correlation-ownerを1件、比較=[]/relation_state=unqualified/causal_state=not_established。",
         "それ以外は候補とbacklinkの先頭record（無ければ{}）を、identity,revision,episode_identity,episode_revision,observation_identity,observation_revision,source,scope,causal_stateの順に比較。episode identity/revisionはepisode候補、observation identity/revision/source/scopeは元観測、causal_stateはnot_establishedをanchorとする。identity anchorは候補identity、relation revision anchorはbacklink revision。",
         "各fieldにcandidate_value/backlink_value/anchor_valueと3比較boolean（candidate_matches_anchor/backlink_matches_anchor/pair_equal）を出す。episode/observation/source/scope/causal anchorが異なるときは、backlink相違ならobservation_backlinks.<field>、それ以外はepisode_candidate.relations.<field>。identity/revisionのpair相違はcandidateがanchorと異なればepisode_candidate.relations.<field>、それ以外はobservation_backlinks.<field>。各result=relation_mismatch/owner=LABO-correlation-ownerを順保持。",
@@ -298,10 +298,10 @@
         "returns": "ConnectionResult"
       },
       "algorithm": [
-        "findings=[]。transfer.connection_field_presenceの先頭connection9memberだけを順走査しpresence!=valueをfield_path/missing/LABO-connection-ownerとして保持する。scope内4memberだけの欠落を同じ欠落所見へ重複昇格しない。",
+        "findings=[]。transfer.connection_field_presenceから外側connection 9項目を原順で調べる。scopeのraw値がobjectの場合だけ、親scopeの直後に4子項目を順に診断し、absent/nullをfield_path/missing/LABO-connection-ownerで保持する。scopeがabsent/null/object外なら子4項目の診断を生成せず、親scope自身のabsent/null所見がある場合だけそれを保持する。FN01が返した13項目presenceと必須値成立状態はこの診断選別で変更しない。object外の非null値を子欠落へ読み替えず、子の値を推測しない。",
         "raw claimsが非空なら原順にclaims/unsupported_connection_or_causeを追加し、claim=correlation_is_causeのみLABO-correlation-owner、その他LABO-connection-ownerへ返す。このときreceipt/観測/relation所見は追加せず組立てへ進む。有限fixtureの診断選択であり実許可や欠陥消去を意味しない。",
         "claimなしでまだ所見がなければsend→receiveの順でreceiptを確認する。nullはmissing_endpoint_receipt、object外はforeign_referenceをreceipt名のfieldに1件。それ以外はFN02のcheck順で最初のcomparison!=equalをreceipt.<check.field>、state差ならnot_observed、その他foreign_referenceとする。ownerはLABO-connection-owner。最初のreceipt所見でこの走査を止める。",
-        "次に元/受信観測がobjectならidentity,revision,source,scope順で受信get値nullをmissing/LABO-Aggregate-ownerとして最初1件。sourceが両方objectでrevisionが異なればreceived_observation.source.revision/foreign_revision/LABO-Aggregate-ownerを最初1件。続いて受信fieldsを原順走査し、元not_observed→受信observed_in_fixture_onlyかつvalue非nullをreceived_observation.fields.<key>/missing_not_success/LABO-Aggregate-ownerとして最初1件。先行の接続/receipt所見があってもこの観測比較は行う。 この観測段階は2つの独立走査で、identity/revision/source/scope比較内で最初の1件、fieldsの未観測昇格比較内で最初の1件を返す。両方に該当すれば最大2件を原順に保持する。",
+        "接続・receipt段の所見に続き、元/受信観測がobjectなら、identity,revision,source,scopeの順に受信値nullをmissing/LABO-Aggregate-ownerとして調べ、最初の1件を保持する。このnull検査はraw走査順とは別の先行段階である。null所見がなければ、sourceが両方objectでrevisionが異なる場合はreceived_observation.source.revision/foreign_revisionを保持する。これらspecific所見がなければ、同じmetadata群をidentity,revision,source,scopeの順に比較し、元値・受信値がともに非nullでJSON不一致の最初の1件をreceived_observation.<field>/received_content_conflict/LABO-Aggregate-ownerで返す。元値がabsent/nullで受信値が非nullの場合、この一般metadata比較だけでは新しいconflictを生成せず、raw両値とFN01の観測比較を保持する。metadata群は最大1件で、specific mismatchをgeneric conflictで重ねない。したがってreceived_observation.scope=nullとsource.revision相違が同時にある場合、scopeのmissingを優先しsource.revision/foreign_revisionは併記しない。その後、received fieldsを原順に走査し、元not_observedからreceived observed_in_fixture_onlyかつ非nullへの変化があれば最初の1件をreceived_observation.fields.<key>/missing_not_success/LABO-Aggregate-ownerで保持する。これがなければ、元fields mapと受信fields mapをpresence・nullを含むJSON deep-equal全体として比較し、異なればreceived_observation.fields/received_content_conflict/LABO-Aggregate-ownerを1件返す。fields群は最大1件で、null、key欠落、observed/not_observed等の状態差もこの全体比較から除外しない。値を補完・成功扱いしない。metadata群とfields群は独立であり、両方の所見をこの順で保持できる。この観測段階は先行する接続/receipt所見で短絡しない。",
         "ここまで所見なしの場合だけrelation_assessment.failure_reasonsを原順に追加する。findingsは重複除去・sortしない。return_ownersだけ初出順一意化、rejected_claimsはraw claims原列。",
         "findingsなしならinformation_state=connection_content_requires_actual_qualification、その他held_connection_unqualified。receipt_stateはfindingsなし・両receipt fixture一致・接続必須値presentのANDでboth_receipts_require_actual_qualification、その他unqualified。retained_inputs=原raw、transferの原保持/field_transfer/missing_fieldsとrelation_stateをそのまま複写。causal_state=not_established、EffectVector全8member=false。"
       ]
@@ -121974,10 +121974,2654 @@
         },
         "equal_to_source_expected": true
       }
+    },
+    {
+      "id": "LABO011-F01-RECEIVED-SCOPE-NULL-SOURCE-REVISION-MISMATCH",
+      "requirement_ref": "HELIXLABO-L3-011-F01",
+      "source_oracle_ref": "HELIXLABO-L10-011-F01",
+      "source_case_ref": {
+        "path": "docs/helix-labo/L9-integration-verification/aggregate-correlate-connection.json",
+        "pointer": "/verification_obligations/0/cases/45",
+        "case_id": "LABO011-F01-RECEIVED-SCOPE-NULL-SOURCE-REVISION-MISMATCH",
+        "raw_pointer": "/verification_obligations/0/cases/45/independent_source_packet/raw_utf8",
+        "raw_utf8_sha256": "0ca610bcade2e8365c77d38985a793814d31a92613c964d35ec3e52a114e1bfc"
+      },
+      "basis": "RECEIVED-SCOPE-NULL-SOURCE-REVISION-MISMATCH",
+      "case_input": {
+        "claims": [],
+        "connection": {
+          "connector_identity": "CONNECTOR-AGG-COR-P",
+          "connector_revision": "CONNECTOR-r2",
+          "contract_identity": "SELECTED-PACK-CONTRACT-P",
+          "contract_revision": "PACK-r2",
+          "from_endpoint": "AGGREGATE-P@r2",
+          "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+          "revision": "CONNECT-r2",
+          "scope": null,
+          "to_endpoint": "CORRELATE-P@r2"
+        },
+        "engine_results": {
+          "Aggregate": "green_in_fixture_only",
+          "Correlate": "green_in_fixture_only"
+        },
+        "episode_candidate": {
+          "identity": "EPISODE-P",
+          "owner": "LABO-Correlate",
+          "relations": [
+            {
+              "causal_state": "not_established",
+              "episode_identity": "EPISODE-P",
+              "episode_revision": "EPISODE-r2",
+              "identity": "RELATION-P",
+              "observation_identity": "OBSERVATION-P",
+              "observation_revision": "OBS-r2",
+              "revision": "RELATION-r2",
+              "scope": {
+                "mechanism": "HARNESS",
+                "product": "PRODUCT-P",
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P"
+              },
+              "source": {
+                "identity": "SOURCE-P",
+                "owner": "selected-source-owner",
+                "revision": "SOURCE-r2"
+              }
+            }
+          ],
+          "revision": "EPISODE-r2",
+          "scope": {
+            "mechanism": "HARNESS",
+            "product": "PRODUCT-P",
+            "requirement_revision": "REQ-P-r2",
+            "ticket": "TICKET-P"
+          }
+        },
+        "observation_backlinks": [
+          {
+            "causal_state": "not_established",
+            "episode_identity": "EPISODE-P",
+            "episode_revision": "EPISODE-r2",
+            "identity": "RELATION-P",
+            "observation_identity": "OBSERVATION-P",
+            "observation_revision": "OBS-r2",
+            "revision": "RELATION-r2",
+            "scope": {
+              "mechanism": "HARNESS",
+              "product": "PRODUCT-P",
+              "requirement_revision": "REQ-P-r2",
+              "ticket": "TICKET-P"
+            },
+            "source": {
+              "identity": "SOURCE-P",
+              "owner": "selected-source-owner",
+              "revision": "SOURCE-r2"
+            }
+          }
+        ],
+        "original_observation": {
+          "fields": {
+            "result": {
+              "source_ref": "SOURCE-P@SOURCE-r2/result",
+              "state": "observed_in_fixture_only",
+              "value": "RESULT-P"
+            },
+            "runtime": {
+              "source_ref": null,
+              "state": "not_observed",
+              "value": null
+            }
+          },
+          "identity": "OBSERVATION-P",
+          "owner": "LABO-Aggregate",
+          "revision": "OBS-r2",
+          "scope": {
+            "mechanism": "HARNESS",
+            "product": "PRODUCT-P",
+            "requirement_revision": "REQ-P-r2",
+            "ticket": "TICKET-P"
+          },
+          "source": {
+            "identity": "SOURCE-P",
+            "owner": "selected-source-owner",
+            "revision": "SOURCE-r2"
+          }
+        },
+        "receive_receipt": {
+          "connection": {
+            "connector_identity": "CONNECTOR-AGG-COR-P",
+            "connector_revision": "CONNECTOR-r2",
+            "contract_identity": "SELECTED-PACK-CONTRACT-P",
+            "contract_revision": "PACK-r2",
+            "from_endpoint": "AGGREGATE-P@r2",
+            "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+            "revision": "CONNECT-r2",
+            "scope": {
+              "mechanism": "HARNESS",
+              "product": "PRODUCT-P",
+              "requirement_revision": "REQ-P-r2",
+              "ticket": "TICKET-P"
+            },
+            "to_endpoint": "CORRELATE-P@r2"
+          },
+          "identity": "LABO-Correlate-RECEIPT-P",
+          "observation_identity": "OBSERVATION-P",
+          "observation_revision": "OBS-r2",
+          "owner": "LABO-Correlate",
+          "revision": "RECEIPT-r2",
+          "scope": {
+            "mechanism": "HARNESS",
+            "product": "PRODUCT-P",
+            "requirement_revision": "REQ-P-r2",
+            "ticket": "TICKET-P"
+          },
+          "source": {
+            "identity": "SOURCE-P",
+            "owner": "selected-source-owner",
+            "revision": "SOURCE-r2"
+          },
+          "state": "received_in_fixture_only"
+        },
+        "received_observation": {
+          "fields": {
+            "result": {
+              "source_ref": "SOURCE-P@SOURCE-r2/result",
+              "state": "observed_in_fixture_only",
+              "value": "RESULT-P"
+            },
+            "runtime": {
+              "source_ref": null,
+              "state": "not_observed",
+              "value": null
+            }
+          },
+          "identity": "OBSERVATION-P",
+          "owner": "LABO-Aggregate",
+          "revision": "OBS-r2",
+          "scope": null,
+          "source": {
+            "identity": "SOURCE-P",
+            "owner": "selected-source-owner",
+            "revision": "SOURCE-r1"
+          }
+        },
+        "send_receipt": {
+          "connection": {
+            "connector_identity": "CONNECTOR-AGG-COR-P",
+            "connector_revision": "CONNECTOR-r2",
+            "contract_identity": "SELECTED-PACK-CONTRACT-P",
+            "contract_revision": "PACK-r2",
+            "from_endpoint": "AGGREGATE-P@r2",
+            "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+            "revision": "CONNECT-r2",
+            "scope": {
+              "mechanism": "HARNESS",
+              "product": "PRODUCT-P",
+              "requirement_revision": "REQ-P-r2",
+              "ticket": "TICKET-P"
+            },
+            "to_endpoint": "CORRELATE-P@r2"
+          },
+          "identity": "LABO-Aggregate-RECEIPT-P",
+          "observation_identity": "OBSERVATION-P",
+          "observation_revision": "OBS-r2",
+          "owner": "LABO-Aggregate",
+          "revision": "RECEIPT-r2",
+          "scope": {
+            "mechanism": "HARNESS",
+            "product": "PRODUCT-P",
+            "requirement_revision": "REQ-P-r2",
+            "ticket": "TICKET-P"
+          },
+          "source": {
+            "identity": "SOURCE-P",
+            "owner": "selected-source-owner",
+            "revision": "SOURCE-r2"
+          },
+          "state": "sent_in_fixture_only"
+        }
+      },
+      "function_invocations": [
+        {
+          "function_ref": "FN-LABO011-01",
+          "typed_arguments": {
+            "connection": {
+              "connector_identity": "CONNECTOR-AGG-COR-P",
+              "connector_revision": "CONNECTOR-r2",
+              "contract_identity": "SELECTED-PACK-CONTRACT-P",
+              "contract_revision": "PACK-r2",
+              "from_endpoint": "AGGREGATE-P@r2",
+              "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+              "revision": "CONNECT-r2",
+              "scope": null,
+              "to_endpoint": "CORRELATE-P@r2"
+            },
+            "original_observation": {
+              "fields": {
+                "result": {
+                  "source_ref": "SOURCE-P@SOURCE-r2/result",
+                  "state": "observed_in_fixture_only",
+                  "value": "RESULT-P"
+                },
+                "runtime": {
+                  "source_ref": null,
+                  "state": "not_observed",
+                  "value": null
+                }
+              },
+              "identity": "OBSERVATION-P",
+              "owner": "LABO-Aggregate",
+              "revision": "OBS-r2",
+              "scope": {
+                "mechanism": "HARNESS",
+                "product": "PRODUCT-P",
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P"
+              },
+              "source": {
+                "identity": "SOURCE-P",
+                "owner": "selected-source-owner",
+                "revision": "SOURCE-r2"
+              }
+            },
+            "received_observation": {
+              "fields": {
+                "result": {
+                  "source_ref": "SOURCE-P@SOURCE-r2/result",
+                  "state": "observed_in_fixture_only",
+                  "value": "RESULT-P"
+                },
+                "runtime": {
+                  "source_ref": null,
+                  "state": "not_observed",
+                  "value": null
+                }
+              },
+              "identity": "OBSERVATION-P",
+              "owner": "LABO-Aggregate",
+              "revision": "OBS-r2",
+              "scope": null,
+              "source": {
+                "identity": "SOURCE-P",
+                "owner": "selected-source-owner",
+                "revision": "SOURCE-r1"
+              }
+            }
+          },
+          "expected_return": {
+            "connection_field_presence": [
+              {
+                "field_path": "connection.identity",
+                "presence": "value",
+                "raw_value": "CONNECT-AGGREGATE-CORRELATE-P"
+              },
+              {
+                "field_path": "connection.revision",
+                "presence": "value",
+                "raw_value": "CONNECT-r2"
+              },
+              {
+                "field_path": "connection.from_endpoint",
+                "presence": "value",
+                "raw_value": "AGGREGATE-P@r2"
+              },
+              {
+                "field_path": "connection.to_endpoint",
+                "presence": "value",
+                "raw_value": "CORRELATE-P@r2"
+              },
+              {
+                "field_path": "connection.connector_identity",
+                "presence": "value",
+                "raw_value": "CONNECTOR-AGG-COR-P"
+              },
+              {
+                "field_path": "connection.connector_revision",
+                "presence": "value",
+                "raw_value": "CONNECTOR-r2"
+              },
+              {
+                "field_path": "connection.contract_identity",
+                "presence": "value",
+                "raw_value": "SELECTED-PACK-CONTRACT-P"
+              },
+              {
+                "field_path": "connection.contract_revision",
+                "presence": "value",
+                "raw_value": "PACK-r2"
+              },
+              {
+                "field_path": "connection.scope",
+                "presence": "null",
+                "raw_value": null
+              },
+              {
+                "field_path": "connection.scope.requirement_revision",
+                "presence": "absent",
+                "raw_value": null
+              },
+              {
+                "field_path": "connection.scope.ticket",
+                "presence": "absent",
+                "raw_value": null
+              },
+              {
+                "field_path": "connection.scope.product",
+                "presence": "absent",
+                "raw_value": null
+              },
+              {
+                "field_path": "connection.scope.mechanism",
+                "presence": "absent",
+                "raw_value": null
+              }
+            ],
+            "all_required_connection_values_present": false,
+            "observation_field_comparisons": [
+              {
+                "field": "identity",
+                "left_presence": "value",
+                "left_value": "OBSERVATION-P",
+                "right_presence": "value",
+                "right_value": "OBSERVATION-P",
+                "comparison": "equal"
+              },
+              {
+                "field": "revision",
+                "left_presence": "value",
+                "left_value": "OBS-r2",
+                "right_presence": "value",
+                "right_value": "OBS-r2",
+                "comparison": "equal"
+              },
+              {
+                "field": "source",
+                "left_presence": "value",
+                "left_value": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                },
+                "right_presence": "value",
+                "right_value": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r1"
+                },
+                "comparison": "different"
+              },
+              {
+                "field": "scope",
+                "left_presence": "value",
+                "left_value": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "right_presence": "null",
+                "right_value": null,
+                "comparison": "right_null"
+              },
+              {
+                "field": "fields",
+                "left_presence": "value",
+                "left_value": {
+                  "result": {
+                    "source_ref": "SOURCE-P@SOURCE-r2/result",
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P"
+                  },
+                  "runtime": {
+                    "source_ref": null,
+                    "state": "not_observed",
+                    "value": null
+                  }
+                },
+                "right_presence": "value",
+                "right_value": {
+                  "result": {
+                    "source_ref": "SOURCE-P@SOURCE-r2/result",
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P"
+                  },
+                  "runtime": {
+                    "source_ref": null,
+                    "state": "not_observed",
+                    "value": null
+                  }
+                },
+                "comparison": "equal"
+              }
+            ],
+            "field_transfer_state": "received_content_conflict",
+            "missing_fields": {
+              "runtime": {
+                "source_ref": null,
+                "state": "not_observed",
+                "value": null
+              }
+            },
+            "original_observation_preserved": true,
+            "preserved_original_observation": {
+              "fields": {
+                "result": {
+                  "source_ref": "SOURCE-P@SOURCE-r2/result",
+                  "state": "observed_in_fixture_only",
+                  "value": "RESULT-P"
+                },
+                "runtime": {
+                  "source_ref": null,
+                  "state": "not_observed",
+                  "value": null
+                }
+              },
+              "identity": "OBSERVATION-P",
+              "owner": "LABO-Aggregate",
+              "revision": "OBS-r2",
+              "scope": {
+                "mechanism": "HARNESS",
+                "product": "PRODUCT-P",
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P"
+              },
+              "source": {
+                "identity": "SOURCE-P",
+                "owner": "selected-source-owner",
+                "revision": "SOURCE-r2"
+              }
+            },
+            "received_observation_value": {
+              "fields": {
+                "result": {
+                  "source_ref": "SOURCE-P@SOURCE-r2/result",
+                  "state": "observed_in_fixture_only",
+                  "value": "RESULT-P"
+                },
+                "runtime": {
+                  "source_ref": null,
+                  "state": "not_observed",
+                  "value": null
+                }
+              },
+              "identity": "OBSERVATION-P",
+              "owner": "LABO-Aggregate",
+              "revision": "OBS-r2",
+              "scope": null,
+              "source": {
+                "identity": "SOURCE-P",
+                "owner": "selected-source-owner",
+                "revision": "SOURCE-r1"
+              }
+            }
+          }
+        },
+        {
+          "function_ref": "FN-LABO011-02",
+          "typed_arguments": {
+            "connection": {
+              "connector_identity": "CONNECTOR-AGG-COR-P",
+              "connector_revision": "CONNECTOR-r2",
+              "contract_identity": "SELECTED-PACK-CONTRACT-P",
+              "contract_revision": "PACK-r2",
+              "from_endpoint": "AGGREGATE-P@r2",
+              "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+              "revision": "CONNECT-r2",
+              "scope": null,
+              "to_endpoint": "CORRELATE-P@r2"
+            },
+            "original_observation": {
+              "fields": {
+                "result": {
+                  "source_ref": "SOURCE-P@SOURCE-r2/result",
+                  "state": "observed_in_fixture_only",
+                  "value": "RESULT-P"
+                },
+                "runtime": {
+                  "source_ref": null,
+                  "state": "not_observed",
+                  "value": null
+                }
+              },
+              "identity": "OBSERVATION-P",
+              "owner": "LABO-Aggregate",
+              "revision": "OBS-r2",
+              "scope": {
+                "mechanism": "HARNESS",
+                "product": "PRODUCT-P",
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P"
+              },
+              "source": {
+                "identity": "SOURCE-P",
+                "owner": "selected-source-owner",
+                "revision": "SOURCE-r2"
+              }
+            },
+            "send_receipt": {
+              "connection": {
+                "connector_identity": "CONNECTOR-AGG-COR-P",
+                "connector_revision": "CONNECTOR-r2",
+                "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                "contract_revision": "PACK-r2",
+                "from_endpoint": "AGGREGATE-P@r2",
+                "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                "revision": "CONNECT-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "to_endpoint": "CORRELATE-P@r2"
+              },
+              "identity": "LABO-Aggregate-RECEIPT-P",
+              "observation_identity": "OBSERVATION-P",
+              "observation_revision": "OBS-r2",
+              "owner": "LABO-Aggregate",
+              "revision": "RECEIPT-r2",
+              "scope": {
+                "mechanism": "HARNESS",
+                "product": "PRODUCT-P",
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P"
+              },
+              "source": {
+                "identity": "SOURCE-P",
+                "owner": "selected-source-owner",
+                "revision": "SOURCE-r2"
+              },
+              "state": "sent_in_fixture_only"
+            },
+            "receive_receipt": {
+              "connection": {
+                "connector_identity": "CONNECTOR-AGG-COR-P",
+                "connector_revision": "CONNECTOR-r2",
+                "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                "contract_revision": "PACK-r2",
+                "from_endpoint": "AGGREGATE-P@r2",
+                "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                "revision": "CONNECT-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "to_endpoint": "CORRELATE-P@r2"
+              },
+              "identity": "LABO-Correlate-RECEIPT-P",
+              "observation_identity": "OBSERVATION-P",
+              "observation_revision": "OBS-r2",
+              "owner": "LABO-Correlate",
+              "revision": "RECEIPT-r2",
+              "scope": {
+                "mechanism": "HARNESS",
+                "product": "PRODUCT-P",
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P"
+              },
+              "source": {
+                "identity": "SOURCE-P",
+                "owner": "selected-source-owner",
+                "revision": "SOURCE-r2"
+              },
+              "state": "received_in_fixture_only"
+            },
+            "transfer_assessment": {
+              "connection_field_presence": [
+                {
+                  "field_path": "connection.identity",
+                  "presence": "value",
+                  "raw_value": "CONNECT-AGGREGATE-CORRELATE-P"
+                },
+                {
+                  "field_path": "connection.revision",
+                  "presence": "value",
+                  "raw_value": "CONNECT-r2"
+                },
+                {
+                  "field_path": "connection.from_endpoint",
+                  "presence": "value",
+                  "raw_value": "AGGREGATE-P@r2"
+                },
+                {
+                  "field_path": "connection.to_endpoint",
+                  "presence": "value",
+                  "raw_value": "CORRELATE-P@r2"
+                },
+                {
+                  "field_path": "connection.connector_identity",
+                  "presence": "value",
+                  "raw_value": "CONNECTOR-AGG-COR-P"
+                },
+                {
+                  "field_path": "connection.connector_revision",
+                  "presence": "value",
+                  "raw_value": "CONNECTOR-r2"
+                },
+                {
+                  "field_path": "connection.contract_identity",
+                  "presence": "value",
+                  "raw_value": "SELECTED-PACK-CONTRACT-P"
+                },
+                {
+                  "field_path": "connection.contract_revision",
+                  "presence": "value",
+                  "raw_value": "PACK-r2"
+                },
+                {
+                  "field_path": "connection.scope",
+                  "presence": "null",
+                  "raw_value": null
+                },
+                {
+                  "field_path": "connection.scope.requirement_revision",
+                  "presence": "absent",
+                  "raw_value": null
+                },
+                {
+                  "field_path": "connection.scope.ticket",
+                  "presence": "absent",
+                  "raw_value": null
+                },
+                {
+                  "field_path": "connection.scope.product",
+                  "presence": "absent",
+                  "raw_value": null
+                },
+                {
+                  "field_path": "connection.scope.mechanism",
+                  "presence": "absent",
+                  "raw_value": null
+                }
+              ],
+              "all_required_connection_values_present": false,
+              "observation_field_comparisons": [
+                {
+                  "field": "identity",
+                  "left_presence": "value",
+                  "left_value": "OBSERVATION-P",
+                  "right_presence": "value",
+                  "right_value": "OBSERVATION-P",
+                  "comparison": "equal"
+                },
+                {
+                  "field": "revision",
+                  "left_presence": "value",
+                  "left_value": "OBS-r2",
+                  "right_presence": "value",
+                  "right_value": "OBS-r2",
+                  "comparison": "equal"
+                },
+                {
+                  "field": "source",
+                  "left_presence": "value",
+                  "left_value": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  },
+                  "right_presence": "value",
+                  "right_value": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r1"
+                  },
+                  "comparison": "different"
+                },
+                {
+                  "field": "scope",
+                  "left_presence": "value",
+                  "left_value": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "right_presence": "null",
+                  "right_value": null,
+                  "comparison": "right_null"
+                },
+                {
+                  "field": "fields",
+                  "left_presence": "value",
+                  "left_value": {
+                    "result": {
+                      "source_ref": "SOURCE-P@SOURCE-r2/result",
+                      "state": "observed_in_fixture_only",
+                      "value": "RESULT-P"
+                    },
+                    "runtime": {
+                      "source_ref": null,
+                      "state": "not_observed",
+                      "value": null
+                    }
+                  },
+                  "right_presence": "value",
+                  "right_value": {
+                    "result": {
+                      "source_ref": "SOURCE-P@SOURCE-r2/result",
+                      "state": "observed_in_fixture_only",
+                      "value": "RESULT-P"
+                    },
+                    "runtime": {
+                      "source_ref": null,
+                      "state": "not_observed",
+                      "value": null
+                    }
+                  },
+                  "comparison": "equal"
+                }
+              ],
+              "field_transfer_state": "received_content_conflict",
+              "missing_fields": {
+                "runtime": {
+                  "source_ref": null,
+                  "state": "not_observed",
+                  "value": null
+                }
+              },
+              "original_observation_preserved": true,
+              "preserved_original_observation": {
+                "fields": {
+                  "result": {
+                    "source_ref": "SOURCE-P@SOURCE-r2/result",
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P"
+                  },
+                  "runtime": {
+                    "source_ref": null,
+                    "state": "not_observed",
+                    "value": null
+                  }
+                },
+                "identity": "OBSERVATION-P",
+                "owner": "LABO-Aggregate",
+                "revision": "OBS-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                }
+              },
+              "received_observation_value": {
+                "fields": {
+                  "result": {
+                    "source_ref": "SOURCE-P@SOURCE-r2/result",
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P"
+                  },
+                  "runtime": {
+                    "source_ref": null,
+                    "state": "not_observed",
+                    "value": null
+                  }
+                },
+                "identity": "OBSERVATION-P",
+                "owner": "LABO-Aggregate",
+                "revision": "OBS-r2",
+                "scope": null,
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r1"
+                }
+              }
+            }
+          },
+          "expected_return": {
+            "send_receipt_assessment": {
+              "presence": "value",
+              "checks": [
+                {
+                  "field": "connection",
+                  "left_presence": "value",
+                  "left_value": {
+                    "connector_identity": "CONNECTOR-AGG-COR-P",
+                    "connector_revision": "CONNECTOR-r2",
+                    "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                    "contract_revision": "PACK-r2",
+                    "from_endpoint": "AGGREGATE-P@r2",
+                    "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                    "revision": "CONNECT-r2",
+                    "scope": null,
+                    "to_endpoint": "CORRELATE-P@r2"
+                  },
+                  "right_presence": "value",
+                  "right_value": {
+                    "connector_identity": "CONNECTOR-AGG-COR-P",
+                    "connector_revision": "CONNECTOR-r2",
+                    "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                    "contract_revision": "PACK-r2",
+                    "from_endpoint": "AGGREGATE-P@r2",
+                    "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                    "revision": "CONNECT-r2",
+                    "scope": {
+                      "mechanism": "HARNESS",
+                      "product": "PRODUCT-P",
+                      "requirement_revision": "REQ-P-r2",
+                      "ticket": "TICKET-P"
+                    },
+                    "to_endpoint": "CORRELATE-P@r2"
+                  },
+                  "comparison": "different"
+                },
+                {
+                  "field": "observation_identity",
+                  "left_presence": "value",
+                  "left_value": "OBSERVATION-P",
+                  "right_presence": "value",
+                  "right_value": "OBSERVATION-P",
+                  "comparison": "equal"
+                },
+                {
+                  "field": "observation_revision",
+                  "left_presence": "value",
+                  "left_value": "OBS-r2",
+                  "right_presence": "value",
+                  "right_value": "OBS-r2",
+                  "comparison": "equal"
+                },
+                {
+                  "field": "source",
+                  "left_presence": "value",
+                  "left_value": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  },
+                  "right_presence": "value",
+                  "right_value": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  },
+                  "comparison": "equal"
+                },
+                {
+                  "field": "scope",
+                  "left_presence": "value",
+                  "left_value": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "right_presence": "value",
+                  "right_value": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "comparison": "equal"
+                },
+                {
+                  "field": "state",
+                  "expected_value": "sent_in_fixture_only",
+                  "actual_value": "sent_in_fixture_only",
+                  "comparison": "equal"
+                }
+              ],
+              "matched_fixture_references": false,
+              "raw_receipt": {
+                "connection": {
+                  "connector_identity": "CONNECTOR-AGG-COR-P",
+                  "connector_revision": "CONNECTOR-r2",
+                  "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                  "contract_revision": "PACK-r2",
+                  "from_endpoint": "AGGREGATE-P@r2",
+                  "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                  "revision": "CONNECT-r2",
+                  "scope": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "to_endpoint": "CORRELATE-P@r2"
+                },
+                "identity": "LABO-Aggregate-RECEIPT-P",
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "owner": "LABO-Aggregate",
+                "revision": "RECEIPT-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                },
+                "state": "sent_in_fixture_only"
+              }
+            },
+            "receive_receipt_assessment": {
+              "presence": "value",
+              "checks": [
+                {
+                  "field": "connection",
+                  "left_presence": "value",
+                  "left_value": {
+                    "connector_identity": "CONNECTOR-AGG-COR-P",
+                    "connector_revision": "CONNECTOR-r2",
+                    "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                    "contract_revision": "PACK-r2",
+                    "from_endpoint": "AGGREGATE-P@r2",
+                    "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                    "revision": "CONNECT-r2",
+                    "scope": null,
+                    "to_endpoint": "CORRELATE-P@r2"
+                  },
+                  "right_presence": "value",
+                  "right_value": {
+                    "connector_identity": "CONNECTOR-AGG-COR-P",
+                    "connector_revision": "CONNECTOR-r2",
+                    "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                    "contract_revision": "PACK-r2",
+                    "from_endpoint": "AGGREGATE-P@r2",
+                    "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                    "revision": "CONNECT-r2",
+                    "scope": {
+                      "mechanism": "HARNESS",
+                      "product": "PRODUCT-P",
+                      "requirement_revision": "REQ-P-r2",
+                      "ticket": "TICKET-P"
+                    },
+                    "to_endpoint": "CORRELATE-P@r2"
+                  },
+                  "comparison": "different"
+                },
+                {
+                  "field": "observation_identity",
+                  "left_presence": "value",
+                  "left_value": "OBSERVATION-P",
+                  "right_presence": "value",
+                  "right_value": "OBSERVATION-P",
+                  "comparison": "equal"
+                },
+                {
+                  "field": "observation_revision",
+                  "left_presence": "value",
+                  "left_value": "OBS-r2",
+                  "right_presence": "value",
+                  "right_value": "OBS-r2",
+                  "comparison": "equal"
+                },
+                {
+                  "field": "source",
+                  "left_presence": "value",
+                  "left_value": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  },
+                  "right_presence": "value",
+                  "right_value": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  },
+                  "comparison": "equal"
+                },
+                {
+                  "field": "scope",
+                  "left_presence": "value",
+                  "left_value": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "right_presence": "value",
+                  "right_value": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "comparison": "equal"
+                },
+                {
+                  "field": "state",
+                  "expected_value": "received_in_fixture_only",
+                  "actual_value": "received_in_fixture_only",
+                  "comparison": "equal"
+                }
+              ],
+              "matched_fixture_references": false,
+              "raw_receipt": {
+                "connection": {
+                  "connector_identity": "CONNECTOR-AGG-COR-P",
+                  "connector_revision": "CONNECTOR-r2",
+                  "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                  "contract_revision": "PACK-r2",
+                  "from_endpoint": "AGGREGATE-P@r2",
+                  "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                  "revision": "CONNECT-r2",
+                  "scope": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "to_endpoint": "CORRELATE-P@r2"
+                },
+                "identity": "LABO-Correlate-RECEIPT-P",
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "owner": "LABO-Correlate",
+                "revision": "RECEIPT-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                },
+                "state": "received_in_fixture_only"
+              }
+            },
+            "both_endpoint_receipts_match_fixture_values": false,
+            "connection_fields_present": false
+          }
+        },
+        {
+          "function_ref": "FN-LABO011-03",
+          "typed_arguments": {
+            "episode_candidate": {
+              "identity": "EPISODE-P",
+              "owner": "LABO-Correlate",
+              "relations": [
+                {
+                  "causal_state": "not_established",
+                  "episode_identity": "EPISODE-P",
+                  "episode_revision": "EPISODE-r2",
+                  "identity": "RELATION-P",
+                  "observation_identity": "OBSERVATION-P",
+                  "observation_revision": "OBS-r2",
+                  "revision": "RELATION-r2",
+                  "scope": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "source": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  }
+                }
+              ],
+              "revision": "EPISODE-r2",
+              "scope": {
+                "mechanism": "HARNESS",
+                "product": "PRODUCT-P",
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P"
+              }
+            },
+            "observation_backlinks": [
+              {
+                "causal_state": "not_established",
+                "episode_identity": "EPISODE-P",
+                "episode_revision": "EPISODE-r2",
+                "identity": "RELATION-P",
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "revision": "RELATION-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                }
+              }
+            ],
+            "original_observation": {
+              "fields": {
+                "result": {
+                  "source_ref": "SOURCE-P@SOURCE-r2/result",
+                  "state": "observed_in_fixture_only",
+                  "value": "RESULT-P"
+                },
+                "runtime": {
+                  "source_ref": null,
+                  "state": "not_observed",
+                  "value": null
+                }
+              },
+              "identity": "OBSERVATION-P",
+              "owner": "LABO-Aggregate",
+              "revision": "OBS-r2",
+              "scope": {
+                "mechanism": "HARNESS",
+                "product": "PRODUCT-P",
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P"
+              },
+              "source": {
+                "identity": "SOURCE-P",
+                "owner": "selected-source-owner",
+                "revision": "SOURCE-r2"
+              }
+            },
+            "claims": []
+          },
+          "expected_return": {
+            "candidate_relations": [
+              {
+                "causal_state": "not_established",
+                "episode_identity": "EPISODE-P",
+                "episode_revision": "EPISODE-r2",
+                "identity": "RELATION-P",
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "revision": "RELATION-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                }
+              }
+            ],
+            "observation_backlinks": [
+              {
+                "causal_state": "not_established",
+                "episode_identity": "EPISODE-P",
+                "episode_revision": "EPISODE-r2",
+                "identity": "RELATION-P",
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "revision": "RELATION-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                }
+              }
+            ],
+            "relation_field_comparisons": [
+              {
+                "field": "identity",
+                "candidate_value": "RELATION-P",
+                "backlink_value": "RELATION-P",
+                "anchor_value": "RELATION-P",
+                "candidate_matches_anchor": true,
+                "backlink_matches_anchor": true,
+                "pair_equal": true
+              },
+              {
+                "field": "revision",
+                "candidate_value": "RELATION-r2",
+                "backlink_value": "RELATION-r2",
+                "anchor_value": "RELATION-r2",
+                "candidate_matches_anchor": true,
+                "backlink_matches_anchor": true,
+                "pair_equal": true
+              },
+              {
+                "field": "episode_identity",
+                "candidate_value": "EPISODE-P",
+                "backlink_value": "EPISODE-P",
+                "anchor_value": "EPISODE-P",
+                "candidate_matches_anchor": true,
+                "backlink_matches_anchor": true,
+                "pair_equal": true
+              },
+              {
+                "field": "episode_revision",
+                "candidate_value": "EPISODE-r2",
+                "backlink_value": "EPISODE-r2",
+                "anchor_value": "EPISODE-r2",
+                "candidate_matches_anchor": true,
+                "backlink_matches_anchor": true,
+                "pair_equal": true
+              },
+              {
+                "field": "observation_identity",
+                "candidate_value": "OBSERVATION-P",
+                "backlink_value": "OBSERVATION-P",
+                "anchor_value": "OBSERVATION-P",
+                "candidate_matches_anchor": true,
+                "backlink_matches_anchor": true,
+                "pair_equal": true
+              },
+              {
+                "field": "observation_revision",
+                "candidate_value": "OBS-r2",
+                "backlink_value": "OBS-r2",
+                "anchor_value": "OBS-r2",
+                "candidate_matches_anchor": true,
+                "backlink_matches_anchor": true,
+                "pair_equal": true
+              },
+              {
+                "field": "source",
+                "candidate_value": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                },
+                "backlink_value": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                },
+                "anchor_value": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                },
+                "candidate_matches_anchor": true,
+                "backlink_matches_anchor": true,
+                "pair_equal": true
+              },
+              {
+                "field": "scope",
+                "candidate_value": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "backlink_value": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "anchor_value": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "candidate_matches_anchor": true,
+                "backlink_matches_anchor": true,
+                "pair_equal": true
+              },
+              {
+                "field": "causal_state",
+                "candidate_value": "not_established",
+                "backlink_value": "not_established",
+                "anchor_value": "not_established",
+                "candidate_matches_anchor": true,
+                "backlink_matches_anchor": true,
+                "pair_equal": true
+              }
+            ],
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": []
+          }
+        },
+        {
+          "function_ref": "FN-LABO011-04",
+          "typed_arguments": {
+            "raw_input": {
+              "claims": [],
+              "connection": {
+                "connector_identity": "CONNECTOR-AGG-COR-P",
+                "connector_revision": "CONNECTOR-r2",
+                "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                "contract_revision": "PACK-r2",
+                "from_endpoint": "AGGREGATE-P@r2",
+                "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                "revision": "CONNECT-r2",
+                "scope": null,
+                "to_endpoint": "CORRELATE-P@r2"
+              },
+              "engine_results": {
+                "Aggregate": "green_in_fixture_only",
+                "Correlate": "green_in_fixture_only"
+              },
+              "episode_candidate": {
+                "identity": "EPISODE-P",
+                "owner": "LABO-Correlate",
+                "relations": [
+                  {
+                    "causal_state": "not_established",
+                    "episode_identity": "EPISODE-P",
+                    "episode_revision": "EPISODE-r2",
+                    "identity": "RELATION-P",
+                    "observation_identity": "OBSERVATION-P",
+                    "observation_revision": "OBS-r2",
+                    "revision": "RELATION-r2",
+                    "scope": {
+                      "mechanism": "HARNESS",
+                      "product": "PRODUCT-P",
+                      "requirement_revision": "REQ-P-r2",
+                      "ticket": "TICKET-P"
+                    },
+                    "source": {
+                      "identity": "SOURCE-P",
+                      "owner": "selected-source-owner",
+                      "revision": "SOURCE-r2"
+                    }
+                  }
+                ],
+                "revision": "EPISODE-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                }
+              },
+              "observation_backlinks": [
+                {
+                  "causal_state": "not_established",
+                  "episode_identity": "EPISODE-P",
+                  "episode_revision": "EPISODE-r2",
+                  "identity": "RELATION-P",
+                  "observation_identity": "OBSERVATION-P",
+                  "observation_revision": "OBS-r2",
+                  "revision": "RELATION-r2",
+                  "scope": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "source": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  }
+                }
+              ],
+              "original_observation": {
+                "fields": {
+                  "result": {
+                    "source_ref": "SOURCE-P@SOURCE-r2/result",
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P"
+                  },
+                  "runtime": {
+                    "source_ref": null,
+                    "state": "not_observed",
+                    "value": null
+                  }
+                },
+                "identity": "OBSERVATION-P",
+                "owner": "LABO-Aggregate",
+                "revision": "OBS-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                }
+              },
+              "receive_receipt": {
+                "connection": {
+                  "connector_identity": "CONNECTOR-AGG-COR-P",
+                  "connector_revision": "CONNECTOR-r2",
+                  "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                  "contract_revision": "PACK-r2",
+                  "from_endpoint": "AGGREGATE-P@r2",
+                  "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                  "revision": "CONNECT-r2",
+                  "scope": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "to_endpoint": "CORRELATE-P@r2"
+                },
+                "identity": "LABO-Correlate-RECEIPT-P",
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "owner": "LABO-Correlate",
+                "revision": "RECEIPT-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                },
+                "state": "received_in_fixture_only"
+              },
+              "received_observation": {
+                "fields": {
+                  "result": {
+                    "source_ref": "SOURCE-P@SOURCE-r2/result",
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P"
+                  },
+                  "runtime": {
+                    "source_ref": null,
+                    "state": "not_observed",
+                    "value": null
+                  }
+                },
+                "identity": "OBSERVATION-P",
+                "owner": "LABO-Aggregate",
+                "revision": "OBS-r2",
+                "scope": null,
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r1"
+                }
+              },
+              "send_receipt": {
+                "connection": {
+                  "connector_identity": "CONNECTOR-AGG-COR-P",
+                  "connector_revision": "CONNECTOR-r2",
+                  "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                  "contract_revision": "PACK-r2",
+                  "from_endpoint": "AGGREGATE-P@r2",
+                  "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                  "revision": "CONNECT-r2",
+                  "scope": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "to_endpoint": "CORRELATE-P@r2"
+                },
+                "identity": "LABO-Aggregate-RECEIPT-P",
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "owner": "LABO-Aggregate",
+                "revision": "RECEIPT-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                },
+                "state": "sent_in_fixture_only"
+              }
+            },
+            "transfer_assessment": {
+              "connection_field_presence": [
+                {
+                  "field_path": "connection.identity",
+                  "presence": "value",
+                  "raw_value": "CONNECT-AGGREGATE-CORRELATE-P"
+                },
+                {
+                  "field_path": "connection.revision",
+                  "presence": "value",
+                  "raw_value": "CONNECT-r2"
+                },
+                {
+                  "field_path": "connection.from_endpoint",
+                  "presence": "value",
+                  "raw_value": "AGGREGATE-P@r2"
+                },
+                {
+                  "field_path": "connection.to_endpoint",
+                  "presence": "value",
+                  "raw_value": "CORRELATE-P@r2"
+                },
+                {
+                  "field_path": "connection.connector_identity",
+                  "presence": "value",
+                  "raw_value": "CONNECTOR-AGG-COR-P"
+                },
+                {
+                  "field_path": "connection.connector_revision",
+                  "presence": "value",
+                  "raw_value": "CONNECTOR-r2"
+                },
+                {
+                  "field_path": "connection.contract_identity",
+                  "presence": "value",
+                  "raw_value": "SELECTED-PACK-CONTRACT-P"
+                },
+                {
+                  "field_path": "connection.contract_revision",
+                  "presence": "value",
+                  "raw_value": "PACK-r2"
+                },
+                {
+                  "field_path": "connection.scope",
+                  "presence": "null",
+                  "raw_value": null
+                },
+                {
+                  "field_path": "connection.scope.requirement_revision",
+                  "presence": "absent",
+                  "raw_value": null
+                },
+                {
+                  "field_path": "connection.scope.ticket",
+                  "presence": "absent",
+                  "raw_value": null
+                },
+                {
+                  "field_path": "connection.scope.product",
+                  "presence": "absent",
+                  "raw_value": null
+                },
+                {
+                  "field_path": "connection.scope.mechanism",
+                  "presence": "absent",
+                  "raw_value": null
+                }
+              ],
+              "all_required_connection_values_present": false,
+              "observation_field_comparisons": [
+                {
+                  "field": "identity",
+                  "left_presence": "value",
+                  "left_value": "OBSERVATION-P",
+                  "right_presence": "value",
+                  "right_value": "OBSERVATION-P",
+                  "comparison": "equal"
+                },
+                {
+                  "field": "revision",
+                  "left_presence": "value",
+                  "left_value": "OBS-r2",
+                  "right_presence": "value",
+                  "right_value": "OBS-r2",
+                  "comparison": "equal"
+                },
+                {
+                  "field": "source",
+                  "left_presence": "value",
+                  "left_value": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  },
+                  "right_presence": "value",
+                  "right_value": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r1"
+                  },
+                  "comparison": "different"
+                },
+                {
+                  "field": "scope",
+                  "left_presence": "value",
+                  "left_value": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "right_presence": "null",
+                  "right_value": null,
+                  "comparison": "right_null"
+                },
+                {
+                  "field": "fields",
+                  "left_presence": "value",
+                  "left_value": {
+                    "result": {
+                      "source_ref": "SOURCE-P@SOURCE-r2/result",
+                      "state": "observed_in_fixture_only",
+                      "value": "RESULT-P"
+                    },
+                    "runtime": {
+                      "source_ref": null,
+                      "state": "not_observed",
+                      "value": null
+                    }
+                  },
+                  "right_presence": "value",
+                  "right_value": {
+                    "result": {
+                      "source_ref": "SOURCE-P@SOURCE-r2/result",
+                      "state": "observed_in_fixture_only",
+                      "value": "RESULT-P"
+                    },
+                    "runtime": {
+                      "source_ref": null,
+                      "state": "not_observed",
+                      "value": null
+                    }
+                  },
+                  "comparison": "equal"
+                }
+              ],
+              "field_transfer_state": "received_content_conflict",
+              "missing_fields": {
+                "runtime": {
+                  "source_ref": null,
+                  "state": "not_observed",
+                  "value": null
+                }
+              },
+              "original_observation_preserved": true,
+              "preserved_original_observation": {
+                "fields": {
+                  "result": {
+                    "source_ref": "SOURCE-P@SOURCE-r2/result",
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P"
+                  },
+                  "runtime": {
+                    "source_ref": null,
+                    "state": "not_observed",
+                    "value": null
+                  }
+                },
+                "identity": "OBSERVATION-P",
+                "owner": "LABO-Aggregate",
+                "revision": "OBS-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                }
+              },
+              "received_observation_value": {
+                "fields": {
+                  "result": {
+                    "source_ref": "SOURCE-P@SOURCE-r2/result",
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P"
+                  },
+                  "runtime": {
+                    "source_ref": null,
+                    "state": "not_observed",
+                    "value": null
+                  }
+                },
+                "identity": "OBSERVATION-P",
+                "owner": "LABO-Aggregate",
+                "revision": "OBS-r2",
+                "scope": null,
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r1"
+                }
+              }
+            },
+            "receipt_assessment": {
+              "send_receipt_assessment": {
+                "presence": "value",
+                "checks": [
+                  {
+                    "field": "connection",
+                    "left_presence": "value",
+                    "left_value": {
+                      "connector_identity": "CONNECTOR-AGG-COR-P",
+                      "connector_revision": "CONNECTOR-r2",
+                      "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                      "contract_revision": "PACK-r2",
+                      "from_endpoint": "AGGREGATE-P@r2",
+                      "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                      "revision": "CONNECT-r2",
+                      "scope": null,
+                      "to_endpoint": "CORRELATE-P@r2"
+                    },
+                    "right_presence": "value",
+                    "right_value": {
+                      "connector_identity": "CONNECTOR-AGG-COR-P",
+                      "connector_revision": "CONNECTOR-r2",
+                      "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                      "contract_revision": "PACK-r2",
+                      "from_endpoint": "AGGREGATE-P@r2",
+                      "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                      "revision": "CONNECT-r2",
+                      "scope": {
+                        "mechanism": "HARNESS",
+                        "product": "PRODUCT-P",
+                        "requirement_revision": "REQ-P-r2",
+                        "ticket": "TICKET-P"
+                      },
+                      "to_endpoint": "CORRELATE-P@r2"
+                    },
+                    "comparison": "different"
+                  },
+                  {
+                    "field": "observation_identity",
+                    "left_presence": "value",
+                    "left_value": "OBSERVATION-P",
+                    "right_presence": "value",
+                    "right_value": "OBSERVATION-P",
+                    "comparison": "equal"
+                  },
+                  {
+                    "field": "observation_revision",
+                    "left_presence": "value",
+                    "left_value": "OBS-r2",
+                    "right_presence": "value",
+                    "right_value": "OBS-r2",
+                    "comparison": "equal"
+                  },
+                  {
+                    "field": "source",
+                    "left_presence": "value",
+                    "left_value": {
+                      "identity": "SOURCE-P",
+                      "owner": "selected-source-owner",
+                      "revision": "SOURCE-r2"
+                    },
+                    "right_presence": "value",
+                    "right_value": {
+                      "identity": "SOURCE-P",
+                      "owner": "selected-source-owner",
+                      "revision": "SOURCE-r2"
+                    },
+                    "comparison": "equal"
+                  },
+                  {
+                    "field": "scope",
+                    "left_presence": "value",
+                    "left_value": {
+                      "mechanism": "HARNESS",
+                      "product": "PRODUCT-P",
+                      "requirement_revision": "REQ-P-r2",
+                      "ticket": "TICKET-P"
+                    },
+                    "right_presence": "value",
+                    "right_value": {
+                      "mechanism": "HARNESS",
+                      "product": "PRODUCT-P",
+                      "requirement_revision": "REQ-P-r2",
+                      "ticket": "TICKET-P"
+                    },
+                    "comparison": "equal"
+                  },
+                  {
+                    "field": "state",
+                    "expected_value": "sent_in_fixture_only",
+                    "actual_value": "sent_in_fixture_only",
+                    "comparison": "equal"
+                  }
+                ],
+                "matched_fixture_references": false,
+                "raw_receipt": {
+                  "connection": {
+                    "connector_identity": "CONNECTOR-AGG-COR-P",
+                    "connector_revision": "CONNECTOR-r2",
+                    "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                    "contract_revision": "PACK-r2",
+                    "from_endpoint": "AGGREGATE-P@r2",
+                    "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                    "revision": "CONNECT-r2",
+                    "scope": {
+                      "mechanism": "HARNESS",
+                      "product": "PRODUCT-P",
+                      "requirement_revision": "REQ-P-r2",
+                      "ticket": "TICKET-P"
+                    },
+                    "to_endpoint": "CORRELATE-P@r2"
+                  },
+                  "identity": "LABO-Aggregate-RECEIPT-P",
+                  "observation_identity": "OBSERVATION-P",
+                  "observation_revision": "OBS-r2",
+                  "owner": "LABO-Aggregate",
+                  "revision": "RECEIPT-r2",
+                  "scope": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "source": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  },
+                  "state": "sent_in_fixture_only"
+                }
+              },
+              "receive_receipt_assessment": {
+                "presence": "value",
+                "checks": [
+                  {
+                    "field": "connection",
+                    "left_presence": "value",
+                    "left_value": {
+                      "connector_identity": "CONNECTOR-AGG-COR-P",
+                      "connector_revision": "CONNECTOR-r2",
+                      "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                      "contract_revision": "PACK-r2",
+                      "from_endpoint": "AGGREGATE-P@r2",
+                      "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                      "revision": "CONNECT-r2",
+                      "scope": null,
+                      "to_endpoint": "CORRELATE-P@r2"
+                    },
+                    "right_presence": "value",
+                    "right_value": {
+                      "connector_identity": "CONNECTOR-AGG-COR-P",
+                      "connector_revision": "CONNECTOR-r2",
+                      "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                      "contract_revision": "PACK-r2",
+                      "from_endpoint": "AGGREGATE-P@r2",
+                      "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                      "revision": "CONNECT-r2",
+                      "scope": {
+                        "mechanism": "HARNESS",
+                        "product": "PRODUCT-P",
+                        "requirement_revision": "REQ-P-r2",
+                        "ticket": "TICKET-P"
+                      },
+                      "to_endpoint": "CORRELATE-P@r2"
+                    },
+                    "comparison": "different"
+                  },
+                  {
+                    "field": "observation_identity",
+                    "left_presence": "value",
+                    "left_value": "OBSERVATION-P",
+                    "right_presence": "value",
+                    "right_value": "OBSERVATION-P",
+                    "comparison": "equal"
+                  },
+                  {
+                    "field": "observation_revision",
+                    "left_presence": "value",
+                    "left_value": "OBS-r2",
+                    "right_presence": "value",
+                    "right_value": "OBS-r2",
+                    "comparison": "equal"
+                  },
+                  {
+                    "field": "source",
+                    "left_presence": "value",
+                    "left_value": {
+                      "identity": "SOURCE-P",
+                      "owner": "selected-source-owner",
+                      "revision": "SOURCE-r2"
+                    },
+                    "right_presence": "value",
+                    "right_value": {
+                      "identity": "SOURCE-P",
+                      "owner": "selected-source-owner",
+                      "revision": "SOURCE-r2"
+                    },
+                    "comparison": "equal"
+                  },
+                  {
+                    "field": "scope",
+                    "left_presence": "value",
+                    "left_value": {
+                      "mechanism": "HARNESS",
+                      "product": "PRODUCT-P",
+                      "requirement_revision": "REQ-P-r2",
+                      "ticket": "TICKET-P"
+                    },
+                    "right_presence": "value",
+                    "right_value": {
+                      "mechanism": "HARNESS",
+                      "product": "PRODUCT-P",
+                      "requirement_revision": "REQ-P-r2",
+                      "ticket": "TICKET-P"
+                    },
+                    "comparison": "equal"
+                  },
+                  {
+                    "field": "state",
+                    "expected_value": "received_in_fixture_only",
+                    "actual_value": "received_in_fixture_only",
+                    "comparison": "equal"
+                  }
+                ],
+                "matched_fixture_references": false,
+                "raw_receipt": {
+                  "connection": {
+                    "connector_identity": "CONNECTOR-AGG-COR-P",
+                    "connector_revision": "CONNECTOR-r2",
+                    "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                    "contract_revision": "PACK-r2",
+                    "from_endpoint": "AGGREGATE-P@r2",
+                    "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                    "revision": "CONNECT-r2",
+                    "scope": {
+                      "mechanism": "HARNESS",
+                      "product": "PRODUCT-P",
+                      "requirement_revision": "REQ-P-r2",
+                      "ticket": "TICKET-P"
+                    },
+                    "to_endpoint": "CORRELATE-P@r2"
+                  },
+                  "identity": "LABO-Correlate-RECEIPT-P",
+                  "observation_identity": "OBSERVATION-P",
+                  "observation_revision": "OBS-r2",
+                  "owner": "LABO-Correlate",
+                  "revision": "RECEIPT-r2",
+                  "scope": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "source": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  },
+                  "state": "received_in_fixture_only"
+                }
+              },
+              "both_endpoint_receipts_match_fixture_values": false,
+              "connection_fields_present": false
+            },
+            "relation_assessment": {
+              "candidate_relations": [
+                {
+                  "causal_state": "not_established",
+                  "episode_identity": "EPISODE-P",
+                  "episode_revision": "EPISODE-r2",
+                  "identity": "RELATION-P",
+                  "observation_identity": "OBSERVATION-P",
+                  "observation_revision": "OBS-r2",
+                  "revision": "RELATION-r2",
+                  "scope": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "source": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  }
+                }
+              ],
+              "observation_backlinks": [
+                {
+                  "causal_state": "not_established",
+                  "episode_identity": "EPISODE-P",
+                  "episode_revision": "EPISODE-r2",
+                  "identity": "RELATION-P",
+                  "observation_identity": "OBSERVATION-P",
+                  "observation_revision": "OBS-r2",
+                  "revision": "RELATION-r2",
+                  "scope": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "source": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  }
+                }
+              ],
+              "relation_field_comparisons": [
+                {
+                  "field": "identity",
+                  "candidate_value": "RELATION-P",
+                  "backlink_value": "RELATION-P",
+                  "anchor_value": "RELATION-P",
+                  "candidate_matches_anchor": true,
+                  "backlink_matches_anchor": true,
+                  "pair_equal": true
+                },
+                {
+                  "field": "revision",
+                  "candidate_value": "RELATION-r2",
+                  "backlink_value": "RELATION-r2",
+                  "anchor_value": "RELATION-r2",
+                  "candidate_matches_anchor": true,
+                  "backlink_matches_anchor": true,
+                  "pair_equal": true
+                },
+                {
+                  "field": "episode_identity",
+                  "candidate_value": "EPISODE-P",
+                  "backlink_value": "EPISODE-P",
+                  "anchor_value": "EPISODE-P",
+                  "candidate_matches_anchor": true,
+                  "backlink_matches_anchor": true,
+                  "pair_equal": true
+                },
+                {
+                  "field": "episode_revision",
+                  "candidate_value": "EPISODE-r2",
+                  "backlink_value": "EPISODE-r2",
+                  "anchor_value": "EPISODE-r2",
+                  "candidate_matches_anchor": true,
+                  "backlink_matches_anchor": true,
+                  "pair_equal": true
+                },
+                {
+                  "field": "observation_identity",
+                  "candidate_value": "OBSERVATION-P",
+                  "backlink_value": "OBSERVATION-P",
+                  "anchor_value": "OBSERVATION-P",
+                  "candidate_matches_anchor": true,
+                  "backlink_matches_anchor": true,
+                  "pair_equal": true
+                },
+                {
+                  "field": "observation_revision",
+                  "candidate_value": "OBS-r2",
+                  "backlink_value": "OBS-r2",
+                  "anchor_value": "OBS-r2",
+                  "candidate_matches_anchor": true,
+                  "backlink_matches_anchor": true,
+                  "pair_equal": true
+                },
+                {
+                  "field": "source",
+                  "candidate_value": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  },
+                  "backlink_value": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  },
+                  "anchor_value": {
+                    "identity": "SOURCE-P",
+                    "owner": "selected-source-owner",
+                    "revision": "SOURCE-r2"
+                  },
+                  "candidate_matches_anchor": true,
+                  "backlink_matches_anchor": true,
+                  "pair_equal": true
+                },
+                {
+                  "field": "scope",
+                  "candidate_value": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "backlink_value": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "anchor_value": {
+                    "mechanism": "HARNESS",
+                    "product": "PRODUCT-P",
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P"
+                  },
+                  "candidate_matches_anchor": true,
+                  "backlink_matches_anchor": true,
+                  "pair_equal": true
+                },
+                {
+                  "field": "causal_state",
+                  "candidate_value": "not_established",
+                  "backlink_value": "not_established",
+                  "anchor_value": "not_established",
+                  "candidate_matches_anchor": true,
+                  "backlink_matches_anchor": true,
+                  "pair_equal": true
+                }
+              ],
+              "relation_state": "corresponding_in_fixture_only",
+              "causal_state": "not_established",
+              "failure_reasons": []
+            }
+          },
+          "expected_return": {
+            "information_state": "held_connection_unqualified",
+            "retained_inputs": {
+              "connection": {
+                "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                "revision": "CONNECT-r2",
+                "from_endpoint": "AGGREGATE-P@r2",
+                "to_endpoint": "CORRELATE-P@r2",
+                "connector_identity": "CONNECTOR-AGG-COR-P",
+                "connector_revision": "CONNECTOR-r2",
+                "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                "contract_revision": "PACK-r2",
+                "scope": null
+              },
+              "original_observation": {
+                "identity": "OBSERVATION-P",
+                "revision": "OBS-r2",
+                "owner": "LABO-Aggregate",
+                "source": {
+                  "identity": "SOURCE-P",
+                  "revision": "SOURCE-r2",
+                  "owner": "selected-source-owner"
+                },
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                },
+                "fields": {
+                  "result": {
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P",
+                    "source_ref": "SOURCE-P@SOURCE-r2/result"
+                  },
+                  "runtime": {
+                    "state": "not_observed",
+                    "value": null,
+                    "source_ref": null
+                  }
+                }
+              },
+              "received_observation": {
+                "fields": {
+                  "result": {
+                    "source_ref": "SOURCE-P@SOURCE-r2/result",
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P"
+                  },
+                  "runtime": {
+                    "source_ref": null,
+                    "state": "not_observed",
+                    "value": null
+                  }
+                },
+                "identity": "OBSERVATION-P",
+                "owner": "LABO-Aggregate",
+                "revision": "OBS-r2",
+                "scope": null,
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r1"
+                }
+              },
+              "send_receipt": {
+                "identity": "LABO-Aggregate-RECEIPT-P",
+                "revision": "RECEIPT-r2",
+                "owner": "LABO-Aggregate",
+                "connection": {
+                  "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                  "revision": "CONNECT-r2",
+                  "from_endpoint": "AGGREGATE-P@r2",
+                  "to_endpoint": "CORRELATE-P@r2",
+                  "connector_identity": "CONNECTOR-AGG-COR-P",
+                  "connector_revision": "CONNECTOR-r2",
+                  "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                  "contract_revision": "PACK-r2",
+                  "scope": {
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P",
+                    "product": "PRODUCT-P",
+                    "mechanism": "HARNESS"
+                  }
+                },
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "source": {
+                  "identity": "SOURCE-P",
+                  "revision": "SOURCE-r2",
+                  "owner": "selected-source-owner"
+                },
+                "state": "sent_in_fixture_only",
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                }
+              },
+              "receive_receipt": {
+                "identity": "LABO-Correlate-RECEIPT-P",
+                "revision": "RECEIPT-r2",
+                "owner": "LABO-Correlate",
+                "connection": {
+                  "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                  "revision": "CONNECT-r2",
+                  "from_endpoint": "AGGREGATE-P@r2",
+                  "to_endpoint": "CORRELATE-P@r2",
+                  "connector_identity": "CONNECTOR-AGG-COR-P",
+                  "connector_revision": "CONNECTOR-r2",
+                  "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                  "contract_revision": "PACK-r2",
+                  "scope": {
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P",
+                    "product": "PRODUCT-P",
+                    "mechanism": "HARNESS"
+                  }
+                },
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "source": {
+                  "identity": "SOURCE-P",
+                  "revision": "SOURCE-r2",
+                  "owner": "selected-source-owner"
+                },
+                "state": "received_in_fixture_only",
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                }
+              },
+              "episode_candidate": {
+                "identity": "EPISODE-P",
+                "revision": "EPISODE-r2",
+                "owner": "LABO-Correlate",
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                },
+                "relations": [
+                  {
+                    "identity": "RELATION-P",
+                    "revision": "RELATION-r2",
+                    "episode_identity": "EPISODE-P",
+                    "episode_revision": "EPISODE-r2",
+                    "observation_identity": "OBSERVATION-P",
+                    "observation_revision": "OBS-r2",
+                    "source": {
+                      "identity": "SOURCE-P",
+                      "revision": "SOURCE-r2",
+                      "owner": "selected-source-owner"
+                    },
+                    "scope": {
+                      "requirement_revision": "REQ-P-r2",
+                      "ticket": "TICKET-P",
+                      "product": "PRODUCT-P",
+                      "mechanism": "HARNESS"
+                    },
+                    "causal_state": "not_established"
+                  }
+                ]
+              },
+              "observation_backlinks": [
+                {
+                  "identity": "RELATION-P",
+                  "revision": "RELATION-r2",
+                  "episode_identity": "EPISODE-P",
+                  "episode_revision": "EPISODE-r2",
+                  "observation_identity": "OBSERVATION-P",
+                  "observation_revision": "OBS-r2",
+                  "source": {
+                    "identity": "SOURCE-P",
+                    "revision": "SOURCE-r2",
+                    "owner": "selected-source-owner"
+                  },
+                  "scope": {
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P",
+                    "product": "PRODUCT-P",
+                    "mechanism": "HARNESS"
+                  },
+                  "causal_state": "not_established"
+                }
+              ],
+              "engine_results": {
+                "Aggregate": "green_in_fixture_only",
+                "Correlate": "green_in_fixture_only"
+              },
+              "claims": []
+            },
+            "original_observation_preserved": true,
+            "field_transfer_state": "received_content_conflict",
+            "missing_fields": {
+              "runtime": {
+                "state": "not_observed",
+                "value": null,
+                "source_ref": null
+              }
+            },
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "connection.scope",
+                "result": "missing",
+                "return_owner": "LABO-connection-owner"
+              },
+              {
+                "field": "received_observation.scope",
+                "result": "missing",
+                "return_owner": "LABO-Aggregate-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner",
+              "LABO-Aggregate-owner"
+            ],
+            "rejected_claims": [],
+            "actual_effects": {
+              "source_overwrite": false,
+              "receipt_write": false,
+              "relation_write": false,
+              "authority_change": false,
+              "connection_success": false,
+              "causal_confirmation": false,
+              "acceptance": false,
+              "implementation_ready": false
+            }
+          }
+        }
+      ],
+      "producer_joins": [
+        {
+          "from_invocation": 0,
+          "from_return": "TransferAssessment",
+          "to_invocation": 1,
+          "to_argument": "transfer_assessment",
+          "value_equal": true
+        },
+        {
+          "from_invocation": 1,
+          "from_return": "EndpointReceiptAssessment",
+          "to_invocation": 3,
+          "to_argument": "receipt_assessment",
+          "value_equal": true
+        },
+        {
+          "from_invocation": 2,
+          "from_return": "EpisodeRelationAssessment",
+          "to_invocation": 3,
+          "to_argument": "relation_assessment",
+          "value_equal": true
+        }
+      ],
+      "case_oracle": {
+        "expected_material": {
+          "information_state": "held_connection_unqualified",
+          "retained_inputs": {
+            "connection": {
+              "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+              "revision": "CONNECT-r2",
+              "from_endpoint": "AGGREGATE-P@r2",
+              "to_endpoint": "CORRELATE-P@r2",
+              "connector_identity": "CONNECTOR-AGG-COR-P",
+              "connector_revision": "CONNECTOR-r2",
+              "contract_identity": "SELECTED-PACK-CONTRACT-P",
+              "contract_revision": "PACK-r2",
+              "scope": null
+            },
+            "original_observation": {
+              "identity": "OBSERVATION-P",
+              "revision": "OBS-r2",
+              "owner": "LABO-Aggregate",
+              "source": {
+                "identity": "SOURCE-P",
+                "revision": "SOURCE-r2",
+                "owner": "selected-source-owner"
+              },
+              "scope": {
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P",
+                "product": "PRODUCT-P",
+                "mechanism": "HARNESS"
+              },
+              "fields": {
+                "result": {
+                  "state": "observed_in_fixture_only",
+                  "value": "RESULT-P",
+                  "source_ref": "SOURCE-P@SOURCE-r2/result"
+                },
+                "runtime": {
+                  "state": "not_observed",
+                  "value": null,
+                  "source_ref": null
+                }
+              }
+            },
+            "received_observation": {
+              "fields": {
+                "result": {
+                  "source_ref": "SOURCE-P@SOURCE-r2/result",
+                  "state": "observed_in_fixture_only",
+                  "value": "RESULT-P"
+                },
+                "runtime": {
+                  "source_ref": null,
+                  "state": "not_observed",
+                  "value": null
+                }
+              },
+              "identity": "OBSERVATION-P",
+              "owner": "LABO-Aggregate",
+              "revision": "OBS-r2",
+              "scope": null,
+              "source": {
+                "identity": "SOURCE-P",
+                "owner": "selected-source-owner",
+                "revision": "SOURCE-r1"
+              }
+            },
+            "send_receipt": {
+              "identity": "LABO-Aggregate-RECEIPT-P",
+              "revision": "RECEIPT-r2",
+              "owner": "LABO-Aggregate",
+              "connection": {
+                "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                "revision": "CONNECT-r2",
+                "from_endpoint": "AGGREGATE-P@r2",
+                "to_endpoint": "CORRELATE-P@r2",
+                "connector_identity": "CONNECTOR-AGG-COR-P",
+                "connector_revision": "CONNECTOR-r2",
+                "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                "contract_revision": "PACK-r2",
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                }
+              },
+              "observation_identity": "OBSERVATION-P",
+              "observation_revision": "OBS-r2",
+              "source": {
+                "identity": "SOURCE-P",
+                "revision": "SOURCE-r2",
+                "owner": "selected-source-owner"
+              },
+              "state": "sent_in_fixture_only",
+              "scope": {
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P",
+                "product": "PRODUCT-P",
+                "mechanism": "HARNESS"
+              }
+            },
+            "receive_receipt": {
+              "identity": "LABO-Correlate-RECEIPT-P",
+              "revision": "RECEIPT-r2",
+              "owner": "LABO-Correlate",
+              "connection": {
+                "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                "revision": "CONNECT-r2",
+                "from_endpoint": "AGGREGATE-P@r2",
+                "to_endpoint": "CORRELATE-P@r2",
+                "connector_identity": "CONNECTOR-AGG-COR-P",
+                "connector_revision": "CONNECTOR-r2",
+                "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                "contract_revision": "PACK-r2",
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                }
+              },
+              "observation_identity": "OBSERVATION-P",
+              "observation_revision": "OBS-r2",
+              "source": {
+                "identity": "SOURCE-P",
+                "revision": "SOURCE-r2",
+                "owner": "selected-source-owner"
+              },
+              "state": "received_in_fixture_only",
+              "scope": {
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P",
+                "product": "PRODUCT-P",
+                "mechanism": "HARNESS"
+              }
+            },
+            "episode_candidate": {
+              "identity": "EPISODE-P",
+              "revision": "EPISODE-r2",
+              "owner": "LABO-Correlate",
+              "scope": {
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P",
+                "product": "PRODUCT-P",
+                "mechanism": "HARNESS"
+              },
+              "relations": [
+                {
+                  "identity": "RELATION-P",
+                  "revision": "RELATION-r2",
+                  "episode_identity": "EPISODE-P",
+                  "episode_revision": "EPISODE-r2",
+                  "observation_identity": "OBSERVATION-P",
+                  "observation_revision": "OBS-r2",
+                  "source": {
+                    "identity": "SOURCE-P",
+                    "revision": "SOURCE-r2",
+                    "owner": "selected-source-owner"
+                  },
+                  "scope": {
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P",
+                    "product": "PRODUCT-P",
+                    "mechanism": "HARNESS"
+                  },
+                  "causal_state": "not_established"
+                }
+              ]
+            },
+            "observation_backlinks": [
+              {
+                "identity": "RELATION-P",
+                "revision": "RELATION-r2",
+                "episode_identity": "EPISODE-P",
+                "episode_revision": "EPISODE-r2",
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "source": {
+                  "identity": "SOURCE-P",
+                  "revision": "SOURCE-r2",
+                  "owner": "selected-source-owner"
+                },
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                },
+                "causal_state": "not_established"
+              }
+            ],
+            "engine_results": {
+              "Aggregate": "green_in_fixture_only",
+              "Correlate": "green_in_fixture_only"
+            },
+            "claims": []
+          },
+          "original_observation_preserved": true,
+          "field_transfer_state": "received_content_conflict",
+          "missing_fields": {
+            "runtime": {
+              "state": "not_observed",
+              "value": null,
+              "source_ref": null
+            }
+          },
+          "receipt_state": "unqualified",
+          "relation_state": "corresponding_in_fixture_only",
+          "causal_state": "not_established",
+          "failure_reasons": [
+            {
+              "field": "connection.scope",
+              "result": "missing",
+              "return_owner": "LABO-connection-owner"
+            },
+            {
+              "field": "received_observation.scope",
+              "result": "missing",
+              "return_owner": "LABO-Aggregate-owner"
+            }
+          ],
+          "return_owners": [
+            "LABO-connection-owner",
+            "LABO-Aggregate-owner"
+          ],
+          "rejected_claims": [],
+          "actual_effects": {
+            "source_overwrite": false,
+            "receipt_write": false,
+            "relation_write": false,
+            "authority_change": false,
+            "connection_success": false,
+            "causal_confirmation": false,
+            "acceptance": false,
+            "implementation_ready": false
+          }
+        },
+        "source_expected_pointer": "/verification_obligations/0/cases/45/expected_material",
+        "equal_to_source_expected": true
+      }
     }
   ],
   "verification_constraints": [
-    "全42 raw_utf8をJSON parseしcanonical byte/hashとL9 packetの一致を検証。",
+    "全46 raw_utf8をJSON parseしcanonical byte/hashとL9 packetの一致を検証。",
     "各invocationのargument key setはL5 signatureと一致し、引数値をcase_inputまたは前段returnから独立再計算する。",
     "FN01..04をraw-derived pure algorithmで計算し各完全returnとproducer joinを再計算。",
     "case_oracle.expected_materialはL9 expected_materialと全field/valueで一致。ケースIDやexpected objectを判定入力に用いない。"
@@ -122077,25 +124721,85 @@
       "/logical_contract/functions/3/algorithm/3",
       "/logical_contract/types/FailureResult"
     ],
-    "change_summary": "FN01 algorithm/1はsource本文を保持する。FN04ではraw scopeがobjectの場合だけ子4項目を診断する。非object scope時もFN01の13個presenceと親scope値を保持し、FN04は親absent/nullのみ診断する。非null object外scopeの成立意味は追加せず、既存の未確定状態を維持する。",
+    "change_summary": "FN01 algorithm/1は固定source本文を保持する。FN04はraw scope objectの場合だけ子4項目を診断する。受信fieldsはFN01と同じpresence/nullを含む全map deep-equalで比較し、相違はreceived_content_conflictとして失敗経路へ返す。一般metadata conflictは両側non-null mismatchに限定し、null受信のmissing優先をsource revision mismatchより先に明示する。raw観測・欠落・state差を保持し、補完・成功認定はしない。",
     "l5_preserved_pointers": [
       {
         "pointer": "/logical_contract/functions/0/algorithm/1",
         "source_revision": "30dfacd9228e30c65a5ee965a6f8d5dd472a81f5",
         "source_sha256": "e8b506df54781e2c55a7fc22f306b5a2ac516b48c173aa649a237b62df123ec9",
-        "meaning": "FN01 scope子presence規則は固定source本文と完全一致し、R4候補での変更対象ではない。"
+        "meaning": "FN01はscope配下4memberを含む13個のConnectionFieldPresenceを常に返す。scopeがabsent/null/object外なら子4memberはabsent、親のraw presenceは別memberで保持し、全13項目がvalueの場合だけall_required=trueとする。"
       }
-    ]
+    ],
+    "review_resolution": [
+      {
+        "finding": "LABO011C-R1-m1",
+        "rule": "元fields mapと受信fields mapのJSON deep-equal全体を比較する。null、key欠落、状態差を除外せず、異なる場合received_content_conflictを返す。",
+        "failure_behavior": "原元/受信値とFN01観測値を保持し、成功・補完・資格成立を生成しない。",
+        "difference_from_prior_pr_wording": "PRの『非null値だけ』という説明は狭すぎたため訂正する。metadata群の比較範囲とは分ける。"
+      },
+      {
+        "finding": "LABO011C-R1-m2",
+        "rule": "一般metadataのreceived_content_conflictは元値・受信値がともにnon-nullでJSON不一致の場合だけ。受信nullは先行missing、元absent/nullから受信non-nullへの変化は一般conflictへ追加しない。",
+        "remaining": "generic metadata診断の全presence組合せ閉包は未成立。原値とFN01比較は保持する。"
+      },
+      {
+        "finding": "LABO011C-R1-m3",
+        "rule": "received nullのidentity/revision/source/scopeをこの順で先に確認し、null所見が無い場合だけsource revision mismatch、次に両側non-nullの一般metadata差を確認する。",
+        "control_case": "LABO011-F01-RECEIVED-SCOPE-NULL-SOURCE-REVISION-MISMATCH",
+        "expected_priority": "received.scope=nullとsource.revision mismatchが併存するとscope/missingを返し、source.revision/foreign_revisionを併記しない。"
+      },
+      {
+        "finding": "LABO011C-R1-m4",
+        "rule": "旧42件、先行追加3件、本追加1件の有限46件。既存42件のraw/期待を保持し、全域網羅を主張しない。"
+      },
+      {
+        "finding": "LABO011C-R1-m5",
+        "rule": "FN01 scope presence は固定sourceと同じ値意味を保つ。記述は設計内容としてのみ示す。"
+      },
+      {
+        "finding": "LABO011C-R1-m6",
+        "rule": "non-null non-object scopeの親/子診断の意味は未閉包。FN01 13-field presence/all_required=falseとFN04の現行返却を維持し、成功資格を付与しない。"
+      },
+      {
+        "finding": "LABO011C-R1-m7",
+        "rule": "旧assetと現在PO原文は役割・範囲の差を明示して意味を再導出する。旧sourceを現行規則へ直接写さない。"
+      }
+    ],
+    "legacy_rederivation": {
+      "legacy_source": {
+        "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+        "lines": "121-126",
+        "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+        "selected_lines_sha256": "68bf722b224324c4a3909bb026ad67e32ea989f8e9b994dd3579179f8d466641",
+        "ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+        "ledger_line": 574,
+        "kept": "登録済versionとstrict validator、schema差の分類、unknown fieldを無言でdropせずfield path/digestを伴うdriftとして保持する考えを対応材料とする。",
+        "changed": "旧記述は製品データconnectorのschema quarantine/policy全体を扱う。現行LABO011の受信観測とowner返却へ直接対応する規則とは主張せず、意味を再導出する。"
+      },
+      "current_po_source": {
+        "path": "docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md",
+        "file_sha256": "3f95f09ee86920e0dd6172a9e28f32192c1ee16bd4bfbec72438464bfee9fa16",
+        "aggregate_lines": "135-176",
+        "aggregate_lines_sha256": "ab26ec8ded5abf9a878bfc383197dee97008e33a6e2375a5e9915e645c742eca",
+        "correlation_lines": "180-212",
+        "correlation_lines_sha256": "a013233014cadbdb0c286a003253ddae2a226e8b6aa22a07ce750a323f0404a2",
+        "kept": "成功だけでなくfailure/rejected/cancelled/blocked/unknown/not_observedを区別して観測し、個別eventを同じepisodeへ追跡する。",
+        "limit": "PO原文はreceived metadata conflictやtyped receipt比較の直接predicateを定義しない。今回の詳細は対象L3/L4の既存owner/FailureResult責務から具体化し、PO原意を変更しない。"
+      }
+    }
   },
   "candidate_followup_scope": {
     "old_case_count": 42,
-    "new_case_count": 3,
-    "candidate_case_count": 45,
+    "prior_added_case_count": 3,
+    "new_case_count": 1,
+    "candidate_case_count": 46,
     "new_whole_case_ids": [
       "LABO011-F01-SCOPE-PRODUCT-MISSING",
       "LABO011-F01-RECEIVED-FIELD-NON_NULL-MISMATCH",
-      "LABO011-F01-RECEIVED-IDENTITY-NON_NULL-MISMATCH"
+      "LABO011-F01-RECEIVED-IDENTITY-NON_NULL-MISMATCH",
+      "LABO011-F01-RECEIVED-SCOPE-NULL-SOURCE-REVISION-MISMATCH"
     ],
-    "claim": "元42ケースは値を保持し、追加3件はL9 wholeを対照にFN01〜04の入出力結線を示す有限追加。"
+    "claim": "元42ケースの値を保持し、先行追加3件と今回1件を独立期待付きで追補する。追加ケースはnull-first優先、fields全map不一致、owner返却を有限素材で識別する。"
   }
 }

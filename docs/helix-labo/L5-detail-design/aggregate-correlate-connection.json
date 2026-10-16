@@ -199,7 +199,7 @@
     "形式schema/codecおよび実source資格は未成立。",
     "この論理契約は合成packetの静的比較だけで、実接続・実receipts・実authorityを認定しない。",
     "L11、正式実装・資格・実運用は未成立。",
-    "元42caseのMISSINGは明示nullであり、key absent/receipt object外/relations list外は原fixtureでは未検証。relation identity/revisionの非対称anchorは差分表示に限り、どちらが正しいsourceか・原因ownerかを認定しない。原fixture以外の正式anchorと診断の閉包は後続対設計の未完として保全する。"
+    "旧42caseのMISSINGは明示nullを含む固定範囲である。追加case42はconnection.scope.productのkey欠落を扱うが、他のkey absent、receipt object外、relations list外は46素材でも未検証である。relation identity/revisionの非対称anchorは差分表示に限り、どちらが正しいsourceか・原因ownerかを認定しない。原fixture以外の正式anchorと診断の閉包は後続対設計の未完として保全する。非null non-object scopeではFN01が13個presenceを保ちall_required=falseを返す一方、FN04はscope親/子の所見を返さず、現有限契約はreceipt unqualifiedのままinformation_stateを返す。この状態の診断意味は未閉包であり、成功資格にしない。"
   ],
   "document_id": "HELIXLABO-L5-011",
   "layer": "L5",
@@ -564,7 +564,7 @@
           "returns": "EpisodeRelationAssessment"
         },
         "algorithm": [
-          "候補episode.relationsとobservation_backlinksをそれぞれraw listとして保持する。listでなければ比較用には[]。この固定42素材は各list最大1 relationで、複数の照合意味は未閉包として保持する。",
+          "候補episode.relationsとobservation_backlinksをそれぞれraw listとして保持する。listでなければ比較用には[]。今回の46固定素材では各list最大1 relationで、複数の照合意味は未閉包として保持する。",
           "backlinksが空ならfield=observation_backlinks/result=missing/return_owner=LABO-correlation-ownerを1件、比較=[]/relation_state=unqualified/causal_state=not_established。",
           "それ以外は候補とbacklinkの先頭record（無ければ{}）を、identity,revision,episode_identity,episode_revision,observation_identity,observation_revision,source,scope,causal_stateの順に比較。episode identity/revisionはepisode候補、observation identity/revision/source/scopeは元観測、causal_stateはnot_establishedをanchorとする。identity anchorは候補identity、relation revision anchorはbacklink revision。",
           "各fieldにcandidate_value/backlink_value/anchor_valueと3比較boolean（candidate_matches_anchor/backlink_matches_anchor/pair_equal）を出す。episode/observation/source/scope/causal anchorが異なるときは、backlink相違ならobservation_backlinks.<field>、それ以外はepisode_candidate.relations.<field>。identity/revisionのpair相違はcandidateがanchorと異なればepisode_candidate.relations.<field>、それ以外はobservation_backlinks.<field>。各result=relation_mismatch/owner=LABO-correlation-ownerを順保持。",
@@ -588,7 +588,7 @@
           "findings=[]。transfer.connection_field_presenceから外側connection 9項目を原順で調べる。scopeのraw値がobjectの場合だけ、親scopeの直後に4子項目を順に診断し、absent/nullをfield_path/missing/LABO-connection-ownerで保持する。scopeがabsent/null/object外なら子4項目の診断を生成せず、親scope自身のabsent/null所見がある場合だけそれを保持する。FN01が返した13項目presenceと必須値成立状態はこの診断選別で変更しない。object外の非null値を子欠落へ読み替えず、子の値を推測しない。",
           "raw claimsが非空なら原順にclaims/unsupported_connection_or_causeを追加し、claim=correlation_is_causeのみLABO-correlation-owner、その他LABO-connection-ownerへ返す。このときreceipt/観測/relation所見は追加せず組立てへ進む。有限fixtureの診断選択であり実許可や欠陥消去を意味しない。",
           "claimなしでまだ所見がなければsend→receiveの順でreceiptを確認する。nullはmissing_endpoint_receipt、object外はforeign_referenceをreceipt名のfieldに1件。それ以外はFN02のcheck順で最初のcomparison!=equalをreceipt.<check.field>、state差ならnot_observed、その他foreign_referenceとする。ownerはLABO-connection-owner。最初のreceipt所見でこの走査を止める。",
-          "次に元/受信観測がobjectなら、identity,revision,source,scopeの順に受信値nullをmissing/LABO-Aggregate-ownerとして調べ、最初の1件を保持する。これがなければ、sourceが両方objectでrevisionが異なる場合はreceived_observation.source.revision/foreign_revisionを保持する。これらの既存specific診断がなければ、同じmetadata群をidentity,revision,source,scopeの順に比較し、最初の非null JSON不一致をreceived_observation.<field>/received_content_conflict/LABO-Aggregate-ownerで返す。metadata群は最大1件。metadata specific mismatchをgeneric conflictで重ねない。その後、received fieldsを原順に走査し、元not_observedからreceived observed_in_fixture_onlyかつ非nullへの変化があれば最初の1件をreceived_observation.fields.<key>/missing_not_success/LABO-Aggregate-ownerで保持する。これがなければ、元fields mapとreceived fields mapがJSON deep-equalでない場合にreceived_observation.fields/received_content_conflict/LABO-Aggregate-ownerを1件返す。fields群は最大1件。metadata群とfields群は独立であり両方の所見をこの順で保持できる。この観測段階は先行する接続/receipt所見で短絡しない。",
+          "接続・receipt段の所見に続き、元/受信観測がobjectなら、identity,revision,source,scopeの順に受信値nullをmissing/LABO-Aggregate-ownerとして調べ、最初の1件を保持する。このnull検査はraw走査順とは別の先行段階である。null所見がなければ、sourceが両方objectでrevisionが異なる場合はreceived_observation.source.revision/foreign_revisionを保持する。これらspecific所見がなければ、同じmetadata群をidentity,revision,source,scopeの順に比較し、元値・受信値がともに非nullでJSON不一致の最初の1件をreceived_observation.<field>/received_content_conflict/LABO-Aggregate-ownerで返す。元値がabsent/nullで受信値が非nullの場合、この一般metadata比較だけでは新しいconflictを生成せず、raw両値とFN01の観測比較を保持する。metadata群は最大1件で、specific mismatchをgeneric conflictで重ねない。したがってreceived_observation.scope=nullとsource.revision相違が同時にある場合、scopeのmissingを優先しsource.revision/foreign_revisionは併記しない。その後、received fieldsを原順に走査し、元not_observedからreceived observed_in_fixture_onlyかつ非nullへの変化があれば最初の1件をreceived_observation.fields.<key>/missing_not_success/LABO-Aggregate-ownerで保持する。これがなければ、元fields mapと受信fields mapをpresence・nullを含むJSON deep-equal全体として比較し、異なればreceived_observation.fields/received_content_conflict/LABO-Aggregate-ownerを1件返す。fields群は最大1件で、null、key欠落、observed/not_observed等の状態差もこの全体比較から除外しない。値を補完・成功扱いしない。metadata群とfields群は独立であり、両方の所見をこの順で保持できる。この観測段階は先行する接続/receipt所見で短絡しない。",
           "ここまで所見なしの場合だけrelation_assessment.failure_reasonsを原順に追加する。findingsは重複除去・sortしない。return_ownersだけ初出順一意化、rejected_claimsはraw claims原列。",
           "findingsなしならinformation_state=connection_content_requires_actual_qualification、その他held_connection_unqualified。receipt_stateはfindingsなし・両receipt fixture一致・接続必須値presentのANDでboth_receipts_require_actual_qualification、その他unqualified。retained_inputs=原raw、transferの原保持/field_transfer/missing_fieldsとrelation_stateをそのまま複写。causal_state=not_established、EffectVector全8member=false。"
         ]
@@ -721,14 +721,72 @@
       "/logical_contract/functions/3/algorithm/3",
       "/logical_contract/types/FailureResult"
     ],
-    "change_summary": "FN01 algorithm/1はsource本文を保持する。FN04ではraw scopeがobjectの場合だけ子4項目を診断する。非object scope時もFN01の13個presenceと親scope値を保持し、FN04は親absent/nullのみ診断する。非null object外scopeの成立意味は追加せず、既存の未確定状態を維持する。",
+    "change_summary": "FN01 algorithm/1は固定source本文を保持する。FN04はraw scope objectの場合だけ子4項目を診断する。受信fieldsはFN01と同じpresence/nullを含む全map deep-equalで比較し、相違はreceived_content_conflictとして失敗経路へ返す。一般metadata conflictは両側non-null mismatchに限定し、null受信のmissing優先をsource revision mismatchより先に明示する。raw観測・欠落・state差を保持し、補完・成功認定はしない。",
     "l5_preserved_pointers": [
       {
         "pointer": "/logical_contract/functions/0/algorithm/1",
         "source_revision": "30dfacd9228e30c65a5ee965a6f8d5dd472a81f5",
         "source_sha256": "e8b506df54781e2c55a7fc22f306b5a2ac516b48c173aa649a237b62df123ec9",
-        "meaning": "FN01 scope子presence規則は固定source本文と完全一致し、R4候補での変更対象ではない。"
+        "meaning": "FN01はscope配下4memberを含む13個のConnectionFieldPresenceを常に返す。scopeがabsent/null/object外なら子4memberはabsent、親のraw presenceは別memberで保持し、全13項目がvalueの場合だけall_required=trueとする。"
       }
-    ]
+    ],
+    "review_resolution": [
+      {
+        "finding": "LABO011C-R1-m1",
+        "rule": "元fields mapと受信fields mapのJSON deep-equal全体を比較する。null、key欠落、状態差を除外せず、異なる場合received_content_conflictを返す。",
+        "failure_behavior": "原元/受信値とFN01観測値を保持し、成功・補完・資格成立を生成しない。",
+        "difference_from_prior_pr_wording": "PRの『非null値だけ』という説明は狭すぎたため訂正する。metadata群の比較範囲とは分ける。"
+      },
+      {
+        "finding": "LABO011C-R1-m2",
+        "rule": "一般metadataのreceived_content_conflictは元値・受信値がともにnon-nullでJSON不一致の場合だけ。受信nullは先行missing、元absent/nullから受信non-nullへの変化は一般conflictへ追加しない。",
+        "remaining": "generic metadata診断の全presence組合せ閉包は未成立。原値とFN01比較は保持する。"
+      },
+      {
+        "finding": "LABO011C-R1-m3",
+        "rule": "received nullのidentity/revision/source/scopeをこの順で先に確認し、null所見が無い場合だけsource revision mismatch、次に両側non-nullの一般metadata差を確認する。",
+        "control_case": "LABO011-F01-RECEIVED-SCOPE-NULL-SOURCE-REVISION-MISMATCH",
+        "expected_priority": "received.scope=nullとsource.revision mismatchが併存するとscope/missingを返し、source.revision/foreign_revisionを併記しない。"
+      },
+      {
+        "finding": "LABO011C-R1-m4",
+        "rule": "旧42件、先行追加3件、本追加1件の有限46件。既存42件のraw/期待を保持し、全域網羅を主張しない。"
+      },
+      {
+        "finding": "LABO011C-R1-m5",
+        "rule": "FN01 scope presence は固定sourceと同じ値意味を保つ。記述は設計内容としてのみ示す。"
+      },
+      {
+        "finding": "LABO011C-R1-m6",
+        "rule": "non-null non-object scopeの親/子診断の意味は未閉包。FN01 13-field presence/all_required=falseとFN04の現行返却を維持し、成功資格を付与しない。"
+      },
+      {
+        "finding": "LABO011C-R1-m7",
+        "rule": "旧assetと現在PO原文は役割・範囲の差を明示して意味を再導出する。旧sourceを現行規則へ直接写さない。"
+      }
+    ],
+    "legacy_rederivation": {
+      "legacy_source": {
+        "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+        "lines": "121-126",
+        "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+        "selected_lines_sha256": "68bf722b224324c4a3909bb026ad67e32ea989f8e9b994dd3579179f8d466641",
+        "ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+        "ledger_line": 574,
+        "kept": "登録済versionとstrict validator、schema差の分類、unknown fieldを無言でdropせずfield path/digestを伴うdriftとして保持する考えを対応材料とする。",
+        "changed": "旧記述は製品データconnectorのschema quarantine/policy全体を扱う。現行LABO011の受信観測とowner返却へ直接対応する規則とは主張せず、意味を再導出する。"
+      },
+      "current_po_source": {
+        "path": "docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md",
+        "file_sha256": "3f95f09ee86920e0dd6172a9e28f32192c1ee16bd4bfbec72438464bfee9fa16",
+        "aggregate_lines": "135-176",
+        "aggregate_lines_sha256": "ab26ec8ded5abf9a878bfc383197dee97008e33a6e2375a5e9915e645c742eca",
+        "correlation_lines": "180-212",
+        "correlation_lines_sha256": "a013233014cadbdb0c286a003253ddae2a226e8b6aa22a07ce750a323f0404a2",
+        "kept": "成功だけでなくfailure/rejected/cancelled/blocked/unknown/not_observedを区別して観測し、個別eventを同じepisodeへ追跡する。",
+        "limit": "PO原文はreceived metadata conflictやtyped receipt比較の直接predicateを定義しない。今回の詳細は対象L3/L4の既存owner/FailureResult責務から具体化し、PO原意を変更しない。"
+      }
+    }
   }
 }
