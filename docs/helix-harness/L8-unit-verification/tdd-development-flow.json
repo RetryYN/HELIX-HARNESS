@@ -52126,5 +52126,3175 @@
     "L4_bytes_at_authoring_main_sha256": "738a76b4753a8c51d1c684ae2ffa18d91b7bdbc2794961cde66a47c585aa299b",
     "L9_bytes_at_authoring_main_sha256": "512746cb3096f9d7dd1c58bfdee12b3161e38946d3d8f810ba84f798963df303",
     "note": "L4/L9の現在bytesはsource_main宣言のhistorical pinとは別に、authoring source_mainの286695409fcea78e2441d5aa85b008f7a8ad2e1fでpinした。"
+  },
+  "f03_head_connection_oracles": {
+    "design_ref": "HARNESS-L5-015-F03",
+    "function_ref": "F-015-04",
+    "requirement_ref": "HARNESS-L3-015-F03",
+    "current_authoring": {
+      "base_main": "69cda1984e0a42c2a8b0d800c593bb4dff135683",
+      "scope": "独立3全SemanticEvaluationの正式内部固定。実run/実資格/親全5義務の閉包ではない。",
+      "authority_effect": "none",
+      "l5_binding_ref": "同sectionのcandidate_l5_bindingを現L5 bytesとのbinding正本とする。"
+    },
+    "frozen_source_history": {
+      "read_revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+      "oracle_freeze_file_sha256": "58af683e644e86b79cad67945e3b158d3606e7995c4e31103d62bb7a8c04dbd1",
+      "old_normal_evidence": {
+        "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+        "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+        "pointer": "/cases/19/typed_semantic_function_io/expected_output_projection",
+        "file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
+        "value_canonical_sha256": "54f5f4cb0ca917e23ae739ce88756a850d67aa9ee513c2b1dc5980898b20f4d4"
+      },
+      "historical_source_bindings": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/requirements/42",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "value_canonical_sha256": "b641eb43bd5164ab55101bac10aaa0fbf0fb24a55d4429ad0f013af9594cd6ce"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/cases/42",
+          "file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+          "value_canonical_sha256": "c41bc44981b5cdd6abe939405535a44c163d9714374e168dfe589dac4ce7cd7a"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/architecture/component_connections/1",
+          "file_sha256": "738a76b4753a8c51d1c684ae2ffa18d91b7bdbc2794961cde66a47c585aa299b",
+          "value_canonical_sha256": "e80aa5f1f91a94455c3f4bff9fc5767419afe08cc7008ba7cce38e311ea242a9"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/contracts/3",
+          "file_sha256": "738a76b4753a8c51d1c684ae2ffa18d91b7bdbc2794961cde66a47c585aa299b",
+          "value_canonical_sha256": "e9d1285ef360f491921cb2a6b414ca3e8380be6172feb791121b6e6d03e10366"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/pure_function_signatures/3",
+          "file_sha256": "0516b410625b325fe5bf7fccd156e4199c0aa194adb4a0bd4c4eb309ab13f5bd",
+          "value_canonical_sha256": "bc3a45b9ab5eed20392e44747276c61c2db6faaf58d5a4118061b7762cc26a87"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/semantic_predicate_catalog/12",
+          "file_sha256": "0516b410625b325fe5bf7fccd156e4199c0aa194adb4a0bd4c4eb309ab13f5bd",
+          "value_canonical_sha256": "aebb2044b81c41d54e44cc5200df464271d0eb0d86ce22cdad5f542190fbaca7"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/semantic_predicate_catalog/15",
+          "file_sha256": "0516b410625b325fe5bf7fccd156e4199c0aa194adb4a0bd4c4eb309ab13f5bd",
+          "value_canonical_sha256": "ec5f73f80476631125941e787c2a80c3e46a14457902adc9518b9ffe51c0b070"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/semantic_predicate_catalog/16",
+          "file_sha256": "0516b410625b325fe5bf7fccd156e4199c0aa194adb4a0bd4c4eb309ab13f5bd",
+          "value_canonical_sha256": "84e436d6c100980518c629511dfeaccf605c0427bc31403b65f35e6d6490ed52"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/contracts/3/semantic_rule_set",
+          "file_sha256": "0516b410625b325fe5bf7fccd156e4199c0aa194adb4a0bd4c4eb309ab13f5bd",
+          "value_canonical_sha256": "b7111b08c5156bbd00a695436e6ae16444a52130e739317e73c2bd77c40a149a"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+          "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+          "pointer": "/cases/19/typed_semantic_function_io",
+          "file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
+          "value_canonical_sha256": "85f6ad9eca2cc92e03a70a09da10d55d5c4264fe490f41fff1a01429a0643ade"
+        }
+      ],
+      "freeze_order": "独立raw/全期待を先に固定し、その後に現在のpredicate候補を起草。歴史metadataを現行authoring/実資格へ読み替えない。"
+    },
+    "hash_recipe_technical_scope": "L5 f03_head_connection_detail.observation_hash_technical_clarification。同recipeは旧8hashと同値の技術明確化。",
+    "comparison": "7返却field、全8Findingの全9fieldと順序を比較する。minimum finding subset/一所見/hashだけで全結果の対応にしない。",
+    "cases": [
+      {
+        "id": "AUDIT-015-F03-HEAD-normal",
+        "authorship": "新しい監査用合成source。元raw投影部分と追加著述headを分離。実観測/実資格ではない。",
+        "raw_source_recipe": {
+          "base": {
+            "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+            "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+            "pointer": "/cases/3/normal_fixture/input",
+            "file_sha256": "512746cb3096f9d7dd1c58bfdee12b3161e38946d3d8f810ba84f798963df303",
+            "value_canonical_sha256": "b133edcc31460ae80b6cdc9cfbf63207b254b7dc5eafd16051b15639f8038cb0"
+          },
+          "patches": [],
+          "expanded_owner_material_canonical_sha256": "b133edcc31460ae80b6cdc9cfbf63207b254b7dc5eafd16051b15639f8038cb0",
+          "expanded_owner_material": {
+            "binding": {
+              "identity": "TDD-TARGET",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "design-owner"
+            },
+            "source_assumption": "独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。",
+            "non_target": {
+              "binding": {
+                "identity": "OTHER-Q",
+                "revision": "r1",
+                "scope": {
+                  "project": "Q",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "design-owner"
+              },
+              "state": "valid_original"
+            },
+            "oracle": {
+              "ref": {
+                "identity": "ORACLE-1",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "verification-design-owner"
+              },
+              "input": {
+                "command": "CMD1",
+                "deliveries": 2
+              },
+              "expected": {
+                "receiver_debits": 1
+              }
+            },
+            "steps": [
+              {
+                "kind": "freeze",
+                "sequence": 1,
+                "head": "H0"
+              },
+              {
+                "kind": "pre_body_red",
+                "sequence": 2,
+                "head": "H0",
+                "actual": {
+                  "receiver_debits": 2
+                },
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
+              },
+              {
+                "kind": "minimal_body",
+                "sequence": 3,
+                "from_head": "H0",
+                "to_head": "H1",
+                "contract_scope": "one_command_duplicate_debit",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
+              },
+              {
+                "kind": "green",
+                "sequence": 4,
+                "head": "H1",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                },
+                "actual": {
+                  "receiver_debits": 1
+                }
+              },
+              {
+                "kind": "local_refactor",
+                "sequence": 5,
+                "from_head": "H1",
+                "to_head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
+              },
+              {
+                "kind": "atomic_ci",
+                "sequence": 6,
+                "head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                },
+                "actual": {
+                  "receiver_debits": 1
+                }
+              }
+            ],
+            "refactor_meaning": {
+              "public_contract_before": "CMD1<=one_debit",
+              "public_contract_after": "CMD1<=one_debit",
+              "requirement_before": "R1",
+              "requirement_after": "R1",
+              "architecture_before": "A→AB",
+              "architecture_after": "A→AB",
+              "state_before": "one_debit",
+              "state_after": "one_debit"
+            },
+            "ci_omissions": {
+              "records": [
+                {
+                  "duty_identity": "C1",
+                  "reason": "中ticket回収",
+                  "joining_ticket_ref": {
+                    "identity": "JOIN-MEDIUM",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "OS"
+                  }
+                }
+              ],
+              "unrecovered_refs": [
+                "C1"
+              ]
+            }
+          },
+          "authored_source_kind": "new_synthetic_source_for_logical_comparison_not_actual_owner_observation"
+        },
+        "meaning_expected": "supported_by_fixture",
+        "preservation": "他7所見全値/source paths/owner/candidate不提示/実成功不生成は原正常期待と同じ。order hashは変更steps内容を保存するが、hash差自体を因果判定へしない。",
+        "function_ref": "F-015-04",
+        "function_arguments": {
+          "input": {
+            "case_identity": "AUDIT-015-F03-HEAD-normal",
+            "root_id": "HARNESS-L9-015-F03",
+            "source_packet_pointer": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/f03_head_connection_oracles/cases/0/raw_source_recipe",
+            "source_packet_ref": {
+              "identity": "SOURCE-AUDIT-015-F03-HEAD-normal",
+              "revision": "fixture-r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "independent-fixture-owner"
+            },
+            "source_packet_byte_sha256": "b133edcc31460ae80b6cdc9cfbf63207b254b7dc5eafd16051b15639f8038cb0",
+            "payload_source_pointer": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/f03_head_connection_oracles/cases/0/raw_source_recipe/expanded_owner_material",
+            "payload_type": "PayloadF03",
+            "source_payload": {
+              "tag": "F03",
+              "value": {
+                "binding": {
+                  "state": "provided",
+                  "value": {
+                    "identity": {
+                      "state": "provided",
+                      "value": "TDD-TARGET"
+                    },
+                    "owner": {
+                      "state": "provided",
+                      "value": "design-owner"
+                    },
+                    "revision": {
+                      "state": "provided",
+                      "value": "r1"
+                    },
+                    "scope": {
+                      "state": "provided",
+                      "value": {
+                        "environment": {
+                          "state": "provided",
+                          "value": "synthetic-test"
+                        },
+                        "project": {
+                          "state": "provided",
+                          "value": "P"
+                        },
+                        "tenant": {
+                          "state": "provided",
+                          "value": "synthetic-T"
+                        }
+                      }
+                    }
+                  }
+                },
+                "ci_omissions": {
+                  "state": "provided",
+                  "value": {
+                    "records": {
+                      "state": "provided",
+                      "value": [
+                        {
+                          "duty_identity": {
+                            "state": "provided",
+                            "value": "C1"
+                          },
+                          "joining_ticket_ref": {
+                            "state": "provided",
+                            "value": {
+                              "identity": {
+                                "state": "provided",
+                                "value": "JOIN-MEDIUM"
+                              },
+                              "owner": {
+                                "state": "provided",
+                                "value": "OS"
+                              },
+                              "revision": {
+                                "state": "provided",
+                                "value": "r1"
+                              },
+                              "scope": {
+                                "state": "provided",
+                                "value": {
+                                  "environment": {
+                                    "state": "provided",
+                                    "value": "synthetic-test"
+                                  },
+                                  "project": {
+                                    "state": "provided",
+                                    "value": "P"
+                                  },
+                                  "tenant": {
+                                    "state": "provided",
+                                    "value": "synthetic-T"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "reason": {
+                            "state": "provided",
+                            "value": "中ticket回収"
+                          }
+                        }
+                      ]
+                    },
+                    "unrecovered_refs": {
+                      "state": "provided",
+                      "value": [
+                        "C1"
+                      ]
+                    }
+                  }
+                },
+                "non_target": {
+                  "state": "provided",
+                  "value": {
+                    "binding": {
+                      "state": "provided",
+                      "value": {
+                        "identity": {
+                          "state": "provided",
+                          "value": "OTHER-Q"
+                        },
+                        "owner": {
+                          "state": "provided",
+                          "value": "design-owner"
+                        },
+                        "revision": {
+                          "state": "provided",
+                          "value": "r1"
+                        },
+                        "scope": {
+                          "state": "provided",
+                          "value": {
+                            "environment": {
+                              "state": "provided",
+                              "value": "synthetic-test"
+                            },
+                            "project": {
+                              "state": "provided",
+                              "value": "Q"
+                            },
+                            "tenant": {
+                              "state": "provided",
+                              "value": "synthetic-T"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "state": {
+                      "state": "provided",
+                      "value": "valid_original"
+                    }
+                  }
+                },
+                "oracle": {
+                  "state": "provided",
+                  "value": {
+                    "expected": {
+                      "state": "provided",
+                      "value": {
+                        "receiver_debits": {
+                          "state": "provided",
+                          "value": 1
+                        }
+                      }
+                    },
+                    "input": {
+                      "state": "provided",
+                      "value": {
+                        "command": {
+                          "state": "provided",
+                          "value": "CMD1"
+                        },
+                        "deliveries": {
+                          "state": "provided",
+                          "value": 2
+                        }
+                      }
+                    },
+                    "ref": {
+                      "state": "provided",
+                      "value": {
+                        "identity": {
+                          "state": "provided",
+                          "value": "ORACLE-1"
+                        },
+                        "owner": {
+                          "state": "provided",
+                          "value": "verification-design-owner"
+                        },
+                        "revision": {
+                          "state": "provided",
+                          "value": "r1"
+                        },
+                        "scope": {
+                          "state": "provided",
+                          "value": {
+                            "environment": {
+                              "state": "provided",
+                              "value": "synthetic-test"
+                            },
+                            "project": {
+                              "state": "provided",
+                              "value": "P"
+                            },
+                            "tenant": {
+                              "state": "provided",
+                              "value": "synthetic-T"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "refactor_meaning": {
+                  "state": "provided",
+                  "value": {
+                    "architecture_after": {
+                      "state": "provided",
+                      "value": "A→AB"
+                    },
+                    "architecture_before": {
+                      "state": "provided",
+                      "value": "A→AB"
+                    },
+                    "public_contract_after": {
+                      "state": "provided",
+                      "value": "CMD1<=one_debit"
+                    },
+                    "public_contract_before": {
+                      "state": "provided",
+                      "value": "CMD1<=one_debit"
+                    },
+                    "requirement_after": {
+                      "state": "provided",
+                      "value": "R1"
+                    },
+                    "requirement_before": {
+                      "state": "provided",
+                      "value": "R1"
+                    },
+                    "state_after": {
+                      "state": "provided",
+                      "value": "one_debit"
+                    },
+                    "state_before": {
+                      "state": "provided",
+                      "value": "one_debit"
+                    }
+                  }
+                },
+                "source_assumption": {
+                  "state": "provided",
+                  "value": "独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。"
+                },
+                "steps": {
+                  "state": "provided",
+                  "value": [
+                    {
+                      "actual": {
+                        "state": "absent"
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "absent"
+                      },
+                      "head": {
+                        "state": "provided",
+                        "value": "H0"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "freeze"
+                      },
+                      "oracle_ref": {
+                        "state": "absent"
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 1
+                      },
+                      "to_head": {
+                        "state": "absent"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "provided",
+                        "value": {
+                          "receiver_debits": {
+                            "state": "provided",
+                            "value": 2
+                          }
+                        }
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "absent"
+                      },
+                      "head": {
+                        "state": "provided",
+                        "value": "H0"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "pre_body_red"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 2
+                      },
+                      "to_head": {
+                        "state": "absent"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "absent"
+                      },
+                      "contract_scope": {
+                        "state": "provided",
+                        "value": "one_command_duplicate_debit"
+                      },
+                      "from_head": {
+                        "state": "provided",
+                        "value": "H0"
+                      },
+                      "head": {
+                        "state": "absent"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "minimal_body"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 3
+                      },
+                      "to_head": {
+                        "state": "provided",
+                        "value": "H1"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "provided",
+                        "value": {
+                          "receiver_debits": {
+                            "state": "provided",
+                            "value": 1
+                          }
+                        }
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "absent"
+                      },
+                      "head": {
+                        "state": "provided",
+                        "value": "H1"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "green"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 4
+                      },
+                      "to_head": {
+                        "state": "absent"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "absent"
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "provided",
+                        "value": "H1"
+                      },
+                      "head": {
+                        "state": "absent"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "local_refactor"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 5
+                      },
+                      "to_head": {
+                        "state": "provided",
+                        "value": "H2"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "provided",
+                        "value": {
+                          "receiver_debits": {
+                            "state": "provided",
+                            "value": 1
+                          }
+                        }
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "absent"
+                      },
+                      "head": {
+                        "state": "provided",
+                        "value": "H2"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "atomic_ci"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 6
+                      },
+                      "to_head": {
+                        "state": "absent"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "candidate_value": {
+              "state": "absent"
+            }
+          },
+          "rules_ref": {
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "pointer": "/contracts/3/semantic_rule_set",
+            "value_canonical_sha256": "b7111b08c5156bbd00a695436e6ae16444a52130e739317e73c2bd77c40a149a"
+          }
+        },
+        "expected_output_projection": {
+          "case_identity": "AUDIT-015-F03-HEAD-normal",
+          "root_id": "HARNESS-L9-015-F03",
+          "source_packet_pointer": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/f03_head_connection_oracles/cases/0/raw_source_recipe",
+          "source_packet_ref": {
+            "identity": "SOURCE-AUDIT-015-F03-HEAD-normal",
+            "revision": "fixture-r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "independent-fixture-owner"
+          },
+          "source_packet_byte_sha256": "b133edcc31460ae80b6cdc9cfbf63207b254b7dc5eafd16051b15639f8038cb0",
+          "semantic_state": "fixture_comparison_only_not_execution",
+          "findings": [
+            {
+              "rule_id": "HARNESS-L4-015-F03:order",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "steps"
+              ],
+              "candidate_field_path": "order",
+              "source_observation_sha256": "086d4d901b1bed6ec5465d6b0b85050863039006603f8bfa1df64b1bc0bb8af3",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "ee6ed343e248092850ef1eca0f5bc13b91628503edc7bce71c6b95f9760bd8bb",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:local_meaning",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "refactor_meaning.public_contract_before",
+                "refactor_meaning.public_contract_after",
+                "refactor_meaning.requirement_before",
+                "refactor_meaning.requirement_after",
+                "refactor_meaning.architecture_before",
+                "refactor_meaning.architecture_after",
+                "refactor_meaning.state_before",
+                "refactor_meaning.state_after"
+              ],
+              "candidate_field_path": "local_meaning",
+              "source_observation_sha256": "9a9c55bedad178c18cfd260dbc1511f0eb218e83fedac4a8cbed81a828dcd23b",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "f9f2808718ffef9eb5490eb897ea8eeee5b9f3b008fe15a1f30c7d680256d54f",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:unrecovered_refs",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "ci_omissions.unrecovered_refs",
+                "ci_omissions.records"
+              ],
+              "candidate_field_path": "unrecovered_refs",
+              "source_observation_sha256": "9b90ea570a17452f70b9127160c70363260b9dafd4b4a36b705c736bab2fe428",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "30ccac9355877679d636a671c64ed27e3f18174e13d9f93a83fc68dd7718aa3c",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:state_ceiling",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "state_ceiling"
+              ],
+              "candidate_field_path": "state_ceiling",
+              "source_observation_sha256": "438351052e1fa4388c38f627063c317df63a168b119c386583bb370fe56bd110",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "109a0f9b25bdc7fd8dc111b1d6d0b9dc001fdd7ac670459d6182d5780ff99887",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:actual_tdd_success",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "actual_tdd_success"
+              ],
+              "candidate_field_path": "actual_tdd_success",
+              "source_observation_sha256": "438351052e1fa4388c38f627063c317df63a168b119c386583bb370fe56bd110",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "33da5509df037571bb037f4a3163fc1da705da5bf25efb6ed0f67cafb943d531",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:minimal_body_scope",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "steps.2.contract_scope"
+              ],
+              "candidate_field_path": "minimal_body_scope",
+              "source_observation_sha256": "b8c8cc190a997a923cc2687b2799cd7cf375c71ba967dc3bdcb4262d55a9641d",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "499afbddd316e5a68714586b9b205f2966a69bead8d41784246c2a094489799f",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:green_behavior",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "oracle.expected.receiver_debits",
+                "steps.3.actual.receiver_debits"
+              ],
+              "candidate_field_path": "green_behavior",
+              "source_observation_sha256": "53007a5339d75435d7e5019e1cad9a7a3d002cd24da4adbe7dcd2b7690a50474",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "508d549da16fad559849c560de0a15bb3639f5a6093c0bedd2b4af482819bc65",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:oracle_binding",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "oracle.ref",
+                "steps.1.oracle_ref",
+                "steps.2.oracle_ref",
+                "steps.3.oracle_ref",
+                "steps.4.oracle_ref",
+                "steps.5.oracle_ref"
+              ],
+              "candidate_field_path": "oracle_binding",
+              "source_observation_sha256": "5638cf046e333ede74ae74021ad3de5cc10da8c84e146b22ca27933e1184ce56",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "a313ca9bf055556f6bb054b1114644327566e6d73f3bcc0668513d8dd3d21f07",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            }
+          ]
+        },
+        "freeze_correspondence": {
+          "frozen_case_index": 0,
+          "frozen_case_canonical_sha256": "4cf06d392138f72ca37f7fba7aa82a751ece93647e14d907b60cf04d159b336c",
+          "relocated_fields": [
+            "input.source_packet_pointer",
+            "input.payload_source_pointer",
+            "expected.source_packet_pointer"
+          ],
+          "value_policy": "正式L8内の固定原材料へsource pointerだけ移設。他返却/原材料/新head値/全hash/owner/candidate所見を凍結期待から変えない。"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "AUDIT-015-F03-HEAD-other_pre_body_revision",
+        "authorship": "新しい監査用合成source。元raw投影部分と追加著述headを分離。実観測/実資格ではない。",
+        "raw_source_recipe": {
+          "base": {
+            "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+            "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+            "pointer": "/cases/3/normal_fixture/input",
+            "file_sha256": "512746cb3096f9d7dd1c58bfdee12b3161e38946d3d8f810ba84f798963df303",
+            "value_canonical_sha256": "b133edcc31460ae80b6cdc9cfbf63207b254b7dc5eafd16051b15639f8038cb0"
+          },
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/steps/2/from_head",
+              "value": "H9"
+            }
+          ],
+          "expanded_owner_material_canonical_sha256": "117829d0caf16bd9ca326a8cf081dceccbe69cdd00651f07a9460007a030f2c4",
+          "expanded_owner_material": {
+            "binding": {
+              "identity": "TDD-TARGET",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "design-owner"
+            },
+            "source_assumption": "独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。",
+            "non_target": {
+              "binding": {
+                "identity": "OTHER-Q",
+                "revision": "r1",
+                "scope": {
+                  "project": "Q",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "design-owner"
+              },
+              "state": "valid_original"
+            },
+            "oracle": {
+              "ref": {
+                "identity": "ORACLE-1",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "verification-design-owner"
+              },
+              "input": {
+                "command": "CMD1",
+                "deliveries": 2
+              },
+              "expected": {
+                "receiver_debits": 1
+              }
+            },
+            "steps": [
+              {
+                "kind": "freeze",
+                "sequence": 1,
+                "head": "H0"
+              },
+              {
+                "kind": "pre_body_red",
+                "sequence": 2,
+                "head": "H0",
+                "actual": {
+                  "receiver_debits": 2
+                },
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
+              },
+              {
+                "kind": "minimal_body",
+                "sequence": 3,
+                "from_head": "H9",
+                "to_head": "H1",
+                "contract_scope": "one_command_duplicate_debit",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
+              },
+              {
+                "kind": "green",
+                "sequence": 4,
+                "head": "H1",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                },
+                "actual": {
+                  "receiver_debits": 1
+                }
+              },
+              {
+                "kind": "local_refactor",
+                "sequence": 5,
+                "from_head": "H1",
+                "to_head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
+              },
+              {
+                "kind": "atomic_ci",
+                "sequence": 6,
+                "head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                },
+                "actual": {
+                  "receiver_debits": 1
+                }
+              }
+            ],
+            "refactor_meaning": {
+              "public_contract_before": "CMD1<=one_debit",
+              "public_contract_after": "CMD1<=one_debit",
+              "requirement_before": "R1",
+              "requirement_after": "R1",
+              "architecture_before": "A→AB",
+              "architecture_after": "A→AB",
+              "state_before": "one_debit",
+              "state_after": "one_debit"
+            },
+            "ci_omissions": {
+              "records": [
+                {
+                  "duty_identity": "C1",
+                  "reason": "中ticket回収",
+                  "joining_ticket_ref": {
+                    "identity": "JOIN-MEDIUM",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "OS"
+                  }
+                }
+              ],
+              "unrecovered_refs": [
+                "C1"
+              ]
+            }
+          },
+          "authored_source_kind": "new_synthetic_source_for_logical_comparison_not_actual_owner_observation"
+        },
+        "meaning_expected": "contradicted_by_fixture",
+        "preservation": "他7所見全値/source paths/owner/candidate不提示/実成功不生成は原正常期待と同じ。order hashは変更steps内容を保存するが、hash差自体を因果判定へしない。",
+        "function_ref": "F-015-04",
+        "function_arguments": {
+          "input": {
+            "case_identity": "AUDIT-015-F03-HEAD-other_pre_body_revision",
+            "root_id": "HARNESS-L9-015-F03",
+            "source_packet_pointer": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/f03_head_connection_oracles/cases/1/raw_source_recipe",
+            "source_packet_ref": {
+              "identity": "SOURCE-AUDIT-015-F03-HEAD-other_pre_body_revision",
+              "revision": "fixture-r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "independent-fixture-owner"
+            },
+            "source_packet_byte_sha256": "117829d0caf16bd9ca326a8cf081dceccbe69cdd00651f07a9460007a030f2c4",
+            "payload_source_pointer": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/f03_head_connection_oracles/cases/1/raw_source_recipe/expanded_owner_material",
+            "payload_type": "PayloadF03",
+            "source_payload": {
+              "tag": "F03",
+              "value": {
+                "binding": {
+                  "state": "provided",
+                  "value": {
+                    "identity": {
+                      "state": "provided",
+                      "value": "TDD-TARGET"
+                    },
+                    "owner": {
+                      "state": "provided",
+                      "value": "design-owner"
+                    },
+                    "revision": {
+                      "state": "provided",
+                      "value": "r1"
+                    },
+                    "scope": {
+                      "state": "provided",
+                      "value": {
+                        "environment": {
+                          "state": "provided",
+                          "value": "synthetic-test"
+                        },
+                        "project": {
+                          "state": "provided",
+                          "value": "P"
+                        },
+                        "tenant": {
+                          "state": "provided",
+                          "value": "synthetic-T"
+                        }
+                      }
+                    }
+                  }
+                },
+                "ci_omissions": {
+                  "state": "provided",
+                  "value": {
+                    "records": {
+                      "state": "provided",
+                      "value": [
+                        {
+                          "duty_identity": {
+                            "state": "provided",
+                            "value": "C1"
+                          },
+                          "joining_ticket_ref": {
+                            "state": "provided",
+                            "value": {
+                              "identity": {
+                                "state": "provided",
+                                "value": "JOIN-MEDIUM"
+                              },
+                              "owner": {
+                                "state": "provided",
+                                "value": "OS"
+                              },
+                              "revision": {
+                                "state": "provided",
+                                "value": "r1"
+                              },
+                              "scope": {
+                                "state": "provided",
+                                "value": {
+                                  "environment": {
+                                    "state": "provided",
+                                    "value": "synthetic-test"
+                                  },
+                                  "project": {
+                                    "state": "provided",
+                                    "value": "P"
+                                  },
+                                  "tenant": {
+                                    "state": "provided",
+                                    "value": "synthetic-T"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "reason": {
+                            "state": "provided",
+                            "value": "中ticket回収"
+                          }
+                        }
+                      ]
+                    },
+                    "unrecovered_refs": {
+                      "state": "provided",
+                      "value": [
+                        "C1"
+                      ]
+                    }
+                  }
+                },
+                "non_target": {
+                  "state": "provided",
+                  "value": {
+                    "binding": {
+                      "state": "provided",
+                      "value": {
+                        "identity": {
+                          "state": "provided",
+                          "value": "OTHER-Q"
+                        },
+                        "owner": {
+                          "state": "provided",
+                          "value": "design-owner"
+                        },
+                        "revision": {
+                          "state": "provided",
+                          "value": "r1"
+                        },
+                        "scope": {
+                          "state": "provided",
+                          "value": {
+                            "environment": {
+                              "state": "provided",
+                              "value": "synthetic-test"
+                            },
+                            "project": {
+                              "state": "provided",
+                              "value": "Q"
+                            },
+                            "tenant": {
+                              "state": "provided",
+                              "value": "synthetic-T"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "state": {
+                      "state": "provided",
+                      "value": "valid_original"
+                    }
+                  }
+                },
+                "oracle": {
+                  "state": "provided",
+                  "value": {
+                    "expected": {
+                      "state": "provided",
+                      "value": {
+                        "receiver_debits": {
+                          "state": "provided",
+                          "value": 1
+                        }
+                      }
+                    },
+                    "input": {
+                      "state": "provided",
+                      "value": {
+                        "command": {
+                          "state": "provided",
+                          "value": "CMD1"
+                        },
+                        "deliveries": {
+                          "state": "provided",
+                          "value": 2
+                        }
+                      }
+                    },
+                    "ref": {
+                      "state": "provided",
+                      "value": {
+                        "identity": {
+                          "state": "provided",
+                          "value": "ORACLE-1"
+                        },
+                        "owner": {
+                          "state": "provided",
+                          "value": "verification-design-owner"
+                        },
+                        "revision": {
+                          "state": "provided",
+                          "value": "r1"
+                        },
+                        "scope": {
+                          "state": "provided",
+                          "value": {
+                            "environment": {
+                              "state": "provided",
+                              "value": "synthetic-test"
+                            },
+                            "project": {
+                              "state": "provided",
+                              "value": "P"
+                            },
+                            "tenant": {
+                              "state": "provided",
+                              "value": "synthetic-T"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "refactor_meaning": {
+                  "state": "provided",
+                  "value": {
+                    "architecture_after": {
+                      "state": "provided",
+                      "value": "A→AB"
+                    },
+                    "architecture_before": {
+                      "state": "provided",
+                      "value": "A→AB"
+                    },
+                    "public_contract_after": {
+                      "state": "provided",
+                      "value": "CMD1<=one_debit"
+                    },
+                    "public_contract_before": {
+                      "state": "provided",
+                      "value": "CMD1<=one_debit"
+                    },
+                    "requirement_after": {
+                      "state": "provided",
+                      "value": "R1"
+                    },
+                    "requirement_before": {
+                      "state": "provided",
+                      "value": "R1"
+                    },
+                    "state_after": {
+                      "state": "provided",
+                      "value": "one_debit"
+                    },
+                    "state_before": {
+                      "state": "provided",
+                      "value": "one_debit"
+                    }
+                  }
+                },
+                "source_assumption": {
+                  "state": "provided",
+                  "value": "独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。"
+                },
+                "steps": {
+                  "state": "provided",
+                  "value": [
+                    {
+                      "actual": {
+                        "state": "absent"
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "absent"
+                      },
+                      "head": {
+                        "state": "provided",
+                        "value": "H0"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "freeze"
+                      },
+                      "oracle_ref": {
+                        "state": "absent"
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 1
+                      },
+                      "to_head": {
+                        "state": "absent"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "provided",
+                        "value": {
+                          "receiver_debits": {
+                            "state": "provided",
+                            "value": 2
+                          }
+                        }
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "absent"
+                      },
+                      "head": {
+                        "state": "provided",
+                        "value": "H0"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "pre_body_red"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 2
+                      },
+                      "to_head": {
+                        "state": "absent"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "absent"
+                      },
+                      "contract_scope": {
+                        "state": "provided",
+                        "value": "one_command_duplicate_debit"
+                      },
+                      "from_head": {
+                        "state": "provided",
+                        "value": "H9"
+                      },
+                      "head": {
+                        "state": "absent"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "minimal_body"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 3
+                      },
+                      "to_head": {
+                        "state": "provided",
+                        "value": "H1"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "provided",
+                        "value": {
+                          "receiver_debits": {
+                            "state": "provided",
+                            "value": 1
+                          }
+                        }
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "absent"
+                      },
+                      "head": {
+                        "state": "provided",
+                        "value": "H1"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "green"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 4
+                      },
+                      "to_head": {
+                        "state": "absent"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "absent"
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "provided",
+                        "value": "H1"
+                      },
+                      "head": {
+                        "state": "absent"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "local_refactor"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 5
+                      },
+                      "to_head": {
+                        "state": "provided",
+                        "value": "H2"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "provided",
+                        "value": {
+                          "receiver_debits": {
+                            "state": "provided",
+                            "value": 1
+                          }
+                        }
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "absent"
+                      },
+                      "head": {
+                        "state": "provided",
+                        "value": "H2"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "atomic_ci"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 6
+                      },
+                      "to_head": {
+                        "state": "absent"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "candidate_value": {
+              "state": "absent"
+            }
+          },
+          "rules_ref": {
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "pointer": "/contracts/3/semantic_rule_set",
+            "value_canonical_sha256": "b7111b08c5156bbd00a695436e6ae16444a52130e739317e73c2bd77c40a149a"
+          }
+        },
+        "expected_output_projection": {
+          "case_identity": "AUDIT-015-F03-HEAD-other_pre_body_revision",
+          "root_id": "HARNESS-L9-015-F03",
+          "source_packet_pointer": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/f03_head_connection_oracles/cases/1/raw_source_recipe",
+          "source_packet_ref": {
+            "identity": "SOURCE-AUDIT-015-F03-HEAD-other_pre_body_revision",
+            "revision": "fixture-r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "independent-fixture-owner"
+          },
+          "source_packet_byte_sha256": "117829d0caf16bd9ca326a8cf081dceccbe69cdd00651f07a9460007a030f2c4",
+          "semantic_state": "fixture_comparison_only_not_execution",
+          "findings": [
+            {
+              "rule_id": "HARNESS-L4-015-F03:order",
+              "source_status": "contradicted_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "steps"
+              ],
+              "candidate_field_path": "order",
+              "source_observation_sha256": "2466ab0be61ce92a3b93def57c60ffcf8d44c29b0f80c7318a752643de9116a6",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "ee6ed343e248092850ef1eca0f5bc13b91628503edc7bce71c6b95f9760bd8bb",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:local_meaning",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "refactor_meaning.public_contract_before",
+                "refactor_meaning.public_contract_after",
+                "refactor_meaning.requirement_before",
+                "refactor_meaning.requirement_after",
+                "refactor_meaning.architecture_before",
+                "refactor_meaning.architecture_after",
+                "refactor_meaning.state_before",
+                "refactor_meaning.state_after"
+              ],
+              "candidate_field_path": "local_meaning",
+              "source_observation_sha256": "9a9c55bedad178c18cfd260dbc1511f0eb218e83fedac4a8cbed81a828dcd23b",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "f9f2808718ffef9eb5490eb897ea8eeee5b9f3b008fe15a1f30c7d680256d54f",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:unrecovered_refs",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "ci_omissions.unrecovered_refs",
+                "ci_omissions.records"
+              ],
+              "candidate_field_path": "unrecovered_refs",
+              "source_observation_sha256": "9b90ea570a17452f70b9127160c70363260b9dafd4b4a36b705c736bab2fe428",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "30ccac9355877679d636a671c64ed27e3f18174e13d9f93a83fc68dd7718aa3c",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:state_ceiling",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "state_ceiling"
+              ],
+              "candidate_field_path": "state_ceiling",
+              "source_observation_sha256": "438351052e1fa4388c38f627063c317df63a168b119c386583bb370fe56bd110",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "109a0f9b25bdc7fd8dc111b1d6d0b9dc001fdd7ac670459d6182d5780ff99887",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:actual_tdd_success",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "actual_tdd_success"
+              ],
+              "candidate_field_path": "actual_tdd_success",
+              "source_observation_sha256": "438351052e1fa4388c38f627063c317df63a168b119c386583bb370fe56bd110",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "33da5509df037571bb037f4a3163fc1da705da5bf25efb6ed0f67cafb943d531",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:minimal_body_scope",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "steps.2.contract_scope"
+              ],
+              "candidate_field_path": "minimal_body_scope",
+              "source_observation_sha256": "b8c8cc190a997a923cc2687b2799cd7cf375c71ba967dc3bdcb4262d55a9641d",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "499afbddd316e5a68714586b9b205f2966a69bead8d41784246c2a094489799f",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:green_behavior",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "oracle.expected.receiver_debits",
+                "steps.3.actual.receiver_debits"
+              ],
+              "candidate_field_path": "green_behavior",
+              "source_observation_sha256": "53007a5339d75435d7e5019e1cad9a7a3d002cd24da4adbe7dcd2b7690a50474",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "508d549da16fad559849c560de0a15bb3639f5a6093c0bedd2b4af482819bc65",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:oracle_binding",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "oracle.ref",
+                "steps.1.oracle_ref",
+                "steps.2.oracle_ref",
+                "steps.3.oracle_ref",
+                "steps.4.oracle_ref",
+                "steps.5.oracle_ref"
+              ],
+              "candidate_field_path": "oracle_binding",
+              "source_observation_sha256": "5638cf046e333ede74ae74021ad3de5cc10da8c84e146b22ca27933e1184ce56",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "a313ca9bf055556f6bb054b1114644327566e6d73f3bcc0668513d8dd3d21f07",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            }
+          ]
+        },
+        "freeze_correspondence": {
+          "frozen_case_index": 1,
+          "frozen_case_canonical_sha256": "0f1d96e013c5344b47c4fb6b3c6ce50be70f6af7c769881e0de47096855beb0a",
+          "relocated_fields": [
+            "input.source_packet_pointer",
+            "input.payload_source_pointer",
+            "expected.source_packet_pointer"
+          ],
+          "value_policy": "正式L8内の固定原材料へsource pointerだけ移設。他返却/原材料/新head値/全hash/owner/candidate所見を凍結期待から変えない。"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "AUDIT-015-F03-HEAD-other_green_revision",
+        "authorship": "新しい監査用合成source。元raw投影部分と追加著述headを分離。実観測/実資格ではない。",
+        "raw_source_recipe": {
+          "base": {
+            "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+            "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+            "pointer": "/cases/3/normal_fixture/input",
+            "file_sha256": "512746cb3096f9d7dd1c58bfdee12b3161e38946d3d8f810ba84f798963df303",
+            "value_canonical_sha256": "b133edcc31460ae80b6cdc9cfbf63207b254b7dc5eafd16051b15639f8038cb0"
+          },
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/steps/3/head",
+              "value": "H8"
+            }
+          ],
+          "expanded_owner_material_canonical_sha256": "f291d64f0ab08249e52b875ab094c6b31c56299740ff896375405df1880d1175",
+          "expanded_owner_material": {
+            "binding": {
+              "identity": "TDD-TARGET",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "design-owner"
+            },
+            "source_assumption": "独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。",
+            "non_target": {
+              "binding": {
+                "identity": "OTHER-Q",
+                "revision": "r1",
+                "scope": {
+                  "project": "Q",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "design-owner"
+              },
+              "state": "valid_original"
+            },
+            "oracle": {
+              "ref": {
+                "identity": "ORACLE-1",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "verification-design-owner"
+              },
+              "input": {
+                "command": "CMD1",
+                "deliveries": 2
+              },
+              "expected": {
+                "receiver_debits": 1
+              }
+            },
+            "steps": [
+              {
+                "kind": "freeze",
+                "sequence": 1,
+                "head": "H0"
+              },
+              {
+                "kind": "pre_body_red",
+                "sequence": 2,
+                "head": "H0",
+                "actual": {
+                  "receiver_debits": 2
+                },
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
+              },
+              {
+                "kind": "minimal_body",
+                "sequence": 3,
+                "from_head": "H0",
+                "to_head": "H1",
+                "contract_scope": "one_command_duplicate_debit",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
+              },
+              {
+                "kind": "green",
+                "sequence": 4,
+                "head": "H8",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                },
+                "actual": {
+                  "receiver_debits": 1
+                }
+              },
+              {
+                "kind": "local_refactor",
+                "sequence": 5,
+                "from_head": "H1",
+                "to_head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                }
+              },
+              {
+                "kind": "atomic_ci",
+                "sequence": 6,
+                "head": "H2",
+                "oracle_ref": {
+                  "identity": "ORACLE-1",
+                  "revision": "r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "verification-design-owner"
+                },
+                "actual": {
+                  "receiver_debits": 1
+                }
+              }
+            ],
+            "refactor_meaning": {
+              "public_contract_before": "CMD1<=one_debit",
+              "public_contract_after": "CMD1<=one_debit",
+              "requirement_before": "R1",
+              "requirement_after": "R1",
+              "architecture_before": "A→AB",
+              "architecture_after": "A→AB",
+              "state_before": "one_debit",
+              "state_after": "one_debit"
+            },
+            "ci_omissions": {
+              "records": [
+                {
+                  "duty_identity": "C1",
+                  "reason": "中ticket回収",
+                  "joining_ticket_ref": {
+                    "identity": "JOIN-MEDIUM",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "OS"
+                  }
+                }
+              ],
+              "unrecovered_refs": [
+                "C1"
+              ]
+            }
+          },
+          "authored_source_kind": "new_synthetic_source_for_logical_comparison_not_actual_owner_observation"
+        },
+        "meaning_expected": "contradicted_by_fixture",
+        "preservation": "他7所見全値/source paths/owner/candidate不提示/実成功不生成は原正常期待と同じ。order hashは変更steps内容を保存するが、hash差自体を因果判定へしない。",
+        "function_ref": "F-015-04",
+        "function_arguments": {
+          "input": {
+            "case_identity": "AUDIT-015-F03-HEAD-other_green_revision",
+            "root_id": "HARNESS-L9-015-F03",
+            "source_packet_pointer": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/f03_head_connection_oracles/cases/2/raw_source_recipe",
+            "source_packet_ref": {
+              "identity": "SOURCE-AUDIT-015-F03-HEAD-other_green_revision",
+              "revision": "fixture-r1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "independent-fixture-owner"
+            },
+            "source_packet_byte_sha256": "f291d64f0ab08249e52b875ab094c6b31c56299740ff896375405df1880d1175",
+            "payload_source_pointer": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/f03_head_connection_oracles/cases/2/raw_source_recipe/expanded_owner_material",
+            "payload_type": "PayloadF03",
+            "source_payload": {
+              "tag": "F03",
+              "value": {
+                "binding": {
+                  "state": "provided",
+                  "value": {
+                    "identity": {
+                      "state": "provided",
+                      "value": "TDD-TARGET"
+                    },
+                    "owner": {
+                      "state": "provided",
+                      "value": "design-owner"
+                    },
+                    "revision": {
+                      "state": "provided",
+                      "value": "r1"
+                    },
+                    "scope": {
+                      "state": "provided",
+                      "value": {
+                        "environment": {
+                          "state": "provided",
+                          "value": "synthetic-test"
+                        },
+                        "project": {
+                          "state": "provided",
+                          "value": "P"
+                        },
+                        "tenant": {
+                          "state": "provided",
+                          "value": "synthetic-T"
+                        }
+                      }
+                    }
+                  }
+                },
+                "ci_omissions": {
+                  "state": "provided",
+                  "value": {
+                    "records": {
+                      "state": "provided",
+                      "value": [
+                        {
+                          "duty_identity": {
+                            "state": "provided",
+                            "value": "C1"
+                          },
+                          "joining_ticket_ref": {
+                            "state": "provided",
+                            "value": {
+                              "identity": {
+                                "state": "provided",
+                                "value": "JOIN-MEDIUM"
+                              },
+                              "owner": {
+                                "state": "provided",
+                                "value": "OS"
+                              },
+                              "revision": {
+                                "state": "provided",
+                                "value": "r1"
+                              },
+                              "scope": {
+                                "state": "provided",
+                                "value": {
+                                  "environment": {
+                                    "state": "provided",
+                                    "value": "synthetic-test"
+                                  },
+                                  "project": {
+                                    "state": "provided",
+                                    "value": "P"
+                                  },
+                                  "tenant": {
+                                    "state": "provided",
+                                    "value": "synthetic-T"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "reason": {
+                            "state": "provided",
+                            "value": "中ticket回収"
+                          }
+                        }
+                      ]
+                    },
+                    "unrecovered_refs": {
+                      "state": "provided",
+                      "value": [
+                        "C1"
+                      ]
+                    }
+                  }
+                },
+                "non_target": {
+                  "state": "provided",
+                  "value": {
+                    "binding": {
+                      "state": "provided",
+                      "value": {
+                        "identity": {
+                          "state": "provided",
+                          "value": "OTHER-Q"
+                        },
+                        "owner": {
+                          "state": "provided",
+                          "value": "design-owner"
+                        },
+                        "revision": {
+                          "state": "provided",
+                          "value": "r1"
+                        },
+                        "scope": {
+                          "state": "provided",
+                          "value": {
+                            "environment": {
+                              "state": "provided",
+                              "value": "synthetic-test"
+                            },
+                            "project": {
+                              "state": "provided",
+                              "value": "Q"
+                            },
+                            "tenant": {
+                              "state": "provided",
+                              "value": "synthetic-T"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "state": {
+                      "state": "provided",
+                      "value": "valid_original"
+                    }
+                  }
+                },
+                "oracle": {
+                  "state": "provided",
+                  "value": {
+                    "expected": {
+                      "state": "provided",
+                      "value": {
+                        "receiver_debits": {
+                          "state": "provided",
+                          "value": 1
+                        }
+                      }
+                    },
+                    "input": {
+                      "state": "provided",
+                      "value": {
+                        "command": {
+                          "state": "provided",
+                          "value": "CMD1"
+                        },
+                        "deliveries": {
+                          "state": "provided",
+                          "value": 2
+                        }
+                      }
+                    },
+                    "ref": {
+                      "state": "provided",
+                      "value": {
+                        "identity": {
+                          "state": "provided",
+                          "value": "ORACLE-1"
+                        },
+                        "owner": {
+                          "state": "provided",
+                          "value": "verification-design-owner"
+                        },
+                        "revision": {
+                          "state": "provided",
+                          "value": "r1"
+                        },
+                        "scope": {
+                          "state": "provided",
+                          "value": {
+                            "environment": {
+                              "state": "provided",
+                              "value": "synthetic-test"
+                            },
+                            "project": {
+                              "state": "provided",
+                              "value": "P"
+                            },
+                            "tenant": {
+                              "state": "provided",
+                              "value": "synthetic-T"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "refactor_meaning": {
+                  "state": "provided",
+                  "value": {
+                    "architecture_after": {
+                      "state": "provided",
+                      "value": "A→AB"
+                    },
+                    "architecture_before": {
+                      "state": "provided",
+                      "value": "A→AB"
+                    },
+                    "public_contract_after": {
+                      "state": "provided",
+                      "value": "CMD1<=one_debit"
+                    },
+                    "public_contract_before": {
+                      "state": "provided",
+                      "value": "CMD1<=one_debit"
+                    },
+                    "requirement_after": {
+                      "state": "provided",
+                      "value": "R1"
+                    },
+                    "requirement_before": {
+                      "state": "provided",
+                      "value": "R1"
+                    },
+                    "state_after": {
+                      "state": "provided",
+                      "value": "one_debit"
+                    },
+                    "state_before": {
+                      "state": "provided",
+                      "value": "one_debit"
+                    }
+                  }
+                },
+                "source_assumption": {
+                  "state": "provided",
+                  "value": "独立ownerの合成fixture原材料。実資格/実凍結/実観測/実CI/受入は未成立。"
+                },
+                "steps": {
+                  "state": "provided",
+                  "value": [
+                    {
+                      "actual": {
+                        "state": "absent"
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "absent"
+                      },
+                      "head": {
+                        "state": "provided",
+                        "value": "H0"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "freeze"
+                      },
+                      "oracle_ref": {
+                        "state": "absent"
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 1
+                      },
+                      "to_head": {
+                        "state": "absent"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "provided",
+                        "value": {
+                          "receiver_debits": {
+                            "state": "provided",
+                            "value": 2
+                          }
+                        }
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "absent"
+                      },
+                      "head": {
+                        "state": "provided",
+                        "value": "H0"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "pre_body_red"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 2
+                      },
+                      "to_head": {
+                        "state": "absent"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "absent"
+                      },
+                      "contract_scope": {
+                        "state": "provided",
+                        "value": "one_command_duplicate_debit"
+                      },
+                      "from_head": {
+                        "state": "provided",
+                        "value": "H0"
+                      },
+                      "head": {
+                        "state": "absent"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "minimal_body"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 3
+                      },
+                      "to_head": {
+                        "state": "provided",
+                        "value": "H1"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "provided",
+                        "value": {
+                          "receiver_debits": {
+                            "state": "provided",
+                            "value": 1
+                          }
+                        }
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "absent"
+                      },
+                      "head": {
+                        "state": "provided",
+                        "value": "H8"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "green"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 4
+                      },
+                      "to_head": {
+                        "state": "absent"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "absent"
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "provided",
+                        "value": "H1"
+                      },
+                      "head": {
+                        "state": "absent"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "local_refactor"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 5
+                      },
+                      "to_head": {
+                        "state": "provided",
+                        "value": "H2"
+                      }
+                    },
+                    {
+                      "actual": {
+                        "state": "provided",
+                        "value": {
+                          "receiver_debits": {
+                            "state": "provided",
+                            "value": 1
+                          }
+                        }
+                      },
+                      "contract_scope": {
+                        "state": "absent"
+                      },
+                      "from_head": {
+                        "state": "absent"
+                      },
+                      "head": {
+                        "state": "provided",
+                        "value": "H2"
+                      },
+                      "kind": {
+                        "state": "provided",
+                        "value": "atomic_ci"
+                      },
+                      "oracle_ref": {
+                        "state": "provided",
+                        "value": {
+                          "identity": {
+                            "state": "provided",
+                            "value": "ORACLE-1"
+                          },
+                          "owner": {
+                            "state": "provided",
+                            "value": "verification-design-owner"
+                          },
+                          "revision": {
+                            "state": "provided",
+                            "value": "r1"
+                          },
+                          "scope": {
+                            "state": "provided",
+                            "value": {
+                              "environment": {
+                                "state": "provided",
+                                "value": "synthetic-test"
+                              },
+                              "project": {
+                                "state": "provided",
+                                "value": "P"
+                              },
+                              "tenant": {
+                                "state": "provided",
+                                "value": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sequence": {
+                        "state": "provided",
+                        "value": 6
+                      },
+                      "to_head": {
+                        "state": "absent"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "candidate_value": {
+              "state": "absent"
+            }
+          },
+          "rules_ref": {
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "pointer": "/contracts/3/semantic_rule_set",
+            "value_canonical_sha256": "b7111b08c5156bbd00a695436e6ae16444a52130e739317e73c2bd77c40a149a"
+          }
+        },
+        "expected_output_projection": {
+          "case_identity": "AUDIT-015-F03-HEAD-other_green_revision",
+          "root_id": "HARNESS-L9-015-F03",
+          "source_packet_pointer": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/f03_head_connection_oracles/cases/2/raw_source_recipe",
+          "source_packet_ref": {
+            "identity": "SOURCE-AUDIT-015-F03-HEAD-other_green_revision",
+            "revision": "fixture-r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "independent-fixture-owner"
+          },
+          "source_packet_byte_sha256": "f291d64f0ab08249e52b875ab094c6b31c56299740ff896375405df1880d1175",
+          "semantic_state": "fixture_comparison_only_not_execution",
+          "findings": [
+            {
+              "rule_id": "HARNESS-L4-015-F03:order",
+              "source_status": "contradicted_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "steps"
+              ],
+              "candidate_field_path": "order",
+              "source_observation_sha256": "ab8eb1002d2b94f904c5bdbab99c9f063e2de444a1510858d02df474b32a13bd",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "ee6ed343e248092850ef1eca0f5bc13b91628503edc7bce71c6b95f9760bd8bb",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:local_meaning",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "refactor_meaning.public_contract_before",
+                "refactor_meaning.public_contract_after",
+                "refactor_meaning.requirement_before",
+                "refactor_meaning.requirement_after",
+                "refactor_meaning.architecture_before",
+                "refactor_meaning.architecture_after",
+                "refactor_meaning.state_before",
+                "refactor_meaning.state_after"
+              ],
+              "candidate_field_path": "local_meaning",
+              "source_observation_sha256": "9a9c55bedad178c18cfd260dbc1511f0eb218e83fedac4a8cbed81a828dcd23b",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "f9f2808718ffef9eb5490eb897ea8eeee5b9f3b008fe15a1f30c7d680256d54f",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:unrecovered_refs",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "ci_omissions.unrecovered_refs",
+                "ci_omissions.records"
+              ],
+              "candidate_field_path": "unrecovered_refs",
+              "source_observation_sha256": "9b90ea570a17452f70b9127160c70363260b9dafd4b4a36b705c736bab2fe428",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "30ccac9355877679d636a671c64ed27e3f18174e13d9f93a83fc68dd7718aa3c",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:state_ceiling",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "state_ceiling"
+              ],
+              "candidate_field_path": "state_ceiling",
+              "source_observation_sha256": "438351052e1fa4388c38f627063c317df63a168b119c386583bb370fe56bd110",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "109a0f9b25bdc7fd8dc111b1d6d0b9dc001fdd7ac670459d6182d5780ff99887",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:actual_tdd_success",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "actual_tdd_success"
+              ],
+              "candidate_field_path": "actual_tdd_success",
+              "source_observation_sha256": "438351052e1fa4388c38f627063c317df63a168b119c386583bb370fe56bd110",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "33da5509df037571bb037f4a3163fc1da705da5bf25efb6ed0f67cafb943d531",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:minimal_body_scope",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "steps.2.contract_scope"
+              ],
+              "candidate_field_path": "minimal_body_scope",
+              "source_observation_sha256": "b8c8cc190a997a923cc2687b2799cd7cf375c71ba967dc3bdcb4262d55a9641d",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "499afbddd316e5a68714586b9b205f2966a69bead8d41784246c2a094489799f",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:green_behavior",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "oracle.expected.receiver_debits",
+                "steps.3.actual.receiver_debits"
+              ],
+              "candidate_field_path": "green_behavior",
+              "source_observation_sha256": "53007a5339d75435d7e5019e1cad9a7a3d002cd24da4adbe7dcd2b7690a50474",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "508d549da16fad559849c560de0a15bb3639f5a6093c0bedd2b4af482819bc65",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            },
+            {
+              "rule_id": "HARNESS-L4-015-F03:oracle_binding",
+              "source_status": "supported_by_fixture",
+              "candidate_status": "not_proposed",
+              "source_field_paths": [
+                "oracle.ref",
+                "steps.1.oracle_ref",
+                "steps.2.oracle_ref",
+                "steps.3.oracle_ref",
+                "steps.4.oracle_ref",
+                "steps.5.oracle_ref"
+              ],
+              "candidate_field_path": "oracle_binding",
+              "source_observation_sha256": "5638cf046e333ede74ae74021ad3de5cc10da8c84e146b22ca27933e1184ce56",
+              "candidate_observation_sha256": {
+                "state": "absent"
+              },
+              "l4_expected_value_sha256": "a313ca9bf055556f6bb054b1114644327566e6d73f3bcc0668513d8dd3d21f07",
+              "return_to_owners": [
+                "design-owner",
+                "verification-design-owner",
+                "OS"
+              ]
+            }
+          ]
+        },
+        "freeze_correspondence": {
+          "frozen_case_index": 2,
+          "frozen_case_canonical_sha256": "6e3738f8b78a83e35959eeadf3f87d3d395550aedb5477aac767c35682500786",
+          "relocated_fields": [
+            "input.source_packet_pointer",
+            "input.payload_source_pointer",
+            "expected.source_packet_pointer"
+          ],
+          "value_policy": "正式L8内の固定原材料へsource pointerだけ移設。他返却/原材料/新head値/全hash/owner/candidate所見を凍結期待から変えない。"
+        },
+        "execution_state": "not_executed"
+      }
+    ],
+    "boundary_rules": {
+      "missing_or_null_or_wrong_type": "必要headがabsent/null/誤型ならorder.source_status=not_observed。他step/candidateから補完しない。他7Findingを変更しない。",
+      "mismatching_string": "必要shape/valueが揃う異なる文字列ならorder.source_status=contradicted_by_fixture。",
+      "head_format": "原文字列完全一致だけ。H0/H1/SHA長/現実Git HEADの存在/RefactorやCIの別head条件は要求しない。"
+    },
+    "old_cases_preserved": "既存cases 35件は全値不変。F03の元normalと9負例は4つの必要headが同値で揃い、本追加比較はそれらの元所見を変更しない。",
+    "execution_state": "not_executed",
+    "actual_owner_qualification": "not_established",
+    "scenario_scope": {
+      "existing_L9_mapped_cases": 35,
+      "additional_F03_head_cases": 3,
+      "total_declared_comparison_cases": 38,
+      "count_boundary": "既存verification_scopeの35はL9 source mapへ対応するcasesの範囲。本追加3件はこの別sectionの独立著述材料であり、原L9のcase数/内容を変更しない。",
+      "unverified_input_branches": {
+        "required_head_absent": "not_observedの内容規則は定義済みだが、この3試料には欠落headの全返却例がなく、試料による検証は未実施。",
+        "required_head_null": "同様に、この3試料にはnull headの全返却例がなく、試料による検証は未実施。",
+        "required_head_wrong_type": "同様に、この3試料には誤型headの全返却例がなく、試料による検証は未実施。"
+      }
+    },
+    "candidate_l5_binding": {
+      "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+      "sha256": "bcc570eb9b0b532fef84c344de86674791d7554c7b2ab57b959344debff0964d"
+    }
   }
 }
