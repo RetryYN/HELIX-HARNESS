@@ -234,8 +234,9 @@
     "task/Worker実績/Bench/quality-priority原判断と入力契約のowner-qualified exact bindingは未成立。",
     "正式schema/codec/適合条件・Evidence・decision resolver/比較選択閉包/並行revision/全組合せ/L5L8/oracle凍結は未完。",
     "実装前Red→Green→Refactor→再検証、実配置/実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。",
-    "L5/L8にはF02 task_anchorの関数入力・診断返却と対oracle追補が未反映であり、後続の当該pair更新が必要。",
-    "有限のtask_anchor例で未評価の組合せ: (1) 左task値が非空文字列でない同時に右scope値がAbsent/nullである場合のmissing判定とinvalid判定の優先順、(2) 左task値が空文字列の場合のinvalid_value_kind識別、(3) recommendation形状またはidentity binding所見とtask_anchor所見が同時にある場合の順序。現L4 orderingは処理順を宣言するが、この3組合せのoracle観測は置いていない。mutationの全件検出や全組合せを主張しない。"
+    "L5/L8にはF02 task_anchorとworker_checksのmissing/invalid_value_kind分岐の関数入力・診断返却および対oracle追補が未反映であり、後続の当該pair更新が必要。",
+    "有限のtask_anchor例で未評価の組合せ: (1) 左task値が非空文字列でない同時に右scope値がAbsent/nullである場合のmissing判定とinvalid判定の優先順、(2) 左task値が空文字列の場合のinvalid_value_kind識別、(3) recommendation形状またはidentity binding所見とtask_anchor所見が同時にある場合の順序。現L4 orderingは処理順を宣言するが、この3組合せのoracle観測は置いていない。mutationの全件検出や全組合せを主張しない。",
+    "有限のworker_checks例で未評価の組合せ: (a) domainのmissing/invalid_value_kindと同じWorkerのtools incompatibleが同時にある場合（既存例はdomain incompatibleとtools missingの逆向き）、(b)複数の選択対象Workerで先行Workerのtask値が欠落しても後続Workerの所見が保持される場合、(d)domain空文字列とtool_requirementに非文字列要素を含むarray、(e)有効な空tool_requirement array。選択対象Workerが0件ならworker_checks枝の所見を生成しないことはL4で明示した。ここではこれらの未観測範囲を開示するだけで、追加whole例、全組合せ、全mutation検出を要求しない。"
   ],
   "document_id": "HELIXINTELLIGENCE-L9-010",
   "layer": "L9",
@@ -13066,7 +13067,7 @@
             "sha256": "b9cda4485db2e50f751c897712c47c414c3c4529cdbd8446a7adb1c6a3c0798c"
           },
           "independent_basis": {
-            "l4_pointer": "/content_diagnostic_contract/F02/task_anchor",
+            "l4_pointer": "/content_diagnostic_contract/F02",
             "baseline_source_case_sha256": "9ed1386608522298333aea0edc2a91be3cdc2d6d9194f9ecc834b296feede478",
             "input_patch": [
               {
@@ -13097,7 +13098,11 @@
             "approved_requirement_ref": "HELIXINTELLIGENCE-L3-010-F02",
             "approved_oracle_ref": "HELIXINTELLIGENCE-L10-010-F02",
             "l4_binding": "same_pair_l4_bytes_binding",
-            "comparison_basis": "採択L3-F02/L10-F02のtask同一性・不足返却とL4 F02 task_anchorの比較軸から、raw入力を変える前に期待を固定した。関数出力から期待を生成しない。"
+            "comparison_basis": "採択L3-F02/L10-F02のtask同一性・不足返却とL4 F02 task_anchorの比較軸から、raw入力を変える前に期待を固定した。関数出力から期待を生成しない。",
+            "l4_derivation_pointers": [
+              "/content_diagnostic_contract/F02/task_anchor",
+              "/content_diagnostic_contract/F02/worker_checks"
+            ]
           },
           "expected_material": {
             "information_state": "held_input_unqualified",
@@ -30964,7 +30969,7 @@
   },
   "same_pair_l4_bytes_binding": {
     "path": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
-    "sha256": "55681e8f17807b220f8ff5688b57d966b75195ebdd9583aafe7dc6e6c3c1693f",
+    "sha256": "dfde37fcedfa2b248aa56bb265329ad0fa143636450dde8ce42447f6acfaa0ee",
     "binding": "同一candidate bytes。過去source revisionに追補が存在したとは主張しない。"
   },
   "source_revision_role": {

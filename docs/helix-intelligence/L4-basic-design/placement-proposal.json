@@ -234,7 +234,7 @@
     "task/Worker実績/Bench/quality-priority原判断と入力契約のowner-qualified exact bindingは未成立。",
     "正式schema/codec/適合条件・Evidence・decision resolver/比較選択閉包/並行revision/全組合せ/L5L8/oracle凍結は未完。",
     "実装前Red→Green→Refactor→再検証、実配置/実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。",
-    "L5/L8にはF02 task_anchorの関数入力・診断返却と対oracle追補が未反映であり、後続の当該pair更新が必要。"
+    "L5/L8にはF02 task_anchorとworker_checksのmissing/invalid_value_kind分岐の関数入力・診断返却および対oracle追補が未反映であり、後続の当該pair更新が必要。"
   ],
   "document_id": "HELIXINTELLIGENCE-L4-010",
   "layer": "L4",
@@ -290,7 +290,8 @@
         "推薦identityを原Worker集合へ結び、対応するWorkerが無い提出要素は実array位置から案ownerへ返す。原/提出の除外内容が一致しなければ案ownerへ返し、data所見のstate/fitへの接続を保持する。",
         "原/提出の推薦内容も除外内容と独立に照合し、元根拠と内容が異なる推薦（提出側の消去・異型化・要素の重複化を含む）を案ownerへ返す。原/提出が同じ重複配列なら内容差の所見は生成しない。重複を持つ案の実有効性は別に未成立として保持し、形状判定と実資格を混同しない。原/提出の除外内容不一致と推薦/除外の同時成立は別のfieldで追跡する。",
         "推薦が原と同じ値であっても、Absent/null/非配列は内容照合未成立、空配列は候補なしとして所見と未評価を保持する。候補材料の欠落から肯定的な適合を生成しない。",
-        "F02は同じ入力のoriginal_task.identityとoriginal_scope.task、original_task.revisionとoriginal_scope.revisionをそれぞれ直接照合する。各側のAbsent/nullはmissingとする。左側task identity/revisionが供給される場合、非空文字列以外はinvalid_value_kind（本規則では左側task値が非空文字列でない所見）とする。両側が供給され左側が有効ならJSON意味等値で比較し、不一致をtask.identity=foreign、task.revision=foreign_revisionとしてOS-task-ownerへ返す。右側を文字列化・parseせず、新しい型資格を要求しない。F01の実行・成功を前提にせず、F01、性能・Benchの所見と根拠を消去しない。reason_refs要素の書式やtaskとの関係は推測せず、不透明値のまま扱う。"
+        "F02は同じ入力のoriginal_task.identityとoriginal_scope.task、original_task.revisionとoriginal_scope.revisionをそれぞれ直接照合する。各側のAbsent/nullはmissingとする。左側task identity/revisionが供給される場合、非空文字列以外はinvalid_value_kind（本規則では左側task値が非空文字列でない所見）とする。両側が供給され左側が有効ならJSON意味等値で比較し、不一致をtask.identity=foreign、task.revision=foreign_revisionとしてOS-task-ownerへ返す。右側を文字列化・parseせず、新しい型資格を要求しない。F01の実行・成功を前提にせず、F01、性能・Benchの所見と根拠を消去しない。reason_refs要素の書式やtaskとの関係は推測せず、不透明値のまま扱う。",
+        "F02のworker_checksは提出推薦に結び付いた選択対象Worker内でのみdomain/toolsを評価する。選択対象Workerが0件ならこの枝のtask.domain/task.tool_requirement所見を生成しない。各task値はAbsent/nullならmissing、既存predicateに不適合ならinvalid_value_kindとしてOS-task-ownerへ返し、当該fieldのincompatibleを生成しない。値が有効な場合だけ既存membership比較を行う。推薦形状、task_anchor、他Worker、他field、claim等の独立所見は抑止しない。"
       ],
       "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
     },
@@ -453,7 +454,7 @@
             },
             "comparison_effect": "このtask値がAbsent/nullなら、このworker_checks項目のtask条件比較を未成立とし、当該項目のincompatibleを生成しない。別のtask条件field、もう一方のworker_checks項目、Worker配列の他要素、task_anchor、独立したclaimその他の所見は抑止しない。"
           },
-          "scope_limit": "判定はAbsent/null→既存field predicateによるinvalid_value_kind→JSON意味等値membershipの順。task値のwrong kindをincompatibleへ分類せず、当該比較のみを未成立とする。",
+          "scope_limit": "判定はAbsent/null→既存field predicateによるinvalid_value_kind→JSON意味等値membershipの順。task値のwrong kindをincompatibleへ分類せず、当該比較のみを未成立とする。worker_checksは、提出推薦に結び付いた選択対象Workerごとに評価する。選択対象Workerが0件なら、この枝からtask.domain/task.tool_requirementのmissing・invalid_value_kind・incompatible所見を生成しない。推薦形状、task_anchor、その他の独立所見は別に評価する。",
           "when_task_value_is_invalid_kind": {
             "predicate": "nonempty_string",
             "condition": "domainは非空JSON stringである",
@@ -484,7 +485,7 @@
             },
             "comparison_effect": "このtask値がAbsent/nullなら、このworker_checks項目のtask条件比較を未成立とし、当該項目のincompatibleを生成しない。別のtask条件field、もう一方のworker_checks項目、Worker配列の他要素、task_anchor、独立したclaimその他の所見は抑止しない。"
           },
-          "scope_limit": "判定はAbsent/null→既存field predicateによるinvalid_value_kind→JSON意味等値membershipの順。task値のwrong kindをincompatibleへ分類せず、当該比較のみを未成立とする。",
+          "scope_limit": "判定はAbsent/null→既存field predicateによるinvalid_value_kind→JSON意味等値membershipの順。task値のwrong kindをincompatibleへ分類せず、当該比較のみを未成立とする。worker_checksは、提出推薦に結び付いた選択対象Workerごとに評価する。選択対象Workerが0件なら、この枝からtask.domain/task.tool_requirementのmissing・invalid_value_kind・incompatible所見を生成しない。推薦形状、task_anchor、その他の独立所見は別に評価する。",
           "when_task_value_is_invalid_kind": {
             "predicate": "string_array",
             "condition": "tool_requirementは全要素がstringであるJSON arrayである（空arrayも有効）",
