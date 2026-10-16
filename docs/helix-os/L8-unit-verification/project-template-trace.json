@@ -161461,7 +161461,7 @@
   },
   "candidate_l5_binding": {
     "paired_document": "docs/helix-os/L5-detail-design/project-template-trace.json",
-    "working_bytes_sha256": "4576e21c25e342228e7bee95798cc1f992df351cc53bf8a03b01a301c6b4ad16",
+    "working_bytes_sha256": "3d59d6c8f1e6979b5c88e98e5620f40d16df968c493f662e862c725ba5ce5b7d",
     "binding_scope": "同scratch候補L5 bytes。原対応現基本はfed4701固定candidateを参照し、独立review/merge結果に追随する。旧歴史pinsは保持。",
     "revision_note": "この候補L5の現bytes pin。対象source revisionの承認やruntime実装を示さない。",
     "binding_kind": "candidate_file_bytes"
