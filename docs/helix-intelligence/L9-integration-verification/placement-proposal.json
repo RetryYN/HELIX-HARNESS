@@ -136,7 +136,7 @@
       "reuse": "semantic_rederive",
       "preserve": "FE/BE/設計の適性軸を分け、provider名でなくモデル世代に結び、モデル更新時の旧適性の自動継承をしない意味を保持する。",
       "change": "旧軸名を現Workerの固定enumへせず、010-F03のtask/model-class・scope/版の不足へ意味再導出する。",
-      "reason": "RLO-FR-034がFE/BE/設計の適性軸混用とモデル世代継承を具体的に支える。今回追補したoriginal_taskとoriginal_scopeのidentity/revision照合はこの旧sourceから導出したものではなく、採択L3/L10 F02と既存packet fieldからの技術具体化である。未供給の独立Bench generation targetや実資格は作らない。",
+      "reason": "RLO-FR-034はFE/BE/設計の適性軸混用とモデル世代継承を具体的に支える。今回追補したoriginal_task/original_scopeのidentity・revision anchorとproposal scopeの6軸照合はこの旧sourceから導出したものではなく、採択L3/L10 F02と既存packet fieldからの技術具体化である。旧sourceに同じscope field joinが無いことはL4 source_searchで記録した。未供給の独立Bench generation targetや実資格は作らない。",
       "asset_reading": {
         "ledger_revision": 1,
         "ledger_disposition": "unresolved",
@@ -234,9 +234,10 @@
     "task/Worker実績/Bench/quality-priority原判断と入力契約のowner-qualified exact bindingは未成立。",
     "正式schema/codec/適合条件・Evidence・decision resolver/比較選択閉包/並行revision/全組合せ/L5L8/oracle凍結は未完。",
     "実装前Red→Green→Refactor→再検証、実配置/実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。",
-    "L5/L8にはF02 task_anchorとworker_checksのmissing/invalid_value_kind分岐の関数入力・診断返却および対oracle追補が未反映であり、後続の当該pair更新が必要。",
+    "L5/L8にはF02 task_anchor、worker_checksのmissing/invalid_value_kind分岐、および6軸proposal_scope_alignmentの関数入力・診断返却と対oracle追補が未反映であり、後続の当該pair更新が必要。",
     "有限のtask_anchor例で未評価の組合せ: (1) 左task値が非空文字列でない同時に右scope値がAbsent/nullである場合のmissing判定とinvalid判定の優先順、(2) 左task値が空文字列の場合のinvalid_value_kind識別、(3) recommendation形状またはidentity binding所見とtask_anchor所見が同時にある場合の順序。現L4 orderingは処理順を宣言するが、この3組合せのoracle観測は置いていない。mutationの全件検出や全組合せを主張しない。",
-    "有限のworker_checks例で未評価の組合せ: (a) domainのmissing/invalid_value_kindと同じWorkerのtools incompatibleが同時にある場合（既存例はdomain incompatibleとtools missingの逆向き）、(b)複数の選択対象Workerで先行Workerのtask値が欠落しても後続Workerの所見が保持される場合、(d)domain空文字列とtool_requirementに非文字列要素を含むarray、(e)有効な空tool_requirement array。選択対象Workerが0件ならworker_checks枝の所見を生成しないことはL4で明示した。ここではこれらの未観測範囲を開示するだけで、追加whole例、全組合せ、全mutation検出を要求しない。"
+    "有限のworker_checks例で未評価の組合せ: (a) domainのmissing/invalid_value_kindと同じWorkerのtools incompatibleが同時にある場合（既存例はdomain incompatibleとtools missingの逆向き）、(b)複数の選択対象Workerで先行Workerのtask値が欠落しても後続Workerの所見が保持される場合、(d)domain空文字列とtool_requirementに非文字列要素を含むarray、(e)有効な空tool_requirement array。選択対象Workerが0件ならworker_checks枝の所見を生成しないことはL4で明示した。ここではこれらの未観測範囲を開示するだけで、追加whole例、全組合せ、全mutation検出を要求しない。",
+    "有限のF02 proposal_scope_alignment例で未評価の組合せ: proposal側の原/提出scope memberがAbsent/nullとなる場合、原/提出の一方だけがbaselineと異なる場合、reason_refs所見とscope所見が同時に発生する場合。これらの未観測範囲を開示するだけで、全組合せや全mutation検出を主張しない。"
   ],
   "document_id": "HELIXINTELLIGENCE-L9-010",
   "layer": "L9",
@@ -12536,7 +12537,7 @@
             "sha256": "715c9706cb31dfb5ef6334f42a6e5bc9aee1efa4ebb6d937ee23bf774c058547"
           },
           "independent_basis": {
-            "l4_pointer": "/content_diagnostic_contract/F02/task_anchor",
+            "l4_pointer": "/content_diagnostic_contract/F02",
             "baseline_source_case_sha256": "9ed1386608522298333aea0edc2a91be3cdc2d6d9194f9ecc834b296feede478",
             "input_patch": [
               {
@@ -12558,7 +12559,7 @@
                 "value": "TASK-S"
               }
             ],
-            "expected_whole_canonical_sha256": "8aa15ebe67436450cbd5cdc90f5d139b432c6737b3d5b3bfd671946e9d83250e",
+            "expected_whole_canonical_sha256": "bcf25fc19fb5576567f4228fd0ead1ee9e3649c237497488514a85294f7d729a",
             "source_revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
             "baseline_source_path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
             "baseline_source_pointer": "/verification_obligations/1/cases/0",
@@ -12566,7 +12567,11 @@
             "approved_requirement_ref": "HELIXINTELLIGENCE-L3-010-F02",
             "approved_oracle_ref": "HELIXINTELLIGENCE-L10-010-F02",
             "l4_binding": "same_pair_l4_bytes_binding",
-            "comparison_basis": "採択L3-F02/L10-F02のtask同一性・不足返却とL4 F02 task_anchorの比較軸から、raw入力を変える前に期待を固定した。関数出力から期待を生成しない。"
+            "comparison_basis": "採択L3-F02/L10-F02の同scope照合義務を、task_anchorとproposal_scope_alignmentの別々のL4宣言へ対応させ、原rawからwhole期待を導く。旧期待の訂正根拠はexpectation_correction_historyへ保持し、関数出力から期待を生成しない。",
+            "l4_derivation_pointers": [
+              "/content_diagnostic_contract/F02/task_anchor/axes/0",
+              "/content_diagnostic_contract/F02/proposal_scope_alignment/scope_axes/1"
+            ]
           },
           "expected_material": {
             "information_state": "held_input_unqualified",
@@ -12789,7 +12794,7 @@
           "execution_state": "not_executed",
           "effect": "none",
           "input_derivation": "基準例のraw_utf8をJSONとして複製し、independent_basis.input_patchのRFC 6902操作を順に適用する。期待結果から入力を逆生成しない。",
-          "oracle_basis": "F02が照合する原task identityとoriginal_scope.taskは一致する一方、performance/proposalの別source fieldは異なる。誤ったsource結合で誤findingを作らない。",
+          "oracle_basis": "採択L3/L10 F02の同scope照合を二つの宣言責務へ分けて確認する。task_anchorはoriginal_task.identityとoriginal_scope.taskの一致を確認し、両者はTASK-P。proposal_scope_alignmentのtask軸はoriginal_scope.task=TASK-Pに対しoriginal/submitted proposal scope.task=TASK-Sなのでproposal.scope.task/foreignを返す。performance scope.task=TASK-Rはこの比較の入力でなく、誤結合して所見を作らない。",
           "expectation_correction_history": {
             "supersedes": {
               "source_revision": "cec8f8ed3576192e27c1ee58958d1199e61c9395",
@@ -13047,7 +13052,7 @@
             "sha256": "e647ad81c76cf4686ad40fe8d8bdfee7d18afa2847d688ef656ece532126ebd0"
           },
           "independent_basis": {
-            "l4_pointer": "/content_diagnostic_contract/F02/task_anchor",
+            "l4_pointer": "/content_diagnostic_contract/F02",
             "baseline_source_case_sha256": "9ed1386608522298333aea0edc2a91be3cdc2d6d9194f9ecc834b296feede478",
             "input_patch": [
               {
@@ -13062,7 +13067,7 @@
                 "value": null
               }
             ],
-            "expected_whole_canonical_sha256": "fd41f2f7c9d22d845f5eb4aaaabee5069ff422af9a72e2a8fc667fa8e96b76ca",
+            "expected_whole_canonical_sha256": "b51e50c60ba60427fb7d086a63a50fcfbbdd466f710ec77bdaa38e5fa8cc2be4",
             "source_revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
             "baseline_source_path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
             "baseline_source_pointer": "/verification_obligations/1/cases/0",
@@ -13070,7 +13075,12 @@
             "approved_requirement_ref": "HELIXINTELLIGENCE-L3-010-F02",
             "approved_oracle_ref": "HELIXINTELLIGENCE-L10-010-F02",
             "l4_binding": "same_pair_l4_bytes_binding",
-            "comparison_basis": "採択L3-F02/L10-F02のtask同一性・不足返却とL4 F02 task_anchorの比較軸から、raw入力を変える前に期待を固定した。関数出力から期待を生成しない。"
+            "comparison_basis": "採択L3-F02/L10-F02の同scope照合義務を、task_anchorとproposal_scope_alignmentの別々のL4宣言へ対応させ、原rawからwhole期待を導く。旧期待の訂正根拠はexpectation_correction_historyへ保持し、関数出力から期待を生成しない。",
+            "l4_derivation_pointers": [
+              "/content_diagnostic_contract/F02/task_anchor/axes/0",
+              "/content_diagnostic_contract/F02/task_anchor/axes/1",
+              "/content_diagnostic_contract/F02/proposal_scope_alignment/scope_axes/2"
+            ]
           },
           "expected_material": {
             "information_state": "held_input_unqualified",
@@ -13302,7 +13312,7 @@
           "execution_state": "not_executed",
           "effect": "none",
           "input_derivation": "基準例のraw_utf8をJSONとして複製し、independent_basis.input_patchのRFC 6902操作を順に適用する。期待結果から入力を逆生成しない。",
-          "oracle_basis": "identity member absent、revision member null。両者をtask anchor missingとして別々に保持する。",
+          "oracle_basis": "task_anchorではidentityのAbsentとrevisionのnullを各task軸のmissingとして保持する。独立したproposal_scope_alignmentではbaseline original_scope.revision=nullのためscope.revision/missingを返す。両規則を併存させ、どちらかの実行成功を他方の前提にしない。",
           "expectation_correction_history": {
             "supersedes": {
               "source_revision": "cec8f8ed3576192e27c1ee58958d1199e61c9395",
@@ -13863,7 +13873,7 @@
             "sha256": "fae56c163ff95cddfc969d656541cf63d5cddd5ddfd49bd35e6d780909a7dc1e"
           },
           "independent_basis": {
-            "l4_pointer": "/content_diagnostic_contract/F02/task_anchor",
+            "l4_pointer": "/content_diagnostic_contract/F02",
             "baseline_source_case_sha256": "9ed1386608522298333aea0edc2a91be3cdc2d6d9194f9ecc834b296feede478",
             "input_patch": [
               {
@@ -13873,7 +13883,7 @@
                 "value": true
               }
             ],
-            "expected_whole_canonical_sha256": "1ece53e67a65e2f7813432de1419a9220256545e3589481fedf9f602b57c489b",
+            "expected_whole_canonical_sha256": "1fb2f6bc9818d24fcfe4a61d7ebdbe6c1550b3a9590256f016fbc160a795980b",
             "source_revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
             "baseline_source_path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
             "baseline_source_pointer": "/verification_obligations/1/cases/0",
@@ -13881,7 +13891,11 @@
             "approved_requirement_ref": "HELIXINTELLIGENCE-L3-010-F02",
             "approved_oracle_ref": "HELIXINTELLIGENCE-L10-010-F02",
             "l4_binding": "same_pair_l4_bytes_binding",
-            "comparison_basis": "採択L3-F02/L10-F02のtask同一性・不足返却とL4 F02 task_anchorの比較軸から、raw入力を変える前に期待を固定した。関数出力から期待を生成しない。"
+            "comparison_basis": "採択L3-F02/L10-F02の同scope照合義務を、task_anchorとproposal_scope_alignmentの別々のL4宣言へ対応させ、原rawからwhole期待を導く。旧期待の訂正根拠はexpectation_correction_historyへ保持し、関数出力から期待を生成しない。",
+            "l4_derivation_pointers": [
+              "/content_diagnostic_contract/F02/task_anchor/axes/0",
+              "/content_diagnostic_contract/F02/proposal_scope_alignment/scope_axes/1"
+            ]
           },
           "expected_material": {
             "information_state": "held_input_unqualified",
@@ -14110,7 +14124,7 @@
           "execution_state": "not_executed",
           "effect": "none",
           "input_derivation": "基準例のraw_utf8をJSONとして複製し、independent_basis.input_patchのRFC 6902操作を順に適用する。期待結果から入力を逆生成しない。",
-          "oracle_basis": "既存F01の原task側nonempty_string/invalid_value_kind規則を再利用する。対応scope側は固定pointerから得たJSON値のままJSON意味比較し、TASK-Pとtrueはforeignとなる。scope側へ新しい型資格gateは導入しない。",
+          "oracle_basis": "task_anchorの右側original_scope.task=trueはJSON値のまま比較し、original_task.identity=TASK-Pと不一致なのでtask.identity/foreign。proposal_scope_alignmentのtask軸もbaseline original_scope.task=trueと原/提出proposal.scope.task=TASK-Pを比較しproposal.scope.task/foreign。値の妥当性を新たなstring gateで認定せず、両方の原値を保持する。",
           "expectation_correction_history": {
             "supersedes": {
               "source_revision": "cec8f8ed3576192e27c1ee58958d1199e61c9395",
@@ -14376,7 +14390,7 @@
             "sha256": "354ea152c3daf5ea2b041811fd394ff4b8497649ce6925a87b59a27139d34e96"
           },
           "independent_basis": {
-            "l4_pointer": "/content_diagnostic_contract/F02/task_anchor",
+            "l4_pointer": "/content_diagnostic_contract/F02",
             "baseline_source_case_sha256": "9ed1386608522298333aea0edc2a91be3cdc2d6d9194f9ecc834b296feede478",
             "input_patch": [
               {
@@ -14400,7 +14414,7 @@
                 ]
               }
             ],
-            "expected_whole_canonical_sha256": "44a199118f0f900cc670f06025931aad4c7d88a261e9d89a21b9eab9ab368d14",
+            "expected_whole_canonical_sha256": "059488caea693b32ba99a5203888577eee51c807adfe08240e7b968e6b41a4e8",
             "source_revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
             "baseline_source_path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
             "baseline_source_pointer": "/verification_obligations/1/cases/0",
@@ -14408,7 +14422,11 @@
             "approved_requirement_ref": "HELIXINTELLIGENCE-L3-010-F02",
             "approved_oracle_ref": "HELIXINTELLIGENCE-L10-010-F02",
             "l4_binding": "same_pair_l4_bytes_binding",
-            "comparison_basis": "採択L3-F02/L10-F02のtask同一性・不足返却とL4 F02 task_anchorの比較軸から、raw入力を変える前に期待を固定した。関数出力から期待を生成しない。"
+            "comparison_basis": "採択L3-F02/L10-F02の同scope照合義務を、task_anchorとproposal_scope_alignmentの別々のL4宣言へ対応させ、原rawからwhole期待を導く。旧期待の訂正根拠はexpectation_correction_historyへ保持し、関数出力から期待を生成しない。",
+            "l4_derivation_pointers": [
+              "/content_diagnostic_contract/F02/task_anchor/axes/0",
+              "/content_diagnostic_contract/F02/proposal_scope_alignment/scope_axes/1"
+            ]
           },
           "expected_material": {
             "information_state": "held_input_unqualified",
@@ -14650,7 +14668,7 @@
           "execution_state": "not_executed",
           "effect": "none",
           "input_derivation": "基準例のraw_utf8をJSONとして複製し、independent_basis.input_patchのRFC 6902操作を順に適用する。期待結果から入力を逆生成しない。",
-          "oracle_basis": "task identity差、Worker domain不適合、根拠のないprice-only claimが同時にある。局所所見を相殺せず保持する。",
+          "oracle_basis": "task_anchorはTASK-PとTASK-Qの差をtask.identity/foreignとして返す。独立worker_checksはdomain不適合を保持し、unsupported price-only claimも残る。proposal_scope_alignmentのtask軸はbaseline TASK-Qと原/提出proposal TASK-Pの差をproposal.scope.task/foreignとして追加する。",
           "expectation_correction_history": {
             "supersedes": {
               "source_revision": "cec8f8ed3576192e27c1ee58958d1199e61c9395",
@@ -14930,7 +14948,7 @@
             "sha256": "34897f780ccef992b5bdcc15fb12d7507e2b736c73319d2a2fe1761b7be01b9f"
           },
           "independent_basis": {
-            "l4_pointer": "/content_diagnostic_contract/F02/task_anchor",
+            "l4_pointer": "/content_diagnostic_contract/F02",
             "baseline_source_case_sha256": "9ed1386608522298333aea0edc2a91be3cdc2d6d9194f9ecc834b296feede478",
             "input_patch": [
               {
@@ -14947,7 +14965,7 @@
                 "value": []
               }
             ],
-            "expected_whole_canonical_sha256": "2089ad5e5f704c91aba87a13182bdc33a6c25e04499c372d42653aa689bc9dc0",
+            "expected_whole_canonical_sha256": "93df2cce1be9fac88ca722150420dd4ee899447fd39f0b494582686a862f666d",
             "source_revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
             "baseline_source_path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
             "baseline_source_pointer": "/verification_obligations/1/cases/0",
@@ -14955,7 +14973,17 @@
             "approved_requirement_ref": "HELIXINTELLIGENCE-L3-010-F02",
             "approved_oracle_ref": "HELIXINTELLIGENCE-L10-010-F02",
             "l4_binding": "same_pair_l4_bytes_binding",
-            "comparison_basis": "採択L3-F02/L10-F02のtask同一性・不足返却とL4 F02 task_anchorの比較軸から、raw入力を変える前に期待を固定した。関数出力から期待を生成しない。"
+            "comparison_basis": "採択L3-F02/L10-F02の同scope照合義務を、task_anchorとproposal_scope_alignmentの別々のL4宣言へ対応させ、原rawからwhole期待を導く。旧期待の訂正根拠はexpectation_correction_historyへ保持し、関数出力から期待を生成しない。",
+            "l4_derivation_pointers": [
+              "/content_diagnostic_contract/F02/task_anchor/axes/0",
+              "/content_diagnostic_contract/F02/task_anchor/axes/1",
+              "/content_diagnostic_contract/F02/proposal_scope_alignment/scope_axes/0",
+              "/content_diagnostic_contract/F02/proposal_scope_alignment/scope_axes/1",
+              "/content_diagnostic_contract/F02/proposal_scope_alignment/scope_axes/2",
+              "/content_diagnostic_contract/F02/proposal_scope_alignment/scope_axes/3",
+              "/content_diagnostic_contract/F02/proposal_scope_alignment/scope_axes/4",
+              "/content_diagnostic_contract/F02/proposal_scope_alignment/scope_axes/5"
+            ]
           },
           "expected_material": {
             "information_state": "held_input_unqualified",
@@ -15212,7 +15240,7 @@
           "execution_state": "not_executed",
           "effect": "none",
           "input_derivation": "基準例のraw_utf8をJSONとして複製し、independent_basis.input_patchのRFC 6902操作を順に適用する。期待結果から入力を逆生成しない。",
-          "oracle_basis": "scope containerがarray。task anchorの固定member pathはAbsentでmissing。既存Bench class比較もその既存ruleのまま保持する。",
+          "oracle_basis": "original_scopeがarrayのため、task_anchorの両固定pathとproposal_scope_alignmentの6つのbaseline pathはAbsentとなり、各宣言のmissingを返す。既存Bench class比較と他のF02所見も独立に保持する。",
           "expectation_correction_history": {
             "supersedes": {
               "source_revision": "cec8f8ed3576192e27c1ee58958d1199e61c9395",
@@ -15507,7 +15535,7 @@
             "sha256": "29668f6f6c09b51080092d1a52f32d595ab1e14c29c262da84cf17d99323d4fa"
           },
           "independent_basis": {
-            "l4_pointer": "/content_diagnostic_contract/F02/task_anchor/axes/1",
+            "l4_pointer": "/content_diagnostic_contract/F02",
             "baseline_source_case_sha256": "9ed1386608522298333aea0edc2a91be3cdc2d6d9194f9ecc834b296feede478",
             "input_patch": [
               {
@@ -15529,7 +15557,7 @@
                 "value": "TASK-P-r4"
               }
             ],
-            "expected_whole_canonical_sha256": "1f4894255c13c61fede3146190bb2d6e3ee8a3e8abb21d0b680022432fb9b153",
+            "expected_whole_canonical_sha256": "8faf682d8f21722b420596793bb5807d2c9c1562d0b42cb3ea315f36e1c1e5bd",
             "source_revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
             "baseline_source_path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
             "baseline_source_pointer": "/verification_obligations/1/cases/0",
@@ -15537,7 +15565,11 @@
             "approved_requirement_ref": "HELIXINTELLIGENCE-L3-010-F02",
             "approved_oracle_ref": "HELIXINTELLIGENCE-L10-010-F02",
             "l4_binding": "same_pair_l4_bytes_binding",
-            "comparison_basis": "採択L3-F02/L10-F02のtask同一性・不足返却とL4 F02 task_anchorの比較軸から、raw入力を変える前に期待を固定した。関数出力から期待を生成しない。"
+            "comparison_basis": "採択L3-F02/L10-F02の同scope照合義務を、task_anchorとproposal_scope_alignmentの別々のL4宣言へ対応させ、原rawからwhole期待を導く。旧期待の訂正根拠はexpectation_correction_historyへ保持し、関数出力から期待を生成しない。",
+            "l4_derivation_pointers": [
+              "/content_diagnostic_contract/F02/task_anchor/axes/1",
+              "/content_diagnostic_contract/F02/proposal_scope_alignment/scope_axes/2"
+            ]
           },
           "expected_material": {
             "information_state": "held_input_unqualified",
@@ -15760,7 +15792,7 @@
           "execution_state": "not_executed",
           "effect": "none",
           "input_derivation": "基準例のraw_utf8をJSONとして複製し、independent_basis.input_patchのRFC 6902操作を順に適用する。期待結果から入力を逆生成しない。",
-          "oracle_basis": "original_task.revisionとoriginal_scope.revisionは一致する。original_performance.scope.revisionと原/提出proposal.scope.revisionは別値なので、誤った代替source結合でtask.revision所見を作らない。",
+          "oracle_basis": "task_anchorのoriginal_task.revisionとoriginal_scope.revisionはいずれもTASK-P-r2で一致する。proposal_scope_alignmentのrevision軸はbaseline TASK-P-r2と原/提出 proposal TASK-P-r4を比較しproposal.scope.revision/foreignを返す。performance revision r3はこの二宣言の比較元ではない。",
           "expectation_correction_history": {
             "supersedes": {
               "source_revision": "cec8f8ed3576192e27c1ee58958d1199e61c9395",
@@ -32550,7 +32582,7 @@
   },
   "same_pair_l4_bytes_binding": {
     "path": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
-    "sha256": "0e6c8f9fa077c53c7a5ebfba2eb5359f99d047384942752c9b1ee4f810b878b2",
+    "sha256": "dde2ad1d910b340932cde4cefd09d4814b752b7fe06a4170a6ae4fbb4964ee4b",
     "binding": "同一candidate bytes。過去source revisionに追補が存在したとは主張しない。"
   },
   "source_revision_role": {

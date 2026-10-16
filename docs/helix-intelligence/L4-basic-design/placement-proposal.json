@@ -136,7 +136,7 @@
       "reuse": "semantic_rederive",
       "preserve": "FE/BE/設計の適性軸を分け、provider名でなくモデル世代に結び、モデル更新時の旧適性の自動継承をしない意味を保持する。",
       "change": "旧軸名を現Workerの固定enumへせず、010-F03のtask/model-class・scope/版の不足へ意味再導出する。",
-      "reason": "RLO-FR-034がFE/BE/設計の適性軸混用とモデル世代継承を具体的に支える。今回追補したoriginal_taskとoriginal_scopeのidentity/revision照合はこの旧sourceから導出したものではなく、採択L3/L10 F02と既存packet fieldからの技術具体化である。未供給の独立Bench generation targetや実資格は作らない。",
+      "reason": "RLO-FR-034はFE/BE/設計の適性軸混用とモデル世代継承を具体的に支える。今回追補したoriginal_task/original_scopeのidentity・revision anchorとproposal scopeの6軸照合はこの旧sourceから導出したものではなく、採択L3/L10 F02と既存packet fieldからの技術具体化である。旧sourceに同じscope field joinが無いことはL4 source_searchで記録した。未供給の独立Bench generation targetや実資格は作らない。",
       "asset_reading": {
         "ledger_revision": 1,
         "ledger_disposition": "unresolved",
@@ -234,7 +234,7 @@
     "task/Worker実績/Bench/quality-priority原判断と入力契約のowner-qualified exact bindingは未成立。",
     "正式schema/codec/適合条件・Evidence・decision resolver/比較選択閉包/並行revision/全組合せ/L5L8/oracle凍結は未完。",
     "実装前Red→Green→Refactor→再検証、実配置/実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。",
-    "L5/L8にはF02 task_anchorとworker_checksのmissing/invalid_value_kind分岐の関数入力・診断返却および対oracle追補が未反映であり、後続の当該pair更新が必要。"
+    "L5/L8にはF02 task_anchor、worker_checksのmissing/invalid_value_kind分岐、および6軸proposal_scope_alignmentの関数入力・診断返却と対oracle追補が未反映であり、後続の当該pair更新が必要。"
   ],
   "document_id": "HELIXINTELLIGENCE-L4-010",
   "layer": "L4",
@@ -759,21 +759,23 @@
           },
           "legacy": {
             "asset_ids": [
-              "LEGACY-ASSET-11E8FE0479751F02A4A3",
               "LEGACY-ASSET-50CA1C554747F12266D3"
             ],
             "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
             "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
             "lines": [
               317,
-              434
+              325
             ],
             "existing_record_pointer": "/legacy_comparison/2/source_search",
-            "preserve": "scope正本を一つとし、assignmentのscopeを保持する。router候補から実dispatch authorityを作らない。",
-            "change": "現行F02候補/根拠のscopeを6軸で比較し、欠落・差異を既存OS/INTELLIGENCE責務へ返す具体規則を追加する。旧sourceはこの6軸の比較結果、順序、owner labelを規定していたとは主張しない。",
-            "reason": "採択L3/L10の同scope照合義務を現行L4 packetの既存scope fieldsへ具体化するため。旧assignment runtimeや過去の数値を移植しない。"
+            "preserve": "RLO-INV-001がassignmentのscope正本を一つに保つ意味と、RLO-FR-031が候補提案とdispatch authorityを分ける意味を保持する。",
+            "change": "F02でproposal scopeを既存raw fieldから6軸比較し、不足・差異を返す技術契約を追加する。6軸・順序・owner labelは旧source由来と主張しない。",
+            "reason": "旧sourceには今回のproposal scope field joinに直接対応する記述が見つからなかったため、採択L3/L10 F02の同scope照合義務を具体化する。検索範囲と不在結果はsource_search pointerで追跡できる。",
+            "related_legacy_comparison_pointer": "/legacy_comparison/1",
+            "search_scope_and_result": "旧RLO資産LEGACY-ASSET-50CA1C554747F12266D3の全1225行を固定語6種で検索し一致0件。42–55、114–128、193–246、306–434、520–594、627–700、788–871行を読んだ。RLO-INV-001はassignment scope正本を一つ参照するが、proposal scopeの6軸・比較順・owner labelを規定しない。別資産LEGACY-ASSET-11E8FE0479751F02A4A3は配置候補文書であり、このRLO source attributionには含めない。"
           }
-        }
+        },
+        "mismatch_vocabulary_rationale": "proposal scope各軸は原/提出提案の同scope不一致をINTELLIGENCE-proposal-ownerへ返すため、revision軸もgeneric foreignを用いる。original_task.revisionとoriginal_scope.revisionのtask anchorは別責務でOS-task-ownerへforeign_revisionを返す。ここでOS側original_scopeの誤りや根因を断定せず、raw値は保持する。 この局所比較は原scope値の型・意味妥当性を認定するものではない。非nullの原scope値が文字列以外でも原JSON値のまま差を記録する。INTELLIGENCE-proposal-ownerは提案と原scopeの突合を返す担当であり、不一致の根因が提案側にあるという認定ではない。OS原scopeに誤りの疑いがあれば元値と当該所見を保持して既存のOS入力ownerへ確認する材料とし、この比較でOS原値の修正や有効性認定を代行しない。"
       }
     },
     "F04": {
