@@ -45204,8 +45204,8 @@
         "expectation_rule": {
           "input": "fixture_material_recipesを配列順に展開する。各nameは展開済みの同名rootとなり、recipe内$copyは先行rootだけを参照する。次にbase_input_recipeをこれらのrootで展開してbase_inputを得る。各case input_patchをそのbaseへ宣言順に適用する。source wire/hash/root許容は固定入力で、patch後に補完/再hash/再資格化しない。全recipe/materialはこのL9内にありscratchを参照しない。",
           "roots": "各caseでlegacy_observation_recipe_templateとf04_observation_recipe_templateのそれぞれへobservation_recipe_patchを適用し、patch後case_inputだけをrootとして展開する。得たlegacy_observation/f04_observationとcase_inputをrootにexpected_complete_return_recipeを展開する。空pointerはroot全体。state/code/ownerはliteral期待で、copyは原値保存の表現だけ。",
-          "whole": "expected_complete_return_recipeはRecordTraceAnalysis全root/sections/F04 observation/findings/input_issues/effects/authority_generatedを固定する。expected_new_findingsは補助でありwholeの代替でない。",
-          "canonical_whole_hash": "本書内のinput/observation/完全返却recipeをexpectation_ruleの順に展開し、各caseのwhole_expectation_sha256へ照合する。canonical JSONはUTF-8、object keyをsort_keysで整列、separatorsはcomma/colon、ensure_ascii=falseとする。state/code/ownerのliteral期待を評価器出力で補完しない。検証根拠はこの自己完結した9recipeとhashであり、本書外の作業物を必須参照としない。"
+          "whole": "expected_complete_return_recipeはsource_original_correspondence導入前のRecordTraceAnalysis全root/sections/F04 observation/findings/input_issues/effects/authority_generatedを固定する。新source_original_correspondence fieldとそれに由来する新findingを含む導入後wholeではない。旧9期待の値/hashは歴史的範囲として保持し、新field/新finding込みのwholeは後続L5/L8で個別再導出する。expected_new_findingsは旧範囲の補助であり、当該旧wholeの代替でない。",
+          "canonical_whole_hash": "本書内のinput/observation/完全返却recipeをexpectation_ruleの順に展開し、各caseのwhole_expectation_sha256へ照合する。canonical JSONはUTF-8、object keyをsort_keysで整列、separatorsはcomma/colon、ensure_ascii=falseとする。state/code/ownerのliteral期待を評価器出力で補完しない。検証根拠はこの自己完結した9recipeとhashであり、本書外の作業物を必須参照としない。 このhashは上記の導入前範囲を表し、新規範下の追加field/findingを省略してもwholeが成立するという主張ではない。"
         },
         "preservation": "既存F04 normal/負例/endpoint47/selected join18+occurrence7のraw/期待は変更しない。今回9件は新規合成値で、変更したowner原本文には新revision/source hashを付ける。元qualificationは各ownerの合成fixture前提のみ。",
         "remaining": [
@@ -49680,7 +49680,7 @@
         "design_ref": "HELIXOS-L4-002-F04-SOURCE-ORIGINAL-CORRESPONDENCE",
         "requirement_ref": "HELIXOS-L3-002-F04",
         "system_oracle_ref": "HELIXOS-L10-002-F04",
-        "scope": "合成raw caller12件の局所projectionと、同callerを用いたD2新closed component1件/新診断2件の先固定期待。製品runtime/全TraceAnalysisの実評価は行わない。",
+        "scope": "合成raw caller12件のtyped局所assertionと、同callerを用いたD2新closed component1件/D2由来の新診断2件の部分列期待。製品runtime/全TraceAnalysisの実評価は行わない。",
         "source_basis": [
           {
             "path": "docs/helix-os/L3-requirements/functional-requirements.json",
@@ -51750,48 +51750,108 @@
               }
             ],
             "input_canonical_sha256": "2217e19c0ddd478fb94d248ce883e149cb0a2c2ae361d5d75f696f2d2acf86a6",
-            "expected_partial_recipe": {
-              "relation_state": "corresponding",
-              "original_condition": false,
-              "original_condition_state": "corresponding",
-              "conditional_satisfied": false,
-              "condition_pair_value": {
-                "presence": "present",
-                "value": [
-                  {
-                    "condition_ref": {
-                      "identity": "condition-1",
-                      "owner": "core-owner",
-                      "revision": "rev-A",
-                      "scope": {
-                        "environment": "SYNTHETIC-E",
-                        "product": "SYNTHETIC-P",
-                        "tenant": "SYNTHETIC-T"
-                      },
-                      "sha256": null,
-                      "source_locator": null
-                    },
-                    "condition_value": {
-                      "minimum": 2,
-                      "unit": "items"
-                    }
-                  }
-                ]
+            "expected_partial_recipe": [
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/correspondence_resolution_state",
+                "presence": "supplied",
+                "value": "unique"
               },
-              "obligation_correspondence_for_D2": "missing",
-              "native_states_preserved": {
-                "$copy": {
-                  "root": "case_input",
-                  "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/condition_correspondence_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/condition_relations/0/relation_content_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/condition_relations/0/native_original_condition",
+                "presence": "supplied",
+                "value": false
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/condition_relations/0/original_condition_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/raw_condition_pairs",
+                "presence": "supplied",
+                "value": {
+                  "presence": "present",
+                  "value": [
+                    {
+                      "condition_ref": {
+                        "identity": "condition-1",
+                        "owner": "core-owner",
+                        "revision": "rev-A",
+                        "scope": {
+                          "environment": "SYNTHETIC-E",
+                          "product": "SYNTHETIC-P",
+                          "tenant": "SYNTHETIC-T"
+                        },
+                        "sha256": null,
+                        "source_locator": null
+                      },
+                      "condition_value": {
+                        "minimum": 2,
+                        "unit": "items"
+                      }
+                    }
+                  ]
                 }
               },
-              "OS_new_judgment_count": 0,
-              "effects": [],
-              "authority_generated": false
-            },
-            "expected_partial_canonical_sha256": "6cfa7a8bf54c2ff93007cdf814c468adcb9b956dab3451c9570481fd033d9c83",
-            "comparison_scope": "局所projection。新component全member/全TraceFinding[]/RecordTraceAnalysisのwhole期待ではない。",
-            "execution_state": "not_executed"
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/obligation_occurrences/0/assignment_presence_state",
+                "presence": "supplied",
+                "value": "missing"
+              },
+              {
+                "root": "F04RecordObservation",
+                "pointer": "/OS_new_judgment_count",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/effects",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/authority_generated",
+                "presence": "supplied",
+                "value": false
+              }
+            ],
+            "expected_partial_canonical_sha256": "78306095299d2bdc0ba4d24e89d12b8d7f24d6324ce1eed7b6ed18855511001c",
+            "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
+            "execution_state": "not_executed",
+            "retained_input_checks": [
+              {
+                "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+                  }
+                }
+              }
+            ],
+            "preservation_invariants": [
+              "原条件/義務state/NA/完了の新裁定やRef cast/dedupを行わない。旧normal/prefixは本partialから全値生成しない。"
+            ]
           },
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-02",
@@ -51830,23 +51890,67 @@
               }
             ],
             "input_canonical_sha256": "f4a31c5f0fa5f9f7a844bff92d8c5f9c754d38cade0a4966d753175673e68514",
-            "expected_partial_recipe": {
-              "relation_state": "missing",
-              "original_native_boolean_preserved": false,
-              "inferred_boolean": "not_created",
-              "native_states_preserved": {
-                "$copy": {
-                  "root": "case_input",
-                  "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+            "expected_partial_recipe": [
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/correspondence_resolution_state",
+                "presence": "supplied",
+                "value": "missing"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/condition_correspondence_state",
+                "presence": "supplied",
+                "value": "missing"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/condition_relations",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "F04RecordObservation",
+                "pointer": "/OS_new_judgment_count",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/effects",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/authority_generated",
+                "presence": "supplied",
+                "value": false
+              }
+            ],
+            "expected_partial_canonical_sha256": "b9ff2917c23fe181f70f68f0d11de4bdb723feece1e3748b465fc6c09807721c",
+            "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
+            "execution_state": "not_executed",
+            "retained_input_checks": [
+              {
+                "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+                  }
                 }
               },
-              "OS_new_judgment_count": 0,
-              "effects": [],
-              "authority_generated": false
-            },
-            "expected_partial_canonical_sha256": "b0b8a3af1254a859b13b57e064b372362aae651736d65064fbb7100b19b9fb78",
-            "comparison_scope": "局所projection。新component全member/全TraceFinding[]/RecordTraceAnalysisのwhole期待ではない。",
-            "execution_state": "not_executed"
+              {
+                "pointer": "/record_trace_input/sources/0/decoded_records/0/payload/core_outputs/1/original_condition",
+                "presence": "supplied",
+                "value": false
+              }
+            ],
+            "preservation_invariants": [
+              "原条件/義務state/NA/完了の新裁定やRef cast/dedupを行わない。旧normal/prefixは本partialから全値生成しない。"
+            ]
           },
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-03",
@@ -51885,23 +51989,75 @@
               }
             ],
             "input_canonical_sha256": "3b8db44c8c680d68964be2e693467e58db8a5b74ce45acb0b6e33a617f67043a",
-            "expected_partial_recipe": {
-              "relation_state": "conflict",
-              "native_original_condition_preserved": false,
-              "candidate_native_comparison": "unchanged",
-              "native_states_preserved": {
-                "$copy": {
-                  "root": "case_input",
-                  "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
-                }
+            "expected_partial_recipe": [
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/correspondence_resolution_state",
+                "presence": "supplied",
+                "value": "unique"
               },
-              "OS_new_judgment_count": 0,
-              "effects": [],
-              "authority_generated": false
-            },
-            "expected_partial_canonical_sha256": "2d69c4d3a30f2b32b1f685435db28f74a7a84aa1b676e533d437af6f2dcc7fd8",
-            "comparison_scope": "局所projection。新component全member/全TraceFinding[]/RecordTraceAnalysisのwhole期待ではない。",
-            "execution_state": "not_executed"
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/condition_correspondence_state",
+                "presence": "supplied",
+                "value": "conflict"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/condition_relations/0/relation_content_state",
+                "presence": "supplied",
+                "value": "conflict"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/condition_relations/0/native_original_condition",
+                "presence": "supplied",
+                "value": false
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/condition_relations/0/original_condition_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04RecordObservation",
+                "pointer": "/OS_new_judgment_count",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/effects",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/authority_generated",
+                "presence": "supplied",
+                "value": false
+              }
+            ],
+            "expected_partial_canonical_sha256": "ec1ada6abd823db588de6c51caa66b4cbdb451a2acee006ea7925c5f76b4d893",
+            "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
+            "execution_state": "not_executed",
+            "retained_input_checks": [
+              {
+                "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+                  }
+                }
+              }
+            ],
+            "preservation_invariants": [
+              "原対応mirrorの相反で独立した既存fn17 candidate→native比較や原prefixを消去/成功化しない。具体prefix全値は未固定。",
+              "原条件/義務state/NA/完了の新裁定やRef cast/dedupを行わない。旧normal/prefixは本partialから全値生成しない。"
+            ]
           },
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-04",
@@ -51940,25 +52096,73 @@
               }
             ],
             "input_canonical_sha256": "4cf7d0b54b87b7fdb52d6461a1bca341df0089c4c816c2242432085c8d73a0df",
-            "expected_partial_recipe": {
-              "relation_content_state": "corresponding",
-              "original_condition": null,
-              "original_condition_state": "unknown",
-              "derived_false_or_NA": "not_created",
-              "computed_disposition_preserved": "unresolved",
-              "native_states_preserved": {
-                "$copy": {
-                  "root": "case_input",
-                  "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+            "expected_partial_recipe": [
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/3/condition_relations/0/relation_content_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/3/condition_relations/0/native_original_condition",
+                "presence": "supplied",
+                "value": null
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/3/condition_relations/0/original_condition_state",
+                "presence": "supplied",
+                "value": "unknown"
+              },
+              {
+                "root": "F04RecordObservation",
+                "pointer": "/source_projection_join/records/3/resolved_core_row/computed_disposition",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/2/decoded_records/0/payload/rows/3/computed_disposition"
+                  }
                 }
               },
-              "OS_new_judgment_count": 0,
-              "effects": [],
-              "authority_generated": false
-            },
-            "expected_partial_canonical_sha256": "c493c5981ade8bd822cc9ed7b1abdbf40d688238c33ec48c59e4c52f46c71d60",
-            "comparison_scope": "局所projection。新component全member/全TraceFinding[]/RecordTraceAnalysisのwhole期待ではない。",
-            "execution_state": "not_executed"
+              {
+                "root": "F04RecordObservation",
+                "pointer": "/OS_new_judgment_count",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/effects",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/authority_generated",
+                "presence": "supplied",
+                "value": false
+              }
+            ],
+            "expected_partial_canonical_sha256": "812fa63119c2d467fb4c49f57c8840844d553819dc6284882b40abd860343cad",
+            "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
+            "execution_state": "not_executed",
+            "retained_input_checks": [
+              {
+                "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+                  }
+                }
+              }
+            ],
+            "preservation_invariants": [
+              "原条件/義務state/NA/完了の新裁定やRef cast/dedupを行わない。旧normal/prefixは本partialから全値生成しない。"
+            ]
           },
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-05",
@@ -51997,17 +52201,72 @@
               }
             ],
             "input_canonical_sha256": "01b7650591949a8328665d3e900a7f0336f03f75d8f2900782b7de7d39e5e188",
-            "expected_partial_recipe": {
-              "core_occurrence_indices": [
-                0,
-                1
-              ],
-              "assignment_states": [
-                "corresponding",
-                "corresponding"
-              ],
-              "resolved_OS_ref": [
-                {
+            "expected_partial_recipe": [
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/core_occurrence_index",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignment_presence_state",
+                "presence": "supplied",
+                "value": "supplied"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/core_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_output_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_state_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/core_occurrence_index",
+                "presence": "supplied",
+                "value": 1
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignment_presence_state",
+                "presence": "supplied",
+                "value": "supplied"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/core_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_output_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_state_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_obligation_ref",
+                "presence": "supplied",
+                "value": {
                   "identity": "U1",
                   "owner": "OS-original-owner",
                   "revision": "u1",
@@ -52016,37 +52275,72 @@
                     "project": "P",
                     "tenant": "synthetic-T"
                   }
-                },
-                {
-                  "identity": "U1",
-                  "owner": "OS-original-owner",
-                  "revision": "u1",
-                  "scope": {
-                    "environment": "synthetic-test",
-                    "project": "P",
-                    "tenant": "synthetic-T"
-                  }
-                }
-              ],
-              "resolved_OS_state": [
-                "not_started",
-                "not_started"
-              ],
-              "deduplication": "not_performed",
-              "completion_generated": false,
-              "native_states_preserved": {
-                "$copy": {
-                  "root": "case_input",
-                  "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
                 }
               },
-              "OS_new_judgment_count": 0,
-              "effects": [],
-              "authority_generated": false
-            },
-            "expected_partial_canonical_sha256": "b30b138743687fac702dcf56e3b8208177a1ccbef2cc9b9132e20dab500a1232",
-            "comparison_scope": "局所projection。新component全member/全TraceFinding[]/RecordTraceAnalysisのwhole期待ではない。",
-            "execution_state": "not_executed"
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_original_state",
+                "presence": "supplied",
+                "value": "not_started"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_obligation_ref",
+                "presence": "supplied",
+                "value": {
+                  "identity": "U1",
+                  "owner": "OS-original-owner",
+                  "revision": "u1",
+                  "scope": {
+                    "environment": "synthetic-test",
+                    "project": "P",
+                    "tenant": "synthetic-T"
+                  }
+                }
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_original_state",
+                "presence": "supplied",
+                "value": "not_started"
+              },
+              {
+                "root": "F04RecordObservation",
+                "pointer": "/OS_new_judgment_count",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/effects",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/authority_generated",
+                "presence": "supplied",
+                "value": false
+              }
+            ],
+            "expected_partial_canonical_sha256": "2a1780ef50c0cec542416d95c26d7c3db27c69cf31bf54de9b78d2f10188b773",
+            "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
+            "execution_state": "not_executed",
+            "retained_input_checks": [
+              {
+                "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+                  }
+                }
+              }
+            ],
+            "preservation_invariants": [
+              "原条件/義務state/NA/完了の新裁定やRef cast/dedupを行わない。旧normal/prefixは本partialから全値生成しない。"
+            ]
           },
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-06",
@@ -52085,30 +52379,109 @@
               }
             ],
             "input_canonical_sha256": "4fce18f7b73d29cf55f018a5f99647d5ef66e1e27d03ae31ad31469551bc0f16",
-            "expected_partial_recipe": {
-              "core_occurrence_indices": [
-                0,
-                1
-              ],
-              "assignment_states": [
-                "corresponding",
-                "missing"
-              ],
-              "missing_CORE_pointer": "/rows/0/computed_obligation_refs/value/1",
-              "first_state_preserved": "not_started",
-              "native_states_preserved": {
-                "$copy": {
-                  "root": "case_input",
-                  "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+            "expected_partial_recipe": [
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/core_occurrence_index",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignment_presence_state",
+                "presence": "supplied",
+                "value": "supplied"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/core_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_output_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_state_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/core_occurrence_index",
+                "presence": "supplied",
+                "value": 1
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignment_presence_state",
+                "presence": "supplied",
+                "value": "missing"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/core_raw_ref",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/2/decoded_records/0/payload/rows/0/computed_obligation_refs/value/1"
+                  }
                 }
               },
-              "OS_new_judgment_count": 0,
-              "effects": [],
-              "authority_generated": false
-            },
-            "expected_partial_canonical_sha256": "385a6475ea0b3201336bcfde2e4054974c793eb967a63609abe01cc9aa44f890",
-            "comparison_scope": "局所projection。新component全member/全TraceFinding[]/RecordTraceAnalysisのwhole期待ではない。",
-            "execution_state": "not_executed"
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_original_state",
+                "presence": "supplied",
+                "value": "not_started"
+              },
+              {
+                "root": "F04RecordObservation",
+                "pointer": "/OS_new_judgment_count",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/effects",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/authority_generated",
+                "presence": "supplied",
+                "value": false
+              }
+            ],
+            "expected_partial_canonical_sha256": "c98661f034bcc68a5b24bc8468854077d49355f377ca2234b1412b27a2c3fd6e",
+            "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
+            "execution_state": "not_executed",
+            "retained_input_checks": [
+              {
+                "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+                  }
+                }
+              }
+            ],
+            "preservation_invariants": [
+              "原条件/義務state/NA/完了の新裁定やRef cast/dedupを行わない。旧normal/prefixは本partialから全値生成しない。"
+            ]
           },
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-07",
@@ -52147,30 +52520,132 @@
               }
             ],
             "input_canonical_sha256": "f035e658486edeb7a3e3ea96bbd751cb8ad043dccc1dcdafa0912c5b81a3fd7a",
-            "expected_partial_recipe": {
-              "core_occurrence_indices": [
-                0,
-                1
-              ],
-              "assignment_states": [
-                "corresponding",
-                "conflict"
-              ],
-              "second_native_state_preserved": "not_started",
-              "Ref_cast": "not_performed",
-              "native_states_preserved": {
-                "$copy": {
-                  "root": "case_input",
-                  "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+            "expected_partial_recipe": [
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/core_occurrence_index",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignment_presence_state",
+                "presence": "supplied",
+                "value": "supplied"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/core_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_output_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_state_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/core_occurrence_index",
+                "presence": "supplied",
+                "value": 1
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignment_presence_state",
+                "presence": "supplied",
+                "value": "supplied"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/core_ref_state",
+                "presence": "supplied",
+                "value": "conflict"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_output_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_state_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/core_raw_ref",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/2/decoded_records/0/payload/rows/0/computed_obligation_refs/value/1"
+                  }
                 }
               },
-              "OS_new_judgment_count": 0,
-              "effects": [],
-              "authority_generated": false
-            },
-            "expected_partial_canonical_sha256": "cacf5b915f075d7df102cc33b6d4b3cb03d80747ab84a80a3fd33e1bcb4d4e88",
-            "comparison_scope": "局所projection。新component全member/全TraceFinding[]/RecordTraceAnalysisのwhole期待ではない。",
-            "execution_state": "not_executed"
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_obligation_ref",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states/0/ref"
+                  }
+                }
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_original_state",
+                "presence": "supplied",
+                "value": "not_started"
+              },
+              {
+                "root": "F04RecordObservation",
+                "pointer": "/OS_new_judgment_count",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/effects",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/authority_generated",
+                "presence": "supplied",
+                "value": false
+              }
+            ],
+            "expected_partial_canonical_sha256": "e85e1d0c71ff425a3ce0260476d905c3cbf2a4cf4d0f12d7f1d4a09fc2236c27",
+            "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
+            "execution_state": "not_executed",
+            "retained_input_checks": [
+              {
+                "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+                  }
+                }
+              }
+            ],
+            "preservation_invariants": [
+              "原条件/義務state/NA/完了の新裁定やRef cast/dedupを行わない。旧normal/prefixは本partialから全値生成しない。"
+            ]
           },
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-08",
@@ -52209,27 +52684,120 @@
               }
             ],
             "input_canonical_sha256": "2328009519d75c93baf55004afae3c780d609da436b74e88104b899aae753aec",
-            "expected_partial_recipe": {
-              "assignment_states": [
-                "corresponding",
-                "missing"
-              ],
-              "missing_target": "native_state.payload_pointer",
-              "state_generated": "not_created",
-              "CORE_two_occurrences_preserved": true,
-              "native_states_preserved": {
-                "$copy": {
-                  "root": "case_input",
-                  "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
-                }
+            "expected_partial_recipe": [
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/core_occurrence_index",
+                "presence": "supplied",
+                "value": 0
               },
-              "OS_new_judgment_count": 0,
-              "effects": [],
-              "authority_generated": false
-            },
-            "expected_partial_canonical_sha256": "05ce6d8d8c82a16406acf40aaa1465ca157769ed6c87423e862a6be87207787f",
-            "comparison_scope": "局所projection。新component全member/全TraceFinding[]/RecordTraceAnalysisのwhole期待ではない。",
-            "execution_state": "not_executed"
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignment_presence_state",
+                "presence": "supplied",
+                "value": "supplied"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/core_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_output_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_state_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/core_occurrence_index",
+                "presence": "supplied",
+                "value": 1
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignment_presence_state",
+                "presence": "supplied",
+                "value": "supplied"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/core_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_output_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_state_ref_state",
+                "presence": "supplied",
+                "value": "missing"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_state_locator/payload_pointer",
+                "presence": "supplied",
+                "value": "/obligation_original_states/99"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_original_state",
+                "presence": "absent"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_raw_item",
+                "presence": "absent"
+              },
+              {
+                "root": "F04RecordObservation",
+                "pointer": "/OS_new_judgment_count",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/effects",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/authority_generated",
+                "presence": "supplied",
+                "value": false
+              }
+            ],
+            "expected_partial_canonical_sha256": "822383261b257bcec63b2ebc2ed999018c3dbef6c98aed762d8cfedf2c820c52",
+            "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
+            "execution_state": "not_executed",
+            "retained_input_checks": [
+              {
+                "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+                  }
+                }
+              }
+            ],
+            "preservation_invariants": [
+              "原条件/義務state/NA/完了の新裁定やRef cast/dedupを行わない。旧normal/prefixは本partialから全値生成しない。"
+            ]
           },
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-09",
@@ -52308,24 +52876,63 @@
               }
             ],
             "input_canonical_sha256": "1fcbb92509ec490df5f3d73140392f53ee29fc90dc023c211a5869526987fa02",
-            "expected_partial_recipe": {
-              "native_F04_comparison_state": "conflict",
-              "mapped_original_state": "not_started",
-              "candidate_state": "completed",
-              "source_projection_carrier_comparison_does_not_discharge": true,
-              "native_states_preserved": {
-                "$copy": {
-                  "root": "case_input",
-                  "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
-                }
+            "expected_partial_recipe": [
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_original_state",
+                "presence": "supplied",
+                "value": "not_started"
               },
-              "OS_new_judgment_count": 0,
-              "effects": [],
-              "authority_generated": false
-            },
-            "expected_partial_canonical_sha256": "29864843cd61f197755e93c06018902dab3d5add6c07b7d9de0b77fc9dc9ee88",
-            "comparison_scope": "局所projection。新component全member/全TraceFinding[]/RecordTraceAnalysisのwhole期待ではない。",
-            "execution_state": "not_executed"
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_original_state",
+                "presence": "supplied",
+                "value": "not_started"
+              },
+              {
+                "root": "F04RecordObservation",
+                "pointer": "/unfinished_obligation_records/0/state",
+                "presence": "supplied",
+                "value": "completed"
+              },
+              {
+                "root": "F04RecordObservation",
+                "pointer": "/OS_new_judgment_count",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/effects",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/authority_generated",
+                "presence": "supplied",
+                "value": false
+              }
+            ],
+            "expected_partial_canonical_sha256": "f5b5018c4881bd54c4030129a9ff814820f8cdc052d1f80bdb2434e799e08bfc",
+            "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
+            "execution_state": "not_executed",
+            "retained_input_checks": [
+              {
+                "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+                  }
+                }
+              }
+            ],
+            "preservation_invariants": [
+              "candidate completedとnative not_startedの既知相反を原fn17比較に保持する。join/OS mirrorの一致や新原対応は当該比較を代替しない。具体prefix全code/path/全配列は未固定。",
+              "原条件/義務state/NA/完了の新裁定やRef cast/dedupを行わない。旧normal/prefixは本partialから全値生成しない。"
+            ]
           },
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-10",
@@ -52368,24 +52975,70 @@
               }
             ],
             "input_canonical_sha256": "0b752098475088ba5d4074d6c3861e55df8b53519af0b2cae893e9578cdea0ec",
-            "expected_partial_recipe": {
-              "native_OS_target_states": [
-                "unknown",
-                "unknown"
-              ],
-              "trusted_relation_retained": true,
-              "native_CORE_condition_comparison": "independent_and_preserved",
-              "original_OS_raw_states_retained_in_source": {
-                "$copy": {
-                  "root": "case_input",
-                  "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
-                }
+            "expected_partial_recipe": [
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_state_ref_state",
+                "presence": "supplied",
+                "value": "unknown"
               },
-              "state_generated": "not_created"
-            },
-            "expected_partial_canonical_sha256": "c15c60f86d3108898b718970782c1d01ee041b5a48569d771127c7dfad580986",
-            "comparison_scope": "局所projection。新component全member/全TraceFinding[]/RecordTraceAnalysisのwhole期待ではない。",
-            "execution_state": "not_executed"
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_state_ref_state",
+                "presence": "supplied",
+                "value": "unknown"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_original_state",
+                "presence": "absent"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_original_state",
+                "presence": "absent"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/correspondence_record_candidates/0",
+                "presence": "supplied",
+                "value": {
+                  "source_occurrence_index": 5,
+                  "source_ref": {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/record_trace_input/sources/5/source_ref"
+                    }
+                  },
+                  "record_index": 0,
+                  "record": {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/record_trace_input/sources/5/decoded_records/0"
+                    }
+                  }
+                }
+              }
+            ],
+            "expected_partial_canonical_sha256": "1569fc33e99fc743ec881084e7d261daf4193bd28face1d3d0562787d4fcf1a5",
+            "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
+            "execution_state": "not_executed",
+            "retained_input_checks": [
+              {
+                "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+                  }
+                }
+              }
+            ],
+            "preservation_invariants": [
+              "独立したnative CORE原boolean source/資格を保持し、native OS未資格を別channelの失効へ連鎖しない。",
+              "原条件/義務state/NA/完了の新裁定やRef cast/dedupを行わない。旧normal/prefixは本partialから全値生成しない。"
+            ]
           },
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-11",
@@ -52414,24 +53067,75 @@
               }
             ],
             "input_canonical_sha256": "b49bd2ba4e56a8a709360e471579d11a9e7d7ba2ca932f6c71a4e83a1b716c1a",
-            "expected_partial_recipe": {
-              "qualified_relation_match_count": 0,
-              "relation_state": "missing",
-              "new_native_lookup_via_unqualified_payload": "not_performed",
-              "native_F04_comparison": "independent_and_preserved",
-              "native_states_preserved": {
-                "$copy": {
-                  "root": "case_input",
-                  "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
-                }
+            "expected_partial_recipe": [
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/correspondence_record_candidates",
+                "presence": "supplied",
+                "value": []
               },
-              "OS_new_judgment_count": 0,
-              "effects": [],
-              "authority_generated": false
-            },
-            "expected_partial_canonical_sha256": "38e664ecf8c79cb99151e6de4b304984604497dbcfd87a447ac3fd9e66543846",
-            "comparison_scope": "局所projection。新component全member/全TraceFinding[]/RecordTraceAnalysisのwhole期待ではない。",
-            "execution_state": "not_executed"
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/correspondence_resolution_state",
+                "presence": "supplied",
+                "value": "missing"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/condition_relations",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/obligation_occurrences/0/assignment_presence_state",
+                "presence": "supplied",
+                "value": "missing"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/obligation_occurrences/0/assignments",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "F04RecordObservation",
+                "pointer": "/OS_new_judgment_count",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/effects",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/authority_generated",
+                "presence": "supplied",
+                "value": false
+              }
+            ],
+            "expected_partial_canonical_sha256": "ddac752412a2bf7ac7477547f3991aa0af71c092f6988ab034c0fa2bccf9d200",
+            "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
+            "execution_state": "not_executed",
+            "retained_input_checks": [
+              {
+                "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+                  }
+                }
+              }
+            ],
+            "preservation_invariants": [
+              "未資格raw relationから新native locatorを採用せず、既存の独立native比較を維持する。",
+              "原条件/義務state/NA/完了の新裁定やRef cast/dedupを行わない。旧normal/prefixは本partialから全値生成しない。"
+            ]
           },
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-12",
@@ -52470,33 +53174,124 @@
               }
             ],
             "input_canonical_sha256": "39ecdccaf9165b5ecdb4f3ee5ba1739b8e74e3db1c8b39ec8cd8891c2749aa5c",
-            "expected_partial_recipe": {
-              "selected_D2_relation_state": "missing",
-              "D1_assignment_states": [
-                "corresponding",
-                "corresponding"
-              ],
-              "unrelated_relation_raw_retained": true,
-              "native_states_preserved": {
-                "$copy": {
-                  "root": "case_input",
-                  "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
-                }
+            "expected_partial_recipe": [
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/1/correspondence_resolution_state",
+                "presence": "supplied",
+                "value": "missing"
               },
-              "OS_new_judgment_count": 0,
-              "effects": [],
-              "authority_generated": false
-            },
-            "expected_partial_canonical_sha256": "c6c7dc91ff15554e6efd1f62bfdeb552d067bedc15cd35004f6b0367d384acc2",
-            "comparison_scope": "局所projection。新component全member/全TraceFinding[]/RecordTraceAnalysisのwhole期待ではない。",
-            "execution_state": "not_executed"
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/core_occurrence_index",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignment_presence_state",
+                "presence": "supplied",
+                "value": "supplied"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/core_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_output_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/0/assignments/0/native_state_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/core_occurrence_index",
+                "presence": "supplied",
+                "value": 1
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignment_presence_state",
+                "presence": "supplied",
+                "value": "supplied"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/core_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_output_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/0/obligation_occurrences/1/assignments/0/native_state_ref_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04RecordObservation",
+                "pointer": "/OS_new_judgment_count",
+                "presence": "supplied",
+                "value": 0
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/effects",
+                "presence": "supplied",
+                "value": []
+              },
+              {
+                "root": "RecordTraceAnalysis",
+                "pointer": "/authority_generated",
+                "presence": "supplied",
+                "value": false
+              }
+            ],
+            "expected_partial_canonical_sha256": "fd8d6b3e9df554f3c38c7a45598c8299f36fd066f9b962af38c97c0860abbfbb",
+            "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
+            "execution_state": "not_executed",
+            "retained_input_checks": [
+              {
+                "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states",
+                "presence": "supplied",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+                  }
+                }
+              }
+            ],
+            "preservation_invariants": [
+              "foreign output_refの原対応recordを親inputに保持し、selected D2候補へ入れない。D2不足をD1へ連鎖しない。",
+              "原条件/義務state/NA/完了の新裁定やRef cast/dedupを行わない。旧normal/prefixは本partialから全値生成しない。"
+            ]
           }
         ],
         "partial_projection_contract": {
-          "native_states_preserved": "元caller source[1]のraw3stateを保持する入力不変条件。newcomponentが全3stateを返す期待ではない。candidate completedを返す旧unfinished_obligation_recordsと原not_started配列を同一視しない。",
-          "assignment_states": "各controlの単独不成立を要約したprojection。新型のaggregate fieldではなくassignment_presence_state/core_ref_state/native_output_state/native_state_ref_stateの個別値へ写像する。",
-          "boolean_fields": "original_native_boolean_preserved=false等のfalseは元原boolean値であり、保存失敗flagではない。関係不在時にnew condition_relationsへbooleanを補完しない。D4 nullはsupplied(null)/unknownでありAbsent/falseではない。",
-          "existing_return_fields": "OS_new_judgment_count/effects/authority_generatedは既存F04/RecordTraceAnalysisの保持条件。newcomponentへ同名fieldを増やさず、全既存返却を固定済みともしない。"
+          "format": "各expected_partial_recipeはfixture assertion[]であり、製品返却recordではない。各assertionはclosed {root,pointer,presence,value?}。rootは明示した既存/新typed返却のroot、pointerはそこからのRFC6901。presence=suppliedではvalueを必須、presence=absentではvalueを省略する。未列挙field/配列全体を固定せずwholeを主張しない。",
+          "typed_roots": [
+            "F04OriginalCorrespondenceResult",
+            "F04RecordObservation",
+            "RecordTraceAnalysis"
+          ],
+          "new_component_paths": "F04OriginalCorrespondenceResult.recordsはselector元順。D1=records/0、D2=records/1、D4=records/3。native_original_condition=false/nullは原値であり、充足/NA/保存成功flagへ言い換えない。",
+          "input_retention": "retained_input_checksは原caller保存のassertionであり出力fieldでない。元3state raw配列をnewcomponent全3state返却としない。",
+          "preservation_invariants": "preservation_invariantsは既存native比較/旧prefix/非生成等の規範上の保持条件。散文sentinelを返却値として期待しない。具体的な既存prefix全code/path/全配列をここから生成しない。",
+          "typed_field_presence": "Field missingはpointer先keyがAbsent。supplied(null)/supplied(false)/supplied([])とは区別する。未資格native sourceのraw値をtyped native Fieldへ写さない。"
         },
         "D2_component_case": {
           "id": "HELIXOS-L9-002-F04-ORIGINAL-D2-COMPONENT-01",
@@ -52650,7 +53445,26 @@
             ]
           },
           "expected_record_canonical_sha256": "98364171bb43ab8f8e3f0ed6922fa80fe592b8d933a4343c1fd38eb491e9e391",
-          "expected_new_diagnostic_suffix_recipe": [
+          "same_final_observation_binding": {
+            "typed_root": "F04RecordObservation",
+            "component_pointer": "/source_original_correspondence/records/1",
+            "expected_component_recipe": {
+              "$copy": {
+                "root": "D2_component",
+                "pointer": ""
+              }
+            },
+            "new_finding_component_pointer": "/preserved_observation/source_original_correspondence/records/1",
+            "rule": "D2由来の2新findingは同じ最終F04観測を保持し、上記D2 component全14memberと一致する。当該2件は呼出し全体の新finding配列の部分列であり、全suffix/全診断数を固定しない。既存prefix内の過去観測は書換えない。他output/既存観測全memberをここから生成しない。"
+          },
+          "state_basis": [
+            "parent resolutionはunique。元condition-1に対し原対応mirrorはforeign-conditionなのでcondition対応だけconflict。",
+            "独立native original_condition=falseはsupplied/knownのまま。相反した条件対応をnative判定成功へ変換しない。",
+            "CORE obligation Bは原Ref6/index0を保持し、OR obligations memberはAbsentのためassignment missing/[]。U2/C1等への対応を捏造しない。"
+          ],
+          "scope": "新component全14memberと、当該D2に由来する新2診断のcode/axis/path/owner/source_refs/順序を固定する部分列期待。全呼出しのsuffixではなく、PARTIAL-03ではD4等の後続診断が存在し得る。全TraceFinding[]/最終F04観測全値/RecordTraceAnalysisは未固定。",
+          "execution_state": "not_executed",
+          "expected_D2_diagnostic_subsequence_recipe": [
             {
               "code": "core_source_condition_relation_conflict",
               "contract_ref": "HELIXOS-L5-002-F04",
@@ -52680,26 +53494,7 @@
               "backflow_owner": "OS-source-owner"
             }
           ],
-          "expected_new_diagnostic_suffix_canonical_sha256": "45c7e4a49f7470c6591fd3e203c4f665120f06ea48eb99487e4168d82574c5be",
-          "same_final_observation_binding": {
-            "typed_root": "F04RecordObservation",
-            "component_pointer": "/source_original_correspondence/records/1",
-            "expected_component_recipe": {
-              "$copy": {
-                "root": "D2_component",
-                "pointer": ""
-              }
-            },
-            "new_finding_component_pointer": "/preserved_observation/source_original_correspondence/records/1",
-            "rule": "2新findingは同じ最終F04観測を保持し、上記D2 component全14memberと一致する。既存prefix内の過去観測は書換えない。他output/既存観測全memberをここから生成しない。"
-          },
-          "state_basis": [
-            "parent resolutionはunique。元condition-1に対し原対応mirrorはforeign-conditionなのでcondition対応だけconflict。",
-            "独立native original_condition=falseはsupplied/knownのまま。相反した条件対応をnative判定成功へ変換しない。",
-            "CORE obligation Bは原Ref6/index0を保持し、OR obligations memberはAbsentのためassignment missing/[]。U2/C1等への対応を捏造しない。"
-          ],
-          "scope": "新component全14memberと新2診断code/axis/path/owner/source_refs/順序の期待。全TraceFinding[]/最終F04観測全値/RecordTraceAnalysisは未固定。",
-          "execution_state": "not_executed"
+          "expected_D2_diagnostic_subsequence_canonical_sha256": "45c7e4a49f7470c6591fd3e203c4f665120f06ea48eb99487e4168d82574c5be"
         },
         "counts": {
           "partial_case_count": 12,
@@ -52707,24 +53502,169 @@
           "source_packet_count": 13,
           "full_component_case_count": 1,
           "full_component_member_count": 14,
-          "new_diagnostic_suffix_count": 2,
-          "whole_RecordTraceAnalysis_case_count": 0
+          "whole_RecordTraceAnalysis_case_count": 0,
+          "D2_diagnostic_subsequence_count": 2
         },
         "preservation": "元normal/negative/旧source association/旧join25/既存member9wholeの入力・期待・prefix関係を変更しない。新kind/新fieldを既存codecが受理するとは主張しない。",
         "remaining": [
           "正式provider/caller/実原operation binding、新kindのL5/L8型/codec/fn0/14/17/18/返却への追随は未成立。",
-          "残11component全値、他selected output、最終F04観測全値、既存native prefixの詳細code/path/全配列、全TraceFinding[]/全RecordTraceAnalysisの新wholeは未固定。",
+          "残11component全値、他selected output、最終F04観測全値、既存native prefixの詳細code/path/全配列、全TraceFinding[]/全RecordTraceAnalysisの新wholeは未固定。D2新2診断は全呼出しsuffixでなく部分列。",
           "現source資格/意味evaluator/codec/runtime/CIの実行結果、全Presence/全型/全mutationの網羅を示さない。",
-          "原sourceの3state保持は入力rawと到達したedge値の範囲を区別する。新component全3state返却としない。"
+          "原sourceの3state保持は入力rawと到達したedge値の範囲を区別する。新component全3state返却としない。",
+          {
+            "unobserved_branches": [
+              "qualified exact header複数（valid/invalid domain混在を含む）によるambiguous/全候補保持/比較not_compared。",
+              "qualified raw header exactは1件だがfull domain closed decode失敗。unknown/local decode保持・semantic findingなし。fn0 dropとは区別。",
+              "core_row_locatorと既存unique qualified OS associationのtrusted locator相反。新原対応conflict・旧lookup/native独立。",
+              "obligations memberがpresent null。assignment collection unknownと未供給/emptyの区別。",
+              "CORE computed_condition_pairs/computed_obligation_refsのAbsent、present null、不正Presence/非array/不正itemという各collection分岐。",
+              "conditionがpresent []かつcomputed_disposition不明の場合のactivation unresolved/not_requestedの規範分岐。"
+            ],
+            "execution_state": "not_executed",
+            "coverage_limit": "新caller/期待/actualは追加していない。既存12の局所値/PresenceとD2部分列の範囲に限定する。"
+          }
         ],
         "execution_state": "not_executed",
         "authority_effect": "none",
         "current_normative_binding": {
           "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
           "pointer": "/contracts/5/source_original_correspondence",
-          "working_bytes_sha256": "2ea403ce3c258a11ed4bc5467f6003cae0616c0ed17c6a7b4d195afbdfb9e3e3",
+          "working_bytes_sha256": "f7fe6a25a1e69bfd54dfb6a4c02c3b6d23d6575e3d1dad5779873ee12beb7094",
           "binding_kind": "paired_current_file_bytes",
           "meaning": "同一候補pairの規範節を現L4 bytesへ結ぶ。元source_basisは固定git bytesの歴史参照として別保持し、現候補を当該git revisionの本文だと偽らない。"
+        },
+        "representation_correction_history": {
+          "basis": {
+            "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+            "revision": "c2c130c43082ecd11460c1a024c3df0b3794c88c",
+            "file_sha256": "625d05c976675542f738c367df93a93b07ad065089f7d84861057bc405dc4706"
+          },
+          "meaning": "局所projectionの非typed語/散文sentinelをtyped root/pointer/value/Presenceと原input保持条件へ写像する。元c2本文/旧hashを歴史参照として保持し、actualから期待を生成しない。",
+          "old_input_expected_whole_values_changed": false,
+          "whole_scope_change": {
+            "pointer": "/cases/5/selected_source_member_correspondence_oracles/expectation_rule",
+            "before": {
+              "input": "fixture_material_recipesを配列順に展開する。各nameは展開済みの同名rootとなり、recipe内$copyは先行rootだけを参照する。次にbase_input_recipeをこれらのrootで展開してbase_inputを得る。各case input_patchをそのbaseへ宣言順に適用する。source wire/hash/root許容は固定入力で、patch後に補完/再hash/再資格化しない。全recipe/materialはこのL9内にありscratchを参照しない。",
+              "roots": "各caseでlegacy_observation_recipe_templateとf04_observation_recipe_templateのそれぞれへobservation_recipe_patchを適用し、patch後case_inputだけをrootとして展開する。得たlegacy_observation/f04_observationとcase_inputをrootにexpected_complete_return_recipeを展開する。空pointerはroot全体。state/code/ownerはliteral期待で、copyは原値保存の表現だけ。",
+              "whole": "expected_complete_return_recipeはRecordTraceAnalysis全root/sections/F04 observation/findings/input_issues/effects/authority_generatedを固定する。expected_new_findingsは補助でありwholeの代替でない。",
+              "canonical_whole_hash": "本書内のinput/observation/完全返却recipeをexpectation_ruleの順に展開し、各caseのwhole_expectation_sha256へ照合する。canonical JSONはUTF-8、object keyをsort_keysで整列、separatorsはcomma/colon、ensure_ascii=falseとする。state/code/ownerのliteral期待を評価器出力で補完しない。検証根拠はこの自己完結した9recipeとhashであり、本書外の作業物を必須参照としない。"
+            },
+            "after": {
+              "input": "fixture_material_recipesを配列順に展開する。各nameは展開済みの同名rootとなり、recipe内$copyは先行rootだけを参照する。次にbase_input_recipeをこれらのrootで展開してbase_inputを得る。各case input_patchをそのbaseへ宣言順に適用する。source wire/hash/root許容は固定入力で、patch後に補完/再hash/再資格化しない。全recipe/materialはこのL9内にありscratchを参照しない。",
+              "roots": "各caseでlegacy_observation_recipe_templateとf04_observation_recipe_templateのそれぞれへobservation_recipe_patchを適用し、patch後case_inputだけをrootとして展開する。得たlegacy_observation/f04_observationとcase_inputをrootにexpected_complete_return_recipeを展開する。空pointerはroot全体。state/code/ownerはliteral期待で、copyは原値保存の表現だけ。",
+              "whole": "expected_complete_return_recipeはsource_original_correspondence導入前のRecordTraceAnalysis全root/sections/F04 observation/findings/input_issues/effects/authority_generatedを固定する。新source_original_correspondence fieldとそれに由来する新findingを含む導入後wholeではない。旧9期待の値/hashは歴史的範囲として保持し、新field/新finding込みのwholeは後続L5/L8で個別再導出する。expected_new_findingsは旧範囲の補助であり、当該旧wholeの代替でない。",
+              "canonical_whole_hash": "本書内のinput/observation/完全返却recipeをexpectation_ruleの順に展開し、各caseのwhole_expectation_sha256へ照合する。canonical JSONはUTF-8、object keyをsort_keysで整列、separatorsはcomma/colon、ensure_ascii=falseとする。state/code/ownerのliteral期待を評価器出力で補完しない。検証根拠はこの自己完結した9recipeとhashであり、本書外の作業物を必須参照としない。 このhashは上記の導入前範囲を表し、新規範下の追加field/findingを省略してもwholeが成立するという主張ではない。"
+            },
+            "reason": "新field/新finding導入前のwhole範囲を明示。旧9値/hashを保持し導入後wholeと称さない。"
+          },
+          "D2_diagnostic_change": {
+            "before_recipe_key": "expected_new_diagnostic_suffix_recipe",
+            "after_recipe_key": "expected_D2_diagnostic_subsequence_recipe",
+            "before_hash_key": "expected_new_diagnostic_suffix_canonical_sha256",
+            "after_hash_key": "expected_D2_diagnostic_subsequence_canonical_sha256",
+            "canonical_sha256": "45c7e4a49f7470c6591fd3e203c4f665120f06ea48eb99487e4168d82574c5be",
+            "values_changed": false,
+            "reason": "D2新2findingは全呼出しsuffixではなくD2由来の部分列。他output由来診断の後続を否定しない。"
+          },
+          "partial_changes": [
+            {
+              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-01",
+              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/0/expected_partial_recipe",
+              "old_expected_partial_canonical_sha256": "6cfa7a8bf54c2ff93007cdf814c468adcb9b956dab3451c9570481fd033d9c83",
+              "new_expected_partial_canonical_sha256": "78306095299d2bdc0ba4d24e89d12b8d7f24d6324ce1eed7b6ed18855511001c",
+              "input_canonical_sha256": "2217e19c0ddd478fb94d248ce883e149cb0a2c2ae361d5d75f696f2d2acf86a6",
+              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
+            },
+            {
+              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-02",
+              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/1/expected_partial_recipe",
+              "old_expected_partial_canonical_sha256": "b0b8a3af1254a859b13b57e064b372362aae651736d65064fbb7100b19b9fb78",
+              "new_expected_partial_canonical_sha256": "b9ff2917c23fe181f70f68f0d11de4bdb723feece1e3748b465fc6c09807721c",
+              "input_canonical_sha256": "f4a31c5f0fa5f9f7a844bff92d8c5f9c754d38cade0a4966d753175673e68514",
+              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
+            },
+            {
+              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-03",
+              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/2/expected_partial_recipe",
+              "old_expected_partial_canonical_sha256": "2d69c4d3a30f2b32b1f685435db28f74a7a84aa1b676e533d437af6f2dcc7fd8",
+              "new_expected_partial_canonical_sha256": "ec1ada6abd823db588de6c51caa66b4cbdb451a2acee006ea7925c5f76b4d893",
+              "input_canonical_sha256": "3b8db44c8c680d68964be2e693467e58db8a5b74ce45acb0b6e33a617f67043a",
+              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
+            },
+            {
+              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-04",
+              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/3/expected_partial_recipe",
+              "old_expected_partial_canonical_sha256": "c493c5981ade8bd822cc9ed7b1abdbf40d688238c33ec48c59e4c52f46c71d60",
+              "new_expected_partial_canonical_sha256": "812fa63119c2d467fb4c49f57c8840844d553819dc6284882b40abd860343cad",
+              "input_canonical_sha256": "4cf7d0b54b87b7fdb52d6461a1bca341df0089c4c816c2242432085c8d73a0df",
+              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
+            },
+            {
+              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-05",
+              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/4/expected_partial_recipe",
+              "old_expected_partial_canonical_sha256": "b30b138743687fac702dcf56e3b8208177a1ccbef2cc9b9132e20dab500a1232",
+              "new_expected_partial_canonical_sha256": "2a1780ef50c0cec542416d95c26d7c3db27c69cf31bf54de9b78d2f10188b773",
+              "input_canonical_sha256": "01b7650591949a8328665d3e900a7f0336f03f75d8f2900782b7de7d39e5e188",
+              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
+            },
+            {
+              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-06",
+              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/5/expected_partial_recipe",
+              "old_expected_partial_canonical_sha256": "385a6475ea0b3201336bcfde2e4054974c793eb967a63609abe01cc9aa44f890",
+              "new_expected_partial_canonical_sha256": "c98661f034bcc68a5b24bc8468854077d49355f377ca2234b1412b27a2c3fd6e",
+              "input_canonical_sha256": "4fce18f7b73d29cf55f018a5f99647d5ef66e1e27d03ae31ad31469551bc0f16",
+              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
+            },
+            {
+              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-07",
+              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/6/expected_partial_recipe",
+              "old_expected_partial_canonical_sha256": "cacf5b915f075d7df102cc33b6d4b3cb03d80747ab84a80a3fd33e1bcb4d4e88",
+              "new_expected_partial_canonical_sha256": "e85e1d0c71ff425a3ce0260476d905c3cbf2a4cf4d0f12d7f1d4a09fc2236c27",
+              "input_canonical_sha256": "f035e658486edeb7a3e3ea96bbd751cb8ad043dccc1dcdafa0912c5b81a3fd7a",
+              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
+            },
+            {
+              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-08",
+              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/7/expected_partial_recipe",
+              "old_expected_partial_canonical_sha256": "05ce6d8d8c82a16406acf40aaa1465ca157769ed6c87423e862a6be87207787f",
+              "new_expected_partial_canonical_sha256": "822383261b257bcec63b2ebc2ed999018c3dbef6c98aed762d8cfedf2c820c52",
+              "input_canonical_sha256": "2328009519d75c93baf55004afae3c780d609da436b74e88104b899aae753aec",
+              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
+            },
+            {
+              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-09",
+              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/8/expected_partial_recipe",
+              "old_expected_partial_canonical_sha256": "29864843cd61f197755e93c06018902dab3d5add6c07b7d9de0b77fc9dc9ee88",
+              "new_expected_partial_canonical_sha256": "f5b5018c4881bd54c4030129a9ff814820f8cdc052d1f80bdb2434e799e08bfc",
+              "input_canonical_sha256": "1fcbb92509ec490df5f3d73140392f53ee29fc90dc023c211a5869526987fa02",
+              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
+            },
+            {
+              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-10",
+              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/9/expected_partial_recipe",
+              "old_expected_partial_canonical_sha256": "c15c60f86d3108898b718970782c1d01ee041b5a48569d771127c7dfad580986",
+              "new_expected_partial_canonical_sha256": "1569fc33e99fc743ec881084e7d261daf4193bd28face1d3d0562787d4fcf1a5",
+              "input_canonical_sha256": "0b752098475088ba5d4074d6c3861e55df8b53519af0b2cae893e9578cdea0ec",
+              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
+            },
+            {
+              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-11",
+              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/10/expected_partial_recipe",
+              "old_expected_partial_canonical_sha256": "38e664ecf8c79cb99151e6de4b304984604497dbcfd87a447ac3fd9e66543846",
+              "new_expected_partial_canonical_sha256": "ddac752412a2bf7ac7477547f3991aa0af71c092f6988ab034c0fa2bccf9d200",
+              "input_canonical_sha256": "b49bd2ba4e56a8a709360e471579d11a9e7d7ba2ca932f6c71a4e83a1b716c1a",
+              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
+            },
+            {
+              "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-12",
+              "old_recipe_pointer": "/cases/5/source_original_correspondence_oracles/partial_cases/11/expected_partial_recipe",
+              "old_expected_partial_canonical_sha256": "c6c7dc91ff15554e6efd1f62bfdeb552d067bedc15cd35004f6b0367d384acc2",
+              "new_expected_partial_canonical_sha256": "fd8d6b3e9df554f3c38c7a45598c8299f36fd066f9b962af38c97c0860abbfbb",
+              "input_canonical_sha256": "39ecdccaf9165b5ecdb4f3ee5ba1739b8e74e3db1c8b39ec8cd8891c2749aa5c",
+              "mapping": "新typed assertionとretained_input_checks/preservation_invariantsへ役割別に写像。旧完全値は上記exact git pointerから再取得できる。"
+            }
+          ],
+          "actual_evaluator_executed": false
         }
       }
     },

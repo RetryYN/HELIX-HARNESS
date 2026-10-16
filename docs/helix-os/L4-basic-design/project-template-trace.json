@@ -1733,6 +1733,10 @@
               "obligations": "Field<JsonValue>"
             },
             "meaning": "新kind専用のwire carrier。4member以外を許可しない。既存OS002.CoreOutputAssociationの5memberとは別型。全structured domain viewの成功、native locator採用、資格成立を意味しない。"
+          },
+          "RFC6901": {
+            "json_kind": "string",
+            "meaning": "空文字列は指定root自身。非空は/で始まるJSON Pointerで、token内escapeは~0/~1のみ。URI fragmentではない。構文妥当性と、そのrootで対象を解決できるかは別に保持する。"
           }
         },
         "source_selection": {
@@ -2081,7 +2085,13 @@
             "native_raw": "validated_record_trace/input/sources/{native source occurrence index}/decoded_records/{source record index}/payload{payload_pointer}",
             "source_index_rule": "source/recordの原indexと完全Refを併せて確認する。qualified_records flat indexや絞込後の連番へ置換しない。",
             "unresolved_pointer_rule": "不在/型外のnative親へ架空の子pathを作らず、供給されたlocator source_ref/payload_pointerの実位置へ返す。",
-            "diagnostic_scope": "上記は2引数内部比較のValidatedRecordTrace/typed contextをrootとする所在。製品path/location権限ではない。"
+            "diagnostic_scope": "上記は2引数内部比較のValidatedRecordTrace/typed contextをrootとする所在。製品path/location権限ではない。",
+            "location_coordinate_systems": {
+              "locator_operands": "core_row_locator.row_pointerとnative locator.payload_pointerは、それぞれのOwnerRecord.payloadをrootとするRFC6901型。返却型にも同じ型を用いる。",
+              "new_raw_diagnostic_path": "本原対応diagnosticのtarget_pathはvalidated_record_trace/input/sources/{原source index}/decoded_records/{原record index}/payloadから始まる既存typed所在記法。root名を含む所在表示であり、文字列全体をpayload rootのRFC6901として実行しない。",
+              "existing_member_diagnostic_path": "既存四判定/NA member findingはvalidated_record_trace/qualified_records/{flat index}/payloadをrootとする所在表示を保持する。旧findingのpath/順/保存観測を書換えない。",
+              "occurrence_correspondence": "前者は親inputの原source/record出現、後者は資格処理後のflat record出現。後続詳細は資格処理時のsource occurrence/record indexと完全source_ref/subject_refの対応を保持し、両所在を同じ原出現へ結ぶ。同値値の先頭再検索やflat indexを原indexへ代入しない。具体typed decode/対応保持はL5/L8追随未成立。"
+            }
           },
           "order": [
             "既存通常F04 finding prefixを元値/順/重複/保存観測ごと保持する。",
@@ -2110,7 +2120,7 @@
                 "selected_output_ref": "OS Ref4",
                 "correspondence_resolution_state": "enum<not_compared|not_requested|unique|missing|ambiguous|unknown|conflict>",
                 "correspondence_record_candidates": "F04OriginalQualifiedOwnerRecordOccurrence[]（全候補/原順/重複）",
-                "core_row_locator": "Field<{projection_snapshot_ref:OS Ref4,row_pointer:string}>",
+                "core_row_locator": "Field<{projection_snapshot_ref:OS Ref4,row_pointer:RFC6901}>",
                 "raw_condition_pairs": "Field<CORE Presence<JsonValue>>",
                 "raw_obligation_refs": "Field<CORE Presence<JsonValue>>",
                 "condition_relations": "F04OriginalConditionObservation[]",
@@ -2439,7 +2449,9 @@
                     "$ref": "#/$defs/Ref"
                   },
                   "row_pointer": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "RFC6901 JSON Pointer。payload rootから解決する。構文と解決成否は別。",
+                    "pattern": "^(?:/(?:[^~]|~[01])*)*$"
                   }
                 },
                 "required": [
@@ -2915,8 +2927,19 @@
         "remaining": [
           "正式provider/caller/実原operationとのbindingは未成立。実provider生成/資格/transport/custody/runtime/CIを本基本追補から認定しない。",
           "新kind/SourceSectionValue selector/独立native locator/閉じた出力とfn0/14/17/18のL5/L8追随は未導出。current detail bytesは新kindを受理すると主張しない。",
-          "12期待は局所projection、全値期待はD2新component1件と新2診断suffixの範囲のみ。残11component全値、最終F04観測全値、全TraceFinding[]/全RecordTraceAnalysisは未固定・未評価。",
-          "原条件を実評価する演算子、CORE全RawValueの適用意味、全source関係/全axis mapping/全領域を閉じた主張ではない。新gate/全mutation零条件を設けない。"
+          "12期待はtyped局所assertion、全値期待はD2新component1件とD2由来の新2診断部分列の範囲のみ。残11component全値、最終F04観測全値、全TraceFinding[]/全RecordTraceAnalysisは未固定・未評価。",
+          "原条件を実評価する演算子、CORE全RawValueの適用意味、全source関係/全axis mapping/全領域を閉じた主張ではない。新gate/全mutation零条件を設けない。",
+          {
+            "unobserved_L9_branches": [
+              "qualified exact header複数（valid/invalid domain混在を含む）によるambiguous/全候補保持/比較not_compared。",
+              "qualified raw header exactは1件だがfull domain closed decode失敗。unknown/local decode保持・semantic findingなし。fn0 dropとは区別。",
+              "core_row_locatorと既存unique qualified OS associationのtrusted locator相反。新原対応conflict・旧lookup/native独立。",
+              "obligations memberがpresent null。assignment collection unknownと未供給/emptyの区別。",
+              "CORE computed_condition_pairs/computed_obligation_refsのAbsent、present null、不正Presence/非array/不正itemという各collection分岐。",
+              "conditionがpresent []かつcomputed_disposition不明の場合のactivation unresolved/not_requestedの規範分岐。"
+            ],
+            "limit": "既存12局所対照/D2全値は上記分岐を識別しない。全case追加/全mutation零の新gateではなく、現時点の未対照範囲として保持する。"
+          }
         ]
       }
     },
