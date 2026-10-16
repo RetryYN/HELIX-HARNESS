@@ -761,7 +761,7 @@
         {
           "name": "denominator_exclusion_reasons",
           "type": "FieldValue<list<PositionExclusionReason>>",
-          "meaning": "eligible母集団から実分母へ含めない各position IDとsource-bound reason。numerator exclusion_reasonとは独立した意味carrier。Absentは縮小分母を正当化しない。"
+          "meaning": "eligible母集団から実分母へ含めない各position IDとsource-bound reason。numerator exclusion_reasonとは独立した意味carrier。Absentは縮小分母を正当化しない。explicit_nullはJSON nullの存在を保つ状態であり、既知の空理由集合ではない。元eligibleと実分母が同じでも、reason carrierがexplicit_nullなら既存field_issue規則によりmissing_evidenceを残し、summaryを出さない。source/caller双方が同じnullを持つ場合はsource差分ではない。この説明は既存FieldValue/algorithmの明示で、L3/L4の要求意味や新しい拒否条件を加えない。"
         }
       ],
       "meaning": "reconstruct_metricの別引数operation_inputにcallerが明示供給する操作。元式のlocatorとrule revisionが一致することは必要な内容bindingであり、元英語式の自動解析・意味の完全同値・source資格を証明しない。eligible集合と選択集合は別で、除外許容と対象理由がない縮小を許さない。 value_bindingsはposition_idをbinding identityとして意味比較し、配列順から対応を導かない。各position_idのvalue・locatorと重複件数は保持する。raw source arrayの順序は証拠として保持し、数値位置順など別途orderedな意味を集合化しない。"
