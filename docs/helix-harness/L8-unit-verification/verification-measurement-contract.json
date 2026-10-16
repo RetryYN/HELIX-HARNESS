@@ -1360,7 +1360,7 @@
       "signature": "assess_b01(input: Input_B01, context: FixtureCaseContext) -> Assessment_B01"
     }
   ],
-  "case_count": 138,
+  "case_count": 139,
   "projection_boundary": "source_calculation_projectionは原L9 expected_materialに存在するfieldの限定投影。local_candidate_diagnosticはL4由来の補足findingとして分離し、L9原期待へ追加しない。両者ともnot_executedで実測・資格を示さない。",
   "cases": [
     {
@@ -21737,6 +21737,186 @@
         "effects",
         "unaffected_Q"
       ]
+    },
+    {
+      "id": "H034-F09-SELECTED-NO-REASON",
+      "root_id": "HARNESS-L9-034-F09",
+      "requirement_ref": "HARNESS-L3-034-F09",
+      "system_oracle_ref": "HARNESS-L10-034-F09",
+      "l4_ref": "HARNESS-L4-034-F09",
+      "source_packet": {
+        "ref": {
+          "identity": "SOURCE-H034-F09-SELECTED-NO-REASON",
+          "revision": "fixture-content-c7828f1f58fa16bf4c9863c3e6fa1447cf3f8523212b869bde830a841e630e86",
+          "scope": "PRODUCT-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_utf8": "{\"actual_verification_observed\":false,\"all_ticket_fixed_CI\":false,\"method_installation_only\":true,\"methods\":{\"crash_recovery\":{\"reason\":\"risk P requires crash_recovery\",\"selected\":true},\"differential\":{\"reason\":\"risk P requires differential\",\"selected\":true},\"fault_injection\":{\"reason\":null,\"selected\":true},\"fuzz\":{\"reason\":\"risk P requires fuzz\",\"selected\":true},\"model_based_state_machine\":{\"reason\":\"risk P requires model_based_state_machine\",\"selected\":true},\"mutation\":{\"reason\":\"risk P requires mutation\",\"selected\":true},\"property_based\":{\"reason\":\"risk P requires property_based\",\"selected\":true},\"race\":{\"reason\":\"risk P requires race\",\"selected\":true},\"snapshot_compatibility\":{\"reason\":\"risk P requires snapshot_compatibility\",\"selected\":true},\"soak\":{\"reason\":\"risk P requires soak\",\"selected\":true}},\"risk\":\"state_boundary_change\",\"selected_boundary\":\"projection\",\"ticket\":\"TICKET-P\"}",
+        "raw_utf8_pointer": "/verification_obligations/8/concrete_cases/12/independent_source_packet/raw_utf8",
+        "raw_utf8_sha256": "c7828f1f58fa16bf4c9863c3e6fa1447cf3f8523212b869bde830a841e630e86",
+        "parsed_source_canonical_sha256": "c7828f1f58fa16bf4c9863c3e6fa1447cf3f8523212b869bde830a841e630e86",
+        "logical_input_type": "Input_F09",
+        "execution_state": "not_executed"
+      },
+      "typed_arguments": {
+        "input": {
+          "actual_verification_observed": false,
+          "all_ticket_fixed_CI": false,
+          "method_installation_only": true,
+          "methods": {
+            "crash_recovery": {
+              "reason": "risk P requires crash_recovery",
+              "selected": true
+            },
+            "differential": {
+              "reason": "risk P requires differential",
+              "selected": true
+            },
+            "fault_injection": {
+              "reason": null,
+              "selected": true
+            },
+            "fuzz": {
+              "reason": "risk P requires fuzz",
+              "selected": true
+            },
+            "model_based_state_machine": {
+              "reason": "risk P requires model_based_state_machine",
+              "selected": true
+            },
+            "mutation": {
+              "reason": "risk P requires mutation",
+              "selected": true
+            },
+            "property_based": {
+              "reason": "risk P requires property_based",
+              "selected": true
+            },
+            "race": {
+              "reason": "risk P requires race",
+              "selected": true
+            },
+            "snapshot_compatibility": {
+              "reason": "risk P requires snapshot_compatibility",
+              "selected": true
+            },
+            "soak": {
+              "reason": "risk P requires soak",
+              "selected": true
+            }
+          },
+          "risk": "state_boundary_change",
+          "selected_boundary": "projection",
+          "ticket": "TICKET-P"
+        },
+        "context": {
+          "case_id": "H034-F09-SELECTED-NO-REASON",
+          "root_id": "HARNESS-L9-034-F09",
+          "source_packet_ref": {
+            "identity": "SOURCE-H034-F09-SELECTED-NO-REASON",
+            "revision": "fixture-content-c7828f1f58fa16bf4c9863c3e6fa1447cf3f8523212b869bde830a841e630e86",
+            "scope": "PRODUCT-P",
+            "owner": "synthetic-fixture-owner"
+          },
+          "source_packet_pointer": "/verification_obligations/8/concrete_cases/12/independent_source_packet/raw_utf8",
+          "raw_utf8_sha256": "c7828f1f58fa16bf4c9863c3e6fa1447cf3f8523212b869bde830a841e630e86",
+          "expected_material_pointer": "/verification_obligations/8/concrete_cases/12/expected_material",
+          "execution_state": "not_executed"
+        }
+      },
+      "source_calculation_projection": {
+        "method_results": {
+          "crash_recovery": "selected_with_reason",
+          "differential": "selected_with_reason",
+          "fault_injection": "missing_selection_reason",
+          "fuzz": "selected_with_reason",
+          "model_based_state_machine": "selected_with_reason",
+          "mutation": "selected_with_reason",
+          "property_based": "selected_with_reason",
+          "race": "selected_with_reason",
+          "snapshot_compatibility": "selected_with_reason",
+          "soak": "selected_with_reason"
+        },
+        "005_unfinished_obligations": [
+          "fault_injection",
+          "race",
+          "soak",
+          "crash_recovery",
+          "property_based",
+          "model_based_state_machine",
+          "differential",
+          "mutation",
+          "fuzz",
+          "snapshot_compatibility"
+        ],
+        "all_ticket_fixed_CI": false,
+        "verification_complete": false
+      },
+      "asserted_projection_fields": [
+        "005_unfinished_obligations",
+        "all_ticket_fixed_CI",
+        "method_results",
+        "verification_complete"
+      ],
+      "full_l9_expected_is_oracle_only": true,
+      "expected_material_pointer": "/verification_obligations/8/concrete_cases/12/expected_material",
+      "expected_material": {
+        "method_results": {
+          "fault_injection": "missing_selection_reason",
+          "race": "selected_with_reason",
+          "soak": "selected_with_reason",
+          "crash_recovery": "selected_with_reason",
+          "property_based": "selected_with_reason",
+          "model_based_state_machine": "selected_with_reason",
+          "differential": "selected_with_reason",
+          "mutation": "selected_with_reason",
+          "fuzz": "selected_with_reason",
+          "snapshot_compatibility": "selected_with_reason"
+        },
+        "005_unfinished_obligations": [
+          "fault_injection",
+          "race",
+          "soak",
+          "crash_recovery",
+          "property_based",
+          "model_based_state_machine",
+          "differential",
+          "mutation",
+          "fuzz",
+          "snapshot_compatibility"
+        ],
+        "all_ticket_fixed_CI": false,
+        "verification_complete": false,
+        "effects": {
+          "actual_measurement": false,
+          "actual_probe_execution": false,
+          "actual_OS_save": false,
+          "actual_system_complete": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "expected_canonical_sha256": "1d8cb7771a220d54945a59f166a5702292680d360fda643dc17a539293b46230",
+      "execution_state": "not_executed",
+      "effect": "none",
+      "qualification": "synthetic_fixture_only_no_actual_source_qualification",
+      "case_basis": "selected=trueという選択事実とreason=nullを別に保ち、既存Assessment_F09のmissing_selection_reasonを返す。not_selectedには写さない。005の固定10列のticket別意味はこの例で確定しない。",
+      "unassessed_original_oracle_fields": [
+        "effects",
+        "unaffected_Q"
+      ],
+      "local_candidate_diagnostic": {
+        "field": "all_ticket_fixed_CI_claim",
+        "value": "not_proposed",
+        "source_input": "input.all_ticket_fixed_CI",
+        "source_value": false,
+        "basis": "HARNESS-L4-034-F09.content_comparison",
+        "oracle_mapping": "local L4-derived diagnostic; not a field in original L9 expected_material"
+      },
+      "local_candidate_diagnostic_expected": "not_proposed",
+      "local_candidate_diagnostic_basis": "L4-derived supplementary diagnostic; not added to the original L9 expected_material."
     }
   ],
   "unassessed_original_oracle_fields": {
@@ -22036,9 +22216,10 @@
         "H034-F09-MUTATION-NO-REASON",
         "H034-F09-FUZZ-NO-REASON",
         "H034-F09-SNAPSHOT_COMPATIBILITY-NO-REASON",
-        "H034-F09-ALL-TICKET-FIXED-CI-REJECTED"
+        "H034-F09-ALL-TICKET-FIXED-CI-REJECTED",
+        "H034-F09-SELECTED-NO-REASON"
       ],
-      "case_count": 12,
+      "case_count": 13,
       "definition_scope": "このL8文書内の有限fixture family識別子。実評価/全称oracleではない。"
     },
     {
@@ -22099,5 +22280,19 @@
       "case_count": 7,
       "definition_scope": "このL8文書内の有限fixture family識別子。実評価/全称oracleではない。"
     }
-  ]
+  ],
+  "current_basic_pair_binding": {
+    "source_revision": "ea34206c7469ecc0e0819f900956c0dc784d2db1",
+    "meaning": "この詳細pairが追随する、基本pair統合後の現在source。過去のupstream_pair_snapshotはauthoring時点の履歴として保持する。",
+    "L4": {
+      "path": "docs/helix-harness/L4-basic-design/verification-measurement-contract.json",
+      "pointer": "/contracts/8",
+      "sha256": "29f5e01533f2349fb6b813fc093edaff2fef622f3abe77a8e74983a3c0f5e407"
+    },
+    "L9": {
+      "path": "docs/helix-harness/L9-integration-verification/verification-measurement-contract.json",
+      "pointer": "/verification_obligations/8",
+      "sha256": "366680564b4aec1d5c50d5710ae3b3dadb9d57c5ba4ab9d25499b3e90b5c37d3"
+    }
+  }
 }

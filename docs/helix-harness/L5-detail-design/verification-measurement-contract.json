@@ -6418,7 +6418,7 @@
         "method_results",
         "verification_complete"
       ],
-      "algorithm": "methodsの各keyでselected=trueかつreasonが空/null/absent以外ならselected_with_reason、selected=falseでreasonが空/null/absentならmissing_selection_reason、それ以外はnot_selected。005_unfinished_obligationsは選択method数に関係なく[fault_injection,race,soak,crash_recovery,property_based,model_based_state_machine,differential,mutation,fuzz,snapshot_compatibility]をこの固定fixture順に返す。順序はHARNESS-L9-034-F09の既存期待に対する局所固定列で、L4-034本文がこの一覧を規範列挙するとは主張しない。actual_verification_observed=falseまたはmethod_installation_only=trueならverification_complete=false。all_ticket_fixed_CIはfalseを返す。raw claim true/false/null-or-absentは補足returnでrejected_candidate_claim/not_proposed/unknown。",
+      "algorithm": "methodsの各keyで、selected=trueかつreasonがAbsent/null/empty以外ならselected_with_reason、selected=trueかつreasonがAbsent/null/emptyならmissing_selection_reason、selected=falseかつreasonがAbsent/null/emptyなら既存のmissing_selection_reason、selected=falseかつreasonがAbsent/null/empty以外ならnot_selected。005_unfinished_obligationsは選択method数に関係なく[fault_injection,race,soak,crash_recovery,property_based,model_based_state_machine,differential,mutation,fuzz,snapshot_compatibility]をこの固定fixture順に返す。順序はHARNESS-L9-034-F09の既存期待に対する局所固定列で、L4-034本文がこの一覧を規範列挙するとは主張しない。actual_verification_observed=falseまたはmethod_installation_only=trueならverification_complete=false。all_ticket_fixed_CIはfalseを返す。raw claim true/false/null-or-absentは補足returnでrejected_candidate_claim/not_proposed/unknown。",
       "semantic_rules": [
         {
           "id": "F09-SOURCE-COMPARISON",
@@ -6432,7 +6432,7 @@
             "input.ticket"
           ],
           "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
-          "comparison": "methodsの各keyでselected=trueかつreasonが空/null/absent以外ならselected_with_reason、selected=falseでreasonが空/null/absentならmissing_selection_reason、それ以外はnot_selected。005_unfinished_obligationsは選択method数に関係なく[fault_injection,race,soak,crash_recovery,property_based,model_based_state_machine,differential,mutation,fuzz,snapshot_compatibility]をこの固定fixture順に返す。順序はHARNESS-L9-034-F09の既存期待に対する局所固定列で、L4-034本文がこの一覧を規範列挙するとは主張しない。actual_verification_observed=falseまたはmethod_installation_only=trueならverification_complete=false。all_ticket_fixed_CIはfalseを返す。raw claim true/false/null-or-absentは補足returnでrejected_candidate_claim/not_proposed/unknown。",
+          "comparison": "methodsの各keyで、selected=trueかつreasonがAbsent/null/empty以外ならselected_with_reason、selected=trueかつreasonがAbsent/null/emptyならmissing_selection_reason、selected=falseかつreasonがAbsent/null/emptyなら既存のmissing_selection_reason、selected=falseかつreasonがAbsent/null/empty以外ならnot_selected。005_unfinished_obligationsは選択method数に関係なく[fault_injection,race,soak,crash_recovery,property_based,model_based_state_machine,differential,mutation,fuzz,snapshot_compatibility]をこの固定fixture順に返す。順序はHARNESS-L9-034-F09の既存期待に対する局所固定列で、L4-034本文がこの一覧を規範列挙するとは主張しない。actual_verification_observed=falseまたはmethod_installation_only=trueならverification_complete=false。all_ticket_fixed_CIはfalseを返す。raw claim true/false/null-or-absentは補足returnでrejected_candidate_claim/not_proposed/unknown。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "005_unfinished_obligations",
@@ -7107,6 +7107,13 @@
         "requirement_ref": "HARNESS-L3-034-F09",
         "system_oracle_ref": "HARNESS-L10-034-F09",
         "oracle_ref": "HARNESS-L9-034-F09",
+        "approved_requirement": {
+          "id": "HARNESS-L3-034-F09",
+          "parent": "HARNESS-L2-034",
+          "title": "異常条件とrisk別手法",
+          "obligation": "適用するgate/approval/cutover/projection/GitHub/memory/feedback相当境界にはfault injection/race/soak/crash recoveryの適用条件を残す。property-based/model-based state machine/differential/mutation/fuzz/snapshot compatibilityはriskから選択/非適用根拠を残し005のticket別未完義務へ結ぶ。全ticket固定CIにせず手法導入を完成証拠にしない。",
+          "oracle_ref": "HARNESS-L10-034-F09"
+        },
         "component": "risk_method_reader",
         "input_meanings": [
           "ticket/risk/対象状態境界",
@@ -7118,7 +7125,8 @@
           "未完検証義務"
         ],
         "content_comparison": [
-          "risk別の適用/非適用根拠を照合し全ticket固定CIにしない。手法導入だけを検証完成としない。"
+          "risk別の適用/非適用根拠を照合し全ticket固定CIにしない。手法導入だけを検証完成としない。",
+          "各手法のraw selectedとreasonの有無/値を別に保つ。selected=trueでreasonがAbsent/null/emptyなら既存の理由不足状態missing_selection_reasonを返し、not_selectedへ変換しない。selected=falseで理由がない場合の既存missing_selection_reasonも維持する。これは選択記録の判定であり、実行・完成・全ticket固定CIを生成しない。"
         ],
         "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
         "operation_effect": "none"
@@ -8083,5 +8091,19 @@
     },
     "closure": "unproven"
   },
-  "document_id": "HARNESS-L5-034"
+  "document_id": "HARNESS-L5-034",
+  "current_basic_pair_binding": {
+    "source_revision": "ea34206c7469ecc0e0819f900956c0dc784d2db1",
+    "meaning": "この詳細pairが追随する、基本pair統合後の現在source。過去のupstream_pair_snapshotはauthoring時点の履歴として保持する。",
+    "L4": {
+      "path": "docs/helix-harness/L4-basic-design/verification-measurement-contract.json",
+      "pointer": "/contracts/8",
+      "sha256": "29f5e01533f2349fb6b813fc093edaff2fef622f3abe77a8e74983a3c0f5e407"
+    },
+    "L9": {
+      "path": "docs/helix-harness/L9-integration-verification/verification-measurement-contract.json",
+      "pointer": "/verification_obligations/8",
+      "sha256": "366680564b4aec1d5c50d5710ae3b3dadb9d57c5ba4ab9d25499b3e90b5c37d3"
+    }
+  }
 }
