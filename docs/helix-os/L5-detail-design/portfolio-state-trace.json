@@ -1856,6 +1856,480 @@
       "kind": "string_alias",
       "wire_type": "string",
       "meaning": "callerのproject/node literal map key。固定ProjectId/NodeIdの拡張やidentityへのcastに使わない。"
+    },
+    {
+      "name": "SourceCaptureAbsent",
+      "kind": "record",
+      "required": [
+        "requested_pointer",
+        "reached_pointer",
+        "availability"
+      ],
+      "fields": {
+        "requested_pointer": "string",
+        "reached_pointer": "string",
+        "availability": {
+          "literal": "absent"
+        }
+      },
+      "closed": true
+    },
+    {
+      "name": "SourceCaptureBlocked",
+      "kind": "record",
+      "required": [
+        "requested_pointer",
+        "reached_pointer",
+        "availability",
+        "value"
+      ],
+      "fields": {
+        "requested_pointer": "string",
+        "reached_pointer": "string",
+        "availability": {
+          "literal": "blocked"
+        },
+        "value": "JSONValue"
+      },
+      "closed": true
+    },
+    {
+      "name": "SourceCapturePresent",
+      "kind": "record",
+      "required": [
+        "requested_pointer",
+        "reached_pointer",
+        "availability",
+        "value"
+      ],
+      "fields": {
+        "requested_pointer": "string",
+        "reached_pointer": "string",
+        "availability": {
+          "literal": "present"
+        },
+        "value": "JSONValue"
+      },
+      "closed": true
+    },
+    {
+      "name": "SourceCapture",
+      "kind": "sum_type",
+      "variants": [
+        "SourceCaptureAbsent",
+        "SourceCaptureBlocked",
+        "SourceCapturePresent"
+      ],
+      "discriminator": "availability",
+      "meaning": "宣言した閉recordのいずれか一つ。variant間のfield混載・未知fieldを拒否する。"
+    },
+    {
+      "name": "FailureNodeLocator",
+      "kind": "record",
+      "required": [
+        "kind",
+        "project_key",
+        "node_key",
+        "finding_side"
+      ],
+      "fields": {
+        "kind": {
+          "literal": "node"
+        },
+        "project_key": "SelectedLocatorKey",
+        "node_key": "SelectedLocatorKey",
+        "finding_side": {
+          "enum": [
+            "actual",
+            "context",
+            "selected"
+          ]
+        }
+      },
+      "closed": true
+    },
+    {
+      "name": "FailureProjectLocator",
+      "kind": "record",
+      "required": [
+        "kind",
+        "project_key",
+        "finding_side"
+      ],
+      "fields": {
+        "kind": {
+          "literal": "project"
+        },
+        "project_key": "SelectedLocatorKey",
+        "finding_side": {
+          "enum": [
+            "actual",
+            "context",
+            "selected"
+          ]
+        }
+      },
+      "closed": true
+    },
+    {
+      "name": "FailureUnboundLocator",
+      "kind": "record",
+      "required": [
+        "kind",
+        "finding_side",
+        "reason"
+      ],
+      "fields": {
+        "kind": {
+          "literal": "unbound"
+        },
+        "finding_side": {
+          "enum": [
+            "actual",
+            "context",
+            "selected",
+            "unbound"
+          ]
+        },
+        "reason": {
+          "literal": "container_or_non_locator_pointer"
+        }
+      },
+      "closed": true
+    },
+    {
+      "name": "FailureSourceLocator",
+      "kind": "sum_type",
+      "variants": [
+        "FailureNodeLocator",
+        "FailureProjectLocator",
+        "FailureUnboundLocator"
+      ],
+      "discriminator": "kind",
+      "meaning": "宣言した閉recordのいずれか一つ。variant間のfield混載・未知fieldを拒否する。"
+    },
+    {
+      "name": "FailureSourceSide",
+      "kind": "record",
+      "required": [
+        "node_record",
+        "source",
+        "owners"
+      ],
+      "fields": {
+        "node_record": "SourceCapture",
+        "source": "SourceCapture",
+        "owners": "SourceCapture"
+      },
+      "closed": true
+    },
+    {
+      "name": "FailureProjectAxes",
+      "kind": "record",
+      "required": [
+        "project_id",
+        "requirement_id",
+        "requirement_revision",
+        "scope",
+        "harness_contract_revision"
+      ],
+      "fields": {
+        "project_id": "SourceCapture",
+        "requirement_id": "SourceCapture",
+        "requirement_revision": "SourceCapture",
+        "scope": "SourceCapture",
+        "harness_contract_revision": "SourceCapture"
+      },
+      "closed": true
+    },
+    {
+      "name": "FailureNodeAxes",
+      "kind": "record",
+      "required": [
+        "target_id",
+        "target_revision",
+        "target_digest",
+        "kind",
+        "source_ref",
+        "source_revision"
+      ],
+      "fields": {
+        "target_id": "SourceCapture",
+        "target_revision": "SourceCapture",
+        "target_digest": "SourceCapture",
+        "kind": "SourceCapture",
+        "source_ref": "SourceCapture",
+        "source_revision": "SourceCapture"
+      },
+      "closed": true
+    },
+    {
+      "name": "FailureSelectedMaterials",
+      "kind": "record",
+      "required": [
+        "project_axes",
+        "node_axes"
+      ],
+      "fields": {
+        "project_axes": "FailureProjectAxes",
+        "node_axes": "FailureNodeAxes"
+      },
+      "closed": true
+    },
+    {
+      "name": "FailureNodeMaterials",
+      "kind": "record",
+      "required": [
+        "kind",
+        "actual",
+        "context",
+        "selected"
+      ],
+      "fields": {
+        "kind": {
+          "literal": "node"
+        },
+        "actual": "FailureSourceSide",
+        "context": "FailureSourceSide",
+        "selected": "FailureSelectedMaterials"
+      },
+      "closed": true
+    },
+    {
+      "name": "FailureProjectMaterials",
+      "kind": "record",
+      "required": [
+        "kind",
+        "selected_project_axes"
+      ],
+      "fields": {
+        "kind": {
+          "literal": "project"
+        },
+        "selected_project_axes": "FailureProjectAxes"
+      },
+      "closed": true
+    },
+    {
+      "name": "FailureUnboundMaterials",
+      "kind": "record",
+      "required": [
+        "kind"
+      ],
+      "fields": {
+        "kind": {
+          "literal": "unbound"
+        }
+      },
+      "closed": true
+    },
+    {
+      "name": "FailureSourceMaterials",
+      "kind": "sum_type",
+      "variants": [
+        "FailureNodeMaterials",
+        "FailureProjectMaterials",
+        "FailureUnboundMaterials"
+      ],
+      "discriminator": "kind",
+      "meaning": "宣言した閉recordのいずれか一つ。variant間のfield混載・未知fieldを拒否する。"
+    },
+    {
+      "name": "SourceMaterialDisposition",
+      "kind": "enum",
+      "values": [
+        "material_corresponding",
+        "material_conflict",
+        "unknown"
+      ]
+    },
+    {
+      "name": "FailureSourceAxisComparisons",
+      "kind": "record",
+      "required": [
+        "project_id",
+        "requirement_id",
+        "requirement_revision",
+        "scope",
+        "harness_contract_revision",
+        "target_id",
+        "target_revision",
+        "target_digest",
+        "kind",
+        "source_ref",
+        "source_revision",
+        "difference_ref",
+        "operation_record_ref"
+      ],
+      "fields": {
+        "project_id": "SourceMaterialDisposition",
+        "requirement_id": "SourceMaterialDisposition",
+        "requirement_revision": "SourceMaterialDisposition",
+        "scope": "SourceMaterialDisposition",
+        "harness_contract_revision": "SourceMaterialDisposition",
+        "target_id": "SourceMaterialDisposition",
+        "target_revision": "SourceMaterialDisposition",
+        "target_digest": "SourceMaterialDisposition",
+        "kind": "SourceMaterialDisposition",
+        "source_ref": "SourceMaterialDisposition",
+        "source_revision": "SourceMaterialDisposition",
+        "difference_ref": "SourceMaterialDisposition",
+        "operation_record_ref": "SourceMaterialDisposition"
+      },
+      "closed": true
+    },
+    {
+      "name": "FailureSelectedAxisComparisons",
+      "kind": "record",
+      "required": [
+        "project_id",
+        "requirement_id",
+        "requirement_revision",
+        "scope",
+        "harness_contract_revision",
+        "target_id",
+        "target_revision",
+        "target_digest",
+        "kind",
+        "source_ref",
+        "source_revision"
+      ],
+      "fields": {
+        "project_id": "SourceMaterialDisposition",
+        "requirement_id": "SourceMaterialDisposition",
+        "requirement_revision": "SourceMaterialDisposition",
+        "scope": "SourceMaterialDisposition",
+        "harness_contract_revision": "SourceMaterialDisposition",
+        "target_id": "SourceMaterialDisposition",
+        "target_revision": "SourceMaterialDisposition",
+        "target_digest": "SourceMaterialDisposition",
+        "kind": "SourceMaterialDisposition",
+        "source_ref": "SourceMaterialDisposition",
+        "source_revision": "SourceMaterialDisposition"
+      },
+      "closed": true
+    },
+    {
+      "name": "FailureNodeComparisons",
+      "kind": "record",
+      "required": [
+        "kind",
+        "actual_context",
+        "actual_selected",
+        "context_selected"
+      ],
+      "fields": {
+        "kind": {
+          "literal": "node"
+        },
+        "actual_context": "FailureSourceAxisComparisons",
+        "actual_selected": "FailureSelectedAxisComparisons",
+        "context_selected": "FailureSelectedAxisComparisons"
+      },
+      "closed": true
+    },
+    {
+      "name": "FailureNoNodeComparisons",
+      "kind": "record",
+      "required": [
+        "kind"
+      ],
+      "fields": {
+        "kind": {
+          "literal": "not_node_bound"
+        }
+      },
+      "closed": true
+    },
+    {
+      "name": "FailureSourceComparisons",
+      "kind": "sum_type",
+      "variants": [
+        "FailureNodeComparisons",
+        "FailureNoNodeComparisons"
+      ],
+      "discriminator": "kind",
+      "meaning": "宣言した閉recordのいずれか一つ。variant間のfield混載・未知fieldを拒否する。"
+    },
+    {
+      "name": "FailureSourceCandidate",
+      "kind": "record",
+      "required": [
+        "finding",
+        "locator",
+        "material_sources",
+        "comparisons",
+        "recipient_qualification",
+        "actual_delivery"
+      ],
+      "fields": {
+        "finding": "Finding",
+        "locator": "FailureSourceLocator",
+        "material_sources": "FailureSourceMaterials",
+        "comparisons": "FailureSourceComparisons",
+        "recipient_qualification": {
+          "literal": "not_established"
+        },
+        "actual_delivery": {
+          "literal": false
+        }
+      },
+      "closed": true
+    },
+    {
+      "name": "SourceCandidateEvaluationAbsent",
+      "kind": "record",
+      "required": [
+        "input",
+        "trace_material"
+      ],
+      "fields": {
+        "input": "SelectedPortfolioInput",
+        "trace_material": "SelectedTraceResult"
+      },
+      "closed": true
+    },
+    {
+      "name": "SourceCandidateEvaluationSupplied",
+      "kind": "record",
+      "required": [
+        "input",
+        "trace_material",
+        "targets"
+      ],
+      "fields": {
+        "input": "SelectedPortfolioInput",
+        "trace_material": "SelectedTraceResult",
+        "targets": "JSONValue"
+      },
+      "closed": true
+    },
+    {
+      "name": "SourceCandidateEvaluation",
+      "kind": "sum_type",
+      "variants": [
+        "SourceCandidateEvaluationAbsent",
+        "SourceCandidateEvaluationSupplied"
+      ],
+      "discriminator": "targets member presence (absent / supplied)",
+      "meaning": "宣言した閉recordのいずれか一つ。variant間のfield混載・未知fieldを拒否する。"
+    },
+    {
+      "name": "SourceBoundTrace",
+      "kind": "record",
+      "required": [
+        "trace_material",
+        "failure_source_candidates",
+        "operation_effect"
+      ],
+      "fields": {
+        "trace_material": "SelectedTraceResult",
+        "failure_source_candidates": "array<FailureSourceCandidate>",
+        "operation_effect": {
+          "literal": "none"
+        }
+      },
+      "closed": true
     }
   ],
   "functions": [
@@ -2110,6 +2584,82 @@
         "invalid selectorのrelation独立分類と@表記の曖昧性はsemantic_rederivationsに出典・保持点・技術理由を記録する。"
       ],
       "formal_entrypoint": "compare_node_material"
+    },
+    {
+      "id": "capture_source_member",
+      "signature": "capture_source_member(root:JSONValue, tokens:array<string>, prefix:string) -> SourceCapture",
+      "reads": [
+        "同一selected評価の原input/targets/traceだけ",
+        "source_candidate_return_contract"
+      ],
+      "returns": [
+        "SourceCapture"
+      ],
+      "algorithm": [
+        "normative_program.source_codeの同名関数を唯一の計算本文とする。期待値を引数やlookup tableに使わない。"
+      ],
+      "visibility": "internal_only"
+    },
+    {
+      "id": "locate_failure_source",
+      "signature": "locate_failure_source(finding:Finding) -> FailureSourceLocator",
+      "reads": [
+        "同一selected評価の原input/targets/traceだけ",
+        "source_candidate_return_contract"
+      ],
+      "returns": [
+        "FailureSourceLocator"
+      ],
+      "algorithm": [
+        "normative_program.source_codeの同名関数を唯一の計算本文とする。期待値を引数やlookup tableに使わない。"
+      ],
+      "visibility": "internal_only"
+    },
+    {
+      "id": "compare_failure_source_materials",
+      "signature": "compare_failure_source_materials(actual:SourceCapture, context:SourceCapture, selected:FailureSelectedMaterials) -> FailureNodeComparisons",
+      "reads": [
+        "同一selected評価の原input/targets/traceだけ",
+        "source_candidate_return_contract"
+      ],
+      "returns": [
+        "FailureNodeComparisons"
+      ],
+      "algorithm": [
+        "normative_program.source_codeの同名関数を唯一の計算本文とする。期待値を引数やlookup tableに使わない。"
+      ],
+      "visibility": "internal_only"
+    },
+    {
+      "id": "bind_portfolio_failure_source_candidates",
+      "signature": "bind_portfolio_failure_source_candidates(evaluation:SourceCandidateEvaluation) -> array<FailureSourceCandidate>",
+      "reads": [
+        "同一selected評価の原input/targets/traceだけ",
+        "source_candidate_return_contract"
+      ],
+      "returns": [
+        "array<FailureSourceCandidate>"
+      ],
+      "algorithm": [
+        "normative_program.source_codeの同名関数を唯一の計算本文とする。期待値を引数やlookup tableに使わない。"
+      ],
+      "visibility": "internal_only"
+    },
+    {
+      "id": "evaluate_portfolio_with_source_candidates",
+      "signature": "evaluate_portfolio_with_source_candidates(input:SelectedPortfolioInput, diagnostic_contract:DiagnosticContract, *supplied_targets:0..1<JSONValue>) -> SourceBoundTrace",
+      "reads": [
+        "同一selected評価の原input/targets/traceだけ",
+        "source_candidate_return_contract"
+      ],
+      "returns": [
+        "SourceBoundTrace"
+      ],
+      "algorithm": [
+        "normative_program.source_codeの同名関数を唯一の計算本文とする。期待値を引数やlookup tableに使わない。"
+      ],
+      "visibility": "public",
+      "formal_entrypoint": "evaluate_portfolio_with_source_candidates"
     }
   ],
   "diagnostic_policy": {
@@ -2409,6 +2959,10 @@
     "compare_node_material": {
       "input": "project/node literal locator、actual/context object node、固定L4 diagnostic_contract、宣言kind raw JSON値、同project context object map。baseline型境界とselected raw境界はcallerが分ける。",
       "output": "NodeComparison{facet_results:NodeDisposition,findings:array<Finding>}。入力は変更しない。"
+    },
+    "evaluate_portfolio_with_source_candidates": {
+      "input": "SelectedPortfolioInputと同じL4 DiagnosticContract、targetsのraw JSONValue引数0個又は1個。0個と1個nullは区別し、内部SourceCandidateEvaluationはこの呼出し内でのみ構築する。2個以上はValueError。",
+      "output": "SourceBoundTraceの閉じた3root。trace_materialは既存SelectedTraceResultの全11root、failure_source_candidatesは原finding順の閉じた6root。実owner資格・配送は生成しない。"
     }
   },
   "normative_program": {
@@ -2418,11 +2972,12 @@
       "evaluate_portfolio": "evaluate_portfolio(input, diagnostic_contract, *selected_targets) -> TraceResult | SelectedTraceResult; selected_targets長0=baseline、長1=selected、長2以上はValueError",
       "route_failure": "route_failure(findings: array<Finding>, return_owner: 'portfolio-trace-owner') -> array<Finding>",
       "evaluate_portfolio_selected": "evaluate_portfolio_selected(input, diagnostic_contract, *supplied_targets) -> SelectedTraceResult; supplied_targets長0=内部Absent診断、長1=raw targets、長2以上はValueError",
-      "compare_node_material": "compare_node_material(project, node, actual, context, diagnostic_contract, declared, context_project) -> NodeComparison (両profile共通)"
+      "compare_node_material": "compare_node_material(project, node, actual, context, diagnostic_contract, declared, context_project) -> NodeComparison (両profile共通)",
+      "evaluate_portfolio_with_source_candidates": "evaluate_portfolio_with_source_candidates(input:SelectedPortfolioInput, diagnostic_contract:DiagnosticContract, *supplied_targets:0..1<JSONValue>) -> SourceBoundTrace"
     },
     "source_rule": "このsource stringがL4 R01–R17の有限fixture計算の関数規則である。2引数はbaseline、3引数はcaller-selectedを明示dispatchし、両profileが共有compare_node_materialを呼ぶ。selected専用entrypointは引数個数で省略と明示値を受け分けるが、L4の診断出力では省略と明示nullは同じ局所unknownへ写す。期待wholeは返却後にだけ比較する。",
     "purity": "入力を変更しない。I/O、import、時計、乱数、外部状態変更を含まない。expand_caseはcopy後のローカル値のみ変更する。",
-    "source_code": "def deep_copy(value):\n    if isinstance(value, dict):\n        return {key: deep_copy(item) for key, item in value.items()}\n    if isinstance(value, list):\n        return [deep_copy(item) for item in value]\n    return value\n\ndef expand_case(fixture_inputs, case_input):\n    if case_input.get(\"base_ref\") != \"portfolio\":\n        raise ValueError(\"未定義base_ref\")\n    expanded = deep_copy(fixture_inputs[\"portfolio\"])\n    for replacement in case_input[\"replacements\"]:\n        path = replacement[\"path\"]\n        if not path:\n            raise ValueError(\"空path\")\n        cursor = expanded\n        for member in path[:-1]:\n            if not isinstance(cursor, dict) or member not in cursor:\n                raise ValueError(\"未定義path\")\n            cursor = cursor[member]\n        if not isinstance(cursor, dict) or path[-1] not in cursor:\n            raise ValueError(\"未定義終端\")\n        cursor[path[-1]] = deep_copy(replacement[\"value\"])\n    return expanded\n\ndef route_failure(findings, return_owner):\n    unique = {(item['code'], item['pointer'], return_owner) for item in findings}\n    ordered = sorted(unique)\n    return [{'code': code, 'pointer': pointer, 'return_owner': owner} for code, pointer, owner in ordered]\n\ndef compare_node_material(project, node, actual, context, diagnostic_contract, declared, context_project):\n    rules=diagnostic_contract\n    return_owner='portfolio-trace-owner'\n    facets=rules['facet_order']\n    source_fields=rules['source_fields']\n    receipt_fields=rules['receipt_fields']\n    axes=rules['state_axes']\n    def as_map(value):\n        return value if isinstance(value,dict) else {}\n    def known(value):\n        return isinstance(value,str) and len(value)>0\n    def pointer(side,project,node,*parts):\n        prefix='/projects/' if side=='actual' else '/context/projects/'\n        return prefix+str(project).replace('~','~0').replace('/','~1')+'/'+str(node).replace('~','~0').replace('/','~1')+''.join('/'+str(part).replace('~','~0').replace('/','~1') for part in parts)\n    def classify_set(value,ptr,allow_empty):\n        if not isinstance(value,list) or any(not known(item) for item in value) or len(set(value))!=len(value):\n            return None\n        if not value and not allow_empty:\n            return None\n        return set(value)\n    result={f:'corresponding' for f in facets}\n    local_findings=[]\n    def add(code, ptr):\n        local_findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n    def compare_string(a,b,pa,pb):\n        a_known=known(a); b_known=known(b)\n        if not a_known: add('field_unknown',pa)\n        if not b_known: add('field_unknown',pb)\n        if not a_known or not b_known: return 'unknown'\n        if a != b:\n            add('field_conflict',pa); return 'violation'\n        return 'corresponding'\n    def mark(f, disp):\n        rank={'corresponding':0,'unknown':1,'violation':2}\n        if rank[disp]>rank[result[f]]: result[f]=disp\n    ap=pointer('actual',project,node); cp=pointer('context',project,node)\n    for field in source_fields:\n        d=compare_string(as_map(actual.get('source')).get(field),as_map(context.get('source')).get(field),ap+'/source/'+field,cp+'/source/'+field)\n        mark('source',d)\n    ak=as_map(actual.get('source')).get('kind'); ck=as_map(context.get('source')).get('kind')\n    for value,side in [(ak,'actual'),(ck,'context')]:\n        if not isinstance(value,str) or value not in {'unit','connection','composite'}:\n            add('kind_unknown',pointer(side,project,node,'source','kind')); mark('source','unknown')\n        elif isinstance(declared,str) and declared in {'unit','connection','composite'} and value != declared:\n            add('kind_conflict',pointer(side,project,node,'source','kind')); mark('source','violation')\n    # R03: 各sideのowner集合を分類し、既知集合同士は件数に関わらず集合差を比較する。\n    owners=[]\n    for obj,side in [(actual,'actual'),(context,'context')]:\n        val=obj.get('owners'); p=pointer(side,project,node,'owners')\n        s=classify_set(val,p,False)\n        if s is None:\n            add('owner_unknown',p); mark('owner','unknown'); owners.append(None)\n        elif len(s)>1:\n            add('owner_ambiguous',p); mark('owner','violation'); owners.append(s)\n        else: owners.append(s)\n    if owners[0] is not None and owners[1] is not None and owners[0]!=owners[1]:\n        add('owner_conflict',ap+'/owners');mark('owner','violation')\n    # R04 relation sets and context-side endpoint existence.\n    relations=[]\n    for obj,side in [(actual,'actual'),(context,'context')]:\n        val=obj.get('relations'); p=pointer(side,project,node,'relations')\n        # R04のrelation domainをR12のselector資格と分離する。selector値は補完しない。\n        selector_kind_known=isinstance(declared,str) and declared in {'unit','connection','composite'}\n        relation_unit=declared=='unit' if selector_kind_known else as_map(obj.get('source')).get('kind')=='unit'\n        s=classify_set(val,p,relation_unit)\n        if s is None:\n            add('relation_unknown',p);mark('relation','unknown');relations.append(None)\n        else: relations.append(s)\n    if relations[0] is not None and relations[1] is not None and relations[0]!=relations[1]:\n        add('relation_conflict',ap+'/relations');mark('relation','violation')\n    for obj,side in [(actual,'actual'),(context,'context')]:\n        rel=obj.get('relations')\n        rel_ptr=pointer(side,project,node,'relations')\n        if isinstance(rel,list) and all(known(x) for x in rel) and len(set(rel))==len(rel):\n            rendered={}\n            # L4のtarget_id@target_revision表記が一意に解ける文脈nodeだけをendpoint候補にする。\n            portfolio=context_project\n            for other in portfolio.values():\n                src=as_map(other).get('source',{}); src=as_map(src); tid=src.get('target_id'); rev=src.get('target_revision')\n                if not known(tid) or not known(rev):\n                    continue\n                elif '@' in tid or '@' in rev:\n                    rendered.setdefault(tid+'@'+rev,[]).append((tid,rev,'ambiguous_encoding'))\n                else:\n                    rendered.setdefault(tid+'@'+rev,[]).append((tid,rev,'unique'))\n            unresolved=False; missing=False\n            for endpoint in rel:\n                candidates=rendered.get(endpoint,[])\n                identities={(row[0],row[1]) for row in candidates}\n                if len(identities)>1 or any(row[2]=='ambiguous_encoding' for row in candidates):\n                    unresolved=True\n                elif not candidates:\n                    missing=True\n            if unresolved:\n                add('relation_unknown',rel_ptr);mark('relation','unknown')\n            if missing:\n                add('relation_endpoint_conflict',rel_ptr);mark('relation','violation')\n    # R05 states and state source references.\n    for axis,allowed in axes.items():\n        aa=as_map(as_map(actual.get('states')).get(axis)); cc=as_map(as_map(context.get('states')).get(axis))\n        av=aa.get('state'); cv=cc.get('state'); pa=ap+'/states/'+axis+'/state'; pc=cp+'/states/'+axis+'/state'\n        if av not in allowed:\n            add('state_unknown',pa);mark('state','unknown')\n        if cv not in allowed:\n            add('state_unknown',pc);mark('state','unknown')\n        if av in allowed and cv in allowed and av!=cv:\n            add('state_conflict',pa);mark('state','violation')\n        for key in ['source_ref','source_revision']:\n            d=compare_string(aa.get(key),cc.get(key),ap+'/states/'+axis+'/'+key,cp+'/states/'+axis+'/'+key);mark('state',d)\n    av=as_map(as_map(actual.get('states')).get('knowledge')).get('state')\n    if av=='unknown': add('knowledge_unknown',ap+'/states/knowledge/state');mark('state','unknown')\n    av=as_map(as_map(actual.get('states')).get('freshness')).get('state')\n    if av=='stale': add('state_stale',ap+'/states/freshness/state');mark('state','unknown')\n    # R06 receipt/result states and field joins.\n    for facet in ['verification','acceptance','provision']:\n        ar=as_map(actual.get(facet)); cr=as_map(context.get(facet))\n        allowed=rules['result_states'][facet]\n        ast=ar.get('state'); cst=cr.get('state'); p=ap+'/'+facet+'/state'; q=cp+'/'+facet+'/state'\n        if ast not in allowed:\n            add('result_unknown',p);mark(facet,'unknown')\n        if cst not in allowed:\n            add('result_unknown',q);mark(facet,'unknown')\n        if ast in allowed and cst in allowed and ast!=cst:\n            add('result_conflict',p);mark(facet,'violation')\n        # Receipt identity fields bind against context receipt and node source.\n        for field in receipt_fields:\n            d=compare_string(ar.get(field),cr.get(field),ap+'/'+facet+'/'+field,cp+'/'+facet+'/'+field);mark(facet,d)\n            if field in ['project_id','requirement_revision','scope','target_id','target_revision','kind']:\n                expected=as_map(context.get('source')).get(field)\n                if not known(expected):\n                    mark(facet,'unknown')\n                elif known(ar.get(field)) and ar.get(field)!=expected:\n                    add('field_conflict',ap+'/'+facet+'/'+field);mark(facet,'violation')\n        if facet=='provision':\n            for field in rules['provision_additional_comparison_fields']:\n                d=compare_string(ar.get(field),cr.get(field),ap+'/'+facet+'/'+field,cp+'/'+facet+'/'+field)\n                mark(facet,d)\n    if as_map(actual.get('verification')).get('state')=='pass_material' and as_map(as_map(actual.get('states')).get('verification')).get('state')=='not_verified':\n        add('verification_state_conflict',ap+'/verification/state');mark('verification','violation')\n    if as_map(actual.get('provision')).get('state')=='provided_material' and as_map(as_map(actual.get('states')).get('provision')).get('state')=='not_provided':\n        add('provision_state_conflict',ap+'/provision/state');mark('provision','violation')\n    # R08 history sets; context entries may not be erased.\n    for field in ['unresolved_edges','stale_reasons']:\n        av=actual.get(field);cv=context.get(field);pa=ap+'/'+field;pc=cp+'/'+field\n        aset=classify_set(av,pa,True);cset=classify_set(cv,pc,True)\n        if aset is None: add('history_unknown',pa);mark('history','unknown')\n        if cset is None: add('history_unknown',pc);mark('history','unknown')\n        if aset is not None and cset is not None and not cset.issubset(aset): add('history_lost',pa);mark('history','violation')\n    if as_map(as_map(actual.get('states')).get('freshness')).get('state')=='stale' and actual.get('stale_reasons')==[]:\n        add('stale_reason_missing',ap+'/stale_reasons');mark('history','unknown')\n    # R09 boundary claims are checked on actual source only.\n    for field in ['from_unit_success','from_pr_ci_plan','whole_node_complete']:\n        value=as_map(actual.get('claims')).get(field);p=ap+'/claims/'+field\n        if value is True: add('inferred_completion_forbidden',p);mark('boundary','violation')\n        elif value is not False: add('claim_unknown',p);mark('boundary','unknown')\n    return {'facet_results':result,'findings':local_findings}\n\ndef evaluate_portfolio(input, diagnostic_contract, *selected_targets):\n    if len(selected_targets)==1:\n        return evaluate_portfolio_selected(input,diagnostic_contract,selected_targets[0])\n    if len(selected_targets)>1:\n        raise ValueError('evaluate_portfolio引数個数不正')\n    data = input\n    rules = diagnostic_contract\n    return_owner = 'portfolio-trace-owner'\n    compatibility=rules.get('baseline_fixture_compatibility',{})\n    projects = rules.get('projects',compatibility.get('projects'))\n    nodes = rules.get('node_kinds',compatibility.get('node_kinds'))\n    axes = rules['state_axes']\n    facets = rules['facet_order']\n    source_fields = rules['source_fields']\n    receipt_fields = rules['receipt_fields']\n    node_corr = {}\n    retained_source = {}\n    retained_state = {}\n    gaps = {}\n    findings = []\n    def pointer(side, project, node, *parts):\n        prefix = '/projects/' if side == 'actual' else '/context/projects/'\n        return prefix + project + '/' + node + ''.join('/' + str(p).replace('~','~0').replace('/','~1') for p in parts)\n    def add(code, ptr):\n        findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n    def known(v):\n        return isinstance(v,str) and len(v)>0\n    def classify_set(value, ptr, allow_empty):\n        if not isinstance(value,list) or any(not known(x) for x in value) or len(set(value)) != len(value):\n            return None\n        if not value and not allow_empty:\n            return None\n        return set(value)\n    def compare_node(project, node, actual, context):\n        return compare_node_material(project,node,actual,context,rules,nodes[node],data['context']['projects'][project])\n    for project in projects:\n        node_corr[project]={};retained_source[project]={};retained_state[project]={};gaps[project]={}\n        for node in nodes:\n            a=data['projects'][project][node];c=data['context']['projects'][project][node]\n            compared=compare_node(project,node,a,c)\n            node_corr[project][node]=compared['facet_results']\n            for finding in compared['findings']: findings.append(finding)\n            retained_source[project][node]=deep_copy(a['source'])\n            retained_state[project][node]=deep_copy({k:a[k] for k in ['states','verification','acceptance','provision','unresolved_edges','stale_reasons','relations','owners']})\n            if 'kind' in a['source']:\n                retained_state[project][node]['kind']=deep_copy(a['source']['kind'])\n            gaps[project][node]=[axis for axis,allowed in axes.items() if a.get('states',{}).get(axis,{}).get('state')!=allowed[0]]\n    # Same-side target ID collisions are alias violations on both nodes.\n    for side,root in [('actual',data['projects']),('context',data['context']['projects'])]:\n        buckets={}\n        for project in projects:\n            for node in nodes:\n                tid=root[project][node].get('source',{}).get('target_id')\n                if known(tid): buckets.setdefault(tid,[]).append((project,node))\n        for colliding in buckets.values():\n            if len(colliding)>1:\n                for project,node in colliding:\n                    add('identity_aliased',pointer(side,project,node,'source','target_id'))\n                    node_corr[project][node]['source']='violation'\n    claim=data.get('whole_completion_claim')\n    if claim is True:add('whole_completion_forbidden','/whole_completion_claim')\n    elif claim is not False:add('whole_claim_unknown','/whole_completion_claim')\n    rank={'corresponding':0,'unknown':1,'violation':2}\n    values=[x for p in projects for n in nodes for x in node_corr[p][n].values()]\n    if claim is True: values.append('violation')\n    elif claim is not False: values.append('unknown')\n    highest=values[0]\n    for value in values[1:]:\n        if rank[value]>rank[highest]: highest=value\n    condition={'corresponding':'trace_material_corresponding','unknown':'trace_material_unknown','violation':'trace_material_violation'}[highest]\n    findings=route_failure(findings, return_owner)\n    return {'condition':condition,'node_correspondence':node_corr,'retained_source_records':retained_source,'retained_state_trace':retained_state,'observed_gap_axes':gaps,'findings':findings,'actual_state_updated':False,'actual_acceptance_created':False,'actual_release_authorized':False,'whole_portfolio_complete':False,'operation_effect':'none'}\n\ndef evaluate_portfolio_selected(input, diagnostic_contract, *supplied_targets):\n    # 0 supplied targetsはselected専用entrypointのAbsent。Noneはpresent null。\n    if len(supplied_targets)>1:\n        raise ValueError('selected targets引数は最大1件')\n    targets_presence='absent' if not supplied_targets else 'null' if supplied_targets[0] is None else 'present'\n    targets=supplied_targets[0] if targets_presence!='absent' else None\n    rules=diagnostic_contract\n    return_owner='portfolio-trace-owner'\n    axes=rules['state_axes']\n    facets=rules['facet_order']\n    source_fields=rules['source_fields']\n    receipt_fields=rules['receipt_fields']\n    rank={'corresponding':0,'unknown':1,'violation':2}\n    findings=[]\n    node_corr={}\n    retained_source={}\n    retained_state={}\n    gaps={}\n    def as_map(value):\n        return value if isinstance(value,dict) else {}\n    def known(value):\n        return isinstance(value,str) and len(value)>0\n    def token(value):\n        return str(value).replace('~','~0').replace('/','~1')\n    def pointer(side,project,node,*parts):\n        prefix='/projects/' if side=='actual' else '/context/projects/'\n        return prefix+token(project)+'/'+token(node)+''.join('/'+token(part) for part in parts)\n    def add(code,ptr):\n        findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n    def locate(root,path,prefix):\n        cursor=root\n        ptr=prefix\n        for key in path:\n            if not isinstance(cursor,dict):\n                return {'present':False,'value':None,'pointer':ptr}\n            ptr=ptr+'/'+token(key)\n            if key not in cursor:\n                return {'present':False,'value':None,'pointer':ptr}\n            cursor=cursor[key]\n        return {'present':True,'value':cursor,'pointer':ptr}\n    def map_value(located):\n        return as_map(located['value'])\n    def valid_record(located):\n        return located['present'] and isinstance(located['value'],dict)\n    def mark(project,node,facet,state):\n        old=node_corr[project][node][facet]\n        if rank[state]>rank[old]:\n            node_corr[project][node][facet]=state\n    def classify_set(value,ptr,allow_empty):\n        if not isinstance(value,list) or any(not known(item) for item in value) or len(set(value))!=len(value):\n            return None\n        if not value and not allow_empty:\n            return None\n        return set(value)\n    actual_projects=map_value(locate(input,['projects'],''))\n    context_projects=map_value(locate(input,['context','projects'],''))\n    selected_projects_location=locate(targets,['projects'],'/targets')\n    selected_projects=map_value(selected_projects_location)\n    def compare_selected_node(project, node, actual, context, declared):\n        return compare_node_material(project,node,actual,context,rules,declared,as_map(context_projects.get(project)))\n    # R12/R17: 選択のprovenanceとproject集合はraw target引数だけから読む。\n    provenance_unknown=False\n    for field in ['selection_source_ref','selection_source_revision','selection_source_digest']:\n        location=locate(targets,[field],'/targets')\n        if not location['present'] or not known(location['value']):\n            add('field_unknown',location['pointer'])\n            provenance_unknown=True\n    if not valid_record(selected_projects_location):\n        add('field_unknown',selected_projects_location['pointer'])\n    identities=set()\n    empty_nodes=[]\n    for project in sorted(selected_projects):\n        project_location=locate(targets,['projects',project],'/targets')\n        project_target=map_value(project_location)\n        if not valid_record(project_location):\n            add('field_unknown',project_location['pointer'])\n            continue\n        if known(project_target.get('project_id')):\n            identities.add(project_target['project_id'])\n        else:\n            location=locate(targets,['projects',project,'project_id'],'/targets')\n            add('field_unknown',location['pointer'])\n        nodes_location=locate(targets,['projects',project,'nodes'],'/targets')\n        if not valid_record(nodes_location):\n            add('field_unknown',nodes_location['pointer'])\n        elif not nodes_location['value']:\n            empty_nodes.append(nodes_location['pointer'])\n    if valid_record(selected_projects_location) and len(identities)<2:\n        add('field_unknown','/targets/projects')\n    project_keys=sorted(set(list(actual_projects)+list(context_projects)+list(selected_projects)))\n    for project in project_keys:\n        actual_nodes=as_map(actual_projects.get(project))\n        context_nodes=as_map(context_projects.get(project))\n        project_target=as_map(selected_projects.get(project))\n        selected_nodes=as_map(project_target.get('nodes'))\n        node_corr[project]={}\n        # R15: 存在しないactual projectの保持entryを作らない。\n        if project in actual_projects and isinstance(actual_projects[project],dict):\n            retained_source[project]={}\n            retained_state[project]={}\n            gaps[project]={}\n        node_keys=sorted(set(list(actual_nodes)+list(context_nodes)+list(selected_nodes)))\n        for node in node_keys:\n            actual_location=locate(input,['projects',project,node],'')\n            context_location=locate(input,['context','projects',project,node],'')\n            selection_location=locate(targets,['projects',project,'nodes',node],'/targets')\n            a=actual_location['value']\n            c=context_location['value']\n            target=map_value(selection_location)\n            selected=valid_record(selection_location)\n            both=valid_record(actual_location) and valid_record(context_location)\n            node_corr[project][node]={facet:'corresponding' if selected and both else 'unknown' for facet in facets}\n            if not selected:\n                add('field_unknown',selection_location['pointer'])\n                if node in actual_nodes and not valid_record(actual_location):\n                    add('field_unknown',actual_location['pointer'])\n            else:\n                for location in [actual_location,context_location]:\n                    if not valid_record(location):\n                        add('field_unknown',location['pointer'])\n                if both:\n                    compared=compare_selected_node(project,node,a,c,target.get('kind'))\n                    node_corr[project][node]=compared['facet_results']\n                    for finding in compared['findings']:\n                        findings.append(finding)\n                if provenance_unknown:\n                    mark(project,node,'source','unknown')\n                project_axes=rules['selected_target_contract']['identity_and_binding']['project_axes']\n                node_axes=rules['selected_target_contract']['identity_and_binding']['node_axes']\n                for fields,selection,path in [(project_axes,project_target,['projects',project]),(node_axes,target,['projects',project,'nodes',node])]:\n                    for field in fields:\n                        value=selection.get(field)\n                        is_kind=field=='kind'\n                        is_known=known(value) and (not is_kind or value in {'unit','connection','composite'})\n                        if not is_known:\n                            location=locate(targets,path+[field],'/targets')\n                            add('kind_unknown' if is_kind else 'field_unknown',location['pointer'])\n                            mark(project,node,'source','unknown')\n                        else:\n                            for side,location in [('actual',actual_location),('context',context_location)]:\n                                if valid_record(location):\n                                    source=as_map(location['value'].get('source'))\n                                    actual_value=source.get(field)\n                                    p=pointer(side,project,node,'source',field)\n                                    if not known(actual_value) or (is_kind and actual_value not in {'unit','connection','composite'}):\n                                        add('kind_unknown' if is_kind else 'field_unknown',p)\n                                        mark(project,node,'source','unknown')\n                                    elif actual_value!=value:\n                                        add('kind_conflict' if is_kind else 'field_conflict',p)\n                                        mark(project,node,'source','violation')\n            # R11/R15: actualの元memberだけをdeepcopyし、contextから埋めない。\n            if node in actual_nodes and isinstance(a,dict):\n                if 'source' in a:\n                    retained_source[project][node]=deep_copy(a['source'])\n                retained_state[project][node]=deep_copy({key:a[key] for key in ['states','verification','acceptance','provision','unresolved_edges','stale_reasons','relations','owners'] if key in a})\n                if isinstance(a.get('source'),dict) and 'kind' in a['source']:\n                    retained_state[project][node]['kind']=deep_copy(a['source']['kind'])\n                if 'states' in a:\n                    gaps[project][node]=[axis for axis,allowed in axes.items() if as_map(as_map(a['states']).get(axis)).get('state')!=allowed[0]]\n    # R02/R09: selection外も含む全observed node。sideをまたいだaliasは作らない。\n    for side,projects in [('actual',actual_projects),('context',context_projects)]:\n        buckets={}\n        for project in sorted(projects):\n            for node in sorted(as_map(projects[project])):\n                raw=projects[project][node]\n                if not isinstance(raw,dict):\n                    continue\n                tid=as_map(raw.get('source')).get('target_id')\n                if known(tid):\n                    buckets.setdefault(tid,[]).append((project,node))\n                if side=='actual':\n                    for field in ['from_unit_success','from_pr_ci_plan','whole_node_complete']:\n                        value=as_map(raw.get('claims')).get(field)\n                        if value is True:\n                            add('inferred_completion_forbidden',pointer(side,project,node,'claims',field))\n                            mark(project,node,'boundary','violation')\n                        elif value is not False:\n                            add('claim_unknown',pointer(side,project,node,'claims',field))\n                            mark(project,node,'boundary','unknown')\n        for colliding in buckets.values():\n            if len(colliding)>1:\n                for project,node in colliding:\n                    add('identity_aliased',pointer(side,project,node,'source','target_id'))\n                    mark(project,node,'source','violation')\n    if not any(node_corr[project] for project in node_corr) and selected_projects and len(empty_nodes)==len(selected_projects):\n        for ptr in empty_nodes:\n            add('result_unknown',ptr)\n    claim=as_map(input).get('whole_completion_claim')\n    if claim is True:\n        add('whole_completion_forbidden','/whole_completion_claim')\n    elif claim is not False:\n        add('whole_claim_unknown','/whole_completion_claim')\n    values=[value for project in node_corr.values() for node in project.values() for value in node.values()]\n    # nodeを持たない選択domainの局所診断もaggregateの理由として保持する。\n    code_rank={item['code']:item['disposition'] for item in rules['codes']}\n    for finding in findings:\n        values.append(code_rank[finding['code']])\n    highest='unknown' if not values else 'corresponding'\n    for value in values:\n        if rank[value]>rank[highest]:\n            highest=value\n    condition={'corresponding':'trace_material_corresponding','unknown':'trace_material_unknown','violation':'trace_material_violation'}[highest]\n    return {'condition':condition,'node_correspondence':node_corr,'retained_source_records':retained_source,'retained_state_trace':retained_state,'observed_gap_axes':gaps,'findings':route_failure(findings,return_owner),'actual_state_updated':False,'actual_acceptance_created':False,'actual_release_authorized':False,'whole_portfolio_complete':False,'operation_effect':'none'}\n"
+    "source_code": "def deep_copy(value):\n    if isinstance(value, dict):\n        return {key: deep_copy(item) for key, item in value.items()}\n    if isinstance(value, list):\n        return [deep_copy(item) for item in value]\n    return value\n\ndef expand_case(fixture_inputs, case_input):\n    if case_input.get(\"base_ref\") != \"portfolio\":\n        raise ValueError(\"未定義base_ref\")\n    expanded = deep_copy(fixture_inputs[\"portfolio\"])\n    for replacement in case_input[\"replacements\"]:\n        path = replacement[\"path\"]\n        if not path:\n            raise ValueError(\"空path\")\n        cursor = expanded\n        for member in path[:-1]:\n            if not isinstance(cursor, dict) or member not in cursor:\n                raise ValueError(\"未定義path\")\n            cursor = cursor[member]\n        if not isinstance(cursor, dict) or path[-1] not in cursor:\n            raise ValueError(\"未定義終端\")\n        cursor[path[-1]] = deep_copy(replacement[\"value\"])\n    return expanded\n\ndef route_failure(findings, return_owner):\n    unique = {(item['code'], item['pointer'], return_owner) for item in findings}\n    ordered = sorted(unique)\n    return [{'code': code, 'pointer': pointer, 'return_owner': owner} for code, pointer, owner in ordered]\n\ndef compare_node_material(project, node, actual, context, diagnostic_contract, declared, context_project):\n    rules=diagnostic_contract\n    return_owner='portfolio-trace-owner'\n    facets=rules['facet_order']\n    source_fields=rules['source_fields']\n    receipt_fields=rules['receipt_fields']\n    axes=rules['state_axes']\n    def as_map(value):\n        return value if isinstance(value,dict) else {}\n    def known(value):\n        return isinstance(value,str) and len(value)>0\n    def pointer(side,project,node,*parts):\n        prefix='/projects/' if side=='actual' else '/context/projects/'\n        return prefix+str(project).replace('~','~0').replace('/','~1')+'/'+str(node).replace('~','~0').replace('/','~1')+''.join('/'+str(part).replace('~','~0').replace('/','~1') for part in parts)\n    def classify_set(value,ptr,allow_empty):\n        if not isinstance(value,list) or any(not known(item) for item in value) or len(set(value))!=len(value):\n            return None\n        if not value and not allow_empty:\n            return None\n        return set(value)\n    result={f:'corresponding' for f in facets}\n    local_findings=[]\n    def add(code, ptr):\n        local_findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n    def compare_string(a,b,pa,pb):\n        a_known=known(a); b_known=known(b)\n        if not a_known: add('field_unknown',pa)\n        if not b_known: add('field_unknown',pb)\n        if not a_known or not b_known: return 'unknown'\n        if a != b:\n            add('field_conflict',pa); return 'violation'\n        return 'corresponding'\n    def mark(f, disp):\n        rank={'corresponding':0,'unknown':1,'violation':2}\n        if rank[disp]>rank[result[f]]: result[f]=disp\n    ap=pointer('actual',project,node); cp=pointer('context',project,node)\n    for field in source_fields:\n        d=compare_string(as_map(actual.get('source')).get(field),as_map(context.get('source')).get(field),ap+'/source/'+field,cp+'/source/'+field)\n        mark('source',d)\n    ak=as_map(actual.get('source')).get('kind'); ck=as_map(context.get('source')).get('kind')\n    for value,side in [(ak,'actual'),(ck,'context')]:\n        if not isinstance(value,str) or value not in {'unit','connection','composite'}:\n            add('kind_unknown',pointer(side,project,node,'source','kind')); mark('source','unknown')\n        elif isinstance(declared,str) and declared in {'unit','connection','composite'} and value != declared:\n            add('kind_conflict',pointer(side,project,node,'source','kind')); mark('source','violation')\n    # R03: 各sideのowner集合を分類し、既知集合同士は件数に関わらず集合差を比較する。\n    owners=[]\n    for obj,side in [(actual,'actual'),(context,'context')]:\n        val=obj.get('owners'); p=pointer(side,project,node,'owners')\n        s=classify_set(val,p,False)\n        if s is None:\n            add('owner_unknown',p); mark('owner','unknown'); owners.append(None)\n        elif len(s)>1:\n            add('owner_ambiguous',p); mark('owner','violation'); owners.append(s)\n        else: owners.append(s)\n    if owners[0] is not None and owners[1] is not None and owners[0]!=owners[1]:\n        add('owner_conflict',ap+'/owners');mark('owner','violation')\n    # R04 relation sets and context-side endpoint existence.\n    relations=[]\n    for obj,side in [(actual,'actual'),(context,'context')]:\n        val=obj.get('relations'); p=pointer(side,project,node,'relations')\n        # R04のrelation domainをR12のselector資格と分離する。selector値は補完しない。\n        selector_kind_known=isinstance(declared,str) and declared in {'unit','connection','composite'}\n        relation_unit=declared=='unit' if selector_kind_known else as_map(obj.get('source')).get('kind')=='unit'\n        s=classify_set(val,p,relation_unit)\n        if s is None:\n            add('relation_unknown',p);mark('relation','unknown');relations.append(None)\n        else: relations.append(s)\n    if relations[0] is not None and relations[1] is not None and relations[0]!=relations[1]:\n        add('relation_conflict',ap+'/relations');mark('relation','violation')\n    for obj,side in [(actual,'actual'),(context,'context')]:\n        rel=obj.get('relations')\n        rel_ptr=pointer(side,project,node,'relations')\n        if isinstance(rel,list) and all(known(x) for x in rel) and len(set(rel))==len(rel):\n            rendered={}\n            # L4のtarget_id@target_revision表記が一意に解ける文脈nodeだけをendpoint候補にする。\n            portfolio=context_project\n            for other in portfolio.values():\n                src=as_map(other).get('source',{}); src=as_map(src); tid=src.get('target_id'); rev=src.get('target_revision')\n                if not known(tid) or not known(rev):\n                    continue\n                elif '@' in tid or '@' in rev:\n                    rendered.setdefault(tid+'@'+rev,[]).append((tid,rev,'ambiguous_encoding'))\n                else:\n                    rendered.setdefault(tid+'@'+rev,[]).append((tid,rev,'unique'))\n            unresolved=False; missing=False\n            for endpoint in rel:\n                candidates=rendered.get(endpoint,[])\n                identities={(row[0],row[1]) for row in candidates}\n                if len(identities)>1 or any(row[2]=='ambiguous_encoding' for row in candidates):\n                    unresolved=True\n                elif not candidates:\n                    missing=True\n            if unresolved:\n                add('relation_unknown',rel_ptr);mark('relation','unknown')\n            if missing:\n                add('relation_endpoint_conflict',rel_ptr);mark('relation','violation')\n    # R05 states and state source references.\n    for axis,allowed in axes.items():\n        aa=as_map(as_map(actual.get('states')).get(axis)); cc=as_map(as_map(context.get('states')).get(axis))\n        av=aa.get('state'); cv=cc.get('state'); pa=ap+'/states/'+axis+'/state'; pc=cp+'/states/'+axis+'/state'\n        if av not in allowed:\n            add('state_unknown',pa);mark('state','unknown')\n        if cv not in allowed:\n            add('state_unknown',pc);mark('state','unknown')\n        if av in allowed and cv in allowed and av!=cv:\n            add('state_conflict',pa);mark('state','violation')\n        for key in ['source_ref','source_revision']:\n            d=compare_string(aa.get(key),cc.get(key),ap+'/states/'+axis+'/'+key,cp+'/states/'+axis+'/'+key);mark('state',d)\n    av=as_map(as_map(actual.get('states')).get('knowledge')).get('state')\n    if av=='unknown': add('knowledge_unknown',ap+'/states/knowledge/state');mark('state','unknown')\n    av=as_map(as_map(actual.get('states')).get('freshness')).get('state')\n    if av=='stale': add('state_stale',ap+'/states/freshness/state');mark('state','unknown')\n    # R06 receipt/result states and field joins.\n    for facet in ['verification','acceptance','provision']:\n        ar=as_map(actual.get(facet)); cr=as_map(context.get(facet))\n        allowed=rules['result_states'][facet]\n        ast=ar.get('state'); cst=cr.get('state'); p=ap+'/'+facet+'/state'; q=cp+'/'+facet+'/state'\n        if ast not in allowed:\n            add('result_unknown',p);mark(facet,'unknown')\n        if cst not in allowed:\n            add('result_unknown',q);mark(facet,'unknown')\n        if ast in allowed and cst in allowed and ast!=cst:\n            add('result_conflict',p);mark(facet,'violation')\n        # Receipt identity fields bind against context receipt and node source.\n        for field in receipt_fields:\n            d=compare_string(ar.get(field),cr.get(field),ap+'/'+facet+'/'+field,cp+'/'+facet+'/'+field);mark(facet,d)\n            if field in ['project_id','requirement_revision','scope','target_id','target_revision','kind']:\n                expected=as_map(context.get('source')).get(field)\n                if not known(expected):\n                    mark(facet,'unknown')\n                elif known(ar.get(field)) and ar.get(field)!=expected:\n                    add('field_conflict',ap+'/'+facet+'/'+field);mark(facet,'violation')\n        if facet=='provision':\n            for field in rules['provision_additional_comparison_fields']:\n                d=compare_string(ar.get(field),cr.get(field),ap+'/'+facet+'/'+field,cp+'/'+facet+'/'+field)\n                mark(facet,d)\n    if as_map(actual.get('verification')).get('state')=='pass_material' and as_map(as_map(actual.get('states')).get('verification')).get('state')=='not_verified':\n        add('verification_state_conflict',ap+'/verification/state');mark('verification','violation')\n    if as_map(actual.get('provision')).get('state')=='provided_material' and as_map(as_map(actual.get('states')).get('provision')).get('state')=='not_provided':\n        add('provision_state_conflict',ap+'/provision/state');mark('provision','violation')\n    # R08 history sets; context entries may not be erased.\n    for field in ['unresolved_edges','stale_reasons']:\n        av=actual.get(field);cv=context.get(field);pa=ap+'/'+field;pc=cp+'/'+field\n        aset=classify_set(av,pa,True);cset=classify_set(cv,pc,True)\n        if aset is None: add('history_unknown',pa);mark('history','unknown')\n        if cset is None: add('history_unknown',pc);mark('history','unknown')\n        if aset is not None and cset is not None and not cset.issubset(aset): add('history_lost',pa);mark('history','violation')\n    if as_map(as_map(actual.get('states')).get('freshness')).get('state')=='stale' and actual.get('stale_reasons')==[]:\n        add('stale_reason_missing',ap+'/stale_reasons');mark('history','unknown')\n    # R09 boundary claims are checked on actual source only.\n    for field in ['from_unit_success','from_pr_ci_plan','whole_node_complete']:\n        value=as_map(actual.get('claims')).get(field);p=ap+'/claims/'+field\n        if value is True: add('inferred_completion_forbidden',p);mark('boundary','violation')\n        elif value is not False: add('claim_unknown',p);mark('boundary','unknown')\n    return {'facet_results':result,'findings':local_findings}\n\ndef evaluate_portfolio(input, diagnostic_contract, *selected_targets):\n    if len(selected_targets)==1:\n        return evaluate_portfolio_selected(input,diagnostic_contract,selected_targets[0])\n    if len(selected_targets)>1:\n        raise ValueError('evaluate_portfolio引数個数不正')\n    data = input\n    rules = diagnostic_contract\n    return_owner = 'portfolio-trace-owner'\n    compatibility=rules.get('baseline_fixture_compatibility',{})\n    projects = rules.get('projects',compatibility.get('projects'))\n    nodes = rules.get('node_kinds',compatibility.get('node_kinds'))\n    axes = rules['state_axes']\n    facets = rules['facet_order']\n    source_fields = rules['source_fields']\n    receipt_fields = rules['receipt_fields']\n    node_corr = {}\n    retained_source = {}\n    retained_state = {}\n    gaps = {}\n    findings = []\n    def pointer(side, project, node, *parts):\n        prefix = '/projects/' if side == 'actual' else '/context/projects/'\n        return prefix + project + '/' + node + ''.join('/' + str(p).replace('~','~0').replace('/','~1') for p in parts)\n    def add(code, ptr):\n        findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n    def known(v):\n        return isinstance(v,str) and len(v)>0\n    def classify_set(value, ptr, allow_empty):\n        if not isinstance(value,list) or any(not known(x) for x in value) or len(set(value)) != len(value):\n            return None\n        if not value and not allow_empty:\n            return None\n        return set(value)\n    def compare_node(project, node, actual, context):\n        return compare_node_material(project,node,actual,context,rules,nodes[node],data['context']['projects'][project])\n    for project in projects:\n        node_corr[project]={};retained_source[project]={};retained_state[project]={};gaps[project]={}\n        for node in nodes:\n            a=data['projects'][project][node];c=data['context']['projects'][project][node]\n            compared=compare_node(project,node,a,c)\n            node_corr[project][node]=compared['facet_results']\n            for finding in compared['findings']: findings.append(finding)\n            retained_source[project][node]=deep_copy(a['source'])\n            retained_state[project][node]=deep_copy({k:a[k] for k in ['states','verification','acceptance','provision','unresolved_edges','stale_reasons','relations','owners']})\n            if 'kind' in a['source']:\n                retained_state[project][node]['kind']=deep_copy(a['source']['kind'])\n            gaps[project][node]=[axis for axis,allowed in axes.items() if a.get('states',{}).get(axis,{}).get('state')!=allowed[0]]\n    # Same-side target ID collisions are alias violations on both nodes.\n    for side,root in [('actual',data['projects']),('context',data['context']['projects'])]:\n        buckets={}\n        for project in projects:\n            for node in nodes:\n                tid=root[project][node].get('source',{}).get('target_id')\n                if known(tid): buckets.setdefault(tid,[]).append((project,node))\n        for colliding in buckets.values():\n            if len(colliding)>1:\n                for project,node in colliding:\n                    add('identity_aliased',pointer(side,project,node,'source','target_id'))\n                    node_corr[project][node]['source']='violation'\n    claim=data.get('whole_completion_claim')\n    if claim is True:add('whole_completion_forbidden','/whole_completion_claim')\n    elif claim is not False:add('whole_claim_unknown','/whole_completion_claim')\n    rank={'corresponding':0,'unknown':1,'violation':2}\n    values=[x for p in projects for n in nodes for x in node_corr[p][n].values()]\n    if claim is True: values.append('violation')\n    elif claim is not False: values.append('unknown')\n    highest=values[0]\n    for value in values[1:]:\n        if rank[value]>rank[highest]: highest=value\n    condition={'corresponding':'trace_material_corresponding','unknown':'trace_material_unknown','violation':'trace_material_violation'}[highest]\n    findings=route_failure(findings, return_owner)\n    return {'condition':condition,'node_correspondence':node_corr,'retained_source_records':retained_source,'retained_state_trace':retained_state,'observed_gap_axes':gaps,'findings':findings,'actual_state_updated':False,'actual_acceptance_created':False,'actual_release_authorized':False,'whole_portfolio_complete':False,'operation_effect':'none'}\n\ndef evaluate_portfolio_selected(input, diagnostic_contract, *supplied_targets):\n    # 0 supplied targetsはselected専用entrypointのAbsent。Noneはpresent null。\n    if len(supplied_targets)>1:\n        raise ValueError('selected targets引数は最大1件')\n    targets_presence='absent' if not supplied_targets else 'null' if supplied_targets[0] is None else 'present'\n    targets=supplied_targets[0] if targets_presence!='absent' else None\n    rules=diagnostic_contract\n    return_owner='portfolio-trace-owner'\n    axes=rules['state_axes']\n    facets=rules['facet_order']\n    source_fields=rules['source_fields']\n    receipt_fields=rules['receipt_fields']\n    rank={'corresponding':0,'unknown':1,'violation':2}\n    findings=[]\n    node_corr={}\n    retained_source={}\n    retained_state={}\n    gaps={}\n    def as_map(value):\n        return value if isinstance(value,dict) else {}\n    def known(value):\n        return isinstance(value,str) and len(value)>0\n    def token(value):\n        return str(value).replace('~','~0').replace('/','~1')\n    def pointer(side,project,node,*parts):\n        prefix='/projects/' if side=='actual' else '/context/projects/'\n        return prefix+token(project)+'/'+token(node)+''.join('/'+token(part) for part in parts)\n    def add(code,ptr):\n        findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n    def locate(root,path,prefix):\n        cursor=root\n        ptr=prefix\n        for key in path:\n            if not isinstance(cursor,dict):\n                return {'present':False,'value':None,'pointer':ptr}\n            ptr=ptr+'/'+token(key)\n            if key not in cursor:\n                return {'present':False,'value':None,'pointer':ptr}\n            cursor=cursor[key]\n        return {'present':True,'value':cursor,'pointer':ptr}\n    def map_value(located):\n        return as_map(located['value'])\n    def valid_record(located):\n        return located['present'] and isinstance(located['value'],dict)\n    def mark(project,node,facet,state):\n        old=node_corr[project][node][facet]\n        if rank[state]>rank[old]:\n            node_corr[project][node][facet]=state\n    def classify_set(value,ptr,allow_empty):\n        if not isinstance(value,list) or any(not known(item) for item in value) or len(set(value))!=len(value):\n            return None\n        if not value and not allow_empty:\n            return None\n        return set(value)\n    actual_projects=map_value(locate(input,['projects'],''))\n    context_projects=map_value(locate(input,['context','projects'],''))\n    selected_projects_location=locate(targets,['projects'],'/targets')\n    selected_projects=map_value(selected_projects_location)\n    def compare_selected_node(project, node, actual, context, declared):\n        return compare_node_material(project,node,actual,context,rules,declared,as_map(context_projects.get(project)))\n    # R12/R17: 選択のprovenanceとproject集合はraw target引数だけから読む。\n    provenance_unknown=False\n    for field in ['selection_source_ref','selection_source_revision','selection_source_digest']:\n        location=locate(targets,[field],'/targets')\n        if not location['present'] or not known(location['value']):\n            add('field_unknown',location['pointer'])\n            provenance_unknown=True\n    if not valid_record(selected_projects_location):\n        add('field_unknown',selected_projects_location['pointer'])\n    identities=set()\n    empty_nodes=[]\n    for project in sorted(selected_projects):\n        project_location=locate(targets,['projects',project],'/targets')\n        project_target=map_value(project_location)\n        if not valid_record(project_location):\n            add('field_unknown',project_location['pointer'])\n            continue\n        if known(project_target.get('project_id')):\n            identities.add(project_target['project_id'])\n        else:\n            location=locate(targets,['projects',project,'project_id'],'/targets')\n            add('field_unknown',location['pointer'])\n        nodes_location=locate(targets,['projects',project,'nodes'],'/targets')\n        if not valid_record(nodes_location):\n            add('field_unknown',nodes_location['pointer'])\n        elif not nodes_location['value']:\n            empty_nodes.append(nodes_location['pointer'])\n    if valid_record(selected_projects_location) and len(identities)<2:\n        add('field_unknown','/targets/projects')\n    project_keys=sorted(set(list(actual_projects)+list(context_projects)+list(selected_projects)))\n    for project in project_keys:\n        actual_nodes=as_map(actual_projects.get(project))\n        context_nodes=as_map(context_projects.get(project))\n        project_target=as_map(selected_projects.get(project))\n        selected_nodes=as_map(project_target.get('nodes'))\n        node_corr[project]={}\n        # R15: 存在しないactual projectの保持entryを作らない。\n        if project in actual_projects and isinstance(actual_projects[project],dict):\n            retained_source[project]={}\n            retained_state[project]={}\n            gaps[project]={}\n        node_keys=sorted(set(list(actual_nodes)+list(context_nodes)+list(selected_nodes)))\n        for node in node_keys:\n            actual_location=locate(input,['projects',project,node],'')\n            context_location=locate(input,['context','projects',project,node],'')\n            selection_location=locate(targets,['projects',project,'nodes',node],'/targets')\n            a=actual_location['value']\n            c=context_location['value']\n            target=map_value(selection_location)\n            selected=valid_record(selection_location)\n            both=valid_record(actual_location) and valid_record(context_location)\n            node_corr[project][node]={facet:'corresponding' if selected and both else 'unknown' for facet in facets}\n            if not selected:\n                add('field_unknown',selection_location['pointer'])\n                if node in actual_nodes and not valid_record(actual_location):\n                    add('field_unknown',actual_location['pointer'])\n            else:\n                for location in [actual_location,context_location]:\n                    if not valid_record(location):\n                        add('field_unknown',location['pointer'])\n                if both:\n                    compared=compare_selected_node(project,node,a,c,target.get('kind'))\n                    node_corr[project][node]=compared['facet_results']\n                    for finding in compared['findings']:\n                        findings.append(finding)\n                if provenance_unknown:\n                    mark(project,node,'source','unknown')\n                project_axes=rules['selected_target_contract']['identity_and_binding']['project_axes']\n                node_axes=rules['selected_target_contract']['identity_and_binding']['node_axes']\n                for fields,selection,path in [(project_axes,project_target,['projects',project]),(node_axes,target,['projects',project,'nodes',node])]:\n                    for field in fields:\n                        value=selection.get(field)\n                        is_kind=field=='kind'\n                        is_known=known(value) and (not is_kind or value in {'unit','connection','composite'})\n                        if not is_known:\n                            location=locate(targets,path+[field],'/targets')\n                            add('kind_unknown' if is_kind else 'field_unknown',location['pointer'])\n                            mark(project,node,'source','unknown')\n                        else:\n                            for side,location in [('actual',actual_location),('context',context_location)]:\n                                if valid_record(location):\n                                    source=as_map(location['value'].get('source'))\n                                    actual_value=source.get(field)\n                                    p=pointer(side,project,node,'source',field)\n                                    if not known(actual_value) or (is_kind and actual_value not in {'unit','connection','composite'}):\n                                        add('kind_unknown' if is_kind else 'field_unknown',p)\n                                        mark(project,node,'source','unknown')\n                                    elif actual_value!=value:\n                                        add('kind_conflict' if is_kind else 'field_conflict',p)\n                                        mark(project,node,'source','violation')\n            # R11/R15: actualの元memberだけをdeepcopyし、contextから埋めない。\n            if node in actual_nodes and isinstance(a,dict):\n                if 'source' in a:\n                    retained_source[project][node]=deep_copy(a['source'])\n                retained_state[project][node]=deep_copy({key:a[key] for key in ['states','verification','acceptance','provision','unresolved_edges','stale_reasons','relations','owners'] if key in a})\n                if isinstance(a.get('source'),dict) and 'kind' in a['source']:\n                    retained_state[project][node]['kind']=deep_copy(a['source']['kind'])\n                if 'states' in a:\n                    gaps[project][node]=[axis for axis,allowed in axes.items() if as_map(as_map(a['states']).get(axis)).get('state')!=allowed[0]]\n    # R02/R09: selection外も含む全observed node。sideをまたいだaliasは作らない。\n    for side,projects in [('actual',actual_projects),('context',context_projects)]:\n        buckets={}\n        for project in sorted(projects):\n            for node in sorted(as_map(projects[project])):\n                raw=projects[project][node]\n                if not isinstance(raw,dict):\n                    continue\n                tid=as_map(raw.get('source')).get('target_id')\n                if known(tid):\n                    buckets.setdefault(tid,[]).append((project,node))\n                if side=='actual':\n                    for field in ['from_unit_success','from_pr_ci_plan','whole_node_complete']:\n                        value=as_map(raw.get('claims')).get(field)\n                        if value is True:\n                            add('inferred_completion_forbidden',pointer(side,project,node,'claims',field))\n                            mark(project,node,'boundary','violation')\n                        elif value is not False:\n                            add('claim_unknown',pointer(side,project,node,'claims',field))\n                            mark(project,node,'boundary','unknown')\n        for colliding in buckets.values():\n            if len(colliding)>1:\n                for project,node in colliding:\n                    add('identity_aliased',pointer(side,project,node,'source','target_id'))\n                    mark(project,node,'source','violation')\n    if not any(node_corr[project] for project in node_corr) and selected_projects and len(empty_nodes)==len(selected_projects):\n        for ptr in empty_nodes:\n            add('result_unknown',ptr)\n    claim=as_map(input).get('whole_completion_claim')\n    if claim is True:\n        add('whole_completion_forbidden','/whole_completion_claim')\n    elif claim is not False:\n        add('whole_claim_unknown','/whole_completion_claim')\n    values=[value for project in node_corr.values() for node in project.values() for value in node.values()]\n    # nodeを持たない選択domainの局所診断もaggregateの理由として保持する。\n    code_rank={item['code']:item['disposition'] for item in rules['codes']}\n    for finding in findings:\n        values.append(code_rank[finding['code']])\n    highest='unknown' if not values else 'corresponding'\n    for value in values:\n        if rank[value]>rank[highest]:\n            highest=value\n    condition={'corresponding':'trace_material_corresponding','unknown':'trace_material_unknown','violation':'trace_material_violation'}[highest]\n    return {'condition':condition,'node_correspondence':node_corr,'retained_source_records':retained_source,'retained_state_trace':retained_state,'observed_gap_axes':gaps,'findings':route_failure(findings,return_owner),'actual_state_updated':False,'actual_acceptance_created':False,'actual_release_authorized':False,'whole_portfolio_complete':False,'operation_effect':'none'}\n\n\ndef capture_source_member(root, tokens, prefix=''):\n    def escape(token):\n        return token.replace('~', '~0').replace('/', '~1')\n    requested = prefix + ''.join('/' + escape(token) for token in tokens)\n    reached = prefix\n    value = root\n    for token in tokens:\n        if not isinstance(value, dict):\n            return {'requested_pointer': requested, 'reached_pointer': reached,\n                    'availability': 'blocked', 'value': deep_copy(value)}\n        reached += '/' + escape(token)\n        if token not in value:\n            return {'requested_pointer': requested, 'reached_pointer': reached,\n                    'availability': 'absent'}\n        value = value[token]\n    return {'requested_pointer': requested, 'reached_pointer': reached,\n            'availability': 'present', 'value': deep_copy(value)}\n\n\ndef locate_failure_source(finding):\n    pointer = finding['pointer']\n    raw = pointer[1:].split('/') if pointer.startswith('/') else []\n    valid = pointer == '' or pointer.startswith('/')\n    for token in raw:\n        cursor = 0\n        while cursor < len(token):\n            if token[cursor] == '~':\n                if cursor + 1 >= len(token) or token[cursor + 1] not in '01':\n                    valid = False\n                    break\n                cursor += 2\n            else:\n                cursor += 1\n    tokens = [token.replace('~1', '/').replace('~0', '~') for token in raw]\n    side = 'unbound'\n    offset = None\n    if valid and tokens[:2] == ['context', 'projects']:\n        side, offset = 'context', 2\n    elif valid and tokens[:1] == ['projects']:\n        side, offset = 'actual', 1\n    elif valid and tokens[:2] == ['targets', 'projects']:\n        side, offset = 'selected', 2\n    if offset is not None and len(tokens) > offset:\n        project = tokens[offset]\n        tail = tokens[offset + 1:]\n        if side != 'selected' and tail:\n            return {'kind': 'node', 'project_key': project,\n                    'node_key': tail[0], 'finding_side': side}\n        if side == 'selected' and len(tail) >= 2 and tail[0] == 'nodes':\n            return {'kind': 'node', 'project_key': project,\n                    'node_key': tail[1], 'finding_side': side}\n        return {'kind': 'project', 'project_key': project, 'finding_side': side}\n    return {'kind': 'unbound', 'finding_side': side,\n            'reason': 'container_or_non_locator_pointer'}\n\n\ndef compare_failure_source_materials(actual, context, selected):\n    project_axes = ['project_id', 'requirement_id', 'requirement_revision',\n                    'scope', 'harness_contract_revision']\n    node_axes = ['target_id', 'target_revision', 'target_digest', 'kind',\n                 'source_ref', 'source_revision']\n    source_axes = project_axes + node_axes + ['difference_ref', 'operation_record_ref']\n    def read_source(capture, field):\n        if capture['availability'] == 'present' and isinstance(capture['value'], dict):\n            return capture['value'].get(field)\n        return None\n    def compare(left, right, field):\n        if field == 'kind':\n            allowed = ['unit', 'connection', 'composite']\n            known = isinstance(left, str) and isinstance(right, str) and left in allowed and right in allowed\n        else:\n            known = isinstance(left, str) and bool(left) and isinstance(right, str) and bool(right)\n        if not known:\n            return 'unknown'\n        return 'material_corresponding' if left == right else 'material_conflict'\n    def selected_value(field):\n        capture = selected['project_axes' if field in project_axes else 'node_axes'][field]\n        return capture['value'] if capture['availability'] == 'present' else None\n    return {\n        'kind': 'node',\n        'actual_context': {field: compare(read_source(actual, field), read_source(context, field), field)\n                           for field in source_axes},\n        'actual_selected': {field: compare(read_source(actual, field), selected_value(field), field)\n                            for field in project_axes + node_axes},\n        'context_selected': {field: compare(read_source(context, field), selected_value(field), field)\n                             for field in project_axes + node_axes}}\n\n\ndef bind_portfolio_failure_source_candidates(evaluation):\n    input = evaluation['input']\n    project_axes = ['project_id', 'requirement_id', 'requirement_revision',\n                    'scope', 'harness_contract_revision']\n    node_axes = ['target_id', 'target_revision', 'target_digest', 'kind',\n                 'source_ref', 'source_revision']\n    candidates = []\n    for finding in evaluation['trace_material']['findings']:\n        locator = locate_failure_source(finding)\n        materials = {'kind': 'unbound'}\n        comparisons = {'kind': 'not_node_bound'}\n        if locator['kind'] in ['node', 'project']:\n            project = locator['project_key']\n            selected_project = {field: capture_source_member(evaluation, ['targets', 'projects', project, field])\n                                for field in project_axes}\n            if locator['kind'] == 'project':\n                materials = {'kind': 'project', 'selected_project_axes': selected_project}\n            else:\n                node = locator['node_key']\n                actual_tokens = ['projects', project, node]\n                context_tokens = ['context', 'projects', project, node]\n                actual = {'node_record': capture_source_member(input, actual_tokens),\n                          'source': capture_source_member(input, actual_tokens + ['source']),\n                          'owners': capture_source_member(input, actual_tokens + ['owners'])}\n                context = {'node_record': capture_source_member(input, context_tokens),\n                           'source': capture_source_member(input, context_tokens + ['source']),\n                           'owners': capture_source_member(input, context_tokens + ['owners'])}\n                selected = {'project_axes': selected_project,\n                            'node_axes': {field: capture_source_member(evaluation, ['targets', 'projects', project, 'nodes', node, field])\n                                          for field in node_axes}}\n                materials = {'kind': 'node', 'actual': actual, 'context': context, 'selected': selected}\n                comparisons = compare_failure_source_materials(actual['source'], context['source'], selected)\n        candidates.append({'finding': deep_copy(finding), 'locator': locator,\n                           'material_sources': materials, 'comparisons': comparisons,\n                           'recipient_qualification': 'not_established', 'actual_delivery': False})\n    return candidates\n\n\ndef evaluate_portfolio_with_source_candidates(input, diagnostic_contract, *supplied_targets):\n    if len(supplied_targets) > 1:\n        raise ValueError('selected targets引数は最大1件')\n    trace = evaluate_portfolio_selected(input, diagnostic_contract, *supplied_targets)\n    evaluation = {'input': input, 'trace_material': trace}\n    if supplied_targets:\n        evaluation['targets'] = supplied_targets[0]\n    return {'trace_material': trace,\n            'failure_source_candidates': bind_portfolio_failure_source_candidates(evaluation),\n            'operation_effect': 'none'}\n"
   },
   "formal_calculation_contract": {
     "authority": "normative_program.source_codeがL5有限fixture計算の唯一の規範である。branch_table、diagnostic_policy、logical_schema_boundary等は型・入力・説明であり、計算結果を別に定義しない。コードと説明の不一致は解消し、期待wholeは計算後にだけ比較する。",
@@ -2446,7 +3001,7 @@
       "whole_portfolio_complete",
       "operation_effect"
     ],
-    "scope": "既存356 baseline fixtureとselected profile 29 fixtureについて、L4 diagnostic_contract R01–R17から純粋計算を導出する。これは詳細設計の宣言計算正本であり、製品runtime、実source資格、実provider/codec/CI、PO受入、全入力域の閉包は成立させない。 L8 selected_domain_profile.project_identity_header_probesの追加4 whole期待は、R17の不正project_idをnode反復の有無によらず診断する局所枝を扱う。原385 fixtureの有限scopeから追加期待の計算一致や全義務の完了を生成しない。"
+    "scope": "既存356 baseline fixtureとselected profile 29 fixtureについて、L4 diagnostic_contract R01–R17から純粋計算を導出する。これは詳細設計の宣言計算正本であり、製品runtime、実source資格、実provider/codec/CI、PO受入、全入力域の閉包は成立させない。 L8 selected_domain_profile.project_identity_header_probesの追加4 whole期待は、R17の不正project_idをnode反復の有無によらず診断する局所枝を扱う。原385 fixtureの有限scopeから追加期待の計算一致や全義務の完了を生成しない。 source返却wrapperは既存selected計算を保ち、同じ原入力のactual/context/selected材料を候補へ結ぶ。A02の他producer投影、実owner資格・実配送は成立させない。"
   },
   "domain_totality_rules": {
     "source.kind": {
@@ -2614,5 +3169,162 @@
         "object_canonical_sha256": "07fbe7e17cccdcd5b9492569be4a8104b1ca70750872b1c9a1f6c969ca6e1706"
       }
     }
-  ]
+  ],
+  "source_candidate_return_contract": {
+    "symbols": [
+      {
+        "name": "evaluate_portfolio_with_source_candidates",
+        "arguments": [
+          "input:SelectedPortfolioInput",
+          "diagnostic_contract:DiagnosticContract",
+          "*supplied_targets:0..1<JSONValue>"
+        ],
+        "returns": "SourceBoundTrace{trace_material:SelectedTraceResult,failure_source_candidates:List<FailureSourceCandidate>,operation_effect:Literal<none>}",
+        "decision": "同じ局所inputとtargets引数0個又は1個をそのまま既存evaluate_portfolio_selectedへ一度渡し、返却全11rootを不変のtrace_materialとして保持。targets memberのAbsent/suppliedを保つSourceCandidateEvaluationを同一呼出し内で構築する。2個以上は計算前に拒否する。既存evaluate_portfolioの返却11rootは変更しない。"
+      },
+      {
+        "name": "bind_portfolio_failure_source_candidates",
+        "arguments": [
+          "evaluation:SourceCandidateEvaluation"
+        ],
+        "returns": "List<FailureSourceCandidate>",
+        "reads": [
+          "trace_material.findings[*]（原順、原三field）",
+          "同一inputの/projects,/context/projects",
+          "同一targetsの/projects とproject/node axes"
+        ],
+        "unread": [
+          "実owner資格、外部registry/provider",
+          "source文字列のgrammar",
+          "expected whole",
+          "他inputの任意finding"
+        ],
+        "decision": "findingごとに1candidateを原順で返す。envelopeは直前wrapperが同一呼出しから作る。独立任意所見を別sourceへ結び替えるAPIにしない。hash/実source資格を新gateにしない。"
+      }
+    ],
+    "closed_candidate_roots": [
+      "finding",
+      "locator",
+      "material_sources",
+      "comparisons",
+      "recipient_qualification",
+      "actual_delivery"
+    ],
+    "Capture": {
+      "common": [
+        "requested_pointer:string",
+        "reached_pointer:string",
+        "availability:enum(absent,blocked,present)"
+      ],
+      "variants": {
+        "absent": "value memberなし。最初の不在memberがreached_pointer。",
+        "blocked": "最初の非object ancestorがreached_pointer。valueはその原JSON値。",
+        "present": "要求leafが存在。valueは原JSON値でnull/空/型外を保持。"
+      },
+      "reader": "tokenをRFC6901一回decodeし、literal keyで実treeを読む。配列indexやopaque source文字列をlocatorへ変換しない。"
+    },
+    "locator_decisions": [
+      {
+        "when": "/projects/{p}/{n}/… 又は /context/projects/{p}/{n}/…",
+        "return": "node locator。finding_sideはactual又はcontext。p,nはdecodeしたliteral key。末尾なしでもnode locator。"
+      },
+      {
+        "when": "/targets/projects/{p}/nodes/{n}/…",
+        "return": "node locator、finding_side=selected。"
+      },
+      {
+        "when": "/projects/{p} 又は /context/projects/{p} 又は /targets/projects/{p}、又はそのproject axis/nodes map位置",
+        "return": "project locator。特定nodeを推測せずselected project axesだけ保持。"
+      },
+      {
+        "when": "それ以外（root/container/claim/provenanceを含む）",
+        "return": "unbound locator。元findingを保持し候補nodeやownerを推測しない。"
+      }
+    ],
+    "material_source_variants": {
+      "node": {
+        "actual": "node_record/source/ownersの各Capture",
+        "context": "同じlocatorのnode_record/source/ownersの各Capture",
+        "selected": "project_axes5個/node_axes6個の各Capture"
+      },
+      "project": "selected_project_axes5個のCaptureだけ。node source/ownerを推測しない。",
+      "unbound": "kind=unboundのみ"
+    },
+    "comparison_variants": {
+      "node": {
+        "actual_context": [
+          "project_id",
+          "requirement_id",
+          "requirement_revision",
+          "scope",
+          "harness_contract_revision",
+          "target_id",
+          "target_revision",
+          "target_digest",
+          "kind",
+          "source_ref",
+          "source_revision",
+          "difference_ref",
+          "operation_record_ref"
+        ],
+        "actual_selected": [
+          "project_id",
+          "requirement_id",
+          "requirement_revision",
+          "scope",
+          "harness_contract_revision",
+          "target_id",
+          "target_revision",
+          "target_digest",
+          "kind",
+          "source_ref",
+          "source_revision"
+        ],
+        "context_selected": [
+          "project_id",
+          "requirement_id",
+          "requirement_revision",
+          "scope",
+          "harness_contract_revision",
+          "target_id",
+          "target_revision",
+          "target_digest",
+          "kind",
+          "source_ref",
+          "source_revision"
+        ]
+      },
+      "not_node_bound": "kind=not_node_boundのみ"
+    },
+    "field_decision": "kind以外は、比較双方のCaptureがpresentかつvalueが非空stringなら型付き同値でmaterial_corresponding、既知異値でmaterial_conflict。それ以外はunknown。kindはactual/context/selectedの全operandでNodeKind{unit,connection,composite}所属を要し、片側でも閉集合外/欠落/null/型外ならそのpair.kind=unknown。両側が閉集合内なら同値=material_corresponding、異値=material_conflict。未知raw値はCaptureに保持する。source pairのfield範囲はR01、kind有効性はR02、selector pairはR12の11軸。comparisonは候補材料の対応だけでstate/受入/資格ではない。",
+    "owner_decision": "actual/contextのowners原presenceと配列全値を役割別に保持する。context ownerをactual owner/実recipientへ変換せず、複数ownerを一つへ選ばない。元traceのowner所見も保存。",
+    "effects": {
+      "recipient_qualification": "not_established",
+      "actual_delivery": false,
+      "operation_effect": "none"
+    },
+    "preservation": "context-only source/ownersはcandidate内で役割名を保ち、actual-only retained_source/state rootsへ転記しない。原traceの無関係scopeも原値保持。",
+    "kind_rule_correction": {
+      "oracle": "kind-rule-oracle.json",
+      "oracle_sha256": "fd3c2f99c3a190757d6465fd41c7773777b8ca2fae20dbbbf8194f6489fef73e",
+      "original_four_wholes_unchanged": true,
+      "before_contract_sha256": "8704320ef100b4f90c7384bdb69b0ac32fed812026d7b6b775b0a3491257052c",
+      "reason": "旧文言はselected.kindだけをclosed-enum判定とし、actual/context同値の未知kindを対応済みにできた。R02の両side閉集合を全pair operandへ明示する。"
+    },
+    "binding_rule": "wrapperがselected evaluatorを一度呼び、その同じ局所input/targets/traceを内部binderへ渡す。binderを外部の任意findingと別入力を結び替えるAPIとして公開しない。原11root・既存entrypointの返却は変更しない。",
+    "cross_variant_rules": "locator.kind=nodeならmaterials/comparisonsともnode、projectならproject/not_node_bound、unboundならunbound/not_node_bound。Capture.valueはabsentに無く、blocked/presentに必須。findingとlocatorは同じ原pointerから導き、candidate配列はtrace.findingsの原順で一対一。",
+    "invocation_presence_rule": "targets引数0個は内部envelopeにtargets member無し、1個はnullを含む原JSONValueをtargets memberへ保持する。同じarityでselected evaluatorへ一度だけ転送する。2個以上は計算・binderより前にValueError(selected targets引数は最大1件)。selected Captureはenvelopeからtargetsを含む原pathを辿り、省略と明示nullをabsent/blockedとして区別する。",
+    "consumer_call_binding": {
+      "requirement_ref": "HELIXOS-L3-016-F03",
+      "public_entrypoint": "evaluate_portfolio_with_source_candidates",
+      "return_contract": "SourceBoundTrace",
+      "consumer_rule": "F03のsource返却候補を必要とする呼出しは本wrapperを使い、同一返却のtrace_materialとfailure_source_candidatesを読む。F01/F02の既存11root entrypointは保持する。別呼出しのfindingや入力へcandidateを結び替えない。実owner資格の成立・配送先決定・実配送は本返却では成立しない。"
+    },
+    "source_basis": {
+      "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+      "revision": "e1a758b63b261ee3dfa09aa747714b71220080ba",
+      "pointer": "/contracts/2",
+      "file_sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422"
+    }
+  }
 }
