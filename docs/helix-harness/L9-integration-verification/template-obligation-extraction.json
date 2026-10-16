@@ -6024,7 +6024,7 @@
       "current_occurrence_binding": {
         "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
         "pointer": "/contracts/2/occurrence_return_contract",
-        "working_bytes_sha256": "399021cef811951702bc5a7fa15cd54b6fd2e42bff69aa772977952823202261",
+        "working_bytes_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
         "binding_kind": "paired_current_file_bytes",
         "meaning": "新trace規範の現L4 bytes。同caseの旧l4_source_bindingは元bytes歴史参照として別保持する。"
       }
@@ -6045,7 +6045,7 @@
         "failure_observation": "不一致scopeと未対応spanを残し、別入力の成功で相殺しない。",
         "execution_state": "not_executed"
       },
-      "connection_scope": "原owner source/資格decision port合成返却→同invocation private context→pure N01比較→個別atom/gapと原値保存。実provider/資格生成/runtimeは未binding。",
+      "connection_scope": "原sourceを一回評価→同caller native owner source/資格decision返却→private context→実3引数traced比較→8member全返却。旧public2引数/source-only6memberは別射影。実provider/資格生成/runtimeは未binding。",
       "fixture_state": "logical_whole_and_partial_oracles_authored_actual_evaluation_not_executed",
       "concrete_cases": [
         {
@@ -6558,9 +6558,52 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/0/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": []
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "90d1851ddd271b02244f9c4b0190b437875a811dca9088b290369e12f276cc5c"
+          "same_invocation_observation_sha256": "f1c2cbc63c8f2b9a4fd5ced1e9712b7fd311d9068fc2d49d47efb407cceecaa9",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/0",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                },
+                "qualification_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "90d1851ddd271b02244f9c4b0190b437875a811dca9088b290369e12f276cc5c",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "H041-N01-DIFFERENT-RESULT-DIGEST",
@@ -7072,9 +7115,52 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/1/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": []
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "be6dd52c594cbfdc8a33f920f96f3c40ea3ea81ba6cc6ae3b5a29b61310e9cfb"
+          "same_invocation_observation_sha256": "3c0fcebc4c9663ce7b94f3d2d5cb4b60484d4beb3aaf72d1a517f6265503447c",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/1",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                },
+                "qualification_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "be6dd52c594cbfdc8a33f920f96f3c40ea3ea81ba6cc6ae3b5a29b61310e9cfb",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "H041-N01-DIFFERENT-INPUT",
@@ -7586,9 +7672,52 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/2/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": []
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "27f63e7f2c6ec61f137b1e47ed6ff59c78623051617e3bc11806e352608ec622"
+          "same_invocation_observation_sha256": "58f5bef9df780bfcb5e1ac6948f4bfc042a0799527660f52bdc796e17456a3a2",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/2",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                },
+                "qualification_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "27f63e7f2c6ec61f137b1e47ed6ff59c78623051617e3bc11806e352608ec622",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "H041-N01-INDEPENDENCE-UNKNOWN",
@@ -8100,9 +8229,52 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/3/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": []
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "591dbf39178ade6f88f49fd5745564bb455d5a5a3cd6b0789edca9cbd908653c"
+          "same_invocation_observation_sha256": "3d26622b60f57114242b0780d15df72c981a979e61e3baa467aad83a7eb4da9b",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/3",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                },
+                "qualification_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "591dbf39178ade6f88f49fd5745564bb455d5a5a3cd6b0789edca9cbd908653c",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "H041-N01-HELD-OUT-UNSUPPORTED-ELEMENT",
@@ -8672,9 +8844,78 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/4/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "939d7f28eb9021e1d8c96d71a1309830877c6cb1ff5cdabb79a666e96cfbdc66",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "unsupported_new_kind",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "present",
+                      "value": {
+                        "element_id": "E9",
+                        "kind": "unsupported_element",
+                        "template_revision": "TPL-P@r2",
+                        "source_span": {
+                          "start_line": 1,
+                          "end_line": 1
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "39edf0559acb4bad19e7dc90d95fd2428b86114dfec56077505e9b02d87d6f8e"
+          "same_invocation_observation_sha256": "867c84531f73ff94a68719dd512593a8103103d63ada3f4066959652dbcf0180",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/4",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                },
+                "qualification_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "39edf0559acb4bad19e7dc90d95fd2428b86114dfec56077505e9b02d87d6f8e",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "N01-CARRIER-SUPPORTED-E9",
@@ -9538,9 +9779,146 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/5/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "5daec1d661a83cdbfec68f6ddd10f37bc479d7488a687c59f09ecc6cf9ae0bdc"
+          "same_invocation_observation_sha256": "cd6704d40569475e7aaf2edb18d0c0393aeff456745a5a40d6a88bf895640e54",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/5",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-5",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "0e3aff2a8c0dfa6f89a1f876cdbd908385b4530e98b17a764df06c390857f288"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "5daec1d661a83cdbfec68f6ddd10f37bc479d7488a687c59f09ecc6cf9ae0bdc",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "N01-CARRIER-EXPLICIT-GAP-E9",
@@ -10382,9 +10760,146 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/6/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "c34a0b4376061655c8e8a3c9c743cfc30105239df4346d59c11a9e6397e2bfaa"
+          "same_invocation_observation_sha256": "6159e419c0e9652c19d77ada99ebf18845e995ec591330624e3dea531bd68f13",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/6",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-EXPLICIT-GAP-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-6",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "26074a5b6c98e53cb398ed37c5324c55d857f315ef60d2d8bab0b426444611de"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-EXPLICIT-GAP-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-EXPLICIT-GAP-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-6",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "26074a5b6c98e53cb398ed37c5324c55d857f315ef60d2d8bab0b426444611de"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-6",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "d570230142bb4f600aad7c94c7dabb4eb4e791597ca0081f7f0a0800d8e215ac"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-EXPLICIT-GAP-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "c34a0b4376061655c8e8a3c9c743cfc30105239df4346d59c11a9e6397e2bfaa",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "N01-CARRIER-STALE-R1-ATOM",
@@ -11268,9 +11783,146 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/7/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "31644c680082ef553d3b7779e149b757c2e2daf35c0cee2ec336f289d49fd0cc"
+          "same_invocation_observation_sha256": "1c04e090dca5735459e135840e7f0d1bfb842a0f31904a9dcdd843f9c3d933d6",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/7",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-STALE-R1-ATOM",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-7",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "02f853d9b130cc418e437ec5de7a7d1c33df7b00c7734165a2220655fb60d6a8"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-STALE-R1-ATOM",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-STALE-R1-ATOM",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-7",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "02f853d9b130cc418e437ec5de7a7d1c33df7b00c7734165a2220655fb60d6a8"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-7",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "c6bf5f5a72e5f64f8157cf4f15a3ea486c3d55a9321420fe0e453b5e455d63a4"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-STALE-R1-ATOM",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "31644c680082ef553d3b7779e149b757c2e2daf35c0cee2ec336f289d49fd0cc",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "N01-CARRIER-ORDERED-E9-ATOM-E10-GAP",
@@ -12233,9 +12885,171 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/8/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  },
+                  {
+                    "source_ordinal": 2,
+                    "source_span": {
+                      "start_line": 2,
+                      "end_line": 2
+                    },
+                    "source_row_sha256": "184c7b605b928448a93f3bc6cba9745bea920d9b7f3d2bbb81a908222ec5d062",
+                    "source_element": {
+                      "id": "E10",
+                      "kind": "unsupported_other",
+                      "meaning": "別の新義務"
+                    },
+                    "source_finding": {
+                      "presence": "present",
+                      "value": {
+                        "element_id": "E10",
+                        "kind": "unsupported_element",
+                        "template_revision": "TPL-P@r2",
+                        "source_span": {
+                          "start_line": 2,
+                          "end_line": 2
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "f96eca6553dafaed9a3b50399efca2ca65a40aca7eaef898f472054a7a04a779"
+          "same_invocation_observation_sha256": "62c32ee1798999ba152ed1fc13d04a733b3101bfc91319afea1136fb4cbf21db",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/8",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-ORDERED-E9-ATOM-E10-GAP",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "07af4f711d1ebde7be57048ab401099d05c6beb40d96889eb4d04f7fd9fdabbc"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-8",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "549cdca401bdc98b173eef3ab58cc4b1d9517e66f5702bf265668385b56d562d"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-ORDERED-E9-ATOM-E10-GAP",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "07af4f711d1ebde7be57048ab401099d05c6beb40d96889eb4d04f7fd9fdabbc"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n{\"id\":\"E10\",\"kind\":\"unsupported_other\",\"meaning\":\"別の新義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-ORDERED-E9-ATOM-E10-GAP",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "07af4f711d1ebde7be57048ab401099d05c6beb40d96889eb4d04f7fd9fdabbc"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-8",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "549cdca401bdc98b173eef3ab58cc4b1d9517e66f5702bf265668385b56d562d"
+                    },
+                    "source_bytes_sha256": "07af4f711d1ebde7be57048ab401099d05c6beb40d96889eb4d04f7fd9fdabbc"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-8",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "90be6c6821ea157cf895d3bb45b04464cc77322dd11fa5d719f86e86cc2a005b"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-ORDERED-E9-ATOM-E10-GAP",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "07af4f711d1ebde7be57048ab401099d05c6beb40d96889eb4d04f7fd9fdabbc"
+                      },
+                      "source_bytes_sha256": "07af4f711d1ebde7be57048ab401099d05c6beb40d96889eb4d04f7fd9fdabbc",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "f96eca6553dafaed9a3b50399efca2ca65a40aca7eaef898f472054a7a04a779",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "N01-CARRIER-BATCH-ABSENT",
@@ -12967,9 +13781,146 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/9/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "11cdf937ff7daafb924984478b2f25c3d79270e9f23f08b8b1434923297a3391"
+          "same_invocation_observation_sha256": "ab34b60633713a4d598239eb855ee3319c1b710157bc2336784a3f2e35c58f14",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/9",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-BATCH-ABSENT",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-9",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "096d9b14bda4d2750ef08bc0771859e3e07874a9c8ee6bf054d17484105ffc40"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-BATCH-ABSENT",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-BATCH-ABSENT",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-9",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "096d9b14bda4d2750ef08bc0771859e3e07874a9c8ee6bf054d17484105ffc40"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-9",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "b234643cd2764b0aa7d73474377d52ef2b53dcba7ef122553d5ec651f0d1b0b2"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-BATCH-ABSENT",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "11cdf937ff7daafb924984478b2f25c3d79270e9f23f08b8b1434923297a3391",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "N01-CARRIER-BATCH-NULL",
@@ -13703,9 +14654,146 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/10/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "d1373188e5027e9df6acc3a7c81ce70ad0346e916217a7f9ffb11cadc2f6970e"
+          "same_invocation_observation_sha256": "4cf3163b52401c03d3d8a6bd141d8933d3dbca0ab2f413bad8e4abda9a4a51c6",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/10",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-BATCH-NULL",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-10",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "9d96e57e3285d3cb71ea0bfa8ebe45499596b4b56c1a8ae1bd3573a4186f3197"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-BATCH-NULL",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-BATCH-NULL",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-10",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "9d96e57e3285d3cb71ea0bfa8ebe45499596b4b56c1a8ae1bd3573a4186f3197"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-10",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "77b473b0b6fbdb04d30786a5c309000e21044124afd0543b5a66f3ac5a842254"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-BATCH-NULL",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "d1373188e5027e9df6acc3a7c81ce70ad0346e916217a7f9ffb11cadc2f6970e",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "N01-CARRIER-SAME-ID-MEANING-CONFLICT",
@@ -14589,9 +15677,146 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/11/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "aed9800600755722a504c4814cf1cadfdc256a4a9cdad26fd05158e63a3e87df"
+          "same_invocation_observation_sha256": "ec582e39635f3042145ca1b7cf68461380f5cf087959e3bf016625a679dbb407",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/11",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SAME-ID-MEANING-CONFLICT",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-11",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "330d27306f96215c3c5ca1fac1069ca4caaa80a6d987f9590b12741be610163c"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SAME-ID-MEANING-CONFLICT",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SAME-ID-MEANING-CONFLICT",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-11",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "330d27306f96215c3c5ca1fac1069ca4caaa80a6d987f9590b12741be610163c"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-11",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "4cf6c8ada9710c9f1972be506709cbd186d135e50e07e3342ef61d3912ae07c0"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SAME-ID-MEANING-CONFLICT",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "aed9800600755722a504c4814cf1cadfdc256a4a9cdad26fd05158e63a3e87df",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "N01-CARRIER-SAME-ID-APPLICABILITY-CONFLICT",
@@ -15476,9 +16701,147 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/12/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "274c8a8d379ae840a31bc9868a03c6172f1d4414373858771c2870630dc7923d",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務",
+                      "requires_screen": false
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "93b1ed5a1b1aa6363d4d6e9370b9df384b1531c3dd0c7327ae3bc2d45be8a39d"
+          "same_invocation_observation_sha256": "2f2d355bfb836ad98a0b4e0bb0f93e4e001e970f44de0d210eeea1e79786e1dc",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/12",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SAME-ID-APPLICABILITY-CONFLICT",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "18fb1a511459ac783fca10b91c84eeb350dcf965c329dd824c9bb0192c00c4e5"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-12",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "b49c9bf147e15abb56fdae6634592a59a17ce43d607b68123592f0192440c4ea"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SAME-ID-APPLICABILITY-CONFLICT",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "18fb1a511459ac783fca10b91c84eeb350dcf965c329dd824c9bb0192c00c4e5"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\",\"requires_screen\":false}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SAME-ID-APPLICABILITY-CONFLICT",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "18fb1a511459ac783fca10b91c84eeb350dcf965c329dd824c9bb0192c00c4e5"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-12",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "b49c9bf147e15abb56fdae6634592a59a17ce43d607b68123592f0192440c4ea"
+                    },
+                    "source_bytes_sha256": "18fb1a511459ac783fca10b91c84eeb350dcf965c329dd824c9bb0192c00c4e5"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-12",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "f5997b9302beecc4156ad9f12e92f3cdb05524e64fd7300df13124b46787c7aa"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SAME-ID-APPLICABILITY-CONFLICT",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "18fb1a511459ac783fca10b91c84eeb350dcf965c329dd824c9bb0192c00c4e5"
+                      },
+                      "source_bytes_sha256": "18fb1a511459ac783fca10b91c84eeb350dcf965c329dd824c9bb0192c00c4e5",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "93b1ed5a1b1aa6363d4d6e9370b9df384b1531c3dd0c7327ae3bc2d45be8a39d",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "N01-CARRIER-BATCH-DUPLICATE-REORDERED-ORPHAN",
@@ -16553,9 +17916,171 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/13/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  },
+                  {
+                    "source_ordinal": 2,
+                    "source_span": {
+                      "start_line": 2,
+                      "end_line": 2
+                    },
+                    "source_row_sha256": "184c7b605b928448a93f3bc6cba9745bea920d9b7f3d2bbb81a908222ec5d062",
+                    "source_element": {
+                      "id": "E10",
+                      "kind": "unsupported_other",
+                      "meaning": "別の新義務"
+                    },
+                    "source_finding": {
+                      "presence": "present",
+                      "value": {
+                        "element_id": "E10",
+                        "kind": "unsupported_element",
+                        "template_revision": "TPL-P@r2",
+                        "source_span": {
+                          "start_line": 2,
+                          "end_line": 2
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "d17dc56bbdbad7f7fadcedd667f291108c29bbf477e8b93a9065122b686892a4"
+          "same_invocation_observation_sha256": "4b20cb4fbc47098dbde238b0b4d2219c2e4042954468403edbeae9b16e0c30db",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/13",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-ORDERED-E9-ATOM-E10-GAP",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "07af4f711d1ebde7be57048ab401099d05c6beb40d96889eb4d04f7fd9fdabbc"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-8",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "549cdca401bdc98b173eef3ab58cc4b1d9517e66f5702bf265668385b56d562d"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-ORDERED-E9-ATOM-E10-GAP",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "07af4f711d1ebde7be57048ab401099d05c6beb40d96889eb4d04f7fd9fdabbc"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n{\"id\":\"E10\",\"kind\":\"unsupported_other\",\"meaning\":\"別の新義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-ORDERED-E9-ATOM-E10-GAP",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "07af4f711d1ebde7be57048ab401099d05c6beb40d96889eb4d04f7fd9fdabbc"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-8",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "549cdca401bdc98b173eef3ab58cc4b1d9517e66f5702bf265668385b56d562d"
+                    },
+                    "source_bytes_sha256": "07af4f711d1ebde7be57048ab401099d05c6beb40d96889eb4d04f7fd9fdabbc"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-8",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "90be6c6821ea157cf895d3bb45b04464cc77322dd11fa5d719f86e86cc2a005b"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-ORDERED-E9-ATOM-E10-GAP",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "07af4f711d1ebde7be57048ab401099d05c6beb40d96889eb4d04f7fd9fdabbc"
+                      },
+                      "source_bytes_sha256": "07af4f711d1ebde7be57048ab401099d05c6beb40d96889eb4d04f7fd9fdabbc",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "d17dc56bbdbad7f7fadcedd667f291108c29bbf477e8b93a9065122b686892a4",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "N01-CARRIER-BATCH-ROW-IDENTITY-MISMATCH",
@@ -17439,9 +18964,146 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/14/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "f6e40dfd41436295527534f25b45651e5819fc8c5afd997d7b8b6bcf7cab587a"
+          "same_invocation_observation_sha256": "e3909b0e4106801c222aab78563d6185fb2aca77d3a79f3ba773eb711978e4a1",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/14",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-5",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "0e3aff2a8c0dfa6f89a1f876cdbd908385b4530e98b17a764df06c390857f288"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "f6e40dfd41436295527534f25b45651e5819fc8c5afd997d7b8b6bcf7cab587a",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "N01-CARRIER-SUPPORTED-E9-BINDING-ABSENT",
@@ -18285,9 +19947,146 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/15/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "b8cb6d6a2c8814b94e415a2b13fe1976b3205a6e16f46c167b8d516b510f276d"
+          "same_invocation_observation_sha256": "6ba20999148074e1e0ee2fcd11dfd8342514f73f2c0a3a337a3d8bfd781ef09a",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/15",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-5",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "0e3aff2a8c0dfa6f89a1f876cdbd908385b4530e98b17a764df06c390857f288"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "b8cb6d6a2c8814b94e415a2b13fe1976b3205a6e16f46c167b8d516b510f276d",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "M3-QUALIFICATION-MISSING",
@@ -18530,12 +20329,129 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/5/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "880d8265d912b10bcf996016ed860d86f825ab3824e3957423eff2eaefd9fdd4",
+          "same_invocation_observation_sha256": "068362e9af3aa1542b7d4b9c17489569920738a7b13a2754b7ceceaf73947172",
           "basis": {
             "logical_contract_pointer": "/contracts/3/held_out_occurrence_contract",
             "owner_source_boundary": "元ownerが保有する独立原source/原資格決定の合成caller返却。outer fixture Ref又はraw packet/batchから資格を生成した証拠ではない。"
+          },
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/16",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-5",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "unresolved",
+                    "state": "missing",
+                    "observed": {
+                      "presence": "absent"
+                    },
+                    "basis_refs": []
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "880d8265d912b10bcf996016ed860d86f825ab3824e3957423eff2eaefd9fdd4",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
           }
         },
         {
@@ -18760,12 +20676,149 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/5/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "24746822bf82b5252e2f75183a69b620e3de820ce7a77e4cb49c836518e38659",
+          "same_invocation_observation_sha256": "a46b0bbb9a199d23b472b81a574fcfea792fa5d5ad4ea2d106553ce48bb94120",
           "basis": {
             "logical_contract_pointer": "/contracts/3/held_out_occurrence_contract",
             "owner_source_boundary": "元ownerが保有する独立原source/原資格決定の合成caller返却。outer fixture Ref又はraw packet/batchから資格を生成した証拠ではない。"
+          },
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/17",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-5",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "0e3aff2a8c0dfa6f89a1f876cdbd908385b4530e98b17a764df06c390857f288"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "24746822bf82b5252e2f75183a69b620e3de820ce7a77e4cb49c836518e38659",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
           }
         },
         {
@@ -18990,12 +21043,149 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/5/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "d93daefd63c70cf860c45d0d3ee3b22b7c1a59195b1a6e9107deb3ba24782bc6",
+          "same_invocation_observation_sha256": "929311ba680e60bcaec408f73c5397fe4385a5a7f40760eecb5367122da601be",
           "basis": {
             "logical_contract_pointer": "/contracts/3/held_out_occurrence_contract",
             "owner_source_boundary": "元ownerが保有する独立原source/原資格決定の合成caller返却。outer fixture Ref又はraw packet/batchから資格を生成した証拠ではない。"
+          },
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/18",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-5",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "0e3aff2a8c0dfa6f89a1f876cdbd908385b4530e98b17a764df06c390857f288"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "d93daefd63c70cf860c45d0d3ee3b22b7c1a59195b1a6e9107deb3ba24782bc6",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
           }
         },
         {
@@ -19289,13 +21479,155 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/5/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "b2bdb0fc78b61ca28fd9557e41f623b5dff2a1d694a11fd37428987ed1e1b82b",
+          "same_invocation_observation_sha256": "267b47e287743f06fd623ea84961f408510e774868f109112fde016aace3e64d",
           "basis": {
             "logical_contract_pointer": "/contracts/3/held_out_occurrence_contract",
             "owner_source_boundary": "元ownerが保有する独立原source/原資格決定の合成caller返却。outer fixture Ref又はraw packet/batchから資格を生成した証拠ではない。",
             "qualification_unknown_case": "元資格owner portが解決不能の理由を追加提示せずunresolved/state:unknownを返す負例。observedの原decision.outcome:applicableと揃ったoperandはraw観測として保存するが、portが当該対象への有効適用をresolvedとして返したこと又は資格成立を推定しない。pure_adapter/failure_ruleおよびselection_and_decode/1に従い元portのunknownと全原観測を保持する。qualification_decision_projectionの肯定resolved行を成立させた正常producer対照ではない。"
+          },
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/19",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-5",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "unresolved",
+                    "state": "unknown",
+                    "observed": {
+                      "presence": "present",
+                      "value": {
+                        "qualification_ref": {
+                          "identity": "NATIVE-QUALIFICATION-RECORD-5",
+                          "revision": "synthetic-native-unknown-r1",
+                          "scope": "PRODUCT-P",
+                          "owner": "synthetic-fixture-owner",
+                          "source_locator": null,
+                          "sha256": "0e3aff2a8c0dfa6f89a1f876cdbd908385b4530e98b17a764df06c390857f288"
+                        },
+                        "subject_ref": {
+                          "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                          "revision": "TPL-P@r2",
+                          "scope": "PRODUCT-P",
+                          "owner": "synthetic-fixture-owner",
+                          "source_locator": null,
+                          "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                        },
+                        "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                        "owner": "synthetic-fixture-owner",
+                        "basis_refs": [],
+                        "decision": {
+                          "outcome": "applicable",
+                          "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                        }
+                      }
+                    },
+                    "basis_refs": []
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "b2bdb0fc78b61ca28fd9557e41f623b5dff2a1d694a11fd37428987ed1e1b82b",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
           }
         },
         {
@@ -19589,12 +21921,154 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/5/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "ae73c5be8539e37dfa3545f771a2dbaf769573dbebbd4107c3e0f3f684efeeab",
+          "same_invocation_observation_sha256": "f37ae5bdb4f1441e8599d89c74a89c4ab650a9b55cb82b1af50a381111b14a8f",
           "basis": {
             "logical_contract_pointer": "/contracts/3/held_out_occurrence_contract",
             "owner_source_boundary": "元ownerが保有する独立原source/原資格決定の合成caller返却。outer fixture Ref又はraw packet/batchから資格を生成した証拠ではない。"
+          },
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/20",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-5",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "unresolved",
+                    "state": "conflict",
+                    "observed": {
+                      "presence": "present",
+                      "value": {
+                        "qualification_ref": {
+                          "identity": "NATIVE-QUALIFICATION-RECORD-5-NOT-APPLICABLE",
+                          "revision": "synthetic-native-r1",
+                          "scope": "PRODUCT-P",
+                          "owner": "synthetic-fixture-owner",
+                          "source_locator": null,
+                          "sha256": "a3de3f66983070066c95238c049b73341149a0a8849c7936d1b3122fc309ebc4"
+                        },
+                        "subject_ref": {
+                          "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                          "revision": "TPL-P@r2",
+                          "scope": "PRODUCT-P",
+                          "owner": "synthetic-fixture-owner",
+                          "source_locator": null,
+                          "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                        },
+                        "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                        "owner": "synthetic-fixture-owner",
+                        "basis_refs": [],
+                        "decision": {
+                          "outcome": "not_applicable",
+                          "reason": "合成原資格ownerの元決定はこのsourceのheld-out入力としての適用を認めていない。原body/owner/hash一致とは独立。"
+                        }
+                      }
+                    },
+                    "basis_refs": []
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "ae73c5be8539e37dfa3545f771a2dbaf769573dbebbd4107c3e0f3f684efeeab",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
           }
         },
         {
@@ -19779,12 +22253,89 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/5/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "e5e83b6661924b7244bf556a77d0f06b8ad7dd5e0bc637aa3cd756bfdb0475d5",
+          "same_invocation_observation_sha256": "4a72ff81e0264ba25ab4e10b299f21d1e7cbce4933b264fe8d18183f7c2be5cd",
           "basis": {
             "logical_contract_pointer": "/contracts/3/held_out_occurrence_contract",
             "owner_source_boundary": "元ownerが保有する独立原source/原資格決定の合成caller返却。outer fixture Ref又はraw packet/batchから資格を生成した証拠ではない。"
+          },
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/21",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "unresolved",
+                    "state": "missing",
+                    "observed": {
+                      "presence": "absent"
+                    },
+                    "basis_refs": []
+                  }
+                },
+                "qualification_call": {
+                  "not_called_reason": "source_unresolved"
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "e5e83b6661924b7244bf556a77d0f06b8ad7dd5e0bc637aa3cd756bfdb0475d5",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
           }
         },
         {
@@ -19942,12 +22493,81 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/5/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "present",
+                      "value": {
+                        "element_id": "E9",
+                        "kind": "scope_conflict",
+                        "template_revision": "TBD",
+                        "source_span": {
+                          "start_line": 1,
+                          "end_line": 1
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "5873c2537d54200805c9630a0e6c835f954ff896d1954334ebb6f1bc90ae07c8",
+          "same_invocation_observation_sha256": "491814f7e6d092465b39f5db95d293cf5eac1fbad10c42145512a0d1d91bc6a4",
           "basis": {
             "logical_contract_pointer": "/contracts/3/held_out_occurrence_contract",
             "owner_source_boundary": "元ownerが保有する独立原source/原資格決定の合成caller返却。outer fixture Ref又はraw packet/batchから資格を生成した証拠ではない。"
+          },
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/22",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                },
+                "qualification_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "5873c2537d54200805c9630a0e6c835f954ff896d1954334ebb6f1bc90ae07c8",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
           }
         },
         {
@@ -20223,12 +22843,149 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/5/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "7d7ad39bc7fa4ce26ccac4c76cef399dbf42b42bed067223d35b49a7df84a389",
+          "same_invocation_observation_sha256": "5bb8789cad4814ef75715e383b91cb151b9432ce00485b55f013d54a66d7e0f2",
           "basis": {
             "logical_contract_pointer": "/contracts/3/held_out_occurrence_contract",
             "owner_source_boundary": "元ownerが保有する独立原source/原資格決定の合成caller返却。outer fixture Ref又はraw packet/batchから資格を生成した証拠ではない。"
+          },
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/23",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-5",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "0e3aff2a8c0dfa6f89a1f876cdbd908385b4530e98b17a764df06c390857f288"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "7d7ad39bc7fa4ce26ccac4c76cef399dbf42b42bed067223d35b49a7df84a389",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
           }
         },
         {
@@ -20470,12 +23227,149 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/5/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "69ac158a011f07589b73cf10819c7c18ebf2a7eedde2e467746575d34098c007",
+          "same_invocation_observation_sha256": "91b78ae739141f5ca9cdf39b13308a7d5ce3e621352caa36fe9c0df6bc742fce",
           "basis": {
             "logical_contract_pointer": "/contracts/3/held_out_occurrence_contract",
             "owner_source_boundary": "元ownerが保有する独立原source/原資格決定の合成caller返却。outer fixture Ref又はraw packet/batchから資格を生成した証拠ではない。"
+          },
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/24",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-5",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "0e3aff2a8c0dfa6f89a1f876cdbd908385b4530e98b17a764df06c390857f288"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "69ac158a011f07589b73cf10819c7c18ebf2a7eedde2e467746575d34098c007",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
           }
         },
         {
@@ -20751,12 +23645,149 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/5/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "f6dd6f64c05e3f62dbfe9a7710533d53d781124b53bc5e8fba38ea57ebd8b2b2",
+          "same_invocation_observation_sha256": "199ce6305e8941f0098b3b2b6633f59ae92d6868b42c90ae267bcd2c94e2fa88",
           "basis": {
             "logical_contract_pointer": "/contracts/3/held_out_occurrence_contract",
             "owner_source_boundary": "元ownerが保有する独立原source/原資格決定の合成caller返却。outer fixture Ref又はraw packet/batchから資格を生成した証拠ではない。"
+          },
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/25",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-5",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "0e3aff2a8c0dfa6f89a1f876cdbd908385b4530e98b17a764df06c390857f288"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "f6dd6f64c05e3f62dbfe9a7710533d53d781124b53bc5e8fba38ea57ebd8b2b2",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
           }
         },
         {
@@ -20976,12 +24007,149 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/5/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "absent"
+                },
+                "rows": [
+                  {
+                    "source_ordinal": 1,
+                    "source_span": {
+                      "start_line": 1,
+                      "end_line": 1
+                    },
+                    "source_row_sha256": "5b25ad61298c05f15b232fa638aa173797487ad64966901113440fd9c4005ee9",
+                    "source_element": {
+                      "id": "E9",
+                      "kind": "field",
+                      "meaning": "伏せた新分岐の義務"
+                    },
+                    "source_finding": {
+                      "presence": "absent"
+                    }
+                  }
+                ]
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "e4f8d963da07fe84e43a8686590a67c45925390faa3df34d8ceab4e7868293b8",
+          "same_invocation_observation_sha256": "da23edc40c473a16b1bbe0b486f94219aae03e912603d6242a3f37f4b2bf6b64",
           "basis": {
             "logical_contract_pointer": "/contracts/3/held_out_occurrence_contract",
             "owner_source_boundary": "元ownerが保有する独立原source/原資格決定の合成caller返却。outer fixture Ref又はraw packet/batchから資格を生成した証拠ではない。"
+          },
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/26",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "arguments": {
+                    "source_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    }
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "record_ref": {
+                        "identity": "NATIVE-SOURCE-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                      },
+                      "source_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "raw_utf8": "{\"id\":\"E9\",\"kind\":\"field\",\"meaning\":\"伏せた新分岐の義務\"}\n"
+                    }
+                  }
+                },
+                "qualification_call": {
+                  "arguments": {
+                    "subject_ref": {
+                      "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                      "revision": "TPL-P@r2",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                    },
+                    "source_record_ref": {
+                      "identity": "NATIVE-SOURCE-RECORD-5",
+                      "revision": "synthetic-native-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "synthetic-fixture-owner",
+                      "source_locator": null,
+                      "sha256": "2bf55180d98f044fdabb50e73aa548053a537012f2bbf0ea79092d73ae46b028"
+                    },
+                    "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                  },
+                  "returned": {
+                    "kind": "resolved",
+                    "record": {
+                      "qualification_ref": {
+                        "identity": "NATIVE-QUALIFICATION-RECORD-5",
+                        "revision": "synthetic-native-r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "0e3aff2a8c0dfa6f89a1f876cdbd908385b4530e98b17a764df06c390857f288"
+                      },
+                      "subject_ref": {
+                        "identity": "SOURCE-N01-CARRIER-SUPPORTED-E9",
+                        "revision": "TPL-P@r2",
+                        "scope": "PRODUCT-P",
+                        "owner": "synthetic-fixture-owner",
+                        "source_locator": null,
+                        "sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062"
+                      },
+                      "source_bytes_sha256": "ea55c05708346f6ca5c020b368473fd4e8be4dbbe941faa86a0f0d0c8ab11062",
+                      "owner": "synthetic-fixture-owner",
+                      "basis_refs": [],
+                      "decision": {
+                        "outcome": "applicable",
+                        "reason": "合成原資格ownerがこのsource Ref/body/ownerに適用する元決定。実資格生成の証拠ではない。"
+                      }
+                    }
+                  }
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "e4f8d963da07fe84e43a8686590a67c45925390faa3df34d8ceab4e7868293b8",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
           }
         },
         {
@@ -21467,9 +24635,36 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/27/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "present",
+                  "value": {
+                    "element_id": null,
+                    "kind": "template_source_missing",
+                    "template_revision": "TPL-P@r2",
+                    "source_span": null
+                  }
+                },
+                "rows": []
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "ed9dd642e78328bfd784887de978d402625db4489224b7dbe76fd3b0d700f05b",
+          "same_invocation_observation_sha256": "c3e9e11db4eea1c222fad285dac485818fec662c503fe45eb21ac1005f1141cc",
           "basis": {
             "source_basis_ref": "HARNESS-L3-041-N01",
             "system_oracle_ref": "HARNESS-L10-041-N01",
@@ -21485,7 +24680,29 @@
             "source_level_boundary": "原sourceを補修せず、架空ordinal/hash/rowを作らない。両port非callのため資格premiseを捏造しない。"
           },
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/27",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                },
+                "qualification_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "ed9dd642e78328bfd784887de978d402625db4489224b7dbe76fd3b0d700f05b",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         },
         {
           "id": "N01-SOURCE-LEVEL-RAW-EMPTY",
@@ -21970,9 +25187,36 @@
             "context_from_input_pointer": "/context",
             "resolution_from_input_pointer": "/context/held_out_owner_resolution",
             "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
-            "n01_arguments_from_input": true
+            "shared_evaluation_recipe": {
+              "input_snapshot_from_input_pointer": "/packet",
+              "common_from_independent_return_pointer": "/verification_obligations/3/concrete_cases/28/expected_return",
+              "common_fields": [
+                "comparison_result",
+                "general_determinism_guaranteed",
+                "all_templates_supported",
+                "effects",
+                "unaffected_Q"
+              ],
+              "source_observation_literal": {
+                "source_level_gap": {
+                  "presence": "present",
+                  "value": {
+                    "element_id": null,
+                    "kind": "template_source_missing",
+                    "template_revision": "TPL-P@r2",
+                    "source_span": null
+                  }
+                },
+                "rows": []
+              }
+            },
+            "n01_arguments_projection": {
+              "packet": "shared.input_snapshot",
+              "context": "context_from_input_pointer",
+              "shared": "shared_evaluation_recipe全値"
+            }
           },
-          "same_invocation_observation_sha256": "6b7989dd9f6de0943331e60c46bcdead4b73a44c4d65de48000e8140492cbe8d",
+          "same_invocation_observation_sha256": "7c406e5b31434143c839fad0f0b94e365210520d2c26f96538b8685ae1358b90",
           "basis": {
             "source_basis_ref": "HARNESS-L3-041-N01",
             "system_oracle_ref": "HARNESS-L10-041-N01",
@@ -21994,14 +25238,36 @@
             "source_level_boundary": "原sourceを補修せず、架空ordinal/hash/rowを作らない。両port非callのため資格premiseを捏造しない。"
           },
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "same_invocation_observation_history": {
+            "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+            "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+            "file_sha256": "e62cee45044bbb6d57239c11275689bc21abce12c3020536e0ed71fa2d6fad13",
+            "pointer": "/verification_obligations/3/concrete_cases/28",
+            "recipe": {
+              "literal_calls": {
+                "source_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                },
+                "qualification_call": {
+                  "not_called_reason": "no_eligible_held_source"
+                }
+              },
+              "context_from_input_pointer": "/context",
+              "resolution_from_input_pointer": "/context/held_out_owner_resolution",
+              "resolution_projection": "Absent wrapperはそのまま、present wrapperはvalueをcopy",
+              "n01_arguments_from_input": true
+            },
+            "whole_sha256": "6b7989dd9f6de0943331e60c46bcdead4b73a44c4d65de48000e8140492cbe8d",
+            "scope": "旧実2引数観測wholeの全値recipe。新3引数観測のsubsetへ改称しない。"
+          }
         }
       ],
       "execution_state": "not_executed",
       "effect": "none",
       "current_basic_binding": {
         "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
-        "file_sha256": "399021cef811951702bc5a7fa15cd54b6fd2e42bff69aa772977952823202261",
+        "file_sha256": "6328ee0b924d48584b8d568293fa56f162c62f4e10f40e94ce8ce19fd9cbf77f",
         "pointer": "/contracts/3/held_out_occurrence_contract",
         "binding": "同候補の現在bytes。historical source_pinsのgit固定原文とは別。"
       },
@@ -22010,7 +25276,7 @@
         "operations": "RFC6902 add/remove/replaceを配列順に非破壊deep copyへ適用する。copy/move/testやlocal path実行は用いない。recipe展開後canonical JSON SHA-256を各case宣言hashへ照合する。",
         "canonical": "UTF-8、ensure_ascii=false、sort_keys=true、separators=(',',':')、NaN不許可。raw_utf8内bytesは正規化せず元stringを保持。",
         "scope": "既存11new caseの入力/全返却の重複を抑える表現。期待値計算規則又はevaluatorではない。独立先固定の既存27全値は保持する。追加source-level NULL/EMPTY 2caseの入力/全8member期待はliteralで自足し、同call保存観測は既存same_invocation recipeで表す。",
-        "same_invocation": "same_invocation_observation_recipe.literal_callsはowner port実引数/合成原返却を保持し、contextは展開入力の/context、n01_argumentsは展開入力全体をcopyする。resolutionは/context/held_out_owner_resolutionのAbsentならwrapperそのまま、presentならvalueをcopyする。展開結果はN01InvocationObservation全値で、same_invocation_observation_sha256へcanonical hash照合する。これは同じcallerの保存値の重複を除く表現であり、owner返却や業務比較を入力claimから計算する規則ではない。"
+        "same_invocation": "literal_calls/context/resolutionは既存同call原値を保持。shared_evaluation_recipeは独立期待のcommon5field参照と明示source_observation_literal、および展開入力/packetの全値からprivate sharedをデータとして再構成する。判定/資格計算規則ではない。n01_arguments_projectionはpacket=shared.input_snapshot、context=原同context、shared=この全sharedの実3引数。新観測whole hashへ照合する。旧2引数whole recipe/hashは各case同所在historyに全値保全する。"
       },
       "source_binding_controls": [
         {
@@ -22799,8 +26065,16 @@
         "既存27と追加source-level NULL/EMPTY 2の計29全返却は実評価前の論理whole期待、7controlはpartial。追加2は原rowなしのsource診断/8member/同call保存に限る。実資格/抽出/独立未見実行を示さない。",
         "元decision revoked/indeterminate、source request未供給、raw field missing/unknown/stale/conflictの全重なり、candidate union全不正形、applicability no/unknownとの全重なりは未観測。",
         "source findingとbinding findingの併発は原source findingを保持。原source複数原因の元順以外の全診断収集や全変異zeroは要求しない。",
-        "元L5 N01 contextはRetainedContextのまま。new logical context/port constructor/consumer raw leaf比較と新kindへの追随、正式codec/evaluatorは別の未完対象。"
-      ]
+        "元L5 N01 contextはRetainedContextのまま。new logical context/port constructor/consumer raw leaf比較と新kindへの追随、正式codec/evaluatorは別の未完対象。",
+        "本L9の正式29 wholeに含まれるQは全て {state:known,value:original_Q} の単一値である。Qのnull/empty/scalar/array/別objectおよびRawValue全域の保存は、本29素材では未観測。cloneと非限定schemaによる全域保存義務は縮めない。",
+        "source-only projectorの2件以上=list、およびscope_unknownのsource-only gapは、本L9正式29 shared素材では未観測。旧L8のclosed6 whole13件に含まれるlist/scopeの全値は原値保持する。localの旧13全wholeとQ4＋旧eligible正常域1の両surface再計算は別の有限証拠であり、本L9正式29へ算入しない。旧domain全体との同値義務を有限例の一致へ置き換えない。"
+      ],
+      "shared_observation_scope": {
+        "same_raw_and_business_return": "全29の入力/返却8memberと7partialは全値不変。sharedをraw callerへ追加しない。",
+        "changed_observation": "旧29の2引数保存観測を履歴保持し、同じnative両端/contextにshared原source/二結果評価全値を追加した新3引数wholeを独立固定。観測wholeの形が変わることを明示する。",
+        "independent_source": "commonは既存独立return5field、source_observation_literalは元raw行/metadataとsource診断規則から独立著述。reader actualを生成元にしない。",
+        "remaining": "正式L5/L8の旧public6全domain互換、new8/RawQ/共有診断/新3引数caller/codec追随は未完。"
+      }
     },
     {
       "id": "HARNESS-L9-041-B01",
