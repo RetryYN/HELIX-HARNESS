@@ -29829,8 +29829,54 @@
         },
         "basis": "L4 R07: actual provided_materialとstate not_providedの同時表示はprovision_state_conflict。receipt同士は同値にして、相反条件だけを識別する。",
         "execution_state": "not_executed"
+      },
+      {
+        "id": "OS016-NULL-STATE-GAP-RETAINED",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/states/connection/state",
+            "value": null
+          },
+          {
+            "op": "replace",
+            "path": "/context/projects/lab/batch/states/connection/state",
+            "value": null
+          }
+        ],
+        "target_operations": [],
+        "expected_partial": {
+          "condition": "trace_material_unknown",
+          "findings_include": [
+            {
+              "code": "state_unknown",
+              "pointer": "/projects/lab/batch/states/connection/state",
+              "return_owner": "portfolio-trace-owner"
+            },
+            {
+              "code": "state_unknown",
+              "pointer": "/context/projects/lab/batch/states/connection/state",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "observed_gap_axes": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "axes": [
+              "connection",
+              "agreement",
+              "implementation",
+              "verification",
+              "provision"
+            ]
+          }
+        },
+        "basis": "L4 R11はactual stateの明示nullもgapから除外しない。状態をnullにしたconnectionを元batch gapの先頭に保持し、R05の局所unknownと併存させる。",
+        "execution_state": "not_executed"
       }
     ],
-    "regression_limits": "既存14反例は入力・期待を維持し、IDだけを内容を示すOS016 prefixへ変更した。追加3対照は不正selector時のunit relation facet、未知stateのgap保持、提供state相反を直接照合する。既存kind boundaryのpartial確認だけをrelation識別の証拠にしない。有限な識別力の改善であり、mutation件数/scoreや全probe通過を新しい要求・資格・merge gateにしない。"
+    "regression_limits": "既存14反例は入力・期待を維持し、IDだけを内容を示すOS016 prefixへ変更した。追加3対照は不正selector時のunit relation facet、未知stateのgap保持、提供state相反を直接照合する。既存kind boundaryのpartial確認だけをrelation識別の証拠にしない。有限な識別力の改善であり、mutation件数/scoreや全probe通過を新しい要求・資格・merge gateにしない。 明示null stateのgap保持も独立した1対照で確認する。"
   }
 }
