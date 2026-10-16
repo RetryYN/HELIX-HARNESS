@@ -4475,7 +4475,7 @@
     },
     "reason": "統合済み基本対のF03 source_duplicate規則を現行の詳細契約・有限照合へ接続する。source_mainは元の起草基準として保持し、current pair pinとは役割を分ける。",
     "remaining": [
-      "同一IDでも型付き原行全体が異なる場合の意味分類はこの変更で導出しない。完全同値groupには含めず、同一義務・正常として認定しない。",
+      "R1の2つのreasoned_NA対照では、型付き原行全体が異なるE8の2行はsource_duplicateにならず、返却はE8のreasoned_not_applicable一件、gaps=[]、fixture_content_complete=trueとなる。このwholeからは2原行の個別出現やmeaning差を確認できない。これは現返却の観測可能性の限界であり、2行を同一義務または正常な完全追跡と分類する根拠ではない。同ID・異内容の意味分類は未導出である。",
       "N01 held-out occurrenceの重複処理はこのF03差分の対象外であり、N01の入力・返却・期待を変更しない。",
       "外部source qualificationとcodec bindingは未成立。3件の有限synthetic wholeから全F03の意味閉包や実資格を主張しない。"
     ]
