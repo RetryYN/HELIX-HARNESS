@@ -161461,7 +161461,7 @@
   },
   "candidate_l5_binding": {
     "paired_document": "docs/helix-os/L5-detail-design/project-template-trace.json",
-    "working_bytes_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+    "working_bytes_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
     "binding_scope": "D02・D03・D05のsetter refinementを含む候補L5の厳密なbytesを束縛する。元L4とlegacyのpin/historyは保持する。このbindingはruntimeまたは実装の証拠ではない。",
     "revision_note": "候補L5の厳密なbytes pinである。source revisionの承認、製品実装、runtime実行を意味しない。",
     "binding_kind": "candidate_file_bytes"
@@ -161538,12 +161538,12 @@
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
             "pointer": "/functions/16/algorithm/3"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
             "pointer": "/functions/13/algorithm/2"
           }
         ],
@@ -161571,7 +161571,7 @@
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
             "pointer": "/functions/13/algorithm/2"
           }
         ],
@@ -161621,17 +161621,17 @@
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
             "pointer": "/functions/14/algorithm/2"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
             "pointer": "/functions/14/algorithm/3"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
             "pointer": "/functions/20/algorithm/1"
           }
         ],
@@ -278202,6 +278202,64 @@
             ]
           }
         ]
+      },
+      {
+        "id": "HELIXOS-L8-002-F04-PRIVATE-WHOLE-N2-SAME-REF-DISTINCT-SOURCE-INDEX",
+        "source_case_id": "HELIXOS-L8-002-F04-PRIVATE-N2-SAME-REF-DISTINCT-SOURCE-INDEX",
+        "execution_state": "not_executed",
+        "raw_input_ref": "/f04_source_original_correspondence_verification/materials/m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695/raw_caller",
+        "raw_caller_sha256_canonical": "5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4",
+        "prior_component_ref": "/f04_source_original_correspondence_verification/materials/m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695/expected_component",
+        "prior_component_sha256_canonical": "4741d6307e7dd04c0cd6c6145d2190511bdea781e84ecb0ad5ee753c8dc8b8a4",
+        "comparison_scope": "fn19・fn14・fn20・fn22の全返却を通常JSONへ展開し、固定hashと照合する。固定するのは4返却のこの入力に対する期待値であり、一般のdependency membership閉包は未凍結のまま。実製品からの実測結果ではない。",
+        "expected_returns": [
+          {
+            "function_ref": "HELIXOS-L5-002-validate_record_trace_with_origins",
+            "expectation_recipe_ref": "/f04_source_original_correspondence_verification/private_return_expectation_recipes/cases/2/fn19_private_return",
+            "expected_plain_json_canonical_sha256": "ebec4eab9a230937e8e397befbb479f1d5ff523843a883287b3d799524b0b18c",
+            "expected_top_level_fields": [
+              "origin_support",
+              "validated_trace"
+            ]
+          },
+          {
+            "function_ref": "HELIXOS-L5-002-decode_f04_source_projection_profile",
+            "expectation_recipe_ref": "/f04_source_original_correspondence_verification/private_return_expectation_recipes/cases/2/fn14_private_return",
+            "expected_plain_json_canonical_sha256": "4a3d36aa641184f9b283424f65e28da4e21b8624a2665c8511a59d62d05b3c54",
+            "expected_top_level_fields": [
+              "candidate_input_state",
+              "candidate_input",
+              "validated_input_candidate",
+              "raw_candidate",
+              "validated_candidate_raw",
+              "qualified_os_associations",
+              "qualified_core_projection_sources",
+              "local_decode_states",
+              "selection_input",
+              "candidate_raw_occurrences",
+              "validated_raw_occurrences",
+              "original_decode_context"
+            ]
+          },
+          {
+            "function_ref": "HELIXOS-L5-002-resolve_f04_projection_sources",
+            "expectation_recipe_ref": "/f04_source_original_correspondence_verification/private_return_expectation_recipes/cases/2/fn20_private_return",
+            "expected_plain_json_canonical_sha256": "a97516b4c8c72221f9b025a8f6da16e5ce8b48b0ccdf475856e96a36feb70238",
+            "expected_top_level_fields": [
+              "join",
+              "original_context"
+            ]
+          },
+          {
+            "function_ref": "HELIXOS-L5-002-compare_f04_source_original_correspondence",
+            "expectation_recipe_ref": "/f04_source_original_correspondence_verification/private_return_expectation_recipes/cases/2/fn22_private_return",
+            "expected_plain_json_canonical_sha256": "3ad254f3e5d88b9934ef4e8ce56056e416719dc469e7c5d886f3b15e12970baf",
+            "expected_top_level_fields": [
+              "observation_component",
+              "diagnostic_drafts"
+            ]
+          }
+        ]
       }
     ],
     "private_return_expectation_recipes": {
@@ -284730,6 +284788,3326 @@
             },
             "diagnostic_drafts": []
           }
+        },
+        {
+          "case_id": "HELIXOS-L8-002-F04-PRIVATE-N2-SAME-REF-DISTINCT-SOURCE-INDEX-WHOLE",
+          "material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+          "raw_caller_sha256_canonical": "5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4",
+          "fn19_private_return": {
+            "validated_trace": {
+              "input": {
+                "state": "supplied",
+                "source": "original raw caller RecordTraceInput exact value; referenced by original_cases.raw_source"
+              },
+              "input_issues": [],
+              "qualified_records": [
+                {
+                  "$raw_record_ref": {
+                    "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                    "expanded_raw_caller_pointer": "/record_trace_input/sources/0/decoded_records/0",
+                    "canonical_sha256": "affe3d652c47ee942857a9cb0ab9023293a64745101d6eed08cbb07424e02d71"
+                  }
+                },
+                {
+                  "$raw_record_ref": {
+                    "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                    "expanded_raw_caller_pointer": "/record_trace_input/sources/1/decoded_records/0",
+                    "canonical_sha256": "a014d061110e1163c41cc52aa3c5abe391a1044ba9b7d50a0acc5bb7b9bff7a1"
+                  }
+                },
+                {
+                  "$raw_record_ref": {
+                    "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                    "expanded_raw_caller_pointer": "/record_trace_input/sources/2/decoded_records/0",
+                    "canonical_sha256": "fc72b17f3138bc41c094df32fac0945b6ba6e0f3407d0c2a3e88b4fff255af01"
+                  }
+                },
+                {
+                  "$raw_record_ref": {
+                    "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                    "expanded_raw_caller_pointer": "/record_trace_input/sources/3/decoded_records/0",
+                    "canonical_sha256": "18af8a2f7c9a12dbb79c7387d80a176fca96264ef58b8b7dc77f6fd07c2719c0"
+                  }
+                },
+                {
+                  "$raw_record_ref": {
+                    "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                    "expanded_raw_caller_pointer": "/record_trace_input/sources/3/decoded_records/1",
+                    "canonical_sha256": "aa8e158ae43545a7197cbd6f257f43272d99b0d75da6200717a58d2e12a406ff"
+                  }
+                },
+                {
+                  "$raw_record_ref": {
+                    "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                    "expanded_raw_caller_pointer": "/record_trace_input/sources/3/decoded_records/2",
+                    "canonical_sha256": "cb9d5dc7e9915cb59d93a5df4a379de9f5555ae23d1a481d828a2adcefd0df80"
+                  }
+                },
+                {
+                  "$raw_record_ref": {
+                    "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                    "expanded_raw_caller_pointer": "/record_trace_input/sources/3/decoded_records/3",
+                    "canonical_sha256": "2a1d4d978d8ae7a8ff6a35b598899c27b8d64eea540f2fe669d9210ef40441bf"
+                  }
+                },
+                {
+                  "$raw_record_ref": {
+                    "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                    "expanded_raw_caller_pointer": "/record_trace_input/sources/4/decoded_records/0",
+                    "canonical_sha256": "ab949dc13292e24f5de565331bb9add92fe41ad8f243780180384b04535c38fb"
+                  }
+                },
+                {
+                  "$raw_record_ref": {
+                    "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                    "expanded_raw_caller_pointer": "/record_trace_input/sources/5/decoded_records/0",
+                    "canonical_sha256": "aaece0cdef91a0589b8f33e617f9441a582b03e9749ed6fc1353117508ba3bc0"
+                  }
+                },
+                {
+                  "$raw_record_ref": {
+                    "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                    "expanded_raw_caller_pointer": "/record_trace_input/sources/5/decoded_records/1",
+                    "canonical_sha256": "fd582265bdb4abb5000bfb80b0a52c781128ed3c13605c50a46c3351c9b5764e"
+                  }
+                },
+                {
+                  "$raw_record_ref": {
+                    "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                    "expanded_raw_caller_pointer": "/record_trace_input/sources/5/decoded_records/2",
+                    "canonical_sha256": "334a47e90b260510502c2de8028f938f6e945265c5f9cd77e900846b75fa419a"
+                  }
+                }
+              ],
+              "source_issues": [
+                {
+                  "axis": "qualification",
+                  "state": "unknown",
+                  "path": "qualification_roots/6",
+                  "source_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "SOURCE-F04-OS-original-owner",
+                      "revision": "source1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "OS-original-owner"
+                    }
+                  },
+                  "related_source_refs": [],
+                  "detail": "独立資格root参照に一致するQualificationRootが供給されていない。",
+                  "backflow_owner": "OS-original-owner"
+                }
+              ],
+              "qualified_source_refs": [
+                {
+                  "identity": "SOURCE-F04-CORE",
+                  "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "CORE"
+                },
+                {
+                  "identity": "SOURCE-F04-OS-original-owner",
+                  "revision": "source1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "OS-original-owner"
+                },
+                {
+                  "identity": "CORE-PROJECTION-SOURCE",
+                  "revision": "members-core-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                  "scope": {
+                    "project": "CORE-PROJECTION-PROJECT",
+                    "tenant": "CORE-PROJECTION-TENANT",
+                    "environment": "CORE-PROJECTION-ENV"
+                  },
+                  "owner": "CORE-source-owner"
+                },
+                {
+                  "identity": "OS-ASSOCIATION-SOURCE",
+                  "revision": "members-os-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                  "scope": {
+                    "project": "OS-PROJECT-7",
+                    "tenant": "OS-TENANT",
+                    "environment": "OS-TEST"
+                  },
+                  "owner": "OS-source-owner"
+                },
+                {
+                  "identity": "UNRELATED-Q-SOURCE",
+                  "revision": "source-r1",
+                  "scope": {
+                    "project": "UNRELATED-Q-PROJECT",
+                    "tenant": "UNRELATED-Q-TENANT",
+                    "environment": "UNRELATED-Q-ENV"
+                  },
+                  "owner": "Q-owner"
+                },
+                {
+                  "identity": "PROPOSED-ORIGINAL-CORRESPONDENCE-SOURCE",
+                  "revision": "EQUAL-REF-BODY-ONLY-FIRST-QUALIFIED-relationship",
+                  "scope": {
+                    "environment": "OS-TEST",
+                    "project": "OS-PROJECT-7",
+                    "tenant": "OS-TENANT"
+                  },
+                  "owner": "OS-source-owner"
+                }
+              ],
+              "unqualified_source_refs": [
+                {
+                  "identity": "SOURCE-F04-OS-original-owner",
+                  "revision": "source1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "OS-original-owner"
+                }
+              ],
+              "conflicting_source_refs": [],
+              "unresolved_source_refs": [
+                {
+                  "identity": "SOURCE-F04-OS-original-owner",
+                  "revision": "source1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "OS-original-owner"
+                }
+              ],
+              "unresolved_sections": [
+                "F04.obligation_original_states"
+              ]
+            },
+            "origin_support": {
+              "qualified_occurrences": [
+                {
+                  "source_occurrence_index": 0,
+                  "source_ref": {
+                    "identity": "SOURCE-F04-CORE",
+                    "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  },
+                  "record_index": 0,
+                  "qualified_record_index": 0,
+                  "record": {
+                    "$raw_record_ref": {
+                      "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                      "expanded_raw_caller_pointer": "/record_trace_input/sources/0/decoded_records/0",
+                      "canonical_sha256": "affe3d652c47ee942857a9cb0ab9023293a64745101d6eed08cbb07424e02d71"
+                    }
+                  }
+                },
+                {
+                  "source_occurrence_index": 1,
+                  "source_ref": {
+                    "identity": "SOURCE-F04-OS-original-owner",
+                    "revision": "source1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "OS-original-owner"
+                  },
+                  "record_index": 0,
+                  "qualified_record_index": 1,
+                  "record": {
+                    "$raw_record_ref": {
+                      "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                      "expanded_raw_caller_pointer": "/record_trace_input/sources/1/decoded_records/0",
+                      "canonical_sha256": "a014d061110e1163c41cc52aa3c5abe391a1044ba9b7d50a0acc5bb7b9bff7a1"
+                    }
+                  }
+                },
+                {
+                  "source_occurrence_index": 2,
+                  "source_ref": {
+                    "identity": "CORE-PROJECTION-SOURCE",
+                    "revision": "members-core-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                    "scope": {
+                      "project": "CORE-PROJECTION-PROJECT",
+                      "tenant": "CORE-PROJECTION-TENANT",
+                      "environment": "CORE-PROJECTION-ENV"
+                    },
+                    "owner": "CORE-source-owner"
+                  },
+                  "record_index": 0,
+                  "qualified_record_index": 2,
+                  "record": {
+                    "$raw_record_ref": {
+                      "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                      "expanded_raw_caller_pointer": "/record_trace_input/sources/2/decoded_records/0",
+                      "canonical_sha256": "fc72b17f3138bc41c094df32fac0945b6ba6e0f3407d0c2a3e88b4fff255af01"
+                    }
+                  }
+                },
+                {
+                  "source_occurrence_index": 3,
+                  "source_ref": {
+                    "identity": "OS-ASSOCIATION-SOURCE",
+                    "revision": "members-os-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                    "scope": {
+                      "project": "OS-PROJECT-7",
+                      "tenant": "OS-TENANT",
+                      "environment": "OS-TEST"
+                    },
+                    "owner": "OS-source-owner"
+                  },
+                  "record_index": 0,
+                  "qualified_record_index": 3,
+                  "record": {
+                    "$raw_record_ref": {
+                      "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                      "expanded_raw_caller_pointer": "/record_trace_input/sources/3/decoded_records/0",
+                      "canonical_sha256": "18af8a2f7c9a12dbb79c7387d80a176fca96264ef58b8b7dc77f6fd07c2719c0"
+                    }
+                  }
+                },
+                {
+                  "source_occurrence_index": 3,
+                  "source_ref": {
+                    "identity": "OS-ASSOCIATION-SOURCE",
+                    "revision": "members-os-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                    "scope": {
+                      "project": "OS-PROJECT-7",
+                      "tenant": "OS-TENANT",
+                      "environment": "OS-TEST"
+                    },
+                    "owner": "OS-source-owner"
+                  },
+                  "record_index": 1,
+                  "qualified_record_index": 4,
+                  "record": {
+                    "$raw_record_ref": {
+                      "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                      "expanded_raw_caller_pointer": "/record_trace_input/sources/3/decoded_records/1",
+                      "canonical_sha256": "aa8e158ae43545a7197cbd6f257f43272d99b0d75da6200717a58d2e12a406ff"
+                    }
+                  }
+                },
+                {
+                  "source_occurrence_index": 3,
+                  "source_ref": {
+                    "identity": "OS-ASSOCIATION-SOURCE",
+                    "revision": "members-os-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                    "scope": {
+                      "project": "OS-PROJECT-7",
+                      "tenant": "OS-TENANT",
+                      "environment": "OS-TEST"
+                    },
+                    "owner": "OS-source-owner"
+                  },
+                  "record_index": 2,
+                  "qualified_record_index": 5,
+                  "record": {
+                    "$raw_record_ref": {
+                      "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                      "expanded_raw_caller_pointer": "/record_trace_input/sources/3/decoded_records/2",
+                      "canonical_sha256": "cb9d5dc7e9915cb59d93a5df4a379de9f5555ae23d1a481d828a2adcefd0df80"
+                    }
+                  }
+                },
+                {
+                  "source_occurrence_index": 3,
+                  "source_ref": {
+                    "identity": "OS-ASSOCIATION-SOURCE",
+                    "revision": "members-os-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                    "scope": {
+                      "project": "OS-PROJECT-7",
+                      "tenant": "OS-TENANT",
+                      "environment": "OS-TEST"
+                    },
+                    "owner": "OS-source-owner"
+                  },
+                  "record_index": 3,
+                  "qualified_record_index": 6,
+                  "record": {
+                    "$raw_record_ref": {
+                      "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                      "expanded_raw_caller_pointer": "/record_trace_input/sources/3/decoded_records/3",
+                      "canonical_sha256": "2a1d4d978d8ae7a8ff6a35b598899c27b8d64eea540f2fe669d9210ef40441bf"
+                    }
+                  }
+                },
+                {
+                  "source_occurrence_index": 4,
+                  "source_ref": {
+                    "identity": "UNRELATED-Q-SOURCE",
+                    "revision": "source-r1",
+                    "scope": {
+                      "project": "UNRELATED-Q-PROJECT",
+                      "tenant": "UNRELATED-Q-TENANT",
+                      "environment": "UNRELATED-Q-ENV"
+                    },
+                    "owner": "Q-owner"
+                  },
+                  "record_index": 0,
+                  "qualified_record_index": 7,
+                  "record": {
+                    "$raw_record_ref": {
+                      "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                      "expanded_raw_caller_pointer": "/record_trace_input/sources/4/decoded_records/0",
+                      "canonical_sha256": "ab949dc13292e24f5de565331bb9add92fe41ad8f243780180384b04535c38fb"
+                    }
+                  }
+                },
+                {
+                  "source_occurrence_index": 5,
+                  "source_ref": {
+                    "identity": "PROPOSED-ORIGINAL-CORRESPONDENCE-SOURCE",
+                    "revision": "EQUAL-REF-BODY-ONLY-FIRST-QUALIFIED-relationship",
+                    "scope": {
+                      "environment": "OS-TEST",
+                      "project": "OS-PROJECT-7",
+                      "tenant": "OS-TENANT"
+                    },
+                    "owner": "OS-source-owner"
+                  },
+                  "record_index": 0,
+                  "qualified_record_index": 8,
+                  "record": {
+                    "$raw_record_ref": {
+                      "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                      "expanded_raw_caller_pointer": "/record_trace_input/sources/5/decoded_records/0",
+                      "canonical_sha256": "aaece0cdef91a0589b8f33e617f9441a582b03e9749ed6fc1353117508ba3bc0"
+                    }
+                  }
+                },
+                {
+                  "source_occurrence_index": 5,
+                  "source_ref": {
+                    "identity": "PROPOSED-ORIGINAL-CORRESPONDENCE-SOURCE",
+                    "revision": "EQUAL-REF-BODY-ONLY-FIRST-QUALIFIED-relationship",
+                    "scope": {
+                      "environment": "OS-TEST",
+                      "project": "OS-PROJECT-7",
+                      "tenant": "OS-TENANT"
+                    },
+                    "owner": "OS-source-owner"
+                  },
+                  "record_index": 1,
+                  "qualified_record_index": 9,
+                  "record": {
+                    "$raw_record_ref": {
+                      "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                      "expanded_raw_caller_pointer": "/record_trace_input/sources/5/decoded_records/1",
+                      "canonical_sha256": "fd582265bdb4abb5000bfb80b0a52c781128ed3c13605c50a46c3351c9b5764e"
+                    }
+                  }
+                },
+                {
+                  "source_occurrence_index": 5,
+                  "source_ref": {
+                    "identity": "PROPOSED-ORIGINAL-CORRESPONDENCE-SOURCE",
+                    "revision": "EQUAL-REF-BODY-ONLY-FIRST-QUALIFIED-relationship",
+                    "scope": {
+                      "environment": "OS-TEST",
+                      "project": "OS-PROJECT-7",
+                      "tenant": "OS-TENANT"
+                    },
+                    "owner": "OS-source-owner"
+                  },
+                  "record_index": 2,
+                  "qualified_record_index": 10,
+                  "record": {
+                    "$raw_record_ref": {
+                      "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                      "expanded_raw_caller_pointer": "/record_trace_input/sources/5/decoded_records/2",
+                      "canonical_sha256": "334a47e90b260510502c2de8028f938f6e945265c5f9cd77e900846b75fa419a"
+                    }
+                  }
+                }
+              ],
+              "source_walks": [
+                {
+                  "source_occurrence_index": 0,
+                  "source_ref": {
+                    "identity": "SOURCE-F04-CORE",
+                    "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  },
+                  "qualified_record_indices": [
+                    0
+                  ],
+                  "input_issue_indices": [],
+                  "source_issue_indices": [],
+                  "classification_flags": [
+                    "qualified"
+                  ]
+                },
+                {
+                  "source_occurrence_index": 1,
+                  "source_ref": {
+                    "identity": "SOURCE-F04-OS-original-owner",
+                    "revision": "source1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "OS-original-owner"
+                  },
+                  "qualified_record_indices": [
+                    1
+                  ],
+                  "input_issue_indices": [],
+                  "source_issue_indices": [],
+                  "classification_flags": [
+                    "qualified"
+                  ]
+                },
+                {
+                  "source_occurrence_index": 2,
+                  "source_ref": {
+                    "identity": "CORE-PROJECTION-SOURCE",
+                    "revision": "members-core-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                    "scope": {
+                      "project": "CORE-PROJECTION-PROJECT",
+                      "tenant": "CORE-PROJECTION-TENANT",
+                      "environment": "CORE-PROJECTION-ENV"
+                    },
+                    "owner": "CORE-source-owner"
+                  },
+                  "qualified_record_indices": [
+                    2
+                  ],
+                  "input_issue_indices": [],
+                  "source_issue_indices": [],
+                  "classification_flags": [
+                    "qualified"
+                  ]
+                },
+                {
+                  "source_occurrence_index": 3,
+                  "source_ref": {
+                    "identity": "OS-ASSOCIATION-SOURCE",
+                    "revision": "members-os-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                    "scope": {
+                      "project": "OS-PROJECT-7",
+                      "tenant": "OS-TENANT",
+                      "environment": "OS-TEST"
+                    },
+                    "owner": "OS-source-owner"
+                  },
+                  "qualified_record_indices": [
+                    3,
+                    4,
+                    5,
+                    6
+                  ],
+                  "input_issue_indices": [],
+                  "source_issue_indices": [],
+                  "classification_flags": [
+                    "qualified"
+                  ]
+                },
+                {
+                  "source_occurrence_index": 4,
+                  "source_ref": {
+                    "identity": "UNRELATED-Q-SOURCE",
+                    "revision": "source-r1",
+                    "scope": {
+                      "project": "UNRELATED-Q-PROJECT",
+                      "tenant": "UNRELATED-Q-TENANT",
+                      "environment": "UNRELATED-Q-ENV"
+                    },
+                    "owner": "Q-owner"
+                  },
+                  "qualified_record_indices": [
+                    7
+                  ],
+                  "input_issue_indices": [],
+                  "source_issue_indices": [],
+                  "classification_flags": [
+                    "qualified"
+                  ]
+                },
+                {
+                  "source_occurrence_index": 5,
+                  "source_ref": {
+                    "identity": "PROPOSED-ORIGINAL-CORRESPONDENCE-SOURCE",
+                    "revision": "EQUAL-REF-BODY-ONLY-FIRST-QUALIFIED-relationship",
+                    "scope": {
+                      "environment": "OS-TEST",
+                      "project": "OS-PROJECT-7",
+                      "tenant": "OS-TENANT"
+                    },
+                    "owner": "OS-source-owner"
+                  },
+                  "qualified_record_indices": [
+                    8,
+                    9,
+                    10
+                  ],
+                  "input_issue_indices": [],
+                  "source_issue_indices": [],
+                  "classification_flags": [
+                    "qualified"
+                  ]
+                },
+                {
+                  "source_occurrence_index": 6,
+                  "source_ref": {
+                    "identity": "SOURCE-F04-OS-original-owner",
+                    "revision": "source1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "OS-original-owner"
+                  },
+                  "qualified_record_indices": [],
+                  "input_issue_indices": [],
+                  "source_issue_indices": [
+                    0
+                  ],
+                  "classification_flags": [
+                    "unqualified",
+                    "unresolved"
+                  ]
+                }
+              ]
+            }
+          },
+          "fn14_private_return": {
+            "candidate_input_state": "corresponding",
+            "candidate_input": {
+              "state": "supplied_value",
+              "value": [
+                {
+                  "output_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "CORE-D1",
+                      "revision": "core-members-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    }
+                  },
+                  "binding": {
+                    "state": "supplied_value",
+                    "value": {
+                      "project_scope": {
+                        "state": "supplied_value",
+                        "value": {
+                          "project": {
+                            "state": "supplied_value",
+                            "value": "P"
+                          },
+                          "tenant": {
+                            "state": "supplied_value",
+                            "value": "synthetic-T"
+                          },
+                          "environment": {
+                            "state": "supplied_value",
+                            "value": "synthetic-test"
+                          }
+                        }
+                      },
+                      "requirement_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "R",
+                          "revision": "r1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "requirement-owner"
+                        }
+                      },
+                      "HARNESS_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "HARNESS-CONTRACT",
+                          "revision": "h1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "HARNESS"
+                        }
+                      },
+                      "template_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "T1",
+                          "revision": "v1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      },
+                      "semantic_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "MEANING-T1",
+                          "revision": "m1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      }
+                    }
+                  },
+                  "template_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "T1",
+                      "revision": "v1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "BRAIN"
+                    }
+                  },
+                  "disposition": {
+                    "state": "supplied_value",
+                    "value": "required"
+                  },
+                  "reason": {
+                    "state": "supplied_value",
+                    "value": "synthetic qualified owner applicability grounds"
+                  },
+                  "decider": {
+                    "state": "supplied_value",
+                    "value": "CORE fixture owner"
+                  },
+                  "target_revision": {
+                    "state": "supplied_value",
+                    "value": "r1"
+                  },
+                  "reentry": {
+                    "state": "supplied_value",
+                    "value": "condition/revision/scope change"
+                  },
+                  "original_condition": {
+                    "state": "supplied_value",
+                    "value": true
+                  },
+                  "unfinished_obligation_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "U1",
+                      "revision": "u1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "OS-original-owner"
+                    }
+                  },
+                  "source_projection": {
+                    "state": "supplied_value",
+                    "value": {
+                      "$copy": {
+                        "root": "f04_original_materials",
+                        "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection"
+                      }
+                    }
+                  }
+                },
+                {
+                  "output_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "CORE-D2",
+                      "revision": "core-members-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    }
+                  },
+                  "binding": {
+                    "state": "supplied_value",
+                    "value": {
+                      "project_scope": {
+                        "state": "supplied_value",
+                        "value": {
+                          "project": {
+                            "state": "supplied_value",
+                            "value": "P"
+                          },
+                          "tenant": {
+                            "state": "supplied_value",
+                            "value": "synthetic-T"
+                          },
+                          "environment": {
+                            "state": "supplied_value",
+                            "value": "synthetic-test"
+                          }
+                        }
+                      },
+                      "requirement_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "R",
+                          "revision": "r1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "requirement-owner"
+                        }
+                      },
+                      "HARNESS_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "HARNESS-CONTRACT",
+                          "revision": "h1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "HARNESS"
+                        }
+                      },
+                      "template_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "T1",
+                          "revision": "v1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      },
+                      "semantic_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "MEANING-T1",
+                          "revision": "m1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      }
+                    }
+                  },
+                  "template_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "T2",
+                      "revision": "v1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "BRAIN"
+                    }
+                  },
+                  "disposition": {
+                    "state": "supplied_value",
+                    "value": "conditional"
+                  },
+                  "reason": {
+                    "state": "supplied_value",
+                    "value": "synthetic qualified owner applicability grounds"
+                  },
+                  "decider": {
+                    "state": "supplied_value",
+                    "value": "CORE fixture owner"
+                  },
+                  "target_revision": {
+                    "state": "supplied_value",
+                    "value": "r1"
+                  },
+                  "reentry": {
+                    "state": "supplied_value",
+                    "value": "condition/revision/scope change"
+                  },
+                  "original_condition": {
+                    "state": "supplied_value",
+                    "value": false
+                  },
+                  "unfinished_obligation_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "U2",
+                      "revision": "u1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "OS-original-owner"
+                    }
+                  },
+                  "source_projection": {
+                    "state": "supplied_value",
+                    "value": {
+                      "$copy": {
+                        "root": "f04_original_materials",
+                        "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/1/source_projection"
+                      }
+                    }
+                  }
+                },
+                {
+                  "output_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "CORE-D3",
+                      "revision": "core-members-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    }
+                  },
+                  "binding": {
+                    "state": "supplied_value",
+                    "value": {
+                      "project_scope": {
+                        "state": "supplied_value",
+                        "value": {
+                          "project": {
+                            "state": "supplied_value",
+                            "value": "P"
+                          },
+                          "tenant": {
+                            "state": "supplied_value",
+                            "value": "synthetic-T"
+                          },
+                          "environment": {
+                            "state": "supplied_value",
+                            "value": "synthetic-test"
+                          }
+                        }
+                      },
+                      "requirement_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "R",
+                          "revision": "r1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "requirement-owner"
+                        }
+                      },
+                      "HARNESS_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "HARNESS-CONTRACT",
+                          "revision": "h1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "HARNESS"
+                        }
+                      },
+                      "template_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "T1",
+                          "revision": "v1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      },
+                      "semantic_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "MEANING-T1",
+                          "revision": "m1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      }
+                    }
+                  },
+                  "template_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "T3",
+                      "revision": "v1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "BRAIN"
+                    }
+                  },
+                  "disposition": {
+                    "state": "supplied_value",
+                    "value": "NA"
+                  },
+                  "reason": {
+                    "state": "supplied_value",
+                    "value": "限定対象外"
+                  },
+                  "decider": {
+                    "state": "supplied_value",
+                    "value": "synthetic-core-reviewer"
+                  },
+                  "target_revision": {
+                    "state": "supplied_value",
+                    "value": "rev-A"
+                  },
+                  "reentry": {
+                    "state": "supplied_value",
+                    "value": {
+                      "when": "revision-change",
+                      "minimum": 2
+                    }
+                  },
+                  "original_condition": {
+                    "state": "supplied_value",
+                    "value": false
+                  },
+                  "unfinished_obligation_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "U3",
+                      "revision": "u1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "OS-original-owner"
+                    }
+                  },
+                  "source_projection": {
+                    "state": "supplied_value",
+                    "value": {
+                      "$copy": {
+                        "root": "f04_original_materials",
+                        "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/2/source_projection"
+                      }
+                    }
+                  }
+                },
+                {
+                  "output_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "CORE-D4",
+                      "revision": "core-members-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    }
+                  },
+                  "binding": {
+                    "state": "supplied_value",
+                    "value": {
+                      "project_scope": {
+                        "state": "supplied_value",
+                        "value": {
+                          "project": {
+                            "state": "supplied_value",
+                            "value": "P"
+                          },
+                          "tenant": {
+                            "state": "supplied_value",
+                            "value": "synthetic-T"
+                          },
+                          "environment": {
+                            "state": "supplied_value",
+                            "value": "synthetic-test"
+                          }
+                        }
+                      },
+                      "requirement_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "R",
+                          "revision": "r1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "requirement-owner"
+                        }
+                      },
+                      "HARNESS_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "HARNESS-CONTRACT",
+                          "revision": "h1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "HARNESS"
+                        }
+                      },
+                      "template_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "T1",
+                          "revision": "v1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      },
+                      "semantic_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "MEANING-T1",
+                          "revision": "m1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      }
+                    }
+                  },
+                  "template_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "T4",
+                      "revision": "v1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "BRAIN"
+                    }
+                  },
+                  "disposition": {
+                    "state": "supplied_value",
+                    "value": "unresolved"
+                  },
+                  "reason": {
+                    "state": "supplied_value",
+                    "value": "synthetic qualified owner applicability grounds"
+                  },
+                  "decider": {
+                    "state": "supplied_value",
+                    "value": "CORE fixture owner"
+                  },
+                  "target_revision": {
+                    "state": "supplied_value",
+                    "value": "r1"
+                  },
+                  "reentry": {
+                    "state": "supplied_value",
+                    "value": "condition/revision/scope change"
+                  },
+                  "original_condition": {
+                    "state": "supplied_null"
+                  },
+                  "unfinished_obligation_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "U4",
+                      "revision": "u1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "OS-original-owner"
+                    }
+                  },
+                  "source_projection": {
+                    "state": "supplied_value",
+                    "value": {
+                      "$copy": {
+                        "root": "f04_original_materials",
+                        "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/3/source_projection"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "validated_input_candidate": {
+              "state": "supplied_value",
+              "value": [
+                {
+                  "output_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "CORE-D1",
+                      "revision": "core-members-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    }
+                  },
+                  "binding": {
+                    "state": "supplied_value",
+                    "value": {
+                      "project_scope": {
+                        "state": "supplied_value",
+                        "value": {
+                          "project": {
+                            "state": "supplied_value",
+                            "value": "P"
+                          },
+                          "tenant": {
+                            "state": "supplied_value",
+                            "value": "synthetic-T"
+                          },
+                          "environment": {
+                            "state": "supplied_value",
+                            "value": "synthetic-test"
+                          }
+                        }
+                      },
+                      "requirement_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "R",
+                          "revision": "r1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "requirement-owner"
+                        }
+                      },
+                      "HARNESS_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "HARNESS-CONTRACT",
+                          "revision": "h1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "HARNESS"
+                        }
+                      },
+                      "template_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "T1",
+                          "revision": "v1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      },
+                      "semantic_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "MEANING-T1",
+                          "revision": "m1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      }
+                    }
+                  },
+                  "template_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "T1",
+                      "revision": "v1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "BRAIN"
+                    }
+                  },
+                  "disposition": {
+                    "state": "supplied_value",
+                    "value": "required"
+                  },
+                  "reason": {
+                    "state": "supplied_value",
+                    "value": "synthetic qualified owner applicability grounds"
+                  },
+                  "decider": {
+                    "state": "supplied_value",
+                    "value": "CORE fixture owner"
+                  },
+                  "target_revision": {
+                    "state": "supplied_value",
+                    "value": "r1"
+                  },
+                  "reentry": {
+                    "state": "supplied_value",
+                    "value": "condition/revision/scope change"
+                  },
+                  "original_condition": {
+                    "state": "supplied_value",
+                    "value": true
+                  },
+                  "unfinished_obligation_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "U1",
+                      "revision": "u1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "OS-original-owner"
+                    }
+                  },
+                  "source_projection": {
+                    "state": "supplied_value",
+                    "value": {
+                      "$copy": {
+                        "root": "f04_original_materials",
+                        "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection"
+                      }
+                    }
+                  }
+                },
+                {
+                  "output_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "CORE-D2",
+                      "revision": "core-members-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    }
+                  },
+                  "binding": {
+                    "state": "supplied_value",
+                    "value": {
+                      "project_scope": {
+                        "state": "supplied_value",
+                        "value": {
+                          "project": {
+                            "state": "supplied_value",
+                            "value": "P"
+                          },
+                          "tenant": {
+                            "state": "supplied_value",
+                            "value": "synthetic-T"
+                          },
+                          "environment": {
+                            "state": "supplied_value",
+                            "value": "synthetic-test"
+                          }
+                        }
+                      },
+                      "requirement_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "R",
+                          "revision": "r1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "requirement-owner"
+                        }
+                      },
+                      "HARNESS_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "HARNESS-CONTRACT",
+                          "revision": "h1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "HARNESS"
+                        }
+                      },
+                      "template_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "T1",
+                          "revision": "v1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      },
+                      "semantic_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "MEANING-T1",
+                          "revision": "m1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      }
+                    }
+                  },
+                  "template_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "T2",
+                      "revision": "v1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "BRAIN"
+                    }
+                  },
+                  "disposition": {
+                    "state": "supplied_value",
+                    "value": "conditional"
+                  },
+                  "reason": {
+                    "state": "supplied_value",
+                    "value": "synthetic qualified owner applicability grounds"
+                  },
+                  "decider": {
+                    "state": "supplied_value",
+                    "value": "CORE fixture owner"
+                  },
+                  "target_revision": {
+                    "state": "supplied_value",
+                    "value": "r1"
+                  },
+                  "reentry": {
+                    "state": "supplied_value",
+                    "value": "condition/revision/scope change"
+                  },
+                  "original_condition": {
+                    "state": "supplied_value",
+                    "value": false
+                  },
+                  "unfinished_obligation_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "U2",
+                      "revision": "u1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "OS-original-owner"
+                    }
+                  },
+                  "source_projection": {
+                    "state": "supplied_value",
+                    "value": {
+                      "$copy": {
+                        "root": "f04_original_materials",
+                        "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/1/source_projection"
+                      }
+                    }
+                  }
+                },
+                {
+                  "output_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "CORE-D3",
+                      "revision": "core-members-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    }
+                  },
+                  "binding": {
+                    "state": "supplied_value",
+                    "value": {
+                      "project_scope": {
+                        "state": "supplied_value",
+                        "value": {
+                          "project": {
+                            "state": "supplied_value",
+                            "value": "P"
+                          },
+                          "tenant": {
+                            "state": "supplied_value",
+                            "value": "synthetic-T"
+                          },
+                          "environment": {
+                            "state": "supplied_value",
+                            "value": "synthetic-test"
+                          }
+                        }
+                      },
+                      "requirement_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "R",
+                          "revision": "r1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "requirement-owner"
+                        }
+                      },
+                      "HARNESS_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "HARNESS-CONTRACT",
+                          "revision": "h1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "HARNESS"
+                        }
+                      },
+                      "template_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "T1",
+                          "revision": "v1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      },
+                      "semantic_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "MEANING-T1",
+                          "revision": "m1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      }
+                    }
+                  },
+                  "template_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "T3",
+                      "revision": "v1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "BRAIN"
+                    }
+                  },
+                  "disposition": {
+                    "state": "supplied_value",
+                    "value": "NA"
+                  },
+                  "reason": {
+                    "state": "supplied_value",
+                    "value": "限定対象外"
+                  },
+                  "decider": {
+                    "state": "supplied_value",
+                    "value": "synthetic-core-reviewer"
+                  },
+                  "target_revision": {
+                    "state": "supplied_value",
+                    "value": "rev-A"
+                  },
+                  "reentry": {
+                    "state": "supplied_value",
+                    "value": {
+                      "when": "revision-change",
+                      "minimum": 2
+                    }
+                  },
+                  "original_condition": {
+                    "state": "supplied_value",
+                    "value": false
+                  },
+                  "unfinished_obligation_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "U3",
+                      "revision": "u1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "OS-original-owner"
+                    }
+                  },
+                  "source_projection": {
+                    "state": "supplied_value",
+                    "value": {
+                      "$copy": {
+                        "root": "f04_original_materials",
+                        "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/2/source_projection"
+                      }
+                    }
+                  }
+                },
+                {
+                  "output_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "CORE-D4",
+                      "revision": "core-members-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    }
+                  },
+                  "binding": {
+                    "state": "supplied_value",
+                    "value": {
+                      "project_scope": {
+                        "state": "supplied_value",
+                        "value": {
+                          "project": {
+                            "state": "supplied_value",
+                            "value": "P"
+                          },
+                          "tenant": {
+                            "state": "supplied_value",
+                            "value": "synthetic-T"
+                          },
+                          "environment": {
+                            "state": "supplied_value",
+                            "value": "synthetic-test"
+                          }
+                        }
+                      },
+                      "requirement_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "R",
+                          "revision": "r1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "requirement-owner"
+                        }
+                      },
+                      "HARNESS_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "HARNESS-CONTRACT",
+                          "revision": "h1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "HARNESS"
+                        }
+                      },
+                      "template_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "T1",
+                          "revision": "v1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      },
+                      "semantic_contract_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "MEANING-T1",
+                          "revision": "m1",
+                          "scope": {
+                            "project": "P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-test"
+                          },
+                          "owner": "BRAIN"
+                        }
+                      }
+                    }
+                  },
+                  "template_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "T4",
+                      "revision": "v1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "BRAIN"
+                    }
+                  },
+                  "disposition": {
+                    "state": "supplied_value",
+                    "value": "unresolved"
+                  },
+                  "reason": {
+                    "state": "supplied_value",
+                    "value": "synthetic qualified owner applicability grounds"
+                  },
+                  "decider": {
+                    "state": "supplied_value",
+                    "value": "CORE fixture owner"
+                  },
+                  "target_revision": {
+                    "state": "supplied_value",
+                    "value": "r1"
+                  },
+                  "reentry": {
+                    "state": "supplied_value",
+                    "value": "condition/revision/scope change"
+                  },
+                  "original_condition": {
+                    "state": "supplied_null"
+                  },
+                  "unfinished_obligation_ref": {
+                    "state": "supplied_value",
+                    "value": {
+                      "identity": "U4",
+                      "revision": "u1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "OS-original-owner"
+                    }
+                  },
+                  "source_projection": {
+                    "state": "supplied_value",
+                    "value": {
+                      "$copy": {
+                        "root": "f04_original_materials",
+                        "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/3/source_projection"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "raw_candidate": {
+              "$copy": {
+                "root": "f04_original_materials",
+                "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate"
+              }
+            },
+            "validated_candidate_raw": {
+              "state": "supplied_value",
+              "value": {
+                "$copy": {
+                  "root": "f04_original_materials",
+                  "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate"
+                }
+              }
+            },
+            "qualified_os_associations": [
+              {
+                "source_ref": {
+                  "identity": "OS-ASSOCIATION-SOURCE",
+                  "revision": "members-os-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                  "scope": {
+                    "project": "OS-PROJECT-7",
+                    "tenant": "OS-TENANT",
+                    "environment": "OS-TEST"
+                  },
+                  "owner": "OS-source-owner"
+                },
+                "record_index": 0,
+                "record_ref": {
+                  "expected_ref": "/cases/2/fn19_private_return/origin_support/qualified_occurrences/3"
+                }
+              },
+              {
+                "source_ref": {
+                  "identity": "OS-ASSOCIATION-SOURCE",
+                  "revision": "members-os-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                  "scope": {
+                    "project": "OS-PROJECT-7",
+                    "tenant": "OS-TENANT",
+                    "environment": "OS-TEST"
+                  },
+                  "owner": "OS-source-owner"
+                },
+                "record_index": 1,
+                "record_ref": {
+                  "expected_ref": "/cases/2/fn19_private_return/origin_support/qualified_occurrences/4"
+                }
+              },
+              {
+                "source_ref": {
+                  "identity": "OS-ASSOCIATION-SOURCE",
+                  "revision": "members-os-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                  "scope": {
+                    "project": "OS-PROJECT-7",
+                    "tenant": "OS-TENANT",
+                    "environment": "OS-TEST"
+                  },
+                  "owner": "OS-source-owner"
+                },
+                "record_index": 2,
+                "record_ref": {
+                  "expected_ref": "/cases/2/fn19_private_return/origin_support/qualified_occurrences/5"
+                }
+              },
+              {
+                "source_ref": {
+                  "identity": "OS-ASSOCIATION-SOURCE",
+                  "revision": "members-os-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                  "scope": {
+                    "project": "OS-PROJECT-7",
+                    "tenant": "OS-TENANT",
+                    "environment": "OS-TEST"
+                  },
+                  "owner": "OS-source-owner"
+                },
+                "record_index": 3,
+                "record_ref": {
+                  "expected_ref": "/cases/2/fn19_private_return/origin_support/qualified_occurrences/6"
+                }
+              }
+            ],
+            "qualified_core_projection_sources": [
+              {
+                "source_ref": {
+                  "identity": "CORE-PROJECTION-SOURCE",
+                  "revision": "members-core-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                  "scope": {
+                    "project": "CORE-PROJECTION-PROJECT",
+                    "tenant": "CORE-PROJECTION-TENANT",
+                    "environment": "CORE-PROJECTION-ENV"
+                  },
+                  "owner": "CORE-source-owner"
+                },
+                "record_index": 0,
+                "record_ref": {
+                  "expected_ref": "/cases/2/fn19_private_return/origin_support/qualified_occurrences/2"
+                }
+              }
+            ],
+            "local_decode_states": [],
+            "selection_input": {
+              "state": "supplied_value",
+              "value": {
+                "output_refs": [
+                  {
+                    "identity": "CORE-D1",
+                    "revision": "core-members-r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  }
+                ]
+              }
+            },
+            "candidate_raw_occurrences": [
+              {
+                "item_index": 0,
+                "raw_item": {
+                  "$copy": {
+                    "root": "f04_original_materials",
+                    "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0"
+                  }
+                }
+              },
+              {
+                "item_index": 1,
+                "raw_item": {
+                  "$copy": {
+                    "root": "f04_original_materials",
+                    "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/1"
+                  }
+                }
+              },
+              {
+                "item_index": 2,
+                "raw_item": {
+                  "$copy": {
+                    "root": "f04_original_materials",
+                    "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/2"
+                  }
+                }
+              },
+              {
+                "item_index": 3,
+                "raw_item": {
+                  "$copy": {
+                    "root": "f04_original_materials",
+                    "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/3"
+                  }
+                }
+              }
+            ],
+            "validated_raw_occurrences": [
+              {
+                "item_index": 0,
+                "raw_item": {
+                  "$copy": {
+                    "root": "f04_original_materials",
+                    "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0"
+                  }
+                }
+              },
+              {
+                "item_index": 1,
+                "raw_item": {
+                  "$copy": {
+                    "root": "f04_original_materials",
+                    "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/1"
+                  }
+                }
+              },
+              {
+                "item_index": 2,
+                "raw_item": {
+                  "$copy": {
+                    "root": "f04_original_materials",
+                    "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/2"
+                  }
+                }
+              },
+              {
+                "item_index": 3,
+                "raw_item": {
+                  "$copy": {
+                    "root": "f04_original_materials",
+                    "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/3"
+                  }
+                }
+              }
+            ],
+            "original_decode_context": {
+              "state": "supplied",
+              "origin_support_ref": "same exact object as fn19_private_return.origin_support",
+              "relationships": [
+                {
+                  "origin": {
+                    "source_occurrence_index": 5,
+                    "source_ref": {
+                      "identity": "PROPOSED-ORIGINAL-CORRESPONDENCE-SOURCE",
+                      "revision": "EQUAL-REF-BODY-ONLY-FIRST-QUALIFIED-relationship",
+                      "scope": {
+                        "environment": "OS-TEST",
+                        "project": "OS-PROJECT-7",
+                        "tenant": "OS-TENANT"
+                      },
+                      "owner": "OS-source-owner"
+                    },
+                    "record_index": 0,
+                    "qualified_record_index": 8,
+                    "record": {
+                      "$raw_record_ref": {
+                        "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                        "expanded_raw_caller_pointer": "/record_trace_input/sources/5/decoded_records/0",
+                        "canonical_sha256": "aaece0cdef91a0589b8f33e617f9441a582b03e9749ed6fc1353117508ba3bc0"
+                      }
+                    }
+                  },
+                  "raw_payload": {
+                    "core_row_locator": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/5/decoded_records/0/payload/core_row_locator"
+                        }
+                      }
+                    },
+                    "obligations": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/5/decoded_records/0/payload/obligations"
+                        }
+                      }
+                    },
+                    "output_ref": {
+                      "state": "supplied_value",
+                      "value": {
+                        "identity": "CORE-D1",
+                        "owner": "CORE",
+                        "revision": "core-members-r1",
+                        "scope": {
+                          "environment": "synthetic-test",
+                          "project": "P",
+                          "tenant": "synthetic-T"
+                        }
+                      }
+                    }
+                  },
+                  "selector_state": "corresponding",
+                  "domain_payload": {
+                    "state": "supplied_value",
+                    "value": {
+                      "core_row_locator": {
+                        "state": "supplied_value",
+                        "value": {
+                          "projection_snapshot_ref": {
+                            "identity": "CORE-PROJECTION-CONTAINER-01",
+                            "owner": "CORE-source-owner",
+                            "revision": "core-members-r1",
+                            "scope": {
+                              "environment": "CORE-PROJECTION-ENV",
+                              "project": "CORE-PROJECTION-PROJECT",
+                              "tenant": "CORE-PROJECTION-TENANT"
+                            }
+                          },
+                          "row_pointer": "/rows/0"
+                        }
+                      },
+                      "obligations": {
+                        "state": "supplied_value",
+                        "value": [
+                          {
+                            "core_occurrence_index": 0,
+                            "expected_core_obligation_ref": {
+                              "identity": "obligation-A",
+                              "owner": "core-owner",
+                              "revision": "rev-A",
+                              "scope": {
+                                "environment": "SYNTHETIC-E",
+                                "product": "SYNTHETIC-P",
+                                "tenant": "SYNTHETIC-T"
+                              },
+                              "sha256": null,
+                              "source_locator": null
+                            },
+                            "expected_os_obligation_ref": {
+                              "identity": "U1",
+                              "owner": "OS-original-owner",
+                              "revision": "u1",
+                              "scope": {
+                                "environment": "synthetic-test",
+                                "project": "P",
+                                "tenant": "synthetic-T"
+                              }
+                            },
+                            "native_output": {
+                              "payload_pointer": "/core_outputs/0",
+                              "record_index": 0,
+                              "source_occurrence_index": 0,
+                              "source_ref": {
+                                "identity": "SOURCE-F04-CORE",
+                                "owner": "CORE",
+                                "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              },
+                              "subject_ref": {
+                                "identity": "FIXTURE-F04-CORE",
+                                "owner": "CORE",
+                                "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              }
+                            },
+                            "native_state": {
+                              "payload_pointer": "/obligation_original_states/0",
+                              "record_index": 0,
+                              "source_occurrence_index": 1,
+                              "source_ref": {
+                                "identity": "SOURCE-F04-OS-original-owner",
+                                "owner": "OS-original-owner",
+                                "revision": "source1",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              },
+                              "subject_ref": {
+                                "identity": "FIXTURE-F04-OS-original-owner",
+                                "owner": "OS-original-owner",
+                                "revision": "source1",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "core_occurrence_index": 1,
+                            "expected_core_obligation_ref": {
+                              "identity": "obligation-A",
+                              "owner": "core-owner",
+                              "revision": "rev-A",
+                              "scope": {
+                                "environment": "SYNTHETIC-E",
+                                "product": "SYNTHETIC-P",
+                                "tenant": "SYNTHETIC-T"
+                              },
+                              "sha256": null,
+                              "source_locator": null
+                            },
+                            "expected_os_obligation_ref": {
+                              "identity": "U1",
+                              "owner": "OS-original-owner",
+                              "revision": "u1",
+                              "scope": {
+                                "environment": "synthetic-test",
+                                "project": "P",
+                                "tenant": "synthetic-T"
+                              }
+                            },
+                            "native_output": {
+                              "payload_pointer": "/core_outputs/0",
+                              "record_index": 0,
+                              "source_occurrence_index": 0,
+                              "source_ref": {
+                                "identity": "SOURCE-F04-CORE",
+                                "owner": "CORE",
+                                "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              },
+                              "subject_ref": {
+                                "identity": "FIXTURE-F04-CORE",
+                                "owner": "CORE",
+                                "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              }
+                            },
+                            "native_state": {
+                              "payload_pointer": "/obligation_original_states/0",
+                              "record_index": 0,
+                              "source_occurrence_index": 1,
+                              "source_ref": {
+                                "identity": "SOURCE-F04-OS-original-owner",
+                                "owner": "OS-original-owner",
+                                "revision": "source1",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              },
+                              "subject_ref": {
+                                "identity": "FIXTURE-F04-OS-original-owner",
+                                "owner": "OS-original-owner",
+                                "revision": "source1",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "output_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "CORE-D1",
+                          "owner": "CORE",
+                          "revision": "core-members-r1",
+                          "scope": {
+                            "environment": "synthetic-test",
+                            "project": "P",
+                            "tenant": "synthetic-T"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "origin": {
+                    "source_occurrence_index": 5,
+                    "source_ref": {
+                      "identity": "PROPOSED-ORIGINAL-CORRESPONDENCE-SOURCE",
+                      "revision": "EQUAL-REF-BODY-ONLY-FIRST-QUALIFIED-relationship",
+                      "scope": {
+                        "environment": "OS-TEST",
+                        "project": "OS-PROJECT-7",
+                        "tenant": "OS-TENANT"
+                      },
+                      "owner": "OS-source-owner"
+                    },
+                    "record_index": 1,
+                    "qualified_record_index": 9,
+                    "record": {
+                      "$raw_record_ref": {
+                        "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                        "expanded_raw_caller_pointer": "/record_trace_input/sources/5/decoded_records/1",
+                        "canonical_sha256": "fd582265bdb4abb5000bfb80b0a52c781128ed3c13605c50a46c3351c9b5764e"
+                      }
+                    }
+                  },
+                  "raw_payload": {
+                    "condition": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/5/decoded_records/1/payload/condition"
+                        }
+                      }
+                    },
+                    "core_row_locator": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/5/decoded_records/1/payload/core_row_locator"
+                        }
+                      }
+                    },
+                    "output_ref": {
+                      "state": "supplied_value",
+                      "value": {
+                        "identity": "CORE-D2",
+                        "owner": "CORE",
+                        "revision": "core-members-r1",
+                        "scope": {
+                          "environment": "synthetic-test",
+                          "project": "P",
+                          "tenant": "synthetic-T"
+                        }
+                      }
+                    }
+                  },
+                  "selector_state": "missing",
+                  "domain_payload": {
+                    "state": "supplied_value",
+                    "value": {
+                      "condition": {
+                        "state": "supplied_value",
+                        "value": {
+                          "expected_condition_pairs": {
+                            "presence": "present",
+                            "value": {
+                              "$copy": {
+                                "root": "f04_original_materials",
+                                "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/5/decoded_records/1/payload/condition/expected_condition_pairs/value"
+                              }
+                            }
+                          },
+                          "native_output": {
+                            "payload_pointer": "/core_outputs/1",
+                            "record_index": 0,
+                            "source_occurrence_index": 0,
+                            "source_ref": {
+                              "identity": "SOURCE-F04-CORE",
+                              "owner": "CORE",
+                              "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                              "scope": {
+                                "environment": "synthetic-test",
+                                "project": "P",
+                                "tenant": "synthetic-T"
+                              }
+                            },
+                            "subject_ref": {
+                              "identity": "FIXTURE-F04-CORE",
+                              "owner": "CORE",
+                              "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                              "scope": {
+                                "environment": "synthetic-test",
+                                "project": "P",
+                                "tenant": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "core_row_locator": {
+                        "state": "supplied_value",
+                        "value": {
+                          "projection_snapshot_ref": {
+                            "identity": "CORE-PROJECTION-CONTAINER-01",
+                            "owner": "CORE-source-owner",
+                            "revision": "core-members-r1",
+                            "scope": {
+                              "environment": "CORE-PROJECTION-ENV",
+                              "project": "CORE-PROJECTION-PROJECT",
+                              "tenant": "CORE-PROJECTION-TENANT"
+                            }
+                          },
+                          "row_pointer": "/rows/1"
+                        }
+                      },
+                      "output_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "CORE-D2",
+                          "owner": "CORE",
+                          "revision": "core-members-r1",
+                          "scope": {
+                            "environment": "synthetic-test",
+                            "project": "P",
+                            "tenant": "synthetic-T"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "origin": {
+                    "source_occurrence_index": 5,
+                    "source_ref": {
+                      "identity": "PROPOSED-ORIGINAL-CORRESPONDENCE-SOURCE",
+                      "revision": "EQUAL-REF-BODY-ONLY-FIRST-QUALIFIED-relationship",
+                      "scope": {
+                        "environment": "OS-TEST",
+                        "project": "OS-PROJECT-7",
+                        "tenant": "OS-TENANT"
+                      },
+                      "owner": "OS-source-owner"
+                    },
+                    "record_index": 2,
+                    "qualified_record_index": 10,
+                    "record": {
+                      "$raw_record_ref": {
+                        "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                        "expanded_raw_caller_pointer": "/record_trace_input/sources/5/decoded_records/2",
+                        "canonical_sha256": "334a47e90b260510502c2de8028f938f6e945265c5f9cd77e900846b75fa419a"
+                      }
+                    }
+                  },
+                  "raw_payload": {
+                    "condition": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/5/decoded_records/2/payload/condition"
+                        }
+                      }
+                    },
+                    "core_row_locator": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/5/decoded_records/2/payload/core_row_locator"
+                        }
+                      }
+                    },
+                    "output_ref": {
+                      "state": "supplied_value",
+                      "value": {
+                        "identity": "CORE-D4",
+                        "owner": "CORE",
+                        "revision": "core-members-r1",
+                        "scope": {
+                          "environment": "synthetic-test",
+                          "project": "P",
+                          "tenant": "synthetic-T"
+                        }
+                      }
+                    }
+                  },
+                  "selector_state": "missing",
+                  "domain_payload": {
+                    "state": "supplied_value",
+                    "value": {
+                      "condition": {
+                        "state": "supplied_value",
+                        "value": {
+                          "expected_condition_pairs": {
+                            "presence": "present",
+                            "value": {
+                              "$copy": {
+                                "root": "f04_original_materials",
+                                "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/5/decoded_records/2/payload/condition/expected_condition_pairs/value"
+                              }
+                            }
+                          },
+                          "native_output": {
+                            "payload_pointer": "/core_outputs/3",
+                            "record_index": 0,
+                            "source_occurrence_index": 0,
+                            "source_ref": {
+                              "identity": "SOURCE-F04-CORE",
+                              "owner": "CORE",
+                              "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                              "scope": {
+                                "environment": "synthetic-test",
+                                "project": "P",
+                                "tenant": "synthetic-T"
+                              }
+                            },
+                            "subject_ref": {
+                              "identity": "FIXTURE-F04-CORE",
+                              "owner": "CORE",
+                              "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                              "scope": {
+                                "environment": "synthetic-test",
+                                "project": "P",
+                                "tenant": "synthetic-T"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "core_row_locator": {
+                        "state": "supplied_value",
+                        "value": {
+                          "projection_snapshot_ref": {
+                            "identity": "CORE-PROJECTION-CONTAINER-01",
+                            "owner": "CORE-source-owner",
+                            "revision": "core-members-r1",
+                            "scope": {
+                              "environment": "CORE-PROJECTION-ENV",
+                              "project": "CORE-PROJECTION-PROJECT",
+                              "tenant": "CORE-PROJECTION-TENANT"
+                            }
+                          },
+                          "row_pointer": "/rows/3"
+                        }
+                      },
+                      "output_ref": {
+                        "state": "supplied_value",
+                        "value": {
+                          "identity": "CORE-D4",
+                          "owner": "CORE",
+                          "revision": "core-members-r1",
+                          "scope": {
+                            "environment": "synthetic-test",
+                            "project": "P",
+                            "tenant": "synthetic-T"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "fn20_private_return": {
+            "join": {
+              "state": "supplied_value",
+              "value": {
+                "selection_input": {
+                  "state": "supplied_value",
+                  "value": {
+                    "output_refs": [
+                      {
+                        "identity": "CORE-D1",
+                        "revision": "core-members-r1",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "CORE"
+                      }
+                    ]
+                  }
+                },
+                "selection_state": "valid_nonempty",
+                "selected_output_refs": [
+                  {
+                    "identity": "CORE-D1",
+                    "revision": "core-members-r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  }
+                ],
+                "records": [
+                  {
+                    "selected_output_ref": {
+                      "identity": "CORE-D1",
+                      "revision": "core-members-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    },
+                    "candidate_input_state": "corresponding",
+                    "candidate_os_field_state": "corresponding",
+                    "candidate_core_row_state": "corresponding",
+                    "qualified_os_core_row_state": "corresponding",
+                    "carrier_core_row_state": "corresponding",
+                    "finding_refs": [],
+                    "source_refs": [
+                      {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/2/source_ref"
+                        }
+                      },
+                      {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/3/source_ref"
+                        }
+                      }
+                    ],
+                    "os_association_state": "unique",
+                    "qualified_os_record_candidates": [
+                      {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/3/decoded_records/0"
+                        }
+                      }
+                    ],
+                    "candidate_output_ref": {
+                      "state": "supplied_value",
+                      "value": {
+                        "identity": "CORE-D1",
+                        "revision": "core-members-r1",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "CORE"
+                      }
+                    },
+                    "candidate_source_projection": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection"
+                        }
+                      }
+                    },
+                    "qualified_os_record": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/3/decoded_records/0"
+                        }
+                      }
+                    },
+                    "qualified_os_source_projection": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection"
+                        }
+                      }
+                    },
+                    "qualified_core_record": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/2/decoded_records/0"
+                        }
+                      }
+                    },
+                    "projection_snapshot_ref": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/2/decoded_records/0/subject_ref"
+                        }
+                      }
+                    },
+                    "row_pointer": {
+                      "state": "supplied_value",
+                      "value": "/rows/0"
+                    },
+                    "resolved_core_row": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection/row"
+                        }
+                      }
+                    },
+                    "os_project_scope": {
+                      "state": "supplied_value",
+                      "value": {
+                        "project": "OS-PROJECT-7",
+                        "tenant": "OS-TENANT",
+                        "environment": "OS-TEST"
+                      }
+                    },
+                    "os_context": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/3/decoded_records/0/payload/context"
+                        }
+                      }
+                    },
+                    "obligation_original_states": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/record_trace_input/sources/1/decoded_records/0/payload/obligation_original_states"
+                        }
+                      }
+                    },
+                    "validated_input_candidate": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0"
+                        }
+                      }
+                    },
+                    "validated_candidate_source_projection": {
+                      "state": "supplied_value",
+                      "value": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection"
+                        }
+                      }
+                    }
+                  }
+                ],
+                "source_issues": [],
+                "qualified_source_refs": [
+                  {
+                    "identity": "CORE-PROJECTION-SOURCE",
+                    "revision": "members-core-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                    "scope": {
+                      "project": "CORE-PROJECTION-PROJECT",
+                      "tenant": "CORE-PROJECTION-TENANT",
+                      "environment": "CORE-PROJECTION-ENV"
+                    },
+                    "owner": "CORE-source-owner"
+                  },
+                  {
+                    "identity": "OS-ASSOCIATION-SOURCE",
+                    "revision": "members-os-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                    "scope": {
+                      "project": "OS-PROJECT-7",
+                      "tenant": "OS-TENANT",
+                      "environment": "OS-TEST"
+                    },
+                    "owner": "OS-source-owner"
+                  }
+                ],
+                "unqualified_source_refs": [],
+                "conflicting_source_refs": [],
+                "unresolved_source_refs": [],
+                "effects": "none"
+              }
+            },
+            "original_context": {
+              "state": "supplied",
+              "decoded_ref": "fn14_private_return.original_decode_context",
+              "selected_sources": [
+                {
+                  "selected_occurrence_index": 0,
+                  "selected_output_ref": {
+                    "identity": "CORE-D1",
+                    "revision": "core-members-r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  },
+                  "qualified_os_association_origins": [
+                    {
+                      "source_occurrence_index": 3,
+                      "source_ref": {
+                        "identity": "OS-ASSOCIATION-SOURCE",
+                        "revision": "members-os-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                        "scope": {
+                          "project": "OS-PROJECT-7",
+                          "tenant": "OS-TENANT",
+                          "environment": "OS-TEST"
+                        },
+                        "owner": "OS-source-owner"
+                      },
+                      "record_index": 0,
+                      "qualified_record_index": 3,
+                      "record": {
+                        "$raw_record_ref": {
+                          "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                          "expanded_raw_caller_pointer": "/record_trace_input/sources/3/decoded_records/0",
+                          "canonical_sha256": "18af8a2f7c9a12dbb79c7387d80a176fca96264ef58b8b7dc77f6fd07c2719c0"
+                        }
+                      }
+                    }
+                  ],
+                  "qualified_os_association_origin": {
+                    "state": "supplied_value",
+                    "value": {
+                      "source_occurrence_index": 3,
+                      "source_ref": {
+                        "identity": "OS-ASSOCIATION-SOURCE",
+                        "revision": "members-os-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                        "scope": {
+                          "project": "OS-PROJECT-7",
+                          "tenant": "OS-TENANT",
+                          "environment": "OS-TEST"
+                        },
+                        "owner": "OS-source-owner"
+                      },
+                      "record_index": 0,
+                      "qualified_record_index": 3,
+                      "record": {
+                        "$raw_record_ref": {
+                          "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                          "expanded_raw_caller_pointer": "/record_trace_input/sources/3/decoded_records/0",
+                          "canonical_sha256": "18af8a2f7c9a12dbb79c7387d80a176fca96264ef58b8b7dc77f6fd07c2719c0"
+                        }
+                      }
+                    }
+                  },
+                  "core_origin": {
+                    "state": "supplied_value",
+                    "value": {
+                      "source_occurrence_index": 2,
+                      "source_ref": {
+                        "identity": "CORE-PROJECTION-SOURCE",
+                        "revision": "members-core-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                        "scope": {
+                          "project": "CORE-PROJECTION-PROJECT",
+                          "tenant": "CORE-PROJECTION-TENANT",
+                          "environment": "CORE-PROJECTION-ENV"
+                        },
+                        "owner": "CORE-source-owner"
+                      },
+                      "record_index": 0,
+                      "qualified_record_index": 2,
+                      "record": {
+                        "$raw_record_ref": {
+                          "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                          "expanded_raw_caller_pointer": "/record_trace_input/sources/2/decoded_records/0",
+                          "canonical_sha256": "fc72b17f3138bc41c094df32fac0945b6ba6e0f3407d0c2a3e88b4fff255af01"
+                        }
+                      }
+                    }
+                  },
+                  "trusted_core_row_locator": {
+                    "state": "supplied_value",
+                    "value": {
+                      "projection_snapshot_ref": {
+                        "identity": "CORE-PROJECTION-CONTAINER-01",
+                        "revision": "core-members-r1",
+                        "scope": {
+                          "project": "CORE-PROJECTION-PROJECT",
+                          "tenant": "CORE-PROJECTION-TENANT",
+                          "environment": "CORE-PROJECTION-ENV"
+                        },
+                        "owner": "CORE-source-owner"
+                      },
+                      "row_pointer": "/rows/0"
+                    }
+                  },
+                  "resolved_core_row": {
+                    "state": "supplied_value",
+                    "value": {
+                      "application_policy_ref": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection/row/application_policy_ref"
+                        }
+                      },
+                      "template_ref": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection/row/template_ref"
+                        }
+                      },
+                      "binding": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection/row/binding"
+                        }
+                      },
+                      "computed_disposition": {
+                        "presence": "present",
+                        "value": "required"
+                      },
+                      "computed_condition_pairs": {
+                        "presence": "present",
+                        "value": []
+                      },
+                      "computed_obligation_refs": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection/row/computed_obligation_refs"
+                        }
+                      },
+                      "computed_na_attributes": {
+                        "presence": "absent"
+                      },
+                      "source_relation": "content_corresponding",
+                      "source_relation_reason": "all_declared_fields_equal",
+                      "actual_source_qualification": "not_established",
+                      "logical_backflow_owner": "not_required",
+                      "actual_recipient_qualification": "not_established",
+                      "decision_impact": "none",
+                      "source_envelopes_input": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection/row/source_envelopes_input"
+                        }
+                      },
+                      "source_candidate_envelopes": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection/row/source_candidate_envelopes"
+                        }
+                      },
+                      "source_result_ref_claims": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection/row/source_result_ref_claims"
+                        }
+                      },
+                      "source_qualification_claims": {
+                        "$copy": {
+                          "root": "f04_original_materials",
+                          "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection/row/source_qualification_claims"
+                        }
+                      },
+                      "candidate_count": 1,
+                      "source_relation_difference_paths": [],
+                      "source_relation_missing_paths": [],
+                      "source_role_claims": [
+                        {
+                          "presence": "present",
+                          "value": "semantic_source"
+                        }
+                      ]
+                    }
+                  },
+                  "reached_source_indices": [
+                    2,
+                    3
+                  ]
+                }
+              ]
+            }
+          },
+          "fn22_private_return": {
+            "observation_component": {
+              "state": "supplied_value",
+              "value": {
+                "records": [
+                  {
+                    "selected_output_ref": {
+                      "identity": "CORE-D1",
+                      "revision": "core-members-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    },
+                    "correspondence_resolution_state": "unique",
+                    "correspondence_record_candidates": [
+                      {
+                        "source_occurrence_index": 5,
+                        "source_ref": {
+                          "identity": "PROPOSED-ORIGINAL-CORRESPONDENCE-SOURCE",
+                          "revision": "EQUAL-REF-BODY-ONLY-FIRST-QUALIFIED-relationship",
+                          "scope": {
+                            "environment": "OS-TEST",
+                            "project": "OS-PROJECT-7",
+                            "tenant": "OS-TENANT"
+                          },
+                          "owner": "OS-source-owner"
+                        },
+                        "record_index": 0,
+                        "record": {
+                          "$raw_record_ref": {
+                            "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                            "expanded_raw_caller_pointer": "/record_trace_input/sources/5/decoded_records/0",
+                            "canonical_sha256": "aaece0cdef91a0589b8f33e617f9441a582b03e9749ed6fc1353117508ba3bc0"
+                          }
+                        }
+                      }
+                    ],
+                    "core_row_locator": {
+                      "state": "supplied_value",
+                      "value": {
+                        "projection_snapshot_ref": {
+                          "identity": "CORE-PROJECTION-CONTAINER-01",
+                          "revision": "core-members-r1",
+                          "scope": {
+                            "project": "CORE-PROJECTION-PROJECT",
+                            "tenant": "CORE-PROJECTION-TENANT",
+                            "environment": "CORE-PROJECTION-ENV"
+                          },
+                          "owner": "CORE-source-owner"
+                        },
+                        "row_pointer": "/rows/0"
+                      }
+                    },
+                    "raw_condition_pairs": {
+                      "state": "supplied_value",
+                      "value": {
+                        "presence": "present",
+                        "value": []
+                      }
+                    },
+                    "raw_obligation_refs": {
+                      "state": "supplied_value",
+                      "value": {
+                        "presence": "present",
+                        "value": {
+                          "$copy": {
+                            "root": "f04_original_materials",
+                            "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection/row/computed_obligation_refs/value"
+                          }
+                        }
+                      }
+                    },
+                    "condition_relations": [],
+                    "obligation_occurrences": [
+                      {
+                        "core_occurrence_index": 0,
+                        "core_raw_ref": {
+                          "$copy": {
+                            "root": "f04_original_materials",
+                            "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection/row/computed_obligation_refs/value/0"
+                          }
+                        },
+                        "core_ref_decode_state": "corresponding",
+                        "assignment_presence_state": "supplied",
+                        "assignments": [
+                          {
+                            "relationship_occurrence": {
+                              "source_occurrence_index": 5,
+                              "source_ref": {
+                                "identity": "PROPOSED-ORIGINAL-CORRESPONDENCE-SOURCE",
+                                "revision": "EQUAL-REF-BODY-ONLY-FIRST-QUALIFIED-relationship",
+                                "scope": {
+                                  "environment": "OS-TEST",
+                                  "project": "OS-PROJECT-7",
+                                  "tenant": "OS-TENANT"
+                                },
+                                "owner": "OS-source-owner"
+                              },
+                              "record_index": 0,
+                              "record": {
+                                "$raw_record_ref": {
+                                  "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                                  "expanded_raw_caller_pointer": "/record_trace_input/sources/5/decoded_records/0",
+                                  "canonical_sha256": "aaece0cdef91a0589b8f33e617f9441a582b03e9749ed6fc1353117508ba3bc0"
+                                }
+                              }
+                            },
+                            "edge_index": 0,
+                            "native_output_locator": {
+                              "payload_pointer": "/core_outputs/0",
+                              "record_index": 0,
+                              "source_occurrence_index": 0,
+                              "source_ref": {
+                                "identity": "SOURCE-F04-CORE",
+                                "owner": "CORE",
+                                "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              },
+                              "subject_ref": {
+                                "identity": "FIXTURE-F04-CORE",
+                                "owner": "CORE",
+                                "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              }
+                            },
+                            "native_state_locator": {
+                              "payload_pointer": "/obligation_original_states/0",
+                              "record_index": 0,
+                              "source_occurrence_index": 1,
+                              "source_ref": {
+                                "identity": "SOURCE-F04-OS-original-owner",
+                                "owner": "OS-original-owner",
+                                "revision": "source1",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              },
+                              "subject_ref": {
+                                "identity": "FIXTURE-F04-OS-original-owner",
+                                "owner": "OS-original-owner",
+                                "revision": "source1",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              }
+                            },
+                            "native_raw_item": {
+                              "state": "supplied_value",
+                              "value": {
+                                "ref": {
+                                  "identity": "U1",
+                                  "revision": "u1",
+                                  "scope": {
+                                    "project": "P",
+                                    "tenant": "synthetic-T",
+                                    "environment": "synthetic-test"
+                                  },
+                                  "owner": "OS-original-owner"
+                                },
+                                "state": "not_started"
+                              }
+                            },
+                            "native_obligation_ref": {
+                              "state": "supplied_value",
+                              "value": {
+                                "identity": "U1",
+                                "revision": "u1",
+                                "scope": {
+                                  "project": "P",
+                                  "tenant": "synthetic-T",
+                                  "environment": "synthetic-test"
+                                },
+                                "owner": "OS-original-owner"
+                              }
+                            },
+                            "native_original_state": {
+                              "state": "supplied_value",
+                              "value": "not_started"
+                            },
+                            "core_ref_state": "corresponding",
+                            "native_output_state": "corresponding",
+                            "native_state_ref_state": "corresponding",
+                            "source_issues": []
+                          }
+                        ]
+                      },
+                      {
+                        "core_occurrence_index": 1,
+                        "core_raw_ref": {
+                          "$copy": {
+                            "root": "f04_original_materials",
+                            "pointer": "/m_5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4/candidate/core_outputs/0/source_projection/row/computed_obligation_refs/value/0"
+                          }
+                        },
+                        "core_ref_decode_state": "corresponding",
+                        "assignment_presence_state": "supplied",
+                        "assignments": [
+                          {
+                            "relationship_occurrence": {
+                              "source_occurrence_index": 5,
+                              "source_ref": {
+                                "identity": "PROPOSED-ORIGINAL-CORRESPONDENCE-SOURCE",
+                                "revision": "EQUAL-REF-BODY-ONLY-FIRST-QUALIFIED-relationship",
+                                "scope": {
+                                  "environment": "OS-TEST",
+                                  "project": "OS-PROJECT-7",
+                                  "tenant": "OS-TENANT"
+                                },
+                                "owner": "OS-source-owner"
+                              },
+                              "record_index": 0,
+                              "record": {
+                                "$raw_record_ref": {
+                                  "l8_material_id": "m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695",
+                                  "expanded_raw_caller_pointer": "/record_trace_input/sources/5/decoded_records/0",
+                                  "canonical_sha256": "aaece0cdef91a0589b8f33e617f9441a582b03e9749ed6fc1353117508ba3bc0"
+                                }
+                              }
+                            },
+                            "edge_index": 1,
+                            "native_output_locator": {
+                              "payload_pointer": "/core_outputs/0",
+                              "record_index": 0,
+                              "source_occurrence_index": 0,
+                              "source_ref": {
+                                "identity": "SOURCE-F04-CORE",
+                                "owner": "CORE",
+                                "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              },
+                              "subject_ref": {
+                                "identity": "FIXTURE-F04-CORE",
+                                "owner": "CORE",
+                                "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              }
+                            },
+                            "native_state_locator": {
+                              "payload_pointer": "/obligation_original_states/0",
+                              "record_index": 0,
+                              "source_occurrence_index": 1,
+                              "source_ref": {
+                                "identity": "SOURCE-F04-OS-original-owner",
+                                "owner": "OS-original-owner",
+                                "revision": "source1",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              },
+                              "subject_ref": {
+                                "identity": "FIXTURE-F04-OS-original-owner",
+                                "owner": "OS-original-owner",
+                                "revision": "source1",
+                                "scope": {
+                                  "environment": "synthetic-test",
+                                  "project": "P",
+                                  "tenant": "synthetic-T"
+                                }
+                              }
+                            },
+                            "native_raw_item": {
+                              "state": "supplied_value",
+                              "value": {
+                                "ref": {
+                                  "identity": "U1",
+                                  "revision": "u1",
+                                  "scope": {
+                                    "project": "P",
+                                    "tenant": "synthetic-T",
+                                    "environment": "synthetic-test"
+                                  },
+                                  "owner": "OS-original-owner"
+                                },
+                                "state": "not_started"
+                              }
+                            },
+                            "native_obligation_ref": {
+                              "state": "supplied_value",
+                              "value": {
+                                "identity": "U1",
+                                "revision": "u1",
+                                "scope": {
+                                  "project": "P",
+                                  "tenant": "synthetic-T",
+                                  "environment": "synthetic-test"
+                                },
+                                "owner": "OS-original-owner"
+                              }
+                            },
+                            "native_original_state": {
+                              "state": "supplied_value",
+                              "value": "not_started"
+                            },
+                            "core_ref_state": "corresponding",
+                            "native_output_state": "corresponding",
+                            "native_state_ref_state": "corresponding",
+                            "source_issues": []
+                          }
+                        ]
+                      }
+                    ],
+                    "source_refs": [
+                      {
+                        "identity": "SOURCE-F04-CORE",
+                        "revision": "members-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "CORE"
+                      },
+                      {
+                        "identity": "SOURCE-F04-OS-original-owner",
+                        "revision": "source1",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "OS-original-owner"
+                      },
+                      {
+                        "identity": "CORE-PROJECTION-SOURCE",
+                        "revision": "members-core-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                        "scope": {
+                          "project": "CORE-PROJECTION-PROJECT",
+                          "tenant": "CORE-PROJECTION-TENANT",
+                          "environment": "CORE-PROJECTION-ENV"
+                        },
+                        "owner": "CORE-source-owner"
+                      },
+                      {
+                        "identity": "OS-ASSOCIATION-SOURCE",
+                        "revision": "members-os-r1-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+                        "scope": {
+                          "project": "OS-PROJECT-7",
+                          "tenant": "OS-TENANT",
+                          "environment": "OS-TEST"
+                        },
+                        "owner": "OS-source-owner"
+                      },
+                      {
+                        "identity": "PROPOSED-ORIGINAL-CORRESPONDENCE-SOURCE",
+                        "revision": "EQUAL-REF-BODY-ONLY-FIRST-QUALIFIED-relationship",
+                        "scope": {
+                          "environment": "OS-TEST",
+                          "project": "OS-PROJECT-7",
+                          "tenant": "OS-TENANT"
+                        },
+                        "owner": "OS-source-owner"
+                      }
+                    ],
+                    "condition_source_state": "empty",
+                    "obligation_source_state": "supplied",
+                    "condition_activation_state": "not_requested",
+                    "condition_correspondence_state": "not_requested",
+                    "profile_decode_states": []
+                  }
+                ],
+                "source_issues": []
+              }
+            },
+            "diagnostic_drafts": []
+          }
         }
       ]
     },
@@ -284738,9 +288116,55 @@
       "source_packet_sha256": "e9d49081f67311ce0ec5df4a5fcf3574fae372211b99341455466abc5d97b7dd",
       "whole_artifact_sha256": "1f5b0a3ba9286da956241809eb517e7a48de068ed8efe0df3be05be2593a3a64",
       "whole_index_ref": "準備時点のmalformed-private-return-freeze-whole-index.jsonを参照する。各returnの固定期待canonical hashをこのL8 scopeにも重複記載し、scope内で参照できるようにする。",
-      "recipe_rules": "$copyはこのL8 materials map内だけで解決する。$raw_record_refはcanonical hash確認後、参照先material内の指定OwnerRecordを解決する。expected_refはprivate_return_expectation_recipesをrootとするRFC6901相対pointerである。Field recipeのstateはmetadataに限り、materialized returnではmissingはJSON member省略、supplied(null)はmember:null、supplied valueはunwrapした値として表す。JsonValue、OwnerRecord、source raw payloadは再帰的なkey書換えをせず、そのまま複製する。fn22は既存componentの値をそのまま使い、既存diagnostic suffix []を維持する。fn19 recipeのvalidated_trace.input.sourceはmaterializerが完全一致で照合する固定機械markerなので、英語literalを変更せず保持する。fn14のorigin_support_refも同一object参照を示す固定値として原文を保持する。",
+      "recipe_rules": "本節のclosed_reconstruction_contractに従い、同じGit上のL5型・L8 materials・3case recipeだけから12個の通常JSON期待値を復元する。以下は既存期待の保存表現の明確化であり、製品関数の実装、型、原材料、期待値、資格又は一般dependency membershipの契約を変更しない。",
       "no_product_evidence": "これらはsourceから導いた完全なprivate return期待値である。製品関数、AST、runtime、decoder、evaluator、qualification、出力のいずれも実行・観測していない。",
-      "external_preparation_artifact_note": "source_packet_sha256、private_return_negative_source_artifact.sha256、private_return_correction_historyのrejected_candidate_digestは、repository外に保存された準備・照合artifactのdigestであり、Git内容だけからは再計算できない。これらは来歴参照で、意味の正本ではない。意味の根拠はrevisionとpointerで固定したrequirements・L4/L5/L8の本文である。"
+      "external_preparation_artifact_note": "source_packet_sha256、private_return_negative_source_artifact.sha256、private_return_correction_historyのrejected_candidate_digestは、repository外に保存された準備・照合artifactのdigestであり、Git内容だけからは再計算できない。これらは来歴参照で、意味の正本ではない。意味の根拠はrevisionとpointerで固定したrequirements・L4/L5/L8の本文である。",
+      "candidate_extension_note": "N2の追加4期待はcases/2のcompact recipeから展開される。原材料・既存2 whole case・旧fixture/historyの値は複製しない。N2/N3 partial correctionはsource occurrence 6のexact missing-rootだけを対象にし、source occurrence 1のequal Ref状態を混ぜない。N2 dependency membershipは未完のまま。候補は製品実行・CI実行・actual証拠ではない。",
+      "closed_reconstruction_contract": {
+        "scope": "private_return_expectation_recipes/cases/0..2とprivate_return_whole_cases/0..2の4返却ずつだけ。新しい一般DSLではない。未知のencodingを推測で補完しない。",
+        "return_types": {
+          "fn19_private_return": "F04ValidationBundle",
+          "fn14_private_return": "F04ProjectionTypedInputs",
+          "fn20_private_return": "F04ProjectionResolution",
+          "fn22_private_return": "F04OriginalComparisonOutput"
+        },
+        "case_encoding": [
+          {
+            "case_index": 0,
+            "typed_object_key_order": "L5_fields_declaration_order",
+            "ref_key_order": "L5_fields_declaration_order"
+          },
+          {
+            "case_index": 1,
+            "typed_object_key_order": "L5_fields_declaration_order",
+            "ref_key_order": "L5_fields_declaration_order"
+          },
+          {
+            "case_index": 2,
+            "typed_object_key_order": "recipe_member_occurrence_order",
+            "ref_key_order": "raw_member_occurrence_order"
+          }
+        ],
+        "hash_bytes": "SHA-256対象は展開後の通常JSONをUTF-8、BOMなし、改行なし、indentなし、comma/colonに空白なし、ensure_ascii=false、sort_keys=falseで直列化したbytes。JSON keyの出現順・配列順・重複・数値/boolean/nullを保持する。ここでcanonicalと記した既存hashはkey sortしたJCSを意味しない。固定wholehash、raw/record hashは変更しない。",
+        "reference_roots": "expected_refのrootは本L8のprivate_return_expectation_recipes objectであり、/cases/N/...はRFC6901でそのcases[N]以下を指す。同じcase内だけで、指示先recipe全体を現在の宣言型位置へ代入して再帰展開する（文字列を出力しない）。caseをまたぐ参照、未解決pointer、循環は再構成エラー。record_field_manifest内の短いexpected_refはmanifestの説明metadataであり参照命令ではない。 Field<T>のsupplied/supplied_value metadata内のvalue_refが{expected_ref:pointer}の場合も、このrootと同case制限で指示先recipeをTの位置へ代入・再帰展開する。value_refの名前だけでraw参照に限定しない。",
+        "material_references": "$copyはexact一member objectだけをmarkerとし、root=f04_original_materials、pointerは同じL8のmaterials mapをrootとするRFC6901。pointer途中の$copyも展開してから次tokenを読む。展開は元member順を保つ値の置換でありmergeではない。循環/不存在/root違いはエラー。$raw_record_ref又は旧value_ref内の{l8_material_id,expanded_raw_caller_pointer,canonical_sha256}は、当該case.material_idのmaterials[material_id].raw_callerを$copy展開した値内のpointerを読み、同じcompact hash一致を確認して置換する。他caseのmaterialへ移さない。raw caller全体もcaseとwholeの固定hashに照合する。 同じ3memberだけを持つ{l8_material_id,expanded_raw_caller_pointer,canonical_sha256}がrecipe値の位置へ単独で置かれた場合も、wrapper内と同じcase/raw caller/pointer/hash照合で置換する。原raw JSONの内側にある同形の業務値を走査して参照命令へ変換しない。",
+        "typed_recursion": "L5 type_contract/typesのfieldsを辿り、Field<T>、配列、入れ子のnamed record、inline recordの各宣言位置に限り以下のField metadataを解釈する。出力に必須non-Field memberの欠落又は宣言外memberを許容しない。optional_fields/Fieldの省略を保持する。配列要素のmissingは要素削除せずエラー。型やmarkerを名前/値の類似から推測しない。",
+        "field_cases": "宣言Field<T>位置でmissing又は{state:missing}は親memberを省略、{state:supplied_null}はnull、supplied_value/suppliedのvalueはTとして再帰展開、value_refは指示先値をTとして再帰展開する。旧supplied_nullのvalue_refはnullへのhash付き来歴確認であり追加memberではない。Fieldではないraw JSON内のstate/value/presenceは元データとしてそのまま保持する。 宣言Field<T>位置にField metadataのwrapperが無い値は、既存の裸文字列missingを除きsupplied_valueの省略表現としてTへ再帰展開する。文字列値そのものがmissingの場合は{state:supplied_value,value:missing文字列}のwrapperで区別し、Field外のstring値missingは文字列として保持する。",
+        "raw_boundaries": "JsonValue/RawValue/CaseInput/RecordTraceInput/OwnerRecord/SourceSectionValue/CORE009SourceResultProjectionRowのraw値では入れ子Fieldをunwrapせず、元のkey順・state/value/presence/nullを保存する。ただし保存表現のexact $copyはraw境界内でも展開する。$raw_record_refはOwnerRecordを示す現在のrecipe位置でのみ値全体へ置換する。CORE009PresenceJsonValue/CORE009RefはL5がpinする外部型のJSONを保持し、そのpresence/valueをHELIX-OS Field markerに読み替えない。case2のRefも原key順の値を保持する。",
+        "fn19_input": "fn19 validated_trace.inputのstate=suppliedとsource固定literal「original raw caller RecordTraceInput exact value; referenced by original_cases.raw_source」は、当該caseの展開済raw_caller.record_trace_input全体を同じmember位置へ置く。state/sourceは出力しない。",
+        "shared_context_construction": "original_decode_contextの{state:supplied,origin_support_ref,relationships}は出力member順origin_support,relationshipsのobjectを作る。origin_support_refは固定literal「same exact object as fn19_private_return.origin_support」を要求し、同case fn19.origin_support全体を代入。relationshipsはF04OriginalDecodedRelationship[]として再帰展開。original_contextの{state:supplied,decoded_ref,selected_sources}はdecoded,selected_sourcesの順のobjectを作り、decoded_ref固定literal「fn14_private_return.original_decode_context」は同case fn14の展開後context全体（Field wrapperなし）へ置換する。selected_sourcesはF04ResolvedSelectedSource[]として再帰展開。これらのstate/*_refは出力しない。",
+        "legacy_short_forms": [
+          "cases0/1のvalidated_trace.qualified_recordsの{count,ordered_record_refs}はcountと配列長、flat_index=元配列index、source_index/record_indexとvalue_ref pointerの所在一致を確認し、ordered_record_refs各value_refのOwnerRecord値を元順に並べる。index/count metadataは出力しない。",
+          "cases0/1のcandidate_input/validated_input_candidateの{state:supplied,items}はitems[].typed_fieldsをF04ProjectionCandidateItemとしてL5宣言順に展開した配列へ置換する。item_index/raw_item_refは元caller itemの所在とhash確認用metadataであり、このtyped配列へ出さない。candidate_raw_occurrences等のF04CandidateItemOccurrenceはitem_index,raw_itemの順に構成し、raw_item_refを元raw itemへ置換する。",
+          "F04QualifiedOwnerRecordOccurrenceのrecord_refは同case origin qualified_occurrence全体を指す。そのsource_ref/record_index（旧source_occurrence_indexもあればそれも）の一致を確認し、出力はsource_ref,record_index,recordの3memberだけをこの順に構成。recordは指示先origin.record。origin全体への置換やsource_occurrence_indexの追加をしない。",
+          "cases0/1 domain_payloadのstate/domain_decode=success/field_projection/domain_field_order/preservationはField<F04OriginalCorrespondencePayload>の短縮形。field_projectionだけをL5閉型として展開し、他4memberは出力しない。domain_field_orderはL5の4member宣言順を示すmetadata。",
+          "cases0/1 joinのstate=suppliedはstate以外をF04SourceProjectionJoinResultとして展開する。trusted_core_row_locatorのstate=supplied_valueと直下projection_snapshot_ref,row_pointerはその2memberのinline recordへ置換し、stateを除く。resolved_core_rowのraw_row_sha256_canonicalはvalue_refの原row hashを追加確認するmetadataで、出力しない。",
+          "cases0/1のfn19.derivation、fn14/fn20.field_presence_encoding、F04ProjectionRecordObservation.record_field_manifestは説明metadataとして出力から除く。それ以外の宣言外keyを黙って捨てない。manifest present/omittedは同じrecordのmember有無に対応し、短いexpected_refは同じrecord member名。"
+        ],
+        "ordering_exception_boundary": "上記構成objectは明示順、typed recordはcase_encodingの順、raw値と$copy先は元member順、配列は元順を使う。cases0/1とcase2の順の差は既存固定hashを保存するための有限recipe encoding差であり、製品の意味差又は新gateではない。",
+        "fn22": "fn22.observation_componentの既存component値をそのまま保持し、旧cases0/1の直接$copyもFieldの値として扱う。diagnostic_drafts=[]を保持する。hashを合わせるためにcomponent内容を変更しない。",
+        "provenance_and_change": "PR3286 R1 Major1（comment6225513655）で独立再構成不能が判明したため、旧2casesを含む保存encodingの不足説明を補完した。元L5/raw/recipe/12固定wholehashを保持する意味再導出。旧source LEGACY-ASSET-98372FEE8A3AC8F9C299の閉型・exact version/traceの分離を保持し、旧DSL/registry/CIを導入・実行しない。準備artifactのhashは従来通り来歴参照で、再構成はGit上の本文だけで閉じる。"
+      }
     },
     "private_return_negative_controls": [
       {
@@ -285064,7 +288488,7 @@
       {
         "id": "HELIXOS-L8-002-F04-PRIVATE-N2-SAME-REF-DISTINCT-SOURCE-INDEX",
         "source_negative_id": "N2-same-ref-distinct-source-index",
-        "scope": "部分事実だけを対象とし、fn19/fn20の完全返却値ではない。dependency membershipは未凍結",
+        "scope": "source_walksの部分事実を保持し、全private returnはprivate_return_whole_casesのN2追加caseで別途固定する。fn20 dependency membershipは未凍結。",
         "raw_caller_ref": "/f04_source_original_correspondence_verification/materials/m_de3b75528c6fbc7f45084f779dcd010c204bd89e0ef7232edcef35e6f3abd695/raw_caller",
         "raw_caller_sha256_canonical": "5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4",
         "partial_expected_facts": {
@@ -285096,7 +288520,9 @@
                 },
                 "owner": "OS-original-owner"
               },
-              "source_issue_indices": [],
+              "source_issue_indices": [
+                0
+              ],
               "input_issue_indices": []
             }
           ],
@@ -285114,7 +288540,7 @@
       {
         "id": "HELIXOS-L8-002-F04-PRIVATE-N3-UNQUALIFIED-EQUAL-REF-NOT-RESCUED",
         "source_negative_id": "N3-equal-ref-unqualified-twin-not-rescued",
-        "scope": "部分事実だけを対象とし、fn19/fn20の完全返却値ではない",
+        "scope": "locator targetの部分事実を保持し、全private returnは扱わない。source occurrenceごとのqualificationを維持し、同Refの有資格別occurrenceで救済しない。",
         "raw_caller_ref": "/f04_source_original_correspondence_verification/materials/m_d2860186e9b273489fc9abbf2c0fd81dfff9b718183e519a3963c60e95dfde4e/raw_caller",
         "raw_caller_sha256_canonical": "01bca57813a546adf7dd7b49e71d15a98881cf5599efae685bae2f3adfbea9fa",
         "input": {
@@ -285151,7 +288577,10 @@
             ],
             "locator_target_source_occurrence_index": 6,
             "qualification_outcome_for_locator_target": "unqualified",
-            "qualified_occurrence_for_locator_target": false
+            "qualified_occurrence_for_locator_target": false,
+            "source_issue_indices_for_locator_target": [
+              0
+            ]
           },
           "fn20": {
             "must_not_rescue_from_equal_ref_occurrence_index": 1,
@@ -285177,6 +288606,32 @@
         "current_expected": "headerによるfiltering前にsource 5/record 0のlocal unknown状態とraw payloadを保持する。raw header不一致からtarget semantic unknownは作らない。",
         "rejected_candidate_digest": "a18c25a22374d10c48d7bb9fa845692b3d0b141f61ee8f6ad05419e0cdae5386",
         "corrected_negative_artifact_sha256": "1c503120778d36b79e23461785ef35c7478754b36f37a4dd417d10d87753cb5c"
+      },
+      {
+        "id": "N2-SOURCE6-MISSING-ROOT-ISSUE-INDEX-CORRECTION",
+        "previous_local_expectation": "N2の部分期待では、source occurrence 6 の source_issue_indices が [] だった。",
+        "status": "corrected_in_current_L8_candidate",
+        "reason": "N2の原入力では、source occurrence 6 にQualification claimがあるが、そのclaimが参照するQualificationRootは存在しない。既存L5のmissing-root issue producerは、このsource occurrenceにissueを追加し、その追加時の配列indexを記録する。同じRefを持つsource occurrence 1には独立した有効なbindingがあるため、source 1のissue indexは [] のまま保つ。",
+        "previous_value": [],
+        "current_value": [
+          0
+        ],
+        "target_pointer": "/f04_source_original_correspondence_verification/private_return_negative_controls/1/partial_expected_facts/source_walks/1/source_issue_indices",
+        "source_raw_caller_sha256_canonical": "5eaba311390c99024d93ab95d60fcf4f4f095efbea56779e6219e223b71470f4",
+        "historical_base_commit": "69cda1984e0a42c2a8b0d800c593bb4dff135683"
+      },
+      {
+        "id": "N3-SOURCE6-MISSING-ROOT-ISSUE-INDEX-PARTIAL-CORRECTION",
+        "previous_local_expectation": "N3の部分期待には、source occurrence 6 のissue indexが記録されていなかった。",
+        "status": "made_explicit_in_current_L8_candidate",
+        "reason": "N3の原入力では、source occurrence 6 にQualification claimがあるが、そのclaimが参照するQualificationRootは存在しない。この部分期待は、全返却を推定せずsource occurrenceに局所化したissue indexを記録する。同じRefを持つsource occurrence 1は別個に資格を満たしており、その状態をsource 6へ移さない。",
+        "previous_value": "not_recorded",
+        "current_value": [
+          0
+        ],
+        "target_pointer": "/f04_source_original_correspondence_verification/private_return_negative_controls/2/partial_expected_facts/fn19/source_issue_indices_for_locator_target",
+        "source_raw_caller_sha256_canonical": "01bca57813a546adf7dd7b49e71d15a98881cf5599efae685bae2f3adfbea9fa",
+        "historical_base_commit": "69cda1984e0a42c2a8b0d800c593bb4dff135683"
       }
     ],
     "private_return_source_basis": [
@@ -285207,7 +288662,7 @@
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/functions/14/algorithm/9",
-        "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
         "revision_note": "この参照は、今回のL5/L8候補pairに含まれる候補L5 bytesへ束縛される。承認済みsource revisionや実行結果を示さない。"
       },
       {
@@ -285218,19 +288673,19 @@
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/wire_codec_contract/field_encoding",
-        "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
         "revision_note": "この参照は、今回のL5/L8候補pairに含まれる候補L5 bytesへ束縛される。承認済みsource revisionや実行結果を示さない。"
       },
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/type_contract/types/F04ProjectionSelectorDecodeState/meaning",
-        "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
         "revision_note": "この参照は、今回のL5/L8候補pairに含まれる候補L5 bytesへ束縛される。承認済みsource revisionや実行結果を示さない。"
       },
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/type_contract/types/F04ResolvedSelectedSource/meaning",
-        "file_sha256": "96cd358854754f951fa5cccd0c9456b3ee8ba21e0e5621add7e50f62e9c0121f",
+        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
         "revision_note": "この参照は、今回のL5/L8候補pairに含まれる候補L5 bytesへ束縛される。承認済みsource revisionや実行結果を示さない。"
       },
       {
@@ -285249,6 +288704,48 @@
           103,
           107
         ]
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/14/algorithm/4",
+        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。"
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/14/algorithm/9",
+        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。"
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/19/algorithm/1",
+        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。"
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/19/algorithm/5",
+        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。"
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/19/algorithm/6",
+        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。"
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/19/algorithm/7",
+        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。"
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/20/algorithm/9",
+        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。"
       }
     ]
   }
