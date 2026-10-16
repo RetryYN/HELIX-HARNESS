@@ -503,7 +503,8 @@
       "input": "同template/knowledge/source/scopeへ結ぶ意味項目と独立原根拠。任意claimは原項目から分離。",
       "output": "原項目状態/値不足/適用未決/版互換/運用state/受渡しを独立して返す。",
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
-      "conditional_source_contract_ref": "/conditional_source_dependency_contract"
+      "conditional_source_contract_ref": "/conditional_source_dependency_contract",
+      "dependency_semantic_ports_ref": "/dependency_semantic_ports"
     },
     {
       "id": "HELIXBRAIN-L4-032-N01",
@@ -1611,7 +1612,8 @@
     "正式schema/key/型/式木/wire/registry/resolver、各field意味/要否/oracle最終照合、BRAIN運用promotionと全seed採用は未成立。",
     "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは未成立。",
     "F09の018/020固定写像と025原操作scopeは本基本pair候補で具体化。L5/L8の未決記述/producer/input/返却契約への反映、実source/資格と実接続、独立reviewは未成立。",
-    "各ownerの原operation producer/供給contract、正式carrier/schema/owner-qualified bindingは未成立。未供給で025 unknownを返すが、欠落を理由に新approval/全stage gateを追加しない。"
+    "各ownerの原operation producer/供給contract、正式carrier/schema/owner-qualified bindingは未成立。未供給で025 unknownを返すが、欠落を理由に新approval/全stage gateを追加しない。",
+    "F09のcanonical全body read/Claim intent・origin incomingはdependency_semantic_portsに論理型/分岐として具体化。L5/L8の同snapshot producer/公開返却への追随と030/OS供給側pair、実source/custody/資格稼働、F09 Comparison/SupplyAnalysis全返却の独立期待は別に残る。 L5/L8追随ではclaim_intent_protocolのkind別値語彙・supplied/absent/null・typed origin/全field返却と順序を採用する。現failure ruleにその語彙が実装済みとはしない。"
   ],
   "conditional_source_dependency_contract": {
     "id": "HELIXBRAIN-L4-032-F09-CONDITIONAL-SOURCE",
@@ -2323,5 +2325,1772 @@
         "quote_sha256": "2b6f40a524fa611797652318ee4eb6e986727d8f3abea9a3063669d28c51cc1d"
       }
     ]
+  },
+  "dependency_semantic_ports": {
+    "id": "HELIXBRAIN-L4-032-F09-SEMANTIC-PORTS",
+    "requirement_ref": "HELIXBRAIN-L3-032-F09",
+    "paired_verification_ref": "HELIXBRAIN-L9-032-F09-SEMANTIC-PORTS",
+    "scope": "原canonical body参照/内容提供とClaim意図/元targetのtyped論理port。既存SupplyInput.sources/Claim/Bindingを使い、新SupplyInput key、常時Fact pair、全stage成功gateを追加しない。",
+    "source_pins": [
+      {
+        "id": "raw",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/type_contract/types/RawValue",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "7f7584fcb124ba4bb05f9a61c934ea20220de244805cdbed67e6e9aef85495af"
+      },
+      {
+        "id": "rawschema",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/logical_input_structure/schema/$defs/RawValue",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "1b18ddf7a04ca743d13e6d856c0f5232fff918606df723711664bb6f2f7ddfb7"
+      },
+      {
+        "id": "claim",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/type_contract/types/Claim",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "495d376afc033a1f80953843022074a1489349c60cea204ea7d7ecf2674a4021"
+      },
+      {
+        "id": "claimschema",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/logical_input_structure/schema/$defs/Claim",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "285cefa92b50099972b22229eaa5c33794cb232d2359cc3c90aaa34ab85e6816"
+      },
+      {
+        "id": "source",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/type_contract/types/QualifiedSource",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "76871c1aa3ba0113e70b284ff0a7fc43eeb95621fa97a13933f869df4bd98eec"
+      },
+      {
+        "id": "ref",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/type_contract/reference_comparison",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "59e7ffb1a44a5f7769c02b0eb67deb30d5fbaf55f6cddb894b15ec20ea894441"
+      },
+      {
+        "id": "qualification",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/execution_contract/qualification",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "ad5500d98a69e57557f916771f9d6db7f09658bc64e7b168362941b8d5e4f668"
+      },
+      {
+        "id": "function6",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/functions/6",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "5d11316f8c55cad8e81f6bc432d34b2992ba3f57e61e92e6a1787dfb7a3200c9"
+      },
+      {
+        "id": "function7",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/functions/7",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "3c48d46378c598b7b7cf80f69d8eb5dc0165a45e22e51b3cdef34276b9f455a5"
+      },
+      {
+        "id": "locality",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/execution_contract/claim_locality",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "08a92a1939c3cb0036938e4e07399542e48e496be7a6ff3eb5e8db7c920f8498"
+      },
+      {
+        "id": "meaningbody",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/source_return_contract/constructor_meaning/comparison_source",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "a62f54528a96def8cccd185d564cad17ba101acd89146468dec6aaad9a3a347a"
+      },
+      {
+        "id": "pairpriority",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/source_return_contract/constructor_meaning/comparison_priority",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "f95f99c6ba45d1ccd5c7c51bb434b808e30d7dba095d866d1dee27918d9407f2"
+      },
+      {
+        "id": "resolution",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/source_return_contract/constructor_meaning/reference_resolution",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "50cedca8ecae3042d79dd1a941b6b5d198f771a6a15184ba52ba1066de20bb0d"
+      },
+      {
+        "id": "B01Input",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/knowledge-query-receipt.json",
+        "pointer": "/types/B01Input",
+        "file_sha256": "1381d1ea0e05599a335dc25fc6dcc23879c61cd2bf924986cd71b090149cbe49",
+        "object_canonical_sha256": "f34b4db7bd9d64c26a2c6ffc66e22532871c5754a2c35c03053982d12d46b651"
+      },
+      {
+        "id": "B01PublicReturn",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/knowledge-query-receipt.json",
+        "pointer": "/types/B01PublicReturn",
+        "file_sha256": "1381d1ea0e05599a335dc25fc6dcc23879c61cd2bf924986cd71b090149cbe49",
+        "object_canonical_sha256": "02c0652705b55d3bd8a0d51f6b7e09ee66d726060d3d9d1cca3a09b811b50ab4"
+      },
+      {
+        "id": "B01bool",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/knowledge-query-receipt.json",
+        "pointer": "/reference_program/definitions/B01/body/fields/claim_results",
+        "file_sha256": "1381d1ea0e05599a335dc25fc6dcc23879c61cd2bf924986cd71b090149cbe49",
+        "object_canonical_sha256": "96266b203e6f9da7940434c572763dd7a3f95d6bded4f282e32df54898e5fcd3"
+      },
+      {
+        "id": "030false",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L8-unit-verification/knowledge-query-receipt.json",
+        "pointer": "/cases/87",
+        "file_sha256": "e456e3c8d20ee48b7449877415e994b6aabdbd96e5764b7daf8dee174988130c",
+        "object_canonical_sha256": "26589cd837fd3b97390a1a512dad0a015b999108c21f1cb34da5e76681ebdcbd"
+      },
+      {
+        "id": "030true",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L8-unit-verification/knowledge-query-receipt.json",
+        "pointer": "/cases/97",
+        "file_sha256": "e456e3c8d20ee48b7449877415e994b6aabdbd96e5764b7daf8dee174988130c",
+        "object_canonical_sha256": "9473883e2e8cfe97e4401c6a8bf53fe13edd66b7dc16237811344277d12b8001"
+      },
+      {
+        "id": "normal",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "pointer": "/fixture_contract/normal_control/input",
+        "file_sha256": "383ea8217d42550fca30572006606d208c44887069bd721dcff97229c0808f6f",
+        "object_canonical_sha256": "ec5821d8bd2d5cc336292a22f545dfc36cab83370d668be77390150ac0599df2"
+      },
+      {
+        "id": "OSrecord",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/type_contract/types/OwnerRecord",
+        "file_sha256": "a8ebdd6d0bec3ff1847cbd8333563e309d3863b975c2bf0790669541cf7809e9",
+        "object_canonical_sha256": "fff889e7855afa5f25db859b62987b9ea2e25ac82ae2ab063b6daf24cc1e6084"
+      },
+      {
+        "id": "OSobligation",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/type_contract/types/F03RecordInputkindobligationsItem",
+        "file_sha256": "a8ebdd6d0bec3ff1847cbd8333563e309d3863b975c2bf0790669541cf7809e9",
+        "object_canonical_sha256": "3811942e60ad5b9c0cf3d30d01029e51e66d168ea300ff239fa15c55956d3f42"
+      },
+      {
+        "id": "OSsource",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/reference_resolution_contract",
+        "file_sha256": "a8ebdd6d0bec3ff1847cbd8333563e309d3863b975c2bf0790669541cf7809e9",
+        "object_canonical_sha256": "8f4b42300c173cb2e3afcadfbadaeb516debfc996c8b91696930e698591aa473"
+      },
+      {
+        "id": "rule1",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/failure_rules/1",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "a738c0c4303384a16c0e88d863afcc39182da3462c25de6ee56c6e9db9ecd42b"
+      },
+      {
+        "id": "rule2",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/failure_rules/2",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "c7310b7baca6e59e140ee51cf3ecfb0e0a456de6372a1885f0b50cdd1459ffef"
+      },
+      {
+        "id": "rule84",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/failure_rules/84",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "2a62c8f4c5d99d5ab53f77bd49ea25bca1d85340cec523cac127e29d7ac9059f"
+      },
+      {
+        "id": "rule85",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/failure_rules/85",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "602dfe02f361fcca4df16962aa81a975a8b3974bdc8f0cb066ec44e61e616cf5"
+      },
+      {
+        "id": "rule86",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/failure_rules/86",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "f23be21ea52443df139c417f91522661099ba9e5c8c56ce386ec7a159e94d3aa"
+      },
+      {
+        "id": "rule87",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/failure_rules/87",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "7b6a495aebfad549156e8ebd7788dc43a0b5145073d39a5e29f99a2bd5dee5c7"
+      },
+      {
+        "id": "rule88",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/failure_rules/88",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "47e20451e3c1945c228641dad09781ff937d9617c067cae8b187d28a7571c6de"
+      },
+      {
+        "id": "rule89",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/failure_rules/89",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "5a8c2c2194cb35442caeb2e07f1eaa463c1f8b8e6c296582c4c10ce8ff91b817"
+      },
+      {
+        "id": "rule93",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/failure_rules/93",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "9b8d8066e065267b18a20ed64453a2190b7c8021a927f27feb4e620107ffcb99"
+      },
+      {
+        "id": "rule105",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/failure_rules/105",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "acaf45e10177a5cf8a227bd7f0b9097241773d18987679df678f4549456d702f"
+      },
+      {
+        "id": "rule106",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/failure_rules/106",
+        "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "object_canonical_sha256": "707dedbb243addc32831bfb08d77c67050c87f13c28b8c26d5b1d863d7a3165c"
+      },
+      {
+        "id": "OSincoming_Field",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/type_contract/types/Field",
+        "file_sha256": "a8ebdd6d0bec3ff1847cbd8333563e309d3863b975c2bf0790669541cf7809e9",
+        "object_canonical_sha256": "0280be67218856131dc741aab3a2019e94517a61d6c3c1bdded2c2847af3ef53"
+      },
+      {
+        "id": "OSincoming_Ref",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/type_contract/types/Ref",
+        "file_sha256": "a8ebdd6d0bec3ff1847cbd8333563e309d3863b975c2bf0790669541cf7809e9",
+        "object_canonical_sha256": "5f0a1f37eca49818b7d24ec61c01072e344cade5ae675b4f991bef142f586d82"
+      },
+      {
+        "id": "OSincoming_Scope",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/type_contract/types/Scope",
+        "file_sha256": "a8ebdd6d0bec3ff1847cbd8333563e309d3863b975c2bf0790669541cf7809e9",
+        "object_canonical_sha256": "9faec58143e5fcd5d55f677958c69ccdbd08338719f9b695c5af56bcb5ee244e"
+      },
+      {
+        "id": "OSincoming_B02RecordInputbinding",
+        "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/type_contract/types/B02RecordInputbinding",
+        "file_sha256": "a8ebdd6d0bec3ff1847cbd8333563e309d3863b975c2bf0790669541cf7809e9",
+        "object_canonical_sha256": "a9f04de783fbb9ab98e4569971e4715d3c8ce0863c94730d5d07559912465c28"
+      }
+    ],
+    "schema": {
+      "dialect": "JSON Schema 2020-12による局所logical型。製品wire/codec/libraryの採用ではない。",
+      "imports": [
+        {
+          "name": "032_existing_defs",
+          "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "pointer": "/logical_input_structure/schema/$defs",
+          "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+          "object_canonical_sha256": "a9a08a722a6a104fa566d84a4f1fcde656336ed75f47e8f2fc4b64bd61cf5a21",
+          "projection": "既存$defsを同名で再利用。RawValue/Ref/Binding/Claim等の意味を変更しない。"
+        },
+        {
+          "name": "PortSupplyInput",
+          "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "pointer": "/logical_input_structure/schema",
+          "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+          "object_canonical_sha256": "465953b0e46c6edfad4ef5303dc17ed65df2f171a139ab316affda4e96b2d9dc",
+          "projection": "$schema/$id/$defsだけを除く既存root schemaをPortSupplyInput名で再利用。",
+          "object_canonical_sha256_scope": "pointer先のprojection前root schema本文全体（$schema/$id/$defsを含む）のcanonical hash。projection後のPortSupplyInput objectだけのhashではない。"
+        },
+        {
+          "name": "Port030_",
+          "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+          "path": "docs/helix-brain/L5-detail-design/knowledge-query-receipt.json",
+          "pointer": "/types",
+          "file_sha256": "1381d1ea0e05599a335dc25fc6dcc23879c61cd2bf924986cd71b090149cbe49",
+          "object_canonical_sha256": "1c9a3cc1bb14769b88fc0dc0aaf3159b0a5ab9d0b93551442650bd4489425789",
+          "projection": "各型名へPort030_ prefix。local $ref Xは#/$defs/Port030_X、type=jsonは#/$defs/RawValueへ表記変換。それ以外のfield/required/enumは原値のまま。公開030型へmember追加しない。"
+        }
+      ],
+      "assembly": "importsを$defsへ表記どおり投影し、下記new_defsを追加。入力PortSupplyInput/port call、返却PortObservationを検査する。",
+      "new_defs": {
+        "PortPresenceRaw": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "absent"
+                }
+              },
+              "required": [
+                "presence"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "supplied"
+                },
+                "value": {
+                  "$ref": "#/$defs/RawValue"
+                }
+              },
+              "required": [
+                "presence",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "PortPresenceRef": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "absent"
+                }
+              },
+              "required": [
+                "presence"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "supplied"
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Ref"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "presence",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "PortPresenceBinding": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "absent"
+                }
+              },
+              "required": [
+                "presence"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "supplied"
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Binding"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "presence",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "PortPresenceClaim": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "absent"
+                }
+              },
+              "required": [
+                "presence"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "supplied"
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Claim"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "presence",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "PortPresenceString": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "absent"
+                }
+              },
+              "required": [
+                "presence"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "supplied"
+                },
+                "value": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "presence",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "PortPresenceBoolean": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "absent"
+                }
+              },
+              "required": [
+                "presence"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "supplied"
+                },
+                "value": {
+                  "type": [
+                    "boolean",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "presence",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "CanonicalBodyRecord": {
+          "type": "object",
+          "properties": {
+            "target_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "canonical_body": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "body_locator": {
+              "type": "string"
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "required": [
+            "target_ref",
+            "source_ref",
+            "binding",
+            "canonical_body",
+            "body_locator",
+            "basis_refs"
+          ],
+          "additionalProperties": false
+        },
+        "BodyReadProblem": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "enum": [
+                "missing",
+                "unknown",
+                "conflict"
+              ]
+            },
+            "request_locator": {
+              "type": "string"
+            },
+            "source_locators": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "member": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "original_presence": {
+              "$ref": "#/$defs/PortPresenceRaw"
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "state",
+            "request_locator",
+            "source_locators",
+            "member",
+            "original_presence",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        "CanonicalBodyRead": {
+          "type": "object",
+          "properties": {
+            "target_ref": {
+              "$ref": "#/$defs/PortPresenceRef"
+            },
+            "binding": {
+              "$ref": "#/$defs/PortPresenceBinding"
+            },
+            "state": {
+              "enum": [
+                "resolved",
+                "missing",
+                "unknown",
+                "conflict",
+                "unobserved"
+              ]
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/CanonicalBodyRecord"
+              }
+            },
+            "problems": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/BodyReadProblem"
+              }
+            },
+            "category_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "required": [
+            "target_ref",
+            "binding",
+            "state",
+            "records",
+            "problems",
+            "category_refs"
+          ],
+          "additionalProperties": false
+        },
+        "ReceiptInvocationOrigin": {
+          "type": "object",
+          "properties": {
+            "origin_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "actor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "producer_contract_ref": {
+              "$ref": "#/$defs/Ref"
+            }
+          },
+          "required": [
+            "origin_ref",
+            "subject_ref",
+            "binding",
+            "actor",
+            "basis_refs",
+            "producer_contract_ref"
+          ],
+          "additionalProperties": false
+        },
+        "ReceiptClaimCarrier": {
+          "type": "object",
+          "properties": {
+            "origin": {
+              "$ref": "#/$defs/ReceiptInvocationOrigin"
+            },
+            "producer_input": {
+              "$ref": "#/$defs/Port030_B01Input"
+            },
+            "producer_return": {
+              "$ref": "#/$defs/Port030_B01PublicReturn"
+            }
+          },
+          "required": [
+            "origin",
+            "producer_input",
+            "producer_return"
+          ],
+          "additionalProperties": false
+        },
+        "ClaimProjectionRead": {
+          "type": "object",
+          "properties": {
+            "origin_ref": {
+              "$ref": "#/$defs/PortPresenceRef"
+            },
+            "claim": {
+              "$ref": "#/$defs/PortPresenceClaim"
+            },
+            "state": {
+              "enum": [
+                "resolved",
+                "unknown",
+                "conflict"
+              ]
+            },
+            "reason": {
+              "type": "string"
+            },
+            "source_locators": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "origin_ref",
+            "claim",
+            "state",
+            "reason",
+            "source_locators"
+          ],
+          "additionalProperties": false
+        },
+        "ClaimIntentRead": {
+          "type": "object",
+          "properties": {
+            "claim_locator": {
+              "type": "string"
+            },
+            "claim": {
+              "$ref": "#/$defs/Claim"
+            },
+            "kind": {
+              "$ref": "#/$defs/PortPresenceString"
+            },
+            "proposed_value": {
+              "$ref": "#/$defs/PortPresenceRaw"
+            },
+            "intent": {
+              "enum": [
+                "positive",
+                "negative",
+                "unresolved"
+              ]
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "claim_locator",
+            "claim",
+            "kind",
+            "proposed_value",
+            "intent",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        "OSObligationMeaningIncoming": {
+          "type": "object",
+          "properties": {
+            "obligation_ref": {
+              "$ref": "#/$defs/PortPresenceRef"
+            },
+            "original_state": {
+              "$ref": "#/$defs/PortPresenceString"
+            },
+            "state_contract_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "meaning_body": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "discharge_assertion": {
+              "$ref": "#/$defs/PortPresenceBoolean"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "qualification_ref": {
+              "$ref": "#/$defs/PortPresenceRef"
+            },
+            "source_locator": {
+              "type": "string"
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "original_project_binding": {
+              "$ref": "#/$defs/PortOSOriginalBinding"
+            }
+          },
+          "required": [
+            "obligation_ref",
+            "original_state",
+            "state_contract_ref",
+            "meaning_body",
+            "discharge_assertion",
+            "binding",
+            "source_ref",
+            "qualification_ref",
+            "source_locator",
+            "basis_refs",
+            "original_project_binding"
+          ],
+          "additionalProperties": false
+        },
+        "CanonicalReadRequest": {
+          "type": "object",
+          "properties": {
+            "request_ref_locator": {
+              "type": "string"
+            },
+            "category_locator": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "request_ref_locator",
+            "category_locator"
+          ],
+          "additionalProperties": false
+        },
+        "ReceiptProjectionRequest": {
+          "type": "object",
+          "properties": {
+            "carrier_locator": {
+              "type": "string"
+            },
+            "consumer_subject_ref_locator": {
+              "type": "string"
+            },
+            "consumer_binding_locator": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "carrier_locator",
+            "consumer_subject_ref_locator",
+            "consumer_binding_locator"
+          ],
+          "additionalProperties": false
+        },
+        "PortCalls": {
+          "type": "object",
+          "properties": {
+            "canonical_reads": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/CanonicalReadRequest"
+              }
+            },
+            "claim_projections": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ReceiptProjectionRequest"
+              }
+            },
+            "claim_intents": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "canonical_reads",
+            "claim_projections",
+            "claim_intents"
+          ],
+          "additionalProperties": false
+        },
+        "PortObservation": {
+          "type": "object",
+          "properties": {
+            "canonical_reads": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/CanonicalBodyRead"
+              }
+            },
+            "claim_projections": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ClaimProjectionRead"
+              }
+            },
+            "claim_intents": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ClaimIntentRead"
+              }
+            }
+          },
+          "required": [
+            "canonical_reads",
+            "claim_projections",
+            "claim_intents"
+          ],
+          "additionalProperties": false
+        },
+        "PortOSOriginalScope": {
+          "type": "object",
+          "properties": {
+            "project": {
+              "$ref": "#/$defs/PortPresenceString"
+            },
+            "tenant": {
+              "$ref": "#/$defs/PortPresenceString"
+            },
+            "environment": {
+              "$ref": "#/$defs/PortPresenceString"
+            }
+          },
+          "required": [
+            "project",
+            "tenant",
+            "environment"
+          ],
+          "additionalProperties": false
+        },
+        "PortPresenceOSScope": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "absent"
+                }
+              },
+              "required": [
+                "presence"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "supplied"
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/PortOSOriginalScope"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "presence",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "PortOSOriginalBinding": {
+          "type": "object",
+          "properties": {
+            "project_scope": {
+              "$ref": "#/$defs/PortPresenceOSScope"
+            },
+            "requirement_ref": {
+              "$ref": "#/$defs/PortPresenceRef"
+            },
+            "HARNESS_contract_ref": {
+              "$ref": "#/$defs/PortPresenceRef"
+            },
+            "template_ref": {
+              "$ref": "#/$defs/PortPresenceRef"
+            },
+            "semantic_contract_ref": {
+              "$ref": "#/$defs/PortPresenceRef"
+            }
+          },
+          "required": [
+            "project_scope",
+            "requirement_ref",
+            "HARNESS_contract_ref",
+            "template_ref",
+            "semantic_contract_ref"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "ports": [
+      {
+        "symbol": "read_canonical_dependency_body",
+        "caller": "compare_dependencies_and_handoffの同DependencyContext.validated.input。既存必要集合/selector/原operation判定の後、評価対象の原Refだけを渡す。",
+        "input": "同ValidatedSupply＋CanonicalReadRequest（同input内request_ref_locator/category_locator）",
+        "output": "CanonicalBodyRead",
+        "effect": "none",
+        "responsibility": "target RefとfullRef対応するsemantic_json原QualifiedSource.content全RawValueを当該source/版/scope/同caller Bindingへ結んで返す。内容を再作文/抽出/自然文同義判定しない。"
+      },
+      {
+        "symbol": "read_receipt_claim_origin",
+        "caller": "同SupplyInputの元carrier recordをsource content locatorで読む。受取subject/bindingも同inputの明示locator。",
+        "input": "同SupplyInput＋ReceiptProjectionRequest。carrierはReceiptClaimCarrier。",
+        "output": "ClaimProjectionRead",
+        "effect": "none",
+        "responsibility": "同元生成recordのorigin subject/fullBindingに限り030 boolを既存Claim6memberへ投影する。producer resultは全値保持し、実OS成立証拠に変換しない。"
+      },
+      {
+        "symbol": "read_claim_intent",
+        "caller": "raw Claimは同input.claimsの原locatorから取り出したClaim全値を直接引数へ渡す。read_receipt_claim_origin由来では、resolvedかつclaim.presence=suppliedでClaim値がある返却のclaim.value全値を直接引数へ渡す。原bool pointerはtrace所在であり、Claim引数としてboolを取り出して渡すものではない。呼出し追加/抑止/順序は対L9のcaller_contract.intent_call_orderに従う。",
+        "input": "既存Claimの全値（直接引数）＋原claim_locator（trace所在のみ）。raw Claim locator又は投影元bool pointerとClaim入力自体を区別する。",
+        "output": "ClaimIntentRead",
+        "effect": "none",
+        "responsibility": "kind別のRawValue表現を読む。proposed_valueのpresence/全値を保持し、domain事実/資格/他owner成立は別の原根拠へ照合。decodeにowner承認/新資格gateを置かない。"
+      }
+    ],
+    "canonical_ordered_branches": [
+      {
+        "order": 1,
+        "condition": "validated.input=null 又はinput binding自体がabsent/null",
+        "return": "新しいBinding/body recordを捏造しない。原presenceのBodyReadProblem unknownを保持。公開Axis subject形成限界は既存L5規則へ従い、raw/source traceを削除しない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/0",
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/1"
+        ]
+      },
+      {
+        "order": 2,
+        "condition": "対象条件selectorが未確定又はfalse",
+        "return": "callerが当該条件集合のbody portを呼ばない。既存selector unknown/null owner又はunobservedを保持。always/別既知条件は独立に評価。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/2"
+        ]
+      },
+      {
+        "order": 3,
+        "condition": "必要identityが当該categoryに不在",
+        "return": "既存missingを先に確定。欠落Refの版/scope/owner/digestを生成せず、他body/aggregateで補償しない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/3"
+        ]
+      },
+      {
+        "order": 4,
+        "condition": "原Refのidentity/revision/scope/ownerにabsent/null",
+        "return": "unknown＋原presence/Ref全値。既知frame相反は既存比較のconflictを保持。source一覧の別版だけで相反を作らない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/4",
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/5"
+        ]
+      },
+      {
+        "order": 5,
+        "condition": "既存fullRef対応semantic_json sourceがない、又はそのsourceがValidatedSupply.unusable_source_refsにある",
+        "return": "unknown。原category refsと限定nested record/source原値は保持し、dependency_meaningsという所在traceをcanonical契約bodyへ昇格しない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/6",
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/7"
+        ]
+      },
+      {
+        "order": 6,
+        "condition": "対応sourceのbytes/body/digest/独立owner/root/対象scopeが既存validateで適合",
+        "return": "CanonicalBodyRecordへtarget_ref、source_ref、同caller binding、content全RawValue、原body_locator、実source_refだけのbasis_refsを返す。全bodyをrequired意味へ再採点する自然文adapterを必須にしない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/8"
+        ]
+      },
+      {
+        "order": 7,
+        "condition": "対応contentが明示null",
+        "return": "null原値をrecordへ保持するが原意味未供給unknown。absentと同一にはせず、null replacement Claimの存在とは分ける。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/9"
+        ]
+      },
+      {
+        "order": 8,
+        "condition": "同target/frameのsourceが複数",
+        "return": "全record/原source順保持。完全同値複写で不足を増やさず、異bodyで一意解決不能ならsource解決unknown。文面/digest差だけで意味conflictを作らない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/10",
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/11"
+        ]
+      },
+      {
+        "order": 9,
+        "condition": "canonical原body参照/内容提供だけが必要",
+        "return": "resolvedは当該owner原契約bodyを対象版/scopeへ解決して全値提供できた意味。第二Fact/独立同義命題を追加必須にしない。適用/採用/実義務完成の認定ではない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/12"
+        ]
+      },
+      {
+        "order": 10,
+        "condition": "実際に異なるFactの同義/相反を扱う操作/主張がある",
+        "return": "既存MeaningFact/MeaningComparisonへ実pairだけ接続。qualified false優先conflict、false無しqualified true known、他unknown。必要でないpairを創作しない。",
+        "diagnostic_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/13"
+        ]
+      }
+    ],
+    "canonical_trace_fields": {
+      "target_ref": "原dependencies category Ref。source本体Ref/digestで原targetを上書きしない。",
+      "source_ref": "同snapshot原QualifiedSource.ref全値。locatorはidentityではない。",
+      "binding": "同caller root Binding全値。欠落knowledge_ref等を補わない。",
+      "canonical_body": "対応source.content全値。key/label存在だけを意味定義へ変換せず、元ownerが供給する原契約bodyを提供する。",
+      "body_locator": "同raw /sources/i/content のRFC6901。snapshotを保持しないconsumerへこのtraceの実成立を主張しない。",
+      "basis_refs": "当該source.refの実値。原category refsはCanonicalBodyRead.category_refsに別保持。"
+    },
+    "origin_ordered_branches": [
+      {
+        "order": 1,
+        "condition": "carrier locator/body/schema又はrequired origin/frame/input/returnが未供給/型不成立",
+        "return": "ClaimProjectionRead unknown、claim absent、原所在/不足を保持。missing/null boolをtrueへ補完しない。",
+        "reason_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/origin_reason_mapping/0"
+        ]
+      },
+      {
+        "order": 2,
+        "condition": "consumer target/fullBinding比較に必要なmember未供給/null",
+        "return": "unknown。原carrier/030 bool/input/returnは保持し、Claim frameを補わない。",
+        "reason_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/origin_reason_mapping/1"
+        ]
+      },
+      {
+        "order": 3,
+        "condition": "元origin.subject_refとconsumer subject_ref、又はorigin.bindingとconsumer bindingが既知不一致",
+        "return": "conflict、claim absent。boolが同じでも別target/別scopeへ転記しない。",
+        "reason_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/origin_reason_mapping/2",
+          "/dependency_semantic_ports/diagnostic_return_contract/origin_reason_mapping/3"
+        ]
+      },
+      {
+        "order": 4,
+        "condition": "同target/fullBinding、同元生成recordにproducer_input/returnとoriginが保持される",
+        "return": "Claim subject_ref/binding/actor/basis_refsはorigin原値、kind=project_obligation_discharge、proposed_value=producer_input.claims.receipt_obligation_completed exact bool。producer_return全値は元bodyへ保持。",
+        "reason_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/origin_reason_mapping/4"
+        ]
+      },
+      {
+        "order": 5,
+        "condition": "当該Claim意図を読む",
+        "return": "未資格Claimでも任意主張としてdecodeできる。実義務成立/receipt-only/CORE適用の判定に使う根拠部分だけ既存source/body/owner/target資格へ照合。",
+        "reason_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/origin_reason_mapping/5"
+        ]
+      },
+      {
+        "order": 6,
+        "condition": "複数元carrier/原handoff",
+        "return": "全元record/Claimを原順保持。raw state又はboolの違いだけから追加conflict Findingを作らない。",
+        "reason_mapping_refs": [
+          "/dependency_semantic_ports/diagnostic_return_contract/origin_reason_mapping/6"
+        ]
+      }
+    ],
+    "claim_intent_protocol": {
+      "type": "任意Claim表現を読む032の技術契約。実domain意味/資格の新gateではない。",
+      "rules": [
+        {
+          "kind": "project_obligation_discharge",
+          "positive": "supplied(true)",
+          "negative": "supplied(false)",
+          "unresolved": "absent/null/非boolean",
+          "basis": "030 B01Input.claims.receipt_obligation_completed及びB01 claim_results AST。値解釈と実義務成立は別。",
+          "reason_mapping_ref": "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/0"
+        },
+        {
+          "kind": "field_not_applicable",
+          "positive": "supplied(\"not_applicable\")",
+          "negative": "supplied(\"applicable\")",
+          "unresolved": "absent/null/\"unknown\"/他RawValue",
+          "basis": "既存ApplicabilityRecord.decisionの値表現を任意Claimへ写した032技術表現。旧NEGのproposed欠落を補完しない。",
+          "reason_mapping_ref": "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/1"
+        },
+        {
+          "kind": "definition_missing_from_receipt",
+          "positive": "supplied(\"missing\")",
+          "negative": "supplied(\"known\")",
+          "unresolved": "absent/null/他RawValue",
+          "basis": "既存definition stateを使う032技術表現。元definition known/原handoff not_receivedは別に照合。",
+          "reason_mapping_ref": "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/2"
+        },
+        {
+          "kind": "upstream_authority",
+          "positive": "supplied(true)",
+          "negative": "supplied(false)",
+          "unresolved": "absent/null/非boolean",
+          "basis": "当該basisをauthorityへ使う/使わないという032技術表現。旧kindだけで肯定にしない。",
+          "reason_mapping_ref": "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/3"
+        },
+        {
+          "kind": "fill_definition",
+          "positive": "proposed_valueキー供給済みの全RawValue。明示null/false/0/空文字/空配列も原replacement内容。",
+          "negative": "共通negative tokenなし。Claim自体非供給はこのClaimの対象外。",
+          "unresolved": "proposed_valueキー欠落のみ",
+          "basis": "RawValueはnullを含み欠落と明示nullを区別。Claim schemaはproposed_value:RawValue。既存reference_as_required_definition/unknown_fallbackに非null限定は無い。",
+          "reason_mapping_ref": "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/4"
+        },
+        {
+          "kind": "require_before_supply",
+          "positive": "supplied(\"future-receiver-completion-receipt\")",
+          "negative": "supplied(false)",
+          "unresolved": "absent/null/true/他RawValue",
+          "basis": "既存F09-NEG-05のexact文字列を保持。falseは当該前提を要求しない032技術表現。",
+          "reason_mapping_ref": "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/5"
+        },
+        {
+          "kind": "labo_evaluated",
+          "positive": "supplied(true)",
+          "negative": "supplied(false)",
+          "unresolved": "absent/null/非boolean",
+          "basis": "評価済みと主張する/しないという032技術表現。030 LABO_evaluationのopaque文字列やkindだけから実評価成功を作らない。",
+          "reason_mapping_ref": "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/6"
+        }
+      ],
+      "unrecognized_kind": "原Claim/RawValueを保持してintent unresolved。新kindを補完しない。",
+      "null_boundary": "fill_definitionはキー供給済みならnullを含む全RawValueをreplacement保持。元MeaningFact.meaning=null→元definition unknownと、Claim.proposed_value=nullの存在を混同しない。nullable定義を対象外にしない。",
+      "old_controls": "既存L8 logical typed_mutation_planのclaim_kind/basis_role/string basisラベルはその元意図を示す。proposed_value欠落を持つ実RawValueケースへ改称/転記しない。新表現規約を使う素材は独立の新素材として明示する。",
+      "claim_locator": "raw Claimを読む場合はその原Claim pointer。投影Claimを読む場合は原carrierのproducer_input.claims.receipt_obligation_completedへのRFC6901 pointerとする。投影Claim全frameはClaimProjectionReadの元carrier source_locatorsへ結び、rawに存在しない合成Claim pointerを作らない。",
+      "unrecognized_reason_ref": "/dependency_semantic_ports/diagnostic_return_contract/common_rules/intent_fields"
+    },
+    "producer_incoming": {
+      "030": {
+        "type": "ReceiptClaimCarrier",
+        "existing_fields": [
+          {
+            "from": "docs/helix-brain/L5-detail-design/knowledge-query-receipt.json#/types/B01Input/properties/claims/properties/receipt_obligation_completed",
+            "to": "producer_input.claims.receipt_obligation_completed→Claim.proposed_value",
+            "meaning": "required booleanを原値コピー。"
+          },
+          {
+            "from": "docs/helix-brain/L5-detail-design/knowledge-query-receipt.json#/types/B01PublicReturn",
+            "to": "producer_return",
+            "meaning": "同invocationのpublic返却全値を保持。rejected/noneは局所境界でOS実義務真偽ではない。"
+          }
+        ],
+        "added_logical_context": "ReceiptInvocationOriginは現在B01Inputに無い明示incoming。元query/receipt callerが生成時origin_ref/subject_ref/binding/actor/basis_refs/producer_contract_refを同recordとして供給する。030 original_owners又はTraceRow nullable stringから生成しない。",
+        "producer_followup": [
+          "030 knowledge-query-receipt L4/L9: 元caller対象を同invocationへ束縛するincoming/outgoing責務",
+          "同L5/L8: ReceiptInvocationOrigin＋B01Input→ReceiptClaimCarrier全field/presence/相反返却"
+        ],
+        "current_scope": "本pairは032 consumer incomingを定義する。030本体の公開I/O追加/実接続を成立済みとはしない。同raw Claim由来の030呼出しも生成時originを保持する同一recordからのみ接続する。"
+      },
+      "OS": {
+        "type": "OSObligationMeaningIncoming",
+        "field_mapping": [
+          {
+            "from": "docs/helix-os/L5-detail-design/project-template-trace.json#/type_contract/types/F03RecordInputkindobligationsItem/fields/ref",
+            "to": "obligation_ref",
+            "meaning": "元Field<Ref> missing→absent、supplied(null)→supplied null、supplied Ref→Ref各memberを元presence/値のまま投影。requirement_refへaliasしない。"
+          },
+          {
+            "from": "docs/helix-os/L5-detail-design/project-template-trace.json#/type_contract/types/F03RecordInputkindobligationsItem/fields/state",
+            "to": "original_state",
+            "meaning": "Field missing→absent、supplied(null)→supplied null、supplied string→原string。completed等の新enumを推測しない。"
+          },
+          {
+            "from": "元state意味ownerの原契約Ref/body/成立命題（OS002の記録state型だけには無い）",
+            "to": "state_contract_ref/meaning_body/discharge_assertion",
+            "meaning": "当該義務revision/scopeへ結んだ原命題だけ。元bodyを保持し記録件数/receipt_onlyからdischargedを作らない。"
+          },
+          {
+            "from": "同consumer callerの明示Binding＋元OS project binding/source/qualification/対象対応",
+            "to": "binding / original_project_binding / source_ref / qualification_ref / source_locator / basis_refs",
+            "meaning": "bindingは032 callerの元Binding。OS project bindingからpack版等を生成しない。original_project_bindingは元OS B02RecordInputbindingの5field、project_scopeの3fieldをpresenceごと保持。OS Refに無いdigest/locatorを生成せず、envelope hashを義務Ref.digestへ代入しない。"
+          }
+        ],
+        "producer_followup": [
+          "OS002 project-template-trace L4/L9・L5/L8: 原record/原stateと意味owner参照を保持するprojection",
+          "実義務state意味を持つ元owner pair: typed成立命題の原出力。OS002へ完了裁定を移さない。"
+        ],
+        "consumer_boundary": "肯定Claimのdomain根拠を読むときだけ当該typed原命題を既存source/target/資格へ照合する。意図decodeや通常canonical参照の必須gateにしない。",
+        "binding_comparison": "032 Bindingと元OS project bindingを別recordに保持。対象対応は元callerが生成時に明示し、共通のrequirement/template/project scope等の当該元値をexact比較する。原対応/必要memberが不足ならdomain支持unknown。両方が供給されたという理由だけでjoinしない。",
+        "presence_projection": "これはOS Fieldの内部presence投影でありOS wire表現の採用ではない。OS Ref内のmissing memberは032 Refのkey欠落、supplied(null)は明示null、supplied(value)は原値。scopeのproject/tenant/environmentも同様に保持する。元OS source/bodyはsource_locatorから全値保存する。"
+      }
+    },
+    "public_projection": {
+      "schema": "既存Comparison4 / AxisResult7 / Finding9を維持。port内部recordを新SupplyAnalysis member/closed製品wireへしない。",
+      "dependency_subject": "既存knowledge_ref→template_ref診断subjectの形成規則。双方形成不能でも原raw/binding/内部traceを保持し、typed公開Axis/Findingを捏造しない。",
+      "claim_subject": "当該原Claim.subject_refとbinding。Claim targetをknowledge/templateへ無断aliasしない。",
+      "axis_mapping": [
+        {
+          "material": "必要identity欠落",
+          "axis": "dependency_reference",
+          "state": "missing",
+          "code": "required_dependency_missing",
+          "owner": "knowledge_owner",
+          "scope": "既存always/CORE返却identityのみ。"
+        },
+        {
+          "material": "selector欠落",
+          "axis": "dependency_selection",
+          "state": "unknown",
+          "code": "dependency_selector_unknown",
+          "owner": null
+        },
+        {
+          "material": "canonical body/対象/資格不足又は既存frame相反",
+          "axis": "dependency_reference",
+          "state": "unknown/conflict",
+          "code": null,
+          "owner": "knowledge_owner"
+        },
+        {
+          "material": "canonical原body全値提供",
+          "axis": "dependency_reference",
+          "state": "resolved",
+          "code": null,
+          "owner": null
+        },
+        {
+          "material": "receipt-only義務消込/NA肯定Claim",
+          "axis": "obligation_discharge_claim/applicability_claim",
+          "state": "unknown",
+          "code": "receipt_as_product_discharge/receipt_as_na",
+          "owner": "os_owner/core_owner"
+        },
+        {
+          "material": "reference_onlyのnullを含むreplacement＋元missing",
+          "axis": "descriptor.definition",
+          "state": "missing",
+          "code": "reference_as_required_definition",
+          "owner": "knowledge_owner"
+        },
+        {
+          "material": "原unknown＋任意fallback成立主張",
+          "axis": "descriptor.definition",
+          "state": "unknown",
+          "code": "unknown_fallback",
+          "owner": "knowledge_owner"
+        }
+      ],
+      "refs_reason": "Axis.original_refs/Finding.source_refsは該当category又は当該Claim basisの実Refsだけ。source/body/Claimの元locatorと原因をreasonへ結ぶ。個別Ref.ownerをpublic backflow_ownerへ代入しない。",
+      "rule_routing": "元missing＋reference_only置換はfn6 rule87、元unknown＋任意fallback成立主張はfn7 rule93。kind/positiveだけで発火せず原target/状態/basisを比較。同Claimを二重Findingにしない。新body unknownを既存codeのpredicate外へ流用しない。",
+      "order": "常時003/005/007/008/028、CORE返却019/022/030、selector core_return/core_source/labo、既決conditional core_source/labo内固定018/020→原operation025、原handoff、Claim原順。body局所材料は対応dependencyに保持。旧22rules/role/null/conditional原順は変更しない。",
+      "handoff": "原recordの全state/reason/Refを保持。単に複数のraw stateが違うという理由で追加conflictを作らない。"
+    },
+    "caller_and_consumers": {
+      "entry": "raw→validate_supply_input→DefinitionContext{validated}→compare_descriptor_definitions→DependencyContext{validated,definitions}→compare_dependencies_and_handoff。portsは同immutable rawを読む。任意cached Comparisonを注入しない。",
+      "analysis": "builderは同snapshotの既存7producer_symbol/input_bindingを既存宣言順に合成。新port wholeをF09 Comparison又はSupplyAnalysis wholeと呼ばない。",
+      "preservation": "旧79 constructor whole、5 builder operands whole、10 conditional partial、旧14契約/例を保持。L8 function_oracles/6のdependency_reference/selection全要素filterを狭めて追加診断を隠さない。",
+      "normal_body_limit": "現normalのsource0.dependency_meanings5件は限定参照の原記録。対応canonical envelopeの新素材とは別で、原意味保証resolvedへ変換しない。新source追加でも025原provenance/operation解決条件を変更しない。"
+    },
+    "legacy_rederivation": {
+      "source_quotes": [
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": [
+            18,
+            30
+          ],
+          "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+          "quote": "Requirement JSONから必要十分な設計成果物を選べるよう、templateの構造的意味をversioned JSONへ\n集約する。文章をJSONへ詰め込むのではなく、機械判断に必要な契約だけをJSON正本とする。\n\n| surface | 責務 | authority |\n|---|---|---|\n| Design Template JSON | template ID/version、layer/pair、適用条件、必須input/section/field、owner、trace、negative oracle、measurement、completion、downstream kind | canonical candidate。pair freeze後にcanonical |\n| Design Instance JSON | 選択済みtemplateとrequirement/obligationを束縛した設計値 | 後続L5 episode |\n| graph JSON | component、state transition、data flow、sequence、V-pair edge | 図の構造的意味 |\n| generated Markdown/HTML/Mermaid | JSONを人間向けに投影 | derived、直接編集禁止 |\n| supplemental Markdown | rationale、alternatives、trade-off、背景 | JSON IDへ束縛する説明。構造的意味の正本ではない |\n| `docs/design/design-catalog.yaml` | 現行成果物の所在と分類 | inventory。template schemaではない |\n\n画像、Markdown、tool node ID、file pathだけをtemplate identityや設計意味の主キーにしない。",
+          "quote_sha256": "4faf1d6baaa1cc1b31603c546e60a76eb2ce983b2e80c75ffacc4084b6748f99"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "lines": [
+            65,
+            76
+          ],
+          "file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+          "quote": "### sectionとfield\n\n`sections`は`section_id`をtemplate内で一意にし、`required`、`fields`、`completion_rule_ids`を持つ。\nfieldは`field_id`、`value_type`、`cardinality`、`required`、`trace_kind`、`validation_rule_ids`を持つ。\n自由文fieldも意味ownerとtraceを持ち、rationaleだけを構造fieldの代用にしない。\n\n### trace、verification、measurementの契約\n\n- `trace_contract`: requirement、system contract、acceptance、design obligationの必須参照class。\n- `verification`: pair template ID、required oracle class、negative oracle、stale条件。\n- `measurement`: metric ID、unit、threshold/operatorまたはauthority付きN/A。\n- `completion`: required coverage、unresolved policy、independent review、digest一致条件。",
+          "quote_sha256": "15cf2f8f6149e674e1752defd773cdcd6d801036607c3199dd8a5a3e83e3add7"
+        },
+        {
+          "asset_id": null,
+          "revision": "111795bda97168d56d8cb26a8fa0a7d10bf962a8",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": [
+            80,
+            87
+          ],
+          "file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+          "quote": "| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |\n| UTW-015 | High | branch lifecycleが閉じず、main未包含6 heads、最大54 commits aheadが残る | mirror ref inventory | UTH-FR-013、UTH-FR-014 |\n| UTW-016 | High | tag 0でrelease provenanceとsource snapshot authorityが弱い | ref inventory | UTH-FR-027 |\n| UTW-017 | High | Issue Formsのlabel bootstrap/inbound dogfoodが未閉包 | 既存UT-GH-08/09 | UTH-FR-016 |\n| UTW-018 | High | merge後branch/state/memory cleanupがtransactionalでない | UT-GH-02/13/14 | UTH-FR-018、UTH-FR-019 |\n| UTW-019 | High | subagent/agent spawn guardはruntime surface差分に追随し続ける必要がある | 対象rulesの旧「未配線」履歴と現guard test | UTH-FR-008 |\n| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |\n| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |",
+          "quote_sha256": "9270b2884e10ea5c54ce8d244d52fbbb24228517cbd769b62134e92bf5971b36"
+        }
+      ],
+      "disposition": "意味再導出。既存source/identity/意味owner/原値保持とdefault回避を保つ。旧schema/lifecycle/runtime/CLI/test/CIを移植しない。",
+      "retained": [
+        "元source/bodyを原target/版/scopeへ結ぶ。",
+        "missing/null/空集合を区別し、局所failureをaggregateの成功で隠さない。",
+        "出力/件数/自己申告から他owner成立や完成を生成しない。"
+      ],
+      "changed": [
+        "旧template source/traceを現F09のfullRefとTyped incomingへ対応付ける。",
+        "任意Claimの値解釈と実domain根拠を分離し、null replacementを保存する。"
+      ],
+      "reason": "現L3-F09の条件別依存/owner返却と既存032/030/OS原型に対応するため。新しい要求意味/承認gateは追加しない。"
+    },
+    "limits": [
+      "本sectionはlogical portsと有限統合観測。L5/L8 producer内部への追随、正式codec/実provider/custody/resolverと実資格稼働は別。実稼働証明をlogical設計の開始条件にしない。",
+      "030/OSの元producer側typed供給契約は上記追随先が必要。本pairでその実供給/運用成立を認定しない。",
+      "既存22conditional reasonの未観測13語は旧scopeどおり保持。本port10例は全shape/全case/全mutationの新gateやF09全体完成の証拠ではない。"
+    ],
+    "diagnostic_return_contract": {
+      "common_rules": {
+        "presence": "P(object,key)=key欠落なら{presence:absent}、供給なら{presence:supplied,value:原RawValue}。明示null/false/空値をabsenceにしない。memberは診断対象の意味名又は原member名。",
+        "request_locator": "BodyReadProblem.request_locatorは当該CanonicalReadRequest.request_ref_locatorのliteral原値。",
+        "source_locator": "source_locatorsは当該問題を支持する原raw RFC6901のみ。非対応の別版/source候補のlocatorを対応済みとして返さない。",
+        "branch_order": "caller no-callと既存required missing確定を先行。frame不明/相反は先行確定。対応集合を5で確定し、6でrecords、7/8で不足判定、9で残余resolved。10は実必要時だけ別比較。branch numberを独立成功判定として重複適用しない。",
+        "problem_order": "枝1→3→4→5→7→8、同branchは明記member順、sourceは原index順。問題stateのconflict→unknown→missingをaggregateで不足の補償に使わない。先行required missingは後続へ進めない。",
+        "reason_format": "reason/reason_templateだけを規範とし全byte比較。{member}は指定されたliteral member名のみ補間。任意raw値/自然文を補間しない。no_problem枝ではreason fieldを新設しない。",
+        "origin_fields": "ClaimProjectionRead.source_locators=[carrier_locator]（所在が未解決でも指定literalを保持）。origin_ref=P(carrier.origin,origin_ref)、不能ならabsent。unknown/conflictのclaimはabsent、resolvedのClaim6memberは既存branch4の元値全copy。",
+        "intent_fields": "ClaimIntentRead.claim/claim_locatorは直接引数とtrace原値。kind=P(claim,kind)、proposed_value=P(claim,proposed_value)。intent/reasonはkind別閉表。kind欠落/null/未認識はunresolved、reasonは「Claim kindを認識できない。原Claim/RawValueを保持し意図を補完しない。」。"
+      },
+      "canonical_diagnostic_mapping": [
+        {
+          "branch": 1,
+          "subcase": "validated.input=null",
+          "state": "unknown",
+          "member": "validated.input",
+          "presence_from": "validated.input のkey presence/原値（nullをsupplied(null)）",
+          "source_locators": [],
+          "reason": "validated.inputが未解決。原Binding/bodyを補完しない。"
+        },
+        {
+          "branch": 1,
+          "subcase": "input binding absent/null",
+          "state": "unknown",
+          "member": "binding",
+          "presence_from": "同inputの/binding key presence/原値",
+          "source_locators": [],
+          "reason": "同callerのbindingが未供給又はnull。Binding/bodyを補完しない。"
+        },
+        {
+          "branch": 2,
+          "subcase": "selector未確定/false",
+          "state": "no_call",
+          "member": null,
+          "presence_from": "not_applicable",
+          "source_locators": [],
+          "reason": null,
+          "rule": "caller抑止。CanonicalBodyRead/Problemを作らず既存selector診断を保持。"
+        },
+        {
+          "branch": 3,
+          "subcase": "必要identity不在",
+          "state": "missing",
+          "member": "required_identity",
+          "presence_from": "absent（必要identityに対応する原Refが無い）",
+          "source_locators": [],
+          "reason": "必要identityに対応する原Refは当該categoryに未供給。他bodyで補償しない。"
+        },
+        {
+          "branch": 4,
+          "subcase": "request Ref必須frame absent/null",
+          "state": "unknown",
+          "member": "当該member名 identity/revision/scope/owner",
+          "presence_from": "request_ref_locator先の当該key presence/原値",
+          "source_locators": [],
+          "reason_template": "原Refの{member}が未供給又はnull。原frameを補完しない。",
+          "order": "identity,revision,scope,owner順、該当member各1problem。"
+        },
+        {
+          "branch": 4,
+          "subcase": "caller既存比較で要求frameの既知相反が確定",
+          "state": "conflict",
+          "member": "既存比較で相反した当該member名 identity/revision/scope/owner/sha256",
+          "presence_from": "request Ref内当該key presence/原値",
+          "source_locators": "既存比較が実際に対応付けたsource locatorだけを原source順",
+          "reason_template": "原Refの{member}は既存frame比較で既知相反。原値を保持する。",
+          "rule": "source一覧に別frameがあるだけでは本subcaseを成立させない。"
+        },
+        {
+          "branch": 5,
+          "subcase": "ref_same対応semantic_json source無し",
+          "state": "unknown",
+          "member": "canonical_source",
+          "presence_from": "absent（対応集合0件。別frame sourceは供給として数えない）",
+          "source_locators": [],
+          "reason": "当該fullRefへ対応するcanonical原source bodyは未供給。限定nested recordは原bodyを代替しない。"
+        },
+        {
+          "branch": 5,
+          "subcase": "対応sourceはあるが既存ValidatedSupply.unusable_source_refsに該当",
+          "state": "unknown",
+          "member": "canonical_source",
+          "presence_from": "supplied(当該QualifiedSource原全値)",
+          "source_locators": "当該/sources/iを原source順",
+          "reason": "対応canonical原sourceは保持するが既存validateで使用不能。資格/bytesを補完しない。",
+          "order": "該当source各1problem。対応Ref無しのabsent問題とは重ねない。"
+        },
+        {
+          "branch": 6,
+          "subcase": "既存validate適合source",
+          "state": "continue",
+          "member": null,
+          "presence_from": "not_applicable",
+          "source_locators": "当該source順",
+          "reason": null,
+          "rule": "CanonicalBodyRecord全fieldを現canonical_trace_fieldsからコピー。Problem無し。後続7/8へ。"
+        },
+        {
+          "branch": 7,
+          "subcase": "対応source.content明示null",
+          "state": "unknown",
+          "member": "content",
+          "presence_from": "supplied(null)",
+          "source_locators": "当該/sources/i/contentを原source順",
+          "reason": "対応canonical原sourceのcontentは明示null。原値を保持し原意味供給へ補完しない。",
+          "rule": "nullのrecordも保持。absenceと同一視しない。"
+        },
+        {
+          "branch": 8,
+          "subcase": "同target/frame複数sourceでbodyが型付きJSON同値",
+          "state": "continue",
+          "member": null,
+          "presence_from": "not_applicable",
+          "source_locators": "全対応source原順",
+          "reason": null,
+          "rule": "全record保持、追加Problem無し。"
+        },
+        {
+          "branch": 8,
+          "subcase": "同target/frame複数sourceの異bodyで一意解決不能",
+          "state": "unknown",
+          "member": "canonical_body",
+          "presence_from": "supplied(原source順の全canonical_body配列)",
+          "source_locators": "全対応/sources/i/content原順",
+          "reason": "同target/frameに異なるcanonical原bodyが複数あり一意に解決できない。文面差だけで意味相反を作らない。",
+          "rule": "全record保持。原順body集合に対し1problem。"
+        },
+        {
+          "branch": 9,
+          "subcase": "通常原body提供完了",
+          "state": "resolved",
+          "member": null,
+          "presence_from": "not_applicable",
+          "source_locators": "recordに保持",
+          "reason": null,
+          "rule": "problems=[]。他の問題が存在する場合resolvedへ上書きしない。"
+        },
+        {
+          "branch": 10,
+          "subcase": "実pairの意味同義/相反比較が必要",
+          "state": "separate_existing_comparison",
+          "member": null,
+          "presence_from": "not_applicable",
+          "source_locators": "実pair根拠のみ",
+          "reason": null,
+          "rule": "MeaningFact/MeaningComparisonの既存比較責務へ接続。通常body portへ新Problem/常時pair gateを追加しない。"
+        }
+      ],
+      "origin_reason_mapping": [
+        {
+          "branch": 1,
+          "state": "unknown",
+          "reason": "元carrierのrequired origin/frame/input/returnが未供給又は型不成立。Claimを補完しない。"
+        },
+        {
+          "branch": 2,
+          "state": "unknown",
+          "reason": "consumer target又はbindingの比較必須memberが未供給又はnull。Claim frameを補完しない。"
+        },
+        {
+          "branch": 3,
+          "subcase": "subject既知不一致（bindingも相反ならこちら優先）",
+          "state": "conflict",
+          "reason": "元carrierのsubject_refと同callerのconsumer subject_refがfullRef不一致。030 flagを別targetへ投影しない。"
+        },
+        {
+          "branch": 3,
+          "subcase": "subject同一かつbinding既知不一致",
+          "state": "conflict",
+          "reason": "元carrierのbindingと同callerのconsumer bindingが既知不一致。030 flagを別bindingへ投影しない。"
+        },
+        {
+          "branch": 4,
+          "state": "resolved",
+          "reason": "同元生成recordのtargetとfull Bindingを保持し、030 boolean flagを原値でClaimへ投影した。実義務成立を認定しない。"
+        },
+        {
+          "branch": 5,
+          "state": "no_additional_projection",
+          "reason": null,
+          "rule": "Claim意図は別port。projection reasonを書き換えない。"
+        },
+        {
+          "branch": 6,
+          "state": "per_record",
+          "reason": null,
+          "rule": "複数carrierは上記1〜4を原順適用。複数という理由の追加返却/相反reasonは作らない。"
+        }
+      ],
+      "intent_reason_mapping": [
+        {
+          "kind": "project_obligation_discharge",
+          "positive": {
+            "condition": "supplied(true)",
+            "reason": "既存030 boolean flag trueの肯定主張を保持する。"
+          },
+          "negative": {
+            "condition": "supplied(false)",
+            "reason": "既存030 boolean flag falseの非主張を保持する。"
+          },
+          "unresolved": {
+            "condition": "absent/null/非boolean",
+            "reason": "project_obligation_dischargeのproposed_valueはboolean肯定/否定へ解決できない。原値を保持する。"
+          }
+        },
+        {
+          "kind": "field_not_applicable",
+          "positive": {
+            "condition": "supplied(\"not_applicable\")",
+            "reason": "Claim kind=field_not_applicable の値表現は肯定。原値を保持しdomain成立を認定しない。"
+          },
+          "negative": {
+            "condition": "supplied(\"applicable\")",
+            "reason": "Claim kind=field_not_applicable の値表現は否定。原値を保持しdomain成立を認定しない。"
+          },
+          "unresolved": {
+            "condition": "absent/null/\"unknown\"/他RawValue",
+            "reason": "Claim kind=field_not_applicable の値表現は未解決。原値を保持しdomain成立を認定しない。"
+          }
+        },
+        {
+          "kind": "definition_missing_from_receipt",
+          "positive": {
+            "condition": "supplied(\"missing\")",
+            "reason": "Claim kind=definition_missing_from_receipt の値表現は肯定。原値を保持しdomain成立を認定しない。"
+          },
+          "negative": {
+            "condition": "supplied(\"known\")",
+            "reason": "Claim kind=definition_missing_from_receipt の値表現は否定。原値を保持しdomain成立を認定しない。"
+          },
+          "unresolved": {
+            "condition": "absent/null/他RawValue",
+            "reason": "Claim kind=definition_missing_from_receipt の値表現は未解決。原値を保持しdomain成立を認定しない。"
+          }
+        },
+        {
+          "kind": "upstream_authority",
+          "positive": {
+            "condition": "supplied(true)",
+            "reason": "Claim kind=upstream_authority の値表現は肯定。原値を保持しdomain成立を認定しない。"
+          },
+          "negative": {
+            "condition": "supplied(false)",
+            "reason": "Claim kind=upstream_authority の値表現は否定。原値を保持しdomain成立を認定しない。"
+          },
+          "unresolved": {
+            "condition": "absent/null/非boolean",
+            "reason": "Claim kind=upstream_authority の値表現は未解決。原値を保持しdomain成立を認定しない。"
+          }
+        },
+        {
+          "kind": "fill_definition",
+          "positive": {
+            "condition": "proposed_valueキー供給済みの全RawValue。明示null/false/0/空文字/空配列も原replacement内容。",
+            "reason": "供給済みRawValueをnullも含めreplacement内容として保持する。"
+          },
+          "negative": {
+            "condition": "共通negative tokenなし。Claim自体非供給はこのClaimの対象外。",
+            "reason": null,
+            "return": "not_a_branch"
+          },
+          "unresolved": {
+            "condition": "proposed_valueキー欠落のみ",
+            "reason": "proposed_valueキー未供給。kindからreplacementを補完しない。"
+          }
+        },
+        {
+          "kind": "require_before_supply",
+          "positive": {
+            "condition": "supplied(\"future-receiver-completion-receipt\")",
+            "reason": "Claim kind=require_before_supply の値表現は肯定。原値を保持しdomain成立を認定しない。"
+          },
+          "negative": {
+            "condition": "supplied(false)",
+            "reason": "Claim kind=require_before_supply の値表現は否定。原値を保持しdomain成立を認定しない。"
+          },
+          "unresolved": {
+            "condition": "absent/null/true/他RawValue",
+            "reason": "Claim kind=require_before_supply の値表現は未解決。原値を保持しdomain成立を認定しない。"
+          }
+        },
+        {
+          "kind": "labo_evaluated",
+          "positive": {
+            "condition": "supplied(true)",
+            "reason": "Claim kind=labo_evaluated の値表現は肯定。原値を保持しdomain成立を認定しない。"
+          },
+          "negative": {
+            "condition": "supplied(false)",
+            "reason": "Claim kind=labo_evaluated の値表現は否定。原値を保持しdomain成立を認定しない。"
+          },
+          "unresolved": {
+            "condition": "absent/null/非boolean",
+            "reason": "Claim kind=labo_evaluated の値表現は未解決。原値を保持しdomain成立を認定しない。"
+          }
+        }
+      ],
+      "fullRef_clarification": {
+        "source": "docs/helix-brain/L5-detail-design/template-semantic-supply.json#/type_contract/reference_comparison",
+        "reference_equality": "docs/helix-brain/L5-detail-design/template-semantic-supply.json#/source_return_contract/constructor_meaning/reference_equality",
+        "meaning": "fullRef対応はRef全6member literal JSON一致ではない。identity/revision/scope/owner双方供給non-null同値、sha256は双方供給non-null時だけ比較、source_locatorは所在。Ref原全値は比較に使わないmemberも出力で保持。request側null locator/digestをsource側供給値で埋めず、新必須gateにしない。"
+      }
+    }
   }
 }
