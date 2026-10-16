@@ -95,7 +95,27 @@
           "expected": {
             "finding_code": "artifact_identity_conflict",
             "outcome": "conflict",
-            "finding_pointer": "/artifacts"
+            "finding_pointer": "/artifacts",
+            "output_constraints": {
+              "required_correspondences": [
+                {
+                  "artifact_ref": {
+                    "identity": "FX-001-K4",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "0d7f945a46b5248a8ada30b7fbabc150fc144df32ef70a0a264e7081e922d1be"
+                  },
+                  "kind": "basic_design",
+                  "layer": "L4",
+                  "paired_layer": "L9",
+                  "implementation_design_ref": null,
+                  "implementation_test_ref": null
+                }
+              ],
+              "value_non_null": true,
+              "retained_correspondences": "Q2/Q3のidentity conflictを残しつつ、独立してcurrentなK4のこの6 fieldをvalue.correspondencesに保持する。全Result/Finding/evidenceの固定は要求しない。"
+            }
           }
         },
         {
