@@ -2845,7 +2845,58 @@
             }
           },
           "component_schema_scope": "この基本契約のcomponent構造を示す論理schema。schemaの存在/名前/例の静的適合を、現L5 codec/製品runtimeの受理又は実資格成立としない。",
-          "terminal": "既存通常F04 prefix/現member suffixを保存し、新原対応findingを後ろへ追加する。同じ最終F04観測の新componentを各新findingのpreserved_observationから辿れるようにし、既存findingの過去観測を書換えない。既存fn13が同じsection全体を返す。"
+          "terminal": "既存通常F04 prefix/現member suffixを保存し、新原対応findingを後ろへ追加する。同じ最終F04観測の新componentを各新findingのpreserved_observationから辿れるようにし、既存findingの過去観測を書換えない。既存fn13が同じsection全体を返す。",
+          "state_derivation": {
+            "purpose": "既存enumと独立状態の返却意味を具体化する。元booleanや義務stateを演算せず、原対応の存在から既知判断・充足・完成を認定しない。",
+            "correspondence_resolution_state": [
+              {
+                "when": "妥当なselected outputはあるがtrusted CORE原row取得不能",
+                "state": "not_compared",
+                "preserve": "元join/issueを保持し、原collection Fieldはmissing。"
+              },
+              {
+                "when": "原row取得済みでcondition/obligationの両roleが既知not_requested",
+                "state": "not_requested",
+                "preserve": "原empty Presenceを保持。新必要sourceを増やさず、対応header/native locatorの取得を要求しない。"
+              },
+              {
+                "when": "要求が確定したroleがなく、少なくとも一つのcollection/条件活性がunresolved",
+                "state": "not_compared",
+                "preserve": "不明collectionの元状態/原Presence/所見を保持し、empty又は新関係missingへ置換しない。"
+              },
+              {
+                "when": "少なくとも一つのroleがrequested",
+                "state": "resolution_and_decode.tableに従う",
+                "preserve": "他roleのempty/不明/既知原観測は独立に残す。"
+              }
+            ],
+            "condition_correspondence_state": {
+              "meaning": "原ordered mirrorと同targetのnative所在対応の要約。native scalar original_conditionの既知性又はtrue/falseの要約ではない。",
+              "role_order": [
+                "condition not_requestedならnot_requested。活性unresolved又はcollectionの内容比較不能ならnot_compared。原collection/活性の元状態は別fieldへ残す。",
+                "要求された関係header0件ならmissing。ambiguous/full domain失敗/shared locator相反で新semantic比較を行わない場合はnot_comparedとし、resolution state/decode/rawを別fieldへ保存する。",
+                "unique domain成功/shared locator対応後、condition roleのAbsentはmissing、present nullはunknown。妥当なcondition objectなら下記二つの状態から要約する。"
+              ],
+              "internal_operands": {
+                "mirror_state": "CORE原ordered condition_pairs全体とexpected_condition_pairsの対応。Field/Presence/array順/重複/原Ref6/valueを保ち、既知値差はconflict。",
+                "native_endpoint_binding_state": "当該native locatorの原source occurrence/source_ref/record index/subject_ref/既存F04 role/payload pointer/原item.output_refの所在対応。独立資格未成立は元source分類へ従う。scalar original_conditionの値・presenceは含めない。"
+              },
+              "same_relation_state_reduction": "二つの同じ原対応に必要な比較状態に限り、conflictがあればconflict、なければunknown、なければmissing、両方correspondingならcorresponding、それ以外はnot_compared。入力となる二状態・原値・各診断は保持する。この順位を他axis/原state又は既存CORE-row carrier aggregateへ適用しない。",
+              "independent_native_value": "native_endpoint_binding_state=correspondingなら、native original_conditionのAbsentはoriginal_condition_state=missing、明示nullはunknown、boolean false/trueはいずれもcorrespondingとして原値保持。native endpoint自体が不成立ならその元状態をoriginal_condition_stateへ保持する。",
+              "counterexample": "mirrorと所在が対応しnative original_condition=nullなら親condition_correspondence_state=corresponding、child original_condition_state=unknown、native_original_condition=nullを同時に返す。親correspondingから既知判断/充足/適用/完了を認定しない。",
+              "comparison_with_alternatives": [
+                "mirrorだけのprojectionは同target native所在の不成立を親で表さないため採らない。",
+                "native scalarのunknownを親へも集約する案はmirror/所在対応と原判断の既知性を混合するため採らない。",
+                "true/falseのboolean foldは原判断を新判定へ変更するため採らない。"
+              ]
+            },
+            "closed_record_tuple_rules": {
+              "not_requested": "取得済みtrusted core_row_locator/raw collection Presence/source refsを保持、原対応候補/role観測/edge/decode配列は空、condition roleはnot_requested。source state emptyをnot_comparedへ変換しない。",
+              "not_compared_before_raw_row": "selected Refと取得できたtrusted locator/source refsは保持可能。raw collection Fieldはmissing、condition/obligation source stateと条件活性/対応stateはnot_compared、関係候補/role/edge/decode配列は空。",
+              "shared_relation_semantic_suppression": "ambiguous/domain失敗/shared locator相反ではcondition_correspondence_state=not_compared。既知CORE義務出現は原index/Refのまま保持しassignment_presence_state=unknown、assignments=[]。これは関係未成立を空成功又は任意edgeへ変換しないための返却表現。raw relation候補/decode状態/共有findingは元規則へ従う。",
+              "invalid_core_ref_occurrence": "COREの配列内Ref6が型外のその出現だけcore_ref_decode_state=unknown/assignment_presence_state=unknown/assignments=[]としraw core_raw_refを保持する。存在しないassignmentのmissing診断を重ねず、元collectionの局所unknownを保持する。"
+            }
+          }
         },
         "detailed_rederivation": {
           "source_selector": "SourceSectionValueへ新raw kindの閉型選択を宣言し、fn0の既存InputIssue/資格処理とfn14のstructured domain追加decodeを接続する。",
@@ -2936,7 +2987,10 @@
               "core_row_locatorと既存unique qualified OS associationのtrusted locator相反。新原対応conflict・旧lookup/native独立。",
               "obligations memberがpresent null。assignment collection unknownと未供給/emptyの区別。",
               "CORE computed_condition_pairs/computed_obligation_refsのAbsent、present null、不正Presence/非array/不正itemという各collection分岐。",
-              "conditionがpresent []かつcomputed_disposition不明の場合のactivation unresolved/not_requestedの規範分岐。"
+              "conditionがpresent []かつcomputed_disposition不明の場合のactivation unresolved/not_requestedの規範分岐。",
+              "conditionのnative endpoint所在/Refが不成立の場合の親stateと原値/診断保持。親をmirrorだけで決める誤りは既存12局所期待/D2では識別しない。",
+              "mirror_stateとnative_endpoint_binding_stateの両方がcorresponding以外となる混在（conflict＋unknown、conflict＋missing、unknown＋missing等）のsame_relation_state_reduction順位。順位を入れ替える誤りは既存対照では識別しない。",
+              "両roleが既知not_requestedのcorrespondence_resolution_state=not_requested、及びclosed_record_tuple_rulesのnot_requested/not_compared_before_raw_row/shared_relation_semantic_suppression/invalid_core_ref_occurrenceの各返却表現。旧12局所対照の当該tuple全値成立を主張しない。"
             ],
             "limit": "既存12局所対照/D2全値は上記分岐を識別しない。全case追加/全mutation零の新gateではなく、現時点の未対照範囲として保持する。"
           }

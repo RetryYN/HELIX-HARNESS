@@ -52099,6 +52099,12 @@
             "expected_partial_recipe": [
               {
                 "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/3/condition_correspondence_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
                 "pointer": "/records/3/condition_relations/0/relation_content_state",
                 "presence": "supplied",
                 "value": "corresponding"
@@ -52145,7 +52151,7 @@
                 "value": false
               }
             ],
-            "expected_partial_canonical_sha256": "812fa63119c2d467fb4c49f57c8840844d553819dc6284882b40abd860343cad",
+            "expected_partial_canonical_sha256": "78ffb4810878bf3afe3d2ae08b127eb3c8222be0681354476578ce8153fe5a54",
             "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
             "execution_state": "not_executed",
             "retained_input_checks": [
@@ -53518,7 +53524,10 @@
               "core_row_locatorと既存unique qualified OS associationのtrusted locator相反。新原対応conflict・旧lookup/native独立。",
               "obligations memberがpresent null。assignment collection unknownと未供給/emptyの区別。",
               "CORE computed_condition_pairs/computed_obligation_refsのAbsent、present null、不正Presence/非array/不正itemという各collection分岐。",
-              "conditionがpresent []かつcomputed_disposition不明の場合のactivation unresolved/not_requestedの規範分岐。"
+              "conditionがpresent []かつcomputed_disposition不明の場合のactivation unresolved/not_requestedの規範分岐。",
+              "conditionのnative endpoint所在/Refが不成立の場合の親stateと原値/診断保持。親をmirrorだけで決める誤りは既存12局所期待/D2では識別しない。",
+              "mirror_stateとnative_endpoint_binding_stateの両方がcorresponding以外となる混在（conflict＋unknown、conflict＋missing、unknown＋missing等）のsame_relation_state_reduction順位。順位を入れ替える誤りは既存対照では識別しない。",
+              "両roleが既知not_requestedのcorrespondence_resolution_state=not_requested、及びclosed_record_tuple_rulesのnot_requested/not_compared_before_raw_row/shared_relation_semantic_suppression/invalid_core_ref_occurrenceの各返却表現。旧12局所対照の当該tuple全値成立を主張しない。"
             ],
             "execution_state": "not_executed",
             "coverage_limit": "新caller/期待/actualは追加していない。既存12の局所値/PresenceとD2部分列の範囲に限定する。"
@@ -53529,7 +53538,7 @@
         "current_normative_binding": {
           "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
           "pointer": "/contracts/5/source_original_correspondence",
-          "working_bytes_sha256": "f7fe6a25a1e69bfd54dfb6a4c02c3b6d23d6575e3d1dad5779873ee12beb7094",
+          "working_bytes_sha256": "ae413e997a19c66c76e776924f84ac7272b4dc345be7509f30673baf2f013efe",
           "binding_kind": "paired_current_file_bytes",
           "meaning": "同一候補pairの規範節を現L4 bytesへ結ぶ。元source_basisは固定git bytesの歴史参照として別保持し、現候補を当該git revisionの本文だと偽らない。"
         }
