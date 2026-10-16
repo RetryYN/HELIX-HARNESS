@@ -1047,7 +1047,7 @@
         },
         "source_binding_and_decode": {
           "expected_binding_raw": "packet.held_out_source_bindingのAbsent/null/valueをPresence<RawValue>としてexact echoする。raw revision/scope/digestやindependent_source_packet.refからCommon Refを合成しない。",
-          "typed_status_semantics": "typed_expected_source_bindingはpacket memberの構造decode状態だけを表す。validはstrict N01HeldOutSourceBindingとしてdecodeできることだけを示し、source_refやraw_revision/raw_scope/raw_sha256との意味的一致を表さない。missingはeligible supported rowでoptional binding memberがAbsent、unknownはpresent null/wrong-kind等で元値をRawValueのまま保持、not_evaluatedは先行source findingがある状態、not_applicableはparsed source rowが無い状態。既知値の不一致は別のsource_binding_comparisonと既存局所finding/gapへ返す。 object内leafがstrict shape外でもconsumer_field_boundaryのraw fieldwise比較は独立に行い、field missing/nullの既存stateを失わない。",
+          "typed_status_semantics": "typed_expected_source_bindingはpacket memberの構造decode状態だけを表す。validはstrict N01HeldOutSourceBindingとしてdecodeできることだけを示し、source_refやraw_revision/raw_scope/raw_sha256との意味的一致を表さない。missingはeligible supported rowでoptional binding memberがAbsent、unknownはpresent null/wrong-kind等で元値をRawValueのまま保持、not_evaluatedは先行source findingがある状態、not_applicableはparsed source rowが無い状態。既知値の不一致は別のsource_binding_comparisonと既存局所finding/gapへ返す。 object内leafがstrict shape外でもconsumer_field_boundaryのraw fieldwise比較は独立に行い、field missing/nullの既存stateを失わない。 source-level template_source_missingがある場合も先行source診断としてnot_evaluatedをnot_applicableより先に取り、preceding_source_finding_kindsへその原kindを保持する。not_applicableのrow無しは、先行source診断も無い場合に限る。",
           "common_ref_adapter": {
             "purpose": "N01 raw-source carrierとCommon Refの既存domainを保つ。既存owner/source resolverがCommon RefをN01 callerへ渡す境界でだけtyped対応を行い、pure N01 raw-byte comparatorがlocal scope:stringをRefへcastしない。",
             "common_ref_source": {
@@ -1143,7 +1143,7 @@
             "L4 /contracts/3 のfailure destination 041 extractor contract owner と 009/対象template ownerを維持する。B01 compare_b01は別のowner-return routerでありheldout atom consumer/gateではない。"
           ],
           "diagnosis_order": [
-            "held_out_source Absent/nullなら原source rowは0件とし、binding評価・row gapを作らない。held_out_source objectにraw_utf8 absent/null/emptyがある場合は既存template_source_missingを返す。入力の既存required-string型は広げない。",
+            "held_out_source Absent/nullなら原source rowは0件としsource診断・binding評価・row gapを作らない。held_out_source objectのraw_utf8 absent/null/emptyは、原rowに属さないsource-level template_source_missingを既存HeldOutGapとして1件保持し、held_out_occurrence_resultsは空にする。架空ordinal/parsed row/source_row_sha256を生成しない。入力の既存required-string型は広げず、raw欠落/型外をtyped material受理済みとはしない。",
             "各parsed held-out rowでは既存compare_n01の順を保つ。最初にheld_out_source.scopeとinput_frame.scopeを既存state_ofで比較し、非同値ならscope_<state>を当該行へ返す。",
             "scope比較が成立した行ではheld_out_source.revisionがnull/empty/TBD相当かを既存規則で判定し、source_revision_missing/source_revision_unknownを返す。外部bindingのrevision値で原入力を補わない。",
             "revisionが成立した行では厳密raw_utf8 digestとheld_out_source.sha256を比較し、source_digest_conflictを返す。",
@@ -1331,7 +1331,7 @@
               {
                 "stage": 8,
                 "name": "canonical_return",
-                "rule": "各rowのprimary atom/gapを原順で1件ずつ返す。全raw batch/index/拒否値を保持し、held_out_gapはcanonical occurrence listだけから旧0/1/複数形へ射影する。comparison_result/Q/effectsは独立保持。"
+                "rule": "各parse済rowのprimary atom/gapを原順で1件ずつ返す。全raw batch/index/拒否値を保持する。held_out_gapはreturn_and_compatibility.legacy_gap_projectionに従い、原row無しのsource-level template_source_missingだけは元診断を保持し、それ以外はcanonical occurrence listから旧0/1/複数形へ射影する。comparison_result/Q/effectsは独立保持。"
               }
             ],
             "binding_state_to_kind": {
@@ -1438,11 +1438,11 @@
           }
         },
         "return_and_compatibility": {
-          "canonical_truth": "held_out_occurrence_resultsはparse済source rowごとのsource-order canonical atom|gap list。",
-          "legacy_gap_projection": "held_out_gapはcanonical result内のgap variantのみをsource orderで投影する。gap 0件=null、1件=既存単一record、2件以上=既存list。独立に再計算しない。",
+          "canonical_truth": "held_out_occurrence_resultsは実際にparseしたsource rowごとのsource-order canonical atom|gap list。母sourceのraw_utf8不足によるsource-level template_source_missingは原rowが無いためこのlistへ入れず、既存held_out_gapへ保持する。",
+          "legacy_gap_projection": "原source-level template_source_missingがある場合はその既存HeldOutGapをheld_out_gapへ保持する。その他はcanonical occurrence list内のgap variantだけをsource orderで投影し、gap 0件=null、1件=既存単一record、2件以上=既存listとする。raw不足のsource-level診断とparse済rowは当該母sourceで排他的であり、同診断をrow gapへ重ねない。二結果比較/Q/effectsは独立保持する。",
           "zero_one_many": "上記legacy_gap_projectionを一度だけ実施する。",
           "batch_projection": "raw batch全体と未関連indexはheld_out_batch_associationの一か所に保持し、各行のcandidate indicesはそのcarrierを参照する。",
-          "batch_absent_or_null": "batch Absent/nullからextraction_result_missingを作るのは、既存source診断が無く、eligible supported source rowであり、expected bindingが構造decodeおよび意味比較の双方で有効な場合だけ。先行source finding、unsupported row、binding Absent/null/wrong-kind/known mismatchでは元findingまたはsource_binding_missing/unknown/conflict/staleを保持し、batch不在由来gapを追加しない。すべての枝でbatch_inputのPresence/raw値、候補index、原span/idを保持する。held_out_source=nullでparsed rowが0件ならoccurrence list empty/held_out_gap null。raw_utf8 null/emptyは既存template_source_missingを保持する。",
+          "batch_absent_or_null": "batch Absent/nullからextraction_result_missingを作るのは、既存source診断が無く、eligible supported source rowであり、expected bindingが構造decodeおよび意味比較の双方で有効な場合だけ。先行source finding、unsupported row、binding Absent/null/wrong-kind/known mismatchでは元findingまたはsource_binding_missing/unknown/conflict/staleを保持し、batch不在由来gapを追加しない。すべての枝でbatch_inputのPresence/raw値、候補index、原span/idを保持する。held_out_source Absent/nullでsource診断もparsed rowも無ければoccurrence list empty/held_out_gap null。母source objectのraw_utf8 absent/null/emptyはsource-level template_source_missingを既存shapeで保持し、occurrence listは空。owner両portは非呼出しとし、owner/binding/candidate不足gapで元source診断を置換しない。raw expected/batchのPresenceと未関連indexは独立に保持する。",
           "old_callers": "旧callerのraw不在を勝手に補完しない。元source finding/比較結果/全返却を保存し、新logical contextが必要なeligible raw経路では同invocationの独立原operandを供給する。旧L5型/codec追随は未成立である。",
           "limits": "有限carrier/design範囲。全template対応、実資格、実extractor実行、全域入力保証を意味しない。"
         },
@@ -2715,15 +2715,15 @@
       "F01": 9,
       "F02": 9,
       "F03": 6,
-      "N01": 27,
+      "N01": 29,
       "B01": 4
     },
     "normal_and_counterexamples_are_synthetic": true,
     "formal_schema_codec_or_actual_execution": false,
     "n01_logical_wholes": {
       "old": 16,
-      "new": 11,
-      "total": 27,
+      "new": 13,
+      "total": 29,
       "old_whole_changed": 5,
       "old_whole_unchanged": 11,
       "partial_controls": 7,
