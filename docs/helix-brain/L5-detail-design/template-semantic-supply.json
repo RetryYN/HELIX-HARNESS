@@ -751,7 +751,7 @@
       "algorithm": [
         "RawValueをlogical型へdecodeする。形不正はInputIssue+input=null。semantic null/欠落slot/空factsはdecode可能のまま保持する。欠落配列を[]へdefaultしない。",
         "供給bytes/digest/decoded body一致を比較し、qualification_refを独立qualification_rootsからsubject/revision/scope/ownerへ解決する。自己資格/digest一致だけをresolvedにしない。資格不足原sourceはunusable_source_refsへ残す。",
-        "原sourceの相反factsはshape duplicateで捨てず意味比較へ渡す。未解決入力に依存する項目だけunknownへ保持し、無関係なqualified項目を比較する。実trust resolver/parser/資源予算はL6/L7で別に成立させる。"
+        "原sourceの相反factsはshape duplicateで捨てず意味比較へ渡す。未解決入力に依存する項目だけunknownへ保持し、無関係なqualified項目を比較する。trust resolver/parser/資源予算の具体化は、L6の関数設計と対L7の検証条件として後続で扱う。実装・実行の成立は層内設計と区別し、既存の後続工程とその成立条件に従う。"
       ],
       "failure_rules": [],
       "unit_case_refs": [
