@@ -362469,15 +362469,15 @@
         "expectation_basis": "raw source由来のsource operationはreasonsをAbsentとし、caller operationだけをexplicit_nullへ変更。L5のoperation_differencesとobserved(field)の宣言から、二findingとsummary absentを独立導出した。"
       },
       {
-        "record_kind": "R6追記訂正（公開済み履歴は不変）",
+        "record_kind": "R6 Minor追補と訂正",
         "corrects_review_findings": [
-          "L055D-R5-m1-residual",
-          "L055D-R6-m1",
-          "L055D-R6-m2",
-          "L055D-R6-m3"
+          "L055D-R5-m1 explicit-null residual",
+          "L055D-R6-m1 position_id comparison",
+          "L055D-R6-m2 synthetic raw basis",
+          "L055D-R6-m3 local history and probe count"
         ],
-        "published_history_policy": "expectation_corrections[0..13]は一切変更しない。row12の未識別説明も履歴として保持し、R6の解消内容を本rowに追記する。",
-        "basis": "現行L3/L4 F02/F03と6c526fd1b464b2dbf185be3e67aca950b17d2042のL5/L8 bytes。L5 FieldValue explicit_null/source bindingとL8 source packet/value locatorから期待をReader前に固定。現行L3/L4は母集団・理由・欠測/unknown保持とfailure非相殺を求めるが、ここでは要求意味を追加しない。",
+        "published_history_policy": "mainに統合済みのexpectation_corrections[0..13]は保持する。本PRで追加した同じ4所見の説明2行を1行へ整理した。整理前候補はgit commit 7417c673d4c8769f0ef2e15ba5735a6c417cc18b の同path/rows14,15で追跡できる。",
+        "basis": "6c526fd1b464b2dbf185be3e67aca950b17d2042を変更前として固定し、現行L3/L4要求・L5 FieldValue/source bindingとprobe rawを参照する。候補Readerの実行前に型付きinputと全返却期待を固定した。",
         "null_control": {
           "input_id": "LOCAL-DENOMINATOR-REASON-BOTH-SIDES-EXPLICIT-NULL",
           "pre_reader_freeze_sha256": "5f18facee1e189e0e82eb0b68a627275fa64b4cb87794afef0a7c993d44d3d5b",
@@ -362606,18 +362606,7 @@
           "current": 52,
           "all_return_wholes_after_addition": 135
         },
-        "overall_limit": "有限のsource-conformance対照。実provider/custody/qualification、全域のsource meaning equivalence、実装・CI・TDD・L11受入は証明しない。新gate/上流要求は追加しない。"
-      },
-      {
-        "record_kind": "R6 Minor追補の明確化（既存記録は保持）",
-        "corrects_review_findings": [
-          "L055D-R5-m1 explicit-null residual",
-          "L055D-R6-m1 position_id comparison",
-          "L055D-R6-m2 synthetic raw basis",
-          "L055D-R6-m3 local history and probe count"
-        ],
-        "published_history_policy": "expectation_corrections[0..14]を変更しない。R6 row14と公開履歴row0..13は保持し、この追記で4 findingの説明を明確化する。",
-        "basis": "6c526fd1b464b2dbf185be3e67aca950b17d2042を変更前として固定し、現行L3/L4要求・L5 FieldValue/source bindingとprobe rawを参照する。候補Readerの実行前に型付きinputと全返却期待を固定した。",
+        "overall_limit": "有限のsource-conformance対照。実provider/custody/qualification、全域のsource meaning equivalence、実装・CI・TDD・L11受入は証明しない。新gate/上流要求は追加しない。",
         "explicit_null_no_exclusion_control": {
           "probe_id": "LOCAL-DENOMINATOR-REASON-BOTH-SIDES-EXPLICIT-NULL",
           "pre_reader_freeze_sha256": "5f18facee1e189e0e82eb0b68a627275fa64b4cb87794afef0a7c993d44d3d5b",
