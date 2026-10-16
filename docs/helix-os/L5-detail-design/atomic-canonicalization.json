@@ -803,6 +803,176 @@
         "write_ref_axes_bytesはdecode後に再encodeしたbytesと完全一致し、decodeした値を元の完全なowner_ref/store_refとして返す。",
         "SQL NULL、JSON nullのbytes、空BLOB、column欠落を別の観測として扱う。"
       ]
+    },
+    "command_binding_codec": {
+      "block_id": "OS-L5-053-COMMANDBINDING-2BLOB-CODEC",
+      "codec_order": [
+        "identity_result_ref_bytesをstrict UTF-8/重複decoded key拒否/strict JSON/canonical bytes一致/閉Ref型の順で検査する。このBLOBが不成立ならaxesのtyped decodeと後段を評価しない。Refが成立した場合だけidentity_axes_bytesを同じmetadata codecと閉IdentityResult型で検査する。Base64はfixtureの搬送だけで、codec入口はimmutable bytes。",
+        "identity_result_ref_bytesをRefとして、identity_axes_bytesをIdentityResultとして、閉record shapeと必須/余分memberを検査する。各member名とRFC6901 pointer順を明示し、set反復に依存しない。",
+        "Ref/Locator/Base/IdentityResultが利用する既存Textを型検査し、非空Unicode文字列か確認する。Ref sha256のlowercase 64桁hex検査とclassification enum検査を後段で行う。",
+        "Ref BLOBとIdentityResult.result_refの完全値を比較する。意味正本Ref.sha256とprojection BLOB digestを混同しない。",
+        "既存row command_id、Plan、Resolutionと照合する。decode欠損は後段照合をnot_evaluatedとし、既存Finding/Result優先順位に戻す。",
+        "row照合が成立した後の4 checkはplan_identity_result_ref_matches_resolution_ref → resolution_ref_matches_axes_result_ref → plan_command_scope_bases_match_axes → resolution_value_matches_axesの順に評価し、全booleanを保持して最初の相違を診断する。command/scope/basesの相違pointerはgroup全体の/plan。"
+      ],
+      "existing_types_reused": {
+        "Base": "type_contract.type_model.Base",
+        "IdentityResult": "type_contract.type_model.IdentityResult",
+        "Locator": "type_contract.type_model.Locator",
+        "Ref": "type_contract.type_model.Ref",
+        "Text": "type_contract.type_model.Text",
+        "metadata_json_codec": "storage_model.row_codec.metadata_json_codec"
+      },
+      "limits": [
+        "完全CommandBinding（prior_episode_idsやoperation Locator等）の全復元を主張しない。",
+        "実DB、migration、runtime、portの実動作を主張しない。",
+        "S07 failure-only receiptの完全なproducer/reader/owner閉包やHARNESS052全接続を本blockで閉じたとしない。",
+        "既存sourceの承認意味、success/failure分岐、CAS、rollback、3 routes、receipt全体検証を変更しない。"
+      ],
+      "mapping": {
+        "binding_key": "Plan.command_idをrow command_idへ写し、IdentityResult.command_idと照合する。scope_ref、bases、identity_result_refのexact比較は既存OS契約に従う。",
+        "identity_axes_bytes": "同じResolution.valueの完全IdentityResultを既存metadata_json_codecのcanonical bytesで符号化する。callerが再構成・補完した値を用いない。",
+        "identity_result_ref_bytes": "既存Plan.identity_result_refに対するResolution(kind=identity_result,state=valid)の完全Refを、既存metadata_json_codecのcanonical bytesで符号化する。Ref.sha256はそのRefが指す意味正本bytesのdigestであり、identity_axes_bytesのdigestとは照合しない。",
+        "payload_digest": "HARNESS L5 os_projection.identity_result_projection.fields.payload_digestで定めるComparisonBody.current_identity.normalization.semantic_digestの全文Textを写す。codecで再hashしない。"
+      },
+      "scope": "既存command_bindingsのidentity_result_ref_bytesとidentity_axes_bytesを対象とするOS所有codec。公開関数・Result/Finding・table・authorityを追加しない。",
+      "source_pins": [
+        {
+          "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+          "sha256": "9065ae8c02a36e8670eba5a2ae4f1627ddc49a11a0e3a2e3156e3460205b4113",
+          "revision": "5574a1b00812dc9dae56d54631c5dcd53a3e5cb1"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/command-meaning-identity.json",
+          "sha256": "fc24266ab42289451e5a58a178f5adaf43d439d856271a9ab2a0617e72297945",
+          "revision": "5574a1b00812dc9dae56d54631c5dcd53a3e5cb1"
+        }
+      ],
+      "stage_binding": {
+        "S04_writer": "既存Plan/Resolution validation後、command binding rowをprepared writeする境界で2 BLOBを生成し、同transaction内のraw row readbackで元の完全Ref/IdentityResultと逆照合する。",
+        "S06_committed_reader": "既存ReadSnapshot/Receipt照合に用いる同じ固定read transactionから取得した既存command_bindings行の2 BLOBをlocal codecへ渡す。既存3 route/receipt全体の義務を置き換えない。",
+        "S07_failure_only_reader": "generation=NULLのfailure-only bindingを既存S07の失敗record read経路で読む場合に2 BLOBを同じlocal codecへ渡す。S05 committed-generation三routeへ混載しない。"
+      },
+      "status": "technical_design_candidate_not_runtime",
+      "source_revision": "5574a1b00812dc9dae56d54631c5dcd53a3e5cb1",
+      "local_observation_contract": {
+        "codec_decode": {
+          "decoded": {
+            "identity_axes": "all nine-field IdentityResult",
+            "identity_result_ref": "Ref",
+            "state": "decoded"
+          },
+          "invalid": {
+            "failure": {
+              "field_pointer": "Text",
+              "kind": "schema_invalid",
+              "reason": "Text"
+            },
+            "state": "invalid"
+          },
+          "mismatch": {
+            "failure": {
+              "field_pointer": "Text",
+              "kind": "result_ref_mismatch"
+            },
+            "identity_axes": "IdentityResult",
+            "identity_result_ref": "Ref",
+            "state": "mismatch"
+          }
+        },
+        "metadata": {
+          "raw_identity_axes_bytes_sha256": "64 lowercase hex",
+          "raw_identity_result_ref_bytes_sha256": "64 lowercase hex"
+        },
+        "plan_resolution_check": {
+          "matched": {
+            "checks": {
+              "plan_command_scope_bases_match_axes": true,
+              "plan_identity_result_ref_matches_resolution_ref": true,
+              "resolution_ref_matches_axes_result_ref": true,
+              "resolution_value_matches_axes": true
+            },
+            "state": "checked",
+            "status": "matched"
+          },
+          "mismatch": {
+            "checks": "all four named checks are boolean",
+            "failure": {
+              "actual": "JSON value",
+              "check": "one named check",
+              "expected": "JSON value",
+              "field_pointer": "Text",
+              "group": "optional Text; present only for a group diagnostic"
+            },
+            "state": "checked",
+            "status": "mismatch"
+          },
+          "not_evaluated": {
+            "because": "Text",
+            "state": "not_evaluated"
+          }
+        },
+        "row_key_check": {
+          "matched": {
+            "command_id": "Text",
+            "state": "checked",
+            "status": "matched"
+          },
+          "mismatch": {
+            "axes_value": "Text",
+            "field_pointer": "Text",
+            "row_value": "Text",
+            "state": "checked",
+            "status": "mismatch"
+          },
+          "not_evaluated": {
+            "because": "Text",
+            "state": "not_evaluated"
+          }
+        }
+      },
+      "observation_boundary": "local_observation_contractはL8の局所観測形。公開Result/Findingへの追加variantではない。decoderのinvalid/mismatchを実運転の成功又は資格成立へ変換しない。既存public Findingの完全な呼出し別結線はこの局所oracleの完了範囲に含めない。",
+      "validation_detail": [
+        "閉recordのmissingを先に、次にextraをfield名順で一件診断する。Ref/LocatorのText型と非空はfield名順、IdentityResultのTextはpointer順。型・構造を確認してからenum集合への照合を行い、配列/objectを集合keyとして扱わない。",
+        "IdentityResultは閉shape→classificationのText型→bases配列→prior_operation_refの閉Locator→各Base閉shape→nested Refのpointer順照合→Text型/非空のpointer順→classification enumの順。nullable prior_*はmember必須、null値のみ許す。",
+        "Refのsha256は既存lowercase64hex、他4軸は既存非空Text。Locatorはsha256を持たない4軸。原payload_digestは型検査して全文を保存し、このcodecで意味digestを計算・補完しない。",
+        "入力domainは既存S01/S04のPlan/Resolution供給とrow projection。L8の不一致入力は結線を意図的に変えた局所観測で、S01を通ったvalid operationの実証ではない。"
+      ],
+      "failure_projection": {
+        "pointer_roots": {
+          "ref_blob": "Ref BLOBのdecode/型診断は/identity_result_ref_bytesをrootとする。",
+          "axes_blob": "IdentityResult BLOBのdecode/型診断は/identity_axesをrootとする。",
+          "row": "row command_id不一致は/command_id。"
+        },
+        "checks": [
+          {
+            "check": "plan_identity_result_ref_matches_resolution_ref",
+            "field_pointer": "Plan.identity_result_refがaxes.result_refと一致する場合は/resolution/ref。それ以外は/plan/identity_result_ref。",
+            "expected": "Plan.identity_result_refがaxes.result_refと一致する場合はPlan.identity_result_ref。それ以外はResolution.ref。",
+            "actual": "Plan.identity_result_refがaxes.result_refと一致する場合はResolution.ref。それ以外はPlan.identity_result_ref。"
+          },
+          {
+            "check": "resolution_ref_matches_axes_result_ref",
+            "field_pointer": "/resolution/ref",
+            "expected": "axes.result_ref",
+            "actual": "Resolution.ref"
+          },
+          {
+            "check": "plan_command_scope_bases_match_axes",
+            "field_pointer": "/plan",
+            "group": "command_scope_bases",
+            "expected": "axesのcommand_id/scope_ref/basesを持つ3member record。",
+            "actual": "Planのcommand_id/scope_ref/basesを持つ3member record。"
+          },
+          {
+            "check": "resolution_value_matches_axes",
+            "field_pointer": "/resolution/value",
+            "expected": "axesの完全IdentityResult。",
+            "actual": "Resolution.valueの完全値。"
+          }
+        ],
+        "selection": "4 checkの全booleanを保存し、codec_orderが定める順の最初のfalseだけをfailureへ投影する。check1で両側ともaxes.result_refと異なる場合も上記の「それ以外」枝を使う。ここで一方の資格・意味の正当性を再認定しない。",
+        "blob_pair": "Ref BLOBとaxes.result_refが不一致ならcodec_decode.state=mismatch、failure.kind=result_ref_mismatch、field_pointer=/identity_axes/result_ref。row/Planの後段はnot_evaluated。"
+      }
     }
   },
   "functions": [
