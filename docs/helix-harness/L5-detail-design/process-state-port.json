@@ -1066,7 +1066,8 @@
       "input": {
         "context": "ProcessContext",
         "original_sources": "SourceCell map（各対象の独立原資料）",
-        "candidate": "ProcessAssessment | null"
+        "candidate": "ProcessAssessment | null",
+        "source_qualifications": "L4 source qualification sidecar。context_stateとby_source_cellで各SourceCellをJSON Pointerへ直接結び、carrierとbinding/producer/origin_operationを独立保持する。"
       },
       "output": {
         "partial_values": {
@@ -1101,7 +1102,9 @@
         "L9のinterface/dependency_direction/state_data_ownership/transaction/failure_propagation/retry/timeout/idempotency/coupling/responsibility_duplicationを原期待/観測で個別比較する。ひとつの未観測を成功や空へ変えず、他9観点と谷証拠を保持する。",
         "明確なdesign/implementation drift、origin欠落、同種finding再発、性能退行、Incident恒久対策、Scrum Reverse checkpoint、大きな設計退行の原資料から発行条件を区別する。通常照合はticket候補none。threshold/観測window/metric値を合成例から製品規格へ採用しない。",
         "小さな意味保存境界Refactorはcurrent_Forward、独立構造/横断/architecture/性能改善はRefactor/Design-refactor/Performance-refactor候補。behavior/architecture/requirement/stateの意味差はBackflowへ返し、当該上流ownerの意味を局所Refactorで上書きしない。",
-        "candidateを原資料と別に照合し、通常照合で全体Reverse/新ticket、HARNESS発行、谷から品質/Accepted/Release、候補からReverse実行成功を生成しない。ticket_issuerは責務意味OS、実発行と実記録はOSが保持する。"
+        "candidateを原資料と別に照合し、通常照合で全体Reverse/新ticket、HARNESS発行、谷から品質/Accepted/Release、候補からReverse実行成功を生成しない。ticket_issuerは責務意味OS、実発行と実記録はOSが保持する。",
+        "L4 source-binding roleを既存stateから選び、source_binding_detailに従って原SourceCell・independent assignment relation・qualification sidecarを別々に解決する。各producerを固定typed argumentsでeffect:none呼出しし、完全actual returnをraw SourceCellと別のprivate same-call recordへ結ぶ。",
+        "source-binding missing/unknown/conflictは対応するF03/F04状態の既存PartialValue依存だけへ伝播する。候補、上位/後続proof、他roleの既知call returnを欠落値の補完に使わない。"
       ],
       "detail_state": "draft_basic_typed_qualification_and_valley_content_pending_review",
       "reverse_detail": {
@@ -1447,7 +1450,8 @@
         "qualification_rule": "各source資格を独立に読む。合成正常基準に対する単一資格不足matrixは該当依存結果のみstate/null。混在状態は個別診断を保持し、同一結果の複数異種不足はunknown/null。実作用6項目のfalseと発行責務OSは設計の不変値であり実資格ではない。",
         "valley_content_rule": "凍結→本体前Red実観測→最小Green→意味保存Refactor→変更後HEADの再検証を同一oracleへ結ぶ。Red未実行/欠陥未検出、凍結後付け、Greenの別oracle、Refactor意味変更、変更前HEAD/未実行/退行した再検証は谷のconflictでありProvisionalを成立させない。他の独立sourceの対/観点/trigger結果は保持する。"
       },
-      "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。"
+      "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。",
+      "source_binding_detail_ref": "/source_binding_detail/role_adapters/005_valley"
     },
     {
       "id": "HARNESS-L5-003-F04",
@@ -1466,7 +1470,8 @@
       "input": {
         "context": "ProcessContext",
         "original_sources": "SourceCell map（各対象の独立原資料）",
-        "candidate": "ProcessAssessment | null"
+        "candidate": "ProcessAssessment | null",
+        "source_qualifications": "L4 source qualification sidecar。context_stateとby_source_cellで各SourceCellをJSON Pointerへ直接結び、carrierとbinding/producer/origin_operationを独立保持する。"
       },
       "output": {
         "partial_values": {
@@ -1491,7 +1496,9 @@
         "Release-eligibleはF05通常Portの対象必須条件集合と各原観測、DeployedはOSの同artifact/digest/対象環境実配備、ObservedはL12↔L1の運用時間軸/価値軸/原運用記録と還流先をそれぞれ別に照合する。受入/配備を次状態の代替にしない。",
         "各状態固有の部分結果を全て保持し、knownの必要状態順序についてWorkingから連続して成立した条件frontierだけを返す。途中欠落より後の原証拠は消さず、後続状態成立への穴埋めにも使わない。Working根拠も未成立ならfrontierを当該state/nullへする。",
         "既知状態集合のmissing/conflictを個別に列挙し、該当原証拠/理由/ownerへ返却候補を渡す。未知集合/source資格を空集合/falseへ補わず、無関係scopeを一括停止しない。",
-        "照合結果は状態成立の条件材料のみで、actual_state_update/actual_completionはfalse、operation_effectはnone。状態の実保存/実更新はOS、受入や配備の実作用は当該ownerが所有する。"
+        "照合結果は状態成立の条件材料のみで、actual_state_update/actual_completionはfalse、operation_effectはnone。状態の実保存/実更新はOS、受入や配備の実作用は当該ownerが所有する。",
+        "L4 source-binding roleを既存stateから選び、source_binding_detailに従って原SourceCell・independent assignment relation・qualification sidecarを別々に解決する。各producerを固定typed argumentsでeffect:none呼出しし、完全actual returnをraw SourceCellと別のprivate same-call recordへ結ぶ。",
+        "source-binding missing/unknown/conflictは対応するF03/F04状態の既存PartialValue依存だけへ伝播する。候補、上位/後続proof、他roleの既知call returnを欠落値の補完に使わない。"
       ],
       "detail_state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
       "state_detail": {
@@ -1866,7 +1873,8 @@
         },
         "qualification_rule": "状態root/bindingと各工程・観測・人間原受入・AI解釈・Port条件・配備・運用原材料を個別に照合する。状態固有資格が未成立でも他状態の原結果を保持し、連続frontierは最初の未成立の前で止める。原受入の資格不足をAI解釈で補わない。"
       },
-      "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。"
+      "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。",
+      "source_binding_detail_ref": "/source_binding_detail/role_adapters/005_valley"
     },
     {
       "id": "HARNESS-L5-003-F05",
@@ -6044,5 +6052,84 @@
     "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2993#issuecomment-6130558104",
     "F1": "43case/fieldのflat→typed写像をexact basic hashと理由付きで記録。L9原bytes無改変。独立再review未成立。",
     "F2": "Green未実行/期待不一致の谷原内容反例2件を追加。実TDD未実行。"
+  },
+  "source_binding_detail": {
+    "l4_contract_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/3/source_binding_connection",
+    "state_role_matrix_pointer": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/4/source_binding_connection/roles_by_state",
+    "purpose": "F03/F04の既存source・資格・状態出力を同一対象のproducer callへ結び、既存部分返却値の成立条件を具体化する。新しい公開helper/API、source authority、receipt、資格root、承認規則は加えない。",
+    "input_contract": {
+      "source_qualifications": "F03/F04の入力に追加する独立sidecar。既存F01/F02のsource_qualificationsと同じくcontext_stateとby_source_cellを持つ。",
+      "by_source_cell": "配列順を保持する。各行のsource_cell_pointerをF03/F04呼出しinputの /original_sources/{key} へ解決してSourceCellと結ぶ。map keyはlocatorに限りproducer roleを推測しない。該当行なしはsidecar状態missing、同じpointerへの重複行はunknown、余分行・不一致pointerは原順/原値を保つ。",
+      "qualification_axes": "SourceCell.qualification_stateとsidecar.binding/producer/origin_operationを個別に保持し、L4 qualification_input_shape.reductionの規則でroleごとに集約する。context_stateはこの4状態へ混ぜない。SourceCellの6 fieldは増やさない。"
+    },
+    "private_projection_and_call_record": {
+      "assignment_relation_source": "入力 original_sources内の独立SourceCell。original_contents.assignment_ref、business_endpoint、caller_context_endpoint、profile_context_associationsを原値として読む。business/producer raw SourceCellとは別Ref・別資格を持つ合成設計入力であり、実lineageや実資格を証明しない。",
+      "association_selection": "L4で宣言されたstate/roleを使い、assignment relation内profile_context_associationsのrole値で対象associationを選択する。0件はmissing、複数はunknown。map key、資料名、内容shapeからroleを推測しない。source_cell_refとoperation_refはSourceCell.binding/producer call bindingの原値へ個別照合し、片方で他方を補完しない。",
+      "record_fields": {
+        "source_cell_ref": "実際に読み取ったraw SourceCell.ref",
+        "source_cell_content_sha256": "call recordに対応するraw SourceCell.original_contentsの固定bytes/content識別値",
+        "assignment_source_cell_ref": "独立assignment relation SourceCell.ref",
+        "assignment_ref": "role associationが保持する原Ref",
+        "operation_ref": "producer原入力に明示されたoperation Ref",
+        "function_ref": "固定callee symbol",
+        "argument_snapshot_sha256": "calleeへ実際に渡す完全typed arguments snapshotの識別値",
+        "arguments": "calleeへ渡した完全typed arguments。元SourceCellへ書き戻さない。",
+        "returned_value": "effect:noneの既存pure calleeを当該argumentsで呼んだ実返却値。test expected値から作らない。",
+        "operation_effect": "none"
+      },
+      "retention": "private call recordはL4 producer_call_connection.returned_materialが要求する同一function・原operation・完全引数snapshotに束縛した派生viewとして保持する。raw SourceCellと別記録にし、元SourceCell.ref/binding/kind/original_contents/qualification_state/qualification_reasonを改変せず、returned_valueをraw original_contentsへ追加しない。L8 expected_invocationsは比較用test oracleだけで、caller inputではない。"
+    },
+    "role_adapters": {
+      "005_valley": {
+        "callee": "HARNESS-L5-005-F07 compare_tdd_observation_order",
+        "scope": "F03およびF04 Provisional",
+        "input": "実呼出しでは選択された005_valley SourceCell.original_contents.originalと.sourcesを、それぞれF07VerificationInput.originalとVerificationSourcesへ原値のまま対応づける。005_valleyのraw原資料にcandidate observationは供給されないため、このprivate pure-callではcallee引数candidateをField.missingとして明示構成する。これはH003トップレベルcandidateのProcessAssessment|nullから変換・推測せず、L8 normal_callも引数供給源にしない。L8はこの有限合成callの引数/返却を照合する例である。",
+        "return": "Comparison<F07VerificationObservation>全体をprivate call recordで保持する。"
+      },
+      "015_flow": {
+        "callee": [
+          "HARNESS-L5-015-F01 project_source_packet",
+          "HARNESS-L5-015-F04 evaluate_contract_semantics"
+        ],
+        "scope": "F03およびF04 Provisional",
+        "input": "実呼出しでは選択された015_flow SourceCell.original_contents.packet_call_input.packetをF-015-01のpacketへ、同じobjectのcanonical_owner_byte_sha256を第2引数へ対応づける。F-015-04のinput/rulesは同cell.original_contents.semantic_call_input.input/rulesから対応づける。packet/hashおよびinput/rulesの全値を型宣言どおり渡し、SourcePacket/owner_materialのnested FieldValueをflattenせず、両calleeを別々のprivate call recordへ記録する。L8 normal_callは引数供給元でなく、固定された有限例のcall結果を照合するtest oracleである。",
+        "return": "BoundSourcePacketとSemanticEvaluation全体を各private call recordで保持する。qualification_kind等のmetadataを実資格へ昇格しない。"
+      },
+      "005_composition": {
+        "callee": "HARNESS-L5-005-F02 compare_proof_composition",
+        "scope": "F04 Verified",
+        "input": "実呼出しでは選択された005_composition SourceCell.original_contents.original/.sourcesをF02VerificationInput.original/VerificationSourcesへ原値のまま対応づけ、同cell.original_contents.candidateをF02のField<F02VerificationObservation>として型に沿ってdecodeする。この有限例ではraw candidateのField状態はmissingであり、F07の谷結果を固有proofの代替にしない。L8 normal_callは引数供給元ではなく、固定された有限例のcall結果を照合するtest oracleである。",
+        "return": "Comparison<F02VerificationObservation>全体をprivate call recordで保持する。"
+      },
+      "022_difference": {
+        "callee": "HARNESS-L5-022-F03 compare_verified_system_difference",
+        "scope": "F04 Verified",
+        "raw_source_cell": "H022 SourceCell.original_contentsのarguments/source_packet/context_packet/call_binding 4 memberを完全保持する。元H022 fixtureへtarget_operation/evidence_selection_basisを追記しない。",
+        "system_difference_input": "typed SystemDifferenceInputはraw H022 arguments.inputから取得する。arguments.inputはcandidate側入力であり、他memberから補完しない。",
+        "system_difference_context": "独立SystemDifferenceContextはraw H022 arguments.contextから取得する。独立snapshotはcontext_packet.refとcontext_packet.raw_utf8を別々に読み、raw_utf8をJSON decodeした値を保持し、arguments.contextと照合する。片方から他方を生成しない。",
+        "evidence_selection_basis": {
+          "source_ref": "raw H022 source_packet.ref",
+          "raw_utf8": "raw H022 source_packet.raw_utf8",
+          "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+          "source_path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json#/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
+          "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
+          "raw_utf8_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
+          "raw_utf8_byte_length": 10171,
+          "projection": "source_packet.raw_utf8をstrict JSON decodeし、materials/evidence_materialsを同一取得snapshot内から選択する。source_packet rawのdecodeがarguments.inputと一致することを別比較する。取得元は固定revision/pathでありrepository latestやtest expectedから補完しない。"
+        },
+        "operation_binding": "operation_refはraw H022 call_binding.operation_refを用いる。SourceCell.binding.operation_refおよび独立assignment relationの022 operation_refと全値一致を確認し、旧OP-022へaliasしない。function_refもcall_binding.function_refと固定callee symbolを照合する。",
+        "limit": "H022の同一packet rawから作った論理viewであり、物理的に独立した取得、実source lineage、実資格、runtime executionを証明しない。"
+      }
+    },
+    "state_application": {
+      "F03": "F07のComparison.observation内のfreeze_before_body/target_transition/postimplementation_mutation_role/implementation_completion/same_oracle/real_red_before_body/red_before_green各ObservationField、そのissues/candidate_differences/effectsを個別に保持し、既存F03 valley_resultの根拠へ使う。F-015-01のBoundSourcePacket（source_packet_ref/canonical_owner_ref/byte hash/pointers/payload type/source_change）とF-015-04のSemanticEvaluation（semantic_state/findings等）は各SourceCell資格・sidecar資格と別に保持し、要求された原source/semantic側の照合材料として使う。既存依存上必要なF07/015結果のstateがknownであるだけでは成功にしない。F07のfreeze_before_body、same_oracle、real_red_before_body、red_before_green等、既存valley_content_ruleが成功条件として指定する値が適合し、必要な015側照合も成立するときだけvalley_resultをknownの成功値にし、state_ceiling_from_valley.valueをProvisionalとする。known(false)や既知の順序・同oracleの不一致は既存conflict処理へ残し、missing/unknown/conflict/staleは対応する依存PartialValueだけへ反映してvalue=nullにする。F07 candidate引数のField.missingは候補比較未依頼の意味で、computed observationの欠落と同一視せず、返却ObservationFieldとissuesで判定する。source binding不足は依存先へ局所化し、他のsource/対/観点を保持する。",
+      "F04": "既存8状態proofを全て個別に評価し保持する。005_valley Comparison.observation内の各ObservationFieldとissues/candidate_differences、015 BoundSourcePacket/SemanticEvaluationの必要memberおよび資格をProvisional own_basis_supportのProvisional要素に適用する。005_compositionのComparison.observation内のvalid_lower_subjects/unique_required_refs/unique_unproven_refs/mechanical_composition/lower_details/missing_lower_subjects/unique_details/combination_contract/upper_inventoryとissues/candidate_differencesをVerified要素の下位・組合せ・固有証明の材料にする。022 SystemDifferenceResult.valueのwhole_obligations/lower_expressible_obligations/system_unique_obligations/proof_results/proof_findings/unresolved_proofs/owner_return_candidates/verified_candidate等を同じVerified要素の上位差分材料として保持する。各状態の結果は既存PartialValue vocabulary（knownならvalue、missing/unknown/conflict/staleならvalue=null）と既存 qualification_dependencies/state_detail に従い、必要な原証拠と選択roleが揃うかを判断する。missing_basis/conflicting_basisには各stateの既知不足/相反を対応づけ、contiguous_frontierはWorkingから連続して成立する既存state順で導く。Verified/Observed callerには必要Provisional rolesも含める。022 missing-carrier対照ではraw SourceCell直下のqualification_state member自体が欠落している形を維持し、独立sidecarのbinding=knownは変更しない。資格foldのmissingはlogical resultとしてVerified側へ局所反映し、raw carrierにmissing値が存在したと書き換えない。後続の読める原proofを削除・補完しない。",
+      "legacy_whole_cases": "既存F03 43件/F04 30件のL8 whole oraclesは変更しない。追加した有限callerは既存whole return全体の比較を行い、source-binding内部callのtest-only expected recordsは元whole返却と別に照合する。"
+    },
+    "limits": [
+      "合成callerは選んだ有限入力の純粋関数設計例であり、実provider/owner資格/実call/実CIではない。",
+      "既存F03/F04の公開partial values以外へ新しい資格/承認/output memberを追加しない。",
+      "L5 wire codecが追加source_qualificationsやH022 role adapterを実受理するという主張はせず、正式型/codecとの接続検証を後続作業として明示する。"
+    ]
   }
 }
