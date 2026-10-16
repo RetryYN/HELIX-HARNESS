@@ -120,13 +120,13 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
-      "revision": "6ba0eeb86b38195cc81c4863f5db94416632cb1b",
-      "sha256": "25ee64268047019d45a8d87e07aef6cc91de826fe0430b38f40f842170b96cf0"
+      "revision": "30d0df41916694206c05b269080a1795b96dc2d0",
+      "sha256": "842fb0fd24707188f7d38b0e3e89aa33bd3cb97051fc2a85b700552d267ea10f"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
-      "revision": "721822ed8dd941e33042562e18134bc97deb285b",
-      "sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10"
+      "revision": "30d0df41916694206c05b269080a1795b96dc2d0",
+      "sha256": "ec645833b721b027f1dadda5f5223bf93d7fce11904bb8ed3fd639ff3a87455d"
     },
     {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
@@ -1279,7 +1279,9 @@
           "qualified_os_record_candidates": "Array<JsonValue>",
           "validated_input_candidate": "Field<JsonValue>",
           "validated_candidate_source_projection": "Field<JsonValue>",
-          "candidate_input_state": "enum<not_compared|corresponding|missing|conflict|unknown>"
+          "candidate_input_state": "enum<not_compared|corresponding|missing|conflict|unknown>",
+          "candidate_item_occurrences": "Array<F04CandidateItemOccurrence>（一致itemが複数あるraw candidate側だけ。元index・順序・全raw itemを保持）",
+          "validated_input_item_occurrences": "Array<F04CandidateItemOccurrence>（一致itemが複数あるtrace入力candidate側だけ。元index・順序・全raw itemを保持）"
         },
         "required_fields": [
           "selected_output_ref",
@@ -1306,7 +1308,9 @@
           "os_context",
           "obligation_original_states",
           "validated_input_candidate",
-          "validated_candidate_source_projection"
+          "validated_candidate_source_projection",
+          "candidate_item_occurrences",
+          "validated_input_item_occurrences"
         ],
         "meaning": "Field memberはpresent nullやwrong-kindを含むraw値を保持する。whole OwnerRecordと選択されたpointer値の双方を、局所診断可能な形で残す。各carrierとCORE rowの個別比較は別々に保持し、carrier_core_row_stateには集約状態を示す。carrier_core_row_stateはcandidate_core_row_stateとqualified_os_core_row_stateの2つのCORE row比較状態だけを集約し、conflict > unknown > corresponding > missing > not_comparedの順で決める。candidate/OS carrier間の既知不一致はcandidate_os_field_stateへ保持し、このCORE row aggregateへ混ぜない。raw carrierとprimary CORE rowはそれぞれ原値で保持する。 OS associationが複数一致する場合、qualified_os_record_candidatesへ全候補を原順で保持し、qualified_os_recordは省略する。 candidateとtrace input candidateの重複保存値は別々に保持する。candidate_input_stateがcorrespondingの場合だけ、candidate側carrierとしてOS/CORE比較へ進める。不一致時に一方を採用しない。 source locatorに対応するCORE sourceがconflicting_source_refsにのみ存在するときはconflictとして伝播し、単なる未観測/未資格とは区別する。 association cardinalityごとの個別CORE-row stateはassociation_state_rulesで固定し、association不足/曖昧を別のCORE locatorが存在しないことと混同しない。",
         "source_l4_pointer": "/contracts/5/qualified_source_projection_join/logical_return_shape/RecordObservation"
@@ -1359,9 +1363,11 @@
           "qualified_os_associations": "F04QualifiedOwnerRecordOccurrence[]",
           "qualified_core_projection_sources": "F04QualifiedOwnerRecordOccurrence[]",
           "local_decode_states": "F04ProjectionSelectorDecodeState[]",
-          "selection_input": "Field<JsonValue>（operation profile caller input。candidate/sourceから推定しない）"
+          "selection_input": "Field<JsonValue>（operation profile caller input。candidate/sourceから推定しない）",
+          "candidate_raw_occurrences": "F04CandidateItemOccurrence[]（raw candidate.core_outputsがarrayのとき全要素を元index順に保持。無い/不正なら空）",
+          "validated_raw_occurrences": "F04CandidateItemOccurrence[]（ValidatedRecordTrace.input.candidate.core_outputsがarrayのとき全要素を元index順に保持。無い/不正なら空）"
         },
-        "meaning": "F04 profile専用selector decoderの結果。candidate_input_stateはraw candidate全体とValidatedRecordTrace.input.candidate全体の比較状態。両値がcorrespondingの場合だけ両typed item配列をdecodeする。conflict/unknownではtyped配列をField.missingのまま保ち、各raw側はraw_candidate/validated_candidate_rawから独立保持する。選択Refと完全一致するraw output_ref occurrenceのraw item memberは、typed化せず各側別に結果へ転写できる。0件はmissing、複数は元順/重複を保持した配列であり、片側を選択・補完しない。OS/CORE recordはvalidatorが返すqualified_recordsだけから選び、candidateや未資格payloadで資格記録を補完しない。"
+        "meaning": "F04 profile専用selector decoderの結果。candidate_input_stateはraw candidate全体とValidatedRecordTrace.input.candidate全体の比較状態。両値がcorrespondingの場合だけ両typed item配列をdecodeする。conflict/unknownではtyped配列をField.missingのまま保ち、各raw側はraw_candidate/validated_candidate_rawから独立保持する。選択Refと完全一致するraw output_ref occurrenceのraw item memberは、typed化せず各側別に結果へ転写できる。0件はmissing、複数は元順/重複を保持した配列であり、片側を選択・補完しない。OS/CORE recordはvalidatorが返すqualified_recordsだけから選び、candidateや未資格payloadで資格記録を補完しない。 raw candidateとValidatedRecordTrace.input.candidateのcore_outputs occurrenceは、別のcandidate_raw_occurrences/validated_raw_occurrencesへ元indexとraw_item全体を保持する。このraw preservationは既存typed candidate_input/validated_input_candidate Fieldの意味を変えない。"
       },
       "F04OSCoreOutputAssociationPayload": {
         "fields": {
@@ -1434,6 +1440,13 @@
           "source_output_association": "Field<JsonValue>"
         },
         "meaning": "F04選択profile専用のclosed candidate decode型。F04RecordInputの共通memberに加えてsource_projectionを含む各core_outputs itemをraw presence/null/wrong-kind/valueを保ってdecodeする。profile未選択時の既存F04RecordInput decoderを置換・緩和しない。 本型はraw CaseInput全体ではなく、下記declared_member_projectionで得る宣言3memberだけの値である。unrelated_raw等の非対象memberは元CaseInputへ保持し、本型へ混入・消去・受理しない。core_outputs配列内のitemはF04ProjectionCandidateItemとして引き続きclosedである。"
+      },
+      "F04CandidateItemOccurrence": {
+        "fields": {
+          "item_index": "integer >= 0 (raw core_outputs array index)",
+          "raw_item": "JsonValue"
+        },
+        "meaning": "一つのraw core_outputs occurrenceを元indexと原JSON item全体で保持する。raw配列内のitem順・重複・member presence/nullは変換せず保持し、output_ref/source_projectionの値を根拠に別occurrenceへ統合しない。"
       }
     },
     "input_types_by_contract": {
@@ -1841,7 +1854,8 @@
         "candidate_pair_precheckは選択item decodeの可否だけに使い、最終状態の証拠にはしない。ここでValidatedRecordTrace.input.candidate Fieldの存在/shapeを確認し、operation.candidate全体とvalidator後のcandidate全体をJSON値比較する。object key順は無視し、配列順/重複・member presence/nullは保持する。後比較のcorresponding/conflict/unknownが最終candidate_input_stateとなり、validated input/candidate Fieldがmissing/invalidならunknownとする。",
         "candidate_pair_precheckと検証後比較がともにcorrespondingの場合だけ、宣言3memberを投影して両core_outputsをF04ProjectionCandidateItemへclosed decodeする。conflict/unknownでは両typed arraysをField.missingにして片側itemをtyped選択しない。 raw itemの局所転写は後続compare_f04_source_projection_joinで独立に行い、raw全体も両保存元へ保持する。",
         "ValidatedRecordTrace.qualified_recordsだけを読み、section_key + record_kind + payload selectorの固定bindingでqualified OS002.CoreOutputAssociationとCORE009.SourceResultProjectionRow occurrenceをprofile型へdecodeする。元OwnerRecord/source classification/issue配列は変更しない。",
-        "operation.source_projection_selectionをField<JsonValue>としてraw保存する。nonempty/empty/invalid分岐はjoin comparerに渡し、selector入力をcandidate/sourceから導出しない。"
+        "operation.source_projection_selectionをField<JsonValue>としてraw保存する。nonempty/empty/invalid分岐はjoin comparerに渡し、selector入力をcandidate/sourceから導出しない。",
+        "raw candidateとValidatedRecordTrace.input.candidateの各core_outputsがarrayの場合、selector評価用typed decodeと独立して、全raw itemを側別F04CandidateItemOccurrence(item_index, raw_item)へ元index順・重複保持で写しF04ProjectionTypedInputs.candidate_raw_occurrences/validated_raw_occurrencesに渡す。arrayでない側からoccurrenceを合成しない。元ValidatedRecordTrace.qualified_records、source classification、issue配列は変更しない。"
       ],
       "source_bindings": [
         {
@@ -1874,10 +1888,17 @@
         "HELIXOS-L8-002-F04-PROJECTION-16",
         "HELIXOS-L8-002-F04-PROJECTION-17",
         "HELIXOS-L8-002-F04-PROJECTION-18",
+        "HELIXOS-L8-002-F04-OCCURRENCE-01",
+        "HELIXOS-L8-002-F04-OCCURRENCE-02",
+        "HELIXOS-L8-002-F04-OCCURRENCE-03",
+        "HELIXOS-L8-002-F04-OCCURRENCE-04",
+        "HELIXOS-L8-002-F04-OCCURRENCE-05",
+        "HELIXOS-L8-002-F04-OCCURRENCE-06",
+        "HELIXOS-L8-002-F04-OCCURRENCE-07",
         "HELIXOS-L8-002-F04-DISPATCH-PAIR-UNKNOWN"
       ],
       "oracle_ref": "HELIXOS-L8-002-NORMAL-run_f04_source_projection_operation",
-      "oracle_binding": "L8 normal run oracleの18 invocation内で本関数へ到達し、各L9固定join recipeとvalidator期待へ照合する。独立した本関数専用NORMAL oracleを新設した意味ではない。",
+      "oracle_binding": "既存18ケースにL9統合occurrence 7ケースを加えた25件のvalidator到達可能integration入力で関数経路を照合する。direct PAIR-UNKNOWNとdispatch境界例はそれぞれ別のunit boundary oracleであり、この25件の件数へ混ぜない。",
       "typed_decode_sequence_ref": "/wire_codec_contract/f04_source_projection_profile_dispatch/typed_decode_sequence"
     },
     {
@@ -1891,20 +1912,20 @@
       "effect": "none",
       "algorithm": [
         "F04ProjectionTypedInputs.selection_inputがmissingまたは閉じたF04SourceProjectionSelectionでoutput_refs=[]ならField.missingを返し、empty object/sentinelを生成しない。invalidはraw selectionを保持する局所unknown result。",
-        "candidate_input_stateは最初に確認する。conflict/unknownではcandidate側の比較stateはL4 candidate_state_priorityに従ってunknownとし、一方を採用しない。各selected_output_refについてraw_candidateとvalidated_candidate_rawのcore_outputsを独立走査し、完全一致するraw output_ref occurrenceのraw fieldsを該当側のField<JsonValue>へ保持する。typed item arraysがmissingでもこのraw保持は行い、OS association・OS carrier・CORE sourceは候補側状態と独立に評価する。",
-        "nonempty selectionはcaller順・重複を保ち、各Ref出現ごとに1 recordを返す。corresponding pairではtyped output_refとの比較を行う。conflict/unknown pairでは型解釈をせず、L4のJSON値等値（object key順は無視、配列順/重複は保持）で各raw itemのoutput_refとselected_output_refを照合する。candidate側はitem.output_ref→candidate_output_ref、item.source_projection→candidate_source_projection、ValidatedRecordTrace.input側はraw item全体→validated_input_candidate、item.source_projection→validated_candidate_source_projectionへ、各wire memberのpresenceと値をそのまま写す。各側・各memberで0 occurrenceはField.missing、1 occurrenceは原値（nullを含む）、複数は原順/重複を保つJSON配列としてField.suppliedへ置く。raw全体は常に別保存元で保持する。",
-        "OS associationはValidatedRecordTrace.qualified_recordsにあるsection_key/record_kindを持つqualified OS recordだけから選択する。0件はmissing、複数件は全候補を元順で保持するambiguousで、先頭を選ばない。候補/未資格OS payloadからCORE locatorを補完しない。資格済みOS association occurrenceが存在しても、source qualification・record decode・選択Refとの対応のいずれかで一意性を確定できない場合はassociation_state=unknownとし、全該当raw occurrenceを保持して単一OS record/carrierを選ばない。",
-        "一意qualified OS associationからだけsource_projectionのsnapshot Ref/pointerを取得する。OS carrier absent/null/wrong-kind、CORE source absent/unqualified/conflicting、pointer unresolvedをL4 association_state_rules/unknown localityに従って別々に保持する。",
-        "candidate CORE carrierとqualified OS carrierを同一のqualified CORE rowへ別々に比較する。carrier_core_row_stateはL4の2つのCORE row状態だけを集約し、candidate/OS間conflict、candidate input conflict、association cardinalityを混ぜない。",
+        "candidate_input_stateはcandidate_state_priorityの最優先条件。conflict/unknownならcandidate側二状態はunknown。corresponding時も、選択Refに一致する候補occurrenceが各側で複数ならcandidate側二状態をunknownとし、association missing/ambiguous等のnot_comparedで上書きしない。candidate_raw_occurrences/validated_raw_occurrencesは別側で走査し、selected_output_refとraw_itemがobjectでitem.output_refが存在するときselected_output_refとのJSON値同値（object key順無視、array順保持）だけで各occurrenceを選ぶ。0件ならその側のsingular Fieldとoccurrence memberを省略、1件ならL4定義のsingular raw Fieldだけを原値/presenceで返す（元indexはraw traversalの内部用で、1件の場合wireへ加えない）、複数ならsingular Fieldを省略し全{item_index,raw_item}を元index順/重複のまま該当側のL4 optional memberへ返す。 複数件時のraw occurrence wire memberはcandidate側がcandidate_item_occurrences、trace側がvalidated_input_item_occurrencesである。両memberはL4の閉じたRecordObservationに定義されたoptional memberだけを用いる。",
+        "nonempty selectionはcaller順・重複を保ち各Ref出現に一record。typed item valueはpair correspondingで単一itemのtyped decodeがある場合だけ比較に使う。conflict/unknown又はmulti-occurrenceでは型付き単一carrierを選ばず、raw occurrence表現をL4規則どおり返す。item.output_refはselected_output_refとの完全JSON値等値で照合する。object key順だけ無視し、array順・重複・presence/nullは保持する。 candidate側とValidatedRecordTrace.input.candidate側のraw occurrence配列は独立に選択・保持し、二側をzip/mergeせず件数/順序を相互に合わせない。",
+        "qualified OS associationはValidatedRecordTrace.qualified_records内のOS section/kindに一致するrecordを列挙し、payload.output_refとselected_output_refの完全JSON値一致だけで関連付ける。既知のqualified_records列挙で完全一致0件ならassociation_state=missing。payload.output_refのnull/欠落/wrong-kind/別Refは不一致として全て親traceへ保持するが、候補association/qualified_os_record_candidates/source_refsへは採用せずunknownへ分類しない。複数一致は全候補を元順に保持してambiguous。trace列挙又は資格/decode対応自体を確定できない既存unknown根拠がある場合だけunknownを保持する。",
+        "一意qualified OS associationからだけCORE snapshot Ref/pointerを得る。OS carrier/pointer/CORE qualification欠落時は対応L4 ruleへ局所分類し、candidateや未資格payloadからCORE locatorを補完しない。",
+        "candidate CORE carrierとqualified OS carrierを同じqualified CORE rowへ別々に比較する。carrier_core_row_stateはcandidate_core_row_stateとqualified_os_core_row_stateだけをL4順位で集約する。candidate pair conflict/unknownとcandidate occurrence multipleの優先unknownはcandidate側状態に残し、association stateで上書きしない。",
         "context、project_scope、obligation_original_statesはqualified OS OwnerRecordからraw値として保持し、CORE product scope/obligation refsに写像しない。",
         "source refs/classification arrays/source issuesは一意・曖昧なqualified OS associationから明示snapshotへ辿る関連source occurrence集合で元traceをfilterし、元順と重複を保持する。0 qualified OS associationではすべて空。無関係Qは親traceのみに残す。",
         "finding_refs=[]、effects=none。結果を既存source_output_association、CORE disposition、unfinished obligation、findings、effect_requestsへ代替/逆流させない。"
       ],
       "source_l4_ref": {
-        "revision": "6ba0eeb86b38195cc81c4863f5db94416632cb1b",
+        "revision": "30d0df41916694206c05b269080a1795b96dc2d0",
         "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
         "pointer": "/contracts/5/qualified_source_projection_join",
-        "file_sha256": "25ee64268047019d45a8d87e07aef6cc91de826fe0430b38f40f842170b96cf0"
+        "file_sha256": "842fb0fd24707188f7d38b0e3e89aa33bd3cb97051fc2a85b700552d267ea10f"
       },
       "unit_case_refs": [
         "HELIXOS-L8-002-F04-PROJECTION-01",
@@ -1925,21 +1946,29 @@
         "HELIXOS-L8-002-F04-PROJECTION-16",
         "HELIXOS-L8-002-F04-PROJECTION-17",
         "HELIXOS-L8-002-F04-PROJECTION-18",
-        "HELIXOS-L8-002-F04-DISPATCH-ASSOCIATION-UNKNOWN"
+        "HELIXOS-L8-002-F04-OCCURRENCE-01",
+        "HELIXOS-L8-002-F04-OCCURRENCE-02",
+        "HELIXOS-L8-002-F04-OCCURRENCE-03",
+        "HELIXOS-L8-002-F04-OCCURRENCE-04",
+        "HELIXOS-L8-002-F04-OCCURRENCE-05",
+        "HELIXOS-L8-002-F04-OCCURRENCE-06",
+        "HELIXOS-L8-002-F04-OCCURRENCE-07",
+        "HELIXOS-L8-002-F04-DISPATCH-ASSOCIATION-MISSING-NULL-REF",
+        "HELIXOS-L8-002-F04-DIRECT-PAIR-UNKNOWN"
       ],
       "oracle_ref": "HELIXOS-L8-002-NORMAL-run_f04_source_projection_operation",
       "association_state_l4_binding": {
         "source_ref": {
-          "revision": "6ba0eeb86b38195cc81c4863f5db94416632cb1b",
+          "revision": "30d0df41916694206c05b269080a1795b96dc2d0",
           "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
           "pointer": "/contracts/5/qualified_source_projection_join/logical_return_shape/RecordObservation/association_state_rules",
-          "file_sha256": "25ee64268047019d45a8d87e07aef6cc91de826fe0430b38f40f842170b96cf0"
+          "file_sha256": "842fb0fd24707188f7d38b0e3e89aa33bd3cb97051fc2a85b700552d267ea10f"
         },
         "candidate_priority_ref": {
-          "revision": "6ba0eeb86b38195cc81c4863f5db94416632cb1b",
+          "revision": "30d0df41916694206c05b269080a1795b96dc2d0",
           "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
           "pointer": "/contracts/5/qualified_source_projection_join/logical_return_shape/RecordObservation/candidate_state_priority",
-          "file_sha256": "25ee64268047019d45a8d87e07aef6cc91de826fe0430b38f40f842170b96cf0"
+          "file_sha256": "842fb0fd24707188f7d38b0e3e89aa33bd3cb97051fc2a85b700552d267ea10f"
         },
         "dispatch": {
           "missing": "上記association_state_rules/missingをそのまま適用する。candidate_input_stateがcorrespondingならcandidate_os_field_state=not_compared、candidate_core_row_state=not_compared、qualified_os_core_row_state=missing、carrier_core_row_state=missing。conflict/unknownならcandidate側二状態はcandidate_state_priorityに従いunknown、OS側missingは独立保持。candidate/unqualified OS locatorからCORE lookupしない。",
@@ -1948,7 +1977,7 @@
           "unique": "上記association_state_rules/uniqueを適用し、欠落/null/wrong-kind、未資格/相反CORE source、pointer unresolved、解決済みrowの各状態を同じL4規則の出力へ写す。candidate側はcandidate_state_priorityに従い、OS側を上書きしない。"
         }
       },
-      "oracle_binding": "L8 normal run oracleの18 invocation内で本関数へ到達し、各L9固定join recipeとvalidator期待へ照合する。独立した本関数専用NORMAL oracleを新設した意味ではない。"
+      "oracle_binding": "既存18ケースにL9統合occurrence 7ケースを加えた25件のvalidator到達可能integration入力で関数経路を照合する。direct PAIR-UNKNOWNとdispatch境界例はそれぞれ別のunit boundary oracleであり、この25件の件数へ混ぜない。"
     },
     {
       "id": "HELIXOS-L5-002-run_f04_source_projection_operation",
@@ -1985,7 +2014,14 @@
         "HELIXOS-L8-002-F04-PROJECTION-15",
         "HELIXOS-L8-002-F04-PROJECTION-16",
         "HELIXOS-L8-002-F04-PROJECTION-17",
-        "HELIXOS-L8-002-F04-PROJECTION-18"
+        "HELIXOS-L8-002-F04-PROJECTION-18",
+        "HELIXOS-L8-002-F04-OCCURRENCE-01",
+        "HELIXOS-L8-002-F04-OCCURRENCE-02",
+        "HELIXOS-L8-002-F04-OCCURRENCE-03",
+        "HELIXOS-L8-002-F04-OCCURRENCE-04",
+        "HELIXOS-L8-002-F04-OCCURRENCE-05",
+        "HELIXOS-L8-002-F04-OCCURRENCE-06",
+        "HELIXOS-L8-002-F04-OCCURRENCE-07"
       ],
       "oracle_ref": "HELIXOS-L8-002-NORMAL-run_f04_source_projection_operation",
       "validator_call_binding": {
@@ -2028,7 +2064,7 @@
         ],
         "return": "最終状態はdecoder内でValidatedRecordTrace.input.candidateとの全体比較を再実行して決める。"
       },
-      "oracle_binding": "L8 normal run oracleの18 invocation内で本関数へ到達し、各L9固定join recipeとvalidator期待へ照合する。独立した本関数専用NORMAL oracleを新設した意味ではない。"
+      "oracle_binding": "既存18ケースにL9統合occurrence 7ケースを加えた25件のvalidator到達可能integration入力で関数経路を照合する。direct PAIR-UNKNOWNとdispatch境界例はそれぞれ別のunit boundary oracleであり、この25件の件数へ混ぜない。"
     },
     {
       "id": "HELIXOS-L5-002-compare_core_dispositions_typed",
@@ -2148,10 +2184,17 @@
         "HELIXOS-L8-002-F04-PROJECTION-16",
         "HELIXOS-L8-002-F04-PROJECTION-17",
         "HELIXOS-L8-002-F04-PROJECTION-18",
-        "HELIXOS-L8-002-F04-PROFILE-WRAPPER-PRESERVATION"
+        "HELIXOS-L8-002-F04-PROFILE-WRAPPER-PRESERVATION",
+        "HELIXOS-L8-002-F04-OCCURRENCE-01",
+        "HELIXOS-L8-002-F04-OCCURRENCE-02",
+        "HELIXOS-L8-002-F04-OCCURRENCE-03",
+        "HELIXOS-L8-002-F04-OCCURRENCE-04",
+        "HELIXOS-L8-002-F04-OCCURRENCE-05",
+        "HELIXOS-L8-002-F04-OCCURRENCE-06",
+        "HELIXOS-L8-002-F04-OCCURRENCE-07"
       ],
       "oracle_ref": "HELIXOS-L8-002-NORMAL-run_f04_source_projection_operation",
-      "oracle_binding": "L8 normal run oracleの18 invocation内で本関数へ到達し、各L9固定join recipeとvalidator期待へ照合する。独立した本関数専用NORMAL oracleを新設した意味ではない。"
+      "oracle_binding": "既存18ケースにL9統合occurrence 7ケースを加えた25件のvalidator到達可能integration入力で関数経路を照合する。direct PAIR-UNKNOWNとdispatch境界例はそれぞれ別のunit boundary oracleであり、この25件の件数へ混ぜない。"
     }
   ],
   "contracts": [
@@ -8784,6 +8827,18 @@
                 "conflict",
                 "unknown"
               ]
+            },
+            "candidate_item_occurrences": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/F04CandidateItemOccurrence"
+              }
+            },
+            "validated_input_item_occurrences": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/F04CandidateItemOccurrence"
+              }
             }
           },
           "additionalProperties": false,
@@ -9052,6 +9107,23 @@
             }
           },
           "additionalProperties": false
+        },
+        "F04CandidateItemOccurrence": {
+          "type": "object",
+          "properties": {
+            "item_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "raw_item": {
+              "$ref": "#/$defs/JsonValue"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "item_index",
+            "raw_item"
+          ]
         }
       }
     },
