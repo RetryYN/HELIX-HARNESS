@@ -4603,5 +4603,860 @@
         "新権限/actor/承認/全stage成功gateを設けない。"
       ]
     }
+  },
+  "definition_meaning_resolution_contract": {
+    "id": "HELIXBRAIN-L4-032-DEFINITION-MEANING-RESOLUTION",
+    "status": "scratch技術契約候補。新raw/期待/oracle/actualを未作成、正式未採用。",
+    "requirements": [
+      "HELIXBRAIN-L3-032-F01",
+      "HELIXBRAIN-L3-032-F02",
+      "HELIXBRAIN-L3-032-F03",
+      "HELIXBRAIN-L3-032-F06",
+      "HELIXBRAIN-L3-032-F09"
+    ],
+    "purpose": "同一呼出しの原slot/factと原meaning ownerの解釈を独立15descriptor規範へ結び、帰属/所在knownと意味knownを分ける。新しい知識採否・qualification段階・製品適用判断を設けない。",
+    "normative_basis_snapshot": {
+      "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "file_sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
+      "pointer": "/descriptor_meanings",
+      "canonical_sha256": "224602413a177ad7f304bebfa9e0aea55293dc0a771b3e74d9c396c8d2f15651",
+      "scope": {
+        "parent_requirement": "HELIXBRAIN-L2-032",
+        "functional_requirement": "HELIXBRAIN-L3-032-F01",
+        "scope_kind": "generic_design_template_descriptor"
+      },
+      "entries": [
+        {
+          "pointer": "/descriptor_meanings/0",
+          "canonical_sha256": "6901fa7408738f5e832a4f18dbc487d614f72cfd35328691c591dc3b5ee35892",
+          "value": {
+            "descriptor": "template identity",
+            "meaning": "機能としてのtemplate識別。filenameやviewの所在と分ける。"
+          }
+        },
+        {
+          "pointer": "/descriptor_meanings/1",
+          "canonical_sha256": "04da83e4c3069f9fb655b447f11b36bb4c29a9e6ce49d886b97124fca100d376",
+          "value": {
+            "descriptor": "version",
+            "meaning": "template内容の版。knowledge revision、pack contract/artifact版、version_targetと分ける。"
+          }
+        },
+        {
+          "pointer": "/descriptor_meanings/2",
+          "canonical_sha256": "a29d331c134f8c13aec9c0b1ae95cf282c9b8e37a719bea5af73fcc20afde956",
+          "value": {
+            "descriptor": "layer/pair",
+            "meaning": "義務の適用層と対。HARNESSが定めた対を参照する。"
+          }
+        },
+        {
+          "pointer": "/descriptor_meanings/3",
+          "canonical_sha256": "6c09e22c9fba27fcb4b3e7578f6208b0122fa0057009c0e4914a83e14fd78c2a",
+          "value": {
+            "descriptor": "applicability",
+            "meaning": "汎用問題・前提と適用条件。unknownを非適用にしない。"
+          }
+        },
+        {
+          "pointer": "/descriptor_meanings/4",
+          "canonical_sha256": "839d2580be675088de0f1f06d6038f97a25d60a892e2caa1acd142b9e8d8878f",
+          "value": {
+            "descriptor": "required input",
+            "meaning": "適用に必要な入力の意味と根拠。定義と案件値を分ける。"
+          }
+        },
+        {
+          "pointer": "/descriptor_meanings/5",
+          "canonical_sha256": "a12258b58907d085d14fb35f898105a28babcda597cf1becfd591fdc53f5604c",
+          "value": {
+            "descriptor": "required section",
+            "meaning": "満たす必要のある節の意味と原適用条件。"
+          }
+        },
+        {
+          "pointer": "/descriptor_meanings/6",
+          "canonical_sha256": "938d18ac4f080533bfbba789ab0f4059c4c1b5eb5fdf600b463ecae4f4525d32",
+          "value": {
+            "descriptor": "required field",
+            "meaning": "節に属する欄の意味・要否の条件。節のN/Aを全欄へ一律転写しない。"
+          }
+        },
+        {
+          "pointer": "/descriptor_meanings/7",
+          "canonical_sha256": "8ab78d7e5437f976d4ea8f2db03bf00c9d40822863ed9fcec848225991295ccc",
+          "value": {
+            "descriptor": "relation",
+            "meaning": "関係の種類・向き・両端identity/revision。名称類似を意味関係にしない。"
+          }
+        },
+        {
+          "pointer": "/descriptor_meanings/8",
+          "canonical_sha256": "6be346c9044ad2b4de6604878a02c601a0b3d69248d6296b8a6426a2ef4575d6",
+          "value": {
+            "descriptor": "意味owner",
+            "meaning": "項目の意味を持つ責任者。製品判断や実運転のownerと分ける。"
+          }
+        },
+        {
+          "pointer": "/descriptor_meanings/9",
+          "canonical_sha256": "285caa757a62f912a9069d71f5d20ec6963faa28651ed6bd84dca59aa93c3e66",
+          "value": {
+            "descriptor": "trace",
+            "meaning": "source/provenance、項目根拠と知識revisionへの参照。"
+          }
+        },
+        {
+          "pointer": "/descriptor_meanings/10",
+          "canonical_sha256": "d20235c446c11d57936bdcc05051be8eb7179643c26c2e6580aa2a0677e5c4b7",
+          "value": {
+            "descriptor": "negative oracle",
+            "meaning": "契約が不成立になる条件と検証で観測する差異。"
+          }
+        },
+        {
+          "pointer": "/descriptor_meanings/11",
+          "canonical_sha256": "60f658aea5c7582c64308336fe0a3fd63b4332dc936677313c783558ee78e453",
+          "value": {
+            "descriptor": "measurement",
+            "meaning": "適用義務の計測観点・根拠とoracleの関係。実値を創作しない。"
+          }
+        },
+        {
+          "pointer": "/descriptor_meanings/12",
+          "canonical_sha256": "d17c62990c8bd1c2aa4ff4f932f37037eaab6a52d00742ff80d48a70e1842355",
+          "value": {
+            "descriptor": "completion",
+            "meaning": "適用義務の成立条件と対oracleの関係。project成立の裁定ではない。"
+          }
+        },
+        {
+          "pointer": "/descriptor_meanings/13",
+          "canonical_sha256": "2762789dec1bdf37c8666ba0e10c4e70e3974cb7bd90e09fa856686aa3e9d2b1",
+          "value": {
+            "descriptor": "downstream kind",
+            "meaning": "義務を渡す対象の種類。単体・接続・構成体の違いを残す。"
+          }
+        },
+        {
+          "pointer": "/descriptor_meanings/14",
+          "canonical_sha256": "727f71abc804868af8aa919927845314b6a82d9578b28de4aab886dd017a40a9",
+          "value": {
+            "descriptor": "supersession",
+            "meaning": "旧知識から新知識への明示関係。過去参照を黙って差し替えない。"
+          }
+        }
+      ]
+    },
+    "normative_basis_acquisition": [
+      "上のsnapshotは指定git revision/file SHAの/descriptor_meaningsから得た固定規範原値であり、owner source、Claim、提出body、descriptor_kind labelから作らない。15 entryのpointer/canonical値と原順をそのまま保持する。",
+      "scopeは要求032/F01の汎用descriptor意味という静的適用範囲。project/tenant等のBinding.scope又はQualification.applicable_scopeへcast/aliasせず、別に保持する。",
+      "pure readerへ渡すDefinitionNormativeFrameは、本契約の固定catalogと当該entryからprivate constructorが作る。外部ネットワーク、実registry、latest lookupを呼ばない。schemaに合う任意caller frameを規範正本として受け取らない。",
+      "原owner operation.arguments.normative_argumentは評価時に実際に受け取った規範の原snapshotである。固定frameのrevision/path/file SHA/catalog hash/scope/entry pointer/hash/valueへ全値照合する。matching descriptor名だけ又は同owner名だけで適合としない。",
+      "現行L4のdescriptor_meanings本文は固定sourceと同値であることをこの契約のadmissionで確かめる。将来の意味改訂は対応規範sourceと本bindingを明示更新する。旧固定規範と異なるrawを同じpinで通さず、相違を原値ごと保持する。"
+    ],
+    "qualification_vs_meaning_root": {
+      "qualification": "既存validate_supply_inputがsource bytes/body/digest、qualification_ref、Qualification/root_ref/qualification_roots、subject/revision/scope/ownerを照合する。同結果を消費し、新qualified enum/root/truststoreを作らない。",
+      "normative_root": "上記固定catalogは承認済み要件の15意味の比較基準。source資格recordから生成しない。原owner sourceが有資格であることと、そのoperationがこの規範を評価したことを別に照合する。",
+      "native_semantic_result": "defines_descriptor等は原meaning ownerの実際の意味解釈operation出力というlogical役割で供給する。単なるcaller claim又はsource取得resolvedではない。資格resolvedからdecisionを生成せず、decisionだけで資格を生成しない。",
+      "both_sides_changed": "caller factとowner operation.fact_bodyを同じ誤bodyへ変えても、normative_argumentをそのbody又は別descriptor意味へ追従させれば独立固定frame照合が不成立になる。固定規範に対する意味解釈まで誤った肯定を返す原ownerについてはproducer契約違反であり、source hash一致をその正当化にしない。比較器が任意自然言語bodyの真偽を再解釈できたとも主張しない。"
+    },
+    "schema": {
+      "dialect": "JSON Schema 2020-12の局所closed logical record。製品wire/codec/既存physical owner schemaではない。",
+      "imports": [
+        {
+          "name": "032_existing_defs",
+          "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "pointer": "/logical_input_structure/schema/$defs",
+          "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+          "canonical_sha256": "a9a08a722a6a104fa566d84a4f1fcde656336ed75f47e8f2fc4b64bd61cf5a21",
+          "projection": "既存RawValue/Ref/Binding/ApplicabilityRecord等を同名で使用。required/member/presenceを変更しない。"
+        },
+        {
+          "name": "032_existing_presence",
+          "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "pointer": "/dependency_semantic_ports/schema/new_defs",
+          "file_sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
+          "canonical_sha256": "d1b7c915b24e0da54a4a98a84370f78dfde22ac035e32b32a65d24645a37ad48",
+          "projection": "PortPresenceRaw/PortPresenceString/PortPresenceRef/PortPresenceBindingを同名で使用。supplied nullとabsentを区別する。"
+        }
+      ],
+      "new_defs": {
+        "DefinitionNormativeScope": {
+          "type": "object",
+          "properties": {
+            "parent_requirement": {
+              "const": "HELIXBRAIN-L2-032"
+            },
+            "functional_requirement": {
+              "const": "HELIXBRAIN-L3-032-F01"
+            },
+            "scope_kind": {
+              "const": "generic_design_template_descriptor"
+            }
+          },
+          "required": [
+            "parent_requirement",
+            "functional_requirement",
+            "scope_kind"
+          ],
+          "additionalProperties": false
+        },
+        "DefinitionNormativeFrame": {
+          "type": "object",
+          "properties": {
+            "revision": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "file_sha256": {
+              "type": "string"
+            },
+            "catalog_pointer": {
+              "type": "string"
+            },
+            "catalog_canonical_sha256": {
+              "type": "string"
+            },
+            "scope": {
+              "$ref": "#/$defs/DefinitionNormativeScope"
+            },
+            "entry_pointer": {
+              "type": "string"
+            },
+            "entry_canonical_sha256": {
+              "type": "string"
+            },
+            "entry_value": {
+              "type": "object",
+              "properties": {
+                "descriptor": {
+                  "type": "string"
+                },
+                "meaning": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "descriptor",
+                "meaning"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "revision",
+            "path",
+            "file_sha256",
+            "catalog_pointer",
+            "catalog_canonical_sha256",
+            "scope",
+            "entry_pointer",
+            "entry_canonical_sha256",
+            "entry_value"
+          ],
+          "additionalProperties": false
+        },
+        "DefinitionMeaningArguments": {
+          "type": "object",
+          "properties": {
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "slot_identity": {
+              "type": "string"
+            },
+            "descriptor_kind": {
+              "type": "string"
+            },
+            "fact_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "fact_body": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "normative_argument": {
+              "$ref": "#/$defs/DefinitionNormativeFrame"
+            }
+          },
+          "required": [
+            "binding",
+            "slot_identity",
+            "descriptor_kind",
+            "fact_ref",
+            "fact_body",
+            "normative_argument"
+          ],
+          "additionalProperties": false
+        },
+        "DefinitionMeaningDecision": {
+          "type": "object",
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "defines_descriptor",
+                "does_not_define_descriptor",
+                "undetermined"
+              ]
+            },
+            "reason": {
+              "$ref": "#/$defs/PortPresenceString"
+            },
+            "raw_semantic_basis": {
+              "$ref": "#/$defs/PortPresenceRaw"
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "required": [
+            "relation",
+            "reason",
+            "raw_semantic_basis",
+            "basis_refs"
+          ],
+          "additionalProperties": false
+        },
+        "DefinitionMeaningOperation": {
+          "type": "object",
+          "properties": {
+            "operation_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "arguments": {
+              "$ref": "#/$defs/DefinitionMeaningArguments"
+            },
+            "decision": {
+              "$ref": "#/$defs/DefinitionMeaningDecision"
+            }
+          },
+          "required": [
+            "operation_ref",
+            "arguments",
+            "decision"
+          ],
+          "additionalProperties": false
+        },
+        "DefinitionMeaningProblem": {
+          "type": "object",
+          "properties": {
+            "cause": {
+              "type": "string",
+              "enum": [
+                "population_unresolved",
+                "source_unresolved",
+                "container_absent",
+                "container_null",
+                "container_type",
+                "record_decode_failed",
+                "binding_unresolved",
+                "binding_differs",
+                "slot_differs",
+                "kind_unresolved",
+                "kind_differs",
+                "fact_unresolved",
+                "fact_differs",
+                "body_differs",
+                "normative_frame_differs",
+                "normative_body_differs",
+                "semantic_basis_unresolved",
+                "decision_undetermined",
+                "decision_negative",
+                "applicability_unresolved",
+                "applicability_subject_differs",
+                "applicability_request_null"
+              ]
+            },
+            "source_ref": {
+              "$ref": "#/$defs/PortPresenceRef"
+            },
+            "source_index": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "locator": {
+              "type": "string"
+            },
+            "original_value": {
+              "$ref": "#/$defs/PortPresenceRaw"
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "cause",
+            "source_ref",
+            "source_index",
+            "locator",
+            "original_value",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        "DefinitionMeaningOccurrence": {
+          "type": "object",
+          "properties": {
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "source_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "record_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "locator": {
+              "type": "string"
+            },
+            "original_record": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "decoded_record": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "presence": {
+                      "const": "absent"
+                    }
+                  },
+                  "required": [
+                    "presence"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "presence": {
+                      "const": "supplied"
+                    },
+                    "value": {
+                      "$ref": "#/$defs/DefinitionMeaningOperation"
+                    }
+                  },
+                  "required": [
+                    "presence",
+                    "value"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "required": [
+            "source_ref",
+            "source_index",
+            "record_index",
+            "locator",
+            "original_record",
+            "decoded_record"
+          ],
+          "additionalProperties": false
+        },
+        "DefinitionMeaningSupport": {
+          "type": "object",
+          "properties": {
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "source_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "record_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "locator": {
+              "type": "string"
+            },
+            "operation": {
+              "$ref": "#/$defs/DefinitionMeaningOperation"
+            },
+            "normative_frame": {
+              "$ref": "#/$defs/DefinitionNormativeFrame"
+            }
+          },
+          "required": [
+            "source_ref",
+            "source_index",
+            "record_index",
+            "locator",
+            "operation",
+            "normative_frame"
+          ],
+          "additionalProperties": false
+        },
+        "DefinitionMeaningRead": {
+          "type": "object",
+          "properties": {
+            "slot_locator": {
+              "type": "string"
+            },
+            "fact_locator": {
+              "type": "string"
+            },
+            "binding": {
+              "$ref": "#/$defs/PortPresenceBinding"
+            },
+            "normative_frame": {
+              "$ref": "#/$defs/DefinitionNormativeFrame"
+            },
+            "acquisition_state": {
+              "type": "string",
+              "enum": [
+                "resolved",
+                "unknown"
+              ]
+            },
+            "occurrences": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/DefinitionMeaningOccurrence"
+              }
+            },
+            "supports": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/DefinitionMeaningSupport"
+              }
+            },
+            "problems": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/DefinitionMeaningProblem"
+              }
+            }
+          },
+          "required": [
+            "slot_locator",
+            "fact_locator",
+            "binding",
+            "normative_frame",
+            "acquisition_state",
+            "occurrences",
+            "supports",
+            "problems"
+          ],
+          "additionalProperties": false
+        },
+        "DefinitionApplicabilitySourceEntry": {
+          "type": "object",
+          "properties": {
+            "slot_identity": {
+              "type": "string"
+            },
+            "descriptor_kind": {
+              "type": "string"
+            },
+            "record": {
+              "$ref": "#/$defs/ApplicabilityRecord"
+            }
+          },
+          "required": [
+            "slot_identity",
+            "descriptor_kind",
+            "record"
+          ],
+          "additionalProperties": false
+        },
+        "DefinitionApplicabilitySupport": {
+          "type": "object",
+          "properties": {
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "source_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "record_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "locator": {
+              "type": "string"
+            },
+            "original_entry": {
+              "$ref": "#/$defs/DefinitionApplicabilitySourceEntry"
+            },
+            "subject_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "required": [
+            "source_ref",
+            "source_index",
+            "record_index",
+            "locator",
+            "original_entry",
+            "subject_refs"
+          ],
+          "additionalProperties": false
+        },
+        "DefinitionApplicabilityRead": {
+          "type": "object",
+          "properties": {
+            "slot_locator": {
+              "type": "string"
+            },
+            "request": {
+              "$ref": "#/$defs/PortPresenceRef"
+            },
+            "acquisition_state": {
+              "type": "string",
+              "enum": [
+                "not_requested",
+                "resolved",
+                "unknown"
+              ]
+            },
+            "source_occurrences": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source_ref": {
+                    "$ref": "#/$defs/Ref"
+                  },
+                  "source_index": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "record_index": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "locator": {
+                    "type": "string"
+                  },
+                  "original_value": {
+                    "$ref": "#/$defs/RawValue"
+                  }
+                },
+                "required": [
+                  "source_ref",
+                  "source_index",
+                  "record_index",
+                  "locator",
+                  "original_value"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "supports": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/DefinitionApplicabilitySupport"
+              }
+            },
+            "problems": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/DefinitionMeaningProblem"
+              }
+            }
+          },
+          "required": [
+            "slot_locator",
+            "request",
+            "acquisition_state",
+            "source_occurrences",
+            "supports",
+            "problems"
+          ],
+          "additionalProperties": false
+        },
+        "DefinitionMeaningRequest": {
+          "type": "object",
+          "properties": {
+            "slot_locator": {
+              "type": "string"
+            },
+            "fact_locator": {
+              "type": "string"
+            },
+            "normative_entry_pointer": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "slot_locator",
+            "fact_locator",
+            "normative_entry_pointer"
+          ],
+          "additionalProperties": false
+        },
+        "DefinitionApplicabilityRequest": {
+          "type": "object",
+          "properties": {
+            "slot_locator": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "slot_locator"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "raw_boundary": "source.contentは既存RawValueのまま。carrier/各member absent/null/型外はraw出現と問題へ保存し、局所projectionのclosed decode失敗をsource全体のshape失敗又は他source問題へ変換しない。new_defsのrequiredは成功したtyped recordの全fieldであり、raw不在を削除する規則ではない。"
+    },
+    "producers": [
+      {
+        "owner": "既存TemplateDescriptorSupplyのmeaning owner",
+        "logical_operation": "evaluate_original_descriptor_meaning(arguments:DefinitionMeaningArguments) -> DefinitionMeaningDecision",
+        "responsibility": "同full Binding/slot/kindの原fact Ref/bodyを、独立取得した15規範の当該meaningへ評価する。解釈の肯定/否定/未決と原理由・raw意味根拠/basis_refsを保持。shape/label/non-null/帰属だけを意味解釈にしない。新採否や製品適用は返さない。",
+        "retention": "実際のarguments全値と原decisionをDefinitionMeaningOperationに保持する。operation_refは元operationのRefを供給し、slot/index/labelから生成しない。",
+        "carrier": "同KnowledgeRecord.provenance_refsから既存semantic_json sourceへ辿る。QualifiedSource.content.definition_meaning_operationsの原配列へoperationを置き、content.bindingと各arguments.bindingの対応を保つ。新SupplyInput/Claim memberを作らない。",
+        "independence": "caller fact、Claim又はexpected stateからnative decisionを追従生成しない。原ownerは固定normative comparandを実引数として取り、その原取得元/全値とraw評価根拠を残す。合成callerは将来この元operandsを独立に実供給する必要があり、今回作成していない。"
+      },
+      {
+        "owner": "既存ApplicabilityRecordの原判断owner",
+        "logical_operation": "既存の原適用判断を変更せずDefinitionApplicabilitySourceEntryとして提供",
+        "carrier": "同semantic_json source.content.definition_applicability_recordsにslot_identity/descriptor_kind/原ApplicabilityRecordを保持。content.bindingとrecord.bindingの対応、record.source_ref→当該source、record.subject_ref→原fact又は明示owner targetの対応を保つ。",
+        "independence": "source資格、判断対象、decision/reason/reentry_conditionは別に保持。COREの案件適用判断をBRAINの定義NAへ複写しない。"
+      }
+    ],
+    "evaluation_populations": {
+      "all_slot_read_domain": "全descriptors原出現と各Binding/slot/fact/source問題を読む。candidates filter又はowner target一覧で元slotを消さない。",
+      "required_contract_domain": "root Bindingの要求契約を必ず保持する。追加frameは供給candidatesが原root又は実slot.binding.template_refへ既存Ref比較で対応する明示契約候補を対象とする。原rootをselected_bindingsのcandidate filterで落とさない。",
+      "fixed_kinds": "各対象契約では承認15意味を既存独立required_descriptor_kindsへ照合。member未供給/根拠未解決は既存missing_required_populationを保持し、候補から必要集合を生成しない。",
+      "other_binding": "非対象/所属未解決slotも元read結果とlocatorを保持するが、未要求templateへ未供給14項目の義務を増殖しない。原Bindingをrootで補完しない。",
+      "duplicates_and_order": "完全同値frameを一評価単位にまとめる場合も全原locator/配列順/反復を保存。raw異値はbinding_sameだけで削除しない。root→原slot発見順、frame内L4 kind順→slot原index→fact原indexでeventを作り、公開sortと最終index対応は同walk内で行う。"
+    },
+    "readers": [
+      {
+        "symbol": "read_original_definition_meaning",
+        "input": "同fn0 invocationのValidatedSupplyと閉じたDefinitionMeaningRequest。call_bindings.meaning_request_constructorに従う。",
+        "output": "DefinitionMeaningRead",
+        "algorithm": [
+          "原fact/source/ownerの既存usable/帰属対応を確認する。原KnowledgeRecordとprovenanceを同snapshotで辿り、source全出現の元indexを保持する。Refのfirst match、最新、配列indexからのidentity生成は禁止。",
+          "source.content.binding→slot.binding/fact.bindingを既存full Binding比較で照合し、definition_meaning_operationsのraw container/要素を全保持。typed decode失敗はそのrecordのproblem、他sourceのtyped record読取は継続する。",
+          "source/slot/factの関連が明示できるcohortだけでargumentsのslot_identity/kind/fact_ref/bodyを原値へ照合。別Binding/slot/factのrecordを当該targetの反対対応又は成功根拠にしない。未帰属は元source内問題として保持。",
+          "各原operationのnormative_argumentをcaller非供給の固定frameへ全値照合。不成立のoperationはsupportsへ入れず、normative_frame_differs又はnormative_body_differsに原値を残す。source資格の肯定で補わない。",
+          "肯定/否定/未決decisionとreason/raw_semantic_basis/basis_refsをそのまま保持。reason又は意味根拠の未供給/nullはsemantic_basis_unresolvedへ保持し、member存在や単なるlabelを有効な意味根拠として生成しない。",
+          "全field/資格/規範対応が成立したrecordだけsupportsへ全出現保持。acquisition_state=resolvedは対応取得の所在状態であり、decisionの肯定でもdefinition knownでもない。それ以外はunknown。単一stateに全decisionを畳み込まず原解釈/問題を返す。"
+        ]
+      },
+      {
+        "symbol": "read_original_definition_applicability",
+        "input": "同fn0 invocationのValidatedSupplyと閉じたDefinitionApplicabilityRequest。subject原資料はcall_bindings.applicability_request_constructorに従い同snapshotから読む。",
+        "output": "DefinitionApplicabilityRead",
+        "algorithm": [
+          "definition_applicability_refがabsentの場合だけ追加NA読取はnot_requestedとする。supplied nullは原reference未決のunknownとしてrequestと原presenceを保持し、applicability_request_nullをproblemsへ返す。NA原source読取の要求Refは形成できないためこの取得だけ実行しない。slot/facts不足や元definition状態をNA/unknownへ書換えず、NA入力を全slotの新必須gateにもしない。",
+          "供給Refは同snapshotのroot applicability_records全原record.refへ既存Ref比較でjoinし、同じ原recordをowner source.content.definition_applicability_recordsから独立解決する。source.ref/body/既存資格とfull Binding、原slot/kind、record.source_refを照合する。source内recordだけ又はroot側recordだけの自己claimでは支持しない。",
+          "record.subject_refは同slot原fact Ref、又は既存owner target宣言が同full Binding/exact slot/kindへ明示した元Refにだけ対応させる。slot文字列/一意候補推測でRefを作らない。全slotへ新target portを常時要求しない。",
+          "全候補recordと原presence/decision/reason/reentry_conditionを保持。異なる原判断をfirst/NA優先で消さず、原source未解決/資格不足は当該判断のunknown問題へ保持する。",
+          "supportsは同対象の原判断全値。acquisition resolvedは原decisionのNA又は定義成立を意味しない。案件/section/別field NAは当該slotへ転用しない。"
+        ]
+      }
+    ],
+    "consumer_branch_table": [
+      {
+        "branch": "required slot absent又はfacts absent/null/empty",
+        "action": "既存missingを新解釈record無しで返す。slot不在の既存Finding predicateとfacts不足を区別し、predicate外codeは新設/流用しない。"
+      },
+      {
+        "branch": "原source/owner解決済み、body null、定義済み別原根拠なし",
+        "action": "既存undefined predicateを新解釈record無しで継続。新port未供給を理由にこの原不足を消さない。"
+      },
+      {
+        "branch": "reader.supports内で全field/既存source資格/固定normative frame/原fact Ref/body/current full Binding/原意味basisと理由の対応が成立し、その元decisionがdefines_descriptor",
+        "action": "その原owner解釈だけをdefinition knownの支持イベントへする。source取得resolved、型/帰属、decision文字列又は単なるrecord存在は単独の支持にしない。原decision/basis/frame対応を全値保持し、肯定から採用/実受領/完成を導かない。"
+      },
+      {
+        "branch": "decision does_not_define_descriptor又はundetermined/原解釈取得不能",
+        "action": "当該意味のunknown原因を保持。単独否定を二fact相反用conflict codeへ流用しない。取得不能を意味定義missingへ変えない。"
+      },
+      {
+        "branch": "同slotにdefined/null/未資格等が併存",
+        "action": "当該slotの定義済み別原根拠を確認し、存在するのに「別根拠なし」のundefined Findingは出さない。raw nullと未資格source原因は元snapshot/別軸/全read結果へ保持。独立knownを全source成功gateで取り消さない。"
+      },
+      {
+        "branch": "同subject/revision/scopeのqualified pairがequivalent=false",
+        "action": "既存pair/descriptor conflict predicateを適用。true/別knownで消さず、別原命題unknownを別source軸へ保持する。新全15pair比較を必須化しない。"
+      },
+      {
+        "branch": "NA原判断取得resolved、decision not_applicable、原理由/再評価条件と対象対応あり",
+        "action": "原NA判断を保持。定義が既に成立している内容に対する非適用表示と、元definitionのmissing/unknownを分離し、定義欠落をNAで充足しない。"
+      },
+      {
+        "branch": "NA decision unknown/原判断又は理由/再評価条件の未解決",
+        "action": "当該NA判断のunknownと原判断を保持し、元definition軸や無関係項目へコピーしない。"
+      },
+      {
+        "branch": "他Binding/他slot/他sourceの問題又は未選択Claim",
+        "action": "元問題を原範囲に保持。無関係known又は旧target対象外処理を全体gateで停止せず、他候補成功で当該問題も消さない。"
+      }
+    ],
+    "same_call_and_public_projection": {
+      "raw_runner": "fn0は同snapshotの既存資格判定を一度行う。fn1 private coreは同validatedから全slot/domain、規範frame、原owner意味/NA readと既存比較を一walkで計算する。元Comparisonと全assessmentを返し、fn6/7は同call indexを消費する。rawrunner又はpublicwrapperを連鎖して再計算しない。",
+      "public_types": "Claim6field/SupplyInput/Comparison/AnalysisContext/既存9公開関数署名を変更しない。新記録はsource.content RawValueとprivate context内。builderに新index必須引数を足さない。",
+      "state_locality": "帰属/規範原評価/定義/NA判断の原因は全保持し、同kind sibling/target住所resolvedを意味knownへ借りない。rule87/93は既存同Claim担当分離に従い、全assessment保持と公開Finding一件化を混同しない。",
+      "not_finished": "現L5 fn1全Comparison/全reason/形成/順序とL8 wholeは未追随。scratch候補02は変更せず、本新契約に沿う次差分を別に用意する。"
+    },
+    "preservation_and_limits": [
+      "旧L8 79constructor/5builderのraw/全返却を保存する。これらはprimary fn1全意味計算/新owner readのwhole証拠ではない。旧Comparison shape/値を無断上書きしない。",
+      "旧基本9target port、既存conditional/canonical incoming/claim意図のraw/期待/分岐は変更しない。新known/NA source/callerと独立wholeはまだ作成していない。",
+      "局所logical schemaの成立は正式codec/provider binding/実資格/任意自然言語bodyの意味抽出/実運転を成立させない。それらの稼働不在をpure設計の新必須gateにもしない。"
+    ],
+    "call_bindings": {
+      "existing_logical_type": {
+        "name": "ValidatedSupply",
+        "source_revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+        "source_path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/type_contract/types/ValidatedSupply",
+        "scope": "既存private in-memory logical値を同fn0 invocationから渡す。公開raw cacheを新しい資格入口にしない。新schemaでValidatedSupplyを再定義していない。"
+      },
+      "meaning_signature": "read_original_definition_meaning(validated:ValidatedSupply, request:DefinitionMeaningRequest) -> DefinitionMeaningRead",
+      "meaning_request_constructor": {
+        "caller": "compare_descriptor_definitionsの同walk private core",
+        "fields": {
+          "slot_locator": "現在訪問している原DescriptorSlotのRFC6901 pointer。原array indexを使用。",
+          "fact_locator": "当該原slotにある現在の原MeaningFactのRFC6901 pointer。",
+          "normative_entry_pointer": "現在評価中の承認kindに対応する固定catalog entry.pointer。Claim/slot body/owner decisionから生成しない。"
+        },
+        "constructor_guard": "normative_entry_pointerの対象kindと同walk評価kindを照合する。unknown kind/不形成slot/factは既存元原因を保持してこのprivate意味readを呼ばない。required-slot不在/facts欠落のmissing、限定undefinedはこのreadなしで継続する。",
+        "resolution": "readerはrequestの原locatorで同validated.inputのslot/fact全値を得る。typed requestは値の意味資格ではなく同call所在指定だけ。固定catalog constructorがnormative_entry_pointerからDefinitionNormativeFrame全memberを作る。caller supplied frameを正本へ昇格しない。"
+      },
+      "applicability_signature": "read_original_definition_applicability(validated:ValidatedSupply, request:DefinitionApplicabilityRequest) -> DefinitionApplicabilityRead",
+      "applicability_request_constructor": {
+        "caller": "同fn1 private coreの現在の原slot。slotの存在を原入力で確認した後。",
+        "fields": {
+          "slot_locator": "現在訪問している原DescriptorSlotのRFC6901 pointer。"
+        },
+        "subject_resolution": "readerが同slotの原fact Refを読む。別subjectが必要なときは、同source/current Bindingの既存descriptor_targets原宣言から同slot/kindの明示target Refだけを全出現読む。新Claimを合成してtarget portへ渡さず、元owner target契約の対応条件を再利用する。外部から渡されたsubject_refsを無条件に採用しない。",
+        "request_presence": "当該slot.definition_applicability_refのabsent/supplied null/供給Refをその原値から別に構築する。absenceだけnot_requested。明示nullはunknownと原presenceを返すが、定義評価/無関係slotを止めない。"
+      },
+      "native_producer_signature": "evaluate_original_descriptor_meaning(arguments:DefinitionMeaningArguments) -> DefinitionMeaningDecision",
+      "native_record_constructor": {
+        "fields": {
+          "operation_ref": "原meaning ownerが元operation生成時に持つRef。新refをindex/slot/labelから作らない。",
+          "arguments": "上記native producerへ実際に渡ったDefinitionMeaningArguments全値。normative_argumentは固定規範を独立取得した元入力。",
+          "decision": "同operationが返した原DefinitionMeaningDecision全値。caller Claim/expectedから作らない。"
+        },
+        "same_invocation": "原argumentsと原returnをDefinitionMeaningOperationの同recordに保持し、別operationのbody/basisを取り合わせない。実稼働証拠を今求める規則ではなく、将来logical callerで供給する原資料の役割/型を定義する。"
+      }
+    }
   }
 }
