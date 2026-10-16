@@ -150,6 +150,46 @@
       "preserve": "Serial main merge in old orchestration flow; general workflow sequence, not a CONNECT connection kind.",
       "change": "一般loopの停止/上限/未完checkpoint、直列後の再判定、左右対の追跡を参照する。旧runtime/四種budget必須化/旧merge順を接続実装へ移植しない。",
       "reason": "CONNECT009の型付き戻り辺は9/29条件付きAの既採択意味から導出し、既存ownerのpolicyと操作ごとのunknown境界を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "read_lines": [
+        60,
+        66
+      ],
+      "quote": "single-writer leaseをexactly once割り当て、実行中も次のREADY taskを計画する。\n\n#### MIC-R-02 TLの統合権限\n\nTLはmain、統合順序、merge queue、共有正本、combined CI、DB convergence、final merge authorityを\n所有する。ペア開発セルはmainへ直接mergeしてはならない。TLはlane-ready receiptを受理した候補だけを\n直列mergeし、先行merge後に残存laneのbase drift、CI、review、DB receiptを再判定する。",
+      "file_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "selected_lines_sha256": "860d523fe1359753e1272b4f487937dabc794f45404373268e6780f07c4d4714",
+      "selected_lines_recipe": "UTF-8本文をsplitlinesし、read_linesの1始まり閉区間をLFで連結。終端改行なし。",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+        "disposition": "unresolved",
+        "source_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6"
+      },
+      "reuse": "reference_only",
+      "preserve": "独立した統合ownerの原記録と先行統合後の再照合、consumerへの原対象/状態保持を参照する。",
+      "change": "CONNECTの独立原sourceは採択済みL2/L3のsource/target identityから導出する。旧runtime、DB receipt、main merge権限、workflowを移植しない。",
+      "reason": "旧一般loop/統合制御の役割と、CONNECT固有のtyped feedback原比較元の役割を分離する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "read_lines": [
+        125,
+        136
+      ],
+      "quote": "```text\ncanonical工程表 / harness.db\n  → dependency frontier / READY queue\n  → PM assignment / writer lease\n  → paired development cell / candidate PR\n  → exact-HEAD independent review / lane-ready receipt\n  → TL merge queue / combined CI / DB convergence\n  → serial main merge\n  → 工程表とProjectsのread-after-write projection\n  → frontier再計算 / 次task dispatch\n```\n",
+      "file_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "selected_lines_sha256": "113491c88e26a895fc39c3816d24eda656356f06791fa5ffd1804a243e5c2e18",
+      "selected_lines_recipe": "UTF-8本文をsplitlinesし、read_linesの1始まり閉区間をLFで連結。終端改行なし。",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+        "disposition": "unresolved",
+        "source_sha256": "f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6"
+      },
+      "reuse": "reference_only",
+      "preserve": "独立した統合ownerの原記録と先行統合後の再照合、consumerへの原対象/状態保持を参照する。",
+      "change": "CONNECTの独立原sourceは採択済みL2/L3のsource/target identityから導出する。旧runtime、DB receipt、main merge権限、workflowを移植しない。",
+      "reason": "旧一般loop/統合制御の役割と、CONNECT固有のtyped feedback原比較元の役割を分離する。"
     }
   ],
   "legacy_search_record": {
@@ -543,7 +583,8 @@
       "required_source_bindings": [
         "原connection/operation identity、契約revision、scope、ownerと当該入力の必要集合",
         "submitted内容を独立原根拠と対照。原unknownは同値unknownで通過させない。",
-        "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。"
+        "同一fieldでも操作ごとに必要性を判定し、不足の非該当操作へ波及させない。",
+        "F07のsource/target identityはoriginal_source_portsの独立原request/endpoint記録へ同roleで対照する。これらの原source不足は既存source/target identity対応未成立の具体条件で、提出側の6業務役割を8役割へ増やす条件ではない。"
       ],
       "candidate_effect": "none; actual operation count 0",
       "content_material_rules": {
@@ -558,7 +599,121 @@
         },
         "preservation": "原初回結果/個別適格辺/累積/未完/他scopeを保持。提出差替えを理由と返し先で示す。",
         "phase_separation": "後続不足を初回拒否へ波及しない。各操作の候補は合成内容だけで、実作用0。",
-        "ack_join": "not_applicable"
+        "ack_join": "not_applicable",
+        "original_source_ports_ref": "/contracts/6/original_source_ports",
+        "original_source_comparison_ref": "/contracts/6/original_source_comparison"
+      },
+      "original_source_ports": [
+        {
+          "name": "feedback_source_target",
+          "input_path": "/original_inputs/feedback_source_target",
+          "direction": "original_only",
+          "provider": "feedback-endpoint-owner",
+          "native_origin_ja": "当該feedbackを発した元forward connection/operationの原request/operation record。返却先の逆operationと別roleで保持する。",
+          "required_value_members": [
+            "connection",
+            "operation"
+          ],
+          "compares_to_role": "source_identity",
+          "diagnostic": "operation_target source_identity.basis/member",
+          "source_scope_ja": "source record.targetを当該feedback操作のoriginal_targetへ照合し、別operation/別scopeの原根拠を転用しない。"
+        },
+        {
+          "name": "feedback_return_target",
+          "input_path": "/original_inputs/feedback_return_target",
+          "direction": "original_only",
+          "provider": "feedback-endpoint-owner",
+          "native_origin_ja": "同じ原feedback requestが宛先としたreturn connection/endpoint ownerの原record。providerラベルではなく、原recordのnative ownerをvalue.ownerへ保持する。",
+          "required_value_members": [
+            "connection",
+            "owner"
+          ],
+          "compares_to_role": "target_identity",
+          "diagnostic": "operation_target target_identity.basis/member",
+          "source_scope_ja": "source record.targetを当該feedback操作のoriginal_targetへ照合し、forward source targetや他scopeと混同しない。"
+        }
+      ],
+      "original_source_record": {
+        "members": [
+          "state",
+          "owner",
+          "target",
+          "value"
+        ],
+        "meaning_ja": "既存合成RoleMaterialのstate/owner/target/valueという原型を用い、供給元の独立原targetを具体化する。実wire schema/registry/資格receiptではない。valueはraw presence/valueを保つ。",
+        "target_binding_ja": "record.targetは当該feedback操作のoriginal_targetと原presence/valueで結ぶ。forward原connection/operationの端点値と、return操作Contextの原targetは別roleであり、同じscope文字列にcastしない。",
+        "native_owner_ja": "feedback_return_target.value.ownerは原return先owner。source record.ownerはその原recordを供給するprovider責務でありvalue.ownerの既定値ではない。",
+        "qualification_ja": "state=known_fixture_onlyは合成原sourceの論理観測。実owner/source資格、SEC authority、実receiptを発行又は認定しない。"
+      },
+      "original_source_comparison": {
+        "business_roles_ja": "input_rolesおよびoriginal_needed_rolesの業務役割は既存6件を維持する。original_source_portsの2口は独立原比較根拠としてoriginal_inputsだけに供給し、submitted_inputsへ同名portを要求しない。原6役割と新原sourceの両方を保持し、提出側値から独立sourceを作らない。",
+        "rules": [
+          "提出側のbusiness input_roles/original_needed_rolesは既存6役割のまま。独立source2口はoriginal_inputsだけに供給し、submitted_inputsには要求せず原/提出比較で原sourceを生成しない。",
+          "role原/提出が既存比較でcontent_correspondingの場合、そのroleの独立原sourceを評価する。当該role自体がmissing/unknown等なら既存所見を保持し派生比較せず、他roleの独立比較は継続する。",
+          "source口Absentは当該role.basis=missing_original_information。明示null/異型/source wrapperのvalue member不在/null・value非object・未宣言stateはunknown。unknown/stale/conflict観測は保持。known_fixture_onlyの場合だけprovider ownerとoriginal_targetへの対象結合を比較し、原owner/target不足はunknown、既知不一致はconflict。",
+          "解決したvalueの必要member Absentはmissing_original_information、null/未確定値はunknown、role原値との既知差はconflictを当該role.memberへ返す。元sourceも全rawを保存する。",
+          "所見はfeedback_send_candidateだけをheldとし、初回結果/未送信relation/未完/他scopeを保持する。実作用9flag=false、attempt=0を維持し、実資格/権限を生成しない。"
+        ],
+        "order_ja": "既存role/preservation/operation target/reason/authority診断の順を維持し、その後にsource_identity（connection、operation）、target_identity（connection、owner）の順で独立source比較所見を追加する。roleの原/提出対応が比較可能なときだけそのsourceを解決する。所見が重複する場合は四member全値が同じものだけ先出順で1件にし、state/理由の異なる所見は保持する。",
+        "output_ja": "既存Finding(area,field,result,return_owner)へ返す。area=operation_target、source未解決はfield=role.basis、解決後の比較はrole.member。戻し先はfeedback-endpoint-owner候補であり、実recipient資格ではない。feedback_send_candidateは既存不成立又はこのsource所見があればheld_unsent_return_relation、それ以外は既存content_inputs_correspond_require_actual_qualification。",
+        "unresolved_value_ja": "原source必要memberの未確定は、null・空文字・TBD/unknown/unobservedという既存合成未確定値と、解決に必要な値の型外を含む。任意の自由文字列を新禁止語彙へ増やさず、identityの名前から意味を判断しない。",
+        "projection_ja": "原source2口の全値、unknown/stale/conflictをretained_original_inputsへ保持する。未供給を空objectへ書き換えず、未選択の他phase/他scopeも保持する。"
+      },
+      "source_rederivation": {
+        "upstream": [
+          {
+            "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+            "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+            "file_sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
+            "pointer": "/requirements/18",
+            "id": "HELIXCONNECT-L3-009-F04",
+            "quote_ja": "feedbackは一方向typed return edgeとしてsource connection/operation、target connection/owner、reason/根拠参照、correlation/lineage、契約版、停止/再開状態を持つ。記録/伝送は受領/解決/承認/task完了を意味しない。"
+          },
+          {
+            "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+            "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+            "file_sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
+            "pointer": "/requirements/21",
+            "id": "HELIXCONNECT-L3-009-F07",
+            "quote_ja": "feedback操作のreason/source/target identity/契約revision/独立逆方向connection/authorityが不足ならfeedback送信だけを保留し、未送信return relationとmissing input/ownerを残す。初回送信不成立や解決済みに読み替えない。"
+          },
+          {
+            "path": "docs/helix-connect/L10-verification/functional-verification.json",
+            "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+            "file_sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
+            "pointer": "/cases/21",
+            "id": "HELIXCONNECT-L10-009-F07",
+            "quote_ja": "feedback endpoint/contract/SECの該当ownerへ返す。"
+          }
+        ],
+        "adopted_source": {
+          "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+          "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
+          "sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+          "lines": "285-295",
+          "retained_ja": "typed feedbackのsource connection/operation、target connection/owner、同operation lineage、既存endpoint/contract/authority ownerへの不足返却と、実作用/受領/解決の分離。"
+        },
+        "legacy": [
+          {
+            "legacy_comparison_ref": "/legacy_comparison/0",
+            "keep_ja": "一般loopのreturn/continue/stop、terminalと未完を保つ意味。CONNECT固有のsource口や送信authorityをこの行から生成しない。"
+          },
+          {
+            "legacy_comparison_ref": "/legacy_comparison/5",
+            "keep_ja": "独立原根拠へ再照合するserial統合consumerと、別主体の責務を参照する。旧runtime/DB receipt/merge workflowを転写しない。"
+          },
+          {
+            "legacy_comparison_ref": "/legacy_comparison/6",
+            "keep_ja": "独立原根拠へ再照合するserial統合consumerと、別主体の責務を参照する。旧runtime/DB receipt/merge workflowを転写しない。"
+          }
+        ],
+        "legacy_search_ref": "/legacy_search_record",
+        "legacy_limit_ja": "旧sourceにCONNECT固有のdirection/order/typed feedbackを一体化したrelation型を確認できないという既存bounded searchを保持する。原source不在を理由に要求を増やさず、採択済み現L2/L3の原target照合を具体化する。",
+        "failure_basis_ja": "原/提出が同じforeign source operation又はreturn ownerでも、両側同値だけでは原feedback requestの対象と一致しない。feedback source/target identityの対応は、6業務役割の内容比較に加え、独立原sourceに保持した原request/return endpointとの照合により観測する。独立原sourceの不足はfeedback送信だけの保留条件であり、初回結果や他scopeの不成立へ拡張しない。",
+        "consumer_ja": "F07 feedback_send_readerが6役割比較と独立原target対応を分け、不足はfeedback送信だけ保留してfeedback endpoint/connection contract/SECの既存owner候補へ返す。初回辺の適格性・原初回結果・未完・他scopeは別責務として保持する。",
+        "preserve_ja": "L3 F07の全保留条件、6提出役割、未送信relation、原資料と実権限の分離、実作用0、既存F07 old26の判定分類を保持。",
+        "change_ja": "原source2口のprovider/原request/対象結合/局所不足を基本契約へ明示し、L9の26原例にsourceを実供給する。独立不足/両側foreignの合成反例を追加。",
+        "reason_ja": "汎用required_source_bindingsだけではF07の原comparand供給と旧正例の観測範囲を一意に読めず、基本対と詳細対が逆判定になったため。上流要求の意味変更・新authority・新workflow・新資格gateではない。"
       }
     },
     {
