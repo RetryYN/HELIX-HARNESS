@@ -6,7 +6,7 @@
   "status": "draft_source_coupled_static_verification_not_executed",
   "source_main": "99ba6b467ec2e949191f972c96714df91ba328e6",
   "l5_ref": "docs/helix-intelligence/L5-detail-design/placement-proposal.json",
-  "l5_same_pair_bytes_sha256": "8b32a27ffa62e8f182f6e2e8a91031b7f8626e8b102af87448b952388b820f32",
+  "l5_same_pair_bytes_sha256": "789f7ff2a8421b7a38671d80dd1232928dd85d43cccb036b7fa0bd57b2dbbcf3",
   "approved_object_refs": [
     {
       "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
@@ -6200,8 +6200,19 @@
             "content_oracle_ref"
           ],
           "unclosed": "original_benchの入力型・参照fieldとcontent_oracle_refの未見組合せについて、規範を変える変更の識別性は未証明。"
+        },
+        {
+          "contract": "F02",
+          "fields": [
+            "task_anchor",
+            "worker_checks",
+            "original_task.identity/revision/domain/tool_requirement",
+            "original_scope.task/revision"
+          ],
+          "unclosed": "F02 task_anchor/worker_checksの有限例は、anchorを推薦identity bindingより前へ移す変更、左辺型不正と右辺欠落の併存でmissing優先guardを外す変更、identity/revisionの空文字列を有効にする変更、domainの空文字列又はtoolsの非string要素を許す変更を個別識別する証拠としては不足する。順序と型条件は現L4の宣言を保持し、これら未評価の組合せを成功へ外挿しない。"
         }
-      ]
+      ],
+      "basic_pair_remaining_followup": "現L4/L9 /remaining末尾の「F02 task_anchor、worker_checksとproposal_scope_alignmentがL5/L8未反映」という履歴説明は、この詳細pair統合後に後続の基本pair更新で再評価・訂正する。task_anchor/worker_checksは今回接続し、6軸proposal_scope_alignmentのL5 checksは既存から保持している。未観測の組合せは引き続き未観測であり、反映済みと全域検証済みを混同しない。"
     }
   },
   "execution_state": "not_executed",

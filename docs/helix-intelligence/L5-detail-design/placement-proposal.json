@@ -2484,7 +2484,8 @@
             "sha256": "dde2ad1d910b340932cde4cefd09d4814b752b7fe06a4170a6ae4fbb4964ee4b",
             "pointers": [
               "/content_diagnostic_contract/F02/task_anchor",
-              "/content_diagnostic_contract/F02/worker_checks"
+              "/content_diagnostic_contract/F02/worker_checks",
+              "/content_diagnostic_contract/F02/proposal_scope_alignment"
             ]
           },
           "meaning": "F02 task_anchorおよび選択Worker内domain/toolsのL5追補は、採択L3/L10の同scope義務を現行L4が具体化した契約への技術的接続である。legacy_comparisonの旧task/scope・model世代sourceは対応する保持点として記録するが、proposal scopeの6軸とその順序・missing/ownerは旧sourceから直接導出したものではなく、現行L4 F02の宣言に従う。"
@@ -8794,7 +8795,9 @@
     "F01/F03/N01の同field data/claim診断選択は基本pair content_diagnostic_contract.remaining_claim_diagnostic_limitsの5例を保持。独立診断の全義務閉包ではなく、consumerへ返らない不足result/field/ownerは同sourceへ明示する。",
     "F02のtask根拠の独立locator、F03の各Workerへ独立したBench generation target、全source/owner資格は未供給。performance.ref/bench.refとworker/versionの供給済み原値だけを比較し、名前からparseして未供給refを創作しない。",
     "全入力形/全組合せ/全mutationの意味閉包、正式wire/schema/codec、実装前Red→Green→Refactor/TDD/新CI/実L9L10/PO L11/全92親430対の設計閉包と実装Readyは未成立。L6は関数設計、L7は対関数検証、実装は層外。",
-    "両側同一の重複推薦配列は内容一致として保持するが、重複案の実有効性・Worker identityの実source資格は未成立。独立source/再評価入力をF02 unclosed_bindingsへ保持する。"
+    "両側同一の重複推薦配列は内容一致として保持するが、重複案の実有効性・Worker identityの実source資格は未成立。独立source/再評価入力をF02 unclosed_bindingsへ保持する。",
+    "F02 task_anchor/worker_checksの有限例は、anchorを推薦identity bindingより前へ移す変更、左辺型不正と右辺欠落の併存でmissing優先guardを外す変更、identity/revisionの空文字列を有効にする変更、domainの空文字列又はtoolsの非string要素を許す変更を個別識別する証拠としては不足する。順序と型条件は現L4の宣言を保持し、これら未評価の組合せを成功へ外挿しない。",
+    "現L4/L9 /remaining末尾の「F02 task_anchor、worker_checksとproposal_scope_alignmentがL5/L8未反映」という履歴説明は、この詳細pair統合後に後続の基本pair更新で再評価・訂正する。task_anchor/worker_checksは今回接続し、6軸proposal_scope_alignmentのL5 checksは既存から保持している。未観測の組合せは引き続き未観測であり、反映済みと全域検証済みを混同しない。"
   ],
   "exclusive_rule_source": "generic_expression_vocabulary（汎用意味）、functions.checks/各式/return_expression（全業務path/literal/優先/出力）、type_contract（入出力domain）が唯一規範。proseとcompositionは参照説明。readerの暗黙業務分岐は規範ではない。",
   "upstream_whole_inventory": {
