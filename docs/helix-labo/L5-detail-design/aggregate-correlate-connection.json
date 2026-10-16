@@ -495,7 +495,8 @@
           "foreign_revision",
           "missing_not_success",
           "relation_mismatch",
-          "unsupported_connection_or_cause"
+          "unsupported_connection_or_cause",
+          "received_content_conflict"
         ]
       },
       "ReturnOwner": {
@@ -584,10 +585,10 @@
           "returns": "ConnectionResult"
         },
         "algorithm": [
-          "findings=[]。transfer.connection_field_presenceの先頭connection9memberだけを順走査しpresence!=valueをfield_path/missing/LABO-connection-ownerとして保持する。scope内4memberだけの欠落を同じ欠落所見へ重複昇格しない。",
+          "findings=[]。transfer.connection_field_presenceから外側connection 9項目を原順で調べる。scopeのraw値がobjectの場合だけ、親scopeの直後に4子項目を順に診断し、absent/nullをfield_path/missing/LABO-connection-ownerで保持する。scopeがabsent/null/object外なら子4項目の診断を生成せず、親scope自身のabsent/null所見がある場合だけそれを保持する。FN01が返した13項目presenceと必須値成立状態はこの診断選別で変更しない。object外の非null値を子欠落へ読み替えず、子の値を推測しない。",
           "raw claimsが非空なら原順にclaims/unsupported_connection_or_causeを追加し、claim=correlation_is_causeのみLABO-correlation-owner、その他LABO-connection-ownerへ返す。このときreceipt/観測/relation所見は追加せず組立てへ進む。有限fixtureの診断選択であり実許可や欠陥消去を意味しない。",
           "claimなしでまだ所見がなければsend→receiveの順でreceiptを確認する。nullはmissing_endpoint_receipt、object外はforeign_referenceをreceipt名のfieldに1件。それ以外はFN02のcheck順で最初のcomparison!=equalをreceipt.<check.field>、state差ならnot_observed、その他foreign_referenceとする。ownerはLABO-connection-owner。最初のreceipt所見でこの走査を止める。",
-          "次に元/受信観測がobjectならidentity,revision,source,scope順で受信get値nullをmissing/LABO-Aggregate-ownerとして最初1件。sourceが両方objectでrevisionが異なればreceived_observation.source.revision/foreign_revision/LABO-Aggregate-ownerを最初1件。続いて受信fieldsを原順走査し、元not_observed→受信observed_in_fixture_onlyかつvalue非nullをreceived_observation.fields.<key>/missing_not_success/LABO-Aggregate-ownerとして最初1件。先行の接続/receipt所見があってもこの観測比較は行う。 この観測段階は2つの独立走査で、identity/revision/source/scope比較内で最初の1件、fieldsの未観測昇格比較内で最初の1件を返す。両方に該当すれば最大2件を原順に保持する。",
+          "次に元/受信観測がobjectなら、identity,revision,source,scopeの順に受信値nullをmissing/LABO-Aggregate-ownerとして調べ、最初の1件を保持する。これがなければ、sourceが両方objectでrevisionが異なる場合はreceived_observation.source.revision/foreign_revisionを保持する。これらの既存specific診断がなければ、同じmetadata群をidentity,revision,source,scopeの順に比較し、最初の非null JSON不一致をreceived_observation.<field>/received_content_conflict/LABO-Aggregate-ownerで返す。metadata群は最大1件。metadata specific mismatchをgeneric conflictで重ねない。その後、received fieldsを原順に走査し、元not_observedからreceived observed_in_fixture_onlyかつ非nullへの変化があれば最初の1件をreceived_observation.fields.<key>/missing_not_success/LABO-Aggregate-ownerで保持する。これがなければ、元fields mapとreceived fields mapがJSON deep-equalでない場合にreceived_observation.fields/received_content_conflict/LABO-Aggregate-ownerを1件返す。fields群は最大1件。metadata群とfields群は独立であり両方の所見をこの順で保持できる。この観測段階は先行する接続/receipt所見で短絡しない。",
           "ここまで所見なしの場合だけrelation_assessment.failure_reasonsを原順に追加する。findingsは重複除去・sortしない。return_ownersだけ初出順一意化、rejected_claimsはraw claims原列。",
           "findingsなしならinformation_state=connection_content_requires_actual_qualification、その他held_connection_unqualified。receipt_stateはfindingsなし・両receipt fixture一致・接続必須値presentのANDでboth_receipts_require_actual_qualification、その他unqualified。retained_inputs=原raw、transferの原保持/field_transfer/missing_fieldsとrelation_stateをそのまま複写。causal_state=not_established、EffectVector全8member=false。"
         ]
@@ -639,5 +640,95 @@
       "sha256": "6fa4247de8da611c50b3e8ab587ca60123a30f78b88c2af3e8efa891e22ce55f"
     }
   ],
-  "source_main_meaning": "source_mainは既存上流pinの参照時点。今回導出した原L4/L9はbasic_pair_snapshotのexact revision/bytesへ別に束縛し、古いrevisionに存在するとは推定しない。"
+  "source_main_meaning": "source_mainは既存上流pinの参照時点。今回導出した原L4/L9はbasic_pair_snapshotのexact revision/bytesへ別に束縛し、古いrevisionに存在するとは推定しない。",
+  "candidate_followup_binding": {
+    "source_main": "555d287b74d1f001416b1ae71fe0a5f7ad3e0330",
+    "current_source_pins": [
+      {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "pointer_or_lines": "163-165 HELIXLABO-L2-011"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+        "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
+        "pointer": "/requirements/4"
+      },
+      {
+        "path": "docs/helix-labo/L4-basic-design/aggregate-correlate-connection.json",
+        "sha256": "a369b94d22cc0a5e700b6ee2e96178884b8098d3ad2b8f82ae9f9b7c6d623799",
+        "pointers": [
+          "/contracts/0/content_rules/0",
+          "/contracts/0/content_rules/1",
+          "/contracts/0/content_rules/3",
+          "/architecture/flow/0",
+          "/architecture/flow/1",
+          "/architecture/flow/3"
+        ]
+      },
+      {
+        "path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
+        "sha256": "e8b506df54781e2c55a7fc22f306b5a2ac516b48c173aa649a237b62df123ec9",
+        "pointers": [
+          "/logical_contract/functions/0/algorithm/1",
+          "/logical_contract/functions/0/algorithm/3",
+          "/logical_contract/functions/3/algorithm/0",
+          "/logical_contract/functions/3/algorithm/3",
+          "/logical_contract/types/FailureResult",
+          "/logical_contract/types/TransferState",
+          "/logical_contract/types/FailureReason",
+          "/logical_contract/types/ConnectionResult"
+        ]
+      },
+      {
+        "path": "docs/helix-labo/L8-unit-verification/aggregate-correlate-connection.json",
+        "sha256": "dba5e737068adc989648e6e6394d4d961bdf99488c477ba0b03a9e8e3b1c0853",
+        "case_count": 42,
+        "coverage_pointers": [
+          "/cases/0",
+          "/cases/9",
+          "/cases/24",
+          "/cases/25",
+          "/cases/26",
+          "/cases/27",
+          "/cases/28",
+          "/cases/29"
+        ]
+      },
+      {
+        "path": "docs/helix-labo/L9-integration-verification/aggregate-correlate-connection.json",
+        "sha256": "6fa4247de8da611c50b3e8ab587ca60123a30f78b88c2af3e8efa891e22ce55f",
+        "case_count": 42,
+        "coverage_pointers": [
+          "/verification_obligations/0/cases/0",
+          "/verification_obligations/0/cases/9",
+          "/verification_obligations/0/cases/24",
+          "/verification_obligations/0/cases/25",
+          "/verification_obligations/0/cases/26",
+          "/verification_obligations/0/cases/27",
+          "/verification_obligations/0/cases/28",
+          "/verification_obligations/0/cases/29"
+        ]
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.json",
+        "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496",
+        "pointer": "/cases/4"
+      }
+    ],
+    "l5_change_pointers": [
+      "/logical_contract/functions/3/algorithm/0",
+      "/logical_contract/functions/3/algorithm/3",
+      "/logical_contract/types/FailureResult"
+    ],
+    "change_summary": "FN01 algorithm/1はsource本文を保持する。FN04ではraw scopeがobjectの場合だけ子4項目を診断する。非object scope時もFN01の13個presenceと親scope値を保持し、FN04は親absent/nullのみ診断する。非null object外scopeの成立意味は追加せず、既存の未確定状態を維持する。",
+    "l5_preserved_pointers": [
+      {
+        "pointer": "/logical_contract/functions/0/algorithm/1",
+        "source_revision": "30dfacd9228e30c65a5ee965a6f8d5dd472a81f5",
+        "source_sha256": "e8b506df54781e2c55a7fc22f306b5a2ac516b48c173aa649a237b62df123ec9",
+        "meaning": "FN01 scope子presence規則は固定source本文と完全一致し、R4候補での変更対象ではない。"
+      }
+    ]
+  }
 }

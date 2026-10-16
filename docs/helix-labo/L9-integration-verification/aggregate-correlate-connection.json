@@ -10983,10 +10983,899 @@
           },
           "execution_state": "not_executed",
           "effect": "none"
+        },
+        {
+          "id": "LABO011-F01-SCOPE-PRODUCT-MISSING",
+          "basis": "remove_scope_product",
+          "requirement_ref": "HELIXLABO-L3-011-F01",
+          "system_oracle_ref": "HELIXLABO-L10-011-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-LABO011-F01-SCOPE-PRODUCT-MISSING",
+              "revision": "fixture-12d510adc50b021d054f15909acd76cd2b628d176ab48ec6bbda5a0352a4ad05",
+              "owner": "synthetic-fixture-owner",
+              "scope": {
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P",
+                "product": "PRODUCT-P",
+                "mechanism": "HARNESS"
+              }
+            },
+            "raw_utf8": "{\"claims\":[],\"connection\":{\"connector_identity\":\"CONNECTOR-AGG-COR-P\",\"connector_revision\":\"CONNECTOR-r2\",\"contract_identity\":\"SELECTED-PACK-CONTRACT-P\",\"contract_revision\":\"PACK-r2\",\"from_endpoint\":\"AGGREGATE-P@r2\",\"identity\":\"CONNECT-AGGREGATE-CORRELATE-P\",\"revision\":\"CONNECT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"to_endpoint\":\"CORRELATE-P@r2\"},\"engine_results\":{\"Aggregate\":\"green_in_fixture_only\",\"Correlate\":\"green_in_fixture_only\"},\"episode_candidate\":{\"identity\":\"EPISODE-P\",\"owner\":\"LABO-Correlate\",\"relations\":[{\"causal_state\":\"not_established\",\"episode_identity\":\"EPISODE-P\",\"episode_revision\":\"EPISODE-r2\",\"identity\":\"RELATION-P\",\"observation_identity\":\"OBSERVATION-P\",\"observation_revision\":\"OBS-r2\",\"revision\":\"RELATION-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"}}],\"revision\":\"EPISODE-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"}},\"observation_backlinks\":[{\"causal_state\":\"not_established\",\"episode_identity\":\"EPISODE-P\",\"episode_revision\":\"EPISODE-r2\",\"identity\":\"RELATION-P\",\"observation_identity\":\"OBSERVATION-P\",\"observation_revision\":\"OBS-r2\",\"revision\":\"RELATION-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"}}],\"original_observation\":{\"fields\":{\"result\":{\"source_ref\":\"SOURCE-P@SOURCE-r2/result\",\"state\":\"observed_in_fixture_only\",\"value\":\"RESULT-P\"},\"runtime\":{\"source_ref\":null,\"state\":\"not_observed\",\"value\":null}},\"identity\":\"OBSERVATION-P\",\"owner\":\"LABO-Aggregate\",\"revision\":\"OBS-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"}},\"receive_receipt\":{\"connection\":{\"connector_identity\":\"CONNECTOR-AGG-COR-P\",\"connector_revision\":\"CONNECTOR-r2\",\"contract_identity\":\"SELECTED-PACK-CONTRACT-P\",\"contract_revision\":\"PACK-r2\",\"from_endpoint\":\"AGGREGATE-P@r2\",\"identity\":\"CONNECT-AGGREGATE-CORRELATE-P\",\"revision\":\"CONNECT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"to_endpoint\":\"CORRELATE-P@r2\"},\"identity\":\"LABO-Correlate-RECEIPT-P\",\"observation_identity\":\"OBSERVATION-P\",\"observation_revision\":\"OBS-r2\",\"owner\":\"LABO-Correlate\",\"revision\":\"RECEIPT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"},\"state\":\"received_in_fixture_only\"},\"received_observation\":{\"fields\":{\"result\":{\"source_ref\":\"SOURCE-P@SOURCE-r2/result\",\"state\":\"observed_in_fixture_only\",\"value\":\"RESULT-P\"},\"runtime\":{\"source_ref\":null,\"state\":\"not_observed\",\"value\":null}},\"identity\":\"OBSERVATION-P\",\"owner\":\"LABO-Aggregate\",\"revision\":\"OBS-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"}},\"send_receipt\":{\"connection\":{\"connector_identity\":\"CONNECTOR-AGG-COR-P\",\"connector_revision\":\"CONNECTOR-r2\",\"contract_identity\":\"SELECTED-PACK-CONTRACT-P\",\"contract_revision\":\"PACK-r2\",\"from_endpoint\":\"AGGREGATE-P@r2\",\"identity\":\"CONNECT-AGGREGATE-CORRELATE-P\",\"revision\":\"CONNECT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"to_endpoint\":\"CORRELATE-P@r2\"},\"identity\":\"LABO-Aggregate-RECEIPT-P\",\"observation_identity\":\"OBSERVATION-P\",\"observation_revision\":\"OBS-r2\",\"owner\":\"LABO-Aggregate\",\"revision\":\"RECEIPT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"},\"state\":\"sent_in_fixture_only\"}}",
+            "sha256": "12d510adc50b021d054f15909acd76cd2b628d176ab48ec6bbda5a0352a4ad05"
+          },
+          "expected_material": {
+            "information_state": "held_connection_unqualified",
+            "retained_inputs": {
+              "connection": {
+                "connector_identity": "CONNECTOR-AGG-COR-P",
+                "connector_revision": "CONNECTOR-r2",
+                "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                "contract_revision": "PACK-r2",
+                "from_endpoint": "AGGREGATE-P@r2",
+                "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                "revision": "CONNECT-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "to_endpoint": "CORRELATE-P@r2"
+              },
+              "original_observation": {
+                "identity": "OBSERVATION-P",
+                "revision": "OBS-r2",
+                "owner": "LABO-Aggregate",
+                "source": {
+                  "identity": "SOURCE-P",
+                  "revision": "SOURCE-r2",
+                  "owner": "selected-source-owner"
+                },
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                },
+                "fields": {
+                  "result": {
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P",
+                    "source_ref": "SOURCE-P@SOURCE-r2/result"
+                  },
+                  "runtime": {
+                    "state": "not_observed",
+                    "value": null,
+                    "source_ref": null
+                  }
+                }
+              },
+              "received_observation": {
+                "fields": {
+                  "result": {
+                    "source_ref": "SOURCE-P@SOURCE-r2/result",
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P"
+                  },
+                  "runtime": {
+                    "source_ref": null,
+                    "state": "not_observed",
+                    "value": null
+                  }
+                },
+                "identity": "OBSERVATION-P",
+                "owner": "LABO-Aggregate",
+                "revision": "OBS-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                }
+              },
+              "send_receipt": {
+                "identity": "LABO-Aggregate-RECEIPT-P",
+                "revision": "RECEIPT-r2",
+                "owner": "LABO-Aggregate",
+                "connection": {
+                  "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                  "revision": "CONNECT-r2",
+                  "from_endpoint": "AGGREGATE-P@r2",
+                  "to_endpoint": "CORRELATE-P@r2",
+                  "connector_identity": "CONNECTOR-AGG-COR-P",
+                  "connector_revision": "CONNECTOR-r2",
+                  "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                  "contract_revision": "PACK-r2",
+                  "scope": {
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P",
+                    "product": "PRODUCT-P",
+                    "mechanism": "HARNESS"
+                  }
+                },
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "source": {
+                  "identity": "SOURCE-P",
+                  "revision": "SOURCE-r2",
+                  "owner": "selected-source-owner"
+                },
+                "state": "sent_in_fixture_only",
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                }
+              },
+              "receive_receipt": {
+                "identity": "LABO-Correlate-RECEIPT-P",
+                "revision": "RECEIPT-r2",
+                "owner": "LABO-Correlate",
+                "connection": {
+                  "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                  "revision": "CONNECT-r2",
+                  "from_endpoint": "AGGREGATE-P@r2",
+                  "to_endpoint": "CORRELATE-P@r2",
+                  "connector_identity": "CONNECTOR-AGG-COR-P",
+                  "connector_revision": "CONNECTOR-r2",
+                  "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                  "contract_revision": "PACK-r2",
+                  "scope": {
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P",
+                    "product": "PRODUCT-P",
+                    "mechanism": "HARNESS"
+                  }
+                },
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "source": {
+                  "identity": "SOURCE-P",
+                  "revision": "SOURCE-r2",
+                  "owner": "selected-source-owner"
+                },
+                "state": "received_in_fixture_only",
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                }
+              },
+              "episode_candidate": {
+                "identity": "EPISODE-P",
+                "revision": "EPISODE-r2",
+                "owner": "LABO-Correlate",
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                },
+                "relations": [
+                  {
+                    "identity": "RELATION-P",
+                    "revision": "RELATION-r2",
+                    "episode_identity": "EPISODE-P",
+                    "episode_revision": "EPISODE-r2",
+                    "observation_identity": "OBSERVATION-P",
+                    "observation_revision": "OBS-r2",
+                    "source": {
+                      "identity": "SOURCE-P",
+                      "revision": "SOURCE-r2",
+                      "owner": "selected-source-owner"
+                    },
+                    "scope": {
+                      "requirement_revision": "REQ-P-r2",
+                      "ticket": "TICKET-P",
+                      "product": "PRODUCT-P",
+                      "mechanism": "HARNESS"
+                    },
+                    "causal_state": "not_established"
+                  }
+                ]
+              },
+              "observation_backlinks": [
+                {
+                  "identity": "RELATION-P",
+                  "revision": "RELATION-r2",
+                  "episode_identity": "EPISODE-P",
+                  "episode_revision": "EPISODE-r2",
+                  "observation_identity": "OBSERVATION-P",
+                  "observation_revision": "OBS-r2",
+                  "source": {
+                    "identity": "SOURCE-P",
+                    "revision": "SOURCE-r2",
+                    "owner": "selected-source-owner"
+                  },
+                  "scope": {
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P",
+                    "product": "PRODUCT-P",
+                    "mechanism": "HARNESS"
+                  },
+                  "causal_state": "not_established"
+                }
+              ],
+              "engine_results": {
+                "Aggregate": "green_in_fixture_only",
+                "Correlate": "green_in_fixture_only"
+              },
+              "claims": []
+            },
+            "original_observation_preserved": true,
+            "field_transfer_state": "corresponding_in_fixture_only",
+            "missing_fields": {
+              "runtime": {
+                "state": "not_observed",
+                "value": null,
+                "source_ref": null
+              }
+            },
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "connection.scope.product",
+                "result": "missing",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "rejected_claims": [],
+            "actual_effects": {
+              "source_overwrite": false,
+              "receipt_write": false,
+              "relation_write": false,
+              "authority_change": false,
+              "connection_success": false,
+              "causal_confirmation": false,
+              "acceptance": false,
+              "implementation_ready": false
+            }
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "LABO011-F01-RECEIVED-FIELD-NON_NULL-MISMATCH",
+          "basis": "received_field_value_mismatch",
+          "requirement_ref": "HELIXLABO-L3-011-F01",
+          "system_oracle_ref": "HELIXLABO-L10-011-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-LABO011-F01-RECEIVED-FIELD-NON_NULL-MISMATCH",
+              "revision": "fixture-b775fcf71c8038ca5cf09f400f0d69fb5c7d2f3c3ec195b372e5a8ea4e64fff6",
+              "owner": "synthetic-fixture-owner",
+              "scope": {
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P",
+                "product": "PRODUCT-P",
+                "mechanism": "HARNESS"
+              }
+            },
+            "raw_utf8": "{\"claims\":[],\"connection\":{\"connector_identity\":\"CONNECTOR-AGG-COR-P\",\"connector_revision\":\"CONNECTOR-r2\",\"contract_identity\":\"SELECTED-PACK-CONTRACT-P\",\"contract_revision\":\"PACK-r2\",\"from_endpoint\":\"AGGREGATE-P@r2\",\"identity\":\"CONNECT-AGGREGATE-CORRELATE-P\",\"revision\":\"CONNECT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"to_endpoint\":\"CORRELATE-P@r2\"},\"engine_results\":{\"Aggregate\":\"green_in_fixture_only\",\"Correlate\":\"green_in_fixture_only\"},\"episode_candidate\":{\"identity\":\"EPISODE-P\",\"owner\":\"LABO-Correlate\",\"relations\":[{\"causal_state\":\"not_established\",\"episode_identity\":\"EPISODE-P\",\"episode_revision\":\"EPISODE-r2\",\"identity\":\"RELATION-P\",\"observation_identity\":\"OBSERVATION-P\",\"observation_revision\":\"OBS-r2\",\"revision\":\"RELATION-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"}}],\"revision\":\"EPISODE-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"}},\"observation_backlinks\":[{\"causal_state\":\"not_established\",\"episode_identity\":\"EPISODE-P\",\"episode_revision\":\"EPISODE-r2\",\"identity\":\"RELATION-P\",\"observation_identity\":\"OBSERVATION-P\",\"observation_revision\":\"OBS-r2\",\"revision\":\"RELATION-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"}}],\"original_observation\":{\"fields\":{\"result\":{\"source_ref\":\"SOURCE-P@SOURCE-r2/result\",\"state\":\"observed_in_fixture_only\",\"value\":\"RESULT-P\"},\"runtime\":{\"source_ref\":null,\"state\":\"not_observed\",\"value\":null}},\"identity\":\"OBSERVATION-P\",\"owner\":\"LABO-Aggregate\",\"revision\":\"OBS-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"}},\"receive_receipt\":{\"connection\":{\"connector_identity\":\"CONNECTOR-AGG-COR-P\",\"connector_revision\":\"CONNECTOR-r2\",\"contract_identity\":\"SELECTED-PACK-CONTRACT-P\",\"contract_revision\":\"PACK-r2\",\"from_endpoint\":\"AGGREGATE-P@r2\",\"identity\":\"CONNECT-AGGREGATE-CORRELATE-P\",\"revision\":\"CONNECT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"to_endpoint\":\"CORRELATE-P@r2\"},\"identity\":\"LABO-Correlate-RECEIPT-P\",\"observation_identity\":\"OBSERVATION-P\",\"observation_revision\":\"OBS-r2\",\"owner\":\"LABO-Correlate\",\"revision\":\"RECEIPT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"},\"state\":\"received_in_fixture_only\"},\"received_observation\":{\"fields\":{\"result\":{\"source_ref\":\"SOURCE-P@SOURCE-r2/result\",\"state\":\"observed_in_fixture_only\",\"value\":\"RESULT-Q\"},\"runtime\":{\"source_ref\":null,\"state\":\"not_observed\",\"value\":null}},\"identity\":\"OBSERVATION-P\",\"owner\":\"LABO-Aggregate\",\"revision\":\"OBS-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"}},\"send_receipt\":{\"connection\":{\"connector_identity\":\"CONNECTOR-AGG-COR-P\",\"connector_revision\":\"CONNECTOR-r2\",\"contract_identity\":\"SELECTED-PACK-CONTRACT-P\",\"contract_revision\":\"PACK-r2\",\"from_endpoint\":\"AGGREGATE-P@r2\",\"identity\":\"CONNECT-AGGREGATE-CORRELATE-P\",\"revision\":\"CONNECT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"to_endpoint\":\"CORRELATE-P@r2\"},\"identity\":\"LABO-Aggregate-RECEIPT-P\",\"observation_identity\":\"OBSERVATION-P\",\"observation_revision\":\"OBS-r2\",\"owner\":\"LABO-Aggregate\",\"revision\":\"RECEIPT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"},\"state\":\"sent_in_fixture_only\"}}",
+            "sha256": "b775fcf71c8038ca5cf09f400f0d69fb5c7d2f3c3ec195b372e5a8ea4e64fff6"
+          },
+          "expected_material": {
+            "information_state": "held_connection_unqualified",
+            "retained_inputs": {
+              "connection": {
+                "connector_identity": "CONNECTOR-AGG-COR-P",
+                "connector_revision": "CONNECTOR-r2",
+                "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                "contract_revision": "PACK-r2",
+                "from_endpoint": "AGGREGATE-P@r2",
+                "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                "revision": "CONNECT-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "to_endpoint": "CORRELATE-P@r2"
+              },
+              "original_observation": {
+                "identity": "OBSERVATION-P",
+                "revision": "OBS-r2",
+                "owner": "LABO-Aggregate",
+                "source": {
+                  "identity": "SOURCE-P",
+                  "revision": "SOURCE-r2",
+                  "owner": "selected-source-owner"
+                },
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                },
+                "fields": {
+                  "result": {
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P",
+                    "source_ref": "SOURCE-P@SOURCE-r2/result"
+                  },
+                  "runtime": {
+                    "state": "not_observed",
+                    "value": null,
+                    "source_ref": null
+                  }
+                }
+              },
+              "received_observation": {
+                "fields": {
+                  "result": {
+                    "source_ref": "SOURCE-P@SOURCE-r2/result",
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-Q"
+                  },
+                  "runtime": {
+                    "source_ref": null,
+                    "state": "not_observed",
+                    "value": null
+                  }
+                },
+                "identity": "OBSERVATION-P",
+                "owner": "LABO-Aggregate",
+                "revision": "OBS-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                }
+              },
+              "send_receipt": {
+                "identity": "LABO-Aggregate-RECEIPT-P",
+                "revision": "RECEIPT-r2",
+                "owner": "LABO-Aggregate",
+                "connection": {
+                  "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                  "revision": "CONNECT-r2",
+                  "from_endpoint": "AGGREGATE-P@r2",
+                  "to_endpoint": "CORRELATE-P@r2",
+                  "connector_identity": "CONNECTOR-AGG-COR-P",
+                  "connector_revision": "CONNECTOR-r2",
+                  "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                  "contract_revision": "PACK-r2",
+                  "scope": {
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P",
+                    "product": "PRODUCT-P",
+                    "mechanism": "HARNESS"
+                  }
+                },
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "source": {
+                  "identity": "SOURCE-P",
+                  "revision": "SOURCE-r2",
+                  "owner": "selected-source-owner"
+                },
+                "state": "sent_in_fixture_only",
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                }
+              },
+              "receive_receipt": {
+                "identity": "LABO-Correlate-RECEIPT-P",
+                "revision": "RECEIPT-r2",
+                "owner": "LABO-Correlate",
+                "connection": {
+                  "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                  "revision": "CONNECT-r2",
+                  "from_endpoint": "AGGREGATE-P@r2",
+                  "to_endpoint": "CORRELATE-P@r2",
+                  "connector_identity": "CONNECTOR-AGG-COR-P",
+                  "connector_revision": "CONNECTOR-r2",
+                  "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                  "contract_revision": "PACK-r2",
+                  "scope": {
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P",
+                    "product": "PRODUCT-P",
+                    "mechanism": "HARNESS"
+                  }
+                },
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "source": {
+                  "identity": "SOURCE-P",
+                  "revision": "SOURCE-r2",
+                  "owner": "selected-source-owner"
+                },
+                "state": "received_in_fixture_only",
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                }
+              },
+              "episode_candidate": {
+                "identity": "EPISODE-P",
+                "revision": "EPISODE-r2",
+                "owner": "LABO-Correlate",
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                },
+                "relations": [
+                  {
+                    "identity": "RELATION-P",
+                    "revision": "RELATION-r2",
+                    "episode_identity": "EPISODE-P",
+                    "episode_revision": "EPISODE-r2",
+                    "observation_identity": "OBSERVATION-P",
+                    "observation_revision": "OBS-r2",
+                    "source": {
+                      "identity": "SOURCE-P",
+                      "revision": "SOURCE-r2",
+                      "owner": "selected-source-owner"
+                    },
+                    "scope": {
+                      "requirement_revision": "REQ-P-r2",
+                      "ticket": "TICKET-P",
+                      "product": "PRODUCT-P",
+                      "mechanism": "HARNESS"
+                    },
+                    "causal_state": "not_established"
+                  }
+                ]
+              },
+              "observation_backlinks": [
+                {
+                  "identity": "RELATION-P",
+                  "revision": "RELATION-r2",
+                  "episode_identity": "EPISODE-P",
+                  "episode_revision": "EPISODE-r2",
+                  "observation_identity": "OBSERVATION-P",
+                  "observation_revision": "OBS-r2",
+                  "source": {
+                    "identity": "SOURCE-P",
+                    "revision": "SOURCE-r2",
+                    "owner": "selected-source-owner"
+                  },
+                  "scope": {
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P",
+                    "product": "PRODUCT-P",
+                    "mechanism": "HARNESS"
+                  },
+                  "causal_state": "not_established"
+                }
+              ],
+              "engine_results": {
+                "Aggregate": "green_in_fixture_only",
+                "Correlate": "green_in_fixture_only"
+              },
+              "claims": []
+            },
+            "original_observation_preserved": true,
+            "field_transfer_state": "received_content_conflict",
+            "missing_fields": {
+              "runtime": {
+                "state": "not_observed",
+                "value": null,
+                "source_ref": null
+              }
+            },
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "received_observation.fields",
+                "result": "received_content_conflict",
+                "return_owner": "LABO-Aggregate-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-Aggregate-owner"
+            ],
+            "rejected_claims": [],
+            "actual_effects": {
+              "source_overwrite": false,
+              "receipt_write": false,
+              "relation_write": false,
+              "authority_change": false,
+              "connection_success": false,
+              "causal_confirmation": false,
+              "acceptance": false,
+              "implementation_ready": false
+            }
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "LABO011-F01-RECEIVED-IDENTITY-NON_NULL-MISMATCH",
+          "basis": "received_identity_mismatch",
+          "requirement_ref": "HELIXLABO-L3-011-F01",
+          "system_oracle_ref": "HELIXLABO-L10-011-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-LABO011-F01-RECEIVED-IDENTITY-NON_NULL-MISMATCH",
+              "revision": "fixture-37faeaa59845570708701b0774104f4e9b14e3085d7e01392882d394ab7fcab0",
+              "owner": "synthetic-fixture-owner",
+              "scope": {
+                "requirement_revision": "REQ-P-r2",
+                "ticket": "TICKET-P",
+                "product": "PRODUCT-P",
+                "mechanism": "HARNESS"
+              }
+            },
+            "raw_utf8": "{\"claims\":[],\"connection\":{\"connector_identity\":\"CONNECTOR-AGG-COR-P\",\"connector_revision\":\"CONNECTOR-r2\",\"contract_identity\":\"SELECTED-PACK-CONTRACT-P\",\"contract_revision\":\"PACK-r2\",\"from_endpoint\":\"AGGREGATE-P@r2\",\"identity\":\"CONNECT-AGGREGATE-CORRELATE-P\",\"revision\":\"CONNECT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"to_endpoint\":\"CORRELATE-P@r2\"},\"engine_results\":{\"Aggregate\":\"green_in_fixture_only\",\"Correlate\":\"green_in_fixture_only\"},\"episode_candidate\":{\"identity\":\"EPISODE-P\",\"owner\":\"LABO-Correlate\",\"relations\":[{\"causal_state\":\"not_established\",\"episode_identity\":\"EPISODE-P\",\"episode_revision\":\"EPISODE-r2\",\"identity\":\"RELATION-P\",\"observation_identity\":\"OBSERVATION-P\",\"observation_revision\":\"OBS-r2\",\"revision\":\"RELATION-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"}}],\"revision\":\"EPISODE-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"}},\"observation_backlinks\":[{\"causal_state\":\"not_established\",\"episode_identity\":\"EPISODE-P\",\"episode_revision\":\"EPISODE-r2\",\"identity\":\"RELATION-P\",\"observation_identity\":\"OBSERVATION-P\",\"observation_revision\":\"OBS-r2\",\"revision\":\"RELATION-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"}}],\"original_observation\":{\"fields\":{\"result\":{\"source_ref\":\"SOURCE-P@SOURCE-r2/result\",\"state\":\"observed_in_fixture_only\",\"value\":\"RESULT-P\"},\"runtime\":{\"source_ref\":null,\"state\":\"not_observed\",\"value\":null}},\"identity\":\"OBSERVATION-P\",\"owner\":\"LABO-Aggregate\",\"revision\":\"OBS-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"}},\"receive_receipt\":{\"connection\":{\"connector_identity\":\"CONNECTOR-AGG-COR-P\",\"connector_revision\":\"CONNECTOR-r2\",\"contract_identity\":\"SELECTED-PACK-CONTRACT-P\",\"contract_revision\":\"PACK-r2\",\"from_endpoint\":\"AGGREGATE-P@r2\",\"identity\":\"CONNECT-AGGREGATE-CORRELATE-P\",\"revision\":\"CONNECT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"to_endpoint\":\"CORRELATE-P@r2\"},\"identity\":\"LABO-Correlate-RECEIPT-P\",\"observation_identity\":\"OBSERVATION-P\",\"observation_revision\":\"OBS-r2\",\"owner\":\"LABO-Correlate\",\"revision\":\"RECEIPT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"},\"state\":\"received_in_fixture_only\"},\"received_observation\":{\"fields\":{\"result\":{\"source_ref\":\"SOURCE-P@SOURCE-r2/result\",\"state\":\"observed_in_fixture_only\",\"value\":\"RESULT-P\"},\"runtime\":{\"source_ref\":null,\"state\":\"not_observed\",\"value\":null}},\"identity\":\"OBSERVATION-Q\",\"owner\":\"LABO-Aggregate\",\"revision\":\"OBS-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"}},\"send_receipt\":{\"connection\":{\"connector_identity\":\"CONNECTOR-AGG-COR-P\",\"connector_revision\":\"CONNECTOR-r2\",\"contract_identity\":\"SELECTED-PACK-CONTRACT-P\",\"contract_revision\":\"PACK-r2\",\"from_endpoint\":\"AGGREGATE-P@r2\",\"identity\":\"CONNECT-AGGREGATE-CORRELATE-P\",\"revision\":\"CONNECT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"to_endpoint\":\"CORRELATE-P@r2\"},\"identity\":\"LABO-Aggregate-RECEIPT-P\",\"observation_identity\":\"OBSERVATION-P\",\"observation_revision\":\"OBS-r2\",\"owner\":\"LABO-Aggregate\",\"revision\":\"RECEIPT-r2\",\"scope\":{\"mechanism\":\"HARNESS\",\"product\":\"PRODUCT-P\",\"requirement_revision\":\"REQ-P-r2\",\"ticket\":\"TICKET-P\"},\"source\":{\"identity\":\"SOURCE-P\",\"owner\":\"selected-source-owner\",\"revision\":\"SOURCE-r2\"},\"state\":\"sent_in_fixture_only\"}}",
+            "sha256": "37faeaa59845570708701b0774104f4e9b14e3085d7e01392882d394ab7fcab0"
+          },
+          "expected_material": {
+            "information_state": "held_connection_unqualified",
+            "retained_inputs": {
+              "connection": {
+                "connector_identity": "CONNECTOR-AGG-COR-P",
+                "connector_revision": "CONNECTOR-r2",
+                "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                "contract_revision": "PACK-r2",
+                "from_endpoint": "AGGREGATE-P@r2",
+                "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                "revision": "CONNECT-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "to_endpoint": "CORRELATE-P@r2"
+              },
+              "original_observation": {
+                "identity": "OBSERVATION-P",
+                "revision": "OBS-r2",
+                "owner": "LABO-Aggregate",
+                "source": {
+                  "identity": "SOURCE-P",
+                  "revision": "SOURCE-r2",
+                  "owner": "selected-source-owner"
+                },
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                },
+                "fields": {
+                  "result": {
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P",
+                    "source_ref": "SOURCE-P@SOURCE-r2/result"
+                  },
+                  "runtime": {
+                    "state": "not_observed",
+                    "value": null,
+                    "source_ref": null
+                  }
+                }
+              },
+              "received_observation": {
+                "fields": {
+                  "result": {
+                    "source_ref": "SOURCE-P@SOURCE-r2/result",
+                    "state": "observed_in_fixture_only",
+                    "value": "RESULT-P"
+                  },
+                  "runtime": {
+                    "source_ref": null,
+                    "state": "not_observed",
+                    "value": null
+                  }
+                },
+                "identity": "OBSERVATION-Q",
+                "owner": "LABO-Aggregate",
+                "revision": "OBS-r2",
+                "scope": {
+                  "mechanism": "HARNESS",
+                  "product": "PRODUCT-P",
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P"
+                },
+                "source": {
+                  "identity": "SOURCE-P",
+                  "owner": "selected-source-owner",
+                  "revision": "SOURCE-r2"
+                }
+              },
+              "send_receipt": {
+                "identity": "LABO-Aggregate-RECEIPT-P",
+                "revision": "RECEIPT-r2",
+                "owner": "LABO-Aggregate",
+                "connection": {
+                  "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                  "revision": "CONNECT-r2",
+                  "from_endpoint": "AGGREGATE-P@r2",
+                  "to_endpoint": "CORRELATE-P@r2",
+                  "connector_identity": "CONNECTOR-AGG-COR-P",
+                  "connector_revision": "CONNECTOR-r2",
+                  "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                  "contract_revision": "PACK-r2",
+                  "scope": {
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P",
+                    "product": "PRODUCT-P",
+                    "mechanism": "HARNESS"
+                  }
+                },
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "source": {
+                  "identity": "SOURCE-P",
+                  "revision": "SOURCE-r2",
+                  "owner": "selected-source-owner"
+                },
+                "state": "sent_in_fixture_only",
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                }
+              },
+              "receive_receipt": {
+                "identity": "LABO-Correlate-RECEIPT-P",
+                "revision": "RECEIPT-r2",
+                "owner": "LABO-Correlate",
+                "connection": {
+                  "identity": "CONNECT-AGGREGATE-CORRELATE-P",
+                  "revision": "CONNECT-r2",
+                  "from_endpoint": "AGGREGATE-P@r2",
+                  "to_endpoint": "CORRELATE-P@r2",
+                  "connector_identity": "CONNECTOR-AGG-COR-P",
+                  "connector_revision": "CONNECTOR-r2",
+                  "contract_identity": "SELECTED-PACK-CONTRACT-P",
+                  "contract_revision": "PACK-r2",
+                  "scope": {
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P",
+                    "product": "PRODUCT-P",
+                    "mechanism": "HARNESS"
+                  }
+                },
+                "observation_identity": "OBSERVATION-P",
+                "observation_revision": "OBS-r2",
+                "source": {
+                  "identity": "SOURCE-P",
+                  "revision": "SOURCE-r2",
+                  "owner": "selected-source-owner"
+                },
+                "state": "received_in_fixture_only",
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                }
+              },
+              "episode_candidate": {
+                "identity": "EPISODE-P",
+                "revision": "EPISODE-r2",
+                "owner": "LABO-Correlate",
+                "scope": {
+                  "requirement_revision": "REQ-P-r2",
+                  "ticket": "TICKET-P",
+                  "product": "PRODUCT-P",
+                  "mechanism": "HARNESS"
+                },
+                "relations": [
+                  {
+                    "identity": "RELATION-P",
+                    "revision": "RELATION-r2",
+                    "episode_identity": "EPISODE-P",
+                    "episode_revision": "EPISODE-r2",
+                    "observation_identity": "OBSERVATION-P",
+                    "observation_revision": "OBS-r2",
+                    "source": {
+                      "identity": "SOURCE-P",
+                      "revision": "SOURCE-r2",
+                      "owner": "selected-source-owner"
+                    },
+                    "scope": {
+                      "requirement_revision": "REQ-P-r2",
+                      "ticket": "TICKET-P",
+                      "product": "PRODUCT-P",
+                      "mechanism": "HARNESS"
+                    },
+                    "causal_state": "not_established"
+                  }
+                ]
+              },
+              "observation_backlinks": [
+                {
+                  "identity": "RELATION-P",
+                  "revision": "RELATION-r2",
+                  "episode_identity": "EPISODE-P",
+                  "episode_revision": "EPISODE-r2",
+                  "observation_identity": "OBSERVATION-P",
+                  "observation_revision": "OBS-r2",
+                  "source": {
+                    "identity": "SOURCE-P",
+                    "revision": "SOURCE-r2",
+                    "owner": "selected-source-owner"
+                  },
+                  "scope": {
+                    "requirement_revision": "REQ-P-r2",
+                    "ticket": "TICKET-P",
+                    "product": "PRODUCT-P",
+                    "mechanism": "HARNESS"
+                  },
+                  "causal_state": "not_established"
+                }
+              ],
+              "engine_results": {
+                "Aggregate": "green_in_fixture_only",
+                "Correlate": "green_in_fixture_only"
+              },
+              "claims": []
+            },
+            "original_observation_preserved": true,
+            "field_transfer_state": "received_content_conflict",
+            "missing_fields": {
+              "runtime": {
+                "state": "not_observed",
+                "value": null,
+                "source_ref": null
+              }
+            },
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "received_observation.identity",
+                "result": "received_content_conflict",
+                "return_owner": "LABO-Aggregate-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-Aggregate-owner"
+            ],
+            "rejected_claims": [],
+            "actual_effects": {
+              "source_overwrite": false,
+              "receipt_write": false,
+              "relation_write": false,
+              "authority_change": false,
+              "connection_success": false,
+              "causal_confirmation": false,
+              "acceptance": false,
+              "implementation_ready": false
+            }
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
         }
       ],
-      "coverage_limit": "合成内容と失敗理由の初期比較。実両端receipt、実往復、互換resolver、全組合せ、実L9/TDDの証拠は未成立。"
+      "coverage_limit": "合成内容と失敗理由の初期比較。実両端receipt、実往復、互換resolver、全組合せ、実L9/TDDの証拠は未成立。 既存42件に3件（scope子欠落、受信field値相反、受信identity値相反）を追加し、合計45件の限定fixtureとして保持する。全域網羅は主張しない。"
     }
   ],
-  "completion": "合成例/静的照合。実接続/設計閉包/実装準備成立を証明しない。"
+  "completion": "合成例/静的照合。実接続/設計閉包/実装準備成立を証明しない。",
+  "candidate_followup_binding": {
+    "source_main": "555d287b74d1f001416b1ae71fe0a5f7ad3e0330",
+    "current_source_pins": [
+      {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "pointer_or_lines": "163-165 HELIXLABO-L2-011"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+        "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
+        "pointer": "/requirements/4"
+      },
+      {
+        "path": "docs/helix-labo/L4-basic-design/aggregate-correlate-connection.json",
+        "sha256": "a369b94d22cc0a5e700b6ee2e96178884b8098d3ad2b8f82ae9f9b7c6d623799",
+        "pointers": [
+          "/contracts/0/content_rules/0",
+          "/contracts/0/content_rules/1",
+          "/contracts/0/content_rules/3",
+          "/architecture/flow/0",
+          "/architecture/flow/1",
+          "/architecture/flow/3"
+        ]
+      },
+      {
+        "path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
+        "sha256": "e8b506df54781e2c55a7fc22f306b5a2ac516b48c173aa649a237b62df123ec9",
+        "pointers": [
+          "/logical_contract/functions/0/algorithm/1",
+          "/logical_contract/functions/0/algorithm/3",
+          "/logical_contract/functions/3/algorithm/0",
+          "/logical_contract/functions/3/algorithm/3",
+          "/logical_contract/types/FailureResult",
+          "/logical_contract/types/TransferState",
+          "/logical_contract/types/FailureReason",
+          "/logical_contract/types/ConnectionResult"
+        ]
+      },
+      {
+        "path": "docs/helix-labo/L8-unit-verification/aggregate-correlate-connection.json",
+        "sha256": "dba5e737068adc989648e6e6394d4d961bdf99488c477ba0b03a9e8e3b1c0853",
+        "case_count": 42,
+        "coverage_pointers": [
+          "/cases/0",
+          "/cases/9",
+          "/cases/24",
+          "/cases/25",
+          "/cases/26",
+          "/cases/27",
+          "/cases/28",
+          "/cases/29"
+        ]
+      },
+      {
+        "path": "docs/helix-labo/L9-integration-verification/aggregate-correlate-connection.json",
+        "sha256": "6fa4247de8da611c50b3e8ab587ca60123a30f78b88c2af3e8efa891e22ce55f",
+        "case_count": 42,
+        "coverage_pointers": [
+          "/verification_obligations/0/cases/0",
+          "/verification_obligations/0/cases/9",
+          "/verification_obligations/0/cases/24",
+          "/verification_obligations/0/cases/25",
+          "/verification_obligations/0/cases/26",
+          "/verification_obligations/0/cases/27",
+          "/verification_obligations/0/cases/28",
+          "/verification_obligations/0/cases/29"
+        ]
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.json",
+        "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496",
+        "pointer": "/cases/4"
+      }
+    ],
+    "l5_change_pointers": [
+      "/logical_contract/functions/3/algorithm/0",
+      "/logical_contract/functions/3/algorithm/3",
+      "/logical_contract/types/FailureResult"
+    ],
+    "change_summary": "FN01 algorithm/1はsource本文を保持する。FN04ではraw scopeがobjectの場合だけ子4項目を診断する。非object scope時もFN01の13個presenceと親scope値を保持し、FN04は親absent/nullのみ診断する。非null object外scopeの成立意味は追加せず、既存の未確定状態を維持する。",
+    "l5_preserved_pointers": [
+      {
+        "pointer": "/logical_contract/functions/0/algorithm/1",
+        "source_revision": "30dfacd9228e30c65a5ee965a6f8d5dd472a81f5",
+        "source_sha256": "e8b506df54781e2c55a7fc22f306b5a2ac516b48c173aa649a237b62df123ec9",
+        "meaning": "FN01 scope子presence規則は固定source本文と完全一致し、R4候補での変更対象ではない。"
+      }
+    ]
+  },
+  "candidate_followup_scope": {
+    "old_case_count": 42,
+    "new_case_count": 3,
+    "candidate_case_count": 45,
+    "new_case_ids": [
+      "LABO011-F01-SCOPE-PRODUCT-MISSING",
+      "LABO011-F01-RECEIVED-FIELD-NON_NULL-MISMATCH",
+      "LABO011-F01-RECEIVED-IDENTITY-NON_NULL-MISMATCH"
+    ],
+    "claim": "追加3件も合成入力と独立期待であり、実接続/receipt資格/実運用成立を示さない。"
+  }
 }
