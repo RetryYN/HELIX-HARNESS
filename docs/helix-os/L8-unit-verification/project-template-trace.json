@@ -161538,12 +161538,12 @@
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
+            "file_sha256": "3d59d6c8f1e6979b5c88e98e5620f40d16df968c493f662e862c725ba5ce5b7d",
             "pointer": "/functions/16/algorithm/3"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
+            "file_sha256": "3d59d6c8f1e6979b5c88e98e5620f40d16df968c493f662e862c725ba5ce5b7d",
             "pointer": "/functions/13/algorithm/2"
           }
         ],
@@ -161571,7 +161571,7 @@
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
+            "file_sha256": "3d59d6c8f1e6979b5c88e98e5620f40d16df968c493f662e862c725ba5ce5b7d",
             "pointer": "/functions/13/algorithm/2"
           }
         ],
@@ -161621,18 +161621,18 @@
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
+            "file_sha256": "3d59d6c8f1e6979b5c88e98e5620f40d16df968c493f662e862c725ba5ce5b7d",
             "pointer": "/functions/14/algorithm/2"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
+            "file_sha256": "3d59d6c8f1e6979b5c88e98e5620f40d16df968c493f662e862c725ba5ce5b7d",
             "pointer": "/functions/14/algorithm/3"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "3cf7543fde427524264c36b31a9f20234b0de22469f93fe542d3ca8a566bf2b4",
-            "pointer": "/functions/15/algorithm/1"
+            "file_sha256": "3d59d6c8f1e6979b5c88e98e5620f40d16df968c493f662e862c725ba5ce5b7d",
+            "pointer": "/functions/20/algorithm/1"
           }
         ],
         "expected_field_presence": {
