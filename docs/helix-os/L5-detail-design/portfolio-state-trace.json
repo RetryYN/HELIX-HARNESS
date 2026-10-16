@@ -3309,7 +3309,8 @@
       "oracle_sha256": "fd3c2f99c3a190757d6465fd41c7773777b8ca2fae20dbbbf8194f6489fef73e",
       "original_four_wholes_unchanged": true,
       "before_contract_sha256": "8704320ef100b4f90c7384bdb69b0ac32fed812026d7b6b775b0a3491257052c",
-      "reason": "旧文言はselected.kindだけをclosed-enum判定とし、actual/context同値の未知kindを対応済みにできた。R02の両side閉集合を全pair operandへ明示する。"
+      "reason": "旧文言はselected.kindだけをclosed-enum判定とし、actual/context同値の未知kindを対応済みにできた。R02の両side閉集合を全pair operandへ明示する。",
+      "provenance_role": "oracle名・oracle_sha256・before_contract_sha256はgit外の先行著述素材と訂正前本文の来歴digestで、Gitだけから再取得できない。意味の別正本や検証成立の根拠にせず、正式な契約と期待値はこのPRのJSON本文で保持する。"
     },
     "binding_rule": "wrapperがselected evaluatorを一度呼び、その同じ局所input/targets/traceを内部binderへ渡す。binderを外部の任意findingと別入力を結び替えるAPIとして公開しない。原11root・既存entrypointの返却は変更しない。",
     "cross_variant_rules": "locator.kind=nodeならmaterials/comparisonsともnode、projectならproject/not_node_bound、unboundならunbound/not_node_bound。Capture.valueはabsentに無く、blocked/presentに必須。findingとlocatorは同じ原pointerから導き、candidate配列はtrace.findingsの原順で一対一。",

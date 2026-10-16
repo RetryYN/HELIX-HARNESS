@@ -401917,7 +401917,7 @@
         "canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
         "targets_control_path": "/domain_extension_cases/0/input/targets",
         "targets_control_canonical_sha256": "204fe182e65f15516c88dbe461c328fa7d93db2ae4e28d35e5ffe295d3f30ba2",
-        "note": "raw D0001 portfolio remains exact; target invocation arity is the only changed boundary"
+        "note": "原D0001のportfolioはそのまま保持し、targetsを渡す引数の個数だけを変更する。"
       },
       "oracle_provenance_sha256": "4fd77beae527df0bc55acce1f4dc21afafc447a24f30a1650ef064886d12c83b",
       "correction": "旧先行期待の診断pointer /targets/selection_source_ref は誤り。既存locateは非object rootでpathを進める前に /targets を返すため訂正。引数規則・Capture・元4 wholeは不変。",
@@ -402050,7 +402050,8 @@
             "envelope_returned": false
           }
         }
-      ]
+      ],
+      "oracle_provenance_role": "oracle_provenance_sha256はgit外の先行著述素材の来歴digestで、Gitだけから再取得できず、意味の別正本や検証成立の証拠ではない。正式な局所期待はこのobjectのcasesとfixtureに記載する。"
     },
     "execution_state": "not_executed",
     "scope": "4件の全wrapper期待と1件の比較全35field。入力のcorpusを独立の別試料とは主張しない。実資格・配送・全親義務の完了を生成しない。",
