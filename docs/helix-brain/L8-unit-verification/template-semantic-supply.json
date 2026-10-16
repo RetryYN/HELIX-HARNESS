@@ -691067,6 +691067,452 @@
       "source_limit": "このdigestと完全一致するbytesは、ローカルの未追跡draft candidateから回収し、監査用source snapshotとして保全した（docs/governance/audits/source-rebaseline/source-snapshots/brain032-na-spec-d0c896ee-recovery.json）。ただし、対象21件がこのcandidateを仕様根拠として使ったことを示す採択済みrevision・authoritative source記録は回収できておらず、由来は未確定。snapshotの保全は当時の根拠仕様の真正性、期待値の正しさ、現在L5へのbindingを証明しない。対象caseのraw・期待・call・basisは変更せず保持する。",
       "pointer_resolution_limit": "対象21caseの各4本の仕様pointerは現在のdefinition_meaning_coreへ解決できるが、所在の解決はこのdigestの真正性を証明しない。",
       "preservation": "対象caseの凍結raw・期待・call・basisを変更せず保持する。現在L5のfile bytesへの明示bindingは別のcandidate_L5_bindingに限る。"
+    },
+    "current_source_basis_reconstruction": {
+      "id": "BRAIN032-CURRENT-SOURCE-BASIS-RECONSTRUCTION",
+      "status": "source_derived_audit_candidate_pending_independent_review",
+      "scope": "既存cases8〜28の21入力について、現在の対象L3/L10とL4/L5を根拠とする別系統の静的照合資料。元case/期待/旧provenanceを置換しない。",
+      "basis_revision": "5574a1b00812dc9dae56d54631c5dcd53a3e5cb1",
+      "approved_target_basis": {
+        "decision_record": "docs/governance/decisions/helix-brain-template032-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+        "decision_record_sha256": "53f0c2d44b17133b8ad3b6eefab7fbf621203c3cc997131e81d341acb37a7467",
+        "approval_head": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+        "approval_comment": 6113010770,
+        "target_objects": [
+          {
+            "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+            "id": "HELIXBRAIN-L3-032-F01",
+            "canonical_object_sha256": "ebc2da3936a606c23ff1c2e08eefd549eb99d2cb51e45cc17e4cd003663cda35",
+            "unchanged": true
+          },
+          {
+            "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+            "id": "HELIXBRAIN-L3-032-F02",
+            "canonical_object_sha256": "e1c325353009052758b9707e509f652fa63def733c3c4c5a82d3fc4d2a640a3e",
+            "unchanged": true
+          },
+          {
+            "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+            "id": "HELIXBRAIN-L3-032-N01",
+            "canonical_object_sha256": "de8c3d4e53c0b8c4cf0c43bc9cb90430c23f9ed96d6a81cc6c44cca68b538905",
+            "unchanged": true
+          },
+          {
+            "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+            "id": "HELIXBRAIN-L3-032-B01",
+            "canonical_object_sha256": "f40d88606a3d1373a447e4067b93d82c9c7754867348dc4694e345b88812d7a2",
+            "unchanged": true
+          },
+          {
+            "path": "docs/helix-brain/L10-verification/functional-verification.json",
+            "id": "HELIXBRAIN-L10-032-F01",
+            "canonical_object_sha256": "ee86fd3f61e9252dbc07b2d92b6dbb571820e7cf3cf4fcfefe2941333cedffd2",
+            "unchanged": true
+          },
+          {
+            "path": "docs/helix-brain/L10-verification/functional-verification.json",
+            "id": "HELIXBRAIN-L10-032-F02",
+            "canonical_object_sha256": "19a2fbf38750ddddfd9ff26b6f8f564bd3860ab513fa4dc0a9a8b44293caf739",
+            "unchanged": true
+          },
+          {
+            "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+            "id": "HELIXBRAIN-L10-032-N01",
+            "canonical_object_sha256": "e00b4bb11cfc69b34e50a0333fb0b5efce59e5de7086041df781edd3eeb07d84",
+            "unchanged": true
+          },
+          {
+            "path": "docs/helix-brain/L10-verification/business-verification.json",
+            "id": "HELIXBRAIN-L10-032-B01",
+            "canonical_object_sha256": "396415ca46e2480b26904724646a3502de4903d7190eb9cdda17f92feca16906",
+            "unchanged": true
+          }
+        ],
+        "limit": "8対象objectの採択連続性だけ。集約file全体の承認又は新たな要求採択を主張しない。"
+      },
+      "source_pins": {
+        "L8": {
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "pin_scope": "実際に消費する入力objectだけを固定する。L8全体のfile hashは過去のarchiveを特定する値であり、現行入力の固定値ではない。",
+          "base_raw_input_pointer": "/definition_meaning_walk_verification/materials/1/raw_input",
+          "base_raw_input_canonical_sha256": "6cd0dc78d931154f9931f950a4fceca68806dde03f5da6a0a22deb7cbca3d084",
+          "ordered_case_raw_patch_projection_canonical_sha256": {
+            "8": "87bdf3783754fab07d6867987aa8134dc984d4ab2e1c215e928c23bc02803998",
+            "9": "e0a64ea52e305717ce8b9772dc637c3d892b803282d45e84c221470939e04869",
+            "10": "361af43aec1f9fe96bc04d43638b4d1578e09caa3827237b04e8282a6616a2d5",
+            "11": "d340014c99e7a9a7656cf26202e21d75099a31b870b00d9e4ddd1d151870fd1f",
+            "12": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "13": "8e8a176fd3689c89bd6122903f210e4bb86ce9a46b6995c46a3252976d07dd84",
+            "14": "0916ee51729071ddd239ef073191426cd8295ce4bab08a42c2b3aed443aa6d89",
+            "15": "8b58f1719581ada83678088ab8fab3b60f752a16ec926c3b8bbcb7e753b030a3",
+            "16": "8d937176cc54128b221644aed4ae37cb0f7ac40e5a5257fca3d4bc1065b2672a",
+            "17": "28ca9b1a71a87971a26c8ddd0f855234b6710782855bf85a438267ebeab2f7d6",
+            "18": "a6f689c8c9532c90eee1f53af87f633c698b3ac8120ccbca9c33dafac1377a42",
+            "19": "45d56be8f13f3f53f7888fe686d83496916d1049e26297f6241afda1b4f1bae3",
+            "20": "40ff43095d106900f6c194e5d3fe5a20d7937fc9abe9422a114f60c1a81cbac0",
+            "21": "277cc00c1102e4f83311834fefd16e6ade5763263a9d3b855c3eb090f7e41004",
+            "22": "d0a1fe4abf03f2141706f142deba686a6d6a830f87c82ab7bcd579266e0dcb54",
+            "23": "932af17f316ad5de13a6aaf1ccdccbd26f9f78df1caa88b6267aeb5592c04daa",
+            "24": "c761ec0c00d6b7a1e8406fba0ed83ca121279c7cad3f840bfb936b0a4eeebfa6",
+            "25": "adf13917a40d1be34b3838de7245220a261a83b33ad5473e55be6481b7ffdd15",
+            "26": "9969ff46ead5567d7f79b9158d0d78566f1b04627b69a705e716d3bed0e960eb",
+            "27": "97311ea0272e6a7c47a9a53f0bd41e3a360b0cb916a0815d4f992f2094e7689a",
+            "28": "78a5bcce128942d27cd41b40dd1d9d0ebe7867b190d3aafce75ef9aa623003f1"
+          },
+          "historical_full_file_sha256_at_basis_5574": "c10297a78422e3a759e1e1a9b9bbb044d0bf8f1525f1393cc22ce092eef2a1cd",
+          "base_material_pointer": "/definition_meaning_walk_verification/materials/1"
+        },
+        "L4": {
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "sha256": "4ef60d6c0d15fa0339f525ad92c5754994dc83b56bb70b3397635e74c9bd88c2",
+          "semantic_pointers": [
+            "/definition_meaning_resolution_contract/readers/0",
+            "/definition_meaning_resolution_contract/readers/1",
+            "/definition_meaning_resolution_contract/schema/new_defs/DefinitionApplicabilitySourceEntry",
+            "/definition_meaning_resolution_contract/schema/new_defs/DefinitionApplicabilityRead"
+          ]
+        },
+        "L5": {
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
+          "semantic_pointers": [
+            "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/applicability/body/algorithm",
+            "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/na_call_schedule",
+            "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection/branches",
+            "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion",
+            "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column/na",
+            "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract"
+          ]
+        }
+      },
+      "audit_reader": {
+        "path": "docs/governance/audits/source-rebaseline/source-snapshots/brain032-current-source-basis-5574a1b0.py",
+        "file_sha256": "ddda6c993c919b8bbb7f2bc6f190e03aaadf66e4f2f174d9a48abc99db87af41",
+        "role": "この時点の静的監査source snapshot。製品/scaffold runtimeではない。stdlibのみ、DB/ネット/旧runtime/旧CIなし。出力はstdoutのhashと読取レシピ。",
+        "command": "python3 -B docs/governance/audits/source-rebaseline/source-snapshots/brain032-current-source-basis-5574a1b0.py",
+        "input_boundary": "L8の固定base raw_inputと順序付きraw_input patchだけから再構成する。case id・base pointer・再構成raw hashも照合する。expected系は構成入力へ渡さない。",
+        "pin_boundary": "L4/L5の現行file、対象L3/L10の8object、L8の消費する入力object/patchを固定する。L8全体の旧hashは履歴識別で、sibling追加後の現行hashとしては使わない。"
+      },
+      "constructor_rules": [
+        "case8を原source/解釈/固定規範/既存NA枝から構成する。9〜28は同値確認済み15意味sourceの枝を再利用し、slot5の原NA読取と各判断を再構成する。",
+        "NAのsort source列は同じreadの全source occurrencesと、その判断に対応するsupport record.source_refだけから作る。v6の全support混入手順は採らない。",
+        "content_bytesをparseした値とsource.contentをcanonical JSONで比較し、falseと0を同一視しない。値と反復位置、全原返却、event/axis/assessment対応を保持する。"
+      ],
+      "cases": [
+        {
+          "case_index": 8,
+          "case_id": "NA-REQUEST-EXPLICIT-NULL",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "raw_input_canonical_sha256": "8bd07c5e73b49b77ffb5dcd2cf2a54bdbfd8204dd8204a447dda6350a534438a",
+          "expected_whole_canonical_sha256": "72a91bb4a4b064cbb4a757e7f13cb59b96fc6afacd29c7c4456420ad7765d241"
+        },
+        {
+          "case_index": 9,
+          "case_id": "NA-REQUEST-REF-UNRESOLVED",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "raw_input_canonical_sha256": "a56cb8fc6003d6d9f16e2cfc2c813ef50f599a9f71993466ac0d0e171a0e9160",
+          "expected_whole_canonical_sha256": "9d801939deee864ecd6ab30a81c55e86aac8d88dd0bf59f9992bf2356a94f74f"
+        },
+        {
+          "case_index": 10,
+          "case_id": "NA-NATIVE-OWNER-UNKNOWN",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "raw_input_canonical_sha256": "def3e45c65795491bb7a4e884f505b789acef7087685492976f7a2c6d7e9700e",
+          "expected_whole_canonical_sha256": "bfeae27fc5eee2e6c2a6d9e2b08c674f90f3332dcde119c88afe27837bdc537b"
+        },
+        {
+          "case_index": 11,
+          "case_id": "NA-NATIVE-OWNER-APPLICABLE",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "raw_input_canonical_sha256": "8b58aa02b176c0ccca52c52e0036c92f7817b686a09ae1af6f72cd0e61d31c5f",
+          "expected_whole_canonical_sha256": "cd2d8e7442273aa36e6d8bd02fc8604f4a7dc1a33bf20c1a02248f0ebfe97d7b"
+        },
+        {
+          "case_index": 12,
+          "case_id": "NA-ORIGINAL-NOT-APPLICABLE-REENTRY-FALSE",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [],
+          "raw_input_canonical_sha256": "6cd0dc78d931154f9931f950a4fceca68806dde03f5da6a0a22deb7cbca3d084",
+          "expected_whole_canonical_sha256": "7ed321eba6fed564640cca7e9b8b3319a6e50942e86661d790a3414bffcde6bf"
+        },
+        {
+          "case_index": 13,
+          "case_id": "NA-ORIGINAL-DECISION-ABSENT",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_input_canonical_sha256": "1a0b5bbda84f698cedaebabf9eb5358dbddc9d3af95b029d87c897acabebd9c0",
+          "expected_whole_canonical_sha256": "416979ce0d9c67399ff7b24685651e1e4dd19ad1f6ecb011cf47310fb8d6ef7f"
+        },
+        {
+          "case_index": 14,
+          "case_id": "NA-REASON-ABSENT",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_input_canonical_sha256": "6f4640fda63c411b8c85e3d2530feb8fce44c35d6e9ecb4fda28bb0815b6c095",
+          "expected_whole_canonical_sha256": "65ce3b57a7c535059b5b321001e28d757879f80f5f25e64d1350c40166422748"
+        },
+        {
+          "case_index": 15,
+          "case_id": "NA-REASON-NULL",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_input_canonical_sha256": "bb884e836c6df403a9b6a3b3788491c23f239d80b104113db3ebb6299e0d420a",
+          "expected_whole_canonical_sha256": "32b05eef3b9f81ab1ecde00d9728a200533d64a2b69120839d7340b6046823d0"
+        },
+        {
+          "case_index": 16,
+          "case_id": "NA-REASON-EMPTY-STRING",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_input_canonical_sha256": "4475c9bc1afaf33013a9d9a683728e6170bca53cd7b5d5c295b9f920ddad7256",
+          "expected_whole_canonical_sha256": "a585f5caa5fe4568f4156234f9523a9e2e5ebed87502b9565bf7867214bd5c45"
+        },
+        {
+          "case_index": 17,
+          "case_id": "NA-REENTRY-ABSENT",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_input_canonical_sha256": "3ef90f8dd923fda869c2bbb784e16d22cf11c772f37eeee2fc379095ab6f4290",
+          "expected_whole_canonical_sha256": "6831aaf70aca1465e69c1ab11d2faa2889ee1a8e01397435784baf0fd42fd1cf"
+        },
+        {
+          "case_index": 18,
+          "case_id": "NA-REENTRY-NULL",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_input_canonical_sha256": "0934868d71af04f031eca193f5321c263b3bc3fd707ae11c9fae4f2913b93fc5",
+          "expected_whole_canonical_sha256": "e952ea77813721881c17f838af6b92418ce4e368281fe7fb6fb17ff9cd19c9a8"
+        },
+        {
+          "case_index": 19,
+          "case_id": "NA-REENTRY-ZERO",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_input_canonical_sha256": "82b3ad50701d0a9a1019c3a2110a4a64363d8267dd5a2c0f7acebb9cbcda77d2",
+          "expected_whole_canonical_sha256": "2fcd1adf545645c91469e14b91b9dd39e42f1b680cf61a1be34b2b7bd784603a"
+        },
+        {
+          "case_index": 20,
+          "case_id": "NA-REENTRY-EMPTY-STRING",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_input_canonical_sha256": "e7ae5278e0e10ace7dfdd774164900258970152ba63f3fd34fc410f548d50d09",
+          "expected_whole_canonical_sha256": "fc9b03a4e0ecf57f563f07663abda25f13394cf012dde1ec202a81d2353f006f"
+        },
+        {
+          "case_index": 21,
+          "case_id": "NA-REENTRY-EMPTY-ARRAY",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_input_canonical_sha256": "c8b343a7788c4c4489e59cb2acd4ed02cd40b2f472b66e134ba00bc2293fbe94",
+          "expected_whole_canonical_sha256": "ac6906c525c240fe1c4584bbf4079e545ef6dab2bde41ba2d8367c38334d24ea"
+        },
+        {
+          "case_index": 22,
+          "case_id": "NA-REENTRY-EMPTY-OBJECT",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_input_canonical_sha256": "033fb13eb72beb69ae6cce89a27eee6035a6d5eaafcd8ba3fbe5437692a240ec",
+          "expected_whole_canonical_sha256": "7a189c77ad745e75086b9bce8aafa8e3c838b8cea51bd98ebeced3186cecb0dc"
+        },
+        {
+          "case_index": 23,
+          "case_id": "NA-TWO-ORIGINAL-RECORDS-FALSE-AND-ZERO",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_input_canonical_sha256": "e7acb466ce6f02969e8578b6a974b5d9f755493802141c2970b2fe3776b07e92",
+          "expected_whole_canonical_sha256": "0d0df4b185f475547e3415f07092982851c9932655df16623fbd3ac7df1f51be"
+        },
+        {
+          "case_index": 24,
+          "case_id": "NA-IDENTICAL-ORIGINAL-SOURCE-RECORD-REPEATED",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "raw_input_canonical_sha256": "175a0007077122d32bc65896919c86354f9a05641242b0e9166b556860c89600",
+          "expected_whole_canonical_sha256": "59783e93d9d253fee62d832f3b8913e9eae740b23898389f3a9ee600028fbeff"
+        },
+        {
+          "case_index": 25,
+          "case_id": "NA-FOREIGN-SUBJECT-RECORD",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "raw_input_canonical_sha256": "f974c93f129e9b25d9b910c9e2cd8f682a5474defd7519cc90e7158dda5d8574",
+          "expected_whole_canonical_sha256": "33b1d482ecfb24749d324b4df5410b58ff727ff5b9bf304efe3e688bb83d21be"
+        },
+        {
+          "case_index": 26,
+          "case_id": "NA-QUALIFICATION-WRONG-SCOPE",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0
+          ],
+          "raw_input_canonical_sha256": "f483025d2dd7619569fd0173f21cfd42614f04dd0a3a9d91f8772538b44904cf",
+          "expected_whole_canonical_sha256": "e4d5c4307b2ee0a384aac5b45f3350b2f71105589a22e4b172b0ff3e1dd997ae"
+        },
+        {
+          "case_index": 27,
+          "case_id": "NA-MATERIAL-PRESENT-REQUEST-ABSENT",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0
+          ],
+          "raw_input_canonical_sha256": "3e9b0d295092d69ff4aff57db4c78f288150496334715f87df4f8515f82bc6de",
+          "expected_whole_canonical_sha256": "3d20ae14439bd4e748e07429d5e4a3c141b30625d0687e8e870bfb1d17645e8b"
+        },
+        {
+          "case_index": 28,
+          "case_id": "NA-SOURCE-ZERO-ROOT-FALSE-MIRROR-DIFFERS",
+          "input_base_pointer": "/definition_meaning_walk_verification/materials/1",
+          "ordered_raw_patch_operation_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "raw_input_canonical_sha256": "9569840f1072c6748868a72def2b3a6cf1018af756235c28a36cc50d0fe120ff",
+          "expected_whole_canonical_sha256": "53e79fa870390ffb12d9474ee30ceaa9d885e8da0dd1424f89253333da961a78"
+        }
+      ],
+      "expected_materialization": "全expected_wholeは同じL8の各caseが示す既存fixture_base_pointerへfixture_patch全件を配列順に適用したexpected_walk_return。比較段階でのみ読む。readerによるsource再構成値との型敏感な全値一致は別の照合で確認する。",
+      "history_relation": {
+        "unresolved_pointer": "/definition_meaning_walk_verification/unresolved_specification_provenance",
+        "old_specification_sha256": "d0c896ee64d5340d7dbc85d4a760c90e03bcbbcc908cac0bc2e95734aa6d8316",
+        "limit": "草稿bytesは回収済みだが、元の採用revision/authorityは未回収のまま。本資料をその元revisionだったと読み替えない。",
+        "chronology": "v1〜v6の作業では旧期待を既に参照・比較している。比較前に全件を独立凍結したという来歴を主張しない。"
+      },
+      "limits": [
+        "21件と固定sourceの静的再構成に限る。汎用比較関数又は任意入力域の検証器ではない。",
+        "本readerはoracle側の再照合資料。製品コード/製品テスト/新世代CI/実資格/受入の代用にしない。",
+        "BRAIN032全体の完了、全consumer閉包、L3採否の変更、新しい承認gateは含まない。"
+      ]
     }
   }
 }
