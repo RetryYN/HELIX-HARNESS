@@ -77,6 +77,26 @@
       "path": "docs/governance/decisions/incidentport-adoption-po-decision-2026-10-11.md",
       "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
       "sha256": "144594a305825f7b44bf4615cda15d3a7dab17cd2301a8072829ec9a76485210"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+      "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+      "sha256": "42ad78921ddaf43ab013a006346e2b67a90936478dec87a7672d814868711e6e"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+      "sha256": "477264632bf101d13d416eb1b17d5e7e77f8a30dd25c2c1c00b4391f605d95a6"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+      "sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a"
     }
   ],
   "legacy_comparison": [
@@ -431,7 +451,7 @@
   "remaining": [
     "全7契約の具体的fixtureと静的内容/原資料/変更記録の照合は完了。独立exact HEAD意味reviewとmain admissionは未成立。",
     "L9の10観点の不足caseとstate所有内容不一致をF03へ作成済み。実owner資格・正式oracle凍結は未成立。",
-    "未統合015基本設計と後続022等のexact binding",
+    "F03/F04のproducer契約/原target association境界は本pairへ固定。015/022を含むrole閉型/selector/純粋関数/実provider・実資格のbindingは後続L5/L8と実装で残る",
     "独立exact HEAD意味review・main admission",
     "L5/L8の型・関数・証拠資格・エラー・case凍結",
     "正式実装/実認可/実証拠/CI/実物PO受入"
@@ -623,7 +643,533 @@
           "requirement": "L3/L2 owner",
           "state": "state契約の当該owner"
         },
-        "dependency_limit": "015の未統合基本設計と後続022のexact bindingは残る。以下は承認済み上流からの合成条件例。"
+        "dependency_limit": "005 F07/F02、015 packet/semantic evaluation、022 F03のexact source契約とowner/adapters→同target association→consumer境界はsource_binding_connectionへ固定。role閉型/selector/純粋関数/実resolver資格・実operation bindingは後続L5/L8と実装で残る。"
+      },
+      "source_binding_connection": {
+        "id": "HARNESS-L4-003-SOURCE-BINDING",
+        "scope": "F03/F04で選択された各producerの同target原対応を、consumer endpointとproducer endpointそれぞれの既存原資料へ結ぶ接続境界。既存工程条件・whole結果を置換しない。",
+        "source_contracts": [
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+            "pointer": "/functions/7",
+            "file_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+            "object_canonical_sha256": "652872404e3d9883ad82e26dbbc42e8c92a50290615a92502fe4511389999d72"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+            "pointer": "/functions/2",
+            "file_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+            "object_canonical_sha256": "92172013aadc99d517de86d2dc155fba95d925670aaf8b037c3ad9c7f727e48c"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+            "pointer": "/reference_resolution_contract",
+            "file_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+            "object_canonical_sha256": "d2bcccb2659d7ce98c53805a6067580e3c11fd6f0acec722f4caa832044cfd31"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "pointer": "/pure_function_signatures/0",
+            "file_sha256": "42ad78921ddaf43ab013a006346e2b67a90936478dec87a7672d814868711e6e",
+            "object_canonical_sha256": "7a0e924d1d3343ca6f44ec61cb5bd4a255995b2f9e1e3b2c06e42f079b9ead7d"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "pointer": "/pure_function_signatures/3",
+            "file_sha256": "42ad78921ddaf43ab013a006346e2b67a90936478dec87a7672d814868711e6e",
+            "object_canonical_sha256": "bc3a45b9ab5eed20392e44747276c61c2db6faaf58d5a4118061b7762cc26a87"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "pointer": "/type_contract/other_types/113",
+            "file_sha256": "42ad78921ddaf43ab013a006346e2b67a90936478dec87a7672d814868711e6e",
+            "object_canonical_sha256": "8e7264eb7087f6b81eb72074cf358b6655eb56db650165f6cc3b412927041e95"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+            "pointer": "/functions/3",
+            "file_sha256": "477264632bf101d13d416eb1b17d5e7e77f8a30dd25c2c1c00b4391f605d95a6",
+            "object_canonical_sha256": "ea202c9af278ba87594d258cb67ef9825d4a1d360f3ef9f2eea21110f78d75b1"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+            "pointer": "/types/SystemDifferenceContext",
+            "file_sha256": "477264632bf101d13d416eb1b17d5e7e77f8a30dd25c2c1c00b4391f605d95a6",
+            "object_canonical_sha256": "69c7e7e9b12794ce73632cbdaa851001d1958bacd2dfb79915a20b63a993acc0"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+            "pointer": "/types/MaterialRecord",
+            "file_sha256": "477264632bf101d13d416eb1b17d5e7e77f8a30dd25c2c1c00b4391f605d95a6",
+            "object_canonical_sha256": "ea417b6321c8ecbe61524fdddd9712450a35b6cb9e6f2d01c05d70523f13b962"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/types",
+            "file_sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a",
+            "object_canonical_sha256": "77f8060020dbad1e35e35d46bb131aadd65b0bff4bd5d67697f034a48a7bc6a2"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/common_contract",
+            "file_sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a",
+            "object_canonical_sha256": "effb0818f06c4bf2ea53baf5b24d31bc94db02d4ce8d48eacb7ff7a8f349ced4"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/types/SourceCell",
+            "file_sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a",
+            "object_canonical_sha256": "2d608a9efe7349bcf2aa8ad15ddba60ab8f06b3e06717a8a691b7167526e891c"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "pointer": "/type_contract/other_types/79",
+            "file_sha256": "42ad78921ddaf43ab013a006346e2b67a90936478dec87a7672d814868711e6e",
+            "object_canonical_sha256": "ee66500e6086c5c0c549ad943bd3437b246d73335ca6760eb6143d80dac527a9"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "pointer": "/type_contract/other_types/80",
+            "file_sha256": "42ad78921ddaf43ab013a006346e2b67a90936478dec87a7672d814868711e6e",
+            "object_canonical_sha256": "e586ab3d7d0165d948e92a7502e290b534821de23c6314428acdec0f17724f3c"
+          }
+        ],
+        "representation_basis": {
+          "003": "pin済み003 L5 /types/Ref/fields と /types/ProcessContext/fields はfield名列挙のみでscope型を宣言しない。旧fixtureの文字列やJSON shapeからText/native/mixed domainを推測せず、raw値をその既存roleの原endpointとだけ比較する。consumerからproducer roleへの比較には、原operationに別供給されるproducer_facing_consumer_scopeを使い、003 raw scopeをcastしない。",
+          "005": "Ref.scopeはField<Scope>、Scopeはproject/tenant/environment各Field<string>。欠落/null/供給値の違いを保持。",
+          "015": "SourceRef.scopeはScopeRef{project,tenant,environment}。SourceRef/packet pointer/hashは原型で保持する。",
+          "022": "Target/MaterialRecord/EvidenceRecordのscopeはText系。artifact_revisionとrequirement_revision、Context.snapshot_revisionは別の役割。",
+          "lower_design": "003 scopeの型とrole別binding閉型/codecは未指定。本基本設計では各端の原型/Field presenceを別々に保持し、端同士を同型と推測しない。既存producer型・資格・所有者は増やさない。"
+        },
+        "producer_roles": {
+          "005_valley": {
+            "consumer": "F03 valley / F04 Provisional",
+            "source_function": "verification-discipline /functions/7 compare_tdd_observation_order",
+            "inputs": "F07VerificationInput original + VerificationSources。original.binding、freeze/red/body_change/greenの原Ref/HEAD/oracle/順序を保持。",
+            "returns": "Comparison<F07VerificationObservation>全体を原入力/原sourceと別に保持。same_oracle等のsummary booleansから元Refを復元しない。",
+            "target_selector": "original.bindingはproducer側の変更target Ref。consumer artifact/requirement Refへ型名だけでcastせず、既存bindingの対象対応で結ぶ。"
+          },
+          "015_flow": {
+            "consumer": "F03 valley / F04 Provisional",
+            "source_function": "tdd-development-flow F-015-01 project_source_packet と F-015-04 evaluate_contract_semantics",
+            "inputs": "SourcePacketInput、canonical_owner_byte_sha256、SemanticEvaluationInput、SemanticRuleSet。選択rootの原owner_materialとtarget bindingを保持。 owner_material.bindingはRaw PayloadF03_bindingとして保持し、SourceCell.binding.producer_targetへ各memberのnested FieldValueを保って対応づける。独立original targetも同じnative形で入力する。",
+            "returns": "BoundSourcePacketとSemanticEvaluation全体。source_packet_ref/canonical_owner_ref/pointer/hash/payload_typeと原scopeを保持。qualification_kindは原metadataであり実資格ではない。",
+            "target_selector": "source_payload.tagに対応するowner_material.bindingのFieldValueを原形で保持し、provided時だけvalue側をtarget selectorとして照合。source_packet_refは資料carrierでありtarget Refの代用ではない。 PayloadF03_binding_scopeの各project/tenant/environmentもFieldValue<string>のまま照合し、flat stringへ変換しない。"
+          },
+          "005_composition": {
+            "consumer": "F04 Verified",
+            "source_function": "verification-discipline /functions/2 compare_proof_composition",
+            "inputs": "F02VerificationInput original + VerificationSources。lower_proofs、combination_contract、composite_obligation_refs、covered_by_lower_refs、固有proofの原値。",
+            "returns": "Comparison<F02VerificationObservation>全体。下位/組合せ/固有差分を分け、F07の谷観測を固有差分proofの代わりにしない。",
+            "target_selector": "original.bindingと各proof/組合せのRefは役割別保持。原対象associationでconsumer targetへ結ぶ。"
+          },
+          "022_difference": {
+            "consumer": "F04 Verified",
+            "source_function": "stage-verification-acceptance /functions/3 compare_verified_system_difference",
+            "inputs": "SystemDifferenceInputと独立SystemDifferenceContextを別々に保持。各MaterialRecord/EvidenceRecord、必要集合/selection、source_id/oracle_revision/pair/owner/contentsも保持。",
+            "returns": "SystemDifferenceResult全体。内容対応と実Verified/Accepted/CI運転を区別。",
+            "target_selector": "input.contextの選択条件/profile、expected material owner/source ID/oracle revision/pairと、選択MaterialRecordのidentity/artifact_revision/requirement_revision/scope/owner/source_id/oracle_revision/pairをMaterial role同士で照合する。独立原取得recordのMaterial SOURCE selectorで期待側MaterialRecordを解決し、そのrecordのevidence_idをcandidate MaterialRecord.evidence_idと照合する。期待側evidence_idで同原取得record内のEvidenceRecord.identityを解決し、candidate evidence recordを同identityの原recordへ照合する。EvidenceRecord.source_idはEVIDENCE-SOURCE roleとして同原recordから得る。Context.expected_source_idsのMaterial SOURCE値、candidate evidence_id、evidence map key、接頭辞からexpected Evidence SOURCE値を作らない。basis欠落/不解決は当該evidence比較だけunknownとし、candidate/Context/source全体を差し替えない。"
+          }
+        },
+        "provider_boundary": {
+          "owner": "既存source owners/adapters。005 reference_resolution_contract.ownerと003の既存evidence_producers/input_ownerに属する対象/実行/検証の原記録owner。HARNESSは比較規範、OS又は利用者手段は実運転/記録を保持する。",
+          "generation_inputs": [
+            "同対象の独立原target/operation/request/contextと各Ref",
+            "consumer assignmentから既存owner/adapterが同一operationに供給するproducer_facing_consumer_scope（選択producer roleの宣言native型）",
+            "選択されたproducer roleの原入力・原source・返却結果",
+            "各原target/binding/carrier/embedded producerの既存独立source資格"
+          ],
+          "generation": "adapterは原operation/requestが結んだconsumer targetとproducer targetを各roleの原型で解決し、bindingへ保存する。consumer raw scopeは003原Contextのまま保持する。別member producer_facing_consumer_scopeは同じ原consumer assignmentを選択producer roleの宣言型で表現した独立取得値であり、producer actual/binding/candidateから生成・複写しない。JSON shapeやscope_modeから端同士の意味対応を作らない。",
+          "generation_outputs": "SourceCellは003 L5の6 field（ref,binding,kind,original_contents,qualification_state,qualification_reason）を保持する。原operation recordにはrole-nativeなproducer_facing_consumer_scopeを別保持し、raw consumer Context/target scopeとproducer actual scopeを混同しない。022 SourceCell.original_contents.evidence_selection_basisにはraw_utf8/source_ref/source_revision/source_path/source_file_sha256/sha256/utf8_byte_lengthを保持し、固定revisionのblob hash、UTF-8 byte hash/length、packet ref/raw_utf8を照合後、同snapshot内から選択MaterialRecord.evidence_id→EvidenceRecord.identityを解決する。合成L9は同じ固定原packet bytesを別入力として複製するだけで、物理的な別取得・実lineage・実資格を証明しない。有限L4接続fixtureの追加資格観測はSourceCell外のqualification_observations入力に置き、role/source-cell pointerで関連づける。bindingの各端とoperation_refはoriginal_contentsの独立原operationへ照合する。evidence_selection_basisは原資料保持であり、新資格・authority・実lineageを発行しない。",
+          "qualification": "SourceCell.qualification_state、sidecar.binding/producer/origin_operationを独立状態として保持し、qualification_input_shape.reductionに従って集約する。全状態がknownならknown。knownを除いた不成立状態集合が空ならknown、1種類ならその状態、2種類以上ならunknown。必須memberの欠落はmissing、null/型外はunknown。context資格はsource資格集約へ混ぜない。資格供給・新authority・実資格を作らない。",
+          "producer_call_connection": {
+            "input_supply": "上記roleの入力/source/必要な独立Contextを、同じ原operation/取得recordの参照とともにproducerへ渡す。candidateやL9 expectedは原sourceへ混入しない。",
+            "returned_material": "返却値は同じfunction契約・原operationと引数snapshotへ結ばれた原producer呼出し記録から受け取り、original_contentsへ引数/sourceと並べて保持する。別call/別Contextの成功を当該roleへ代入しない。これは既存source owner/adapterのoriginal record責務であり、新しい全工程共通receipt/承認を要求しない。",
+            "005": "Comparisonはobservation/issues/candidate_differences/non_target_preserved/effects/execution_kindを全保持する。返却型自体に元Refがないため、original/sourcesと同じ原call対応を保ち、observation boolからRefやsource資格を再構成しない。",
+            "015": "BoundSourcePacket/SemanticEvaluationのcase_identity/root_id/source_packet_ref/pointer/hashを対応入力の同fieldへ結び、canonical_owner_ref/hashは別役割のまま保持。source_payloadは固定payload pointerの原owner_materialへ結ぶ。source_changeやcandidate_mutation、fixture結果を実証拠へ混ぜない。",
+            "022": "SystemDifferenceResultを同一SystemDifferenceInput/独立Context/原operationに結び、Context.snapshot_revision・selectionと各原material/evidenceを保持。result.outcomeやverified_candidateだけで対象Ref/資格/実stateを生成しない。",
+            "test_scope": "追加対照はsource-binding/資格/target軸の局所観測であり、producer返却全域や既存F03/F04 wholeの再実行証明ではない。F04 Provisionalの005_valley/015_flowとVerifiedの005_composition/022_differenceを別roleとして保持する。producer固有L8/L9の固定oracleは独立に維持し、実資格は生成しない。"
+          },
+          "scope_endpoint_comparison": "consumer_target.scopeは003原Contextとoriginal operation consumer_targetへ、そのroleのraw presence/valueのまま比較する。producer_target.scopeは独立original operation producer_targetと、original operationに別入力されたproducer_facing_consumer_scopeへ比較する。producer_facing_consumer_scopeは同一consumer assignmentを、選択producer roleの宣言型でadapterが供給した値である。005はScope、015はPayloadF03のnested FieldValue scope、022はText。003 raw consumer scopeからrole-native値をJSON shape/名前/文字列やScope componentでcast・合成しない。適用operation、source取得元、role型が確定しない場合はそのscope軸を局所unknown、必須comparandの欠落はmissingとし、他のidentity/revision/qualification軸は評価を続ける。既知の同role/native値不一致はconflict。 scope軸内に複数比較がある場合は各比較結果と原原因を保持し、既知の相反が1つでもあればconflict、相反がなくunknownがあればunknown、これらがなくmissingがあればmissing、必要な比較がすべてknownで一致した場合だけknownとする。revision別軸のstaleはscopeへ混ぜない。",
+          "optional_scope_relation": "scope_relationは既存operation associationの補助観測で必須条件ではない。供給時はconsumer_scopeを003原consumer endpoint、producer_scopeをrole-native original producer endpointへそれぞれ比較し、両端の不一致は該当端conflict。producer_facing_consumer_scopeとの比較はscope_relationの有無と独立して行う。省略時はrelation_state=not_requiredとし、operation_refと独立comparandが揃い各endpoint照合が成立すればscope/bindingを失敗にしない。operation_ref欠落は対象・scope対応をmissing、null/型外はunknownとする。relation単独で原operation/資格を作らない。",
+          "015": "015はPayloadF03.binding.producer_targetおよびproducer_facing_consumer_scopeのnested FieldValue presence/valueを各memberで保つ。absentはmissing、explicit null/型外はunknownとしてraw入力も保持し、Refへflattenしない。SourceRef packet Refはbinding targetの代用品にしない。"
+        },
+        "consumer_comparison": [
+          {
+            "id": "SB01",
+            "rule": "原Context/source cells/producer入力・返却/candidateを別保存する。role/selectorは固定producer契約へ解決し、map key・表示名・JSON shape・static doc pinからruntime Ref/scope/targetを推定しない。SourceCellの6 fieldとqualification_observations sidecarを区別し、全source occurrence/配列順/重複/未選択Qを保持する。"
+          },
+          {
+            "id": "SB02",
+            "rule": "binding.consumer_targetを独立Contextのconsumer endpointへ、binding.producer_targetをproducer契約で指定される原selectorへ別々に照合する。consumerのartifact_refとrequirement_refは同役割の原targetへ独立比較し、相互に代用しない。Fieldまたは有効な参照object内のrevision欠落はmissing、明示null/型外はunknownとしてraw値と理由を保持する。identity/ownerの既知差はtarget_state=conflict、scopeの既知差はscope_state=conflict。005/015ではidentity/ownerが一致する同役割target revisionの差をtarget_state=stale、一致をknownとする。022のartifact/requirement endpoint revisionの既知不一致は、それぞれartifact_revision_state/requirement_revision_state=conflictとする。順序/世代根拠が独立入力にある場合だけ旧版を判定できる。今回の限定接続入力にはその根拠がないため、artifact revisionの既知差はSB05に従いconflictとし、staleを推定しない。Context.snapshot_revisionは別roleとして保持し、target revisionへ代入しない。015 producer_targetのFieldValue absentはmissing、explicit null/型外はunknown。consumer/producer各端の相反理由は別保持し、他端の一致で隠さない。 022のMaterial SOURCE selector差、MaterialRecord.evidence_idによるEvidence selector差、EvidenceRecord identity/EVIDENCE-SOURCE差は選択対象の対応相反としてtarget_state=conflictへ出す。pair/contents等、選択record内の比較値差はbinding_state=conflictへ出し、pairのnull/欠落/型外もSB05の宣言型規則でbinding_stateへ局所化する。 022のexpected_material_ownersは選択されたMaterialRecord.ownerの独立selectorであり、known不一致はtarget_state=conflictへ出す。MaterialRecord/EvidenceRecordのidentity・owner・source/evidence/oracle selectorはbinding内容差へ分類しない。 022のindependent_source_packet取得では、evidence_selection_basis各必須memberの個別欠落をtarget_state=missing、member型外/不正pointer/sha・長さ不一致をtarget_state=unknown、source_refとpointer先packet.refの既知不一致をtarget_state=conflictへ局所化する。これらの取得状態はbinding内容差へ直接混ぜず、binding_stateはSB06のfoldで導く。MaterialRecord.owner selectorの既知不一致もtarget_state=conflict。 同一target_state内の複数比較はtarget_state_reductionに従って軸内集約する。各比較結果・原値・原因は集約前後に保持し、別軸の状態はここで混合しない。"
+          },
+          {
+            "id": "SB03",
+            "rule": "consumer raw scopeは003原Context/original consumer_targetへ独立照合する。producer raw scopeはproducer roleのoriginal targetへ照合し、さらに原operationに独立供給されたproducer_facing_consumer_scopeと同じnative型/presenceで比較する。この比較値はconsumer assignmentをadapterが当該producer roleへ表現した原入力であり、binding/candidate/producer actualから複写しない。005=Scope、015=PayloadF03 nested FieldValue scope、022=Text。consumer raw shapeから別roleへcastしない。既知差はscope conflict、比較値欠落はmissing、null/型外/role不明は局所unknown。 015 producer raw scopeはowner_materialのtyped semantic source payload.value.binding.value.scope（L8 pinの/cases/19/typed_semantic_function_io/typed_input/input/source_payload/value/binding/value/scope）から取得し、各nested FieldValueを保持する。binding.producer_target.scopeとは別の原値であるため、producer_target absentはtarget_stateへ局所化し、owner_material raw scopeが解決できる場合はscope_state比較を続ける。 005のproducer raw scopeはL8のoriginal/binding/scopeから読み、candidate側へ代入しない。022のproducer raw scopeはSystemDifferenceInput.context.scope、独立した比較先はSystemDifferenceContext.target.scopeから別々に読む。各取得元が欠落/null/型外の場合はその比較だけmissing/unknownとし、別の端・独立comparandから得たscope比較とtarget/qualification等の他軸を消さない。"
+          },
+          {
+            "id": "SB04",
+            "rule": "scope_relationは任意補助値。存在時はconsumer_scopeを003 raw consumer endpointへ、producer_scopeをproducer roleのoriginal targetへ各々照合する。producer_facing_consumer_scopeとの比較はrelation有無と独立。省略時はrelation_state=not_required。operation_refとproducer-facing comparandの必須値が揃い、個別比較が成立する場合にrelation省略だけでmissing/unknownへ落とさない。operation_ref欠落は対応・scopeをmissing、null/型外はunknown。relationや資格自己申告から原associationを作らない。 binding.operation_refは独立に供給された入力memberとして照合し、original_contents.target_operation.refから比較時に再生成・補完しない。binding.operation_refが欠落ならoriginal operation Refが存在しても当該対応とscopeはmissing、null/型外はunknownとし、両原値を保持する。"
+          },
+          {
+            "id": "SB05",
+            "rule": "022 Contextの選択profile/roleと選択されたMaterialRecord/EvidenceRecordのidentity/owner/source_id/oracle_revision/pairを各同役割の独立selectorへ照合する。MaterialRecordはContext.expected_source_idsのMaterial SOURCE roleで選択する。期待側MaterialRecordはoriginal_contents.evidence_selection_basisの別入力raw UTF-8取得snapshotから同Material SOURCE値で解決する。snapshot欠落はselector局所missing、null/型外/長さ・digest不整合は局所unknownとし、candidate inputから補完しない。合成L9の別入力snapshotは同じ固定L8 packet bytesの複製であり物理的独立取得・実lineage・資格の証明ではない。期待側MaterialRecord.evidence_idとcandidate MaterialRecord.evidence_idを比較し、期待側evidence_idで原取得record内のEvidenceRecord.identityを解決してcandidate EvidenceRecordと照合する。candidate側evidence_idやevidence map keyだけでexpected evidenceを選ばない。EvidenceRecord.source_idをMaterial SOURCE role、map key、接頭辞または文字列規則から導出しない。順序/世代根拠が入力にないartifact_revisionの既知差はconflictとし、@r<N>等の文字列から旧版順序を推定しない。この限定observerではstaleを導出しない。requirement_revisionの既知差はrequirement_revision_state=conflict。宣言型がnullableなpairはMaterialRecord.pair (RawText|null)、EvidenceRecord.pair (RawText|null)、SystemDifferenceContext.pairs (Text|null)の3箇所に限る。各pairはnull/nullならknown、nullと既知Textの不一致ならconflict、member欠落ならmissing、宣言union外ならunknown。EvidenceRecord.pairにも同じ規則を適用する。他の非nullable memberへnull例外を広げない。各同役割値一致はknown、member欠落missing、明示null/型外unknown。その他既知metadata/contents/pair差はconflict。Context.snapshot_revisionはsource Context版として別保存しtarget二revisionへ代入しない。同じrevision軸内の複数比較は022 S7 conflict>stale>unknown>missing>knownで集約し、原因/rawを別保持する。これは異種軸をbinding_stateへ集約するSB06のknown除外foldとは別。 選択対象のMaterial SOURCE/evidence selector・record identityの不一致はtarget_state=conflict、pairやその他選択record内容の不一致はbinding_state=conflict。pair欠落はbinding_state=missing、宣言union外はbinding_state=unknown。これらの内容差をtarget_stateへ混ぜない。 expected_material_ownersと選択MaterialRecord.ownerの既知不一致はtarget_state=conflictへ分類する。selector identity/owner/source/evidence/oracle対応と、pair/contents等のrecord内容比較を分け、後者だけをbinding_stateへ渡す。 evidence_selection_basis.source_pathは固定source_revision上のindependent_source_packet objectを指し、その同一objectからrefとraw_utf8を読む。basis.source_refはobject.ref、basis.raw_utf8はobject.raw_utf8と個別照合する。Context.expected_material_ownersはMaterialRecord.owner selectorであり、owner差はtarget_state=conflict。selectorとpair/contents等のrecord内容を区別し、basis取得memberの状態はtarget_stateへ局所化してSB06 foldへ渡す。 evidence_selection_basisの取得・検証はcandidate側Materialの有無と独立して行う。basis snapshotを解決または検証できない場合、そこに依存するexpected Material/Evidenceの選択とselector/content比較は実施せず、それらの不実施を追加missingとして合成しない。candidate inputと独立Contextの双方から比較できるpair等の内容比較、他roleのsource、scope、qualification、および別軸の独立比較は継続する。basis取得状態は既定のtarget_stateへ保持し、binding_stateへ直接混ぜない。",
+            "source_basis": {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+              "file_sha256": "477264632bf101d13d416eb1b17d5e7e77f8a30dd25c2c1c00b4391f605d95a6",
+              "type_pointers": [
+                "/types/MaterialRecord/pair",
+                "/types/EvidenceRecord/pair",
+                "/types/SystemDifferenceContext/pairs",
+                "/logical_structure_schema/schema/$defs/MaterialRecord/properties/pair",
+                "/logical_structure_schema/schema/$defs/EvidenceRecord/properties/pair",
+                "/logical_structure_schema/schema/$defs/SystemDifferenceContext/properties/pairs"
+              ]
+            }
+          },
+          {
+            "id": "SB06",
+            "rule": "target_state、scope_state、scope_relation_state、source_qualification_state、artifact_revision_state、requirement_revision_stateを個別保持する。SB02/SB05の選択record内pair/contents等の各内容比較状態もbinding_stateの集約入力へ含める。binding_stateは、これらの軸と内容比較状態からknown/not_required/not_applicableを除いた不成立状態集合が空ならknown、1種類ならその状態、2種類以上の異種状態ならunknownとする。各入力状態・原値・原因は集約前に別保持する。roleは適用先を決める識別子でありfold入力ではない。公開record全体やbinding_state自身をfold入力へ含めない。context資格はsource資格集約へ混ぜない。"
+          },
+          {
+            "id": "SB07",
+            "rule": "source bindingのknownは原資料を当該工程比較へ結べるという局所材料のみ。005/015/022の業務結果を再計算・置換せず、既存F03/F04の全条件を引き続き比較する。Provisional/Verified/Accepted・実資格・CI実行・state/ticket更新を生成しない。 022 selected material/evidence selectorの照合はこのroleの既存入力を対象とし、全製品共通の追加資格や追加工程gateを作らない。"
+          }
+        ],
+        "connection_observation": {
+          "scope": "L9追加対照で使うsource-binding境界の観測。既存F03/F04 whole ProcessAssessmentを置換する返却型ではない。",
+          "closed_fields": [
+            "records",
+            "retained_context",
+            "retained_source_cells",
+            "retained_qualification_observations",
+            "unaffected_scope",
+            "producer_results_recomputed",
+            "actual_stage_updated",
+            "actual_owner_qualified",
+            "effects"
+          ],
+          "record_fields": [
+            "role",
+            "target_state",
+            "scope_state",
+            "scope_relation_state",
+            "source_qualification_state",
+            "artifact_revision_state",
+            "requirement_revision_state",
+            "binding_state"
+          ],
+          "raw_retention": "retained_context/source_cells/qualification_observationsは各入力の全原値。SourceCellは003 L5の6 fieldのまま、資格sidecarは別保持する。refとbindingを相互置換せず、producer結果を再計算しない。"
+        },
+        "legacy_rederivation": {
+          "mode": "semantic_rederivation",
+          "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "lines": "29-61",
+          "preserve": "原source/対象版・同対象のV-pair、接続/adapter境界をL4/L9へ置き、下位の合格を上位完了へしない。",
+          "change": "既存owner/adaptersの同target associationとproducer-native scope保持を003 F03/F04のsource接続へ具体化する。旧DB/runtime/全体gate/新owner資格を持ち込まない。",
+          "reason": "現003に残る015/022 exact bindingを、現行producerの原型を失わず接続するため。",
+          "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+        },
+        "failure_and_consumer_basis": [
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "lines": [
+              87,
+              99
+            ],
+            "use": "UTW-021のprose/自己申告完成、UTW-033のfreeze/reopen別版をsource bindingで分離する。新gateの根拠にはしない。",
+            "file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+          },
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/tests/l3-lifecycle-stage-completion-goals.test.ts",
+            "lines": "12-116",
+            "use": "旧consumerのexact stage receipt、stale HEAD/片側oracle/hidden unresolved拒否をread-only照合。実行しない。",
+            "file_sha256": "3fb9483ad721fce698030c6c1a4c08f4ea57b169418260478609daadbc4d144c"
+          },
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/config/workflow-output-consumer-inventory.json",
+            "lines": "90-109",
+            "use": "旧completion-frontier consumerへの誤伝播を避けるsource責務参照。新consumerや実状態を生成しない。",
+            "file_sha256": "58458a9bce05806af8ed97a49e2eb042691113555b49c59a24f11f7d53a534db"
+          }
+        ],
+        "limits": [
+          "静的doc pinは契約本文のrevision/path/pointer/hashでありruntime Ref/資格とは別。",
+          "003 raw scope型とrole別binding codecは未指定。今回の有限L4接続では原値を各roleの同role endpointへ比較し、型を推測しない。consumer/producer間の比較はoriginal operationに独立供給されたrole-native producer_facing_consumer_scopeがある範囲に限る。",
+          "provider責務と接続の基本設計。role閉型/selector decoder/純粋計算正本・正式codec・実資格/実provider/CI/PO受入は未成立。",
+          "既存7義務と旧fixtureは保持。scope差を新承認/普遍cross-scope証拠gate/全体停止へ変えない。",
+          "F04のproducer_facing_consumer_scopeをowner/adapterが実供給できること、取得元の実lineage/資格、正式codec/実runtimeは未成立。L9の固定合成値は期待入力であり実供給の証拠ではない。",
+          "022 evidence_selection_basisのL9 snapshotは同一固定L8 raw bytesの複製であり、別物理取得やactual ownershipの独立証明ではない。"
+        ],
+        "qualification_input_shape": {
+          "context_state": "QualificationStateの供給値。member不在はmissing、null/型外はunknown。",
+          "by_source_cell": "source_cellsと同じ長さを想定する観測配列。各rowのsource_cell_pointer（JSON Pointer文字列）で該当SourceCellを解決し、配列順の同一性だけには依存しない。一致rowなしは当該SourceCellのsidecar状態missing、同じpointerの複数rowはunknown。余分row・pointer不一致・全体の件数差は原順/原値を保持し、別SourceCellへ移動・位置補完しない。binding/producer/origin_operationは個別の状態観測で、member欠落missing、null/列挙型外unknown。",
+          "states": [
+            "known",
+            "missing",
+            "unknown",
+            "conflict",
+            "stale"
+          ],
+          "reduction": "4つのsource状態（SourceCell.qualification_state、sidecar.binding、producer、origin_operation）を個別に保持する。全状態がknownならknown。knownを除いた不成立状態集合が空でなければ、その集合が1種類の時はその状態、2種類以上ならunknown。必須sidecar member欠落もmissing、null/型外値もunknown。各軸の原値と理由を残し、context_stateはsource資格集約へ混ぜない。"
+        },
+        "source_cell_contract": {
+          "source": {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/types/SourceCell"
+          },
+          "fields": [
+            "ref",
+            "binding",
+            "kind",
+            "original_contents",
+            "qualification_state",
+            "qualification_reason"
+          ],
+          "meaning": "この6 fieldをSourceCellとして保持し、fieldを追加しない。binding内role値は該当producer契約のraw presence/valueを保つ。003はscope型を宣言していない。",
+          "qualification_state": "carrier資格状態だけ。binding/producer/origin_operation資格を格納しない。資格理由はqualification_reasonに保持する。",
+          "qualification_sidecar": "有限L4接続入力qualification_observationsはSourceCellとは別の入力sidecar。rootはcontext_stateとby_source_cellを持ち、by_source_cellはsource_cellsと同じ長さの配列とする。各rowはsource_cell_pointerを必須とし、該当SourceCellのJSON Pointer（例 /source_cells/0）へ直接解決する。配列indexによる位置対応だけで関連付けず、source_cell_pointerで照合する。選択SourceCellと一致するrowがない場合はその行のsidecar状態をmissing、同じpointerのrowが複数ならunknownとして曖昧さを保持する。余分なrow、pointer不一致、件数差は削除・並べ替え・位置補完せず原配列順と値を保持し、対象行の不一致として扱う。各一致rowのbinding/producer/origin_operation stateは独立して保持し、欠落はmissing、null/列挙型外はunknown。これは合成観測入力であり資格receipt/authorityではない。",
+          "binding_shape": {
+            "logical_members": [
+              "consumer_target",
+              "producer_target",
+              "operation_ref",
+              "scope_relation"
+            ],
+            "scope_relation_presence": "optional。省略は有効な原operation associationの代替欠落ではない。",
+            "role_native_values": "consumer_target/producer_targetは各roleの原型とpresenceを保持する。005はRef/Scope、015 producer_targetはPayloadF03のnested FieldValueを保持しabsent/nullを区別、022はartifact_revision/requirement_revision等の元選択軸を保持する。producer_facing_consumer_scopeはSourceCell.original_contents.target_operation内に別のrole-native valueとして置き、consumer assignment起点の独立比較値とする。",
+            "not_members": [
+              "scope_mode",
+              "producer_snapshot_revision",
+              "資格4種のmap"
+            ],
+            "limit": "これは本L4の有限論理接続形であり、003 L5に未定義のbinding型や新codecを既存L5が受理済みとする宣言ではない。"
+          },
+          "producer_facing_consumer_scope": {
+            "location": "SourceCell.original_contents.target_operation.producer_facing_consumer_scope",
+            "purpose": "consumer assignmentを選択producer roleの宣言native型で表現した独立比較入力。SourceCell 6 fieldやbinding memberを増やさない。",
+            "supply": "既存owner/adapterが同じ原operationに結び付いたconsumer assignmentから供給する。candidate、producer actual/binding、L9 expectedから生成しない。",
+            "role_types": {
+              "005": "Field<Scope>",
+              "015": "PayloadF03内のnested FieldValue scope",
+              "022": "Text"
+            },
+            "absent_or_invalid": "未供給はmissing、explicit null/型外/operationを結べない値はlocal unknown。raw consumer scopeと各producer原値は保持し、他軸の照合は続ける。",
+            "limit": "L9値は合成fixtureであり、実owner/adapterの供給・資格・物理lineageを証明しない。"
+          },
+          "evidence_selection_basis": {
+            "location": "SourceCell.original_contents.evidence_selection_basis",
+            "required_members": [
+              "raw_utf8",
+              "source_ref",
+              "source_revision",
+              "source_path",
+              "source_file_sha256",
+              "sha256",
+              "utf8_byte_length"
+            ],
+            "member_types": {
+              "raw_utf8": "Text。原取得packet objectのraw_utf8を完全保持する。",
+              "source_ref": "Ref。source_pathが指すpacket objectのrefを保持する。",
+              "source_revision": "Text。取得元を固定するGit revision。repositoryのlatestを読まない。",
+              "source_path": "Text。repository-relative file pathに#とRFC 6901 JSON Pointer fragmentを続けたpacket object locator。",
+              "source_file_sha256": "Text。source_revisionにおけるsource_pathのfile blobのlowercase SHA-256。",
+              "sha256": "Text。raw_utf8をUTF-8 encodeしたbytesのlowercase SHA-256。",
+              "utf8_byte_length": "整数。raw_utf8をUTF-8 encodeしたbytesの長さ。"
+            },
+            "validation": "必須memberの個別欠落、source_revision上のfile不在、source_pathが指すpacket object不在、又はそのobjectのref/raw_utf8必須member欠落はtarget_state=missing。packet objectのref/raw_utf8がnull又は型外、basis member型外、revision/path形式不正、RFC 6901 escape不正、pointer途中の型外container、source_ref形不正はtarget_state=unknown。source_refが型として有効でもpacket object.refと既知に異なる場合はtarget_state=conflict。source_refが一致し、basis.raw_utf8とpacket object.raw_utf8が各々有効値として既知に異なる場合もtarget_state=conflict（005 resolverの同一Ref・異payload規則）。source_file_sha256は固定revisionのfile blob、sha256とutf8_byte_lengthはbasis.raw_utf8のUTF-8 bytesと個別照合する。blob hash/raw hash/length不一致、basis.raw_utf8のnull/型外、strict JSON parse不能はtarget_state=unknown。source_pathはpacket object自体を指し、同じobjectからref/raw_utf8を読む。basis側source_ref/raw_utf8との一致を確認し、candidate側から補完しない。取得selector状態はtarget_stateに置き、binding_stateへ直入れずSB06の既存foldを通す。",
+            "selection": "固定source_revision/source_pathのpacket objectを解決し、そのobjectのref/raw_utf8をbasisと比較する。raw_utf8をstrict JSON parseし、ContextのMaterial SOURCE selectorでmaterials内MaterialRecordを選ぶ。期待側MaterialRecord.evidence_idで同じsnapshot内evidence_materialsからEvidenceRecordを解決する。MaterialRecordはmaterialsから選択し、evidence_materialsから選択しない。repository latestへフォールバックせず、candidate側inputやmap keyだけからsource/selectorを補完しない。",
+            "limit": "L9の合成snapshotはpin済みraw packet bytesの別入力複製であり、物理的な独立取得・実lineage・実資格の証明ではない。"
+          },
+          "015_native_binding_mapping": {
+            "source_owner_material": {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+              "file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
+              "pointer": "/cases/19/typed_semantic_function_io/typed_input/input/source_payload/value/binding",
+              "operation": "copy_json_value"
+            },
+            "native_type_pointers": [
+              "/type_contract/other_types/79 PayloadF03_binding_scope",
+              "/type_contract/other_types/80 PayloadF03_binding"
+            ],
+            "mapping": "owner_materialのsource_payload.value.bindingをRaw PayloadF03_bindingとして保持し、SourceCell.binding.producer_targetへ同じ原型で対応づける。PayloadF03_bindingのidentity/owner/revisionは各FieldValue<string>、scopeはFieldValue<PayloadF03_binding_scope>、scope内のproject/tenant/environmentも各FieldValue<string>の形とpresenceを保つ。raw owner_materialを変更・平坦化せず、実装時のdecode/projectionはこの対応を使う。SourceCell.original_contents.target_operation.producer_targetはcandidate/bindingから複写せず、同じnative形の独立原targetとして保持・照合する。producer_facing_consumer_scopeも別供給のPayloadF03_binding_scope FieldValueとして保持する。",
+            "fieldvalue_handling": "各FieldValueのstate/valueをmemberごとに保つ。absent、provided、explicit null、型外を平坦化せず、既存L4のmissing/known/unknown規則へ対応させる。",
+            "limit": "これはL4/L9の型・対応設計であり、現L5 codecがこのSourceCell入力をdecode/acceptする証拠ではない。",
+            "raw_scope_acquisition": {
+              "source_revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "source_path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+              "source_pointer": "/cases/19/typed_semantic_function_io/typed_input/input/source_payload/value/binding/value/scope",
+              "type_pointers": [
+                "/type_contract/other_types/79",
+                "/type_contract/other_types/80"
+              ],
+              "rule": "015 producer raw scopeはowner_material/typed semantic source payloadから取得し、outer FieldValueとscope内project/tenant/environmentのFieldValueを保つ。producer_target endpointとは別の比較元である。producer_target absentはtarget_stateへ局所化し、raw owner_material scopeが解決できればscope_state比較を継続する。"
+            }
+          }
+        },
+        "consumer_scope_comparand_basis": {
+          "legacy_rederivation": {
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "lines": "29-61",
+            "preserved": "HELIX-HARNESSの上流要求正本、機構層・対・接続境界の配置、および下位結果を上位完了へ昇格しないことを保持する。",
+            "changed": "旧記述にないproducer_facing_consumer_scopeという比較値を本接続の技術詳細として置く。003の未宣言scope型をcastせず、consumer assignmentを選択producer roleの宣言native型で別保持して比較する。これは既存target/scope照合の限定具体化であり、旧要求の追加や新しい人間承認条件ではない。",
+            "reason": "現行003 common_contract/1のscope独立照合と、005 resolverのrole-native target/scope照合を同時に表現する。旧sourceにPFCSの具体fieldはなく、旧sourceの不在/未完成だけを変更理由としない。"
+          },
+          "source_basis": [
+            {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+              "pointer": "/common_contract/1",
+              "sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a",
+              "meaning": "Contextとembedded Ref等の対象revision/scope/kind/ownerを独立に照合する。"
+            },
+            {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+              "pointer": "/types/Ref/fields",
+              "sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a",
+              "meaning": "scopeの型を宣言せずfield名を列挙する。"
+            },
+            {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+              "pointer": "/types/ProcessContext/fields",
+              "sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a",
+              "meaning": "scopeの型を宣言せずfield名を列挙する。"
+            },
+            {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "pointer": "/reference_resolution_contract",
+              "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "meaning": "005の既存owner/adapter、同一性、revision、scope照合と異scopeの局所拒否。"
+            },
+            {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "pointer": "/functions/7",
+              "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "meaning": "005原operationの対象とproducer側照合。"
+            },
+            {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+              "pointer": "/type_contract/other_types/79",
+              "sha256": "42ad78921ddaf43ab013a006346e2b67a90936478dec87a7672d814868711e6e",
+              "meaning": "015のnative nested scope field型。"
+            },
+            {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+              "pointer": "/type_contract/other_types/80",
+              "sha256": "42ad78921ddaf43ab013a006346e2b67a90936478dec87a7672d814868711e6e",
+              "meaning": "015のnative binding型。"
+            },
+            {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+              "pointer": "/types/SystemDifferenceContext",
+              "sha256": "477264632bf101d13d416eb1b17d5e7e77f8a30dd25c2c1c00b4391f605d95a6",
+              "meaning": "022 consumer ContextのText scope role。"
+            }
+          ],
+          "acquisition_and_comparison": {
+            "location": "SourceCell.original_contents.target_operation.producer_facing_consumer_scope",
+            "origin": "既存owner/adapterが同じ原consumer assignmentから同一operationへ供給したrole-native比較値。producer binding/actual/candidateや期待結果から生成・複写しない。",
+            "003": "consumer Context.scopeは原型とpresenceを保持し、type未宣言のためcastしない。",
+            "005": "producer assignment comparisonはdeclared Scope型。",
+            "015": "producer assignment comparisonはPayloadF03_binding_scopeのnested FieldValue形。015のraw scopeはowner_material/typed semantic inputのsource_payload.value.bindingから読み、各outer/nested FieldValueを保持する。producer_target endpointの欠落はtarget_stateへ局所化し、読み取れるowner_material scope比較を消さない。",
+            "022": "producer assignment comparisonはContext.target.scopeのText role。",
+            "comparison": "consumer原endpoint・producer原endpoint・PFCS比較を独立実施し、各状態と原因を保持する。PFCSだけの既知不一致はscope_state=conflict。PFCS取得元欠落はscope軸だけmissing/unknownとし、他軸を継続する。"
+          },
+          "limit": "PFCSは今回のL4接続を明確にする技術表現で、旧L5に既定義だったとはしない。L9値は合成値であり、実ownerの供給・lineage・資格を証明しない。"
+        },
+        "current_pin_object_readback": {
+          "revision": "b629e2eec0ef16faa633b6ec656ec8f69253f32f",
+          "object_count": 14,
+          "comparison": "source_contractsの14 locatorについて、歴史pin revisionと現行revisionの同じpath/pointerを解決しJSON値を比較。14件すべて同値。",
+          "historical_pin_policy": "既存fc379 revision/object pinを歴史識別として維持し、current readbackで置き換えない。",
+          "file_hash_drift_example": {
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "historical_revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "historical_file_sha256": "42ad78921ddaf43ab013a006346e2b67a90936478dec87a7672d814868711e6e",
+            "readback_revision": "b629e2eec0ef16faa633b6ec656ec8f69253f32f",
+            "readback_file_sha256": "0516b410625b325fe5bf7fccd156e4199c0aa194adb4a0bd4c4eb309ab13f5bd",
+            "pinned_objects_same": true
+          }
+        },
+        "target_state_reduction": {
+          "source": {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+            "pointer": "/functions/3/algorithm/6",
+            "file_sha256": "477264632bf101d13d416eb1b17d5e7e77f8a30dd25c2c1c00b4391f605d95a6",
+            "object_canonical_sha256": "c26716df1fdf8204075a939e9056578661217af6f3d3ced962f3d484d94b334a"
+          },
+          "rule": "一つのtarget_state軸に対する複数の適用可能な比較状態はconflict > stale > unknown > missing > knownの順で一つの軸状態へ集約する。既存のnot_applicable/not_required適用規則は維持する。",
+          "retention": "軸状態の集約に使った各比較状態、原値、比較先、理由はすべて個別に保持する。優先順位はtarget_state内だけに適用し、scope_state、source_qualification_state、revision別state等の異なる軸を混合しない。",
+          "cross_axis": "異なる軸とrecord内容比較のbinding_state集約はSB06のknown/not_required/not_applicable除外規則に従う。S7の順位をSB06へ適用しない。",
+          "limit": "target軸内の複数結果を一意に表す技術的還元であり、対象要求の意味、資格、全体成立判定を追加しない。"
+        },
+        "scope_source_acquisition": {
+          "005_valley": {
+            "source": {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+              "pointer": "/cases/7/normal_call/original/binding/scope",
+              "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+              "object_canonical_sha256": "16481a2ce05ecf67c93fddf131eb9ea5c8c6770b12bbeeedb371f3640c2a2352"
+            },
+            "meaning": "005 producer endpointのraw scope比較元。original.binding.scopeを保持し、candidate bindingやproducer actualから再構成しない。"
+          },
+          "015_flow": {
+            "source": {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+              "pointer": "/cases/19/typed_semantic_function_io/typed_input/input/source_payload/value/binding/value/scope",
+              "file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b"
+            },
+            "meaning": "owner_material typed semantic source payloadのnative nested FieldValue scope。outer/nested presenceを保つ。producer_targetの欠落はtarget_stateへ局所化し、独立取得できたこのscopeの比較を抑止しない。"
+          },
+          "022_difference": {
+            "input_scope_source": {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+              "pointer": "/verification_obligations/3/cases/0/source_case/independent_source_packet/raw_utf8",
+              "file_sha256": "78b0c5d952bdc0b12d6abf97dd0167e0ed4feffb1d9d6d97f559c57980410e75",
+              "object_canonical_sha256": "ad488c9b782a061ac6ab56e239c0e791ac72c3f18d2c5ab0efcc6817dd9eb98a",
+              "decoded_json_pointer": "/context/scope"
+            },
+            "independent_context_scope_source": {
+              "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+              "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+              "pointer": "/context_fixtures/12/context/target/scope",
+              "file_sha256": "78b0c5d952bdc0b12d6abf97dd0167e0ed4feffb1d9d6d97f559c57980410e75",
+              "object_canonical_sha256": "76cb5e5e36456f1acdb680ddaa8956554896b8d50f253d4cfc667e0c5285343d"
+            },
+            "meaning": "independent_source_packet.raw_utf8を厳密JSONとしてparseしたSystemDifferenceInput.context.scope（producer input role）。独立比較先SystemDifferenceContext.target.scopeとは別々に保持し、どちらもText roleのまま照合する。"
+          },
+          "absence_and_locality": "endpointの選択・解決不能はtarget_stateへ局所化する。別の独立raw scope source/comparandが解決できる場合、そのscope比較は続ける。scope軸で必要な比較元自体が欠落ならmissing、null/型外/不正pointerならunknown。未選択endpointを推測してscope値を作らない。"
+        }
       }
     },
     {
@@ -657,7 +1203,22 @@
         "状態の実保存/更新はOS、状態条件の意味はHARNESS",
         "CI・L10・受入・配備を互いの代替にしない"
       ],
-      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。"
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。",
+      "source_binding_connection": {
+        "shared_contract_pointer": "/contracts/3/source_binding_connection",
+        "roles_by_state": {
+          "Provisional": [
+            "005_valley",
+            "015_flow"
+          ],
+          "Verified": [
+            "005_composition",
+            "022_difference"
+          ]
+        },
+        "independence": "各状態固有の既存条件・独立原証拠を維持する。source-binding対応を上位stateのproofへ代用しない。",
+        "l9_pointer": "/verification_obligations/4/source_binding_oracles"
+      }
     },
     {
       "id": "HARNESS-L4-003-F05",
