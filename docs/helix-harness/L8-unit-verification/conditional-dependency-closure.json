@@ -1093,5 +1093,1043 @@
       "L6/L7 oracle凍結・実装前Red・Green",
       "実L9/L10・CI・PO受入・通常L3・release/deploy"
     ]
+  },
+  "report_retention_verification": {
+    "id": "HARNESS-L8-023-REPORT-READ",
+    "design_ref": "HARNESS-L5-023-CONDITIONAL-DEPENDENCY-CLOSURE",
+    "requirement_refs": [
+      "HARNESS-L3-023-F02",
+      "HARNESS-L3-023-N01"
+    ],
+    "functions": [
+      "read_reported_closure",
+      "validate_closure_invocation",
+      "build_dependency_analysis",
+      "analyze_closure_invocation"
+    ],
+    "oracle_scope": "ReportRead全4fieldを独立固定。builderは元validationと原報告の保持に関する明示partialだけで、全ClosureResultと呼ばない。",
+    "same_invocation_trace": "各rawを一つのimmutable snapshotとしてvalidate_closure_invocationへ渡す。元validator返却は同rawのまま独立保存し、報告readと一緒にbuilderへ渡し、analyze_closure_invocationのreport_readと等値を照合する。別rawとの混在は禁止。",
+    "cases": [
+      {
+        "id": "H023-REPORT-INVALID-OUTSIDE-1",
+        "raw_input": {
+          "binding": {
+            "request_ref": {
+              "identity": "request",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "not-hex"
+            },
+            "pack_ref": {
+              "identity": "pack",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "contract_ref": {
+              "identity": "contract",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "call_id": "call",
+            "attempt_id": "attempt",
+            "correlation_id": "correlation",
+            "input_ref": {
+              "identity": "input",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "operation_ref": null,
+            "source_selection_ref": null,
+            "scope_ref": null,
+            "actor_ref": {
+              "identity": "actor",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "actor_kind": "worker"
+          },
+          "declarations_ref": null,
+          "condition_refs": [],
+          "observation_refs": [],
+          "qualification_roots": [],
+          "resolutions": [],
+          "proposed_meaning": null,
+          "reported_closure": {
+            "binding": {
+              "request_ref": {
+                "identity": "request",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "pack_ref": {
+                "identity": "pack",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_ref": {
+                "identity": "contract",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "call_id": "call",
+              "attempt_id": "attempt",
+              "correlation_id": "correlation",
+              "input_ref": {
+                "identity": "input",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "operation_ref": null,
+              "source_selection_ref": null,
+              "scope_ref": null,
+              "actor_ref": {
+                "identity": "actor",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "actor_kind": "worker"
+            },
+            "condition_snapshot_refs": [],
+            "declarations": [],
+            "required_refs": [],
+            "excluded_refs": [],
+            "unselected_refs": [],
+            "reference_refs": [],
+            "pending_refs": [],
+            "reason_refs": [],
+            "observed_target_refs": [],
+            "claims": []
+          }
+        },
+        "expected_report_read": {
+          "original": {
+            "presence": "supplied",
+            "value": {
+              "binding": {
+                "request_ref": {
+                  "identity": "request",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "pack_ref": {
+                  "identity": "pack",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "contract_ref": {
+                  "identity": "contract",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "call_id": "call",
+                "attempt_id": "attempt",
+                "correlation_id": "correlation",
+                "input_ref": {
+                  "identity": "input",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "operation_ref": null,
+                "source_selection_ref": null,
+                "scope_ref": null,
+                "actor_ref": {
+                  "identity": "actor",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "actor_kind": "worker"
+              },
+              "condition_snapshot_refs": [],
+              "declarations": [],
+              "required_refs": [],
+              "excluded_refs": [],
+              "unselected_refs": [],
+              "reference_refs": [],
+              "pending_refs": [],
+              "reason_refs": [],
+              "observed_target_refs": [],
+              "claims": []
+            }
+          },
+          "decode_state": "decoded",
+          "typed_report": {
+            "binding": {
+              "request_ref": {
+                "identity": "request",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "pack_ref": {
+                "identity": "pack",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_ref": {
+                "identity": "contract",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "call_id": "call",
+              "attempt_id": "attempt",
+              "correlation_id": "correlation",
+              "input_ref": {
+                "identity": "input",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "operation_ref": null,
+              "source_selection_ref": null,
+              "scope_ref": null,
+              "actor_ref": {
+                "identity": "actor",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "actor_kind": "worker"
+            },
+            "condition_snapshot_refs": [],
+            "declarations": [],
+            "required_refs": [],
+            "excluded_refs": [],
+            "unselected_refs": [],
+            "reference_refs": [],
+            "pending_refs": [],
+            "reason_refs": [],
+            "observed_target_refs": [],
+            "claims": []
+          },
+          "decode_issues": []
+        },
+        "source": "既存二原報告の情報損失反例。ReportRead全4fieldのみ。",
+        "comparison_scope": "ReportRead全4field。validate_closure_input全返却/ClosureResult全値/実資格/全要求の成立は含まない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      },
+      {
+        "id": "H023-REPORT-INVALID-OUTSIDE-2",
+        "raw_input": {
+          "binding": {
+            "request_ref": {
+              "identity": "request",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "not-hex"
+            },
+            "pack_ref": {
+              "identity": "pack",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "contract_ref": {
+              "identity": "contract",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "call_id": "call",
+            "attempt_id": "attempt",
+            "correlation_id": "correlation",
+            "input_ref": {
+              "identity": "input",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "operation_ref": null,
+            "source_selection_ref": null,
+            "scope_ref": null,
+            "actor_ref": {
+              "identity": "actor",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "actor_kind": "worker"
+          },
+          "declarations_ref": null,
+          "condition_refs": [],
+          "observation_refs": [],
+          "qualification_roots": [],
+          "resolutions": [],
+          "proposed_meaning": null,
+          "reported_closure": {
+            "binding": {
+              "request_ref": {
+                "identity": "request",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "pack_ref": {
+                "identity": "pack",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_ref": {
+                "identity": "contract",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "call_id": "call",
+              "attempt_id": "attempt",
+              "correlation_id": "correlation",
+              "input_ref": {
+                "identity": "input",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "operation_ref": null,
+              "source_selection_ref": null,
+              "scope_ref": null,
+              "actor_ref": {
+                "identity": "actor",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "actor_kind": "worker"
+            },
+            "condition_snapshot_refs": [],
+            "declarations": [],
+            "required_refs": [],
+            "excluded_refs": [],
+            "unselected_refs": [],
+            "reference_refs": [],
+            "pending_refs": [],
+            "reason_refs": [
+              {
+                "identity": "different-reported-reason",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "observed_target_refs": [],
+            "claims": []
+          }
+        },
+        "expected_report_read": {
+          "original": {
+            "presence": "supplied",
+            "value": {
+              "binding": {
+                "request_ref": {
+                  "identity": "request",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "pack_ref": {
+                  "identity": "pack",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "contract_ref": {
+                  "identity": "contract",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "call_id": "call",
+                "attempt_id": "attempt",
+                "correlation_id": "correlation",
+                "input_ref": {
+                  "identity": "input",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "operation_ref": null,
+                "source_selection_ref": null,
+                "scope_ref": null,
+                "actor_ref": {
+                  "identity": "actor",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "actor_kind": "worker"
+              },
+              "condition_snapshot_refs": [],
+              "declarations": [],
+              "required_refs": [],
+              "excluded_refs": [],
+              "unselected_refs": [],
+              "reference_refs": [],
+              "pending_refs": [],
+              "reason_refs": [
+                {
+                  "identity": "different-reported-reason",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                }
+              ],
+              "observed_target_refs": [],
+              "claims": []
+            }
+          },
+          "decode_state": "decoded",
+          "typed_report": {
+            "binding": {
+              "request_ref": {
+                "identity": "request",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "pack_ref": {
+                "identity": "pack",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_ref": {
+                "identity": "contract",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "call_id": "call",
+              "attempt_id": "attempt",
+              "correlation_id": "correlation",
+              "input_ref": {
+                "identity": "input",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "operation_ref": null,
+              "source_selection_ref": null,
+              "scope_ref": null,
+              "actor_ref": {
+                "identity": "actor",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "actor_kind": "worker"
+            },
+            "condition_snapshot_refs": [],
+            "declarations": [],
+            "required_refs": [],
+            "excluded_refs": [],
+            "unselected_refs": [],
+            "reference_refs": [],
+            "pending_refs": [],
+            "reason_refs": [
+              {
+                "identity": "different-reported-reason",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            ],
+            "observed_target_refs": [],
+            "claims": []
+          },
+          "decode_issues": []
+        },
+        "source": "既存二原報告の情報損失反例。ReportRead全4fieldのみ。",
+        "comparison_scope": "ReportRead全4field。validate_closure_input全返却/ClosureResult全値/実資格/全要求の成立は含まない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      },
+      {
+        "id": "H023-REPORT-ABSENT",
+        "raw_input": {
+          "binding": {
+            "request_ref": {
+              "identity": "request",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "not-hex"
+            },
+            "pack_ref": {
+              "identity": "pack",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "contract_ref": {
+              "identity": "contract",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "call_id": "call",
+            "attempt_id": "attempt",
+            "correlation_id": "correlation",
+            "input_ref": {
+              "identity": "input",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "operation_ref": null,
+            "source_selection_ref": null,
+            "scope_ref": null,
+            "actor_ref": {
+              "identity": "actor",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "actor_kind": "worker"
+          },
+          "declarations_ref": null,
+          "condition_refs": [],
+          "observation_refs": [],
+          "qualification_roots": [],
+          "resolutions": [],
+          "proposed_meaning": null
+        },
+        "expected_report_read": {
+          "original": {
+            "presence": "absent"
+          },
+          "decode_state": "absent",
+          "typed_report": null,
+          "decode_issues": []
+        },
+        "comparison_scope": "ReportRead全4field。validate_closure_input全返却/ClosureResult全値/実資格/全要求の成立は含まない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      },
+      {
+        "id": "H023-REPORT-EXPLICIT-NULL",
+        "raw_input": {
+          "binding": {
+            "request_ref": {
+              "identity": "request",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "not-hex"
+            },
+            "pack_ref": {
+              "identity": "pack",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "contract_ref": {
+              "identity": "contract",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "call_id": "call",
+            "attempt_id": "attempt",
+            "correlation_id": "correlation",
+            "input_ref": {
+              "identity": "input",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "operation_ref": null,
+            "source_selection_ref": null,
+            "scope_ref": null,
+            "actor_ref": {
+              "identity": "actor",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "actor_kind": "worker"
+          },
+          "declarations_ref": null,
+          "condition_refs": [],
+          "observation_refs": [],
+          "qualification_roots": [],
+          "resolutions": [],
+          "proposed_meaning": null,
+          "reported_closure": null
+        },
+        "expected_report_read": {
+          "original": {
+            "presence": "supplied",
+            "value": null
+          },
+          "decode_state": "explicit_null",
+          "typed_report": null,
+          "decode_issues": []
+        },
+        "comparison_scope": "ReportRead全4field。validate_closure_input全返却/ClosureResult全値/実資格/全要求の成立は含まない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      },
+      {
+        "id": "H023-REPORT-MALFORMED-EXTRA",
+        "raw_input": {
+          "binding": {
+            "request_ref": {
+              "identity": "request",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "not-hex"
+            },
+            "pack_ref": {
+              "identity": "pack",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "contract_ref": {
+              "identity": "contract",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "call_id": "call",
+            "attempt_id": "attempt",
+            "correlation_id": "correlation",
+            "input_ref": {
+              "identity": "input",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "operation_ref": null,
+            "source_selection_ref": null,
+            "scope_ref": null,
+            "actor_ref": {
+              "identity": "actor",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "actor_kind": "worker"
+          },
+          "declarations_ref": null,
+          "condition_refs": [],
+          "observation_refs": [],
+          "qualification_roots": [],
+          "resolutions": [],
+          "proposed_meaning": null,
+          "reported_closure": {
+            "binding": {
+              "request_ref": {
+                "identity": "request",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "pack_ref": {
+                "identity": "pack",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_ref": {
+                "identity": "contract",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "call_id": "call",
+              "attempt_id": "attempt",
+              "correlation_id": "correlation",
+              "input_ref": {
+                "identity": "input",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "operation_ref": null,
+              "source_selection_ref": null,
+              "scope_ref": null,
+              "actor_ref": {
+                "identity": "actor",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "actor_kind": "worker"
+            },
+            "condition_snapshot_refs": [],
+            "declarations": [],
+            "required_refs": [],
+            "excluded_refs": [],
+            "unselected_refs": [],
+            "reference_refs": [],
+            "pending_refs": [],
+            "reason_refs": [],
+            "observed_target_refs": [],
+            "claims": [],
+            "unexpected_report_member": {
+              "opaque": [
+                false,
+                null
+              ]
+            }
+          }
+        },
+        "expected_report_read": {
+          "original": {
+            "presence": "supplied",
+            "value": {
+              "binding": {
+                "request_ref": {
+                  "identity": "request",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "pack_ref": {
+                  "identity": "pack",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "contract_ref": {
+                  "identity": "contract",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "call_id": "call",
+                "attempt_id": "attempt",
+                "correlation_id": "correlation",
+                "input_ref": {
+                  "identity": "input",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "operation_ref": null,
+                "source_selection_ref": null,
+                "scope_ref": null,
+                "actor_ref": {
+                  "identity": "actor",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "actor_kind": "worker"
+              },
+              "condition_snapshot_refs": [],
+              "declarations": [],
+              "required_refs": [],
+              "excluded_refs": [],
+              "unselected_refs": [],
+              "reference_refs": [],
+              "pending_refs": [],
+              "reason_refs": [],
+              "observed_target_refs": [],
+              "claims": [],
+              "unexpected_report_member": {
+                "opaque": [
+                  false,
+                  null
+                ]
+              }
+            }
+          },
+          "decode_state": "malformed",
+          "typed_report": null,
+          "decode_issues": [
+            {
+              "pointer": "/reported_closure/unexpected_report_member",
+              "reason": "extra_field",
+              "subject_ref": null
+            }
+          ]
+        },
+        "basis": "既存InputIssue reasonと閉じたReportedClosureの必須fieldから技術的にpointerを固定。元validator全InputIssueの予測ではない。",
+        "comparison_scope": "ReportRead全4field。validate_closure_input全返却/ClosureResult全値/実資格/全要求の成立は含まない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      },
+      {
+        "id": "H023-REPORT-MALFORMED-MISSING",
+        "raw_input": {
+          "binding": {
+            "request_ref": {
+              "identity": "request",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "not-hex"
+            },
+            "pack_ref": {
+              "identity": "pack",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "contract_ref": {
+              "identity": "contract",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "call_id": "call",
+            "attempt_id": "attempt",
+            "correlation_id": "correlation",
+            "input_ref": {
+              "identity": "input",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "operation_ref": null,
+            "source_selection_ref": null,
+            "scope_ref": null,
+            "actor_ref": {
+              "identity": "actor",
+              "revision": "r1",
+              "scope": "H023-synthetic-scope",
+              "owner": "H023-synthetic-owner",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "actor_kind": "worker"
+          },
+          "declarations_ref": null,
+          "condition_refs": [],
+          "observation_refs": [],
+          "qualification_roots": [],
+          "resolutions": [],
+          "proposed_meaning": null,
+          "reported_closure": {
+            "binding": {
+              "request_ref": {
+                "identity": "request",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "pack_ref": {
+                "identity": "pack",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_ref": {
+                "identity": "contract",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "call_id": "call",
+              "attempt_id": "attempt",
+              "correlation_id": "correlation",
+              "input_ref": {
+                "identity": "input",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "operation_ref": null,
+              "source_selection_ref": null,
+              "scope_ref": null,
+              "actor_ref": {
+                "identity": "actor",
+                "revision": "r1",
+                "scope": "H023-synthetic-scope",
+                "owner": "H023-synthetic-owner",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "actor_kind": "worker"
+            },
+            "condition_snapshot_refs": [],
+            "declarations": [],
+            "excluded_refs": [],
+            "unselected_refs": [],
+            "reference_refs": [],
+            "pending_refs": [],
+            "reason_refs": [],
+            "observed_target_refs": [],
+            "claims": []
+          }
+        },
+        "expected_report_read": {
+          "original": {
+            "presence": "supplied",
+            "value": {
+              "binding": {
+                "request_ref": {
+                  "identity": "request",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "pack_ref": {
+                  "identity": "pack",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "contract_ref": {
+                  "identity": "contract",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "call_id": "call",
+                "attempt_id": "attempt",
+                "correlation_id": "correlation",
+                "input_ref": {
+                  "identity": "input",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "operation_ref": null,
+                "source_selection_ref": null,
+                "scope_ref": null,
+                "actor_ref": {
+                  "identity": "actor",
+                  "revision": "r1",
+                  "scope": "H023-synthetic-scope",
+                  "owner": "H023-synthetic-owner",
+                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                },
+                "actor_kind": "worker"
+              },
+              "condition_snapshot_refs": [],
+              "declarations": [],
+              "excluded_refs": [],
+              "unselected_refs": [],
+              "reference_refs": [],
+              "pending_refs": [],
+              "reason_refs": [],
+              "observed_target_refs": [],
+              "claims": []
+            }
+          },
+          "decode_state": "malformed",
+          "typed_report": null,
+          "decode_issues": [
+            {
+              "pointer": "/reported_closure/required_refs",
+              "reason": "missing_field",
+              "subject_ref": null
+            }
+          ]
+        },
+        "basis": "既存InputIssue reasonと閉じたReportedClosureの必須fieldから技術的にpointerを固定。元validator全InputIssueの予測ではない。",
+        "comparison_scope": "ReportRead全4field。validate_closure_input全返却/ClosureResult全値/実資格/全要求の成立は含まない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    ],
+    "invalid_builder_partial": {
+      "classification": "unresolved",
+      "utilization": "held",
+      "binding": null,
+      "reported": "decode_state=decodedなら元typed_report全値、それ以外null",
+      "input_issues": "元validation.input_issuesと同値・同順",
+      "dispatch_permitted": false,
+      "persistence_established": false,
+      "parent_completion_established": false
+    },
+    "existing_case_call_binding": "旧builder単体caseも同じcase rawをvalidate_closure_invocationで包んで渡す。valid/unresolvedは元ValidatedInput経路と原reported比較の値を変えない。旧validation単引数だけでinvalid原報告を保持できるとは記載しない。",
+    "existing_guarantees_preserved": "旧cases全6/負例全44、additional_cases全20、fixture_contract、expected全値は変更しない。新wrapperは呼出し入力の運搬だけで旧compare/classify/owner規則を変更しない。",
+    "execution_state": "not_executed",
+    "remaining": "構造decoder/旧validatorの実全域実行、invalid全ClosureResult oracle、実observer/codec/persistence接続はこの追補で成立しない。"
   }
 }

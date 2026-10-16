@@ -402,7 +402,23 @@
         "parent_completion_established": "literal false"
       },
       "closed27Code": "authority_unknown | backflow_mismatch | binding_document_omission | classification_as_use | classification_change | compatibility_mismatch | compatibility_unknown | completion_scope_change | condition_conflict | condition_stale | condition_unknown | coverage_shrink | declaration_ambiguous | declaration_missing | delegate_obligation_omission | evidence_unproven | global_gate_added | implicit_fallback | meaning_change | nondeterministic_closure | receipt_unproven | required_omission | safety_omission | trace_cross_binding | unselected_claim | utilization_unproven | version_scope_change",
-      "ObligationRole": "Role | version | verification | record | receipt"
+      "ObligationRole": "Role | version | verification | record | receipt",
+      "OpaqueRawValue": "元validator raw:object内の値を変更しないopaque immutable snapshot値。JSON限定/serializer/bytes方式を新規決定しない。",
+      "ReportPresence": "Absent | Supplied(value:OpaqueRawValue); supplied(null)と欠落を分ける",
+      "ReportRead": {
+        "original": "ReportPresence",
+        "decode_state": "absent | explicit_null | decoded | malformed",
+        "typed_report": "ReportedClosure | null",
+        "decode_issues": "InputIssue tuple; report subtreeの構造だけ、元validator全InputIssueと別"
+      },
+      "ClosureValidationInvocation": {
+        "validation": "ValidationResult (既存閉じた3field)",
+        "report_read": "ReportRead"
+      },
+      "ClosureAnalysisInvocation": {
+        "result": "ClosureResult (既存15field)",
+        "report_read": "same ReportRead (raw保持責務を私的caller/consumerへ明示)"
+      }
     },
     "qualification_boundary": "Resolution原bytes/digest/typed projection/既決owner資格は別照合。QualificationBodyを自己署名/再帰hashで真にしない。資格根拠の実解決はowner portの責務、単体fixtureはその純粋判断だけを模す。",
     "finding_rules": [
@@ -945,9 +961,9 @@
     },
     {
       "symbol": "build_dependency_analysis",
-      "signature": "validation: ValidationResult -> ClosureResult",
+      "signature": "invocation: ClosureValidationInvocation -> ClosureResult",
       "steps": [
-        "invalid→classification unresolved/utilization held、InputIssueと原報告を保全、dispatch等false。valid/unresolved→classify→expand→check→同snapshot報告比較→routeの順。",
+        "validation=invocation.validation。同じvalidator呼出しの原rawから作られたreport_readを使う。invalid→classification unresolved/utilization held/binding null、validation.input_issuesを順序と値のまま保持。report_read.decode_state=decodedのときだけ原typed_reportをreportedへ保持し、それ以外はreported=null。invalid時はclassify/expand/check/routeを呼ばず、報告をeffective集合や資格へ採用しない。valid/unresolved→validation.valueを使い既存classify→expand→check→同snapshot報告比較→route。",
         "同Binding/condition Ref集合のreported 5集合と原理由を計算値へ比較する。不一致はnondeterministic_closure。差をslot/refで返し、計算値を報告に合わせて書き換えない。snapshot差はtrace原因として扱い同一入力の差と誤認しない。",
         "原因rejectedが一つでもあればrejected、それ以外cause/InputIssue/pending/unknown edge/qualification未成立があればheld、それ以外candidate。未選択sourceの未観測だけならheldにしない。",
         "分類は母集合identity未成立ならunresolved、分類条件/edge又はrequired実依存に不足があればvalid_with_unresolved、それ以外valid。不正claimによるheldだけでvalid分類を破棄しない。",
@@ -981,6 +997,82 @@
         "R-nondeterministic_closure"
       ],
       "side_effects": "none; input不変、注入snapshotのみ"
+    },
+    {
+      "symbol": "read_reported_closure",
+      "signature": "same_raw: object -> ReportRead",
+      "steps": [
+        "同一immutable raw snapshotのreported_closureの有無と原値をReportPresenceで保持する。欠落はabsent、明示nullはexplicit_null、それぞれtyped_report=null、decode_issuesは空。明示nullを欠落へ変えない。",
+        "非null値を既存ReportedClosureとその参照先論理型の閉じた構造・必須field・member型・重複規則で独立に検査する。この検査は構造だけで、Ref owner資格、元bodyの意味、依存分類、報告の真偽を成立させない。",
+        "構造が成立すればdecode_state=decoded、typed_reportは原報告の全値、decode_issuesは空。構造不正ならmalformed、typed_report=null、元値をoriginalへ保ち、既存InputIssueをreported_closure内のRFC6901 pointerで返す。欠落/型外のmemberを補完せずcastで受理しない。",
+        "構造issueは元ReportedClosure型のfield宣言順、配列index順で保持し、余分なobject fieldは入力順で保持する。既存InputIssue reasonを使う。report subtree内のsubject_refを構造上特定できないときはnullとし、不正Refから生成しない。"
+      ],
+      "visibility": "private",
+      "design_refs": [
+        "HARNESS-L5-023-F01",
+        "HARNESS-L5-023-F02",
+        "HARNESS-L5-023-F03",
+        "HARNESS-L5-023-F04",
+        "HARNESS-L5-023-N01",
+        "HARNESS-L5-023-B01"
+      ],
+      "oracle_refs": [
+        "HARNESS-L8-023-REPORT-READ"
+      ],
+      "negative_oracle_refs": [],
+      "additional_oracle_refs": [],
+      "finding_rule_refs": [],
+      "side_effects": "none; 同一immutable snapshotのみ、元値保持"
+    },
+    {
+      "symbol": "validate_closure_invocation",
+      "signature": "raw: object -> ClosureValidationInvocation",
+      "steps": [
+        "一つのimmutable raw snapshotを取り、既存validate_closure_inputを一回だけ呼ぶ。同じsnapshotでread_reported_closureを一回呼び、validationとreport_readを一つのprivate invocationへ封入する。",
+        "validate_closure_inputの型・返却・InputIssueの値と順序を変更しない。report_read.decode_issuesを元validation.input_issuesへ追加して二重診断しない。構造readと意味資格は別の責務である。",
+        "別rawからのvalidationとreportを組み合わせる外部constructorを定めない。rawのBindingが不正でも新しいcall_id、Ref、資格tokenを合成しない。"
+      ],
+      "visibility": "private",
+      "design_refs": [
+        "HARNESS-L5-023-F01",
+        "HARNESS-L5-023-F02",
+        "HARNESS-L5-023-F03",
+        "HARNESS-L5-023-F04",
+        "HARNESS-L5-023-N01",
+        "HARNESS-L5-023-B01"
+      ],
+      "oracle_refs": [
+        "HARNESS-L8-023-REPORT-READ"
+      ],
+      "negative_oracle_refs": [],
+      "additional_oracle_refs": [],
+      "finding_rule_refs": [],
+      "side_effects": "none; 同一immutable snapshotのみ、元値保持"
+    },
+    {
+      "symbol": "analyze_closure_invocation",
+      "signature": "raw: object -> ClosureAnalysisInvocation",
+      "steps": [
+        "validate_closure_invocation(raw)を一回呼び、その返却をbuild_dependency_analysisへそのまま一回渡す。resultと同じreport_readをClosureAnalysisInvocationへ保持する。",
+        "結果だけを要する既存consumerはbundle.resultを読む。元報告の保持を要する呼出し側/owner返却のobserverは同bundle全体を受け取り、reportedがnullでもreport_read.originalを消さない。元入力/出力bundleの保持を外部保存成立へ読み替えない。",
+        "valid/unresolvedの業務比較は元validation.value.input.reported_closureを使う。report_readは原同値の構造readであり、別報告へ置換する第二の意味正本にしない。"
+      ],
+      "visibility": "private",
+      "design_refs": [
+        "HARNESS-L5-023-F01",
+        "HARNESS-L5-023-F02",
+        "HARNESS-L5-023-F03",
+        "HARNESS-L5-023-F04",
+        "HARNESS-L5-023-N01",
+        "HARNESS-L5-023-B01"
+      ],
+      "oracle_refs": [
+        "HARNESS-L8-023-REPORT-READ"
+      ],
+      "negative_oracle_refs": [],
+      "additional_oracle_refs": [],
+      "finding_rule_refs": [],
+      "side_effects": "none; 同一immutable snapshotのみ、元値保持"
     }
   ],
   "contracts": [
@@ -1098,5 +1190,134 @@
     "L6 module/function/test fixture/oracle freezeと実装前Red/最小Green、実source/owner port/authority/資源/receipt、正式schema/依存lock/CIは未成立。",
     "全92親430対の基本/詳細、配置4論点、toolchain/文書監査と実装準備は未完。VT104–106未採用を維持。",
     "PO実物受入、通常L3、release/内部デプロイは本設計から成立しない。"
-  ]
+  ],
+  "report_retention_detail": {
+    "status": "既存invalid原報告保持義務の型・呼出し経路の具体化",
+    "source_basis": {
+      "original_invalid_rule": {
+        "revision": "555d287b74d1f001416b1ae71fe0a5f7ad3e0330",
+        "path": "docs/helix-harness/L5-detail-design/conditional-dependency-closure.json",
+        "sha256": "85a94976c720227c595e1cd65e0e6c2929769a8a4280c7183ef0830fb7a57082",
+        "pointer": "/functions/5/steps/0",
+        "value": "invalid→classification unresolved/utilization held、InputIssueと原報告を保全、dispatch等false。valid/unresolved→classify→expand→check→同snapshot報告比較→routeの順。"
+      },
+      "logical_problem": "旧閉じたValidationResultがinvalid/value=nullの場合は原報告を持たず、builder単引数だけでは異なる原報告を復元できなかった。"
+    },
+    "disposition": "semantic_rederivation",
+    "legacy_basis": "本書legacy_comparison/failure_basisの旧source・consumerと、旧distribution-lite-dependency-closure.md行21〜49、functional-release-slice-requirements.md行129〜144のexact入力・不足の可視化を保持。旧runtime/CIや旧一律full gateは移植しない。",
+    "preserve": "既存ValidationResult/ClosureResultの公開field、6業務関数の正常・未解決経路、原44負例と20追加の意味・原因・戻し先を保持。構造decodeだけで資格や分類を成功にしない。",
+    "change": "builderの入力署名を同一invocationのprivate validation/report carrierへ訂正し、3つのpure support関数でvalidator→report read→builder→呼出し側を結ぶ。",
+    "reason": "現在の型・引数で表せなかった原報告保存を、公開返却fieldを増やさず供給可能にする。",
+    "contract_trace": [
+      {
+        "contract_ref": "HARNESS-L5-023-F01",
+        "business_symbols": [
+          "validate_closure_input",
+          "classify_dependency_conditions",
+          "expand_dependency_closure",
+          "check_dependency_utilization",
+          "build_dependency_analysis",
+          "route_dependency_backflow"
+        ],
+        "private_support_symbols": [
+          "read_reported_closure",
+          "validate_closure_invocation",
+          "analyze_closure_invocation"
+        ]
+      },
+      {
+        "contract_ref": "HARNESS-L5-023-F02",
+        "business_symbols": [
+          "validate_closure_input",
+          "classify_dependency_conditions",
+          "expand_dependency_closure",
+          "check_dependency_utilization",
+          "build_dependency_analysis",
+          "route_dependency_backflow"
+        ],
+        "private_support_symbols": [
+          "read_reported_closure",
+          "validate_closure_invocation",
+          "analyze_closure_invocation"
+        ]
+      },
+      {
+        "contract_ref": "HARNESS-L5-023-F03",
+        "business_symbols": [
+          "validate_closure_input",
+          "classify_dependency_conditions",
+          "expand_dependency_closure",
+          "check_dependency_utilization",
+          "build_dependency_analysis",
+          "route_dependency_backflow"
+        ],
+        "private_support_symbols": [
+          "read_reported_closure",
+          "validate_closure_invocation",
+          "analyze_closure_invocation"
+        ]
+      },
+      {
+        "contract_ref": "HARNESS-L5-023-F04",
+        "business_symbols": [
+          "validate_closure_input",
+          "classify_dependency_conditions",
+          "expand_dependency_closure",
+          "check_dependency_utilization",
+          "build_dependency_analysis",
+          "route_dependency_backflow"
+        ],
+        "private_support_symbols": [
+          "read_reported_closure",
+          "validate_closure_invocation",
+          "analyze_closure_invocation"
+        ]
+      },
+      {
+        "contract_ref": "HARNESS-L5-023-N01",
+        "business_symbols": [
+          "validate_closure_input",
+          "classify_dependency_conditions",
+          "expand_dependency_closure",
+          "check_dependency_utilization",
+          "build_dependency_analysis",
+          "route_dependency_backflow"
+        ],
+        "private_support_symbols": [
+          "read_reported_closure",
+          "validate_closure_invocation",
+          "analyze_closure_invocation"
+        ]
+      },
+      {
+        "contract_ref": "HARNESS-L5-023-B01",
+        "business_symbols": [
+          "validate_closure_input",
+          "classify_dependency_conditions",
+          "expand_dependency_closure",
+          "check_dependency_utilization",
+          "build_dependency_analysis",
+          "route_dependency_backflow"
+        ],
+        "private_support_symbols": [
+          "read_reported_closure",
+          "validate_closure_invocation",
+          "analyze_closure_invocation"
+        ]
+      }
+    ],
+    "invalid_partial_contract": {
+      "classification": "unresolved",
+      "utilization": "held",
+      "binding": null,
+      "reported": "decode_state=decodedなら元typed_report全値、それ以外null",
+      "input_issues": "元validation.input_issuesと同値・同順",
+      "dispatch_permitted": false,
+      "persistence_established": false,
+      "parent_completion_established": false
+    },
+    "malformed_custody": "原malformed値はprivate ReportRead.originalと同一invocation結果bundleが保持する。公開ClosureResult単独に任意rawを運ぶ新しいwire/persistence義務は定義しない。未特定の実consumer/serializer/保存adapterは未成立のまま残す。",
+    "normal_call_binding": "旧builder単体caseも同じcase rawをvalidate_closure_invocationで包んで渡す。valid/unresolvedは元ValidatedInput経路と原reported比較の値を変えない。旧validation単引数だけでinvalid原報告を保持できるとは記載しない。",
+    "scope_limit": "今回の6つのReportRead原期待は当該関数全返却の有限証拠。元validator全返却/ClosureResult全値、全6義務、実資格、実装Readyの証明ではない。"
+  }
 }
