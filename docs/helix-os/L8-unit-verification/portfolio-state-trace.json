@@ -101,15 +101,15 @@
   "source_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
-      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
-      "sha256": "5b36f8068624b526eba319f8258f561a7f2e242a2e72b5247758567b3e130439",
-      "role": "現行source L4基本設計"
+      "revision": "dceecf904c6c5d616547cdc2f6dc31a5d5590c76",
+      "sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+      "role": "現行baseline互換とcaller-selectedの基本契約/固定期待をともに含む親source。"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
-      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
-      "sha256": "7c1a1398c18a7dcf2743e566dfda7fb8d6df9c1fc5888a6a05345f68d372f9b4",
-      "role": "現行source L9 integration oracle"
+      "revision": "dceecf904c6c5d616547cdc2f6dc31a5d5590c76",
+      "sha256": "b1052688ca79d2fde6ebe9785919c1611a32cb1107d99f54a2b1d1d7c58a9e5a",
+      "role": "現行baseline互換とcaller-selectedの基本契約/固定期待をともに含む親source。"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
@@ -520,13 +520,15 @@
   "parent_basic_source_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
-      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
-      "sha256": "5b36f8068624b526eba319f8258f561a7f2e242a2e72b5247758567b3e130439"
+      "revision": "dceecf904c6c5d616547cdc2f6dc31a5d5590c76",
+      "sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+      "role": "現行baseline互換とcaller-selectedの基本契約/固定期待をともに含む親source。"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
-      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
-      "sha256": "7c1a1398c18a7dcf2743e566dfda7fb8d6df9c1fc5888a6a05345f68d372f9b4"
+      "revision": "dceecf904c6c5d616547cdc2f6dc31a5d5590c76",
+      "sha256": "b1052688ca79d2fde6ebe9785919c1611a32cb1107d99f54a2b1d1d7c58a9e5a",
+      "role": "現行baseline互換とcaller-selectedの基本契約/固定期待をともに含む親source。"
     }
   ],
   "legacy_comparison": {
@@ -735,9 +737,9 @@
         "HELIXOS-L10-016-F02",
         "HELIXOS-L10-016-F03"
       ],
-      "operation": "二project/三kind/七状態の文書契約・対検証。実状態更新はしない。"
+      "operation": "複数project/三kind/七状態の文書契約・対検証。baseline固定domainとcaller-selected domainを分け、実状態更新はしない。"
     },
-    "detail_scope": "L5関数設計とL8対検証の論理record。有限な2project×4node L9 fixtureに限り、実状態更新・source資格・writer/codecを作らない。"
+    "detail_scope": "L5純粋関数とL8対検証。元356件は固定2project×4node baseline互換として保持し、明示targetsを持つselected29件と局所回帰反例を別profileで扱う。実状態更新・source資格・writer/codecを作らない。"
   },
   "unclosed_source_supply": [
     "正式trace/graph/schema/codec・任意node集合/typed relation/missing node/graph cycle・source custody/資格をL5/L8で閉じる。",
@@ -773,20 +775,14 @@
     "diagnostic_contract_ref": {
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
       "pointer": "/diagnostic_contract",
-      "sha256": "5b36f8068624b526eba319f8258f561a7f2e242a2e72b5247758567b3e130439"
+      "sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+      "hash_scope": "sha256/file_sha256はL4 file bytes、object_canonical_sha256はpointer先のcanonical JSON bytes。",
+      "file_sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+      "object_canonical_sha256": "862b8918b5d55fdc2a96aae0a1f1e29c908211769a3df5218c3c2b374d02854d",
+      "role": "baseline/selectedの規範計算に明示供給する現行L4診断契約。"
     },
     "diagnostic_contract": {
-      "input_domain": "合成fixtureの固定2project×4node形のみ。対象集合欠落/任意JSONvalidationは未設計。contextは独立原sourceの文書代理で、実source資格証明ではない。",
-      "projects": [
-        "project_a",
-        "project_b"
-      ],
-      "node_kinds": {
-        "unit_a": "unit",
-        "unit_b": "unit",
-        "connection_ab": "connection",
-        "composite_all": "composite"
-      },
+      "input_domain": "既存356 baseline fixtureの固定locator/kind宣言はbaseline_fixture_compatibilityだけで使い、caller-selected domainの既定値やfallbackにしない。caller-selectedはevaluate_portfolioの独立targets引数で選択する。",
       "source_fields": [
         "project_id",
         "requirement_id",
@@ -922,7 +918,8 @@
         {
           "code": "result_unknown",
           "facet": "comparison",
-          "disposition": "unknown"
+          "disposition": "unknown",
+          "scope_note": "R06では結果facetの未知を示す。R10/R17のlocator合併が空の場合は比較対象の結果を一件も観測できないため、同じcomparison facetのunknown理由として各既知空nodes mapへ用いる。結果state、field欠落、coverage成功を捏造しない。"
         },
         {
           "code": "result_conflict",
@@ -992,7 +989,7 @@
         },
         {
           "id": "R02",
-          "rule": "kindはunit/connection/composite closed。未知はkind_unknown、fixture nodeの宣言kindに既知不一致はkind_conflict。同一target_idを別nodeに使えば両nodeにidentity_aliased。"
+          "rule": "kindはunit/connection/composite closed。caller-selected domainではtargets node宣言kind、元356 baseline caseではbaseline_fixture_compatibility.node_kindsの宣言kindを使う。未知はkind_unknown、宣言kindとknown actual/context source.kindの不一致はkind_conflict。同一sideのobserved portfolio全体でtarget_idが重複すれば両nodeにidentity_aliasedを出す（selection範囲のkind/identity比較とは別）。actual/context間の同identityは正常な照合でありaliasにしない。locator keyからkind/identityを推定しない。"
         },
         {
           "id": "R03",
@@ -1020,11 +1017,11 @@
         },
         {
           "id": "R09",
-          "rule": "claims 3種はtrueならinferred_completion_forbidden、false以外の不明ならclaim_unknown。whole_completion_claimはtrueならwhole_completion_forbidden、不明ならwhole_claim_unknown。projection表示値は判定に使わない。素材が対応しても正式完了を作らない。"
+          "rule": "actual sideの全observed nodeについてclaims 3種はtrueならinferred_completion_forbidden、false以外の不明ならclaim_unknown。whole_completion_claimはtrueならwhole_completion_forbidden、不明ならwhole_claim_unknown。projection表示値は判定に使わない。素材が対応しても正式完了を作らない。selection binding比較は選択locatorに限るが、observed actual claim検査は選択有無で除外しない。"
         },
         {
           "id": "R10",
-          "rule": "facet/全体はviolation > unknown > corresponding。全体conditionはtrace_material_*。findingはcode/pointer/return_ownerで重複排除し同3field辞書順。owner名はportfolio-trace-owner、実解消先は出力の要求/source/ownersへ辿り、実資格を仮定しない。"
+          "rule": "facet/全体はviolation > unknown > corresponding。全体conditionはtrace_material_*。findingはcode/pointer/return_ownerで重複排除し同3field辞書順。owner名はportfolio-trace-owner、実解消先は出力の要求/source/ownersへ辿り、実資格を仮定しない。 選択domainに評価nodeが一件もなくnodes mapが既知空の場合、各空の/targets/projects/{project_key}/nodesへ既存result_unknownを返し、全体unknownの理由を示す。 ここで「評価nodeが一件もない」とは、R14で構成するnode_correspondenceのactual/context/selected locator合併にnode locatorが一件も無いことをいう。選択nodesだけが空でも未選択の観測locatorがあれば、この空domain理由は追加しない。"
         },
         {
           "id": "R11",
@@ -1066,8 +1063,163 @@
         "kanban_ref",
         "record_ref"
       ],
-      "identity_alias_scope": "actual/context各sideでportfolio全体のnodeを比較する。同じside内のtarget_id重複を両nodeに出す。actualとcontext間の同identityは正常な照合でありaliasにしない。"
-    }
+      "identity_alias_scope": "actual/context各sideでportfolio全体のobserved nodeを比較する。同じside内のtarget_id重複を両nodeに出す。actualとcontext間の同identityは正常な照合でありaliasにしない。このportfolio-wide診断はR01–R08のselected-locator比較範囲と独立する。",
+      "selected_target_contract": {
+        "caller_signature": "evaluate_portfolio(input: PortfolioInput, diagnostic_contract: DiagnosticContract, targets: PortfolioTargets) -> TraceResult",
+        "targets_shape": {
+          "selection_source_ref": "非空string: callerが選択に用いた宣言sourceの参照。",
+          "selection_source_revision": "非空string: 同sourceのrevision。",
+          "selection_source_digest": "非空stringのcaller-supplied opaque digest claim。外部source bodyはこの契約入力に含まれず、ref/revision/digestをtargets値から検証・資格認定しない。L9のtargets_canonical_sha256は合成fixtureの全input.targets引数を測る別の再現性hashであり、claimの検証ではない。",
+          "projects": "project locator keyからProjectTargetへ写すobject。locator key数はproject identity数とみなさず、distinct known project_idの最低数確認はR17に従う。未解決IDや不足数を局所target処理の拒否・成功へ変換しない。",
+          "ProjectTarget": {
+            "project_id": "非空string",
+            "requirement_id": "非空string",
+            "requirement_revision": "非空string",
+            "scope": "非空string",
+            "harness_contract_revision": "非空string",
+            "nodes": "node locator keyからNodeTargetへ写すobject。"
+          },
+          "NodeTarget": {
+            "target_id": "非空string",
+            "target_revision": "非空string",
+            "target_digest": "非空string",
+            "kind": "unit|connection|composite",
+            "source_ref": "非空string",
+            "source_revision": "非空string"
+          }
+        },
+        "identity_and_binding": {
+          "project_axes": [
+            "project_id",
+            "requirement_id",
+            "requirement_revision",
+            "scope",
+            "harness_contract_revision"
+          ],
+          "node_axes": [
+            "target_id",
+            "target_revision",
+            "target_digest",
+            "kind",
+            "source_ref",
+            "source_revision"
+          ],
+          "comparison": "選択ProjectTargetのproject_axesを、該当locatorの各actual.source/context.sourceの同名fieldと個別比較する。各nodeのproject_idも当該project locatorのProjectTarget.project_idと照合し、locator keyからproject_idを推定しない。NodeTargetのnode_axesも同様に比較する。project/node map keyからsource identityやkindを補完しない。source、scope、revision、identity、kindは別軸で保持し、同じ軸へ畳まない。",
+          "selector_source_limit": "selection_source_ref/revision/digestと各target fieldは呼出元が渡す合成可能な入力値である。digestはopaque claimで、source bodyの同一性、custody、発行者・owner資格、acceptance、release、実際のoperationを証明しない。L9 fixtureの全targets引数canonical hashは測定値でありsource資格証明ではない。"
+        },
+        "pointer_basis": {
+          "PortfolioInput": "第一引数PortfolioInputをrootとする。actualは/projects/{project_locator}/{node_locator}、contextは/context/projects/{project_locator}/{node_locator}。Absent keyはその実shapeを辿った最初の欠落ancestor keyをpointer leafとして指し、present null/誤型は既存値の位置を指す。containerからnodeまで各段階を区別し、invalid/missing nodeを通常NodeRecordへ変換しない。context/projects欠落は/context/projects、context欠落は/context、actual projects欠落は/projectsを指す。",
+          "PortfolioTargets": "evaluate_portfolio(input, diagnostic_contract, targets)の第三引数PortfolioTargetsに正規化root /targets を付けてpointer化する。",
+          "selection_binding": "選択側の欠落bindingは/targets/projects/{RFC6901-escaped-project_key}/nodes/{RFC6901-escaped-node_key}を指す。project_key/node_keyは各targets mapの実locator object key。",
+          "escaping": "全tokenにRFC 6901 escape（~→~0、/→~1）を適用する。ancestorは第三引数の実shapeに存在し、欠落対象leafだけが不在であることを検証する。",
+          "missing_ancestor_selection": "Absent keyは実targets引数shapeをroot /targetsから辿り、最初に存在しないancestor key自体をpointer leafとして指す。targets引数欠落は/targets、projects member欠落は/targets/projects、project entry欠落は/targets/projects/{escaped project_key}、nodes member欠落は/targets/projects/{escaped project_key}/nodes、個別node binding欠落は/targets/projects/{escaped project_key}/nodes/{escaped node_key}。",
+          "present_invalid_selection": "nullまたはshape/type不正の値は欠落ancestorとして扱わず、その値が実targets引数shape内に存在する位置をpointerにする。例: targets:nullは/targets、projects:nullやprojects誤型は/targets/projects、project entry null/誤型は/targets/projects/{escaped project_key}、project_id null/空/誤型は/targets/projects/{escaped project_key}/project_id、nodes:null/誤型は/targets/projects/{escaped project_key}/nodes。"
+        }
+      },
+      "baseline_fixture_compatibility": {
+        "projects": [
+          "project_a",
+          "project_b"
+        ],
+        "node_kinds": {
+          "unit_a": "unit",
+          "unit_b": "unit",
+          "connection_ab": "connection",
+          "composite_all": "composite"
+        },
+        "meaning": "既存L9 356 caseの原入力/原期待を再解釈せず保持するための固定fixture locator。caller-selected domainの既定値やfallbackではない。 旧呼出元がprojects/node_kindsを読む場合は356 baseline互換profileに限る。caller-selected domainではそれらをDiagnosticContractから取り出してtarget代替にせず、第三引数PortfolioTargetsを渡す。"
+      },
+      "project_keys": "callerのtargets.projects objectのkey集合。keyはlocatorでありproject_idと別の値。JSON Pointerでは各keyをRFC 6901に従い~→~0、/→~1へescapeする。",
+      "node_keys": "各targets.projects[project_key].nodes objectのkey集合。keyはlocatorでありtarget_idと別の値。JSON PointerではRFC 6901 escapeを行う。",
+      "node_kind_values": [
+        "unit",
+        "connection",
+        "composite"
+      ],
+      "selected_target_rules": [
+        {
+          "id": "R12",
+          "rule": "targetsが渡された選択domainでは、選択project/node mapの各keyと、project_id/requirement_id/requirement_revision/scope/harness_contract_revisionおよびtarget_id/target_revision/target_digest/kind/source_ref/source_revisionを別々に読む。既知値をactual/context sourceと比較する。既知の不一致はkind以外では既存field_conflict、kindでは専用のkind_conflictだけを相違したactual/context source fieldのpointerへ返し、同じkind不一致についてgeneric field_conflictを重ねず、affected nodeのsource facetをviolationにする。選択fieldがAbsent/null/空/型外なら、kindはR02のkind_unknown、kind以外のidentity/source fieldはfield_unknownを選択field pointerへ返し、affected source facetだけをunknownにし、空値やlocator keyで埋めない。project_id field自体の不正はR12のsource facet unknownであり、project entry/nodes/node bindingの構造欠損扱いにしない。selection_source_ref/revision/digestがAbsent/invalidなら既存入力契約に応じfield_unknownを該当pointerへ返し、全selected node source facetをunknownにする。digestはopaque claimであり、projects bodyから自己検証しない。R01–R08の比較は選択locatorに限り、既存facet ordering/重複排除を保つ。Absentのselector pointerはpointer_basis.missing_ancestor_selectionの最初の不在ancestor、present invalidはpointer_basis.present_invalid_selectionの既存値位置を指す。",
+          "source_basis": [
+            "HELIXOS-L3-016-F01",
+            "HELIXOS-L3-016-F02",
+            "HELIXOS-L10-016-F01",
+            "HELIXOS-L10-016-F02",
+            "R01",
+            "R02",
+            "R06",
+            "R10"
+          ]
+        },
+        {
+          "id": "R13",
+          "rule": "selected locatorがactualまたはcontextの一方に無いとき、そのlocatorの全facetをunknownにする。field_unknownのpointerはpointer_basis.PortfolioInputに従い、Absentなら実shape上の最初のmissing ancestor、present null/誤型なら実在するinvalid値の位置を指す。存在側のNodeRecordはselection bindingと既知軸を比較し、保持対象であるactual側recordは原値のまま返す。両側に無い選択locatorはactualとcontext双方のpointerをunknownとして示す。invalid/absent recordを通常NodeRecordや空recordとして作らない。 actual/context memberがpresent nullまたは型外なら、その実引数位置をunknown pointerにする。未選択actual locatorでもraw node値がnull/型外ならactual側input pointerを別途示し、NodeRecordへ変換せずretained source/stateを生成しない。",
+          "source_basis": [
+            "HELIXOS-L3-016-F01",
+            "HELIXOS-L10-016-F01",
+            "R01",
+            "R10",
+            "R11"
+          ]
+        },
+        {
+          "id": "R14",
+          "rule": "actual/contextのlocator unionにあり、targetsにproject/node binding構造が無いlocatorは、selection側binding不足をfield_unknownで返し、該当node facetsをunknownとする。Absent keyはpointer_basis.missing_ancestor_selectionの最初の不在ancestor keyを指し、present null/誤型はpointer_basis.present_invalid_selectionの既存値位置を指す。project_idなど個別identity fieldのAbsent/null/空/型外はR12のsource facetだけに適用し、この構造欠損規則へ広げない。kind/identityはinput map keyから推定しない。未選択actual nodeのsource/state/receipt/owner/relation/historyはretained_source_records/retained_state_traceへactual原値として保持し、選択外であることを理由に削除しない。 actual/context unionにある未選択actual nodeがpresent null/誤型なら、targets binding欠落pointerに加えてactual実引数の当該member pointerをfield_unknownで示す。invalid raw memberはretained_source_records/retained_state_traceにNodeRecordとして作らない。 未選択nodeの原因位置について、actualのpresent null/誤型は原記録を保持できない実入力側の原因としてactual pointerも返す。context側だけの未選択null/誤型は選択比較の根拠として用いないため、従来のtargets側binding不足pointerだけを返す。元context値は呼出しの原引数に残し、未知を成功や実記録へ補完しない。",
+          "source_basis": [
+            "HELIXOS-L3-016-F01",
+            "HELIXOS-L10-016-F01",
+            "R01",
+            "R02",
+            "R08",
+            "R11"
+          ]
+        },
+        {
+          "id": "R15",
+          "rule": "node_correspondenceはtargets、actual、contextのlocator unionをproject/node keyごとに持つ。retained_source_recordsとretained_state_traceは既存R11どおりactual側に実在する値だけを既存root shapeへ原値を写す。context-only record/stateをactualへ転記せず、実在しないactual nodeやstateを空recordとして生成しない。observed_gap_axesもactual側に実在するstateだけを既存R11で投影し、actualに無いlocatorの通常空gap entryを作らない。",
+          "source_basis": [
+            "HELIXOS-L3-016-F01",
+            "HELIXOS-L3-016-F02",
+            "HELIXOS-L10-016-F01",
+            "R11"
+          ]
+        },
+        {
+          "id": "R16",
+          "rule": "project/node map keyはlocatorのまま保持し、project/node keyの走査順はRFC 6901 escape前のUnicode codepoint辞書順とする。これは評価/finding生成の決定性のためで、JSON objectのmember表示順は意味契約に含めず、mapはkey/valueで比較する。全output pointerはRFC 6901でescapeし、finding最終順はR10のcode/pointer/return_owner辞書順による。重複identityの先行/後続locatorという順序依存findingを作らない。selection provenance不足はfield_unknownで該当targets fieldへ示すが、選択値を資格済みsourceや実ownerへ昇格させない。各node/facetは既存R10のviolation > unknown > correspondingで集約し、全体も既存R10を適用する。実state更新/受入/提供/authorizationは常に生成しない。全pointerはpointer_basisに従い実引数shapeへ結ぶ。",
+          "source_basis": [
+            "HELIXOS-L3-016-F01",
+            "HELIXOS-L3-016-F03",
+            "R10",
+            "R11"
+          ]
+        },
+        {
+          "id": "R17",
+          "rule": "選択projectの複数project保証はL3 F01の「二つ以上」に従うが、locator key件数をproject identity件数として数えない。ProjectTarget.project_idが既知の値はdistinct identity数だけ数え、同じknown project_idを持つ複数locatorはdistinct数へ重複算入しない。distinct known identityが二つ未満なら、選択domain全体の複数project保証をfield_unknownとしてaggregate pointer /targets/projectsへ示し、局所の既知record/state照合は保持する。project_idが一つでもAbsent/null/空/型外ならR12のfield_unknownを維持し、未解決identityを既知の別projectとも同一projectとも断定しない。重複locatorの一つを“後続”として特定するfindingは作らず、各locatorとnodeの原記録は個別に保持する。distinct known identityが二つ以上でも、それだけで成功/coverage/accepted/completionを示さない。targets/projectsのAbsent/null/誤型はpointer_basisに従うfield_unknownとし、空へ変換しない。明示projects:{}も二project保証の根拠にならずfield_unknown /targets/projectsとする。project targetまたはnodes memberがAbsentなら最初の不在ancestor、present null/誤型ならその既存値位置をfield_unknownで示す。一方nodes:{}は既知の空node mapであり、そのproject selection pointerにfield_unknownを出さず、coverage/Accepted/corresponding/completionへ昇格しない。全selected node mapが既知空で評価nodeが0件なら、R10に従い各empty nodes mapへのresult_unknownでaggregate unknown理由を示す。actual/contextに存在する未選択nodeはR14で処理する。 ここで「評価nodeが一件もない」とは、R14で構成するnode_correspondenceのactual/context/selected locator合併にnode locatorが一件も無いことをいう。選択nodesだけが空でも未選択の観測locatorがあれば、この空domain理由は追加しない。",
+          "source_basis": [
+            "HELIXOS-L3-016-F01",
+            "HELIXOS-L10-016-F01",
+            "R10",
+            "R11"
+          ]
+        }
+      ],
+      "selected_target_domain_limit": "呼出元の選択値は比較scopeを示すが、全projectの網羅や発行者資格を証明しない。任意graph閉包/cycle、実selector provider、実source custody/資格、実consumerは未成立。",
+      "call_profiles": {
+        "baseline_fixture_compatibility": {
+          "signature": "evaluate_portfolio(input: PortfolioInput, diagnostic_contract: DiagnosticContract) -> TraceResult",
+          "scope": "元L9 cases配列の356基準caseだけ。固定locatorの宣言値はbaseline_fixture_compatibilityに格納し、caller-selected domainの既定値には使わない。",
+          "raw_and_expected": "既存L9 356caseのraw/expected whole値をそのまま維持する。"
+        },
+        "caller_selected_domain": {
+          "signature": "evaluate_portfolio(input: PortfolioInput, diagnostic_contract: DiagnosticContract, targets: PortfolioTargets) -> TraceResult",
+          "scope": "L9 domain_extension_casesの明示targets入力を持つ選択domain。targetsのAbsent/nullはbaseline fixtureへfallbackしない。",
+          "caller_binding_effect": "旧diagnostic_contract.projects/node_kindsをselected-domain入力に使う呼出元はPortfolioTargetsを構築して第三引数へ渡す。baseline_fixture_compatibilityから自動補完/fallbackしない。"
+        }
+      }
+    },
+    "diagnostic_contract_copy_rule": "この本文はparent_basic_source_pinsの現行L4 /diagnostic_contractと完全一致する参照用複写。計算の第二引数はpinしたL4 objectから明示供給し、この複写から別の規範やselected selectorを作らない。旧固定本文と追記の混合snapshotはgit履歴で辿る。"
   },
   "shared_values_contract": {
     "input_base_ref": "L9 fixture_inputs.portfolio",
@@ -14377,13 +14529,14 @@
   "actual_state_updated": false,
   "normative_calculation_binding": {
     "L5_path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
-    "L5_sha256": "17712ff8669710a0ef72bf5fe14399bc16b2f2e781d1d1749cd8c356f339d0d0",
-    "program_sha256": "60588ef4fa23ac8f1f0d4439c8623cde9328913926125d29c6faa24fdb93f96e",
+    "L5_sha256": "cff23ce7bf82b90ef105384fcc32be494b9bb5f67d14875ab4d397c09904f7a7",
+    "program_sha256": "31af7009ef9627435834947a736469a9bda57c727627e597583406d7c1ef8690",
     "entrypoints": [
       "expand_case",
       "evaluate_portfolio",
       "route_failure",
-      "evaluate_portfolio_selected"
+      "evaluate_portfolio_selected",
+      "compare_node_material"
     ],
     "case_count": 356,
     "expected_source": "各caseのRFC6901 pointerでL9 expected_proposalを参照し、計算後にだけ比較する。",
@@ -14396,7 +14549,7 @@
       "execution_state": "not_executed",
       "expected_source": "L8 selected_domain_profile.cases[*]のL9 expected_whole pointer。normative計算後にだけ比較する。",
       "meaning": "L5 source_codeの純粋計算と凍結済みL9 wholeを対照する詳細設計。runtime実行/実source資格を示さない。",
-      "program_sha256": "60588ef4fa23ac8f1f0d4439c8623cde9328913926125d29c6faa24fdb93f96e",
+      "program_sha256": "31af7009ef9627435834947a736469a9bda57c727627e597583406d7c1ef8690",
       "output_type": "SelectedTraceResult"
     }
   },
@@ -27447,7 +27600,7 @@
   },
   "selected_domain_profile": {
     "profile_id": "HELIXOS-L8-016-SELECTED-DOMAIN-29",
-    "source_rule": "L4 caller_selected_domain + selected_target_rules R12-R17; corresponding L9 domain_extension_cases.",
+    "source_rule": "現行L4のcaller_selected_domainとR12–R17、および同じpin版のL9 domain_extension_casesを用いる。期待は計算後にだけ比較する。",
     "purpose": "2引数baselineを維持したまま、明示された3引数selected profileの型/wire/pointer/closed returnをL5と対照し、29件の固定source wholeと独立rule-derived checksを対応付ける。",
     "call_signature": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: DiagnosticContract, targets: PortfolioTargetsWire) -> SelectedTraceResult",
     "selector_rule": "targets第3引数のprojects/nodes実map keyだけがselector。input map key、diagnostic_contract.projects/node_kinds、baseline固定locatorからselected keyを生成しない。",
@@ -27470,8 +27623,14 @@
         "expected_ref": "/domain_extension_cases/0/expected_whole",
         "expected_whole_sha256": "18e6412b81df26ffebd833a40f70e5c6aade43a358b14915406cd44774590104",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0001/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/0/input/targets"
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "3 project・6 nodeの選択domain正例。/と~を含むlocator key、異なるkindと未工程を保持する。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0002",
@@ -27484,8 +27643,14 @@
         "expected_ref": "/domain_extension_cases/1/expected_whole",
         "expected_whole_sha256": "aa2c264b62bfa2113fb6e9de38931a22ce2b6c4940e2556ba6005b18de8ab2c4",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0002/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/1/input/targets"
+        "targets_ref": "/domain_extension_cases/1/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "第三projectの1 nodeにあるunknown/staleを局所化し、他の5 nodeを保つ。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0003",
@@ -27498,8 +27663,14 @@
         "expected_ref": "/domain_extension_cases/2/expected_whole",
         "expected_whole_sha256": "659ae25255a7c595bdd4129e5baef7f16443be4a965e915d75a975564f3951bb",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0003/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/2/input/targets"
+        "targets_ref": "/domain_extension_cases/2/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "独立selectorのkind=unitに対しactual/contextが共にconnection。selector宣言を上書きせずkind conflictを返す。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0004",
@@ -27512,8 +27683,14 @@
         "expected_ref": "/domain_extension_cases/3/expected_whole",
         "expected_whole_sha256": "c5fd40473a1bbb8bff421f661ef5df5348b5e0d46f23da58934f233f0cce300a",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0004/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/3/input/targets"
+        "targets_ref": "/domain_extension_cases/3/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "選択nodeがcontextにない。unknownを返し、存在するactual source/stateを保持する。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0005",
@@ -27526,8 +27703,14 @@
         "expected_ref": "/domain_extension_cases/4/expected_whole",
         "expected_whole_sha256": "5a2f7e22ab66ee9a31b96b57ab881f6928d2a658c1ded092636a9067e17e0eb7",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0005/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/4/input/targets"
+        "targets_ref": "/domain_extension_cases/4/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "選択nodeがactualにない。unknownを返し、context-only記録はactual保持rootへ転記しない。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0006",
@@ -27540,8 +27723,14 @@
         "expected_ref": "/domain_extension_cases/5/expected_whole",
         "expected_whole_sha256": "7d2bc2ddbd352132d01e2aa3f037d196874570c544f0c312ca2f476f959714df",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0006/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/5/input/targets"
+        "targets_ref": "/domain_extension_cases/5/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "選択外のextra locatorをunknownとし、実在するactual source/stateを保持する。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0007",
@@ -27554,8 +27743,14 @@
         "expected_ref": "/domain_extension_cases/6/expected_whole",
         "expected_whole_sha256": "736062cff4146d4874dc96ee04e8b41ad3557c6a66bd9676b42af8ad39d0eee1",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0007/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/6/input/targets"
+        "targets_ref": "/domain_extension_cases/6/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "project/node locator keyをsourceのproject_id/target_idと分け、/と~を含むkeyをoutput mapsへ保持する。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0008",
@@ -27568,8 +27763,14 @@
         "expected_ref": "/domain_extension_cases/7/expected_whole",
         "expected_whole_sha256": "db5ad9a7bc267b325ea4b39acc6b11b95753d28841de6c5ffd39176f27ceae60",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0008/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/7/input/targets"
+        "targets_ref": "/domain_extension_cases/7/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "選択側のproject requirement revision/scopeとnode identity/revision/digest/source fieldsを個別照合し、既知差をsource facet conflictとして返す。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0009",
@@ -27582,8 +27783,14 @@
         "expected_ref": "/domain_extension_cases/8/expected_whole",
         "expected_whole_sha256": "8a40a45862cf0aa79ff36d7e476da1811510995d426a4532e7780162575df499",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0009/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/8/input/targets"
+        "targets_ref": "/domain_extension_cases/8/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "明示された空nodes選択を既知の空集合として保持し、actual/contextに実在する未選択nodeはR14でunknownへ返す。空選択をcoverage/Acceptedへ昇格させない。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0010",
@@ -27596,8 +27803,14 @@
         "expected_ref": "/domain_extension_cases/9/expected_whole",
         "expected_whole_sha256": "8dc087d4abb874cbf7d70fcf95456c18abed7005e67300719a9b6e51c88f1c23",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0010/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/9/input/targets"
+        "targets_ref": "/domain_extension_cases/9/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "三projectのnodes:{}が既知空であるとき、評価nodeがない未知理由を各空選択map pointerで示し成功へ昇格しない。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0011",
@@ -27610,8 +27823,14 @@
         "expected_ref": "/domain_extension_cases/10/expected_whole",
         "expected_whole_sha256": "cb563832efadd0271d013d4db62637ab149ae009d1f7581ca6c2dd146cf28f2d",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0011/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/10/input/targets"
+        "targets_ref": "/domain_extension_cases/10/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "actual/contextにproject labのnodeがあるがtargets.projectsにlab selector entry自体がないとき、R14は最初のmissing ancestorであるproject selector leafを指し、全lab nodeだけunknownにする。別projectの期待とactual retentionは保持する。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0012",
@@ -27624,8 +27843,14 @@
         "expected_ref": "/domain_extension_cases/11/expected_whole",
         "expected_whole_sha256": "b2514b374b336830e645330f1f54c90256fdb0f86620b3b359a611886c725c74",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0012/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/11/input/targets"
+        "targets_ref": "/domain_extension_cases/11/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "二つのlocatorが同じ既知project_idを持つ場合、identityを二重算入せずlocator別raw/stateを保持し、複数project保証をunknownにする。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0013",
@@ -27638,8 +27863,14 @@
         "expected_ref": "/domain_extension_cases/12/expected_whole",
         "expected_whole_sha256": "7a11424c5fe4733a0b9ca01d3674cdbdfb4866350d6fb8f22867a7d0b29a15be",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0013/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/12/input/targets"
+        "targets_ref": "/domain_extension_cases/12/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "project_idが明示nullでもproject/node bindingは存在する。R12でsourceだけunknownにし、他facetとactual rawを保持する。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0014",
@@ -27652,8 +27883,14 @@
         "expected_ref": "/domain_extension_cases/13/expected_whole",
         "expected_whole_sha256": "5a2f7e22ab66ee9a31b96b57ab881f6928d2a658c1ded092636a9067e17e0eb7",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0014/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/13/input/targets"
+        "targets_ref": "/domain_extension_cases/13/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "PortfolioInput actual nodeがpresent nullのとき、null位置だけを示しinvalid recordを作らない。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0015",
@@ -27666,8 +27903,14 @@
         "expected_ref": "/domain_extension_cases/14/expected_whole",
         "expected_whole_sha256": "1e614f12bcaeaefbb04ec98318951a402fc374f1a3b7b73320c363185dc7b6d0",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0015/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/14/input/targets"
+        "targets_ref": "/domain_extension_cases/14/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "PortfolioInput actual project entryがAbsentのとき、最初の欠落ancestorを指す。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0016",
@@ -27680,8 +27923,14 @@
         "expected_ref": "/domain_extension_cases/15/expected_whole",
         "expected_whole_sha256": "5f841fab183cfec5656ddca74951c5a95ceecdba45db6bdc434dc4547cc48666",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0016/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/15/input/targets"
+        "targets_ref": "/domain_extension_cases/15/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "選択locatorがPortfolioInputのactual/context双方にAbsentのとき、各side pointerをunknownにする。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0017",
@@ -27694,8 +27943,14 @@
         "expected_ref": "/domain_extension_cases/16/expected_whole",
         "expected_whole_sha256": "5f21ed7f35fa932bff64e9434eab9c4098c2d8295ba0c8a29c60383b796d5a71",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0017/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/16/input/targets"
+        "targets_ref": "/domain_extension_cases/16/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "選択project_id・requirement_id・harness_contract_revisionをsource両側と個別照合する。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0018",
@@ -27708,8 +27963,14 @@
         "expected_ref": "/domain_extension_cases/17/expected_whole",
         "expected_whole_sha256": "643c3035f8eff56631de5e2151f1d6e0366c762cb1b827d4475a0dbc045e65cb",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0018/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/17/input/targets"
+        "targets_ref": "/domain_extension_cases/17/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "selector kindがclosed enum外なら対象source kindをunknownとする。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0019",
@@ -27722,8 +27983,14 @@
         "expected_ref": "/domain_extension_cases/18/expected_whole",
         "expected_whole_sha256": "e35d69d240db56412712414b7dc6eb979c3e71f0c38fe9606ed5f8d687fe0a3a",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0019/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/18/input/targets"
+        "targets_ref": "/domain_extension_cases/18/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "selection_source_refがAbsentなら全selected nodeのsource facetをunknownにし、他facetは維持する。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0020",
@@ -27736,8 +28003,14 @@
         "expected_ref": "/domain_extension_cases/19/expected_whole",
         "expected_whole_sha256": "8871ff9a080b05330a03cc2db41520de1de4263cbe091f304e6a09851640d7f3",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0020/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/19/input/targets"
+        "targets_ref": "/domain_extension_cases/19/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "明示empty projects selectionは複数projectの根拠にならずaggregate unknownである。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0021",
@@ -27750,8 +28023,14 @@
         "expected_ref": "/domain_extension_cases/20/expected_whole",
         "expected_whole_sha256": "8f6afee6043affae96f2c54fa0560fc7b7495cd54224816d98e2645caa727c5a",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0021/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/20/input/targets"
+        "targets_ref": "/domain_extension_cases/20/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "project axisのscopeだけがactual/contextの既知値と不一致。node axesは一致し、project軸だけでもsource facet violationになる対照。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0022",
@@ -27764,8 +28043,14 @@
         "expected_ref": "/domain_extension_cases/21/expected_whole",
         "expected_whole_sha256": "37d23fdf5322f1a128e6ebefed9a28af3be77288c3ed66638d8e5bef1fd1f8b8",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0022/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/21/input/targets"
+        "targets_ref": "/domain_extension_cases/21/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "未選択actual/context nodeのidentity aliasとactual completion claimも検出する。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0023",
@@ -27778,8 +28063,14 @@
         "expected_ref": "/domain_extension_cases/22/expected_whole",
         "expected_whole_sha256": "18e6412b81df26ffebd833a40f70e5c6aade43a358b14915406cd44774590104",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0023/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/22/input/targets"
+        "targets_ref": "/domain_extension_cases/22/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "selection_source_digestはopaque claimとして保持し、本文不在で真偽や資格を推定しない。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0024",
@@ -27792,8 +28083,14 @@
         "expected_ref": "/domain_extension_cases/23/expected_whole",
         "expected_whole_sha256": "3fd16536c78870735c2550738bac656ab7702fc745bdb6b78166ea8f7950ece0",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0024/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/23/input/targets"
+        "targets_ref": "/domain_extension_cases/23/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "一方sideのnode欠落時にも存在sideのselector kind mismatchを保持する。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0025",
@@ -27806,8 +28103,14 @@
         "expected_ref": "/domain_extension_cases/24/expected_whole",
         "expected_whole_sha256": "93e33d7e887684764f75faf05a8c4eee01ec4d0e7381f59fc5b8f6a91e31a044",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0025/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/24/input/targets"
+        "targets_ref": "/domain_extension_cases/24/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "selector nodes memberがpresent nullならその位置へunknownを返し、node bindingを生成しない。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0027",
@@ -27820,8 +28123,14 @@
         "expected_ref": "/domain_extension_cases/25/expected_whole",
         "expected_whole_sha256": "7f4227eb3641e68e2d524240c2e8a6598e799a67c7605c492ef5700ad7687256",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0027/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/25/input/targets"
+        "targets_ref": "/domain_extension_cases/25/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "NodeTarget.kind以外のsource_refがnullのとき、該当選択fieldを示しsource facetだけunknownにする。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0028",
@@ -27834,8 +28143,14 @@
         "expected_ref": "/domain_extension_cases/26/expected_whole",
         "expected_whole_sha256": "bd6760f1b333eed3ceb3207fccf3dd512105187c9196ee75e74173cd1e50df5b",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0028/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/26/input/targets"
+        "targets_ref": "/domain_extension_cases/26/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "context.projects内のlab projectがpresent nullなら、その既存値位置を指し、該当選択nodeの比較をunknownにする。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0029",
@@ -27848,8 +28163,14 @@
         "expected_ref": "/domain_extension_cases/27/expected_whole",
         "expected_whole_sha256": "f459e7d10461a9a076eb574e5e46160406d4563883afb55fce7475a7c90e2dba",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0029/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/27/input/targets"
+        "targets_ref": "/domain_extension_cases/27/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "context objectはあるがprojects memberがAbsentなら、最初の欠落ancestor /context/projectsを指す。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       },
       {
         "case_id": "HELIXOS-L9-016-D0030",
@@ -27862,8 +28183,14 @@
         "expected_ref": "/domain_extension_cases/28/expected_whole",
         "expected_whole_sha256": "1b93e0c9261a20d814cc99f97378cf9587353b87a8ac810183c67ec095b09ba4",
         "execution_state": "not_executed",
-        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0030/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
-        "targets_ref": "/domain_extension_cases/28/input/targets"
+        "targets_ref": "/domain_extension_cases/28/input/targets",
+        "independent_checks": {
+          "basis": "L4#/diagnostic_contract/selected_target_rules R12–R17",
+          "checks": [
+            "未選択actual nodeがpresent nullならselection binding不足とactual inputのnull位置を示し、nullからrecordを作らない。",
+            "原sourceの入力・全11 root期待と対応付け、期待wholeを計算の引数にしない。"
+          ]
+        }
       }
     ],
     "expectation_limits": [
@@ -28118,6 +28445,1279 @@
           "basis": "有効L9 D0001 expected_wholeを起点に、L4 R12により対象source facetだけunknown、kind_unknownを実選択fieldへ追加し、R10によりcondition unknownとする。他9rootと全非source facetは有効wholeと同一に固定。候補出力は使わない。"
         }
       }
-    ]
+    ],
+    "regression_probes": [
+      {
+        "id": "R1-KIND-PAIR-CONFLICT",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/source/kind",
+            "value": "unit"
+          }
+        ],
+        "target_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/nodes/batch/kind",
+            "value": "bad"
+          }
+        ],
+        "expected_partial": {
+          "condition": "trace_material_violation",
+          "findings_include": [
+            {
+              "code": "field_conflict",
+              "pointer": "/projects/lab/batch/source/kind",
+              "return_owner": "portfolio-trace-owner"
+            },
+            {
+              "code": "kind_unknown",
+              "pointer": "/targets/projects/lab/nodes/batch/kind",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "facet": "source",
+            "state": "violation"
+          }
+        },
+        "basis": "R01はactual/context kindの既知相反をfield_conflictとする。R12のkind診断非重複はselector/source比較に限る。",
+        "execution_state": "not_executed",
+        "expected_whole": {
+          "condition": "trace_material_violation",
+          "node_correspondence": {
+            "release/north~blue": {
+              "north/api~v2": {
+                "source": "corresponding",
+                "owner": "corresponding",
+                "relation": "corresponding",
+                "state": "corresponding",
+                "verification": "corresponding",
+                "acceptance": "corresponding",
+                "provision": "corresponding",
+                "history": "corresponding",
+                "boundary": "corresponding"
+              },
+              "link-api": {
+                "source": "corresponding",
+                "owner": "corresponding",
+                "relation": "corresponding",
+                "state": "corresponding",
+                "verification": "corresponding",
+                "acceptance": "corresponding",
+                "provision": "corresponding",
+                "history": "corresponding",
+                "boundary": "corresponding"
+              },
+              "bundle": {
+                "source": "corresponding",
+                "owner": "corresponding",
+                "relation": "corresponding",
+                "state": "corresponding",
+                "verification": "corresponding",
+                "acceptance": "corresponding",
+                "provision": "corresponding",
+                "history": "corresponding",
+                "boundary": "corresponding"
+              }
+            },
+            "south": {
+              "store": {
+                "source": "corresponding",
+                "owner": "corresponding",
+                "relation": "corresponding",
+                "state": "corresponding",
+                "verification": "corresponding",
+                "acceptance": "corresponding",
+                "provision": "corresponding",
+                "history": "corresponding",
+                "boundary": "corresponding"
+              }
+            },
+            "lab": {
+              "sandbox": {
+                "source": "corresponding",
+                "owner": "corresponding",
+                "relation": "corresponding",
+                "state": "corresponding",
+                "verification": "corresponding",
+                "acceptance": "corresponding",
+                "provision": "corresponding",
+                "history": "corresponding",
+                "boundary": "corresponding"
+              },
+              "batch": {
+                "source": "violation",
+                "owner": "corresponding",
+                "relation": "corresponding",
+                "state": "corresponding",
+                "verification": "corresponding",
+                "acceptance": "corresponding",
+                "provision": "corresponding",
+                "history": "corresponding",
+                "boundary": "corresponding"
+              }
+            }
+          },
+          "retained_source_records": {
+            "release/north~blue": {
+              "north/api~v2": {
+                "project_id": "release/north~blue",
+                "requirement_id": "REQ:release/north~blue",
+                "requirement_revision": "rq7",
+                "scope": "scope:release/north~blue",
+                "harness_contract_revision": "hc7",
+                "target_id": "north/api~v2",
+                "target_revision": "v7",
+                "target_digest": "material:north/api~v2",
+                "kind": "unit",
+                "source_ref": "source:north/api~v2",
+                "source_revision": "s7",
+                "difference_ref": "diff:north/api~v2",
+                "operation_record_ref": "ops:north/api~v2"
+              },
+              "link-api": {
+                "project_id": "release/north~blue",
+                "requirement_id": "REQ:release/north~blue",
+                "requirement_revision": "rq7",
+                "scope": "scope:release/north~blue",
+                "harness_contract_revision": "hc7",
+                "target_id": "link-api",
+                "target_revision": "v7",
+                "target_digest": "material:link-api",
+                "kind": "connection",
+                "source_ref": "source:link-api",
+                "source_revision": "s7",
+                "difference_ref": "diff:link-api",
+                "operation_record_ref": "ops:link-api"
+              },
+              "bundle": {
+                "project_id": "release/north~blue",
+                "requirement_id": "REQ:release/north~blue",
+                "requirement_revision": "rq7",
+                "scope": "scope:release/north~blue",
+                "harness_contract_revision": "hc7",
+                "target_id": "bundle",
+                "target_revision": "v7",
+                "target_digest": "material:bundle",
+                "kind": "composite",
+                "source_ref": "source:bundle",
+                "source_revision": "s7",
+                "difference_ref": "diff:bundle",
+                "operation_record_ref": "ops:bundle"
+              }
+            },
+            "south": {
+              "store": {
+                "project_id": "south",
+                "requirement_id": "REQ:south",
+                "requirement_revision": "rq7",
+                "scope": "scope:south",
+                "harness_contract_revision": "hc7",
+                "target_id": "store",
+                "target_revision": "v7",
+                "target_digest": "material:store",
+                "kind": "unit",
+                "source_ref": "source:store",
+                "source_revision": "s7",
+                "difference_ref": "diff:store",
+                "operation_record_ref": "ops:store"
+              }
+            },
+            "lab": {
+              "sandbox": {
+                "project_id": "lab",
+                "requirement_id": "REQ:lab",
+                "requirement_revision": "rq7",
+                "scope": "scope:lab",
+                "harness_contract_revision": "hc7",
+                "target_id": "sandbox",
+                "target_revision": "v7",
+                "target_digest": "material:sandbox",
+                "kind": "unit",
+                "source_ref": "source:sandbox",
+                "source_revision": "s7",
+                "difference_ref": "diff:sandbox",
+                "operation_record_ref": "ops:sandbox"
+              },
+              "batch": {
+                "project_id": "lab",
+                "requirement_id": "REQ:lab",
+                "requirement_revision": "rq7",
+                "scope": "scope:lab",
+                "harness_contract_revision": "hc7",
+                "target_id": "batch",
+                "target_revision": "v7",
+                "target_digest": "material:batch",
+                "kind": "unit",
+                "source_ref": "source:batch",
+                "source_revision": "s7",
+                "difference_ref": "diff:batch",
+                "operation_record_ref": "ops:batch"
+              }
+            }
+          },
+          "retained_state_trace": {
+            "release/north~blue": {
+              "north/api~v2": {
+                "states": {
+                  "connection": {
+                    "state": "connected_material",
+                    "source_ref": "state:north/api~v2:connection",
+                    "source_revision": "s7"
+                  },
+                  "agreement": {
+                    "state": "agreement_material",
+                    "source_ref": "state:north/api~v2:agreement",
+                    "source_revision": "s7"
+                  },
+                  "implementation": {
+                    "state": "implementation_material",
+                    "source_ref": "state:north/api~v2:implementation",
+                    "source_revision": "s7"
+                  },
+                  "verification": {
+                    "state": "verification_material",
+                    "source_ref": "state:north/api~v2:verification",
+                    "source_revision": "s7"
+                  },
+                  "provision": {
+                    "state": "provision_material",
+                    "source_ref": "state:north/api~v2:provision",
+                    "source_revision": "s7"
+                  },
+                  "knowledge": {
+                    "state": "known_material",
+                    "source_ref": "state:north/api~v2:knowledge",
+                    "source_revision": "s7"
+                  },
+                  "freshness": {
+                    "state": "current_material",
+                    "source_ref": "state:north/api~v2:freshness",
+                    "source_revision": "s7"
+                  }
+                },
+                "verification": {
+                  "state": "pass_material",
+                  "project_id": "release/north~blue",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:release/north~blue",
+                  "target_id": "north/api~v2",
+                  "target_revision": "v7",
+                  "kind": "unit",
+                  "source_ref": "source:north/api~v2",
+                  "source_revision": "s7"
+                },
+                "acceptance": {
+                  "state": "accepted_material",
+                  "project_id": "release/north~blue",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:release/north~blue",
+                  "target_id": "north/api~v2",
+                  "target_revision": "v7",
+                  "kind": "unit",
+                  "source_ref": "source:north/api~v2",
+                  "source_revision": "s7"
+                },
+                "provision": {
+                  "state": "provided_material",
+                  "project_id": "release/north~blue",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:release/north~blue",
+                  "target_id": "north/api~v2",
+                  "target_revision": "v7",
+                  "kind": "unit",
+                  "source_ref": "source:north/api~v2",
+                  "source_revision": "s7",
+                  "kanban_ref": "kanban:north/api~v2",
+                  "record_ref": "record:north/api~v2"
+                },
+                "unresolved_edges": [],
+                "stale_reasons": [],
+                "relations": [],
+                "owners": [
+                  "owner:north/api~v2"
+                ],
+                "kind": "unit"
+              },
+              "link-api": {
+                "states": {
+                  "connection": {
+                    "state": "connected_material",
+                    "source_ref": "state:link-api:connection",
+                    "source_revision": "s7"
+                  },
+                  "agreement": {
+                    "state": "not_agreed",
+                    "source_ref": "state:link-api:agreement",
+                    "source_revision": "s7"
+                  },
+                  "implementation": {
+                    "state": "not_implemented",
+                    "source_ref": "state:link-api:implementation",
+                    "source_revision": "s7"
+                  },
+                  "verification": {
+                    "state": "not_verified",
+                    "source_ref": "state:link-api:verification",
+                    "source_revision": "s7"
+                  },
+                  "provision": {
+                    "state": "not_provided",
+                    "source_ref": "state:link-api:provision",
+                    "source_revision": "s7"
+                  },
+                  "knowledge": {
+                    "state": "known_material",
+                    "source_ref": "state:link-api:knowledge",
+                    "source_revision": "s7"
+                  },
+                  "freshness": {
+                    "state": "current_material",
+                    "source_ref": "state:link-api:freshness",
+                    "source_revision": "s7"
+                  }
+                },
+                "verification": {
+                  "state": "unobserved",
+                  "project_id": "release/north~blue",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:release/north~blue",
+                  "target_id": "link-api",
+                  "target_revision": "v7",
+                  "kind": "connection",
+                  "source_ref": "source:link-api",
+                  "source_revision": "s7"
+                },
+                "acceptance": {
+                  "state": "unobserved",
+                  "project_id": "release/north~blue",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:release/north~blue",
+                  "target_id": "link-api",
+                  "target_revision": "v7",
+                  "kind": "connection",
+                  "source_ref": "source:link-api",
+                  "source_revision": "s7"
+                },
+                "provision": {
+                  "state": "not_provided",
+                  "project_id": "release/north~blue",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:release/north~blue",
+                  "target_id": "link-api",
+                  "target_revision": "v7",
+                  "kind": "connection",
+                  "source_ref": "source:link-api",
+                  "source_revision": "s7",
+                  "kanban_ref": "kanban:link-api",
+                  "record_ref": "record:link-api"
+                },
+                "unresolved_edges": [],
+                "stale_reasons": [],
+                "relations": [
+                  "north/api~v2@v7"
+                ],
+                "owners": [
+                  "owner:link-api"
+                ],
+                "kind": "connection"
+              },
+              "bundle": {
+                "states": {
+                  "connection": {
+                    "state": "connected_material",
+                    "source_ref": "state:bundle:connection",
+                    "source_revision": "s7"
+                  },
+                  "agreement": {
+                    "state": "not_agreed",
+                    "source_ref": "state:bundle:agreement",
+                    "source_revision": "s7"
+                  },
+                  "implementation": {
+                    "state": "not_implemented",
+                    "source_ref": "state:bundle:implementation",
+                    "source_revision": "s7"
+                  },
+                  "verification": {
+                    "state": "not_verified",
+                    "source_ref": "state:bundle:verification",
+                    "source_revision": "s7"
+                  },
+                  "provision": {
+                    "state": "not_provided",
+                    "source_ref": "state:bundle:provision",
+                    "source_revision": "s7"
+                  },
+                  "knowledge": {
+                    "state": "known_material",
+                    "source_ref": "state:bundle:knowledge",
+                    "source_revision": "s7"
+                  },
+                  "freshness": {
+                    "state": "current_material",
+                    "source_ref": "state:bundle:freshness",
+                    "source_revision": "s7"
+                  }
+                },
+                "verification": {
+                  "state": "unobserved",
+                  "project_id": "release/north~blue",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:release/north~blue",
+                  "target_id": "bundle",
+                  "target_revision": "v7",
+                  "kind": "composite",
+                  "source_ref": "source:bundle",
+                  "source_revision": "s7"
+                },
+                "acceptance": {
+                  "state": "unobserved",
+                  "project_id": "release/north~blue",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:release/north~blue",
+                  "target_id": "bundle",
+                  "target_revision": "v7",
+                  "kind": "composite",
+                  "source_ref": "source:bundle",
+                  "source_revision": "s7"
+                },
+                "provision": {
+                  "state": "not_provided",
+                  "project_id": "release/north~blue",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:release/north~blue",
+                  "target_id": "bundle",
+                  "target_revision": "v7",
+                  "kind": "composite",
+                  "source_ref": "source:bundle",
+                  "source_revision": "s7",
+                  "kanban_ref": "kanban:bundle",
+                  "record_ref": "record:bundle"
+                },
+                "unresolved_edges": [],
+                "stale_reasons": [],
+                "relations": [
+                  "north/api~v2@v7",
+                  "link-api@v7"
+                ],
+                "owners": [
+                  "owner:bundle"
+                ],
+                "kind": "composite"
+              }
+            },
+            "south": {
+              "store": {
+                "states": {
+                  "connection": {
+                    "state": "connected_material",
+                    "source_ref": "state:store:connection",
+                    "source_revision": "s7"
+                  },
+                  "agreement": {
+                    "state": "agreement_material",
+                    "source_ref": "state:store:agreement",
+                    "source_revision": "s7"
+                  },
+                  "implementation": {
+                    "state": "implementation_material",
+                    "source_ref": "state:store:implementation",
+                    "source_revision": "s7"
+                  },
+                  "verification": {
+                    "state": "verification_material",
+                    "source_ref": "state:store:verification",
+                    "source_revision": "s7"
+                  },
+                  "provision": {
+                    "state": "provision_material",
+                    "source_ref": "state:store:provision",
+                    "source_revision": "s7"
+                  },
+                  "knowledge": {
+                    "state": "known_material",
+                    "source_ref": "state:store:knowledge",
+                    "source_revision": "s7"
+                  },
+                  "freshness": {
+                    "state": "current_material",
+                    "source_ref": "state:store:freshness",
+                    "source_revision": "s7"
+                  }
+                },
+                "verification": {
+                  "state": "pass_material",
+                  "project_id": "south",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:south",
+                  "target_id": "store",
+                  "target_revision": "v7",
+                  "kind": "unit",
+                  "source_ref": "source:store",
+                  "source_revision": "s7"
+                },
+                "acceptance": {
+                  "state": "accepted_material",
+                  "project_id": "south",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:south",
+                  "target_id": "store",
+                  "target_revision": "v7",
+                  "kind": "unit",
+                  "source_ref": "source:store",
+                  "source_revision": "s7"
+                },
+                "provision": {
+                  "state": "provided_material",
+                  "project_id": "south",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:south",
+                  "target_id": "store",
+                  "target_revision": "v7",
+                  "kind": "unit",
+                  "source_ref": "source:store",
+                  "source_revision": "s7",
+                  "kanban_ref": "kanban:store",
+                  "record_ref": "record:store"
+                },
+                "unresolved_edges": [],
+                "stale_reasons": [],
+                "relations": [],
+                "owners": [
+                  "owner:store"
+                ],
+                "kind": "unit"
+              }
+            },
+            "lab": {
+              "sandbox": {
+                "states": {
+                  "connection": {
+                    "state": "connected_material",
+                    "source_ref": "state:sandbox:connection",
+                    "source_revision": "s7"
+                  },
+                  "agreement": {
+                    "state": "agreement_material",
+                    "source_ref": "state:sandbox:agreement",
+                    "source_revision": "s7"
+                  },
+                  "implementation": {
+                    "state": "implementation_material",
+                    "source_ref": "state:sandbox:implementation",
+                    "source_revision": "s7"
+                  },
+                  "verification": {
+                    "state": "verification_material",
+                    "source_ref": "state:sandbox:verification",
+                    "source_revision": "s7"
+                  },
+                  "provision": {
+                    "state": "provision_material",
+                    "source_ref": "state:sandbox:provision",
+                    "source_revision": "s7"
+                  },
+                  "knowledge": {
+                    "state": "known_material",
+                    "source_ref": "state:sandbox:knowledge",
+                    "source_revision": "s7"
+                  },
+                  "freshness": {
+                    "state": "current_material",
+                    "source_ref": "state:sandbox:freshness",
+                    "source_revision": "s7"
+                  }
+                },
+                "verification": {
+                  "state": "pass_material",
+                  "project_id": "lab",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:lab",
+                  "target_id": "sandbox",
+                  "target_revision": "v7",
+                  "kind": "unit",
+                  "source_ref": "source:sandbox",
+                  "source_revision": "s7"
+                },
+                "acceptance": {
+                  "state": "accepted_material",
+                  "project_id": "lab",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:lab",
+                  "target_id": "sandbox",
+                  "target_revision": "v7",
+                  "kind": "unit",
+                  "source_ref": "source:sandbox",
+                  "source_revision": "s7"
+                },
+                "provision": {
+                  "state": "provided_material",
+                  "project_id": "lab",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:lab",
+                  "target_id": "sandbox",
+                  "target_revision": "v7",
+                  "kind": "unit",
+                  "source_ref": "source:sandbox",
+                  "source_revision": "s7",
+                  "kanban_ref": "kanban:sandbox",
+                  "record_ref": "record:sandbox"
+                },
+                "unresolved_edges": [],
+                "stale_reasons": [],
+                "relations": [],
+                "owners": [
+                  "owner:sandbox"
+                ],
+                "kind": "unit"
+              },
+              "batch": {
+                "states": {
+                  "connection": {
+                    "state": "connected_material",
+                    "source_ref": "state:batch:connection",
+                    "source_revision": "s7"
+                  },
+                  "agreement": {
+                    "state": "not_agreed",
+                    "source_ref": "state:batch:agreement",
+                    "source_revision": "s7"
+                  },
+                  "implementation": {
+                    "state": "not_implemented",
+                    "source_ref": "state:batch:implementation",
+                    "source_revision": "s7"
+                  },
+                  "verification": {
+                    "state": "not_verified",
+                    "source_ref": "state:batch:verification",
+                    "source_revision": "s7"
+                  },
+                  "provision": {
+                    "state": "not_provided",
+                    "source_ref": "state:batch:provision",
+                    "source_revision": "s7"
+                  },
+                  "knowledge": {
+                    "state": "known_material",
+                    "source_ref": "state:batch:knowledge",
+                    "source_revision": "s7"
+                  },
+                  "freshness": {
+                    "state": "current_material",
+                    "source_ref": "state:batch:freshness",
+                    "source_revision": "s7"
+                  }
+                },
+                "verification": {
+                  "state": "unobserved",
+                  "project_id": "lab",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:lab",
+                  "target_id": "batch",
+                  "target_revision": "v7",
+                  "kind": "composite",
+                  "source_ref": "source:batch",
+                  "source_revision": "s7"
+                },
+                "acceptance": {
+                  "state": "unobserved",
+                  "project_id": "lab",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:lab",
+                  "target_id": "batch",
+                  "target_revision": "v7",
+                  "kind": "composite",
+                  "source_ref": "source:batch",
+                  "source_revision": "s7"
+                },
+                "provision": {
+                  "state": "not_provided",
+                  "project_id": "lab",
+                  "requirement_revision": "rq7",
+                  "scope": "scope:lab",
+                  "target_id": "batch",
+                  "target_revision": "v7",
+                  "kind": "composite",
+                  "source_ref": "source:batch",
+                  "source_revision": "s7",
+                  "kanban_ref": "kanban:batch",
+                  "record_ref": "record:batch"
+                },
+                "unresolved_edges": [],
+                "stale_reasons": [],
+                "relations": [
+                  "sandbox@v7"
+                ],
+                "owners": [
+                  "owner:batch"
+                ],
+                "kind": "unit"
+              }
+            }
+          },
+          "observed_gap_axes": {
+            "release/north~blue": {
+              "north/api~v2": [],
+              "link-api": [
+                "agreement",
+                "implementation",
+                "verification",
+                "provision"
+              ],
+              "bundle": [
+                "agreement",
+                "implementation",
+                "verification",
+                "provision"
+              ]
+            },
+            "south": {
+              "store": []
+            },
+            "lab": {
+              "sandbox": [],
+              "batch": [
+                "agreement",
+                "implementation",
+                "verification",
+                "provision"
+              ]
+            }
+          },
+          "findings": [
+            {
+              "code": "field_conflict",
+              "pointer": "/projects/lab/batch/source/kind",
+              "return_owner": "portfolio-trace-owner"
+            },
+            {
+              "code": "kind_unknown",
+              "pointer": "/targets/projects/lab/nodes/batch/kind",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "actual_state_updated": false,
+          "actual_acceptance_created": false,
+          "actual_release_authorized": false,
+          "whole_portfolio_complete": false,
+          "operation_effect": "none"
+        }
+      },
+      {
+        "id": "R1-OWNER-AMBIGUOUS",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/owners",
+            "value": [
+              "owner:batch",
+              "owner:other"
+            ]
+          }
+        ],
+        "target_operations": [],
+        "expected_partial": {
+          "condition": "trace_material_violation",
+          "findings_include": [
+            {
+              "code": "owner_ambiguous",
+              "pointer": "/projects/lab/batch/owners",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "facet": "owner",
+            "state": "violation"
+          }
+        },
+        "basis": "R03:既知owner集合2件以上はowner_ambiguous。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "R1-HISTORY-LOST",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/context/projects/lab/batch/unresolved_edges",
+            "value": [
+              "edge:pending"
+            ]
+          }
+        ],
+        "target_operations": [],
+        "expected_partial": {
+          "condition": "trace_material_violation",
+          "findings_include": [
+            {
+              "code": "history_lost",
+              "pointer": "/projects/lab/batch/unresolved_edges",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "facet": "history",
+            "state": "violation"
+          }
+        },
+        "basis": "R08:contextの既知edgeをactualが落とすとhistory_lost。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "R1-STALE-REASON",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/states/freshness/state",
+            "value": "stale"
+          },
+          {
+            "op": "replace",
+            "path": "/context/projects/lab/batch/states/freshness/state",
+            "value": "stale"
+          }
+        ],
+        "target_operations": [],
+        "expected_partial": {
+          "condition": "trace_material_unknown",
+          "findings_include": [
+            {
+              "code": "stale_reason_missing",
+              "pointer": "/projects/lab/batch/stale_reasons",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "facet": "history",
+            "state": "unknown"
+          }
+        },
+        "basis": "R08:actual staleかつ既知空理由はstale_reason_missing。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "R1-VERIFICATION-STATE",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/verification/state",
+            "value": "pass_material"
+          }
+        ],
+        "target_operations": [],
+        "expected_partial": {
+          "condition": "trace_material_violation",
+          "findings_include": [
+            {
+              "code": "verification_state_conflict",
+              "pointer": "/projects/lab/batch/verification/state",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "facet": "verification",
+            "state": "violation"
+          }
+        },
+        "basis": "R07:pass_materialとnot_verifiedの同時表示はverification_state_conflict。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "R1-RECEIPT-SOURCE",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/verification/target_id",
+            "value": "other"
+          },
+          {
+            "op": "replace",
+            "path": "/context/projects/lab/batch/verification/target_id",
+            "value": "other"
+          }
+        ],
+        "target_operations": [],
+        "expected_partial": {
+          "condition": "trace_material_violation",
+          "findings_include": [
+            {
+              "code": "field_conflict",
+              "pointer": "/projects/lab/batch/verification/target_id",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "facet": "verification",
+            "state": "violation"
+          }
+        },
+        "basis": "R06:receipt両側が同値でもcontext node sourceへのjoin差はfield_conflict。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "R1-KANBAN-RECORD",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/provision/kanban_ref",
+            "value": "other:kanban"
+          },
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/provision/record_ref",
+            "value": "other:record"
+          }
+        ],
+        "target_operations": [],
+        "expected_partial": {
+          "condition": "trace_material_violation",
+          "findings_include": [
+            {
+              "code": "field_conflict",
+              "pointer": "/projects/lab/batch/provision/kanban_ref",
+              "return_owner": "portfolio-trace-owner"
+            },
+            {
+              "code": "field_conflict",
+              "pointer": "/projects/lab/batch/provision/record_ref",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "facet": "provision",
+            "state": "violation"
+          }
+        },
+        "basis": "R06とprovision_additional_comparison_fields:kanban_ref/record_refを独立比較。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "R1-STATE-CONFLICT",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/states/implementation/state",
+            "value": "implementation_material"
+          }
+        ],
+        "target_operations": [],
+        "expected_partial": {
+          "condition": "trace_material_violation",
+          "findings_include": [
+            {
+              "code": "state_conflict",
+              "pointer": "/projects/lab/batch/states/implementation/state",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "facet": "state",
+            "state": "violation"
+          }
+        },
+        "basis": "R05:同axisの既知state相反はstate_conflict。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "R1-RESULT-CONFLICT",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/acceptance/state",
+            "value": "rejected_material"
+          }
+        ],
+        "target_operations": [],
+        "expected_partial": {
+          "condition": "trace_material_violation",
+          "findings_include": [
+            {
+              "code": "result_conflict",
+              "pointer": "/projects/lab/batch/acceptance/state",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "facet": "acceptance",
+            "state": "violation"
+          }
+        },
+        "basis": "R06:closed result state同士の相反はresult_conflict。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "R1-RELATION-ENDPOINT",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/relations",
+            "value": [
+              "missing@v7"
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/context/projects/lab/batch/relations",
+            "value": [
+              "missing@v7"
+            ]
+          }
+        ],
+        "target_operations": [],
+        "expected_partial": {
+          "condition": "trace_material_violation",
+          "findings_include": [
+            {
+              "code": "relation_endpoint_conflict",
+              "pointer": "/projects/lab/batch/relations",
+              "return_owner": "portfolio-trace-owner"
+            },
+            {
+              "code": "relation_endpoint_conflict",
+              "pointer": "/context/projects/lab/batch/relations",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "facet": "relation",
+            "state": "violation"
+          }
+        },
+        "basis": "R04:context同projectのidentity/revisionにない既知endpointはrelation_endpoint_conflict。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "R1-STATE-UNKNOWN",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/states/connection/state",
+            "value": "unsupported"
+          },
+          {
+            "op": "replace",
+            "path": "/context/projects/lab/batch/states/connection/state",
+            "value": "unsupported"
+          }
+        ],
+        "target_operations": [],
+        "expected_partial": {
+          "condition": "trace_material_unknown",
+          "findings_include": [
+            {
+              "code": "state_unknown",
+              "pointer": "/projects/lab/batch/states/connection/state",
+              "return_owner": "portfolio-trace-owner"
+            },
+            {
+              "code": "state_unknown",
+              "pointer": "/context/projects/lab/batch/states/connection/state",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "facet": "state",
+            "state": "unknown"
+          }
+        },
+        "basis": "R05:closed axis state外の値は両側それぞれstate_unknown。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "R1-WHOLE-CLAIM-UNKNOWN",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/whole_completion_claim",
+            "value": null
+          }
+        ],
+        "target_operations": [],
+        "expected_partial": {
+          "condition": "trace_material_unknown",
+          "findings_include": [
+            {
+              "code": "whole_claim_unknown",
+              "pointer": "/whole_completion_claim",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "facet": "source",
+            "state": "corresponding"
+          }
+        },
+        "basis": "R09:whole_completion_claimの明示nullはunknown。各node素材は書き換えない。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "R1-AMBIGUOUS-ENDPOINT",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "input_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/sandbox/source/target_id",
+            "value": "sandbox@segment"
+          },
+          {
+            "op": "replace",
+            "path": "/projects/lab/sandbox/verification/target_id",
+            "value": "sandbox@segment"
+          },
+          {
+            "op": "replace",
+            "path": "/projects/lab/sandbox/acceptance/target_id",
+            "value": "sandbox@segment"
+          },
+          {
+            "op": "replace",
+            "path": "/projects/lab/sandbox/provision/target_id",
+            "value": "sandbox@segment"
+          },
+          {
+            "op": "replace",
+            "path": "/projects/lab/batch/relations",
+            "value": [
+              "sandbox@segment@v7"
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/context/projects/lab/sandbox/source/target_id",
+            "value": "sandbox@segment"
+          },
+          {
+            "op": "replace",
+            "path": "/context/projects/lab/sandbox/verification/target_id",
+            "value": "sandbox@segment"
+          },
+          {
+            "op": "replace",
+            "path": "/context/projects/lab/sandbox/acceptance/target_id",
+            "value": "sandbox@segment"
+          },
+          {
+            "op": "replace",
+            "path": "/context/projects/lab/sandbox/provision/target_id",
+            "value": "sandbox@segment"
+          },
+          {
+            "op": "replace",
+            "path": "/context/projects/lab/batch/relations",
+            "value": [
+              "sandbox@segment@v7"
+            ]
+          }
+        ],
+        "target_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/nodes/sandbox/target_id",
+            "value": "sandbox@segment"
+          }
+        ],
+        "expected_partial": {
+          "condition": "trace_material_unknown",
+          "findings_include": [
+            {
+              "code": "relation_unknown",
+              "pointer": "/projects/lab/batch/relations",
+              "return_owner": "portfolio-trace-owner"
+            },
+            {
+              "code": "relation_unknown",
+              "pointer": "/context/projects/lab/batch/relations",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project_locator": "lab",
+            "node_locator": "batch",
+            "facet": "relation",
+            "state": "unknown"
+          }
+        },
+        "basis": "既存L5 R04詳細規則:単一string target_id@revisionは@を含むatomを一意に復元できない。identityと所在を混同しない旧設計原則を保持する技術的再導出であり、新source資格や全体gateではない。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "R1-MIXED-EMPTY-INVALID-NODES",
+        "input_ref": "/domain_extension_cases/9/input/portfolio",
+        "targets_ref": "/domain_extension_cases/9/input/targets",
+        "input_operations": [],
+        "target_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/lab/nodes",
+            "value": null
+          }
+        ],
+        "expected_partial": {
+          "condition": "trace_material_unknown",
+          "findings_exact": [
+            {
+              "code": "field_unknown",
+              "pointer": "/targets/projects/lab/nodes",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ]
+        },
+        "basis": "R17:全選択nodes mapが既知空の時だけR10の空domain result_unknownを加える。nodes:nullは既知空ではない。",
+        "execution_state": "not_executed"
+      }
+    ],
+    "regression_limits": "実反例をR01–R17へ対照する固定probe。mutant件数、mutation score、全probe通過を新しい要求・資格・merge gateにしない。13領域のうちinvalid selector relation_unitは既存kind object/array boundary wholeで対照する。"
   }
 }
