@@ -79481,7 +79481,7 @@
                     "artifact": "ARTIFACT-A@h2",
                     "environment": "ENV-A"
                   },
-                  "target_operation": {
+                  "business_target_mapping": {
                     "assignment_ref": {
                       "identity": "ASSIGNMENT-F03-NORMAL-WHOLE",
                       "revision": "synthetic-design-r1",
@@ -79501,7 +79501,8 @@
                         "artifact": "ARTIFACT-A@h2",
                         "environment": "ENV-A"
                       },
-                      "raw_target_pointer": "/verification_obligations/3/normal_cases/0/independent_source_packet/raw_utf8 -> strict JSON /target"
+                      "raw_utf8_source_pointer": "/original_sources/business_packet/original_contents/raw_utf8",
+                      "decoded_json_pointer": "/target"
                     },
                     "profile_context_endpoint": {
                       "artifact_ref": {
@@ -79559,7 +79560,7 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       },
                       {
                         "role": "015_flow",
@@ -79589,11 +79590,11 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       }
                     ],
-                    "qualification_effect": "none; synthetic fixture relation only",
-                    "source_role": "synthetic_original_assignment_fixture"
+                    "qualification_effect": "なし。合成fixtureの対応関係だけを示す。",
+                    "source_role": "合成の元割当対応fixture"
                   }
                 },
                 "qualification_state": "known",
@@ -82028,7 +82029,7 @@
             },
             "candidate": null
           },
-          "input_canonical_sha256": "0b1242445735b88b9746b4bf4a762d6d1002dd060ca8062b61fff928b2b0954d",
+          "input_canonical_sha256": "305548c13da806cc16eb05df310a019591b8db6e8ace07fe9421c1f97019e105",
           "input_rule": "このcaller inputの原SourceCellからcallee typed argumentsを導出し、pure callの完全返却・L4 source-binding局所状態・既存whole結果を別々に照合する。期待値はtest側であり、実行資格やruntime結果ではない。",
           "expected_private_call_records": [
             {
@@ -84954,7 +84955,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/7/normal_call/expected_typed_observation"
             },
             {
               "role": "015_flow",
@@ -85260,7 +85262,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/19/typed_function_io_examples/0/expected_output_projection"
             },
             {
               "role": "015_flow",
@@ -88347,7 +88350,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/19/typed_semantic_function_io/expected_output_projection"
             }
           ],
           "expected_source_binding": {
@@ -88796,7 +88800,7 @@
                     "artifact": "ARTIFACT-A@h2",
                     "environment": "ENV-A"
                   },
-                  "target_operation": {
+                  "business_target_mapping": {
                     "assignment_ref": {
                       "identity": "ASSIGNMENT-F03-005-BINDING-QUALIFICATION-MISSING-WHOLE",
                       "revision": "synthetic-design-r1",
@@ -88816,7 +88820,8 @@
                         "artifact": "ARTIFACT-A@h2",
                         "environment": "ENV-A"
                       },
-                      "raw_target_pointer": "/verification_obligations/3/normal_cases/0/independent_source_packet/raw_utf8 -> strict JSON /target"
+                      "raw_utf8_source_pointer": "/original_sources/business_packet/original_contents/raw_utf8",
+                      "decoded_json_pointer": "/target"
                     },
                     "profile_context_endpoint": {
                       "artifact_ref": {
@@ -88874,7 +88879,7 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       },
                       {
                         "role": "015_flow",
@@ -88904,11 +88909,11 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       }
                     ],
-                    "qualification_effect": "none; synthetic fixture relation only",
-                    "source_role": "synthetic_original_assignment_fixture"
+                    "qualification_effect": "なし。合成fixtureの対応関係だけを示す。",
+                    "source_role": "合成の元割当対応fixture"
                   }
                 },
                 "qualification_state": "known",
@@ -91343,7 +91348,7 @@
             },
             "candidate": null
           },
-          "input_canonical_sha256": "a99e3b829330fcd77826b5bfcf32cefa66123b48203530fe7103dbcf69186858",
+          "input_canonical_sha256": "af3fb72e5ac42f8687e42cf09fee593d2320aef7b40c04f9632f238a30bdf6bb",
           "input_rule": "このcaller inputの原SourceCellからcallee typed argumentsを導出し、pure callの完全返却・L4 source-binding局所状態・既存whole結果を別々に照合する。期待値はtest側であり、実行資格やruntime結果ではない。",
           "expected_private_call_records": [
             {
@@ -94269,7 +94274,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/7/normal_call/expected_typed_observation"
             },
             {
               "role": "015_flow",
@@ -94575,7 +94581,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/19/typed_function_io_examples/0/expected_output_projection"
             },
             {
               "role": "015_flow",
@@ -97662,7 +97669,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/19/typed_semantic_function_io/expected_output_projection"
             }
           ],
           "expected_source_binding": {
@@ -109319,7 +109327,8 @@
           "base_caller_case_pointer": "/unit_oracles/3/cases/43/input",
           "expected_projection": "source_binding.records"
         }
-      ]
+      ],
+      "source_binding_control_scope": "既存6件は /unit_oracles/3/source_binding_controls/0〜5 に固定され、各行にbase caller pointer・input_patch・expected_source_binding.recordsがある。既存有限再計算記録では6件のsource-binding projectionがL4の規則と一致した。これらはrecords限定であり、F03 whole return、実資格・実provider実行、caller/profile Context endpoint単独差の対照を証明しない。"
     },
     {
       "id": "HARNESS-L8-003-F04",
@@ -115051,7 +115060,7 @@
                     "artifact": "ARTIFACT-A@h2",
                     "environment": "ENV-A"
                   },
-                  "target_operation": {
+                  "business_target_mapping": {
                     "assignment_ref": {
                       "identity": "ASSIGNMENT-F04-PROVISIONAL-WHOLE",
                       "revision": "synthetic-design-r1",
@@ -115071,7 +115080,8 @@
                         "artifact": "ARTIFACT-A@h2",
                         "environment": "ENV-A"
                       },
-                      "raw_target_pointer": "/verification_obligations/4/normal_cases/1/independent_source_packet/raw_utf8 -> strict JSON /target"
+                      "raw_utf8_source_pointer": "/original_sources/business_packet/original_contents/raw_utf8",
+                      "decoded_json_pointer": "/target"
                     },
                     "profile_context_endpoint": {
                       "artifact_ref": {
@@ -115129,7 +115139,7 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       },
                       {
                         "role": "015_flow",
@@ -115159,11 +115169,11 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       }
                     ],
-                    "qualification_effect": "none; synthetic fixture relation only",
-                    "source_role": "synthetic_original_assignment_fixture"
+                    "qualification_effect": "なし。合成fixtureの対応関係だけを示す。",
+                    "source_role": "合成の元割当対応fixture"
                   }
                 },
                 "qualification_state": "known",
@@ -117598,7 +117608,7 @@
             },
             "candidate": null
           },
-          "input_canonical_sha256": "8b846efba5ce5c4dc60cc03fab72a51a173a93a66e79bf6dc5b4294529981aee",
+          "input_canonical_sha256": "4dd347cb263f40cbc77a2f4e3456a7a7b764b19a1e35dc4b7ab25e40498b2f1a",
           "input_rule": "このcaller inputの原SourceCellからcallee typed argumentsを導出し、pure callの完全返却・L4 source-binding局所状態・既存whole結果を別々に照合する。期待値はtest側であり、実行資格やruntime結果ではない。",
           "expected_private_call_records": [
             {
@@ -120524,7 +120534,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/7/normal_call/expected_typed_observation"
             },
             {
               "role": "015_flow",
@@ -120830,7 +120841,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/19/typed_function_io_examples/0/expected_output_projection"
             },
             {
               "role": "015_flow",
@@ -123917,7 +123929,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/19/typed_semantic_function_io/expected_output_projection"
             }
           ],
           "expected_source_binding": {
@@ -124207,7 +124220,7 @@
                     "artifact": "ARTIFACT-A@h2",
                     "environment": "ENV-A"
                   },
-                  "target_operation": {
+                  "business_target_mapping": {
                     "assignment_ref": {
                       "identity": "ASSIGNMENT-F04-VERIFIED-EXPLICIT-UNIQUE-DIFFERENCE",
                       "revision": "synthetic-design-r1",
@@ -124227,7 +124240,8 @@
                         "artifact": "ARTIFACT-A@h2",
                         "environment": "ENV-A"
                       },
-                      "raw_target_pointer": "/verification_obligations/4/normal_cases/3/independent_source_packet/raw_utf8 -> strict JSON /target"
+                      "raw_utf8_source_pointer": "/original_sources/business_packet/original_contents/raw_utf8",
+                      "decoded_json_pointer": "/target"
                     },
                     "profile_context_endpoint": {
                       "artifact_ref": {
@@ -124285,7 +124299,7 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       },
                       {
                         "role": "015_flow",
@@ -124315,7 +124329,7 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       },
                       {
                         "role": "005_composition",
@@ -124337,7 +124351,7 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       },
                       {
                         "role": "022_difference",
@@ -124359,11 +124373,11 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       }
                     ],
-                    "qualification_effect": "none; synthetic fixture relation only",
-                    "source_role": "synthetic_original_assignment_fixture"
+                    "qualification_effect": "なし。合成fixtureの対応関係だけを示す。",
+                    "source_role": "合成の元割当対応fixture"
                   }
                 },
                 "qualification_state": "known",
@@ -129064,597 +129078,6 @@
                           "project": "P",
                           "tenant": "synthetic-T",
                           "environment": "synthetic-test"
-                        },
-                        "request_association": {
-                          "assignment_ref": {
-                            "identity": "ASSIGNMENT-F04-VERIFIED-EXPLICIT-UNIQUE-DIFFERENCE",
-                            "revision": "synthetic-design-r1",
-                            "scope": "PRODUCT-P",
-                            "owner": "synthetic-original-assignment"
-                          },
-                          "business_endpoint": {
-                            "source_cell_ref": {
-                              "identity": "SOURCE-H003-F04-NORMAL-Verified",
-                              "revision": "fixture-r1",
-                              "scope": "PRODUCT-P",
-                              "owner": "independent-fixture-owner"
-                            },
-                            "raw_target_pointer": "/original_sources/business_packet/original_contents/parsed_target",
-                            "raw_target": {
-                              "revision": "REQ@r1",
-                              "scope": "PRODUCT-P",
-                              "artifact": "ARTIFACT-A@h2",
-                              "environment": "ENV-A"
-                            }
-                          },
-                          "caller_context_endpoint": {
-                            "ref": {
-                              "identity": "PROCESS-CONTEXT-F04-VERIFIED-EXPLICIT-UNIQUE-DIFFERENCE",
-                              "revision": "synthetic-design-r1",
-                              "scope": {
-                                "project": "P",
-                                "tenant": "synthetic-T",
-                                "environment": "synthetic-test"
-                              },
-                              "owner": "synthetic-caller-context"
-                            },
-                            "value": {
-                              "requirement_ref": {
-                                "identity": "REQ",
-                                "revision": "REQ@r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "requirement-owner"
-                              },
-                              "artifact_ref": {
-                                "identity": "ARTIFACT-1",
-                                "revision": "ART@r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "artifact-owner"
-                              },
-                              "scope": {
-                                "project": "P",
-                                "tenant": "synthetic-T",
-                                "environment": "synthetic-test"
-                              },
-                              "selected_stage": "Verified",
-                              "selected_pair": "L9:L4",
-                              "operation_kind": "assess_artifact_stage_evidence"
-                            }
-                          },
-                          "profile_context_associations": [
-                            {
-                              "role": "005_valley",
-                              "source_cell_ref": {
-                                "identity": "CARRIER-005_valley",
-                                "revision": "carrier-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "source-adapter-owner"
-                              },
-                              "operation_ref": {
-                                "identity": "OP-005_valley",
-                                "revision": "operation-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "original-target-owner"
-                              },
-                              "caller_context_ref": {
-                                "identity": "PROCESS-CONTEXT-F04-VERIFIED-EXPLICIT-UNIQUE-DIFFERENCE",
-                                "revision": "synthetic-design-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "synthetic-caller-context"
-                              },
-                              "caller_context_value": {
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "selected_stage": "Verified",
-                                "selected_pair": "L9:L4",
-                                "operation_kind": "assess_artifact_stage_evidence"
-                              },
-                              "profile_context_ref": {
-                                "identity": "ARTIFACT-1",
-                                "revision": "ART@r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "artifact-owner"
-                              },
-                              "profile_context_value": {
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                }
-                              },
-                              "source_pointer": "/original_sources/005_valley/original_contents/target_operation/consumer_target",
-                              "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。"
-                            },
-                            {
-                              "role": "015_flow",
-                              "source_cell_ref": {
-                                "identity": "CARRIER-015_flow",
-                                "revision": "carrier-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "source-adapter-owner"
-                              },
-                              "operation_ref": {
-                                "identity": "OP-015_flow",
-                                "revision": "operation-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "original-target-owner"
-                              },
-                              "caller_context_ref": {
-                                "identity": "PROCESS-CONTEXT-F04-VERIFIED-EXPLICIT-UNIQUE-DIFFERENCE",
-                                "revision": "synthetic-design-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "synthetic-caller-context"
-                              },
-                              "caller_context_value": {
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "selected_stage": "Verified",
-                                "selected_pair": "L9:L4",
-                                "operation_kind": "assess_artifact_stage_evidence"
-                              },
-                              "profile_context_ref": {
-                                "identity": "ARTIFACT-1",
-                                "revision": "ART@r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "artifact-owner"
-                              },
-                              "profile_context_value": {
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                }
-                              },
-                              "source_pointer": "/original_sources/015_flow/original_contents/target_operation/consumer_target",
-                              "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。"
-                            },
-                            {
-                              "role": "005_composition",
-                              "source_cell_ref": {
-                                "identity": "CARRIER-005_composition",
-                                "revision": "carrier-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "source-adapter-owner"
-                              },
-                              "operation_ref": {
-                                "identity": "OP-005_composition",
-                                "revision": "operation-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "original-target-owner"
-                              },
-                              "caller_context_ref": {
-                                "identity": "PROCESS-CONTEXT-F04-VERIFIED-EXPLICIT-UNIQUE-DIFFERENCE",
-                                "revision": "synthetic-design-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "synthetic-caller-context"
-                              },
-                              "caller_context_value": {
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "selected_stage": "Verified",
-                                "selected_pair": "L9:L4",
-                                "operation_kind": "assess_artifact_stage_evidence"
-                              },
-                              "profile_context_ref": {
-                                "identity": "ARTIFACT-1",
-                                "revision": "ART@r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "artifact-owner"
-                              },
-                              "profile_context_value": {
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": "PRODUCT-P",
-                                  "owner": "artifact-owner"
-                                },
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": "PRODUCT-P",
-                                  "owner": "requirement-owner"
-                                },
-                                "scope": "PRODUCT-P"
-                              },
-                              "source_pointer": "/original_sources/005_composition/original_contents/target_operation/consumer_target",
-                              "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。"
-                            },
-                            {
-                              "role": "022_difference",
-                              "source_cell_ref": {
-                                "identity": "SOURCE-H022-F03-H003-BALANCE",
-                                "revision": "synthetic-design-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "synthetic-independent-design-source"
-                              },
-                              "operation_ref": {
-                                "identity": "H022-H003-BALANCE-ORIGINAL-CALL",
-                                "revision": "synthetic-design-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "synthetic-system-verification-owner"
-                              },
-                              "caller_context_ref": {
-                                "identity": "PROCESS-CONTEXT-F04-VERIFIED-EXPLICIT-UNIQUE-DIFFERENCE",
-                                "revision": "synthetic-design-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "synthetic-caller-context"
-                              },
-                              "caller_context_value": {
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "selected_stage": "Verified",
-                                "selected_pair": "L9:L4",
-                                "operation_kind": "assess_artifact_stage_evidence"
-                              },
-                              "profile_context_ref": {
-                                "identity": "CONTEXT-H022-F03-H003-BALANCE",
-                                "revision": "synthetic-design-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "synthetic-independent-design-source"
-                              },
-                              "profile_context_value": {
-                                "target": {
-                                  "artifact_identity": "ARTIFACT-1",
-                                  "artifact_revision": "ART@r1",
-                                  "requirement_revision": "REQ@r1",
-                                  "scope": "PRODUCT-P"
-                                },
-                                "expected_profiles": {
-                                  "Integrated_basis": {
-                                    "basis": "same_revision_boundary_combination_and_post_refactor_reverification_synthetic",
-                                    "stage": "Integrated"
-                                  },
-                                  "L3_contract": {
-                                    "obligations": {
-                                      "UNIT-A": {
-                                        "command_identity_retained": true
-                                      },
-                                      "UNIT-B": {
-                                        "one_commit_per_identity": true
-                                      },
-                                      "CONNECTION-AB": {
-                                        "retry_identity_retained": true
-                                      },
-                                      "global_balance_conservation": {
-                                        "before_total": 10,
-                                        "expected_total": 10,
-                                        "observed_total": 10
-                                      }
-                                    }
-                                  },
-                                  "L10_design": {
-                                    "target": "L3@r1",
-                                    "oracles": {
-                                      "UNIT-A": {
-                                        "command_identity_retained": true
-                                      },
-                                      "UNIT-B": {
-                                        "one_commit_per_identity": true
-                                      },
-                                      "CONNECTION-AB": {
-                                        "retry_identity_retained": true
-                                      },
-                                      "global_balance_conservation": {
-                                        "before_total": 10,
-                                        "expected_total": 10,
-                                        "observed_total": 10
-                                      }
-                                    }
-                                  },
-                                  "combination_contract": {
-                                    "coverage": {
-                                      "connection_AB": [
-                                        "CONNECTION-AB"
-                                      ],
-                                      "unit_A": [
-                                        "UNIT-A"
-                                      ],
-                                      "unit_B": [
-                                        "UNIT-B"
-                                      ]
-                                    },
-                                    "required_subjects": [
-                                      "unit_A",
-                                      "unit_B",
-                                      "connection_AB"
-                                    ],
-                                    "whole_obligations": [
-                                      "UNIT-A",
-                                      "UNIT-B",
-                                      "CONNECTION-AB",
-                                      "global_balance_conservation"
-                                    ]
-                                  },
-                                  "unit_A": {
-                                    "UNIT-A": {
-                                      "command_identity_retained": true
-                                    }
-                                  },
-                                  "unit_B": {
-                                    "UNIT-B": {
-                                      "one_commit_per_identity": true
-                                    }
-                                  },
-                                  "connection_AB": {
-                                    "CONNECTION-AB": {
-                                      "retry_identity_retained": true
-                                    }
-                                  },
-                                  "unique_quality": {
-                                    "global_balance_conservation": {
-                                      "before_total": 10,
-                                      "expected_total": 10,
-                                      "observed_total": 10
-                                    }
-                                  }
-                                },
-                                "expected_material_owners": {
-                                  "Integrated_basis": "synthetic-h003-Integrated_basis-owner",
-                                  "L3_contract": "synthetic-h003-L3_contract-owner",
-                                  "L10_design": "synthetic-h003-L10_design-owner",
-                                  "combination_contract": "synthetic-h003-combination_contract-owner",
-                                  "unit_A": "synthetic-h003-unit_A-owner",
-                                  "unit_B": "synthetic-h003-unit_B-owner",
-                                  "connection_AB": "synthetic-h003-connection_AB-owner",
-                                  "unique_quality": "synthetic-h003-unique_quality-owner"
-                                },
-                                "expected_source_ids": {
-                                  "Integrated_basis": "H003-BALANCE-SOURCE-Integrated_basis",
-                                  "L3_contract": "H003-BALANCE-SOURCE-L3_contract",
-                                  "L10_design": "H003-BALANCE-SOURCE-L10_design",
-                                  "combination_contract": "H003-BALANCE-SOURCE-combination_contract",
-                                  "unit_A": "H003-BALANCE-SOURCE-unit_A",
-                                  "unit_B": "H003-BALANCE-SOURCE-unit_B",
-                                  "connection_AB": "H003-BALANCE-SOURCE-connection_AB",
-                                  "unique_quality": "H003-BALANCE-SOURCE-unique_quality"
-                                },
-                                "expected_oracle_revisions": {
-                                  "Integrated_basis": "H003-BALANCE-ORACLE-Integrated_basis@r1",
-                                  "L3_contract": "H003-BALANCE-ORACLE-L3_contract@r1",
-                                  "L10_design": "H003-BALANCE-ORACLE-L10_design@r1",
-                                  "combination_contract": "H003-BALANCE-ORACLE-combination_contract@r1",
-                                  "unit_A": "H003-BALANCE-ORACLE-unit_A@r1",
-                                  "unit_B": "H003-BALANCE-ORACLE-unit_B@r1",
-                                  "connection_AB": "H003-BALANCE-ORACLE-connection_AB@r1",
-                                  "unique_quality": "H003-BALANCE-ORACLE-unique_quality@r1"
-                                },
-                                "pairs": {
-                                  "Integrated_basis": null,
-                                  "L3_contract": null,
-                                  "L10_design": "L10:L3",
-                                  "combination_contract": null,
-                                  "unit_A": "L8:L5",
-                                  "unit_B": "L8:L5",
-                                  "connection_AB": "L9:L4",
-                                  "unique_quality": "L10:L3"
-                                },
-                                "common_roles": [
-                                  "Integrated_basis",
-                                  "L3_contract",
-                                  "L10_design",
-                                  "combination_contract",
-                                  "unit_A",
-                                  "unit_B",
-                                  "connection_AB"
-                                ],
-                                "unique_role_mapping": {
-                                  "global_balance_conservation": "unique_quality"
-                                },
-                                "selection": "difference_required",
-                                "evidence_kind": "synthetic",
-                                "snapshot_revision": "FIXTURE-H022-F03-H003-BALANCE-r1",
-                                "original_owner_qualification": null
-                              },
-                              "source_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                              "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。",
-                              "operation_source_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                              "input_source_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                              "argument_context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                              "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                              "role_adapter_projection": {
-                                "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                                "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                                "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                                "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                                "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                                "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                                "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                                "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                                "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                                "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
-                                "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
-                                "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
-                                "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
-                                "fixture_pointer": "/verification_obligations/3/bounded_context_oracles/fixture",
-                                "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
-                                "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
-                                "source_packet_utf8_byte_length": 10171,
-                                "relation": "H022 source packet raw decodes to arguments.input; context packet raw decodes to arguments.context. Both equalities are checked independently. This is a synthetic same-snapshot basis, not physical source independence or runtime qualification."
-                              }
-                            }
-                          ],
-                          "scope_limit": "合成fixtureの独立比較元。assignment_refや同値shapeだけで、実lineage、実owner資格、実承認、実runtimeを成立扱いしない。",
-                          "source_role": "synthetic request/association material embedded in this selected role SourceCell original_contents.target_operation; no separate assignment SourceCell or qualification is required"
                         }
                       },
                       "candidate": "missing"
@@ -130572,7 +129995,7 @@
                         "basis": "H022 pending fixtureとの合成対応を全comparandで個別に検証する。実source lineage/資格ではない。"
                       },
                       "scope_limit": "合成fixtureの独立比較元。assignment_refや同値shapeだけで、実lineage、実owner資格、実承認、実runtimeを成立扱いしない。",
-                      "source_role": "synthetic operation/request association carried directly by this canonical target_operation; no independent assignment SourceCell or qualification is required",
+                      "source_role": "このcanonical target_operationが直接保持する合成operation/request対応。独立assignment SourceCellや資格は要求しない。",
                       "profile_context_associations": [
                         {
                           "role": "005_valley",
@@ -131900,7 +131323,7 @@
             },
             "candidate": null
           },
-          "input_canonical_sha256": "455d188f05dcff5d3725eb63afd3b08c19a1d0d0a13f79236cab6aee38652e18",
+          "input_canonical_sha256": "627cd044044e2b1903f614cb74d0617491abd0fc31d0f6709d10a14373e41c02",
           "input_rule": "このcaller inputの原SourceCellからcallee typed argumentsを導出し、pure callの完全返却・L4 source-binding局所状態・既存whole結果を別々に照合する。期待値はtest側であり、実行資格やruntime結果ではない。",
           "expected_private_call_records": [
             {
@@ -134826,7 +134249,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/7/normal_call/expected_typed_observation"
             },
             {
               "role": "015_flow",
@@ -135132,7 +134556,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/19/typed_function_io_examples/0/expected_output_projection"
             },
             {
               "role": "015_flow",
@@ -138219,7 +137644,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/19/typed_semantic_function_io/expected_output_projection"
             },
             {
               "role": "005_composition",
@@ -140556,7 +139982,7 @@
                 },
                 "owner": "synthetic-source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "ef69477588c875a193f9113e3e62a4089c2da0781e8ca7564121870420f1839d",
+              "source_cell_snapshot_sha256": "81ed099a35aac3d201d95de33de1026ca3893c33789ad587992a4e67d0c70ba8",
               "argument_snapshot_sha256": "9192eb4e76d065a740699d7f2824468daa1917f124445e296334f63234cd2a7b",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -144392,7 +143818,8 @@
                 "revision": "carrier-r1",
                 "scope": "PRODUCT-P",
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/2/normal_variants/0/expected_typed_observation"
             },
             {
               "role": "022_difference",
@@ -145086,7 +144513,7 @@
                 "candidate_disposition": "not_submitted",
                 "candidate_conflicting_paths": []
               },
-              "status": "admitted synthetic design fixture; pure expected return not runtime evidence",
+              "status": "合成設計fixtureを採用した期待返却。pure関数の期待でありruntime実行証拠ではない。",
               "source_cell_ref": {
                 "identity": "SOURCE-H003-F04-31-022-CANONICAL-CARRIER",
                 "revision": "synthetic-canonical-r1",
@@ -146492,7 +145919,8 @@
                 "scope": "PRODUCT-P",
                 "owner": "synthetic-independent-design-source"
               },
-              "native_source_cell_pointer": "/original_sources/022_difference/original_contents/native_source_cell"
+              "native_source_cell_pointer": "/original_sources/022_difference/original_contents/native_source_cell",
+              "return_basis_pointer": "/verification_obligations/3/bounded_context_oracles/cases/0/expected_complete_result"
             }
           ],
           "expected_source_binding": {
@@ -146801,7 +146229,7 @@
                     "artifact": "ARTIFACT-A@h2",
                     "environment": "ENV-A"
                   },
-                  "target_operation": {
+                  "business_target_mapping": {
                     "assignment_ref": {
                       "identity": "ASSIGNMENT-F04-VERIFIED-022-CARRIER-QUALIFICATION-MISSING",
                       "revision": "synthetic-design-r1",
@@ -146821,7 +146249,8 @@
                         "artifact": "ARTIFACT-A@h2",
                         "environment": "ENV-A"
                       },
-                      "raw_target_pointer": "/verification_obligations/4/normal_cases/3/independent_source_packet/raw_utf8 -> strict JSON /target"
+                      "raw_utf8_source_pointer": "/original_sources/business_packet/original_contents/raw_utf8",
+                      "decoded_json_pointer": "/target"
                     },
                     "profile_context_endpoint": {
                       "artifact_ref": {
@@ -146879,7 +146308,7 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       },
                       {
                         "role": "015_flow",
@@ -146909,7 +146338,7 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       },
                       {
                         "role": "005_composition",
@@ -146931,7 +146360,7 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       },
                       {
                         "role": "022_difference",
@@ -146953,11 +146382,11 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       }
                     ],
-                    "qualification_effect": "none; synthetic fixture relation only",
-                    "source_role": "synthetic_original_assignment_fixture"
+                    "qualification_effect": "なし。合成fixtureの対応関係だけを示す。",
+                    "source_role": "合成の元割当対応fixture"
                   }
                 },
                 "qualification_state": "known",
@@ -151658,597 +151087,6 @@
                           "project": "P",
                           "tenant": "synthetic-T",
                           "environment": "synthetic-test"
-                        },
-                        "request_association": {
-                          "assignment_ref": {
-                            "identity": "ASSIGNMENT-F04-VERIFIED-022-CARRIER-QUALIFICATION-MISSING",
-                            "revision": "synthetic-design-r1",
-                            "scope": "PRODUCT-P",
-                            "owner": "synthetic-original-assignment"
-                          },
-                          "business_endpoint": {
-                            "source_cell_ref": {
-                              "identity": "SOURCE-H003-F04-NORMAL-Verified",
-                              "revision": "fixture-r1",
-                              "scope": "PRODUCT-P",
-                              "owner": "independent-fixture-owner"
-                            },
-                            "raw_target_pointer": "/original_sources/business_packet/original_contents/parsed_target",
-                            "raw_target": {
-                              "revision": "REQ@r1",
-                              "scope": "PRODUCT-P",
-                              "artifact": "ARTIFACT-A@h2",
-                              "environment": "ENV-A"
-                            }
-                          },
-                          "caller_context_endpoint": {
-                            "ref": {
-                              "identity": "PROCESS-CONTEXT-F04-VERIFIED-022-CARRIER-QUALIFICATION-MISSING",
-                              "revision": "synthetic-design-r1",
-                              "scope": {
-                                "project": "P",
-                                "tenant": "synthetic-T",
-                                "environment": "synthetic-test"
-                              },
-                              "owner": "synthetic-caller-context"
-                            },
-                            "value": {
-                              "requirement_ref": {
-                                "identity": "REQ",
-                                "revision": "REQ@r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "requirement-owner"
-                              },
-                              "artifact_ref": {
-                                "identity": "ARTIFACT-1",
-                                "revision": "ART@r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "artifact-owner"
-                              },
-                              "scope": {
-                                "project": "P",
-                                "tenant": "synthetic-T",
-                                "environment": "synthetic-test"
-                              },
-                              "selected_stage": "Verified",
-                              "selected_pair": "L9:L4",
-                              "operation_kind": "assess_artifact_stage_evidence"
-                            }
-                          },
-                          "profile_context_associations": [
-                            {
-                              "role": "005_valley",
-                              "source_cell_ref": {
-                                "identity": "CARRIER-005_valley",
-                                "revision": "carrier-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "source-adapter-owner"
-                              },
-                              "operation_ref": {
-                                "identity": "OP-005_valley",
-                                "revision": "operation-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "original-target-owner"
-                              },
-                              "caller_context_ref": {
-                                "identity": "PROCESS-CONTEXT-F04-VERIFIED-022-CARRIER-QUALIFICATION-MISSING",
-                                "revision": "synthetic-design-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "synthetic-caller-context"
-                              },
-                              "caller_context_value": {
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "selected_stage": "Verified",
-                                "selected_pair": "L9:L4",
-                                "operation_kind": "assess_artifact_stage_evidence"
-                              },
-                              "profile_context_ref": {
-                                "identity": "ARTIFACT-1",
-                                "revision": "ART@r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "artifact-owner"
-                              },
-                              "profile_context_value": {
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                }
-                              },
-                              "source_pointer": "/original_sources/005_valley/original_contents/target_operation/consumer_target",
-                              "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。"
-                            },
-                            {
-                              "role": "015_flow",
-                              "source_cell_ref": {
-                                "identity": "CARRIER-015_flow",
-                                "revision": "carrier-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "source-adapter-owner"
-                              },
-                              "operation_ref": {
-                                "identity": "OP-015_flow",
-                                "revision": "operation-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "original-target-owner"
-                              },
-                              "caller_context_ref": {
-                                "identity": "PROCESS-CONTEXT-F04-VERIFIED-022-CARRIER-QUALIFICATION-MISSING",
-                                "revision": "synthetic-design-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "synthetic-caller-context"
-                              },
-                              "caller_context_value": {
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "selected_stage": "Verified",
-                                "selected_pair": "L9:L4",
-                                "operation_kind": "assess_artifact_stage_evidence"
-                              },
-                              "profile_context_ref": {
-                                "identity": "ARTIFACT-1",
-                                "revision": "ART@r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "artifact-owner"
-                              },
-                              "profile_context_value": {
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                }
-                              },
-                              "source_pointer": "/original_sources/015_flow/original_contents/target_operation/consumer_target",
-                              "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。"
-                            },
-                            {
-                              "role": "005_composition",
-                              "source_cell_ref": {
-                                "identity": "CARRIER-005_composition",
-                                "revision": "carrier-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "source-adapter-owner"
-                              },
-                              "operation_ref": {
-                                "identity": "OP-005_composition",
-                                "revision": "operation-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "original-target-owner"
-                              },
-                              "caller_context_ref": {
-                                "identity": "PROCESS-CONTEXT-F04-VERIFIED-022-CARRIER-QUALIFICATION-MISSING",
-                                "revision": "synthetic-design-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "synthetic-caller-context"
-                              },
-                              "caller_context_value": {
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "selected_stage": "Verified",
-                                "selected_pair": "L9:L4",
-                                "operation_kind": "assess_artifact_stage_evidence"
-                              },
-                              "profile_context_ref": {
-                                "identity": "ARTIFACT-1",
-                                "revision": "ART@r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "artifact-owner"
-                              },
-                              "profile_context_value": {
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": "PRODUCT-P",
-                                  "owner": "artifact-owner"
-                                },
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": "PRODUCT-P",
-                                  "owner": "requirement-owner"
-                                },
-                                "scope": "PRODUCT-P"
-                              },
-                              "source_pointer": "/original_sources/005_composition/original_contents/target_operation/consumer_target",
-                              "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。"
-                            },
-                            {
-                              "role": "022_difference",
-                              "source_cell_ref": {
-                                "identity": "SOURCE-H022-F03-H003-BALANCE",
-                                "revision": "synthetic-design-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "synthetic-independent-design-source"
-                              },
-                              "operation_ref": {
-                                "identity": "H022-H003-BALANCE-ORIGINAL-CALL",
-                                "revision": "synthetic-design-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "synthetic-system-verification-owner"
-                              },
-                              "caller_context_ref": {
-                                "identity": "PROCESS-CONTEXT-F04-VERIFIED-022-CARRIER-QUALIFICATION-MISSING",
-                                "revision": "synthetic-design-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "synthetic-caller-context"
-                              },
-                              "caller_context_value": {
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "selected_stage": "Verified",
-                                "selected_pair": "L9:L4",
-                                "operation_kind": "assess_artifact_stage_evidence"
-                              },
-                              "profile_context_ref": {
-                                "identity": "CONTEXT-H022-F03-H003-BALANCE",
-                                "revision": "synthetic-design-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "synthetic-independent-design-source"
-                              },
-                              "profile_context_value": {
-                                "target": {
-                                  "artifact_identity": "ARTIFACT-1",
-                                  "artifact_revision": "ART@r1",
-                                  "requirement_revision": "REQ@r1",
-                                  "scope": "PRODUCT-P"
-                                },
-                                "expected_profiles": {
-                                  "Integrated_basis": {
-                                    "basis": "same_revision_boundary_combination_and_post_refactor_reverification_synthetic",
-                                    "stage": "Integrated"
-                                  },
-                                  "L3_contract": {
-                                    "obligations": {
-                                      "UNIT-A": {
-                                        "command_identity_retained": true
-                                      },
-                                      "UNIT-B": {
-                                        "one_commit_per_identity": true
-                                      },
-                                      "CONNECTION-AB": {
-                                        "retry_identity_retained": true
-                                      },
-                                      "global_balance_conservation": {
-                                        "before_total": 10,
-                                        "expected_total": 10,
-                                        "observed_total": 10
-                                      }
-                                    }
-                                  },
-                                  "L10_design": {
-                                    "target": "L3@r1",
-                                    "oracles": {
-                                      "UNIT-A": {
-                                        "command_identity_retained": true
-                                      },
-                                      "UNIT-B": {
-                                        "one_commit_per_identity": true
-                                      },
-                                      "CONNECTION-AB": {
-                                        "retry_identity_retained": true
-                                      },
-                                      "global_balance_conservation": {
-                                        "before_total": 10,
-                                        "expected_total": 10,
-                                        "observed_total": 10
-                                      }
-                                    }
-                                  },
-                                  "combination_contract": {
-                                    "coverage": {
-                                      "connection_AB": [
-                                        "CONNECTION-AB"
-                                      ],
-                                      "unit_A": [
-                                        "UNIT-A"
-                                      ],
-                                      "unit_B": [
-                                        "UNIT-B"
-                                      ]
-                                    },
-                                    "required_subjects": [
-                                      "unit_A",
-                                      "unit_B",
-                                      "connection_AB"
-                                    ],
-                                    "whole_obligations": [
-                                      "UNIT-A",
-                                      "UNIT-B",
-                                      "CONNECTION-AB",
-                                      "global_balance_conservation"
-                                    ]
-                                  },
-                                  "unit_A": {
-                                    "UNIT-A": {
-                                      "command_identity_retained": true
-                                    }
-                                  },
-                                  "unit_B": {
-                                    "UNIT-B": {
-                                      "one_commit_per_identity": true
-                                    }
-                                  },
-                                  "connection_AB": {
-                                    "CONNECTION-AB": {
-                                      "retry_identity_retained": true
-                                    }
-                                  },
-                                  "unique_quality": {
-                                    "global_balance_conservation": {
-                                      "before_total": 10,
-                                      "expected_total": 10,
-                                      "observed_total": 10
-                                    }
-                                  }
-                                },
-                                "expected_material_owners": {
-                                  "Integrated_basis": "synthetic-h003-Integrated_basis-owner",
-                                  "L3_contract": "synthetic-h003-L3_contract-owner",
-                                  "L10_design": "synthetic-h003-L10_design-owner",
-                                  "combination_contract": "synthetic-h003-combination_contract-owner",
-                                  "unit_A": "synthetic-h003-unit_A-owner",
-                                  "unit_B": "synthetic-h003-unit_B-owner",
-                                  "connection_AB": "synthetic-h003-connection_AB-owner",
-                                  "unique_quality": "synthetic-h003-unique_quality-owner"
-                                },
-                                "expected_source_ids": {
-                                  "Integrated_basis": "H003-BALANCE-SOURCE-Integrated_basis",
-                                  "L3_contract": "H003-BALANCE-SOURCE-L3_contract",
-                                  "L10_design": "H003-BALANCE-SOURCE-L10_design",
-                                  "combination_contract": "H003-BALANCE-SOURCE-combination_contract",
-                                  "unit_A": "H003-BALANCE-SOURCE-unit_A",
-                                  "unit_B": "H003-BALANCE-SOURCE-unit_B",
-                                  "connection_AB": "H003-BALANCE-SOURCE-connection_AB",
-                                  "unique_quality": "H003-BALANCE-SOURCE-unique_quality"
-                                },
-                                "expected_oracle_revisions": {
-                                  "Integrated_basis": "H003-BALANCE-ORACLE-Integrated_basis@r1",
-                                  "L3_contract": "H003-BALANCE-ORACLE-L3_contract@r1",
-                                  "L10_design": "H003-BALANCE-ORACLE-L10_design@r1",
-                                  "combination_contract": "H003-BALANCE-ORACLE-combination_contract@r1",
-                                  "unit_A": "H003-BALANCE-ORACLE-unit_A@r1",
-                                  "unit_B": "H003-BALANCE-ORACLE-unit_B@r1",
-                                  "connection_AB": "H003-BALANCE-ORACLE-connection_AB@r1",
-                                  "unique_quality": "H003-BALANCE-ORACLE-unique_quality@r1"
-                                },
-                                "pairs": {
-                                  "Integrated_basis": null,
-                                  "L3_contract": null,
-                                  "L10_design": "L10:L3",
-                                  "combination_contract": null,
-                                  "unit_A": "L8:L5",
-                                  "unit_B": "L8:L5",
-                                  "connection_AB": "L9:L4",
-                                  "unique_quality": "L10:L3"
-                                },
-                                "common_roles": [
-                                  "Integrated_basis",
-                                  "L3_contract",
-                                  "L10_design",
-                                  "combination_contract",
-                                  "unit_A",
-                                  "unit_B",
-                                  "connection_AB"
-                                ],
-                                "unique_role_mapping": {
-                                  "global_balance_conservation": "unique_quality"
-                                },
-                                "selection": "difference_required",
-                                "evidence_kind": "synthetic",
-                                "snapshot_revision": "FIXTURE-H022-F03-H003-BALANCE-r1",
-                                "original_owner_qualification": null
-                              },
-                              "source_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                              "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。",
-                              "operation_source_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                              "input_source_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                              "argument_context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                              "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                              "role_adapter_projection": {
-                                "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                                "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                                "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                                "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                                "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                                "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                                "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                                "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                                "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                                "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
-                                "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
-                                "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
-                                "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
-                                "fixture_pointer": "/verification_obligations/3/bounded_context_oracles/fixture",
-                                "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
-                                "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
-                                "source_packet_utf8_byte_length": 10171,
-                                "relation": "H022 source packet raw decodes to arguments.input; context packet raw decodes to arguments.context. Both equalities are checked independently. This is a synthetic same-snapshot basis, not physical source independence or runtime qualification."
-                              }
-                            }
-                          ],
-                          "scope_limit": "合成fixtureの独立比較元。assignment_refや同値shapeだけで、実lineage、実owner資格、実承認、実runtimeを成立扱いしない。",
-                          "source_role": "synthetic request/association material embedded in this selected role SourceCell original_contents.target_operation; no separate assignment SourceCell or qualification is required"
                         }
                       },
                       "candidate": "missing"
@@ -153166,7 +152004,7 @@
                         "basis": "H022 pending fixtureとの合成対応を全comparandで個別に検証する。実source lineage/資格ではない。"
                       },
                       "scope_limit": "合成fixtureの独立比較元。assignment_refや同値shapeだけで、実lineage、実owner資格、実承認、実runtimeを成立扱いしない。",
-                      "source_role": "synthetic operation/request association carried directly by this canonical target_operation; no independent assignment SourceCell or qualification is required",
+                      "source_role": "このcanonical target_operationが直接保持する合成operation/request対応。独立assignment SourceCellや資格は要求しない。",
                       "profile_context_associations": [
                         {
                           "role": "005_valley",
@@ -154492,7 +153330,7 @@
             },
             "candidate": null
           },
-          "input_canonical_sha256": "5563cfb11fc9b6c19faf9f65762122f874077aa20345d60105ebf68a65905717",
+          "input_canonical_sha256": "491c6e71351eb9b673f93b0db6207cc7fa79b7497b52f5d3b3ea6cd89453ac90",
           "input_rule": "このcaller inputの原SourceCellからcallee typed argumentsを導出し、pure callの完全返却・L4 source-binding局所状態・既存whole結果を別々に照合する。期待値はtest側であり、実行資格やruntime結果ではない。",
           "expected_private_call_records": [
             {
@@ -157418,7 +156256,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/7/normal_call/expected_typed_observation"
             },
             {
               "role": "015_flow",
@@ -157724,7 +156563,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/19/typed_function_io_examples/0/expected_output_projection"
             },
             {
               "role": "015_flow",
@@ -160811,7 +159651,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/19/typed_semantic_function_io/expected_output_projection"
             },
             {
               "role": "005_composition",
@@ -163148,7 +161989,7 @@
                 },
                 "owner": "synthetic-source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "f2e9fb6ae8b03b25cbebc09f15a4649276d006e6c70a7704fc4c60e624601c81",
+              "source_cell_snapshot_sha256": "b1f1a1a21828bcc1b67137b00520c360433d62f1a512cba39c958512116f501e",
               "argument_snapshot_sha256": "9192eb4e76d065a740699d7f2824468daa1917f124445e296334f63234cd2a7b",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -166984,7 +165825,8 @@
                 "revision": "carrier-r1",
                 "scope": "PRODUCT-P",
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/2/normal_variants/0/expected_typed_observation"
             },
             {
               "role": "022_difference",
@@ -167678,7 +166520,7 @@
                 "candidate_disposition": "not_submitted",
                 "candidate_conflicting_paths": []
               },
-              "status": "admitted synthetic design fixture; pure expected return not runtime evidence",
+              "status": "合成設計fixtureを採用した期待返却。pure関数の期待でありruntime実行証拠ではない。",
               "source_cell_ref": {
                 "identity": "SOURCE-H003-F04-32-022-CANONICAL-CARRIER",
                 "revision": "synthetic-canonical-r1",
@@ -169084,7 +167926,8 @@
                 "scope": "PRODUCT-P",
                 "owner": "synthetic-independent-design-source"
               },
-              "native_source_cell_pointer": "/original_sources/022_difference/original_contents/native_source_cell"
+              "native_source_cell_pointer": "/original_sources/022_difference/original_contents/native_source_cell",
+              "return_basis_pointer": "/verification_obligations/3/bounded_context_oracles/cases/0/expected_complete_result"
             }
           ],
           "expected_source_binding": {
@@ -169399,7 +168242,7 @@
                     "artifact": "ARTIFACT-A@h2",
                     "environment": "ENV-A"
                   },
-                  "target_operation": {
+                  "business_target_mapping": {
                     "assignment_ref": {
                       "identity": "ASSIGNMENT-F04-OBSERVED-READABLE-PROOF-RETENTION",
                       "revision": "synthetic-design-r1",
@@ -169419,7 +168262,8 @@
                         "artifact": "ARTIFACT-A@h2",
                         "environment": "ENV-A"
                       },
-                      "raw_target_pointer": "/verification_obligations/4/normal_cases/7/independent_source_packet/raw_utf8 -> strict JSON /target"
+                      "raw_utf8_source_pointer": "/original_sources/business_packet/original_contents/raw_utf8",
+                      "decoded_json_pointer": "/target"
                     },
                     "profile_context_endpoint": {
                       "artifact_ref": {
@@ -169477,7 +168321,7 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       },
                       {
                         "role": "015_flow",
@@ -169507,7 +168351,7 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       },
                       {
                         "role": "005_composition",
@@ -169529,7 +168373,7 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       },
                       {
                         "role": "022_difference",
@@ -169551,11 +168395,11 @@
                           "scope": "PRODUCT-P",
                           "owner": "synthetic-original-assignment"
                         },
-                        "association_basis": "synthetic explicit same-call relation; not actual lineage or qualification"
+                        "association_basis": "合成設計入力で同じ呼出しへの対応を明示する。実際の系譜・資格を示さない。"
                       }
                     ],
-                    "qualification_effect": "none; synthetic fixture relation only",
-                    "source_role": "synthetic_original_assignment_fixture"
+                    "qualification_effect": "なし。合成fixtureの対応関係だけを示す。",
+                    "source_role": "合成の元割当対応fixture"
                   }
                 },
                 "qualification_state": "known",
@@ -174256,597 +173100,6 @@
                           "project": "P",
                           "tenant": "synthetic-T",
                           "environment": "synthetic-test"
-                        },
-                        "request_association": {
-                          "assignment_ref": {
-                            "identity": "ASSIGNMENT-F04-OBSERVED-READABLE-PROOF-RETENTION",
-                            "revision": "synthetic-design-r1",
-                            "scope": "PRODUCT-P",
-                            "owner": "synthetic-original-assignment"
-                          },
-                          "business_endpoint": {
-                            "source_cell_ref": {
-                              "identity": "SOURCE-H003-F04-NORMAL-Observed",
-                              "revision": "fixture-r1",
-                              "scope": "PRODUCT-P",
-                              "owner": "independent-fixture-owner"
-                            },
-                            "raw_target_pointer": "/original_sources/business_packet/original_contents/parsed_target",
-                            "raw_target": {
-                              "revision": "REQ@r1",
-                              "scope": "PRODUCT-P",
-                              "artifact": "ARTIFACT-A@h2",
-                              "environment": "ENV-A"
-                            }
-                          },
-                          "caller_context_endpoint": {
-                            "ref": {
-                              "identity": "PROCESS-CONTEXT-F04-OBSERVED-READABLE-PROOF-RETENTION",
-                              "revision": "synthetic-design-r1",
-                              "scope": {
-                                "project": "P",
-                                "tenant": "synthetic-T",
-                                "environment": "synthetic-test"
-                              },
-                              "owner": "synthetic-caller-context"
-                            },
-                            "value": {
-                              "requirement_ref": {
-                                "identity": "REQ",
-                                "revision": "REQ@r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "requirement-owner"
-                              },
-                              "artifact_ref": {
-                                "identity": "ARTIFACT-1",
-                                "revision": "ART@r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "artifact-owner"
-                              },
-                              "scope": {
-                                "project": "P",
-                                "tenant": "synthetic-T",
-                                "environment": "synthetic-test"
-                              },
-                              "selected_stage": "Observed",
-                              "selected_pair": "L9:L4",
-                              "operation_kind": "assess_artifact_stage_evidence"
-                            }
-                          },
-                          "profile_context_associations": [
-                            {
-                              "role": "005_valley",
-                              "source_cell_ref": {
-                                "identity": "CARRIER-005_valley",
-                                "revision": "carrier-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "source-adapter-owner"
-                              },
-                              "operation_ref": {
-                                "identity": "OP-005_valley",
-                                "revision": "operation-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "original-target-owner"
-                              },
-                              "caller_context_ref": {
-                                "identity": "PROCESS-CONTEXT-F04-OBSERVED-READABLE-PROOF-RETENTION",
-                                "revision": "synthetic-design-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "synthetic-caller-context"
-                              },
-                              "caller_context_value": {
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "selected_stage": "Observed",
-                                "selected_pair": "L9:L4",
-                                "operation_kind": "assess_artifact_stage_evidence"
-                              },
-                              "profile_context_ref": {
-                                "identity": "ARTIFACT-1",
-                                "revision": "ART@r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "artifact-owner"
-                              },
-                              "profile_context_value": {
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                }
-                              },
-                              "source_pointer": "/original_sources/005_valley/original_contents/target_operation/consumer_target",
-                              "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。"
-                            },
-                            {
-                              "role": "015_flow",
-                              "source_cell_ref": {
-                                "identity": "CARRIER-015_flow",
-                                "revision": "carrier-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "source-adapter-owner"
-                              },
-                              "operation_ref": {
-                                "identity": "OP-015_flow",
-                                "revision": "operation-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "original-target-owner"
-                              },
-                              "caller_context_ref": {
-                                "identity": "PROCESS-CONTEXT-F04-OBSERVED-READABLE-PROOF-RETENTION",
-                                "revision": "synthetic-design-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "synthetic-caller-context"
-                              },
-                              "caller_context_value": {
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "selected_stage": "Observed",
-                                "selected_pair": "L9:L4",
-                                "operation_kind": "assess_artifact_stage_evidence"
-                              },
-                              "profile_context_ref": {
-                                "identity": "ARTIFACT-1",
-                                "revision": "ART@r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "artifact-owner"
-                              },
-                              "profile_context_value": {
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                }
-                              },
-                              "source_pointer": "/original_sources/015_flow/original_contents/target_operation/consumer_target",
-                              "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。"
-                            },
-                            {
-                              "role": "005_composition",
-                              "source_cell_ref": {
-                                "identity": "CARRIER-005_composition",
-                                "revision": "carrier-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "source-adapter-owner"
-                              },
-                              "operation_ref": {
-                                "identity": "OP-005_composition",
-                                "revision": "operation-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "original-target-owner"
-                              },
-                              "caller_context_ref": {
-                                "identity": "PROCESS-CONTEXT-F04-OBSERVED-READABLE-PROOF-RETENTION",
-                                "revision": "synthetic-design-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "synthetic-caller-context"
-                              },
-                              "caller_context_value": {
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "selected_stage": "Observed",
-                                "selected_pair": "L9:L4",
-                                "operation_kind": "assess_artifact_stage_evidence"
-                              },
-                              "profile_context_ref": {
-                                "identity": "ARTIFACT-1",
-                                "revision": "ART@r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "artifact-owner"
-                              },
-                              "profile_context_value": {
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": "PRODUCT-P",
-                                  "owner": "artifact-owner"
-                                },
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": "PRODUCT-P",
-                                  "owner": "requirement-owner"
-                                },
-                                "scope": "PRODUCT-P"
-                              },
-                              "source_pointer": "/original_sources/005_composition/original_contents/target_operation/consumer_target",
-                              "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。"
-                            },
-                            {
-                              "role": "022_difference",
-                              "source_cell_ref": {
-                                "identity": "SOURCE-H022-F03-H003-BALANCE",
-                                "revision": "synthetic-design-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "synthetic-independent-design-source"
-                              },
-                              "operation_ref": {
-                                "identity": "H022-H003-BALANCE-ORIGINAL-CALL",
-                                "revision": "synthetic-design-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "synthetic-system-verification-owner"
-                              },
-                              "caller_context_ref": {
-                                "identity": "PROCESS-CONTEXT-F04-OBSERVED-READABLE-PROOF-RETENTION",
-                                "revision": "synthetic-design-r1",
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "owner": "synthetic-caller-context"
-                              },
-                              "caller_context_value": {
-                                "requirement_ref": {
-                                  "identity": "REQ",
-                                  "revision": "REQ@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "requirement-owner"
-                                },
-                                "artifact_ref": {
-                                  "identity": "ARTIFACT-1",
-                                  "revision": "ART@r1",
-                                  "scope": {
-                                    "project": "P",
-                                    "tenant": "synthetic-T",
-                                    "environment": "synthetic-test"
-                                  },
-                                  "owner": "artifact-owner"
-                                },
-                                "scope": {
-                                  "project": "P",
-                                  "tenant": "synthetic-T",
-                                  "environment": "synthetic-test"
-                                },
-                                "selected_stage": "Observed",
-                                "selected_pair": "L9:L4",
-                                "operation_kind": "assess_artifact_stage_evidence"
-                              },
-                              "profile_context_ref": {
-                                "identity": "CONTEXT-H022-F03-H003-BALANCE",
-                                "revision": "synthetic-design-r1",
-                                "scope": "PRODUCT-P",
-                                "owner": "synthetic-independent-design-source"
-                              },
-                              "profile_context_value": {
-                                "target": {
-                                  "artifact_identity": "ARTIFACT-1",
-                                  "artifact_revision": "ART@r1",
-                                  "requirement_revision": "REQ@r1",
-                                  "scope": "PRODUCT-P"
-                                },
-                                "expected_profiles": {
-                                  "Integrated_basis": {
-                                    "basis": "same_revision_boundary_combination_and_post_refactor_reverification_synthetic",
-                                    "stage": "Integrated"
-                                  },
-                                  "L3_contract": {
-                                    "obligations": {
-                                      "UNIT-A": {
-                                        "command_identity_retained": true
-                                      },
-                                      "UNIT-B": {
-                                        "one_commit_per_identity": true
-                                      },
-                                      "CONNECTION-AB": {
-                                        "retry_identity_retained": true
-                                      },
-                                      "global_balance_conservation": {
-                                        "before_total": 10,
-                                        "expected_total": 10,
-                                        "observed_total": 10
-                                      }
-                                    }
-                                  },
-                                  "L10_design": {
-                                    "target": "L3@r1",
-                                    "oracles": {
-                                      "UNIT-A": {
-                                        "command_identity_retained": true
-                                      },
-                                      "UNIT-B": {
-                                        "one_commit_per_identity": true
-                                      },
-                                      "CONNECTION-AB": {
-                                        "retry_identity_retained": true
-                                      },
-                                      "global_balance_conservation": {
-                                        "before_total": 10,
-                                        "expected_total": 10,
-                                        "observed_total": 10
-                                      }
-                                    }
-                                  },
-                                  "combination_contract": {
-                                    "coverage": {
-                                      "connection_AB": [
-                                        "CONNECTION-AB"
-                                      ],
-                                      "unit_A": [
-                                        "UNIT-A"
-                                      ],
-                                      "unit_B": [
-                                        "UNIT-B"
-                                      ]
-                                    },
-                                    "required_subjects": [
-                                      "unit_A",
-                                      "unit_B",
-                                      "connection_AB"
-                                    ],
-                                    "whole_obligations": [
-                                      "UNIT-A",
-                                      "UNIT-B",
-                                      "CONNECTION-AB",
-                                      "global_balance_conservation"
-                                    ]
-                                  },
-                                  "unit_A": {
-                                    "UNIT-A": {
-                                      "command_identity_retained": true
-                                    }
-                                  },
-                                  "unit_B": {
-                                    "UNIT-B": {
-                                      "one_commit_per_identity": true
-                                    }
-                                  },
-                                  "connection_AB": {
-                                    "CONNECTION-AB": {
-                                      "retry_identity_retained": true
-                                    }
-                                  },
-                                  "unique_quality": {
-                                    "global_balance_conservation": {
-                                      "before_total": 10,
-                                      "expected_total": 10,
-                                      "observed_total": 10
-                                    }
-                                  }
-                                },
-                                "expected_material_owners": {
-                                  "Integrated_basis": "synthetic-h003-Integrated_basis-owner",
-                                  "L3_contract": "synthetic-h003-L3_contract-owner",
-                                  "L10_design": "synthetic-h003-L10_design-owner",
-                                  "combination_contract": "synthetic-h003-combination_contract-owner",
-                                  "unit_A": "synthetic-h003-unit_A-owner",
-                                  "unit_B": "synthetic-h003-unit_B-owner",
-                                  "connection_AB": "synthetic-h003-connection_AB-owner",
-                                  "unique_quality": "synthetic-h003-unique_quality-owner"
-                                },
-                                "expected_source_ids": {
-                                  "Integrated_basis": "H003-BALANCE-SOURCE-Integrated_basis",
-                                  "L3_contract": "H003-BALANCE-SOURCE-L3_contract",
-                                  "L10_design": "H003-BALANCE-SOURCE-L10_design",
-                                  "combination_contract": "H003-BALANCE-SOURCE-combination_contract",
-                                  "unit_A": "H003-BALANCE-SOURCE-unit_A",
-                                  "unit_B": "H003-BALANCE-SOURCE-unit_B",
-                                  "connection_AB": "H003-BALANCE-SOURCE-connection_AB",
-                                  "unique_quality": "H003-BALANCE-SOURCE-unique_quality"
-                                },
-                                "expected_oracle_revisions": {
-                                  "Integrated_basis": "H003-BALANCE-ORACLE-Integrated_basis@r1",
-                                  "L3_contract": "H003-BALANCE-ORACLE-L3_contract@r1",
-                                  "L10_design": "H003-BALANCE-ORACLE-L10_design@r1",
-                                  "combination_contract": "H003-BALANCE-ORACLE-combination_contract@r1",
-                                  "unit_A": "H003-BALANCE-ORACLE-unit_A@r1",
-                                  "unit_B": "H003-BALANCE-ORACLE-unit_B@r1",
-                                  "connection_AB": "H003-BALANCE-ORACLE-connection_AB@r1",
-                                  "unique_quality": "H003-BALANCE-ORACLE-unique_quality@r1"
-                                },
-                                "pairs": {
-                                  "Integrated_basis": null,
-                                  "L3_contract": null,
-                                  "L10_design": "L10:L3",
-                                  "combination_contract": null,
-                                  "unit_A": "L8:L5",
-                                  "unit_B": "L8:L5",
-                                  "connection_AB": "L9:L4",
-                                  "unique_quality": "L10:L3"
-                                },
-                                "common_roles": [
-                                  "Integrated_basis",
-                                  "L3_contract",
-                                  "L10_design",
-                                  "combination_contract",
-                                  "unit_A",
-                                  "unit_B",
-                                  "connection_AB"
-                                ],
-                                "unique_role_mapping": {
-                                  "global_balance_conservation": "unique_quality"
-                                },
-                                "selection": "difference_required",
-                                "evidence_kind": "synthetic",
-                                "snapshot_revision": "FIXTURE-H022-F03-H003-BALANCE-r1",
-                                "original_owner_qualification": null
-                              },
-                              "source_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                              "association_basis": "独立に固定した合成original-assignment relation。実lineage/owner資格ではない。",
-                              "operation_source_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                              "input_source_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                              "argument_context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                              "evidence_selection_basis_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                              "role_adapter_projection": {
-                                "adapter": "HARNESS-L5-003 F04 022_difference role adapter",
-                                "input_pointer": "/original_sources/022_difference/original_contents/arguments/input",
-                                "context_pointer": "/original_sources/022_difference/original_contents/arguments/context",
-                                "candidate_pointer": "/original_sources/022_difference/original_contents/arguments/candidate",
-                                "source_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/source_packet/ref",
-                                "source_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/source_packet/raw_utf8",
-                                "context_snapshot_ref_pointer": "/original_sources/022_difference/original_contents/context_packet/ref",
-                                "context_snapshot_raw_utf8_pointer": "/original_sources/022_difference/original_contents/context_packet/raw_utf8",
-                                "operation_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/operation_ref",
-                                "function_ref_pointer": "/original_sources/022_difference/original_contents/call_binding/function_ref",
-                                "source_revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
-                                "source_file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
-                                "source_file_sha256": "8b97141bca62672d75f0b826899c8137ea74309413a3aacff960cdc0f9b63362",
-                                "fixture_pointer": "/verification_obligations/3/bounded_context_oracles/fixture",
-                                "source_packet_pointer": "/verification_obligations/3/bounded_context_oracles/fixture/source_packet",
-                                "source_packet_raw_sha256": "d1140dd25cf4237f67760d9f5a6b9263e66f856a3194b090270c86a1adf25d6c",
-                                "source_packet_utf8_byte_length": 10171,
-                                "relation": "H022 source packet raw decodes to arguments.input; context packet raw decodes to arguments.context. Both equalities are checked independently. This is a synthetic same-snapshot basis, not physical source independence or runtime qualification."
-                              }
-                            }
-                          ],
-                          "scope_limit": "合成fixtureの独立比較元。assignment_refや同値shapeだけで、実lineage、実owner資格、実承認、実runtimeを成立扱いしない。",
-                          "source_role": "synthetic request/association material embedded in this selected role SourceCell original_contents.target_operation; no separate assignment SourceCell or qualification is required"
                         }
                       },
                       "candidate": "missing"
@@ -175764,7 +174017,7 @@
                         "basis": "H022 pending fixtureとの合成対応を全comparandで個別に検証する。実source lineage/資格ではない。"
                       },
                       "scope_limit": "合成fixtureの独立比較元。assignment_refや同値shapeだけで、実lineage、実owner資格、実承認、実runtimeを成立扱いしない。",
-                      "source_role": "synthetic operation/request association carried directly by this canonical target_operation; no independent assignment SourceCell or qualification is required",
+                      "source_role": "このcanonical target_operationが直接保持する合成operation/request対応。独立assignment SourceCellや資格は要求しない。",
                       "profile_context_associations": [
                         {
                           "role": "005_valley",
@@ -177092,7 +175345,7 @@
             },
             "candidate": null
           },
-          "input_canonical_sha256": "59537e1e5666dbe9793fbf45df5a23efc4a568536ef8bd23deaf771384108287",
+          "input_canonical_sha256": "4fd02f76f465be9b2a2e01b5f08fcc9826214078c47900e43f09957a82bed2ff",
           "input_rule": "このcaller inputの原SourceCellからcallee typed argumentsを導出し、pure callの完全返却・L4 source-binding局所状態・既存whole結果を別々に照合する。期待値はtest側であり、実行資格やruntime結果ではない。",
           "expected_private_call_records": [
             {
@@ -180018,7 +178271,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/7/normal_call/expected_typed_observation"
             },
             {
               "role": "015_flow",
@@ -180324,7 +178578,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/19/typed_function_io_examples/0/expected_output_projection"
             },
             {
               "role": "015_flow",
@@ -183411,7 +181666,8 @@
                   "environment": "synthetic-test"
                 },
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/19/typed_semantic_function_io/expected_output_projection"
             },
             {
               "role": "005_composition",
@@ -185748,7 +184004,7 @@
                 },
                 "owner": "synthetic-source-adapter-owner"
               },
-              "source_cell_snapshot_sha256": "496c6579319f832a81a4a24d6acfed26d6b70c17f5f982696809c127ec57c8e7",
+              "source_cell_snapshot_sha256": "a027c7dbdea0e4c44c0015a8da02961e41e1adfeaa2d06d7d71f3f291b0d0f5f",
               "argument_snapshot_sha256": "9192eb4e76d065a740699d7f2824468daa1917f124445e296334f63234cd2a7b",
               "expected_call_record_shape": {
                 "source_cell_ref": {
@@ -189584,7 +187840,8 @@
                 "revision": "carrier-r1",
                 "scope": "PRODUCT-P",
                 "owner": "source-adapter-owner"
-              }
+              },
+              "return_basis_pointer": "/cases/2/normal_variants/0/expected_typed_observation"
             },
             {
               "role": "022_difference",
@@ -190278,7 +188535,7 @@
                 "candidate_disposition": "not_submitted",
                 "candidate_conflicting_paths": []
               },
-              "status": "admitted synthetic design fixture; pure expected return not runtime evidence",
+              "status": "合成設計fixtureを採用した期待返却。pure関数の期待でありruntime実行証拠ではない。",
               "source_cell_ref": {
                 "identity": "SOURCE-H003-F04-33-022-CANONICAL-CARRIER",
                 "revision": "synthetic-canonical-r1",
@@ -191684,7 +189941,8 @@
                 "scope": "PRODUCT-P",
                 "owner": "synthetic-independent-design-source"
               },
-              "native_source_cell_pointer": "/original_sources/022_difference/original_contents/native_source_cell"
+              "native_source_cell_pointer": "/original_sources/022_difference/original_contents/native_source_cell",
+              "return_basis_pointer": "/verification_obligations/3/bounded_context_oracles/cases/0/expected_complete_result"
             }
           ],
           "expected_source_binding": {
@@ -193549,8 +191807,7 @@
         "baseline_whole_cases_prefix_sha256": "f5ab6f4cd938e601464381862b02582b145a458ff5830ea1bcba7f3448997aea",
         "source_binding_case_count": 4,
         "source_binding_case_scope_note": "固定した有限caller入力からcallee引数を導出し、pure callee完全返却、L4 source-binding局所状態、既存partial/whole返却を個別に照合する。期待値はtest oracleでありcaller入力ではない。既存baseline whole例は変更せず、canonical JSON（sort_keys=true、区切り記号をcompact化、ensure_ascii=false）のprefix hashで保持を確認する。",
-        "source_binding_control_case_count": 1,
-        "source_binding_control_scope": "各controlはinput_patch適用後のsource_binding.recordsだけを照合する有限対照。F03/F04 whole returnを期待しない。"
+        "source_binding_control_case_count": 1
       },
       "source_binding_controls": [
         {
@@ -193616,7 +191873,8 @@
           "base_caller_case_pointer": "/unit_oracles/4/cases/31/input",
           "expected_projection": "source_binding.records"
         }
-      ]
+      ],
+      "source_binding_control_scope": "既存1件は /unit_oracles/4/source_binding_controls/0 に固定され、base caller pointer・input_patch・expected_source_binding.recordsを持つ。既存有限再計算記録では1件のsource-binding projectionがL4の規則と一致した。F04 whole return、実資格・実provider実行、caller/profile Context endpoint単独差の対照を証明しない。"
     },
     {
       "id": "HARNESS-L8-003-F05",

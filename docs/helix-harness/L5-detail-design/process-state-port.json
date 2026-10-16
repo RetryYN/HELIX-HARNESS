@@ -6071,7 +6071,7 @@
       "qualification_axes": "SourceCell.qualification_stateとsidecar.binding/producer/origin_operationを個別に保持し、L4 qualification_input_shape.reductionへ渡す。必須状態memberの欠落はmissing、null/列挙外はunknown。context_stateは資格4状態のfoldへ混ぜない。"
     },
     "private_projection_and_call_record": {
-      "association_selection": "L4 roles_by_stateで選んだroleに対応するSourceCell.original_contents.target_operation.request_association.profile_context_associationsをrole値で選ぶ。map key、資料名、JSON shapeからroleを推測しない。0行はmissing、複数行はunknown。選択行のsource_cell_ref/operation_ref、caller_context_ref/value、profile_context_ref/valueをそれぞれ当該carrier、同じtarget_operation、実入力Context、profile原Contextへ照合する。別roleの参照やendpointで補完しない。assignment relation専用SourceCellや資格行は要求せず、対応材料は選択roleの原target_operation内に保持する。",
+      "association_selection": "L4 roles_by_stateで選んだroleに対応する唯一の関連元は、そのroleのcanonical outer SourceCell.original_contents.target_operation.request_association.profile_context_associations。role値で行を選び、map key、資料名、JSON shapeからroleを推測しない。0行はmissing、複数行はunknown。選択行のsource_cell_ref/operation_ref、caller_context_ref/value、profile_context_ref/valueをそれぞれ当該outer carrier、同じouter target_operation、実入力Context、profile原Contextへ照合する。native_source_cell内、business mapping、別roleのrequest_associationから選択行を補完・代替しない。それらの原値は必要なら別途保持・比較し、選択元とはしない。assignment relation専用SourceCellや資格行は要求せず、対応材料は選択roleのouter target_operation内に保持する。",
       "record_fields": {
         "source_cell_ref": "関数呼出しの対象となる6 field SourceCellのouter ref。",
         "source_cell_snapshot_sha256": "ref/binding/kind/original_contents/qualification_state/qualification_reasonを含むSourceCell全体のcanonical JSON snapshot hash。original_contents単独hashではない。",
@@ -6085,10 +6085,12 @@
         "operation_effect": "none",
         "source_revision": "calleeを定義する固定Git revision。",
         "source_path": "calleeを含む固定source file path。",
-        "source_file_sha256": "source_revision内source_pathのblob SHA-256。L8記録と同じ値を用いる。"
+        "source_file_sha256": "source_revision内source_pathのblob SHA-256。L8記録と同じ値を用いる。",
+        "return_basis_pointer": "L8期待記録に置くproducer出力根拠のJSON Pointer。source_revision/source_path/source_file_sha256で固定したproducer source内を指し、caller入力を指すsource_pointerとは別。test oracleの出典を示し、runtimeの実返却や実行を証明しない。",
+        "source_pointer": "L8 caller入力内の原SourceCellまたは原データを指すJSON Pointer。producer source_path内の返却期待を指す場合はreturn_basis_pointerを別に用いる。"
       },
       "retention": "returned_valueは同じfunction_ref・operation_ref・source_cell_ref・source_cell_snapshot_sha256・argument_snapshot_sha256へ束縛したprivate派生call recordに保持する。raw SourceCell 6 fieldと別に記録し、original_contentsへ返却値を書き戻さない。L8のexpected_invocationsはtest側期待でありcaller inputではない。",
-      "association_storage": "各roleの独立request/assignment対応はそのroleのtarget_operation.request_associationに保持する。F03/F04の全6 callerで別assignment_relation SourceCellを必要入力・資格gateとして要求しない。"
+      "association_storage": "各roleの独立request/assignment対応はそのroleのcanonical outer target_operation.request_associationだけに保持する。native_source_cellやbusiness mappingの同値複製は選択元・資格根拠として使わず、outer値との同値も独立したlineage/資格を証明しない。F03/F04の全6 callerで別assignment_relation SourceCellを必要入力・資格gateとして要求しない。"
     },
     "role_adapters": {
       "005_valley": {
@@ -6114,7 +6116,7 @@
       "005_composition": {
         "callee": "HARNESS-L5-005-F02 compare_proof_composition",
         "scope": "F04 Verified",
-        "input": "選択されたcanonical outer SourceCell.original_contents.native_source_cellで元005のoriginal/.sources/.candidateを完全保持する。calleeのoriginal/.sources/candidateはその元native payloadから型どおり投影する。consumer endpointとscope_relation.consumer_scopeは独立に固定したcaller Contextのstructured valueへ照合し、producer endpoint/PFCSは元005 native Scopeと照合する。Text PRODUCT-Pをstructured Scopeへcastしない。元SourceCell自体を改変せず、L8は有限呼出し/返却の期待である。",
+        "input": "選択されたcanonical outer SourceCell.original_contents.native_source_cellで元005のoriginal/.sources/.candidateを、同Refの元005 SourceCellと完全一致する値として保持する。outer target_operation.request_associationはnative_source_cellへ複製しない。calleeのoriginal/.sources/candidateはその元native payloadから型どおり投影する。consumer endpointとscope_relation.consumer_scopeは独立に固定したcaller Contextのstructured valueへ照合し、producer endpoint/PFCSは元005 native Scopeと照合する。Text PRODUCT-Pをstructured Scopeへcastしない。元native SourceCellは不変で、L8は有限呼出し/返却の期待を照合する。",
         "return": "Comparison<F02VerificationObservation>全体をprivate call recordで保持する。"
       },
       "022_difference": {
@@ -6188,12 +6190,13 @@
       "difference_reason": "R1で確認したL4 carrier shapeとproducer role endpointを同一入力で結べるよう、L4が定めるSourceCell positions/qualification observationを正確に写す。旧要求の意味を変えず、別assignment資格SourceCellを新設しない。"
     },
     "association_selection": {
-      "selection": "F03/F04の既存state_role_matrix_pointerにより選ばれたproducer roleについて、そのroleのcanonical outer SourceCell.original_contents.target_operation.request_association.profile_context_associationsからroleが一致する行を探す。名前・map key・配列位置・JSON shapeからroleを補わない。",
+      "selection": "F03/F04の既存state_role_matrix_pointerにより選ばれたproducer roleについて、そのroleのcanonical outer SourceCell.original_contents.target_operation.request_association.profile_context_associationsだけからroleが一致する行を探す。business_target_mapping、native_source_cell内の重複データ、別roleの対応行を選択元として使わず、欠落時にそれらから補完しない。名前・map key・配列位置・JSON shapeからroleを補わない。",
       "cardinality": "一致行が0件ならtarget_state=missing、複数ならtarget_state=unknown。選択は該当roleだけへ局所化し、他roleを止めない。",
       "source_binding": "行のsource_cell_refを実選択SourceCell.ref、operation_refをSourceCell.binding.operation_refと同じtarget_operation.refへそれぞれ完全比較する。既知の相違はtarget_state=conflict、欠落はmissing、null/型外はunknown。source_cell_refやoperation_refを片方から生成しない。",
-      "business_endpoint": "business_endpoint.source_cell_refとraw_target_pointerを元business SourceCellへ解決し、raw_target全体を指示された元値と完全比較する。raw_targetとProcessContextのartifact_ref等は異なるroleの原値であり直接等値を要求しない。選択されたrequest_association行が両endpointの対応を明示し、その対応行のRef/valueをそれぞれの元sourceへ独立照合する。欠落/未解決はtarget軸へ局所化し、既知の不一致はconflictとする。",
+      "business_endpoint": "business packetの対応情報はL4 target_operationとは異なるbusiness_target_mappingとして保持する。business_endpoint.raw_utf8_source_pointerをcaller input内business_packet.original_contents.raw_utf8へ解決し、strict JSON decode後にdecoded_json_pointerをRFC 6901として適用する。得た値をraw_targetと完全比較する。L4 request_associationのbusiness_endpoint.raw_target_pointerは別のRFC 6901 pointerであり、outer対応行のRef/valueを上記business sourceへ独立照合する。raw_targetとProcessContextのartifact_ref等は異なるroleの原値であり直接等値を要求しない。欠落/未解決はtarget軸へ局所化し、既知の不一致はconflictとする。",
       "context_endpoint": "caller_context_ref/valueはF03/F04の実Context Ref/valueへ完全比較する。profile_context_ref/valueは当該producerの独立原Context/endpointへrole-native形のまま別途比較する。structured Scope/Text scope間をcastせず、原Context間の関連は選択したrequest_associationの同一行が表す。",
-      "scope_relation": "binding.scope_relationは任意補助値であり、association欠落を補わない。存在するときconsumer_scope/producer_scopeを各々の独立比較元へ照合し、欠落・null・型外・既知差をL4の当該軸の規則へ返す。"
+      "scope_relation": "binding.scope_relationは任意補助値であり、association欠落を補わない。存在するときconsumer_scope/producer_scopeを各々の独立比較元へ照合し、欠落・null・型外・既知差をL4の当該軸の規則へ返す。",
+      "association_source": "対応行の選択正本は選択されたroleのcanonical outer SourceCell.original_contents.target_operation.request_association。各endpointはこの行から独立に他の原値へ照合するが、別の行・native payload・business mappingの値を選択元へ昇格・合成しない。選択元との不一致は元値を保持して該当軸へ返す。"
     },
     "comparison_and_localization": {
       "axes": "SourceCell binding/operation endpoints、business endpoint、caller Context、role profile Context、producer_facing_consumer_scope、scope_relation、carrier/sidecar資格は元値を個別に保持し、L4のtarget_state/scope_state/scope_relation_state/source_qualification_state/revision stateへ各比較結果を割り当てる。",
