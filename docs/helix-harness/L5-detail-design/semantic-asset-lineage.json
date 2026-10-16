@@ -359,7 +359,7 @@
         "claim_observations": "Tuple[ClaimObservation]"
       },
       "LineageAnalysis": {
-        "binding": "Binding",
+        "binding": "Binding|null",
         "comparisons": "Tuple[Comparison]",
         "boundaries": "Tuple[BoundaryObservation]",
         "input_issues": "Tuple[InputIssue]",
@@ -627,7 +627,7 @@
       "output": "LineageAnalysis",
       "effect": "none。immutable snapshotから戻り値だけ。旧runtime/旧CIなし。",
       "algorithm": [
-        "ValidatedInput.input=nullならinput_issuesを保持したlocal_closure=unestablished analysisを返す。input有りなら各pure比較関数とboundaryを呼び、全axis/claim/finding/ownercauseをbinding/subject/axis単位で保持。各rule判定は担当関数の結果を使い、code/expected入力で結果を作らない。",
+        "ValidatedInput.input=nullなら、LineageAnalysisをbinding=null、comparisons=[]、boundaries=[]、input_issues=ValidatedInput.issuesの原順保全、local_closure=unestablished、unresolved_reference=HARNESS-L2-053→HARNESS-L2-042、side_effect_count=0、global_completion=unprovenで返す。comparisons=[]とboundaries=[]は型付きinput/record/operationの未観測を表し、not_requestedを推定しない。binding=nullはこの枝だけに限り、input有りではinput.bindingをそのまま返す。input有りなら各pure比較関数とboundaryを呼び、全axis/claim/finding/ownercauseをbinding/subject/axis単位で保持。各rule判定は担当関数の結果を使い、code/expected入力で結果を作らない。",
         "required axisにmissing/unknown/conflictがある当該local closureはunestablished。全required matched、非requiredのqualified N/Aだけならestablished。これはrecord-only closureであり042未決や実operation成立を消さない。",
         "全findingを消さずasset ID/semantic revision/relation ID/axis/owner/source RefのUnicode scalar昇順へ並べる。nullは専用missing位置として比較し空Textと同一にしない。異bindingは別resultのまま。",
         "同一入力の再比較と入力順置換は同じsemantic結果。時計/env/fs/network/DB/API/ID生成/保存/rollback/権限発行/受入宣言なし。side_effect_count=0、global_completion=unproven。"
@@ -639,7 +639,8 @@
         "HARNESS-L8-053-ADD-17",
         "HARNESS-L8-053-ADD-18",
         "HARNESS-L8-053-ADD-19",
-        "HARNESS-L8-053-ADD-20"
+        "HARNESS-L8-053-ADD-20",
+        "HARNESS-L8-053-ADD-21"
       ]
     }
   ],
