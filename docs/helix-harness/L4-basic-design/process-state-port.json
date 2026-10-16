@@ -495,7 +495,62 @@
         "technical_evidence_owner": "技術検証owner",
         "meaning_owner": "HARNESS",
         "preservation": "受容済み軸と未解決findingを別に保持。技術品質と人の原反応は相殺しない。",
-        "management_return": "意味が変わる上流ownerへ候補と根拠を返し、製品要求を直接writeしない。"
+        "management_return": "意味が変わる上流ownerへ候補と根拠を返し、製品要求を直接writeしない。",
+        "grounding_meaning_input": {
+          "producer": "既存HARNESS meaning_owner。承認済み要求意味に基づく技術的な比較所見を供給する責務であり、新承認者ではない。",
+          "consumer": "HARNESSのB01条件照合。OS原反応、技術検証ownerの原結果と分離した意味入力として受け取る。",
+          "input_arguments": {
+            "grounding_scope_contract": "独立SourceCell資格付きの原適用契約。targetは原revision/scope、applicabilityは各根拠役割のrequired/not_required/not_applicable、reasonとbasisは原適用理由/出典。",
+            "grounding_meaning_observations": "役割別の独立SourceCell資格付き意味所見。role、target、subject_source_ref、比較したassessed_material全値、conclusion(sufficient/insufficient/unresolved)、reason、basisを原値として供給する。"
+          },
+          "grounding_roles": [
+            "purpose",
+            "premises",
+            "legacy_assets",
+            "external_examples",
+            "comparison"
+          ],
+          "applicability": "既存工程/対象scopeの原契約が必要性を供給する。5役割を全案件一律requiredへしない。not_required/根拠付きnot_applicableは必要集合へ入れず、資料/所見の資格診断を保持しても当該不足で進行条件を止めない。N/Aをsufficientへ変換しない。",
+          "missing_scope": "scopeの資格、target、適用条件、理由/出典を別に読む。未供給や未決の適用条件をrequired/非必要へ補完しない。scope理由/出典の欠落/null/空はunknown、型外はconflictとして局所保持し、requiredとN/Aの双方に適用する。",
+          "comparison_axes": [
+            "各required役割の原source資格と原内容を読む。意味所見sufficientで資格を補完しない。",
+            "所見role、対象scope/revision、原材料Ref全値、assessed_material全値を当該原材料へ独立に比較する。非空文字列、正しい型、owner literal、carrierのknownだけで意味十分性にしない。",
+            "対応一致のsufficient/insufficient/unresolvedを別結果にし、既知意味不足はsource資格knownのまま論理ownerへ返す。理由/出典の未供給を意味充足へしない。"
+          ],
+          "local_return": "必要な所見/比較軸の未供給はmissing、null/未決はunknown、型外/既知役割・Ref・材料・scope相反はconflict、同scope別revisionはstaleとして保持する。独立原因を捨てず、異なる未解決stateの集約はunknown/nullとする。必要集合が既知の空集合なら当該scopeの非必要条件を返す。",
+          "original_material_absence": "原材料のabsent/nullは既存の欠落材料意味としてmissing、役割に対応しない型はconflict。所見の未供給/未決と原材料の欠落を混同しない。",
+          "independence": "供給側は原材料・批准意味を読み、candidate claim/L8期待/旧expectedから意味所見を作らない。consumerは所見の全対応を照合し、汎用自然文engineでの全数意味判定を新条件にしない。",
+          "qualification_and_owner": "scope/各所見の資格はそれぞれ独立入力。型/所見/Ref.ownerから実資格を作らない。HARNESSは既存meaning roleへ論理返却し、実recipient/deliveryの追加resolverや人の反復承認を必須化しない。",
+          "preserve": "既存technical/human/managementの独立結果、受容済み軸、未解決finding、非対象scopeを保持する。AI所見を人間原反応/要求採択/要件承認/L11実物受入へ昇格しない。",
+          "design_difference": "旧原資料の保持/意味再導出とL4 meaning_owner=HARNESSを維持し、曖昧だった意味所見の供給引数・対応比較・局所返却を技術具体化する。要求意味、新engine、新gateを追加しない。"
+        }
+      },
+      "logical_return_boundary": {
+        "common_core": [
+          "partial_values",
+          "owner_returns",
+          "unaffected_scope",
+          "operation_effect"
+        ],
+        "additional_members": [
+          "source_qualification_results",
+          "qualification_returns",
+          "definition_return",
+          "readable_original_materials",
+          "candidate_comparison"
+        ],
+        "scope": "B01/F01の役割別closed出力だけを具体化する。他のF02/F03/F04/F05/N01は既存4coreと各関数の既存追加memberを保持し、9memberへのcastや空member供給を要求しない。",
+        "partial_value": "state/value/source_packet_ref/reasonを保持し、known(null/false/空集合)と未解決nullを区別する。派生値は実際の比較入力Context参照へ、元資格観測はその原Ref/理由へ結ぶ。",
+        "meaning_return": "owner_returnsはaffected_field/cause_state/元参照集合/対象revision・scope/戻し層/論理owner/理由/noneを保持する。資格診断や定義不足とaliasしない。論理ownerは既存契約role又は原資料が指定した意味ownerであり、実recipient/本人性を生成しない。",
+        "qualification_results": "source_qualification_resultsは各独立sourceのknown/missing/unknown/conflict/staleを全て保持し、意味不一致で資格状態を上書きしない。",
+        "candidate_comparison": "元評価を確定してから明示candidate claimだけを比較する。意味state/value差とRef/理由の技術差を区別して保存し、候補/期待から元評価を作らない。candidate_comparison自身を比較対象にして循環させない。",
+        "legacy_view": "旧4core/5member viewは提示されたmember/pathだけの明示投影とする。旧flat値mapとtyped PartialValue mapのshapeを一対一に結び、未提示state/ref/reasonを補わず、提示済みRef/理由は捨てない。",
+        "effect_boundary": "operation_effectはnone。HARNESSは条件/返却候補を返し、実進行・実承認・実受入・実完了を生成しない。OSの実行・記録・監視責務を保持する。",
+        "type": "GroundingAssessment",
+        "partial_values": "B01既存18fieldを独立保持する。",
+        "qualification_returns": "B01の原state/source_ref/reasonの3fieldを保持する。",
+        "definition_return": "このB01出力ではabsent。scope/意味不足はowner_returnsへ保持する。",
+        "readable_original_materials": "物理的に読めた原資料を保持する。資格known一覧ではない。"
       }
     },
     {
@@ -535,7 +590,59 @@
         "actual_progress_and_records_owner": "OS",
         "authority_original_owner": "対象判断/認可のowner",
         "operation_distinction": "開始/凍結/差戻し/再開/完了ごとの必要条件を原契約へ結び、差戻しを要求承認待ちへ一律に止めない。",
-        "delegation": "委任内の技術具体化は追加承認を新設しない。未委任意味/権限は当該ownerへ返す。"
+        "delegation": "委任内の技術具体化は追加承認を新設しない。未委任意味/権限は当該ownerへ返す。",
+        "condition_comparison_input": {
+          "producer": "既存condition_provider（当該工程の承認済み契約owner）。必要membershipとは別に、具体条件の比較対象を原値として供給する。",
+          "consumer": "HARNESSのF01条件比較。実進行/記録はOS、原authority判断は当該ownerへ保持する。",
+          "input_argument": "condition_expectations: 独立SourceCell資格と原Ref付きのConditionExpectations。target(revision/scope)、phase、profiles(map<open ConditionIdentity,ConditionDefinition>)、basisを持つ。",
+          "profile_fields": {
+            "semantic_role": "当該条件の比較役割をproviderが明示する。identity名/観測kind/非空から推測しない。",
+            "required_native_kind": "当該roleの具体原内容を読むprotocol。相談/依頼/採択/操作認可をrequirements_approvalとして正当化する供給を受け入れない。",
+            "expected": "当該役割の具体比較対象。元必要membershipや観測値自身から生成しない。",
+            "reason_and_basis": "原定義を支える理由/出典。形式一致を実資格又は人の承認に昇格しない。"
+          },
+          "comparison_meanings": {
+            "agreement": "当該対象要求への合意を独立期待対象へ比較する。",
+            "requirements_approval": "L3/L10と既存委任に関する原値を独立期待へ照合し、相談等を承認へ変換しない。",
+            "pair": "左右成果物の層/revisionを独立比較対象へ照合する。",
+            "verification": "独立期待ownerと原資料が主張する期待owner/観測ownerを別々に比較し、対象検証と実行原値を保持する。観測側expected/observed同値だけで成立にしない。",
+            "unresolved": "当該scopeの未解決itemsを原契約の許容条件へ照合する。既知空集合と未観測を区別する。",
+            "finding_route": "finding、戻し層、影響scopeを当該原契約へ比較する。"
+          },
+          "open_domain": "上の比較役割は既存要求の意味を具体化する対応であり、ConditionIdentityや全実案件のnative kindを6個へ固定する採択ではない。新identityはproviderの明示定義を読む。対応できないrole/kind/期待定義はunknown/定義返却へ戻し、近い名前へのfallbackをしない。",
+          "membership_and_qualification": "原phase契約の当該actionだけから必要identityを読む。別action/空集合を既定にしない。profile不足や資格不足を必要集合の欠落と混同せず、既知membershipの個別条件だけへ局所保持する。非必要profile/資料の不足は診断を残してもproceedを止めない。",
+          "content_return": "原target/phaseや材料の対象はmissing/unknown/conflict/staleを局所保持する。既知内容相反と独立資格未成立を別診断にし、known資格を書換えない。複数の異なる不成立状態は集約unknown/null、既知の他条件は保持する。",
+          "definition_return": "必要profile/比較対象の未供給、未対応role/kind、role型外はunknown/nullと当該定義sourceへのDefinitionReturnへ結ぶ。宣言型の検査をrole membership/lookupより先に行い、型外JSONを例外・空・既定roleへ変換しない。原phase/action定義不足とは元参照を分ける。",
+          "delegation_and_effect": "既存委任内の技術具体化へ新承認を足さず、未委任の意味/権限変更だけを原ownerへ返す。HARNESSの実進行/承認生成/完了はfalse、operation_effect none。",
+          "design_difference": "既存condition_providerと各原資料を保持し、原required_by_actionだけでは指定されなかった具体比較対象を型付きの独立原入力として明示する。新承認者・実配送・実owner資格gateを追加しない。"
+        }
+      },
+      "logical_return_boundary": {
+        "common_core": [
+          "partial_values",
+          "owner_returns",
+          "unaffected_scope",
+          "operation_effect"
+        ],
+        "additional_members": [
+          "source_qualification_results",
+          "qualification_returns",
+          "definition_return",
+          "readable_original_materials",
+          "candidate_comparison"
+        ],
+        "scope": "B01/F01の役割別closed出力だけを具体化する。他のF02/F03/F04/F05/N01は既存4coreと各関数の既存追加memberを保持し、9memberへのcastや空member供給を要求しない。",
+        "partial_value": "state/value/source_packet_ref/reasonを保持し、known(null/false/空集合)と未解決nullを区別する。派生値は実際の比較入力Context参照へ、元資格観測はその原Ref/理由へ結ぶ。",
+        "meaning_return": "owner_returnsはaffected_field/cause_state/元参照集合/対象revision・scope/戻し層/論理owner/理由/noneを保持する。資格診断や定義不足とaliasしない。論理ownerは既存契約role又は原資料が指定した意味ownerであり、実recipient/本人性を生成しない。",
+        "qualification_results": "source_qualification_resultsは各独立sourceのknown/missing/unknown/conflict/staleを全て保持し、意味不一致で資格状態を上書きしない。",
+        "candidate_comparison": "元評価を確定してから明示candidate claimだけを比較する。意味state/value差とRef/理由の技術差を区別して保存し、候補/期待から元評価を作らない。candidate_comparison自身を比較対象にして循環させない。",
+        "legacy_view": "旧4core/5member viewは提示されたmember/pathだけの明示投影とする。旧flat値mapとtyped PartialValue mapのshapeを一対一に結び、未提示state/ref/reasonを補わず、提示済みRef/理由は捨てない。",
+        "effect_boundary": "operation_effectはnone。HARNESSは条件/返却候補を返し、実進行・実承認・実受入・実完了を生成しない。OSの実行・記録・監視責務を保持する。",
+        "type": "RevisionProgressionAssessment",
+        "partial_values": "F01既存9field。condition_resultsは既知必要identity内のPartialValue mapで、membership未確定ならnull。実進行/承認生成/完了は常にknown false。",
+        "qualification_returns": "F01既存7field（qualification_state/original_source_ref/target_binding/required_for_action/owner_target/reason/operation_effect）を全て保持する。owner_target原観測を別ownerや推定recipientで補わない。",
+        "definition_return": "原phase/action又は必要profile定義が未解決ならstate/元参照/対象/理由/owner_target状態・値/noneの7fieldをpresentで返し、他はabsent。",
+        "readable_original_materials": "物理的に読めた材料identityを保持する。既知membershipや資格known一覧とは別に返す。"
       }
     },
     {
