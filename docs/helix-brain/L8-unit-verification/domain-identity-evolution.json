@@ -6859,5 +6859,31 @@
       }
     ]
   },
-  "source_pin_role_note": "approved_whole_hashes/approved whole bindingsは批准済みL3/L10の固定revisionを維持する。l5_candidate_bindingは今回のcurrent L5 candidate bytesを別役割で結び、approved source pinを追随更新しない。"
+  "source_pin_role_note": "approved_whole_hashes/approved whole bindingsは批准済みL3/L10の固定revisionを維持する。l5_candidate_bindingは今回のcurrent L5 candidate bytesを別役割で結び、approved source pinを追随更新しない。",
+  "current_l9_candidate_binding": {
+    "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
+    "candidate_based_on_revision": "c718ca7a250123fe6aeda48701182824a6d94e98",
+    "candidate_sha256": "2b26819b280014f9f125f9d1f6e0407bb362de4a8d660e2b179e045283adf60f",
+    "binding_role": "今回のL9候補とL8 typed casesの接続。旧L9/aef2 migration source pin、approved L3/L10 pins、L5 semanticsを置換しない。",
+    "case_bindings": [
+      {
+        "l8_case_id": "CROSS-ROLE-RELATION-MISSING",
+        "l9_case_id": "B001-F02-CROSS-ROLE-RELATION-MISSING",
+        "fixture_sha256": "cb3cbaae0a7abe7c493ef86b4f85e21c66ea99172d1a22f9e3b3c863beb43b25",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/12/expected_material"
+      },
+      {
+        "l8_case_id": "CROSS-ROLE-CONSUMER-MISSING",
+        "l9_case_id": "B001-F02-CROSS-ROLE-CONSUMER-MISSING",
+        "fixture_sha256": "7373e41daee4613a5ebf4a7ea2da09be665d445967994b202c7fc828a217fa3b",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/13/expected_material"
+      },
+      {
+        "l8_case_id": "CROSS-ROLE-BOTH-MAPPED",
+        "l9_case_id": "B001-F02-CROSS-ROLE-BOTH-MAPPED",
+        "fixture_sha256": "b9a46e5d74cbb8018c16ec83edcd92c360ac21b1ac877841dccfc4246a23f57a",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/14/expected_material"
+      }
+    ]
+  }
 }

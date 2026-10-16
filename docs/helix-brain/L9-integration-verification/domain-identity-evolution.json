@@ -700,10 +700,14 @@
             "proposal_result": "add_candidate_only",
             "meaning_result": "known_in_fixture_only",
             "reference_results": {
-              "REL-A": "preserved_and_mapped_candidate",
-              "REL-B": "preserved_and_mapped_candidate",
-              "CONSUMER-P": "preserved_and_mapped_candidate",
-              "CONSUMER-R": "preserved_and_mapped_candidate"
+              "relations": {
+                "REL-A": "preserved_and_mapped_candidate",
+                "REL-B": "preserved_and_mapped_candidate"
+              },
+              "consumers": {
+                "CONSUMER-P": "preserved_and_mapped_candidate",
+                "CONSUMER-R": "preserved_and_mapped_candidate"
+              }
             },
             "fixed_enum": false,
             "operation_claim": "none",
@@ -744,10 +748,14 @@
             "proposal_result": "split_candidate_only",
             "meaning_result": "known_in_fixture_only",
             "reference_results": {
-              "REL-A": "preserved_and_mapped_candidate",
-              "REL-B": "preserved_and_mapped_candidate",
-              "CONSUMER-P": "preserved_and_mapped_candidate",
-              "CONSUMER-R": "preserved_and_mapped_candidate"
+              "relations": {
+                "REL-A": "preserved_and_mapped_candidate",
+                "REL-B": "preserved_and_mapped_candidate"
+              },
+              "consumers": {
+                "CONSUMER-P": "preserved_and_mapped_candidate",
+                "CONSUMER-R": "preserved_and_mapped_candidate"
+              }
             },
             "fixed_enum": false,
             "operation_claim": "none",
@@ -788,10 +796,14 @@
             "proposal_result": "merge_candidate_only",
             "meaning_result": "known_in_fixture_only",
             "reference_results": {
-              "REL-A": "preserved_and_mapped_candidate",
-              "REL-B": "preserved_and_mapped_candidate",
-              "CONSUMER-P": "preserved_and_mapped_candidate",
-              "CONSUMER-R": "preserved_and_mapped_candidate"
+              "relations": {
+                "REL-A": "preserved_and_mapped_candidate",
+                "REL-B": "preserved_and_mapped_candidate"
+              },
+              "consumers": {
+                "CONSUMER-P": "preserved_and_mapped_candidate",
+                "CONSUMER-R": "preserved_and_mapped_candidate"
+              }
             },
             "fixed_enum": false,
             "operation_claim": "none",
@@ -832,10 +844,14 @@
             "proposal_result": "retire_candidate_only",
             "meaning_result": "known_in_fixture_only",
             "reference_results": {
-              "REL-A": "preserved_and_mapped_candidate",
-              "REL-B": "preserved_and_mapped_candidate",
-              "CONSUMER-P": "preserved_and_mapped_candidate",
-              "CONSUMER-R": "preserved_and_mapped_candidate"
+              "relations": {
+                "REL-A": "preserved_and_mapped_candidate",
+                "REL-B": "preserved_and_mapped_candidate"
+              },
+              "consumers": {
+                "CONSUMER-P": "preserved_and_mapped_candidate",
+                "CONSUMER-R": "preserved_and_mapped_candidate"
+              }
             },
             "fixed_enum": false,
             "operation_claim": "none",
@@ -876,10 +892,14 @@
             "proposal_result": "held_candidate",
             "meaning_result": "known_in_fixture_only",
             "reference_results": {
-              "REL-A": "missing_original_reference",
-              "REL-B": "preserved_and_mapped_candidate",
-              "CONSUMER-P": "preserved_and_mapped_candidate",
-              "CONSUMER-R": "preserved_and_mapped_candidate"
+              "relations": {
+                "REL-A": "missing_original_reference",
+                "REL-B": "preserved_and_mapped_candidate"
+              },
+              "consumers": {
+                "CONSUMER-P": "preserved_and_mapped_candidate",
+                "CONSUMER-R": "preserved_and_mapped_candidate"
+              }
             },
             "fixed_enum": false,
             "operation_claim": "none",
@@ -920,10 +940,14 @@
             "proposal_result": "held_candidate",
             "meaning_result": "known_in_fixture_only",
             "reference_results": {
-              "REL-A": "preserved_and_mapped_candidate",
-              "REL-B": "preserved_and_mapped_candidate",
-              "CONSUMER-P": "missing_original_reference",
-              "CONSUMER-R": "preserved_and_mapped_candidate"
+              "relations": {
+                "REL-A": "preserved_and_mapped_candidate",
+                "REL-B": "preserved_and_mapped_candidate"
+              },
+              "consumers": {
+                "CONSUMER-P": "missing_original_reference",
+                "CONSUMER-R": "preserved_and_mapped_candidate"
+              }
             },
             "fixed_enum": false,
             "operation_claim": "none",
@@ -964,10 +988,14 @@
             "proposal_result": "held_candidate",
             "meaning_result": "known_in_fixture_only",
             "reference_results": {
-              "REL-A": "missing_mapping",
-              "REL-B": "preserved_and_mapped_candidate",
-              "CONSUMER-P": "preserved_and_mapped_candidate",
-              "CONSUMER-R": "preserved_and_mapped_candidate"
+              "relations": {
+                "REL-A": "missing_mapping",
+                "REL-B": "preserved_and_mapped_candidate"
+              },
+              "consumers": {
+                "CONSUMER-P": "preserved_and_mapped_candidate",
+                "CONSUMER-R": "preserved_and_mapped_candidate"
+              }
             },
             "fixed_enum": false,
             "operation_claim": "none",
@@ -1008,10 +1036,14 @@
             "proposal_result": "held_candidate",
             "meaning_result": "known_in_fixture_only",
             "reference_results": {
-              "REL-A": "preserved_and_mapped_candidate",
-              "REL-B": "preserved_and_mapped_candidate",
-              "CONSUMER-P": "missing_mapping",
-              "CONSUMER-R": "preserved_and_mapped_candidate"
+              "relations": {
+                "REL-A": "preserved_and_mapped_candidate",
+                "REL-B": "preserved_and_mapped_candidate"
+              },
+              "consumers": {
+                "CONSUMER-P": "missing_mapping",
+                "CONSUMER-R": "preserved_and_mapped_candidate"
+              }
             },
             "fixed_enum": false,
             "operation_claim": "none",
@@ -1052,10 +1084,14 @@
             "proposal_result": "held_candidate",
             "meaning_result": "unknown",
             "reference_results": {
-              "REL-A": "preserved_and_mapped_candidate",
-              "REL-B": "preserved_and_mapped_candidate",
-              "CONSUMER-P": "preserved_and_mapped_candidate",
-              "CONSUMER-R": "preserved_and_mapped_candidate"
+              "relations": {
+                "REL-A": "preserved_and_mapped_candidate",
+                "REL-B": "preserved_and_mapped_candidate"
+              },
+              "consumers": {
+                "CONSUMER-P": "preserved_and_mapped_candidate",
+                "CONSUMER-R": "preserved_and_mapped_candidate"
+              }
             },
             "fixed_enum": false,
             "operation_claim": "none",
@@ -1096,10 +1132,14 @@
             "proposal_result": "held_candidate",
             "meaning_result": "overlapping",
             "reference_results": {
-              "REL-A": "preserved_and_mapped_candidate",
-              "REL-B": "preserved_and_mapped_candidate",
-              "CONSUMER-P": "preserved_and_mapped_candidate",
-              "CONSUMER-R": "preserved_and_mapped_candidate"
+              "relations": {
+                "REL-A": "preserved_and_mapped_candidate",
+                "REL-B": "preserved_and_mapped_candidate"
+              },
+              "consumers": {
+                "CONSUMER-P": "preserved_and_mapped_candidate",
+                "CONSUMER-R": "preserved_and_mapped_candidate"
+              }
             },
             "fixed_enum": false,
             "operation_claim": "none",
@@ -1140,10 +1180,14 @@
             "proposal_result": "held_candidate",
             "meaning_result": "known_in_fixture_only",
             "reference_results": {
-              "REL-A": "preserved_and_mapped_candidate",
-              "REL-B": "preserved_and_mapped_candidate",
-              "CONSUMER-P": "preserved_and_mapped_candidate",
-              "CONSUMER-R": "preserved_and_mapped_candidate"
+              "relations": {
+                "REL-A": "preserved_and_mapped_candidate",
+                "REL-B": "preserved_and_mapped_candidate"
+              },
+              "consumers": {
+                "CONSUMER-P": "preserved_and_mapped_candidate",
+                "CONSUMER-R": "preserved_and_mapped_candidate"
+              }
             },
             "fixed_enum": "rejected",
             "operation_claim": "none",
@@ -1184,10 +1228,14 @@
             "proposal_result": "split_candidate_only",
             "meaning_result": "known_in_fixture_only",
             "reference_results": {
-              "REL-A": "preserved_and_mapped_candidate",
-              "REL-B": "preserved_and_mapped_candidate",
-              "CONSUMER-P": "preserved_and_mapped_candidate",
-              "CONSUMER-R": "preserved_and_mapped_candidate"
+              "relations": {
+                "REL-A": "preserved_and_mapped_candidate",
+                "REL-B": "preserved_and_mapped_candidate"
+              },
+              "consumers": {
+                "CONSUMER-P": "preserved_and_mapped_candidate",
+                "CONSUMER-R": "preserved_and_mapped_candidate"
+              }
             },
             "fixed_enum": false,
             "operation_claim": "rejected",
@@ -1205,6 +1253,150 @@
             "unaffected_Q": "original_Q"
           },
           "basis": "候補から実分割/統合/退役を生成しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B001-F02-CROSS-ROLE-RELATION-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-001-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-001-F02",
+          "l4_ref": "HELIXBRAIN-L4-001-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-CROSS-ROLE-RELATION-MISSING",
+              "revision": "fixture-content-cb3cbaae0a7abe7c493ef86b4f85e21c66ea99172d1a22f9e3b3c863beb43b25",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_operation_executed\":false,\"fixed_enum\":false,\"operation\":\"add\",\"original_domain\":{\"identity\":\"BACKEND\",\"meaning\":\"server processing structure\",\"revision\":\"r1\"},\"original_references\":{\"consumers\":[{\"domain\":\"BACKEND@r1\",\"id\":\"SHARED\",\"relation\":\"SHARED\"},{\"domain\":\"BACKEND@r1\",\"id\":\"CONSUMER-R\",\"relation\":\"REL-B\"}],\"relations\":[{\"domain\":\"BACKEND@r1\",\"id\":\"SHARED\",\"meaning\":\"belongs_to_domain\",\"pattern\":\"PATTERN-A@r1\"},{\"domain\":\"BACKEND@r1\",\"id\":\"REL-B\",\"meaning\":\"belongs_to_domain\",\"pattern\":\"PATTERN-B@r1\"}]},\"preserved_reference_snapshot\":{\"consumers\":[{\"domain\":\"BACKEND@r1\",\"id\":\"SHARED\",\"relation\":\"SHARED\"},{\"domain\":\"BACKEND@r1\",\"id\":\"CONSUMER-R\",\"relation\":\"REL-B\"}],\"relations\":[{\"domain\":\"BACKEND@r1\",\"id\":\"SHARED\",\"meaning\":\"belongs_to_domain\",\"pattern\":\"PATTERN-A@r1\"},{\"domain\":\"BACKEND@r1\",\"id\":\"REL-B\",\"meaning\":\"belongs_to_domain\",\"pattern\":\"PATTERN-B@r1\"}]},\"proposal\":{\"consumer_mapping_candidates\":{\"CONSUMER-R\":[\"REL-B\"],\"SHARED\":[\"SHARED\"]},\"meaning_assessment\":\"known_in_fixture_only\",\"meaning_delta\":\"synthetic-add-meaning-proposal\",\"meaning_delta_detail\":{\"after\":\"synthetic addition independent of existing domain\",\"before\":\"server processing structure\",\"reason\":\"input owner supplied comparison only; no actual taxonomy decision\"},\"new_domain_candidates\":[\"DOMAIN-CANDIDATE-add@r1\"],\"relation_mapping_candidates\":{\"REL-B\":[\"BACKEND@r1\"],\"SHARED\":[]},\"source_domain_refs\":[]}}",
+            "sha256": "cb3cbaae0a7abe7c493ef86b4f85e21c66ea99172d1a22f9e3b3c863beb43b25",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "proposal_result": "held_candidate",
+            "meaning_result": "known_in_fixture_only",
+            "reference_results": {
+              "relations": {
+                "REL-B": "preserved_and_mapped_candidate",
+                "SHARED": "missing_mapping"
+              },
+              "consumers": {
+                "CONSUMER-R": "preserved_and_mapped_candidate",
+                "SHARED": "preserved_and_mapped_candidate"
+              }
+            },
+            "fixed_enum": false,
+            "operation_claim": "none",
+            "effects": {
+              "actual_domain_add": false,
+              "actual_domain_split": false,
+              "actual_domain_merge": false,
+              "actual_domain_retire": false,
+              "actual_knowledge_adopted": false,
+              "actual_CORE_meaning_updated": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "same-IDのrelationとconsumerを別役割として照合する。期待値はL3/L4の保持義務とL5の役割別比較規則から独立に導出し、L8側の期待値は突合せにのみ用いる。実領域変更・採用・authorityを意味しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B001-F02-CROSS-ROLE-CONSUMER-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-001-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-001-F02",
+          "l4_ref": "HELIXBRAIN-L4-001-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-CROSS-ROLE-CONSUMER-MISSING",
+              "revision": "fixture-content-7373e41daee4613a5ebf4a7ea2da09be665d445967994b202c7fc828a217fa3b",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_operation_executed\":false,\"fixed_enum\":false,\"operation\":\"add\",\"original_domain\":{\"identity\":\"BACKEND\",\"meaning\":\"server processing structure\",\"revision\":\"r1\"},\"original_references\":{\"consumers\":[{\"domain\":\"BACKEND@r1\",\"id\":\"SHARED\",\"relation\":\"SHARED\"},{\"domain\":\"BACKEND@r1\",\"id\":\"CONSUMER-R\",\"relation\":\"REL-B\"}],\"relations\":[{\"domain\":\"BACKEND@r1\",\"id\":\"SHARED\",\"meaning\":\"belongs_to_domain\",\"pattern\":\"PATTERN-A@r1\"},{\"domain\":\"BACKEND@r1\",\"id\":\"REL-B\",\"meaning\":\"belongs_to_domain\",\"pattern\":\"PATTERN-B@r1\"}]},\"preserved_reference_snapshot\":{\"consumers\":[{\"domain\":\"BACKEND@r1\",\"id\":\"SHARED\",\"relation\":\"SHARED\"},{\"domain\":\"BACKEND@r1\",\"id\":\"CONSUMER-R\",\"relation\":\"REL-B\"}],\"relations\":[{\"domain\":\"BACKEND@r1\",\"id\":\"SHARED\",\"meaning\":\"belongs_to_domain\",\"pattern\":\"PATTERN-A@r1\"},{\"domain\":\"BACKEND@r1\",\"id\":\"REL-B\",\"meaning\":\"belongs_to_domain\",\"pattern\":\"PATTERN-B@r1\"}]},\"proposal\":{\"consumer_mapping_candidates\":{\"CONSUMER-R\":[\"REL-B\"],\"SHARED\":[]},\"meaning_assessment\":\"known_in_fixture_only\",\"meaning_delta\":\"synthetic-add-meaning-proposal\",\"meaning_delta_detail\":{\"after\":\"synthetic addition independent of existing domain\",\"before\":\"server processing structure\",\"reason\":\"input owner supplied comparison only; no actual taxonomy decision\"},\"new_domain_candidates\":[\"DOMAIN-CANDIDATE-add@r1\"],\"relation_mapping_candidates\":{\"REL-B\":[\"BACKEND@r1\"],\"SHARED\":[\"BACKEND@r1\"]},\"source_domain_refs\":[]}}",
+            "sha256": "7373e41daee4613a5ebf4a7ea2da09be665d445967994b202c7fc828a217fa3b",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "proposal_result": "held_candidate",
+            "meaning_result": "known_in_fixture_only",
+            "reference_results": {
+              "relations": {
+                "REL-B": "preserved_and_mapped_candidate",
+                "SHARED": "preserved_and_mapped_candidate"
+              },
+              "consumers": {
+                "CONSUMER-R": "preserved_and_mapped_candidate",
+                "SHARED": "missing_mapping"
+              }
+            },
+            "fixed_enum": false,
+            "operation_claim": "none",
+            "effects": {
+              "actual_domain_add": false,
+              "actual_domain_split": false,
+              "actual_domain_merge": false,
+              "actual_domain_retire": false,
+              "actual_knowledge_adopted": false,
+              "actual_CORE_meaning_updated": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "same-IDのrelationとconsumerを別役割として照合する。期待値はL3/L4の保持義務とL5の役割別比較規則から独立に導出し、L8側の期待値は突合せにのみ用いる。実領域変更・採用・authorityを意味しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B001-F02-CROSS-ROLE-BOTH-MAPPED",
+          "requirement_ref": "HELIXBRAIN-L3-001-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-001-F02",
+          "l4_ref": "HELIXBRAIN-L4-001-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-CROSS-ROLE-BOTH-MAPPED",
+              "revision": "fixture-content-b9a46e5d74cbb8018c16ec83edcd92c360ac21b1ac877841dccfc4246a23f57a",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_operation_executed\":false,\"fixed_enum\":false,\"operation\":\"add\",\"original_domain\":{\"identity\":\"BACKEND\",\"meaning\":\"server processing structure\",\"revision\":\"r1\"},\"original_references\":{\"consumers\":[{\"domain\":\"BACKEND@r1\",\"id\":\"SHARED\",\"relation\":\"SHARED\"},{\"domain\":\"BACKEND@r1\",\"id\":\"CONSUMER-R\",\"relation\":\"REL-B\"}],\"relations\":[{\"domain\":\"BACKEND@r1\",\"id\":\"SHARED\",\"meaning\":\"belongs_to_domain\",\"pattern\":\"PATTERN-A@r1\"},{\"domain\":\"BACKEND@r1\",\"id\":\"REL-B\",\"meaning\":\"belongs_to_domain\",\"pattern\":\"PATTERN-B@r1\"}]},\"preserved_reference_snapshot\":{\"consumers\":[{\"domain\":\"BACKEND@r1\",\"id\":\"SHARED\",\"relation\":\"SHARED\"},{\"domain\":\"BACKEND@r1\",\"id\":\"CONSUMER-R\",\"relation\":\"REL-B\"}],\"relations\":[{\"domain\":\"BACKEND@r1\",\"id\":\"SHARED\",\"meaning\":\"belongs_to_domain\",\"pattern\":\"PATTERN-A@r1\"},{\"domain\":\"BACKEND@r1\",\"id\":\"REL-B\",\"meaning\":\"belongs_to_domain\",\"pattern\":\"PATTERN-B@r1\"}]},\"proposal\":{\"consumer_mapping_candidates\":{\"CONSUMER-R\":[\"REL-B\"],\"SHARED\":[\"SHARED\"]},\"meaning_assessment\":\"known_in_fixture_only\",\"meaning_delta\":\"synthetic-add-meaning-proposal\",\"meaning_delta_detail\":{\"after\":\"synthetic addition independent of existing domain\",\"before\":\"server processing structure\",\"reason\":\"input owner supplied comparison only; no actual taxonomy decision\"},\"new_domain_candidates\":[\"DOMAIN-CANDIDATE-add@r1\"],\"relation_mapping_candidates\":{\"REL-B\":[\"BACKEND@r1\"],\"SHARED\":[\"BACKEND@r1\"]},\"source_domain_refs\":[]}}",
+            "sha256": "b9a46e5d74cbb8018c16ec83edcd92c360ac21b1ac877841dccfc4246a23f57a",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "proposal_result": "add_candidate_only",
+            "meaning_result": "known_in_fixture_only",
+            "reference_results": {
+              "relations": {
+                "REL-B": "preserved_and_mapped_candidate",
+                "SHARED": "preserved_and_mapped_candidate"
+              },
+              "consumers": {
+                "CONSUMER-R": "preserved_and_mapped_candidate",
+                "SHARED": "preserved_and_mapped_candidate"
+              }
+            },
+            "fixed_enum": false,
+            "operation_claim": "none",
+            "effects": {
+              "actual_domain_add": false,
+              "actual_domain_split": false,
+              "actual_domain_merge": false,
+              "actual_domain_retire": false,
+              "actual_knowledge_adopted": false,
+              "actual_CORE_meaning_updated": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "same-IDのrelationとconsumerを別役割として照合する。期待値はL3/L4の保持義務とL5の役割別比較規則から独立に導出し、L8側の期待値は突合せにのみ用いる。実領域変更・採用・authorityを意味しない。",
           "execution_state": "not_executed",
           "effect": "none"
         }
@@ -1413,7 +1605,7 @@
   "fixture_progress": {
     "cases_by_function": {
       "F01": 10,
-      "F02": 12,
+      "F02": 15,
       "B01": 4
     },
     "synthetic_only": true,
