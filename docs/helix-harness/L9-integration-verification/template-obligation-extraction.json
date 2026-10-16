@@ -5991,7 +5991,7 @@
       "current_occurrence_binding": {
         "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
         "pointer": "/contracts/2/occurrence_return_contract",
-        "working_bytes_sha256": "5eebbdf838afe2bc73a5478d7c8707bec0699b20f0897ca1fc956b491877eeca",
+        "working_bytes_sha256": "32934075f0e426076df8d206582b36b06e403afd9997e5315b77e59649a5dedc",
         "binding_kind": "paired_current_file_bytes",
         "meaning": "新trace規範の現L4 bytes。同caseの旧l4_source_bindingは元bytes歴史参照として別保持する。"
       }
@@ -6467,12 +6467,12 @@
     "formal_schema_codec_or_actual_execution": false,
     "occurrence_trace": {
       "old_F03_wholes_extended": 9,
-      "new_B_wholes": 5,
       "escaped_ID_wholes": 1,
       "F03_whole_total": 15,
       "entry_domain_controls": 1,
       "all_function_material_case_total": 42,
-      "actual_evaluator_executed": false
+      "actual_evaluator_executed": false,
+      "new_occurrence_wholes": 5
     }
   },
   "review_corrections": {

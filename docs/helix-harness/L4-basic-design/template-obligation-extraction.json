@@ -699,10 +699,10 @@
           "source null/空ならsnapshotへ元値を保持し、原source gapとoccurrences=[]を返す。raw SHA不一致を再hash修復せず元global gapを保持する。unknown適用をNA/falseへ丸めない。"
         ],
         "consumer_boundary": {
-          "F03_consumer": "同じF03Returnで原packetと各出現を辿れる。full snapshot案では外部の保存registry/照会成功を仮定しない。実consumer/caller exact binding自体は現sourceで未成立。",
+          "F03_consumer": "同じF03Returnで原packetと各出現を辿れる。原入力全体を同返却へ保存する方式では外部の保存registry/照会成功を仮定しない。実consumer/caller exact binding自体は現sourceで未成立。",
           "B01_existing_contract": "現compare_b01はtemplate_meaning/ledger_pair_contract/OS_observationという独立primitiveを読む。F03Returnを直接読む既存APIではないため、B01が新traceを自動消費するとは書かない。",
           "B01_preserve": "raw差/ID要約件数/traceの存在だけでB01.template_meaningをunknown又はknownにしない。両NAを各原行へ保存できることから新owner不足を創作しない。実意味不足の既存gapがあれば009/対象ownerという既存役割へ戻し、OS receipt不足と混同しない。",
-          "connection_followup": "consumer_connectionsでF03観測のsource/occurrence/gap保存と既存owner-routerの併置を明記する。B01のprimitive所見供給/実caller bindingは別根拠で特定し、field追加だけで実owner返却成立を認定しない。B01 signature/判定の変更を本B案の必須にしない。"
+          "connection_followup": "consumer_connectionsでF03観測のsource/occurrence/gap保存と既存owner-routerの併置を明記する。B01のprimitive所見供給/実caller bindingは別根拠で特定し、field追加だけで実owner返却成立を認定しない。B01 signature/判定の変更を原出現保存の必須変更にしない。"
         },
         "compact_alternative": "同immutable call observationの入力保持consumer/exact bindingを明示できる場合にはpacket hash/template revision/declared・observed SHA/pointerによるcompact化を比較できる。現在はその具体consumer bindingがないためfull snapshotを採る。外部registry/常時unknown停止gateを新設しない。",
         "legacy_rederivation": {
@@ -727,7 +727,7 @@
           "reason": "同ID異rawの両NAは旧map一件では各原出現へ戻れない。原出現を保存すれば意味同一性の新裁定やID uniqueness gateなしで追跡できる。旧writer/runtime/freeze gateを移植しない。"
         },
         "detail_followup": {
-          "L5_L8": "F03Return/closed trace型/normal outcomeからの互換projection/原line保存/返却と全対象F03 wholeの追随が必要。今回L5/L8を編集していない。",
+          "L5_L8": "F03Return/closed trace型/normal outcomeからの互換projection/原line保存/返却と全対象F03 wholeの追随が必要。今回L5/L8を編集していない。 追随時はL5/L8双方の/current_pair_binding/remaining/0も、原出現が見えない旧返却についての記述から、新traceで観測できる範囲と意味同一性未判定の区別へ改訂する。",
           "boolean_axis": "既存basic case7/8はscreen=true、現L5 F03Argumentsはboolean domain=[false]で全原basic域を受けない。後続は既存L4のtrue/false両分岐を受ける必要型へ追随する。画面生成/新seed採用/実作用再開を意味しない。旧有限評価は関数内比較であり全型成立の証明ではなかった。",
           "authority": "source資格/実runtimeの未実証を論理追補自体の入場条件にしない。一方、論理whole/構造schemaからそれらの成立を生成しない。"
         },
