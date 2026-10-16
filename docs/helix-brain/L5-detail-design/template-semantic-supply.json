@@ -632,13 +632,13 @@
           "axes": "AxisResult[]",
           "findings": "Finding[]",
           "producer_symbol": "string",
-          "input_binding": "Binding"
+          "input_binding": "Binding|null"
         },
-        "meaning": "局所比較結果。無関係なvalid candidateは保持し、不足を別候補成功で相殺しない。 producer_symbol/input_bindingは評価器が入力由来で付ける。caller supplied cached結果の再利用はしない。"
+        "meaning": "局所比較結果。無関係なvalid candidateは保持し、不足を別候補成功で相殺しない。producer_symbol/input_bindingは評価器が入力由来で付ける。入力bindingが未供給ならinput_binding:nullとして欠落を保ち、caller supplied cached結果の再利用はしない。"
       },
       "SupplyAnalysis": {
         "fields": {
-          "binding": "Binding",
+          "binding": "Binding|null",
           "candidate_refs": "Ref[]",
           "comparisons": "Comparison[]",
           "input_issues": "InputIssue[]",
@@ -648,7 +648,7 @@
           "limits": "RawValue",
           "side_effect_count": "integer"
         },
-        "meaning": "候補・不足・比較材料だけ。選択/採択/許可/義務消込/Accepted/実受領の成立fieldを出力しない。side_effect_countはpure設計の期待0でありruntime証明ではない。"
+        "meaning": "候補・不足・比較材料だけ。bindingは有効なroot Bindingが供給された場合その原値、input/decode不能またはroot member欠落時はnull。選択/採択/許可/義務消込/Accepted/実受領の成立fieldを出力しない。side_effect_countはpure設計の期待0でありruntime証明ではない。"
       },
       "DefinitionContext": {
         "fields": {
@@ -1201,16 +1201,33 @@
       "output": "SupplyAnalysis",
       "effect": "none",
       "algorithm": [
-        "各比較結果とInputIssueを同binding/subject/axis/sourceへ集約する。元refs/理由/ownerを残し、矛盾する結果を全体greenや空集合へ圧縮しない。",
+        "各比較結果を返却へ加える前に、AnalysisContextの当該member名とproducer_symbol、ValidatedSupply.input.bindingに対するComparison.input_bindingを既存comparison_composition規則で照合する。不在/producer違い/binding違いのComparisonはinput snapshotに残したまま返却comparisonsから除き、locator=/<member>のInputIssueを追加する。適合したComparisonだけを宣言順で保持し、無効な比較結果のknown軸を転載しない。",
         "candidate/必要input/反例/限界/関係をCOREへ返す材料として構成。CORE選択/OS記録成立/採択/権限/lease/実受渡しを実行せずside_effect_count=0。",
-        "opaque identity/revision/scope/descriptor/source/axisを供給snapshot内で決定的順に整列。外部時計/env/fs/network/DBなし。入力がdecode不能でも所在を返し、無関係入力の成立を捏造しない。"
+        "opaque identity/revision/scope/descriptor/source/axisを供給snapshot内で決定的順に整列。外部時計/env/fs/network/DBなし。入力がdecode不能でも所在を返し、無関係入力の成立を捏造しない。",
+        "validated.inputがSupplyInput objectとして供給された呼出しでは、SupplyAnalysis.bindingは同じvalidated.input.bindingの原値、candidate_refsはcandidates memberがarrayとして供給されたときだけsorted_valuesで整列した全Ref値とする。member欠落は[]の未評価射影とconstruction_issuesの/candidates Issueを併記し、明示空配列の評価済み[]と区別する。重複を保ち、未結合candidateも削除しない。",
+        "比較結果はAnalysisContextのclaims、definitions、values_applicability、identity_trace、oracle_view、promotion、dependencies_handoffの宣言順で検査する。producer_symbolは比較関数対応表と完全一致し、input_bindingはroot bindingの供給値とJSON型付き完全一致する。root binding member absentでComparison.input_bindingもnullの場合は構造的に対応するだけで、資格・意味knownを示さない。適合しないComparisonはそのraw contextのまま残し、返却列から除外して局所InputIssueで所在を示す。",
+        "input_issuesはValidatedSupply.input_issuesの原順、同じvalidated値への既存construction_issues、最後にAnalysisContext member順のcomposition Issueをこの順で保持する。source_refs・required_inputs・counterexamples・limitsは既存supplied_source_refs・required_input_refs・knowledge_materialの式を使い、独立な結果を無効Comparisonや候補欠落で削除しない。",
+        "builderの返却bindingは、decode可能input objectでbindingが供給された場合は原値を保つ（{}も{}のまま）。root member absentまたはValidatedSupply.input=nullならnullを返し、代替Bindingを作らない。明示binding:nullはSupplyInput型外でありvalidatorのinput=null/InputIssueを保持する。ValidatedSupply.input=nullの場合はroot bindingの期待値をnullとしてproducer_symbolとinput_bindingを検査する。通常invalid_raw経路のComparisonは、同じimmutable入力から指定関数が計算した正規7 empty Comparisonであり、AnalysisContext.meaningに従いcaller任意主張を含まない。適合する結果を宣言順に保持し、成功claimとは扱わない。不適合memberは既存Composition規則に従い返却から除きIssueを追加する。empty形状の追加validatorは設けない。binding absentのobjectでは既存Issueと独立slot/source/knowledge内容を保つ。input_binding:null同士は構造比較のみで資格成功を意味しない。"
       ],
       "failure_rules": [],
       "unit_case_refs": [
         "HELIXBRAIN-L8-032-ADD-21",
         "HELIXBRAIN-L8-032-ADD-22",
         "HELIXBRAIN-L8-032-ADD-23",
-        "HELIXBRAIN-L8-032-ADD-24"
+        "HELIXBRAIN-L8-032-ADD-24",
+        "HELIXBRAIN-L8-032-BUILDER-ASSEMBLY-NORMAL-A",
+        "HELIXBRAIN-L8-032-BUILDER-ASSEMBLY-ORDER-DUPLICATE",
+        "HELIXBRAIN-L8-032-BUILDER-ASSEMBLY-UNRESOLVED",
+        "HELIXBRAIN-L8-032-BUILDER-ASSEMBLY-EMPTY-CANDIDATES",
+        "HELIXBRAIN-L8-032-BUILDER-BINDING-ABSENT",
+        "HELIXBRAIN-L8-032-BUILDER-BINDING-EMPTY-OBJECT",
+        "HELIXBRAIN-L8-032-BUILDER-TYPED-INPUT-NULL",
+        "HELIXBRAIN-L8-032-BUILDER-CANDIDATES-ABSENT",
+        "HELIXBRAIN-L8-032-BUILDER-COMPOSITION-MEMBER-ABSENT",
+        "HELIXBRAIN-L8-032-BUILDER-COMPOSITION-PRODUCER-MISMATCH",
+        "HELIXBRAIN-L8-032-BUILDER-COMPOSITION-BINDING-MISMATCH",
+        "HELIXBRAIN-L8-032-BUILDER-COMPOSITION-INPUT-NULL-PRODUCER-MISMATCH",
+        "HELIXBRAIN-L8-032-BUILDER-INPUT-ISSUE-ORDER"
       ],
       "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
     }
@@ -3118,7 +3135,7 @@
     "invalid_raw": "decode不能input=nullなら意味関数はempty Comparisonを返すが成功claimなし。InputIssueをbuildが必ず保存する。欠落required集合はdecode可能意味欠落としてnull入力にしない。",
     "qualification": "未資格sourceに依存する原意味はunknown。異bindingの有資格項目は比較できる。異版/異scopeのresult混入はinput_issueで保持し結果を使わない。",
     "normal_outcome": "各原axisを保持したcandidate material。原handoff=not_receivedと全definition=knownの併存を許す。案件採用/義務完成の出力なし。",
-    "comparison_composition": "各関数のproducer_symbol/input_bindingを検査。依存Comparisonの未供給/異bindingは関連axis未評価として返し、clock/filesystemへ補充しない。",
+    "comparison_composition": "各関数のproducer_symbol/input_bindingを検査する既存責務を維持する。build_supply_analysisもAnalysisContextの7memberを対応関数表とValidatedSupply.input.bindingへ照合してから返却へ組み立てる。不在/異producer/異bindingは関連Comparisonを返却列へ入れず、context member locator付きInputIssueを保持し、他の適合Comparisonを部分列で返す。元Comparisonは入力snapshotに残す。dependency関数は関連axis未評価を返しclock/filesystemから補充しない。",
     "claim_locality": "同じClaimは根拠を読む担当関数の特定ruleへ対応。別group ruleで同一claimを二重裁定せず、原axis resultは担当意味関数に残す。",
     "duplicate_policy": "同source/bodyの入力重複はoriginal refsへ保持。異sourceの相反は独立意味比較へ渡す。重複を勝手にauthorityにしない。"
   },
@@ -5477,7 +5494,14 @@
               "type": "string"
             },
             "input_binding": {
-              "$ref": "#/$defs/Binding"
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Binding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             }
           },
           "required": [
@@ -5492,7 +5516,14 @@
           "type": "object",
           "properties": {
             "binding": {
-              "$ref": "#/$defs/Binding"
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Binding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "candidate_refs": {
               "type": "array",
@@ -6198,8 +6229,170 @@
       },
       {
         "function_ref": "HELIXBRAIN-L5-032-build_supply_analysis",
-        "effect": "既存7 comparison、InputIssue、source refs、counterexamples、limitsを保存し、required_input_refsだけ上記known joinを使用。新field、全体停止、side effectなし。"
+        "effect": "既存7 Comparisonのうちproducer_symbol/input_bindingが既存comparison_compositionに適合するものだけをAnalysisContextの宣言順で保持し、不適合値は返却comparisonsへ転載せず局所InputIssueを追加する。ValidatedSupply.input_issuesとconstruction_issuesを保全する。binding/candidate_refs/constructor materialの組立はbuilder_assembly規則へ従う。source_refs・counterexamples・limits・required_inputsは各既存projection式を再利用する。新field、全体停止、side effectなし。"
       }
-    ]
+    ],
+    "builder_assembly": {
+      "id": "HELIXBRAIN-L5-032-BUILDER-ASSEMBLY",
+      "function_ref": "HELIXBRAIN-L5-032-build_supply_analysis",
+      "scope": "build_supply_analysis全体のpure builder assembly。ValidatedSupplyからSupplyAnalysisの9返却memberを組み立て、既存比較・constructor・projection契約を維持する。ここで追加する有限例はbuilderのassembly境界を対象とし、特定L3 requirementだけの意味全域を証明しない。",
+      "output_member_rules": [
+        {
+          "member": "binding",
+          "expression": "input objectのvalidated.input.binding、ただしmember absentまたはinput=nullならnull",
+          "rule": "供給されたBindingの原値を保ち、{}も{}のまま返す。member absent/input=nullはnullとする。既定・仮Bindingを生成しない。"
+        },
+        {
+          "member": "candidate_refs",
+          "expression": "validated.inputがobjectかつhas(input,'candidates')ならsorted_values(input.candidates)、member absentなら[]",
+          "rule": "candidatesがarrayとして供給された場合は全Refを正準JSON順へ整列し、重複も保持する。明示空配列は評価済み空集合。member absentは[]の未評価射影とし、既存construction_issuesがlocator=/candidatesのIssueを返すため両者を区別する。null/型外配列memberはvalidate_supply_inputのwrong_provided_shapeでinput=nullとなり、input-null branchを使う。未結合Refは列に残し、Issueも別に保持する。"
+        },
+        {
+          "member": "comparisons",
+          "expression": "AnalysisContextの宣言順に、producer_symbolとinput_bindingが既存comparison_compositionに適合するComparisonだけを収集",
+          "rule": "7 memberを宣言順で走査し、member欠落、producer_symbol違い、input_binding不一致を検出する。適合するComparisonの全member/配列順は原値で保持し、不適合Comparisonはimmutable入力に残したままSupplyAnalysis.comparisonsへ転載しない。各不適合memberにはlocator=/<member>、source_ref=nullのInputIssueを1件追加し、reasonに不適合理由を記す。ValidatedSupply.input=nullの通常invalid_raw経路では、同じimmutable入力から指定7関数が返しAnalysisContextへ渡された正規7 empty Comparisonについて、producer_symbolと期待binding=nullに対するinput_bindingを照合し、適合する結果を保持する。AnalysisContext.meaning上、これらはcaller任意主張ではなく成功claimでもない。empty形状の追加validatorは設けない。"
+        },
+        {
+          "member": "input_issues",
+          "expression": "validated.input_issuesへ、inputがobjectならconstruction_issuesの結果を加え、続いてcomparison_input_boundary.mismatch_issue_contractに合うmember不適合Issueを連結",
+          "rule": "ValidatedSupply.input_issuesを原順で保持し、inputがobjectの場合だけ既存construction_issuesを後置する。その後、mismatch_issue_contractに定める不適合ComparisonのComposition IssueをAnalysisContext宣言順で後置する。input=nullで比較が全て適合する通常invalid_raw経路では原validator Issueを保持し、比較不適合がある場合は該当Composition Issueも追加する。input=nullではconstructor Issueを追加しない。元Comparisonのaxisやreasonは上書きしない。"
+        },
+        {
+          "member": "source_refs",
+          "expression": "supplied_source_refs(validated)",
+          "rule": "供給QualifiedSourceのRefを既存規則で整列して返す。掲載はqualified/resolved/receivedを意味しない。 input=nullでは既存helperの[]/未評価結果を保持し、これを有効な空集合・充足と扱わない。"
+        },
+        {
+          "member": "required_inputs",
+          "expression": "required_input_refs(validated)",
+          "rule": "既存のrequired-input definition join結果だけを返し、入力値や未供給Refは生成しない。 input=nullでは既存helperの[]/未評価結果を保持し、これを有効な空集合・充足と扱わない。"
+        },
+        {
+          "member": "counterexamples",
+          "expression": "knowledge_material(validated, \"counterexamples\")",
+          "rule": "既存knowledge record material projectionを保持する。 input=nullでは既存helperの[]/未評価結果を保持し、これを有効な空集合・充足と扱わない。"
+        },
+        {
+          "member": "limits",
+          "expression": "knowledge_material(validated, \"limits\")",
+          "rule": "既存knowledge record material projectionを保持する。 input=nullでは既存helperの[]/未評価結果を保持し、これを有効な空集合・充足と扱わない。"
+        },
+        {
+          "member": "side_effect_count",
+          "expression": "0",
+          "rule": "既存effect=none宣言。静的fixtureは実行時副作用不在の証拠ではない。"
+        }
+      ],
+      "comparison_input_boundary": {
+        "rule": "AnalysisContext各memberを比較関数対応表へ照合する。producer_symbolは常に対応するL5 function symbolと一致させる。ValidatedSupply.inputがobjectでroot binding object suppliedならComparison.input_bindingは同objectの全原値と一致する場合だけ適合し、root binding member absentならinput_binding:nullとの一致は構造的対応のみで資格/knownを示さない。ValidatedSupply.input=nullの場合の期待bindingはnullとし、producer_symbol/input_binding照合を維持する。通常invalid_raw経路の7 empty Comparisonは同一immutable入力から指定関数が計算しAnalysisContextへ渡す値である（AnalysisContext.meaning）；適合する結果だけを保持し成功claimとは扱わない。不適合memberは元入力に保持したまま返却列から除外し、locator=/<member>のInputIssueを追加する。空形状の追加validatorは置かない。",
+        "order": [
+          "claims",
+          "definitions",
+          "values_applicability",
+          "identity_trace",
+          "oracle_view",
+          "promotion",
+          "dependencies_handoff"
+        ],
+        "producer_symbol_by_member": [
+          {
+            "member": "claims",
+            "producer_symbol": "compare_claim_boundaries"
+          },
+          {
+            "member": "definitions",
+            "producer_symbol": "compare_descriptor_definitions"
+          },
+          {
+            "member": "values_applicability",
+            "producer_symbol": "compare_values_and_applicability"
+          },
+          {
+            "member": "identity_trace",
+            "producer_symbol": "compare_identity_versions_and_trace"
+          },
+          {
+            "member": "oracle_view",
+            "producer_symbol": "compare_oracle_and_view_boundary"
+          },
+          {
+            "member": "promotion",
+            "producer_symbol": "compare_knowledge_promotion"
+          },
+          {
+            "member": "dependencies_handoff",
+            "producer_symbol": "compare_dependencies_and_handoff"
+          }
+        ],
+        "input_binding_policy": "有効なSupplyInputでroot bindingがobjectなら、Comparison.input_bindingは同objectの全原値と一致するときだけ適合。root binding member absent時はComparison.input_binding:nullとの一致を構造的な接続として扱うだけで資格や意味knownを成立させない。ValidatedSupply.input=null時は期待binding=nullとしてproducer_symbol/input_binding照合を維持する。正規invalid_raw経路の7 empty Comparisonは同一immutable入力から指定関数が計算したAnalysisContext値であり、成功claimではない。不適合はComposition Issueにする。",
+        "mismatch_issue_contract": {
+          "locator": "/<AnalysisContext member>",
+          "source_ref": null,
+          "reason_by_condition": [
+            {
+              "condition": "member absent",
+              "reason": "AnalysisContext比較memberが未供給のため比較結果を採用しない。"
+            },
+            {
+              "condition": "producer_symbol mismatch",
+              "reason": "AnalysisContext比較memberのproducer_symbolが対応するL5関数と一致しないため比較結果を採用しない。"
+            },
+            {
+              "condition": "input_binding mismatch",
+              "reason": "AnalysisContext比較memberのinput_bindingがValidatedSupplyのroot bindingと一致しないため比較結果を採用しない。"
+            }
+          ],
+          "raw_value": "不適合ComparisonはAnalysisContextの入力snapshotへ原値保持し、builder出力comparisonsへ転載しない。",
+          "valid_subset": "適合する他memberのComparisonを宣言順部分列として保持。"
+        }
+      },
+      "decode_failure_limit": "SupplyAnalysis.bindingとComparison.input_bindingはbuilder返却時にBinding|null。SupplyInput.bindingの入力型はBindingのままで、明示nullはwrong_provided_shape/input=null。input=null時は既存invalid_raw由来の7 empty Comparisonを照合し、全9fieldを返す。input_issuesは原ValidatedSupply値を保持し、constructorはinput objectの場合のみ追加する。candidate_refs/source_refs/required_inputs/counterexamples/limitsの空射影は未評価であり、明示empty候補とはIssueとinput状態で区別する。input objectでbinding memberがabsentならbinding:nullと既存/binding Issueを保持し、他slot/source/knowledge/Comparisonを独立に組み立てる。供給されたBinding={}はその値を保持し、既存constructor Issueも別に保持する。",
+      "error_boundary_basis": {
+        "invalid_raw_pointer": "/execution_contract/invalid_raw",
+        "member_presence_pointer": "/logical_input_structure/member_presence",
+        "supply_input_pointer": "/type_contract/types/SupplyInput/fields/binding",
+        "scope_note": "SupplyInput.bindingの入力型はBindingのまま。nullable化はbuilder結果の2memberと出力wire schemaだけ。"
+      },
+      "legacy_comparison": {
+        "reuse_class": "意味の再導出。旧template/JSON authorityの意味を保持し、旧registry・整数版・lifecycle・署名・承認gateは移さない。",
+        "legacy_sources": [
+          {
+            "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+            "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+            "lines": "16-60"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+            "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+            "lines": "33-108"
+          },
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+            "lines": "65-101",
+            "failure_ids": [
+              "UTW-014",
+              "UTW-020",
+              "UTW-021"
+            ]
+          },
+          {
+            "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+            "lines": "35-39",
+            "role": "現行対象の意味保持範囲を確認する判断記録",
+            "source_pin_pointer": "/source_pins/13"
+          }
+        ],
+        "preserve": "JSON意味正本とviewの分離、元sourceと未完状態の保持、局所の不足・矛盾を空集合や自己申告で成功へ昇格しないこと。",
+        "change": "build_supply_analysisの返却assemblyで、binding absent/null、候補Ref列、Comparison適合部分列、input issue順を明示し、元値・局所issue・未評価射影を分ける。",
+        "reason": "UTW-014の欠落を空へ畳む失敗、UTW-020の集約による局所失敗隠蔽、UTW-021のprose/self-report昇格を避けつつ、既存L3義務の正本意味を変更せず返却構造へ具体化する。",
+        "limits": "旧資産本文を現行規則として実行・複製せず、旧全lifecycleや承認規則を復活させない。今回の有限assembly対照は旧機能全域やruntime成立の証明ではない。"
+      },
+      "limits": [
+        "nullableなのはSupplyAnalysis.bindingとComparison.input_bindingのbuilder返却fieldだけ。入力SupplyInput.binding、producer関数0–7、binding_same、AxisResult、Findingは変更しない。binding_sameはobject以外をfalseとして扱い、AxisResult.bindingは非nullableのままであるため、null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみで、producer pipelineの接続・計算を証明しない。"
+      ]
+    }
   }
 }
