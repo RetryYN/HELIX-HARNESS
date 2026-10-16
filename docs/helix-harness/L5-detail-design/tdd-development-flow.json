@@ -1279,7 +1279,7 @@
   "responsibility_boundary": {
     "HARNESS": "開発単体の工程/検証契約とProvisional投影を定義",
     "L6": "関数仕様・実装前対象・oracle・edge caseを別artifactで確定する。未作成/未承認なら未充足のまま。",
-    "L7": "実装・test code・実Red/Green/Refactor/CIを実施する層だが本pairは実行せず、実成果を生成しない。",
+    "L7": "L6の関数設計と対になる関数検証。実装成果は層外の別kindとしてL6設計とL7検証へ結び、Red→Green→Refactorの証拠を対応する対象とoracleへ追跡する。本L5/L8 pairは実行せず、実装・実検証・実CIの成立を生成しない。",
     "OS_or_user": "実CI運転/作業workerはそれぞれのownerが担う。HARNESSは運転事実/permissionを合成しない。",
     "005": "ticket関係からPR前CIを選び、省略検査を回収する契約を参照。005 L5/L8が本source approvalから認定されるわけではない。",
     "022": "Integrated以降はcore verification/acceptance pairと組み合わせる。015だけで上位stateを生成しない。"
