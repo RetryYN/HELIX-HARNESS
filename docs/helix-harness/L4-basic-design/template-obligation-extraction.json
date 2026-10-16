@@ -110,6 +110,38 @@
       "preserve": "Pythonが解析候補を返し、正本更新と抽出結果を分離する文脈を参照。",
       "change": "旧AST/YAML/Markdown実装、Node commit/table/schema/故障codeは採用しない。実登録は認められたOS別契約へ戻す。",
       "reason": "現行009のpure Python境界と041の候補/正本分離を旧sourceへ照合する読み取り参照。unresolved資産の再利用実行/採択ではない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "read_lines": [
+        3404,
+        3415
+      ],
+      "quote": "  \"HIL-FR-47\": {\n    \"schema_version\": \"helix-requirement.v1\",\n    \"requirement_id\": \"HIL-FR-47\",\n    \"revision\": 1,\n    \"kind\": \"functional\",\n    \"status\": \"specified\",\n    \"definition_status\": \"frozen\",\n    \"evidence_origin\": \"legacy_markdown_migration\",\n    \"statement\": {\n      \"text\": \"Template Obligation Extractorは各layerのactive templateから章、field、table row、applicability rule、done-when、pair contractを原子的obligationとして機械抽出し、該当ledgerへ候補行を追加する。未対応template要素、空/TBD、抽出不能、同一obligation重複をfinding化し、LLM自由補完で埋めない。 | template atom、ledger proposal、extractor/version digest、gap finding\",\n      \"semantic_digest\": \"sha256:b1a61c1eb5f24a741168801fed3b323578151edabb2f62d1d47e239861dc1dca\"\n    },",
+      "selected_lines_sha256": "e5c8d3604d4f104a16686ea9950ea8b8103b14f5e1cb13cbc427209a0978526e",
+      "selected_lines_encoding": "LFで結合し末尾LFを付けないUTF-8",
+      "reuse": "semantic_rederivation",
+      "preserve": "原source各要素から機械候補を作り、未対応/空/TBD/抽出不能/重複を可視化し自由補完で埋めない。",
+      "change": "旧writerを実行せず、既存ownerの原source/元資格決定とpure比較の引数を分離する。",
+      "reason": "既存N01 qualified原source比較と原行atom/gap返却のlogical IO/局所分類へ再導出。新authority/新承認/実資格の根拠にはしない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-7B1C7AED3AA401868455",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "sha256": "98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "read_lines": [
+        290,
+        300
+      ],
+      "quote": "| HST-CASE-030-01 | HST-HIL-030 | HIL-BR-25, HIL-FR-46, HIL-FR-47, HIL-NFR-29 | canonical L1-L12 registry、層外L0 anchor、versioned templateが存在 | obligationを抽出する | template_current | ledger_staged | provenance付きatomic obligation | なし（正常系） | FX-HST-030-01 | design-defined | not-implemented |\n| HST-CASE-030-02 | HST-HIL-030 | HIL-FR-46 | L7 layer registry entryが無い | ledgerを生成する | template_current | failed | ledger row 0件 | HIL_LAYER_REGISTRY_ENTRY_MISSING | FX-HST-030-02 | design-defined | not-implemented |\n| HST-CASE-030-03 | HST-HIL-030 | HIL-FR-47 | extracted obligationにtemplate spanが無い | ledgerへcommitする | ledger_staged | rejected | row増分0件 | HIL_LAYER_OBLIGATION_PROVENANCE_MISSING | FX-HST-030-03 | design-defined | not-implemented |\n| HST-CASE-030-04 | HST-HIL-030 | HIL-NFR-29 | 一行に二義務が抽出済み | ledgerへcommitする | ledger_staged | rejected | row増分0件 | HIL_LAYER_OBLIGATION_NOT_ATOMIC | FX-HST-030-04 | design-defined | not-implemented |\n| HST-CASE-030-05 | HST-HIL-030 | HIL-FR-47 | same input/versionのdigestが記録済み | extractionをreplayする | ledger_current | quarantined | current更新0件 | HIL_LAYER_EXTRACTION_NONDETERMINISTIC | FX-HST-030-05 | design-defined | not-implemented |\n| HST-CASE-030-06 | HST-HIL-030 | HIL-FR-47 | template versionが変更済み | old ledgerを評価する | ledger_current | stale | stale event一件 | HIL_LAYER_TEMPLATE_VERSION_STALE | FX-HST-030-06 | design-defined | not-implemented |\n| HST-CASE-030-07 | HST-HIL-030 | HIL-FR-47 | required template fieldが空 | obligationを抽出する | template_current | rejected | proposal 0件 | HIL_LAYER_TEMPLATE_FIELD_EMPTY | FX-HST-030-07 | design-defined | not-implemented |\n| HST-CASE-030-08 | HST-HIL-030 | HIL-NFR-29 | template fieldがTBD | obligationを抽出する | template_current | rejected | proposal 0件 | HIL_LAYER_TEMPLATE_PLACEHOLDER | FX-HST-030-08 | design-defined | not-implemented |\n| HST-CASE-030-09 | HST-HIL-030 | HIL-FR-47 | templateに未知fieldが一件 | schemaをvalidateする | template_current | rejected | extraction run 0件 | HIL_LAYER_TEMPLATE_FIELD_UNKNOWN | FX-HST-030-09 | design-defined | not-implemented |\n| HST-CASE-030-10 | HST-HIL-030 | HIL-FR-47 | 同一義務が二回抽出済み | ledgerへcommitする | ledger_staged | rejected | row増分0件 | HIL_LAYER_OBLIGATION_DUPLICATE | FX-HST-030-10 | design-defined | not-implemented |\n| HST-CASE-030-11 | HST-HIL-030 | HIL-NFR-29 | aggregate親だけにdischargeがある | coverageを評価する | ledger_current | failed | child未消込一件 | HIL_LAYER_AGGREGATE_ONLY | FX-HST-030-11 | design-defined | not-implemented |",
+      "selected_lines_sha256": "8e6d6cb0da2a9b4d2bea9811f27d916548a0067c18a4abe9dc9c4d880c17d8b5",
+      "selected_lines_encoding": "LFで結合し末尾LFを付けないUTF-8",
+      "reuse": "semantic_rederivation",
+      "preserve": "provenance不足、非決定性、旧版、空/TBD、未対応、重複の原失敗を保持。",
+      "change": "旧CI/故障code/台帳commitは採らず、原rowの局所gap/原観測/同一呼出しoperandへ具体化する。",
+      "reason": "既存N01 qualified原source比較と原行atom/gap返却のlogical IO/局所分類へ再導出。新authority/新承認/実資格の根拠にはしない。"
     }
   ],
   "full_goal_scope_preserved": {
@@ -124,7 +156,8 @@
     "009/BRAIN選択入力・040相当ledger/pair・対象scopeへのowner-qualified exact binding、正式schema/codec/extractorは未binding。",
     "L5/L8内部処理/edge cases、実oracle凍結→実装前Red→最小Green→Refactorと再検証、実L9/L10・PO L11は未成立。 source_duplicateと各原行の通常診断後に付加する順序のL5/L8追随は未成立。",
     "全限定92親430対の設計閉包・実装準備は未成立。",
-    "F03原出現traceの基本論理/有限wholeを追補。L5/L8の新返却とboolean true/false基本範囲への型追随は未成立。source qualification/実runtimeは論理追補の成立と区別する。"
+    "F03原出現traceの基本論理/有限wholeを追補。L5/L8の新返却とboolean true/false基本範囲への型追随は未成立。source qualification/実runtimeは論理追補の成立と区別する。",
+    "N01 logical原source/資格decision投影とcaller/primary gap分類を具体化。L5/L8の新context/署名/constructor/codec/evaluator追随、実provider/source資格、実抽出/実未見比較は未成立。有限whole/partialは全input・全変異閉包ではない。"
   ],
   "document_id": "HARNESS-L4-041",
   "layer": "L4",
@@ -772,7 +805,1873 @@
       ],
       "qualification_rule": "原source identity/revision/scope/owner/意味と必要集合を独立比較。missing/unknown/conflict/staleを当該field/scopeへ保持し他の成立部分を消さない。具体source資格と正式codecは未binding。",
       "operation_effect": "none",
-      "input_binding_rule": "原template bytes/revisionとscope/applicability/extractorの同一frameを二結果へ結ぶ。input digest文字列一致だけで元入力一致/独立性を確定しない。"
+      "input_binding_rule": "原template bytes/revisionとscope/applicability/extractorの同一frameを二結果へ結ぶ。input digest文字列一致だけで元入力一致/独立性を確定しない。",
+      "held_out_occurrence_contract": {
+        "scope": "伏せた新revision/branchに含まれる各原source出現を個別atomまたはspan付きgapとして扱う、既存HARNESS-041 extractor/comparison責務の局所具体化。新たな全域保証は設けない。",
+        "input_and_owner": {
+          "producer_port": {
+            "name": "produce_held_out_occurrence_batch",
+            "responsibility": "既存HARNESS-041 extractor責務内のlogical producer port。raw rowからordered atom|gapを返す。同一rowのmeaning/適用条件を解釈するのは既存extractor責務であり、OS/B01へ移さない。新owner・権限・機構は置かない。",
+            "signature": "(held_out_source, held_out_source_binding, input_frame.applicability_input, {identity,version}) -> HeldOutExtractionBatch",
+            "effect": "none",
+            "binding_rule": "N01 consumerはproducer出力を無条件採用しない。raw/Ref/版/scope/適用条件/抽出器の一致と原行ordinal/id/spanを既存qualification/比較責務内で照合し、不一致時は理由と観測carrierを保持する。"
+          },
+          "owner_boundary": "meaningと適用条件の解釈は既存extractor責務に保つ。L4 failure_returnsで定める041 extractor contract ownerと009/対象template ownerへの返却経路を維持する。B01 compare_b01は別のowner-return routerであり、held-out atom consumer/gateではない。",
+          "input_fields": {
+            "held_out_source": "既存raw source record。raw_utf8 exact bytes、revision、scope、sha256を保持する。",
+            "held_out_source_binding": "optional raw packet member。Absent/null/その他JSON値をstrict型へcastせずPresence<RawValue>で扱う。",
+            "held_out_extraction_batch": "optional raw producer batch member。原JSON全体をPresence<RawValue>で保持しstrict producer typeと混同しない。",
+            "input_frame": "既存scope、applicability、extractor identity/versionを使う。"
+          }
+        },
+        "closed_types": {
+          "ExtractorContract": {
+            "kind": "record",
+            "fields": {
+              "identity": "string",
+              "version": "string"
+            },
+            "additional_properties": "closed_declared_carrier",
+            "basis": "L5 input_frame.extractor_identity/extractor_versionとF02 independent_extractor_contractのfield pair"
+          },
+          "HeldOutAtomEvidence": {
+            "kind": "record",
+            "fields": {
+              "atom_id": "string",
+              "content": {
+                "kind": "record",
+                "fields": {
+                  "source_element_id": "string",
+                  "source_span": "SourceSpan",
+                  "template_revision": "string",
+                  "applicability": "ApplicabilityInput",
+                  "kind": "string",
+                  "meaning": "string",
+                  "extractor_identity": "string",
+                  "extractor_version": "string"
+                },
+                "additional_properties": "closed_declared_carrier"
+              },
+              "semantic_digest": "string",
+              "extractor_version_digest": "string"
+            },
+            "additional_properties": "closed_declared_carrier",
+            "mapping": "F02 candidate_atoms itemの全意味fieldとdigest fieldを対応づける。candidate_rowのatom_ref/ledger_contractはcandidate側専用のため含めない。semantic_digestはSHA-256(canonical(content))、extractor_version_digestはSHA-256(canonical({identity,version}))。bindingはcontent hash対象外。source rowはatom自身の申告を正本にせず、consumerがheld_out_source.raw_utf8を独立解析し、ordinal・span・id・source_row_sha256で結合してからfieldを比較する。"
+          },
+          "HeldOutGap": {
+            "kind": "record",
+            "fields": {
+              "element_id": "string|null",
+              "kind": "string",
+              "template_revision": "string",
+              "source_span": "SourceSpan|null"
+            },
+            "additional_properties": "closed_declared_carrier",
+            "basis": "既存N01Return.held_out_gap variantを完全保持"
+          },
+          "HeldOutOccurrenceResult": {
+            "kind": "record",
+            "fields": [
+              "observed_source_binding:Presence<RawValue>",
+              "source_element_id:string|null",
+              "source_span:SourceSpan|null",
+              "outcome:{kind:atom,atom:HeldOutAtomEvidence}|{kind:gap,gap:HeldOutGap,rejected_atom:Presence<RawValue>}",
+              "source_ordinal:integer",
+              "source_row_sha256:string。正確な原source rowの行終端を含まないbytesのSHA-256。source_parse_and_diagnosis/raw_parseを参照。whole sourceの終端を含む全bytes digestとは別。",
+              "source_element:RawValue。正確にparseした原source行をverbatimで保持。",
+              "candidate_batch_indices:integer[] (batch原順のindex)"
+            ],
+            "ordering": "原sourceの解析順に、解析済み各行を1件ずつ返す。ID順に並べ替えたり同一IDをまとめたりしない。candidate_batch_indicesはheld_out_batch_association.batch_input内のoccurrences配列に対する0-based indexをbatch原順で列挙する。expected source bindingは各行で重複せず、held_out_batch_associationで一度だけ保持する。observed_source_bindingはbatch実値のPresence<RawValue>で、batch不在でもAbsent/null/wrong-kindを混同しない。binding不整合はgapにしrejected_atomと観測bindingを保持する。成功variantにrejected_atom fieldはなく、gap variantだけがraw拒否値のPresenceを持つ。"
+          },
+          "HeldOutExtractionBatch": {
+            "kind": "record",
+            "fields": [
+              "source_binding:N01HeldOutSourceBinding",
+              "applicability_input:ApplicabilityInput",
+              "extractor_contract:ExtractorContract",
+              "extractor_version_digest:string",
+              "occurrences:ProducedHeldOutOccurrence[] (producerの厳格な順序付き結果。consumer raw inputではない)"
+            ],
+            "additional_properties": "closed_declared_carrier",
+            "join_rule": "source_bindingはN01のheld_out_source_bindingと6 field完全一致。revision/scope/sha256もheld_out_sourceへ一致し、sha256は厳密raw bytesを対象にする。occurrencesはProducedHeldOutOccurrenceのstrict ordered arrayで、各要素がsource_ordinal/source_element_id/source_span/source_row_sha256とstrict atom|gap outcomeを持つ。extractor_version_digest=SHA-256(canonical({identity,version}))であり、自身をdigest対象へ含めない。",
+            "role": "produce_held_out_occurrence_batchが返す成功producer contract。consumerのuntrusted inputには適用せず、raw N01 inputはHeldOutBatchAssociation.batch_inputで一度だけexact echoし、DecodedHeldOutExtractionBatchViewのPresence<RawValue>で観測する。JSON形がproducer schemaに合うことだけではproducer provenanceやqualificationを証明しない。"
+          },
+          "ApplicabilityInput": {
+            "kind": "record",
+            "fields": {
+              "screen": {
+                "kind": "boolean",
+                "domain": [
+                  false,
+                  true
+                ]
+              }
+            },
+            "additional_properties": "closed_declared_carrier",
+            "basis": "既存applicable()のtrue/false分岐を保持。観測candidateがtrueでもfalseへcastせずF02 field比較へ通す。画面生成/実作用の許可を意味しない。"
+          },
+          "SourceSpan": {
+            "kind": "record",
+            "fields": {
+              "start_line": "integer",
+              "end_line": "integer"
+            },
+            "additional_properties": "closed_declared_carrier",
+            "basis": "既存F02 atom content.source_spanおよびN01 gap.source_spanの形"
+          },
+          "HeldOutOccurrenceObservation": {
+            "kind": "object形式のraw batch配列要素1件に対するconsumer側decoded view。raw itemの代替ではない。",
+            "fields": {
+              "batch_index": "integer (HeldOutBatchAssociation.batch_input.value.occurrences内の0-based index)",
+              "source_ordinal": "Presence<RawValue>",
+              "source_element_id": "Presence<RawValue>",
+              "source_span": "Presence<RawValue>",
+              "outcome": "Presence<RawValue>",
+              "source_row_sha256": "Presence<RawValue>"
+            },
+            "additional_properties": "closed_declared_carrier",
+            "meaning": "Presence<RawValue>によりAbsentとpresent nullを区別し、型違いの値も保持する。完全なraw batchはHeldOutBatchAssociation.batch_inputに残す。decoded viewは宣言外memberを捨てない。objectでない要素にはobservation viewを作らず、raw array indexをunmatchedとして残す。"
+          },
+          "N01HeldOutSourceBinding": {
+            "kind": "record",
+            "fields": {
+              "source_ref": "CommonRef (6 field全てをflattenせず保持)",
+              "raw_source_pointer": "現在のN01 packet内raw_utf8を指すRFC6901 string。例: /held_out_source/raw_utf8。Ref.source_locatorとは別field。",
+              "raw_revision": "string|null。raw held_out_source.revisionの原値。",
+              "raw_scope": "string|null。raw held_out_source.scopeの原値。",
+              "raw_sha256": "string|null。正確なraw_utf8 UTF-8 bytesのSHA-256。正規化テキストのdigestではない。"
+            },
+            "join_rule": "source_refを局所形へ作り替えず、元のCommon Refを変更せず保持する。identity/revision/scope/owner/source_locator/sha256をJSON値意味で比較し、raw_revision/raw_scope/raw_sha256はheld_out_sourceとraw bytesへ別々に結ぶ。一致atomにはidentity・revision・scope・ownerとdigest bindingの一致が必要。source_locatorは元の物理source locatorとして保持しraw_source_pointerで置き換えない。Common RefのscopeがobjectでN01 scopeがstringならstringify/cast/coercionをせず、両値を保持して既存local binding conflict/unknownを返す。Common Refのnull optional memberをpacket pointerから推定しない。"
+          },
+          "HeldOutBatchAssociation": {
+            "kind": "record",
+            "fields": {
+              "expected_source_binding": "Presence<RawValue>。optional N01 packet memberのexact echo。Absentとpresent nullを区別する。",
+              "typed_expected_source_binding": "TypedExpectedSourceBinding",
+              "batch_input": "Presence<RawValue> (N01入力memberのexact echo。Absentとpresent nullを区別)",
+              "unmatched_batch_indices": "integer[] (保持したraw occurrences配列内でsource rowへ未関連の0-based位置)"
+            },
+            "additional_properties": "closed_declared_carrier",
+            "meaning": "N01Return内で期待binding、raw batch全体、関連付けられなかった配列indexを保持する一つのcarrier。batch payloadは一度だけ保存し、HeldOutOccurrenceResult.candidate_batch_indicesはその配列を指す。"
+          },
+          "N01Return": {
+            "kind": "既存compare_n01のclosed return shapeにheld_out_batch_association memberを加えた型。",
+            "fields": {
+              "comparison_result": "{state:string,value:string|null}",
+              "general_determinism_guaranteed": "boolean",
+              "all_templates_supported": "boolean",
+              "held_out_gap": "null|HeldOutGap|HeldOutGap[]",
+              "effects": "{actual_extraction_executed:boolean,actual_ledger_registered:boolean,actual_OS_execution:boolean,actual_template_authority:boolean,actual_design_complete:boolean,actual_requirement_agreement:boolean,actual_acceptance:boolean}",
+              "unaffected_Q": "{state:string,value:string|null}",
+              "held_out_occurrence_results": "HeldOutOccurrenceResult[]",
+              "held_out_batch_association": "HeldOutBatchAssociation"
+            },
+            "additional_properties": "closed_declared_carrier",
+            "meaning": "既存N01Return fieldは既存値を保持する。raw batchとunmatched indexは個別のtop-level追加ではなく、一つのclosed carrier内に置く。"
+          },
+          "DecodedHeldOutExtractionBatchView": {
+            "kind": "consumer側decoded view。raw input schemaや第二のraw sourceではない。",
+            "fields": {
+              "source_binding": "Presence<RawValue>",
+              "applicability_input": "Presence<RawValue>",
+              "extractor_contract": "Presence<RawValue>",
+              "extractor_version_digest": "Presence<RawValue>",
+              "occurrences": "Presence<RawValue>"
+            },
+            "basis": "HeldOutBatchAssociation.batch_inputが唯一のexact raw echo。viewはその非破壊member projectionであり、input JSONへPresence wrapperを加えない。",
+            "decode_rule": "raw outer batch非objectならchild projectionはAbsentとしてrawを保持。objectなら各memberのAbsent/null/valueを非破壊投影。producer成功schemaへcastせずconsumer_field_boundaryとordered_row_classificationで意味比較する。strict成功decodeとraw観測を混同しない。"
+          },
+          "CommonRef": {
+            "kind": "6 fieldを保持する共通Ref record",
+            "fields": {
+              "identity": "string|null",
+              "revision": "string|null",
+              "scope": "RawValue",
+              "owner": "string|null",
+              "source_locator": "string|null",
+              "sha256": "string|null"
+            },
+            "additional_properties": false,
+            "source": {
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/type_contract/types/Ref",
+              "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd",
+              "sha256": "bd031871e97f05b871a04a90bb51658a6875128aa467160ca432c8a4702985c8"
+            }
+          },
+          "ProducedHeldOutOccurrence": {
+            "kind": "既存のproduce_held_out_occurrence_batch producer portが返す厳格なrecord",
+            "fields": {
+              "source_ordinal": "integer (正確にparseした原source rowの1-based ordinal。booleanはintegerとして扱わない)",
+              "source_element_id": "string (parse済み原source rowから導出したid)",
+              "source_span": "SourceSpan (正確にparseした原source rowから導出したspan)",
+              "source_row_sha256": "string (正確な原source rowの行終端を含まないbytesのSHA-256。source_parse_and_diagnosis/raw_parseを参照。whole sourceの終端を含む全bytes digestとは別。)",
+              "outcome": "{kind:atom,atom:HeldOutAtomEvidence}|{kind:gap,gap:HeldOutGap}"
+            },
+            "additional_properties": false,
+            "ordering": "producer occurrencesは原source rowと同じ順序のlist。各producer occurrenceはparse済みの一つのsource rowに対する厳格なatomまたはgap結果を持つ。consumerのraw observation viewにはmalformed、duplicate、reordered、orphaned、non-object値があり得るが、この型へcastしない。",
+            "basis": "既存producer portがraw source rowごとに順序付きatom|gapを返す責務と、既存HeldOutAtomEvidence/HeldOutGapおよびsource rowのidentity/span/ordinal/digest fieldから導いたstrict成功carrier。field対応の出典は同梱のsource mappingに記録する。"
+          },
+          "TypedExpectedSourceBinding": {
+            "kind": "構造decode状態だけを表すtagged union。sourceとの意味的一致状態は含めない。",
+            "variants": {
+              "valid": {
+                "state": "valid",
+                "value": "N01HeldOutSourceBinding",
+                "input_pointer": "/packet/held_out_source_binding"
+              },
+              "missing": {
+                "state": "missing",
+                "finding_kind": "source_binding_missing",
+                "input_pointer": "/packet/held_out_source_binding"
+              },
+              "unknown": {
+                "state": "unknown",
+                "reason": "string",
+                "input_pointer": "/packet/held_out_source_binding",
+                "raw_value": "Presence<RawValue>"
+              },
+              "not_evaluated": {
+                "state": "not_evaluated",
+                "preceding_source_finding_kinds": "string[]",
+                "input_pointer": "/packet/held_out_source_binding"
+              },
+              "not_applicable": {
+                "state": "not_applicable",
+                "reason": "string"
+              }
+            },
+            "additional_properties": false,
+            "meaning": "valid はN01HeldOutSourceBindingのshape decode成功だけを示す。原sourceとのrevision/scope/owner/identity/bytes照合が成立した意味ではない。source diagnosisとbinding comparisonの結果は既存finding/gapへ保持し、このunionへbinding不一致をvalidとして吸収しない。"
+          }
+        },
+        "source_binding_and_decode": {
+          "expected_binding_raw": "packet.held_out_source_bindingのAbsent/null/valueをPresence<RawValue>としてexact echoする。raw revision/scope/digestやindependent_source_packet.refからCommon Refを合成しない。",
+          "typed_status_semantics": "typed_expected_source_bindingはpacket memberの構造decode状態だけを表す。validはstrict N01HeldOutSourceBindingとしてdecodeできることだけを示し、source_refやraw_revision/raw_scope/raw_sha256との意味的一致を表さない。missingはeligible supported rowでoptional binding memberがAbsent、unknownはpresent null/wrong-kind等で元値をRawValueのまま保持、not_evaluatedは先行source findingがある状態、not_applicableはparsed source rowが無い状態。既知値の不一致は別のsource_binding_comparisonと既存局所finding/gapへ返す。 object内leafがstrict shape外でもconsumer_field_boundaryのraw fieldwise比較は独立に行い、field missing/nullの既存stateを失わない。",
+          "common_ref_adapter": {
+            "purpose": "N01 raw-source carrierとCommon Refの既存domainを保つ。既存owner/source resolverがCommon RefをN01 callerへ渡す境界でだけtyped対応を行い、pure N01 raw-byte comparatorがlocal scope:stringをRefへcastしない。",
+            "common_ref_source": {
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/type_contract/types/Ref",
+              "sha256": "bd031871e97f05b871a04a90bb51658a6875128aa467160ca432c8a4702985c8",
+              "fields": {
+                "identity": "string|null",
+                "revision": "string|null",
+                "scope": "RawValue",
+                "owner": "string|null",
+                "source_locator": "string|null",
+                "sha256": "string|null"
+              },
+              "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd"
+            },
+            "explicit_input": {
+              "source_ref": "元の完全な6-field Common Ref。null memberおよびRawValue scopeも保持。",
+              "held_out_source": "既存N01 raw record {raw_utf8, revision, scope, sha256}",
+              "raw_source_pointer": "caller input内のraw_utf8を指すRFC6901 pointer。Common Ref.source_locatorではない。"
+            },
+            "output": "{source_ref:元Common Ref全値, raw_source_pointer, raw_revision, raw_scope, raw_sha256}。照合結果は新しいbinding_state fieldとして追加せず、既存missing/unknown/conflict/staleの局所findingとgapへ返す。",
+            "join": "source_refを局所形へ作り替えず、元のCommon Refを変更せず保持する。identity/revision/scope/owner/source_locator/sha256をJSON値意味で比較し、raw_revision/raw_scope/raw_sha256はheld_out_sourceとraw bytesへ別々に結ぶ。一致atomにはidentity・revision・scope・ownerとdigest bindingの一致が必要。source_locatorは元の物理source locatorとして保持しraw_source_pointerで置き換えない。Common RefのscopeがobjectでN01 scopeがstringならstringify/cast/coercionをせず、両値を保持して既存local binding conflict/unknownを返す。Common Refのnull optional memberをpacket pointerから推定しない。",
+            "qualification_boundary": "このadapterは入力の同一性/完全性対応だけを示す。独立owner qualification、trust、authorizationは証明せず、既存L4 source-qualification ownerとfailure routeに残す。"
+          },
+          "raw_decode_boundary": {
+            "raw_input": "input JSON値はそのまま保持し、raw memberへPresence wrapperを挿入しない。",
+            "raw_echo": "N01Return.held_out_batch_association.batch_inputがbatch全体を一度だけexact echoし、Absentとpresent nullを区別する。",
+            "decoded_view": "DecodedHeldOutExtractionBatchViewはraw echoに対するconsumer-side projection。Presenceはviewおよびreturned observationでのみ使う。",
+            "expected_side": "expected_source_bindingはraw Presence echoと別にtyped discriminatorを持つ。成功HeldOutAtomEvidenceはstrict型。",
+            "observed_side": "HeldOutOccurrenceResult.observed_source_bindingはraw batch source_binding memberをPresence<RawValue>でコピーし、成功行でも値を失わない。gapのrejected_atomだけがPresence<RawValue>を持ち、成功variantには当該fieldを置かない。",
+            "scope": "raw観測/strict status/leaf意味stateを分離する。原batch/各row/index/Q/effectsを保持し、shapeで意味判定を代用しない。"
+          },
+          "source_binding_comparison": {
+            "inputs": "raw expected binding Presenceと非破壊declared leaf projection、独立owner_resolution、raw held source/exact bytes、raw batch binding。strict typed statusは別保存。",
+            "rules": [
+              {
+                "field": "identity",
+                "comparison": "CommonRef.identity と独立source identityを既存JSON値意味で比較",
+                "absent_or_unknown": "既存missing/unknownをfield/scopeへ保持",
+                "known_mismatch": "conflictとして局所finding/gapへ保持"
+              },
+              {
+                "field": "revision",
+                "comparison": "CommonRef.revision、N01HeldOutSourceBinding.raw_revision、held_out_source.revisionを別々に保持して比較",
+                "absent_or_unknown": "既存missing/unknownを保持",
+                "known_mismatch": "staleとして局所finding/gapへ保持"
+              },
+              {
+                "field": "scope",
+                "comparison": "CommonRef.scope (RawValue)、typed raw_scope、held_out_source.scopeを各原値で比較。文字列化・castしない",
+                "absent_or_unknown": "既存missing/unknownを保持",
+                "known_mismatch": "conflictとして局所finding/gapへ保持"
+              },
+              {
+                "field": "owner",
+                "comparison": "CommonRef.ownerと既存独立owner qualificationを比較。raw packetから推定しない",
+                "absent_or_unknown": "既存missing/unknownを保持",
+                "known_mismatch": "conflictとして局所finding/gapへ保持"
+              },
+              {
+                "field": "source_locator",
+                "comparison": "CommonRef.source_locatorを原物理locatorとして保持し、packet内のraw_source_pointerとは別の役割として扱う。source locatorをraw pointerへ置き換えたり、両者の文字列一致を要求したりしない。独立resolverの既存資格結果が別途ある場合のみその所見を保持する。",
+                "absent_or_unknown": "元optional/nullを保持し、qualification規則のmissing/unknownを保持",
+                "known_mismatch": "この境界ではraw_source_pointerとの不一致からfindingを推定しない。独立資格結果が既知 conflict/staleならその既存所見を局所保持。"
+              },
+              {
+                "field": "sha256",
+                "comparison": "CommonRef.sha256、binding.raw_sha256、held_out_source.sha256、厳密raw_utf8 bytes digestを別々に比較",
+                "absent_or_unknown": "既存missing/unknownを保持",
+                "known_mismatch": "conflictとして局所finding/gapへ保持"
+              }
+            ],
+            "precedence": "source rowの元findingを先に保持する。構造decode後、既知のrevision不一致はstale、その他の既知binding不一致はconflict、欠落はmissing、未確定値はunknownとして既存規則の局所finding/gapへ写す。複数fieldのfindingを値一致へ丸めず、既存state_of/aggregateの優先と重複整理を維持する。",
+            "non_equivalence": "strict Ref6 shapeやJSON Schema適合だけでは資格、source対応、意味一致を成立させない。"
+          },
+          "consumer_field_boundary": {
+            "expected_outer": "expected binding Absent→missing、present null/non-object→unknown。raw値とPresenceはexact保持する。",
+            "expected_object": "objectではraw source_ref/raw_revision/raw_scope/raw_sha256等を非破壊projectionする。source_ref objectの各declared leaf Absentはstate_ofへ欠落として、present nullは原nullとして渡す。source_ref自体がAbsentならmissing、present null/non-objectならunknown。原strict型不成立はtyped_expected_source_binding.unknown(reason=binding_field_not_strict)へ残すが、独立leaf比較を抑止しない。",
+            "strict_status": "TypedExpectedSourceBinding.validは元closed shapeに適合する場合だけ。raw objectがstrictに適合しなくても、そのstructure statusとraw意味比較stateは別である。structural unknownからsemantic unknownを無条件コピーしない。",
+            "optional_locator": "source_locatorは元optional/nullを保持。raw_source_pointerとの文字列一致を要求せず、必要identity/owner/revision/scope/bytesの欠落とは別に扱う。",
+            "leaf_comparison": "state_of(actual,expected,revision)とaggregateの既存規約を用いる。Absentは実引数で元欠落表現として扱い観測Presenceに残す。actual null/emptyはmissing、TBD/expected null又はTBDはunknown、それ以外は元same比較、revision既知差だけstale。whole rawをstrict成功型へcastしない。",
+            "batch": "batch source_binding/applicability_input/extractor_contract等もraw projectionから既存field比較へ渡す。Absent/nullを成功producer schema違反として事前一括拒否しない。outer batch不在はraw echoへ保持し、binding成立後の候補0として既存extraction_result_missingへ結ぶ。",
+            "atom": "content objectの宣言leaf/digestはstate_ofへ渡す。union/container違反だけをextraction_result_invalidへ分類する。成功atomとして返すのは全意味field/digest対応とstrict返却shapeが成立する場合だけである。",
+            "structural_and_leaf_failures": "外container不成立や宣言外binding memberはunknownとして原観測を保持。objectの宣言leaf不足/値違いはstate_ofへ通し、strict status unknownを別のsemantic unknownとして一律注入しない。比較可能leafのmissing/unknown/stale/conflictを失わずaggregateする。semantic成立かつstrict返却shape適合の場合だけ成功atomを返す。"
+          }
+        },
+        "source_parse_and_diagnosis": {
+          "raw_parse": "既存elements()が返すexact bytes解析順とspanを使い、各parsed row全体、1-based ordinal、全source SHA-256、source_row_sha256を保持する。batch側claimをsourceの正本にしない。 source_row_sha256はsplitlinesで得た行終端を含まないexact行bytes、whole source sha256は終端を含むraw_utf8全bytesに別々に結ぶ。",
+          "existing_local_rules": [
+            "heldout scopeは従来通りinput_frame.scopeと比較し、局所gapにする。comparison_resultは独立result_sourcesの判定を保持する。",
+            "atom applicabilityはinput_frame.applicability_inputへ、extractor identity/versionはinput_frameへ完全一致させる。original result_sourcesへfallbackしない。",
+            "L4 /contracts/3 のfailure destination 041 extractor contract owner と 009/対象template ownerを維持する。B01 compare_b01は別のowner-return routerでありheldout atom consumer/gateではない。"
+          ],
+          "diagnosis_order": [
+            "held_out_source Absent/nullなら原source rowは0件とし、binding評価・row gapを作らない。held_out_source objectにraw_utf8 absent/null/emptyがある場合は既存template_source_missingを返す。入力の既存required-string型は広げない。",
+            "各parsed held-out rowでは既存compare_n01の順を保つ。最初にheld_out_source.scopeとinput_frame.scopeを既存state_ofで比較し、非同値ならscope_<state>を当該行へ返す。",
+            "scope比較が成立した行ではheld_out_source.revisionがnull/empty/TBD相当かを既存規則で判定し、source_revision_missing/source_revision_unknownを返す。外部bindingのrevision値で原入力を補わない。",
+            "revisionが成立した行では厳密raw_utf8 digestとheld_out_source.sha256を比較し、source_digest_conflictを返す。",
+            "digestが成立した行では既存KINDSに基づきunsupported_elementを返す。既存の順序とsource_row/span/元値を保持する。",
+            "既存source findingの無いsupported rowだけordered_row_classificationのbinding→applicability→candidate採用へ進む。source findingは置換せず、他rowへ伝播しない。"
+          ],
+          "atom_evidence_rules": {
+            "canonical_pointer": "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison/atom_evidence_rules",
+            "meaning": "source解析側から同じ原子比較規則を参照する。重複本文を正本にしない。"
+          },
+          "source_rule_pointers": {
+            "n01_authority": {
+              "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+              "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd",
+              "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486",
+              "pointer": "/requirements/7"
+            },
+            "basic_pair": {
+              "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+              "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd",
+              "sha256": "32934075f0e426076df8d206582b36b06e403afd9997e5315b77e59649a5dedc",
+              "pointer": "/contracts/3"
+            },
+            "unit_verification": {
+              "path": "docs/helix-harness/L8-unit-verification/template-obligation-extraction.json",
+              "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd",
+              "sha256": "4d398b2030256d0e85748bd9515f787a4330c9f4e8d32701527aa4a82ca17370",
+              "pointer": "/cases/28"
+            },
+            "source_parser": {
+              "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+              "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd",
+              "sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+              "pointer": "/finite_reference/definitions/13"
+            },
+            "applicability": {
+              "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+              "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd",
+              "sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+              "pointer": "/finite_reference/definitions/14"
+            },
+            "atom_comparison": {
+              "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+              "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd",
+              "sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+              "pointer": "/finite_reference/definitions/17"
+            },
+            "digest_and_state": [
+              {
+                "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+                "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd",
+                "sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+                "pointer": "/finite_reference/definitions/7"
+              },
+              {
+                "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+                "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd",
+                "sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+                "pointer": "/finite_reference/definitions/9"
+              },
+              {
+                "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+                "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd",
+                "sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+                "pointer": "/finite_reference/definitions/10"
+              }
+            ],
+            "common_ref": {
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd",
+              "sha256": "bd031871e97f05b871a04a90bb51658a6875128aa467160ca432c8a4702985c8",
+              "pointer": "/type_contract/types/Ref"
+            },
+            "failure_routing": {
+              "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+              "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd",
+              "sha256": "32934075f0e426076df8d206582b36b06e403afd9997e5315b77e59649a5dedc",
+              "pointer": "/contracts/3/failure_returns"
+            },
+            "n01_existing_comparator": {
+              "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+              "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd",
+              "sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+              "pointer": "/functions/3"
+            },
+            "n01_existing_finite_rule": {
+              "path": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+              "revision": "c24a7c10bb6565eeeb2a8926bc020da080886edd",
+              "sha256": "bf9e78695d744103714eb9203cb37bf8699cd9ecc4168868a827f2035e2a6bec",
+              "pointer": "/finite_reference/definitions/19"
+            }
+          }
+        },
+        "batch_association": {
+          "scope": "保留対象のextraction batch配列の観測・関連付け・採用に限る。source diagnosisとraw association discoveryはbinding qualificationから独立。既存F02 atom meaning、N01 output責務、owner資格、原source rowごとのatom-or-gap責務は変えない。",
+          "closed_return_carrier": "N01Return.held_out_batch_association: HeldOutBatchAssociation",
+          "input_carrier": {
+            "name": "HeldOutBatchAssociation.batch_input",
+            "shape": "Presence<RawValue>",
+            "purpose": "Absentとpresent nullを区別し、存在時はcomplete extraction batchをexactly once保持する。"
+          },
+          "per_source_row": "HeldOutOccurrenceResult.candidate_batch_indicesは保持したbatch occurrences配列への0-based indexをbatch原順に並べた整数列。",
+          "association_and_validation_order": {
+            "canonical_pointer": "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison/ordered_row_classification",
+            "preserve": "raw候補を全indexで発見し、意味採用と分離して保持する。候補数→単一claim→container→field→digestの唯一順序を参照し、重複した別順序を定めない。"
+          },
+          "limits": [
+            "任意malformed JSON全域の証明ではない。",
+            "observation recordはdecoded viewであり、raw payload fidelityは単一exact batch echoで保つ。",
+            "formal L5/L8 consumerはこのassociation規則へ未追随。"
+          ]
+        },
+        "fieldwise_atom_comparison": {
+          "comparison_pipeline": [
+            "ordered_row_classificationを唯一のprimary outcome順序とする。原source診断とraw関連候補発見を独立保持。",
+            "eligible rowだけでowner_resolution_contractが供給した独立原source/原決定とexpected/batch raw bindingを比較する。構造typed statusは意味stateではない。",
+            "shape-validを資格成立へ昇格させず、shape不一致だけでraw leafのstate_of比較を消さない。raw consumer field境界はsource_binding_and_decode.consumer_field_boundaryに従う。",
+            "候補count/claim、container、F02 field、digestの段階順で原rowのatom又はgapを返す。raw batchと全indices、元row/span/拒否atomを保持。"
+          ],
+          "expected_map": {
+            "source_element_id": "parsed row id",
+            "source_span": "parsed line span",
+            "template_revision": "held_out_source.revision",
+            "applicability": "input_frame.applicability_input",
+            "kind": "parsed row kind",
+            "meaning": "parsed row meaning",
+            "extractor_identity": "independent contract identity",
+            "extractor_version": "independent contract version"
+          },
+          "raw_row_preservation": "解析したsource_elementを各HeldOutOccurrenceResultへ変更せず保持し、input raw_utf8、whole-source SHA-256、source ordinal/span、source_row_sha256へtraceできる。未知JSON memberは削除せず、自動gapにもせずopaque値として残す。atomのsemantic projectionは既存F02 field mapで既に消費するfieldだけを比較する。追加memberの意味を推測せず、独立解釈したとも主張しない。",
+          "atom_evidence_rules": [
+            "元elements()のsplitlines順/span・parsed全rowを保持しKINDSと既存applicableで意味採用の対象を定める。rowの未知memberだけを理由に拒否しない。",
+            "ordered_row_classificationのraw container→mapped_content→digest順を用い、各宣言leafはstate_of/aggregateへ渡す。成功producer schemaをraw consumerへ適用しない。",
+            "F02 expected_mapを原row/held source/input frameから独立構成し、内容とdigestを別に比較する。actual None/emptyのmissingを保持し、型coercionや文字列化で一致させない。",
+            "原sourceとexpected/batchの自己一致は独立資格に代わらない。対応不能は当該原rowのgapへ戻し、別row/二結果比較を相殺しない。"
+          ],
+          "unknown_members": "Parsed source_elementを各返却へそのまま保持する。未知memberは削除も自動gap化もせずopaqueとして扱う。比較対象は既存F02 field mapに定めたmemberに限る。追加memberへ新しい意味を付与せず、独立評価済みとも主張しない。",
+          "rejected_observation": "各HeldOutOccurrenceResult.observed_source_bindingはraw Presence<RawValue>。gap variantのrejected_atomもPresence<RawValue>。成功variantにはrejected_atomを置かない。一つの候補indexがatom memberを特定する場合だけそのraw値をgapにcopyできる。候補複数時は全値をraw batch echo/candidate_batch_indicesから辿り、いずれも選択しない。",
+          "existing_rule_source_pointers": {
+            "canonical_pointer": "/contracts/3/held_out_occurrence_contract/source_parse_and_diagnosis/source_rule_pointers"
+          },
+          "ordered_row_classification": {
+            "scope": "原行ごとのprimary outcome順だけを具体化する。全域first-failure又は全資格gateではない。",
+            "stages": [
+              {
+                "stage": 0,
+                "name": "association_discovery",
+                "rule": "raw batchをPresenceで完全保持し、ordinalがboolean以外のintegerかつ原row範囲内の全候補index/unmatchedを元順で発見する。binding/資格前の観測であり意味採用ではない。"
+              },
+              {
+                "stage": 1,
+                "name": "existing_source_diagnosis",
+                "rule": "原rowごとに既存source診断をscope→revision missing/unknown→raw digest→unsupportedの順で適用し、最初のsource findingを保持。後段はこれを置換しない。"
+              },
+              {
+                "stage": 2,
+                "name": "binding",
+                "rule": "先行source findingのないsupported rowで、expected binding rawと独立owner contextとbatch raw bindingを別比較。外binding Absentはmissing、null/non-objectはunknown。objectではstrict decode statusとraw各field比較を分け、葉をstate_of/aggregateへ渡す。missing→unknown→stale→conflictの優先を保つ。"
+              },
+              {
+                "stage": 3,
+                "name": "applicability",
+                "rule": "bindingの成立後だけ既存applicableを適用し、no/unknownをapplicability_no/applicability_unknown gapへ返す。原row/span/候補indexは保持し、original templateのreasoned_NAを代用しない。"
+              },
+              {
+                "stage": 4,
+                "name": "candidate_count_and_claim",
+                "rule": "候補0はextraction_result_missing、複数はatom_source_conflict。単一候補でordinal/id/span/row_sha claimが対応しなければatom_source_conflict。形の悪い候補を候補数から除外しない。"
+              },
+              {
+                "stage": 5,
+                "name": "outcome_container",
+                "rule": "claim対応した単一候補でoutcome Absent/nullはextraction_result_missing。wrong tag/非object/atomとgap同時/宣言外union memberはextraction_result_invalid。gap-onlyはstrict gap形・原row対応を確認してproducer_reported_gapへ正規化しraw kindはbatch echoへ保持。atom variantではatom object/atom_id:string/content objectというcontainerを要求するが、content宣言leaf/digestの欠落/null/値違いをstrict成功schemaで先に拒否しない。"
+              },
+              {
+                "stage": 6,
+                "name": "mapped_content",
+                "rule": "raw content objectの全宣言fieldを元F02 expected_mapとstate_ofで比較しaggregateする。missing→atom_content_missing、unknown→atom_content_unknown、revision系stale→source_revision_stale、既知相反→atom_content_conflict。Absentとpresent nullの原観測を別保持する。actual null/emptyは元state_ofのmissing、TBD又はexpected null/TBDはunknown。成功型へのcastで枝を消さない。"
+              },
+              {
+                "stage": 7,
+                "name": "digest",
+                "rule": "mapped content成立後だけsemantic_digest、次にextractor_version_digestを既存canonical digestへstate_ofで比較。missing→atom_digest_missing、unknown→atom_digest_unknown、既知相反→atom_digest_conflict。digest一致でcontent比較を省略しない。"
+              },
+              {
+                "stage": 8,
+                "name": "canonical_return",
+                "rule": "各rowのprimary atom/gapを原順で1件ずつ返す。全raw batch/index/拒否値を保持し、held_out_gapはcanonical occurrence listだけから旧0/1/複数形へ射影する。comparison_result/Q/effectsは独立保持。"
+              }
+            ],
+            "binding_state_to_kind": {
+              "missing": "source_binding_missing",
+              "unknown": "source_binding_unknown",
+              "stale": "source_revision_stale",
+              "conflict": "source_binding_conflict"
+            },
+            "source_state_basis": "L5 finite_reference definitions9/10。原値/Presenceは保持し、actual null/emptyを新unknownへ改変しない。",
+            "unobserved": [
+              "原source複数findingの元順以外の新収集は定めない。",
+              "複数field状態の全組合せ、revoked/indeterminate元決定全branch、applicability no/unknownと候補欠陥の重なり、producer gapとatom複数候補の全混在は未観測。"
+            ],
+            "gap_kind_catalogue": {
+              "scope": "現在のsource診断および段階別写像から返すkindの索引。追加の判定順序、許否gate又はraw producer gap.kindの閉enumではない。既存HeldOutGap.kind:stringとraw観測を保持し、宣言外のproducer kindという理由で新たに拒否しない。producer gap-onlyは既定のproducer_reported_gapへ正規化し元kindをbatch echoへ保持する。",
+              "rows": [
+                {
+                  "source_pointer": "/contracts/3/held_out_occurrence_contract/source_parse_and_diagnosis/diagnosis_order",
+                  "stages": [
+                    1
+                  ],
+                  "returned_kinds": [
+                    "template_source_missing",
+                    "scope_missing",
+                    "scope_unknown",
+                    "scope_conflict",
+                    "source_revision_missing",
+                    "source_revision_unknown",
+                    "source_digest_conflict",
+                    "unsupported_element"
+                  ],
+                  "note": "template_source_missingはraw_utf8不足時の既存source診断。他は原row診断。scopeはrevision=falseのstate_ofからmissing/unknown/conflictを返す。"
+                },
+                {
+                  "source_pointer": "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison/ordered_row_classification/binding_state_to_kind",
+                  "stages": [
+                    2
+                  ],
+                  "returned_kinds": [
+                    "source_binding_missing",
+                    "source_binding_unknown",
+                    "source_revision_stale",
+                    "source_binding_conflict"
+                  ]
+                },
+                {
+                  "source_pointer": "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison/ordered_row_classification/stages/3",
+                  "stages": [
+                    3
+                  ],
+                  "returned_kinds": [
+                    "applicability_no",
+                    "applicability_unknown"
+                  ]
+                },
+                {
+                  "source_pointer": "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison/ordered_row_classification/stages/4",
+                  "stages": [
+                    4
+                  ],
+                  "returned_kinds": [
+                    "extraction_result_missing",
+                    "atom_source_conflict"
+                  ]
+                },
+                {
+                  "source_pointer": "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison/ordered_row_classification/stages/5",
+                  "stages": [
+                    5
+                  ],
+                  "returned_kinds": [
+                    "extraction_result_missing",
+                    "extraction_result_invalid",
+                    "producer_reported_gap"
+                  ]
+                },
+                {
+                  "source_pointer": "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison/ordered_row_classification/stages/6",
+                  "stages": [
+                    6
+                  ],
+                  "returned_kinds": [
+                    "atom_content_missing",
+                    "atom_content_unknown",
+                    "source_revision_stale",
+                    "atom_content_conflict"
+                  ]
+                },
+                {
+                  "source_pointer": "/contracts/3/held_out_occurrence_contract/fieldwise_atom_comparison/ordered_row_classification/stages/7",
+                  "stages": [
+                    7
+                  ],
+                  "returned_kinds": [
+                    "atom_digest_missing",
+                    "atom_digest_unknown",
+                    "atom_digest_conflict"
+                  ]
+                }
+              ],
+              "legacy_projection_pointer": "/contracts/3/held_out_occurrence_contract/return_and_compatibility/legacy_gap_projection",
+              "ordering": "原rowのprimary判定順は既存stagesが正本。stage0は候補発見、stage8は返却射影であり新kindを作らない。上の反復kindを重複findingへ増やさない。"
+            }
+          }
+        },
+        "return_and_compatibility": {
+          "canonical_truth": "held_out_occurrence_resultsはparse済source rowごとのsource-order canonical atom|gap list。",
+          "legacy_gap_projection": "held_out_gapはcanonical result内のgap variantのみをsource orderで投影する。gap 0件=null、1件=既存単一record、2件以上=既存list。独立に再計算しない。",
+          "zero_one_many": "上記legacy_gap_projectionを一度だけ実施する。",
+          "batch_projection": "raw batch全体と未関連indexはheld_out_batch_associationの一か所に保持し、各行のcandidate indicesはそのcarrierを参照する。",
+          "batch_absent_or_null": "batch Absent/nullからextraction_result_missingを作るのは、既存source診断が無く、eligible supported source rowであり、expected bindingが構造decodeおよび意味比較の双方で有効な場合だけ。先行source finding、unsupported row、binding Absent/null/wrong-kind/known mismatchでは元findingまたはsource_binding_missing/unknown/conflict/staleを保持し、batch不在由来gapを追加しない。すべての枝でbatch_inputのPresence/raw値、候補index、原span/idを保持する。held_out_source=nullでparsed rowが0件ならoccurrence list empty/held_out_gap null。raw_utf8 null/emptyは既存template_source_missingを保持する。",
+          "old_callers": "旧callerのraw不在を勝手に補完しない。元source finding/比較結果/全返却を保存し、新logical contextが必要なeligible raw経路では同invocationの独立原operandを供給する。旧L5型/codec追随は未成立である。",
+          "limits": "有限carrier/design範囲。全template対応、実資格、実extractor実行、全域入力保証を意味しない。"
+        },
+        "return_json_schema": {
+          "source_mapping": "N01Returnの全closed $defsをこのschemaへ同梱する。CommonRefとEffectFlagsは宣言済み元shapeを保持する。expected bindingだけをrowの厳格型fieldから一度だけ行うinput Presence echo＋typed discriminatorへ移す。",
+          "schema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "urn:helix:harness041:n01:return",
+            "title": "HARNESS041 N01Return",
+            "$ref": "#/$defs/N01Return",
+            "$defs": {
+              "PresenceRawValue": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "presence": {
+                        "const": "absent"
+                      }
+                    },
+                    "required": [
+                      "presence"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "presence": {
+                        "const": "present"
+                      },
+                      "value": true
+                    },
+                    "required": [
+                      "presence",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "SourceSpan": {
+                "type": "object",
+                "properties": {
+                  "start_line": {
+                    "type": "integer"
+                  },
+                  "end_line": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "start_line",
+                  "end_line"
+                ],
+                "additionalProperties": false
+              },
+              "CommonRef": {
+                "type": "object",
+                "properties": {
+                  "identity": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "revision": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "scope": {},
+                  "owner": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_locator": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "sha256": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "identity",
+                  "revision",
+                  "scope",
+                  "owner",
+                  "source_locator",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              },
+              "N01HeldOutSourceBinding": {
+                "type": "object",
+                "properties": {
+                  "source_ref": {
+                    "$ref": "#/$defs/CommonRef"
+                  },
+                  "raw_source_pointer": {
+                    "type": "string"
+                  },
+                  "raw_revision": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "raw_scope": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "raw_sha256": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "source_ref",
+                  "raw_source_pointer",
+                  "raw_revision",
+                  "raw_scope",
+                  "raw_sha256"
+                ],
+                "additionalProperties": false
+              },
+              "ApplicabilityInput": {
+                "type": "object",
+                "properties": {
+                  "screen": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "screen"
+                ],
+                "additionalProperties": false
+              },
+              "HeldOutAtomEvidence": {
+                "type": "object",
+                "properties": {
+                  "atom_id": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "object",
+                    "properties": {
+                      "source_element_id": {
+                        "type": "string"
+                      },
+                      "source_span": {
+                        "$ref": "#/$defs/SourceSpan"
+                      },
+                      "template_revision": {
+                        "type": "string"
+                      },
+                      "applicability": {
+                        "$ref": "#/$defs/ApplicabilityInput"
+                      },
+                      "kind": {
+                        "type": "string"
+                      },
+                      "meaning": {
+                        "type": "string"
+                      },
+                      "extractor_identity": {
+                        "type": "string"
+                      },
+                      "extractor_version": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "source_element_id",
+                      "source_span",
+                      "template_revision",
+                      "applicability",
+                      "kind",
+                      "meaning",
+                      "extractor_identity",
+                      "extractor_version"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "semantic_digest": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "extractor_version_digest": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                },
+                "required": [
+                  "atom_id",
+                  "content",
+                  "semantic_digest",
+                  "extractor_version_digest"
+                ],
+                "additionalProperties": false
+              },
+              "HeldOutGap": {
+                "type": "object",
+                "properties": {
+                  "element_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "template_revision": {
+                    "type": "string"
+                  },
+                  "source_span": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/$defs/SourceSpan"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "element_id",
+                  "kind",
+                  "template_revision",
+                  "source_span"
+                ],
+                "additionalProperties": false
+              },
+              "OccurrenceOutcome": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "atom"
+                      },
+                      "atom": {
+                        "$ref": "#/$defs/HeldOutAtomEvidence"
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "atom"
+                    ],
+                    "not": {
+                      "required": [
+                        "rejected_atom"
+                      ]
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "const": "gap"
+                      },
+                      "gap": {
+                        "$ref": "#/$defs/HeldOutGap"
+                      },
+                      "rejected_atom": {
+                        "$ref": "#/$defs/PresenceRawValue"
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "gap",
+                      "rejected_atom"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "HeldOutOccurrenceResult": {
+                "type": "object",
+                "properties": {
+                  "observed_source_binding": {
+                    "$ref": "#/$defs/PresenceRawValue"
+                  },
+                  "source_element_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_span": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/$defs/SourceSpan"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "outcome": {
+                    "$ref": "#/$defs/OccurrenceOutcome"
+                  },
+                  "source_ordinal": {
+                    "type": "integer"
+                  },
+                  "source_row_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$",
+                    "description": "正確な原source rowの行終端を含まないbytesのSHA-256。source_parse_and_diagnosis/raw_parseを参照。whole sourceの終端を含む全bytes digestとは別。"
+                  },
+                  "source_element": true,
+                  "candidate_batch_indices": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  }
+                },
+                "required": [
+                  "observed_source_binding",
+                  "source_element_id",
+                  "source_span",
+                  "outcome",
+                  "source_ordinal",
+                  "source_row_sha256",
+                  "source_element",
+                  "candidate_batch_indices"
+                ],
+                "additionalProperties": false
+              },
+              "EffectFlags": {
+                "type": "object",
+                "properties": {
+                  "actual_extraction_executed": {
+                    "const": false
+                  },
+                  "actual_ledger_registered": {
+                    "const": false
+                  },
+                  "actual_OS_execution": {
+                    "const": false
+                  },
+                  "actual_template_authority": {
+                    "const": false
+                  },
+                  "actual_design_complete": {
+                    "const": false
+                  },
+                  "actual_requirement_agreement": {
+                    "const": false
+                  },
+                  "actual_acceptance": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "actual_extraction_executed",
+                  "actual_ledger_registered",
+                  "actual_OS_execution",
+                  "actual_template_authority",
+                  "actual_design_complete",
+                  "actual_requirement_agreement",
+                  "actual_acceptance"
+                ],
+                "additionalProperties": false
+              },
+              "BatchAssociation": {
+                "type": "object",
+                "properties": {
+                  "expected_source_binding": {
+                    "$ref": "#/$defs/PresenceRawValue"
+                  },
+                  "typed_expected_source_binding": {
+                    "$ref": "#/$defs/TypedExpectedSourceBinding"
+                  },
+                  "batch_input": {
+                    "$ref": "#/$defs/PresenceRawValue"
+                  },
+                  "unmatched_batch_indices": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  }
+                },
+                "required": [
+                  "expected_source_binding",
+                  "typed_expected_source_binding",
+                  "batch_input",
+                  "unmatched_batch_indices"
+                ],
+                "additionalProperties": false
+              },
+              "N01Return": {
+                "type": "object",
+                "properties": {
+                  "comparison_result": {
+                    "type": "object",
+                    "properties": {
+                      "state": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "general_determinism_guaranteed": {
+                    "type": "boolean"
+                  },
+                  "all_templates_supported": {
+                    "type": "boolean"
+                  },
+                  "held_out_gap": {
+                    "oneOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "$ref": "#/$defs/HeldOutGap"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/$defs/HeldOutGap"
+                        }
+                      }
+                    ]
+                  },
+                  "effects": {
+                    "$ref": "#/$defs/EffectFlags"
+                  },
+                  "unaffected_Q": {
+                    "type": "object",
+                    "properties": {
+                      "state": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "held_out_occurrence_results": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/HeldOutOccurrenceResult"
+                    }
+                  },
+                  "held_out_batch_association": {
+                    "$ref": "#/$defs/BatchAssociation"
+                  }
+                },
+                "required": [
+                  "comparison_result",
+                  "general_determinism_guaranteed",
+                  "all_templates_supported",
+                  "held_out_gap",
+                  "effects",
+                  "unaffected_Q",
+                  "held_out_occurrence_results",
+                  "held_out_batch_association"
+                ],
+                "additionalProperties": false
+              },
+              "TypedExpectedSourceBinding": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "state": {
+                        "const": "valid"
+                      },
+                      "value": {
+                        "$ref": "#/$defs/N01HeldOutSourceBinding"
+                      },
+                      "input_pointer": {
+                        "const": "/packet/held_out_source_binding"
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value",
+                      "input_pointer"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "state": {
+                        "const": "missing"
+                      },
+                      "finding_kind": {
+                        "const": "source_binding_missing"
+                      },
+                      "input_pointer": {
+                        "const": "/packet/held_out_source_binding"
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "finding_kind",
+                      "input_pointer"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "state": {
+                        "const": "unknown"
+                      },
+                      "reason": {
+                        "type": "string"
+                      },
+                      "input_pointer": {
+                        "const": "/packet/held_out_source_binding"
+                      },
+                      "raw_value": {
+                        "$ref": "#/$defs/PresenceRawValue"
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "reason",
+                      "input_pointer",
+                      "raw_value"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "state": {
+                        "const": "not_evaluated"
+                      },
+                      "preceding_source_finding_kinds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "input_pointer": {
+                        "const": "/packet/held_out_source_binding"
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "preceding_source_finding_kinds",
+                      "input_pointer"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "state": {
+                        "const": "not_applicable"
+                      },
+                      "reason": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "reason"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "producer_consumer_type_boundary": {
+          "producer_success_type": "HeldOutExtractionBatch（厳格なproducer返却値。occurrencesはProducedHeldOutOccurrence[]）",
+          "consumer_raw_type": "HeldOutBatchAssociation.batch_input:Presence<RawValue>（全入力値を一度だけそのままechoするcarrier）",
+          "consumer_decode_type": "DecodedHeldOutExtractionBatchViewとHeldOutOccurrenceObservation（Presence<RawValue>による非破壊projection。producer成功型へcastしない）",
+          "rule": "資格照合前に入力中の全occurrence/indexのraw関連候補を保持する。shapeが妥当なraw JSONも観測値であり、それだけで既存producer portの返却だとは判定しない。型違い・重複・順序違い・孤立・non-objectの入力値はraw echoに残し、厳格なproducer schemaはproducer返却値にだけ適用する。"
+        },
+        "producer_json_schema": {
+          "meaning": "producer portから返される厳格なHeldOutExtractionBatchだけを検証するschema。consumer input/raw echoには適用しない。",
+          "schema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "urn:helix:harness041:n01:producer-batch",
+            "title": "HARNESS041 HeldOutExtractionBatchのproducer成功値",
+            "$ref": "#/$defs/HeldOutExtractionBatch",
+            "$defs": {
+              "SourceSpan": {
+                "type": "object",
+                "properties": {
+                  "start_line": {
+                    "type": "integer"
+                  },
+                  "end_line": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "start_line",
+                  "end_line"
+                ],
+                "additionalProperties": false
+              },
+              "CommonRef": {
+                "type": "object",
+                "properties": {
+                  "identity": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "revision": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "scope": {},
+                  "owner": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_locator": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "sha256": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "identity",
+                  "revision",
+                  "scope",
+                  "owner",
+                  "source_locator",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              },
+              "N01HeldOutSourceBinding": {
+                "type": "object",
+                "properties": {
+                  "source_ref": {
+                    "$ref": "#/$defs/CommonRef"
+                  },
+                  "raw_source_pointer": {
+                    "type": "string"
+                  },
+                  "raw_revision": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "raw_scope": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "raw_sha256": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "source_ref",
+                  "raw_source_pointer",
+                  "raw_revision",
+                  "raw_scope",
+                  "raw_sha256"
+                ],
+                "additionalProperties": false
+              },
+              "ApplicabilityInput": {
+                "type": "object",
+                "properties": {
+                  "screen": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "screen"
+                ],
+                "additionalProperties": false
+              },
+              "HeldOutAtomEvidence": {
+                "type": "object",
+                "properties": {
+                  "atom_id": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "object",
+                    "properties": {
+                      "source_element_id": {
+                        "type": "string"
+                      },
+                      "source_span": {
+                        "$ref": "#/$defs/SourceSpan"
+                      },
+                      "template_revision": {
+                        "type": "string"
+                      },
+                      "applicability": {
+                        "$ref": "#/$defs/ApplicabilityInput"
+                      },
+                      "kind": {
+                        "type": "string"
+                      },
+                      "meaning": {
+                        "type": "string"
+                      },
+                      "extractor_identity": {
+                        "type": "string"
+                      },
+                      "extractor_version": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "source_element_id",
+                      "source_span",
+                      "template_revision",
+                      "applicability",
+                      "kind",
+                      "meaning",
+                      "extractor_identity",
+                      "extractor_version"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "semantic_digest": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "extractor_version_digest": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                },
+                "required": [
+                  "atom_id",
+                  "content",
+                  "semantic_digest",
+                  "extractor_version_digest"
+                ],
+                "additionalProperties": false
+              },
+              "HeldOutGap": {
+                "type": "object",
+                "properties": {
+                  "element_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "template_revision": {
+                    "type": "string"
+                  },
+                  "source_span": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/$defs/SourceSpan"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "element_id",
+                  "kind",
+                  "template_revision",
+                  "source_span"
+                ],
+                "additionalProperties": false
+              },
+              "ProducedHeldOutOccurrence": {
+                "type": "object",
+                "properties": {
+                  "source_ordinal": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "not": {
+                      "type": "boolean"
+                    }
+                  },
+                  "source_element_id": {
+                    "type": "string"
+                  },
+                  "source_span": {
+                    "$ref": "#/$defs/SourceSpan"
+                  },
+                  "source_row_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$",
+                    "description": "正確な原source rowの行終端を含まないbytesのSHA-256。source_parse_and_diagnosis/raw_parseを参照。whole sourceの終端を含む全bytes digestとは別。"
+                  },
+                  "outcome": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "const": "atom"
+                          },
+                          "atom": {
+                            "$ref": "#/$defs/HeldOutAtomEvidence"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "atom"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "const": "gap"
+                          },
+                          "gap": {
+                            "$ref": "#/$defs/HeldOutGap"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "gap"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "source_ordinal",
+                  "source_element_id",
+                  "source_span",
+                  "source_row_sha256",
+                  "outcome"
+                ],
+                "additionalProperties": false
+              },
+              "ExtractorContract": {
+                "type": "object",
+                "properties": {
+                  "identity": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "identity",
+                  "version"
+                ],
+                "additionalProperties": false
+              },
+              "HeldOutExtractionBatch": {
+                "type": "object",
+                "properties": {
+                  "source_binding": {
+                    "$ref": "#/$defs/N01HeldOutSourceBinding"
+                  },
+                  "applicability_input": {
+                    "$ref": "#/$defs/ApplicabilityInput"
+                  },
+                  "extractor_contract": {
+                    "$ref": "#/$defs/ExtractorContract"
+                  },
+                  "extractor_version_digest": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "occurrences": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/ProducedHeldOutOccurrence"
+                    }
+                  }
+                },
+                "required": [
+                  "source_binding",
+                  "applicability_input",
+                  "extractor_contract",
+                  "extractor_version_digest",
+                  "occurrences"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "owner_resolution_contract": {
+          "scope": "既存qualification_ruleの独立原source/owner資格を供給するlogical private IO。新しい公開API、承認主体、trust store、暗号方式を作らない。",
+          "responsible_owners": [
+            "009/対象template source owner",
+            "既存source qualification owner"
+          ],
+          "logical_types": {
+            "N01OwnerSourceRequest": {
+              "closed_fields": {
+                "source_ref": "CommonRef6"
+              },
+              "source": "009/対象template ownerが原source選択時に保持するRef。packet expected binding/batch/outerpacket Refからコピーしない。"
+            },
+            "N01NativeSourceSnapshot": {
+              "closed_fields": {
+                "source_ref": "CommonRef6",
+                "raw_utf8": "string"
+              },
+              "source": "対象template source ownerの元Refとbody。Ref.sha256はこのraw_utf8 exact bytesのdigest、null optional memberは原値のまま。"
+            },
+            "N01NativeOwnerQualification": {
+              "closed_fields": {
+                "subject_ref": "CommonRef6",
+                "owner": "string|null",
+                "source_bytes_sha256": "string|null",
+                "basis_refs": "CommonRef6[]",
+                "decision": "N01QualificationDecision"
+              },
+              "source": "既存owner資格resolverが原sourceについて返す比較材料。packet自己申告又は4属性helperのprovider unknownから生成しない。"
+            },
+            "N01OwnerSourceResolution": {
+              "tag": "kind",
+              "closed_variants": {
+                "resolved": {
+                  "request": "N01OwnerSourceRequest",
+                  "source": "N01NativeSourceSnapshot",
+                  "qualification": "N01NativeOwnerQualification",
+                  "native_source_record": "N01NativeSourceRecord",
+                  "native_qualification_record": "N01NativeQualificationRecord"
+                },
+                "unresolved": {
+                  "request": "N01OwnerSourceRequest",
+                  "state": "enum<missing|unknown|conflict|stale>",
+                  "source_observation": "Presence<RawValue>",
+                  "qualification_observation": "Presence<RawValue>",
+                  "basis_refs": "CommonRef6[]"
+                }
+              },
+              "status_note": "新private binding adapter返却。取得済み両operandを返すtagと、元port又は両端対応の局所失敗を区別する。actual_qualification_established=trueを生成しない。"
+            },
+            "N01ResolvedContext": {
+              "closed_fields": {
+                "unaffected_Q": "RawValue",
+                "held_out_owner_resolution": "Presence<N01OwnerSourceResolution>"
+              },
+              "origin": "RetainedContext.unaffected_Q原値と同一呼出しのowner resolution。raw packetのstate/ownerから生成しない。対象sourceなし又は全行に先行source findingがあればAbsent。eligible rowで未供給ならsource_binding_missing。"
+            },
+            "N01NativeSourceRecord": {
+              "closed_fields": {
+                "record_ref": "CommonRef6",
+                "source_ref": "CommonRef6",
+                "raw_utf8": "string"
+              },
+              "producer": "009/対象template source ownerが原sourceのRef/bodyを保持する既存責務。record_refは当該owner原記録自身。source_refはheld raw bytesのRef。",
+              "representation": "このlogical native port projection。既存物理schemaだったとは称さず、原ownerが既存native原記録から供給する責務とfield対応をL4に明記する。"
+            },
+            "N01NativeQualificationRecord": {
+              "closed_fields": {
+                "qualification_ref": "CommonRef6",
+                "subject_ref": "CommonRef6",
+                "source_bytes_sha256": "string|null",
+                "owner": "string|null",
+                "basis_refs": "CommonRef6[]",
+                "decision": "N01QualificationDecision"
+              },
+              "producer": "既存独立owner資格resolverが原sourceについて保有する元決定/対象のlogical投影。raw packet/batch/属性helperの比較stateから作らない。",
+              "representation": "新technical private port projection。原決定を取得できた場合の対象/owner/bytes/basisの値であり、資格knownを表すcomparison enum fieldを置かない。実provider/root/custodyは未実証。 原決定のdecision.outcome/reasonを落とさず保存し、取得resolvedから適用肯定を推測しない。"
+            },
+            "N01QualificationRequest": {
+              "closed_fields": {
+                "subject_ref": "CommonRef6",
+                "source_record_ref": "CommonRef6",
+                "source_bytes_sha256": "string"
+              },
+              "meaning": "同じowner source読取の原recordと正確bodyへ資格決定を結ぶ。raw batch又はouter fixture Refをsubjectへ使わない。"
+            },
+            "CommonRef6": {
+              "alias_source": {
+                "local_pointer": "/contracts/3/held_out_occurrence_contract/closed_types/CommonRef"
+              },
+              "meaning": "現CommonRefの全6fieldの別名。新universal Ref/API/資格型ではない。"
+            },
+            "N01OwnerReadResult<T>": {
+              "tag": "kind",
+              "closed_variants": {
+                "resolved": {
+                  "record": "T"
+                },
+                "unresolved": {
+                  "state": "enum<missing|unknown|conflict|stale>",
+                  "observed": "Presence<RawValue>",
+                  "basis_refs": "CommonRef6[]"
+                }
+              },
+              "basis": "失敗stateの語彙だけをL4 /contracts/3/qualification_ruleのmissing/unknown/conflict/staleから導く。resolved/unresolvedは新technical取得tagであり、既存比較enumのsupported_synthetic_condition又は実資格成立への昇格ではない。",
+              "raw_boundary": "この型は既存owner portの返却役割。untrusted packetのkind/stateをdecodeしてowner返却として生成しない。"
+            },
+            "N01NativeSourcePortResult": {
+              "alias": "N01OwnerReadResult<N01NativeSourceRecord>"
+            },
+            "N01NativeQualificationPortResult": {
+              "alias": "N01OwnerReadResult<N01NativeQualificationRecord>"
+            },
+            "N01QualificationDecision": {
+              "closed_fields": {
+                "outcome": "enum<applicable|not_applicable|revoked|indeterminate>",
+                "reason": "RawValue"
+              },
+              "basis": "新logical native qualification portの技術投影。既存L4 qualification_ruleの独立owner資格を供給する原決定結果/原理由を保存する。比較state enumではなく、現行physical schemaに存在すると主張しない。",
+              "meanings": {
+                "applicable": "原資格ownerがこのsubject Ref/body/ownerについて有効な適用決定を返した。",
+                "not_applicable": "原資格ownerがこのsubject Ref/body/ownerへの適用を既知に否定した。別対象への決定を適用しない。",
+                "revoked": "原資格ownerが元の決定の失効/後継への置換を既知に返した。失効した肯定を再利用しない。",
+                "indeterminate": "原資格ownerが当該決定の適用を確定できない。"
+              },
+              "not_authority": "新承認主体/資格手続き/cryptographic gateではない。既存資格owner責務の返却表現をこの契約で具体化する。reasonの有無を新資格gateにしない。"
+            },
+            "N01InvocationObservation": {
+              "closed_fields": {
+                "source_call": "{arguments:N01OwnerSourceRequest,returned:N01NativeSourcePortResult}|{not_called_reason:no_eligible_held_source|source_request_missing}",
+                "qualification_call": "{arguments:N01QualificationRequest,returned:N01NativeQualificationPortResult}|{not_called_reason:no_eligible_held_source|source_request_missing|source_unresolved}",
+                "resolution": "N01OwnerSourceResolution|{presence:absent}",
+                "context": "N01ResolvedContext",
+                "n01_arguments": "{packet:N01Arguments.packet,context:N01ResolvedContext}"
+              },
+              "consumer": "N01を呼ぶ同一論理callerが、L9のsame_invocation_observationへ引数・原返却・constructor値を全値保持する。別のregistry又はcaller外での暗黙保持を仮定しない。",
+              "scope": "公開N01Returnは変更しない。原source/資格決定の生成・適用・引渡しの観測を同一呼出しへ結ぶ。"
+            }
+          },
+          "native_ports": [
+            {
+              "name": "read_n01_owner_source",
+              "signature": "(request:N01OwnerSourceRequest)->N01NativeSourcePortResult",
+              "owner": "既存009/対象template source owner",
+              "original_input": "当該ownerが既に保有する原source identity/revision/scope/owner/locator/bodyの記録。requestは原source選択Refであり、expected bindingではない。新registryを作らず既存ownerの原記録へ解決する。",
+              "output_origin": "record_refはowner原記録、source_refは原bytes本人のCommonRef6、raw_utf8はそのbody。request Refだけをbodyなしで肯定結果へcopyしない。",
+              "binding_status": "logical private portの必要投影を今回提案。現行に同名API/物理schema/実resolver bindingがあるという主張ではない。"
+            },
+            {
+              "name": "read_n01_owner_qualification",
+              "signature": "(request:N01QualificationRequest)->N01NativeQualificationPortResult",
+              "owner": "既存独立source資格owner/resolver",
+              "original_input": "subject source Ref、原owner record Ref、exact body digestと、既存資格ownerが持つ元決定/適用scope/revision/owner/sourceの資料。raw packetのqualification語を原決定として採用しない。",
+              "output_origin": "原決定の全logical projection（qualification_ref/subject_ref/owner/source_bytes_sha256/basis_refs/decision）を保持する。取得と適用を分離し、applicableで対象へ有効な原決定だけresolved。不適用/否定はunresolved conflict、元決定失効はstale、未確定はunknown、元決定無しmissing。全て元観測を保持。比較enum/packet語から原決定を作らない。",
+              "binding_status": "新しいtrust store/承認/署名方式を指定せず、既存qualification責務のlogical IOを具体化する。原decision物理schemaと実provider/custodyは未binding。"
+            }
+          ],
+          "qualification_decision_projection": {
+            "source_pointer": "/contracts/3/qualification_rule",
+            "source_comparison_pointer": "/contracts/3/held_out_occurrence_contract/source_binding_and_decode/source_binding_comparison/rules/3",
+            "technical_derivation": "原owner資格の独立比較義務を、資格ownerが原decisionの適用結果と原recordを同時に返すprivate logical IOへ具体化する。物理source/provider実bindingとは別である。",
+            "rows": [
+              {
+                "decision": "当該原決定が存在しない",
+                "return": "unresolved",
+                "state": "missing",
+                "observed": "Absent又は取得済み元不足観測"
+              },
+              {
+                "decision": "applicable、かつsubject/owner/bodyへの原適用を返せる",
+                "return": "resolved(record)",
+                "state": null,
+                "observed": "record.decisionを含む原決定全projection"
+              },
+              {
+                "decision": "not_applicable（当該対象への適用を既知に否定）",
+                "return": "unresolved",
+                "state": "conflict",
+                "observed": "present原record。否定decision/reason/basis_refsを保持"
+              },
+              {
+                "decision": "revoked（既存決定の失効/後継置換が既知）",
+                "return": "unresolved",
+                "state": "stale",
+                "observed": "present原record。失効decision/reason/basis_refsを保持"
+              },
+              {
+                "decision": "indeterminate、原decision欠落/null/型外又は意味未確定",
+                "return": "unresolved",
+                "state": "unknown",
+                "observed": "原観測のPresenceと値を保持"
+              }
+            ],
+            "comparison_boundary": "前4失敗語はL4 qualification_ruleに由来。新decision4語は元資格決定のlogical投影を今回定義するもので、既存enumを発見したとは称さない。独立ownerが元資料を読む責務の内訳であり、H041がpacketラベルを資格判定へ昇格させる経路ではない。",
+            "adapter_safety": "adapterは元port resolved recordでもdecision.outcome=applicable以外を肯定variantに採用しない。not_applicable/revoked/indeterminateは上記失敗へ局所写像し原recordを保持する。元portの独立生成を代替せず、wrong resolved variantの肯定を防ぐ。",
+            "basis_preservation": "元qualification_ref、decision.reason、basis_refs、subject_ref、owner、source_bytes_sha256は元port返却の原値を保持する。basis_refs空の合成原決定はその仮定を明示し、実資格証拠としない。body/hash一致だけでdecisionをapplicableへ変更しない。"
+          },
+          "pure_adapter": {
+            "symbol": "resolve_n01_owner_source",
+            "visibility": "既存owner/source resolver責務内のlogical private adapter",
+            "signature": "(request:N01OwnerSourceRequest, native_source:N01NativeSourcePortResult, native_qualification:N01NativeQualificationPortResult)->N01OwnerSourceResolution",
+            "producer": "009/対象template source owner及び既存owner qualification resolver。H041 callerがpacket/batchを構築する前に原selected/held-out sourceのRef/bodyについて呼ぶ。",
+            "positive_rule": "独立source原recordと、資格ownerが当該対象へapplicableと返した原decisionを取得し、request/source/qualification subject・owner・bodyの別比較が対応する場合だけresolved operand組を返す。取得tag又はhash一致でdecisionを生成/補完しない。",
+            "failure_rule": "実際の元portが返したmissing/unknown/stale/conflictと原材料をそのまま返す。callerの正しそうな値で修復しない。",
+            "selection_and_decode": [
+              "N01 held sourceは単一record。同invocationの別owner portが返すsource原recordと資格原recordを引数に受ける。source/qualificationをraw packetから作らず、Ref再検索/先頭採用をしない。",
+              "元portのunresolved state missing/unknown/conflict/staleと観測材料を保持する。resolved recordと別roleの未解決を一つの成功へ畳まない。",
+              "source record.source_refと独立request.source_ref、資格record.subject_refとsource record.source_refを別照合する。既知相反をmissingとして捨てず、Ref revision差stale/他既知差conflictを保持する。",
+              "原bytes digestとsource_ref.sha256/qualification.source_bytes_sha256、source_ref.ownerとqualification.ownerを別照合する。hash一致で原資格決定を生成せず、元portがresolvedを返していることと原決定の適用対象を区別する。",
+              "comparison stateはこの対応比較の局所結果だけに使う。owner資格recordにsupported_synthetic_condition等の比較enumを置かない。",
+              "資格decisionのoutcome/reasonをprivate contextのnative_qualification_record及びqualificationへ保持。resolved recordのdecisionがapplicableでなければqualification_port_producer_contractへ従い局所未解決を返す。"
+            ],
+            "trust_boundary": "native_*は既存owner portの別返却型。runtimeのowner bindingは未実証。合成fixtureは原source portと原資格決定portのresolved返却を独立仮定として全record値を注入し、packet stateを根拠にしない。"
+          },
+          "private_context_constructor": {
+            "symbol": "make_n01_resolved_context",
+            "visibility": "private pure constructor",
+            "signature": "(retained:RetainedContext, owner_result:Presence<N01OwnerSourceResolution>)->N01ResolvedContext",
+            "constructor": {
+              "unaffected_Q": "retained.unaffected_Q exact",
+              "held_out_owner_resolution": "owner_result exact"
+            },
+            "prohibited": [
+              "packet.held_out_source_resolution.stateを入力にして肯定variantを生成",
+              "batch source_bindingをqualification.subject_refへcopy",
+              "outer independent_source_packet.refをsource/rootへalias"
+            ],
+            "raw_to_private_conversion": "禁止。raw packetにowner_qualification/state等を追加しても無視/原raw保持の対象であり、private constructorはそれを読む引数を持たない。"
+          },
+          "pure_comparator": {
+            "signature": "(packet:N01Arguments.packet,context:N01ResolvedContext)->N01Return",
+            "compare": "原source/原資格決定のsubject Ref6/owner/body適用を先に保持し、原source snapshotとraw expected binding/batch claimを別比較する。expectedとbatchが同じforeign値へ変わっても原operandを追従生成しない。",
+            "locality": "eligible supported rowの採用だけに適用する。二結果comparison_result、Q、effects、非選択source、元source findingは独立保持。"
+          },
+          "caller_constructor": {
+            "inputs": "元packet、RetainedContext、既存ownerが原source選択時に持つPresence<N01OwnerSourceRequest>。outer fixture packet Ref又はbatch claimをrequestへaliasしない。",
+            "branches": [
+              "held sourceなし/解析rowなし/全rowが先行source findingならowner両port非呼出し、resolutionとcontext.held_out_owner_resolutionはAbsent。元source観測と各行findingは保持。",
+              "eligible rowがあるがowner source requestがAbsentならowner両port非呼出し、resolution Absent。純比較はそのrowのsource_binding_missingを保持し、別scopeへ伝播しない。",
+              "eligible rowかつrequest供給時はread_n01_owner_source(request)。unresolved返却ならそのstate/observed/basis_refsをresolution.unresolvedへそのまま保存し、qualification_observation=Absent。原record_ref/body未取得のため資格requestを構築せず資格port/adapterは非呼出し。",
+              "source返却resolvedの場合だけ原source_ref/record_ref/exact raw_utf8 digestからN01QualificationRequestを構築し、別ownerのread_n01_owner_qualificationへ渡す。元決定not_applicable/revoked/indeterminate/欠落は原recordを保持したunresolved返却へ写す。",
+              "resolved-source branchだけresolve_n01_owner_sourceを呼び、原source/原決定/対象owner/bodyの対応とdecision適用を保持。hash一致で否定原決定を肯定へ変えない。",
+              "全branchでmake_n01_resolved_context(retained, resolutionのPresence)を通し、その同じcontextと元packetをcompare_n01へ渡す。"
+            ],
+            "unresolved_resolution": {
+              "kind": "unresolved",
+              "request": "元request",
+              "state": "source port原state",
+              "source_observation": "source port原observed",
+              "qualification_observation": {
+                "presence": "absent"
+              },
+              "basis_refs": "source port原basis_refs"
+            },
+            "retention": "同一callerがN01InvocationObservationの全値を保持する。実行前fixtureではnative portの固定引数と合成原返却を明示し、実観測と称さない。raw packetは変更しない。"
+          },
+          "representation_limit": "新logical projection/constructor契約である。現L5のRetainedContext/関数署名/正式codec/provider/runtimeがこの型を実装済みとはしない。SourceAttributesReturnの5stateは属性比較専用、qualification_provider=unknown/actual_qualification_established=falseの既存境界を保つ。",
+          "source_rules": [
+            "/contracts/3/qualification_rule",
+            "/contracts/3/held_out_occurrence_contract/source_binding_and_decode/source_binding_comparison"
+          ]
+        },
+        "legacy_basis": [
+          {
+            "pointer": "/legacy_comparison/0",
+            "meaning": "原子的要素の抽出と個別gap、版/span/digestと自由補完拒否。"
+          },
+          {
+            "pointer": "/legacy_comparison/1",
+            "meaning": "候補解析と正本commit/authority検証の分離。旧writer/runtimeは採用しない。"
+          },
+          {
+            "pointer": "/legacy_comparison/2",
+            "meaning": "原source各要素から機械候補を作り、未対応/空/TBD/抽出不能/重複を可視化し自由補完で埋めない。"
+          },
+          {
+            "pointer": "/legacy_comparison/3",
+            "meaning": "provenance不足、非決定性、旧版、空/TBD、未対応、重複の原失敗を保持。"
+          }
+        ]
+      }
     },
     {
       "id": "HARNESS-L4-041-B01",
@@ -816,11 +2715,20 @@
       "F01": 9,
       "F02": 9,
       "F03": 6,
-      "N01": 5,
+      "N01": 27,
       "B01": 4
     },
     "normal_and_counterexamples_are_synthetic": true,
-    "formal_schema_codec_or_actual_execution": false
+    "formal_schema_codec_or_actual_execution": false,
+    "n01_logical_wholes": {
+      "old": 16,
+      "new": 11,
+      "total": 27,
+      "old_whole_changed": 5,
+      "old_whole_unchanged": 11,
+      "partial_controls": 7,
+      "actual_evaluator_executed": false
+    }
   },
   "review_corrections": {
     "reviewed_head": "5e1bb645db4f2feaa3785280a1a609758919dbc2",
