@@ -189,7 +189,7 @@
         "required_after": "Locator（新record address、content_bytesと別に固定）",
         "content_bytes": "immutable byte array",
         "content_contract_ref": "Ref",
-        "required_links": "RequiredLink tuple (ordered; repeated equal members retained).",
+        "required_links": "順序付きRequiredLink tuple（同値の重複要素も保持する）。",
         "applicability_ref": "Ref",
         "write_id": "Text",
         "owner_ref": "Ref",
@@ -218,7 +218,7 @@
         "source_ref": "Ref",
         "content_contract_ref": "Ref",
         "content_bytes": "immutable byte array",
-        "required_links": "RequiredLink tuple (ordered; repeated equal members retained).",
+        "required_links": "順序付きRequiredLink tuple（同値の重複要素も保持する）。",
         "depends_on_write_ids": "unique Text tuple",
         "store_ref": "Ref"
       },
@@ -288,7 +288,7 @@
         "write_count": "nonnegative safe integer",
         "write_outcomes": "WriteOutcome tuple",
         "owner_refs": "Ref tuple",
-        "content_links": "RequiredLink tuple (ordered; repeated equal members retained).",
+        "content_links": "順序付きRequiredLink tuple（同値の重複要素も保持する）。",
         "projection_refs": "Locator tuple（対応する実projection bytesはread snapshotで照合）",
         "record_kind": "transaction_writes_verified | failure",
         "failure_point": "Text | null",
@@ -990,7 +990,8 @@
         "同operation再送は先行exact generationへの全内容照合でreplay。現在headがG2でも、先行G1をcurrentとして返さず、observed currentと先行確定結果を分ける。",
         "現在のoperationに属するPlan.writes、Closure.expected_write_ids/asset_contracts、ReceiptRecord.write_outcomesのwrite_id集合を双方向に比較し、既存のclosure_mismatchを返す。ReceiptRecord.write_outcomesは完全なWriteOutcome値として検査し、callerが申告したID配列で代用しない。",
         "ReadSnapshot.recordsにはgeneration全体のmemberが含まれ得る。現在のPlan Writeごとに、write_id・kind・asset_id・完全なafter_ref Locator（identity/revision/scope/owner）が一致する観測rowを特定し、該当する現在のClosure AssetContractを全fieldで比較する。同じwrite_idを持つ過去operationのLocator不一致inherited rowは現在Writeの一致候補にせず、現在Closureを適用しない。inherited memberは既存のgeneration membership/source/read整合性の義務に従って保持・照合する。",
-        "現在WriteとAssetContractの比較では、完全なowner_ref/store_ref、before/after、kind、asset identity、source_ref、content_contract_ref、実content bytes、順序を保つRequiredLink tuple、depends_on_write_idsを厳密に比較する。異なるLocator revision、異なるRequiredLink順序、同数の別write IDを成功へ畳まない。全3route一致、receipt record_kind、operation/episode/scope/generation、write_count、owner/base/projection照合、およびreplay/failureの意味を含む既存S06全規則を保持する。"
+        "現在WriteとAssetContractの比較では、完全なowner_ref/store_ref、before/after、kind、asset identity、source_ref、content_contract_ref、実content bytes、順序を保つRequiredLink tuple、depends_on_write_idsを厳密に比較する。異なるLocator revision、異なるRequiredLink順序、同数の別write IDを成功へ畳まない。全3route一致、receipt record_kind、operation/episode/scope/generation、write_count、owner/base/projection照合、およびreplay/failureの意味を含む既存S06全規則を保持する。",
+        "現在Plan・Closure・receiptのwrite集合が一致しているのに、同一read snapshotのgeneration recordsに plan.after_ref と完全一致する現在rowがない場合（継承rowまたは別revisionのrowしかない場合）は、 既存Finding型で code=read_mismatch、field_pointer=/records/current/after_ref として返す。 同一Locatorのrowが見つかっても、そのrowの保存metadataがPlan/owner契約と異なる場合は、 既存code=content_mismatchを、実際に相違したrow fieldのfield_pointer（例: /records/current/owner_ref）で返す。 read自体が未実施・不能ならread_mismatchへ変換せず、既存read_unknownを使う。 Findingは既存Finding型のcode/field_pointer/subject_ref/basis_refsを用い、sourceのfinding_precedenceに従う。"
       ],
       "failure": "type_contract.finding_rulesのcondition→code→Resultを適用。委譲先のfindingは原rule IDと原因Ref/write/field/episodeを保持して返す。定義外code/Resultやunknownから成功への補完は禁止。",
       "failure_rules": [

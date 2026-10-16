@@ -2056,7 +2056,8 @@
           "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
           "case_id": "P02-resource-basis-revision-does-not-overwrite-historical-write-ref",
           "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
-        }
+        },
+        "limitation": "S05とS06の入力参照はともにP01と同一（S05 input:e6f1c06a8dc54ae94f7270be52d5b59d04c8f13105e88e94ccd556d2b23cd088、S06 input:f67d047189d8f88159c3ba0ff1bfd2f5dc93ffae52c30867facf36c4dfd60f21）。ResourceBasis revisionを入力に含まず、過去Write Refが上書きされないとの題名の主張は未検証。独立証拠ではなくP01の重複観測。"
       },
       {
         "id": "N05-json-null-bytes-not-sql-null",
@@ -2098,7 +2099,8 @@
           "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
           "case_id": "P03-inherited-same-write-id-does-not-shadow-current-locator",
           "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
-        }
+        },
+        "limitation": "S06入力参照はP01と同一（input:f67d047189d8f88159c3ba0ff1bfd2f5dc93ffae52c30867facf36c4dfd60f21）。独立入力ではなく、R7内でP01と重複する観測としてのみ扱う。"
       },
       {
         "id": "N06-inherited-same-write-id-cannot-satisfy-current-write",
@@ -2145,10 +2147,10 @@
       {
         "id": "N08-current-row-owner-contract-mismatch",
         "stage_input_refs": {
-          "s06": "input:6793004866b0633e7bc488473b5cc256af173ffd1637ab0d5cde10da92d77ec3"
+          "s06": "input:0ec3a0ffad0a1190e9ef8267b4e882cbdd9c26c1933a1064b164d297230e5dd8"
         },
         "expected_whole_refs": {
-          "s06": "expected:f99c671ff086a97e72d351fc94004b126d67d488895e0a3937ba5a1e4256a155"
+          "s06": "expected:9b83f8994c269c95a99f2f550d7bab7b4981727cc066fb4288658c7e0fdad385"
         },
         "source_refs": [
           "OS-L5-053-S05",
@@ -2157,10 +2159,23 @@
           "OS-L5-053-Write/AssetContract/ReceiptRecord/WriteOutcome"
         ],
         "pre_candidate_freeze": {
+          "artifact": "scaffold/review-handoff/local/design-completion-obligation-audit/harness052-parent-source-read/os053-s06-n08-current-row-owner-mismatch-oracle-freeze-r9.json",
+          "sha256": "e53e3ac2fe85411c0040b5bb0800174e9fd7d7f656ac5dbb44c8a05d2accf005",
+          "case_id": "N08-current-row-owner-mismatch-r9",
+          "expectation_origin": "候補を再評価する前に独立して固定。候補から計算していない。",
+          "source_pin_provenance_correction": {
+            "artifact": "scaffold/review-handoff/local/design-completion-obligation-audit/harness052-parent-source-read/os053-s06-n08-r9-source-pin-provenance-correction.json",
+            "sha256": "862513a6975c47a6360e965219aeb63bb3df8160ea6dbf480363465ade7dcaf0",
+            "purpose": "R9 source_mainと各pin revisionの実Git bytes対応を明示。R9 bytesは不変。"
+          }
+        },
+        "historical_r7_observation": {
           "artifact": "os053-s05-s06-staged-write-projection-oracle-freeze-r7-at-e1a758b6.json",
           "sha256": "d22578dff482076e824d86fcdf4b7a10b6aad5b143f7d4d848073be84051806c",
           "case_id": "N08-current-row-owner-contract-mismatch",
-          "expectation_origin": "正式候補の作成前に独立して固定。候補から計算していない。"
+          "stage_input_ref": "input:6793004866b0633e7bc488473b5cc256af173ffd1637ab0d5cde10da92d77ec3",
+          "expected_whole_ref": "expected:f99c671ff086a97e72d351fc94004b126d67d488895e0a3937ba5a1e4256a155",
+          "status": "immutable_historical_observation_superseded_for_current_catalog"
         }
       },
       {
@@ -4017,6 +4032,178 @@
               "eyJvd25lcl9yZWYiOnsiaWRlbnRpdHkiOiJvd25lci1jb250cmFjdC03Iiwib3duZXIiOiJ0ZWFtLWFscGhhIiwicmV2aXNpb24iOiJyLW93bmVyLTExIiwic2NvcGUiOiJzY29wZS1vd25lciIsInNoYTI1NiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEifSwic3RvcmVfcmVmIjp7ImlkZW50aXR5Ijoic3RvcmUtaW5zdGFuY2UtMiIsIm93bmVyIjoiaW5mcmEtb3duZXIiLCJyZXZpc2lvbiI6InN0b3JlLXIxNyIsInNjb3BlIjoic2NvcGUtcm9vdCIsInNoYTI1NiI6ImJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmIifX0="
             ]
           }
+        },
+        {
+          "ref": "input:0ec3a0ffad0a1190e9ef8267b4e882cbdd9c26c1933a1064b164d297230e5dd8",
+          "sha256": "0ec3a0ffad0a1190e9ef8267b4e882cbdd9c26c1933a1064b164d297230e5dd8",
+          "value": {
+            "plan_current_writes": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_asset_contracts": [
+              {
+                "asset_ref": {
+                  "identity": "requirements-main",
+                  "revision": "asset-r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "canonical_location": "store_record",
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                },
+                "canonical_kind": "json_canonical",
+                "required_before": null,
+                "required_after": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "required_links": [],
+                "applicability_ref": {
+                  "identity": "applicability-current",
+                  "revision": "r1",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+                },
+                "write_id": "write-alpha",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-11",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "depends_on_write_ids": []
+              }
+            ],
+            "snapshot_records": [
+              {
+                "write_id": "write-alpha",
+                "kind": "json_canonical",
+                "owner_ref": {
+                  "identity": "owner-contract-7",
+                  "revision": "r-owner-12",
+                  "scope": "scope-owner",
+                  "owner": "team-alpha",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                },
+                "asset_id": "requirements-main",
+                "before_ref": null,
+                "after_ref": {
+                  "identity": "record:requirements-main",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner"
+                },
+                "source_ref": {
+                  "identity": "source-document",
+                  "revision": "r3",
+                  "scope": "scope-project",
+                  "owner": "doc-owner",
+                  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                },
+                "content_contract_ref": {
+                  "identity": "json-contract",
+                  "revision": "r5",
+                  "scope": "scope-project",
+                  "owner": "format-owner",
+                  "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                },
+                "content_bytes_base64": "eyJzY2hlbWEiOjF9",
+                "required_links": [],
+                "depends_on_write_ids": [],
+                "store_ref": {
+                  "identity": "store-instance-2",
+                  "revision": "store-r17",
+                  "scope": "scope-root",
+                  "owner": "infra-owner",
+                  "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            ],
+            "closure_current_expected_write_ids": [
+              "write-alpha"
+            ],
+            "receipt_write_outcomes": [
+              {
+                "write_id": "write-alpha",
+                "stage": "committed",
+                "failure_code": null,
+                "observed_ref": {
+                  "identity": "record:write-alpha",
+                  "revision": "r8",
+                  "scope": "scope-project",
+                  "owner": "record-owner",
+                  "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                }
+              }
+            ]
+          }
         }
       ],
       "expected_wholes": [
@@ -4404,6 +4591,17 @@
             "pointer": "/required_links/0/kind",
             "write": null
           }
+        },
+        {
+          "ref": "expected:9b83f8994c269c95a99f2f550d7bab7b4981727cc066fb4288658c7e0fdad385",
+          "sha256": "9b83f8994c269c95a99f2f550d7bab7b4981727cc066fb4288658c7e0fdad385",
+          "value": {
+            "variant": "rejected",
+            "result": "conflict",
+            "finding_code": "content_mismatch",
+            "pointer": "/records/current/owner_ref",
+            "write": null
+          }
         }
       ],
       "reference_algorithm": "重複を除いて安定参照するため、compact UTF-8 JSON（Unicode scalar値順にobject keyを整列）のSHA-256を使う。参照先はこの文書内に限る。"
@@ -4412,6 +4610,6 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
-    "sha256": "ccabf240d0cf757674bbdfa3a801e72ed6ac154f3eb7e0dd3b3165827d53ed2c"
+    "sha256": "9065ae8c02a36e8670eba5a2ae4f1627ddc49a11a0e3a2e3156e3460205b4113"
   }
 }
