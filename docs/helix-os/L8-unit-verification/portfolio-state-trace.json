@@ -14366,22 +14366,39 @@
     "expand_case": {
       "fixture_inputs": "L9.fixture_inputs",
       "case_input": "L9.cases[*].given.input"
+    },
+    "evaluate_portfolio_selected": {
+      "input": "L9.domain_extension_cases[*].input.portfolio (raw SelectedPortfolioInput)",
+      "diagnostic_contract": "L4 diagnostic_contract",
+      "targets": "L9.domain_extension_cases[*].input.targets (raw PortfolioTargetsWire; explicit third arg)",
+      "expected": "同caseのL9.domain_extension_cases[*].expected_whole。期待は計算入力にしない。"
     }
   },
   "actual_state_updated": false,
   "normative_calculation_binding": {
     "L5_path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
-    "L5_sha256": "97a7ebdb8a39609ab4a2b985533ceb9b7ed3873ad26d262418154bdf7eb58c3e",
-    "program_sha256": "8ddeaf088ffbecd210656df5fd8f63e9e1f4e127ad693b22f9b7b20e0df32cc1",
+    "L5_sha256": "17712ff8669710a0ef72bf5fe14399bc16b2f2e781d1d1749cd8c356f339d0d0",
+    "program_sha256": "60588ef4fa23ac8f1f0d4439c8623cde9328913926125d29c6faa24fdb93f96e",
     "entrypoints": [
       "expand_case",
       "evaluate_portfolio",
-      "route_failure"
+      "route_failure",
+      "evaluate_portfolio_selected"
     ],
     "case_count": 356,
     "expected_source": "各caseのRFC6901 pointerでL9 expected_proposalを参照し、計算後にだけ比較する。",
     "execution_state": "not_executed",
-    "meaning": "設計上の純関数を静的照合器が実行して原wholeを比較する。実source資格/実処理は成立しない。"
+    "meaning": "設計上の純関数を静的照合器が実行して原wholeを比較する。実source資格/実処理は成立しない。",
+    "selected_profile": {
+      "L5_path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
+      "entrypoint": "evaluate_portfolio(input, diagnostic_contract, targets) -> evaluate_portfolio_selected(input, diagnostic_contract, targets)",
+      "case_count": 29,
+      "execution_state": "not_executed",
+      "expected_source": "L8 selected_domain_profile.cases[*]のL9 expected_whole pointer。normative計算後にだけ比較する。",
+      "meaning": "L5 source_codeの純粋計算と凍結済みL9 wholeを対照する詳細設計。runtime実行/実source資格を示さない。",
+      "program_sha256": "60588ef4fa23ac8f1f0d4439c8623cde9328913926125d29c6faa24fdb93f96e",
+      "output_type": "SelectedTraceResult"
+    }
   },
   "domain_probes": {
     "basis": "source raw/expectedはL9 C0001の固定原値。独立境界6全体期待はL4由来で別に固定。追加10 domain probesもL5計算前にL4 R01–R04と原L9 C0001 wholeから全体期待を導出し、元L9全356 wholeは不変。",
@@ -27425,6 +27442,681 @@
         "expected": "type_rejected",
         "expected_diagnostic": "unknown record members",
         "expected_calculation_invoked": false
+      }
+    ]
+  },
+  "selected_domain_profile": {
+    "profile_id": "HELIXOS-L8-016-SELECTED-DOMAIN-29",
+    "source_rule": "L4 caller_selected_domain + selected_target_rules R12-R17; corresponding L9 domain_extension_cases.",
+    "purpose": "2引数baselineを維持したまま、明示された3引数selected profileの型/wire/pointer/closed returnをL5と対照し、29件の固定source wholeと独立rule-derived checksを対応付ける。",
+    "call_signature": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: DiagnosticContract, targets: PortfolioTargetsWire) -> SelectedTraceResult",
+    "selector_rule": "targets第3引数のprojects/nodes実map keyだけがselector。input map key、diagnostic_contract.projects/node_kinds、baseline固定locatorからselected keyを生成しない。",
+    "wire_validation": [
+      "selected input/targetsはpresenceを保持したJSONValue境界で受け取る。Absent/null/wrong typeを一律rejectして診断前に捨てず、L4 pointer規則へ渡す。",
+      "有効target recordのclosed field/enumはL4 targets_shapeに一致し、未宣言memberは保持したまま選択やidentityの推論には使わない。",
+      "locator map keyはUnicode codepoint順に走査し、RFC6901 pointer tokenで~と/をescapeする。",
+      "selected returnはL5 SelectedTraceResult closed 11 roots。baseline TraceResultと同じfalse/none effect literal。"
+    ],
+    "case_count": 29,
+    "cases": [
+      {
+        "case_id": "HELIXOS-L9-016-D0001",
+        "l9_source_ref": "/domain_extension_cases/0",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "input_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+        "targets_sha256": "204fe182e65f15516c88dbe461c328fa7d93db2ae4e28d35e5ffe295d3f30ba2",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/0/expected_whole",
+        "expected_whole_sha256": "18e6412b81df26ffebd833a40f70e5c6aade43a358b14915406cd44774590104",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0001/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/0/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0002",
+        "l9_source_ref": "/domain_extension_cases/1",
+        "input_ref": "/domain_extension_cases/1/input/portfolio",
+        "input_sha256": "dc4d33d1d8c5f857995974bb9916c68b0c76fd5d2660279a326690ddaa69abd7",
+        "targets_sha256": "6cdd8c7e308b533bf8d2d74527464ba7e0624c2bb1c3627cdef8150f1b495011",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/1/expected_whole",
+        "expected_whole_sha256": "aa2c264b62bfa2113fb6e9de38931a22ce2b6c4940e2556ba6005b18de8ab2c4",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0002/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/1/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0003",
+        "l9_source_ref": "/domain_extension_cases/2",
+        "input_ref": "/domain_extension_cases/2/input/portfolio",
+        "input_sha256": "bdfeb9351ce8557094f0de88e1259c6b65f1b426968fbd6ad7009be8478348d3",
+        "targets_sha256": "39f6b36bf222e0e7238e539fd402405f5f35956784845b2b69928294c6b950fb",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/2/expected_whole",
+        "expected_whole_sha256": "659ae25255a7c595bdd4129e5baef7f16443be4a965e915d75a975564f3951bb",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0003/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/2/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0004",
+        "l9_source_ref": "/domain_extension_cases/3",
+        "input_ref": "/domain_extension_cases/3/input/portfolio",
+        "input_sha256": "bb44e3aad74beb22233b9b1d87d55a9ecb69093fd3053c6ac8e533f2728bc8dc",
+        "targets_sha256": "4c64529a86348457e4277c306073b64144804203aa4e206a45339925c5eb4ed2",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/3/expected_whole",
+        "expected_whole_sha256": "c5fd40473a1bbb8bff421f661ef5df5348b5e0d46f23da58934f233f0cce300a",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0004/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/3/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0005",
+        "l9_source_ref": "/domain_extension_cases/4",
+        "input_ref": "/domain_extension_cases/4/input/portfolio",
+        "input_sha256": "098be7e86ffa7e0d32bd5ab868da1078e3fd7b0dea7c2ea1266b409dbaa8a1b4",
+        "targets_sha256": "435859cc7d2c2fa29f121d3cb60ba3b90d47d593d25313f5cb0b909b72349c14",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/4/expected_whole",
+        "expected_whole_sha256": "5a2f7e22ab66ee9a31b96b57ab881f6928d2a658c1ded092636a9067e17e0eb7",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0005/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/4/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0006",
+        "l9_source_ref": "/domain_extension_cases/5",
+        "input_ref": "/domain_extension_cases/5/input/portfolio",
+        "input_sha256": "7b7b0b23dc1b24cabc03429a01cbbb9ec377d717c2cc03bbbe915ce51f269892",
+        "targets_sha256": "c2f74218e6f4f9e4c6ac4bb8b130abe76c12f844b0ad4df0fd90514549a078b4",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/5/expected_whole",
+        "expected_whole_sha256": "7d2bc2ddbd352132d01e2aa3f037d196874570c544f0c312ca2f476f959714df",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0006/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/5/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0007",
+        "l9_source_ref": "/domain_extension_cases/6",
+        "input_ref": "/domain_extension_cases/6/input/portfolio",
+        "input_sha256": "3c3c8774233640d2f82a76b92185b956823507e1737f2bf6a7c23a0703cab93a",
+        "targets_sha256": "6371c825608a329a5af51dbc7429379388f65099aa7a5b56b392640196477f72",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/6/expected_whole",
+        "expected_whole_sha256": "736062cff4146d4874dc96ee04e8b41ad3557c6a66bd9676b42af8ad39d0eee1",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0007/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/6/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0008",
+        "l9_source_ref": "/domain_extension_cases/7",
+        "input_ref": "/domain_extension_cases/7/input/portfolio",
+        "input_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+        "targets_sha256": "a84994d9dc1586be76bf28d27f589a0a7edbcc6a03f04d09cfd69466ca89dca9",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/7/expected_whole",
+        "expected_whole_sha256": "db5ad9a7bc267b325ea4b39acc6b11b95753d28841de6c5ffd39176f27ceae60",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0008/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/7/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0009",
+        "l9_source_ref": "/domain_extension_cases/8",
+        "input_ref": "/domain_extension_cases/8/input/portfolio",
+        "input_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+        "targets_sha256": "e9df0853ac661665fae3c0edb861aabfc355c171b0f819e5a263ea10deaf62f5",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/8/expected_whole",
+        "expected_whole_sha256": "8a40a45862cf0aa79ff36d7e476da1811510995d426a4532e7780162575df499",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0009/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/8/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0010",
+        "l9_source_ref": "/domain_extension_cases/9",
+        "input_ref": "/domain_extension_cases/9/input/portfolio",
+        "input_sha256": "d7c7700137a6bf5f45c8409f7a44dcd9634c8078ff34545f5453e107410922c4",
+        "targets_sha256": "e9df0853ac661665fae3c0edb861aabfc355c171b0f819e5a263ea10deaf62f5",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/9/expected_whole",
+        "expected_whole_sha256": "8dc087d4abb874cbf7d70fcf95456c18abed7005e67300719a9b6e51c88f1c23",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0010/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/9/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0011",
+        "l9_source_ref": "/domain_extension_cases/10",
+        "input_ref": "/domain_extension_cases/10/input/portfolio",
+        "input_sha256": "7b7b0b23dc1b24cabc03429a01cbbb9ec377d717c2cc03bbbe915ce51f269892",
+        "targets_sha256": "60f2b1842c546e2f2d5e6540980c5b979c29cd430f58b550ab37aa417c69d5dc",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/10/expected_whole",
+        "expected_whole_sha256": "cb563832efadd0271d013d4db62637ab149ae009d1f7581ca6c2dd146cf28f2d",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0011/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/10/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0012",
+        "l9_source_ref": "/domain_extension_cases/11",
+        "input_ref": "/domain_extension_cases/11/input/portfolio",
+        "input_sha256": "8fb442ae2d146654443c2619f6f53dbf59a002aa20494e11ce8700f3da671e3a",
+        "targets_sha256": "a610860a74a165203066ac0a60db4e0e59300e2ed78744eaf6d3a727fe163915",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/11/expected_whole",
+        "expected_whole_sha256": "b2514b374b336830e645330f1f54c90256fdb0f86620b3b359a611886c725c74",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0012/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/11/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0013",
+        "l9_source_ref": "/domain_extension_cases/12",
+        "input_ref": "/domain_extension_cases/12/input/portfolio",
+        "input_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+        "targets_sha256": "5f2952a755cf0ed5a099b9cf6be45041820ae7ecfc9e4a5a32a085ea5c650b79",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/12/expected_whole",
+        "expected_whole_sha256": "7a11424c5fe4733a0b9ca01d3674cdbdfb4866350d6fb8f22867a7d0b29a15be",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0013/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/12/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0014",
+        "l9_source_ref": "/domain_extension_cases/13",
+        "input_ref": "/domain_extension_cases/13/input/portfolio",
+        "input_sha256": "7054aceefccef11a48de04e0a125202f7bc4485d20c21c45971e33f3cad77b29",
+        "targets_sha256": "204fe182e65f15516c88dbe461c328fa7d93db2ae4e28d35e5ffe295d3f30ba2",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/13/expected_whole",
+        "expected_whole_sha256": "5a2f7e22ab66ee9a31b96b57ab881f6928d2a658c1ded092636a9067e17e0eb7",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0014/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/13/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0015",
+        "l9_source_ref": "/domain_extension_cases/14",
+        "input_ref": "/domain_extension_cases/14/input/portfolio",
+        "input_sha256": "9a1e5af6b91d29688da2139276f8b0468e17a3a78407aaa6d701a86629fbaf6e",
+        "targets_sha256": "204fe182e65f15516c88dbe461c328fa7d93db2ae4e28d35e5ffe295d3f30ba2",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/14/expected_whole",
+        "expected_whole_sha256": "1e614f12bcaeaefbb04ec98318951a402fc374f1a3b7b73320c363185dc7b6d0",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0015/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/14/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0016",
+        "l9_source_ref": "/domain_extension_cases/15",
+        "input_ref": "/domain_extension_cases/15/input/portfolio",
+        "input_sha256": "5f5a0686d009e986f4c68bac9a4051deb26acda92266f0475a0c60b5181308c2",
+        "targets_sha256": "204fe182e65f15516c88dbe461c328fa7d93db2ae4e28d35e5ffe295d3f30ba2",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/15/expected_whole",
+        "expected_whole_sha256": "5f841fab183cfec5656ddca74951c5a95ceecdba45db6bdc434dc4547cc48666",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0016/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/15/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0017",
+        "l9_source_ref": "/domain_extension_cases/16",
+        "input_ref": "/domain_extension_cases/16/input/portfolio",
+        "input_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+        "targets_sha256": "aed9f1bade669ad180e848ce027ecc9ab4acdf6fa57b3d3a2164379c83ed644a",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/16/expected_whole",
+        "expected_whole_sha256": "5f21ed7f35fa932bff64e9434eab9c4098c2d8295ba0c8a29c60383b796d5a71",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0017/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/16/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0018",
+        "l9_source_ref": "/domain_extension_cases/17",
+        "input_ref": "/domain_extension_cases/17/input/portfolio",
+        "input_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+        "targets_sha256": "853ea1606256df4dcdb5a566e7932c8904294e0f0113a0f036b8195fac1a7e10",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/17/expected_whole",
+        "expected_whole_sha256": "643c3035f8eff56631de5e2151f1d6e0366c762cb1b827d4475a0dbc045e65cb",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0018/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/17/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0019",
+        "l9_source_ref": "/domain_extension_cases/18",
+        "input_ref": "/domain_extension_cases/18/input/portfolio",
+        "input_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+        "targets_sha256": "a4f5944cb8cb4fc1a4b2da53a90359ecafa228249b49977746d33bffb7133e82",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/18/expected_whole",
+        "expected_whole_sha256": "e35d69d240db56412712414b7dc6eb979c3e71f0c38fe9606ed5f8d687fe0a3a",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0019/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/18/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0020",
+        "l9_source_ref": "/domain_extension_cases/19",
+        "input_ref": "/domain_extension_cases/19/input/portfolio",
+        "input_sha256": "0c74866cbf06d286ed5d70cfabf5d14e2cf42e98616acebd5e4b3ac5f057dd83",
+        "targets_sha256": "777c777981850428fd223d9e7342cb37944371f81c2b9946af6ac2bd8a58c564",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/19/expected_whole",
+        "expected_whole_sha256": "8871ff9a080b05330a03cc2db41520de1de4263cbe091f304e6a09851640d7f3",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0020/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/19/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0021",
+        "l9_source_ref": "/domain_extension_cases/20",
+        "input_ref": "/domain_extension_cases/20/input/portfolio",
+        "input_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+        "targets_sha256": "686f756f60561304cdbc8eb75a2be6a850ae4591bd86c7c45a49b147020226ae",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/20/expected_whole",
+        "expected_whole_sha256": "8f6afee6043affae96f2c54fa0560fc7b7495cd54224816d98e2645caa727c5a",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0021/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/20/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0022",
+        "l9_source_ref": "/domain_extension_cases/21",
+        "input_ref": "/domain_extension_cases/21/input/portfolio",
+        "input_sha256": "032fde7f66f4a08d55b6685fa6715d056049e292bbb9d693ed0dc12b383e12e3",
+        "targets_sha256": "204fe182e65f15516c88dbe461c328fa7d93db2ae4e28d35e5ffe295d3f30ba2",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/21/expected_whole",
+        "expected_whole_sha256": "37d23fdf5322f1a128e6ebefed9a28af3be77288c3ed66638d8e5bef1fd1f8b8",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0022/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/21/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0023",
+        "l9_source_ref": "/domain_extension_cases/22",
+        "input_ref": "/domain_extension_cases/22/input/portfolio",
+        "input_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+        "targets_sha256": "8ebd84f66ba3e34bc8357e0482c8477dc7dadaabdf48b2ac8390b8a3ba90ddb4",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/22/expected_whole",
+        "expected_whole_sha256": "18e6412b81df26ffebd833a40f70e5c6aade43a358b14915406cd44774590104",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0023/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/22/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0024",
+        "l9_source_ref": "/domain_extension_cases/23",
+        "input_ref": "/domain_extension_cases/23/input/portfolio",
+        "input_sha256": "bb44e3aad74beb22233b9b1d87d55a9ecb69093fd3053c6ac8e533f2728bc8dc",
+        "targets_sha256": "f9053429ef4d8fbbf69344f335057bc7f135f5019e873b45a58937827868cd4b",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/23/expected_whole",
+        "expected_whole_sha256": "3fd16536c78870735c2550738bac656ab7702fc745bdb6b78166ea8f7950ece0",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0024/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/23/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0025",
+        "l9_source_ref": "/domain_extension_cases/24",
+        "input_ref": "/domain_extension_cases/24/input/portfolio",
+        "input_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+        "targets_sha256": "19639e7df618ce3a2aeb7d57fe33ef5734c200b795fe7a00ffffa634f30407d9",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/24/expected_whole",
+        "expected_whole_sha256": "93e33d7e887684764f75faf05a8c4eee01ec4d0e7381f59fc5b8f6a91e31a044",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0025/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/24/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0027",
+        "l9_source_ref": "/domain_extension_cases/25",
+        "input_ref": "/domain_extension_cases/25/input/portfolio",
+        "input_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+        "targets_sha256": "c1a3ba046a52482265cb200126f2b3d46d5fb51c86e54ccff4effcaaaf8949fd",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/25/expected_whole",
+        "expected_whole_sha256": "7f4227eb3641e68e2d524240c2e8a6598e799a67c7605c492ef5700ad7687256",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0027/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/25/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0028",
+        "l9_source_ref": "/domain_extension_cases/26",
+        "input_ref": "/domain_extension_cases/26/input/portfolio",
+        "input_sha256": "679d03ec4cf2a0534292fe1ad1ce4f8b4b9625255e1be349b26b44f3d43358f2",
+        "targets_sha256": "204fe182e65f15516c88dbe461c328fa7d93db2ae4e28d35e5ffe295d3f30ba2",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/26/expected_whole",
+        "expected_whole_sha256": "bd6760f1b333eed3ceb3207fccf3dd512105187c9196ee75e74173cd1e50df5b",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0028/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/26/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0029",
+        "l9_source_ref": "/domain_extension_cases/27",
+        "input_ref": "/domain_extension_cases/27/input/portfolio",
+        "input_sha256": "4f08b617a8fc6249dc68746b7848aa8d76b50f972e9e48160f7896abd4677f75",
+        "targets_sha256": "204fe182e65f15516c88dbe461c328fa7d93db2ae4e28d35e5ffe295d3f30ba2",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/27/expected_whole",
+        "expected_whole_sha256": "f459e7d10461a9a076eb574e5e46160406d4563883afb55fce7475a7c90e2dba",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0029/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/27/input/targets"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-D0030",
+        "l9_source_ref": "/domain_extension_cases/28",
+        "input_ref": "/domain_extension_cases/28/input/portfolio",
+        "input_sha256": "9be2f6b07c8d01a799eb8002baaee9316e6e296a358e025fb0b335fe969e7f47",
+        "targets_sha256": "204fe182e65f15516c88dbe461c328fa7d93db2ae4e28d35e5ffe295d3f30ba2",
+        "call_profile": "caller_selected_domain",
+        "call": "evaluate_portfolio(input: SelectedPortfolioInput, diagnostic_contract: HELIXOS-L4-016 diagnostic_contract, targets: PortfolioTargetsWire)",
+        "expected_ref": "/domain_extension_cases/28/expected_whole",
+        "expected_whole_sha256": "1b93e0c9261a20d814cc99f97378cf9587353b87a8ac810183c67ec095b09ba4",
+        "execution_state": "not_executed",
+        "independent_checks_ref": "/cases/HELIXOS-L9-016-D0030/checks in scaffold/review-handoff/local/os016-selected-domain-detail/selected-profile-independent-checkpoint.json",
+        "targets_ref": "/domain_extension_cases/28/input/targets"
+      }
+    ],
+    "expectation_limits": [
+      "expected_wholeはL9の固定source期待値であり、独立qualified oracleとは称さない。凍結済みsource whole/hashを変更せず、計算後に全11 rootを比較する。",
+      "independent_checksはL4 R12-R17から計算前に凍結した不変条件。whole参照一致だけから要求意味・受入を生成しない。",
+      "current-generation safe subset readerによる有限詳細設計計算と、未実装の製品runtime/provider/codec/CIを分ける。全入力域の閉包は主張しない。"
+    ],
+    "baseline_preservation": {
+      "L8_cases_ref": "/cases",
+      "L8_cases_count_before": 356,
+      "L8_cases_count_after": 356,
+      "L9_cases_ref": "/cases",
+      "L9_cases_count": 356,
+      "statement": "元356 baseline case/expected wholeは編集せず、selected 29件は別配列profileにする。"
+    },
+    "calculation_binding": {
+      "program_source": "L5#/normative_program/source_code",
+      "entrypoint": "evaluate_portfolio",
+      "arity": 3,
+      "input_refs": [
+        "cases[*].input_ref",
+        "L4#/diagnostic_contract",
+        "cases[*].targets_ref"
+      ],
+      "expected_ref": "cases[*].expected_ref (計算終了後のみ)",
+      "output_type": "SelectedTraceResult",
+      "absent_target_probe": "selected専用evaluate_portfolio_selected(input, diagnostic_contract)を使い、targets省略を明示nullと区別する。2引数evaluate_portfolioはbaseline profileのまま。"
+    },
+    "object_bindings": [
+      {
+        "name": "SelectedPortfolioInput",
+        "type_ref": "HELIXOS-L5-016.logical_types.SelectedPortfolioInput"
+      },
+      {
+        "name": "PortfolioTargetsWire",
+        "type_ref": "HELIXOS-L5-016.logical_types.PortfolioTargetsWire"
+      },
+      {
+        "name": "SelectedProjectMap",
+        "type_ref": "HELIXOS-L5-016.logical_types.SelectedProjectMap"
+      },
+      {
+        "name": "SelectedNodeMap",
+        "type_ref": "HELIXOS-L5-016.logical_types.SelectedNodeMap"
+      },
+      {
+        "name": "SelectedTraceResult",
+        "type_ref": "HELIXOS-L5-016.logical_types.SelectedTraceResult"
+      },
+      {
+        "name": "SelectedRetainedNodeState",
+        "type_ref": "HELIXOS-L5-016.logical_types.SelectedRetainedNodeState"
+      },
+      {
+        "name": "SelectedLocatorKey",
+        "type_ref": "HELIXOS-L5-016.logical_types.SelectedLocatorKey"
+      }
+    ],
+    "boundary_probes": [
+      {
+        "id": "SELECTED-TARGETS-NULL",
+        "entrypoint": "evaluate_portfolio",
+        "arity": 3,
+        "targets": null,
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "diagnostic_contract_ref": "L4#/diagnostic_contract",
+        "expected_partial": {
+          "condition": "trace_material_unknown",
+          "finding_includes": {
+            "code": "field_unknown",
+            "pointer": "/targets",
+            "return_owner": "portfolio-trace-owner"
+          },
+          "baseline_fallback": false
+        },
+        "basis": "L4 R12/R14/R17 pointer_basis。null/不正またはAbsentな選択値はrawのまま局所unknownとし、baselineへ戻さない。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "SELECTED-TARGETS-ARRAY",
+        "entrypoint": "evaluate_portfolio",
+        "arity": 3,
+        "targets": [],
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "diagnostic_contract_ref": "L4#/diagnostic_contract",
+        "expected_partial": {
+          "condition": "trace_material_unknown",
+          "finding_includes": {
+            "code": "field_unknown",
+            "pointer": "/targets",
+            "return_owner": "portfolio-trace-owner"
+          },
+          "baseline_fallback": false
+        },
+        "basis": "L4 R12/R14/R17 pointer_basis。null/不正またはAbsentな選択値はrawのまま局所unknownとし、baselineへ戻さない。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "SELECTED-TARGETS-STRING",
+        "entrypoint": "evaluate_portfolio",
+        "arity": 3,
+        "targets": "invalid",
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "diagnostic_contract_ref": "L4#/diagnostic_contract",
+        "expected_partial": {
+          "condition": "trace_material_unknown",
+          "finding_includes": {
+            "code": "field_unknown",
+            "pointer": "/targets",
+            "return_owner": "portfolio-trace-owner"
+          },
+          "baseline_fallback": false
+        },
+        "basis": "L4 R12/R14/R17 pointer_basis。null/不正またはAbsentな選択値はrawのまま局所unknownとし、baselineへ戻さない。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "SELECTED-TARGETS-ABSENT",
+        "entrypoint": "evaluate_portfolio_selected",
+        "arity": 2,
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "diagnostic_contract_ref": "L4#/diagnostic_contract",
+        "expected_partial": {
+          "condition": "trace_material_unknown",
+          "finding_includes": {
+            "code": "field_unknown",
+            "pointer": "/targets",
+            "return_owner": "portfolio-trace-owner"
+          },
+          "baseline_fallback": false
+        },
+        "basis": "L4 R12/R14/R17 pointer_basis。null/不正またはAbsentな選択値はrawのまま局所unknownとし、baselineへ戻さない。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "SELECTED-KIND-OBJECT",
+        "entrypoint": "evaluate_portfolio",
+        "arity": 3,
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "target_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/release~1north~0blue/nodes/north~1api~0v2/kind",
+            "value": {}
+          }
+        ],
+        "diagnostic_contract_ref": "L4#/diagnostic_contract",
+        "expected_partial": {
+          "condition": "trace_material_unknown",
+          "finding_includes": {
+            "code": "kind_unknown",
+            "pointer": "/targets/projects/release~1north~0blue/nodes/north~1api~0v2/kind",
+            "return_owner": "portfolio-trace-owner"
+          },
+          "node_facet": {
+            "project_locator": "release/north~blue",
+            "node_locator": "north/api~v2",
+            "facet": "source",
+            "state": "unknown"
+          },
+          "baseline_fallback": false
+        },
+        "basis": "L4 R12: selector kindのobject/arrayはclosed kind外。kind_unknownを実在する選択fieldへ返し、affected source facetをunknownにする。期待partialは計算前に固定し、候補出力をコピーしない。",
+        "execution_state": "not_executed",
+        "expected_whole_recipe": {
+          "base_ref": "/domain_extension_cases/0/expected_whole",
+          "operations": [
+            {
+              "op": "replace",
+              "path": "/condition",
+              "value": "trace_material_unknown"
+            },
+            {
+              "op": "replace",
+              "path": "/node_correspondence/release~1north~0blue/north~1api~0v2/source",
+              "value": "unknown"
+            },
+            {
+              "op": "replace",
+              "path": "/findings",
+              "value": [
+                {
+                  "code": "kind_unknown",
+                  "pointer": "/targets/projects/release~1north~0blue/nodes/north~1api~0v2/kind",
+                  "return_owner": "portfolio-trace-owner"
+                }
+              ]
+            }
+          ],
+          "canonical_sha256": "d52d8314366122376eabbf0d4e6db5daf503e1f2c99f726a8ed7f91be1ac5c54",
+          "basis": "有効L9 D0001 expected_wholeを起点に、L4 R12により対象source facetだけunknown、kind_unknownを実選択fieldへ追加し、R10によりcondition unknownとする。他9rootと全非source facetは有効wholeと同一に固定。候補出力は使わない。"
+        }
+      },
+      {
+        "id": "SELECTED-KIND-ARRAY",
+        "entrypoint": "evaluate_portfolio",
+        "arity": 3,
+        "input_ref": "/domain_extension_cases/0/input/portfolio",
+        "targets_ref": "/domain_extension_cases/0/input/targets",
+        "target_operations": [
+          {
+            "op": "replace",
+            "path": "/projects/release~1north~0blue/nodes/north~1api~0v2/kind",
+            "value": []
+          }
+        ],
+        "diagnostic_contract_ref": "L4#/diagnostic_contract",
+        "expected_partial": {
+          "condition": "trace_material_unknown",
+          "finding_includes": {
+            "code": "kind_unknown",
+            "pointer": "/targets/projects/release~1north~0blue/nodes/north~1api~0v2/kind",
+            "return_owner": "portfolio-trace-owner"
+          },
+          "node_facet": {
+            "project_locator": "release/north~blue",
+            "node_locator": "north/api~v2",
+            "facet": "source",
+            "state": "unknown"
+          },
+          "baseline_fallback": false
+        },
+        "basis": "L4 R12: selector kindのobject/arrayはclosed kind外。kind_unknownを実在する選択fieldへ返し、affected source facetをunknownにする。期待partialは計算前に固定し、候補出力をコピーしない。",
+        "execution_state": "not_executed",
+        "expected_whole_recipe": {
+          "base_ref": "/domain_extension_cases/0/expected_whole",
+          "operations": [
+            {
+              "op": "replace",
+              "path": "/condition",
+              "value": "trace_material_unknown"
+            },
+            {
+              "op": "replace",
+              "path": "/node_correspondence/release~1north~0blue/north~1api~0v2/source",
+              "value": "unknown"
+            },
+            {
+              "op": "replace",
+              "path": "/findings",
+              "value": [
+                {
+                  "code": "kind_unknown",
+                  "pointer": "/targets/projects/release~1north~0blue/nodes/north~1api~0v2/kind",
+                  "return_owner": "portfolio-trace-owner"
+                }
+              ]
+            }
+          ],
+          "canonical_sha256": "d52d8314366122376eabbf0d4e6db5daf503e1f2c99f726a8ed7f91be1ac5c54",
+          "basis": "有効L9 D0001 expected_wholeを起点に、L4 R12により対象source facetだけunknown、kind_unknownを実選択fieldへ追加し、R10によりcondition unknownとする。他9rootと全非source facetは有効wholeと同一に固定。候補出力は使わない。"
+        }
       }
     ]
   }
