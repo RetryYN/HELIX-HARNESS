@@ -4,7 +4,7 @@
   "layer": "L5",
   "pair": "L8",
   "status": "draft_limited_logical_functions_pending_independent_review",
-  "source_main": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+  "source_main": "aef2a236e07aab42e83296f22549ee518f3d1209",
   "scope": {
     "adopted_l2_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
     "historical_stage": "Stage 2b",
@@ -1235,7 +1235,7 @@
       },
       {
         "name": "EvolutionComparisonOutput",
-        "definition": "{proposal_result:string,meaning_result:string,reference_results:map<string,string>,fixed_enum:boolean|string,operation_claim:string,effects:Effects,unaffected_Q:string}。 reference_results語彙: preserved_and_mapped_candidate / missing_mapping / missing_original_reference。meaning_resultはknown_in_fixture_only / unknown / overlapping。proposal_resultは有限operation名に_candidate_onlyを付けるかheld_candidate。",
+        "definition": "{proposal_result:string,meaning_result:string,reference_results:{relations:map<string,string>,consumers:map<string,string>},fixed_enum:boolean|string,operation_claim:string,effects:Effects,unaffected_Q:string}。各mapの値語彙: preserved_and_mapped_candidate / missing_mapping / missing_original_reference。meaning_resultはknown_in_fixture_only / unknown / overlapping。proposal_resultは有限operation名に_candidate_onlyを付けるかheld_candidate。",
         "shape": {
           "kind": "record",
           "fields": {
@@ -1271,18 +1271,50 @@
             },
             "reference_results": {
               "type": {
-                "kind": "map",
-                "key": {
-                  "kind": "string"
+                "kind": "record",
+                "fields": {
+                  "relations": {
+                    "type": {
+                      "kind": "map",
+                      "key": {
+                        "kind": "string"
+                      },
+                      "values": {
+                        "kind": "string",
+                        "values": [
+                          "preserved_and_mapped_candidate",
+                          "missing_mapping",
+                          "missing_original_reference"
+                        ]
+                      }
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "consumers": {
+                    "type": {
+                      "kind": "map",
+                      "key": {
+                        "kind": "string"
+                      },
+                      "values": {
+                        "kind": "string",
+                        "values": [
+                          "preserved_and_mapped_candidate",
+                          "missing_mapping",
+                          "missing_original_reference"
+                        ]
+                      }
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  }
                 },
-                "values": {
-                  "kind": "string",
-                  "values": [
-                    "preserved_and_mapped_candidate",
-                    "missing_mapping",
-                    "missing_original_reference"
-                  ]
-                }
+                "additional_properties": "reject"
               },
               "presence": [
                 "provided",
@@ -1583,11 +1615,11 @@
         "packet.payload.proposal.consumer_mapping_candidates"
       ],
       "algorithm": [
-        "reference_resultsはrelation/consumerで共有する1つのmapとする。最初にsorted(original relation ID集合 ∪ relation_mapping_candidatesのkey集合)を昇順に処理し、次にsorted(original consumer ID集合 ∪ consumer_mapping_candidatesのkey集合)を昇順に処理する。各idについてpreserved_reference_snapshotの該当type側に同idがなければmissing_original_reference、snapshotに同idがありmapping keyが無いか空listならmissing_mapping、それ以外はpreserved_and_mapped_candidate。したがってraw fixtureの追加mapping keyもsnapshotに原idが無いものはmissing_original_referenceとなる。relation処理後にconsumer処理を同じmapへ代入するため、ID衝突があればconsumer結果が後勝ちになるが、このfixture群に衝突はなくその意味は未評価。original/snapshot間の内容差・同一id重複・追加mapping keyがsnapshot側だけにある場合の意味は未評価であり、候補保持を一般成功としない。",
+        "reference_resultsはrelations/consumers別の2 mapとする。relation側はsorted(original relation ID集合 ∪ relation_mapping_candidatesのkey集合)を昇順に、consumer側はsorted(original consumer ID集合 ∪ consumer_mapping_candidatesのkey集合)を昇順に、それぞれ独立処理する。各役割のidについてpreserved_reference_snapshotの同じ役割側に同idがなければその役割mapへmissing_original_reference、snapshotに同idがあり同じ役割のmapping keyが無いか空listならmissing_mapping、それ以外はpreserved_and_mapped_candidateを記録する。raw fixtureの追加mapping keyも該当役割snapshotに原idが無ければmissing_original_referenceとなる。同じ文字列idがrelationとconsumerの両役割にあっても結果はそれぞれのmapに保持し、相互上書きしない。original/snapshot間の内容差・同一役割内の同id重複・追加mapping keyがsnapshot側だけにある場合の意味は未評価であり、候補保持を一般成功としない。",
         "operationの対応範囲はrawに現れるadd/split/merge/retireの4 literal。意味評価はknown_in_fixture_only/unknown/overlappingの3 literalだけを保持し、それ以外・欠落/nullはunknown。unknown/overlappingはproposal_result=held_candidateへ留める。",
         "fixed_enum=trueならfixed_enum=rejected、falseならfalseを保つ。proposal_resultの通常分岐にはこの値を次の優先規則で使う。",
         "claims_operation_executed=trueなら他の意味/reference/fixed_enum分岐より無条件に先にoperation_claim=rejected、proposal_result={raw operation}_candidate_onlyを返す。claims_operation_executed=falseの場合のみ、meaning=known_in_fixture_onlyかつ全reference result=preserved_and_mapped_candidateかつfixed_enum=falseなら{raw operation}_candidate_only、それ以外はheld_candidate。candidate labelは有限fixtureの表示値であり実操作・権限・採用ではない。",
-        "全Effects false/unaffected_Q original_Q。実操作/永続化はない。"
+        "全Effects false/unaffected_Q original_Q。実操作/永続化はない。relation/consumerの同文字列ID結果は別mapに保持する。"
       ],
       "priority": "最優先はclaims_operation_executed=trueであり、全ての有限fixtureでoperation_claim=rejectedとraw operation由来candidate labelを並行返却する。false時にだけ固定enum、meaning、reference結果の通常分岐を使い、いずれか不成立ならheld_candidate。4 literal以外のoperationは入力域外で未評価とし、任意文字列からcandidate labelを作る一般規則を定めない。",
       "preconditions": [
@@ -1596,7 +1628,7 @@
         "operationは有限fixtureでadd/split/merge/retireのいずれかであること。これ以外のliteralの出力は未評価として定義せず、権限付与も行わない。"
       ],
       "postconditions": [
-        "原relation/consumerごとの結果map、proposal/meaning/fixed enum/operation claim、全9 Effects=false、unaffected_Qを返す。",
+        "原relation/consumerごとの役割別結果map、proposal/meaning/fixed enum/operation claim、全9 Effects=false、unaffected_Qを返す。",
         "候補結果は提案のfixture labelであり、領域変更操作・採否・受入は実施しない。"
       ],
       "input_type": "DomainEvolutionPacket",
@@ -1639,7 +1671,7 @@
   ],
   "scope_limitations": [
     "実taxonomy/domain meanings、全領域充実、実参照利用者、実CORE/OS resolver、実資格、永続化、採否、実L10、POの実物L11は未成立。",
-    "有限fixtureで未出現の同一ID重複、additional_candidatesの重複name、PRODUCT-P/PRODUCT-R以外の追加product keyと変更、未知のfield型など一般域は未評価。B01の4 fixtureではPRODUCT-PとPRODUCT-Rの2 keyを比較し、変更ありはPRODUCT-Pの1 caseだけ。",
+    "同一文字列IDのrelation/consumer横断衝突はL8でrelation missing・consumer missing・両mappedの3ケースに限定して評価する。同一役割内の同ID重複、additional_candidatesの重複name、他の追加product keyと変更、未知のfield型など一般域は未評価。",
     "この型モデルは論理fixture契約でありformal JSON schema、codec、runtime/APIは定めない。"
   ],
   "full_goal_scope_preserved": {
@@ -1802,5 +1834,6 @@
       "l9_obligation_id": "HELIXBRAIN-L9-001-B01",
       "function_id": "separate_domain_and_product_owners"
     }
-  ]
+  ],
+  "source_pin_role_note": "source_pins/approved_whole_bindingsは批准済み入力の固定revisionを指す履歴pinとして保持する。source_mainは今回のcandidate作業が開始したmainを示す。"
 }
