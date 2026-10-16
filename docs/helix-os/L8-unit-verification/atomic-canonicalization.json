@@ -4610,6 +4610,2266 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
-    "sha256": "9065ae8c02a36e8670eba5a2ae4f1627ddc49a11a0e3a2e3156e3460205b4113"
+    "sha256": "561f1181d7a7efbdbf802093f06f3bced0c815061588445fb1de5f16d78a5ea9"
+  },
+  "command_binding_codec_oracles": {
+    "oracle_id": "OS-L8-053-COMMANDBINDING-2BLOB-CODEC",
+    "scope": "2 BLOBの型・bytes・row key・Plan/Resolution結線を27合成例で照合する。S06/S07全体又は製品の受入oracleではない。",
+    "paired_contract_pointer": "/storage_model/command_binding_codec",
+    "current_design_binding": "このL8 rootのcandidate_l5_bindingが指す同じpublication L5 bytes。",
+    "provenance": {
+      "artifact_id": "OS053-COMMANDBINDING-2BLOB-STAGED-ORACLE-R8-AT-5574",
+      "file_sha256": "1db8a00c69810bc74266f626a0b71718aa83ebf4fa9571696d7708b1b0390747",
+      "limit": "artifact_id/file_sha256はGit外の著述時固定資料の来歴で、Gitから解決する参照又は意味の正本ではない。全入力・全期待は以下のbaseと閉patchへ同値収載している。"
+    },
+    "historical_source_revision": "5574a1b00812dc9dae56d54631c5dcd53a3e5cb1",
+    "historical_source_pins": {
+      "harness_l5": {
+        "path": "docs/helix-harness/L5-detail-design/command-meaning-identity.json",
+        "sha256": "fc24266ab42289451e5a58a178f5adaf43d439d856271a9ab2a0617e72297945",
+        "revision": "5574a1b00812dc9dae56d54631c5dcd53a3e5cb1"
+      },
+      "harness_l9": {
+        "path": "docs/helix-harness/L9-integration-verification/command-meaning-identity.json",
+        "sha256": "abe3babce359ca12302d30656bb40dde6f38de29276d35d2071d404db49297c3",
+        "revision": "5574a1b00812dc9dae56d54631c5dcd53a3e5cb1"
+      },
+      "os_l5": {
+        "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+        "sha256": "9065ae8c02a36e8670eba5a2ae4f1627ddc49a11a0e3a2e3156e3460205b4113",
+        "revision": "5574a1b00812dc9dae56d54631c5dcd53a3e5cb1"
+      },
+      "os_l8": {
+        "path": "docs/helix-os/L8-unit-verification/atomic-canonicalization.json",
+        "sha256": "719cce34d31a8357a54e3b8062d5058a80ef884f29da198f1c0dfc0002686cea",
+        "revision": "5574a1b00812dc9dae56d54631c5dcd53a3e5cb1"
+      },
+      "os_l9": {
+        "path": "docs/helix-os/L9-integration-verification/atomic-canonicalization.json",
+        "sha256": "dde351842a8a38438b78ef8acc8041c814f85bc8fcfd7dbc1545a86ab87dd7fa",
+        "revision": "5574a1b00812dc9dae56d54631c5dcd53a3e5cb1"
+      }
+    },
+    "materialization": {
+      "base_material": "P01",
+      "root": "各caseはbaseのinputとexpected_returnをdeep copyしfixture_patch全件を配列順に適用する。member pathはRFC6901。add/remove/replaceだけ。配列値の相違は配列全体のreplaceとし、暗黙merge/既定値補完をしない。",
+      "whole_digest": "case_idを含めない{input,expected_return}をUTF-8、ensure_ascii=false、key sort、compact separator、NaNなしでcanonical化したSHA-256。全patch後に照合する。",
+      "order": "Base64は各BLOBをstrict decodeしてimmutable bytesとして渡す。期待は候補から計算せず本資料の全expected_returnを使う。"
+    },
+    "base_materials": {
+      "P01": {
+        "expected_return": {
+          "codec_decode": {
+            "identity_axes": {
+              "bases": [
+                {
+                  "asset_id": "asset-a",
+                  "expected_ref": {
+                    "identity": "asset/source-01",
+                    "owner": "owner/source",
+                    "revision": "asset-r1",
+                    "scope": "scope/project-01",
+                    "sha256": "eac9b4b53dabeb17fa70ee9dc50d40bbecb0a1b7c78b37c1af6062100398bbaf"
+                  }
+                },
+                {
+                  "asset_id": "asset-b",
+                  "expected_ref": null
+                }
+              ],
+              "classification": "new",
+              "command_id": "cmd/codec-01",
+              "payload_digest": "sha256:2bfd14f43d17fc7cea24e0917a8879b4b2f880b8baeec1b9d90fbaad655e71bd",
+              "prior_operation_ref": null,
+              "prior_result_ref": null,
+              "result_ref": {
+                "identity": "comparison/command-01",
+                "owner": "owner/harness",
+                "revision": "comparison-r1",
+                "scope": "scope/project-01",
+                "sha256": "803b8fcd6179ab8670be46658c36aba0f74306e985792dfb5c61ce4c5b0f9b07"
+              },
+              "rule_ref": {
+                "identity": "rule/normalization-01",
+                "owner": "owner/rule",
+                "revision": "rule-r1",
+                "scope": "scope/project-01",
+                "sha256": "755d1fd6f4b3fb6c94cfb7c9c6d44387665448177318d55f4c4c8936010eb6f2"
+              },
+              "scope_ref": {
+                "identity": "scope/project-01",
+                "owner": "owner/scope",
+                "revision": "scope-r1",
+                "scope": "scope/root",
+                "sha256": "97e97cd81ecf6e341c5261748176b00943f0df24c3954ab1581a51b3111c63b6"
+              }
+            },
+            "identity_result_ref": {
+              "identity": "comparison/command-01",
+              "owner": "owner/harness",
+              "revision": "comparison-r1",
+              "scope": "scope/project-01",
+              "sha256": "803b8fcd6179ab8670be46658c36aba0f74306e985792dfb5c61ce4c5b0f9b07"
+            },
+            "state": "decoded"
+          },
+          "metadata": {
+            "raw_identity_axes_bytes_sha256": "74cd4f1713d57ee568ef601046b7966a888264164e1387ab9c68d0c3eb2952e7",
+            "raw_identity_result_ref_bytes_sha256": "30e43c427ce450d402ff334f4ad006be75778f6ab475aae018ed090d06a307fd"
+          },
+          "plan_resolution_check": {
+            "checks": {
+              "plan_command_scope_bases_match_axes": true,
+              "plan_identity_result_ref_matches_resolution_ref": true,
+              "resolution_ref_matches_axes_result_ref": true,
+              "resolution_value_matches_axes": true
+            },
+            "state": "checked",
+            "status": "matched"
+          },
+          "row_key_check": {
+            "command_id": "cmd/codec-01",
+            "state": "checked",
+            "status": "matched"
+          }
+        },
+        "input": {
+          "identity_axes_bytes_base64": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6Im5ldyIsImNvbW1hbmRfaWQiOiJjbWQvY29kZWMtMDEiLCJwYXlsb2FkX2RpZ2VzdCI6InNoYTI1NjoyYmZkMTRmNDNkMTdmYzdjZWEyNGUwOTE3YTg4NzliNGIyZjg4MGI4YmFlZWMxYjlkOTBmYmFhZDY1NWU3MWJkIiwicHJpb3Jfb3BlcmF0aW9uX3JlZiI6bnVsbCwicHJpb3JfcmVzdWx0X3JlZiI6bnVsbCwicmVzdWx0X3JlZiI6eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vY29tbWFuZC0wMSIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjgwM2I4ZmNkNjE3OWFiODY3MGJlNDY2NThjMzZhYmEwZjc0MzA2ZTk4NTc5MmRmYjVjNjFjZTRjNWIwZjliMDcifSwicnVsZV9yZWYiOnsiaWRlbnRpdHkiOiJydWxlL25vcm1hbGl6YXRpb24tMDEiLCJvd25lciI6Im93bmVyL3J1bGUiLCJyZXZpc2lvbiI6InJ1bGUtcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI3NTVkMWZkNmY0YjNmYjZjOTRjZmI3YzljNmQ0NDM4NzY2NTQ0ODE3NzMxOGQ1NWY0YzRjODkzNjAxMGViNmYyIn0sInNjb3BlX3JlZiI6eyJpZGVudGl0eSI6InNjb3BlL3Byb2plY3QtMDEiLCJvd25lciI6Im93bmVyL3Njb3BlIiwicmV2aXNpb24iOiJzY29wZS1yMSIsInNjb3BlIjoic2NvcGUvcm9vdCIsInNoYTI1NiI6Ijk3ZTk3Y2Q4MWVjZjZlMzQxYzUyNjE3NDgxNzZiMDA5NDNmMGRmMjRjMzk1NGFiMTU4MWE1MWIzMTExYzYzYjYifX0=",
+          "identity_result_ref_bytes_base64": "eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vY29tbWFuZC0wMSIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjgwM2I4ZmNkNjE3OWFiODY3MGJlNDY2NThjMzZhYmEwZjc0MzA2ZTk4NTc5MmRmYjVjNjFjZTRjNWIwZjliMDcifQ==",
+          "plan_projection": {
+            "bases": [
+              {
+                "asset_id": "asset-a",
+                "expected_ref": {
+                  "identity": "asset/source-01",
+                  "owner": "owner/source",
+                  "revision": "asset-r1",
+                  "scope": "scope/project-01",
+                  "sha256": "eac9b4b53dabeb17fa70ee9dc50d40bbecb0a1b7c78b37c1af6062100398bbaf"
+                }
+              },
+              {
+                "asset_id": "asset-b",
+                "expected_ref": null
+              }
+            ],
+            "command_id": "cmd/codec-01",
+            "identity_result_ref": {
+              "identity": "comparison/command-01",
+              "owner": "owner/harness",
+              "revision": "comparison-r1",
+              "scope": "scope/project-01",
+              "sha256": "803b8fcd6179ab8670be46658c36aba0f74306e985792dfb5c61ce4c5b0f9b07"
+            },
+            "scope_ref": {
+              "identity": "scope/project-01",
+              "owner": "owner/scope",
+              "revision": "scope-r1",
+              "scope": "scope/root",
+              "sha256": "97e97cd81ecf6e341c5261748176b00943f0df24c3954ab1581a51b3111c63b6"
+            }
+          },
+          "resolution": {
+            "kind": "identity_result",
+            "ref": {
+              "identity": "comparison/command-01",
+              "owner": "owner/harness",
+              "revision": "comparison-r1",
+              "scope": "scope/project-01",
+              "sha256": "803b8fcd6179ab8670be46658c36aba0f74306e985792dfb5c61ce4c5b0f9b07"
+            },
+            "state": "valid",
+            "value": {
+              "bases": [
+                {
+                  "asset_id": "asset-a",
+                  "expected_ref": {
+                    "identity": "asset/source-01",
+                    "owner": "owner/source",
+                    "revision": "asset-r1",
+                    "scope": "scope/project-01",
+                    "sha256": "eac9b4b53dabeb17fa70ee9dc50d40bbecb0a1b7c78b37c1af6062100398bbaf"
+                  }
+                },
+                {
+                  "asset_id": "asset-b",
+                  "expected_ref": null
+                }
+              ],
+              "classification": "new",
+              "command_id": "cmd/codec-01",
+              "payload_digest": "sha256:2bfd14f43d17fc7cea24e0917a8879b4b2f880b8baeec1b9d90fbaad655e71bd",
+              "prior_operation_ref": null,
+              "prior_result_ref": null,
+              "result_ref": {
+                "identity": "comparison/command-01",
+                "owner": "owner/harness",
+                "revision": "comparison-r1",
+                "scope": "scope/project-01",
+                "sha256": "803b8fcd6179ab8670be46658c36aba0f74306e985792dfb5c61ce4c5b0f9b07"
+              },
+              "rule_ref": {
+                "identity": "rule/normalization-01",
+                "owner": "owner/rule",
+                "revision": "rule-r1",
+                "scope": "scope/project-01",
+                "sha256": "755d1fd6f4b3fb6c94cfb7c9c6d44387665448177318d55f4c4c8936010eb6f2"
+              },
+              "scope_ref": {
+                "identity": "scope/project-01",
+                "owner": "owner/scope",
+                "revision": "scope-r1",
+                "scope": "scope/root",
+                "sha256": "97e97cd81ecf6e341c5261748176b00943f0df24c3954ab1581a51b3111c63b6"
+              }
+            }
+          },
+          "row_non_blob_fields": {
+            "command_id": "cmd/codec-01",
+            "generation_id": "generation-01",
+            "operation_id": "operation-01",
+            "receipt_identity": "receipt/operation-01",
+            "receipt_revision": "receipt-r1",
+            "receipt_scope": "scope/project-01",
+            "status": "committed"
+          }
+        }
+      }
+    },
+    "cases": [
+      {
+        "case_id": "P01-ascii-new-null-prior",
+        "base_material": "P01",
+        "fixture_patch": [],
+        "expanded_case_canonical_sha256": "ca5f9b1038ecd20518f6d89b9452ea2279c88ed51f02e9368bfca8d5171c8b75"
+      },
+      {
+        "case_id": "P02-unicode-same-nonnull-locator",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/identity_axes/classification",
+            "value": "same"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/identity_axes/command_id",
+            "value": "指令/β-02"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/identity_axes/prior_operation_ref",
+            "value": {
+              "identity": "operation/prior-02",
+              "owner": "owner/os",
+              "revision": "operation-r4",
+              "scope": "scope/project-01"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/identity_axes/prior_result_ref",
+            "value": {
+              "identity": "comparison/prior-02",
+              "owner": "owner/harness",
+              "revision": "comparison-r4",
+              "scope": "scope/project-01",
+              "sha256": "6cb69124ca6ee015ff1b151873b292d6fe6d758e93122756ad9ee46c592edf93"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/identity_axes/result_ref/identity",
+            "value": "comparison/current-02"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/identity_axes/result_ref/revision",
+            "value": "comparison-r5"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/identity_axes/result_ref/sha256",
+            "value": "57179f9dd733b1a969c7a05972cd21c7624861d2022573b6c47e7bf363d289eb"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/identity_result_ref/identity",
+            "value": "comparison/current-02"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/identity_result_ref/revision",
+            "value": "comparison-r5"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/identity_result_ref/sha256",
+            "value": "57179f9dd733b1a969c7a05972cd21c7624861d2022573b6c47e7bf363d289eb"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "1771c67b1316a58fb20693eb8851b5b9d8bdca20a9557d84f12bc28fbd276c30"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_result_ref_bytes_sha256",
+            "value": "ae1409a6125c98439778693582174935d689ecdd700ca4400b6dd9a6e09764d9"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/command_id",
+            "value": "指令/β-02"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6InNhbWUiLCJjb21tYW5kX2lkIjoi5oyH5LukL86yLTAyIiwicGF5bG9hZF9kaWdlc3QiOiJzaGEyNTY6MmJmZDE0ZjQzZDE3ZmM3Y2VhMjRlMDkxN2E4ODc5YjRiMmY4ODBiOGJhZWVjMWI5ZDkwZmJhYWQ2NTVlNzFiZCIsInByaW9yX29wZXJhdGlvbl9yZWYiOnsiaWRlbnRpdHkiOiJvcGVyYXRpb24vcHJpb3ItMDIiLCJvd25lciI6Im93bmVyL29zIiwicmV2aXNpb24iOiJvcGVyYXRpb24tcjQiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEifSwicHJpb3JfcmVzdWx0X3JlZiI6eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vcHJpb3ItMDIiLCJvd25lciI6Im93bmVyL2hhcm5lc3MiLCJyZXZpc2lvbiI6ImNvbXBhcmlzb24tcjQiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI2Y2I2OTEyNGNhNmVlMDE1ZmYxYjE1MTg3M2IyOTJkNmZlNmQ3NThlOTMxMjI3NTZhZDllZTQ2YzU5MmVkZjkzIn0sInJlc3VsdF9yZWYiOnsiaWRlbnRpdHkiOiJjb21wYXJpc29uL2N1cnJlbnQtMDIiLCJvd25lciI6Im93bmVyL2hhcm5lc3MiLCJyZXZpc2lvbiI6ImNvbXBhcmlzb24tcjUiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI1NzE3OWY5ZGQ3MzNiMWE5NjljN2EwNTk3MmNkMjFjNzYyNDg2MWQyMDIyNTczYjZjNDdlN2JmMzYzZDI4OWViIn0sInJ1bGVfcmVmIjp7ImlkZW50aXR5IjoicnVsZS9ub3JtYWxpemF0aW9uLTAxIiwib3duZXIiOiJvd25lci9ydWxlIiwicmV2aXNpb24iOiJydWxlLXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiNzU1ZDFmZDZmNGIzZmI2Yzk0Y2ZiN2M5YzZkNDQzODc2NjU0NDgxNzczMThkNTVmNGM0Yzg5MzYwMTBlYjZmMiJ9LCJzY29wZV9yZWYiOnsiaWRlbnRpdHkiOiJzY29wZS9wcm9qZWN0LTAxIiwib3duZXIiOiJvd25lci9zY29wZSIsInJldmlzaW9uIjoic2NvcGUtcjEiLCJzY29wZSI6InNjb3BlL3Jvb3QiLCJzaGEyNTYiOiI5N2U5N2NkODFlY2Y2ZTM0MWM1MjYxNzQ4MTc2YjAwOTQzZjBkZjI0YzM5NTRhYjE1ODFhNTFiMzExMWM2M2I2In19"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_result_ref_bytes_base64",
+            "value": "eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vY3VycmVudC0wMiIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yNSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjU3MTc5ZjlkZDczM2IxYTk2OWM3YTA1OTcyY2QyMWM3NjI0ODYxZDIwMjI1NzNiNmM0N2U3YmYzNjNkMjg5ZWIifQ=="
+          },
+          {
+            "op": "replace",
+            "path": "/input/plan_projection/command_id",
+            "value": "指令/β-02"
+          },
+          {
+            "op": "replace",
+            "path": "/input/plan_projection/identity_result_ref/identity",
+            "value": "comparison/current-02"
+          },
+          {
+            "op": "replace",
+            "path": "/input/plan_projection/identity_result_ref/revision",
+            "value": "comparison-r5"
+          },
+          {
+            "op": "replace",
+            "path": "/input/plan_projection/identity_result_ref/sha256",
+            "value": "57179f9dd733b1a969c7a05972cd21c7624861d2022573b6c47e7bf363d289eb"
+          },
+          {
+            "op": "replace",
+            "path": "/input/resolution/ref/identity",
+            "value": "comparison/current-02"
+          },
+          {
+            "op": "replace",
+            "path": "/input/resolution/ref/revision",
+            "value": "comparison-r5"
+          },
+          {
+            "op": "replace",
+            "path": "/input/resolution/ref/sha256",
+            "value": "57179f9dd733b1a969c7a05972cd21c7624861d2022573b6c47e7bf363d289eb"
+          },
+          {
+            "op": "replace",
+            "path": "/input/resolution/value/classification",
+            "value": "same"
+          },
+          {
+            "op": "replace",
+            "path": "/input/resolution/value/command_id",
+            "value": "指令/β-02"
+          },
+          {
+            "op": "replace",
+            "path": "/input/resolution/value/prior_operation_ref",
+            "value": {
+              "identity": "operation/prior-02",
+              "owner": "owner/os",
+              "revision": "operation-r4",
+              "scope": "scope/project-01"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/input/resolution/value/prior_result_ref",
+            "value": {
+              "identity": "comparison/prior-02",
+              "owner": "owner/harness",
+              "revision": "comparison-r4",
+              "scope": "scope/project-01",
+              "sha256": "6cb69124ca6ee015ff1b151873b292d6fe6d758e93122756ad9ee46c592edf93"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/input/resolution/value/result_ref/identity",
+            "value": "comparison/current-02"
+          },
+          {
+            "op": "replace",
+            "path": "/input/resolution/value/result_ref/revision",
+            "value": "comparison-r5"
+          },
+          {
+            "op": "replace",
+            "path": "/input/resolution/value/result_ref/sha256",
+            "value": "57179f9dd733b1a969c7a05972cd21c7624861d2022573b6c47e7bf363d289eb"
+          },
+          {
+            "op": "replace",
+            "path": "/input/row_non_blob_fields/command_id",
+            "value": "指令/β-02"
+          },
+          {
+            "op": "replace",
+            "path": "/input/row_non_blob_fields/operation_id",
+            "value": "operation-current-02"
+          }
+        ],
+        "expanded_case_canonical_sha256": "d3ca0d55a6d476ecf86f25d6af085db2dded05131b7c690c5c0722b521605bc3"
+      },
+      {
+        "case_id": "N01-ref-blob-does-not-equal-axes-result-ref",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/result_ref",
+              "kind": "result_ref_mismatch"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/identity_result_ref/identity",
+            "value": "comparison/other"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "mismatch"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_result_ref_bytes_sha256",
+            "value": "a1e421132ec03dc142103f82a22f5bd03abf1f3cf0f82f763d49a3e44f68e97d"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_result_ref_bytes_base64",
+            "value": "eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vb3RoZXIiLCJvd25lciI6Im93bmVyL2hhcm5lc3MiLCJyZXZpc2lvbiI6ImNvbXBhcmlzb24tcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI4MDNiOGZjZDYxNzlhYjg2NzBiZTQ2NjU4YzM2YWJhMGY3NDMwNmU5ODU3OTJkZmI1YzYxY2U0YzViMGY5YjA3In0="
+          }
+        ],
+        "expanded_case_canonical_sha256": "f21fbbce046afeb203d8dfc6a49b21ced9de9530db480029c300482b7fc43170"
+      },
+      {
+        "case_id": "N02-required-null-member-omitted",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/prior_result_ref",
+              "kind": "schema_invalid",
+              "reason": "required member absent; nullable does not mean optional"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "a60825b651dccf7ece5aef26fe6e527621d2a954324649d91c19f663dfadf827"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6Im5ldyIsImNvbW1hbmRfaWQiOiJjbWQvY29kZWMtMDEiLCJwYXlsb2FkX2RpZ2VzdCI6InNoYTI1NjoyYmZkMTRmNDNkMTdmYzdjZWEyNGUwOTE3YTg4NzliNGIyZjg4MGI4YmFlZWMxYjlkOTBmYmFhZDY1NWU3MWJkIiwicHJpb3Jfb3BlcmF0aW9uX3JlZiI6bnVsbCwicmVzdWx0X3JlZiI6eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vY29tbWFuZC0wMSIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjgwM2I4ZmNkNjE3OWFiODY3MGJlNDY2NThjMzZhYmEwZjc0MzA2ZTk4NTc5MmRmYjVjNjFjZTRjNWIwZjliMDcifSwicnVsZV9yZWYiOnsiaWRlbnRpdHkiOiJydWxlL25vcm1hbGl6YXRpb24tMDEiLCJvd25lciI6Im93bmVyL3J1bGUiLCJyZXZpc2lvbiI6InJ1bGUtcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI3NTVkMWZkNmY0YjNmYjZjOTRjZmI3YzljNmQ0NDM4NzY2NTQ0ODE3NzMxOGQ1NWY0YzRjODkzNjAxMGViNmYyIn0sInNjb3BlX3JlZiI6eyJpZGVudGl0eSI6InNjb3BlL3Byb2plY3QtMDEiLCJvd25lciI6Im93bmVyL3Njb3BlIiwicmV2aXNpb24iOiJzY29wZS1yMSIsInNjb3BlIjoic2NvcGUvcm9vdCIsInNoYTI1NiI6Ijk3ZTk3Y2Q4MWVjZjZlMzQxYzUyNjE3NDgxNzZiMDA5NDNmMGRmMjRjMzk1NGFiMTU4MWE1MWIzMTExYzYzYjYifX0="
+          }
+        ],
+        "expanded_case_canonical_sha256": "09c055d33f00f6397f9dd55174b5b35396bee986422325665ac050b62a16f73f"
+      },
+      {
+        "case_id": "N03-unknown-identity-result-member",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/unrecognized_axis",
+              "kind": "schema_invalid",
+              "reason": "closed record rejects unknown member"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "44a5cdc8378bc0d7f633503a2af862fc6ebe4a04e320dca0807bc3a80eef5282"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6Im5ldyIsImNvbW1hbmRfaWQiOiJjbWQvY29kZWMtMDEiLCJwYXlsb2FkX2RpZ2VzdCI6InNoYTI1NjoyYmZkMTRmNDNkMTdmYzdjZWEyNGUwOTE3YTg4NzliNGIyZjg4MGI4YmFlZWMxYjlkOTBmYmFhZDY1NWU3MWJkIiwicHJpb3Jfb3BlcmF0aW9uX3JlZiI6bnVsbCwicHJpb3JfcmVzdWx0X3JlZiI6bnVsbCwicmVzdWx0X3JlZiI6eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vY29tbWFuZC0wMSIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjgwM2I4ZmNkNjE3OWFiODY3MGJlNDY2NThjMzZhYmEwZjc0MzA2ZTk4NTc5MmRmYjVjNjFjZTRjNWIwZjliMDcifSwicnVsZV9yZWYiOnsiaWRlbnRpdHkiOiJydWxlL25vcm1hbGl6YXRpb24tMDEiLCJvd25lciI6Im93bmVyL3J1bGUiLCJyZXZpc2lvbiI6InJ1bGUtcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI3NTVkMWZkNmY0YjNmYjZjOTRjZmI3YzljNmQ0NDM4NzY2NTQ0ODE3NzMxOGQ1NWY0YzRjODkzNjAxMGViNmYyIn0sInNjb3BlX3JlZiI6eyJpZGVudGl0eSI6InNjb3BlL3Byb2plY3QtMDEiLCJvd25lciI6Im93bmVyL3Njb3BlIiwicmV2aXNpb24iOiJzY29wZS1yMSIsInNjb3BlIjoic2NvcGUvcm9vdCIsInNoYTI1NiI6Ijk3ZTk3Y2Q4MWVjZjZlMzQxYzUyNjE3NDgxNzZiMDA5NDNmMGRmMjRjMzk1NGFiMTU4MWE1MWIzMTExYzYzYjYifSwidW5yZWNvZ25pemVkX2F4aXMiOiJleHRyYSJ9"
+          }
+        ],
+        "expanded_case_canonical_sha256": "acec6375ebf0a01683cb9277585246c295f10f5a16dd1cd623e22c88989890ca"
+      },
+      {
+        "case_id": "N04-duplicate-decoded-json-key",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/classification",
+              "kind": "schema_invalid",
+              "reason": "duplicate decoded key rejected before typed projection"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "b029eccfc0dad563a3f01fcf3c014d580a565b07075aaa37f64e9dbe9aa68a46"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6Im5ldyIsImNsYXNzaWZpY2F0aW9uIjoic2FtZSIsImNvbW1hbmRfaWQiOiJjbWQvY29kZWMtMDEiLCJwYXlsb2FkX2RpZ2VzdCI6InNoYTI1NjoyYmZkMTRmNDNkMTdmYzdjZWEyNGUwOTE3YTg4NzliNGIyZjg4MGI4YmFlZWMxYjlkOTBmYmFhZDY1NWU3MWJkIiwicHJpb3Jfb3BlcmF0aW9uX3JlZiI6bnVsbCwicHJpb3JfcmVzdWx0X3JlZiI6bnVsbCwicmVzdWx0X3JlZiI6eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vY29tbWFuZC0wMSIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjgwM2I4ZmNkNjE3OWFiODY3MGJlNDY2NThjMzZhYmEwZjc0MzA2ZTk4NTc5MmRmYjVjNjFjZTRjNWIwZjliMDcifSwicnVsZV9yZWYiOnsiaWRlbnRpdHkiOiJydWxlL25vcm1hbGl6YXRpb24tMDEiLCJvd25lciI6Im93bmVyL3J1bGUiLCJyZXZpc2lvbiI6InJ1bGUtcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI3NTVkMWZkNmY0YjNmYjZjOTRjZmI3YzljNmQ0NDM4NzY2NTQ0ODE3NzMxOGQ1NWY0YzRjODkzNjAxMGViNmYyIn0sInNjb3BlX3JlZiI6eyJpZGVudGl0eSI6InNjb3BlL3Byb2plY3QtMDEiLCJvd25lciI6Im93bmVyL3Njb3BlIiwicmV2aXNpb24iOiJzY29wZS1yMSIsInNjb3BlIjoic2NvcGUvcm9vdCIsInNoYTI1NiI6Ijk3ZTk3Y2Q4MWVjZjZlMzQxYzUyNjE3NDgxNzZiMDA5NDNmMGRmMjRjMzk1NGFiMTU4MWE1MWIzMTExYzYzYjYifX0="
+          }
+        ],
+        "expanded_case_canonical_sha256": "498fc39508bee5a9654375988b845735fb3e25a4d12563fe2f1b910c0443bf0c"
+      },
+      {
+        "case_id": "N05-invalid-utf8",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes",
+              "kind": "schema_invalid",
+              "reason": "strict UTF-8 decode fails"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "945e37e12d51e87fdedf70cbc477fdf5bd32ccfdecf6eac5132af55f404e64d5"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "/3siYmFzZXMiOlt7ImFzc2V0X2lkIjoiYXNzZXQtYSIsImV4cGVjdGVkX3JlZiI6eyJpZGVudGl0eSI6ImFzc2V0L3NvdXJjZS0wMSIsIm93bmVyIjoib3duZXIvc291cmNlIiwicmV2aXNpb24iOiJhc3NldC1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6ImVhYzliNGI1M2RhYmViMTdmYTcwZWU5ZGM1MGQ0MGJiZWNiMGExYjdjNzhiMzdjMWFmNjA2MjEwMDM5OGJiYWYifX0seyJhc3NldF9pZCI6ImFzc2V0LWIiLCJleHBlY3RlZF9yZWYiOm51bGx9XSwiY2xhc3NpZmljYXRpb24iOiJuZXciLCJjb21tYW5kX2lkIjoiY21kL2NvZGVjLTAxIiwicGF5bG9hZF9kaWdlc3QiOiJzaGEyNTY6MmJmZDE0ZjQzZDE3ZmM3Y2VhMjRlMDkxN2E4ODc5YjRiMmY4ODBiOGJhZWVjMWI5ZDkwZmJhYWQ2NTVlNzFiZCIsInByaW9yX29wZXJhdGlvbl9yZWYiOm51bGwsInByaW9yX3Jlc3VsdF9yZWYiOm51bGwsInJlc3VsdF9yZWYiOnsiaWRlbnRpdHkiOiJjb21wYXJpc29uL2NvbW1hbmQtMDEiLCJvd25lciI6Im93bmVyL2hhcm5lc3MiLCJyZXZpc2lvbiI6ImNvbXBhcmlzb24tcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI4MDNiOGZjZDYxNzlhYjg2NzBiZTQ2NjU4YzM2YWJhMGY3NDMwNmU5ODU3OTJkZmI1YzYxY2U0YzViMGY5YjA3In0sInJ1bGVfcmVmIjp7ImlkZW50aXR5IjoicnVsZS9ub3JtYWxpemF0aW9uLTAxIiwib3duZXIiOiJvd25lci9ydWxlIiwicmV2aXNpb24iOiJydWxlLXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiNzU1ZDFmZDZmNGIzZmI2Yzk0Y2ZiN2M5YzZkNDQzODc2NjU0NDgxNzczMThkNTVmNGM0Yzg5MzYwMTBlYjZmMiJ9LCJzY29wZV9yZWYiOnsiaWRlbnRpdHkiOiJzY29wZS9wcm9qZWN0LTAxIiwib3duZXIiOiJvd25lci9zY29wZSIsInJldmlzaW9uIjoic2NvcGUtcjEiLCJzY29wZSI6InNjb3BlL3Jvb3QiLCJzaGEyNTYiOiI5N2U5N2NkODFlY2Y2ZTM0MWM1MjYxNzQ4MTc2YjAwOTQzZjBkZjI0YzM5NTRhYjE1ODFhNTFiMzExMWM2M2I2In19"
+          }
+        ],
+        "expanded_case_canonical_sha256": "2f65326fa836864abaa07e99ce4a427808df395f9a8810249223a62b84e10d7c"
+      },
+      {
+        "case_id": "N06-valid-json-but-noncanonical-bytes",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes",
+              "kind": "schema_invalid",
+              "reason": "decode/re-encode is not byte-identical"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "61304305d8d08030bca1374f957f400ef34d2c9467ae5289acc568e9069e89c5"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "ewogICJiYXNlcyI6IFsKICAgIHsKICAgICAgImFzc2V0X2lkIjogImFzc2V0LWEiLAogICAgICAiZXhwZWN0ZWRfcmVmIjogewogICAgICAgICJpZGVudGl0eSI6ICJhc3NldC9zb3VyY2UtMDEiLAogICAgICAgICJvd25lciI6ICJvd25lci9zb3VyY2UiLAogICAgICAgICJyZXZpc2lvbiI6ICJhc3NldC1yMSIsCiAgICAgICAgInNjb3BlIjogInNjb3BlL3Byb2plY3QtMDEiLAogICAgICAgICJzaGEyNTYiOiAiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiIKICAgICAgfQogICAgfSwKICAgIHsKICAgICAgImFzc2V0X2lkIjogImFzc2V0LWIiLAogICAgICAiZXhwZWN0ZWRfcmVmIjogbnVsbAogICAgfQogIF0sCiAgImNsYXNzaWZpY2F0aW9uIjogIm5ldyIsCiAgImNvbW1hbmRfaWQiOiAiY21kL2NvZGVjLTAxIiwKICAicGF5bG9hZF9kaWdlc3QiOiAic2hhMjU2OjJiZmQxNGY0M2QxN2ZjN2NlYTI0ZTA5MTdhODg3OWI0YjJmODgwYjhiYWVlYzFiOWQ5MGZiYWFkNjU1ZTcxYmQiLAogICJwcmlvcl9vcGVyYXRpb25fcmVmIjogbnVsbCwKICAicHJpb3JfcmVzdWx0X3JlZiI6IG51bGwsCiAgInJlc3VsdF9yZWYiOiB7CiAgICAiaWRlbnRpdHkiOiAiY29tcGFyaXNvbi9jb21tYW5kLTAxIiwKICAgICJvd25lciI6ICJvd25lci9oYXJuZXNzIiwKICAgICJyZXZpc2lvbiI6ICJjb21wYXJpc29uLXIxIiwKICAgICJzY29wZSI6ICJzY29wZS9wcm9qZWN0LTAxIiwKICAgICJzaGEyNTYiOiAiODAzYjhmY2Q2MTc5YWI4NjcwYmU0NjY1OGMzNmFiYTBmNzQzMDZlOTg1NzkyZGZiNWM2MWNlNGM1YjBmOWIwNyIKICB9LAogICJydWxlX3JlZiI6IHsKICAgICJpZGVudGl0eSI6ICJydWxlL25vcm1hbGl6YXRpb24tMDEiLAogICAgIm93bmVyIjogIm93bmVyL3J1bGUiLAogICAgInJldmlzaW9uIjogInJ1bGUtcjEiLAogICAgInNjb3BlIjogInNjb3BlL3Byb2plY3QtMDEiLAogICAgInNoYTI1NiI6ICI3NTVkMWZkNmY0YjNmYjZjOTRjZmI3YzljNmQ0NDM4NzY2NTQ0ODE3NzMxOGQ1NWY0YzRjODkzNjAxMGViNmYyIgogIH0sCiAgInNjb3BlX3JlZiI6IHsKICAgICJpZGVudGl0eSI6ICJzY29wZS9wcm9qZWN0LTAxIiwKICAgICJvd25lciI6ICJvd25lci9zY29wZSIsCiAgICAicmV2aXNpb24iOiAic2NvcGUtcjEiLAogICAgInNjb3BlIjogInNjb3BlL3Jvb3QiLAogICAgInNoYTI1NiI6ICI5N2U5N2NkODFlY2Y2ZTM0MWM1MjYxNzQ4MTc2YjAwOTQzZjBkZjI0YzM5NTRhYjE1ODFhNTFiMzExMWM2M2I2IgogIH0KfQ=="
+          }
+        ],
+        "expanded_case_canonical_sha256": "8baa59f81a2b63a08bba20faba62375998a04683b71280dde9e172875c323bfe"
+      },
+      {
+        "case_id": "N07-unknown-classification-enum",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/classification",
+              "kind": "schema_invalid",
+              "reason": "closed enum rejects unknown value"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "e5f93e5e77d8f28dd9e8345bd019995f5cd4545c16c551621463e75326757783"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6InVua25vd24tbmV3LWVudW0iLCJjb21tYW5kX2lkIjoiY21kL2NvZGVjLTAxIiwicGF5bG9hZF9kaWdlc3QiOiJzaGEyNTY6MmJmZDE0ZjQzZDE3ZmM3Y2VhMjRlMDkxN2E4ODc5YjRiMmY4ODBiOGJhZWVjMWI5ZDkwZmJhYWQ2NTVlNzFiZCIsInByaW9yX29wZXJhdGlvbl9yZWYiOm51bGwsInByaW9yX3Jlc3VsdF9yZWYiOm51bGwsInJlc3VsdF9yZWYiOnsiaWRlbnRpdHkiOiJjb21wYXJpc29uL2NvbW1hbmQtMDEiLCJvd25lciI6Im93bmVyL2hhcm5lc3MiLCJyZXZpc2lvbiI6ImNvbXBhcmlzb24tcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI4MDNiOGZjZDYxNzlhYjg2NzBiZTQ2NjU4YzM2YWJhMGY3NDMwNmU5ODU3OTJkZmI1YzYxY2U0YzViMGY5YjA3In0sInJ1bGVfcmVmIjp7ImlkZW50aXR5IjoicnVsZS9ub3JtYWxpemF0aW9uLTAxIiwib3duZXIiOiJvd25lci9ydWxlIiwicmV2aXNpb24iOiJydWxlLXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiNzU1ZDFmZDZmNGIzZmI2Yzk0Y2ZiN2M5YzZkNDQzODc2NjU0NDgxNzczMThkNTVmNGM0Yzg5MzYwMTBlYjZmMiJ9LCJzY29wZV9yZWYiOnsiaWRlbnRpdHkiOiJzY29wZS9wcm9qZWN0LTAxIiwib3duZXIiOiJvd25lci9zY29wZSIsInJldmlzaW9uIjoic2NvcGUtcjEiLCJzY29wZSI6InNjb3BlL3Jvb3QiLCJzaGEyNTYiOiI5N2U5N2NkODFlY2Y2ZTM0MWM1MjYxNzQ4MTc2YjAwOTQzZjBkZjI0YzM5NTRhYjE1ODFhNTFiMzExMWM2M2I2In19"
+          }
+        ],
+        "expanded_case_canonical_sha256": "bbfad6f76725acb649c4c44d58e5f6192ccd3b7a98269eca4d803def53e36bb1"
+      },
+      {
+        "case_id": "N08-locator-has-forbidden-ref-sha-axis",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/prior_operation_ref/sha256",
+              "kind": "schema_invalid",
+              "reason": "Locator has exactly four axes; Ref-only sha256 is unknown here"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "3e58930cf47064379253c5afe6d276706c0cfbdee6bb35d3cfd94f78152d131b"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6Im5ldyIsImNvbW1hbmRfaWQiOiJjbWQvY29kZWMtMDEiLCJwYXlsb2FkX2RpZ2VzdCI6InNoYTI1NjoyYmZkMTRmNDNkMTdmYzdjZWEyNGUwOTE3YTg4NzliNGIyZjg4MGI4YmFlZWMxYjlkOTBmYmFhZDY1NWU3MWJkIiwicHJpb3Jfb3BlcmF0aW9uX3JlZiI6eyJpZGVudGl0eSI6Im9wZXJhdGlvbi9wcmlvciIsIm93bmVyIjoib3duZXIvb3MiLCJyZXZpc2lvbiI6Im9wZXJhdGlvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6ImFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWEifSwicHJpb3JfcmVzdWx0X3JlZiI6bnVsbCwicmVzdWx0X3JlZiI6eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vY29tbWFuZC0wMSIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjgwM2I4ZmNkNjE3OWFiODY3MGJlNDY2NThjMzZhYmEwZjc0MzA2ZTk4NTc5MmRmYjVjNjFjZTRjNWIwZjliMDcifSwicnVsZV9yZWYiOnsiaWRlbnRpdHkiOiJydWxlL25vcm1hbGl6YXRpb24tMDEiLCJvd25lciI6Im93bmVyL3J1bGUiLCJyZXZpc2lvbiI6InJ1bGUtcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI3NTVkMWZkNmY0YjNmYjZjOTRjZmI3YzljNmQ0NDM4NzY2NTQ0ODE3NzMxOGQ1NWY0YzRjODkzNjAxMGViNmYyIn0sInNjb3BlX3JlZiI6eyJpZGVudGl0eSI6InNjb3BlL3Byb2plY3QtMDEiLCJvd25lciI6Im93bmVyL3Njb3BlIiwicmV2aXNpb24iOiJzY29wZS1yMSIsInNjb3BlIjoic2NvcGUvcm9vdCIsInNoYTI1NiI6Ijk3ZTk3Y2Q4MWVjZjZlMzQxYzUyNjE3NDgxNzZiMDA5NDNmMGRmMjRjMzk1NGFiMTU4MWE1MWIzMTExYzYzYjYifX0="
+          }
+        ],
+        "expanded_case_canonical_sha256": "90b8d3f013ac3ad82fb19fcad5365babfe6057c53f5fb33996d4737128370e5d"
+      },
+      {
+        "case_id": "N09-row-key-command-id-differs-from-axes",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "row command_id mismatch"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/axes_value",
+            "value": "cmd/codec-01"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/field_pointer",
+            "value": "/command_id"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/row_value",
+            "value": "cmd/other"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/status",
+            "value": "mismatch"
+          },
+          {
+            "op": "replace",
+            "path": "/input/row_non_blob_fields/command_id",
+            "value": "cmd/other"
+          }
+        ],
+        "expanded_case_canonical_sha256": "95261214b00c7be65c4b7250efa751709564b65740b40b93f095fbcdd7e57394"
+      },
+      {
+        "case_id": "N10-valid-axes-ref-disagrees-with-ref-blob",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/result_ref",
+              "kind": "result_ref_mismatch"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/identity_axes/result_ref/identity",
+            "value": "comparison/other"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "mismatch"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "994dec4eb87e32b173b89633b68ebd562a4d972105db08d6ab04b8199c490664"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6Im5ldyIsImNvbW1hbmRfaWQiOiJjbWQvY29kZWMtMDEiLCJwYXlsb2FkX2RpZ2VzdCI6InNoYTI1NjoyYmZkMTRmNDNkMTdmYzdjZWEyNGUwOTE3YTg4NzliNGIyZjg4MGI4YmFlZWMxYjlkOTBmYmFhZDY1NWU3MWJkIiwicHJpb3Jfb3BlcmF0aW9uX3JlZiI6bnVsbCwicHJpb3JfcmVzdWx0X3JlZiI6bnVsbCwicmVzdWx0X3JlZiI6eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vb3RoZXIiLCJvd25lciI6Im93bmVyL2hhcm5lc3MiLCJyZXZpc2lvbiI6ImNvbXBhcmlzb24tcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI4MDNiOGZjZDYxNzlhYjg2NzBiZTQ2NjU4YzM2YWJhMGY3NDMwNmU5ODU3OTJkZmI1YzYxY2U0YzViMGY5YjA3In0sInJ1bGVfcmVmIjp7ImlkZW50aXR5IjoicnVsZS9ub3JtYWxpemF0aW9uLTAxIiwib3duZXIiOiJvd25lci9ydWxlIiwicmV2aXNpb24iOiJydWxlLXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiNzU1ZDFmZDZmNGIzZmI2Yzk0Y2ZiN2M5YzZkNDQzODc2NjU0NDgxNzczMThkNTVmNGM0Yzg5MzYwMTBlYjZmMiJ9LCJzY29wZV9yZWYiOnsiaWRlbnRpdHkiOiJzY29wZS9wcm9qZWN0LTAxIiwib3duZXIiOiJvd25lci9zY29wZSIsInJldmlzaW9uIjoic2NvcGUtcjEiLCJzY29wZSI6InNjb3BlL3Jvb3QiLCJzaGEyNTYiOiI5N2U5N2NkODFlY2Y2ZTM0MWM1MjYxNzQ4MTc2YjAwOTQzZjBkZjI0YzM5NTRhYjE1ODFhNTFiMzExMWM2M2I2In19"
+          }
+        ],
+        "expanded_case_canonical_sha256": "3deecbcffeded7503d14df082dcdd957a1fb09449bb790ded730f4c119ca90e4"
+      },
+      {
+        "case_id": "N11-plan-identity-result-ref-differs",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/failure",
+            "value": {
+              "actual": {
+                "identity": "comparison/other",
+                "owner": "owner/harness",
+                "revision": "comparison-r1",
+                "scope": "scope/project-01",
+                "sha256": "803b8fcd6179ab8670be46658c36aba0f74306e985792dfb5c61ce4c5b0f9b07"
+              },
+              "check": "plan_identity_result_ref_matches_resolution_ref",
+              "expected": {
+                "identity": "comparison/command-01",
+                "owner": "owner/harness",
+                "revision": "comparison-r1",
+                "scope": "scope/project-01",
+                "sha256": "803b8fcd6179ab8670be46658c36aba0f74306e985792dfb5c61ce4c5b0f9b07"
+              },
+              "field_pointer": "/plan/identity_result_ref"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/checks/plan_identity_result_ref_matches_resolution_ref",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/status",
+            "value": "mismatch"
+          },
+          {
+            "op": "replace",
+            "path": "/input/plan_projection/identity_result_ref/identity",
+            "value": "comparison/other"
+          }
+        ],
+        "expanded_case_canonical_sha256": "321541d7272f80fc5c54193e6a07d246b5b0e5e90a814d66b08140ce9fd530a6"
+      },
+      {
+        "case_id": "N12-resolution-ref-differs-from-plan",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/failure",
+            "value": {
+              "actual": {
+                "identity": "comparison/other",
+                "owner": "owner/harness",
+                "revision": "comparison-r1",
+                "scope": "scope/project-01",
+                "sha256": "803b8fcd6179ab8670be46658c36aba0f74306e985792dfb5c61ce4c5b0f9b07"
+              },
+              "check": "plan_identity_result_ref_matches_resolution_ref",
+              "expected": {
+                "identity": "comparison/command-01",
+                "owner": "owner/harness",
+                "revision": "comparison-r1",
+                "scope": "scope/project-01",
+                "sha256": "803b8fcd6179ab8670be46658c36aba0f74306e985792dfb5c61ce4c5b0f9b07"
+              },
+              "field_pointer": "/resolution/ref"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/checks/plan_identity_result_ref_matches_resolution_ref",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/checks/resolution_ref_matches_axes_result_ref",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/status",
+            "value": "mismatch"
+          },
+          {
+            "op": "replace",
+            "path": "/input/resolution/ref/identity",
+            "value": "comparison/other"
+          }
+        ],
+        "expanded_case_canonical_sha256": "31c3fe90ba616a89e4fefc4363ed2c6961837b7f780d8ed0492fcdc214793425"
+      },
+      {
+        "case_id": "N13-plan-command-differs-from-axes",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/failure",
+            "value": {
+              "actual": {
+                "bases": [
+                  {
+                    "asset_id": "asset-a",
+                    "expected_ref": {
+                      "identity": "asset/source-01",
+                      "owner": "owner/source",
+                      "revision": "asset-r1",
+                      "scope": "scope/project-01",
+                      "sha256": "eac9b4b53dabeb17fa70ee9dc50d40bbecb0a1b7c78b37c1af6062100398bbaf"
+                    }
+                  },
+                  {
+                    "asset_id": "asset-b",
+                    "expected_ref": null
+                  }
+                ],
+                "command_id": "cmd/other",
+                "scope_ref": {
+                  "identity": "scope/project-01",
+                  "owner": "owner/scope",
+                  "revision": "scope-r1",
+                  "scope": "scope/root",
+                  "sha256": "97e97cd81ecf6e341c5261748176b00943f0df24c3954ab1581a51b3111c63b6"
+                }
+              },
+              "check": "plan_command_scope_bases_match_axes",
+              "expected": {
+                "bases": [
+                  {
+                    "asset_id": "asset-a",
+                    "expected_ref": {
+                      "identity": "asset/source-01",
+                      "owner": "owner/source",
+                      "revision": "asset-r1",
+                      "scope": "scope/project-01",
+                      "sha256": "eac9b4b53dabeb17fa70ee9dc50d40bbecb0a1b7c78b37c1af6062100398bbaf"
+                    }
+                  },
+                  {
+                    "asset_id": "asset-b",
+                    "expected_ref": null
+                  }
+                ],
+                "command_id": "cmd/codec-01",
+                "scope_ref": {
+                  "identity": "scope/project-01",
+                  "owner": "owner/scope",
+                  "revision": "scope-r1",
+                  "scope": "scope/root",
+                  "sha256": "97e97cd81ecf6e341c5261748176b00943f0df24c3954ab1581a51b3111c63b6"
+                }
+              },
+              "field_pointer": "/plan",
+              "group": "command_scope_bases"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/checks/plan_command_scope_bases_match_axes",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/status",
+            "value": "mismatch"
+          },
+          {
+            "op": "replace",
+            "path": "/input/plan_projection/command_id",
+            "value": "cmd/other"
+          }
+        ],
+        "expanded_case_canonical_sha256": "75bf8342a6854d11956c62fa376c522ddaae73a580d095a98c3a3fc82b578f54"
+      },
+      {
+        "case_id": "N14-plan-scope-ref-differs-from-axes",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/failure",
+            "value": {
+              "actual": {
+                "bases": [
+                  {
+                    "asset_id": "asset-a",
+                    "expected_ref": {
+                      "identity": "asset/source-01",
+                      "owner": "owner/source",
+                      "revision": "asset-r1",
+                      "scope": "scope/project-01",
+                      "sha256": "eac9b4b53dabeb17fa70ee9dc50d40bbecb0a1b7c78b37c1af6062100398bbaf"
+                    }
+                  },
+                  {
+                    "asset_id": "asset-b",
+                    "expected_ref": null
+                  }
+                ],
+                "command_id": "cmd/codec-01",
+                "scope_ref": {
+                  "identity": "scope/project-01",
+                  "owner": "owner/scope",
+                  "revision": "scope-r2",
+                  "scope": "scope/root",
+                  "sha256": "97e97cd81ecf6e341c5261748176b00943f0df24c3954ab1581a51b3111c63b6"
+                }
+              },
+              "check": "plan_command_scope_bases_match_axes",
+              "expected": {
+                "bases": [
+                  {
+                    "asset_id": "asset-a",
+                    "expected_ref": {
+                      "identity": "asset/source-01",
+                      "owner": "owner/source",
+                      "revision": "asset-r1",
+                      "scope": "scope/project-01",
+                      "sha256": "eac9b4b53dabeb17fa70ee9dc50d40bbecb0a1b7c78b37c1af6062100398bbaf"
+                    }
+                  },
+                  {
+                    "asset_id": "asset-b",
+                    "expected_ref": null
+                  }
+                ],
+                "command_id": "cmd/codec-01",
+                "scope_ref": {
+                  "identity": "scope/project-01",
+                  "owner": "owner/scope",
+                  "revision": "scope-r1",
+                  "scope": "scope/root",
+                  "sha256": "97e97cd81ecf6e341c5261748176b00943f0df24c3954ab1581a51b3111c63b6"
+                }
+              },
+              "field_pointer": "/plan",
+              "group": "command_scope_bases"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/checks/plan_command_scope_bases_match_axes",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/status",
+            "value": "mismatch"
+          },
+          {
+            "op": "replace",
+            "path": "/input/plan_projection/scope_ref/revision",
+            "value": "scope-r2"
+          }
+        ],
+        "expanded_case_canonical_sha256": "a3d603f9a3ddd8847c4704f98e36f4f12e09194b6f8bc8cb674a1f54b6a97f55"
+      },
+      {
+        "case_id": "N15-plan-bases-differ-from-axes",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/failure",
+            "value": {
+              "actual": {
+                "bases": [
+                  {
+                    "asset_id": "asset-a",
+                    "expected_ref": {
+                      "identity": "asset/source-01",
+                      "owner": "owner/source",
+                      "revision": "asset-r1",
+                      "scope": "scope/project-01",
+                      "sha256": "eac9b4b53dabeb17fa70ee9dc50d40bbecb0a1b7c78b37c1af6062100398bbaf"
+                    }
+                  },
+                  {
+                    "asset_id": "asset-b",
+                    "expected_ref": null
+                  },
+                  {
+                    "asset_id": "asset-extra",
+                    "expected_ref": null
+                  }
+                ],
+                "command_id": "cmd/codec-01",
+                "scope_ref": {
+                  "identity": "scope/project-01",
+                  "owner": "owner/scope",
+                  "revision": "scope-r1",
+                  "scope": "scope/root",
+                  "sha256": "97e97cd81ecf6e341c5261748176b00943f0df24c3954ab1581a51b3111c63b6"
+                }
+              },
+              "check": "plan_command_scope_bases_match_axes",
+              "expected": {
+                "bases": [
+                  {
+                    "asset_id": "asset-a",
+                    "expected_ref": {
+                      "identity": "asset/source-01",
+                      "owner": "owner/source",
+                      "revision": "asset-r1",
+                      "scope": "scope/project-01",
+                      "sha256": "eac9b4b53dabeb17fa70ee9dc50d40bbecb0a1b7c78b37c1af6062100398bbaf"
+                    }
+                  },
+                  {
+                    "asset_id": "asset-b",
+                    "expected_ref": null
+                  }
+                ],
+                "command_id": "cmd/codec-01",
+                "scope_ref": {
+                  "identity": "scope/project-01",
+                  "owner": "owner/scope",
+                  "revision": "scope-r1",
+                  "scope": "scope/root",
+                  "sha256": "97e97cd81ecf6e341c5261748176b00943f0df24c3954ab1581a51b3111c63b6"
+                }
+              },
+              "field_pointer": "/plan",
+              "group": "command_scope_bases"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/checks/plan_command_scope_bases_match_axes",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/status",
+            "value": "mismatch"
+          },
+          {
+            "op": "replace",
+            "path": "/input/plan_projection/bases",
+            "value": [
+              {
+                "asset_id": "asset-a",
+                "expected_ref": {
+                  "identity": "asset/source-01",
+                  "owner": "owner/source",
+                  "revision": "asset-r1",
+                  "scope": "scope/project-01",
+                  "sha256": "eac9b4b53dabeb17fa70ee9dc50d40bbecb0a1b7c78b37c1af6062100398bbaf"
+                }
+              },
+              {
+                "asset_id": "asset-b",
+                "expected_ref": null
+              },
+              {
+                "asset_id": "asset-extra",
+                "expected_ref": null
+              }
+            ]
+          }
+        ],
+        "expanded_case_canonical_sha256": "ca06a34102d6d90e01450df6133d0e719d7d00389306fef0a190d52a900436f4"
+      },
+      {
+        "case_id": "N16-classification-array",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/classification",
+              "kind": "schema_invalid",
+              "reason": "classification must be Text before enum membership checking"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "b77b0cbd76cb007aafe52da6e1f8e38ce496451740073760f2d74710a73dec0a"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6W10sImNvbW1hbmRfaWQiOiJjbWQvY29kZWMtMDEiLCJwYXlsb2FkX2RpZ2VzdCI6InNoYTI1NjoyYmZkMTRmNDNkMTdmYzdjZWEyNGUwOTE3YTg4NzliNGIyZjg4MGI4YmFlZWMxYjlkOTBmYmFhZDY1NWU3MWJkIiwicHJpb3Jfb3BlcmF0aW9uX3JlZiI6bnVsbCwicHJpb3JfcmVzdWx0X3JlZiI6bnVsbCwicmVzdWx0X3JlZiI6eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vY29tbWFuZC0wMSIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjgwM2I4ZmNkNjE3OWFiODY3MGJlNDY2NThjMzZhYmEwZjc0MzA2ZTk4NTc5MmRmYjVjNjFjZTRjNWIwZjliMDcifSwicnVsZV9yZWYiOnsiaWRlbnRpdHkiOiJydWxlL25vcm1hbGl6YXRpb24tMDEiLCJvd25lciI6Im93bmVyL3J1bGUiLCJyZXZpc2lvbiI6InJ1bGUtcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI3NTVkMWZkNmY0YjNmYjZjOTRjZmI3YzljNmQ0NDM4NzY2NTQ0ODE3NzMxOGQ1NWY0YzRjODkzNjAxMGViNmYyIn0sInNjb3BlX3JlZiI6eyJpZGVudGl0eSI6InNjb3BlL3Byb2plY3QtMDEiLCJvd25lciI6Im93bmVyL3Njb3BlIiwicmV2aXNpb24iOiJzY29wZS1yMSIsInNjb3BlIjoic2NvcGUvcm9vdCIsInNoYTI1NiI6Ijk3ZTk3Y2Q4MWVjZjZlMzQxYzUyNjE3NDgxNzZiMDA5NDNmMGRmMjRjMzk1NGFiMTU4MWE1MWIzMTExYzYzYjYifX0="
+          }
+        ],
+        "expanded_case_canonical_sha256": "31ef3c10d5c05060ccda569dd8cb116367a94c722f93ef3d4164c42455b13e25"
+      },
+      {
+        "case_id": "N16-classification-object",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/classification",
+              "kind": "schema_invalid",
+              "reason": "classification must be Text before enum membership checking"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "3fb30346c1b6208d8a59af62d7cb570625c495dd0712671acda823e49c00f8ed"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6e30sImNvbW1hbmRfaWQiOiJjbWQvY29kZWMtMDEiLCJwYXlsb2FkX2RpZ2VzdCI6InNoYTI1NjoyYmZkMTRmNDNkMTdmYzdjZWEyNGUwOTE3YTg4NzliNGIyZjg4MGI4YmFlZWMxYjlkOTBmYmFhZDY1NWU3MWJkIiwicHJpb3Jfb3BlcmF0aW9uX3JlZiI6bnVsbCwicHJpb3JfcmVzdWx0X3JlZiI6bnVsbCwicmVzdWx0X3JlZiI6eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vY29tbWFuZC0wMSIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjgwM2I4ZmNkNjE3OWFiODY3MGJlNDY2NThjMzZhYmEwZjc0MzA2ZTk4NTc5MmRmYjVjNjFjZTRjNWIwZjliMDcifSwicnVsZV9yZWYiOnsiaWRlbnRpdHkiOiJydWxlL25vcm1hbGl6YXRpb24tMDEiLCJvd25lciI6Im93bmVyL3J1bGUiLCJyZXZpc2lvbiI6InJ1bGUtcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI3NTVkMWZkNmY0YjNmYjZjOTRjZmI3YzljNmQ0NDM4NzY2NTQ0ODE3NzMxOGQ1NWY0YzRjODkzNjAxMGViNmYyIn0sInNjb3BlX3JlZiI6eyJpZGVudGl0eSI6InNjb3BlL3Byb2plY3QtMDEiLCJvd25lciI6Im93bmVyL3Njb3BlIiwicmV2aXNpb24iOiJzY29wZS1yMSIsInNjb3BlIjoic2NvcGUvcm9vdCIsInNoYTI1NiI6Ijk3ZTk3Y2Q4MWVjZjZlMzQxYzUyNjE3NDgxNzZiMDA5NDNmMGRmMjRjMzk1NGFiMTU4MWE1MWIzMTExYzYzYjYifX0="
+          }
+        ],
+        "expanded_case_canonical_sha256": "92d3865017ddffb7b150e2df6d955f5670da053cb0ffb92af8c9ecc6866b45ea"
+      },
+      {
+        "case_id": "N16-command-lone-surrogate",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes",
+              "kind": "schema_invalid",
+              "reason": "invalid canonical value"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "97d7756517993da4d0a9ab94ec13b6f7c044b73648a15da212e005e7a146fd1b"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6Im5ldyIsImNvbW1hbmRfaWQiOiJcdWQ4MDAiLCJwYXlsb2FkX2RpZ2VzdCI6InNoYTI1NjoyYmZkMTRmNDNkMTdmYzdjZWEyNGUwOTE3YTg4NzliNGIyZjg4MGI4YmFlZWMxYjlkOTBmYmFhZDY1NWU3MWJkIiwicHJpb3Jfb3BlcmF0aW9uX3JlZiI6bnVsbCwicHJpb3JfcmVzdWx0X3JlZiI6bnVsbCwicmVzdWx0X3JlZiI6eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vY29tbWFuZC0wMSIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjgwM2I4ZmNkNjE3OWFiODY3MGJlNDY2NThjMzZhYmEwZjc0MzA2ZTk4NTc5MmRmYjVjNjFjZTRjNWIwZjliMDcifSwicnVsZV9yZWYiOnsiaWRlbnRpdHkiOiJydWxlL25vcm1hbGl6YXRpb24tMDEiLCJvd25lciI6Im93bmVyL3J1bGUiLCJyZXZpc2lvbiI6InJ1bGUtcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI3NTVkMWZkNmY0YjNmYjZjOTRjZmI3YzljNmQ0NDM4NzY2NTQ0ODE3NzMxOGQ1NWY0YzRjODkzNjAxMGViNmYyIn0sInNjb3BlX3JlZiI6eyJpZGVudGl0eSI6InNjb3BlL3Byb2plY3QtMDEiLCJvd25lciI6Im93bmVyL3Njb3BlIiwicmV2aXNpb24iOiJzY29wZS1yMSIsInNjb3BlIjoic2NvcGUvcm9vdCIsInNoYTI1NiI6Ijk3ZTk3Y2Q4MWVjZjZlMzQxYzUyNjE3NDgxNzZiMDA5NDNmMGRmMjRjMzk1NGFiMTU4MWE1MWIzMTExYzYzYjYifX0="
+          }
+        ],
+        "expanded_case_canonical_sha256": "435eeb3da763563ac4720f2a08144e669fc8b7859d52a9af33d9d4d6063c8084"
+      },
+      {
+        "case_id": "N17-command-id-number",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/command_id",
+              "kind": "schema_invalid",
+              "reason": "expected Text field value"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "d6ada8fd2b834cdd710b6adb8db6ec9a789b0ae991a0c1a124364ff26551e800"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6Im5ldyIsImNvbW1hbmRfaWQiOjAsInBheWxvYWRfZGlnZXN0Ijoic2hhMjU2OjJiZmQxNGY0M2QxN2ZjN2NlYTI0ZTA5MTdhODg3OWI0YjJmODgwYjhiYWVlYzFiOWQ5MGZiYWFkNjU1ZTcxYmQiLCJwcmlvcl9vcGVyYXRpb25fcmVmIjpudWxsLCJwcmlvcl9yZXN1bHRfcmVmIjpudWxsLCJyZXN1bHRfcmVmIjp7ImlkZW50aXR5IjoiY29tcGFyaXNvbi9jb21tYW5kLTAxIiwib3duZXIiOiJvd25lci9oYXJuZXNzIiwicmV2aXNpb24iOiJjb21wYXJpc29uLXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiODAzYjhmY2Q2MTc5YWI4NjcwYmU0NjY1OGMzNmFiYTBmNzQzMDZlOTg1NzkyZGZiNWM2MWNlNGM1YjBmOWIwNyJ9LCJydWxlX3JlZiI6eyJpZGVudGl0eSI6InJ1bGUvbm9ybWFsaXphdGlvbi0wMSIsIm93bmVyIjoib3duZXIvcnVsZSIsInJldmlzaW9uIjoicnVsZS1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6Ijc1NWQxZmQ2ZjRiM2ZiNmM5NGNmYjdjOWM2ZDQ0Mzg3NjY1NDQ4MTc3MzE4ZDU1ZjRjNGM4OTM2MDEwZWI2ZjIifSwic2NvcGVfcmVmIjp7ImlkZW50aXR5Ijoic2NvcGUvcHJvamVjdC0wMSIsIm93bmVyIjoib3duZXIvc2NvcGUiLCJyZXZpc2lvbiI6InNjb3BlLXIxIiwic2NvcGUiOiJzY29wZS9yb290Iiwic2hhMjU2IjoiOTdlOTdjZDgxZWNmNmUzNDFjNTI2MTc0ODE3NmIwMDk0M2YwZGYyNGMzOTU0YWIxNTgxYTUxYjMxMTFjNjNiNiJ9fQ=="
+          }
+        ],
+        "expanded_case_canonical_sha256": "e221ab5b34bd3a789be9068bf8bc1865590c6b2f28af9ff2fe53cbaa80a3ecf2"
+      },
+      {
+        "case_id": "N18-payload-digest-number",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/payload_digest",
+              "kind": "schema_invalid",
+              "reason": "known closed-record member has wrong type or value"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "5663efe6fc115dad9fc9d9a021213bb04b98e36ae78a0159e76899c46eb30909"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6Im5ldyIsImNvbW1hbmRfaWQiOiJjbWQvY29kZWMtMDEiLCJwYXlsb2FkX2RpZ2VzdCI6MCwicHJpb3Jfb3BlcmF0aW9uX3JlZiI6bnVsbCwicHJpb3JfcmVzdWx0X3JlZiI6bnVsbCwicmVzdWx0X3JlZiI6eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vY29tbWFuZC0wMSIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjgwM2I4ZmNkNjE3OWFiODY3MGJlNDY2NThjMzZhYmEwZjc0MzA2ZTk4NTc5MmRmYjVjNjFjZTRjNWIwZjliMDcifSwicnVsZV9yZWYiOnsiaWRlbnRpdHkiOiJydWxlL25vcm1hbGl6YXRpb24tMDEiLCJvd25lciI6Im93bmVyL3J1bGUiLCJyZXZpc2lvbiI6InJ1bGUtcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI3NTVkMWZkNmY0YjNmYjZjOTRjZmI3YzljNmQ0NDM4NzY2NTQ0ODE3NzMxOGQ1NWY0YzRjODkzNjAxMGViNmYyIn0sInNjb3BlX3JlZiI6eyJpZGVudGl0eSI6InNjb3BlL3Byb2plY3QtMDEiLCJvd25lciI6Im93bmVyL3Njb3BlIiwicmV2aXNpb24iOiJzY29wZS1yMSIsInNjb3BlIjoic2NvcGUvcm9vdCIsInNoYTI1NiI6Ijk3ZTk3Y2Q4MWVjZjZlMzQxYzUyNjE3NDgxNzZiMDA5NDNmMGRmMjRjMzk1NGFiMTU4MWE1MWIzMTExYzYzYjYifX0="
+          }
+        ],
+        "expanded_case_canonical_sha256": "a96e1522f25064375325c49d146e38ad4892a0a011f3b42a2dae9df5ff59612e"
+      },
+      {
+        "case_id": "N19-scope-ref-sha256-invalid",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/scope_ref/sha256",
+              "kind": "schema_invalid",
+              "reason": "known closed-record member has wrong type or value"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "f3e55d3edeef75643dc6c3eea1686ee0a77284a30aef27272eeddedb2c443471"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6Im5ldyIsImNvbW1hbmRfaWQiOiJjbWQvY29kZWMtMDEiLCJwYXlsb2FkX2RpZ2VzdCI6InNoYTI1NjoyYmZkMTRmNDNkMTdmYzdjZWEyNGUwOTE3YTg4NzliNGIyZjg4MGI4YmFlZWMxYjlkOTBmYmFhZDY1NWU3MWJkIiwicHJpb3Jfb3BlcmF0aW9uX3JlZiI6bnVsbCwicHJpb3JfcmVzdWx0X3JlZiI6bnVsbCwicmVzdWx0X3JlZiI6eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vY29tbWFuZC0wMSIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjgwM2I4ZmNkNjE3OWFiODY3MGJlNDY2NThjMzZhYmEwZjc0MzA2ZTk4NTc5MmRmYjVjNjFjZTRjNWIwZjliMDcifSwicnVsZV9yZWYiOnsiaWRlbnRpdHkiOiJydWxlL25vcm1hbGl6YXRpb24tMDEiLCJvd25lciI6Im93bmVyL3J1bGUiLCJyZXZpc2lvbiI6InJ1bGUtcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI3NTVkMWZkNmY0YjNmYjZjOTRjZmI3YzljNmQ0NDM4NzY2NTQ0ODE3NzMxOGQ1NWY0YzRjODkzNjAxMGViNmYyIn0sInNjb3BlX3JlZiI6eyJpZGVudGl0eSI6InNjb3BlL3Byb2plY3QtMDEiLCJvd25lciI6Im93bmVyL3Njb3BlIiwicmV2aXNpb24iOiJzY29wZS1yMSIsInNjb3BlIjoic2NvcGUvcm9vdCIsInNoYTI1NiI6Im5vdC1hLWRpZ2VzdCJ9fQ=="
+          }
+        ],
+        "expanded_case_canonical_sha256": "a146a1e24f6e5dad26226c9984407b45098d255619ba84f4ec07850418e2afe8"
+      },
+      {
+        "case_id": "N20-command-id-empty-text",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/command_id",
+              "kind": "schema_invalid",
+              "reason": "Text must be a nonempty Unicode string"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "5b3e7b84105695885f3a79014149ba7743ead45f00c1a6db83532e2d410cf3b0"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6Im5ldyIsImNvbW1hbmRfaWQiOiIiLCJwYXlsb2FkX2RpZ2VzdCI6InNoYTI1NjoyYmZkMTRmNDNkMTdmYzdjZWEyNGUwOTE3YTg4NzliNGIyZjg4MGI4YmFlZWMxYjlkOTBmYmFhZDY1NWU3MWJkIiwicHJpb3Jfb3BlcmF0aW9uX3JlZiI6bnVsbCwicHJpb3JfcmVzdWx0X3JlZiI6bnVsbCwicmVzdWx0X3JlZiI6eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vY29tbWFuZC0wMSIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjgwM2I4ZmNkNjE3OWFiODY3MGJlNDY2NThjMzZhYmEwZjc0MzA2ZTk4NTc5MmRmYjVjNjFjZTRjNWIwZjliMDcifSwicnVsZV9yZWYiOnsiaWRlbnRpdHkiOiJydWxlL25vcm1hbGl6YXRpb24tMDEiLCJvd25lciI6Im93bmVyL3J1bGUiLCJyZXZpc2lvbiI6InJ1bGUtcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI3NTVkMWZkNmY0YjNmYjZjOTRjZmI3YzljNmQ0NDM4NzY2NTQ0ODE3NzMxOGQ1NWY0YzRjODkzNjAxMGViNmYyIn0sInNjb3BlX3JlZiI6eyJpZGVudGl0eSI6InNjb3BlL3Byb2plY3QtMDEiLCJvd25lciI6Im93bmVyL3Njb3BlIiwicmV2aXNpb24iOiJzY29wZS1yMSIsInNjb3BlIjoic2NvcGUvcm9vdCIsInNoYTI1NiI6Ijk3ZTk3Y2Q4MWVjZjZlMzQxYzUyNjE3NDgxNzZiMDA5NDNmMGRmMjRjMzk1NGFiMTU4MWE1MWIzMTExYzYzYjYifX0="
+          }
+        ],
+        "expanded_case_canonical_sha256": "bb397daf927caccf024272404952cf01c2cd69cca7f7902beb9ccf79ba8ad3cf"
+      },
+      {
+        "case_id": "N21-scope-ref-identity-empty-text",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/scope_ref/identity",
+              "kind": "schema_invalid",
+              "reason": "Text must be a nonempty Unicode string"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "d42a4bd9f02d4832f608d38e1959b192eaf5062f5be2200168b3082b234d20ed"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6Im5ldyIsImNvbW1hbmRfaWQiOiJjbWQvY29kZWMtMDEiLCJwYXlsb2FkX2RpZ2VzdCI6InNoYTI1NjoyYmZkMTRmNDNkMTdmYzdjZWEyNGUwOTE3YTg4NzliNGIyZjg4MGI4YmFlZWMxYjlkOTBmYmFhZDY1NWU3MWJkIiwicHJpb3Jfb3BlcmF0aW9uX3JlZiI6bnVsbCwicHJpb3JfcmVzdWx0X3JlZiI6bnVsbCwicmVzdWx0X3JlZiI6eyJpZGVudGl0eSI6ImNvbXBhcmlzb24vY29tbWFuZC0wMSIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjgwM2I4ZmNkNjE3OWFiODY3MGJlNDY2NThjMzZhYmEwZjc0MzA2ZTk4NTc5MmRmYjVjNjFjZTRjNWIwZjliMDcifSwicnVsZV9yZWYiOnsiaWRlbnRpdHkiOiJydWxlL25vcm1hbGl6YXRpb24tMDEiLCJvd25lciI6Im93bmVyL3J1bGUiLCJyZXZpc2lvbiI6InJ1bGUtcjEiLCJzY29wZSI6InNjb3BlL3Byb2plY3QtMDEiLCJzaGEyNTYiOiI3NTVkMWZkNmY0YjNmYjZjOTRjZmI3YzljNmQ0NDM4NzY2NTQ0ODE3NzMxOGQ1NWY0YzRjODkzNjAxMGViNmYyIn0sInNjb3BlX3JlZiI6eyJpZGVudGl0eSI6IiIsIm93bmVyIjoib3duZXIvc2NvcGUiLCJyZXZpc2lvbiI6InNjb3BlLXIxIiwic2NvcGUiOiJzY29wZS9yb290Iiwic2hhMjU2IjoiOTdlOTdjZDgxZWNmNmUzNDFjNTI2MTc0ODE3NmIwMDk0M2YwZGYyNGMzOTU0YWIxNTgxYTUxYjMxMTFjNjNiNiJ9fQ=="
+          }
+        ],
+        "expanded_case_canonical_sha256": "63417cc18edf79cc95a3c1636dbfb56aba029bdb19b1a6d0cbfdbf0cdb5ee041"
+      },
+      {
+        "case_id": "N22-ref-blob-empty-identity",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_result_ref_bytes/identity",
+              "kind": "schema_invalid",
+              "reason": "Text must be a nonempty Unicode string"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_result_ref_bytes_sha256",
+            "value": "367ab24be4162b81f110df4732871b2148197e13c9493ab60d068d11fcaeb0a7"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_result_ref_bytes_base64",
+            "value": "eyJpZGVudGl0eSI6IiIsIm93bmVyIjoib3duZXIvaGFybmVzcyIsInJldmlzaW9uIjoiY29tcGFyaXNvbi1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6IjgwM2I4ZmNkNjE3OWFiODY3MGJlNDY2NThjMzZhYmEwZjc0MzA2ZTk4NTc5MmRmYjVjNjFjZTRjNWIwZjliMDcifQ=="
+          }
+        ],
+        "expanded_case_canonical_sha256": "6710b3a41bccd7bd43717ad1b7c2f98052b42d7e62832ddf914ddc3bc3a27e02"
+      },
+      {
+        "case_id": "N23-multiple-text-types-first-sorted-pointer",
+        "base_material": "P01",
+        "fixture_patch": [
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_axes"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/codec_decode/identity_result_ref"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/codec_decode/failure",
+            "value": {
+              "field_pointer": "/identity_axes/command_id",
+              "kind": "schema_invalid",
+              "reason": "expected Text field value"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/codec_decode/state",
+            "value": "invalid"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/metadata/raw_identity_axes_bytes_sha256",
+            "value": "ebe1d8a06f364c94d89194ee7d9af43d6a482d03beb5f66fd4a8533d4477eaf4"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/checks"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/plan_resolution_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/plan_resolution_check/because",
+            "value": "prior stage did not match"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/plan_resolution_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/command_id"
+          },
+          {
+            "op": "remove",
+            "path": "/expected_return/row_key_check/status"
+          },
+          {
+            "op": "add",
+            "path": "/expected_return/row_key_check/because",
+            "value": "codec_decode not decoded"
+          },
+          {
+            "op": "replace",
+            "path": "/expected_return/row_key_check/state",
+            "value": "not_evaluated"
+          },
+          {
+            "op": "replace",
+            "path": "/input/identity_axes_bytes_base64",
+            "value": "eyJiYXNlcyI6W3siYXNzZXRfaWQiOiJhc3NldC1hIiwiZXhwZWN0ZWRfcmVmIjp7ImlkZW50aXR5IjoiYXNzZXQvc291cmNlLTAxIiwib3duZXIiOiJvd25lci9zb3VyY2UiLCJyZXZpc2lvbiI6ImFzc2V0LXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiZWFjOWI0YjUzZGFiZWIxN2ZhNzBlZTlkYzUwZDQwYmJlY2IwYTFiN2M3OGIzN2MxYWY2MDYyMTAwMzk4YmJhZiJ9fSx7ImFzc2V0X2lkIjoiYXNzZXQtYiIsImV4cGVjdGVkX3JlZiI6bnVsbH1dLCJjbGFzc2lmaWNhdGlvbiI6Im5ldyIsImNvbW1hbmRfaWQiOjAsInBheWxvYWRfZGlnZXN0IjowLCJwcmlvcl9vcGVyYXRpb25fcmVmIjpudWxsLCJwcmlvcl9yZXN1bHRfcmVmIjpudWxsLCJyZXN1bHRfcmVmIjp7ImlkZW50aXR5IjoiY29tcGFyaXNvbi9jb21tYW5kLTAxIiwib3duZXIiOiJvd25lci9oYXJuZXNzIiwicmV2aXNpb24iOiJjb21wYXJpc29uLXIxIiwic2NvcGUiOiJzY29wZS9wcm9qZWN0LTAxIiwic2hhMjU2IjoiODAzYjhmY2Q2MTc5YWI4NjcwYmU0NjY1OGMzNmFiYTBmNzQzMDZlOTg1NzkyZGZiNWM2MWNlNGM1YjBmOWIwNyJ9LCJydWxlX3JlZiI6eyJpZGVudGl0eSI6InJ1bGUvbm9ybWFsaXphdGlvbi0wMSIsIm93bmVyIjoib3duZXIvcnVsZSIsInJldmlzaW9uIjoicnVsZS1yMSIsInNjb3BlIjoic2NvcGUvcHJvamVjdC0wMSIsInNoYTI1NiI6Ijc1NWQxZmQ2ZjRiM2ZiNmM5NGNmYjdjOWM2ZDQ0Mzg3NjY1NDQ4MTc3MzE4ZDU1ZjRjNGM4OTM2MDEwZWI2ZjIifSwic2NvcGVfcmVmIjp7ImlkZW50aXR5Ijoic2NvcGUvcHJvamVjdC0wMSIsIm93bmVyIjoib3duZXIvc2NvcGUiLCJyZXZpc2lvbiI6InNjb3BlLXIxIiwic2NvcGUiOiJzY29wZS9yb290Iiwic2hhMjU2IjoiOTdlOTdjZDgxZWNmNmUzNDFjNTI2MTc0ODE3NmIwMDk0M2YwZGYyNGMzOTU0YWIxNTgxYTUxYjMxMTFjNjNiNiJ9fQ=="
+          }
+        ],
+        "expanded_case_canonical_sha256": "5fdca7d27aff6878fe732c2312c605545e222e7a1fb4847d8ea37a2c7233a246"
+      }
+    ],
+    "return_shape_binding": "対L5 local_observation_contract。段階のdecoded/invalid/mismatchは観測欄でありpublic Result/Findingではない。",
+    "limits": [
+      "27例の有限範囲。全入力域・実DB・実資格・正式製品CI・S06/S07全接続の完成ではない。",
+      "候補runnerと照合したscratch観測は期待の意味根拠ではない。意味の根拠は対L5の既存型とbytes契約およびHARNESS052の意味projection。",
+      "先行例と期待は保全し、型外enumの例外、空Text受理、診断理由/順序の不足を独立反例で識別する。"
+    ],
+    "execution_state": "not_executed_as_product_or_CI"
   }
 }
