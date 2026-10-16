@@ -85,6 +85,12 @@
       "revision": "369f512ba9b5583fcaedcc6a6a0fb5b36d8f9318",
       "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
       "use": "現mainのB01 business要件/対L10。B01 objectはff5f0667承認対象と一致。文書wholeから後続追加の承認を継承しない。"
+    },
+    {
+      "revision": "52c44b1a04bce0cdf9e2a6704c060ae74c3d87c3",
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "sha256": "3bb4ed1800617d872cb2795942c5d0dd100f9f6c0037a33d0cb3d65965a963b0",
+      "use": "global balance原義務と観測の固定参照。旧source pinを置換せず本追加例だけへ適用。"
     }
   ],
   "legacy_comparison": [
@@ -549,7 +555,7 @@
     "F01の143原例/4Context例と必要集合/pairを具体化。全構造/複合/実資格/codecと凍結は未完。",
     "F02の113原例/2Context/5Context否定例と境界/意味保存Refactor後再検証を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
     "H22F-m1対応：未変異REFACTOR Contextとperformed=falseの原NORMAL inputを結合した反例を追加。必要3proof欠落と未成立Integratedを保持、全oracle閉包は未完。",
-    "F03の103原例/2Context/6否定例と全義務-下位表現-固有差分を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
+    "F03の既存103原例・2固定Context・6否定例に、global balanceの別固定Contextと正常全返却1例・部分観測2例を追加。全構造/複合/実資格/正式codec/関数設計と対検証の凍結は後続で扱う。",
     "N01の36原例/1Context/6否定例と今回未評価/原期限/過去receipt限定scopeを具体化。全構造/複合/正式期限schema/codec/実owner/実holdout/凍結は未完。",
     "H22H-m1対応：独立Context期待1とinputの宣言oracle/body/result/evidenceが2で自己整合する反例で未評価/Q/原入力保全/実作用falseを固定。作成側発見のU6 conflict_content時evaluated_scope=null訂正を対L8/L9へ結ぶ。",
     "B01の42原例/2Context/8否定例と原stage caseの内容解決、意味差route/同段階再検証/owner分離を具体化。全設計/正式binding/実装準備は未完。"
@@ -65933,7 +65939,7 @@
         "全構造/複合/全finding/順序/不変性/副作用observer/義務とcoverageの自己整合偽装/未知義務mapping",
         "正式schema/codec/実owner/適用原資料/実system観測とL6L7 oracle凍結"
       ],
-      "coverage_limit": "103原例、2固定Context、6否定例の部分詳細。実Verified/受入/全022閉包は未成立。",
+      "coverage_limit": "既存103原例・2固定Context・6否定例を保持し、別固定Context一つと正常全返却1例・部分観測2例を追加した部分詳細。実Verified/受入/全022閉包は未成立。",
       "bounded_context_oracles": {
         "id": "HARNESS-L8-022-F03-H003-BALANCE",
         "design_ref": "HARNESS-L5-022-F03",
@@ -66772,7 +66778,10 @@
                 "unrelated_Q": {
                   "id": "Q",
                   "valid": true
-                }
+                },
+                "actual_stage_promoted": false,
+                "actual_CI_executed": false,
+                "actual_accepted": false
               },
               "required_findings": [
                 {
@@ -66782,9 +66791,10 @@
                   "return_owner": "synthetic-h003-unique_quality-owner"
                 }
               ],
-              "candidate_disposition": "not_submitted"
+              "candidate_disposition": "not_submitted",
+              "retained_input_unmodified": true
             },
-            "expectation_basis": "S5/S7: 固有roleのnullはmissing。別の有効Integrated原根拠を保持し、system不足を下位成功で相殺しない。 proof欠落時のtop outcome全般は既存S5/S7に明示がないため固定対象に含めない。",
+            "expectation_basis": "S5/S7: 固有roleのnullはmissing。別の有効Integrated原根拠を保持し、system不足を下位成功で相殺しない。proof欠落時の最上位outcome全般は既存S5/S7に明示がないため固定対象に含めない。",
             "design_ref": "HARNESS-L5-022-F03",
             "application_ref": "H022-F03-H003-BALANCE-APPLICATION",
             "execution_state": "not_executed",
@@ -66803,7 +66813,14 @@
             "expected_partial_result": {
               "outcome": "unresolved",
               "required_value_fields": {
-                "verified_candidate": "not_established"
+                "verified_candidate": "not_established",
+                "actual_stage_promoted": false,
+                "actual_CI_executed": false,
+                "actual_accepted": false,
+                "unrelated_Q": {
+                  "id": "Q",
+                  "valid": true
+                }
               },
               "required_findings": [
                 {
@@ -66813,7 +66830,8 @@
                   "return_owner": "independent-context-source-owner"
                 }
               ],
-              "candidate_disposition": "not_submitted"
+              "candidate_disposition": "not_submitted",
+              "retained_input_unmodified": true
             },
             "expectation_basis": "S2: 宣言型内でも別固定選択契約に結べないContextをinput/実結果から補完して受理しない。全返却や未定義副次findingは固定しない。",
             "design_ref": "HARNESS-L5-022-F03",
@@ -66822,9 +66840,11 @@
             "effect": "none"
           }
         ],
-        "expected_freeze_canonical_sha256": "0b9bc4cabbfabab2d7fc2f5a3063f5154bd71dc841a1d4f67727c0cc732584ec",
+        "expected_freeze_canonical_sha256": "8171201df2dbc1e6c63498f2e1a762fcf51ac85237c1c8c8ef82301704e4361e",
         "independence": "入力と期待は正式編集前に上流規範/既存H003原wholeから別固定。新原packetは新合成設計sourceであり、旧packet ref/hashや実lineageを継承しない。正常返却は全SystemDifferenceResult field、2負例は明記partialのみ。",
-        "verification_limit": "限定新合成Context一例。旧W5/D2不変、任意W受理/実runtime/実owner資格/実lineage/全返却域は未主張。未知Context/欠落対照はpartial oracleに限定。"
+        "verification_limit": "限定新合成Context一例。旧W5/D2不変、任意W受理/実runtime/実owner資格/実lineage/全返却域は未主張。未知Context/欠落対照は部分観測oracleに限定。",
+        "expected_freeze_hash_recipe": "同じobjectのcases配列全体（全caseの全field、配列順序を保持）を対象とする。object keyはUnicode文字列順へ再帰sort、区切りはcompact comma/colon、ensure_ascii=false、NaN/Infinity禁止、strict UTF-8へencode、末尾改行なしのSHA-256。",
+        "oracle_observation_boundary": "required_value_fieldsはSystemDifferenceResult.value内の既存fieldだけ。retained_input_unmodifiedはtestの独立した入力before/after観測であり関数返却のfieldではない。元計画のactual_effectsはvalue.actual_stage_promoted/actual_CI_executed/actual_acceptedを個別観測する。"
       }
     },
     {
