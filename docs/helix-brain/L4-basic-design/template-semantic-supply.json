@@ -1610,14 +1610,15 @@
     "L5/L8で論理型、descriptor/source解決、claim、条件別依存とpure関数、単体oracleを具体化。",
     "正式schema/key/型/式木/wire/registry/resolver、各field意味/要否/oracle最終照合、BRAIN運用promotionと全seed採用は未成立。",
     "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは未成立。",
-    "F09の018/020固定写像と025原操作scopeは本基本pair候補で具体化。L5/L8の未決記述/producer/input/返却契約への反映、実source/資格と実接続、独立reviewは未成立。"
+    "F09の018/020固定写像と025原操作scopeは本基本pair候補で具体化。L5/L8の未決記述/producer/input/返却契約への反映、実source/資格と実接続、独立reviewは未成立。",
+    "各ownerの原operation producer/供給contract、正式carrier/schema/owner-qualified bindingは未成立。未供給で025 unknownを返すが、欠落を理由に新approval/全stage gateを追加しない。"
   ],
   "conditional_source_dependency_contract": {
     "id": "HELIXBRAIN-L4-032-F09-CONDITIONAL-SOURCE",
     "requirement_ref": "HELIXBRAIN-L3-032-F09",
     "system_oracle_ref": "HELIXBRAIN-L10-032-F09",
     "integration_ref": "HELIXBRAIN-L9-032-F09-CONDITIONAL-SOURCE",
-    "scope": "既決F09の018/020固定写像と025の操作scope原根拠を基本契約へ具体化する候補。実資格/正式schema/runtime/全stage成功を生成しない。L5/L8の実producerへの具体化は別に残る。",
+    "scope": "本L4は承認済み032-F09の該当source/scope条件を、L2-018のCORE候補取込責務とL2-020のLABO評価接続責務からsource別に再導出する。既存のL5未決記述を採択済み写像とみなさない。 実資格/正式schema/runtime/全stage成功を生成しない。L5/L8の実producerへの具体化は別に残る。",
     "observed_source_main": "3022b439a880adc8a794a8b63a96a86d312f3fce",
     "source_pins": [
       {
@@ -1786,7 +1787,8 @@
         "location": "QualifiedSource.content.dependency_operations",
         "type": "DependencyOperation[]",
         "additional_SupplyInput_field": false,
-        "meaning": "owner原操作の内容記録。期待state/codeや提出参照の加工結果ではない。"
+        "meaning": "owner原操作の内容記録。期待state/codeや提出参照の加工結果ではない。",
+        "new_technical_representation": "dependency_operations key/DependencyOperation及びkind3値は本L4による新しい技術表現。018/020/025の原設計に同carrier定義/owner供給契約は無い。"
       },
       "DependencyOperation": {
         "fields": {
@@ -1839,10 +1841,10 @@
           "expected_refs": "Ref[]",
           "actual_refs": "Ref[]",
           "state": "resolved | missing | unknown | conflict | unobserved",
-          "reason_code": "string",
+          "reason_code": "decision_table.reason_rulesで定義した閉じたreason_code（内部比較材料）",
           "backflow_owner": "string|null"
         },
-        "meaning": "expected_refsは原source.contract_bindingsに実在するRefだけ。required identityが既決でも原revision/scope/ownerがないときRefを生成しない。判定コードは比較側で算出する。"
+        "meaning": "expected_refsは原source.contract_bindingsに実在するRefだけ。required identityが既決でも原revision/scope/ownerがないときRefを生成しない。判定コードは比較側で算出する。 backflow_ownerはdecision_table.backflow_owner_rulesの論理role/nullであり、個別Ref.ownerではない。"
       }
     },
     "decision_table": {
@@ -1877,7 +1879,189 @@
       },
       "unknown": "selector/原operation kind/scope/container/fieldの欠落・null・未解決をfalse/source_intake/非適用へ補完しない。選択trueの原operation不在はrefs有無にかかわらず025局所unknown。",
       "conflict": "同operation identity/revision/binding/channelの異なる原scope/kind/contract bindingを片方へ統合せずconflict。完全同値の複数所在もtraceへ保持。所在だけのref.source_locatorを内容差にしない。",
-      "fixed_reference_independence": "018/020の必要identityは既存selectorから固定し、原fullRef/source/current revision/scope/qualificationは既存snapshot内の原契約/owner bodyと既存resolver入力へ照合する。新operationは018/020照合を始める必須入力ではない。operation.contract_bindingsが供給された場合は追加原根拠として既存bodyとの相反を保持するが、未供給で既存解決を失効させない。025の操作該当性は原operationを必ず調べ、未供給/未解決は局所unknown。025のfullRef必要scopeを確定する根拠は原operation/原knowledge recordから別に保持する。"
+      "fixed_reference_independence": "018/020の必要identityは既存selectorから固定し、原fullRef/source/current revision/scope/qualificationは既存snapshot内の原契約/owner bodyと既存resolver入力へ照合する。新operationは018/020照合を始める必須入力ではない。operation.contract_bindingsが供給された場合は追加原根拠として既存bodyとの相反を保持するが、未供給で既存解決を失効させない。025の操作該当性は原operationを必ず調べ、未供給/未解決は局所unknown。025のfullRef必要scopeを確定する根拠は原operation/原knowledge recordから別に保持する。",
+      "reason_rules": [
+        {
+          "reason_code": "selector_absent",
+          "phase": "selector",
+          "state": "unknown",
+          "axis": "dependency_selection",
+          "condition": "selector memberが存在しない。false補完せず当該条件を終了する。"
+        },
+        {
+          "reason_code": "selector_unknown",
+          "phase": "selector",
+          "state": "unknown",
+          "axis": "dependency_selection",
+          "condition": "selector memberは存在するがnull/非boolean。false補完せず当該条件を終了する。"
+        },
+        {
+          "reason_code": "channel_not_selected",
+          "phase": "selector",
+          "state": "unobserved",
+          "axis": "unselected_source",
+          "condition": "selectorが厳密false。当該channelのoperation/025を評価しない。"
+        },
+        {
+          "reason_code": "required_identity_absent",
+          "phase": "reference",
+          "state": "missing",
+          "axis": "dependency_reference",
+          "condition": "必要identityが確定しているが該当提出categoryに完全identity memberがない。list未供給も成功空集合にしない。"
+        },
+        {
+          "reason_code": "reference_frame_unknown",
+          "phase": "reference",
+          "state": "unknown",
+          "axis": "dependency_reference",
+          "condition": "必要identity memberはあるがrevision/scope/owner等の照合frameが未供給/null。"
+        },
+        {
+          "reason_code": "reference_scope_mismatch",
+          "phase": "reference",
+          "state": "conflict",
+          "axis": "dependency_reference",
+          "condition": "原必要scopeと提出Ref.scopeがともに既知でexact不一致。"
+        },
+        {
+          "reason_code": "source_binding_unknown",
+          "phase": "reference",
+          "state": "unknown",
+          "axis": "dependency_reference",
+          "condition": "提出Refに対応するsemantic source/bytes/body/既存資格/root入力を一意usableと確定できない。原sourceの存在を削除しない。"
+        },
+        {
+          "reason_code": "source_body_conflict",
+          "phase": "reference",
+          "state": "conflict",
+          "axis": "dependency_reference",
+          "condition": "同fullRefに結ぶusable原source bodyが異なる。先頭/latestを選ばない。"
+        },
+        {
+          "reason_code": "contract_body_unknown",
+          "phase": "reference",
+          "state": "unknown",
+          "axis": "dependency_reference",
+          "condition": "原契約identity/revision/scopeの意味frameが未供給/null又は形不明。合成carrierのpresenceを意味資格にしない。"
+        },
+        {
+          "reason_code": "contract_body_mismatch",
+          "phase": "reference",
+          "state": "conflict",
+          "axis": "dependency_reference",
+          "condition": "原契約identity/revision/scopeと提出Ref/対象scopeが既知不一致。"
+        },
+        {
+          "reason_code": "original_contract_binding_absent",
+          "phase": "reference",
+          "state": "unknown",
+          "axis": "dependency_reference",
+          "condition": "025必要性は原operationから確定したが、025原fullRef hintがcontract_bindingsに無い。018/020はこのhint供給を条件にしない。"
+        },
+        {
+          "reason_code": "original_contract_binding_unknown",
+          "phase": "reference",
+          "state": "unknown",
+          "axis": "dependency_reference",
+          "condition": "供給された原contract hintの必要frameが欠落/nullでfullRef照合未成立。known不一致へ変換しない。"
+        },
+        {
+          "reason_code": "original_contract_binding_conflict",
+          "phase": "reference",
+          "state": "conflict",
+          "axis": "dependency_reference",
+          "condition": "供給された既知の原contract hintと提出Refのframeが不一致。"
+        },
+        {
+          "reason_code": "reference_exact_in_fixture",
+          "phase": "reference",
+          "state": "resolved",
+          "axis": "dependency_reference",
+          "condition": "必要identity/原frame/scope/body/既存資格入力の有限合成対照が全て対応。実資格/採用を意味しない。"
+        },
+        {
+          "reason_code": "operation_basis_absent",
+          "phase": "operation",
+          "state": "unknown",
+          "axis": "dependency_operation",
+          "condition": "選択trueだがusableかつ同knowledge/binding/channelの原operation recordを1件も確定できない（container/record不在、未解決又は形不明を含む）。Refs有無で非選択へしない。"
+        },
+        {
+          "reason_code": "operation_scope_conflict",
+          "phase": "operation",
+          "state": "conflict",
+          "axis": "dependency_operation",
+          "condition": "同operation identity/revision/binding/channelの原recordが、所在ref.source_locator以外のscope/kind/contract binding/bodyで相反する、又は既知のoperation Ref.scopeとoperation_scopeが不一致。"
+        },
+        {
+          "reason_code": "operation_kind_absent",
+          "phase": "operation",
+          "state": "unknown",
+          "axis": "dependency_operation",
+          "condition": "一意の原recordにoperation_kind memberが無い。"
+        },
+        {
+          "reason_code": "operation_kind_unknown",
+          "phase": "operation",
+          "state": "unknown",
+          "axis": "dependency_operation",
+          "condition": "operation_kindはnull/未知語/非stringで3種類へ確定できない。"
+        },
+        {
+          "reason_code": "operation_scope_unknown",
+          "phase": "operation",
+          "state": "unknown",
+          "axis": "dependency_operation",
+          "condition": "原operation_scope又はoperation Ref.scopeが未供給/null/不明。既知不一致と分ける。"
+        },
+        {
+          "reason_code": "operation_fields_unknown",
+          "phase": "operation",
+          "state": "unknown",
+          "axis": "dependency_operation",
+          "condition": "knowledge_fieldsのcontainer/field名が未供給/null/非array/未知語、又はknowledge_state_traceで明示empty。"
+        },
+        {
+          "reason_code": "operation_kind_fields_conflict",
+          "phase": "operation",
+          "state": "conflict",
+          "axis": "dependency_operation",
+          "condition": "source_intakeがknowledge_fieldsを明示nonemptyで宣言し取込のみというkindと相反。"
+        },
+        {
+          "reason_code": "source_intake_only",
+          "phase": "operation",
+          "state": "unobserved",
+          "axis": "dependency_operation",
+          "condition": "source_intakeかつknowledge_fieldsが明示empty。当該scopeの025追加依存だけ非選択。F08は残す。"
+        }
+      ],
+      "branch_precedence": {
+        "channel": "selector absent→selector invalid→falseの順で条件評価を止める。trueのみ固定Ref照合とoperationへ進む。",
+        "reference": "必要identity所在→提出frame→対象scope→source資格/解決→body相反→原body frame/対応→025 hint必要/原hint frame/対応→有限対応。018/020は原operation hint供給を開始条件にしない。",
+        "operation": "usable同binding/channel recordゼロ→同identity record相反→kind absent→kind unknown→scope unknown→既知scope conflict→fields unknown→kind/fields conflict→source_intake_only又は必要025 Ref照合。所在locator差だけの複数recordは同値として継続する。",
+        "multiple_refs": "必要identityの提出member不在は照合前にmissingとして確定し、複数候補の集約へ入れず、他identity/source/categoryの成功で補償しない。memberが存在する場合だけ原Ref/recordを捨てず、有限代表state/reasonをconflict→unknown→resolved、同stateは原順と上記分岐順で決める。全原Ref/所在をtraceへ残し、複数所見を単一成功へ統合しない。"
+      },
+      "backflow_owner_rules": {
+        "selector": "axis=dependency_selectionは既存R-dependency_selector_unknownに合わせbackflow_owner=null。",
+        "negative_reference_or_operation": "dependency_reference/dependency_operationのmissing/unknown/conflictはliteral logical role knowledge_owner。個別Ref.owner/受領者IDを代入しない。",
+        "nonfailure": "resolved/unobservedはnull。",
+        "trace": "個別owner原値はoperation/source/knowledge Ref等の原traceに保持し、backflow_ownerのroleと区別する。役割は配送/認可/実recipientの資格ではない。"
+      },
+      "backflow_owner_existing_basis": [
+        {
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "revision": "6677ca5ec62d6a2b2973b1beaad5d5accc5e7d90",
+          "pointer": "/failure_rules/105/backflow_owner_semantics",
+          "exact_value": "knowledge_ownerは戻し先の論理的roleであり、個別owner値/受領者identityではない。原knowledge_refが欠落またはowner未決でもowner値をtemplate_ref.ownerから代用しない。"
+        },
+        {
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "revision": "6677ca5ec62d6a2b2973b1beaad5d5accc5e7d90",
+          "pointer": "/failure_rules/106/backflow_owner",
+          "exact_value": null
+        }
+      ]
     },
     "original_projection_algorithm": [
       "1. 既存三selectorをstrict boolean/presenceで読む。missing/null/型不適合はその条件のunknown。明示falseのchannelは非選択unobserved。CORE返却falseをCORE由来falseと取り違えない。",
@@ -1888,15 +2072,15 @@
       "6. 同operation identity/revision/binding/channelのrecordを、所在だけのref.source_locatorを除くbody全値で比較する。完全同値の複数所在もtraceに保持し、異なる原scope/kind/contract bindingがあれば当該operationのconflict。片方をlatest/配列先頭で選ばない。025該当性はそのoperationについてconflictであり、一方への提出一致では解消しない。別operation/固定018/020は独立に続ける。",
       "7. 固定018/020及び原kindで必要と確定した025を、当該categoryの提出Refに完全identityで照合する。必要集合を提出Ref配列から作らない。025の原contract_bindings不足は原fullRef根拠unknownを保持し、必要identityの提出member不在missingを抑止しない。018/020の原fullRef照合は既存source根拠を維持する。operation.contract_bindingsは供給時の追加原根拠であり、未供給で既存照合を失効させない。",
       "8. 固定018/020は既存owner原body/Ref/資格と対象binding.scopeへ照合し、025は原operationで選択したscope/契約版と照合する。原identity/revision/scope/ownerの不足はunknown、既知不一致はconflict。両digest供給時の比較とsource bytes/資格は既存規則。identity所在だけをresolvedにしない。合成fixture rootの前提は実source資格ではない。",
-      "9. 同一identityに複数提出Refsがある場合、全原対応/相反を保持する。合致が一つあっても別scope/別版の相反Refを捨てず、そのoperation/reference結果にconflictを併存させる。他source/categoryの成功で補償しない。",
+      "9. 同一identityに複数提出Refsがある場合、全原対応/相反を保持する。合致が一つあっても別scope/別版の相反Refを捨てず、そのoperation/reference結果にconflictを併存させる。他source/categoryの成功で補償しない。 必要identity不在のmissingは候補集約の前に確定し、他のRefのconflict/unknown/resolvedへ置換しない。",
       "10. 内部DependencyScopeResultを既存Comparisonへ投影する。subject_refは既存knowledge_ref→template_ref形成条件を維持。selector不明はaxis dependency_selection、原操作不明/相反はaxis dependency_operation、参照はaxis dependency_reference。非選択は既存source state unobserved。原state/definition/receiptは更新しない。",
       "11. AxisResult.original_refs/Finding.source_refsはそのcategoryに実際に供給されたRefだけを保つ。原operation/source/fullRef根拠はreasonにsourceのRef全値・body pointer・operation Ref全値と必要identityを含むtrace detailを文字列として保存し、同snapshotから辿れるようにする。missing Refを出力へ捏造しない。reasonの表示書式・lossless wireは既存codecに従う次L5詳細でありscope raw値を丸めない。",
-      "12. 必要なsubject Ref双方欠落時のtyped AxisResult/Finding形成限界と既存/binding InputIssue→builder経路は変更しない。戻し先未解決はnull。新しい署名/root/承認/全stage完了gateを作らない。"
+      "12. 必要なsubject Ref双方欠落時のtyped AxisResult/Finding形成限界と既存/binding InputIssue→builder経路は変更しない。backflow_ownerはdecision_tableの論理role/null規則に従い、個別owner未決をtemplate_ref.ownerで代用しない。新しい署名/root/承認/全stage完了gateを作らない。"
     ],
     "projection_material": {
       "observation_type": "内部DependencyScopeResultをobservation_field_mappingのbasic観測projectionへ対応付ける。内部意味名とL9表示名を区別し、新SupplyInput/SupplyAnalysis top-level fieldやclosed wire型を採用しない。",
       "order": "core_source、labo_evaluation順。各選択channelは固定018/020結果の後に当該operationの025結果。複数原operationは同identity/revision/binding/channelごとに保持する。",
-      "finite_L9_projection": "両channel明示falseの局所対照は018/020のunobservedを観測する。それ以外の8有限projectionはtrue/unknownのchannelを観測し、false channelの他軸は範囲外。全Comparisonのwholeではない。",
+      "finite_L9_projection": "10有限projectionのうち、両channel明示falseの1例は018/020のunobservedを観測し、残る9例はtrue/unknownのchannelを観測する。false channelの他軸は範囲外。全Comparisonのwholeではない。",
       "reference_states": [
         "resolved",
         "missing",
@@ -1913,7 +2097,7 @@
       "trace": "原operation source Ref、body pointer、operation Ref/全相反scope、原contract refs、提出category全refs、入力bindingを保持。missingのRefを捏造しない。返却原Refは既存category規則を保ち、原操作traceをreasonへ結ぶ。subject Ref双方不在の形成限界は既存L5/builderへ残す。",
       "operation_source_ref_boundary": "operation_source_refは同knowledge原provenanceに一意に供給されたoperation containerのRefを保持する所在traceであり、当該channelの選択/操作解決を表さない。selector不明でも共通containerのRefだけを保持できるが、その条件集合を評価せずoperation_refs/indices/locatorsは空、operation_scopeはnull。container不在/未解決/複数曖昧ではこの局所fieldはnull。いずれもraw.sources/既存Comparisonの原source保持を削除しない。別既知channelは独立に評価する。",
       "observation_field_mapping": {
-        "scope": "既定8有限integration projectionの全17fieldの意味対応。state/必要集合/原source/raw/独立期待を変更しない。",
+        "scope": "既定10有限integration projectionの全17fieldの意味対応。state/必要集合/原source/rawの意味を変えず、対応表を期待の生成元にはしない。期待は上位義務/旧failureから独立に先固定する。",
         "preservation": "same_valueは内部原値、renameは同じ内部意味の表示名、derived_traceは原snapshotの所在又は既存channel/axis表からの観測表示。追加traceを新しい依存選択/成功条件にしない。",
         "fields": [
           {
@@ -1962,7 +2146,7 @@
             "observed_field": "backflow_owner",
             "internal_meaning": "backflow_owner",
             "mapping": "same_value",
-            "derivation": "元owner又はnullをそのまま保持。所在Refの掲載から実recipient/配送資格を生成しない。"
+            "derivation": "decision_table.backflow_owner_rulesに従う同じ論理role/nullを保持する。selector不明はnull、dependency_reference/dependency_operationのmissing/unknown/conflictはknowledge_owner、resolved/unobservedはnull。個別Ref.ownerは原traceに保持し、この欄へ代入しない。"
           },
           {
             "observed_field": "operation_indices",
@@ -1992,7 +2176,7 @@
             "observed_field": "operation_scopes",
             "internal_meaning": "operation_locatorsで辿る原record.operation_scope",
             "mapping": "derived_trace",
-            "derivation": "対象8projectionでは各原locatorに供給されたoperation_scopeを原順・原値で列挙し、相反する複数scopeも残す。原recordを観測しない行は[]。原scope欠落をnullへ創作しない。この対応表だけで対象外入力の欠落carrier/wireを決定しない。"
+            "derivation": "対象10projectionでは各原locatorに供給されたoperation_scopeを原順・原値で列挙し、相反する複数scopeも残す。原recordを観測しない行は[]。原scope欠落をnullへ創作しない。この対応表だけで対象外入力の欠落carrier/wireを決定しない。"
           },
           {
             "observed_field": "original_contract_refs",
@@ -2037,7 +2221,7 @@
       "original_L2_020": "L2:414-422。評価候補/receiptはscope/限界と原stateを保持し採否/成熟を先取りしない。",
       "original_L2_032": "L2:603-608。知識記録のsource/評価範囲/限界/採用状態を007/008/025へ常時結ぶ責務と、選択した018/020/025の該当source/scope/evaluation照合を区別する。",
       "F08": "L3F#/requirements/7。既存KnowledgeRecordのref/operational_state/provenance/evaluation/limits/counterexamples/adoptionを常時保持し、単独成功からaccepted/matureへ更新しない。",
-      "source_intake_operation_scope": "前案のsource_intake/knowledge_fields=[]は当該source/evaluation取込scopeが知識stageを消費しない宣言であり、032全体がKnowledgeRecordを読まない意味ではない。F08の原state保持は残る。F09の025追加dependencyを非選択としても、025知識記録意味への結合/非昇格責務はなくならない。",
+      "source_intake_operation_scope": "source_intake/knowledge_fields=[]は当該source/evaluation取込scopeが知識stageを消費しない宣言であり、032全体がKnowledgeRecordを読まない意味ではない。F08の原state保持は残る。F09の025追加dependencyを非選択としても、025知識記録意味への結合/非昇格責務はなくならない。",
       "required_unknown_boundary": "source/evaluation selector trueだが原operationの内容未供給/未解決なら、取込だけと推測せず025 scope unknown。Refとqualified sourceがあるだけでもこのunknownを消さない。kind=knowledge_state_traceならcandidate/proposal stageでも025必要。",
       "source_fact_vs_unprovided": "既存QualifiedSource bodyと資格envelopeの供給、操作内容の供給、知識stageの実成立は別。合成rootや新operation keyの存在を実資格/実採否の証拠にしない。"
     },
@@ -2111,8 +2295,32 @@
     ],
     "limits": [
       "既存L3/L10意味を変更せず、025 mandatory boolean/全stage完了gate/将来receipt gate/追加人間approvalを作らない。",
-      "8有限integration projectionは実source資格、全operation kind/shape/owner、全case/全mutation、全14義務/全92親430対の閉包ではない。",
+      "10有限integration projectionは実source資格、全operation kind/shape/owner、全case/全mutation、全14義務/全92親430対の閉包ではない。",
       "L5/L8のproducer/input/返却組込、formal codec/resolver、L6/L7、実TDD/CI/L11は未成立。"
+    ],
+    "channel_mapping_derivation_basis": [
+      {
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "revision": "6677ca5ec62d6a2b2973b1beaad5d5accc5e7d90",
+        "lines": [
+          394,
+          402
+        ],
+        "file_sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+        "exact_quote": "### HELIXBRAIN-L2-018 製品Coreからの再利用候補入力（connection）\n\n- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-011`。\n- **受け取るもの**：製品のHELIX-HARNESS-COREから、原本を解体して抽出した汎用Pattern/Unit/Part候補、source/provenance、revision、製品固有情報との関係。利用者が作ったraw original自体は入力にしない。\n- **提供するもの**：製品固有の意味を汎用知識と混同せず、候補状態でBRAIN intakeへ渡したconnection receipt。\n- **保証すること**：個別製品名、要求、画面、業務規則、利用者判断や原本そのものを汎用Patternとして確定・保存しない。HELIX側で原本からPatternだけを取り込んだ後に原本を破棄するというConcept上の扱いを保ち、本要求は原本の保持期限・破棄証拠等の内部要件を追加しない。candidate intakeはPattern成立・成熟・採用を意味しない。\n- **依存・検証／版**：L2-007/011、HELIX-HARNESS-COREの候補出力contract。候補のsource/revision、原本と抽出候補の区別、製品固有要素と再利用候補の分離、受取側identityを照合する。1.0。\n- **失敗時の戻し先**：由来や製品固有意味が分離できない場合は候補を隔離し、製品Coreへ差し戻す。採用判定はL2-025に委ねる。\n- **束ねる条件**：BRAIN L1-007/011、L1の「Product-specific→HELIX-HARNESS-CORE」分離。\n",
+        "quote_sha256": "ae31cde4ec8dd5a0fa336b4161e68771344ce30ca42bd0ee375845e032481e29"
+      },
+      {
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "revision": "6677ca5ec62d6a2b2973b1beaad5d5accc5e7d90",
+        "lines": [
+          414,
+          422
+        ],
+        "file_sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+        "exact_quote": "### HELIXBRAIN-L2-020 LABO評価結果の知識候補への接続（connection）\n\n- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-009`、`HELIXBRAIN-L1-010`。\n- **受け取るもの**：LABOが評価対象・評価scope・方法・evidence・結果・反例を紐付けた構造候補。\n- **提供するもの**：評価結果を保持したBRAIN候補入力と、対象のsource/version/evaluation identityを結ぶreceipt。\n- **保証すること**：単一実績、AI生成、評価resultのみで確立Patternとしない。candidateの評価scopeと限界を保ち、OSの登録・振分けとBRAIN内独立検証の後まで採否・成熟状態を先取りしない。\n- **依存・検証／版**：L2-007/008/009/010のgeneric provenance/identity/state、Infrastructure candidateのmaturityを扱う場合に限りL2-INFRA-017、およびLABO評価contract。候補revisionと評価対象revision、成功・failure・反例・未評価範囲の対応を確認する。1.0。\n- **失敗時の戻し先**：評価と対象revisionが結べないときはunknown候補として止め、LABOへ評価を返す。OS登録状態の正本はOSへ戻す。\n- **束ねる条件**：BRAIN L1-007/009/010、HELIX-LABOの評価責務。\n",
+        "quote_sha256": "2b6f40a524fa611797652318ee4eb6e986727d8f3abea9a3063669d28c51cc1d"
+      }
     ]
   }
 }
