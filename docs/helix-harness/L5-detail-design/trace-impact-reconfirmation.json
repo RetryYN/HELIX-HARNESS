@@ -2242,8 +2242,8 @@
       ],
       "scope_limit": "F04一関数の部分詳細。全004やsource全件の移管を閉じない。",
       "whole_result_contract": {
-        "status": "candidate_full_results_for_fixed_45_f04_cases_not_full_function_closure",
-        "scope": "20 pinned L9 source/candidate controls +14 independent Context controls +11 compound Context controls。全004/実資格/codec/全不正構造の閉包は含まない。",
+        "status": "candidate_full_results_for_fixed_47_f04_cases_not_full_function_closure",
+        "scope": "20 pinned L9 source/candidate controls +14 independent Context controls +11 compound Context controls +2 independently frozen qualification kind/state variants。全004/実資格/codec/全不正構造の閉包は含まない。",
         "meaning": "内容比較と供給資格の確認を分離。固定synthetic snapshotは実owner資格ではない。原source/元L9 bytesと期待値を保持し、欠落した提出資料をContext rawから復元しない。",
         "reference_resolution": {
           "key": "kind + identity/revision/scope/owner のexact tuple。複数同keyはreference_conflictでfirst/last winsしない。",
@@ -2266,7 +2266,7 @@
         "retention": "retained_input_sha256は供給されたinput packet raw_utf8 bytesのSHA-256。Context/candidateを連結したhashでも、再canonicalizeして変更した入力hashでもない。",
         "actual_effects": "valueの全5 actual_*はliteral false。ref対応やsynthetic qualificationを実no_loss/copy/retire/採否/実装許可にしない。",
         "minimum_vs_full": "従前のexpected_partial_resultは旧監査記録として保持。whole_result_oraclesの全PartitionResultを固定scopeの比較正本にし、finding subsetや特定value fieldだけの一致では合格にしない。",
-        "remaining": "残るContext locator/不正構造/全qualified field・他6関数/実owner/host/codec/consumer binding/L6L7/全oracle凍結は未完。",
+        "remaining": "残るContext locator/不正構造/全qualified field・他6関数/実owner/host/codec/consumer binding/L6L7/全oracle凍結は未完。 W20/W21はhuman decision basisのqualification kind/stateに対する2件の独立合成whole例だけで照合する。他qualification field、全Context組合せ、全構造、実owner/host/codec/consumer binding、L6/L7は引き続き未完。",
         "emission_rules": [
           {
             "id": "W01",
@@ -2459,6 +2459,49 @@
             "basis": "decision referent.ref",
             "owner": "human-decision-original-owner",
             "content_state": "conflict"
+          },
+          {
+            "id": "W20",
+            "predicate": "P5でdecision referentのqualification_basis_refsから一意に解決したQualificationRecord.kindが、同一対象の独立decision referent.kindと異なる（closed enum内の別kindを含む）。",
+            "code": "reference_conflict",
+            "pointer": "/context/qualification_records/{record_index}/kind",
+            "atoms": "同じdecision referent.refをdecision_refとし、当該referent.qualification_basis_refsがQualificationRecord.refを全4成分で含むhuman bucket itemのatom_id集合。重複を集合化しUnicode code point順。",
+            "basis": "QualificationRecord.refとQualificationRecord.target_refを全4成分でunique化し、既存identity/revision/scope/owner順にsort。",
+            "owner": "human-decision-original-owner",
+            "content_state": "conflict",
+            "priority": "既存P7 conflict→stale→unknown→missing→supported。state別Findingとkind Findingが同時に成立する場合は両方を保持し、完全同値のみdeduplicate。",
+            "limit": "expected kindは独立decision referent.kindから得る。bucket/candidate/owner表示文字列から資格や人間判断を生成しない。実資格・実assignmentを発行しない。",
+            "return_effect": {
+              "value.invalid_decision_atom_ids": "既存集合とaffected atom ID集合のunion。",
+              "value.partition_condition": "このcause単独ではconflict。他causeがあればP7既存優先順で集約。",
+              "outcome": "このcause単独ではconflict。構造invalidはinvalidを優先し、他causeとcandidate不一致はP7既存の全体判定を適用する。",
+              "preserve": "候補未提出時はnot_submittedと空conflicting fieldsを保持。候補提出時はP7の全field比較を適用し、その比較結果を固定保持しない。その他のvalue、原input hash、全actual_* falseを保持。"
+            }
+          },
+          {
+            "id": "W21",
+            "predicate": "P5でdecision referentのqualification_basis_refsから一意に解決したQualificationRecord.stateがcurrent以外。",
+            "code": "reference_{missing|unknown|conflict|stale}",
+            "pointer": "/context/qualification_records/{record_index}/state",
+            "atoms": "W20と同じexact decision referent / QualificationRecord associationで得るhuman bucket item atom_id集合。",
+            "basis": "QualificationRecord.refとQualificationRecord.target_refを全4成分でunique化し、既存identity/revision/scope/owner順にsort。",
+            "owner": "human-decision-original-owner",
+            "closed_state_mapping": {
+              "current": "Findingを出さず、他P5条件を引き続き照合する。",
+              "missing": "reference_missing / missing",
+              "unknown": "reference_unknown / unknown",
+              "conflict": "reference_conflict / conflict",
+              "stale": "reference_stale / stale"
+            },
+            "content_state": "閉じたstate値と同名の状態。結果は既存P7優先順で集約。",
+            "priority": "同一recordでW20も成立する場合は両所在のFindingを保持。",
+            "limit": "資格recordの存在や合成Contextは実資格を意味しない。別gateを追加せず、他資格fieldの閉包も主張しない。",
+            "return_effect": {
+              "value.invalid_decision_atom_ids": "既存集合とaffected atom ID集合のunion。",
+              "value.partition_condition": "閉じたstateのcontent stateを適用し、他causeがあればP7既存優先順で集約。",
+              "outcome": "このcause単独ではmissingはincomplete、unknownはunknown、conflictはconflict、staleはstale。構造invalidはinvalidを優先し、他causeとcandidate不一致はP7既存の全体判定を適用する。",
+              "preserve": "候補未提出時はnot_submittedと空conflicting fieldsを保持。候補提出時はP7の全field比較を適用し、その比較結果を固定保持しない。他causeと別pointerのfindingを保持。その他のvalue、原input hash、全actual_* falseを保持。"
+            }
           }
         ]
       }
@@ -11605,7 +11648,7 @@
         "l4_contract_sha256": "525b22206fe70677c77c1887cf4b0f60540488b43e5306d94b98b0ed98556683",
         "core_symbol": "check_source_atom_partition",
         "core_signature": "check_source_atom_partition(input: PartitionInput, context: PartitionContext, candidate: PartitionCandidate | None = None) -> PartitionResult",
-        "core_contract_sha256": "e35c2c38a23443a76afc3e2e90b6e4ca54d826075edc088c10c06888685677f6",
+        "core_contract_sha256": "0c6c01c94d770ae623bcf293d48ab7136bd5937fe52d5af9f2d881461a4f336b",
         "argument_types": {
           "input": "PartitionInput",
           "context": "PartitionContext",

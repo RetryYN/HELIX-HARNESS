@@ -74366,6 +74366,634 @@
           "sha256": "1edecbfa85a4bba9b2771f8526d2ad94da1529e5cabd84adeb1b7d77b16a1bad"
         },
         "authority_effect": "none"
+      },
+      {
+        "id": "H004-L8-F04-QUAL-KIND-FROZEN-CONTEXT",
+        "source_case_ref": "H004-F04-NORMAL",
+        "source_case_sha256": "a996190f932c8fa1f9c69cc70f7244de4e30830119ff801519ef472e93880d50",
+        "snapshot_lineage": "NORMAL合成Contextの独立copyへ資格recordの指定fieldだけを差し替えた事前固定variant。実owner/custody独立性の証明ではなく、input/candidateから生成しない。",
+        "context": {
+          "evidence_kind": "synthetic",
+          "qualification_records": [
+            {
+              "ref": {
+                "identity": "QUALIFICATION-SOURCE-ATOMS-86fb26827e29",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "kind": "source_population",
+              "target_ref": {
+                "identity": "SOURCE-ATOMS",
+                "revision": "fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36",
+                "scope": "PRODUCT-P",
+                "owner": "independent-source-owner"
+              },
+              "target_content_sha256": "86fb26827e29527c18f49de25541d9f7025863bdb79fda593487886466648559",
+              "state": "current",
+              "qualifier_ref": {
+                "identity": "SYNTHETIC-ORACLE-CONTEXT-BASIS",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "evidence_kind": "synthetic"
+            },
+            {
+              "ref": {
+                "identity": "QUALIFICATION-CURRENT-REQ-52c87a5e5959",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "kind": "live_requirement",
+              "target_ref": {
+                "identity": "CURRENT-REQ",
+                "revision": "fixture-r1-content-5c8c3780b5d88d5959688c30728083df2ef75ba0f67bc1d59d915e3ebf69bda3",
+                "scope": "PRODUCT-P",
+                "owner": "current-requirement-owner"
+              },
+              "target_content_sha256": "52c87a5e595921f56f28afa485937ee17559e4aef58a929e2c9895f68a80ef45",
+              "state": "current",
+              "qualifier_ref": {
+                "identity": "SYNTHETIC-ORACLE-CONTEXT-BASIS",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "evidence_kind": "synthetic"
+            },
+            {
+              "ref": {
+                "identity": "QUALIFICATION-LIVE-CANDIDATE-a0565e28a8f0",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "kind": "live_candidate",
+              "target_ref": {
+                "identity": "LIVE-CANDIDATE",
+                "revision": "fixture-r1-content-8d583641439f62d95e3b1d10ee435f2fdf16ac35efbda630fa9649386884422d",
+                "scope": "PRODUCT-P",
+                "owner": "candidate-owner"
+              },
+              "target_content_sha256": "a0565e28a8f084085ada48c0e0826eadd28933a89dd767d9c5f855af550ef9eb",
+              "state": "current",
+              "qualifier_ref": {
+                "identity": "SYNTHETIC-ORACLE-CONTEXT-BASIS",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "evidence_kind": "synthetic"
+            },
+            {
+              "ref": {
+                "identity": "QUALIFICATION-CHANGED-REQ-dfaf8dc6e4cd",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "kind": "changed_requirement",
+              "target_ref": {
+                "identity": "CHANGED-REQ",
+                "revision": "fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52",
+                "scope": "PRODUCT-P",
+                "owner": "requirement-owner"
+              },
+              "target_content_sha256": "dfaf8dc6e4cd967da98a53be1788b58b22b0d54ff723407d3adef0c5b08f496d",
+              "state": "current",
+              "qualifier_ref": {
+                "identity": "SYNTHETIC-ORACLE-CONTEXT-BASIS",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "evidence_kind": "synthetic"
+            },
+            {
+              "ref": {
+                "identity": "QUALIFICATION-HUMAN-CHANGE-09edf90e2b0f",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "kind": "live_candidate",
+              "target_ref": {
+                "identity": "HUMAN-CHANGE",
+                "revision": "fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116",
+                "scope": "PRODUCT-P",
+                "owner": "human-decision-original-owner"
+              },
+              "target_content_sha256": "09edf90e2b0f6473e79d7a7dbbf19b2e382860f593f56e88e9d37929272aa366",
+              "state": "current",
+              "qualifier_ref": {
+                "identity": "SYNTHETIC-ORACLE-CONTEXT-BASIS",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "evidence_kind": "synthetic"
+            },
+            {
+              "ref": {
+                "identity": "QUALIFICATION-COVERAGE-RECEIPT-1ff9e9d6bb77",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "kind": "coverage_receipt",
+              "target_ref": {
+                "identity": "COVERAGE-RECEIPT",
+                "revision": "fixture-r1-content-f4164407077edd0a25de7d048784432779950faaadf26c4db471cf17cf9aac79",
+                "scope": "PRODUCT-P",
+                "owner": "coverage-original-owner"
+              },
+              "target_content_sha256": "1ff9e9d6bb77367ebfccb2b1ce38f925c92f0d8bd49c68ef9f23bfc156acc59c",
+              "state": "current",
+              "qualifier_ref": {
+                "identity": "SYNTHETIC-ORACLE-CONTEXT-BASIS",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "evidence_kind": "synthetic"
+            }
+          ],
+          "qualifier_roots": [
+            {
+              "identity": "SYNTHETIC-ORACLE-CONTEXT-BASIS",
+              "owner": "independent-synthetic-context-fixture-owner",
+              "revision": "FIXTURE-CONTEXT-r1",
+              "scope": "PRODUCT-P"
+            }
+          ],
+          "referents": [
+            {
+              "ref": {
+                "identity": "SOURCE-ATOMS",
+                "revision": "fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36",
+                "scope": "PRODUCT-P",
+                "owner": "independent-source-owner"
+              },
+              "kind": "source_population",
+              "raw_utf8": "{\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"],\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"owner\":\"independent-source-owner\",\"revision\":\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\",\"scope\":\"PRODUCT-P\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"}",
+              "content_sha256": "86fb26827e29527c18f49de25541d9f7025863bdb79fda593487886466648559",
+              "state": "current",
+              "evidence_kind": "synthetic",
+              "qualification_basis_refs": [
+                {
+                  "identity": "QUALIFICATION-SOURCE-ATOMS-86fb26827e29",
+                  "owner": "independent-synthetic-context-fixture-owner",
+                  "revision": "FIXTURE-CONTEXT-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ]
+            },
+            {
+              "ref": {
+                "identity": "CURRENT-REQ",
+                "revision": "fixture-r1-content-5c8c3780b5d88d5959688c30728083df2ef75ba0f67bc1d59d915e3ebf69bda3",
+                "scope": "PRODUCT-P",
+                "owner": "current-requirement-owner"
+              },
+              "kind": "live_requirement",
+              "raw_utf8": "{\"raw_utf8\":\"状態原記録はOSが所有する。\",\"ref\":{\"identity\":\"CURRENT-REQ\",\"owner\":\"current-requirement-owner\",\"revision\":\"fixture-r1-content-5c8c3780b5d88d5959688c30728083df2ef75ba0f67bc1d59d915e3ebf69bda3\",\"scope\":\"PRODUCT-P\"},\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"state\":\"live_requirement\"}",
+              "content_sha256": "52c87a5e595921f56f28afa485937ee17559e4aef58a929e2c9895f68a80ef45",
+              "state": "current",
+              "evidence_kind": "synthetic",
+              "qualification_basis_refs": [
+                {
+                  "identity": "QUALIFICATION-CURRENT-REQ-52c87a5e5959",
+                  "owner": "independent-synthetic-context-fixture-owner",
+                  "revision": "FIXTURE-CONTEXT-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ]
+            },
+            {
+              "ref": {
+                "identity": "LIVE-CANDIDATE",
+                "revision": "fixture-r1-content-8d583641439f62d95e3b1d10ee435f2fdf16ac35efbda630fa9649386884422d",
+                "scope": "PRODUCT-P",
+                "owner": "candidate-owner"
+              },
+              "kind": "live_candidate",
+              "raw_utf8": "{\"raw_utf8\":\"未観測はunknownとして保持する。\",\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"owner\":\"candidate-owner\",\"revision\":\"fixture-r1-content-8d583641439f62d95e3b1d10ee435f2fdf16ac35efbda630fa9649386884422d\",\"scope\":\"PRODUCT-P\"},\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"state\":\"live_candidate\"}",
+              "content_sha256": "a0565e28a8f084085ada48c0e0826eadd28933a89dd767d9c5f855af550ef9eb",
+              "state": "current",
+              "evidence_kind": "synthetic",
+              "qualification_basis_refs": [
+                {
+                  "identity": "QUALIFICATION-LIVE-CANDIDATE-a0565e28a8f0",
+                  "owner": "independent-synthetic-context-fixture-owner",
+                  "revision": "FIXTURE-CONTEXT-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ]
+            },
+            {
+              "ref": {
+                "identity": "CHANGED-REQ",
+                "revision": "fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52",
+                "scope": "PRODUCT-P",
+                "owner": "requirement-owner"
+              },
+              "kind": "changed_requirement",
+              "raw_utf8": "{\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"ref\":{\"identity\":\"CHANGED-REQ\",\"owner\":\"requirement-owner\",\"revision\":\"fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52\",\"scope\":\"PRODUCT-P\"},\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"state\":\"changed_requirement\"}",
+              "content_sha256": "dfaf8dc6e4cd967da98a53be1788b58b22b0d54ff723407d3adef0c5b08f496d",
+              "state": "current",
+              "evidence_kind": "synthetic",
+              "qualification_basis_refs": [
+                {
+                  "identity": "QUALIFICATION-CHANGED-REQ-dfaf8dc6e4cd",
+                  "owner": "independent-synthetic-context-fixture-owner",
+                  "revision": "FIXTURE-CONTEXT-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ]
+            },
+            {
+              "ref": {
+                "identity": "HUMAN-CHANGE",
+                "revision": "fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116",
+                "scope": "PRODUCT-P",
+                "owner": "human-decision-original-owner"
+              },
+              "kind": "human_meaning_change",
+              "raw_utf8": "{\"impact_scope\":\"PRODUCT-P\",\"kind\":\"human_meaning_change\",\"outcome\":\"change\",\"qualification\":\"synthetic_reference_not_actual_human_decision\",\"reason\":\"合成例でPort例外の置換を明示する\",\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"owner\":\"human-decision-original-owner\",\"revision\":\"fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116\",\"scope\":\"PRODUCT-P\"},\"source_atom\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"owner\":\"independent-source-owner\",\"revision\":\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\",\"scope\":\"PRODUCT-P\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"owner\":\"requirement-owner\",\"revision\":\"fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52\",\"scope\":\"PRODUCT-P\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}",
+              "content_sha256": "09edf90e2b0f6473e79d7a7dbbf19b2e382860f593f56e88e9d37929272aa366",
+              "state": "current",
+              "evidence_kind": "synthetic",
+              "qualification_basis_refs": [
+                {
+                  "identity": "QUALIFICATION-HUMAN-CHANGE-09edf90e2b0f",
+                  "owner": "independent-synthetic-context-fixture-owner",
+                  "revision": "FIXTURE-CONTEXT-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ]
+            },
+            {
+              "ref": {
+                "identity": "COVERAGE-RECEIPT",
+                "revision": "fixture-r1-content-f4164407077edd0a25de7d048784432779950faaadf26c4db471cf17cf9aac79",
+                "scope": "PRODUCT-P",
+                "owner": "coverage-original-owner"
+              },
+              "kind": "coverage_receipt",
+              "raw_utf8": "{\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"owner\":\"coverage-original-owner\",\"revision\":\"fixture-r1-content-f4164407077edd0a25de7d048784432779950faaadf26c4db471cf17cf9aac79\",\"scope\":\"PRODUCT-P\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"owner\":\"independent-source-owner\",\"revision\":\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\",\"scope\":\"PRODUCT-P\"}}",
+              "content_sha256": "1ff9e9d6bb77367ebfccb2b1ce38f925c92f0d8bd49c68ef9f23bfc156acc59c",
+              "state": "current",
+              "evidence_kind": "synthetic",
+              "qualification_basis_refs": [
+                {
+                  "identity": "QUALIFICATION-COVERAGE-RECEIPT-1ff9e9d6bb77",
+                  "owner": "independent-synthetic-context-fixture-owner",
+                  "revision": "FIXTURE-CONTEXT-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ]
+            }
+          ],
+          "selection_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+          "snapshot_revision": "FIXTURE-CONTEXT-r1",
+          "target_source_ref": {
+            "identity": "SOURCE-ATOMS",
+            "revision": "fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36",
+            "scope": "PRODUCT-P",
+            "owner": "independent-source-owner"
+          }
+        },
+        "source_packet": {
+          "ref": {
+            "identity": "H004-L8-F04-NORMAL-FIXED-CONTEXT",
+            "revision": "fixture-1edecbfa85a4bba9b2771f8526d2ad94da1529e5cabd84adeb1b7d77b16a1bad",
+            "owner": "independent-synthetic-context-fixture-owner",
+            "scope": "PRODUCT-P"
+          },
+          "raw_utf8": "{\"evidence_kind\":\"synthetic\",\"qualification_records\":[{\"evidence_kind\":\"synthetic\",\"kind\":\"source_population\",\"qualifier_ref\":{\"identity\":\"SYNTHETIC-ORACLE-CONTEXT-BASIS\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"ref\":{\"identity\":\"QUALIFICATION-SOURCE-ATOMS-86fb26827e29\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\",\"target_content_sha256\":\"86fb26827e29527c18f49de25541d9f7025863bdb79fda593487886466648559\",\"target_ref\":{\"identity\":\"SOURCE-ATOMS\",\"owner\":\"independent-source-owner\",\"revision\":\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\",\"scope\":\"PRODUCT-P\"}},{\"evidence_kind\":\"synthetic\",\"kind\":\"live_requirement\",\"qualifier_ref\":{\"identity\":\"SYNTHETIC-ORACLE-CONTEXT-BASIS\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"ref\":{\"identity\":\"QUALIFICATION-CURRENT-REQ-52c87a5e5959\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\",\"target_content_sha256\":\"52c87a5e595921f56f28afa485937ee17559e4aef58a929e2c9895f68a80ef45\",\"target_ref\":{\"identity\":\"CURRENT-REQ\",\"owner\":\"current-requirement-owner\",\"revision\":\"fixture-r1-content-5c8c3780b5d88d5959688c30728083df2ef75ba0f67bc1d59d915e3ebf69bda3\",\"scope\":\"PRODUCT-P\"}},{\"evidence_kind\":\"synthetic\",\"kind\":\"live_candidate\",\"qualifier_ref\":{\"identity\":\"SYNTHETIC-ORACLE-CONTEXT-BASIS\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"ref\":{\"identity\":\"QUALIFICATION-LIVE-CANDIDATE-a0565e28a8f0\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\",\"target_content_sha256\":\"a0565e28a8f084085ada48c0e0826eadd28933a89dd767d9c5f855af550ef9eb\",\"target_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"owner\":\"candidate-owner\",\"revision\":\"fixture-r1-content-8d583641439f62d95e3b1d10ee435f2fdf16ac35efbda630fa9649386884422d\",\"scope\":\"PRODUCT-P\"}},{\"evidence_kind\":\"synthetic\",\"kind\":\"changed_requirement\",\"qualifier_ref\":{\"identity\":\"SYNTHETIC-ORACLE-CONTEXT-BASIS\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"ref\":{\"identity\":\"QUALIFICATION-CHANGED-REQ-dfaf8dc6e4cd\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\",\"target_content_sha256\":\"dfaf8dc6e4cd967da98a53be1788b58b22b0d54ff723407d3adef0c5b08f496d\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"owner\":\"requirement-owner\",\"revision\":\"fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52\",\"scope\":\"PRODUCT-P\"}},{\"evidence_kind\":\"synthetic\",\"kind\":\"human_meaning_change\",\"qualifier_ref\":{\"identity\":\"SYNTHETIC-ORACLE-CONTEXT-BASIS\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"ref\":{\"identity\":\"QUALIFICATION-HUMAN-CHANGE-09edf90e2b0f\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\",\"target_content_sha256\":\"09edf90e2b0f6473e79d7a7dbbf19b2e382860f593f56e88e9d37929272aa366\",\"target_ref\":{\"identity\":\"HUMAN-CHANGE\",\"owner\":\"human-decision-original-owner\",\"revision\":\"fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116\",\"scope\":\"PRODUCT-P\"}},{\"evidence_kind\":\"synthetic\",\"kind\":\"coverage_receipt\",\"qualifier_ref\":{\"identity\":\"SYNTHETIC-ORACLE-CONTEXT-BASIS\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"ref\":{\"identity\":\"QUALIFICATION-COVERAGE-RECEIPT-1ff9e9d6bb77\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\",\"target_content_sha256\":\"1ff9e9d6bb77367ebfccb2b1ce38f925c92f0d8bd49c68ef9f23bfc156acc59c\",\"target_ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"owner\":\"coverage-original-owner\",\"revision\":\"fixture-r1-content-f4164407077edd0a25de7d048784432779950faaadf26c4db471cf17cf9aac79\",\"scope\":\"PRODUCT-P\"}}],\"qualifier_roots\":[{\"identity\":\"SYNTHETIC-ORACLE-CONTEXT-BASIS\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"}],\"referents\":[{\"content_sha256\":\"86fb26827e29527c18f49de25541d9f7025863bdb79fda593487886466648559\",\"evidence_kind\":\"synthetic\",\"kind\":\"source_population\",\"qualification_basis_refs\":[{\"identity\":\"QUALIFICATION-SOURCE-ATOMS-86fb26827e29\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"atoms\\\":[{\\\"id\\\":\\\"A1\\\",\\\"raw_utf8\\\":\\\"状態原記録はOSが所有する。\\\",\\\"sha256\\\":\\\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\\\"},{\\\"id\\\":\\\"A2\\\",\\\"raw_utf8\\\":\\\"未観測はunknownとして保持する。\\\",\\\"sha256\\\":\\\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\\\"},{\\\"id\\\":\\\"A3\\\",\\\"raw_utf8\\\":\\\"hotfixは即releaseする。\\\",\\\"sha256\\\":\\\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\\\"}],\\\"outside_selection\\\":[\\\"SOURCE-B@r1_not_observed\\\"],\\\"ref\\\":{\\\"identity\\\":\\\"SOURCE-ATOMS\\\",\\\"owner\\\":\\\"independent-source-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"selection_scope\\\":\\\"SOURCE-A@r1:all_three_fixture_atoms\\\"}\",\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"owner\":\"independent-source-owner\",\"revision\":\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"52c87a5e595921f56f28afa485937ee17559e4aef58a929e2c9895f68a80ef45\",\"evidence_kind\":\"synthetic\",\"kind\":\"live_requirement\",\"qualification_basis_refs\":[{\"identity\":\"QUALIFICATION-CURRENT-REQ-52c87a5e5959\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"raw_utf8\\\":\\\"状態原記録はOSが所有する。\\\",\\\"ref\\\":{\\\"identity\\\":\\\"CURRENT-REQ\\\",\\\"owner\\\":\\\"current-requirement-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-5c8c3780b5d88d5959688c30728083df2ef75ba0f67bc1d59d915e3ebf69bda3\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"sha256\\\":\\\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\\\",\\\"state\\\":\\\"live_requirement\\\"}\",\"ref\":{\"identity\":\"CURRENT-REQ\",\"owner\":\"current-requirement-owner\",\"revision\":\"fixture-r1-content-5c8c3780b5d88d5959688c30728083df2ef75ba0f67bc1d59d915e3ebf69bda3\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"a0565e28a8f084085ada48c0e0826eadd28933a89dd767d9c5f855af550ef9eb\",\"evidence_kind\":\"synthetic\",\"kind\":\"live_candidate\",\"qualification_basis_refs\":[{\"identity\":\"QUALIFICATION-LIVE-CANDIDATE-a0565e28a8f0\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"raw_utf8\\\":\\\"未観測はunknownとして保持する。\\\",\\\"ref\\\":{\\\"identity\\\":\\\"LIVE-CANDIDATE\\\",\\\"owner\\\":\\\"candidate-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-8d583641439f62d95e3b1d10ee435f2fdf16ac35efbda630fa9649386884422d\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"sha256\\\":\\\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\\\",\\\"state\\\":\\\"live_candidate\\\"}\",\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"owner\":\"candidate-owner\",\"revision\":\"fixture-r1-content-8d583641439f62d95e3b1d10ee435f2fdf16ac35efbda630fa9649386884422d\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"dfaf8dc6e4cd967da98a53be1788b58b22b0d54ff723407d3adef0c5b08f496d\",\"evidence_kind\":\"synthetic\",\"kind\":\"changed_requirement\",\"qualification_basis_refs\":[{\"identity\":\"QUALIFICATION-CHANGED-REQ-dfaf8dc6e4cd\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"raw_utf8\\\":\\\"hotfixにも通常Portを適用する。\\\",\\\"ref\\\":{\\\"identity\\\":\\\"CHANGED-REQ\\\",\\\"owner\\\":\\\"requirement-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"sha256\\\":\\\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\\\",\\\"state\\\":\\\"changed_requirement\\\"}\",\"ref\":{\"identity\":\"CHANGED-REQ\",\"owner\":\"requirement-owner\",\"revision\":\"fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"09edf90e2b0f6473e79d7a7dbbf19b2e382860f593f56e88e9d37929272aa366\",\"evidence_kind\":\"synthetic\",\"kind\":\"human_meaning_change\",\"qualification_basis_refs\":[{\"identity\":\"QUALIFICATION-HUMAN-CHANGE-09edf90e2b0f\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"impact_scope\\\":\\\"PRODUCT-P\\\",\\\"kind\\\":\\\"human_meaning_change\\\",\\\"outcome\\\":\\\"change\\\",\\\"qualification\\\":\\\"synthetic_reference_not_actual_human_decision\\\",\\\"reason\\\":\\\"合成例でPort例外の置換を明示する\\\",\\\"ref\\\":{\\\"identity\\\":\\\"HUMAN-CHANGE\\\",\\\"owner\\\":\\\"human-decision-original-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"source_atom\\\":\\\"A3\\\",\\\"source_ref\\\":{\\\"identity\\\":\\\"SOURCE-ATOMS\\\",\\\"owner\\\":\\\"independent-source-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"source_sha256\\\":\\\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\\\",\\\"target_ref\\\":{\\\"identity\\\":\\\"CHANGED-REQ\\\",\\\"owner\\\":\\\"requirement-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"target_sha256\\\":\\\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\\\"}\",\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"owner\":\"human-decision-original-owner\",\"revision\":\"fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"1ff9e9d6bb77367ebfccb2b1ce38f925c92f0d8bd49c68ef9f23bfc156acc59c\",\"evidence_kind\":\"synthetic\",\"kind\":\"coverage_receipt\",\"qualification_basis_refs\":[{\"identity\":\"QUALIFICATION-COVERAGE-RECEIPT-1ff9e9d6bb77\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"claim_scope\\\":\\\"SOURCE-A@r1:all_three_fixture_atoms\\\",\\\"covered_atom_ids\\\":[\\\"A1\\\",\\\"A2\\\",\\\"A3\\\"],\\\"ref\\\":{\\\"identity\\\":\\\"COVERAGE-RECEIPT\\\",\\\"owner\\\":\\\"coverage-original-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-f4164407077edd0a25de7d048784432779950faaadf26c4db471cf17cf9aac79\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"source_ref\\\":{\\\"identity\\\":\\\"SOURCE-ATOMS\\\",\\\"owner\\\":\\\"independent-source-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"}}\",\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"owner\":\"coverage-original-owner\",\"revision\":\"fixture-r1-content-f4164407077edd0a25de7d048784432779950faaadf26c4db471cf17cf9aac79\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"}],\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"snapshot_revision\":\"FIXTURE-CONTEXT-r1\",\"target_source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"owner\":\"independent-source-owner\",\"revision\":\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "1edecbfa85a4bba9b2771f8526d2ad94da1529e5cabd84adeb1b7d77b16a1bad"
+        },
+        "authority_effect": "none",
+        "oracle_freeze_scenario_id": "AUDIT-004-F04-QUAL-KIND",
+        "oracle_freeze_scenario_canonical_sha256": "a86a21e9a1bbfbe9c15d80497312242fa929ebd283ca8a1b2e705c99ba3d141c",
+        "context_canonical_sha256": "57605f609dd0c3ee45e168f332a07b0a6c055587aa47d02288790643cf9b4dcc",
+        "context_packet_sha256": "57605f609dd0c3ee45e168f332a07b0a6c055587aa47d02288790643cf9b4dcc"
+      },
+      {
+        "id": "H004-L8-F04-QUAL-STATE-FROZEN-CONTEXT",
+        "source_case_ref": "H004-F04-NORMAL",
+        "source_case_sha256": "a996190f932c8fa1f9c69cc70f7244de4e30830119ff801519ef472e93880d50",
+        "snapshot_lineage": "NORMAL合成Contextの独立copyへ資格recordの指定fieldだけを差し替えた事前固定variant。実owner/custody独立性の証明ではなく、input/candidateから生成しない。",
+        "context": {
+          "evidence_kind": "synthetic",
+          "qualification_records": [
+            {
+              "ref": {
+                "identity": "QUALIFICATION-SOURCE-ATOMS-86fb26827e29",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "kind": "source_population",
+              "target_ref": {
+                "identity": "SOURCE-ATOMS",
+                "revision": "fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36",
+                "scope": "PRODUCT-P",
+                "owner": "independent-source-owner"
+              },
+              "target_content_sha256": "86fb26827e29527c18f49de25541d9f7025863bdb79fda593487886466648559",
+              "state": "current",
+              "qualifier_ref": {
+                "identity": "SYNTHETIC-ORACLE-CONTEXT-BASIS",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "evidence_kind": "synthetic"
+            },
+            {
+              "ref": {
+                "identity": "QUALIFICATION-CURRENT-REQ-52c87a5e5959",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "kind": "live_requirement",
+              "target_ref": {
+                "identity": "CURRENT-REQ",
+                "revision": "fixture-r1-content-5c8c3780b5d88d5959688c30728083df2ef75ba0f67bc1d59d915e3ebf69bda3",
+                "scope": "PRODUCT-P",
+                "owner": "current-requirement-owner"
+              },
+              "target_content_sha256": "52c87a5e595921f56f28afa485937ee17559e4aef58a929e2c9895f68a80ef45",
+              "state": "current",
+              "qualifier_ref": {
+                "identity": "SYNTHETIC-ORACLE-CONTEXT-BASIS",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "evidence_kind": "synthetic"
+            },
+            {
+              "ref": {
+                "identity": "QUALIFICATION-LIVE-CANDIDATE-a0565e28a8f0",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "kind": "live_candidate",
+              "target_ref": {
+                "identity": "LIVE-CANDIDATE",
+                "revision": "fixture-r1-content-8d583641439f62d95e3b1d10ee435f2fdf16ac35efbda630fa9649386884422d",
+                "scope": "PRODUCT-P",
+                "owner": "candidate-owner"
+              },
+              "target_content_sha256": "a0565e28a8f084085ada48c0e0826eadd28933a89dd767d9c5f855af550ef9eb",
+              "state": "current",
+              "qualifier_ref": {
+                "identity": "SYNTHETIC-ORACLE-CONTEXT-BASIS",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "evidence_kind": "synthetic"
+            },
+            {
+              "ref": {
+                "identity": "QUALIFICATION-CHANGED-REQ-dfaf8dc6e4cd",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "kind": "changed_requirement",
+              "target_ref": {
+                "identity": "CHANGED-REQ",
+                "revision": "fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52",
+                "scope": "PRODUCT-P",
+                "owner": "requirement-owner"
+              },
+              "target_content_sha256": "dfaf8dc6e4cd967da98a53be1788b58b22b0d54ff723407d3adef0c5b08f496d",
+              "state": "current",
+              "qualifier_ref": {
+                "identity": "SYNTHETIC-ORACLE-CONTEXT-BASIS",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "evidence_kind": "synthetic"
+            },
+            {
+              "ref": {
+                "identity": "QUALIFICATION-HUMAN-CHANGE-09edf90e2b0f",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "kind": "human_meaning_change",
+              "target_ref": {
+                "identity": "HUMAN-CHANGE",
+                "revision": "fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116",
+                "scope": "PRODUCT-P",
+                "owner": "human-decision-original-owner"
+              },
+              "target_content_sha256": "09edf90e2b0f6473e79d7a7dbbf19b2e382860f593f56e88e9d37929272aa366",
+              "state": "unknown",
+              "qualifier_ref": {
+                "identity": "SYNTHETIC-ORACLE-CONTEXT-BASIS",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "evidence_kind": "synthetic"
+            },
+            {
+              "ref": {
+                "identity": "QUALIFICATION-COVERAGE-RECEIPT-1ff9e9d6bb77",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "kind": "coverage_receipt",
+              "target_ref": {
+                "identity": "COVERAGE-RECEIPT",
+                "revision": "fixture-r1-content-f4164407077edd0a25de7d048784432779950faaadf26c4db471cf17cf9aac79",
+                "scope": "PRODUCT-P",
+                "owner": "coverage-original-owner"
+              },
+              "target_content_sha256": "1ff9e9d6bb77367ebfccb2b1ce38f925c92f0d8bd49c68ef9f23bfc156acc59c",
+              "state": "current",
+              "qualifier_ref": {
+                "identity": "SYNTHETIC-ORACLE-CONTEXT-BASIS",
+                "owner": "independent-synthetic-context-fixture-owner",
+                "revision": "FIXTURE-CONTEXT-r1",
+                "scope": "PRODUCT-P"
+              },
+              "evidence_kind": "synthetic"
+            }
+          ],
+          "qualifier_roots": [
+            {
+              "identity": "SYNTHETIC-ORACLE-CONTEXT-BASIS",
+              "owner": "independent-synthetic-context-fixture-owner",
+              "revision": "FIXTURE-CONTEXT-r1",
+              "scope": "PRODUCT-P"
+            }
+          ],
+          "referents": [
+            {
+              "ref": {
+                "identity": "SOURCE-ATOMS",
+                "revision": "fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36",
+                "scope": "PRODUCT-P",
+                "owner": "independent-source-owner"
+              },
+              "kind": "source_population",
+              "raw_utf8": "{\"atoms\":[{\"id\":\"A1\",\"raw_utf8\":\"状態原記録はOSが所有する。\",\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\"},{\"id\":\"A2\",\"raw_utf8\":\"未観測はunknownとして保持する。\",\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\"},{\"id\":\"A3\",\"raw_utf8\":\"hotfixは即releaseする。\",\"sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\"}],\"outside_selection\":[\"SOURCE-B@r1_not_observed\"],\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"owner\":\"independent-source-owner\",\"revision\":\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\",\"scope\":\"PRODUCT-P\"},\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\"}",
+              "content_sha256": "86fb26827e29527c18f49de25541d9f7025863bdb79fda593487886466648559",
+              "state": "current",
+              "evidence_kind": "synthetic",
+              "qualification_basis_refs": [
+                {
+                  "identity": "QUALIFICATION-SOURCE-ATOMS-86fb26827e29",
+                  "owner": "independent-synthetic-context-fixture-owner",
+                  "revision": "FIXTURE-CONTEXT-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ]
+            },
+            {
+              "ref": {
+                "identity": "CURRENT-REQ",
+                "revision": "fixture-r1-content-5c8c3780b5d88d5959688c30728083df2ef75ba0f67bc1d59d915e3ebf69bda3",
+                "scope": "PRODUCT-P",
+                "owner": "current-requirement-owner"
+              },
+              "kind": "live_requirement",
+              "raw_utf8": "{\"raw_utf8\":\"状態原記録はOSが所有する。\",\"ref\":{\"identity\":\"CURRENT-REQ\",\"owner\":\"current-requirement-owner\",\"revision\":\"fixture-r1-content-5c8c3780b5d88d5959688c30728083df2ef75ba0f67bc1d59d915e3ebf69bda3\",\"scope\":\"PRODUCT-P\"},\"sha256\":\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\",\"state\":\"live_requirement\"}",
+              "content_sha256": "52c87a5e595921f56f28afa485937ee17559e4aef58a929e2c9895f68a80ef45",
+              "state": "current",
+              "evidence_kind": "synthetic",
+              "qualification_basis_refs": [
+                {
+                  "identity": "QUALIFICATION-CURRENT-REQ-52c87a5e5959",
+                  "owner": "independent-synthetic-context-fixture-owner",
+                  "revision": "FIXTURE-CONTEXT-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ]
+            },
+            {
+              "ref": {
+                "identity": "LIVE-CANDIDATE",
+                "revision": "fixture-r1-content-8d583641439f62d95e3b1d10ee435f2fdf16ac35efbda630fa9649386884422d",
+                "scope": "PRODUCT-P",
+                "owner": "candidate-owner"
+              },
+              "kind": "live_candidate",
+              "raw_utf8": "{\"raw_utf8\":\"未観測はunknownとして保持する。\",\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"owner\":\"candidate-owner\",\"revision\":\"fixture-r1-content-8d583641439f62d95e3b1d10ee435f2fdf16ac35efbda630fa9649386884422d\",\"scope\":\"PRODUCT-P\"},\"sha256\":\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\",\"state\":\"live_candidate\"}",
+              "content_sha256": "a0565e28a8f084085ada48c0e0826eadd28933a89dd767d9c5f855af550ef9eb",
+              "state": "current",
+              "evidence_kind": "synthetic",
+              "qualification_basis_refs": [
+                {
+                  "identity": "QUALIFICATION-LIVE-CANDIDATE-a0565e28a8f0",
+                  "owner": "independent-synthetic-context-fixture-owner",
+                  "revision": "FIXTURE-CONTEXT-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ]
+            },
+            {
+              "ref": {
+                "identity": "CHANGED-REQ",
+                "revision": "fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52",
+                "scope": "PRODUCT-P",
+                "owner": "requirement-owner"
+              },
+              "kind": "changed_requirement",
+              "raw_utf8": "{\"raw_utf8\":\"hotfixにも通常Portを適用する。\",\"ref\":{\"identity\":\"CHANGED-REQ\",\"owner\":\"requirement-owner\",\"revision\":\"fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52\",\"scope\":\"PRODUCT-P\"},\"sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\",\"state\":\"changed_requirement\"}",
+              "content_sha256": "dfaf8dc6e4cd967da98a53be1788b58b22b0d54ff723407d3adef0c5b08f496d",
+              "state": "current",
+              "evidence_kind": "synthetic",
+              "qualification_basis_refs": [
+                {
+                  "identity": "QUALIFICATION-CHANGED-REQ-dfaf8dc6e4cd",
+                  "owner": "independent-synthetic-context-fixture-owner",
+                  "revision": "FIXTURE-CONTEXT-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ]
+            },
+            {
+              "ref": {
+                "identity": "HUMAN-CHANGE",
+                "revision": "fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116",
+                "scope": "PRODUCT-P",
+                "owner": "human-decision-original-owner"
+              },
+              "kind": "human_meaning_change",
+              "raw_utf8": "{\"impact_scope\":\"PRODUCT-P\",\"kind\":\"human_meaning_change\",\"outcome\":\"change\",\"qualification\":\"synthetic_reference_not_actual_human_decision\",\"reason\":\"合成例でPort例外の置換を明示する\",\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"owner\":\"human-decision-original-owner\",\"revision\":\"fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116\",\"scope\":\"PRODUCT-P\"},\"source_atom\":\"A3\",\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"owner\":\"independent-source-owner\",\"revision\":\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\",\"scope\":\"PRODUCT-P\"},\"source_sha256\":\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"owner\":\"requirement-owner\",\"revision\":\"fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52\",\"scope\":\"PRODUCT-P\"},\"target_sha256\":\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\"}",
+              "content_sha256": "09edf90e2b0f6473e79d7a7dbbf19b2e382860f593f56e88e9d37929272aa366",
+              "state": "current",
+              "evidence_kind": "synthetic",
+              "qualification_basis_refs": [
+                {
+                  "identity": "QUALIFICATION-HUMAN-CHANGE-09edf90e2b0f",
+                  "owner": "independent-synthetic-context-fixture-owner",
+                  "revision": "FIXTURE-CONTEXT-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ]
+            },
+            {
+              "ref": {
+                "identity": "COVERAGE-RECEIPT",
+                "revision": "fixture-r1-content-f4164407077edd0a25de7d048784432779950faaadf26c4db471cf17cf9aac79",
+                "scope": "PRODUCT-P",
+                "owner": "coverage-original-owner"
+              },
+              "kind": "coverage_receipt",
+              "raw_utf8": "{\"claim_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"covered_atom_ids\":[\"A1\",\"A2\",\"A3\"],\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"owner\":\"coverage-original-owner\",\"revision\":\"fixture-r1-content-f4164407077edd0a25de7d048784432779950faaadf26c4db471cf17cf9aac79\",\"scope\":\"PRODUCT-P\"},\"source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"owner\":\"independent-source-owner\",\"revision\":\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\",\"scope\":\"PRODUCT-P\"}}",
+              "content_sha256": "1ff9e9d6bb77367ebfccb2b1ce38f925c92f0d8bd49c68ef9f23bfc156acc59c",
+              "state": "current",
+              "evidence_kind": "synthetic",
+              "qualification_basis_refs": [
+                {
+                  "identity": "QUALIFICATION-COVERAGE-RECEIPT-1ff9e9d6bb77",
+                  "owner": "independent-synthetic-context-fixture-owner",
+                  "revision": "FIXTURE-CONTEXT-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ]
+            }
+          ],
+          "selection_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+          "snapshot_revision": "FIXTURE-CONTEXT-r1",
+          "target_source_ref": {
+            "identity": "SOURCE-ATOMS",
+            "revision": "fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36",
+            "scope": "PRODUCT-P",
+            "owner": "independent-source-owner"
+          }
+        },
+        "source_packet": {
+          "ref": {
+            "identity": "H004-L8-F04-NORMAL-FIXED-CONTEXT",
+            "revision": "fixture-1edecbfa85a4bba9b2771f8526d2ad94da1529e5cabd84adeb1b7d77b16a1bad",
+            "owner": "independent-synthetic-context-fixture-owner",
+            "scope": "PRODUCT-P"
+          },
+          "raw_utf8": "{\"evidence_kind\":\"synthetic\",\"qualification_records\":[{\"evidence_kind\":\"synthetic\",\"kind\":\"source_population\",\"qualifier_ref\":{\"identity\":\"SYNTHETIC-ORACLE-CONTEXT-BASIS\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"ref\":{\"identity\":\"QUALIFICATION-SOURCE-ATOMS-86fb26827e29\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\",\"target_content_sha256\":\"86fb26827e29527c18f49de25541d9f7025863bdb79fda593487886466648559\",\"target_ref\":{\"identity\":\"SOURCE-ATOMS\",\"owner\":\"independent-source-owner\",\"revision\":\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\",\"scope\":\"PRODUCT-P\"}},{\"evidence_kind\":\"synthetic\",\"kind\":\"live_requirement\",\"qualifier_ref\":{\"identity\":\"SYNTHETIC-ORACLE-CONTEXT-BASIS\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"ref\":{\"identity\":\"QUALIFICATION-CURRENT-REQ-52c87a5e5959\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\",\"target_content_sha256\":\"52c87a5e595921f56f28afa485937ee17559e4aef58a929e2c9895f68a80ef45\",\"target_ref\":{\"identity\":\"CURRENT-REQ\",\"owner\":\"current-requirement-owner\",\"revision\":\"fixture-r1-content-5c8c3780b5d88d5959688c30728083df2ef75ba0f67bc1d59d915e3ebf69bda3\",\"scope\":\"PRODUCT-P\"}},{\"evidence_kind\":\"synthetic\",\"kind\":\"live_candidate\",\"qualifier_ref\":{\"identity\":\"SYNTHETIC-ORACLE-CONTEXT-BASIS\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"ref\":{\"identity\":\"QUALIFICATION-LIVE-CANDIDATE-a0565e28a8f0\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\",\"target_content_sha256\":\"a0565e28a8f084085ada48c0e0826eadd28933a89dd767d9c5f855af550ef9eb\",\"target_ref\":{\"identity\":\"LIVE-CANDIDATE\",\"owner\":\"candidate-owner\",\"revision\":\"fixture-r1-content-8d583641439f62d95e3b1d10ee435f2fdf16ac35efbda630fa9649386884422d\",\"scope\":\"PRODUCT-P\"}},{\"evidence_kind\":\"synthetic\",\"kind\":\"changed_requirement\",\"qualifier_ref\":{\"identity\":\"SYNTHETIC-ORACLE-CONTEXT-BASIS\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"ref\":{\"identity\":\"QUALIFICATION-CHANGED-REQ-dfaf8dc6e4cd\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\",\"target_content_sha256\":\"dfaf8dc6e4cd967da98a53be1788b58b22b0d54ff723407d3adef0c5b08f496d\",\"target_ref\":{\"identity\":\"CHANGED-REQ\",\"owner\":\"requirement-owner\",\"revision\":\"fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52\",\"scope\":\"PRODUCT-P\"}},{\"evidence_kind\":\"synthetic\",\"kind\":\"human_meaning_change\",\"qualifier_ref\":{\"identity\":\"SYNTHETIC-ORACLE-CONTEXT-BASIS\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"ref\":{\"identity\":\"QUALIFICATION-HUMAN-CHANGE-09edf90e2b0f\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\",\"target_content_sha256\":\"09edf90e2b0f6473e79d7a7dbbf19b2e382860f593f56e88e9d37929272aa366\",\"target_ref\":{\"identity\":\"HUMAN-CHANGE\",\"owner\":\"human-decision-original-owner\",\"revision\":\"fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116\",\"scope\":\"PRODUCT-P\"}},{\"evidence_kind\":\"synthetic\",\"kind\":\"coverage_receipt\",\"qualifier_ref\":{\"identity\":\"SYNTHETIC-ORACLE-CONTEXT-BASIS\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"ref\":{\"identity\":\"QUALIFICATION-COVERAGE-RECEIPT-1ff9e9d6bb77\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\",\"target_content_sha256\":\"1ff9e9d6bb77367ebfccb2b1ce38f925c92f0d8bd49c68ef9f23bfc156acc59c\",\"target_ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"owner\":\"coverage-original-owner\",\"revision\":\"fixture-r1-content-f4164407077edd0a25de7d048784432779950faaadf26c4db471cf17cf9aac79\",\"scope\":\"PRODUCT-P\"}}],\"qualifier_roots\":[{\"identity\":\"SYNTHETIC-ORACLE-CONTEXT-BASIS\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"}],\"referents\":[{\"content_sha256\":\"86fb26827e29527c18f49de25541d9f7025863bdb79fda593487886466648559\",\"evidence_kind\":\"synthetic\",\"kind\":\"source_population\",\"qualification_basis_refs\":[{\"identity\":\"QUALIFICATION-SOURCE-ATOMS-86fb26827e29\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"atoms\\\":[{\\\"id\\\":\\\"A1\\\",\\\"raw_utf8\\\":\\\"状態原記録はOSが所有する。\\\",\\\"sha256\\\":\\\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\\\"},{\\\"id\\\":\\\"A2\\\",\\\"raw_utf8\\\":\\\"未観測はunknownとして保持する。\\\",\\\"sha256\\\":\\\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\\\"},{\\\"id\\\":\\\"A3\\\",\\\"raw_utf8\\\":\\\"hotfixは即releaseする。\\\",\\\"sha256\\\":\\\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\\\"}],\\\"outside_selection\\\":[\\\"SOURCE-B@r1_not_observed\\\"],\\\"ref\\\":{\\\"identity\\\":\\\"SOURCE-ATOMS\\\",\\\"owner\\\":\\\"independent-source-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"selection_scope\\\":\\\"SOURCE-A@r1:all_three_fixture_atoms\\\"}\",\"ref\":{\"identity\":\"SOURCE-ATOMS\",\"owner\":\"independent-source-owner\",\"revision\":\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"52c87a5e595921f56f28afa485937ee17559e4aef58a929e2c9895f68a80ef45\",\"evidence_kind\":\"synthetic\",\"kind\":\"live_requirement\",\"qualification_basis_refs\":[{\"identity\":\"QUALIFICATION-CURRENT-REQ-52c87a5e5959\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"raw_utf8\\\":\\\"状態原記録はOSが所有する。\\\",\\\"ref\\\":{\\\"identity\\\":\\\"CURRENT-REQ\\\",\\\"owner\\\":\\\"current-requirement-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-5c8c3780b5d88d5959688c30728083df2ef75ba0f67bc1d59d915e3ebf69bda3\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"sha256\\\":\\\"70169d7edc7bfb903ba881ce72599f4bdbb491e80ab877aa5bd3a0060ac3c63a\\\",\\\"state\\\":\\\"live_requirement\\\"}\",\"ref\":{\"identity\":\"CURRENT-REQ\",\"owner\":\"current-requirement-owner\",\"revision\":\"fixture-r1-content-5c8c3780b5d88d5959688c30728083df2ef75ba0f67bc1d59d915e3ebf69bda3\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"a0565e28a8f084085ada48c0e0826eadd28933a89dd767d9c5f855af550ef9eb\",\"evidence_kind\":\"synthetic\",\"kind\":\"live_candidate\",\"qualification_basis_refs\":[{\"identity\":\"QUALIFICATION-LIVE-CANDIDATE-a0565e28a8f0\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"raw_utf8\\\":\\\"未観測はunknownとして保持する。\\\",\\\"ref\\\":{\\\"identity\\\":\\\"LIVE-CANDIDATE\\\",\\\"owner\\\":\\\"candidate-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-8d583641439f62d95e3b1d10ee435f2fdf16ac35efbda630fa9649386884422d\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"sha256\\\":\\\"2deb44085e417b27453f5028ee43eb2ca4502c34f9cf0b40dd7a735f993a9272\\\",\\\"state\\\":\\\"live_candidate\\\"}\",\"ref\":{\"identity\":\"LIVE-CANDIDATE\",\"owner\":\"candidate-owner\",\"revision\":\"fixture-r1-content-8d583641439f62d95e3b1d10ee435f2fdf16ac35efbda630fa9649386884422d\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"dfaf8dc6e4cd967da98a53be1788b58b22b0d54ff723407d3adef0c5b08f496d\",\"evidence_kind\":\"synthetic\",\"kind\":\"changed_requirement\",\"qualification_basis_refs\":[{\"identity\":\"QUALIFICATION-CHANGED-REQ-dfaf8dc6e4cd\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"raw_utf8\\\":\\\"hotfixにも通常Portを適用する。\\\",\\\"ref\\\":{\\\"identity\\\":\\\"CHANGED-REQ\\\",\\\"owner\\\":\\\"requirement-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"sha256\\\":\\\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\\\",\\\"state\\\":\\\"changed_requirement\\\"}\",\"ref\":{\"identity\":\"CHANGED-REQ\",\"owner\":\"requirement-owner\",\"revision\":\"fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"09edf90e2b0f6473e79d7a7dbbf19b2e382860f593f56e88e9d37929272aa366\",\"evidence_kind\":\"synthetic\",\"kind\":\"human_meaning_change\",\"qualification_basis_refs\":[{\"identity\":\"QUALIFICATION-HUMAN-CHANGE-09edf90e2b0f\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"impact_scope\\\":\\\"PRODUCT-P\\\",\\\"kind\\\":\\\"human_meaning_change\\\",\\\"outcome\\\":\\\"change\\\",\\\"qualification\\\":\\\"synthetic_reference_not_actual_human_decision\\\",\\\"reason\\\":\\\"合成例でPort例外の置換を明示する\\\",\\\"ref\\\":{\\\"identity\\\":\\\"HUMAN-CHANGE\\\",\\\"owner\\\":\\\"human-decision-original-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"source_atom\\\":\\\"A3\\\",\\\"source_ref\\\":{\\\"identity\\\":\\\"SOURCE-ATOMS\\\",\\\"owner\\\":\\\"independent-source-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"source_sha256\\\":\\\"3f03c28a13b40a8769aed3e9be4d3b6d180eb4e3030a0d2a7dbcf3263e57a328\\\",\\\"target_ref\\\":{\\\"identity\\\":\\\"CHANGED-REQ\\\",\\\"owner\\\":\\\"requirement-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"target_sha256\\\":\\\"266fa03940db519962aa6e24026e700ac93e7ad3c73ac975c95bb331b733a32c\\\"}\",\"ref\":{\"identity\":\"HUMAN-CHANGE\",\"owner\":\"human-decision-original-owner\",\"revision\":\"fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"1ff9e9d6bb77367ebfccb2b1ce38f925c92f0d8bd49c68ef9f23bfc156acc59c\",\"evidence_kind\":\"synthetic\",\"kind\":\"coverage_receipt\",\"qualification_basis_refs\":[{\"identity\":\"QUALIFICATION-COVERAGE-RECEIPT-1ff9e9d6bb77\",\"owner\":\"independent-synthetic-context-fixture-owner\",\"revision\":\"FIXTURE-CONTEXT-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"claim_scope\\\":\\\"SOURCE-A@r1:all_three_fixture_atoms\\\",\\\"covered_atom_ids\\\":[\\\"A1\\\",\\\"A2\\\",\\\"A3\\\"],\\\"ref\\\":{\\\"identity\\\":\\\"COVERAGE-RECEIPT\\\",\\\"owner\\\":\\\"coverage-original-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-f4164407077edd0a25de7d048784432779950faaadf26c4db471cf17cf9aac79\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"source_ref\\\":{\\\"identity\\\":\\\"SOURCE-ATOMS\\\",\\\"owner\\\":\\\"independent-source-owner\\\",\\\"revision\\\":\\\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"}}\",\"ref\":{\"identity\":\"COVERAGE-RECEIPT\",\"owner\":\"coverage-original-owner\",\"revision\":\"fixture-r1-content-f4164407077edd0a25de7d048784432779950faaadf26c4db471cf17cf9aac79\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"}],\"selection_scope\":\"SOURCE-A@r1:all_three_fixture_atoms\",\"snapshot_revision\":\"FIXTURE-CONTEXT-r1\",\"target_source_ref\":{\"identity\":\"SOURCE-ATOMS\",\"owner\":\"independent-source-owner\",\"revision\":\"fixture-r1-content-abeb67d273643d5d33c8819686a7801c28f35cdf90db8c5e607ad97c14456b36\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "1edecbfa85a4bba9b2771f8526d2ad94da1529e5cabd84adeb1b7d77b16a1bad"
+        },
+        "authority_effect": "none",
+        "oracle_freeze_scenario_id": "AUDIT-004-F04-QUAL-STATE",
+        "oracle_freeze_scenario_canonical_sha256": "9dba97c9870a878a75897e3174146efe8c19ce5767b5bdcf1fc58899849dd25f",
+        "context_canonical_sha256": "2655b6bcb4e28e298545717d1fc0295942af056242f0b139d736854b64d68c01",
+        "context_packet_sha256": "2655b6bcb4e28e298545717d1fc0295942af056242f0b139d736854b64d68c01"
       }
     ],
     "cases": [
@@ -77913,10 +78541,180 @@
         },
         "execution_state": "not_executed",
         "operation_effect": "none"
+      },
+      {
+        "id": "H004-L8-F04-QUAL-KIND-WHOLE",
+        "design_ref": "HARNESS-L5-004-F04",
+        "requirement_ref": "HARNESS-L3-004-F04",
+        "case_ref": "AUDIT-004-F04-QUAL-KIND",
+        "case_sha256": "901b9db6d88ddc123a04331628649eba6527636b169025cd81e47a79ebf31faa",
+        "case_identity_rule": "case_ref、input_packet_sha256、context_packet_sha256、candidate_argument_sha256を含むcanonical JSONのSHA-256。このL8合成variantの識別値であり、元L9 case identityを表さない。",
+        "input_packet_sha256": "3fed5ed89c5ee1ae04d33d72bd449dfe5a008070034871c655751dfaefa581c7",
+        "context_fixture_ref": "H004-L8-F04-QUAL-KIND-FROZEN-CONTEXT",
+        "context_packet_sha256": "57605f609dd0c3ee45e168f332a07b0a6c055587aa47d02288790643cf9b4dcc",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "oracle_freeze_scenario_id": "AUDIT-004-F04-QUAL-KIND",
+        "oracle_freeze_scenario_canonical_sha256": "a86a21e9a1bbfbe9c15d80497312242fa929ebd283ca8a1b2e705c99ba3d141c",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "unknown_atom_ids": [],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "partition_condition": "conflict",
+            "actual_requirement_adopted": false,
+            "invalid_decision_atom_ids": [
+              "A3"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_source_migration_complete": false,
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "invalid_receipt": false,
+            "actual_retirement": false,
+            "invalid_destination_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "actual_implementation_authorized": false,
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "actual_no_loss_certified": false
+          },
+          "findings": [
+            {
+              "code": "reference_conflict",
+              "pointer": "/context/qualification_records/4/kind",
+              "atom_ids": [
+                "A3"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "HUMAN-CHANGE",
+                  "revision": "fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116",
+                  "scope": "PRODUCT-P",
+                  "owner": "human-decision-original-owner"
+                },
+                {
+                  "identity": "QUALIFICATION-HUMAN-CHANGE-09edf90e2b0f",
+                  "owner": "independent-synthetic-context-fixture-owner",
+                  "revision": "FIXTURE-CONTEXT-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "human-decision-original-owner"
+            }
+          ],
+          "retained_input_sha256": "3fed5ed89c5ee1ae04d33d72bd449dfe5a008070034871c655751dfaefa581c7",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed",
+        "operation_effect": "none"
+      },
+      {
+        "id": "H004-L8-F04-QUAL-STATE-WHOLE",
+        "design_ref": "HARNESS-L5-004-F04",
+        "requirement_ref": "HARNESS-L3-004-F04",
+        "case_ref": "AUDIT-004-F04-QUAL-STATE",
+        "case_sha256": "71d9b3f108f37c26b96f9ec115c79fff9ccb974fb9f40d73be7e1d7060ec884a",
+        "case_identity_rule": "case_ref、input_packet_sha256、context_packet_sha256、candidate_argument_sha256を含むcanonical JSONのSHA-256。このL8合成variantの識別値であり、元L9 case identityを表さない。",
+        "input_packet_sha256": "3fed5ed89c5ee1ae04d33d72bd449dfe5a008070034871c655751dfaefa581c7",
+        "context_fixture_ref": "H004-L8-F04-QUAL-STATE-FROZEN-CONTEXT",
+        "context_packet_sha256": "2655b6bcb4e28e298545717d1fc0295942af056242f0b139d736854b64d68c01",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "oracle_freeze_scenario_id": "AUDIT-004-F04-QUAL-STATE",
+        "oracle_freeze_scenario_canonical_sha256": "9dba97c9870a878a75897e3174146efe8c19ce5767b5bdcf1fc58899849dd25f",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "unknown_atom_ids": [],
+            "unaccounted_atom_ids": [],
+            "duplicate_atom_ids": [],
+            "partition_condition": "unknown",
+            "actual_requirement_adopted": false,
+            "invalid_decision_atom_ids": [
+              "A3"
+            ],
+            "human_changed_or_retired_atom_ids": [
+              "A3"
+            ],
+            "outside_selection": [
+              "SOURCE-B@r1_not_observed"
+            ],
+            "actual_source_migration_complete": false,
+            "retained_atom_ids": [
+              "A1"
+            ],
+            "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+            "invalid_receipt": false,
+            "actual_retirement": false,
+            "invalid_destination_atom_ids": [],
+            "invalid_source_atom_ids": [],
+            "actual_implementation_authorized": false,
+            "source_atom_ids": [
+              "A1",
+              "A2",
+              "A3"
+            ],
+            "pending_atom_ids": [
+              "A2"
+            ],
+            "actual_no_loss_certified": false
+          },
+          "findings": [
+            {
+              "code": "reference_unknown",
+              "pointer": "/context/qualification_records/4/state",
+              "atom_ids": [
+                "A3"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "HUMAN-CHANGE",
+                  "revision": "fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116",
+                  "scope": "PRODUCT-P",
+                  "owner": "human-decision-original-owner"
+                },
+                {
+                  "identity": "QUALIFICATION-HUMAN-CHANGE-09edf90e2b0f",
+                  "owner": "independent-synthetic-context-fixture-owner",
+                  "revision": "FIXTURE-CONTEXT-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "human-decision-original-owner"
+            }
+          ],
+          "retained_input_sha256": "3fed5ed89c5ee1ae04d33d72bd449dfe5a008070034871c655751dfaefa581c7",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed",
+        "operation_effect": "none"
       }
     ],
     "comparison": "resolve exact input/Context/candidate hashes before invoking the comparator. Compare every PartitionResult field and every typed finding, including basis refs and empty collections.",
-    "scope_limit": "45 fixed F04 controls only. Other6 contracts, additional shape/qualification/profile/consumer/L6L7/freeze/runtime remain incomplete."
+    "scope_limit": "45 fixed F04 controls only. Other6 contracts, additional shape/qualification/profile/consumer/L6L7/freeze/runtime remain incomplete. 追加のW20/W21 wholeは独立に凍結したhuman decision qualification kind/stateの2 variantに限る。元45ケースと期待値を変更せず、他資格field/全構造/実資格の閉包を主張しない。",
+    "qualification_kind_state_oracle_freeze": {
+      "source_kind": "無視対象のローカル独立oracle著述記録。出典照合にだけ使い、repository上の実行依存にはしない。",
+      "path": "scaffold/review-handoff/local/full-scope-design-closure-audit-cd31e054/first-batch-d7c70069/004-f04-qualified-return/oracle-freeze.json",
+      "revision": "d7c700695aa0e5f8c2058afa9ae193e2b6984fd8",
+      "sha256": "cac8b601ce14a18a79b5f7939db6a67aea40f6a87ebf31093c40eb4b4acdbecc",
+      "embedded_complete_expectation_count": 2,
+      "embedded_locations": "本L8 whole_result_oracles.casesに各expected_resultの全fieldを、fixed_source_context_fixturesに各独立Contextの全値を複写固定する。読取側は本JSONの固定値を使用し、無視対象のローカルファイルを必要としない。"
+    }
   },
   "closure_increment_sources": [
     {
@@ -161880,5 +162678,23 @@
     "case_count": 74,
     "verification_limit": "全readonly提案10fieldと再帰valueを文書照合。CE/WIRE既case参照と7component×2原frameを保持。fixture graphは正式host型でなく、readonly projectionの実構築/不変性/consumer呼出しを生成しない。",
     "execution_state": "not_executed"
+  },
+  "candidate_l5_binding": {
+    "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+    "sha256": "cb06ab41dab1f0af49f5b5315f020b8d3d12736d6fb2187382924266f2449979",
+    "binding_kind": "exact_candidate_file_bytes",
+    "meaning": "このL8候補は同一candidate pairのL5厳密なbytesを参照し、以下のW20/W21 pointerを固定する。承認済みL5、実資格、製品実装、runtime実行の証拠ではない。",
+    "rule_bindings": [
+      {
+        "pointer": "/functions/0/whole_result_contract/emission_rules/19",
+        "rule_id": "W20",
+        "value_canonical_sha256": "d59435cd0577458f7b776ddbf72d8f5a92e8249ccd741bc58c3c6d8571cf1a52"
+      },
+      {
+        "pointer": "/functions/0/whole_result_contract/emission_rules/20",
+        "rule_id": "W21",
+        "value_canonical_sha256": "2e32472b2fcc36f9b8a91012d39e5dc778eb8722a32038ed8fd6b7d556ff6b9d"
+      }
+    ]
   }
 }
