@@ -4,7 +4,7 @@
   "layer": "L5",
   "pair": "HELIXCONNECT-L8-009",
   "status": "draft_detail_material_pending_independent_review",
-  "source_main": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+  "source_main": "ed42f2ece7ab34108134596659ccd5d83c27b281",
   "authority_effect": "none",
   "operation_effect": "none",
   "implementation_readiness": "not_ready",
@@ -65,13 +65,13 @@
     "current_basic_pair": [
       {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
-        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
-        "sha256": "fb51efa3c67a07e9ab8803e2e4d93f4031d523e9ce14014f43bb4ea7102a9f14"
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+        "sha256": "840d219dde4ce14327c5a64662060231fc22e35cf12e3b6ea5d53d87c474a6a1"
       },
       {
         "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
-        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
-        "sha256": "24266042ed2a72b9ca9578042075f449ed736bcc22132cd68f4e027d908fce80"
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+        "sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9"
       }
     ],
     "approved_content_revision": "0473767cb338041ae83a9e3c95ca48a55eb4eae6",
@@ -381,7 +381,7 @@
       "全業務path/literal/分岐/優先/返却は正式ASTへ置き、汎用readerへ業務演算子を置かない。",
       "F02複数/反復先行の独立target列・attempt識別とF07原forward/return owner比較を、既存raw carrierとpublic return shapeで詳細化する。"
     ],
-    "理由": "L3/L4/L9原義務とrawを保持し、L8でF07独立binding未供給の38wholeを履歴付き個別訂正する。他8契約とF02の旧単一先行wholeは保持する。旧runtimeの再利用/実行ではない。"
+    "理由": "L3の意味と基本契約の原source供給を保持する。F07のL9由来26例を基本の新raw/wholeへ対応付け、local 12例は元の観測目的に応じ原source明示供給又は未供給不足を保持する。旧raw/wholeはexact revisionの履歴参照へ保存する。他8契約とF02既存単一先行の計算を保持する。"
   },
   "logical_types": {
     "JsonValue": {
@@ -1448,7 +1448,7 @@
       "source_contract": {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
         "pointer": "/contracts/0",
-        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5"
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281"
       },
       "reads": {
         "packet_roots": [
@@ -1521,7 +1521,7 @@
       "source_contract": {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
         "pointer": "/contracts/1",
-        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5"
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281"
       },
       "reads": {
         "packet_roots": [
@@ -1582,6 +1582,181 @@
       "unit_case_refs": [
         {
           "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/34",
+          "case_id": "C009-F02-POSITIVE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/35",
+          "case_id": "C009-F02-NEGATIVE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/36",
+          "case_id": "C009-F02-DECLARED_TOPOLOGY-MISSING"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/37",
+          "case_id": "C009-F02-DECLARED_TOPOLOGY-UNKNOWN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/38",
+          "case_id": "C009-F02-DECLARED_TOPOLOGY-STALE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/39",
+          "case_id": "C009-F02-DECLARED_TOPOLOGY-CONFLICT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/40",
+          "case_id": "C009-F02-TOPOLOGY_OWNER-MISSING"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/41",
+          "case_id": "C009-F02-TOPOLOGY_OWNER-UNKNOWN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/42",
+          "case_id": "C009-F02-TOPOLOGY_OWNER-STALE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/43",
+          "case_id": "C009-F02-TOPOLOGY_OWNER-CONFLICT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/44",
+          "case_id": "C009-F02-ORDERED_EDGE_SET-MISSING"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/45",
+          "case_id": "C009-F02-ORDERED_EDGE_SET-UNKNOWN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/46",
+          "case_id": "C009-F02-ORDERED_EDGE_SET-STALE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/47",
+          "case_id": "C009-F02-ORDERED_EDGE_SET-CONFLICT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/48",
+          "case_id": "C009-F02-NEEDED_PREDECESSOR_RESULTS-MISSING"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/49",
+          "case_id": "C009-F02-NEEDED_PREDECESSOR_RESULTS-UNKNOWN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/50",
+          "case_id": "C009-F02-NEEDED_PREDECESSOR_RESULTS-STALE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/51",
+          "case_id": "C009-F02-NEEDED_PREDECESSOR_RESULTS-CONFLICT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/52",
+          "case_id": "C009-F02-PREDECESSOR_CONTRACT_CONDITIONS-MISSING"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/53",
+          "case_id": "C009-F02-PREDECESSOR_CONTRACT_CONDITIONS-UNKNOWN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/54",
+          "case_id": "C009-F02-PREDECESSOR_CONTRACT_CONDITIONS-STALE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/55",
+          "case_id": "C009-F02-PREDECESSOR_CONTRACT_CONDITIONS-CONFLICT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/56",
+          "case_id": "C009-F02-ORDERED_EDGE_SET-NOT-ESTABLISHED"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/57",
+          "case_id": "C009-F02-PREDECESSOR_CONTRACT_CONDITIONS-NOT-ESTABLISHED"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/58",
+          "case_id": "C009-F02-NEEDED_PREDECESSOR_RESULTS-NOT-ESTABLISHED"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/59",
+          "case_id": "C009-F02-PREDECESSOR-OPERATION-FOREIGN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/60",
+          "case_id": "C009-F02-PREDECESSOR-CONTRACT_REVISION-FOREIGN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/61",
+          "case_id": "C009-F02-NEEDED_PREDECESSOR_RESULTS-EMPTY"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/62",
+          "case_id": "C009-F02-PREDECESSOR_CONTRACT_CONDITIONS-EMPTY"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/282",
+          "case_id": "P02-TWO-EMPTY-PREDECESSOR-SETS"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/328",
+          "case_id": "LOCAL-C009-F02-NULL-PREDECESSOR-IDENTITY"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/329",
+          "case_id": "LOCAL-C009-F02-BOOLEAN-NUMBER-EDGE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/346",
+          "case_id": "LOCAL-C009-F02-DECLARATION-IDENTITY-NULL"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/347",
+          "case_id": "LOCAL-C009-F02-DECLARATION-OWNER-NULL"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/348",
+          "case_id": "LOCAL-C009-F02-DECLARATION-IDENTITY-OWNER-NULL"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
           "pointer": "/cases/352",
           "case_id": "BIND-F02-TWO-INDEPENDENT-TARGETS"
         },
@@ -1624,6 +1799,41 @@
           "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
           "pointer": "/cases/360",
           "case_id": "BIND-F02-UNRELATED-RAW-SOURCE-RETAINED"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/368",
+          "case_id": "R1-F02-CURRENT-ATTEMPT-ABSENT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/369",
+          "case_id": "R1-F02-ONLY-SOURCE-EDGE-DIFFERS"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/370",
+          "case_id": "R1-F02-SOURCE-COLLECTION-NONARRAY"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/371",
+          "case_id": "R1-F02-SECOND-CONDITION-ZERO"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/372",
+          "case_id": "R1-F02-SECOND-CONDITION-MULTIPLE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/373",
+          "case_id": "R1-F02-NATIVE-OPERATION-ABSENT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/374",
+          "case_id": "R1-F02-NATIVE-OPERATION-NULL"
         }
       ]
     },
@@ -1644,7 +1854,7 @@
       "source_contract": {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
         "pointer": "/contracts/2",
-        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5"
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281"
       },
       "reads": {
         "packet_roots": [
@@ -1712,7 +1922,7 @@
       "source_contract": {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
         "pointer": "/contracts/3",
-        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5"
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281"
       },
       "reads": {
         "packet_roots": [
@@ -1787,7 +1997,7 @@
       "source_contract": {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
         "pointer": "/contracts/4",
-        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5"
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281"
       },
       "reads": {
         "packet_roots": [
@@ -1865,7 +2075,7 @@
       "source_contract": {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
         "pointer": "/contracts/5",
-        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5"
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281"
       },
       "reads": {
         "packet_roots": [
@@ -1935,7 +2145,7 @@
       "source_contract": {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
         "pointer": "/contracts/6",
-        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5"
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281"
       },
       "reads": {
         "packet_roots": [
@@ -1998,6 +2208,196 @@
       "unit_case_refs": [
         {
           "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/193",
+          "case_id": "C009-F07-POSITIVE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/194",
+          "case_id": "C009-F07-NEGATIVE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/195",
+          "case_id": "C009-F07-REASON_OR_EVIDENCE_REF-MISSING"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/196",
+          "case_id": "C009-F07-REASON_OR_EVIDENCE_REF-UNKNOWN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/197",
+          "case_id": "C009-F07-REASON_OR_EVIDENCE_REF-STALE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/198",
+          "case_id": "C009-F07-REASON_OR_EVIDENCE_REF-CONFLICT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/199",
+          "case_id": "C009-F07-SOURCE_IDENTITY-MISSING"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/200",
+          "case_id": "C009-F07-SOURCE_IDENTITY-UNKNOWN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/201",
+          "case_id": "C009-F07-SOURCE_IDENTITY-STALE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/202",
+          "case_id": "C009-F07-SOURCE_IDENTITY-CONFLICT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/203",
+          "case_id": "C009-F07-TARGET_IDENTITY-MISSING"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/204",
+          "case_id": "C009-F07-TARGET_IDENTITY-UNKNOWN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/205",
+          "case_id": "C009-F07-TARGET_IDENTITY-STALE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/206",
+          "case_id": "C009-F07-TARGET_IDENTITY-CONFLICT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/207",
+          "case_id": "C009-F07-CONTRACT_REVISION-MISSING"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/208",
+          "case_id": "C009-F07-CONTRACT_REVISION-UNKNOWN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/209",
+          "case_id": "C009-F07-CONTRACT_REVISION-STALE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/210",
+          "case_id": "C009-F07-CONTRACT_REVISION-CONFLICT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/211",
+          "case_id": "C009-F07-INDEPENDENT_REVERSE_CONNECTION-MISSING"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/212",
+          "case_id": "C009-F07-INDEPENDENT_REVERSE_CONNECTION-UNKNOWN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/213",
+          "case_id": "C009-F07-INDEPENDENT_REVERSE_CONNECTION-STALE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/214",
+          "case_id": "C009-F07-INDEPENDENT_REVERSE_CONNECTION-CONFLICT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/215",
+          "case_id": "C009-F07-FEEDBACK_OPERATION_AUTHORITY-MISSING"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/216",
+          "case_id": "C009-F07-FEEDBACK_OPERATION_AUTHORITY-UNKNOWN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/217",
+          "case_id": "C009-F07-FEEDBACK_OPERATION_AUTHORITY-STALE"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/218",
+          "case_id": "C009-F07-FEEDBACK_OPERATION_AUTHORITY-CONFLICT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/287",
+          "case_id": "P07-ROLE-OWNER-FOREIGN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/294",
+          "case_id": "P14-FEEDBACK-PROSE-ONLY"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/303",
+          "case_id": "LOCAL-C009-F07-SOURCE-IDENTITY-NULL"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/304",
+          "case_id": "LOCAL-C009-F07-TARGET-IDENTITY-NULL"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/315",
+          "case_id": "LOCAL-C009-F07-REVERSE-IDENTITY-ABSENT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/320",
+          "case_id": "LOCAL-C009-F07-TARGET-INDEPENDENT_REVERSE_CONNECTION"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/321",
+          "case_id": "LOCAL-C009-F07-TARGET-FEEDBACK_OPERATION_AUTHORITY"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/322",
+          "case_id": "LOCAL-C009-F07-TARGET-TARGET_IDENTITY"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/323",
+          "case_id": "LOCAL-C009-F07-TARGET-CONTRACT_REVISION"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/341",
+          "case_id": "LOCAL-C009-F07-AUTHORITY-STATE-UNKNOWN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/342",
+          "case_id": "LOCAL-C009-F07-PROSE-ONLY-REASON"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/345",
+          "case_id": "WITNESS-C009-F07-UNSUPPLIED-FORWARD-TARGET"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
           "pointer": "/cases/361",
           "case_id": "BIND-F07-INDEPENDENT-FORWARD-AND-OWNER"
         },
@@ -2030,6 +2430,76 @@
           "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
           "pointer": "/cases/367",
           "case_id": "BIND-F07-INDEPENDENT-OWNER-ONLY-DIFFERS"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/375",
+          "case_id": "C009-F07-INDEPENDENT-BASES-ABSENT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/376",
+          "case_id": "C009-F07-FORWARD-BASIS-ABSENT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/377",
+          "case_id": "C009-F07-SAME-FOREIGN-FORWARD-OPERATION"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/378",
+          "case_id": "C009-F07-SAME-FOREIGN-RETURN-OWNER"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/379",
+          "case_id": "C009-F07-FORWARD-SOURCE-PROVIDER-CONFLICT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/380",
+          "case_id": "C009-F07-RETURN-SOURCE-UNKNOWN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/381",
+          "case_id": "C009-F07-FORWARD-SOURCE-NULL"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/382",
+          "case_id": "R1-F07-SOURCE-STATE-CONFLICT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/383",
+          "case_id": "R1-F07-SOURCE-PROVIDER-ABSENT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/384",
+          "case_id": "R1-F07-SOURCE-TARGET-ABSENT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/385",
+          "case_id": "R1-F07-SOURCE-TARGET-FOREIGN"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/386",
+          "case_id": "R1-F07-SOURCE-VALUE-NONOBJECT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/387",
+          "case_id": "R1-F07-SOURCE-NATIVE-OPERATION-ABSENT"
+        },
+        {
+          "path": "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+          "pointer": "/cases/388",
+          "case_id": "R1-F07-SOURCE-NATIVE-OPERATION-NULL"
         }
       ]
     },
@@ -2050,7 +2520,7 @@
       "source_contract": {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
         "pointer": "/contracts/7",
-        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5"
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281"
       },
       "reads": {
         "packet_roots": [
@@ -2120,7 +2590,7 @@
       "source_contract": {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
         "pointer": "/contracts/8",
-        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5"
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281"
       },
       "reads": {
         "packet_roots": [
@@ -2189,7 +2659,7 @@
       "source_contract": {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
         "pointer": "/contracts/9",
-        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5"
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281"
       },
       "reads": {
         "packet_roots": [
@@ -32089,35 +32559,47 @@
     "decision_section": "採用する意味と範囲"
   },
   "verification_limits": {
-    "current_scope": "旧352rawを保持し、F07独立basis不足38wholeの個別訂正と新16先固定wholeを有限照合する。旧有限摂動は履歴であり全domain/全mutationの識別力へ外挿しない。",
-    "independent_binding_scope": "旧352raw/wholeの履歴、新16先固定whole、旧F07 38個別訂正の有限比較。全source/全domain/全mutation kill/実資格/Readyを主張しない。"
+    "current_scope": "全389wholeの有限宣言比較。L9由来288例、保存local/独立例、追加21対照を含む。変更前のraw/wholeはexact revisionで保持し、旧有限摂動履歴を現全入力域/全mutation識別力へ転用しない。",
+    "independent_binding_scope": "F07のL9由来26更新、local 12分類、既存16独立対照と追加21対照を有限比較する。全source/全domain/全mutation kill/実資格/実runtime/Readyの成立を主張しない。"
   },
   "independent_target_binding_detail": {
     "scope_ja": "F02/F07の既存独立原comparandを純粋な詳細入力・resolver・既存比較へ接続する。新public API、registry、workflow、authority/実資格gateを作らない。",
     "source_rules": [
       {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
-        "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
-        "sha256": "fb51efa3c67a07e9ab8803e2e4d93f4031d523e9ce14014f43bb4ea7102a9f14",
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+        "sha256": "840d219dde4ce14327c5a64662060231fc22e35cf12e3b6ea5d53d87c474a6a1",
         "pointer": "/contracts/1/required_source_bindings"
       },
       {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
-        "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
-        "sha256": "fb51efa3c67a07e9ab8803e2e4d93f4031d523e9ce14014f43bb4ea7102a9f14",
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+        "sha256": "840d219dde4ce14327c5a64662060231fc22e35cf12e3b6ea5d53d87c474a6a1",
         "pointer": "/contracts/1/content_material_rules/predecessor_target"
       },
       {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
-        "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
-        "sha256": "fb51efa3c67a07e9ab8803e2e4d93f4031d523e9ce14014f43bb4ea7102a9f14",
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+        "sha256": "840d219dde4ce14327c5a64662060231fc22e35cf12e3b6ea5d53d87c474a6a1",
         "pointer": "/contracts/6/required_source_bindings"
       },
       {
         "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
-        "revision": "b6efbd63a8beaa94648c11c7e371ed934fb2aca9",
-        "sha256": "fb51efa3c67a07e9ab8803e2e4d93f4031d523e9ce14014f43bb4ea7102a9f14",
-        "pointer": "/contracts/6/content_material_rules/phase_separation"
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+        "sha256": "840d219dde4ce14327c5a64662060231fc22e35cf12e3b6ea5d53d87c474a6a1",
+        "pointer": "/contracts/6/original_source_ports"
+      },
+      {
+        "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+        "sha256": "840d219dde4ce14327c5a64662060231fc22e35cf12e3b6ea5d53d87c474a6a1",
+        "pointer": "/contracts/6/original_source_record"
+      },
+      {
+        "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
+        "revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+        "sha256": "840d219dde4ce14327c5a64662060231fc22e35cf12e3b6ea5d53d87c474a6a1",
+        "pointer": "/contracts/6/original_source_comparison"
       }
     ],
     "dataflow_ja": [
@@ -32140,7 +32622,7 @@
     "F02": {
       "source_path": "/original_inputs/predecessor_target_sources",
       "provider_ja": "HARNESS/OS-workflow-ownerが既存宣言topology/edge operationの原targetを供給する。native edge targetとそのowner/版/scopeは原値でありCONNECTは命名/配列順から生成しない。",
-      "selector_ja": "宣言edgesが2要素で同じedgeを反復せず、predecessor_target_sources memberがAbsentの場合だけ、既存の唯一先行→original_forward_target比較を保持する。宣言が3要素以上、同edge反復、または当該memberがPresent（null/空配列も含む）ならoccurrence source比較を使う。source列欠落を単一targetへfallbackしない。",
+      "selector_ja": "宣言edgesが2要素以下で同じedgeを反復せず、predecessor_target_sources memberがAbsentの場合は既存original_forward_target比較を保持する。0/1要素は既存serial_declarationのlen<2不成立を保持し、後続成立へ読み替えない。宣言が3要素以上、同edge反復、または当該memberがPresent（null/空配列も含む）ならoccurrence source比較を使う。source列欠落を単一targetへfallbackしない。",
       "occurrence_item": {
         "occurrence_index": "宣言edges中の原0始まりindex。source配列内位置をindexと解さない。",
         "edge": "同indexの原edge identityとJSON型付き一致。",
@@ -32174,9 +32656,15 @@
       ],
       "role_ja": "source identityのforward connection/operationと、return先connection/ownerの独立原recordを別sourceとして供給する。wrapper ownerは原recordの供給責務、value.ownerはreturn先のnative ownerで別役割。value.ownerを固定文字列との一致へ縮退しない。既存original_targetはreturn operation/契約版の比較責務を保持し、forward targetやownerの代用にしない。",
       "comparison_ja": "role_resultで当該roleを比較可能な場合、独立source欠落はoperation_target role.basis missing_original_information、null/異型/論理未確定はunknown、stale/conflictは同state。解決済valueの必要member欠落はmissing、null/markerはunknown、既知差はconflictを当該role.memberへ返す。当該roleが既にmissing/unknown等ならその既存所見を保持し派生比較しない。他role不成立を理由に独立して可能なsource/target比較を抑止しない。",
-      "old_case_meaning_ja": "既存F07 38入力は原/提出内容比較を観測していたが、この独立sourceは未供給。raw/旧L9 wholeは原sourceとして保ち、L8で比較可能なsource_identity/target_identityの不足だけ個別訂正する。旧正常をfully-boundと見なさず、全caseへ一律新schema失敗を追加しない。"
+      "old_case_meaning_ja": "L9由来26例は基本契約の独立原source2口を供給した入力/wholeに対応する。local 12例中11例には独立owner原recordを明示供給し、原業務役割の変異を保持する。未供給forward witnessはsource欠落を保持し局所不足とする。供給された原値と旧raw/wholeの歴史参照を区別し、提出側同値から原sourceを生成しない。",
+      "basic_source_contract_refs": [
+        "/contracts/6/required_source_bindings",
+        "/contracts/6/original_source_ports",
+        "/contracts/6/original_source_record",
+        "/contracts/6/original_source_comparison"
+      ]
     },
-    "expectation_control_ja": "新16wholeと旧38個別訂正は正式編集前の独立期待へ固定済み。L8の期待を計算入力やcaseID分岐に使わない。未見全域・全mutation kill・実資格・実運用を主張しない。",
+    "expectation_control_ja": "L9全33例とlocalの役割別対照・独立source/occurrence/attempt対照をwhole比較する。期待は規範sourceと独立comparandから定め、計算の入力やcase IDによる分岐に使わない。有限対照を全入力域/全変異体/実資格の成立へ拡張しない。",
     "legacy_rederivation": {
       "assets": [
         "LEGACY-ASSET-5EE032D657C221184B00",
