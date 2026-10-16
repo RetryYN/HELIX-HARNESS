@@ -1435,7 +1435,7 @@
           "selector_state": "enum<corresponding|missing|unknown|conflict>",
           "raw_payload": "JsonValue"
         },
-        "meaning": "profile選択されたsource payloadの局所decode状態。原OwnerRecord/qualified classificationを置換せず、追加finding/source issueを生成しない。"
+        "meaning": "profile選択されたsource payloadの局所decode状態。原OwnerRecord/qualified classificationを置換せず、追加finding/source issueを生成しない。 local_decode_states配列は失敗状態だけをoriginal source/record順で保持し、qualified new-kind structured-domain failureはheader照合より前のunknownとして含める。"
       },
       "F04ProjectionCandidateItem": {
         "fields": {
@@ -1724,7 +1724,7 @@
           "resolved_core_row": "Field<CORE009SourceResultProjectionRow>",
           "reached_source_indices": "Natural[]"
         },
-        "meaning": "private既存join resolverが原row取得の事実を保持。candidate pair/carrier状態の成功は取得条件でない。"
+        "meaning": "private既存join resolverが原row取得の事実を保持。candidate pair/carrier状態の成功は取得条件でない。 reached_source_indicesは実際に到達したdistinct source occurrence indexを元source順で保持し、同じRefへの集約をしない。"
       },
       "F04OriginalComparisonContext": {
         "fields": {
@@ -2199,7 +2199,8 @@
         "operation.source_projection_selectionをField<JsonValue>としてraw保存する。nonempty/empty/invalid分岐はjoin comparerに渡し、selector入力をcandidate/sourceから導出しない。",
         "raw candidateとValidatedRecordTrace.input.candidateの各core_outputsがarrayの場合、selector評価用typed decodeと独立して、全raw itemを側別F04CandidateItemOccurrence(item_index, raw_item)へ元index順・重複保持で写しF04ProjectionTypedInputs.candidate_raw_occurrences/validated_raw_occurrencesに渡す。arrayでない側からoccurrenceを合成しない。元ValidatedRecordTrace.qualified_records、source classification、issue配列は変更しない。",
         "origin suppliedの場合、new kindの全qualified raw occurrenceを列挙しraw4member payloadを保持。output_refとselected Refのexact header選択に先立ち、structured domain viewの成功/失敗を別Fieldでdecodeする。domain失敗でもqualified headerを候補列から落とさない。fn0 raw閉型dropは除外済みであり復元しない。",
-        "F04OriginalDecodeContextは同origin_supportと全decoded relationship列から構成しsuppliedへ。qualified0件でも取得済み空列を供給する。candidate pair conflict/unknownはこのsource context取得を抑止しない。legacy direct missingだけoriginal_decode_contextをmissingにする。"
+        "F04OriginalDecodeContextは同origin_supportと全decoded relationship列から構成しsuppliedへ。qualified0件でも取得済み空列を供給する。candidate pair conflict/unknownはこのsource context取得を抑止しない。legacy direct missingだけoriginal_decode_contextをmissingにする。",
+        "D02 局所decode状態の設定：各profile sourceの各出現について、局所selectorまたは構造化domainのdecode結果がmissing・unknown・conflictの場合に限り、その出現とheader照合前のraw payloadを含むF04ProjectionSelectorDecodeStateを1件追加する。元source index、record indexの順に並べ、Refが等しい別出現を統合しない。qualifiedな新kindの構造化domainは、output_refを選択targetと照合する前にdecodeする。後続のheaderが一致しない場合も、source単位のunknown状態とraw payloadを保持する（L4 /contracts/5/source_original_correspondence/resolution_and_decode/table/5）。一致しないraw headerからtargetのsemantic unknownや新たなfindingを作らない。対応するdecodeに成功した場合、局所failure行は作らない。元の2件のmalformed CORE rowはこのfn14一覧に含めない。内側のCORE009 Presence decodeはfn20で失敗し、fn20のresolved_core_row=Field.missingとなる。L4 table/3は、exact headerが0件の場合もraw recordと既存issue/local-state evidenceを保持する。このsetterが変えるのはprivateな局所証拠だけであり、fn0 qualification、source issues、OS input issuesは書き換えない。"
       ],
       "source_bindings": [
         {
@@ -2265,7 +2266,10 @@
         "HELIXOS-L8-002-F04-ORIGINAL-09",
         "HELIXOS-L8-002-F04-ORIGINAL-10",
         "HELIXOS-L8-002-F04-ORIGINAL-11",
-        "HELIXOS-L8-002-F04-ORIGINAL-12"
+        "HELIXOS-L8-002-F04-ORIGINAL-12",
+        "HELIXOS-L8-002-F04-PRIVATE-WHOLE-CORE-CONDITION-MALFORMED-PRESENCE",
+        "HELIXOS-L8-002-F04-PRIVATE-WHOLE-CORE-OBLIGATION-MALFORMED-PRESENCE",
+        "HELIXOS-L8-002-F04-PRIVATE-N1-HEADER-MISMATCH-DOMAIN-FAILURE"
       ],
       "oracle_ref": "HELIXOS-L8-002-NORMAL-run_f04_source_projection_operation",
       "oracle_binding": "既存18ケースにL9統合occurrence 7ケースを加えた25件のvalidator到達可能integration入力で関数経路を照合する。direct PAIR-UNKNOWNとdispatch境界例はそれぞれ別のunit boundary oracleであり、この25件の件数へ混ぜない。",
@@ -2738,7 +2742,11 @@
         "HELIXOS-L8-002-F04-ORIGINAL-09",
         "HELIXOS-L8-002-F04-ORIGINAL-10",
         "HELIXOS-L8-002-F04-ORIGINAL-11",
-        "HELIXOS-L8-002-F04-ORIGINAL-12"
+        "HELIXOS-L8-002-F04-ORIGINAL-12",
+        "HELIXOS-L8-002-F04-PRIVATE-WHOLE-CORE-CONDITION-MALFORMED-PRESENCE",
+        "HELIXOS-L8-002-F04-PRIVATE-WHOLE-CORE-OBLIGATION-MALFORMED-PRESENCE",
+        "HELIXOS-L8-002-F04-PRIVATE-N2-SAME-REF-DISTINCT-SOURCE-INDEX",
+        "HELIXOS-L8-002-F04-PRIVATE-N3-UNQUALIFIED-EQUAL-REF-NOT-RESCUED"
       ],
       "original_oracle_scope": "L8 f04_source_original_correspondence_verification。raw経路のcomponent/suffix/保存観測又は旧9全Analysisを比較。内部context/lookupの全返却wholeを固定したという主張ではない。"
     },
@@ -2764,7 +2772,8 @@
         "finding_refs=[]、effects=none。結果を既存source_output_association、CORE disposition、unfinished obligation、findings、effect_requestsへ代替/逆流させない。",
         "旧join recordを構成する同じ取得過程でselected source originsとtrusted CORE locator/解決済みraw rowをF04ResolvedSelectedSourceへ保持する。候補carrierのdecode/一致状態を取得事実へ混ぜない。CORE取得元はunique qualified OS associationだけであり、新relationshipのlocatorは比較対象に限る。",
         "新original_decode_contextがsuppliedなら、同一traceに束縛された非null F04OriginalComparisonContextを構築する。source未取得selectedにもresolved_core_row missingのcontextを返す。旧legacy context missingは新context missingとし、その制限をraw runner経路へ持ち込まない。",
-        "返却joinは旧fn15と全値同一。source refsとraw OwnerRecord candidate配列へ新origin wrapperを漏らさない。private取得contextは公開wire/返却へ新規追加しない。"
+        "返却joinは旧fn15と全値同一。source refsとraw OwnerRecord candidate配列へ新origin wrapperを漏らさない。private取得contextは公開wire/返却へ新規追加しない。",
+        "D03 到達source indexの設定：選択したOS associationとCORE rowを取得するresolverの経路で実際に通過した、元source occurrenceのindexを返す。元source index順に並べ、RefまたはOwnerRecordが等しくても異なるindexは別々に残す。Refの同値性から一覧を再構成したり、identityで並べ替えたりしない。固定済みのmalformed carrier 2入力で独立に導かれるreached_source_indicesは[2,3]である。source 4とsource 5はこの取得閉包の外にある。"
       ],
       "source_l4_ref": {
         "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
@@ -2810,7 +2819,12 @@
         "HELIXOS-L8-002-F04-ORIGINAL-09",
         "HELIXOS-L8-002-F04-ORIGINAL-10",
         "HELIXOS-L8-002-F04-ORIGINAL-11",
-        "HELIXOS-L8-002-F04-ORIGINAL-12"
+        "HELIXOS-L8-002-F04-ORIGINAL-12",
+        "HELIXOS-L8-002-F04-PRIVATE-WHOLE-CORE-CONDITION-MALFORMED-PRESENCE",
+        "HELIXOS-L8-002-F04-PRIVATE-WHOLE-CORE-OBLIGATION-MALFORMED-PRESENCE",
+        "HELIXOS-L8-002-F04-PRIVATE-N1-HEADER-MISMATCH-DOMAIN-FAILURE",
+        "HELIXOS-L8-002-F04-PRIVATE-N2-SAME-REF-DISTINCT-SOURCE-INDEX",
+        "HELIXOS-L8-002-F04-PRIVATE-N3-UNQUALIFIED-EQUAL-REF-NOT-RESCUED"
       ],
       "original_oracle_scope": "L8 f04_source_original_correspondence_verification。raw経路のcomponent/suffix/保存観測又は旧9全Analysisを比較。内部context/lookupの全返却wholeを固定したという主張ではない。"
     },
@@ -2935,7 +2949,10 @@
         "HELIXOS-L8-002-F04-ORIGINAL-09",
         "HELIXOS-L8-002-F04-ORIGINAL-10",
         "HELIXOS-L8-002-F04-ORIGINAL-11",
-        "HELIXOS-L8-002-F04-ORIGINAL-12"
+        "HELIXOS-L8-002-F04-ORIGINAL-12",
+        "HELIXOS-L8-002-F04-PRIVATE-WHOLE-CORE-CONDITION-MALFORMED-PRESENCE",
+        "HELIXOS-L8-002-F04-PRIVATE-WHOLE-CORE-OBLIGATION-MALFORMED-PRESENCE",
+        "HELIXOS-L8-002-F04-PRIVATE-N1-HEADER-MISMATCH-DOMAIN-FAILURE"
       ],
       "original_oracle_scope": "L8 f04_source_original_correspondence_verification。raw経路のcomponent/suffix/保存観測又は旧9全Analysisを比較。内部context/lookupの全返却wholeを固定したという主張ではない。"
     }
@@ -10557,14 +10574,14 @@
       }
     },
     "field_encoding": {
-      "missing": "JSON memberを省略し、presenceのabsentとして別に診断する。nullや空集合を追加しない。",
-      "supplied_null": "member:nullを元Field<T>のsupplied(null)として保持。inner Tが非nullableでもFieldの元variantは明示nullを保存する。",
-      "supplied_value": "memberの元値/原配列順/重複をそのままsupplied(T)として保持。空配列/空object/空stringも供給値である。",
-      "no_wrapper": "既存normal_fixtures.inputと同じ通常JSON memberを使う。{state,value}や共通Observed/CORE nullable wrapperを新設しない。"
+      "missing": "JSON memberを省略する。Field.missingをnull、空集合、false等に置換しない。",
+      "supplied_null": "JSON memberを保持し、その値をnullとする。logical Field.supplied(null)を省略しない。",
+      "supplied_value": "JSON memberを保持し、供給されたJSON値を変更せずそのまま出力する。配列順・重複・object内容を保つ。",
+      "no_wrapper": "Fieldはlogical型であり、private returnを含むJSON出力に{state,value}等のpresence wrapperを出力しない。L8のfield-presence manifestは検証メタデータであり、product valueではない。"
     },
     "schema_dispatch": "固定owner呼出しcontextのentry/schema revisionを選択して$defsへ束縛する。$defsだけのroot schemaを無条件受理に使わず、object形のanyOf試行で13variantを推定しない。CaseInput/CaseObservationはcarrierがobjectである範囲だけ。実domain childは独立context.contract_ref/固定selected sectionからsection_entryを選択してそのschemaへ解決する。context欠落/未資格/section unknownは該当typed比較未成立として残す。",
     "selector_resolution": "OwnerRecord.payloadのmapは元selector文字列と子値を失わずwireへ保存する。SourceSectionValueのRawValue schemaはwire形のみに限り、domain decode成功ではない。section_key/subject/contract/selectorを原input_types_by_contractと原owner契約へ解決し、selector先のField<T>/子型へ追加照合してから意味比較する。内側契約未供給なら元値と未解決を返す。任意RawValueのまま有資格意味入力へ流さず、selector grammar/許可範囲/実resolverの未閉包を残す。 F04 core_outputs itemのreentryはactive F04RecordInputcoreoutputsItem/F04ProjectionCandidateItemのJsonValue定義を使い、CORE原rowのcomputed_na_attributesは外部CORE Presence型のまま保持する。sourceの原bytes/decoded_records/qualificationをcandidate型や比較結果から生成しない。",
-    "presence_and_output": "宣言objectの供給member型とclosed field集合を照合し、定義外keyは削除/aliasして成功にせずpointer付きInputIssueへ返す。既知Fieldのmissing/supplied(null)/原値、scope不足と明示null、plain型の不正nullは別に保持。RawValue/OwnerRecord.payload/SourceSectionValueと未解決CaseInput/CaseObservationの原mapだけはobject_closure_contractに従って保持する。選択sectionの宣言objectはclosed。生成4結果型のplain memberは従来のrequired/closed、Field memberは元absence保持。codec独自unknown/N/A/selected/used/dischargeを出力しない。",
+    "presence_and_output": "宣言objectの供給member型とclosed field集合を照合し、定義外keyは削除/aliasして成功にせずpointer付きInputIssueへ返す。既知Fieldのmissing/supplied(null)/原値、scope不足と明示null、plain型の不正nullは別に保持。RawValue/OwnerRecord.payload/SourceSectionValueと未解決CaseInput/CaseObservationの原mapだけはobject_closure_contractに従って保持する。選択sectionの宣言objectはclosed。生成4結果型のplain memberは従来のrequired/closed、Field memberは元absence保持。codec独自unknown/N/A/selected/used/dischargeを出力しない。 D05 private-return境界では、Field<T>と宣言されたmemberだけに上記missing/supplied-null/supplied-value encodingを適用し、型外JsonValue/raw payloadを再帰的にpresence変換しない。",
     "codec_operations": [
       {
         "symbol": "decode_os002_wire",
@@ -10882,7 +10899,43 @@
         "result": "F04RecordObservation.source_projection_joinを追加し、既存F04 fieldsを同一resultに保つ。"
       },
       "runtime_status": "本項目は純粋な詳細設計である。現行decoder/runtimeは新profileと外部CORE row bindingをまだ受け付けず、実行もしない。"
-    }
+    },
+    "private_return_setter_basis": [
+      {
+        "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+        "revision": "aef2a236e07aab42e83296f22549ee518f3d1209",
+        "file_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
+        "pointer": "/contracts/5/source_original_correspondence/resolution_and_decode/table/3",
+        "supports": "qualified exact headerが0件の場合：raw recordと既存issue/local decode evidenceを保持する。"
+      },
+      {
+        "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+        "revision": "aef2a236e07aab42e83296f22549ee518f3d1209",
+        "file_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
+        "pointer": "/contracts/5/source_original_correspondence/resolution_and_decode/table/5",
+        "supports": "qualified exact raw headerがありdomain decodeに失敗した場合：unknown、元のqualified owner record/raw payload/local_decode_statesを保持し、新しいsemantic findingは作らない。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+        "lines": [
+          33,
+          46,
+          47,
+          54,
+          73,
+          74,
+          97,
+          98,
+          103,
+          107
+        ],
+        "reuse_class": "semantic_rederivation",
+        "preserve": "typed reference、trace、unknownの保持を継続し、JSONを構造上の正本として扱う。",
+        "change": "legacy TPL grammar、version lifecycle、expression tree、registry方式を採用せず、選択したOS002 local setterの詳細を再導出する。"
+      }
+    ]
   },
   "f04_source_projection_profile_detail": {
     "id": "HELIXOS-L5-002-F04-source-projection-profile",
