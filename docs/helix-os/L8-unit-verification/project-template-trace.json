@@ -117,6 +117,11 @@
       "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
       "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
       "sha256": "30fb55d761550e9407ba818a048b8e1bde89d6671f5044a32fe5217ed86486ea"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+      "revision": "721822ed8dd941e33042562e18134bc97deb285b",
+      "sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10"
     }
   ],
   "authority_boundary": {
@@ -22820,6 +22825,41 @@
         "unresolved_source_refs": [],
         "effect_requests": []
       }
+    },
+    {
+      "id": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "contract_ref": "HELIXOS-L5-002-F04",
+      "kind": "source-referenced-profile-fixture",
+      "input_source_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "revision": "721822ed8dd941e33042562e18134bc97deb285b",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/base_input"
+      },
+      "meaning": "L9固定raw入力を参照する。base_input.validated_record_trace全体は入力ではなくvalidator期待であり、operationにはvalidated_record_trace.inputだけを渡す。期待結果は各L9 expected_complete_return_recipeから読む。",
+      "case_ids": [
+        "QUALIFIED-PROJECTION-COMPLETE",
+        "CANDIDATE-PROJECTION-ABSENT-QUALIFIED-SOURCE-PRESENT",
+        "CANDIDATE-PAIR-MUTATED-QUALIFIED-SOURCE-FIXED",
+        "CONTRADICTORY-QUALIFIED-CORE-SOURCE-LOCAL-CONFLICT",
+        "SELECTION-MISSING",
+        "SELECTION-EMPTY",
+        "SELECTION-INVALID-NULL",
+        "SELECTION-DUPLICATE-OUTPUT-REF",
+        "CANDIDATE-CARRIER-NULL",
+        "CANDIDATE-CARRIER-WRONG-KIND",
+        "OS-ASSOCIATION-MISSING",
+        "CORE-SOURCE-UNQUALIFIED",
+        "OS-POINTER-UNRESOLVED-CANDIDATE-REDIRECTION",
+        "OS-CARRIER-NULL",
+        "OS-CARRIER-WRONG-KIND",
+        "OS-CARRIER-ABSENT",
+        "OS-ASSOCIATION-DUPLICATE-SAME-TARGET",
+        "RAW-AND-VALIDATED-CANDIDATE-DISAGREE"
+      ],
+      "expected_is_not_input": true,
+      "runtime_execution": "not_executed",
+      "materialization_rule": "各L9 case/input_baseを原値として全input_patchを適用しcase_inputを作る。callにはcandidate, validated_record_trace.input, source_projection_selectionだけを射影する。validated_record_traceの残memberはvalidator期待であり入力に渡さない。"
     }
   ],
   "cases": [
@@ -147155,6 +147195,86 @@
           "expected_effect_count": 0
         }
       ]
+    },
+    {
+      "id": "HELIXOS-L8-002-NORMAL-run_f04_source_projection_operation",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "fixture_refs": [
+        "HELIXOS-L8-002-FIXTURE-F04-PROJECTION"
+      ],
+      "expected": {
+        "type": "RecordTraceAnalysis",
+        "projection_case_refs": [
+          "HELIXOS-L8-002-F04-PROJECTION-01",
+          "HELIXOS-L8-002-F04-PROJECTION-02",
+          "HELIXOS-L8-002-F04-PROJECTION-03",
+          "HELIXOS-L8-002-F04-PROJECTION-04",
+          "HELIXOS-L8-002-F04-PROJECTION-05",
+          "HELIXOS-L8-002-F04-PROJECTION-06",
+          "HELIXOS-L8-002-F04-PROJECTION-07",
+          "HELIXOS-L8-002-F04-PROJECTION-08",
+          "HELIXOS-L8-002-F04-PROJECTION-09",
+          "HELIXOS-L8-002-F04-PROJECTION-10",
+          "HELIXOS-L8-002-F04-PROJECTION-11",
+          "HELIXOS-L8-002-F04-PROJECTION-12",
+          "HELIXOS-L8-002-F04-PROJECTION-13",
+          "HELIXOS-L8-002-F04-PROJECTION-14",
+          "HELIXOS-L8-002-F04-PROJECTION-15",
+          "HELIXOS-L8-002-F04-PROJECTION-16",
+          "HELIXOS-L8-002-F04-PROJECTION-17",
+          "HELIXOS-L8-002-F04-PROJECTION-18"
+        ],
+        "baseline_f04_function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+        "source_projection_join_output_type": "Field<F04SourceProjectionJoinResult>",
+        "existing_f04_fields_preserved": [
+          "conditional_original_value",
+          "OS_new_judgment_count",
+          "core_disposition_records",
+          "unfinished_obligation_records",
+          "source_output_association"
+        ],
+        "effect_count": 0,
+        "authority_generated": false,
+        "l9_expected_surface_ref": "/cases/5/qualified_source_projection_join_oracles",
+        "profile_dataflow_refs": [
+          "HELIXOS-L5-002-validate_record_trace_input",
+          "HELIXOS-L5-002-decode_f04_source_projection_profile",
+          "HELIXOS-L5-002-build_record_trace_analysis",
+          "HELIXOS-L5-002-compare_core_dispositions_with_source_projection_profile",
+          "HELIXOS-L5-002-compare_f04_source_projection_join"
+        ],
+        "validator_trace_is_generated_from_raw_input": true,
+        "existing_output_preservation_relation": "各18 callを同じcase_input由来のbaseline専用raw入力と比較し、source_projection_joinだけを除くRecordTraceAnalysis全体をexact equalとする。両callの宣言childは同じ3member projectionで構成し、baseline rawではitem.source_projectionだけを除く。raw全体をchild値で置換せずunrelated_raw等を保持する。",
+        "old_47_endpoint_oracle_unchanged_ref": "/cases/5/source_output_association_oracles",
+        "validator_profile_context": "F04ProfileDecodeContextの明示profile literalをrun関数が内部生成し、validate_record_trace_inputの第2引数へ渡す。profileなしの既存呼出しは変わらない。",
+        "post_validation_pair_check": "Each case compares operation.candidate with the generated ValidatedRecordTrace.input.candidate as whole raw values after validation; precheck only selects decoder path.",
+        "invalid_root_behavior": "validator inputがmissing/invalidなら既存input_issuesを保持し、成立しないselected_sectionsやF04/join observationを合成しない。candidate pairだけがunknown/conflictならL4局所joinとqualified OS observationを維持する。",
+        "candidate_only_unknown": "When the validated input exists but full candidate correspondence is unknown/conflicting, retain the existing local L4 join behavior and qualified OS observation.",
+        "precheck_and_postcheck": "runはvalidator前のraw全体比較結果をdecoderへ渡す。18例すべてでdecoderはValidatedRecordTrace.input.candidate全体との比較を改めて行い、precheck一致だけをcorrespondingの証拠にしない。",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "execution_state": "not_executed",
+      "invocations_ref": [
+        "HELIXOS-L8-002-F04-PROJECTION-01",
+        "HELIXOS-L8-002-F04-PROJECTION-02",
+        "HELIXOS-L8-002-F04-PROJECTION-03",
+        "HELIXOS-L8-002-F04-PROJECTION-04",
+        "HELIXOS-L8-002-F04-PROJECTION-05",
+        "HELIXOS-L8-002-F04-PROJECTION-06",
+        "HELIXOS-L8-002-F04-PROJECTION-07",
+        "HELIXOS-L8-002-F04-PROJECTION-08",
+        "HELIXOS-L8-002-F04-PROJECTION-09",
+        "HELIXOS-L8-002-F04-PROJECTION-10",
+        "HELIXOS-L8-002-F04-PROJECTION-11",
+        "HELIXOS-L8-002-F04-PROJECTION-12",
+        "HELIXOS-L8-002-F04-PROJECTION-13",
+        "HELIXOS-L8-002-F04-PROJECTION-14",
+        "HELIXOS-L8-002-F04-PROJECTION-15",
+        "HELIXOS-L8-002-F04-PROJECTION-16",
+        "HELIXOS-L8-002-F04-PROJECTION-17",
+        "HELIXOS-L8-002-F04-PROJECTION-18"
+      ],
+      "oracle_assertion_rule": "各invocationでL9 expected validator projectionとjoin recipeを別々に参照する。L9のqualified traceはcall inputに渡さない。旧F04全member/他sectionは同一raw inputのno-profile baseline callとの完全一致で保存性を確かめ、既存独立L8 F04 oracleとL9 47 endpoint oracleを引き続き保持する。"
     }
   ],
   "additional_cases": [
@@ -149415,6 +149535,1428 @@
         }
       ],
       "oracle_assertion_rule": "照合は指定したoutput list/fieldを用いる。source_issues/input_issuesの必要cause（axis/state/path/ref）と原記録保持・依存未成立を照合し、同causeの追加detailや局所issueを捨てない。qualified_recordsと各source分類refの集合はexactで、未資格/相反sourceを有資格集合へ入れない。"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-01",
+      "source_case_id": "QUALIFIED-PROJECTION-COMPLETE",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/cases/0"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/cases/0/expected_complete_return_recipe",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_return_recipe"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/cases/0/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-02",
+      "source_case_id": "CANDIDATE-PROJECTION-ABSENT-QUALIFIED-SOURCE-PRESENT",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/cases/1"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/cases/1/expected_complete_return_recipe",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_return_recipe"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/cases/1/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-03",
+      "source_case_id": "CANDIDATE-PAIR-MUTATED-QUALIFIED-SOURCE-FIXED",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/cases/2"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/cases/2/expected_complete_return_recipe",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_return_recipe"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/cases/2/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-04",
+      "source_case_id": "CONTRADICTORY-QUALIFIED-CORE-SOURCE-LOCAL-CONFLICT",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/cases/3"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/cases/3/expected_complete_return_recipe",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_return_recipe"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/cases/3/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-05",
+      "source_case_id": "SELECTION-MISSING",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/0"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/0/expected_f04_extension_projection",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "member省略",
+        "format": "expected_f04_extension_projection"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/0/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "join memberを省略",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-06",
+      "source_case_id": "SELECTION-EMPTY",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/1"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/1/expected_f04_extension_projection",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "member省略",
+        "format": "expected_f04_extension_projection"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/1/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "join memberを省略",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-07",
+      "source_case_id": "SELECTION-INVALID-NULL",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/2"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/2/expected_complete_source_projection_join",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_source_projection_join"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/2/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-08",
+      "source_case_id": "SELECTION-DUPLICATE-OUTPUT-REF",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/3"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/3/expected_complete_source_projection_join",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_source_projection_join"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/3/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-09",
+      "source_case_id": "CANDIDATE-CARRIER-NULL",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/4"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/4/expected_complete_source_projection_join",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_source_projection_join"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/4/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-10",
+      "source_case_id": "CANDIDATE-CARRIER-WRONG-KIND",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/5"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/5/expected_complete_source_projection_join",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_source_projection_join"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/5/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-11",
+      "source_case_id": "OS-ASSOCIATION-MISSING",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/6"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/6/expected_complete_source_projection_join",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_source_projection_join"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/6/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-12",
+      "source_case_id": "CORE-SOURCE-UNQUALIFIED",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/7"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/7/expected_complete_source_projection_join",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_source_projection_join"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/7/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-13",
+      "source_case_id": "OS-POINTER-UNRESOLVED-CANDIDATE-REDIRECTION",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/8"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/8/expected_complete_source_projection_join",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_source_projection_join"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/8/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-14",
+      "source_case_id": "OS-CARRIER-NULL",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/9"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/9/expected_complete_source_projection_join",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_source_projection_join"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/9/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-15",
+      "source_case_id": "OS-CARRIER-WRONG-KIND",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/10"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/10/expected_complete_source_projection_join",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_source_projection_join"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/10/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-16",
+      "source_case_id": "OS-CARRIER-ABSENT",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/11"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/11/expected_complete_source_projection_join",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_source_projection_join"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/11/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-17",
+      "source_case_id": "OS-ASSOCIATION-DUPLICATE-SAME-TARGET",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/12"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/12/expected_complete_source_projection_join",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_source_projection_join"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/12/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-F04-PROJECTION-18",
+      "source_case_id": "RAW-AND-VALIDATED-CANDIDATE-DISAGREE",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+      "function_ref": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/13"
+      },
+      "input_construction": {
+        "base_input_pointer": "/cases/5/qualified_source_projection_join_oracles/base_input",
+        "apply_all_l9_input_patch_operations_to_case_input_before_projection": true,
+        "operation_call_projection": {
+          "raw_candidate_pointer": "/candidate",
+          "record_trace_input_pointer": "/validated_record_trace/input",
+          "selection_pointer": "/source_projection_selection",
+          "profile": "HELIXOS-F04-qualified-source-projection-join"
+        },
+        "expected_validator_output_projection": {
+          "pointer": "/validated_record_trace",
+          "rule": "case_input内のexpected validated_record_traceは入力ではない。既存validatorがrecord_trace_inputから生成した値を、L9のexpected trace原値とL9 input_patch後の期待原値に照合する。",
+          "input_member_excluded": "/validated_record_trace/input"
+        },
+        "candidate_disagreement_rule": "raw candidate全体とrecord_trace_input.candidate全体は双方を保持し、join比較前にL4のwhole-object一致順序を適用する。",
+        "candidate_pair": "operation.candidate and operation.record_trace_input.candidate are separate raw arguments and compare whole before item selection.",
+        "declared_member_projection_ref": "docs/helix-os/L5-detail-design/project-template-trace.json#/wire_codec_contract/f04_source_projection_profile_dispatch/declared_member_projection"
+      },
+      "expected_join_projection": {
+        "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/13/expected_complete_source_projection_join",
+        "interpretation": "L9固定期待値をcase_inputへRFC6901展開し、該当join projectionを完全照合する。入力candidateから期待値を再生成しない。",
+        "wire_member": "source_projection_join",
+        "format": "expected_complete_source_projection_join"
+      },
+      "expected_existing_f04_preservation": {
+        "baseline_call": {
+          "function_ref": "HELIXOS-L5-002-build_record_trace_analysis",
+          "profile": "未指定（通常F04経路）",
+          "input_ref": "/cases/5/qualified_source_projection_join_oracles/base_input/validated_record_trace/input",
+          "generation": "L9 expected traceを入力にせず、projection済みのbaseline専用RecordTraceInputから既存validatorと通常F04 builderを実行する。qualified records/source classificationsはcase inputから通常どおり生成する。",
+          "input_projection": {
+            "source_pointer": "/validated_record_trace/input",
+            "operation": "同じcase_inputからbaseline専用RecordTraceInputを構成するとき、candidate.core_outputs各itemからprofile-only member source_projectionだけを除く。その他のcandidate member、source、qualification、root、配列順/重複、Field presence/valueはそのまま保持する。",
+            "purpose": "既存profileなしF04のclosed F04RecordInput decoderへ拡張itemを直接渡してunknown memberで失敗させず、既存F04観測の比較基準を得る。これは通常profile pathに拡張を許可する意味ではない。",
+            "preserves_profile_disagreement": "profile本呼出しは未変換のoperation.candidateとrecord_trace_input.candidate全体をL4順序で比較する。baseline用projectionでcandidate_input_stateを再計算/上書きしない。",
+            "declared_child_projection": "profile本呼出しとbaselineはL5 declared_member_projectionの同じ宣言3memberをそれぞれ別child値へ投影する。baseline専用raw入力ではcore_outputs itemのsource_projectionだけを除く。unrelated_raw等の外側rawは保持し、宣言child値でraw candidateを上書きしない。両方のraw全体比較はprofile本呼出しの投影前保存値を使う。"
+          }
+        },
+        "comparison_rule": {
+          "relation": "profile callのRecordTraceAnalysisからsource_projection_join member一つだけを除いた結果は、同じ入力のbaseline call結果と全member/配列順/重複/Field presence/JSON valueで完全一致する。",
+          "excluded_projection": "sections内F04RecordObservation.source_projection_joinだけ",
+          "must_preserve": [
+            "conditional_original_value",
+            "OS_new_judgment_count",
+            "core_disposition_records",
+            "unfinished_obligation_records",
+            "source_output_association",
+            "existing findings",
+            "unresolved source references",
+            "input issues",
+            "non-F04 sections",
+            "effects",
+            "authority_generated"
+          ],
+          "existing_independent_f04_test_ref": "HELIXOS-L8-002-F04 / HELIXOS-L8-002-NORMAL-compare_core_dispositions",
+          "existing_47_endpoint_oracle_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/5/source_output_association_oracles"
+        },
+        "l9_source_observation_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "49fc3e7f11a916052ff9499fb0648d0592cbd8a2418cd0abce22cfce3eadae10",
+          "pointer": "/cases/5/qualified_source_projection_join_oracles/branch_contrasts/13/expected_observation",
+          "meaning": "既存47 source endpointとの一致/独立OS state/非権限条件の補助期待。F04全returnの完全oracleとは扱わない。"
+        }
+      },
+      "expected_behavior": "L9の完全期待recipeどおりの閉じたjoin resultをF04観測へ追加",
+      "expected_effects": [],
+      "expected_authority_generated": false,
+      "execution_state": "not_executed"
     }
   ],
   "completion": {
@@ -149423,7 +150965,14 @@
     "contract_count": 13,
     "negative_case_count": 71,
     "full92_430_completion": "unproven",
-    "remaining": "型/71変異/資格/shape/合成byte閉包と関数正常oracleの静的確認・独立review。実単体実行/実source/保存/接続/実装oracle凍結は未成立。"
+    "remaining": "型/既存71変異/資格/shape/合成byte閉包と関数正常oracleの独立確認を継続。F04 source-projection追加18ケースは静的recipe/shape照合のみで、実単体実行はnot_executed。実source/保存/接続/実装oracle凍結・独立reviewは未成立。",
+    "F04_source_projection_cases": {
+      "total": 18,
+      "join_result": 16,
+      "join_member_omission": 2,
+      "execution_state": "not_executed",
+      "static_recipe_shape_result": "pass"
+    }
   },
   "wire_codec_verification": {
     "id": "HELIXOS-L8-002-WIRE-CODEC",
@@ -152463,9 +154012,38 @@
   },
   "candidate_l5_binding": {
     "paired_document": "docs/helix-os/L5-detail-design/project-template-trace.json",
-    "working_bytes_sha256": "32e93f5920a088d39baf1a598dcf8a1994af280d4d8dbf9ee38029d8080ce54c",
-    "binding_scope": "同一candidate pairのL5 exact bytes。既存source pinを保持し、今回使うL4/L9だけ既決5b99b6f3へ更新する。",
-    "revision_note": "同一PRのcandidate L5 file bytes。自己参照するGit revisionや承認を表さない。",
+    "working_bytes_sha256": "5665e47c9442e28b077059b6a029e685856809c05803f186cab4efbdf3482c09",
+    "binding_scope": "同一候補pairのL5 bytes。既存L8 source pinsは保持し、source projection profileの今回対象L4/L9はcurrent candidate pinsへ結ぶ。",
+    "revision_note": "同一候補pairのL5 file bytes。対象source revisionの承認やruntime実装を示さない。",
     "binding_kind": "candidate_file_bytes"
+  },
+  "f04_source_projection_profile_cases": {
+    "fixture_ref": "HELIXOS-L8-002-FIXTURE-F04-PROJECTION",
+    "l9_pointer": "/cases/5/qualified_source_projection_join_oracles",
+    "case_count": 18,
+    "join_result_count": 16,
+    "omission_count": 2,
+    "l9_case_ids": [
+      "QUALIFIED-PROJECTION-COMPLETE",
+      "CANDIDATE-PROJECTION-ABSENT-QUALIFIED-SOURCE-PRESENT",
+      "CANDIDATE-PAIR-MUTATED-QUALIFIED-SOURCE-FIXED",
+      "CONTRADICTORY-QUALIFIED-CORE-SOURCE-LOCAL-CONFLICT",
+      "SELECTION-MISSING",
+      "SELECTION-EMPTY",
+      "SELECTION-INVALID-NULL",
+      "SELECTION-DUPLICATE-OUTPUT-REF",
+      "CANDIDATE-CARRIER-NULL",
+      "CANDIDATE-CARRIER-WRONG-KIND",
+      "OS-ASSOCIATION-MISSING",
+      "CORE-SOURCE-UNQUALIFIED",
+      "OS-POINTER-UNRESOLVED-CANDIDATE-REDIRECTION",
+      "OS-CARRIER-NULL",
+      "OS-CARRIER-WRONG-KIND",
+      "OS-CARRIER-ABSENT",
+      "OS-ASSOCIATION-DUPLICATE-SAME-TARGET",
+      "RAW-AND-VALIDATED-CANDIDATE-DISAGREE"
+    ],
+    "expectation_policy": "既存L9のraw input patchとcomplete expected recipeを直接参照。L9のexpected qualified traceを入力として使わない。",
+    "case_input_rule": "L9 case/input_base + input_patchで一時case_inputを形成。call inputはraw candidate/RecordTraceInput/selectionの3材料だけ。expected validator traceとjoin recipeは独立参照。"
   }
 }
