@@ -787,7 +787,8 @@
           "fact_locators": "string[]",
           "comparison_axis_indices": "nonnegative integer[]",
           "comparison_finding_indices": "nonnegative integer[]",
-          "original_axes": "AxisResult[]"
+          "original_axes": "AxisResult[]",
+          "axis_name": "string"
         },
         "meaning": "origin_branchは同walkの元判定から記録する。meaning_undefinedは元descriptor_XX_undefined predicate（対象slot/fact/source/owner解決・body=null・定義済み別原根拠なし）成立時だけ。単なるsource資格unknownを同branchにしない。stateは元判定値でありorigin_branchから再計算しない。original_axes[j]=comparison.axes[comparison_axis_indices[j]]全値一致。",
         "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionAssessment"
