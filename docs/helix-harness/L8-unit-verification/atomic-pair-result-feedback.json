@@ -10609,10 +10609,10 @@
         ],
         "meaning_ja": "四値をそのまま選択。名称からdesign/oracle/verification/pairを組み立てない。全sourceはfixture内容で実資格ではない。"
       },
-      "old_scope_evidence": "../source-manifest.json and ../existing-case-index.json; original137whole+witness preserved by pointer/hash only",
+      "old_scope_evidence": "repository外のsource-manifest.jsonとexisting-case-index.jsonを著述時の照合に用いた。旧137件の全返却期待と不足witnessは本文のhistorical_scope_*と固定sourceのpointer/hashで保全する。",
       "correction_02_ja": "旧6scenario10wholeはsnapshot-01と原freezeで保全。O7/O8はroot検収で判明した比較軸漏れ/既知役割反転の最小反例。候補の関数/判定表を実行せず全root期待を要求/L10/L4から著述した。",
       "authoring_oracle_sha256": "a859b0caad1f665c56c46459f1d08d537ed3ceeba66e8a24c1f579ee930051a4",
-      "authoring_order": "corrected oracle written before candidate contract correction 02",
+      "authoring_order": "訂正oracleを、候補契約の訂正02より先に固定した。",
       "cases": [
         {
           "id": "O1-EXACT-REPEAT-AND-SAME-PAIR",
@@ -11931,7 +11931,7 @@
       "source_revision": "cd31e054bea822e39f8f563e0ca37566bd77554f",
       "expectation_method_ja": "L3-N01の限定意味とB01の明示責務、対L10とL4から手で全root期待を著述。raw差は原fixtureの明示field投影で再構成。候補AST/判定表/実装から計算しない。",
       "authoring_oracle_sha256": "91f841f908ed34932d8127cb12b0f70aab7533aef3b856f89c47fdd38cbcc3a8",
-      "authoring_order": "new independent whole fixed before N01 role contract-delta.json",
+      "authoring_order": "新しい独立全返却期待を、N01役割のcontract-delta.jsonより先に固定した。",
       "cases": [
         {
           "id": "N01-RAW-FRAME-DECLARED-MEANING-LEGACY-THREE-CAUSES",
@@ -12149,7 +12149,7 @@
       "purpose": "independent_oracle_before_held_selection_gap_contract_delta",
       "expectation_method_ja": "批准N01/F01/対L10/L4から上記2wholeを手で宣言。null gap素材と独立選択false/unknownは新しいsynthetic反例の明示入力。候補の判定表/関数は期待計算に使用しない。",
       "authoring_oracle_sha256": "d2dd545ca3e16eb3300635d9b74899482474c353ed0317c7e224d3a6e1e4448f",
-      "authoring_order": "independent two whole expectations fixed before held-selection contract-delta.json and candidate change",
+      "authoring_order": "独立した2件の全返却期待を、held選択のcontract-delta.jsonと候補変更より先に固定した。",
       "cases": [
         {
           "id": "N01-NOT-SELECTED-RAW-OBJECT",
@@ -13576,7 +13576,7 @@
   "l5_candidate_binding": {
     "path": "docs/helix-harness/L5-detail-design/atomic-pair-result-feedback.json",
     "document_id": "HARNESS-L5-056",
-    "candidate_file_sha256": "897f80ea3ea2a2793a739fa5f528d8a2ae1a08d0a607955754328247afbc2e43",
+    "candidate_file_sha256": "f2b3938f9176aabc0459f8608cca1f1df4cb07eb9b11a3f601bb8c94ffa722e9",
     "meaning": "同candidateの現行論理型/5関数/決定表。実資格/上流承認ではない。"
   },
   "historical_scope_evidence": {
@@ -13651,6 +13651,7 @@
   },
   "remaining": {
     "design_review": "現candidateの独立意味review/正式admissionは未成立。全92親430義務の全検収を本親から外挿しない。",
-    "runtime_only": "実source値/資格/正式wire codec/実OS保存登録配送/実oracle実行/製品CI/L11実受入は本論理候補で成立させない。実runtime待ちを論理未定義の理由にしない。"
+    "runtime_only": "実source値/資格/正式wire codec/実OS保存登録配送/実oracle実行/製品CI/L11実受入は本論理候補で成立させない。実runtime待ちを論理未定義の理由にしない。",
+    "authoring_material_boundary": "ここに記したcontract_authoring_sha256、N01_role_delta_sha256、N01_held_boundary_delta_sha256と、対L8のauthoring_oracle_sha256／fixed_authoring_oracle_sha256は、repository外の著述・照合材料を識別する。これらの材料はgit管理されておらず、git単独ではそのbytesやdigestを再計算できない。意味の正本は本L5／L8の本文と、参照するL3／L10／L4／L9であり、これらの著述材料hashを意味正本や承認根拠にしない。"
   }
 }
