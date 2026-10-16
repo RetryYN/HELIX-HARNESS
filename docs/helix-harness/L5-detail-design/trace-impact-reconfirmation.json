@@ -12063,7 +12063,7 @@
     "interface_binding_contract": {
       "status": "detail_interface_specification_not_runtime_registration",
       "source_main": "e6e10b1b675fc0b3acd0d379177039d008034f18",
-      "fixed_design_binding_rows_sha256": "772c95a2c8d93d770275060e9514146caf162ea41e618582ea72618b3a529af1",
+      "fixed_design_binding_rows_sha256": "595768e3a7dd8589a1c22bb1e984f56a4579bcc9478e835de5e85a11aff57f32",
       "symbol": "resolve_trace_call_interface_proposal",
       "signature": "resolve_trace_call_interface_proposal(request: LogicalJson, fixed_bindings: tuple[DesignBinding], fixed_profiles: mapping[Text,Digest]) -> CallInterfaceMatchProposal",
       "fixed_inputs": "fixed_bindingsはassembly_contract.bindings全7rowの固定snapshot、fixed_profilesはprofiles_sha256全5値。caller requestから増減/補完しない。snapshot整合/資格はA1の外側で照合し、ここでは内容対応だけを提案する。",
@@ -12469,7 +12469,16 @@
       "dependency_boundary": "意味coreは本binding resolver/read port/codec/OSをimportしない。composition root→read port/codec/value contract/meaning coreの既allowed edgeだけ。source/providerのI/Oはread portの既scope/authorityへ結び、pure coreへ持込まない。result receiverも操作を実行しない。",
       "ownership_and_canonical": "docsは意味、跨pack declarationsは宣言、pack内宣言は局所contract、型番台帳はOSの登録事実。port型/型番候補/一致提案を台帳へ複製せず、identityの実登録をこの紙で生成しない。実行instance/案件記録はrepo外の既境界へ。",
       "unclosed": "supplier/receiverの全field protocol/資格resolver/実pack登録/physical interface/host/runtime/library/regex/view/resources/codec・全composition oracle・全freeze/L6L7未成立。このspecとmatching提案は実admission/実装Readyでない。",
-      "return_owner_note": "A1の宣言内容の照合責務。実資格/操作の発行者でない。"
+      "return_owner_note": "A1の宣言内容の照合責務。実資格/操作の発行者でない。",
+      "fixed_bindings_snapshot_scope": "現在の /assembly_contract/bindings 直下にある7行。内容一致の提案を行うだけで、登録・資格成立を示さない。",
+      "prior_candidate_snapshot": {
+        "revision": "b77ac254dc068f8e39b723347b60bad4f5e130bf",
+        "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+        "file_sha256": "cb06ab41dab1f0af49f5b5315f020b8d3d12736d6fb2187382924266f2449979",
+        "fixed_design_binding_rows_sha256": "772c95a2c8d93d770275060e9514146caf162ea41e618582ea72618b3a529af1",
+        "meaning": "この修正直前の不変な候補bytesと旧固定snapshotを履歴参照として保持し、現在の照合には使用しない。"
+      },
+      "source_main_semantics": "元のinterface設計を起こしたsource revision。現在のbindings snapshotのrevisionではない。"
     },
     "source_frame_binding_contract": {
       "scope": "A2のraw frame/source/custodyとContext独立lineageの内容照合。既A1/A3と別段で、実source資格/read許可やAST/decode成功を認定しない。",
