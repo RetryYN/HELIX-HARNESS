@@ -52099,6 +52099,12 @@
             "expected_partial_recipe": [
               {
                 "root": "F04OriginalCorrespondenceResult",
+                "pointer": "/records/3/condition_correspondence_state",
+                "presence": "supplied",
+                "value": "corresponding"
+              },
+              {
+                "root": "F04OriginalCorrespondenceResult",
                 "pointer": "/records/3/condition_relations/0/relation_content_state",
                 "presence": "supplied",
                 "value": "corresponding"
@@ -52145,7 +52151,7 @@
                 "value": false
               }
             ],
-            "expected_partial_canonical_sha256": "812fa63119c2d467fb4c49f57c8840844d553819dc6284882b40abd860343cad",
+            "expected_partial_canonical_sha256": "78ffb4810878bf3afe3d2ae08b127eb3c8222be0681354476578ce8153fe5a54",
             "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
             "execution_state": "not_executed",
             "retained_input_checks": [
@@ -53529,7 +53535,7 @@
         "current_normative_binding": {
           "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
           "pointer": "/contracts/5/source_original_correspondence",
-          "working_bytes_sha256": "f7fe6a25a1e69bfd54dfb6a4c02c3b6d23d6575e3d1dad5779873ee12beb7094",
+          "working_bytes_sha256": "92512daeedf11a6d78878bd9c25cff2cdcd09157eac01f2fb560f5230adb7654",
           "binding_kind": "paired_current_file_bytes",
           "meaning": "同一候補pairの規範節を現L4 bytesへ結ぶ。元source_basisは固定git bytesの歴史参照として別保持し、現候補を当該git revisionの本文だと偽らない。"
         }
