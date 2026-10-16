@@ -44340,11 +44340,17 @@
                 "code": "core_source_na_reason_missing"
               }
             ],
-            "whole_expectation_sha256": "69f9428da339e09d4e301488a40292e29e1e112ebeee2fa4a88b54f58cf33fd8",
+            "whole_expectation_sha256": "bae5ebb169761645fb764ec0460354e3d82e740be0f4fbb97c04f6ebee4fa999",
             "observation_recipe_patch": [
               {
-                "op": "remove",
-                "path": "/core_disposition_records/2/reason"
+                "op": "replace",
+                "path": "/core_disposition_records/2/reason",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/validated_record_trace/input/sources/0/decoded_records/0/payload/core_outputs/2/reason"
+                  }
+                }
               }
             ]
           },
@@ -44624,11 +44630,17 @@
                 "code": "core_source_na_decider_missing"
               }
             ],
-            "whole_expectation_sha256": "33ca1b94d06c63fb04da77cf4a0e10e4c908a66fff0bb905bb6134338b903c5d",
+            "whole_expectation_sha256": "fc2d7a34b1806c8e164b2708d2497909bf1f08399cd7991f9ccc06d0c9158f6c",
             "observation_recipe_patch": [
               {
-                "op": "remove",
-                "path": "/core_disposition_records/2/decider"
+                "op": "replace",
+                "path": "/core_disposition_records/2/decider",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/validated_record_trace/input/sources/0/decoded_records/0/payload/core_outputs/2/decider"
+                  }
+                }
               }
             ]
           },
@@ -44908,11 +44920,17 @@
                 "code": "core_source_na_target_revision_missing"
               }
             ],
-            "whole_expectation_sha256": "674e4ca4611ce961517c21e577c267996513777a0d0141ad217fbaa53f5c63fe",
+            "whole_expectation_sha256": "11bda7cd6db4d42db219abbf17b760cc8dfd2fb9c8fb1397e29cb2f198c6b27d",
             "observation_recipe_patch": [
               {
-                "op": "remove",
-                "path": "/core_disposition_records/2/target_revision"
+                "op": "replace",
+                "path": "/core_disposition_records/2/target_revision",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/validated_record_trace/input/sources/0/decoded_records/0/payload/core_outputs/2/target_revision"
+                  }
+                }
               }
             ]
           },
@@ -45192,11 +45210,17 @@
                 "code": "core_source_na_reentry_missing"
               }
             ],
-            "whole_expectation_sha256": "2f94e6640da0f4bf9b2ea36821334115ad1a69359f46ec2257c299f162d76cca",
+            "whole_expectation_sha256": "fdf22c779bac155e89d0cff266744c411d2bbb0a3184a724a25cbc0f0f4d8e6a",
             "observation_recipe_patch": [
               {
-                "op": "remove",
-                "path": "/core_disposition_records/2/reentry"
+                "op": "replace",
+                "path": "/core_disposition_records/2/reentry",
+                "value": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/validated_record_trace/input/sources/0/decoded_records/0/payload/core_outputs/2/reentry"
+                  }
+                }
               }
             ]
           }
@@ -49663,9 +49687,9 @@
         "paired_candidate_l4_binding": {
           "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
           "pointer": "/contracts/5/selected_source_member_correspondence",
-          "file_sha256": "d9395488dd4508ec52f26bd8849e1d7ce521f6a23f128135b24a3f55a327ec99",
-          "object_canonical_sha256": "d41aee623ce88927c03d7e4ffd55d98794be980e2dfb609ed1260112383897f7",
-          "revision_binding": "同じpair候補の固定bytesへ結ぶ。source_basisのc242005は過去source/旧wholeの固定参照であり、この新追補のcommitだとはしない。公開時は同一HEADの本文hashを照合する。"
+          "file_sha256": "ae413e997a19c66c76e776924f84ac7272b4dc345be7509f30673baf2f013efe",
+          "object_canonical_sha256": "71b314b64b63a013fc8531785a299e34ae79cb274788a00a768451edd462d654",
+          "revision_binding": "現行L4の固定revision f3ea10e98f3a800bdb1295fefb610f7e251d4b26の本文bytesと対象objectへ結ぶ。本訂正でL4は変更しない。source_basisの過去revisionは歴史sourceとして別保持する。"
         },
         "fixture_source_delta_history": {
           "base": "CORE4 rowは固定CORE L9 producer-return oracleを原素材とする。OS native原判定とCORE projection原判定は別のsourceで、OS ownerの明示associationが4つのnative output_refを各rowへ結ぶ。新source本文には新revision/hash/合成root許容値を固定し、同Refで旧本文を追記しない。",
@@ -49673,6 +49697,103 @@
           "UNRESOLVED-AS-NA": "candidateとnative OS元出力がNAをclaimしてもCORE元rowはunresolvedのまま保持する。",
           "SOURCE-REENTRY-ABSENT / SOURCE-REASON-WRONG-KIND": "固定CORE原rowのcomputed_na_attributesだけを不足/型不整合へ変えた合成negative入力であり、正規CORE関数を呼んで得た有効returnだとはしない。row内source_relation等の元claimは原値で保持し、そのgreen表示を属性不足/対応成功の代用にしない。独立OS native原属性は正常値を保持。source資格はbody意味の妥当性を証明しない。",
           "CANDIDATE-ABSENT-*": "candidate側の属性だけを除去し、独立native原recordとCORE元rowの属性は保持する。既存NA欠落findingと追加source-member findingのprovenanceは別に返す。"
+        },
+        "native_observation_correction_history": {
+          "source_revision": "f3ea10e98f3a800bdb1295fefb610f7e251d4b26",
+          "classification": "source由来観測とcandidate欠落の分離の訂正。要求意味・N/A判定条件は不変。",
+          "historical_values": "元revisionのrecipe/material/whole SHAは履歴として不変。active期待だけsource原値へ訂正。全phase preserved_observationを追随しcandidate欠落findingは保持。",
+          "cases": [
+            {
+              "case_id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-06",
+              "member": "reason",
+              "historical_expectation": {
+                "revision": "f3ea10e98f3a800bdb1295fefb610f7e251d4b26",
+                "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+                "json_pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/5",
+                "whole_canonical_sha256": "69f9428da339e09d4e301488a40292e29e1e112ebeee2fa4a88b54f58cf33fd8"
+              },
+              "corrected_whole_canonical_sha256": "bae5ebb169761645fb764ec0460354e3d82e740be0f4fbb97c04f6ebee4fa999",
+              "native_source_value": "限定対象外",
+              "source_value_pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/5/observation_recipe_patch/0/value"
+            },
+            {
+              "case_id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-07",
+              "member": "decider",
+              "historical_expectation": {
+                "revision": "f3ea10e98f3a800bdb1295fefb610f7e251d4b26",
+                "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+                "json_pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/6",
+                "whole_canonical_sha256": "33ca1b94d06c63fb04da77cf4a0e10e4c908a66fff0bb905bb6134338b903c5d"
+              },
+              "corrected_whole_canonical_sha256": "fc2d7a34b1806c8e164b2708d2497909bf1f08399cd7991f9ccc06d0c9158f6c",
+              "native_source_value": "synthetic-core-reviewer",
+              "source_value_pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/6/observation_recipe_patch/0/value"
+            },
+            {
+              "case_id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-08",
+              "member": "target_revision",
+              "historical_expectation": {
+                "revision": "f3ea10e98f3a800bdb1295fefb610f7e251d4b26",
+                "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+                "json_pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/7",
+                "whole_canonical_sha256": "674e4ca4611ce961517c21e577c267996513777a0d0141ad217fbaa53f5c63fe"
+              },
+              "corrected_whole_canonical_sha256": "11bda7cd6db4d42db219abbf17b760cc8dfd2fb9c8fb1397e29cb2f198c6b27d",
+              "native_source_value": "rev-A",
+              "source_value_pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/7/observation_recipe_patch/0/value"
+            },
+            {
+              "case_id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-09",
+              "member": "reentry",
+              "historical_expectation": {
+                "revision": "f3ea10e98f3a800bdb1295fefb610f7e251d4b26",
+                "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+                "json_pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/8",
+                "whole_canonical_sha256": "2f94e6640da0f4bf9b2ea36821334115ad1a69359f46ec2257c299f162d76cca"
+              },
+              "corrected_whole_canonical_sha256": "fdf22c779bac155e89d0cff266744c411d2bbb0a3184a724a25cbc0f0f4d8e6a",
+              "native_source_value": {
+                "when": "revision-change",
+                "minimum": 2
+              },
+              "source_value_pointer": "/cases/5/selected_source_member_correspondence_oracles/cases/8/observation_recipe_patch/0/value"
+            }
+          ],
+          "ordinary_references_only": "履歴参照は通常JSON値。$copy recipeでなく、未存在future candidateを正本として参照しない。L8追随時は先行L9の確定revision/file SHAへ通常source pinを更新する。",
+          "normative_basis": {
+            "L4": {
+              "revision": "f3ea10e98f3a800bdb1295fefb610f7e251d4b26",
+              "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+              "file_sha256": "ae413e997a19c66c76e776924f84ac7272b4dc345be7509f30673baf2f013efe",
+              "json_pointers": [
+                "/contracts/5/behavior",
+                "/contracts/5/comparison_order",
+                "/contracts/5/selected_source_member_correspondence/na_null_role_basis"
+              ]
+            },
+            "L3": "HELIXOS-L3-002-F04: 原判定属性を出力参照へ結び、OSが新設しない。",
+            "L10": "HELIXOS-L10-002-F04: 判定属性と元CORE出力を辿り、不足を保持する。",
+            "legacy": {
+              "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+              "lines": "97-103",
+              "preserved": "unknownをnot_applicableへ丸めず、N/Aを原reason/authority/reentry_triggerを持つ別dispositionとして記録する。",
+              "changed": "source原属性の観測保存とcandidate属性欠落の診断を分離する期待recipeへ訂正。旧runtimeや新gateは導入しない。"
+            }
+          },
+          "current_pair_binding_refresh": {
+            "old_binding": {
+              "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+              "pointer": "/contracts/5/selected_source_member_correspondence",
+              "file_sha256": "d9395488dd4508ec52f26bd8849e1d7ce521f6a23f128135b24a3f55a327ec99",
+              "object_canonical_sha256": "d41aee623ce88927c03d7e4ffd55d98794be980e2dfb609ed1260112383897f7",
+              "revision_binding": "同じpair候補の固定bytesへ結ぶ。source_basisのc242005は過去source/旧wholeの固定参照であり、この新追補のcommitだとはしない。公開時は同一HEADの本文hashを照合する。"
+            },
+            "old_fixed_source_revision": "757f5d0747647584722f2c744e38e0c2d081017a",
+            "object_change_revision": "c2c130c43082ecd11460c1a024c3df0b3794c88c",
+            "object_changed_pointer": "/contracts/5/selected_source_member_correspondence/detail_rederivation_remaining",
+            "meaning": "同一HEAD本文hashを要求する現pair bindingだけ現L4へ更新。明示過去revisionを持つsource_basisの歴史pinは変更しない。L4本文と意味は変更しない。"
+          }
         }
       },
       "source_original_correspondence_oracles": {
