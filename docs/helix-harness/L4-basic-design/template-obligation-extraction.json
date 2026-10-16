@@ -254,7 +254,7 @@
       "content_comparison": [
         "原templateの全対象要素をatom/原条件による理由付き非適用/個別gapへ対応。gapがあることを表示できても完了にはしない。",
         "未対応/空/TBD/抽出不能/同一義務重複/分岐欠落を当該span/kind/対象/数で示す。gapをLLM値で埋めず、重複と欠落を件数で相殺しない。",
-        "同一義務として確認できる原source occurrenceが複数ある場合、理由付き非適用のidentity dispositionは保持しつつ、各原spanをkind=duplicate・対象ID・occurrence_count付きのgapとして示す。非適用理由で重複を相殺せず、gapが残る場合は完了扱いにしない。"
+        "同一義務として確認できる原source occurrenceが複数ある場合、理由付き非適用のidentity dispositionは保持しつつ、各原spanをkind=source_duplicate・対象ID・occurrence_count付きのgapとして示す。候補側atom重複の既存finding kind=duplicateは別に保持する。 返却配列では各原行に対する通常の個別診断の後に、その原行のsource_duplicate診断を置き、原行順を維持する。非適用理由で重複を相殺せず、gapが残る場合は完了扱いにしない。同一内容の型付き原行が複数あることは同一義務を確認できる十分条件とするが、異なる内容の同一IDだけから同一義務を推定しない。"
       ],
       "failure_returns": [
         "009/対象template owner",
