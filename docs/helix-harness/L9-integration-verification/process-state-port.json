@@ -10938,7 +10938,7 @@
           }
         ],
         "expected_recipe_rule": "$copyはbaseのfixture参照を一度束縛してからinput_patchを適用した後のcase inputをrootとするRFC6901 pointer。raw input retentionはコピーし、state/reasonは固定expectedから照合する。$sourceは固定source material用でexpected値を入力から生成しない。",
-        "scope": "source-binding接続の追加16対照。各caseのraw input/期待はSourceCell保持とendpoint比較を観測する。既存F03/F04 whole ProcessAssessmentを置換せず、実producer全域や実資格を証明しない。 015のnative PayloadF03_binding/ PayloadF03_binding_scope型はsource pin済L5定義から照合する。L9のSourceCellはそのFieldValue nestingを保持し、owner_material raw inputはpin済L8値を変更せず参照する。",
+        "scope": "source-binding接続の追加18対照。各caseのraw input/期待はSourceCell保持とendpoint比較を観測する。既存F03/F04 whole ProcessAssessmentを置換せず、実producer全域や実資格を証明しない。 015のnative PayloadF03_binding/ PayloadF03_binding_scope型はsource pin済L5定義から照合する。L9のSourceCellはそのFieldValue nestingを保持し、owner_material raw inputはpin済L8値を変更せず参照する。",
         "qualification_limit": "known等は合成の独立source資格入力を指す。L4有限fixtureの観測sidecarは資格発行・実owner資格・実operation bindingではない。",
         "origin_operation_qualification": "各原target_operation資格をSourceCell.qualification_stateやbinding資格から継承しない。有限観測sidecarのorigin_operationは独立optional入力であり、その欠落/malformedはqualification_input_shapeに従う。"
       }
@@ -16004,7 +16004,7 @@
               "actual_owner_qualified": false,
               "effects": []
             },
-            "expectation_basis": "expected_material_ownersが選択MaterialRecord.ownerに対して独立selectorとして与えられる。既知owner差をtarget_state=conflictとし、binding_stateはSB06の既存foldから導く。他の軸・source資格・候補recordは保持する。未定義mutant本体の実行証拠ではない。",
+            "expectation_basis": "expected_material_ownersが選択MaterialRecord.ownerに対して独立selectorとして与えられる。既知owner差をtarget_state=conflictとし、binding_stateはSB06の既存foldから導く。他の軸・source資格・候補recordは保持する。",
             "execution_state": "not_executed",
             "effect": "none"
           },
@@ -16361,10 +16361,173 @@
             "expectation_basis": "同じ固定source_refでpacket raw payloadが異なるためbasis取得はconflict。取得失敗後はbasis依存のexpected Material/Evidence selector・内容比較を未実施としmissingを合成しない。candidate inputのMaterial.pairと独立Context.pairsは取得basisに依存せず照合継続し、候補pair欠落をcontent missingとして保持する。SB06ではtarget conflictと独立content missingの異種状態がbinding_state=unknown。",
             "execution_state": "not_executed",
             "effect": "none"
+          },
+          {
+            "id": "H003-F04-022-OUTER-PRODUCER-ENDPOINT-ABSENT",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "F04_verified",
+            "input_patch": [
+              {
+                "op": "remove",
+                "path": "/source_cells/1/binding/producer_target"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "known",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "missing",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "known",
+                  "requirement_revision_state": "known",
+                  "binding_state": "missing"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "retained_qualification_observations": {
+                "$copy": "/qualification_observations"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "binding.producer_target全体の欠落は対象対応missing。独立operation producer target、producer input.context、selected material/evidenceのrevisionとraw scopeは取得できるため比較を続ける。存在しないcontainerの子field欠落を追加生成せず、artifact/requirement revision軸は独立比較からknownを保つ。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F04-022-PRESENT-ENDPOINT-ARTIFACT-REVISION-ABSENT",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "F04_verified",
+            "input_patch": [
+              {
+                "op": "remove",
+                "path": "/source_cells/1/binding/producer_target/artifact_revision"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "known",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "missing",
+                  "requirement_revision_state": "known",
+                  "binding_state": "missing"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "retained_qualification_observations": {
+                "$copy": "/qualification_observations"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "producer endpoint objectは存在しidentity/scope/requirement revisionは読めるが、当該objectのartifact_revision memberが欠落する。SB02の有効参照object内revision欠落missingに従いartifact軸だけmissingとし、target/scope/requirementと他sourceは保持する。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F04-022-INDEPENDENT-ORACLE-REVISION-DIFFERS",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "F04_verified",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/1/original_contents/context/expected_oracle_revisions/unique_quality",
+                "value": "ORACLE-unique_quality@other"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "known",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "conflict",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "known",
+                  "requirement_revision_state": "known",
+                  "binding_state": "conflict"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "retained_qualification_observations": {
+                "$copy": "/qualification_observations"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "独立Contextのunique_quality oracle selectorだけを変え、candidate Material/Evidenceと固定basisは原値に保つ。SB05の独立oracle selector既知不一致はtarget conflict。candidate値からContextのoracle期待を再生成するとこの対照を識別できない。",
+            "execution_state": "not_executed",
+            "effect": "none"
           }
         ],
         "expected_recipe_rule": "$copyはbaseのfixture参照を一度束縛してからinput_patchを適用した後のcase inputをrootとするRFC6901 pointer。raw input retentionはコピーし、state/reasonは固定expectedから照合する。$sourceは固定source material用でexpected値を入力から生成しない。",
-        "scope": "source-binding接続の追加33対照。各caseはSourceCell保持、endpoint/022 selector比較および独立evidence selection basisの保持を観測する。既存F03/F04 whole ProcessAssessmentを置換せず、実producer全域や実資格を証明しない。",
+        "scope": "source-binding接続の追加37対照。各caseはSourceCell保持、endpoint/022 selector比較および独立evidence selection basisの保持を観測する。既存F03/F04 whole ProcessAssessmentを置換せず、実producer全域や実資格を証明しない。",
         "qualification_limit": "known等は合成の独立source資格入力を指す。L4有限fixtureの観測sidecarは資格発行・実owner資格・実operation bindingではない。",
         "origin_operation_qualification": "各原target_operation資格をSourceCell.qualification_stateやbinding資格から継承しない。有限観測sidecarのorigin_operationは独立optional入力であり、その欠落/malformedはqualification_input_shapeに従う。"
       }
