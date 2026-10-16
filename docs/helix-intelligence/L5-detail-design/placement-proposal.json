@@ -213,10 +213,10 @@
   "scope": {
     "approved_requirement_parent": "HELIXINTELLIGENCE-L2-010",
     "l4_document": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
-    "l4_sha256": "0709ea9e3d768bdb9c81149a4cf9c4a22bbbc69a9051eae4fb515a11ee63d305",
+    "l4_sha256": "dde2ad1d910b340932cde4cefd09d4814b752b7fe06a4170a6ae4fbb4964ee4b",
     "l9_document": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
-    "l9_sha256": "af8dcf84e9bbae82758f875a8ab2fe6e8a294154e65f20ee569e5ab9103a4b72",
-    "source_main_metadata_note": "admitted source_mainのL4/L9 bytesをsource_pinsで固定する。基本pair本文内の古いsource_mainは読取起点の履歴であり、現90caseの作成revisionと同一視しない。",
+    "l9_sha256": "65da05e1aeffc5a274b2c03e999fbbf1d317d7432e645e5806912ca222659a79",
+    "source_main_metadata_note": "source_mainは本L5作成時の履歴情報である。当初90caseの作成revisionと現在のL9 revisionを同一視しない。現在参照するL4/L9の正本bytesはsource_pinsとscope hashで別に固定する。",
     "original_case_count": 90,
     "full_goal_scope_preserved": {
       "parents": 92,
@@ -226,15 +226,15 @@
   "source_pins": [
     {
       "path": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
-      "revision": "99ba6b467ec2e949191f972c96714df91ba328e6",
-      "bytes": 56863,
-      "sha256": "0709ea9e3d768bdb9c81149a4cf9c4a22bbbc69a9051eae4fb515a11ee63d305"
+      "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+      "bytes": 77668,
+      "sha256": "dde2ad1d910b340932cde4cefd09d4814b752b7fe06a4170a6ae4fbb4964ee4b"
     },
     {
       "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
-      "revision": "99ba6b467ec2e949191f972c96714df91ba328e6",
-      "bytes": 1586891,
-      "sha256": "af8dcf84e9bbae82758f875a8ab2fe6e8a294154e65f20ee569e5ab9103a4b72"
+      "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+      "bytes": 1900183,
+      "sha256": "65da05e1aeffc5a274b2c03e999fbbf1d317d7432e645e5806912ca222659a79"
     },
     {
       "path": "docs/governance/decisions/helix-intelligence-placement-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
@@ -2287,6 +2287,8 @@
           "original_scope.ticket",
           "original_task",
           "original_task.domain",
+          "original_task.identity",
+          "original_task.revision",
           "original_task.tool_requirement",
           "original_workers",
           "submitted_proposal",
@@ -2474,6 +2476,19 @@
           "pointer": "/cases/1",
           "object_canonical_sha256": "d6d53faa9d942b55182bf6864b41d6bce73bdb5212ebdcd49db1e5c250ad939e",
           "id": "HELIXINTELLIGENCE-L10-010-F02"
+        },
+        "detail_followup_trace": {
+          "current_l4_source": {
+            "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+            "path": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
+            "sha256": "dde2ad1d910b340932cde4cefd09d4814b752b7fe06a4170a6ae4fbb4964ee4b",
+            "pointers": [
+              "/content_diagnostic_contract/F02/task_anchor",
+              "/content_diagnostic_contract/F02/worker_checks",
+              "/content_diagnostic_contract/F02/proposal_scope_alignment"
+            ]
+          },
+          "meaning": "F02 task_anchorおよび選択Worker内domain/toolsのL5追補は、採択L3/L10の同scope義務を現行L4が具体化した契約への技術的接続である。legacy_comparisonの旧task/scope・model世代sourceは対応する保持点として記録するが、proposal scopeの6軸とその順序・missing/ownerは旧sourceから直接導出したものではなく、現行L4 F02の宣言に従う。"
         }
       },
       "state_expression": {
@@ -2662,6 +2677,310 @@
           ]
         },
         {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.identity"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.identity"
+                }
+              },
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_scope.task"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_scope.task"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.identity",
+            "result": "missing",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "not",
+                "arg": {
+                  "op": "or",
+                  "args": [
+                    {
+                      "op": "is_absent",
+                      "arg": {
+                        "op": "path",
+                        "path": "original_task.identity"
+                      }
+                    },
+                    {
+                      "op": "is_null",
+                      "arg": {
+                        "op": "path",
+                        "path": "original_task.identity"
+                      }
+                    },
+                    {
+                      "op": "is_absent",
+                      "arg": {
+                        "op": "path",
+                        "path": "original_scope.task"
+                      }
+                    },
+                    {
+                      "op": "is_null",
+                      "arg": {
+                        "op": "path",
+                        "path": "original_scope.task"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "op": "not_absent_or_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.identity"
+                }
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "nonempty_string",
+                  "arg": {
+                    "op": "path",
+                    "path": "original_task.identity"
+                  }
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.identity",
+            "result": "invalid_value_kind",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "not_absent_or_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.identity"
+                }
+              },
+              {
+                "op": "not_absent_or_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_scope.task"
+                }
+              },
+              {
+                "op": "nonempty_string",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.identity"
+                }
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "path",
+                    "path": "original_task.identity"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "original_scope.task"
+                  }
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.identity",
+            "result": "foreign",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.revision"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.revision"
+                }
+              },
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_scope.revision"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_scope.revision"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.revision",
+            "result": "missing",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "not",
+                "arg": {
+                  "op": "or",
+                  "args": [
+                    {
+                      "op": "is_absent",
+                      "arg": {
+                        "op": "path",
+                        "path": "original_task.revision"
+                      }
+                    },
+                    {
+                      "op": "is_null",
+                      "arg": {
+                        "op": "path",
+                        "path": "original_task.revision"
+                      }
+                    },
+                    {
+                      "op": "is_absent",
+                      "arg": {
+                        "op": "path",
+                        "path": "original_scope.revision"
+                      }
+                    },
+                    {
+                      "op": "is_null",
+                      "arg": {
+                        "op": "path",
+                        "path": "original_scope.revision"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "op": "not_absent_or_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.revision"
+                }
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "nonempty_string",
+                  "arg": {
+                    "op": "path",
+                    "path": "original_task.revision"
+                  }
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.revision",
+            "result": "invalid_value_kind",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "not_absent_or_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.revision"
+                }
+              },
+              {
+                "op": "not_absent_or_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_scope.revision"
+                }
+              },
+              {
+                "op": "nonempty_string",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.revision"
+                }
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "path",
+                    "path": "original_task.revision"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "original_scope.revision"
+                  }
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.revision",
+            "result": "foreign_revision",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
           "for_each": {
             "array": {
               "op": "path",
@@ -2685,6 +3004,102 @@
                       "op": "bound_path",
                       "as": "worker",
                       "path": "identity"
+                    }
+                  },
+                  {
+                    "op": "or",
+                    "args": [
+                      {
+                        "op": "is_absent",
+                        "arg": {
+                          "op": "path",
+                          "path": "original_task.domain"
+                        }
+                      },
+                      {
+                        "op": "is_null",
+                        "arg": {
+                          "op": "path",
+                          "path": "original_task.domain"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "finding": {
+                "field": "task.domain",
+                "result": "missing",
+                "return_owner": "OS-task-owner"
+              }
+            },
+            {
+              "when": {
+                "op": "and",
+                "args": [
+                  {
+                    "op": "array_contains",
+                    "array": {
+                      "op": "path",
+                      "path": "submitted_proposal.recommended"
+                    },
+                    "value": {
+                      "op": "bound_path",
+                      "as": "worker",
+                      "path": "identity"
+                    }
+                  },
+                  {
+                    "op": "and",
+                    "args": [
+                      {
+                        "op": "not_absent_or_null",
+                        "arg": {
+                          "op": "path",
+                          "path": "original_task.domain"
+                        }
+                      },
+                      {
+                        "op": "not",
+                        "arg": {
+                          "op": "nonempty_string",
+                          "arg": {
+                            "op": "path",
+                            "path": "original_task.domain"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "finding": {
+                "field": "task.domain",
+                "result": "invalid_value_kind",
+                "return_owner": "OS-task-owner"
+              }
+            },
+            {
+              "when": {
+                "op": "and",
+                "args": [
+                  {
+                    "op": "array_contains",
+                    "array": {
+                      "op": "path",
+                      "path": "submitted_proposal.recommended"
+                    },
+                    "value": {
+                      "op": "bound_path",
+                      "as": "worker",
+                      "path": "identity"
+                    }
+                  },
+                  {
+                    "op": "nonempty_string",
+                    "arg": {
+                      "op": "path",
+                      "path": "original_task.domain"
                     }
                   },
                   {
@@ -2743,6 +3158,102 @@
                       "op": "bound_path",
                       "as": "worker",
                       "path": "identity"
+                    }
+                  },
+                  {
+                    "op": "or",
+                    "args": [
+                      {
+                        "op": "is_absent",
+                        "arg": {
+                          "op": "path",
+                          "path": "original_task.tool_requirement"
+                        }
+                      },
+                      {
+                        "op": "is_null",
+                        "arg": {
+                          "op": "path",
+                          "path": "original_task.tool_requirement"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "finding": {
+                "field": "task.tool_requirement",
+                "result": "missing",
+                "return_owner": "OS-task-owner"
+              }
+            },
+            {
+              "when": {
+                "op": "and",
+                "args": [
+                  {
+                    "op": "array_contains",
+                    "array": {
+                      "op": "path",
+                      "path": "submitted_proposal.recommended"
+                    },
+                    "value": {
+                      "op": "bound_path",
+                      "as": "worker",
+                      "path": "identity"
+                    }
+                  },
+                  {
+                    "op": "and",
+                    "args": [
+                      {
+                        "op": "not_absent_or_null",
+                        "arg": {
+                          "op": "path",
+                          "path": "original_task.tool_requirement"
+                        }
+                      },
+                      {
+                        "op": "not",
+                        "arg": {
+                          "op": "string_array",
+                          "arg": {
+                            "op": "path",
+                            "path": "original_task.tool_requirement"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "finding": {
+                "field": "task.tool_requirement",
+                "result": "invalid_value_kind",
+                "return_owner": "OS-task-owner"
+              }
+            },
+            {
+              "when": {
+                "op": "and",
+                "args": [
+                  {
+                    "op": "array_contains",
+                    "array": {
+                      "op": "path",
+                      "path": "submitted_proposal.recommended"
+                    },
+                    "value": {
+                      "op": "bound_path",
+                      "as": "worker",
+                      "path": "identity"
+                    }
+                  },
+                  {
+                    "op": "string_array",
+                    "arg": {
+                      "op": "path",
+                      "path": "original_task.tool_requirement"
                     }
                   },
                   {
@@ -4092,7 +4603,7 @@
         "value": "not_applicable"
       },
       "rule_program": {
-        "check_order": "checksを記載順に走査。for_eachは配列のindex順に局所bindして子checksを実行する。非配列は反復0件。data所見は全field/result/owner同値だけ先出保持、別claim所見は併合しない。",
+        "check_order": "checksを記載順に走査。for_eachは配列のindex順に局所bindして子checksを実行する。提出推薦形状→推薦identity binding→task identity/revision anchor（identity軸、revision軸；各軸missing→左側invalid→不一致）→各raw Worker indexの選択対象内でdomain missing→invalid→membership、次にtools missing→invalid→membership→残りの既存checksを実行する。missing/invalidは同fieldのmembershipだけを抑止し、別軸・別Worker・他checksを抑止しない。data所見は全field/result/owner同値だけ先出保持、別claim所見は併合しない。",
         "state": "state_expression",
         "candidate_fit": "fit_expression",
         "comparison_obligation": "comparison_expression",
@@ -8284,7 +8795,9 @@
     "F01/F03/N01の同field data/claim診断選択は基本pair content_diagnostic_contract.remaining_claim_diagnostic_limitsの5例を保持。独立診断の全義務閉包ではなく、consumerへ返らない不足result/field/ownerは同sourceへ明示する。",
     "F02のtask根拠の独立locator、F03の各Workerへ独立したBench generation target、全source/owner資格は未供給。performance.ref/bench.refとworker/versionの供給済み原値だけを比較し、名前からparseして未供給refを創作しない。",
     "全入力形/全組合せ/全mutationの意味閉包、正式wire/schema/codec、実装前Red→Green→Refactor/TDD/新CI/実L9L10/PO L11/全92親430対の設計閉包と実装Readyは未成立。L6は関数設計、L7は対関数検証、実装は層外。",
-    "両側同一の重複推薦配列は内容一致として保持するが、重複案の実有効性・Worker identityの実source資格は未成立。独立source/再評価入力をF02 unclosed_bindingsへ保持する。"
+    "両側同一の重複推薦配列は内容一致として保持するが、重複案の実有効性・Worker identityの実source資格は未成立。独立source/再評価入力をF02 unclosed_bindingsへ保持する。",
+    "F02 task_anchor/worker_checksの有限例は、anchorを推薦identity bindingより前へ移す変更、左辺型不正と右辺欠落の併存でmissing優先guardを外す変更、identity/revisionの空文字列を有効にする変更、domainの空文字列又はtoolsの非string要素を許す変更を個別識別する証拠としては不足する。順序と型条件は現L4の宣言を保持し、これら未評価の組合せを成功へ外挿しない。",
+    "現L4/L9 /remaining末尾の「F02 task_anchor、worker_checksとproposal_scope_alignmentがL5/L8未反映」という履歴説明は、この詳細pair統合後に後続の基本pair更新で再評価・訂正する。task_anchor/worker_checksは今回接続し、6軸proposal_scope_alignmentのL5 checksは既存から保持している。未観測の組合せは引き続き未観測であり、反映済みと全域検証済みを混同しない。"
   ],
   "exclusive_rule_source": "generic_expression_vocabulary（汎用意味）、functions.checks/各式/return_expression（全業務path/literal/優先/出力）、type_contract（入出力domain）が唯一規範。proseとcompositionは参照説明。readerの暗黙業務分岐は規範ではない。",
   "upstream_whole_inventory": {

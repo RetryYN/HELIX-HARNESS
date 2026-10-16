@@ -6,7 +6,7 @@
   "status": "draft_source_coupled_static_verification_not_executed",
   "source_main": "99ba6b467ec2e949191f972c96714df91ba328e6",
   "l5_ref": "docs/helix-intelligence/L5-detail-design/placement-proposal.json",
-  "l5_same_pair_bytes_sha256": "03d38b01a6ff912af27a820a802c64452c48924145bd7cf188a6c73e7490e49c",
+  "l5_same_pair_bytes_sha256": "789f7ff2a8421b7a38671d80dd1232928dd85d43cccb036b7fa0bd57b2dbbcf3",
   "approved_object_refs": [
     {
       "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
@@ -84,15 +84,15 @@
   "source_pins": [
     {
       "path": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
-      "revision": "99ba6b467ec2e949191f972c96714df91ba328e6",
-      "bytes": 56863,
-      "sha256": "0709ea9e3d768bdb9c81149a4cf9c4a22bbbc69a9051eae4fb515a11ee63d305"
+      "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+      "bytes": 77668,
+      "sha256": "dde2ad1d910b340932cde4cefd09d4814b752b7fe06a4170a6ae4fbb4964ee4b"
     },
     {
       "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
-      "revision": "99ba6b467ec2e949191f972c96714df91ba328e6",
-      "bytes": 1586891,
-      "sha256": "af8dcf84e9bbae82758f875a8ab2fe6e8a294154e65f20ee569e5ab9103a4b72"
+      "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+      "bytes": 1900183,
+      "sha256": "65da05e1aeffc5a274b2c03e999fbbf1d317d7432e645e5806912ca222659a79"
     },
     {
       "path": "docs/governance/decisions/helix-intelligence-placement-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
@@ -280,10 +280,10 @@
     }
   ],
   "counts": {
-    "source_cases": 90,
+    "source_cases": 106,
     "functions": 6,
     "old_detail_source_cases": 70,
-    "new_admitted_source_cases": 20,
+    "new_admitted_source_cases": 36,
     "retained_local_wholes": 7,
     "retained_local_source_aliases": 1,
     "repair_whole_probes": 23,
@@ -2359,6 +2359,374 @@
         "json_pointer": "/verification_obligations/5/cases/5/expected_material",
         "canonical_sha256": "50c6b90dcb876c2e0453f0bdb538561ceb6cdee3690492b27ac784d42e557f40",
         "use": "独立比較専用。候補計算から期待値を作らない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-ANCHOR-CROSS-TASK",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/24",
+        "raw_sha256": "e5c16cfe8e83de72ef631b0d490edab0182d9a6679e23862383f70449a0badac",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/24/expected_material",
+        "canonical_sha256": "3f2187cee883a20815e9563a6acdf4f81479a90846b81a096dfbab9d922f1622",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-ANCHOR-REVISION-MISMATCH",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/25",
+        "raw_sha256": "cf4f23e88266be8887bc11bc8758caee9b3ba521794825d68706d8624ce79618",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/25/expected_material",
+        "canonical_sha256": "0b70a32a55db939690ae278963b996c163846a21f1ad79e7f77ee2b33bae1f68",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-ANCHOR-IDENTITY-SOURCE-SEPARATION",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/26",
+        "raw_sha256": "f524100fe9ed10d60cf3d947051b2b907c801c888160662541349e36f450567c",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/26/expected_material",
+        "canonical_sha256": "de1785e6e91e5a82a91e17454cd4b6ebfbb3defc6eb49f9dcc0793edc7226d3d",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-ANCHOR-IDENTITY-MATCH-ALTERNATE-SOURCES-DIFFER",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/27",
+        "raw_sha256": "715c9706cb31dfb5ef6334f42a6e5bc9aee1efa4ebb6d937ee23bf774c058547",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/27/expected_material",
+        "canonical_sha256": "bcf25fc19fb5576567f4228fd0ead1ee9e3649c237497488514a85294f7d729a",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-ANCHOR-ABSENT-AND-NULL",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/28",
+        "raw_sha256": "e647ad81c76cf4686ad40fe8d8bdfee7d18afa2847d688ef656ece532126ebd0",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/28/expected_material",
+        "canonical_sha256": "b51e50c60ba60427fb7d086a63a50fcfbbdd466f710ec77bdaa38e5fa8cc2be4",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-CONTAINER-NULL",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/29",
+        "raw_sha256": "b9cda4485db2e50f751c897712c47c414c3c4529cdbd8446a7adb1c6a3c0798c",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/29/expected_material",
+        "canonical_sha256": "31456bcf7690681c234e502e4fcb130a392abf165a90ee760692a88ba3d49fbd",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-ANCHOR-JSON-TYPE-MISMATCH",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/30",
+        "raw_sha256": "fae56c163ff95cddfc969d656541cf63d5cddd5ddfd49bd35e6d780909a7dc1e",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/30/expected_material",
+        "canonical_sha256": "1fb2f6bc9818d24fcfe4a61d7ebdbe6c1550b3a9590256f016fbc160a795980b",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-ANCHOR-AND-INCOMPATIBLE-CLAIM",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/31",
+        "raw_sha256": "354ea152c3daf5ea2b041811fd394ff4b8497649ce6925a87b59a27139d34e96",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/31/expected_material",
+        "canonical_sha256": "059488caea693b32ba99a5203888577eee51c807adfe08240e7b968e6b41a4e8",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-SCOPE-CONTAINER-ARRAY",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/32",
+        "raw_sha256": "34897f780ccef992b5bdcc15fb12d7507e2b736c73319d2a2fe1761b7be01b9f",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/32/expected_material",
+        "canonical_sha256": "93df2cce1be9fac88ca722150420dd4ee899447fd39f0b494582686a862f666d",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-ANCHOR-REVISION-SOURCE-SEPARATION",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/33",
+        "raw_sha256": "29668f6f6c09b51080092d1a52f32d595ab1e14c29c262da84cf17d99323d4fa",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/33/expected_material",
+        "canonical_sha256": "8faf682d8f21722b420596793bb5807d2c9c1562d0b42cb3ea315f36e1c1e5bd",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-ANCHOR-LEFT-INVALID-VALUE-KIND",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/34",
+        "raw_sha256": "5c515381949ba85e7d321eb314120dc8fbd90abf65b90c1bc25f741a37ea18e1",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/34/expected_material",
+        "canonical_sha256": "f58afcc1350546b40118ef4138d2cd40f9e993fd04c6c39ccb4606a39ef7ddca",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-DOMAIN-ABSENT-ANCHOR-VALID",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/35",
+        "raw_sha256": "b697cc76de2f868799c4a72596f146801e5924f8fe082f6f5091627f84eb5e6b",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/35/expected_material",
+        "canonical_sha256": "ae2b51612ce8742de2af055cd96b67ebf6bc05598e1fbac4d7a126d629ee2764",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-TOOLS-NULL-ANCHOR-VALID",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/36",
+        "raw_sha256": "ff560decd2762f8927c187179068ca6fbcd0bcd9c9e208308422dd33cbf8209c",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/36/expected_material",
+        "canonical_sha256": "7f1b886cb7900e5d9b038acd78085b6df699102668c22e3cb133bdf602e61855",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-DOMAIN-MISMATCH-AND-TOOLS-NULL-ANCHOR-VALID",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/37",
+        "raw_sha256": "523310a51b012d6eeff9cefd1b3cb07dda50bb95a0c4c8a833a0f7a12513ad61",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/37/expected_material",
+        "canonical_sha256": "619eb037707d2bcaba677a786748ca61b85a441eba09c34cc3aa7151ce9847a7",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-DOMAIN-NUMBER-INVALID",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/38",
+        "raw_sha256": "d53eb57a78bbdc956f556e2970e4e1a4c00f544e61f0a89ca02951efb9424278",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/38/expected_material",
+        "canonical_sha256": "8a5e8815ea9476136f78022d5f7e771d396b61978e17c7400c15235ea44609b7",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "INT010-F02-TASK-TOOLS-BOOLEAN-INVALID",
+      "function_ref": "INT010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "source_packet": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/39",
+        "raw_sha256": "a620cac32a2c6ebf64c0508ca04470154f1bb3d06aabfdc250fa4764c2dc221c",
+        "qualification": "合成source。実資格は未成立。"
+      },
+      "oracle": {
+        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+        "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+        "json_pointer": "/verification_obligations/1/cases/39/expected_material",
+        "canonical_sha256": "b56f0f30c45e9e8319d6e5029faf8f6926010e28e9dc8e80a9b985d6a191f994",
+        "use": "独立比較専用。期待値を候補計算から生成しない。"
       },
       "execution_state": "not_executed",
       "effect": "none"
@@ -5722,8 +6090,8 @@
   ],
   "verification_plan": {
     "normative_input": "L5唯一規範のoperator_definitions/functions/type_contract。汎用readerに業務分岐を置かない。",
-    "whole_comparison": "現admitted L9全90whole、旧local7whole（うち1はsource alias）、修正対応probe23whole（うちWorker版欠落の1件はL9 alias、判断owner再固定1、重複推薦追加1を含む）、入力供給6wholeと同一原因4wholeのモデル/scope境界5wholeを加えた計135wholeを全root比較。旧70期待はsource_rebaseの旧revision/pointer/hashから全値へ再解決する。",
-    "probe_independence": "修正23（うちowner/duplicate 2件は独立記録へ結線）、入力供給6、同一原因4は各対応規範変更前に源泉から別に期待を固定した。旧7と新source90との対応は別に記録。候補出力から期待を作らず、全期待の過去時系列を一括先固定と主張しない。モデル/scope両側不足5wholeも対応する判定追加前に別固定した。",
+    "whole_comparison": "現admitted L9全106whole、旧local7whole（うち1はsource alias）、修正対応probe23whole（うちWorker版欠落の1件はL9 alias、判断owner再固定1、重複推薦追加1を含む）、入力供給6wholeと同一原因4wholeのモデル/scope境界5wholeを加えた計151wholeを全root比較。旧70期待はsource_rebaseの旧revision/pointer/hashから全値へ再解決する。",
+    "probe_independence": "修正23（うちowner/duplicate 2件は独立記録へ結線）、入力供給6、同一原因4は各対応規範変更前に源泉から別に期待を固定した。旧7と新source106との対応は別に記録。候補出力から期待を作らず、全期待の過去時系列を一括先固定と主張しない。モデル/scope両側不足5wholeも対応する判定追加前に別固定した。",
     "limits": {
       "general": "有限source/probeと型摂動は任意JSON/全組合せ/全mutationの意味閉包ではない。未検証のfamilyを以下に保持し、全mutation合格を承認・実運転の新gateにしない。",
       "families": [
@@ -5832,21 +6200,32 @@
             "content_oracle_ref"
           ],
           "unclosed": "original_benchの入力型・参照fieldとcontent_oracle_refの未見組合せについて、規範を変える変更の識別性は未証明。"
+        },
+        {
+          "contract": "F02",
+          "fields": [
+            "task_anchor",
+            "worker_checks",
+            "original_task.identity/revision/domain/tool_requirement",
+            "original_scope.task/revision"
+          ],
+          "unclosed": "F02 task_anchor/worker_checksの有限例は、anchorを推薦identity bindingより前へ移す変更、左辺型不正と右辺欠落の併存でmissing優先guardを外す変更、identity/revisionの空文字列を有効にする変更、domainの空文字列又はtoolsの非string要素を許す変更を個別識別する証拠としては不足する。順序と型条件は現L4の宣言を保持し、これら未評価の組合せを成功へ外挿しない。"
         }
-      ]
+      ],
+      "basic_pair_remaining_followup": "現L4/L9 /remaining末尾の「F02 task_anchor、worker_checksとproposal_scope_alignmentがL5/L8未反映」という履歴説明は、この詳細pair統合後に後続の基本pair更新で再評価・訂正する。task_anchor/worker_checksは今回接続し、6軸proposal_scope_alignmentのL5 checksは既存から保持している。未観測の組合せは引き続き未観測であり、反映済みと全域検証済みを混同しない。"
     }
   },
   "execution_state": "not_executed",
-  "qualification_limit": "admitted L9の90原wholeとsource-derived追加wholeの有限比較。実source/owner/authority/配置/TDD/CI/L11/全意味閉包は未成立。",
+  "qualification_limit": "admitted L9の106wholeとsource-derived追加wholeの有限比較。実source/owner/authority/配置/TDD/CI/L11/全意味閉包は未成立。",
   "source_rebase": {
     "current_normative_source": {
-      "revision": "99ba6b467ec2e949191f972c96714df91ba328e6",
+      "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
       "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
-      "case_count": 90
+      "case_count": 106
     },
     "old_detail_source_role": "旧70wholeは過去の正本sourceの履歴。基本pairの独立検収・統合により訂正された箇所を現L9正本へ置換する。単にhistoricalへ格下げして矛盾回避するのではなく、各旧/新source値/hash/理由を以下で対応させる。",
     "same_raw_original_cases": 70,
-    "added_current_source_cases": 20,
+    "added_current_source_cases": 36,
     "case_correspondence": [
       {
         "case_id": "INT010-F01-SAME-TASK-SOURCE",
@@ -7358,7 +7737,53 @@
       "return_owners",
       "actual_effects",
       "retained_auxiliary_inputs"
-    ]
+    ],
+    "latest_accepted_basic_pair_followup": {
+      "revision": "f14617580bf5ee810d51a42e8dc478e2bad30c7f",
+      "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+      "reason": "採択済み基本pairの独立review後にmainへ統合された正本を現在参照する。6件の期待訂正の公開根拠は、各L9 caseのexpectation_correction_historyにあるsupersedes/new_expected_material記録である。local expected-source-correction-history.jsonは作業時の照合記録であり、規範上の根拠ではない。",
+      "previous_current_revision": "cec8f8ed3576192e27c1ee58958d1199e61c9395",
+      "scope_expectation_changes": 6,
+      "raw_packets_unchanged": 16,
+      "expectation_correction_history_refs": [
+        {
+          "l9_case_pointer": "/verification_obligations/1/cases/27",
+          "history_pointer": "/verification_obligations/1/cases/27/expectation_correction_history",
+          "expected_material_pointer": "/verification_obligations/1/cases/27/expected_material",
+          "l8_case_index": 93
+        },
+        {
+          "l9_case_pointer": "/verification_obligations/1/cases/28",
+          "history_pointer": "/verification_obligations/1/cases/28/expectation_correction_history",
+          "expected_material_pointer": "/verification_obligations/1/cases/28/expected_material",
+          "l8_case_index": 94
+        },
+        {
+          "l9_case_pointer": "/verification_obligations/1/cases/30",
+          "history_pointer": "/verification_obligations/1/cases/30/expectation_correction_history",
+          "expected_material_pointer": "/verification_obligations/1/cases/30/expected_material",
+          "l8_case_index": 96
+        },
+        {
+          "l9_case_pointer": "/verification_obligations/1/cases/31",
+          "history_pointer": "/verification_obligations/1/cases/31/expectation_correction_history",
+          "expected_material_pointer": "/verification_obligations/1/cases/31/expected_material",
+          "l8_case_index": 97
+        },
+        {
+          "l9_case_pointer": "/verification_obligations/1/cases/32",
+          "history_pointer": "/verification_obligations/1/cases/32/expectation_correction_history",
+          "expected_material_pointer": "/verification_obligations/1/cases/32/expected_material",
+          "l8_case_index": 98
+        },
+        {
+          "l9_case_pointer": "/verification_obligations/1/cases/33",
+          "history_pointer": "/verification_obligations/1/cases/33/expectation_correction_history",
+          "expected_material_pointer": "/verification_obligations/1/cases/33/expected_material",
+          "l8_case_index": 99
+        }
+      ]
+    }
   },
   "repair_whole_probes": [
     {
