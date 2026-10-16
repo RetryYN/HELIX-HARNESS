@@ -15203,8 +15203,6 @@
         "HELIXBRAIN-L8-032-ADD-22",
         "HELIXBRAIN-L8-032-ADD-23",
         "HELIXBRAIN-L8-032-ADD-24",
-        "HELIXBRAIN-L8-032-BUILDER-RAW-NULL",
-        "HELIXBRAIN-L8-032-BUILDER-BINDING-NULL-INVALID",
         "HELIXBRAIN-L8-032-BUILDER-TYPED-INPUT-NULL",
         "HELIXBRAIN-L8-032-BUILDER-BINDING-ABSENT",
         "HELIXBRAIN-L8-032-BUILDER-BINDING-EMPTY-OBJECT",
@@ -20444,7 +20442,7 @@
       "document_id": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
       "pointer": "/wire_codec_contract/schema",
       "canonical_sha256": "535d8f0b8f2e71c709e66418fa079cb4f757a7a6d0530b50267a452d74036640",
-      "candidate_current_file_sha256": "74aca286152562dc1ac5e7d3b9272a816574fdb3dc4eb05b9b1a4e46cb8dc673",
+      "candidate_current_file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
       "candidate_current_schema_canonical_sha256": "ace94a797cce9f3b0ead1f9a909eef564b08bbdcfc6ba6ef0d5ffbd60fe21f66",
       "candidate_note": "既存canonical pinは歴史的参照として保持。二つのnullable結果memberを含む現在candidate schemaの静的照合用。"
     },
@@ -56885,7 +56883,7 @@
     ],
     "candidate_design_bytes_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "file_bytes_sha256": "74aca286152562dc1ac5e7d3b9272a816574fdb3dc4eb05b9b1a4e46cb8dc673",
+      "file_bytes_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
       "meaning": "同一candidate文書の現在bytesを照合するbinding。過去revisionにこの追補が存在したというsource pinではない。",
       "scope": "このfieldは同じPR候補のcurrent L5ファイル全bytesを指す。旧資産source引用hashはlegacy_comparison.source_assetsにあり変更しない。"
     },
@@ -66715,8 +66713,8 @@
         "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
         "pointer": "/functions/8",
         "sha256": "8b42b107322b595ed694280bd2d7a7c49974291526be0b0e2f05a0f08ee52fa9",
-        "candidate_file_bytes_sha256": "74aca286152562dc1ac5e7d3b9272a816574fdb3dc4eb05b9b1a4e46cb8dc673",
-        "candidate_pointer_canonical_sha256": "514d86b30962df6e45f004cc8e60cd742a2493df870a419ee1a37885406ef698",
+        "candidate_file_bytes_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
+        "candidate_pointer_canonical_sha256": "bf868a14d00aae1498233d9137be6f1fbfc3dc90dc138cd0edeb5950a328727c",
         "candidate_note": "function本体の現在candidate bytes。歴史的revision/pinは上書きしない。"
       },
       {
@@ -66734,21 +66732,21 @@
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary/producer_symbol_by_member",
-        "candidate_file_bytes_sha256": "74aca286152562dc1ac5e7d3b9272a816574fdb3dc4eb05b9b1a4e46cb8dc673",
+        "candidate_file_bytes_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
         "candidate_pointer_canonical_sha256": "dc690dc5e77f88850db94330710d02ade0b9883a3c6a3480c5dbdb2604cc52e8",
         "note": "AnalysisContext memberから宣言済みproducer_symbolへの対応。axes/findingsのfixtureはtest doubleであり実producer出力でない。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/output_member_rules/1",
-        "candidate_file_bytes_sha256": "74aca286152562dc1ac5e7d3b9272a816574fdb3dc4eb05b9b1a4e46cb8dc673",
+        "candidate_file_bytes_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
         "candidate_pointer_canonical_sha256": "1c6c240dee25be650e0db206ee755072fdfb497070696081b551f27314ad1e12",
         "note": "candidate欠落/空の区別を既存member_presence/construction_issuesへ結ぶ現在candidate値。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary",
-        "candidate_file_bytes_sha256": "74aca286152562dc1ac5e7d3b9272a816574fdb3dc4eb05b9b1a4e46cb8dc673",
+        "candidate_file_bytes_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb",
         "candidate_pointer_canonical_sha256": "8a73e82f6d1538f8330a45fa36755f95e56c08abef6785395cd4df9bb9f12506",
         "note": "producer_symbol/input_bindingの適合条件と局所issue。"
       }
@@ -83258,7 +83256,8 @@
           "/source_return_contract/builder_assembly/comparison_input_boundary/mismatch_issue_contract",
           "/source_return_contract/pure_reference_notation/definitions"
         ],
-        "execution_state": "not_executed"
+        "execution_state": "not_executed",
+        "id": "HELIXBRAIN-L8-032-BUILDER-INPUT-ISSUE-ORDER"
       }
     },
     "comparison_composition_controls": {

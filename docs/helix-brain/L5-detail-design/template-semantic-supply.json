@@ -1219,8 +1219,6 @@
         "HELIXBRAIN-L8-032-BUILDER-ASSEMBLY-ORDER-DUPLICATE",
         "HELIXBRAIN-L8-032-BUILDER-ASSEMBLY-UNRESOLVED",
         "HELIXBRAIN-L8-032-BUILDER-ASSEMBLY-EMPTY-CANDIDATES",
-        "HELIXBRAIN-L8-032-BUILDER-RAW-NULL",
-        "HELIXBRAIN-L8-032-BUILDER-BINDING-NULL-INVALID",
         "HELIXBRAIN-L8-032-BUILDER-BINDING-ABSENT",
         "HELIXBRAIN-L8-032-BUILDER-BINDING-EMPTY-OBJECT",
         "HELIXBRAIN-L8-032-BUILDER-TYPED-INPUT-NULL",
@@ -6383,7 +6381,8 @@
           {
             "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
             "lines": "35-39",
-            "role": "現行対象の意味保持範囲を確認する判断記録"
+            "role": "現行対象の意味保持範囲を確認する判断記録",
+            "source_pin_pointer": "/source_pins/13"
           }
         ],
         "preserve": "JSON意味正本とviewの分離、元sourceと未完状態の保持、局所の不足・矛盾を空集合や自己申告で成功へ昇格しないこと。",
