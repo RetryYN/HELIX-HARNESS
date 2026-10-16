@@ -108674,11 +108674,11 @@
     },
     "purpose": "既存26 consumer probeのraw/expectedを不変保持し、独立source plan producer、F02009 status/delta返却、F02002通常finding返却の同一call接続を候補へ記録する。consumer underselection findingはproducer選択の前提にしない。",
     "future_required_observations": [
-      "owner outer raw Field, typed owner and inner plan_ref/binding tags; OS016/OS017 original row order, pointers and every association candidate.",
-      "HARNESS F03 same-call original/sources/candidate and full Comparison; source Ref/content/bytes/qualification/source-state join and minimum projection, all distinct from raw source_bundle.",
-      "producer output from independent owner-qualified OS016/OS017 relations plus same-call F03 minimum; it must preserve known selected refs when F02009 later reports expected/actual underselection.",
-      "assembled CIInput with producer PlanSelectionSource and unchanged actual/expected profile operands, followed by the full existing F02009 SourceBoundProfile return; F02002 assembly preserves all independent values and changes only the three existing source-bound carrier leaves when their parent records are supplied.",
-      "Raw source_bundle Field/value retained in producer trace without semantic decoding.",
+      "ownerのouter raw Field、typed owner、inner plan_ref/bindingのtagと、OS016/OS017の原row順・pointer・全対応候補を保持する。",
+      "HARNESS F03の同一呼出しoriginal/sources/candidateとComparison全返却、sourceのRef/content/bytes/qualification/source-state対応とminimum投影を保持し、raw source_bundleと分ける。",
+      "producer出力は独立したowner資格付きOS016/OS017関係と同一F03呼出しminimumから導く。後段F02009がexpected/actualの選択不足を返しても、既知の選択refを保持する。",
+      "producerのPlanSelectionSourceを接続したCIInputと、変更していないactual/expected profile operandを保持し、既存F02009のSourceBoundProfile全返却へ結ぶ。F02002合成は独立値を保持し、親record供給時に限り既存source-bound carrierの3leafだけを変更する。",
+      "raw source_bundleのField/値を意味decodeせずproducer traceに保持する。",
       "全9producer source軸、OS016/OS017原row subdiagnostic、membership/item解決を保持する。F02009の14返却はconsumer_return、通常findingはF02002のf02002_returnに分離する。"
     ],
     "partial_unknown_control": "F03 minimum既知＋obligation_ref未供給/未decode relation rowを含む入力。membershipが未確定となる場合、public selected refs/itemsはともにnullで、原minimum/partial relations/raw rowsはtraceに残る。計画のみ。",
@@ -108747,11 +108747,11 @@
       "effects": "none。qualification_state=not_established、execution_state=not_executed。"
     },
     "required_future_observations": [
-      "Plan owner outer raw Field, typed owner and inner plan_ref/binding tags; OS016/OS017 original row order, pointers and all association candidates.",
-      "HARNESS F03 same-call original/sources/candidate and full Comparison; full source Ref/content/bytes/qualification/source-state comparisons, separate from raw source_bundle.",
-      "Nested F03 minimum and its four relation-specific evaluations: F03-to-nested set equality; nested-to-required set equality; nested-to-actual subset; actual-to-inventory subset. Preserve raw ordering and duplicates while evaluating each relation.",
-      "Raw source_bundle Field/value retained in trace but excluded from semantic status and selection.",
-      "All nine status axes, OS016/OS017 relation subdiagnostics, membership and item resolution, complete PlanSelectionSource, assembler output CIInput, and same-call F02009 return. F02002 inputs use the declared three-destination/parent-presence assembly; missing profiles are not synthesized.",
+      "plan ownerのouter raw Field、typed owner、inner plan_ref/bindingのtagと、OS016/OS017の原row順・pointer・全対応候補を保持する。",
+      "HARNESS F03の同一呼出しoriginal/sources/candidateとComparison全返却、sourceのRef/content/bytes/qualification/source-state全比較を保持し、raw source_bundleと分ける。",
+      "nested F03 minimumと4つの関係別評価を保持する。F03対nestedの集合等値、nested対requiredの集合等値、nested対actualの包含、actual対inventoryの包含を別々に評価し、raw順と重複を保持する。",
+      "raw source_bundleのField/値をtraceに保持し、意味statusと選択の入力にはしない。",
+      "全9status軸、OS016/OS017関係subdiagnostic、membership/item解決、PlanSelectionSource全体、assembler出力CIInput、同一呼出しF02009返却を保持する。F02002入力は宣言した3接続先と親presenceの合成規則に従い、欠落profileを生成しない。",
       "owner outer/decode優先規則（exact_binding_and_selection[0]）を先に適用し、その対象外のtyped owner入力にだけ以下を適用する。membership_status=correspondingならselection outer=supplied、selected_obligation_refs=Field.supplied(既知の完全な選択集合)。item_resolution_status=correspondingならitemsもField.supplied、unknown/conflictならitemsだけField.null。membershipがnot_supplied/unknown/conflictならouter=null（owner raw absentのouter=absentを上書きしない）。known emptyはselected refs/itemsともField.supplied([])。部分候補/原因/重複/原順をtraceへ全保持し、F02009/F02002のconsumer結果をField tag条件に含めない。"
     ],
     "status_axis_mapping": {
@@ -108768,7 +108768,7 @@
         "item_resolution"
       ],
       "r6_to_r7": "R6からR7で11 source axesを9へ整理した履歴。R8ではR7のminimum consumer比較集約をproducer source projection joinへ限定し、consumer comparisonsはconsumer_return側で保持する。",
-      "producer_consumer_split": "consumer relation results are not a producer summary axis; the complete F02009 return remains consumer_return."
+      "producer_consumer_split": "consumer関係の結果をproducer summary軸に含めず、F02009全返却はconsumer_returnに保持する。"
     },
     "minimum_relation_plan": {
       "source_projection_join": "F03 same-call ObservationFieldとnested HSS F03 minimum projectionの対応はsource traceとして保持し、consumer comparisonsとは区別する。",
@@ -108776,20 +108776,20 @@
         "nested_to_required": {
           "left": "HarnessSelectionSource.f03.pre_pr_required_refs",
           "right": "CIInput.context.required_obligations",
-          "relation": "unique-string-set equality",
-          "owner": "existing F02009 only"
+          "relation": "unique-string setの集合等値。",
+          "owner": "既存F02009だけが担当する。"
         },
         "nested_to_actual": {
           "left": "HarnessSelectionSource.f03.pre_pr_required_refs",
           "right": "CIInput.profile.obligations",
-          "relation": "left subset of right",
-          "owner": "existing F02009 only"
+          "relation": "leftがrightの部分集合。",
+          "owner": "既存F02009だけが担当する。"
         },
         "actual_to_inventory": {
           "left": "CIInput.profile.obligations",
           "right": "HarnessSelectionSource.f03.inventory_refs",
-          "relation": "left subset of right",
-          "owner": "existing F02009 only"
+          "relation": "leftがrightの部分集合。",
+          "owner": "既存F02009だけが担当する。"
         }
       },
       "producer_gate": "nested minimum/required、nested minimum/actual、actual/inventoryはF02009、通常actual/context equalityはF02002の既存責務。いずれのconsumer結果もproducerのmembership/selection前提にしない。F02009は14fieldのstatus/delta/pointerだけを返しfindingsを持たない。",
@@ -108798,8 +108798,8 @@
         "actual_to_expected": {
           "left": "CIInput.profile.obligations",
           "right": "CIInput.context.profile.obligations",
-          "relation": "existing normal actual/context set equality from L4/L5; distinct from F02009 plan-selected/context relation",
-          "owner": "existing F02002 compare_profile_metadata only"
+          "relation": "既存L4/L5の通常actual/context集合等値。F02009のplan-selected/context関係とは分ける。",
+          "owner": "既存F02002 compare_profile_metadataだけが担当する。"
         }
       }
     },
@@ -108936,7 +108936,7 @@
     "owner_outer_field_priority": "最優先でplan_owner.raw_valueのouter Fieldを判定する。raw ownerがabsentならselection outer Field=absent、raw null/empty又はtyped decode失敗ならouter Field=nullとし、後段membership/item規則で上書きしない。raw/typedの不一致や供給済の独立軸/全raw候補はtraceへ保持し省略しない。typed owner内plan_ref/bindingの原Field tag/値は保持する。",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "e0646565bf5a3da0704c05794bcad0a68c1d8afd02ac8e82709a6f2d189f80c6",
+      "body_sha256": "bcb90a04258315255e60bf18b070bfc4f822af1d88b85dc558ba76aabd27ce54",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -108960,7 +108960,7 @@
     "kind": "finite_independent_producer_to_consumer_integration_observation",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "e0646565bf5a3da0704c05794bcad0a68c1d8afd02ac8e82709a6f2d189f80c6",
+      "body_sha256": "bcb90a04258315255e60bf18b070bfc4f822af1d88b85dc558ba76aabd27ce54",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -109151,7 +109151,7 @@
               "meaning": "明示null親による投影不能をnullとして保全する技術表現。元子memberが実際にnull値で存在したと主張しない。causeは元親root /context/plan_selection_source、子pathを生成しない。原input snapshotで親nullを正確に辿れる。"
             },
             {
-              "when": "plan_selection_source.tag=supplied with declared PlanSelectionSource record",
+              "when": "plan_selection_source.tag=suppliedで、宣言済みPlanSelectionSource recordが供給される場合。",
               "returned_each_Field": "対応する子自身のFieldを原tag/原値/原順のままcopyする。child absent/null/empty/suppliedを相互変換しない。",
               "meaning": "itemsのField.emptyはlist-valued childの既存空表現として保持可能。Field.supplied([])も原値保持し、Field.emptyへ正規化しない。"
             },
@@ -109161,7 +109161,7 @@
               "meaning": "c399 L8 selection_source_presence_probe.domain_note_jaはemptyをlist-valued Fieldに限りsource全体recordには不可と明示。原raw/tagは既存RawPacket/入力snapshotに保持し、absent/nullへ黙って置換しない。新error型/診断code/業務gateを作らない。"
             },
             {
-              "when": "supplied value is not declared PlanSelectionSource record",
+              "when": "supplied値が宣言済みPlanSelectionSource recordではない場合。",
               "returned_each_Field": "既存typed signatureの前提外。全外側不正shapeの成功返却/codecをここで新設しない。",
               "meaning": "不正rawは原snapshotに保持。既存比較がそのrawをunknownとして受けるscopeと、typed F02009呼出し成立は区別する。"
             }
@@ -109183,7 +109183,7 @@
         },
         "items_source_relation_contract": {
           "kind": "F02009_status_only_source_items_domain",
-          "operator_label": "items_by_unique_id_equal (role/domain-qualified; name alone is not shared implementation)",
+          "operator_label": "items_by_unique_id_equal（role/domainごとに適用範囲を指定し、同じ名前だけを理由に実装を共用しない）",
           "operands": {
             "left": "/context/plan_selection_source/items",
             "right": "/context/profile/items"
@@ -109201,8 +109201,8 @@
               "preserve": "最初の不明Field所在と原tag/value。不存在child pathを作らない。"
             },
             {
-              "when": "list-valued items Field.empty",
-              "comparison_view": "known empty list",
+              "when": "list値のitemsがField.emptyの場合。",
+              "comparison_view": "既知の空list。",
               "preserve": "原empty tagをsnapshot/返却に保持しsupplied([])へ書き換えない。record-valued source Field.emptyは別の既存domain外規則。"
             },
             {
@@ -109239,6 +109239,236 @@
         "corrected_manifest_sha256": "323be2cc33e562e2b5371955a753b3657f4f1e24777825134a18fcbe8df57fde",
         "responsibility_inverse_proof_sha256": "179f46cad755f268d57bc19eafed19e771862d45192a0769a363765e5b6bbebc",
         "locator_inverse_and_negative_proof_sha256": "f2284f57e0c6e5df4870c92de6128b0925c9913dd27afa2624d01b5c6ad0fa0a"
+      },
+      "repository_external_review_material_limit": "過去R6/9軸重複列、局所manifest/proof、reader/driver/actualのhashはrepository外のreview材料を指し、意味正本ではない。Git単独ではその旧本文や実行過程を再実行できない。catalog locatorの15leafと旧12objectの再構成だけは、以下の収載値と現12objectからGit単独で検証できる。",
+      "catalog_locator_inverse_record": {
+        "scope": "catalog locatorの所属container訂正だけ。5raw/10traceの計15leafを逆適用し、現12objectから旧12objectを復元する。空catalogの1caseの2objectは変更なし。全status/finding/owner tuple/source_ref/選択/配列順を保持。",
+        "inverse_steps": [
+          "objectsのobject_pointerから本L9の現objectを読む。",
+          "leavesの同じobject_pointerに属する各pointerで、現値がafterと厳密一致することを確認しbeforeへ戻す。",
+          "元object全体を指定の証拠snapshot直列化でUTF-8化してSHA-256を照合する。leavesが無いobjectも全体照合する。"
+        ],
+        "evidence_snapshot_serialization": "Python 3 json.dumps(value, ensure_ascii=False, indent=2) + LF をUTF-8化する。これは過去証拠snapshot byteの再構成用で、製品wire codec/署名規則ではない。",
+        "leaves": [
+          {
+            "case_id": "NORMAL-MINIMUM-U1",
+            "surface": "raw",
+            "object_pointer": "/producer_selection_integration_verification/cases/0/raw",
+            "pointer": "/arguments/input/check_item_catalog/rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          },
+          {
+            "case_id": "NORMAL-MINIMUM-U1",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/0/expected_observation",
+            "pointer": "/producer_return/trace/input_snapshot/check_item_catalog/rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          },
+          {
+            "case_id": "NORMAL-MINIMUM-U1",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/0/expected_observation",
+            "pointer": "/producer_return/trace/candidate_catalog_rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          },
+          {
+            "case_id": "ACTUAL-UNDERSELECTS-PRODUCER-U1",
+            "surface": "raw",
+            "object_pointer": "/producer_selection_integration_verification/cases/1/raw",
+            "pointer": "/arguments/input/check_item_catalog/rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          },
+          {
+            "case_id": "ACTUAL-UNDERSELECTS-PRODUCER-U1",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/1/expected_observation",
+            "pointer": "/producer_return/trace/input_snapshot/check_item_catalog/rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          },
+          {
+            "case_id": "ACTUAL-UNDERSELECTS-PRODUCER-U1",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/1/expected_observation",
+            "pointer": "/producer_return/trace/candidate_catalog_rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          },
+          {
+            "case_id": "OWNER-ABSENT",
+            "surface": "raw",
+            "object_pointer": "/producer_selection_integration_verification/cases/3/raw",
+            "pointer": "/arguments/input/check_item_catalog/rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          },
+          {
+            "case_id": "OWNER-ABSENT",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/3/expected_observation",
+            "pointer": "/producer_return/trace/input_snapshot/check_item_catalog/rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          },
+          {
+            "case_id": "OWNER-ABSENT",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/3/expected_observation",
+            "pointer": "/producer_return/trace/candidate_catalog_rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          },
+          {
+            "case_id": "OWNER-NULL",
+            "surface": "raw",
+            "object_pointer": "/producer_selection_integration_verification/cases/4/raw",
+            "pointer": "/arguments/input/check_item_catalog/rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          },
+          {
+            "case_id": "OWNER-NULL",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/4/expected_observation",
+            "pointer": "/producer_return/trace/input_snapshot/check_item_catalog/rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          },
+          {
+            "case_id": "OWNER-NULL",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/4/expected_observation",
+            "pointer": "/producer_return/trace/candidate_catalog_rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          },
+          {
+            "case_id": "EXPECTED-CONTEXT-DIFFERS-PRODUCER-U1",
+            "surface": "raw",
+            "object_pointer": "/producer_selection_integration_verification/cases/5/raw",
+            "pointer": "/arguments/input/check_item_catalog/rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          },
+          {
+            "case_id": "EXPECTED-CONTEXT-DIFFERS-PRODUCER-U1",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/5/expected_observation",
+            "pointer": "/producer_return/trace/input_snapshot/check_item_catalog/rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          },
+          {
+            "case_id": "EXPECTED-CONTEXT-DIFFERS-PRODUCER-U1",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/5/expected_observation",
+            "pointer": "/producer_return/trace/candidate_catalog_rows/0/decoded_row/value/source/source_pointer",
+            "before": "/selection_relations/source_value",
+            "after": "/check_item_catalog/source_value"
+          }
+        ],
+        "objects": [
+          {
+            "case_id": "NORMAL-MINIMUM-U1",
+            "surface": "raw",
+            "object_pointer": "/producer_selection_integration_verification/cases/0/raw",
+            "current_object_serialized_sha256": "c61560af0a7dfb876c778ca297f0ab453728ff8c7e156cc1a635c97ae9c4be9d",
+            "reconstructed_preimage_serialized_sha256": "26ad7b5ac8f2928d8744c8c1897f412e795c74ece0ad9a1ea57f81c91d1febbf",
+            "changed_leaf_count": 1
+          },
+          {
+            "case_id": "NORMAL-MINIMUM-U1",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/0/expected_observation",
+            "current_object_serialized_sha256": "ad024459b88fca73f1973ec996aa757a135f701de7ce14729aa0eabc7003a652",
+            "reconstructed_preimage_serialized_sha256": "b2f21b53894d5341a38b11f72f32a6217032a65e67cf6cc31d4b7bd1faee32c5",
+            "changed_leaf_count": 2
+          },
+          {
+            "case_id": "ACTUAL-UNDERSELECTS-PRODUCER-U1",
+            "surface": "raw",
+            "object_pointer": "/producer_selection_integration_verification/cases/1/raw",
+            "current_object_serialized_sha256": "57866361f6d48ebe0f0feb510c6e60e776737c8418100c2d8fe21b3e347e68cc",
+            "reconstructed_preimage_serialized_sha256": "9cba7099d29ab1edc6d908143d8ca8b0754e8193ebf12b26787a6f5827fae10a",
+            "changed_leaf_count": 1
+          },
+          {
+            "case_id": "ACTUAL-UNDERSELECTS-PRODUCER-U1",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/1/expected_observation",
+            "current_object_serialized_sha256": "e561aaf613a92dd6461aa32c314547e6220663205dc27c8115aed5d45c566e89",
+            "reconstructed_preimage_serialized_sha256": "2e2b121828ee56c1459f8a960760642f8661b0e8f5b528caaf75af916c06bea3",
+            "changed_leaf_count": 2
+          },
+          {
+            "case_id": "MEMBERSHIP-KNOWN-ITEMS-UNKNOWN",
+            "surface": "raw",
+            "object_pointer": "/producer_selection_integration_verification/cases/2/raw",
+            "current_object_serialized_sha256": "c287ed45b81d0cc202c8fd1bad08129fbb7764f4a05ce0b394e33c254841881f",
+            "reconstructed_preimage_serialized_sha256": "c287ed45b81d0cc202c8fd1bad08129fbb7764f4a05ce0b394e33c254841881f",
+            "changed_leaf_count": 0
+          },
+          {
+            "case_id": "MEMBERSHIP-KNOWN-ITEMS-UNKNOWN",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/2/expected_observation",
+            "current_object_serialized_sha256": "5cdc4e602bc56cbdba4e0542e5355425b3c426e2bcc7d33bfc7177e15681bd2c",
+            "reconstructed_preimage_serialized_sha256": "5cdc4e602bc56cbdba4e0542e5355425b3c426e2bcc7d33bfc7177e15681bd2c",
+            "changed_leaf_count": 0
+          },
+          {
+            "case_id": "OWNER-ABSENT",
+            "surface": "raw",
+            "object_pointer": "/producer_selection_integration_verification/cases/3/raw",
+            "current_object_serialized_sha256": "9d178bf887a296dc744c37de27f756d6f58b7daf5f32721110a9ef37cdc3f14e",
+            "reconstructed_preimage_serialized_sha256": "2af72cea6ecc55f6f91e742e19e3c0ac52db6356cb32db23b64802467cec6266",
+            "changed_leaf_count": 1
+          },
+          {
+            "case_id": "OWNER-ABSENT",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/3/expected_observation",
+            "current_object_serialized_sha256": "76105eca82f313490ae5ed7b05c8dad87e3f3c87c60db5dcd6772074c9b95bf7",
+            "reconstructed_preimage_serialized_sha256": "1f13665cce5425ae73a9034f7ac75390f0037c606db0b346e636443a22c6d26b",
+            "changed_leaf_count": 2
+          },
+          {
+            "case_id": "OWNER-NULL",
+            "surface": "raw",
+            "object_pointer": "/producer_selection_integration_verification/cases/4/raw",
+            "current_object_serialized_sha256": "5f1cff4fcdf0e86022ed13845c48dd4a3d63cbf65b6737587f8cacc9efab56ad",
+            "reconstructed_preimage_serialized_sha256": "0fc38b5eb249439080d39df55628086aecf90d3ab5c7bdf6d3d7cb7b521a0d28",
+            "changed_leaf_count": 1
+          },
+          {
+            "case_id": "OWNER-NULL",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/4/expected_observation",
+            "current_object_serialized_sha256": "56d5e8a03d2e7e76b0617eba58f6dc14d1eef9274838409c6ecc9310c445e157",
+            "reconstructed_preimage_serialized_sha256": "7777c623be23214657da39f264bfcdd41000897d31ca2e3fe8b7f774dd15e1ed",
+            "changed_leaf_count": 2
+          },
+          {
+            "case_id": "EXPECTED-CONTEXT-DIFFERS-PRODUCER-U1",
+            "surface": "raw",
+            "object_pointer": "/producer_selection_integration_verification/cases/5/raw",
+            "current_object_serialized_sha256": "65c27708bf3db52584daa42c439d3f5faee4ca978f24188eaf6f1bcfd0ae4844",
+            "reconstructed_preimage_serialized_sha256": "0dbb3fe96950f23bcc33e20fea6721f0c9fbc6102918f7d7d117bd75a403298d",
+            "changed_leaf_count": 1
+          },
+          {
+            "case_id": "EXPECTED-CONTEXT-DIFFERS-PRODUCER-U1",
+            "surface": "expected_observation",
+            "object_pointer": "/producer_selection_integration_verification/cases/5/expected_observation",
+            "current_object_serialized_sha256": "e0b593975a907dcc412f852399e358469707f63715ceabfb0909d354b9a4aaf8",
+            "reconstructed_preimage_serialized_sha256": "89a16f775dd077b4c42d9bbbf3646cdff27ba1d0ce0eb4f5dbd445811e141c61",
+            "changed_leaf_count": 2
+          }
+        ]
       }
     },
     "finite_evidence": {
@@ -109250,7 +109480,8 @@
       "summary_sha256": "26568c0bea557d46db44a1d2a7a081a29261325625c029632318805eecd90a2c",
       "result": "独立に事前固定した6whole全値一致、例外0。sourceだけを読むfinite readerをrootが全文読取後に初実行し、全actual保存後にdriverが期待を比較した。",
       "execution_boundary": "現設計の有限比較用readerであり製品runtime/旧runtime/旧CIではない。need失敗は有限reader未実装境界のUndefinedBranchで、製品資格gateやtyped unknown成功ではない。",
-      "event_limit": "保存eventsはtop-level invoke6件。内部呼出順/一回呼出しは読了済source callgraphとwhole引数/返却に結び、独立に全内部eventを計測したとはしない。"
+      "event_limit": "保存eventsはtop-level invoke6件。内部呼出順/一回呼出しは読了済source callgraphとwhole引数/返却に結び、独立に全内部eventを計測したとはしない。",
+      "repository_replay_limit": "reader/driver/実行snapshot本体はrepository外scratchにあり、ここに記録したhashだけではGit単独の再実行はできない。自己完結6raw/全期待とsource比較契約は本L9/L4に収載する。期待は独立authorが原sourceからactual前に固定し、reader actualから生成していない。"
     },
     "verification_limits": [
       "元278global/26probeは全値保持のみで今回再実行していない。",
