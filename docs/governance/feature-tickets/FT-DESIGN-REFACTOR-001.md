@@ -111,6 +111,32 @@ Design as Codeを、設計の意味正本・版付き参照・差分・対検証
 
 旧sourceは既読の `LEGACY-ASSET-603D0E8D8193914F4AC0` §0〜§1のexternalize/commonizeと意味署名／consumer、`LEGACY-ASSET-12E2CD9B07EFAC343ED0` RTG-R-02〜06の実観測／変更効果、`LEGACY-ASSET-5E22432B0A5A8F7CC8B3` 行15〜35・117〜125の契約先行／正味複雑さ／可逆な移行を起点とする。保持するのは意味保存とconsumer被覆、未知の保全、変更コストの観測。変更するのは今回のPO指示に従い接続の片側交換と四つの変更品質へ比較を具体化する点で、旧DB、固定role数、旧gate・一律full/nightlyは移植しない。
 
+## 大きなJSONの分割と著述規則の整備（追加指示）
+
+2026-10-17のPO指示「JSONが大きすぎる」「リファクタリング時にここも細かくしてルール化」に従い、既存の構造・fixture見直しを、文書の分割と著述規則まで具体化する。現在の設計をここで一括分割せず、設計リファクタリング時に実施する作業として保持する。以下は比較・起草する対象であり、分割方式や容量上限を採用済みの規則にはしない。
+
+確認基準main `a32a1b0e105f1dae9e7a1f26ab01c90ab74624bb`のgit blobでは、L8の92 JSONが354,881,807 bytes、L9の92 JSONが165,981,748 bytes、合計520,863,555 bytes（約521 MB、約496.73 MiB）ある。これは全ファイルの容量で、重複率・必要性・意味の完成率の測定ではない。着手時は現revisionで再計測する。
+
+### 分割案と規則案で確認すること
+
+- 責務・契約・変更理由を単位に、設計本文、型／schema、関数・入出力契約、原source、検証case、独立期待値、照合証拠、生成viewの配置を比較する。一つのJSONへ全caseの原資料・全型・全期待を繰り返し埋め込む構成を見直す。単に行数を等分した断片や、一つのfieldごとの細分化で理解・参照負荷を増やさない。
+- 各意味の正本とownerを一つに保ち、共通化は同じ意味・不変条件・failure・consumer契約を持つ範囲で行う。別domainの同形JSONを共通型へ潰さず、原期待と実際値を同じ生成器から作らない。
+- 分割後の入口・manifest・依存参照には、意味identity、対象revision、所在、digest、対oracleとconsumerの対応をどう保持するかを定める。pathや配列indexだけを意味identityにしない。参照欠落、重複identity、循環、別revision、staleを検出できるか確認する。JSON Schemaの参照と、資料の参照を同じ意味と仮定しない。
+- 原資料と凍結期待は参照化後も再取得・再構成できるようにする。member欠落／null／空、原配列順、同値反復、原bytes・span、訂正前の証拠と履歴を保つ。見た目の重複削減で原因・反例・未評価範囲を失わない。
+- 生成する閲覧用の結合JSON・Markdown・図は意味正本からのviewとして区別する。viewやcacheだけの更新を正本更新にせず、独立期待を生成viewの自己一致へ置換しない。
+- 変更影響を参照先のconsumer・V-pairまで辿り、関係する部分だけの再検証とunknown時の範囲拡大を確認する。ファイルが増えた後も、92親・430義務との対応を論理単位の索引で追えるようにし、ファイル数を設計完成数にしない。
+- 最大ファイル容量、埋込重複、階層・粒度、命名、参照、schema／view生成、監査の規則を起草する。具体的な数値や方式は、読取量、レビュー差分、変更時の波及、読込メモリ、参照解決・再検証時間を測って理由付きで選ぶ。このticketで一律のKB・行数・case数の上限や新しいDSLを固定しない。
+
+### 分割前後の検証と成果
+
+一つの具体的な設計・対oracleを対象に、分割前の意味・独立期待・影響先を固定してから分割案を比較する。参照切れ、別版の混入、原sourceの喪失、順序／反復／欠落／nullの変化、対象caseの漏れを反例に含める。再構成した論理値と元の全返却期待を独立照合し、無関係なconsumerの保証も維持する。byte表現が変わる場合は旧bytesの所在と新旧対応を保持し、古いhashを新bytesへ流用しない。
+
+成果は、対象ごとの分割案、入口と参照の規則案、著述・監査規則案、既存文書の移行対応、保全した原証拠、分割前後の意味同等性と保守コストの検証結果とする。具体規則はConcept・七原則・既存JSON正本契約へ対応付けて独立reviewし、必要な上流差分は既決どおりリファクタリング時に還流する。正式schemaや保存・公開契約の意味変更を、ファイル整理だけの変更として扱わない。
+
+### 旧sourceとの対応
+
+起点は既記の `LEGACY-ASSET-603D0E8D8193914F4AC0` の `design-refactoring-domain-model.md` §0〜§1（意味署名、consumer、oracleを保つexternalize/commonize）と、`LEGACY-ASSET-4F5A1F0739EC1111D91D` の `design-template-json-authority.md` §1〜§2（JSON意味正本、catalog、生成viewの分離）である。保持するのは意味・証拠・consumerの保全、変更するのはPOの指示と現容量を起点に分割・著述規則の比較を具体化する点である。旧DB、固定role、旧runtime、旧CIや一律の容量gateは移植しない。
+
 ## 旧資産との対応と差分
 
 - `LEGACY-ASSET-603D0E8D8193914F4AC0`: `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md` §0〜§1。意味署名、consumer/oracle、意味保存、見た目だけの共通化拒否を起点とする。
