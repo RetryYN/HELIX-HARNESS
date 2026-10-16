@@ -11617,6 +11617,595 @@
             "l4_pointer": "/content_diagnostic_contract/F02",
             "comparison_basis": "固定source rawへの公開patchと批准義務から期待内容を別に導出。現在L4の対応を示す。転記/hash一致は先固定の時系列証明でも独立性の自動証明でもなく、旧source時点に現L4が存在したとの主張ではない。"
           }
+        },
+        {
+          "id": "INT010-F02-TASK-ANCHOR-CROSS-TASK",
+          "basis": "L3 F02の同一task適合、L10 F02のtask不足時のOS返却、L4 F02のtask条件根拠から導く交差task/revision例。",
+          "requirement_ref": "HELIXINTELLIGENCE-L3-010-F02",
+          "system_oracle_ref": "HELIXINTELLIGENCE-L10-010-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-INT010-F02-TASK-ANCHOR-CROSS-TASK",
+              "revision": "e5c16cfe8e83de72ef631b0d490edab0182d9a6679e23862383f70449a0badac",
+              "owner": "synthetic-fixture-owner",
+              "scope": "PRODUCT-P"
+            },
+            "raw_utf8": "{\"claims\":[],\"comparison_selected\":false,\"content_oracle_ref\":\"FIT-P@r2\",\"handoff\":{\"assignment_owner\":\"OS\",\"assignment_state\":\"not_assigned\",\"labo_level_owner\":\"LABO\",\"permission_owner\":\"HELIX-SECURITY\",\"permission_state\":\"not_granted\",\"proposal_owner\":\"INTELLIGENCE\",\"receipt_owner\":\"OS\",\"receipt_state\":\"not_received\"},\"human_intervention\":{\"ref\":\"HUMAN-INTERVENTION-P@r2\",\"state\":\"observed_in_fixture_only\"},\"original_bench\":{\"compatibility\":\"compatible_in_fixture_only\",\"model_class\":\"MODELCLASS-P\",\"owner\":\"LABO\",\"profiles\":[\"PROFILE-A\",\"PROFILE-A-NEW-COMBINATION\"],\"ref\":\"BENCH-P@r2\",\"scope\":{\"contract_revision\":\"PLACEMENT-r2\",\"revision\":\"TASK-P-r2\",\"scope\":\"PRODUCT-P\",\"task\":\"TASK-P\",\"task_class\":\"CLASS-P\",\"ticket\":\"TICKET-P\"},\"state\":\"evaluated_in_fixture_only\",\"task_class\":\"CLASS-P\"},\"original_comparison\":null,\"original_decision\":{\"owner\":\"decision-owner\",\"priority_ref\":\"PRIORITY-ORDER-P@r2\",\"quality_oracle\":\"QUALITY-P@r2\",\"quality_result\":\"satisfied_in_fixture_only\",\"ref\":\"PRIORITY-P@r2\",\"scope\":{\"contract_revision\":\"PLACEMENT-r2\",\"revision\":\"TASK-P-r2\",\"scope\":\"PRODUCT-P\",\"task\":\"TASK-P\",\"task_class\":\"CLASS-P\",\"ticket\":\"TICKET-P\"},\"state\":\"valid_in_fixture_only\",\"tolerance_ref\":\"TOLERANCE-P@r2\"},\"original_performance\":{\"observations\":{\"cost\":\"COST-OBS@r2\",\"failure\":\"FAILURE-OBS@r2\",\"latency\":\"LATENCY-OBS@r2\",\"reliability\":\"RELIABILITY-OBS@r2\",\"rework\":\"REWORK-OBS@r2\",\"success\":\"SUCCESS-OBS@r2\"},\"owner\":\"LABO\",\"ref\":\"PERFORMANCE-P@r2\",\"scope\":{\"contract_revision\":\"PLACEMENT-r2\",\"revision\":\"TASK-P-r2\",\"scope\":\"PRODUCT-P\",\"task\":\"TASK-P\",\"task_class\":\"CLASS-P\",\"ticket\":\"TICKET-P\"},\"worker\":\"WORKER-A\",\"worker_version\":\"WORKER-A-r2\"},\"original_proposal\":{\"evaluation_state\":\"candidate_in_fixture_only\",\"excluded\":[{\"reason\":\"domain_and_tool_mismatch\",\"worker\":\"WORKER-B\"}],\"owner\":\"INTELLIGENCE\",\"reason_refs\":[\"TASK-Q@r9\",\"PERFORMANCE-P@r2\",\"BENCH-P@r2\"],\"recommended\":[\"WORKER-A\"],\"scope\":{\"contract_revision\":\"PLACEMENT-r2\",\"revision\":\"TASK-Q-r9\",\"scope\":\"PRODUCT-P\",\"task\":\"TASK-Q\",\"task_class\":\"CLASS-P\",\"ticket\":\"TICKET-P\"},\"uncertainty\":[\"actual_source_qualification_pending\"]},\"original_scope\":{\"contract_revision\":\"PLACEMENT-r2\",\"revision\":\"TASK-Q-r9\",\"scope\":\"PRODUCT-P\",\"task\":\"TASK-Q\",\"task_class\":\"CLASS-P\",\"ticket\":\"TICKET-P\"},\"original_task\":{\"complexity\":\"COMPLEXITY-P\",\"context\":\"CONTEXT-P@r2\",\"domain\":\"DOMAIN-P\",\"identity\":\"TASK-P\",\"owner\":\"OS\",\"revision\":\"TASK-P-r2\",\"scope\":\"PRODUCT-P\",\"ticket\":\"TICKET-P\",\"tool_requirement\":[\"TOOL-P\"],\"type\":\"TYPE-P\"},\"original_workers\":[{\"capability\":{\"domain\":[\"DOMAIN-P\"],\"tools\":[\"TOOL-P\"]},\"identity\":\"WORKER-A\",\"model_class\":\"MODELCLASS-P\",\"price_observation\":\"PRICE-A@r2\",\"profile\":\"PROFILE-A\",\"version\":\"WORKER-A-r2\"},{\"capability\":{\"domain\":[\"DOMAIN-Q\"],\"tools\":[\"TOOL-Q\"]},\"identity\":\"WORKER-B\",\"model_class\":\"MODELCLASS-P\",\"price_observation\":\"LOWER-PRICE-B@r2\",\"profile\":\"PROFILE-B\",\"version\":\"WORKER-B-r2\"}],\"submitted_proposal\":{\"evaluation_state\":\"candidate_in_fixture_only\",\"excluded\":[{\"reason\":\"domain_and_tool_mismatch\",\"worker\":\"WORKER-B\"}],\"owner\":\"INTELLIGENCE\",\"reason_refs\":[\"TASK-Q@r9\",\"PERFORMANCE-P@r2\",\"BENCH-P@r2\"],\"recommended\":[\"WORKER-A\"],\"scope\":{\"contract_revision\":\"PLACEMENT-r2\",\"revision\":\"TASK-Q-r9\",\"scope\":\"PRODUCT-P\",\"task\":\"TASK-Q\",\"task_class\":\"CLASS-P\",\"ticket\":\"TICKET-P\"},\"uncertainty\":[\"actual_source_qualification_pending\"]}}",
+            "sha256": "e5c16cfe8e83de72ef631b0d490edab0182d9a6679e23862383f70449a0badac"
+          },
+          "expected_material": {
+            "information_state": "held_input_unqualified",
+            "retained_inputs": {
+              "original_scope": {
+                "ticket": "TICKET-P",
+                "task": "TASK-Q",
+                "revision": "TASK-Q-r9",
+                "scope": "PRODUCT-P",
+                "task_class": "CLASS-P",
+                "contract_revision": "PLACEMENT-r2"
+              },
+              "original_task": {
+                "owner": "OS",
+                "identity": "TASK-P",
+                "ticket": "TICKET-P",
+                "revision": "TASK-P-r2",
+                "scope": "PRODUCT-P",
+                "type": "TYPE-P",
+                "domain": "DOMAIN-P",
+                "complexity": "COMPLEXITY-P",
+                "context": "CONTEXT-P@r2",
+                "tool_requirement": [
+                  "TOOL-P"
+                ]
+              },
+              "original_workers": [
+                {
+                  "identity": "WORKER-A",
+                  "version": "WORKER-A-r2",
+                  "model_class": "MODELCLASS-P",
+                  "profile": "PROFILE-A",
+                  "capability": {
+                    "domain": [
+                      "DOMAIN-P"
+                    ],
+                    "tools": [
+                      "TOOL-P"
+                    ]
+                  },
+                  "price_observation": "PRICE-A@r2"
+                },
+                {
+                  "identity": "WORKER-B",
+                  "version": "WORKER-B-r2",
+                  "model_class": "MODELCLASS-P",
+                  "profile": "PROFILE-B",
+                  "capability": {
+                    "domain": [
+                      "DOMAIN-Q"
+                    ],
+                    "tools": [
+                      "TOOL-Q"
+                    ]
+                  },
+                  "price_observation": "LOWER-PRICE-B@r2"
+                }
+              ],
+              "original_performance": {
+                "owner": "LABO",
+                "ref": "PERFORMANCE-P@r2",
+                "scope": {
+                  "ticket": "TICKET-P",
+                  "task": "TASK-P",
+                  "revision": "TASK-P-r2",
+                  "scope": "PRODUCT-P",
+                  "task_class": "CLASS-P",
+                  "contract_revision": "PLACEMENT-r2"
+                },
+                "worker": "WORKER-A",
+                "worker_version": "WORKER-A-r2",
+                "observations": {
+                  "success": "SUCCESS-OBS@r2",
+                  "failure": "FAILURE-OBS@r2",
+                  "rework": "REWORK-OBS@r2",
+                  "latency": "LATENCY-OBS@r2",
+                  "cost": "COST-OBS@r2",
+                  "reliability": "RELIABILITY-OBS@r2"
+                }
+              },
+              "original_bench": {
+                "owner": "LABO",
+                "ref": "BENCH-P@r2",
+                "scope": {
+                  "ticket": "TICKET-P",
+                  "task": "TASK-P",
+                  "revision": "TASK-P-r2",
+                  "scope": "PRODUCT-P",
+                  "task_class": "CLASS-P",
+                  "contract_revision": "PLACEMENT-r2"
+                },
+                "task_class": "CLASS-P",
+                "model_class": "MODELCLASS-P",
+                "profiles": [
+                  "PROFILE-A",
+                  "PROFILE-A-NEW-COMBINATION"
+                ],
+                "state": "evaluated_in_fixture_only",
+                "compatibility": "compatible_in_fixture_only"
+              },
+              "original_decision": {
+                "owner": "decision-owner",
+                "ref": "PRIORITY-P@r2",
+                "scope": {
+                  "ticket": "TICKET-P",
+                  "task": "TASK-P",
+                  "revision": "TASK-P-r2",
+                  "scope": "PRODUCT-P",
+                  "task_class": "CLASS-P",
+                  "contract_revision": "PLACEMENT-r2"
+                },
+                "state": "valid_in_fixture_only",
+                "quality_oracle": "QUALITY-P@r2",
+                "quality_result": "satisfied_in_fixture_only",
+                "priority_ref": "PRIORITY-ORDER-P@r2",
+                "tolerance_ref": "TOLERANCE-P@r2"
+              },
+              "original_proposal": {
+                "owner": "INTELLIGENCE",
+                "scope": {
+                  "ticket": "TICKET-P",
+                  "task": "TASK-Q",
+                  "revision": "TASK-Q-r9",
+                  "scope": "PRODUCT-P",
+                  "task_class": "CLASS-P",
+                  "contract_revision": "PLACEMENT-r2"
+                },
+                "recommended": [
+                  "WORKER-A"
+                ],
+                "excluded": [
+                  {
+                    "worker": "WORKER-B",
+                    "reason": "domain_and_tool_mismatch"
+                  }
+                ],
+                "reason_refs": [
+                  "TASK-Q@r9",
+                  "PERFORMANCE-P@r2",
+                  "BENCH-P@r2"
+                ],
+                "uncertainty": [
+                  "actual_source_qualification_pending"
+                ],
+                "evaluation_state": "candidate_in_fixture_only"
+              },
+              "original_comparison": null
+            },
+            "candidate_fit": "not_evaluated",
+            "retained_submitted_proposal": {
+              "owner": "INTELLIGENCE",
+              "scope": {
+                "ticket": "TICKET-P",
+                "task": "TASK-Q",
+                "revision": "TASK-Q-r9",
+                "scope": "PRODUCT-P",
+                "task_class": "CLASS-P",
+                "contract_revision": "PLACEMENT-r2"
+              },
+              "recommended": [
+                "WORKER-A"
+              ],
+              "excluded": [
+                {
+                  "worker": "WORKER-B",
+                  "reason": "domain_and_tool_mismatch"
+                }
+              ],
+              "reason_refs": [
+                "TASK-Q@r9",
+                "PERFORMANCE-P@r2",
+                "BENCH-P@r2"
+              ],
+              "uncertainty": [
+                "actual_source_qualification_pending"
+              ],
+              "evaluation_state": "candidate_in_fixture_only"
+            },
+            "retained_handoff": {
+              "labo_level_owner": "LABO",
+              "proposal_owner": "INTELLIGENCE",
+              "receipt_owner": "OS",
+              "receipt_state": "not_received",
+              "assignment_owner": "OS",
+              "assignment_state": "not_assigned",
+              "permission_owner": "HELIX-SECURITY",
+              "permission_state": "not_granted"
+            },
+            "comparison_obligation": "not_applicable",
+            "rejected_claims": [],
+            "failure_reasons": [
+              {
+                "field": "scope.task",
+                "result": "foreign",
+                "return_owner": "OS-task-owner"
+              },
+              {
+                "field": "scope.revision",
+                "result": "foreign",
+                "return_owner": "OS-task-owner"
+              }
+            ],
+            "return_owners": [
+              "OS-task-owner"
+            ],
+            "actual_effects": {
+              "assignment": false,
+              "dispatch": false,
+              "permission": false,
+              "scope_change": false,
+              "branch_change": false,
+              "merge_authority_change": false,
+              "acceptance": false,
+              "implementation_ready": false
+            },
+            "retained_auxiliary_inputs": {
+              "comparison_selected": false,
+              "content_oracle_ref": "FIT-P@r2",
+              "human_intervention": {
+                "ref": "HUMAN-INTERVENTION-P@r2",
+                "state": "observed_in_fixture_only"
+              }
+            }
+          },
+          "input_derivation": "基準例のraw_utf8をJSONとして複製し、independent_basis.input_patchに列挙したRFC 6901置換を順に適用する。期待結果から入力を逆生成しない。",
+          "oracle_basis": "original_task.identity/revisionとoriginal_scope.task/revisionを直接比較する。値が供給され相違する各組は既存語彙のforeignとしてOS-task-ownerへ返す。原task、performance、Benchおよびその他の入力根拠を保持し、reason_refsはparseしない。",
+          "execution_state": "not_executed",
+          "effect": "none",
+          "independent_basis": {
+            "source_revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+            "baseline_source_path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+            "baseline_source_pointer": "/verification_obligations/1/cases/0",
+            "baseline_source_case_sha256": "9ed1386608522298333aea0edc2a91be3cdc2d6d9194f9ecc834b296feede478",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/original_scope/task",
+                "old": "TASK-P",
+                "value": "TASK-Q"
+              },
+              {
+                "op": "replace",
+                "path": "/original_scope/revision",
+                "old": "TASK-P-r2",
+                "value": "TASK-Q-r9"
+              },
+              {
+                "op": "replace",
+                "path": "/original_proposal/scope/task",
+                "old": "TASK-P",
+                "value": "TASK-Q"
+              },
+              {
+                "op": "replace",
+                "path": "/submitted_proposal/scope/task",
+                "old": "TASK-P",
+                "value": "TASK-Q"
+              },
+              {
+                "op": "replace",
+                "path": "/original_proposal/scope/revision",
+                "old": "TASK-P-r2",
+                "value": "TASK-Q-r9"
+              },
+              {
+                "op": "replace",
+                "path": "/submitted_proposal/scope/revision",
+                "old": "TASK-P-r2",
+                "value": "TASK-Q-r9"
+              },
+              {
+                "op": "replace",
+                "path": "/original_proposal/reason_refs/0",
+                "old": "TASK-P@r2",
+                "value": "TASK-Q@r9"
+              },
+              {
+                "op": "replace",
+                "path": "/submitted_proposal/reason_refs/0",
+                "old": "TASK-P@r2",
+                "value": "TASK-Q@r9"
+              }
+            ],
+            "raw_utf8_sha256": "e5c16cfe8e83de72ef631b0d490edab0182d9a6679e23862383f70449a0badac",
+            "expected_whole_canonical_sha256": "b8d250b5d0dd477cb5ffced7d13b8d8f9e895e00e78353b913b3bdb621f8e19e",
+            "approved_requirement_ref": "HELIXINTELLIGENCE-L3-010-F02",
+            "approved_oracle_ref": "HELIXINTELLIGENCE-L10-010-F02",
+            "l4_binding": "same_pair_l4_bytes_binding",
+            "l4_pointer": "/content_diagnostic_contract/F02",
+            "comparison_basis": "批准済みF02のsame-task適合・task不足時のOS返却と現行L4 task-condition規則から期待を固定。L5/F02の実出力から生成しない。"
+          }
+        },
+        {
+          "id": "INT010-F02-TASK-ANCHOR-REVISION-MISMATCH",
+          "basis": "L3 F02の同一task適合、L10 F02のtask不足時のOS返却、L4 F02のtask条件根拠から導く交差task/revision例。",
+          "requirement_ref": "HELIXINTELLIGENCE-L3-010-F02",
+          "system_oracle_ref": "HELIXINTELLIGENCE-L10-010-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-INT010-F02-TASK-ANCHOR-REVISION-MISMATCH",
+              "revision": "cf4f23e88266be8887bc11bc8758caee9b3ba521794825d68706d8624ce79618",
+              "owner": "synthetic-fixture-owner",
+              "scope": "PRODUCT-P"
+            },
+            "raw_utf8": "{\"claims\":[],\"comparison_selected\":false,\"content_oracle_ref\":\"FIT-P@r2\",\"handoff\":{\"assignment_owner\":\"OS\",\"assignment_state\":\"not_assigned\",\"labo_level_owner\":\"LABO\",\"permission_owner\":\"HELIX-SECURITY\",\"permission_state\":\"not_granted\",\"proposal_owner\":\"INTELLIGENCE\",\"receipt_owner\":\"OS\",\"receipt_state\":\"not_received\"},\"human_intervention\":{\"ref\":\"HUMAN-INTERVENTION-P@r2\",\"state\":\"observed_in_fixture_only\"},\"original_bench\":{\"compatibility\":\"compatible_in_fixture_only\",\"model_class\":\"MODELCLASS-P\",\"owner\":\"LABO\",\"profiles\":[\"PROFILE-A\",\"PROFILE-A-NEW-COMBINATION\"],\"ref\":\"BENCH-P@r2\",\"scope\":{\"contract_revision\":\"PLACEMENT-r2\",\"revision\":\"TASK-P-r2\",\"scope\":\"PRODUCT-P\",\"task\":\"TASK-P\",\"task_class\":\"CLASS-P\",\"ticket\":\"TICKET-P\"},\"state\":\"evaluated_in_fixture_only\",\"task_class\":\"CLASS-P\"},\"original_comparison\":null,\"original_decision\":{\"owner\":\"decision-owner\",\"priority_ref\":\"PRIORITY-ORDER-P@r2\",\"quality_oracle\":\"QUALITY-P@r2\",\"quality_result\":\"satisfied_in_fixture_only\",\"ref\":\"PRIORITY-P@r2\",\"scope\":{\"contract_revision\":\"PLACEMENT-r2\",\"revision\":\"TASK-P-r2\",\"scope\":\"PRODUCT-P\",\"task\":\"TASK-P\",\"task_class\":\"CLASS-P\",\"ticket\":\"TICKET-P\"},\"state\":\"valid_in_fixture_only\",\"tolerance_ref\":\"TOLERANCE-P@r2\"},\"original_performance\":{\"observations\":{\"cost\":\"COST-OBS@r2\",\"failure\":\"FAILURE-OBS@r2\",\"latency\":\"LATENCY-OBS@r2\",\"reliability\":\"RELIABILITY-OBS@r2\",\"rework\":\"REWORK-OBS@r2\",\"success\":\"SUCCESS-OBS@r2\"},\"owner\":\"LABO\",\"ref\":\"PERFORMANCE-P@r2\",\"scope\":{\"contract_revision\":\"PLACEMENT-r2\",\"revision\":\"TASK-P-r2\",\"scope\":\"PRODUCT-P\",\"task\":\"TASK-P\",\"task_class\":\"CLASS-P\",\"ticket\":\"TICKET-P\"},\"worker\":\"WORKER-A\",\"worker_version\":\"WORKER-A-r2\"},\"original_proposal\":{\"evaluation_state\":\"candidate_in_fixture_only\",\"excluded\":[{\"reason\":\"domain_and_tool_mismatch\",\"worker\":\"WORKER-B\"}],\"owner\":\"INTELLIGENCE\",\"reason_refs\":[\"TASK-P@r3\",\"PERFORMANCE-P@r2\",\"BENCH-P@r2\"],\"recommended\":[\"WORKER-A\"],\"scope\":{\"contract_revision\":\"PLACEMENT-r2\",\"revision\":\"TASK-P-r3\",\"scope\":\"PRODUCT-P\",\"task\":\"TASK-P\",\"task_class\":\"CLASS-P\",\"ticket\":\"TICKET-P\"},\"uncertainty\":[\"actual_source_qualification_pending\"]},\"original_scope\":{\"contract_revision\":\"PLACEMENT-r2\",\"revision\":\"TASK-P-r3\",\"scope\":\"PRODUCT-P\",\"task\":\"TASK-P\",\"task_class\":\"CLASS-P\",\"ticket\":\"TICKET-P\"},\"original_task\":{\"complexity\":\"COMPLEXITY-P\",\"context\":\"CONTEXT-P@r2\",\"domain\":\"DOMAIN-P\",\"identity\":\"TASK-P\",\"owner\":\"OS\",\"revision\":\"TASK-P-r2\",\"scope\":\"PRODUCT-P\",\"ticket\":\"TICKET-P\",\"tool_requirement\":[\"TOOL-P\"],\"type\":\"TYPE-P\"},\"original_workers\":[{\"capability\":{\"domain\":[\"DOMAIN-P\"],\"tools\":[\"TOOL-P\"]},\"identity\":\"WORKER-A\",\"model_class\":\"MODELCLASS-P\",\"price_observation\":\"PRICE-A@r2\",\"profile\":\"PROFILE-A\",\"version\":\"WORKER-A-r2\"},{\"capability\":{\"domain\":[\"DOMAIN-Q\"],\"tools\":[\"TOOL-Q\"]},\"identity\":\"WORKER-B\",\"model_class\":\"MODELCLASS-P\",\"price_observation\":\"LOWER-PRICE-B@r2\",\"profile\":\"PROFILE-B\",\"version\":\"WORKER-B-r2\"}],\"submitted_proposal\":{\"evaluation_state\":\"candidate_in_fixture_only\",\"excluded\":[{\"reason\":\"domain_and_tool_mismatch\",\"worker\":\"WORKER-B\"}],\"owner\":\"INTELLIGENCE\",\"reason_refs\":[\"TASK-P@r3\",\"PERFORMANCE-P@r2\",\"BENCH-P@r2\"],\"recommended\":[\"WORKER-A\"],\"scope\":{\"contract_revision\":\"PLACEMENT-r2\",\"revision\":\"TASK-P-r3\",\"scope\":\"PRODUCT-P\",\"task\":\"TASK-P\",\"task_class\":\"CLASS-P\",\"ticket\":\"TICKET-P\"},\"uncertainty\":[\"actual_source_qualification_pending\"]}}",
+            "sha256": "cf4f23e88266be8887bc11bc8758caee9b3ba521794825d68706d8624ce79618"
+          },
+          "expected_material": {
+            "information_state": "held_input_unqualified",
+            "retained_inputs": {
+              "original_scope": {
+                "ticket": "TICKET-P",
+                "task": "TASK-P",
+                "revision": "TASK-P-r3",
+                "scope": "PRODUCT-P",
+                "task_class": "CLASS-P",
+                "contract_revision": "PLACEMENT-r2"
+              },
+              "original_task": {
+                "owner": "OS",
+                "identity": "TASK-P",
+                "ticket": "TICKET-P",
+                "revision": "TASK-P-r2",
+                "scope": "PRODUCT-P",
+                "type": "TYPE-P",
+                "domain": "DOMAIN-P",
+                "complexity": "COMPLEXITY-P",
+                "context": "CONTEXT-P@r2",
+                "tool_requirement": [
+                  "TOOL-P"
+                ]
+              },
+              "original_workers": [
+                {
+                  "identity": "WORKER-A",
+                  "version": "WORKER-A-r2",
+                  "model_class": "MODELCLASS-P",
+                  "profile": "PROFILE-A",
+                  "capability": {
+                    "domain": [
+                      "DOMAIN-P"
+                    ],
+                    "tools": [
+                      "TOOL-P"
+                    ]
+                  },
+                  "price_observation": "PRICE-A@r2"
+                },
+                {
+                  "identity": "WORKER-B",
+                  "version": "WORKER-B-r2",
+                  "model_class": "MODELCLASS-P",
+                  "profile": "PROFILE-B",
+                  "capability": {
+                    "domain": [
+                      "DOMAIN-Q"
+                    ],
+                    "tools": [
+                      "TOOL-Q"
+                    ]
+                  },
+                  "price_observation": "LOWER-PRICE-B@r2"
+                }
+              ],
+              "original_performance": {
+                "owner": "LABO",
+                "ref": "PERFORMANCE-P@r2",
+                "scope": {
+                  "ticket": "TICKET-P",
+                  "task": "TASK-P",
+                  "revision": "TASK-P-r2",
+                  "scope": "PRODUCT-P",
+                  "task_class": "CLASS-P",
+                  "contract_revision": "PLACEMENT-r2"
+                },
+                "worker": "WORKER-A",
+                "worker_version": "WORKER-A-r2",
+                "observations": {
+                  "success": "SUCCESS-OBS@r2",
+                  "failure": "FAILURE-OBS@r2",
+                  "rework": "REWORK-OBS@r2",
+                  "latency": "LATENCY-OBS@r2",
+                  "cost": "COST-OBS@r2",
+                  "reliability": "RELIABILITY-OBS@r2"
+                }
+              },
+              "original_bench": {
+                "owner": "LABO",
+                "ref": "BENCH-P@r2",
+                "scope": {
+                  "ticket": "TICKET-P",
+                  "task": "TASK-P",
+                  "revision": "TASK-P-r2",
+                  "scope": "PRODUCT-P",
+                  "task_class": "CLASS-P",
+                  "contract_revision": "PLACEMENT-r2"
+                },
+                "task_class": "CLASS-P",
+                "model_class": "MODELCLASS-P",
+                "profiles": [
+                  "PROFILE-A",
+                  "PROFILE-A-NEW-COMBINATION"
+                ],
+                "state": "evaluated_in_fixture_only",
+                "compatibility": "compatible_in_fixture_only"
+              },
+              "original_decision": {
+                "owner": "decision-owner",
+                "ref": "PRIORITY-P@r2",
+                "scope": {
+                  "ticket": "TICKET-P",
+                  "task": "TASK-P",
+                  "revision": "TASK-P-r2",
+                  "scope": "PRODUCT-P",
+                  "task_class": "CLASS-P",
+                  "contract_revision": "PLACEMENT-r2"
+                },
+                "state": "valid_in_fixture_only",
+                "quality_oracle": "QUALITY-P@r2",
+                "quality_result": "satisfied_in_fixture_only",
+                "priority_ref": "PRIORITY-ORDER-P@r2",
+                "tolerance_ref": "TOLERANCE-P@r2"
+              },
+              "original_proposal": {
+                "owner": "INTELLIGENCE",
+                "scope": {
+                  "ticket": "TICKET-P",
+                  "task": "TASK-P",
+                  "revision": "TASK-P-r3",
+                  "scope": "PRODUCT-P",
+                  "task_class": "CLASS-P",
+                  "contract_revision": "PLACEMENT-r2"
+                },
+                "recommended": [
+                  "WORKER-A"
+                ],
+                "excluded": [
+                  {
+                    "worker": "WORKER-B",
+                    "reason": "domain_and_tool_mismatch"
+                  }
+                ],
+                "reason_refs": [
+                  "TASK-P@r3",
+                  "PERFORMANCE-P@r2",
+                  "BENCH-P@r2"
+                ],
+                "uncertainty": [
+                  "actual_source_qualification_pending"
+                ],
+                "evaluation_state": "candidate_in_fixture_only"
+              },
+              "original_comparison": null
+            },
+            "candidate_fit": "not_evaluated",
+            "retained_submitted_proposal": {
+              "owner": "INTELLIGENCE",
+              "scope": {
+                "ticket": "TICKET-P",
+                "task": "TASK-P",
+                "revision": "TASK-P-r3",
+                "scope": "PRODUCT-P",
+                "task_class": "CLASS-P",
+                "contract_revision": "PLACEMENT-r2"
+              },
+              "recommended": [
+                "WORKER-A"
+              ],
+              "excluded": [
+                {
+                  "worker": "WORKER-B",
+                  "reason": "domain_and_tool_mismatch"
+                }
+              ],
+              "reason_refs": [
+                "TASK-P@r3",
+                "PERFORMANCE-P@r2",
+                "BENCH-P@r2"
+              ],
+              "uncertainty": [
+                "actual_source_qualification_pending"
+              ],
+              "evaluation_state": "candidate_in_fixture_only"
+            },
+            "retained_handoff": {
+              "labo_level_owner": "LABO",
+              "proposal_owner": "INTELLIGENCE",
+              "receipt_owner": "OS",
+              "receipt_state": "not_received",
+              "assignment_owner": "OS",
+              "assignment_state": "not_assigned",
+              "permission_owner": "HELIX-SECURITY",
+              "permission_state": "not_granted"
+            },
+            "comparison_obligation": "not_applicable",
+            "rejected_claims": [],
+            "failure_reasons": [
+              {
+                "field": "scope.revision",
+                "result": "foreign",
+                "return_owner": "OS-task-owner"
+              }
+            ],
+            "return_owners": [
+              "OS-task-owner"
+            ],
+            "actual_effects": {
+              "assignment": false,
+              "dispatch": false,
+              "permission": false,
+              "scope_change": false,
+              "branch_change": false,
+              "merge_authority_change": false,
+              "acceptance": false,
+              "implementation_ready": false
+            },
+            "retained_auxiliary_inputs": {
+              "comparison_selected": false,
+              "content_oracle_ref": "FIT-P@r2",
+              "human_intervention": {
+                "ref": "HUMAN-INTERVENTION-P@r2",
+                "state": "observed_in_fixture_only"
+              }
+            }
+          },
+          "input_derivation": "基準例のraw_utf8をJSONとして複製し、independent_basis.input_patchに列挙したRFC 6901置換を順に適用する。期待結果から入力を逆生成しない。",
+          "oracle_basis": "original_task.identity/revisionとoriginal_scope.task/revisionを直接比較する。値が供給され相違する各組は既存語彙のforeignとしてOS-task-ownerへ返す。原task、performance、Benchおよびその他の入力根拠を保持し、reason_refsはparseしない。",
+          "execution_state": "not_executed",
+          "effect": "none",
+          "independent_basis": {
+            "source_revision": "ed42f2ece7ab34108134596659ccd5d83c27b281",
+            "baseline_source_path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+            "baseline_source_pointer": "/verification_obligations/1/cases/0",
+            "baseline_source_case_sha256": "9ed1386608522298333aea0edc2a91be3cdc2d6d9194f9ecc834b296feede478",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/original_scope/revision",
+                "old": "TASK-P-r2",
+                "value": "TASK-P-r3"
+              },
+              {
+                "op": "replace",
+                "path": "/original_proposal/scope/revision",
+                "old": "TASK-P-r2",
+                "value": "TASK-P-r3"
+              },
+              {
+                "op": "replace",
+                "path": "/submitted_proposal/scope/revision",
+                "old": "TASK-P-r2",
+                "value": "TASK-P-r3"
+              },
+              {
+                "op": "replace",
+                "path": "/original_proposal/reason_refs/0",
+                "old": "TASK-P@r2",
+                "value": "TASK-P@r3"
+              },
+              {
+                "op": "replace",
+                "path": "/submitted_proposal/reason_refs/0",
+                "old": "TASK-P@r2",
+                "value": "TASK-P@r3"
+              }
+            ],
+            "raw_utf8_sha256": "cf4f23e88266be8887bc11bc8758caee9b3ba521794825d68706d8624ce79618",
+            "expected_whole_canonical_sha256": "180ed5821cd59f031766f36971789f8c4403bf21960403fb4a7b3f77956b41a9",
+            "approved_requirement_ref": "HELIXINTELLIGENCE-L3-010-F02",
+            "approved_oracle_ref": "HELIXINTELLIGENCE-L10-010-F02",
+            "l4_binding": "same_pair_l4_bytes_binding",
+            "l4_pointer": "/content_diagnostic_contract/F02",
+            "comparison_basis": "批准済みF02のsame-task適合・task不足時のOS返却と現行L4 task-condition規則から期待を固定。L5/F02の実出力から生成しない。"
+          }
         }
       ],
       "coverage_limit": "初期内容例。実source/全組合せ/正式schema/実oracle/L9/TDDは未成立。"
@@ -26591,7 +27180,7 @@
   },
   "same_pair_l4_bytes_binding": {
     "path": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
-    "sha256": "0709ea9e3d768bdb9c81149a4cf9c4a22bbbc69a9051eae4fb515a11ee63d305",
+    "sha256": "eb811ea92af1264979069520bbeedfcd2cec0083cbdff6045b62ebe597b4d77b",
     "binding": "同一candidate bytes。過去source revisionに追補が存在したとは主張しない。"
   },
   "source_revision_role": {

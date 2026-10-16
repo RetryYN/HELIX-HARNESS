@@ -136,7 +136,7 @@
       "reuse": "semantic_rederive",
       "preserve": "FE/BE/設計の適性軸を分け、provider名でなくモデル世代に結び、モデル更新時の旧適性の自動継承をしない意味を保持する。",
       "change": "旧軸名を現Workerの固定enumへせず、010-F03のtask/model-class・scope/版の不足へ意味再導出する。",
-      "reason": "RLO-FR-034が軸混用と世代継承を具体的に支える。未供給の独立Bench generation targetや実資格は作らない。",
+      "reason": "RLO-FR-034がFE/BE/設計の適性軸混用とモデル世代継承を具体的に支える。今回追補したoriginal_taskとoriginal_scopeのidentity/revision照合はこの旧sourceから導出したものではなく、採択L3/L10 F02と既存packet fieldからの技術具体化である。未供給の独立Bench generation targetや実資格は作らない。",
       "asset_reading": {
         "ledger_revision": 1,
         "ledger_disposition": "unresolved",
@@ -237,7 +237,8 @@
         "推薦Workerのdomain/tool不適合および推薦と除外の同時成立は、価格/名前/field存在のclaimとは独立に診断する。claimの拒否は実データの条件不適合やOS戻し先を消さない。",
         "推薦identityを原Worker集合へ結び、対応するWorkerが無い提出要素は実array位置から案ownerへ返す。原/提出の除外内容が一致しなければ案ownerへ返し、data所見のstate/fitへの接続を保持する。",
         "原/提出の推薦内容も除外内容と独立に照合し、元根拠と内容が異なる推薦（提出側の消去・異型化・要素の重複化を含む）を案ownerへ返す。原/提出が同じ重複配列なら内容差の所見は生成しない。重複を持つ案の実有効性は別に未成立として保持し、形状判定と実資格を混同しない。原/提出の除外内容不一致と推薦/除外の同時成立は別のfieldで追跡する。",
-        "推薦が原と同じ値であっても、Absent/null/非配列は内容照合未成立、空配列は候補なしとして所見と未評価を保持する。候補材料の欠落から肯定的な適合を生成しない。"
+        "推薦が原と同じ値であっても、Absent/null/非配列は内容照合未成立、空配列は候補なしとして所見と未評価を保持する。候補材料の欠落から肯定的な適合を生成しない。",
+        "F02は同一packet内のoriginal_task.identityとoriginal_scope.task、original_task.revisionとoriginal_scope.revisionをそれぞれ直接照合する。両側が供給される値の不一致はtask identity/revisionのscope不整合としてOS-task-ownerへforeignを返し、その対応を適合根拠にしない。Absent/nullはtask条件不足として肯定的な適合を成立させず、既存のOS missing診断を保持する。この照合はF01の実行・成功を前提とせず、F01および性能・Benchの所見と根拠を消去しない。reason_refs要素の書式やtaskとの関係は推測せず、不透明値のまま扱う。"
       ],
       "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
     },
