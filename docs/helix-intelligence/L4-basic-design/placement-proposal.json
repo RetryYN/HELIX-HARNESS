@@ -238,7 +238,7 @@
         "推薦identityを原Worker集合へ結び、対応するWorkerが無い提出要素は実array位置から案ownerへ返す。原/提出の除外内容が一致しなければ案ownerへ返し、data所見のstate/fitへの接続を保持する。",
         "原/提出の推薦内容も除外内容と独立に照合し、元根拠と内容が異なる推薦（提出側の消去・異型化・要素の重複化を含む）を案ownerへ返す。原/提出が同じ重複配列なら内容差の所見は生成しない。重複を持つ案の実有効性は別に未成立として保持し、形状判定と実資格を混同しない。原/提出の除外内容不一致と推薦/除外の同時成立は別のfieldで追跡する。",
         "推薦が原と同じ値であっても、Absent/null/非配列は内容照合未成立、空配列は候補なしとして所見と未評価を保持する。候補材料の欠落から肯定的な適合を生成しない。",
-        "F02は同一packet内のoriginal_task.identityとoriginal_scope.task、original_task.revisionとoriginal_scope.revisionをそれぞれ直接照合する。両側が供給される値の不一致はtask identity/revisionのscope不整合としてOS-task-ownerへforeignを返し、その対応を適合根拠にしない。Absent/nullはtask条件不足として肯定的な適合を成立させず、既存のOS missing診断を保持する。この照合はF01の実行・成功を前提とせず、F01および性能・Benchの所見と根拠を消去しない。reason_refs要素の書式やtaskとの関係は推測せず、不透明値のまま扱う。"
+        "F02は同一PlacementPacket内のoriginal_task.identityとoriginal_scope.task、original_task.revisionとoriginal_scope.revisionをそれぞれtask_anchorの宣言計算で照合する。左側identity/revisionのAbsent/nullはmissing、非空文字列以外は既存F01と同じinvalid_value_kind。右側Absent/nullもmissing。左右が比較可能なときはJSON意味等値を用い、差をtask.identity=foreign、task.revision=foreign_revisionとしてOS-task-ownerへ返す。右側を文字列化・parseせず、新たな型資格は設けない。F01の実行・成功を前提にせず、F01および性能・Benchの所見と根拠を消去しない。reason_refs要素の書式やtaskとの関係は推測せず、不透明値のまま扱う。"
       ],
       "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
     },
@@ -401,7 +401,7 @@
           "return_owner": "OS-task-fit-owner"
         }
       ],
-      "ordering": "提出推薦の形状→提出推薦の原Workerへのidentity bindingを提出index順→raw Worker配列順の選択対象domain→tools→Bench class→理由対応→原/提出推薦内容→原/提出除外内容→推薦/除外対応→claim宣言順。",
+      "ordering": "提出推薦の形状→提出推薦の原Workerへのidentity bindingを提出index順→task identity/revision anchor（identity→revision）→raw Worker配列順の選択対象domain→tools→Bench class→理由対応→原/提出推薦内容→原/提出除外内容→推薦/除外対応→claim宣言順。task anchorは既存F02規則と並列に評価し、他のsource所見を抑止しない。",
       "bench_class": {
         "left": "/original_bench/task_class",
         "right": "/original_scope/task_class",
@@ -476,6 +476,30 @@
         "return_owner": "INTELLIGENCE-proposal-owner",
         "comparison": "推薦がAbsent/nullならmissing、供給された非配列ならsource_content_conflict、配列が空なら候補なしでunobserved。いずれもheld_input_unqualified/not_evaluatedへ接続し、原/提出一致によって免除しない。非空配列は既存のidentity bindingと条件照合を続ける。",
         "boundary": "これは候補内容を照合可能な形かの情報判定。候補の存在を強制せず、空配列から候補適合を生成しない。実Worker admission/dispatch/SEC許可を追加しない。"
+      },
+      "task_anchor": {
+        "axes": [
+          {
+            "left": "/original_task/identity",
+            "right": "/original_scope/task",
+            "field": "task.identity",
+            "missing_result": "missing",
+            "left_invalid_value_result": "invalid_value_kind",
+            "mismatch_result": "foreign",
+            "return_owner": "OS-task-owner"
+          },
+          {
+            "left": "/original_task/revision",
+            "right": "/original_scope/revision",
+            "field": "task.revision",
+            "missing_result": "missing",
+            "left_invalid_value_result": "invalid_value_kind",
+            "mismatch_result": "foreign_revision",
+            "return_owner": "OS-task-owner"
+          }
+        ],
+        "member_extraction": "同一PlacementPacketから宣言済みRFC6901 pathを読み、途中memberのAbsent/nonobject/arrayまたは葉のAbsent/nullはAbsent/nullとして保持する。左側(original_task)のidentity/revisionは既存F01のnonempty_string規則を再利用し、Absent/nullならmissing、非空文字列以外ならinvalid_value_kind。右側(original_scope)はJSON値をparse/castせず保持する。どちらかAbsent/nullならmissing、そうでなければ左側型規則後にJSON意味等値で比較し、不一致を軸別resultで返す。F01の実行・成功は前提にしない。",
+        "ordering": "identity軸、revision軸の順。各軸はmissing判定、左側invalid判定、比較不一致判定の順で高々1所見。各所見は既存F02 orderingに従ってselected_identity_bindingの後、Worker domain/tools所見の前へ置く。別のF02所見を相殺しない。"
       }
     },
     "F04": {
