@@ -77,6 +77,26 @@
       "path": "docs/governance/decisions/incidentport-adoption-po-decision-2026-10-11.md",
       "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
       "sha256": "144594a305825f7b44bf4615cda15d3a7dab17cd2301a8072829ec9a76485210"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+      "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+      "sha256": "42ad78921ddaf43ab013a006346e2b67a90936478dec87a7672d814868711e6e"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+      "sha256": "477264632bf101d13d416eb1b17d5e7e77f8a30dd25c2c1c00b4391f605d95a6"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+      "sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a"
     }
   ],
   "legacy_comparison": [
@@ -431,7 +451,7 @@
   "remaining": [
     "全7契約の具体的fixtureと静的内容/原資料/変更記録の照合は完了。独立exact HEAD意味reviewとmain admissionは未成立。",
     "L9の10観点の不足caseとstate所有内容不一致をF03へ作成済み。実owner資格・正式oracle凍結は未成立。",
-    "未統合015基本設計と後続022等のexact binding",
+    "F03/F04のproducer契約/原target association境界は本pairへ固定。015/022を含むrole閉型/selector/純粋関数/実provider・実資格のbindingは後続L5/L8と実装で残る",
     "独立exact HEAD意味review・main admission",
     "L5/L8の型・関数・証拠資格・エラー・case凍結",
     "正式実装/実認可/実証拠/CI/実物PO受入"
@@ -5510,7 +5530,7 @@
         "reject": "原資料のmissing/unknown/stale/conflictを成立/空集合/別owner成功へ変換する接続",
         "side_effect": "実ticket発行・承認生成・状態更新・release/deployを照合結果から実施しない",
         "partial_preservation": "谷証拠、pair比較、L9各観点、scope復旧候補、発行trigger、改善種類、実操作を別結果へ返す。",
-        "qualification": "全例は合成設計材料。015基本設計の未統合HEADを有効入力へ昇格せず、003/005/015の承認済み義務に従う内容例として記載。"
+        "qualification": "既存例は当時の合成設計材料として原bytesを保持。current producer契約のsource-binding境界は追加source_binding_oraclesで独立に固定し、旧例/新例とも実資格や015実行/実工程成立を生成しない。"
       },
       "fixture_state": "draft_concrete_fixtures_pending_semantic_review",
       "normal_cases": [
@@ -9193,7 +9213,978 @@
           }
         }
       ],
-      "original_material_storage": "各case独立source packetに全入力bytesを保持。candidate-only変更では原資料が不変。"
+      "original_material_storage": "各case独立source packetに全入力bytesを保持。candidate-only変更では原資料が不変。",
+      "source_binding_oracles": {
+        "source_l4_pointer": "/contracts/3/source_binding_connection",
+        "source_material_pins": [
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+            "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+            "pointer": "/cases/7/normal_call/original"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+            "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+            "pointer": "/cases/7/normal_call/sources"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+            "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+            "pointer": "/cases/2/normal_call/original"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+            "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+            "pointer": "/cases/2/normal_call/sources"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+            "file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
+            "pointer": "/cases/19/typed_function_io_examples/0/typed_input"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+            "file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
+            "pointer": "/cases/19/typed_semantic_function_io/typed_input"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+            "file_sha256": "78b0c5d952bdc0b12d6abf97dd0167e0ed4feffb1d9d6d97f559c57980410e75",
+            "pointer": "/verification_obligations/3/cases/0/source_case/independent_source_packet/raw_utf8"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+            "file_sha256": "78b0c5d952bdc0b12d6abf97dd0167e0ed4feffb1d9d6d97f559c57980410e75",
+            "pointer": "/context_fixtures/12/context"
+          }
+        ],
+        "input_construction": "各$sourceを指定revision/pointer/hashで読み、operation=copy_json_valueは値を原型copy、strict_json_parse_stringは指定原stringをJSON parseする。expectedを入力に使わない。展開後にinput_patchを適用し各case独立の原資料を形成する。各SourceCell.ref.revisionは当該cellのrefを除くcanonical JSON SHA256へfixture-content-のprefix付きで束縛する。producer原Ref/元sourcefile bytesは変更しない。 独立合成原target_operationはbindingと別にoriginal_contentsへ保持し、そのref.revisionも当該原recordのrefを除くcanonical内容hashへ先に束縛する。同じ原operation_refをbindingへ写した後、SourceCell.refを束縛する。資格stateは原target_operation/bindingとproducerを別に供給する合成仮定であり、adapterの自己申告を実資格にしない。",
+        "input_bases": {
+          "native": {
+            "context": {
+              "artifact_ref": {
+                "identity": "ARTIFACT-1",
+                "revision": "ART@r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "artifact-owner"
+              },
+              "requirement_ref": {
+                "identity": "REQ",
+                "revision": "REQ@r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "requirement-owner"
+              },
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              }
+            },
+            "context_qualification": "known",
+            "source_cells": [
+              {
+                "ref": {
+                  "identity": "CARRIER-005_valley",
+                  "revision": "carrier-r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "source-adapter-owner"
+                },
+                "binding": {
+                  "consumer_target": {
+                    "artifact_ref": {
+                      "identity": "ARTIFACT-1",
+                      "revision": "ART@r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "artifact-owner"
+                    },
+                    "requirement_ref": {
+                      "identity": "REQ",
+                      "revision": "REQ@r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "requirement-owner"
+                    },
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    }
+                  },
+                  "producer_target": {
+                    "identity": "CHANGE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "design-owner"
+                  },
+                  "operation_ref": {
+                    "identity": "OP-005_valley",
+                    "revision": "operation-r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "original-target-owner"
+                  },
+                  "scope_mode": "native"
+                },
+                "kind": "005_valley",
+                "original_contents": {
+                  "original": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+                      "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+                      "pointer": "/cases/7/normal_call/original",
+                      "operation": "copy_json_value"
+                    }
+                  },
+                  "sources": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+                      "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+                      "pointer": "/cases/7/normal_call/sources",
+                      "operation": "copy_json_value"
+                    }
+                  },
+                  "target_operation": {
+                    "ref": {
+                      "identity": "OP-005_valley",
+                      "revision": "operation-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "original-target-owner"
+                    },
+                    "consumer_target": {
+                      "artifact_ref": {
+                        "identity": "ARTIFACT-1",
+                        "revision": "ART@r1",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "artifact-owner"
+                      },
+                      "requirement_ref": {
+                        "identity": "REQ",
+                        "revision": "REQ@r1",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "requirement-owner"
+                      },
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      }
+                    },
+                    "producer_target": {
+                      "identity": "CHANGE-1",
+                      "revision": "r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "design-owner"
+                    },
+                    "kind": "synthetic_independent_original_target_operation"
+                  }
+                },
+                "qualifications": {
+                  "carrier": "known",
+                  "binding": "known",
+                  "producer": "known",
+                  "origin_operation": "known"
+                },
+                "qualification_reason": "合成の独立原target/binding/producer資格入力。実owner資格を示さない。"
+              },
+              {
+                "ref": {
+                  "identity": "CARRIER-015_flow",
+                  "revision": "carrier-r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "source-adapter-owner"
+                },
+                "binding": {
+                  "consumer_target": {
+                    "artifact_ref": {
+                      "identity": "ARTIFACT-1",
+                      "revision": "ART@r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "artifact-owner"
+                    },
+                    "requirement_ref": {
+                      "identity": "REQ",
+                      "revision": "REQ@r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "requirement-owner"
+                    },
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    }
+                  },
+                  "producer_target": {
+                    "identity": "TDD-TARGET",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "design-owner"
+                  },
+                  "operation_ref": {
+                    "identity": "OP-015_flow",
+                    "revision": "operation-r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "original-target-owner"
+                  },
+                  "scope_mode": "native"
+                },
+                "kind": "015_flow",
+                "original_contents": {
+                  "packet_call_input": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+                      "file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
+                      "pointer": "/cases/19/typed_function_io_examples/0/typed_input",
+                      "operation": "copy_json_value"
+                    }
+                  },
+                  "semantic_call_input": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+                      "file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
+                      "pointer": "/cases/19/typed_semantic_function_io/typed_input",
+                      "operation": "copy_json_value"
+                    }
+                  },
+                  "target_operation": {
+                    "ref": {
+                      "identity": "OP-015_flow",
+                      "revision": "operation-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "original-target-owner"
+                    },
+                    "consumer_target": {
+                      "artifact_ref": {
+                        "identity": "ARTIFACT-1",
+                        "revision": "ART@r1",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "artifact-owner"
+                      },
+                      "requirement_ref": {
+                        "identity": "REQ",
+                        "revision": "REQ@r1",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "requirement-owner"
+                      },
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      }
+                    },
+                    "producer_target": {
+                      "identity": "TDD-TARGET",
+                      "revision": "r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "design-owner"
+                    },
+                    "kind": "synthetic_independent_original_target_operation"
+                  }
+                },
+                "qualifications": {
+                  "carrier": "known",
+                  "binding": "known",
+                  "producer": "known",
+                  "origin_operation": "known"
+                },
+                "qualification_reason": "合成の独立原target/binding/producer資格入力。実owner資格を示さない。"
+              }
+            ],
+            "unaffected_scope": {
+              "scope": "PRODUCT-Q",
+              "original_state": "valid_original"
+            },
+            "candidate": null
+          },
+          "mixed": {
+            "context": {
+              "artifact_ref": {
+                "identity": "ARTIFACT-1",
+                "revision": "ART@r1",
+                "scope": "PRODUCT-P",
+                "owner": "artifact-owner"
+              },
+              "requirement_ref": {
+                "identity": "REQ",
+                "revision": "REQ@r1",
+                "scope": "PRODUCT-P",
+                "owner": "requirement-owner"
+              },
+              "scope": "PRODUCT-P"
+            },
+            "context_qualification": "known",
+            "source_cells": [
+              {
+                "ref": {
+                  "identity": "CARRIER-005_composition",
+                  "revision": "carrier-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "source-adapter-owner"
+                },
+                "binding": {
+                  "consumer_target": {
+                    "artifact_ref": {
+                      "identity": "ARTIFACT-1",
+                      "revision": "ART@r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "artifact-owner"
+                    },
+                    "requirement_ref": {
+                      "identity": "REQ",
+                      "revision": "REQ@r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "requirement-owner"
+                    },
+                    "scope": "PRODUCT-P"
+                  },
+                  "producer_target": {
+                    "identity": "CHANGE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "design-owner"
+                  },
+                  "operation_ref": {
+                    "identity": "OP-005_composition",
+                    "revision": "operation-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "original-target-owner"
+                  },
+                  "scope_mode": "owner_association",
+                  "scope_relation": {
+                    "consumer_scope": "PRODUCT-P",
+                    "producer_scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    }
+                  }
+                },
+                "kind": "005_composition",
+                "original_contents": {
+                  "original": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+                      "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+                      "pointer": "/cases/2/normal_call/original",
+                      "operation": "copy_json_value"
+                    }
+                  },
+                  "sources": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+                      "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+                      "pointer": "/cases/2/normal_call/sources",
+                      "operation": "copy_json_value"
+                    }
+                  },
+                  "target_operation": {
+                    "ref": {
+                      "identity": "OP-005_composition",
+                      "revision": "operation-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "original-target-owner"
+                    },
+                    "consumer_target": {
+                      "artifact_ref": {
+                        "identity": "ARTIFACT-1",
+                        "revision": "ART@r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "artifact-owner"
+                      },
+                      "requirement_ref": {
+                        "identity": "REQ",
+                        "revision": "REQ@r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "requirement-owner"
+                      },
+                      "scope": "PRODUCT-P"
+                    },
+                    "producer_target": {
+                      "identity": "CHANGE-1",
+                      "revision": "r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "design-owner"
+                    },
+                    "kind": "synthetic_independent_original_target_operation"
+                  }
+                },
+                "qualifications": {
+                  "carrier": "known",
+                  "binding": "known",
+                  "producer": "known",
+                  "origin_operation": "known"
+                },
+                "qualification_reason": "合成の独立原target/binding/producer資格入力。実owner資格を示さない。"
+              },
+              {
+                "ref": {
+                  "identity": "CARRIER-022_difference",
+                  "revision": "carrier-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "source-adapter-owner"
+                },
+                "binding": {
+                  "consumer_target": {
+                    "artifact_ref": {
+                      "identity": "ARTIFACT-1",
+                      "revision": "ART@r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "artifact-owner"
+                    },
+                    "requirement_ref": {
+                      "identity": "REQ",
+                      "revision": "REQ@r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "requirement-owner"
+                    },
+                    "scope": "PRODUCT-P"
+                  },
+                  "producer_target": {
+                    "artifact_identity": "ARTIFACT-1",
+                    "artifact_revision": "ART@r1",
+                    "requirement_revision": "REQ@r1",
+                    "scope": "PRODUCT-P"
+                  },
+                  "operation_ref": {
+                    "identity": "OP-022_difference",
+                    "revision": "operation-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "original-target-owner"
+                  },
+                  "scope_mode": "native",
+                  "producer_snapshot_revision": "FIXTURE-H022-F03-r1"
+                },
+                "kind": "022_difference",
+                "original_contents": {
+                  "input": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                      "file_sha256": "78b0c5d952bdc0b12d6abf97dd0167e0ed4feffb1d9d6d97f559c57980410e75",
+                      "pointer": "/verification_obligations/3/cases/0/source_case/independent_source_packet/raw_utf8",
+                      "operation": "strict_json_parse_string"
+                    }
+                  },
+                  "context": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                      "file_sha256": "78b0c5d952bdc0b12d6abf97dd0167e0ed4feffb1d9d6d97f559c57980410e75",
+                      "pointer": "/context_fixtures/12/context",
+                      "operation": "copy_json_value"
+                    }
+                  },
+                  "target_operation": {
+                    "ref": {
+                      "identity": "OP-022_difference",
+                      "revision": "operation-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "original-target-owner"
+                    },
+                    "consumer_target": {
+                      "artifact_ref": {
+                        "identity": "ARTIFACT-1",
+                        "revision": "ART@r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "artifact-owner"
+                      },
+                      "requirement_ref": {
+                        "identity": "REQ",
+                        "revision": "REQ@r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "requirement-owner"
+                      },
+                      "scope": "PRODUCT-P"
+                    },
+                    "producer_target": {
+                      "artifact_identity": "ARTIFACT-1",
+                      "artifact_revision": "ART@r1",
+                      "requirement_revision": "REQ@r1",
+                      "scope": "PRODUCT-P"
+                    },
+                    "kind": "synthetic_independent_original_target_operation"
+                  }
+                },
+                "qualifications": {
+                  "carrier": "known",
+                  "binding": "known",
+                  "producer": "known",
+                  "origin_operation": "known"
+                },
+                "qualification_reason": "合成の独立原target/binding/producer資格入力。実owner資格を示さない。"
+              }
+            ],
+            "unaffected_scope": {
+              "scope": "PRODUCT-Q",
+              "original_state": "valid_original"
+            },
+            "candidate": null
+          }
+        },
+        "cases": [
+          {
+            "id": "H003-F03-BIND-NATIVE-COMPLETE",
+            "contract_ref": "HARNESS-L4-003-F03",
+            "input_base": "native",
+            "input_patch": [],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_valley",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "015_flow",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "L3 F03の同対象005/015。既知同型scopeはnative全成分比較し、新cross-scope資料を要求しない。source roleとtarget identityは各bindingの原対応へ別照合する。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F03-BIND-NATIVE-SCOPE-DIFFERS",
+            "contract_ref": "HARNESS-L4-003-F03",
+            "input_base": "native",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/1/binding/producer_target/scope/tenant",
+                "value": "OTHER-T"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_valley",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "015_flow",
+                  "target_state": "known",
+                  "scope_state": "conflict",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "conflict"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "同型scopeの既知一成分差は015の局所conflict。005のknownと元015資料は保持する。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F03-BIND-CARRIER-NOT-EMBEDDED",
+            "contract_ref": "HARNESS-L4-003-F03",
+            "input_base": "native",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/1/qualifications/producer",
+                "value": "unknown"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_valley",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "015_flow",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "unknown",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "unknown"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "既存003 common_contractと005 source_packet_boundaryによりcarrier knownをembedded sourceへ継承しない。scopeの読める原比較は残す。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F03-BIND-005-QUALIFICATION-UNKNOWN",
+            "contract_ref": "HARNESS-L4-003-F03",
+            "input_base": "native",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/0/qualifications/producer",
+                "value": "unknown"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_valley",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "unknown",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "unknown"
+                },
+                {
+                  "role": "015_flow",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "005資格不足は当該roleだけunknown。015のknownを失効させない。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F03-BIND-ORIGIN-SCOPE-DIFFERS",
+            "contract_ref": "HARNESS-L4-003-F03",
+            "input_base": "native",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/1/original_contents/target_operation/producer_target/scope/tenant",
+                "value": "OTHER-T"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_valley",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "015_flow",
+                  "target_state": "known",
+                  "scope_state": "conflict",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "conflict"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "既存003同対象の原source照合とL4 SB02/SB03/SB05。binding二端と独立target_operationを別比較する。scope既知差はconflict、native Refの対象revision差は005 resolverのstale、022 requirement metadata差は022 S5のconflict。別roleのknownを保持。原operation資格はbinding/producerから継承しない。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F03-BIND-ORIGIN-REVISION-STALE",
+            "contract_ref": "HARNESS-L4-003-F03",
+            "input_base": "native",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/0/original_contents/target_operation/producer_target/revision",
+                "value": "r0"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_valley",
+                  "target_state": "stale",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "stale"
+                },
+                {
+                  "role": "015_flow",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "既存003同対象の原source照合とL4 SB02/SB03/SB05。binding二端と独立target_operationを別比較する。scope既知差はconflict、native Refの対象revision差は005 resolverのstale、022 requirement metadata差は022 S5のconflict。別roleのknownを保持。原operation資格はbinding/producerから継承しない。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F03-BIND-ORIGIN-QUALIFICATION-UNKNOWN",
+            "contract_ref": "HARNESS-L4-003-F03",
+            "input_base": "native",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/0/qualifications/origin_operation",
+                "value": "unknown"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_valley",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "unknown",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "unknown"
+                },
+                {
+                  "role": "015_flow",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "既存003同対象の原source照合とL4 SB02/SB03/SB05。binding二端と独立target_operationを別比較する。scope既知差はconflict、native Refの対象revision差は005 resolverのstale、022 requirement metadata差は022 S5のconflict。別roleのknownを保持。原operation資格はbinding/producerから継承しない。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          }
+        ],
+        "expected_recipe_rule": "$copyはinput_patchとfixture ref revision束縛後のcase inputをrootとするRFC6901 pointer。原値保持だけを展開しstate/reasonを計算しない。$sourceは入力material用でexpected_output_projection/expected_observationは入力へ使わない。",
+        "scope": "source-binding境界の有限独立oracle。producer業務計算/実行/元stage全returnの代替ではない。",
+        "qualification_limit": "knownは合成独立source資格の入力仮定。実source/owner/実association資格の成立を示さない。",
+        "origin_operation_qualification": "追加接続caseでは原target_operation資格をqualifications.origin_operationへ別保持。旧209caseには変更なし。通常14対照の観測state/recipeは保持し、原recordだけのscope/revision差と資格unknownを先固定期待の5対照へ追加。"
+      }
     },
     {
       "id": "HARNESS-L9-003-F04",
@@ -11966,7 +12957,1262 @@
           ]
         }
       ],
-      "original_material_storage": "各case固有の独立source packetに完全な入力bytesを保持。original_materialはexact refと読取規則だけを持ち、二重に編集できる原入力を作らない。"
+      "original_material_storage": "各case固有の独立source packetに完全な入力bytesを保持。original_materialはexact refと読取規則だけを持ち、二重に編集できる原入力を作らない。",
+      "source_binding_oracles": {
+        "source_l4_pointer": "/contracts/3/source_binding_connection",
+        "source_material_pins": [
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+            "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+            "pointer": "/cases/7/normal_call/original"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+            "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+            "pointer": "/cases/7/normal_call/sources"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+            "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+            "pointer": "/cases/2/normal_call/original"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+            "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+            "pointer": "/cases/2/normal_call/sources"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+            "file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
+            "pointer": "/cases/19/typed_function_io_examples/0/typed_input"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+            "file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
+            "pointer": "/cases/19/typed_semantic_function_io/typed_input"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+            "file_sha256": "78b0c5d952bdc0b12d6abf97dd0167e0ed4feffb1d9d6d97f559c57980410e75",
+            "pointer": "/verification_obligations/3/cases/0/source_case/independent_source_packet/raw_utf8"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+            "file_sha256": "78b0c5d952bdc0b12d6abf97dd0167e0ed4feffb1d9d6d97f559c57980410e75",
+            "pointer": "/context_fixtures/12/context"
+          }
+        ],
+        "input_construction": "各$sourceを指定revision/pointer/hashで読み、operation=copy_json_valueは値を原型copy、strict_json_parse_stringは指定原stringをJSON parseする。expectedを入力に使わない。展開後にinput_patchを適用し各case独立の原資料を形成する。各SourceCell.ref.revisionは当該cellのrefを除くcanonical JSON SHA256へfixture-content-のprefix付きで束縛する。producer原Ref/元sourcefile bytesは変更しない。 独立合成原target_operationはbindingと別にoriginal_contentsへ保持し、そのref.revisionも当該原recordのrefを除くcanonical内容hashへ先に束縛する。同じ原operation_refをbindingへ写した後、SourceCell.refを束縛する。資格stateは原target_operation/bindingとproducerを別に供給する合成仮定であり、adapterの自己申告を実資格にしない。",
+        "input_bases": {
+          "native": {
+            "context": {
+              "artifact_ref": {
+                "identity": "ARTIFACT-1",
+                "revision": "ART@r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "artifact-owner"
+              },
+              "requirement_ref": {
+                "identity": "REQ",
+                "revision": "REQ@r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "requirement-owner"
+              },
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              }
+            },
+            "context_qualification": "known",
+            "source_cells": [
+              {
+                "ref": {
+                  "identity": "CARRIER-005_valley",
+                  "revision": "carrier-r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "source-adapter-owner"
+                },
+                "binding": {
+                  "consumer_target": {
+                    "artifact_ref": {
+                      "identity": "ARTIFACT-1",
+                      "revision": "ART@r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "artifact-owner"
+                    },
+                    "requirement_ref": {
+                      "identity": "REQ",
+                      "revision": "REQ@r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "requirement-owner"
+                    },
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    }
+                  },
+                  "producer_target": {
+                    "identity": "CHANGE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "design-owner"
+                  },
+                  "operation_ref": {
+                    "identity": "OP-005_valley",
+                    "revision": "operation-r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "original-target-owner"
+                  },
+                  "scope_mode": "native"
+                },
+                "kind": "005_valley",
+                "original_contents": {
+                  "original": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+                      "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+                      "pointer": "/cases/7/normal_call/original",
+                      "operation": "copy_json_value"
+                    }
+                  },
+                  "sources": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+                      "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+                      "pointer": "/cases/7/normal_call/sources",
+                      "operation": "copy_json_value"
+                    }
+                  },
+                  "target_operation": {
+                    "ref": {
+                      "identity": "OP-005_valley",
+                      "revision": "operation-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "original-target-owner"
+                    },
+                    "consumer_target": {
+                      "artifact_ref": {
+                        "identity": "ARTIFACT-1",
+                        "revision": "ART@r1",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "artifact-owner"
+                      },
+                      "requirement_ref": {
+                        "identity": "REQ",
+                        "revision": "REQ@r1",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "requirement-owner"
+                      },
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      }
+                    },
+                    "producer_target": {
+                      "identity": "CHANGE-1",
+                      "revision": "r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "design-owner"
+                    },
+                    "kind": "synthetic_independent_original_target_operation"
+                  }
+                },
+                "qualifications": {
+                  "carrier": "known",
+                  "binding": "known",
+                  "producer": "known",
+                  "origin_operation": "known"
+                },
+                "qualification_reason": "合成の独立原target/binding/producer資格入力。実owner資格を示さない。"
+              },
+              {
+                "ref": {
+                  "identity": "CARRIER-015_flow",
+                  "revision": "carrier-r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "source-adapter-owner"
+                },
+                "binding": {
+                  "consumer_target": {
+                    "artifact_ref": {
+                      "identity": "ARTIFACT-1",
+                      "revision": "ART@r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "artifact-owner"
+                    },
+                    "requirement_ref": {
+                      "identity": "REQ",
+                      "revision": "REQ@r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "requirement-owner"
+                    },
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    }
+                  },
+                  "producer_target": {
+                    "identity": "TDD-TARGET",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "design-owner"
+                  },
+                  "operation_ref": {
+                    "identity": "OP-015_flow",
+                    "revision": "operation-r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "original-target-owner"
+                  },
+                  "scope_mode": "native"
+                },
+                "kind": "015_flow",
+                "original_contents": {
+                  "packet_call_input": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+                      "file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
+                      "pointer": "/cases/19/typed_function_io_examples/0/typed_input",
+                      "operation": "copy_json_value"
+                    }
+                  },
+                  "semantic_call_input": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+                      "file_sha256": "51c58b5ba6dba09d6944593df233e3b9fa2a6994f2f4e15922d7138f2760615b",
+                      "pointer": "/cases/19/typed_semantic_function_io/typed_input",
+                      "operation": "copy_json_value"
+                    }
+                  },
+                  "target_operation": {
+                    "ref": {
+                      "identity": "OP-015_flow",
+                      "revision": "operation-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "original-target-owner"
+                    },
+                    "consumer_target": {
+                      "artifact_ref": {
+                        "identity": "ARTIFACT-1",
+                        "revision": "ART@r1",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "artifact-owner"
+                      },
+                      "requirement_ref": {
+                        "identity": "REQ",
+                        "revision": "REQ@r1",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "requirement-owner"
+                      },
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      }
+                    },
+                    "producer_target": {
+                      "identity": "TDD-TARGET",
+                      "revision": "r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "design-owner"
+                    },
+                    "kind": "synthetic_independent_original_target_operation"
+                  }
+                },
+                "qualifications": {
+                  "carrier": "known",
+                  "binding": "known",
+                  "producer": "known",
+                  "origin_operation": "known"
+                },
+                "qualification_reason": "合成の独立原target/binding/producer資格入力。実owner資格を示さない。"
+              }
+            ],
+            "unaffected_scope": {
+              "scope": "PRODUCT-Q",
+              "original_state": "valid_original"
+            },
+            "candidate": null
+          },
+          "mixed": {
+            "context": {
+              "artifact_ref": {
+                "identity": "ARTIFACT-1",
+                "revision": "ART@r1",
+                "scope": "PRODUCT-P",
+                "owner": "artifact-owner"
+              },
+              "requirement_ref": {
+                "identity": "REQ",
+                "revision": "REQ@r1",
+                "scope": "PRODUCT-P",
+                "owner": "requirement-owner"
+              },
+              "scope": "PRODUCT-P"
+            },
+            "context_qualification": "known",
+            "source_cells": [
+              {
+                "ref": {
+                  "identity": "CARRIER-005_composition",
+                  "revision": "carrier-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "source-adapter-owner"
+                },
+                "binding": {
+                  "consumer_target": {
+                    "artifact_ref": {
+                      "identity": "ARTIFACT-1",
+                      "revision": "ART@r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "artifact-owner"
+                    },
+                    "requirement_ref": {
+                      "identity": "REQ",
+                      "revision": "REQ@r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "requirement-owner"
+                    },
+                    "scope": "PRODUCT-P"
+                  },
+                  "producer_target": {
+                    "identity": "CHANGE-1",
+                    "revision": "r1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "design-owner"
+                  },
+                  "operation_ref": {
+                    "identity": "OP-005_composition",
+                    "revision": "operation-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "original-target-owner"
+                  },
+                  "scope_mode": "owner_association",
+                  "scope_relation": {
+                    "consumer_scope": "PRODUCT-P",
+                    "producer_scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    }
+                  }
+                },
+                "kind": "005_composition",
+                "original_contents": {
+                  "original": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+                      "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+                      "pointer": "/cases/2/normal_call/original",
+                      "operation": "copy_json_value"
+                    }
+                  },
+                  "sources": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+                      "file_sha256": "0037695db996a7fc5c4f7744e6e40e572bb79d6a61edf7299dfb570dc30f641c",
+                      "pointer": "/cases/2/normal_call/sources",
+                      "operation": "copy_json_value"
+                    }
+                  },
+                  "target_operation": {
+                    "ref": {
+                      "identity": "OP-005_composition",
+                      "revision": "operation-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "original-target-owner"
+                    },
+                    "consumer_target": {
+                      "artifact_ref": {
+                        "identity": "ARTIFACT-1",
+                        "revision": "ART@r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "artifact-owner"
+                      },
+                      "requirement_ref": {
+                        "identity": "REQ",
+                        "revision": "REQ@r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "requirement-owner"
+                      },
+                      "scope": "PRODUCT-P"
+                    },
+                    "producer_target": {
+                      "identity": "CHANGE-1",
+                      "revision": "r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "design-owner"
+                    },
+                    "kind": "synthetic_independent_original_target_operation"
+                  }
+                },
+                "qualifications": {
+                  "carrier": "known",
+                  "binding": "known",
+                  "producer": "known",
+                  "origin_operation": "known"
+                },
+                "qualification_reason": "合成の独立原target/binding/producer資格入力。実owner資格を示さない。"
+              },
+              {
+                "ref": {
+                  "identity": "CARRIER-022_difference",
+                  "revision": "carrier-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "source-adapter-owner"
+                },
+                "binding": {
+                  "consumer_target": {
+                    "artifact_ref": {
+                      "identity": "ARTIFACT-1",
+                      "revision": "ART@r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "artifact-owner"
+                    },
+                    "requirement_ref": {
+                      "identity": "REQ",
+                      "revision": "REQ@r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "requirement-owner"
+                    },
+                    "scope": "PRODUCT-P"
+                  },
+                  "producer_target": {
+                    "artifact_identity": "ARTIFACT-1",
+                    "artifact_revision": "ART@r1",
+                    "requirement_revision": "REQ@r1",
+                    "scope": "PRODUCT-P"
+                  },
+                  "operation_ref": {
+                    "identity": "OP-022_difference",
+                    "revision": "operation-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "original-target-owner"
+                  },
+                  "scope_mode": "native",
+                  "producer_snapshot_revision": "FIXTURE-H022-F03-r1"
+                },
+                "kind": "022_difference",
+                "original_contents": {
+                  "input": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                      "file_sha256": "78b0c5d952bdc0b12d6abf97dd0167e0ed4feffb1d9d6d97f559c57980410e75",
+                      "pointer": "/verification_obligations/3/cases/0/source_case/independent_source_packet/raw_utf8",
+                      "operation": "strict_json_parse_string"
+                    }
+                  },
+                  "context": {
+                    "$source": {
+                      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+                      "path": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+                      "file_sha256": "78b0c5d952bdc0b12d6abf97dd0167e0ed4feffb1d9d6d97f559c57980410e75",
+                      "pointer": "/context_fixtures/12/context",
+                      "operation": "copy_json_value"
+                    }
+                  },
+                  "target_operation": {
+                    "ref": {
+                      "identity": "OP-022_difference",
+                      "revision": "operation-r1",
+                      "scope": "PRODUCT-P",
+                      "owner": "original-target-owner"
+                    },
+                    "consumer_target": {
+                      "artifact_ref": {
+                        "identity": "ARTIFACT-1",
+                        "revision": "ART@r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "artifact-owner"
+                      },
+                      "requirement_ref": {
+                        "identity": "REQ",
+                        "revision": "REQ@r1",
+                        "scope": "PRODUCT-P",
+                        "owner": "requirement-owner"
+                      },
+                      "scope": "PRODUCT-P"
+                    },
+                    "producer_target": {
+                      "artifact_identity": "ARTIFACT-1",
+                      "artifact_revision": "ART@r1",
+                      "requirement_revision": "REQ@r1",
+                      "scope": "PRODUCT-P"
+                    },
+                    "kind": "synthetic_independent_original_target_operation"
+                  }
+                },
+                "qualifications": {
+                  "carrier": "known",
+                  "binding": "known",
+                  "producer": "known",
+                  "origin_operation": "known"
+                },
+                "qualification_reason": "合成の独立原target/binding/producer資格入力。実owner資格を示さない。"
+              }
+            ],
+            "unaffected_scope": {
+              "scope": "PRODUCT-Q",
+              "original_state": "valid_original"
+            },
+            "candidate": null
+          }
+        },
+        "cases": [
+          {
+            "id": "H003-F04-BIND-MIXED-COMPLETE",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "mixed",
+            "input_patch": [],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "known",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "known",
+                  "requirement_revision_state": "known",
+                  "binding_state": "known"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "L3 F04の005/022同対象。005の既存owner bindingが両scope原型を同targetへ関連付け、022Textはnative一致。内容対応はstage更新ではない。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F04-BIND-PRODUCER-END-DIFFERS",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "mixed",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/0/binding/scope_relation/producer_scope/environment",
+                "value": "OTHER-E"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "conflict",
+                  "scope_relation_state": "conflict",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "conflict"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "known",
+                  "requirement_revision_state": "known",
+                  "binding_state": "known"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "原producer scopeとassociationのproducer端が既知に違う。consumer端一致で補完しない。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F04-BIND-CONSUMER-END-DIFFERS",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "mixed",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/0/binding/scope_relation/consumer_scope",
+                "value": "OTHER-P"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "conflict",
+                  "scope_relation_state": "conflict",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "conflict"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "known",
+                  "requirement_revision_state": "known",
+                  "binding_state": "known"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "associationのconsumer端と独立Context scopeの既知差。producer端一致や022成功で補完しない。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F04-BIND-ASSOCIATION-UNQUALIFIED",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "mixed",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/0/qualifications/binding",
+                "value": "unknown"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "unknown",
+                  "scope_relation_state": "unknown",
+                  "source_qualification_state": "unknown",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "unknown"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "known",
+                  "requirement_revision_state": "known",
+                  "binding_state": "known"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "異型associationの既存binding資格がunknownならcross-scope関係だけ未成立。両端原値と022のnative knownは保持する。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F04-BIND-ASSOCIATION-MISSING",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "mixed",
+            "input_patch": [
+              {
+                "op": "remove",
+                "path": "/source_cells/0/binding/scope_relation"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "missing",
+                  "scope_relation_state": "missing",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "missing"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "known",
+                  "requirement_revision_state": "known",
+                  "binding_state": "known"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "異型に必要な関係の不在をmissing。native branchにはこのmemberを要求せず、全call gateにしない。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F04-BIND-ARTIFACT-REVISION-OLD",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "mixed",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/1/binding/producer_target/artifact_revision",
+                "value": "ART@old"
+              },
+              {
+                "op": "replace",
+                "path": "/source_cells/1/original_contents/input/context/artifact_revision",
+                "value": "ART@old"
+              },
+              {
+                "op": "replace",
+                "path": "/source_cells/1/original_contents/target_operation/producer_target/artifact_revision",
+                "value": "ART@old"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "known",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "stale",
+                  "requirement_revision_state": "known",
+                  "binding_state": "stale"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "022 S5のartifact旧revisionはstale。requirement revisionのknownとsnapshot版を保持する。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F04-BIND-REQUIREMENT-REVISION-DIFFERS",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "mixed",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/1/binding/producer_target/requirement_revision",
+                "value": "REQ@other"
+              },
+              {
+                "op": "replace",
+                "path": "/source_cells/1/original_contents/input/context/requirement_revision",
+                "value": "REQ@other"
+              },
+              {
+                "op": "replace",
+                "path": "/source_cells/1/original_contents/target_operation/producer_target/requirement_revision",
+                "value": "REQ@other"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "known",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "known",
+                  "requirement_revision_state": "conflict",
+                  "binding_state": "conflict"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "022 S5のrequirement metadata差はconflict。artifact一致からcurrentを生成しない。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F04-BIND-022-CARRIER-NOT-EMBEDDED",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "mixed",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/1/qualifications/producer",
+                "value": "unknown"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "known",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "unknown",
+                  "artifact_revision_state": "known",
+                  "requirement_revision_state": "known",
+                  "binding_state": "unknown"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "carrierとContext/各MaterialRecord/EvidenceRecordの独立資格を分離。carrier knownだけで022原record資格を作らない。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F04-BIND-SNAPSHOT-NOT-TARGET-REVISION",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "mixed",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/1/binding/producer_snapshot_revision",
+                "value": "SNAPSHOT@different"
+              },
+              {
+                "op": "replace",
+                "path": "/source_cells/1/original_contents/context/snapshot_revision",
+                "value": "SNAPSHOT@different"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "known",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "known",
+                  "requirement_revision_state": "known",
+                  "binding_state": "known"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "snapshot版はsource Context版の原値として別保持。target artifact/requirementの比較へ代入しない。このfixtureは保存役割だけを照合しsnapshot自体のsource-currentnessを認定しない。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F04-BIND-TARGET-IDENTITY-DIFFERS",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "mixed",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/0/binding/consumer_target/artifact_ref/identity",
+                "value": "OTHER-ARTIFACT"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "conflict",
+                  "scope_state": "known",
+                  "scope_relation_state": "known",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "conflict"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "known",
+                  "requirement_revision_state": "known",
+                  "binding_state": "known"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "scope対応だけではtarget identityの差を消せない。原contextとbindingのfull target対応を別照合する。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F04-BIND-ORIGIN-ARTIFACT-REVISION-STALE",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "mixed",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/1/original_contents/target_operation/producer_target/artifact_revision",
+                "value": "ART@old"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "known",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "stale",
+                  "requirement_revision_state": "known",
+                  "binding_state": "stale"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "既存003同対象の原source照合とL4 SB02/SB03/SB05。binding二端と独立target_operationを別比較する。scope既知差はconflict、native Refの対象revision差は005 resolverのstale、022 requirement metadata差は022 S5のconflict。別roleのknownを保持。原operation資格はbinding/producerから継承しない。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "H003-F04-BIND-ORIGIN-REQUIREMENT-REVISION-CONFLICT",
+            "contract_ref": "HARNESS-L4-003-F04",
+            "input_base": "mixed",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/1/original_contents/target_operation/producer_target/requirement_revision",
+                "value": "REQ@other"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_composition",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "known",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                },
+                {
+                  "role": "022_difference",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "known",
+                  "requirement_revision_state": "conflict",
+                  "binding_state": "conflict"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "expectation_basis": "既存003同対象の原source照合とL4 SB02/SB03/SB05。binding二端と独立target_operationを別比較する。scope既知差はconflict、native Refの対象revision差は005 resolverのstale、022 requirement metadata差は022 S5のconflict。別roleのknownを保持。原operation資格はbinding/producerから継承しない。",
+            "execution_state": "not_executed",
+            "effect": "none"
+          }
+        ],
+        "expected_recipe_rule": "$copyはinput_patchとfixture ref revision束縛後のcase inputをrootとするRFC6901 pointer。原値保持だけを展開しstate/reasonを計算しない。$sourceは入力material用でexpected_output_projection/expected_observationは入力へ使わない。",
+        "scope": "source-binding境界の有限独立oracle。producer業務計算/実行/元stage全returnの代替ではない。",
+        "qualification_limit": "knownは合成独立source資格の入力仮定。実source/owner/実association資格の成立を示さない。",
+        "origin_operation_qualification": "追加接続caseでは原target_operation資格をqualifications.origin_operationへ別保持。旧209caseには変更なし。通常14対照の観測state/recipeは保持し、原recordだけのscope/revision差と資格unknownを先固定期待の5対照へ追加。"
+      }
     },
     {
       "id": "HARNESS-L9-003-F05",

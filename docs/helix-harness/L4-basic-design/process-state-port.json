@@ -77,6 +77,26 @@
       "path": "docs/governance/decisions/incidentport-adoption-po-decision-2026-10-11.md",
       "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
       "sha256": "144594a305825f7b44bf4615cda15d3a7dab17cd2301a8072829ec9a76485210"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+      "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+      "sha256": "42ad78921ddaf43ab013a006346e2b67a90936478dec87a7672d814868711e6e"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+      "sha256": "477264632bf101d13d416eb1b17d5e7e77f8a30dd25c2c1c00b4391f605d95a6"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+      "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+      "sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a"
     }
   ],
   "legacy_comparison": [
@@ -431,7 +451,7 @@
   "remaining": [
     "全7契約の具体的fixtureと静的内容/原資料/変更記録の照合は完了。独立exact HEAD意味reviewとmain admissionは未成立。",
     "L9の10観点の不足caseとstate所有内容不一致をF03へ作成済み。実owner資格・正式oracle凍結は未成立。",
-    "未統合015基本設計と後続022等のexact binding",
+    "F03/F04のproducer契約/原target association境界は本pairへ固定。015/022を含むrole閉型/selector/純粋関数/実provider・実資格のbindingは後続L5/L8と実装で残る",
     "独立exact HEAD意味review・main admission",
     "L5/L8の型・関数・証拠資格・エラー・case凍結",
     "正式実装/実認可/実証拠/CI/実物PO受入"
@@ -623,7 +643,240 @@
           "requirement": "L3/L2 owner",
           "state": "state契約の当該owner"
         },
-        "dependency_limit": "015の未統合基本設計と後続022のexact bindingは残る。以下は承認済み上流からの合成条件例。"
+        "dependency_limit": "005 F07/F02、015 packet/semantic evaluation、022 F03のexact source契約とowner/adapters→同target association→consumer境界はsource_binding_connectionへ固定。role閉型/selector/純粋関数/実resolver資格・実operation bindingは後続L5/L8と実装で残る。"
+      },
+      "source_binding_connection": {
+        "id": "HARNESS-L4-003-SOURCE-BINDING",
+        "scope": "F03の005/015谷資料とF04の005/022固有差分を、既存source owners/adaptersが同targetへ結ぶ接続境界。F03/F04の既存工程条件/whole結果を置換しない。",
+        "source_contracts": [
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+            "pointer": "/functions/7",
+            "file_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+            "object_canonical_sha256": "652872404e3d9883ad82e26dbbc42e8c92a50290615a92502fe4511389999d72"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+            "pointer": "/functions/2",
+            "file_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+            "object_canonical_sha256": "92172013aadc99d517de86d2dc155fba95d925670aaf8b037c3ad9c7f727e48c"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+            "pointer": "/reference_resolution_contract",
+            "file_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+            "object_canonical_sha256": "d2bcccb2659d7ce98c53805a6067580e3c11fd6f0acec722f4caa832044cfd31"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "pointer": "/pure_function_signatures/0",
+            "file_sha256": "42ad78921ddaf43ab013a006346e2b67a90936478dec87a7672d814868711e6e",
+            "object_canonical_sha256": "7a0e924d1d3343ca6f44ec61cb5bd4a255995b2f9e1e3b2c06e42f079b9ead7d"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "pointer": "/pure_function_signatures/3",
+            "file_sha256": "42ad78921ddaf43ab013a006346e2b67a90936478dec87a7672d814868711e6e",
+            "object_canonical_sha256": "bc3a45b9ab5eed20392e44747276c61c2db6faaf58d5a4118061b7762cc26a87"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "pointer": "/type_contract/other_types/113",
+            "file_sha256": "42ad78921ddaf43ab013a006346e2b67a90936478dec87a7672d814868711e6e",
+            "object_canonical_sha256": "8e7264eb7087f6b81eb72074cf358b6655eb56db650165f6cc3b412927041e95"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+            "pointer": "/functions/3",
+            "file_sha256": "477264632bf101d13d416eb1b17d5e7e77f8a30dd25c2c1c00b4391f605d95a6",
+            "object_canonical_sha256": "ea202c9af278ba87594d258cb67ef9825d4a1d360f3ef9f2eea21110f78d75b1"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+            "pointer": "/types/SystemDifferenceContext",
+            "file_sha256": "477264632bf101d13d416eb1b17d5e7e77f8a30dd25c2c1c00b4391f605d95a6",
+            "object_canonical_sha256": "69c7e7e9b12794ce73632cbdaa851001d1958bacd2dfb79915a20b63a993acc0"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+            "pointer": "/types/MaterialRecord",
+            "file_sha256": "477264632bf101d13d416eb1b17d5e7e77f8a30dd25c2c1c00b4391f605d95a6",
+            "object_canonical_sha256": "ea417b6321c8ecbe61524fdddd9712450a35b6cb9e6f2d01c05d70523f13b962"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/types",
+            "file_sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a",
+            "object_canonical_sha256": "77f8060020dbad1e35e35d46bb131aadd65b0bff4bd5d67697f034a48a7bc6a2"
+          },
+          {
+            "revision": "fc379cca5dde83129bb2c7c7bcbb60313a3b3e4c",
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/common_contract",
+            "file_sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a",
+            "object_canonical_sha256": "effb0818f06c4bf2ea53baf5b24d31bc94db02d4ce8d48eacb7ff7a8f349ced4"
+          }
+        ],
+        "representation_basis": {
+          "003": "pin済み003 L5 /types/Ref/fields と /types/ProcessContext/fields はfield名列挙のみ。scope型は未指定であり、旧fixtureの文字列scopeをText型宣言と解さない。",
+          "005": "Ref.scopeはField<Scope>、Scopeはproject/tenant/environment各Field<string>。欠落/null/供給値の違いを保持。",
+          "015": "SourceRef.scopeはScopeRef{project,tenant,environment}。SourceRef/packet pointer/hashは原型で保持する。",
+          "022": "Target/MaterialRecord/EvidenceRecordのscopeはText系。artifact_revisionとrequirement_revision、Context.snapshot_revisionは別の役割。",
+          "lower_design": "003のscope型とrole別SourceCell.bindingの閉型/codecは後続L5/L8で導出する。本基本設計はproducer型を緩めず、scope文字列化・新共通Ref型・新registryを導入しない。"
+        },
+        "producer_roles": {
+          "005_valley": {
+            "consumer": "F03 valley / F04 Provisional",
+            "source_function": "verification-discipline /functions/7 compare_tdd_observation_order",
+            "inputs": "F07VerificationInput original + VerificationSources。original.binding、freeze/red/body_change/greenの原Ref/HEAD/oracle/順序を保持。",
+            "returns": "Comparison<F07VerificationObservation>全体を原入力/原sourceと別に保持。same_oracle等のsummary booleansから元Refを復元しない。",
+            "target_selector": "original.bindingはproducer側の変更target Ref。consumer artifact/requirement Refへ型名だけでcastせず、既存bindingの対象対応で結ぶ。"
+          },
+          "015_flow": {
+            "consumer": "F03 valley / F04 Provisional",
+            "source_function": "tdd-development-flow F-015-01 project_source_packet と F-015-04 evaluate_contract_semantics",
+            "inputs": "SourcePacketInput、canonical_owner_byte_sha256、SemanticEvaluationInput、SemanticRuleSet。選択rootの原owner_materialとtarget bindingを保持。",
+            "returns": "BoundSourcePacketとSemanticEvaluation全体。source_packet_ref/canonical_owner_ref/pointer/hash/payload_typeと原scopeを保持。qualification_kindは原metadataであり実資格ではない。",
+            "target_selector": "source_payload.tagに対応するowner_material.binding（既存FieldValueのpresenceを保持）。source_packet_refは資料carrierでありtarget Refの代用ではない。"
+          },
+          "005_composition": {
+            "consumer": "F04 Verified",
+            "source_function": "verification-discipline /functions/2 compare_proof_composition",
+            "inputs": "F02VerificationInput original + VerificationSources。lower_proofs、combination_contract、composite_obligation_refs、covered_by_lower_refs、固有proofの原値。",
+            "returns": "Comparison<F02VerificationObservation>全体。下位/組合せ/固有差分を分け、F07の谷観測を固有差分proofの代わりにしない。",
+            "target_selector": "original.bindingと各proof/組合せのRefは役割別保持。原対象associationでconsumer targetへ結ぶ。"
+          },
+          "022_difference": {
+            "consumer": "F04 Verified",
+            "source_function": "stage-verification-acceptance /functions/3 compare_verified_system_difference",
+            "inputs": "SystemDifferenceInputと独立SystemDifferenceContextを別々に保持。各MaterialRecord/EvidenceRecord、必要集合/selection、source_id/oracle_revision/pair/owner/contentsも保持。",
+            "returns": "SystemDifferenceResult全体。内容対応と実Verified/Accepted/CI運転を区別。",
+            "target_selector": "input.contextと各material/evidenceのartifact identity/revision、requirement revision、scopeをContext.targetと独立に照合。F01 StageInputRecordをF03 MaterialRecordへ代用しない。"
+          }
+        },
+        "provider_boundary": {
+          "owner": "既存source owners/adapters。005 reference_resolution_contract.ownerと003の既存evidence_producers/input_ownerに属する対象/実行/検証の原記録owner。HARNESSは比較規範、OS又は利用者手段は実運転/記録を保持する。",
+          "generation_inputs": [
+            "同対象の独立原target/operation/request/contextと各Ref",
+            "選択されたproducer roleの原入力・原source・返却結果",
+            "各原target/binding/carrier/embedded producerの既存独立source資格"
+          ],
+          "generation": "adapterは原operation/requestが結んだconsumer targetとproducer targetを解決し、その二端と原operation Refを既存SourceCell.bindingのrole別recordへ保存する。取得したproducer値からText scopeの意味対応を推測しない。既存target対応を記録する処理であり、producer比較器のsummaryからassociationや資格を作らない。",
+          "generation_outputs": "SourceCell.refは原carrier Ref、bindingはconsumer_target/producer_target/operation_refと必要時のscope_relation、kindは上記role、original_contentsはproducer入力/source/返却全体。原target対応が取得できない場合も読めた資料と理由を保持する。 原target/operation recordはoriginal_contents内へbindingと別に保持し、bindingの二端/operation_refをこの原recordへ照合してからconsumer比較へ渡す。binding自体の自己一致だけを原association根拠にしない。",
+          "native_scope": "同じnative scope形の二端は全成分/presenceで直接比較する。Text同士はexact text、構造scope同士はproject/tenant/environmentを個別比較。scope_relation member/追加cross-scope資格資料を同型branchへ要求しない。",
+          "mixed_scope": "異型scopeを同targetへ結ぶ必要があるbranchだけ、既存bindingにscope_relation.consumer_scope/producer_scopeを両端原型で保存する。既存原target/operationのassociationであり新しい全入力共通evidenceや新authorityではない。原associationのbinding資格とembedded producer資格は独立に照合する。",
+          "qualification": "carrierのknown/bytes一致をbinding/各embedded recordへ継承しない。各原資格state/reasonを別保持し、既存原ownerによる関連付けが未解決ならそのbranchだけ未成立。資格供給・実resolver実装は本基本pairで認定しない。 original_contents.target_operationの原association資格はorigin_operationとしてbinding/producer/carrierと別に入力し、knownを相互継承しない。これは既存source-owner資格の対象を分離する詳細であり新authorityではない。",
+          "producer_call_connection": {
+            "input_supply": "上記roleの入力/source/必要な独立Contextを、同じ原operation/取得recordの参照とともにproducerへ渡す。candidateやL9 expectedは原sourceへ混入しない。",
+            "returned_material": "返却値は同じfunction契約・原operationと引数snapshotへ結ばれた原producer呼出し記録から受け取り、original_contentsへ引数/sourceと並べて保持する。別call/別Contextの成功を当該roleへ代入しない。これは既存source owner/adapterのoriginal record責務であり、新しい全工程共通receipt/承認を要求しない。",
+            "005": "Comparisonはobservation/issues/candidate_differences/non_target_preserved/effects/execution_kindを全保持する。返却型自体に元Refがないため、original/sourcesと同じ原call対応を保ち、observation boolからRefやsource資格を再構成しない。",
+            "015": "BoundSourcePacket/SemanticEvaluationのcase_identity/root_id/source_packet_ref/pointer/hashを対応入力の同fieldへ結び、canonical_owner_ref/hashは別役割のまま保持。source_payloadは固定payload pointerの原owner_materialへ結ぶ。source_changeやcandidate_mutation、fixture結果を実証拠へ混ぜない。",
+            "022": "SystemDifferenceResultを同一SystemDifferenceInput/独立Context/原operationに結び、Context.snapshot_revision・selectionと各原material/evidenceを保持。result.outcomeやverified_candidateだけで対象Ref/資格/実stateを生成しない。",
+            "test_scope": "本L9の追加14対照はsource-binding/資格/target軸の観測であり、producer返却全域や既存F03/F04 wholeの再実行証明ではない。producer固有L8/L9の固定oracleは独立に維持し、閉型/呼出し引数・返却の詳細は後続L5/L8で導出する。"
+          }
+        },
+        "consumer_comparison": [
+          {
+            "id": "SB01",
+            "rule": "原Context/source cells/producer入力・返却とcandidateを別保存。role/元field selectorは固定producer契約へ解決し、map key/表示名やstatic doc pinからruntime Ref・scope・targetを推定しない。全source occurrence/配列順/重複、未選択Qを保持する。"
+          },
+          {
+            "id": "SB02",
+            "rule": "binding.consumer_targetを独立Contextのartifact_ref/requirement_ref/scopeへ、binding.producer_targetを原producer target selectorへ別々に照合する。producerの変更target/packet carrier/CORE契約等のRefを同一役割へcastしない。identity/owner差はtarget conflictとして保持し、scopeとrevisionの独立原因を消さない。 original_contentsの独立原target_operation.consumer_target/producer_target/refとbinding二端/operation_refもそれぞれ対応させる。原recordはproviderが同target取得時に記録し、その既存資格入力をbinding/producerと分ける。 原target_operationのproducer_targetはidentity/ownerだけでなく全Ref成分を照合する。同identity/ownerのnative revision差はtarget_state=stale、既知scope差は独立scope_state=conflictとして保持する。"
+          },
+          {
+            "id": "SB03",
+            "rule": "scopeは同型native二端なら直接比較。binding内producer scopeも実際のproducer selector値へ対応させる。既知の成分差はscope conflict、不足/nullは原型のmissing/unknown。異型同士を自動等価にも一律成功不能にもせず、必要branchだけ原bindingのscope_relationへ進む。 原target_operation.producer_target.scopeもbinding.producer_target.scopeと原producer scopeへ独立に対応させる。原operation側だけのscope差をbindingの自己一致で無視しない。"
+          },
+          {
+            "id": "SB04",
+            "rule": "mixed scopeのscope_relation二端をContext scopeと原producer scopeへ各々型付き等値で照合し、binding独立資格がknownの時だけ対応known。member不在はmissing、資格unknownはunknown、既知端差異はconflict。両端rawと資格診断を保持し、native siblingの既知結果を消さない。"
+          },
+          {
+            "id": "SB05",
+            "rule": "022 artifact_identityをconsumer artifact_ref.identityへ、artifact_revisionをartifact_ref.revisionへ、requirement_revisionをrequirement_ref.revisionへ別比較する。artifact旧版はstale、requirement metadata差はconflict（022 S5）。Context.snapshot_revisionはsource Context snapshot版として別保存し、target二revisionへ代入しない。MaterialRecord.identity＋snapshot_revisionから既存full carrier Refを捏造せず、SourceCell.refは独立供給原carrierを保持。 原target_operation.producer_targetのartifact_revision/requirement_revisionもbindingと原producer contextの各対応軸へ別々に照合し、前者の差はstale、後者の差はconflictに保持する。"
+          },
+          {
+            "id": "SB06",
+            "rule": "target対応/scope/022二revision/source資格は個別状態で保持。binding_stateは対象軸がすべてknownの場合だけknown、単一種類の不成立はそのstate、複数異種不成立はunknownとし全原原因を保持。scope_relation_state=not_requiredとrevision_state=not_applicableは非対象軸であって原資料欠落の代用品ではない。"
+          },
+          {
+            "id": "SB07",
+            "rule": "source bindingのknownは原資料を当該工程比較へ結べるという局所材料のみ。005/015/022の業務結果を再計算・置換せず、既存F03/F04の全条件を引き続き比較する。Provisional/Verified/Accepted・実資格・CI実行・state/ticket更新を生成しない。"
+          }
+        ],
+        "connection_observation": {
+          "scope": "L9追加対照で使うsource-binding境界の観測。既存F03/F04 whole ProcessAssessmentを置換する返却型ではない。",
+          "closed_fields": [
+            "records",
+            "retained_context",
+            "retained_source_cells",
+            "unaffected_scope",
+            "producer_results_recomputed",
+            "actual_stage_updated",
+            "actual_owner_qualified",
+            "effects"
+          ],
+          "record_fields": [
+            "role",
+            "target_state",
+            "scope_state",
+            "scope_relation_state",
+            "source_qualification_state",
+            "artifact_revision_state",
+            "requirement_revision_state",
+            "binding_state"
+          ],
+          "raw_retention": "retained_context/source_cellsは入力の全原値。refとbindingを相互置換せず、source資格原stateも残す。最後の4fieldはfalse,false,false,[]。"
+        },
+        "legacy_rederivation": {
+          "mode": "semantic_rederivation",
+          "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "lines": "29-61",
+          "preserve": "原source/対象版・同対象のV-pair、接続/adapter境界をL4/L9へ置き、下位の合格を上位完了へしない。",
+          "change": "既存owner/adaptersの同target associationとproducer-native scope保持を003 F03/F04のsource接続へ具体化する。旧DB/runtime/全体gate/新owner資格を持ち込まない。",
+          "reason": "現003に残る015/022 exact bindingを、現行producerの原型を失わず接続するため。",
+          "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+        },
+        "failure_and_consumer_basis": [
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "lines": [
+              87,
+              99
+            ],
+            "use": "UTW-021のprose/自己申告完成、UTW-033のfreeze/reopen別版をsource bindingで分離する。新gateの根拠にはしない。",
+            "file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+          },
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/tests/l3-lifecycle-stage-completion-goals.test.ts",
+            "lines": "12-116",
+            "use": "旧consumerのexact stage receipt、stale HEAD/片側oracle/hidden unresolved拒否をread-only照合。実行しない。",
+            "file_sha256": "3fb9483ad721fce698030c6c1a4c08f4ea57b169418260478609daadbc4d144c"
+          },
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/config/workflow-output-consumer-inventory.json",
+            "lines": "90-109",
+            "use": "旧completion-frontier consumerへの誤伝播を避けるsource責務参照。新consumerや実状態を生成しない。",
+            "file_sha256": "58458a9bce05806af8ed97a49e2eb042691113555b49c59a24f11f7d53a534db"
+          }
+        ],
+        "limits": [
+          "静的doc pinは契約本文のrevision/path/pointer/hash。runtime source Refの原identity/revision/native scope/ownerとは別。",
+          "provider責務と接続の基本設計であり、L5/L8のrole閉型/selector decoder/純粋計算正本・正式codec・実資格/実provider/CI/PO受入は未成立。",
+          "既存7義務と旧fixtureは保持。scope差を新承認/普遍cross-scope証拠gate/全体停止へ変えない。"
+        ]
       }
     },
     {
@@ -657,7 +910,22 @@
         "状態の実保存/更新はOS、状態条件の意味はHARNESS",
         "CI・L10・受入・配備を互いの代替にしない"
       ],
-      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。"
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。",
+      "source_binding_connection": {
+        "shared_contract_pointer": "/contracts/3/source_binding_connection",
+        "roles_by_state": {
+          "Provisional": [
+            "005_valley",
+            "015_flow"
+          ],
+          "Verified": [
+            "005_composition",
+            "022_difference"
+          ]
+        },
+        "independence": "各状態固有の既存条件・独立原証拠を維持する。source-binding対応を上位stateのproofへ代用しない。",
+        "l9_pointer": "/verification_obligations/4/source_binding_oracles"
+      }
     },
     {
       "id": "HARNESS-L4-003-F05",
