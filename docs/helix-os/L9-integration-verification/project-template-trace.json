@@ -39236,11 +39236,7 @@
                       "environment": "synthetic-test"
                     },
                     "owner": "CORE"
-                  },
-                  "unrelated_raw": [
-                    null,
-                    false
-                  ]
+                  }
                 }
               },
               {
@@ -39273,11 +39269,7 @@
                       "environment": "synthetic-test"
                     },
                     "owner": "CORE"
-                  },
-                  "unrelated_raw": [
-                    null,
-                    false
-                  ]
+                  }
                 }
               },
               {
@@ -39473,11 +39465,7 @@
                       "environment": "synthetic-test"
                     },
                     "owner": "CORE"
-                  },
-                  "unrelated_raw": [
-                    null,
-                    false
-                  ]
+                  }
                 }
               },
               {
@@ -39498,11 +39486,7 @@
                       "environment": "synthetic-test"
                     },
                     "owner": "CORE"
-                  },
-                  "unrelated_raw": [
-                    null,
-                    false
-                  ]
+                  }
                 }
               },
               {
@@ -41308,11 +41292,7 @@
                           "environment": "synthetic-test"
                         },
                         "owner": "CORE"
-                      },
-                      "unrelated_raw": [
-                        null,
-                        false
-                      ]
+                      }
                     },
                     {
                       "output_ref": {
@@ -41363,11 +41343,7 @@
                           "environment": "synthetic-test"
                         },
                         "owner": "CORE"
-                      },
-                      "unrelated_raw": [
-                        null,
-                        false
-                      ]
+                      }
                     },
                     {
                       "output_ref": {
