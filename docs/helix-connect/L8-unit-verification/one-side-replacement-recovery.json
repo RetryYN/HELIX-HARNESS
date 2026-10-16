@@ -310,7 +310,7 @@
   "candidate_document_bindings": [
     {
       "path": "docs/helix-connect/L5-detail-design/one-side-replacement-recovery.json",
-      "sha256": "a1fc5765f9fb95f9d86a95a9b14bf2682d19dad272c17ed39824a7a5c083aec8"
+      "sha256": "c455ce67313f03a4c129341c8f04b5d075907b45e277a32c5abeec69edccb252"
     }
   ],
   "cases": [
