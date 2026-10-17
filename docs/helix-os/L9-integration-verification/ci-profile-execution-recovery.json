@@ -108936,7 +108936,7 @@
     "owner_outer_field_priority": "最優先でplan_owner.raw_valueのouter Fieldを判定する。raw ownerがabsentならselection outer Field=absent、raw null/empty又はtyped decode失敗ならouter Field=nullとし、後段membership/item規則で上書きしない。raw/typedの不一致や供給済の独立軸/全raw候補はtraceへ保持し省略しない。typed owner内plan_ref/bindingの原Field tag/値は保持する。",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "2a4d7d99700bf991087dd558350616a2670a700eec405a4f8279d0dbbe5ffa24",
+      "body_sha256": "0045d2d17e82386a858cc881240419043844de881e5672bd921abd8097e0e982",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -108960,7 +108960,7 @@
     "kind": "finite_independent_producer_to_consumer_integration_observation",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "2a4d7d99700bf991087dd558350616a2670a700eec405a4f8279d0dbbe5ffa24",
+      "body_sha256": "0045d2d17e82386a858cc881240419043844de881e5672bd921abd8097e0e982",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -275689,7 +275689,7 @@
     "kind": "T02の独立局所projection素材",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "2a4d7d99700bf991087dd558350616a2670a700eec405a4f8279d0dbbe5ffa24",
+      "body_sha256": "0045d2d17e82386a858cc881240419043844de881e5672bd921abd8097e0e982",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract/relation_comparison_units",
       "binding_kind": "同一候補の正式L4 path/本文SHAへ結ぶ。scratchを意味正本にしない。"
     },
@@ -395885,6 +395885,122 @@
       "foreign/non-applicable rowを新たなconflictにしない規則は、この6局所projectionでは未観測。",
       "OS017の未読sourceを既知の完全な空graph集合にしない規則、および既知の空graphとの区別は、この6局所projectionでは未観測。親workflow_proposal:nullのcaseだけからその区別の成立を推定しない。",
       "OS016の原source/指定node/relationが未供給の場合のunknown保持は、この6局所projectionでは未観測。"
+    ]
+  },
+  "owner_return_verification": {
+    "requirement_ref": "HELIXOS-L3-020-B01",
+    "system_oracle_ref": "HELIXOS-L10-020-B01",
+    "current_l4_binding": {
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "body_sha256": "0045d2d17e82386a858cc881240419043844de881e5672bd921abd8097e0e982",
+      "pointer": "/contracts/3/owner_return_contract",
+      "object_canonical_sha256": "258ba7bedf96d8bf71f75ce310ef3cef91e512d6d0c67154e37621029e13c45b"
+    },
+    "source_basis": {
+      "requirement": "/approved_whole_objects/3",
+      "system_oracle": "/approved_whole_objects/4"
+    },
+    "conditions": [
+      {
+        "id": "RETURN-PLAN",
+        "scenario_ja": "元計画の責務相反を同call原資料と返す",
+        "expected_condition_ja": "局所Finding tripleとCIProposalを保ち、当該原計画source/対象へ結んだ計画ownerへの論理受渡しを返す。source不足は局所unknownとし、labelの名称変更で済ませない。"
+      },
+      {
+        "id": "RETURN-DUTY",
+        "scenario_ja": "原義務/規範への越境を同call原資料と返す",
+        "expected_condition_ja": "原義務とHARNESSの責務を保ち、当該義務source/対象へ結んだ論理受渡しを返す。計画/実選択から元義務を再生成しない。"
+      },
+      {
+        "id": "RETURN-DECISION",
+        "scenario_ja": "CIからmeaning_review/Accepted/merge/releaseへの昇格claimを戻す",
+        "expected_condition_ja": "CI claim診断を保ち、独立に供給された判断の元source/役割へ返す。true/false/unknownの値やclaim field名だけから判断ownerを補完しない。正規owner自身の判断は禁止しない。"
+      },
+      {
+        "id": "RETURN-SOURCE-MISSING",
+        "scenario_ja": "該当原owner/sourceが不足又はunknown",
+        "expected_condition_ja": "元診断と不足原因・原入力を保ち、未確定targetを成功や既存ci-operation-ownerのfallbackへ変換しない。他の対応済み原因を消さない。"
+      },
+      {
+        "id": "RETURN-SOURCE-CONFLICT",
+        "scenario_ja": "原対象scope/revision/ownerと相反するsourceが来る",
+        "expected_condition_ja": "相反する両側の資料を保持し、別案件/別版のtargetへ既知対応として渡さない。未知を既知相反へ丸めない。"
+      },
+      {
+        "id": "RETURN-MULTI-ORIGIN",
+        "scenario_ja": "同じ局所Findingに複数の互換な原原因/対象が対応する",
+        "expected_condition_ja": "元Findingを保ち、互換な各originと論理受渡しを失わない。複数という個数だけでunknown/conflictを新設せず、同一subjectの既知相反は別に保持する。"
+      },
+      {
+        "id": "RETURN-CALL-BINDING",
+        "scenario_ja": "元packet/CIInput/F02008返却とrouter/consumer受渡しを照合する。非返却経路、混在する対応済みrequestの順序/完全同値重複も区別する",
+        "expected_condition_ja": "同一論理呼出しで保持した原値と全診断をconsumer requestへ結ぶ。別callのproposal/原資料を混ぜず、routingの返却だけで実配送/ACK/受入を生成しない。RawPacketに存在しないwire bytes/custodyを仮定しない。 operation/authority/resourceとfallbackはnon_owner_findingsへ原Finding全値を残し、このB01の3intakeへcallしない。対応済みrequestはplan→obligation→decision、各配列の元順で渡す。全field完全同値だけdedupし、同Findingでも別originを失わない。"
+      }
+    ],
+    "additional_controls": [
+      {
+        "condition_ja": "decision claimがfalse",
+        "expected_ja": "既存F02007どおり当該claimのFindingとdecision-origin lookupを作らない。他のclaim/Findingと対応済みrouteは保持する。",
+        "rule": "/diagnostic_contract/algorithm/8",
+        "rule_path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json"
+      },
+      {
+        "condition_ja": "同call F03原sourceとsource_bundleの内容が異なる",
+        "expected_ja": "source_bundleはraw traceに保持し、義務origin/source資格/意味をそこから導かない。OriginalSourceEntryと実referentのnative全値、declared payload pathと元subject/dutyの全Fieldを比較する。",
+        "rule": "/contracts/3/owner_return_contract/duty_source_contract",
+        "rule_path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json"
+      },
+      {
+        "condition_ja": "profile_obligation_set_conflictとcross-source二所見を別に与える",
+        "expected_ja": "前者はplanのみ。profile_required_obligation_missingとprofile_obligation_inventory_conflictの/profile/obligationsだけは両原operandの対応originへ返す。片側不明でも他側の原診断/確定requestを消さない。",
+        "rule": "/contracts/3/owner_return_contract/routing_and_dedup",
+        "rule_path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json"
+      },
+      {
+        "condition_ja": "context.roles.plan/obligationが固定ownerと既知相反する",
+        "expected_ja": "既存algorithm/0,1がその/context/roles/{role}へ返したsource_conflictも元source lookupへ結ぶ。actual rolesの相反と区別し、unknownだけの経路へ狭めない。",
+        "rule": "/diagnostic_contract/algorithm/0",
+        "rule_path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json"
+      }
+    ],
+    "existing_input_navigation": {
+      "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+      "pointers": [
+        "/cases/62/given/input",
+        "/cases/63/given/input",
+        "/cases/64/given/input",
+        "/cases/65/given/input",
+        "/cases/66/given/input",
+        "/cases/67/given/input",
+        "/cases/241/given/input",
+        "/cases/242/given/input",
+        "/cases/243/given/input",
+        "/cases/244/given/input",
+        "/cases/245/given/input",
+        "/cases/246/given/input",
+        "/cases/247/given/input",
+        "/cases/248/given/input"
+      ],
+      "meaning_ja": "既存pure比較の原入力の所在。新source/intake呼出しを実行したwhole期待ではなく、元Findingを保持する対条件の入力材料。"
+    },
+    "non_return_input_navigation": {
+      "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+      "pointers": [
+        "/cases/68/given/input",
+        "/cases/69/given/input",
+        "/cases/70/given/input",
+        "/cases/71/given/input",
+        "/cases/72/given/input",
+        "/cases/73/given/input",
+        "/cases/74/given/input",
+        "/cases/75/given/input",
+        "/cases/76/given/input"
+      ],
+      "meaning_ja": "operation/authority/resourceの既存Finding入力。non_owner_findings保持とintake非呼出しはRETURN-CALL-BINDINGの新対条件であり、既存expectedにintake実行結果があるとは扱わない。fallbackも同条件で原Finding保持/非呼出しを照合する。"
+    },
+    "limits_ja": [
+      "条件設計であり、新whole入力/全期待の凍結や実行済みRed/Greenを主張しない。既存caseと期待は変更しない。",
+      "F03 native source返却の適用範囲に限る。F01固有source対応、実provider/配送/資格、全B01と92親430義務の閉包は未認定。"
     ]
   }
 }
