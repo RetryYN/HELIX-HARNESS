@@ -3214,7 +3214,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
-        "file_sha256": "066121047e7862401e2c1f477c8ca817ca7f23b06473ed32f12196538af91f47",
+        "file_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
         "object_canonical_sha256": "00ecf77c8ddc8b372fbf4183b9eda529c8381e8ac8acd88b0d4467001a26ac87",
         "meaning_ja": "この同一pairの現在L4 contractを指す。L4 source_pinsの歴史revisionは変更しない。"
       },
@@ -3266,7 +3266,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/3/owner_return_contract",
-        "file_sha256": "066121047e7862401e2c1f477c8ca817ca7f23b06473ed32f12196538af91f47",
+        "file_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
         "object_canonical_sha256": "258ba7bedf96d8bf71f75ce310ef3cef91e512d6d0c67154e37621029e13c45b"
       },
       "type_and_algorithm_imports": {
@@ -3291,8 +3291,8 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/1/operation_call_contract",
-        "file_sha256": "066121047e7862401e2c1f477c8ca817ca7f23b06473ed32f12196538af91f47",
-        "object_canonical_sha256": "544af4e30f824a8c2eb5f56801dd09c12688407bf1d38608c26a9ec5c241ea20"
+        "file_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
+        "object_canonical_sha256": "b8c8141227b2e81be5e2a858d7f552bf0bf0fc534b34b63fe9669eb7ff5ca517"
       },
       "native_imports": [
         {
@@ -3353,7 +3353,9 @@
             "/type_contract/type_model/Text",
             "/type_contract/type_model/Ref",
             "/type_contract/type_model/Locator",
-            "/functions/3"
+            "/functions/3",
+            "/type_contract/type_model/ReadSnapshot",
+            "/type_contract/type_model/ReadRequest"
           ],
           "names": [
             "OS053.Plan",
@@ -3367,7 +3369,9 @@
             "OS053.Text",
             "OS053.Ref",
             "OS053.Locator",
-            "OS053.persist_atomic_bundle (S04)"
+            "OS053.persist_atomic_bundle (S04)",
+            "OS053.ReadSnapshot",
+            "OS053.ReadRequest"
           ],
           "file_sha256": "b5c0a8927f417a33e325c8e43ed2d5651d9d537e8163b41162614187f8a41c01"
         }
@@ -3531,12 +3535,12 @@
             "matched": {
               "state": "matched",
               "supply": "OwnerPlanSupply",
-              "assessments": "tuple<F02WriteCaptureAssessment> (all rows, plan order)"
+              "assessments": "tuple<F02WriteCaptureAssessment>（全比較行をPlan原順で保持）"
             },
             "unresolved_or_mismatch": {
               "state": "unresolved_or_mismatch",
               "supply": "OwnerPlanSupply",
-              "assessments": "tuple<F02WriteCaptureAssessment> (all rows, including matches; plan order)",
+              "assessments": "tuple<F02WriteCaptureAssessment>（対応済みを含む全比較行をPlan原順で保持）",
               "causes": "tuple<RawValue>"
             }
           }
@@ -3695,7 +3699,7 @@
           "kind": "closed_record",
           "fields": {
             "operation_return": "F02OperationCapturedStageReturn",
-            "build_input": "F02OwnerPlanBuildInput (build_input.capture=operation_return.capture exact)",
+            "build_input": "F02OwnerPlanBuildInput（build_input.captureはoperation_return.captureと全値一致）",
             "builder_capability": "F02OwnerPlanBuilderCapability (independent source)",
             "configured_atomic_commit_adapter": "F02S04AdapterCapability"
           }
@@ -3795,7 +3799,7 @@
             "capability": "独立したF02PersistCallInput.builder_capability",
             "input": "一つだけのF02PersistCallInput.build_input。captureはoperation stageと同じ"
           },
-          "calls": "exactly once; blocked suppresses join and S04",
+          "calls": "一度だけ呼ぶ。blockedならjoinとS04を呼ばない。",
           "call": "一度だけ呼ぶ。blockedならjoin/S04は呼ばない。"
         },
         {
@@ -3811,12 +3815,12 @@
           "name": "call_os053_persist",
           "signature": "call_os053_persist(input: F02PersistCallInput) -> F02PersistCallReturn",
           "arguments_from": {
-            "operation_return": "exact captured stage including F02004 assessment",
-            "build_input": "single input in persist call, capture equals stage capture",
-            "builder_capability": "independent F02PersistCallInput field",
-            "adapter": "independent F02PersistCallInput field"
+            "operation_return": "F02004全assessmentを含む同一capture段階の返却",
+            "build_input": "この保存callの唯一のbuild_input。captureは同じ段階返却のcaptureと全値一致",
+            "builder_capability": "同じF02PersistCallInputの独立供給member",
+            "adapter": "同じF02PersistCallInputの独立供給member"
           },
-          "call": "build_plan_for_operationを一回呼ぶ。blockedなら停止。ready supplyは同じoperation_returnと照合する。matchedの場合だけnative S04を一回呼ぶ。原input、operation_return、build/join return、native S04全返却を保持する。"
+          "call": "OS053 port選択済みの場合だけ本callerを使う。build_plan_for_operationを一回呼ぶ。blockedなら停止。ready supplyは同じoperation_returnと照合する。matchedの場合だけnative S04を一回呼ぶ。原input、operation_return、build/join return、native S04全返却を保持する。"
         },
         {
           "name": "call_os053_s04",
@@ -3857,7 +3861,7 @@
         },
         {
           "id": "native_s04_boundary",
-          "rule_ja": "call_os053_persistはbuilderとjoinを一度ずつ評価し、builder readyかつ全write join matchedの場合に限りcall_os053_s04を一度呼ぶ。後者はOS053.persist_atomic_bundleへ同じOS053.Plan、原順Resolution tuple、independent adapter.native_capabilityを渡す。host portはopaque native値でありJSON RawValueではない。OS053.Result、OS053.Finding、OS053.ProtocolCallの全variant・原順を保存し、S04内蔵read-afterを再利用して二度目のreadを加えない。"
+          "rule_ja": "既存選択根拠がOS053 portを選択した場合に限る。call_os053_persistはbuilderとjoinを一度ずつ評価し、builder readyかつ全write join matchedの場合に限りcall_os053_s04を一度呼ぶ。後者はOS053.persist_atomic_bundleへ同じOS053.Plan、原順Resolution tuple、independent adapter.native_capabilityを渡す。host portはopaque native値でありJSON RawValueではない。OS053.Result、OS053.Finding、OS053.ProtocolCallの全variant・原順を保存し、S04内蔵read-afterを再利用して二度目のreadを加えない。"
         }
       ],
       "paired_l9_oracle_ref": {
@@ -3899,7 +3903,8 @@
       ],
       "authority_effect": "none",
       "operation_effect": "none",
-      "limits_ja": "F02のprivate producer bindingに限る。実operation、OS053 adapter、資格、保存、CIを実行したとは扱わない。F03、再開、全case実行、設計全体の完了は含めない。"
+      "limits_ja": "F02のprivate producer bindingに限る。実operation、OS053 adapter、資格、保存、CIを実行したとは扱わない。F03、再開、全case実行、設計全体の完了は含めない。",
+      "applicability_ja": "このprivate保存callerとOS053への委譲は、当該保存に既存OS053 portを選択した場合だけに適用する。方式選択は呼出し側から独立供給される既存の選択根拠に従い、本契約からOS053必須という要求や認可を生成しない。非選択または選択未確定なら、このprivate保存caller・builder・join・S04を呼ばず、元capture/比較結果と未完・選択状態を呼出し側へ保持して返す。他方式の保存成功やfallbackをこのsliceから生成せず、当該方式の既存owner契約へ委ねる。"
     }
   ]
 }

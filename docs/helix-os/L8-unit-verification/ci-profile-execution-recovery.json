@@ -170762,9 +170762,9 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-    "sha256": "ce25dba7ff5f91f16938179c03f79b636c9156879c3e013772fc71cf8d19c427",
+    "sha256": "f7b89937229f5f5b37e7380a8599aaa3cebfa8816bbcfaf5c82e6c37e98d0f60",
     "pointer": "/private_producer_bindings/0",
-    "object_canonical_sha256": "4635e1f02aed3a264fa8576fdc5f216f66bbc705794896d5d6599eb7fb9145cc",
+    "object_canonical_sha256": "6f9d76221a9fd083d588cc0214c14634daa1f6ae3c12d9836679d311224e7a68",
     "binding_kind": "exact_candidate_file_bytes",
     "meaning": "同じ対に置くL5の現在file bytesとprivate producer binding objectを結ぶ。歴史source pinとは区別する。"
   },
@@ -171275,7 +171275,7 @@
     ],
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "b67b5f01a6bd7df3c474d6de30d382bf4a9d9ee6d86f1121f7d4d590c0f8229c",
+      "candidate_sha256": "3f0a5a64c24b5fc4037e011d3f1df28abcecebfdb3a06c00af86d67f866105a8",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
     },
@@ -171293,13 +171293,13 @@
     "requirement_ref": "HELIXOS-L3-020-B01",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "ce25dba7ff5f91f16938179c03f79b636c9156879c3e013772fc71cf8d19c427",
+      "sha256": "f7b89937229f5f5b37e7380a8599aaa3cebfa8816bbcfaf5c82e6c37e98d0f60",
       "pointer": "/private_producer_bindings/1",
-      "object_canonical_sha256": "3c50b90a9bdc10fee6271c5ae23b5df5d8912df4b87836764aecb92a1155128f"
+      "object_canonical_sha256": "cce191f15e243ba45c416c223cbc5b3c4daad0baa418b6b482cc80ae4722c6c8"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "b67b5f01a6bd7df3c474d6de30d382bf4a9d9ee6d86f1121f7d4d590c0f8229c",
+      "candidate_sha256": "3f0a5a64c24b5fc4037e011d3f1df28abcecebfdb3a06c00af86d67f866105a8",
       "pointer": "/owner_return_verification"
     },
     "unit_conditions": [
@@ -171370,20 +171370,20 @@
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
       "pointer": "/contracts/1/operation_call_contract",
-      "body_sha256": "066121047e7862401e2c1f477c8ca817ca7f23b06473ed32f12196538af91f47",
-      "object_canonical_sha256": "544af4e30f824a8c2eb5f56801dd09c12688407bf1d38608c26a9ec5c241ea20"
+      "body_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
+      "object_canonical_sha256": "b8c8141227b2e81be5e2a858d7f552bf0bf0fc534b34b63fe9669eb7ff5ca517"
     },
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/2",
-      "sha256": "ce25dba7ff5f91f16938179c03f79b636c9156879c3e013772fc71cf8d19c427",
-      "object_canonical_sha256": "f044e67965d824649417ca8ec30c0e2807fcc4a9cf7e71dd5ebd9a5b3d594ef3"
+      "sha256": "f7b89937229f5f5b37e7380a8599aaa3cebfa8816bbcfaf5c82e6c37e98d0f60",
+      "object_canonical_sha256": "3c5130b5d43f3688015c8015ade2f37a97de0772e55959344e15963fcb979f0d"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/operation_call_verification",
-      "candidate_sha256": "b67b5f01a6bd7df3c474d6de30d382bf4a9d9ee6d86f1121f7d4d590c0f8229c",
-      "object_canonical_sha256": "89cfa112cb0ec6e0ed02041f000e404633a3c1395b8f179e83f91dcb70291a27"
+      "candidate_sha256": "3f0a5a64c24b5fc4037e011d3f1df28abcecebfdb3a06c00af86d67f866105a8",
+      "object_canonical_sha256": "c1bb8aea2c5651abb12d29d871bc745e020d6737cf679e4994d01dec63061afd"
     },
     "condition_correspondence": [
       {
@@ -171453,7 +171453,7 @@
     "unit_conditions": [
       {
         "id": "F02-UNIT-01",
-        "condition_ja": "同じCIInputのselected prepareを使う。unselected、制約拒否/未解決、host fallback拒否/未解決ではdispatchがnot_calledとなり、空findingを実行成功としない。",
+        "condition_ja": "同じCIInputのselected prepareを使う。unselected、制約拒否/未解決、host fallback拒否/未解決ではdispatchがnot_calledとなり、空findingを実行成功としない。 collect phaseのcheckからもdispatchを呼ばず、原phaseを保持する。",
         "aligns_with": [
           "OP-SOURCE-01",
           "OP-SOURCE-03",
@@ -171462,7 +171462,7 @@
       },
       {
         "id": "F02-UNIT-02",
-        "condition_ja": "dispatch/monitor/collectionのnot_calledとcalledを区別し、called+Field.absentをnot_calledと混同しない。L4の14 origin memberを原値・Field tag込みで保持する。",
+        "condition_ja": "dispatch/monitor/collectionのnot_calledとcalledを区別し、called+Field.absentをnot_calledと混同しない。L4の14 origin memberを原値・Field tag込みで保持する。 dispatch.not_calledならmonitor/collectもnot_called、monitor.not_calledならcollectもnot_calledとし、原request/前段返却/理由を保持する。",
         "aligns_with": [
           "OP-SOURCE-02",
           "OP-SOURCE-04"
@@ -171470,7 +171470,7 @@
       },
       {
         "id": "F02-UNIT-03",
-        "condition_ja": "F02004には元CIInputの/resultだけをcapture.result_recordへ置換して一度渡し、独立context/他memberと全CollectionAssessment返却を保持する。",
+        "condition_ja": "F02004には元CIInputの/resultだけをcapture.result_recordへ置換して一度渡し、独立context/他memberと全CollectionAssessment返却を保持する。 capture未生成なら本比較を呼ばず、collection.not_calledでもcapture生成済みなら原Field.absentを比較する。",
         "aligns_with": [
           "OP-SOURCE-01",
           "OP-SOURCE-04"
@@ -171495,7 +171495,7 @@
       },
       {
         "id": "F02-UNIT-06",
-        "condition_ja": "S04へconfigured adapterのopaque native capabilityだけを渡し、native Result/Finding/ProtocolCall全返却と内蔵read-afterを保持する。read対象不一致/不足は未成立のまま残し、二重readを作らない。",
+        "condition_ja": "S04へconfigured adapterのopaque native capabilityだけを渡し、native Result/Finding/ProtocolCall全返却と内蔵read-afterを保持する。read対象不一致/不足は未成立のまま残し、二重readを作らない。 OS053非選択/選択未確定ならこの保存callerを呼ばず、元結果と未完を保持する。",
         "aligns_with": [
           "OP-SOURCE-06",
           "OP-SOURCE-07"
@@ -171503,6 +171503,24 @@
       }
     ],
     "preservation_ja": "既存L8の270case、全input/expected、公開9関数の対応は変更しない。case_refs=[]は新fixtureを作成していないことを表し、既存期待の完了や実行済みを意味しない。",
-    "status_ja": "設計上の対応関係を記録する有限追補。新しいwhole期待、実行証拠、実provider成立、F02全体完了を主張しない。F03は後続対象。"
+    "status_ja": "設計上の対応関係を記録する有限追補。新しいwhole期待、実行証拠、実provider成立、F02全体完了を主張しない。F03は後続対象。",
+    "call_control_alignment": [
+      {
+        "unit_id": "F02-UNIT-01",
+        "l9_control_id": "F02-CALL-PHASE"
+      },
+      {
+        "unit_id": "F02-UNIT-02",
+        "l9_control_id": "F02-CALL-PREDECESSOR"
+      },
+      {
+        "unit_id": "F02-UNIT-03",
+        "l9_control_id": "F02-CALL-CAPTURE"
+      },
+      {
+        "unit_id": "F02-UNIT-06",
+        "l9_control_id": "F02-PERSIST-SELECTION"
+      }
+    ]
   }
 }

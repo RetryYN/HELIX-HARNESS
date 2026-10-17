@@ -108936,7 +108936,7 @@
     "owner_outer_field_priority": "最優先でplan_owner.raw_valueのouter Fieldを判定する。raw ownerがabsentならselection outer Field=absent、raw null/empty又はtyped decode失敗ならouter Field=nullとし、後段membership/item規則で上書きしない。raw/typedの不一致や供給済の独立軸/全raw候補はtraceへ保持し省略しない。typed owner内plan_ref/bindingの原Field tag/値は保持する。",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "066121047e7862401e2c1f477c8ca817ca7f23b06473ed32f12196538af91f47",
+      "body_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -108960,7 +108960,7 @@
     "kind": "finite_independent_producer_to_consumer_integration_observation",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "066121047e7862401e2c1f477c8ca817ca7f23b06473ed32f12196538af91f47",
+      "body_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -275689,7 +275689,7 @@
     "kind": "T02の独立局所projection素材",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "066121047e7862401e2c1f477c8ca817ca7f23b06473ed32f12196538af91f47",
+      "body_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract/relation_comparison_units",
       "binding_kind": "同一候補の正式L4 path/本文SHAへ結ぶ。scratchを意味正本にしない。"
     },
@@ -395892,7 +395892,7 @@
     "system_oracle_ref": "HELIXOS-L10-020-B01",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "066121047e7862401e2c1f477c8ca817ca7f23b06473ed32f12196538af91f47",
+      "body_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
       "pointer": "/contracts/3/owner_return_contract",
       "object_canonical_sha256": "258ba7bedf96d8bf71f75ce310ef3cef91e512d6d0c67154e37621029e13c45b"
     },
@@ -396010,7 +396010,7 @@
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
       "pointer": "/contracts/1/operation_call_contract",
-      "body_sha256": "066121047e7862401e2c1f477c8ca817ca7f23b06473ed32f12196538af91f47"
+      "body_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a"
     },
     "source_basis": [
       {
@@ -396097,6 +396097,45 @@
           "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
           "pointer": "/functions/2/algorithm/0"
         }
+      }
+    ],
+    "call_condition_controls": [
+      {
+        "id": "F02-CALL-PHASE",
+        "scenario_ja": "check_f02_operationのphaseがcollect、またはprepare以外",
+        "expected_ja": "F02003の素材比較返却と原phaseは保持するが、dispatchはnot_called。同じrequestを後続monitor/collectの呼出し成功へ進めない。",
+        "aligns_with": [
+          "OP-SOURCE-01",
+          "OP-SOURCE-03",
+          "OP-SOURCE-04"
+        ]
+      },
+      {
+        "id": "F02-CALL-PREDECESSOR",
+        "scenario_ja": "dispatch.not_called、またはmonitor.not_calledと、それぞれ対応するcalled+Field.absentを別に与える",
+        "expected_ja": "前段not_calledなら後続も呼ばず原返却と理由を保持する。前段calledで原Fieldがabsentでも、call_stateをnot_calledへ変更しない。各後段の呼出し条件はL4 operation_call_conditions_jaを使う。",
+        "aligns_with": [
+          "OP-SOURCE-02",
+          "OP-SOURCE-04"
+        ]
+      },
+      {
+        "id": "F02-CALL-CAPTURE",
+        "scenario_ja": "capture生成済み（collection.not_calledを含む）と、capture未生成を区別する",
+        "expected_ja": "生成済みだけ元CIInputのresultをcapture.result_recordへ置換してcollectでF02004を一度呼び全返却を保持する。未生成では呼ばず、欠落から成功を作らない。",
+        "aligns_with": [
+          "OP-SOURCE-01",
+          "OP-SOURCE-04"
+        ]
+      },
+      {
+        "id": "F02-PERSIST-SELECTION",
+        "scenario_ja": "当該保存の既存選択根拠がOS053選択、非選択、未確定の各場合",
+        "expected_ja": "選択時だけOS053用private callerを使う。非選択/未確定は当該caller・builder・join・S04を呼ばず元capture/比較結果・未完/選択状態を保持する。他方式の禁止、保存成功やfallbackを生成しない。",
+        "aligns_with": [
+          "OP-SOURCE-06",
+          "OP-SOURCE-07"
+        ]
       }
     ]
   }

@@ -1494,7 +1494,7 @@
           ],
           "field_state_rule_ja": "Fieldのabsent/null/empty/suppliedを保つ。collection not_calledからresult_recordまたはowner_returnを読むことはせず、対応memberはField.absentとする。calledでField.absentが返った場合はその値をそのまま保持し、call_stateから推測しない。"
         },
-        "persist_sequence_ja": "同じcapture段階返却を一つのPlan builder入力へ結ぶ。builder blockedならjoin/S04を呼ばない。ready時は全Write occurrenceをcaptureと比較し、全行/原因を保持する。すべてmatchedの場合だけOS053 S04を一度呼び、native returnを保持する。S04内蔵のcommit後read-afterを再利用し、追加readを作らない。",
+        "persist_sequence_ja": "既存選択根拠がOS053 portを選択している場合に限り、同じcapture段階返却を一つのPlan builder入力へ結ぶ。builder blockedならjoin/S04を呼ばない。ready時は全Write occurrenceをcaptureと比較し、全行/原因を保持する。すべてmatchedの場合だけOS053 S04を一度呼び、native returnを保持する。S04内蔵のcommit後read-afterを再利用し、追加readを作らない。非選択・選択未確定時はpersistence_applicability_jaのとおり、このcallerを呼ばず元結果と未完を保持する。",
         "source_conditions": [
           {
             "id": "OP-SOURCE-01",
@@ -1565,7 +1565,13 @@
             113
           ]
         },
-        "limits_ja": "この契約はF02の設計上の入力・返却対応を定める。F03 resume、実operation provider、実資格、実OS053保存、CI実行、全whole fixtureの新しい評価は対象外。F02全体完了を意味しない。"
+        "limits_ja": "この契約はF02の設計上の入力・返却対応を定める。F03 resume、実operation provider、実資格、実OS053保存、CI実行、全whole fixtureの新しい評価は対象外。F02全体完了を意味しない。",
+        "persistence_applicability_ja": "このprivate保存callerとOS053への委譲は、当該保存に既存OS053 portを選択した場合だけに適用する。方式選択は呼出し側から独立供給される既存の選択根拠に従い、本契約からOS053必須という要求や認可を生成しない。非選択または選択未確定なら、このprivate保存caller・builder・join・S04を呼ばず、元capture/比較結果と未完・選択状態を呼出し側へ保持して返す。他方式の保存成功やfallbackをこのsliceから生成せず、当該方式の既存owner契約へ委ねる。",
+        "operation_call_conditions_ja": [
+          "dispatchは同じrequestのoperation_check.selected_phase=prepareかつ既存制約に拒否/未解決がない場合だけ呼ぶ。check_f02_operationをcollectその他のphaseで評価しても、このdispatchを呼ばずnot_calledとして原phaseと理由を残す。",
+          "monitorは同じrequestのdispatch.called返却を受ける場合だけ一度呼ぶ。dispatch.not_calledならmonitorもnot_calledとし原dispatch/request/理由を保持する。collectは同じdispatch.calledとmonitor.calledを受ける場合だけ一度呼び、それ以外はnot_calledとして原monitor/request/理由を残す。呼出し後のField欠落はこのnot_called条件と別に保持する。",
+          "F02004はcaptureが生成された場合だけ、元CIInputのresultだけを当該capture.result_recordへ置換しcollect phaseで一度呼ぶ。collection.not_calledでもcaptureがある場合はField.absentの原結果を比較して全返却を保持する。capture自体が未生成の経路ではF02004を呼ばず、比較・回収成功を生成しない。"
+        ]
       }
     },
     {
