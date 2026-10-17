@@ -11280,7 +11280,16 @@
         },
         "unaffected_Q": "original_Q"
       },
-      "expected_whole_canonical_sha256": "67f6636631dee3b15493e14227601b537b05eb75bbc23892e0651ed39b1bbf4e"
+      "expected_whole_canonical_sha256": "67f6636631dee3b15493e14227601b537b05eb75bbc23892e0651ed39b1bbf4e",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-B01-PROJECT-0-RECORD-MISSING",
@@ -11553,7 +11562,16 @@
         },
         "unaffected_Q": "original_Q"
       },
-      "expected_whole_canonical_sha256": "b48c9e9d42ae8d19e08a00e6141a15433032821da934e201774188ec1dbe1e71"
+      "expected_whole_canonical_sha256": "b48c9e9d42ae8d19e08a00e6141a15433032821da934e201774188ec1dbe1e71",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-B01-PROJECT-1-RECORD-MISSING",
@@ -11826,7 +11844,16 @@
         },
         "unaffected_Q": "original_Q"
       },
-      "expected_whole_canonical_sha256": "bdb5edff737e53190e83e40da63133a0c409ca5e3c610a8c58f838e7583b35ee"
+      "expected_whole_canonical_sha256": "bdb5edff737e53190e83e40da63133a0c409ca5e3c610a8c58f838e7583b35ee",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-B01-USAGE-USED_REVISION-FOREIGN",
@@ -12124,7 +12151,16 @@
         },
         "unaffected_Q": "original_Q"
       },
-      "expected_whole_canonical_sha256": "ba7b1c23bfd848e0df2fa7ccf9bad184c5e35be7d7b1446ce64cfa5b58883190"
+      "expected_whole_canonical_sha256": "ba7b1c23bfd848e0df2fa7ccf9bad184c5e35be7d7b1446ce64cfa5b58883190",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-B01-USAGE-STATE-FOREIGN",
@@ -12422,7 +12458,16 @@
         },
         "unaffected_Q": "original_Q"
       },
-      "expected_whole_canonical_sha256": "400bd6b1dd7192ef15176d4a4cc303b9494bd9f60107610dd644390ca9d4f34e"
+      "expected_whole_canonical_sha256": "400bd6b1dd7192ef15176d4a4cc303b9494bd9f60107610dd644390ca9d4f34e",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-B01-USAGE-OWNER-FOREIGN",
@@ -12720,7 +12765,16 @@
         },
         "unaffected_Q": "original_Q"
       },
-      "expected_whole_canonical_sha256": "9faa087cf1aab07cd6b7775d79bc9457bde9665ba4ece221a4b2083b28474cac"
+      "expected_whole_canonical_sha256": "9faa087cf1aab07cd6b7775d79bc9457bde9665ba4ece221a4b2083b28474cac",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-B01-USAGE-SCOPE-FOREIGN",
@@ -13018,7 +13072,16 @@
         },
         "unaffected_Q": "original_Q"
       },
-      "expected_whole_canonical_sha256": "e1d5e97fd59997614de86b1f42463ff9ef0a8ab766095f92e03fa9f5c9fd8b6e"
+      "expected_whole_canonical_sha256": "e1d5e97fd59997614de86b1f42463ff9ef0a8ab766095f92e03fa9f5c9fd8b6e",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-B01-KNOWLEDGE_STATE-OWNER-FOREIGN",
@@ -13316,7 +13379,16 @@
         },
         "unaffected_Q": "original_Q"
       },
-      "expected_whole_canonical_sha256": "1a603e6dfd83c09c63948faae2f1daf29a1ce719aa4875957970f6facfbf4ac0"
+      "expected_whole_canonical_sha256": "1a603e6dfd83c09c63948faae2f1daf29a1ce719aa4875957970f6facfbf4ac0",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-B01-PRODUCT_APPLICATION-OWNER-FOREIGN",
@@ -13614,7 +13686,16 @@
         },
         "unaffected_Q": "original_Q"
       },
-      "expected_whole_canonical_sha256": "b1822f9c7dc3a27dffc326b44a376d224d417f79905efb27f2add3624bc01575"
+      "expected_whole_canonical_sha256": "b1822f9c7dc3a27dffc326b44a376d224d417f79905efb27f2add3624bc01575",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-B01-PROJECT_USAGE_RECORD-OWNER-FOREIGN",
@@ -13912,7 +13993,16 @@
         },
         "unaffected_Q": "original_Q"
       },
-      "expected_whole_canonical_sha256": "186e8b54b845f3c39dee8446682f6bdbd1e278a4c006c479dbe76d7d0efa06da"
+      "expected_whole_canonical_sha256": "186e8b54b845f3c39dee8446682f6bdbd1e278a4c006c479dbe76d7d0efa06da",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-B01-BRAIN_PROJECT_STATE_AUTHORITY",
@@ -14210,7 +14300,16 @@
         },
         "unaffected_Q": "original_Q"
       },
-      "expected_whole_canonical_sha256": "d9295f753c4e0e4e4c48fd4a8ab677df8f55f68a22c5eed33fb91971e7d8e6e3"
+      "expected_whole_canonical_sha256": "d9295f753c4e0e4e4c48fd4a8ab677df8f55f68a22c5eed33fb91971e7d8e6e3",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-B01-CURRENT_ALL_PROJECTS_MIGRATED",
@@ -14508,7 +14607,16 @@
         },
         "unaffected_Q": "original_Q"
       },
-      "expected_whole_canonical_sha256": "d9d964c187b0fbb6e34780004ac2bd568122a124f86969dc2f13e6e702a56c7c"
+      "expected_whole_canonical_sha256": "d9d964c187b0fbb6e34780004ac2bd568122a124f86969dc2f13e6e702a56c7c",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-B01-RECEIVED_MEANS_USED",
@@ -14806,7 +14914,16 @@
         },
         "unaffected_Q": "original_Q"
       },
-      "expected_whole_canonical_sha256": "f33723a33079029b013d1466a2ebda0a29e3d880483a876fb8d93940d55f2ef0"
+      "expected_whole_canonical_sha256": "f33723a33079029b013d1466a2ebda0a29e3d880483a876fb8d93940d55f2ef0",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-B01-RECEIVED_MEANS_OBLIGATION_COMPLETE",
@@ -15104,7 +15221,16 @@
         },
         "unaffected_Q": "original_Q"
       },
-      "expected_whole_canonical_sha256": "8f37a2574e387869fca11d37e26c9fab38fbd6ac79a8d4faaa35a673d4fbface"
+      "expected_whole_canonical_sha256": "8f37a2574e387869fca11d37e26c9fab38fbd6ac79a8d4faaa35a673d4fbface",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-B01-BOTH-SIDES-BRAIN-ROLE-MISASSIGNMENT-CLAIMS-FALSE",
@@ -15120,7 +15246,7 @@
       "raw_source_sha256": "57770fc608e38347e33f4a119c73f9226386ca72942037d2cf1dca6344db9b5a",
       "independent_expected_ref": {
         "path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
-        "file_sha256": "7becaa5ede79eb197782fd35b03bacaf20a29448955e15dab918e63f70565c89",
+        "file_sha256": "48639db34f53ea88f5f88a98f775bd2a39b19c906e756248b8ea90b51bcfb612",
         "pointer": "/verification_obligations/2/concrete_cases/14/expected_material",
         "case_id": "B008-B01-BOTH-SIDES-BRAIN-ROLE-MISASSIGNMENT-CLAIMS-FALSE",
         "case_canonical_sha256": "57c970c6268b06bf828d0b65be285dbe8b902c8b031902c6b317ab67a6f0accd",
@@ -15289,7 +15415,6 @@
         "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
         "document_id": "HELIXBRAIN-L5-008",
         "source_main": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
-        "candidate_bytes_sha256": "a52af69db32549904a00a8805170304380f28b514b4cefc38f75a047aea7218e",
         "pointer": "/functions/2",
         "function_ref": "HELIXBRAIN-L5-008-B01",
         "file_sha256": "172e24bcb7d33a2394f29c53b105695f94cf1e822a5e402bbd9dcd9bcdad04e8",
@@ -15912,7 +16037,7 @@
       "raw_source_sha256": "dbc80be798dd789d6ceb54dc3f25ed2dc63ee2043378bbfdf0649140a4c362e0",
       "independent_expected_ref": {
         "path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
-        "file_sha256": "7becaa5ede79eb197782fd35b03bacaf20a29448955e15dab918e63f70565c89",
+        "file_sha256": "48639db34f53ea88f5f88a98f775bd2a39b19c906e756248b8ea90b51bcfb612",
         "pointer": "/verification_obligations/2/concrete_cases/15/expected_material",
         "case_id": "B008-B01-ROLE-BASIS-APPLICABILITY-AND-REDUCTION-PRIORITY",
         "case_canonical_sha256": "fc54f1d980dd1c179101ea7efcaf926e50f12fe32b1aacc79696f61223de15fe",
@@ -16112,7 +16237,6 @@
         "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
         "document_id": "HELIXBRAIN-L5-008",
         "source_main": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
-        "candidate_bytes_sha256": "a52af69db32549904a00a8805170304380f28b514b4cefc38f75a047aea7218e",
         "pointer": "/functions/2",
         "function_ref": "HELIXBRAIN-L5-008-B01",
         "file_sha256": "172e24bcb7d33a2394f29c53b105695f94cf1e822a5e402bbd9dcd9bcdad04e8",
@@ -16780,7 +16904,7 @@
       "raw_source_sha256": "689b911556b651b3af6256b95802075cef5d3ce48e001f60e362dffbf9a5f771",
       "independent_expected_ref": {
         "path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
-        "file_sha256": "7becaa5ede79eb197782fd35b03bacaf20a29448955e15dab918e63f70565c89",
+        "file_sha256": "48639db34f53ea88f5f88a98f775bd2a39b19c906e756248b8ea90b51bcfb612",
         "pointer": "/verification_obligations/2/concrete_cases/16/expected_material",
         "case_id": "B008-B01-PROJECT-SUBMITTED-ZERO-MATCH",
         "case_canonical_sha256": "0d5f0b30b335ec7ae85aab9f6311550979a8103d88ad50796d1415b73c703833",
@@ -16940,7 +17064,6 @@
         "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
         "document_id": "HELIXBRAIN-L5-008",
         "source_main": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
-        "candidate_bytes_sha256": "a52af69db32549904a00a8805170304380f28b514b4cefc38f75a047aea7218e",
         "pointer": "/functions/2",
         "function_ref": "HELIXBRAIN-L5-008-B01",
         "file_sha256": "172e24bcb7d33a2394f29c53b105695f94cf1e822a5e402bbd9dcd9bcdad04e8",
@@ -17546,7 +17669,7 @@
       "raw_source_sha256": "4640e65cbf08f36033e35f0e084f52a85d8be620471b2608ba6d24b40152b63e",
       "independent_expected_ref": {
         "path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
-        "file_sha256": "7becaa5ede79eb197782fd35b03bacaf20a29448955e15dab918e63f70565c89",
+        "file_sha256": "48639db34f53ea88f5f88a98f775bd2a39b19c906e756248b8ea90b51bcfb612",
         "pointer": "/verification_obligations/2/concrete_cases/17/expected_material",
         "case_id": "B008-B01-PROJECT-SUBMITTED-MULTIPLE-MATCHES",
         "case_canonical_sha256": "9680d04449d20c9eb9ee8d6503ee2b7f748c4564ef086ada090c2a49779bb976",
@@ -17724,7 +17847,6 @@
         "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
         "document_id": "HELIXBRAIN-L5-008",
         "source_main": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
-        "candidate_bytes_sha256": "a52af69db32549904a00a8805170304380f28b514b4cefc38f75a047aea7218e",
         "pointer": "/functions/2",
         "function_ref": "HELIXBRAIN-L5-008-B01",
         "file_sha256": "172e24bcb7d33a2394f29c53b105695f94cf1e822a5e402bbd9dcd9bcdad04e8",
@@ -18330,7 +18452,7 @@
       "raw_source_sha256": "88271fffe9158ca1f18bfa6ef15478a77b49aae07852dec453e2732ef4d5e8a7",
       "independent_expected_ref": {
         "path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
-        "file_sha256": "7becaa5ede79eb197782fd35b03bacaf20a29448955e15dab918e63f70565c89",
+        "file_sha256": "48639db34f53ea88f5f88a98f775bd2a39b19c906e756248b8ea90b51bcfb612",
         "pointer": "/verification_obligations/2/concrete_cases/18/expected_material",
         "case_id": "B008-B01-PROJECT-SUBMITTED-SINGLE-WRONG-TUPLE",
         "case_canonical_sha256": "24283ba702b066c0bec6299dffabf87f85eeb5f0d8499346e0992cc6b4553734",
@@ -18499,7 +18621,6 @@
         "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
         "document_id": "HELIXBRAIN-L5-008",
         "source_main": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
-        "candidate_bytes_sha256": "a52af69db32549904a00a8805170304380f28b514b4cefc38f75a047aea7218e",
         "pointer": "/functions/2",
         "function_ref": "HELIXBRAIN-L5-008-B01",
         "file_sha256": "172e24bcb7d33a2394f29c53b105695f94cf1e822a5e402bbd9dcd9bcdad04e8",
@@ -20088,7 +20209,16 @@
         "pointer": "/verification_obligations/2/concrete_cases/0/expected_material"
       },
       "patch_base_expected_whole_canonical_sha256": "67f6636631dee3b15493e14227601b537b05eb75bbc23892e0651ed39b1bbf4e",
-      "patch_base_expected_whole_derivation": "元L9 expected_materialと明示supplemental_expectedの非重複合成。base_expected_ref/hashは元L9 rootのみ、patch base hashは追加rootを含む全返却を指す。"
+      "patch_base_expected_whole_derivation": "元L9 expected_materialと明示supplemental_expectedの非重複合成。base_expected_ref/hashは元L9 rootのみ、patch base hashは追加rootを含む全返却を指す。",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-LOCAL-B01-DUPLICATE-PROJECT-IDENTITY",
@@ -20462,7 +20592,16 @@
       },
       "base_expected_canonical_sha256": "67f6636631dee3b15493e14227601b537b05eb75bbc23892e0651ed39b1bbf4e",
       "patch_base_expected_whole_canonical_sha256": "67f6636631dee3b15493e14227601b537b05eb75bbc23892e0651ed39b1bbf4e",
-      "patch_base_expected_whole_derivation": "元L9 expected_materialと明示supplemental_expectedの非重複合成。base_expected_ref/hashは元L9 rootのみ、patch base hashは追加rootを含む全返却を指す。"
+      "patch_base_expected_whole_derivation": "元L9 expected_materialと明示supplemental_expectedの非重複合成。base_expected_ref/hashは元L9 rootのみ、patch base hashは追加rootを含む全返却を指す。",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-LOCAL-B01-STRICT-JSON-PROJECT-IDENTITY",
@@ -20816,7 +20955,16 @@
       },
       "base_expected_canonical_sha256": "67f6636631dee3b15493e14227601b537b05eb75bbc23892e0651ed39b1bbf4e",
       "patch_base_expected_whole_canonical_sha256": "67f6636631dee3b15493e14227601b537b05eb75bbc23892e0651ed39b1bbf4e",
-      "patch_base_expected_whole_derivation": "元L9 expected_materialと明示supplemental_expectedの非重複合成。base_expected_ref/hashは元L9 rootのみ、patch base hashは追加rootを含む全返却を指す。"
+      "patch_base_expected_whole_derivation": "元L9 expected_materialと明示supplemental_expectedの非重複合成。base_expected_ref/hashは元L9 rootのみ、patch base hashは追加rootを含む全返却を指す。",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-LOCAL-B01-PROJECT-MEMBER-ABSENT",
@@ -21157,7 +21305,16 @@
       },
       "base_expected_canonical_sha256": "67f6636631dee3b15493e14227601b537b05eb75bbc23892e0651ed39b1bbf4e",
       "patch_base_expected_whole_canonical_sha256": "67f6636631dee3b15493e14227601b537b05eb75bbc23892e0651ed39b1bbf4e",
-      "patch_base_expected_whole_derivation": "元L9 expected_materialと明示supplemental_expectedの非重複合成。base_expected_ref/hashは元L9 rootのみ、patch base hashは追加rootを含む全返却を指す。"
+      "patch_base_expected_whole_derivation": "元L9 expected_materialと明示supplemental_expectedの非重複合成。base_expected_ref/hashは元L9 rootのみ、patch base hashは追加rootを含む全返却を指す。",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-LOCAL-F01-EXACT-CORE-KNOWLEDGE-BINDING",
@@ -22144,7 +22301,16 @@
       },
       "base_expected_canonical_sha256": "67f6636631dee3b15493e14227601b537b05eb75bbc23892e0651ed39b1bbf4e",
       "patch_base_expected_whole_canonical_sha256": "67f6636631dee3b15493e14227601b537b05eb75bbc23892e0651ed39b1bbf4e",
-      "patch_base_expected_whole_derivation": "元L9 expected_materialと明示supplemental_expectedの非重複合成。base_expected_ref/hashは元L9 rootのみ、patch base hashは追加rootを含む全返却を指す。"
+      "patch_base_expected_whole_derivation": "元L9 expected_materialと明示supplemental_expectedの非重複合成。base_expected_ref/hashは元L9 rootのみ、patch base hashは追加rootを含む全返却を指す。",
+      "input_contract_revision": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+        "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+        "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+        "pointer": "/functions/2",
+        "input_type": "B01Input",
+        "output_type": "B01Output",
+        "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+      }
     },
     {
       "case_id": "B008-PARENT-JSON-NUMBER-EQUALITY-F01",
@@ -22994,10 +23160,10 @@
     },
     "new_case_range": "/cases/55..59",
     "unrecovered_authoring_hash": {
-      "field": "l5_candidate_binding.candidate_bytes_sha256",
       "value": "a52af69db32549904a00a8805170304380f28b514b4cefc38f75a047aea7218e",
       "state": "source_bytes_and_authoring_revision_unrecovered",
-      "role": "先行候補から残る著述metadata。元bytes/生成元を回収できておらず、検証済みsnapshot/現在file/canonical object/意味正本/authorityと解釈しない。source_main=596から元bytesを補完しない。原値を証跡として保持する。"
+      "role": "先行候補から残る著述metadata。元bytes/生成元を回収できておらず、検証済みsnapshot/現在file/canonical object/意味正本/authorityと解釈しない。source_main=596から元bytesを補完しない。原値を証跡として保持する。 新5caseの現在結合欄から除き、この来歴欄だけに保持する。",
+      "former_field": "l5_candidate_binding.candidate_bytes_sha256"
     },
     "current_new_case_binding": "新5caseの現在L5参照は各l5_candidate_binding.file_sha256とpointer/object_canonical_sha256。現在L4/L9参照と原L3/L10も別に照合する。未回収値で期待やsource資格を補完しない。",
     "search_scope": "Git対象L8履歴の導入a07ae6a3/update bd391a17/ad250a9f、596L5、root保存R2/R3、main/worktree localのliteral検索。a52元本文はこれらで未回収。全Git object/全worktree/外部tempの不存在証明ではない。"

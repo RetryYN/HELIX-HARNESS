@@ -3878,7 +3878,16 @@
           },
           "basis": "同じ候補知識に未使用案件/旧版使用案件を別recordで照合。new currentでも旧利用版を保存。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-PROJECT-0-RECORD-MISSING",
@@ -3978,7 +3987,16 @@
           },
           "basis": "未観測recordを未使用へ丸めず、他案件/Qを保つ。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-PROJECT-1-RECORD-MISSING",
@@ -4078,7 +4096,16 @@
           },
           "basis": "未観測recordを未使用へ丸めず、他案件/Qを保つ。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-USAGE-USED_REVISION-FOREIGN",
@@ -4186,7 +4213,16 @@
           },
           "basis": "提出された誤利用/版/state/owner/scopeを元OS recordへ上書きしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-USAGE-STATE-FOREIGN",
@@ -4294,7 +4330,16 @@
           },
           "basis": "提出された誤利用/版/state/owner/scopeを元OS recordへ上書きしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-USAGE-OWNER-FOREIGN",
@@ -4402,7 +4447,16 @@
           },
           "basis": "提出された誤利用/版/state/owner/scopeを元OS recordへ上書きしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-USAGE-SCOPE-FOREIGN",
@@ -4510,7 +4564,16 @@
           },
           "basis": "提出された誤利用/版/state/owner/scopeを元OS recordへ上書きしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-KNOWLEDGE_STATE-OWNER-FOREIGN",
@@ -4618,7 +4681,16 @@
           },
           "basis": "知識/適用/利用記録ownerを交換しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-PRODUCT_APPLICATION-OWNER-FOREIGN",
@@ -4726,7 +4798,16 @@
           },
           "basis": "知識/適用/利用記録ownerを交換しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-PROJECT_USAGE_RECORD-OWNER-FOREIGN",
@@ -4834,7 +4915,16 @@
           },
           "basis": "知識/適用/利用記録ownerを交換しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-BRAIN_PROJECT_STATE_AUTHORITY",
@@ -4942,7 +5032,16 @@
           },
           "basis": "受領/currentを実使用/移行/義務完了へ昇格せず元OS状態を保持。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-CURRENT_ALL_PROJECTS_MIGRATED",
@@ -5050,7 +5149,16 @@
           },
           "basis": "受領/currentを実使用/移行/義務完了へ昇格せず元OS状態を保持。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-RECEIVED_MEANS_USED",
@@ -5158,7 +5266,16 @@
           },
           "basis": "受領/currentを実使用/移行/義務完了へ昇格せず元OS状態を保持。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-RECEIVED_MEANS_OBLIGATION_COMPLETE",
@@ -5266,7 +5383,16 @@
           },
           "basis": "受領/currentを実使用/移行/義務完了へ昇格せず元OS状態を保持。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-BOTH-SIDES-BRAIN-ROLE-MISASSIGNMENT-CLAIMS-FALSE",
@@ -5315,7 +5441,7 @@
             },
             "raw_utf8": "{\"CORE_references\":[{\"core\":\"PRODUCT-CORE-P\",\"identity\":\"CORE-P-REFERENCE\",\"knowledge_identity\":\"KNOWLEDGE-P\",\"knowledge_revision\":\"knowledge-r1\",\"knowledge_version\":\"knowledge-1.2\",\"scope\":\"KNOWLEDGE-SCOPE-V\"}],\"claims\":{\"BRAIN_project_state_authority\":false,\"current_all_projects_migrated\":false,\"received_means_obligation_complete\":false,\"received_means_used\":false},\"knowledge_revision\":\"knowledge-r2\",\"knowledge_state\":\"current\",\"original_owners\":{\"knowledge_state\":\"BRAIN\",\"product_application\":\"HARNESS-CORE\",\"project_usage_record\":\"BRAIN\"},\"original_project_records\":[{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"state\":\"not_used_in_fixture\",\"used_revision\":null},{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"state\":\"used_in_fixture\",\"used_revision\":\"knowledge-r1\"}],\"provided_owners\":{\"knowledge_state\":\"BRAIN\",\"product_application\":\"HARNESS-CORE\",\"project_usage_record\":\"BRAIN\"},\"provided_project_records\":[{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"state\":\"not_used_in_fixture\",\"used_revision\":null},{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"state\":\"used_in_fixture\",\"used_revision\":\"knowledge-r1\"}],\"receipt_state\":\"candidate_received_in_fixture_only\",\"responsibility_basis\":{\"owner_roles\":{\"knowledge_state\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"BRAIN\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-KNOWLEDGE\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}],\"product_application\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HARNESS-CORE\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-APPLICATION\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}],\"project_usage_record\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-USAGE\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}]},\"project_usage_records\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-A\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"PROJECT-A-SCOPE\"}},{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-B\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"PROJECT-B-SCOPE\"}}]}}",
             "sha256": "57770fc608e38347e33f4a119c73f9226386ca72942037d2cf1dca6344db9b5a",
-            "qualification": "synthetic fixture only; source locator values do not qualify actual role owners"
+            "qualification": "合成fixtureに限る。source locatorの値だけでは実際のrole ownerの資格は成立しない。"
           },
           "expected_material": {
             "owner_results": {
