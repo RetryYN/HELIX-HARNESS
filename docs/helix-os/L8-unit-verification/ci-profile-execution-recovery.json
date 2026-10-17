@@ -171275,7 +171275,7 @@
     ],
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "19648649e8442067934e3551a3be8cd37eb640ca5d9d38bddaf01a3585b42714",
+      "candidate_sha256": "14fb667fc42ff05ebcfa8e6a0012f40c6ab5023e4807e3ff2b18ac82838c39ea",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
     },
@@ -171299,7 +171299,7 @@
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "19648649e8442067934e3551a3be8cd37eb640ca5d9d38bddaf01a3585b42714",
+      "candidate_sha256": "14fb667fc42ff05ebcfa8e6a0012f40c6ab5023e4807e3ff2b18ac82838c39ea",
       "pointer": "/owner_return_verification"
     },
     "unit_conditions": [

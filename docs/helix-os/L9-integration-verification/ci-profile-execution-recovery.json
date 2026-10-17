@@ -108936,7 +108936,7 @@
     "owner_outer_field_priority": "最優先でplan_owner.raw_valueのouter Fieldを判定する。raw ownerがabsentならselection outer Field=absent、raw null/empty又はtyped decode失敗ならouter Field=nullとし、後段membership/item規則で上書きしない。raw/typedの不一致や供給済の独立軸/全raw候補はtraceへ保持し省略しない。typed owner内plan_ref/bindingの原Field tag/値は保持する。",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "2a4d7d99700bf991087dd558350616a2670a700eec405a4f8279d0dbbe5ffa24",
+      "body_sha256": "ff97b906ba537bc6c46622c7b1142a69d768b1a9f63da91d3069666f6076eafc",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -108960,7 +108960,7 @@
     "kind": "finite_independent_producer_to_consumer_integration_observation",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "2a4d7d99700bf991087dd558350616a2670a700eec405a4f8279d0dbbe5ffa24",
+      "body_sha256": "ff97b906ba537bc6c46622c7b1142a69d768b1a9f63da91d3069666f6076eafc",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -275689,7 +275689,7 @@
     "kind": "T02の独立局所projection素材",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "2a4d7d99700bf991087dd558350616a2670a700eec405a4f8279d0dbbe5ffa24",
+      "body_sha256": "ff97b906ba537bc6c46622c7b1142a69d768b1a9f63da91d3069666f6076eafc",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract/relation_comparison_units",
       "binding_kind": "同一候補の正式L4 path/本文SHAへ結ぶ。scratchを意味正本にしない。"
     },
