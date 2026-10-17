@@ -1678,6 +1678,28 @@
               "intake_calls": "list<F01IntakeCall>"
             },
             "meaning_ja": "全Findingは既存B01対象/新request/local原因/範囲外のいずれかへ保持。元public Proposal/SourceBoundProfile全値、Field、source原値/反復を不変保持。new public state/codeを作らない。"
+          },
+          {
+            "name": "F01SourcePorts",
+            "kind": "private_record_proposal",
+            "fields": {
+              "harness_f01": "(request: F01OriginLookupRequest) -> OriginRead<F01OriginEvidence>",
+              "ticket_scope": "(request: F01OriginLookupRequest) -> OriginRead<F01OriginEvidence>",
+              "runner_resource": "(request: F01OriginLookupRequest) -> OriginRead<F01OriginEvidence>"
+            },
+            "meaning_ja": "署名に明示されたfunction valueを受ける閉record。未宣言member/default callbackを補わず、locatorやrole labelから関数を合成しない。"
+          },
+          {
+            "name": "F01IntakePorts",
+            "kind": "private_record_proposal",
+            "fields": {
+              "consume_harness_f01_gap": "(request: F01GapRequest[origin_kind=harness_f01]) -> Unit",
+              "consume_os_ticket_scope_gap": "(request: F01GapRequest[origin_kind=ticket_scope]) -> Unit",
+              "consume_infra_resource_gap": "(request: F01GapRequest[origin_kind=runner_resource, selected_source_subkind=actual_resource]) -> Unit",
+              "consume_os_runner_selection_gap": "(request: F01GapRequest[origin_kind=runner_resource, selected_source_subkind=runner_selection]) -> Unit",
+              "consume_infra_runner_selection_gap": "(request: F01GapRequest[origin_kind=runner_resource, selected_source_subkind=runner_selection]) -> Unit"
+            },
+            "meaning_ja": "署名に明示されたfunction valueを受ける閉record。未宣言member/default callbackを補わず、locatorやrole labelから関数を合成しない。"
           }
         ],
         "source_ports": [
@@ -1745,11 +1767,12 @@
               "origin.runner_resource.projection.runner_selection_origin": "OS020.Field.supplied(T)",
               "T.relation_state": "matched",
               "T.runner_selection_owner_kind": "OS020.Field.supplied(\"INFRASTRUCTURE\")"
-            }
+            },
+            "source_basis_note_ja": "返却の根拠はsource_basis.OS_L10（HELIXOS-L10-020-F01の不足runnerを資源ownerへ返す義務）。source_basis.INFRA_L3/INFRA_L10はWorkerと資源のidentity分離と不足返却の根拠であり、INFRAに選定決定権を新設しない。この条件付きportは、原sourceが既存の資源側選定責務を明示し、role/subject/適用対応がmatchedの場合だけ使用する。資料からその既存責務が確認できなければselection側のlocal unknownを保持し、owner文字列から決定権を生成しない。"
           }
         ],
         "caller_signature": "dispatch_f01_owner_returns(context: F01ReturnContext, source_ports: F01SourcePorts, intakes: F01IntakePorts) -> F01OwnerReturnTrace",
-        "callable_bundle_definition": "F01SourcePortsは上記3 source_portsのfunction valueをkind別memberで持つ閉record。F01IntakePortsは上記5 intake_portsのfunction valueを役割別memberで持つ閉record（resource1/runner-selection2/HARNESS1/ticket1）。capability/locatorからcallbackを合成しない。",
+        "callable_bundle_definition": "F01SourcePortsとF01IntakePortsはprivate_types/14と/15の閉record。前者は3 source_portsのkindをmember名に、後者は5 intake_portsの関数名をmember名に持ち、各memberは宣言署名のfunction value。capability/locatorからcallbackを合成しない。",
         "call_order": [
           "既存F02001/09/02/08の同call原packet/input/全返却をcontextに受ける。HARNESS F01 invocationと全独立資料は追加明示引数であり、元contextから生成しない。 HARNESS originのinvocationはcontext.harness_f01_invocation.supplied値と同一call bindingで全値照合する。",
           "原Finding順に既存code+RFC6901 segment境界prefixへ照合。既存B01 handled行はcovered_by_existing_b01へ保持し、新callerが既存B01のcall済みを捏造しない。F01full_required固有prefixは新HARNESS lookupへ向ける。",
@@ -3066,7 +3089,8 @@
         "limits_ja": [
           "source selector/intakeの論理口の定義であり、実provider・実source資格・実受領・製品runtimeの成立ではない。",
           "F01側の原義務sourceは別対応として未完を保持し、F03対応の成功を全B01完了へ広げない。",
-          "OS020 F01対L10のticket/資源owner返却、F02運転/保存とF03再開は本B01契約から完了を生成しない。"
+          "OS020 F01対L10のticket/資源owner返却、F02運転/保存とF03再開は本B01契約から完了を生成しない。",
+          "F01の原義務sourceへの返却は /contracts/0/f01_owner_return_contract が別callerとして扱う。このbranchのRouteUnresolved(obligation)はB01 callerの原返却として併存し、F01の実provider・実受領・全完了へ読み替えない。"
         ],
         "source_basis": {
           "business_requirement": "/approved_whole_objects/3",
