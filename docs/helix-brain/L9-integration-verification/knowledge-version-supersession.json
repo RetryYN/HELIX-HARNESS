@@ -3878,7 +3878,16 @@
           },
           "basis": "同じ候補知識に未使用案件/旧版使用案件を別recordで照合。new currentでも旧利用版を保存。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-PROJECT-0-RECORD-MISSING",
@@ -3978,7 +3987,16 @@
           },
           "basis": "未観測recordを未使用へ丸めず、他案件/Qを保つ。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-PROJECT-1-RECORD-MISSING",
@@ -4078,7 +4096,16 @@
           },
           "basis": "未観測recordを未使用へ丸めず、他案件/Qを保つ。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-USAGE-USED_REVISION-FOREIGN",
@@ -4186,7 +4213,16 @@
           },
           "basis": "提出された誤利用/版/state/owner/scopeを元OS recordへ上書きしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-USAGE-STATE-FOREIGN",
@@ -4294,7 +4330,16 @@
           },
           "basis": "提出された誤利用/版/state/owner/scopeを元OS recordへ上書きしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-USAGE-OWNER-FOREIGN",
@@ -4402,7 +4447,16 @@
           },
           "basis": "提出された誤利用/版/state/owner/scopeを元OS recordへ上書きしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-USAGE-SCOPE-FOREIGN",
@@ -4510,7 +4564,16 @@
           },
           "basis": "提出された誤利用/版/state/owner/scopeを元OS recordへ上書きしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-KNOWLEDGE_STATE-OWNER-FOREIGN",
@@ -4618,7 +4681,16 @@
           },
           "basis": "知識/適用/利用記録ownerを交換しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-PRODUCT_APPLICATION-OWNER-FOREIGN",
@@ -4726,7 +4798,16 @@
           },
           "basis": "知識/適用/利用記録ownerを交換しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-PROJECT_USAGE_RECORD-OWNER-FOREIGN",
@@ -4834,7 +4915,16 @@
           },
           "basis": "知識/適用/利用記録ownerを交換しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-BRAIN_PROJECT_STATE_AUTHORITY",
@@ -4942,7 +5032,16 @@
           },
           "basis": "受領/currentを実使用/移行/義務完了へ昇格せず元OS状態を保持。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-CURRENT_ALL_PROJECTS_MIGRATED",
@@ -5050,7 +5149,16 @@
           },
           "basis": "受領/currentを実使用/移行/義務完了へ昇格せず元OS状態を保持。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-RECEIVED_MEANS_USED",
@@ -5158,7 +5266,16 @@
           },
           "basis": "受領/currentを実使用/移行/義務完了へ昇格せず元OS状態を保持。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
         },
         {
           "id": "B008-B01-RECEIVED_MEANS_OBLIGATION_COMPLETE",
@@ -5266,6 +5383,1769 @@
           },
           "basis": "受領/currentを実使用/移行/義務完了へ昇格せず元OS状態を保持。",
           "execution_state": "not_executed",
+          "effect": "none",
+          "input_contract_revision": {
+            "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "deff299e15d1b833b9d027dfda5c88c8c76e7a9d61488a3dc66f91f78c5e8ebd",
+            "pointer": "/functions/2",
+            "input_type": "B01Input",
+            "output_type": "B01Output",
+            "role": "旧B01の入力/返却に対する履歴fixture。現V2の必須basis/責務返却を補完せず、V2成功例として扱わない。"
+          }
+        },
+        {
+          "id": "B008-B01-BOTH-SIDES-BRAIN-ROLE-MISASSIGNMENT-CLAIMS-FALSE",
+          "requirement_ref": "HELIXBRAIN-L3-008-B01",
+          "system_oracle_ref": "HELIXBRAIN-L10-008-B01",
+          "l4_ref": "HELIXBRAIN-L4-008-B01",
+          "input_type": "B01InputWithResponsibilityBasis",
+          "source_bindings": [
+            {
+              "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+              "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "file_sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1",
+              "pointer": "/requirements/3",
+              "object_canonical_sha256": "202d1a85d998d34b37bd681947423b494e72608056b726f07d5e361041f4bd13"
+            },
+            {
+              "path": "docs/helix-brain/L10-verification/business-verification.json",
+              "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "file_sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7",
+              "pointer": "/cases/3",
+              "object_canonical_sha256": "1429e734f85a4d40665fecd46e7d7cd5aae672dcc0283d1a45645e72baf8fb2e"
+            },
+            {
+              "path": "docs/helix-brain/L4-basic-design/knowledge-version-supersession.json",
+              "file_sha256": "579d0f64b0a0f602feb1c151ed1728d154aba782664f2ff7f79799f986f8eb35",
+              "pointer": "/contracts/2",
+              "object_canonical_sha256": "b8026d098daf0e22270d245e5cd2ebc28d63fe47cb2b6afefe28d32d793af364",
+              "authoring_base_revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "revision_status": "uncommitted_candidate_bytes"
+            },
+            {
+              "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+              "file_sha256": "172e24bcb7d33a2394f29c53b105695f94cf1e822a5e402bbd9dcd9bcdad04e8",
+              "pointer": "/functions/2",
+              "object_canonical_sha256": "27c55686eaf453d25978f2d5f5991b4cf6d3ae3b4654b1dc26bde9c9f63405b2",
+              "authoring_base_revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "revision_status": "uncommitted_candidate_bytes"
+            }
+          ],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B008-B01-BOTH-SIDES-BRAIN-ROLE-MISASSIGNMENT-CLAIMS-FALSE",
+              "revision": "57770fc608e38347e33f4a119c73f9226386ca72942037d2cf1dca6344db9b5a",
+              "scope": "KNOWLEDGE-SCOPE-V",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"CORE_references\":[{\"core\":\"PRODUCT-CORE-P\",\"identity\":\"CORE-P-REFERENCE\",\"knowledge_identity\":\"KNOWLEDGE-P\",\"knowledge_revision\":\"knowledge-r1\",\"knowledge_version\":\"knowledge-1.2\",\"scope\":\"KNOWLEDGE-SCOPE-V\"}],\"claims\":{\"BRAIN_project_state_authority\":false,\"current_all_projects_migrated\":false,\"received_means_obligation_complete\":false,\"received_means_used\":false},\"knowledge_revision\":\"knowledge-r2\",\"knowledge_state\":\"current\",\"original_owners\":{\"knowledge_state\":\"BRAIN\",\"product_application\":\"HARNESS-CORE\",\"project_usage_record\":\"BRAIN\"},\"original_project_records\":[{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"state\":\"not_used_in_fixture\",\"used_revision\":null},{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"state\":\"used_in_fixture\",\"used_revision\":\"knowledge-r1\"}],\"provided_owners\":{\"knowledge_state\":\"BRAIN\",\"product_application\":\"HARNESS-CORE\",\"project_usage_record\":\"BRAIN\"},\"provided_project_records\":[{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"state\":\"not_used_in_fixture\",\"used_revision\":null},{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"state\":\"used_in_fixture\",\"used_revision\":\"knowledge-r1\"}],\"receipt_state\":\"candidate_received_in_fixture_only\",\"responsibility_basis\":{\"owner_roles\":{\"knowledge_state\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"BRAIN\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-KNOWLEDGE\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}],\"product_application\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HARNESS-CORE\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-APPLICATION\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}],\"project_usage_record\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-USAGE\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}]},\"project_usage_records\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-A\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"PROJECT-A-SCOPE\"}},{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-B\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"PROJECT-B-SCOPE\"}}]}}",
+            "sha256": "57770fc608e38347e33f4a119c73f9226386ca72942037d2cf1dca6344db9b5a",
+            "qualification": "合成fixtureに限る。source locatorの値だけでは実際のrole ownerの資格は成立しない。"
+          },
+          "expected_material": {
+            "owner_results": {
+              "knowledge_state": "content_corresponding_in_fixture",
+              "product_application": "content_corresponding_in_fixture",
+              "project_usage_record": "content_corresponding_in_fixture"
+            },
+            "knowledge_state": "current",
+            "knowledge_revision": "knowledge-r2",
+            "retained_CORE_references": [
+              {
+                "identity": "CORE-P-REFERENCE",
+                "core": "PRODUCT-CORE-P",
+                "knowledge_identity": "KNOWLEDGE-P",
+                "knowledge_revision": "knowledge-r1",
+                "knowledge_version": "knowledge-1.2",
+                "scope": "KNOWLEDGE-SCOPE-V"
+              }
+            ],
+            "project_results": [
+              {
+                "project": "PROJECT-A",
+                "content_result": "content_corresponding_in_fixture",
+                "retained_source_record": {
+                  "project": "PROJECT-A",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": null,
+                  "state": "not_used_in_fixture",
+                  "scope": "PROJECT-A-SCOPE"
+                },
+                "submitted_record": {
+                  "project": "PROJECT-A",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": null,
+                  "state": "not_used_in_fixture",
+                  "scope": "PROJECT-A-SCOPE"
+                },
+                "project_observation_state": "source_record_in_fixture_only",
+                "owner_responsibility_result": {
+                  "applicability_state": "exact",
+                  "basis_state": "known",
+                  "basis_observations": [
+                    {
+                      "project": "PROJECT-A",
+                      "scope": "PROJECT-A-SCOPE",
+                      "record_revision": "usage-r1",
+                      "source_locator": {
+                        "identity": "B01-BASIS-PROJECT-A",
+                        "revision": "basis-r1",
+                        "scope": "PROJECT-A-SCOPE",
+                        "owner": "synthetic-fixture-source"
+                      },
+                      "owner_state": "owner_value",
+                      "owner_value": "HELIX-OS"
+                    }
+                  ],
+                  "original": {
+                    "state": "content_conflict",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  },
+                  "provided": {
+                    "state": "content_conflict",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  }
+                }
+              },
+              {
+                "project": "PROJECT-B",
+                "content_result": "content_corresponding_in_fixture",
+                "retained_source_record": {
+                  "project": "PROJECT-B",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": "knowledge-r1",
+                  "state": "used_in_fixture",
+                  "scope": "PROJECT-B-SCOPE"
+                },
+                "submitted_record": {
+                  "project": "PROJECT-B",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": "knowledge-r1",
+                  "state": "used_in_fixture",
+                  "scope": "PROJECT-B-SCOPE"
+                },
+                "project_observation_state": "source_record_in_fixture_only",
+                "owner_responsibility_result": {
+                  "applicability_state": "exact",
+                  "basis_state": "known",
+                  "basis_observations": [
+                    {
+                      "project": "PROJECT-B",
+                      "scope": "PROJECT-B-SCOPE",
+                      "record_revision": "usage-r1",
+                      "source_locator": {
+                        "identity": "B01-BASIS-PROJECT-B",
+                        "revision": "basis-r1",
+                        "scope": "PROJECT-B-SCOPE",
+                        "owner": "synthetic-fixture-source"
+                      },
+                      "owner_state": "owner_value",
+                      "owner_value": "HELIX-OS"
+                    }
+                  ],
+                  "original": {
+                    "state": "content_conflict",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  },
+                  "provided": {
+                    "state": "content_conflict",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  }
+                }
+              }
+            ],
+            "receipt_state": "candidate_received_in_fixture_only",
+            "obligation_state": "not_discharged",
+            "claim_results": {
+              "BRAIN_project_state_authority": "none",
+              "current_all_projects_migrated": "none",
+              "received_means_used": "none",
+              "received_means_obligation_complete": "none"
+            },
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_old_reference_replaced": false,
+              "actual_project_migrated": false,
+              "actual_project_used": false,
+              "actual_OS_registration": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q",
+            "responsibility_basis_echo": {
+              "owner_roles": {
+                "knowledge_state": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-KNOWLEDGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "BRAIN"
+                  }
+                ],
+                "product_application": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-APPLICATION",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HARNESS-CORE"
+                  }
+                ],
+                "project_usage_record": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-PROJECT-USAGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HELIX-OS"
+                  }
+                ]
+              },
+              "project_usage_records": [
+                {
+                  "project": "PROJECT-A",
+                  "scope": "PROJECT-A-SCOPE",
+                  "record_revision": "usage-r1",
+                  "source_locator": {
+                    "identity": "B01-BASIS-PROJECT-A",
+                    "revision": "basis-r1",
+                    "scope": "PROJECT-A-SCOPE",
+                    "owner": "synthetic-fixture-source"
+                  },
+                  "owner_state": "owner_value",
+                  "owner_value": "HELIX-OS"
+                },
+                {
+                  "project": "PROJECT-B",
+                  "scope": "PROJECT-B-SCOPE",
+                  "record_revision": "usage-r1",
+                  "source_locator": {
+                    "identity": "B01-BASIS-PROJECT-B",
+                    "revision": "basis-r1",
+                    "scope": "PROJECT-B-SCOPE",
+                    "owner": "synthetic-fixture-source"
+                  },
+                  "owner_state": "owner_value",
+                  "owner_value": "HELIX-OS"
+                }
+              ]
+            },
+            "owner_responsibility_results": {
+              "knowledge_state": {
+                "basis_state": "known",
+                "basis_observations": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-KNOWLEDGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "BRAIN"
+                  }
+                ],
+                "original": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                },
+                "provided": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                }
+              },
+              "product_application": {
+                "basis_state": "known",
+                "basis_observations": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-APPLICATION",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HARNESS-CORE"
+                  }
+                ],
+                "original": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "HARNESS-CORE"
+                },
+                "provided": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "HARNESS-CORE"
+                }
+              },
+              "project_usage_record": {
+                "basis_state": "known",
+                "basis_observations": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-PROJECT-USAGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HELIX-OS"
+                  }
+                ],
+                "original": {
+                  "state": "content_conflict",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                },
+                "provided": {
+                  "state": "content_conflict",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                }
+              }
+            }
+          },
+          "basis": "L3/L10/L4の責務分離から独立に固定した期待。ProjectRecordの7原field保持を尊重し、owner責務差は別の責務結果へ出す。訂正freeze参照。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B008-B01-ROLE-BASIS-APPLICABILITY-AND-REDUCTION-PRIORITY",
+          "requirement_ref": "HELIXBRAIN-L3-008-B01",
+          "system_oracle_ref": "HELIXBRAIN-L10-008-B01",
+          "l4_ref": "HELIXBRAIN-L4-008-B01",
+          "input_type": "B01InputWithResponsibilityBasis",
+          "source_bindings": [
+            {
+              "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+              "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "file_sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1",
+              "pointer": "/requirements/3",
+              "object_canonical_sha256": "202d1a85d998d34b37bd681947423b494e72608056b726f07d5e361041f4bd13"
+            },
+            {
+              "path": "docs/helix-brain/L10-verification/business-verification.json",
+              "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "file_sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7",
+              "pointer": "/cases/3",
+              "object_canonical_sha256": "1429e734f85a4d40665fecd46e7d7cd5aae672dcc0283d1a45645e72baf8fb2e"
+            },
+            {
+              "path": "docs/helix-brain/L4-basic-design/knowledge-version-supersession.json",
+              "file_sha256": "579d0f64b0a0f602feb1c151ed1728d154aba782664f2ff7f79799f986f8eb35",
+              "pointer": "/contracts/2",
+              "object_canonical_sha256": "b8026d098daf0e22270d245e5cd2ebc28d63fe47cb2b6afefe28d32d793af364",
+              "authoring_base_revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "revision_status": "uncommitted_candidate_bytes"
+            },
+            {
+              "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+              "file_sha256": "172e24bcb7d33a2394f29c53b105695f94cf1e822a5e402bbd9dcd9bcdad04e8",
+              "pointer": "/functions/2",
+              "object_canonical_sha256": "27c55686eaf453d25978f2d5f5991b4cf6d3ae3b4654b1dc26bde9c9f63405b2",
+              "authoring_base_revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "revision_status": "uncommitted_candidate_bytes"
+            }
+          ],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B008-B01-ROLE-BASIS-APPLICABILITY-AND-REDUCTION-PRIORITY",
+              "revision": "dbc80be798dd789d6ceb54dc3f25ed2dc63ee2043378bbfdf0649140a4c362e0",
+              "scope": "KNOWLEDGE-SCOPE-V",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"CORE_references\":[{\"core\":\"PRODUCT-CORE-P\",\"identity\":\"CORE-P-REFERENCE\",\"knowledge_identity\":\"KNOWLEDGE-P\",\"knowledge_revision\":\"knowledge-r1\",\"knowledge_version\":\"knowledge-1.2\",\"scope\":\"KNOWLEDGE-SCOPE-V\"}],\"claims\":{\"BRAIN_project_state_authority\":false,\"current_all_projects_migrated\":false,\"received_means_obligation_complete\":false,\"received_means_used\":false},\"knowledge_revision\":\"knowledge-r2\",\"knowledge_state\":\"current\",\"original_owners\":{\"knowledge_state\":\"BRAIN\",\"product_application\":\"HARNESS-CORE\",\"project_usage_record\":\"BRAIN\"},\"original_project_records\":[{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"state\":\"not_used_in_fixture\",\"used_revision\":null},{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"state\":\"used_in_fixture\",\"used_revision\":\"knowledge-r1\"}],\"provided_owners\":{\"knowledge_state\":\"BRAIN\",\"product_application\":\"HARNESS-CORE\",\"project_usage_record\":\"BRAIN\"},\"provided_project_records\":[{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"state\":\"not_used_in_fixture\",\"used_revision\":null},{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"state\":\"used_in_fixture\",\"used_revision\":\"knowledge-r1\"}],\"receipt_state\":\"candidate_received_in_fixture_only\",\"responsibility_basis\":{\"owner_roles\":{\"knowledge_state\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"BRAIN\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-KNOWLEDGE\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}},{\"owner_state\":\"missing\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-KNOWLEDGE-MISSING\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}],\"product_application\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HARNESS-CORE\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-APPLICATION\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}},{\"owner_state\":\"owner_value\",\"owner_value\":\"BRAIN\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-APPLICATION-CONFLICT\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}},{\"owner_state\":\"unknown\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-APPLICATION-UNKNOWN\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}],\"project_usage_record\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"requirement_ref\":\"HELIXBRAIN-L3-008-F02\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-USAGE\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}]},\"project_usage_records\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-OTHER-SCOPE\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-A\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"PROJECT-A-SCOPE\"}},{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r2\",\"scope\":\"PROJECT-B-SCOPE\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-B\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"PROJECT-B-SCOPE\"}}]}}",
+            "sha256": "dbc80be798dd789d6ceb54dc3f25ed2dc63ee2043378bbfdf0649140a4c362e0",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "owner_results": {
+              "knowledge_state": "content_corresponding_in_fixture",
+              "product_application": "content_corresponding_in_fixture",
+              "project_usage_record": "content_corresponding_in_fixture"
+            },
+            "knowledge_state": "current",
+            "knowledge_revision": "knowledge-r2",
+            "retained_CORE_references": [
+              {
+                "identity": "CORE-P-REFERENCE",
+                "core": "PRODUCT-CORE-P",
+                "knowledge_identity": "KNOWLEDGE-P",
+                "knowledge_revision": "knowledge-r1",
+                "knowledge_version": "knowledge-1.2",
+                "scope": "KNOWLEDGE-SCOPE-V"
+              }
+            ],
+            "project_results": [
+              {
+                "project": "PROJECT-A",
+                "content_result": "content_corresponding_in_fixture",
+                "retained_source_record": {
+                  "project": "PROJECT-A",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": null,
+                  "state": "not_used_in_fixture",
+                  "scope": "PROJECT-A-SCOPE"
+                },
+                "submitted_record": {
+                  "project": "PROJECT-A",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": null,
+                  "state": "not_used_in_fixture",
+                  "scope": "PROJECT-A-SCOPE"
+                },
+                "project_observation_state": "source_record_in_fixture_only",
+                "owner_responsibility_result": {
+                  "applicability_state": "missing",
+                  "basis_state": "missing",
+                  "basis_observations": [],
+                  "original": {
+                    "state": "missing",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  },
+                  "provided": {
+                    "state": "missing",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  }
+                }
+              },
+              {
+                "project": "PROJECT-B",
+                "content_result": "content_corresponding_in_fixture",
+                "retained_source_record": {
+                  "project": "PROJECT-B",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": "knowledge-r1",
+                  "state": "used_in_fixture",
+                  "scope": "PROJECT-B-SCOPE"
+                },
+                "submitted_record": {
+                  "project": "PROJECT-B",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": "knowledge-r1",
+                  "state": "used_in_fixture",
+                  "scope": "PROJECT-B-SCOPE"
+                },
+                "project_observation_state": "source_record_in_fixture_only",
+                "owner_responsibility_result": {
+                  "applicability_state": "missing",
+                  "basis_state": "missing",
+                  "basis_observations": [],
+                  "original": {
+                    "state": "missing",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  },
+                  "provided": {
+                    "state": "missing",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  }
+                }
+              }
+            ],
+            "receipt_state": "candidate_received_in_fixture_only",
+            "obligation_state": "not_discharged",
+            "claim_results": {
+              "BRAIN_project_state_authority": "none",
+              "current_all_projects_migrated": "none",
+              "received_means_used": "none",
+              "received_means_obligation_complete": "none"
+            },
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_old_reference_replaced": false,
+              "actual_project_migrated": false,
+              "actual_project_used": false,
+              "actual_OS_registration": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q",
+            "responsibility_basis_echo": {
+              "owner_roles": {
+                "knowledge_state": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-KNOWLEDGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "BRAIN"
+                  },
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-KNOWLEDGE-MISSING",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "missing"
+                  }
+                ],
+                "product_application": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-APPLICATION",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HARNESS-CORE"
+                  },
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-APPLICATION-CONFLICT",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "BRAIN"
+                  },
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-APPLICATION-UNKNOWN",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "unknown"
+                  }
+                ],
+                "project_usage_record": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-F02",
+                    "source_locator": {
+                      "identity": "B01-BASIS-PROJECT-USAGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HELIX-OS"
+                  }
+                ]
+              },
+              "project_usage_records": [
+                {
+                  "project": "PROJECT-A",
+                  "scope": "PROJECT-A-OTHER-SCOPE",
+                  "record_revision": "usage-r1",
+                  "source_locator": {
+                    "identity": "B01-BASIS-PROJECT-A",
+                    "revision": "basis-r1",
+                    "scope": "PROJECT-A-SCOPE",
+                    "owner": "synthetic-fixture-source"
+                  },
+                  "owner_state": "owner_value",
+                  "owner_value": "HELIX-OS"
+                },
+                {
+                  "project": "PROJECT-B",
+                  "scope": "PROJECT-B-SCOPE",
+                  "record_revision": "usage-r2",
+                  "source_locator": {
+                    "identity": "B01-BASIS-PROJECT-B",
+                    "revision": "basis-r1",
+                    "scope": "PROJECT-B-SCOPE",
+                    "owner": "synthetic-fixture-source"
+                  },
+                  "owner_state": "owner_value",
+                  "owner_value": "HELIX-OS"
+                }
+              ]
+            },
+            "owner_responsibility_results": {
+              "knowledge_state": {
+                "basis_state": "unknown",
+                "basis_observations": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-KNOWLEDGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "BRAIN"
+                  },
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-KNOWLEDGE-MISSING",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "missing"
+                  }
+                ],
+                "original": {
+                  "state": "unknown",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                },
+                "provided": {
+                  "state": "unknown",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                }
+              },
+              "product_application": {
+                "basis_state": "conflict",
+                "basis_observations": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-APPLICATION",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HARNESS-CORE"
+                  },
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-APPLICATION-CONFLICT",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "BRAIN"
+                  },
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-APPLICATION-UNKNOWN",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "unknown"
+                  }
+                ],
+                "original": {
+                  "state": "content_conflict",
+                  "owner_present": true,
+                  "owner_value": "HARNESS-CORE"
+                },
+                "provided": {
+                  "state": "content_conflict",
+                  "owner_present": true,
+                  "owner_value": "HARNESS-CORE"
+                }
+              },
+              "project_usage_record": {
+                "basis_state": "missing",
+                "basis_observations": [],
+                "original": {
+                  "state": "missing",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                },
+                "provided": {
+                  "state": "missing",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                }
+              }
+            }
+          },
+          "basis": "L3 B01・L10 B01とL4 responsibility_basis_contractに基づく有限の合成対条件。独立basisのrequirement applicability/reduction、project tuple applicability、原owner/提出ownerの別返却を確認する。実source資格・OS登録・実行を主張しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B008-B01-PROJECT-SUBMITTED-ZERO-MATCH",
+          "requirement_ref": "HELIXBRAIN-L3-008-B01",
+          "system_oracle_ref": "HELIXBRAIN-L10-008-B01",
+          "l4_ref": "HELIXBRAIN-L4-008-B01",
+          "input_type": "B01InputWithResponsibilityBasis",
+          "source_bindings": [
+            {
+              "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+              "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "file_sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1",
+              "pointer": "/requirements/3",
+              "object_canonical_sha256": "202d1a85d998d34b37bd681947423b494e72608056b726f07d5e361041f4bd13"
+            },
+            {
+              "path": "docs/helix-brain/L10-verification/business-verification.json",
+              "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "file_sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7",
+              "pointer": "/cases/3",
+              "object_canonical_sha256": "1429e734f85a4d40665fecd46e7d7cd5aae672dcc0283d1a45645e72baf8fb2e"
+            },
+            {
+              "path": "docs/helix-brain/L4-basic-design/knowledge-version-supersession.json",
+              "file_sha256": "579d0f64b0a0f602feb1c151ed1728d154aba782664f2ff7f79799f986f8eb35",
+              "pointer": "/contracts/2",
+              "object_canonical_sha256": "b8026d098daf0e22270d245e5cd2ebc28d63fe47cb2b6afefe28d32d793af364",
+              "authoring_base_revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "revision_status": "uncommitted_candidate_bytes"
+            },
+            {
+              "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+              "file_sha256": "172e24bcb7d33a2394f29c53b105695f94cf1e822a5e402bbd9dcd9bcdad04e8",
+              "pointer": "/functions/2",
+              "object_canonical_sha256": "27c55686eaf453d25978f2d5f5991b4cf6d3ae3b4654b1dc26bde9c9f63405b2",
+              "authoring_base_revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "revision_status": "uncommitted_candidate_bytes"
+            }
+          ],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B008-B01-PROJECT-SUBMITTED-ZERO-MATCH",
+              "revision": "689b911556b651b3af6256b95802075cef5d3ce48e001f60e362dffbf9a5f771",
+              "scope": "KNOWLEDGE-SCOPE-V",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"CORE_references\":[{\"core\":\"PRODUCT-CORE-P\",\"identity\":\"CORE-P-REFERENCE\",\"knowledge_identity\":\"KNOWLEDGE-P\",\"knowledge_revision\":\"knowledge-r1\",\"knowledge_version\":\"knowledge-1.2\",\"scope\":\"KNOWLEDGE-SCOPE-V\"}],\"claims\":{\"BRAIN_project_state_authority\":false,\"current_all_projects_migrated\":false,\"received_means_obligation_complete\":false,\"received_means_used\":false},\"knowledge_revision\":\"knowledge-r2\",\"knowledge_state\":\"current\",\"original_owners\":{\"knowledge_state\":\"BRAIN\",\"product_application\":\"HARNESS-CORE\",\"project_usage_record\":\"BRAIN\"},\"original_project_records\":[{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"state\":\"not_used_in_fixture\",\"used_revision\":null},{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"state\":\"used_in_fixture\",\"used_revision\":\"knowledge-r1\"}],\"provided_owners\":{\"knowledge_state\":\"BRAIN\",\"product_application\":\"HARNESS-CORE\",\"project_usage_record\":\"BRAIN\"},\"provided_project_records\":[{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"state\":\"used_in_fixture\",\"used_revision\":\"knowledge-r1\"}],\"receipt_state\":\"candidate_received_in_fixture_only\",\"responsibility_basis\":{\"owner_roles\":{\"knowledge_state\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"BRAIN\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-KNOWLEDGE\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}],\"product_application\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HARNESS-CORE\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-APPLICATION\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}],\"project_usage_record\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-USAGE\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}]},\"project_usage_records\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-A\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"PROJECT-A-SCOPE\"}},{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-B\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"PROJECT-B-SCOPE\"}}]}}",
+            "sha256": "689b911556b651b3af6256b95802075cef5d3ce48e001f60e362dffbf9a5f771",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "owner_results": {
+              "knowledge_state": "content_corresponding_in_fixture",
+              "product_application": "content_corresponding_in_fixture",
+              "project_usage_record": "content_corresponding_in_fixture"
+            },
+            "knowledge_state": "current",
+            "knowledge_revision": "knowledge-r2",
+            "retained_CORE_references": [
+              {
+                "identity": "CORE-P-REFERENCE",
+                "core": "PRODUCT-CORE-P",
+                "knowledge_identity": "KNOWLEDGE-P",
+                "knowledge_revision": "knowledge-r1",
+                "knowledge_version": "knowledge-1.2",
+                "scope": "KNOWLEDGE-SCOPE-V"
+              }
+            ],
+            "project_results": [
+              {
+                "project": "PROJECT-A",
+                "content_result": "missing",
+                "retained_source_record": {
+                  "project": "PROJECT-A",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": null,
+                  "state": "not_used_in_fixture",
+                  "scope": "PROJECT-A-SCOPE"
+                },
+                "submitted_record": null,
+                "project_observation_state": "unknown_record_missing",
+                "owner_responsibility_result": {
+                  "applicability_state": "exact",
+                  "basis_state": "known",
+                  "basis_observations": [
+                    {
+                      "project": "PROJECT-A",
+                      "scope": "PROJECT-A-SCOPE",
+                      "record_revision": "usage-r1",
+                      "source_locator": {
+                        "identity": "B01-BASIS-PROJECT-A",
+                        "revision": "basis-r1",
+                        "scope": "PROJECT-A-SCOPE",
+                        "owner": "synthetic-fixture-source"
+                      },
+                      "owner_state": "owner_value",
+                      "owner_value": "HELIX-OS"
+                    }
+                  ],
+                  "original": {
+                    "state": "content_conflict",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  },
+                  "provided": {
+                    "state": "missing",
+                    "owner_present": false
+                  }
+                }
+              },
+              {
+                "project": "PROJECT-B",
+                "content_result": "content_corresponding_in_fixture",
+                "retained_source_record": {
+                  "project": "PROJECT-B",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": "knowledge-r1",
+                  "state": "used_in_fixture",
+                  "scope": "PROJECT-B-SCOPE"
+                },
+                "submitted_record": {
+                  "project": "PROJECT-B",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": "knowledge-r1",
+                  "state": "used_in_fixture",
+                  "scope": "PROJECT-B-SCOPE"
+                },
+                "project_observation_state": "source_record_in_fixture_only",
+                "owner_responsibility_result": {
+                  "applicability_state": "exact",
+                  "basis_state": "known",
+                  "basis_observations": [
+                    {
+                      "project": "PROJECT-B",
+                      "scope": "PROJECT-B-SCOPE",
+                      "record_revision": "usage-r1",
+                      "source_locator": {
+                        "identity": "B01-BASIS-PROJECT-B",
+                        "revision": "basis-r1",
+                        "scope": "PROJECT-B-SCOPE",
+                        "owner": "synthetic-fixture-source"
+                      },
+                      "owner_state": "owner_value",
+                      "owner_value": "HELIX-OS"
+                    }
+                  ],
+                  "original": {
+                    "state": "content_conflict",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  },
+                  "provided": {
+                    "state": "content_conflict",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  }
+                }
+              }
+            ],
+            "receipt_state": "candidate_received_in_fixture_only",
+            "obligation_state": "not_discharged",
+            "claim_results": {
+              "BRAIN_project_state_authority": "none",
+              "current_all_projects_migrated": "none",
+              "received_means_used": "none",
+              "received_means_obligation_complete": "none"
+            },
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_old_reference_replaced": false,
+              "actual_project_migrated": false,
+              "actual_project_used": false,
+              "actual_OS_registration": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q",
+            "responsibility_basis_echo": {
+              "owner_roles": {
+                "knowledge_state": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-KNOWLEDGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "BRAIN"
+                  }
+                ],
+                "product_application": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-APPLICATION",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HARNESS-CORE"
+                  }
+                ],
+                "project_usage_record": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-PROJECT-USAGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HELIX-OS"
+                  }
+                ]
+              },
+              "project_usage_records": [
+                {
+                  "project": "PROJECT-A",
+                  "scope": "PROJECT-A-SCOPE",
+                  "record_revision": "usage-r1",
+                  "source_locator": {
+                    "identity": "B01-BASIS-PROJECT-A",
+                    "revision": "basis-r1",
+                    "scope": "PROJECT-A-SCOPE",
+                    "owner": "synthetic-fixture-source"
+                  },
+                  "owner_state": "owner_value",
+                  "owner_value": "HELIX-OS"
+                },
+                {
+                  "project": "PROJECT-B",
+                  "scope": "PROJECT-B-SCOPE",
+                  "record_revision": "usage-r1",
+                  "source_locator": {
+                    "identity": "B01-BASIS-PROJECT-B",
+                    "revision": "basis-r1",
+                    "scope": "PROJECT-B-SCOPE",
+                    "owner": "synthetic-fixture-source"
+                  },
+                  "owner_state": "owner_value",
+                  "owner_value": "HELIX-OS"
+                }
+              ]
+            },
+            "owner_responsibility_results": {
+              "knowledge_state": {
+                "basis_state": "known",
+                "basis_observations": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-KNOWLEDGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "BRAIN"
+                  }
+                ],
+                "original": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                },
+                "provided": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                }
+              },
+              "product_application": {
+                "basis_state": "known",
+                "basis_observations": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-APPLICATION",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HARNESS-CORE"
+                  }
+                ],
+                "original": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "HARNESS-CORE"
+                },
+                "provided": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "HARNESS-CORE"
+                }
+              },
+              "project_usage_record": {
+                "basis_state": "known",
+                "basis_observations": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-PROJECT-USAGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HELIX-OS"
+                  }
+                ],
+                "original": {
+                  "state": "content_conflict",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                },
+                "provided": {
+                  "state": "content_conflict",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                }
+              }
+            }
+          },
+          "basis": "L3 B01・L10 B01とL4 responsibility_basis_contractに基づく有限の合成対条件。独立basisのrequirement applicability/reduction、project tuple applicability、原owner/提出ownerの別返却を確認する。実source資格・OS登録・実行を主張しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B008-B01-PROJECT-SUBMITTED-MULTIPLE-MATCHES",
+          "requirement_ref": "HELIXBRAIN-L3-008-B01",
+          "system_oracle_ref": "HELIXBRAIN-L10-008-B01",
+          "l4_ref": "HELIXBRAIN-L4-008-B01",
+          "input_type": "B01InputWithResponsibilityBasis",
+          "source_bindings": [
+            {
+              "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+              "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "file_sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1",
+              "pointer": "/requirements/3",
+              "object_canonical_sha256": "202d1a85d998d34b37bd681947423b494e72608056b726f07d5e361041f4bd13"
+            },
+            {
+              "path": "docs/helix-brain/L10-verification/business-verification.json",
+              "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "file_sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7",
+              "pointer": "/cases/3",
+              "object_canonical_sha256": "1429e734f85a4d40665fecd46e7d7cd5aae672dcc0283d1a45645e72baf8fb2e"
+            },
+            {
+              "path": "docs/helix-brain/L4-basic-design/knowledge-version-supersession.json",
+              "file_sha256": "579d0f64b0a0f602feb1c151ed1728d154aba782664f2ff7f79799f986f8eb35",
+              "pointer": "/contracts/2",
+              "object_canonical_sha256": "b8026d098daf0e22270d245e5cd2ebc28d63fe47cb2b6afefe28d32d793af364",
+              "authoring_base_revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "revision_status": "uncommitted_candidate_bytes"
+            },
+            {
+              "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+              "file_sha256": "172e24bcb7d33a2394f29c53b105695f94cf1e822a5e402bbd9dcd9bcdad04e8",
+              "pointer": "/functions/2",
+              "object_canonical_sha256": "27c55686eaf453d25978f2d5f5991b4cf6d3ae3b4654b1dc26bde9c9f63405b2",
+              "authoring_base_revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "revision_status": "uncommitted_candidate_bytes"
+            }
+          ],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B008-B01-PROJECT-SUBMITTED-MULTIPLE-MATCHES",
+              "revision": "4640e65cbf08f36033e35f0e084f52a85d8be620471b2608ba6d24b40152b63e",
+              "scope": "KNOWLEDGE-SCOPE-V",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"CORE_references\":[{\"core\":\"PRODUCT-CORE-P\",\"identity\":\"CORE-P-REFERENCE\",\"knowledge_identity\":\"KNOWLEDGE-P\",\"knowledge_revision\":\"knowledge-r1\",\"knowledge_version\":\"knowledge-1.2\",\"scope\":\"KNOWLEDGE-SCOPE-V\"}],\"claims\":{\"BRAIN_project_state_authority\":false,\"current_all_projects_migrated\":false,\"received_means_obligation_complete\":false,\"received_means_used\":false},\"knowledge_revision\":\"knowledge-r2\",\"knowledge_state\":\"current\",\"original_owners\":{\"knowledge_state\":\"BRAIN\",\"product_application\":\"HARNESS-CORE\",\"project_usage_record\":\"BRAIN\"},\"original_project_records\":[{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"state\":\"not_used_in_fixture\",\"used_revision\":null},{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"state\":\"used_in_fixture\",\"used_revision\":\"knowledge-r1\"}],\"provided_owners\":{\"knowledge_state\":\"BRAIN\",\"product_application\":\"HARNESS-CORE\",\"project_usage_record\":\"BRAIN\"},\"provided_project_records\":[{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"state\":\"not_used_in_fixture\",\"used_revision\":null},{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"state\":\"not_used_in_fixture\",\"used_revision\":null},{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"state\":\"used_in_fixture\",\"used_revision\":\"knowledge-r1\"}],\"receipt_state\":\"candidate_received_in_fixture_only\",\"responsibility_basis\":{\"owner_roles\":{\"knowledge_state\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"BRAIN\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-KNOWLEDGE\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}],\"product_application\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HARNESS-CORE\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-APPLICATION\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}],\"project_usage_record\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-USAGE\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}]},\"project_usage_records\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-A\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"PROJECT-A-SCOPE\"}},{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-B\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"PROJECT-B-SCOPE\"}}]}}",
+            "sha256": "4640e65cbf08f36033e35f0e084f52a85d8be620471b2608ba6d24b40152b63e",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "owner_results": {
+              "knowledge_state": "content_corresponding_in_fixture",
+              "product_application": "content_corresponding_in_fixture",
+              "project_usage_record": "content_corresponding_in_fixture"
+            },
+            "knowledge_state": "current",
+            "knowledge_revision": "knowledge-r2",
+            "retained_CORE_references": [
+              {
+                "identity": "CORE-P-REFERENCE",
+                "core": "PRODUCT-CORE-P",
+                "knowledge_identity": "KNOWLEDGE-P",
+                "knowledge_revision": "knowledge-r1",
+                "knowledge_version": "knowledge-1.2",
+                "scope": "KNOWLEDGE-SCOPE-V"
+              }
+            ],
+            "project_results": [
+              {
+                "project": "PROJECT-A",
+                "content_result": "content_conflict",
+                "retained_source_record": {
+                  "project": "PROJECT-A",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": null,
+                  "state": "not_used_in_fixture",
+                  "scope": "PROJECT-A-SCOPE"
+                },
+                "submitted_record": null,
+                "project_observation_state": "conflict",
+                "owner_responsibility_result": {
+                  "applicability_state": "exact",
+                  "basis_state": "known",
+                  "basis_observations": [
+                    {
+                      "project": "PROJECT-A",
+                      "scope": "PROJECT-A-SCOPE",
+                      "record_revision": "usage-r1",
+                      "source_locator": {
+                        "identity": "B01-BASIS-PROJECT-A",
+                        "revision": "basis-r1",
+                        "scope": "PROJECT-A-SCOPE",
+                        "owner": "synthetic-fixture-source"
+                      },
+                      "owner_state": "owner_value",
+                      "owner_value": "HELIX-OS"
+                    }
+                  ],
+                  "original": {
+                    "state": "content_conflict",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  },
+                  "provided": {
+                    "state": "content_conflict",
+                    "owner_present": false
+                  }
+                }
+              },
+              {
+                "project": "PROJECT-B",
+                "content_result": "content_corresponding_in_fixture",
+                "retained_source_record": {
+                  "project": "PROJECT-B",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": "knowledge-r1",
+                  "state": "used_in_fixture",
+                  "scope": "PROJECT-B-SCOPE"
+                },
+                "submitted_record": {
+                  "project": "PROJECT-B",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": "knowledge-r1",
+                  "state": "used_in_fixture",
+                  "scope": "PROJECT-B-SCOPE"
+                },
+                "project_observation_state": "source_record_in_fixture_only",
+                "owner_responsibility_result": {
+                  "applicability_state": "exact",
+                  "basis_state": "known",
+                  "basis_observations": [
+                    {
+                      "project": "PROJECT-B",
+                      "scope": "PROJECT-B-SCOPE",
+                      "record_revision": "usage-r1",
+                      "source_locator": {
+                        "identity": "B01-BASIS-PROJECT-B",
+                        "revision": "basis-r1",
+                        "scope": "PROJECT-B-SCOPE",
+                        "owner": "synthetic-fixture-source"
+                      },
+                      "owner_state": "owner_value",
+                      "owner_value": "HELIX-OS"
+                    }
+                  ],
+                  "original": {
+                    "state": "content_conflict",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  },
+                  "provided": {
+                    "state": "content_conflict",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  }
+                }
+              }
+            ],
+            "receipt_state": "candidate_received_in_fixture_only",
+            "obligation_state": "not_discharged",
+            "claim_results": {
+              "BRAIN_project_state_authority": "none",
+              "current_all_projects_migrated": "none",
+              "received_means_used": "none",
+              "received_means_obligation_complete": "none"
+            },
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_old_reference_replaced": false,
+              "actual_project_migrated": false,
+              "actual_project_used": false,
+              "actual_OS_registration": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q",
+            "responsibility_basis_echo": {
+              "owner_roles": {
+                "knowledge_state": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-KNOWLEDGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "BRAIN"
+                  }
+                ],
+                "product_application": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-APPLICATION",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HARNESS-CORE"
+                  }
+                ],
+                "project_usage_record": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-PROJECT-USAGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HELIX-OS"
+                  }
+                ]
+              },
+              "project_usage_records": [
+                {
+                  "project": "PROJECT-A",
+                  "scope": "PROJECT-A-SCOPE",
+                  "record_revision": "usage-r1",
+                  "source_locator": {
+                    "identity": "B01-BASIS-PROJECT-A",
+                    "revision": "basis-r1",
+                    "scope": "PROJECT-A-SCOPE",
+                    "owner": "synthetic-fixture-source"
+                  },
+                  "owner_state": "owner_value",
+                  "owner_value": "HELIX-OS"
+                },
+                {
+                  "project": "PROJECT-B",
+                  "scope": "PROJECT-B-SCOPE",
+                  "record_revision": "usage-r1",
+                  "source_locator": {
+                    "identity": "B01-BASIS-PROJECT-B",
+                    "revision": "basis-r1",
+                    "scope": "PROJECT-B-SCOPE",
+                    "owner": "synthetic-fixture-source"
+                  },
+                  "owner_state": "owner_value",
+                  "owner_value": "HELIX-OS"
+                }
+              ]
+            },
+            "owner_responsibility_results": {
+              "knowledge_state": {
+                "basis_state": "known",
+                "basis_observations": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-KNOWLEDGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "BRAIN"
+                  }
+                ],
+                "original": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                },
+                "provided": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                }
+              },
+              "product_application": {
+                "basis_state": "known",
+                "basis_observations": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-APPLICATION",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HARNESS-CORE"
+                  }
+                ],
+                "original": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "HARNESS-CORE"
+                },
+                "provided": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "HARNESS-CORE"
+                }
+              },
+              "project_usage_record": {
+                "basis_state": "known",
+                "basis_observations": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-PROJECT-USAGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HELIX-OS"
+                  }
+                ],
+                "original": {
+                  "state": "content_conflict",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                },
+                "provided": {
+                  "state": "content_conflict",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                }
+              }
+            }
+          },
+          "basis": "L3 B01・L10 B01とL4 responsibility_basis_contractに基づく有限の合成対条件。独立basisのrequirement applicability/reduction、project tuple applicability、原owner/提出ownerの別返却を確認する。実source資格・OS登録・実行を主張しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B008-B01-PROJECT-SUBMITTED-SINGLE-WRONG-TUPLE",
+          "requirement_ref": "HELIXBRAIN-L3-008-B01",
+          "system_oracle_ref": "HELIXBRAIN-L10-008-B01",
+          "l4_ref": "HELIXBRAIN-L4-008-B01",
+          "input_type": "B01InputWithResponsibilityBasis",
+          "source_bindings": [
+            {
+              "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+              "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "file_sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1",
+              "pointer": "/requirements/3",
+              "object_canonical_sha256": "202d1a85d998d34b37bd681947423b494e72608056b726f07d5e361041f4bd13"
+            },
+            {
+              "path": "docs/helix-brain/L10-verification/business-verification.json",
+              "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "file_sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7",
+              "pointer": "/cases/3",
+              "object_canonical_sha256": "1429e734f85a4d40665fecd46e7d7cd5aae672dcc0283d1a45645e72baf8fb2e"
+            },
+            {
+              "path": "docs/helix-brain/L4-basic-design/knowledge-version-supersession.json",
+              "file_sha256": "579d0f64b0a0f602feb1c151ed1728d154aba782664f2ff7f79799f986f8eb35",
+              "pointer": "/contracts/2",
+              "object_canonical_sha256": "b8026d098daf0e22270d245e5cd2ebc28d63fe47cb2b6afefe28d32d793af364",
+              "authoring_base_revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "revision_status": "uncommitted_candidate_bytes"
+            },
+            {
+              "path": "docs/helix-brain/L5-detail-design/knowledge-version-supersession.json",
+              "file_sha256": "172e24bcb7d33a2394f29c53b105695f94cf1e822a5e402bbd9dcd9bcdad04e8",
+              "pointer": "/functions/2",
+              "object_canonical_sha256": "27c55686eaf453d25978f2d5f5991b4cf6d3ae3b4654b1dc26bde9c9f63405b2",
+              "authoring_base_revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+              "revision_status": "uncommitted_candidate_bytes"
+            }
+          ],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B008-B01-PROJECT-SUBMITTED-SINGLE-WRONG-TUPLE",
+              "revision": "88271fffe9158ca1f18bfa6ef15478a77b49aae07852dec453e2732ef4d5e8a7",
+              "scope": "KNOWLEDGE-SCOPE-V",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"CORE_references\":[{\"core\":\"PRODUCT-CORE-P\",\"identity\":\"CORE-P-REFERENCE\",\"knowledge_identity\":\"KNOWLEDGE-P\",\"knowledge_revision\":\"knowledge-r1\",\"knowledge_version\":\"knowledge-1.2\",\"scope\":\"KNOWLEDGE-SCOPE-V\"}],\"claims\":{\"BRAIN_project_state_authority\":false,\"current_all_projects_migrated\":false,\"received_means_obligation_complete\":false,\"received_means_used\":false},\"knowledge_revision\":\"knowledge-r2\",\"knowledge_state\":\"current\",\"original_owners\":{\"knowledge_state\":\"BRAIN\",\"product_application\":\"HARNESS-CORE\",\"project_usage_record\":\"BRAIN\"},\"original_project_records\":[{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"state\":\"not_used_in_fixture\",\"used_revision\":null},{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"state\":\"used_in_fixture\",\"used_revision\":\"knowledge-r1\"}],\"provided_owners\":{\"knowledge_state\":\"BRAIN\",\"product_application\":\"HARNESS-CORE\",\"project_usage_record\":\"BRAIN\"},\"provided_project_records\":[{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-OTHER-SCOPE\",\"state\":\"not_used_in_fixture\",\"used_revision\":null},{\"knowledge_identity\":\"KNOWLEDGE-P\",\"owner\":\"BRAIN\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r2\",\"scope\":\"PROJECT-B-SCOPE\",\"state\":\"used_in_fixture\",\"used_revision\":\"knowledge-r1\"}],\"receipt_state\":\"candidate_received_in_fixture_only\",\"responsibility_basis\":{\"owner_roles\":{\"knowledge_state\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"BRAIN\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-KNOWLEDGE\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}],\"product_application\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HARNESS-CORE\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-APPLICATION\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}],\"project_usage_record\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"requirement_ref\":\"HELIXBRAIN-L3-008-B01\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-USAGE\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"HELIXBRAIN-L3-008-B01\"}}]},\"project_usage_records\":[{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"project\":\"PROJECT-A\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-A-SCOPE\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-A\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"PROJECT-A-SCOPE\"}},{\"owner_state\":\"owner_value\",\"owner_value\":\"HELIX-OS\",\"project\":\"PROJECT-B\",\"record_revision\":\"usage-r1\",\"scope\":\"PROJECT-B-SCOPE\",\"source_locator\":{\"identity\":\"B01-BASIS-PROJECT-B\",\"owner\":\"synthetic-fixture-source\",\"revision\":\"basis-r1\",\"scope\":\"PROJECT-B-SCOPE\"}}]}}",
+            "sha256": "88271fffe9158ca1f18bfa6ef15478a77b49aae07852dec453e2732ef4d5e8a7",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "owner_results": {
+              "knowledge_state": "content_corresponding_in_fixture",
+              "product_application": "content_corresponding_in_fixture",
+              "project_usage_record": "content_corresponding_in_fixture"
+            },
+            "knowledge_state": "current",
+            "knowledge_revision": "knowledge-r2",
+            "retained_CORE_references": [
+              {
+                "identity": "CORE-P-REFERENCE",
+                "core": "PRODUCT-CORE-P",
+                "knowledge_identity": "KNOWLEDGE-P",
+                "knowledge_revision": "knowledge-r1",
+                "knowledge_version": "knowledge-1.2",
+                "scope": "KNOWLEDGE-SCOPE-V"
+              }
+            ],
+            "project_results": [
+              {
+                "project": "PROJECT-A",
+                "content_result": "content_conflict",
+                "retained_source_record": {
+                  "project": "PROJECT-A",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": null,
+                  "state": "not_used_in_fixture",
+                  "scope": "PROJECT-A-SCOPE"
+                },
+                "submitted_record": {
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "owner": "BRAIN",
+                  "project": "PROJECT-A",
+                  "record_revision": "usage-r1",
+                  "scope": "PROJECT-A-OTHER-SCOPE",
+                  "state": "not_used_in_fixture",
+                  "used_revision": null
+                },
+                "project_observation_state": "conflict",
+                "owner_responsibility_result": {
+                  "applicability_state": "exact",
+                  "basis_state": "known",
+                  "basis_observations": [
+                    {
+                      "project": "PROJECT-A",
+                      "scope": "PROJECT-A-SCOPE",
+                      "record_revision": "usage-r1",
+                      "source_locator": {
+                        "identity": "B01-BASIS-PROJECT-A",
+                        "revision": "basis-r1",
+                        "scope": "PROJECT-A-SCOPE",
+                        "owner": "synthetic-fixture-source"
+                      },
+                      "owner_state": "owner_value",
+                      "owner_value": "HELIX-OS"
+                    }
+                  ],
+                  "original": {
+                    "state": "content_conflict",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  },
+                  "provided": {
+                    "state": "not_applicable",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  }
+                }
+              },
+              {
+                "project": "PROJECT-B",
+                "content_result": "content_conflict",
+                "retained_source_record": {
+                  "project": "PROJECT-B",
+                  "owner": "BRAIN",
+                  "record_revision": "usage-r1",
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "used_revision": "knowledge-r1",
+                  "state": "used_in_fixture",
+                  "scope": "PROJECT-B-SCOPE"
+                },
+                "submitted_record": {
+                  "knowledge_identity": "KNOWLEDGE-P",
+                  "owner": "BRAIN",
+                  "project": "PROJECT-B",
+                  "record_revision": "usage-r2",
+                  "scope": "PROJECT-B-SCOPE",
+                  "state": "used_in_fixture",
+                  "used_revision": "knowledge-r1"
+                },
+                "project_observation_state": "conflict",
+                "owner_responsibility_result": {
+                  "applicability_state": "exact",
+                  "basis_state": "known",
+                  "basis_observations": [
+                    {
+                      "project": "PROJECT-B",
+                      "scope": "PROJECT-B-SCOPE",
+                      "record_revision": "usage-r1",
+                      "source_locator": {
+                        "identity": "B01-BASIS-PROJECT-B",
+                        "revision": "basis-r1",
+                        "scope": "PROJECT-B-SCOPE",
+                        "owner": "synthetic-fixture-source"
+                      },
+                      "owner_state": "owner_value",
+                      "owner_value": "HELIX-OS"
+                    }
+                  ],
+                  "original": {
+                    "state": "content_conflict",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  },
+                  "provided": {
+                    "state": "not_applicable",
+                    "owner_present": true,
+                    "owner_value": "BRAIN"
+                  }
+                }
+              }
+            ],
+            "receipt_state": "candidate_received_in_fixture_only",
+            "obligation_state": "not_discharged",
+            "claim_results": {
+              "BRAIN_project_state_authority": "none",
+              "current_all_projects_migrated": "none",
+              "received_means_used": "none",
+              "received_means_obligation_complete": "none"
+            },
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_old_reference_replaced": false,
+              "actual_project_migrated": false,
+              "actual_project_used": false,
+              "actual_OS_registration": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q",
+            "responsibility_basis_echo": {
+              "owner_roles": {
+                "knowledge_state": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-KNOWLEDGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "BRAIN"
+                  }
+                ],
+                "product_application": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-APPLICATION",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HARNESS-CORE"
+                  }
+                ],
+                "project_usage_record": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-PROJECT-USAGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HELIX-OS"
+                  }
+                ]
+              },
+              "project_usage_records": [
+                {
+                  "project": "PROJECT-A",
+                  "scope": "PROJECT-A-SCOPE",
+                  "record_revision": "usage-r1",
+                  "source_locator": {
+                    "identity": "B01-BASIS-PROJECT-A",
+                    "revision": "basis-r1",
+                    "scope": "PROJECT-A-SCOPE",
+                    "owner": "synthetic-fixture-source"
+                  },
+                  "owner_state": "owner_value",
+                  "owner_value": "HELIX-OS"
+                },
+                {
+                  "project": "PROJECT-B",
+                  "scope": "PROJECT-B-SCOPE",
+                  "record_revision": "usage-r1",
+                  "source_locator": {
+                    "identity": "B01-BASIS-PROJECT-B",
+                    "revision": "basis-r1",
+                    "scope": "PROJECT-B-SCOPE",
+                    "owner": "synthetic-fixture-source"
+                  },
+                  "owner_state": "owner_value",
+                  "owner_value": "HELIX-OS"
+                }
+              ]
+            },
+            "owner_responsibility_results": {
+              "knowledge_state": {
+                "basis_state": "known",
+                "basis_observations": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-KNOWLEDGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "BRAIN"
+                  }
+                ],
+                "original": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                },
+                "provided": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                }
+              },
+              "product_application": {
+                "basis_state": "known",
+                "basis_observations": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-APPLICATION",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HARNESS-CORE"
+                  }
+                ],
+                "original": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "HARNESS-CORE"
+                },
+                "provided": {
+                  "state": "content_corresponding_in_fixture",
+                  "owner_present": true,
+                  "owner_value": "HARNESS-CORE"
+                }
+              },
+              "project_usage_record": {
+                "basis_state": "known",
+                "basis_observations": [
+                  {
+                    "requirement_ref": "HELIXBRAIN-L3-008-B01",
+                    "source_locator": {
+                      "identity": "B01-BASIS-PROJECT-USAGE",
+                      "revision": "basis-r1",
+                      "scope": "HELIXBRAIN-L3-008-B01",
+                      "owner": "synthetic-fixture-source"
+                    },
+                    "owner_state": "owner_value",
+                    "owner_value": "HELIX-OS"
+                  }
+                ],
+                "original": {
+                  "state": "content_conflict",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                },
+                "provided": {
+                  "state": "content_conflict",
+                  "owner_present": true,
+                  "owner_value": "BRAIN"
+                }
+              }
+            }
+          },
+          "basis": "L3 B01・L10 B01とL4 responsibility_basis_contractに基づく有限の合成対条件。独立basisのrequirement applicability/reduction、project tuple applicability、原owner/提出ownerの別返却を確認する。実source資格・OS登録・実行を主張しない。",
+          "execution_state": "not_executed",
           "effect": "none"
         }
       ],
@@ -5273,12 +7153,12 @@
       "effect": "none"
     }
   ],
-  "completion": "初回合成内容対照のみ。実資格/必要集合/owner binding/詳細/実移行/実使用と設計閉包は未成立。",
+  "completion": "初回合成内容対照のみ。実資格/必要集合/owner binding/詳細/実移行/実使用と設計閉包は未成立。 追加のv2 source-role反例は静的期待を追補しただけで、未実行。",
   "fixture_progress": {
     "cases_by_function": {
       "F01": 26,
       "F02": 15,
-      "B01": 14
+      "B01": 19
     },
     "synthetic_only": true,
     "formal_schema_or_actual_execution": false

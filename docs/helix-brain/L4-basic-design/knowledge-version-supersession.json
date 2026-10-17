@@ -190,26 +190,57 @@
       "input_meanings": [
         "BRAIN知識stateとCORE参照/OS利用recordの独立原内容",
         "未使用/使用済み/record不足の別project",
-        "owner複製/全案件移行/受領だけ実使用claim"
+        "owner複製/全案件移行/受領だけ実使用claim",
+        "独立した責務根拠を別入力として受け取り、同じproject・scope・revisionの利用責務を照合する。"
       ],
       "output_meanings": [
         "知識/CORE参照/OS案件利用の別結果",
-        "元案件状態と責務別不足"
+        "元案件状態と責務別不足",
+        "BRAIN/CORE/OSの責務basisとowner値の局所対応結果。source不足/unknown/conflictは原証拠を保って個別に返す。"
       ],
       "content_comparison": [
         "知識版/stateはBRAIN、製品適用はCORE、実使用記録はOS。",
         "未観測recordを未使用と決めない。受領は実使用/義務完了ではない。",
-        "知識currentで全案件移行済みを生成しない。"
+        "知識currentで全案件移行済みを生成しない。",
+        "original/provided ownerの左右比較は保持し、別の独立責務basisと照合する。project利用recordのbasisは同一project・scope・record_revisionにのみ適用し、別案件・版・scopeへ転用しない。"
       ],
       "qualification_rule": "合成原内容対応を実source/正式state契約/知識採用/CORE適用/OS実利用/bindingの成立へ昇格しない。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "responsibility_basis_contract": {
+        "input": "B01の同一呼出しに、original_owners/provided_owners/project rowsとは別の型付きOwnerResponsibilityBasisを渡す。呼出し側は独立sourceから得た観測を原順序・原presenceで保持する。",
+        "roles": {
+          "knowledge_state": "BRAINの知識state責務",
+          "product_application": "COREの適用/参照責務",
+          "project_usage_record": "OSの実project使用record責務"
+        },
+        "project_applicability": "project rowの責務観測は(project, scope, record_revision)が完全一致する行に限って適用する。別projectへ転用せず、project listの原順序と重複を保持する。",
+        "evidence_semantics": "source locatorは対象sourceを指す不透明な識別子であり、適格性を証明しない。known/missing/unknown/conflictを保持し、独立source観測の値と参照を消さない。owner valueはJsonScalarとして型を含めて比較し、明示的nullをAbsentと混同しない。",
+        "caller_boundary": "呼出し側は既存owner/project入力からbasisを合成せず、独立source intakeの値をB01 v2 inputへ渡す。sourceを取得できない場合はmissing/unknownのbasis evidenceとして返す。この純粋比較は、実sourceの適格性・登録・owner resolverの成立を主張しない。",
+        "preserved": "knowledge/projectの左右比較、claims/effect/Q/obligation、および列挙外projectについて推論しない既存動作を維持する。",
+        "source_bindings": [
+          {
+            "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1",
+            "pointer": "/requirements/3",
+            "object_canonical_sha256": "202d1a85d998d34b37bd681947423b494e72608056b726f07d5e361041f4bd13"
+          },
+          {
+            "path": "docs/helix-brain/L10-verification/business-verification.json",
+            "revision": "596c2c77411c2708fc4351dd3337cf2f9af51a0d",
+            "file_sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7",
+            "pointer": "/cases/3",
+            "object_canonical_sha256": "1429e734f85a4d40665fecd46e7d7cd5aae672dcc0283d1a45645e72baf8fb2e"
+          }
+        ]
+      }
     }
   ],
   "fixture_progress": {
     "cases_by_function": {
       "F01": 26,
       "F02": 15,
-      "B01": 14
+      "B01": 19
     },
     "synthetic_only": true,
     "formal_schema_or_actual_execution": false
