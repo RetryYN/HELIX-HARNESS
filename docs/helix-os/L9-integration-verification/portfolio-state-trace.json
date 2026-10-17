@@ -402153,11 +402153,15 @@
         "conditions": "null/Absent/BlockedのCapture区別を保持して既存unknownへ。missing inputをsourceから補わない。必要な最小対照のみ検証設計で選定する。",
         "frozen_case_ids": [
           "ORIGIN-PRODUCED-NULL",
-          "ORIGIN-LOCAL-AXIS-UNKNOWN"
+          "ORIGIN-LOCAL-AXIS-UNKNOWN",
+          "U03-SOURCE-EMPTY",
+          "U04-SOURCE-TYPE-OUTSIDE",
+          "U05-ORIGIN-REQUIREMENT-REVISION-NULL"
         ],
-        "frozen_scope": "Produced source_id=nullとProduced origin scope=nullの2局所対照。",
+        "frozen_scope": "Produced source_id=null、Produced origin scope=nullの既存2局所対照に加え、source_id空文字・JsonValue型内の7・origin requirement_revision=nullをrawで観測し、typed AbsentのNotProduced応答を保持する3局所対照。U04の7はL4の非空string比較に一致しないが、typed AbsentのためProduced分岐そのものを検査する対照ではない。",
         "unfrozen_conditions": [
-          "sourceの空文字・型外、origin requirement_revision=nullの個別対照、原ProjectTarget当該member欠落/null/空/型外、local軸CaptureのAbsent/Blocked対照。target_key側のAbsent/nullは別計画であり代替しない。"
+          "Produced時のsource空文字・非string、origin requirement_revision=nullの各対照（今回U03/U04/U05はtyped Absentのraw観測であり、これらのProduced対照を代替しない）。",
+          "原ProjectTarget当該member欠落/null/空/型外、local軸CaptureのAbsent/Blocked対照。target_key側のAbsent/nullは別計画であり代替しない。"
         ],
         "coverage_status": "partially_frozen",
         "selection_reason": "今回の限定caller接続では上記代表対照だけを先固定した。残条件の要否・独立oracle固定・照合は同計画の未完として保持し、今回の15whole一致を残条件の検証済みへ広げない。"
@@ -402167,11 +402171,12 @@
         "control": "node locatorは実在しOS015 rawはあるがtyped producer未形成",
         "conditions": "原caller5値が正常でもeffective5はAbsentでfallbackを識別。局所2unknown/原wire保持/OS015 finding未捏造/他node不変。",
         "frozen_case_ids": [
-          "ORIGIN-TYPED-ABSENT"
+          "ORIGIN-TYPED-ABSENT",
+          "U09-RAW-ABSENT"
         ],
-        "frozen_scope": "SelectedかつBoundでtyped Presence=Absent。",
+        "frozen_scope": "SelectedかつBoundでtyped Presence=Absentの既存対照、およびraw Presence=Absentを識別するU09。typed PresentだがMaterialInput閉型を形成しない入力はL4の入力domain外として未固定に保持する。",
         "unfrozen_conditions": [
-          "typed PresentだがMaterialInput閉型を形成しない場合、raw Presence=Absentの場合。"
+          "typed PresentだがMaterialInput閉型を形成しない場合。L4 input portがPresent(MaterialInput)に閉じるため、閉型不成立値をtyped Presentとして投入する対照は宣言input domain外。"
         ],
         "coverage_status": "partially_frozen",
         "selection_reason": "今回の限定caller接続では上記代表対照だけを先固定した。残条件の要否・独立oracle固定・照合は同計画の未完として保持し、今回の15whole一致を残条件の検証済みへ広げない。"
@@ -402274,12 +402279,13 @@
         "control": "SelectedかつBound、raw/typed双方PresentだがMaterialInput内の一値だけ不一致。bool対number、member欠落対null、array順差を識別する対照を含む。",
         "conditions": "単なる両方の存在やsource7軸一致でProducedにしない。全値対応不成立をNotProduced routeへ返し、原raw/typed双方と同call原因を保持する。JSON number1対1.0やobject key表示順だけの差は現等値規則に従い不一致へ変換しない。",
         "frozen_case_ids": [
-          "ORIGIN-RAW-TYPED-BOOLNUM-DIFF"
+          "ORIGIN-RAW-TYPED-BOOLNUM-DIFF",
+          "U28-RAW-MEMBER-MISSING-TYPED-NULL",
+          "U29B-RAW-NULL-TYPED-MEMBER-MISSING-JSONVALUE",
+          "U30-ARRAY-ORDER-DIFF"
         ],
-        "frozen_scope": "raw false/typed 0を/context/records/target_b/projection/issue_closedに置く1点。source7軸一致だけの判定を識別。",
+        "frozen_scope": "raw false/typed 0の既存対照に加え、raw member missing対typed null、raw null対typed projection内member missing、unresolved_history array順差の3局所対照。",
         "unfrozen_conditions": [
-          "raw/typed member欠落対null",
-          "raw/typed array要素順の相違",
           "raw/typed JSON number 1対1.0の一致",
           "raw/typed object key表示順だけの差の一致"
         ],
@@ -402340,7 +402346,7 @@
         "coverage_status": "frozen_for_stated_control"
       }
     ],
-    "preservation": "既存cases356/domain_extension_cases29/source_candidate_return_verification.cases4の全値、fixture_inputs/fixture_contract/completion/既存全L4 rulesを不変。新case計画は既存件数に加算しない。",
+    "preservation": "既存cases356/domain_extension_cases29/source_candidate_return_verification.cases4、fixture_inputs/fixture_contract/completion/既存全L4 rulesは不変。frozen_case_refsは既存36件を保ち、今回の7件を追加する。",
     "not_claimed": [
       "全A02閉包",
       "任意provider接続",
@@ -402768,9 +402774,100 @@
         "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
         "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
         "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U03-SOURCE-EMPTY",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/21/input_patch",
+        "input_base_pointer": "/os015_origin_caller_verification/cases/0/input",
+        "input_base_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+        "input_canonical_sha256": "da650ced33ff228d560bc962e833fec51474122959b43b422db3c34cfb3a7244",
+        "expected_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/21/expected_whole_patch",
+        "expected_base_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+        "expected_base_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+        "expected_whole_canonical_sha256": "712fb1c590f2d1159fea4fdbdaff4beca060db5fbba536093b6f05041a222b3a",
+        "representation": "RFC 6902 patch row; the whole is reconstructed from the explicit L8 base pointer and inline patch, not stored at expected_pointer."
+      },
+      {
+        "id": "U04-SOURCE-TYPE-OUTSIDE",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/22/input_patch",
+        "input_base_pointer": "/os015_origin_caller_verification/cases/0/input",
+        "input_base_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+        "input_canonical_sha256": "1560f260ad9ec22e494d429b7f1ea0821162682dea6cbce597c5e350af473e9a",
+        "expected_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/22/expected_whole_patch",
+        "expected_base_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+        "expected_base_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+        "expected_whole_canonical_sha256": "57198f93201d290858cc71faaabd20fd9b7208b077643e6a39e1b80d60bfad6a",
+        "representation": "RFC 6902 patch row; the whole is reconstructed from the explicit L8 base pointer and inline patch, not stored at expected_pointer."
+      },
+      {
+        "id": "U05-ORIGIN-REQUIREMENT-REVISION-NULL",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/23/input_patch",
+        "input_base_pointer": "/os015_origin_caller_verification/cases/0/input",
+        "input_base_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+        "input_canonical_sha256": "9f583a570aeb7b5cf964d47e3270b325eb0de4a0c1ab3162d5b09d6ca104f727",
+        "expected_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/23/expected_whole_patch",
+        "expected_base_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+        "expected_base_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+        "expected_whole_canonical_sha256": "768dac18651112c4206d01fccd26e1d5871aa5b36aac2e8bfb97e92cb7962a14",
+        "representation": "RFC 6902 patch row; the whole is reconstructed from the explicit L8 base pointer and inline patch, not stored at expected_pointer."
+      },
+      {
+        "id": "U09-RAW-ABSENT",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/24/input_patch",
+        "input_base_pointer": "/os015_origin_caller_verification/cases/0/input",
+        "input_base_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+        "input_canonical_sha256": "7a108005ed8afc04b997c186cdd427d185337acc2bb17003cd1339902b0a21a5",
+        "expected_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/24/expected_whole_patch",
+        "expected_base_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+        "expected_base_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+        "expected_whole_canonical_sha256": "20987acb581f27b251f60254bfc9eba1cce3b3d22e2f5cca94bf433e71677f3b",
+        "representation": "RFC 6902 patch row; the whole is reconstructed from the explicit L8 base pointer and inline patch, not stored at expected_pointer."
+      },
+      {
+        "id": "U28-RAW-MEMBER-MISSING-TYPED-NULL",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/25/input_patch",
+        "input_base_pointer": "/os015_origin_caller_verification/cases/0/input",
+        "input_base_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+        "input_canonical_sha256": "dabaf04820dde58949b6d7c3113e5559d4020e6b438a90e50222349fc914a310",
+        "expected_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/25/expected_whole_patch",
+        "expected_base_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+        "expected_base_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+        "expected_whole_canonical_sha256": "98fc036d1a59f74f4b1bee605c1d232f6044c62d65ae68e9504799de8178fd34",
+        "representation": "RFC 6902 patch row; the whole is reconstructed from the explicit L8 base pointer and inline patch, not stored at expected_pointer."
+      },
+      {
+        "id": "U29B-RAW-NULL-TYPED-MEMBER-MISSING-JSONVALUE",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/26/input_patch",
+        "input_base_pointer": "/os015_origin_caller_verification/cases/0/input",
+        "input_base_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+        "input_canonical_sha256": "a21aed4bcf33f8ff2412b9a52a874ad608195a81368d8c6090157aafd41f1c71",
+        "expected_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/26/expected_whole_patch",
+        "expected_base_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+        "expected_base_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+        "expected_whole_canonical_sha256": "7172fea5bad15b2eac065fc0e24ad13726dd712a53e92c196b171bf31eb6278d",
+        "representation": "RFC 6902 patch row; the whole is reconstructed from the explicit L8 base pointer and inline patch, not stored at expected_pointer."
+      },
+      {
+        "id": "U30-ARRAY-ORDER-DIFF",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/27/input_patch",
+        "input_base_pointer": "/os015_origin_caller_verification/cases/0/input",
+        "input_base_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+        "input_canonical_sha256": "8519cd73da924d96451dec28d85f54e5e4efc4c5f46dcbdff98bcbf511350f96",
+        "expected_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/27/expected_whole_patch",
+        "expected_base_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+        "expected_base_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+        "expected_whole_canonical_sha256": "422a79cb9784f1f03017c95e16d8dd57fe677f9fe4cbca0ee4cbeb765e901a7f",
+        "representation": "RFC 6902 patch row; the whole is reconstructed from the explicit L8 base pointer and inline patch, not stored at expected_pointer."
       }
     ],
-    "freeze_scope": "15literal wholeは各case_plan.frozen_case_ids/frozen_scopeの限定対照だけ。unfrozen_conditionsは同計画の未完として保持し、計画全条件の凍結・検収を主張しない。原計画の意味と既存の条件は変更しない。",
+    "freeze_scope": "L8の15既存literal wholeと、既存21件＋今回7件のpatch再構成wholeは、各case_plan.frozen_case_ids/frozen_scopeに示した限定対照として扱う。未固定条件は同計画の未完として保持し、計画全条件の凍結・検収を主張しない。",
     "prior_plan_state": {
       "revision": "0027875ac0e1800f2bbdf018651f3e486c196b2c",
       "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",

@@ -31526,7 +31526,7 @@
     "L9_plan": {
       "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
       "pointer": "/os015_origin_connection_verification_plan",
-      "file_sha256": "f17f50040a3ace45fef4c8fd03b8d911b042e973c6740d409c05a6618682e807"
+      "file_sha256": "a62f635aa70fe7fb05f21fa12afdc71bda29f2090f9e4b6175e3122e521ff149"
     },
     "call_contract": "各case.inputは完全InputEnvelope。evaluate_os015_origin_callへ唯一引数として渡し、全PrivateReturn7rootを返してからexpected_wholeと型/presence sensitive canonical whole SHAで比較する。期待は関数operandにしない。",
     "literal_storage": "15input/expected_wholeを一度だけ完全literal JSON値で収載。展開/marker/patch/外部localファイル/追加DSLは不要。raw payload内のmarker似keyも原JSONとして読む。",
@@ -122398,8 +122398,8 @@
     ],
     "unbound_source_derived_extension": {
       "status": "static_source_derived_expected_patch_set_pending_root_review",
-      "case_count": 21,
-      "storage": "標準RFC 6902 JSON Patchを用いる。各input_patchとexpected_whole_patchを共有literal baseへ適用してcaseを再構成する。独自patch命令やruntimeコードは不要。",
+      "case_count": 28,
+      "storage": "標準RFC 6902 JSON Patchを用いる。各input_patchとexpected_whole_patchを共有literal baseへ適用してcaseを再構成する。独自patch命令やruntimeコードは不要。 reconstruction_base_pointer及びexpected_base_reconstruction_pointerを持つ行は、それぞれが指すtracked L8内のliteral baseへ当該patchを適用する。",
       "base_case": {
         "case_id": "U11-TARGETS-ARGS-ABSENT",
         "input": {
@@ -131440,6 +131440,1649 @@
             ],
             "source_derived_whole_sha256": "72df484902dde72537fabca49b8b55365f8e2c515f6676450c3b970aac708ea7"
           }
+        },
+        {
+          "case_id": "U03-SOURCE-EMPTY",
+          "input_patch": [
+            {
+              "op": "replace",
+              "path": "/os015_raw_input/value/records/target_a/source/source_id",
+              "value": ""
+            },
+            {
+              "op": "replace",
+              "path": "/os015_typed_input",
+              "value": {
+                "state": "Absent"
+              }
+            }
+          ],
+          "expected_whole_patch": [
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_raw_input/value/records/target_a/source/source_id",
+              "value": ""
+            },
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_typed_input",
+              "value": {
+                "state": "Absent"
+              }
+            }
+          ],
+          "input_canonical_sha256": "da650ced33ff228d560bc962e833fec51474122959b43b422db3c34cfb3a7244",
+          "expected_whole_canonical_sha256": "712fb1c590f2d1159fea4fdbdaff4beca060db5fbba536093b6f05041a222b3a",
+          "input_origin": {
+            "legacy_l8_case_id": "ORIGIN-SEVEN-AXES-MATCH",
+            "legacy_l8_input_pointer": "/os015_origin_caller_verification/cases/0/input",
+            "legacy_l8_input_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+            "reconstruction_base_pointer": "/os015_origin_caller_verification/cases/0/input",
+            "input_recipe_history_locator": "scaffold/review-handoff/local/a02-origin-unfrozen-input-only/input-recipes.json#/recipes/5",
+            "input_recipe_history_role": "local recipeは著述履歴の識別にのみ使う。再構成はtracked L8 input baseと、この行のRFC 6902 patchで行う。",
+            "recipe_operations": [
+              {
+                "op": "replace",
+                "path": "/os015_raw_input/value/records/target_a/source/source_id",
+                "value": ""
+              },
+              {
+                "op": "replace",
+                "path": "/os015_typed_input",
+                "value": {
+                  "state": "Absent"
+                }
+              }
+            ],
+            "reconstruction_uses": [
+              "/os015_origin_caller_verification/cases/0/input",
+              "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/21/input_patch"
+            ]
+          },
+          "expected_basis": {
+            "l5_closed_type_pointers": [
+              "/logical_types/32",
+              "/logical_types/33",
+              "/logical_types/34",
+              "/logical_types/35",
+              "/logical_types/59",
+              "/logical_types/66",
+              "/logical_types/69",
+              "/logical_types/71",
+              "/logical_types/72",
+              "/logical_types/73",
+              "/logical_types/76",
+              "/logical_types/77",
+              "/logical_types/78",
+              "/logical_types/79",
+              "/logical_types/80"
+            ],
+            "legacy_l8_expected_whole_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+            "legacy_l8_expected_whole_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+            "expected_base_reconstruction_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+            "source_derived_whole_sha256": "712fb1c590f2d1159fea4fdbdaff4beca060db5fbba536093b6f05041a222b3a",
+            "whole_freeze_case_id": "U03-SOURCE-EMPTY",
+            "scope": "Boundかつpair not-readyの局所分岐。raw/typed不一致または片側Absentに基づくNotProduced wholeであり、Unbound returnを根拠にしない。",
+            "l4_bound_not_ready_requirement_pointers": [
+              "/os015_origin_call_contract/input_port/dispatch_precedence/1/when_bound_and_pair_not_ready",
+              "/os015_origin_call_contract/input_port/raw_typed_pair_rule/not_ready",
+              "/os015_origin_call_contract/projection/not_produced_with_bound_locator",
+              "/os015_origin_call_contract/local_project_axes/capture_roots",
+              "/os015_origin_call_contract/local_project_axes/comparison",
+              "/os015_origin_call_contract/return_port"
+            ],
+            "l4_source_file_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+            "l4_source_file_sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
+            "whole_freeze_source_path": "scaffold/review-handoff/local/a02-origin-bound-pair-not-ready-whole-r1/expected-freeze-r1.json",
+            "whole_freeze_file_sha256": "5b3c6c45e74940281065a4650f84eb91173046f943f9189472e1cd86d6fe4570",
+            "whole_freeze_case_pointer": "/whole_construction/cases/0",
+            "whole_freeze_case_canonical_sha256": "a705a1d7913e385dcec79a767a64f65ea20287b47ea778a76808c16ef8235a1d",
+            "whole_freeze_digest_role": "caseオブジェクトだけのcanonical SHA-256。凍結whole出典の追跡用であり、候補の再構成依存ではない。再構成はL8内base pointerとinline RFC 6902 patchから行う。"
+          }
+        },
+        {
+          "case_id": "U04-SOURCE-TYPE-OUTSIDE",
+          "input_patch": [
+            {
+              "op": "replace",
+              "path": "/os015_raw_input/value/records/target_a/source/source_id",
+              "value": 7
+            },
+            {
+              "op": "replace",
+              "path": "/os015_typed_input",
+              "value": {
+                "state": "Absent"
+              }
+            }
+          ],
+          "expected_whole_patch": [
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_raw_input/value/records/target_a/source/source_id",
+              "value": 7
+            },
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_typed_input",
+              "value": {
+                "state": "Absent"
+              }
+            }
+          ],
+          "input_canonical_sha256": "1560f260ad9ec22e494d429b7f1ea0821162682dea6cbce597c5e350af473e9a",
+          "expected_whole_canonical_sha256": "57198f93201d290858cc71faaabd20fd9b7208b077643e6a39e1b80d60bfad6a",
+          "input_origin": {
+            "legacy_l8_case_id": "ORIGIN-SEVEN-AXES-MATCH",
+            "legacy_l8_input_pointer": "/os015_origin_caller_verification/cases/0/input",
+            "legacy_l8_input_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+            "reconstruction_base_pointer": "/os015_origin_caller_verification/cases/0/input",
+            "input_recipe_history_locator": "scaffold/review-handoff/local/a02-origin-unfrozen-input-only/input-recipes.json#/recipes/6",
+            "input_recipe_history_role": "local recipeは著述履歴の識別にのみ使う。再構成はtracked L8 input baseと、この行のRFC 6902 patchで行う。",
+            "recipe_operations": [
+              {
+                "op": "replace",
+                "path": "/os015_raw_input/value/records/target_a/source/source_id",
+                "value": 7
+              },
+              {
+                "op": "replace",
+                "path": "/os015_typed_input",
+                "value": {
+                  "state": "Absent"
+                }
+              }
+            ],
+            "reconstruction_uses": [
+              "/os015_origin_caller_verification/cases/0/input",
+              "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/22/input_patch"
+            ]
+          },
+          "expected_basis": {
+            "l5_closed_type_pointers": [
+              "/logical_types/32",
+              "/logical_types/33",
+              "/logical_types/34",
+              "/logical_types/35",
+              "/logical_types/59",
+              "/logical_types/66",
+              "/logical_types/69",
+              "/logical_types/71",
+              "/logical_types/72",
+              "/logical_types/73",
+              "/logical_types/76",
+              "/logical_types/77",
+              "/logical_types/78",
+              "/logical_types/79",
+              "/logical_types/80"
+            ],
+            "legacy_l8_expected_whole_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+            "legacy_l8_expected_whole_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+            "expected_base_reconstruction_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+            "source_derived_whole_sha256": "57198f93201d290858cc71faaabd20fd9b7208b077643e6a39e1b80d60bfad6a",
+            "whole_freeze_case_id": "U04-SOURCE-TYPE-OUTSIDE",
+            "scope": "Boundかつpair not-readyの局所分岐。raw/typed不一致または片側Absentに基づくNotProduced wholeであり、Unbound returnを根拠にしない。",
+            "l4_bound_not_ready_requirement_pointers": [
+              "/os015_origin_call_contract/input_port/dispatch_precedence/1/when_bound_and_pair_not_ready",
+              "/os015_origin_call_contract/input_port/raw_typed_pair_rule/not_ready",
+              "/os015_origin_call_contract/projection/not_produced_with_bound_locator",
+              "/os015_origin_call_contract/local_project_axes/capture_roots",
+              "/os015_origin_call_contract/local_project_axes/comparison",
+              "/os015_origin_call_contract/return_port"
+            ],
+            "l4_source_file_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+            "l4_source_file_sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
+            "whole_freeze_source_path": "scaffold/review-handoff/local/a02-origin-bound-pair-not-ready-whole-r1/expected-freeze-r1.json",
+            "whole_freeze_file_sha256": "5b3c6c45e74940281065a4650f84eb91173046f943f9189472e1cd86d6fe4570",
+            "whole_freeze_case_pointer": "/whole_construction/cases/1",
+            "whole_freeze_case_canonical_sha256": "270b4d4ea0a1836f7c09348bf5665cde1e97f76db5f13a0390af8cb5aa4c469d",
+            "whole_freeze_digest_role": "caseオブジェクトだけのcanonical SHA-256。凍結whole出典の追跡用であり、候補の再構成依存ではない。再構成はL8内base pointerとinline RFC 6902 patchから行う。"
+          }
+        },
+        {
+          "case_id": "U05-ORIGIN-REQUIREMENT-REVISION-NULL",
+          "input_patch": [
+            {
+              "op": "replace",
+              "path": "/os015_raw_input/value/records/target_a/source/requirement_revision",
+              "value": null
+            },
+            {
+              "op": "replace",
+              "path": "/os015_typed_input",
+              "value": {
+                "state": "Absent"
+              }
+            }
+          ],
+          "expected_whole_patch": [
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_raw_input/value/records/target_a/source/requirement_revision",
+              "value": null
+            },
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_typed_input",
+              "value": {
+                "state": "Absent"
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/origin_association_observations/value/axis_observations/requirement_revision/origin/value",
+              "value": null
+            }
+          ],
+          "input_canonical_sha256": "9f583a570aeb7b5cf964d47e3270b325eb0de4a0c1ab3162d5b09d6ca104f727",
+          "expected_whole_canonical_sha256": "768dac18651112c4206d01fccd26e1d5871aa5b36aac2e8bfb97e92cb7962a14",
+          "input_origin": {
+            "legacy_l8_case_id": "ORIGIN-SEVEN-AXES-MATCH",
+            "legacy_l8_input_pointer": "/os015_origin_caller_verification/cases/0/input",
+            "legacy_l8_input_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+            "reconstruction_base_pointer": "/os015_origin_caller_verification/cases/0/input",
+            "input_recipe_history_locator": "scaffold/review-handoff/local/a02-origin-unfrozen-input-only/input-recipes.json#/recipes/7",
+            "input_recipe_history_role": "local recipeは著述履歴の識別にのみ使う。再構成はtracked L8 input baseと、この行のRFC 6902 patchで行う。",
+            "recipe_operations": [
+              {
+                "op": "replace",
+                "path": "/os015_raw_input/value/records/target_a/source/requirement_revision",
+                "value": null
+              },
+              {
+                "op": "replace",
+                "path": "/os015_typed_input",
+                "value": {
+                  "state": "Absent"
+                }
+              }
+            ],
+            "reconstruction_uses": [
+              "/os015_origin_caller_verification/cases/0/input",
+              "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/23/input_patch"
+            ]
+          },
+          "expected_basis": {
+            "l5_closed_type_pointers": [
+              "/logical_types/32",
+              "/logical_types/33",
+              "/logical_types/34",
+              "/logical_types/35",
+              "/logical_types/59",
+              "/logical_types/66",
+              "/logical_types/69",
+              "/logical_types/71",
+              "/logical_types/72",
+              "/logical_types/73",
+              "/logical_types/76",
+              "/logical_types/77",
+              "/logical_types/78",
+              "/logical_types/79",
+              "/logical_types/80"
+            ],
+            "legacy_l8_expected_whole_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+            "legacy_l8_expected_whole_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+            "expected_base_reconstruction_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+            "source_derived_whole_sha256": "768dac18651112c4206d01fccd26e1d5871aa5b36aac2e8bfb97e92cb7962a14",
+            "whole_freeze_case_id": "U05-ORIGIN-REQUIREMENT-REVISION-NULL",
+            "scope": "Boundかつpair not-readyの局所分岐。raw/typed不一致または片側Absentに基づくNotProduced wholeであり、Unbound returnを根拠にしない。",
+            "l4_bound_not_ready_requirement_pointers": [
+              "/os015_origin_call_contract/input_port/dispatch_precedence/1/when_bound_and_pair_not_ready",
+              "/os015_origin_call_contract/input_port/raw_typed_pair_rule/not_ready",
+              "/os015_origin_call_contract/projection/not_produced_with_bound_locator",
+              "/os015_origin_call_contract/local_project_axes/capture_roots",
+              "/os015_origin_call_contract/local_project_axes/comparison",
+              "/os015_origin_call_contract/return_port"
+            ],
+            "l4_source_file_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+            "l4_source_file_sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
+            "whole_freeze_source_path": "scaffold/review-handoff/local/a02-origin-bound-pair-not-ready-whole-r1/expected-freeze-r1.json",
+            "whole_freeze_file_sha256": "5b3c6c45e74940281065a4650f84eb91173046f943f9189472e1cd86d6fe4570",
+            "whole_freeze_case_pointer": "/whole_construction/cases/2",
+            "whole_freeze_case_canonical_sha256": "20a2370905b5f44241b4da5809bdfbb7db9e09ad957e3398b996152f6fa7ebda",
+            "whole_freeze_digest_role": "caseオブジェクトだけのcanonical SHA-256。凍結whole出典の追跡用であり、候補の再構成依存ではない。再構成はL8内base pointerとinline RFC 6902 patchから行う。"
+          }
+        },
+        {
+          "case_id": "U09-RAW-ABSENT",
+          "input_patch": [
+            {
+              "op": "replace",
+              "path": "/os015_raw_input",
+              "value": {
+                "state": "Absent"
+              }
+            }
+          ],
+          "expected_whole_patch": [
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_typed_input",
+              "value": {
+                "state": "Present",
+                "value": {
+                  "phase": "inspect",
+                  "records": {
+                    "target_a": {
+                      "source": {
+                        "target_id": "north/api~v2",
+                        "target_revision": "v7",
+                        "target_digest": "material:north/api~v2",
+                        "scope": "scope:release/north~blue",
+                        "source_id": "source:north/api~v2",
+                        "source_revision": "s7",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                        "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_a",
+                        "l1_revision": "SYNTHETIC-L1_REVISION-target_a",
+                        "requirement_revision": "rq7",
+                        "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_a",
+                        "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_a",
+                        "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_a",
+                        "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_a",
+                        "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_a",
+                        "decision_ref": "SYNTHETIC-DECISION_REF-target_a",
+                        "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_a",
+                        "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_a"
+                      },
+                      "original_event": {
+                        "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                        "event_revision": "EVENT-r1",
+                        "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+                        "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                        "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+                        "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+                      },
+                      "original_classification": null,
+                      "new_classification": null,
+                      "history": [],
+                      "unresolved_history": [
+                        "UNRESOLVED-target_a"
+                      ],
+                      "authority_origin": "canonical_source",
+                      "authority_state": "current_material",
+                      "current_material_claim": false,
+                      "generated_claims": {
+                        "requirement_meaning": false,
+                        "human_decision": false,
+                        "implementation_permission": false
+                      },
+                      "projection": {
+                        "issue_closed": false,
+                        "pr_merged": false,
+                        "ci_green": false,
+                        "memory_summary": "DISPLAY-ONLY"
+                      }
+                    },
+                    "target_b": {
+                      "source": {
+                        "target_id": "SYNTHETIC-TARGET_ID-target_b",
+                        "target_revision": "SYNTHETIC-TARGET_REVISION-target_b",
+                        "target_digest": "SYNTHETIC-TARGET_DIGEST-target_b",
+                        "scope": "SYNTHETIC-SCOPE-target_b",
+                        "source_id": "SYNTHETIC-SOURCE_ID-target_b",
+                        "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                        "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_b",
+                        "l1_revision": "SYNTHETIC-L1_REVISION-target_b",
+                        "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_b",
+                        "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_b",
+                        "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_b",
+                        "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_b",
+                        "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_b",
+                        "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_b",
+                        "decision_ref": "SYNTHETIC-DECISION_REF-target_b",
+                        "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_b",
+                        "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_b"
+                      },
+                      "original_event": {
+                        "event_id": "SYNTHETIC-EVENT_ID-target_b",
+                        "event_revision": "EVENT-r1",
+                        "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+                        "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                        "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+                        "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+                      },
+                      "original_classification": null,
+                      "new_classification": null,
+                      "history": [],
+                      "unresolved_history": [
+                        "UNRESOLVED-target_b"
+                      ],
+                      "authority_origin": "canonical_source",
+                      "authority_state": "current_material",
+                      "current_material_claim": false,
+                      "generated_claims": {
+                        "requirement_meaning": false,
+                        "human_decision": false,
+                        "implementation_permission": false
+                      },
+                      "projection": {
+                        "issue_closed": false,
+                        "pr_merged": false,
+                        "ci_green": false,
+                        "memory_summary": "DISPLAY-ONLY"
+                      }
+                    }
+                  },
+                  "whole_registry_claim": false,
+                  "context": {
+                    "records": {
+                      "target_a": {
+                        "source": {
+                          "target_id": "SYNTHETIC-TARGET_ID-target_a",
+                          "target_revision": "SYNTHETIC-TARGET_REVISION-target_a",
+                          "target_digest": "SYNTHETIC-TARGET_DIGEST-target_a",
+                          "scope": "SYNTHETIC-SCOPE-target_a",
+                          "source_id": "SYNTHETIC-SOURCE_ID-target_a",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                          "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_a",
+                          "l1_revision": "SYNTHETIC-L1_REVISION-target_a",
+                          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_a",
+                          "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_a",
+                          "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_a",
+                          "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_a",
+                          "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_a",
+                          "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_a",
+                          "decision_ref": "SYNTHETIC-DECISION_REF-target_a",
+                          "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_a",
+                          "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_a"
+                        },
+                        "original_event": {
+                          "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                          "event_revision": "EVENT-r1",
+                          "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                          "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+                          "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+                        },
+                        "original_classification": null,
+                        "new_classification": null,
+                        "history": [],
+                        "unresolved_history": [
+                          "UNRESOLVED-target_a"
+                        ],
+                        "authority_origin": "canonical_source",
+                        "authority_state": "current_material",
+                        "current_material_claim": false,
+                        "generated_claims": {
+                          "requirement_meaning": false,
+                          "human_decision": false,
+                          "implementation_permission": false
+                        },
+                        "projection": {
+                          "issue_closed": false,
+                          "pr_merged": false,
+                          "ci_green": false,
+                          "memory_summary": "DISPLAY-ONLY"
+                        }
+                      },
+                      "target_b": {
+                        "source": {
+                          "target_id": "SYNTHETIC-TARGET_ID-target_b",
+                          "target_revision": "SYNTHETIC-TARGET_REVISION-target_b",
+                          "target_digest": "SYNTHETIC-TARGET_DIGEST-target_b",
+                          "scope": "SYNTHETIC-SCOPE-target_b",
+                          "source_id": "SYNTHETIC-SOURCE_ID-target_b",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                          "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_b",
+                          "l1_revision": "SYNTHETIC-L1_REVISION-target_b",
+                          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_b",
+                          "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_b",
+                          "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_b",
+                          "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_b",
+                          "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_b",
+                          "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_b",
+                          "decision_ref": "SYNTHETIC-DECISION_REF-target_b",
+                          "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_b",
+                          "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_b"
+                        },
+                        "original_event": {
+                          "event_id": "SYNTHETIC-EVENT_ID-target_b",
+                          "event_revision": "EVENT-r1",
+                          "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                          "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+                          "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+                        },
+                        "original_classification": null,
+                        "new_classification": null,
+                        "history": [],
+                        "unresolved_history": [
+                          "UNRESOLVED-target_b"
+                        ],
+                        "authority_origin": "canonical_source",
+                        "authority_state": "current_material",
+                        "current_material_claim": false,
+                        "generated_claims": {
+                          "requirement_meaning": false,
+                          "human_decision": false,
+                          "implementation_permission": false
+                        },
+                        "projection": {
+                          "issue_closed": false,
+                          "pr_merged": false,
+                          "ci_green": false,
+                          "memory_summary": "DISPLAY-ONLY"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_raw_input",
+              "value": {
+                "state": "Absent"
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/origin_association_observations/value/axis_observations/scope/origin",
+              "value": {
+                "requested_pointer": "/os015_raw_input/records/target_a/source/scope",
+                "reached_pointer": "/os015_raw_input",
+                "availability": "absent"
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/origin_association_observations/value/axis_observations/requirement_revision/origin",
+              "value": {
+                "requested_pointer": "/os015_raw_input/records/target_a/source/requirement_revision",
+                "reached_pointer": "/os015_raw_input",
+                "availability": "absent"
+              }
+            }
+          ],
+          "input_canonical_sha256": "7a108005ed8afc04b997c186cdd427d185337acc2bb17003cd1339902b0a21a5",
+          "expected_whole_canonical_sha256": "20987acb581f27b251f60254bfc9eba1cce3b3d22e2f5cca94bf433e71677f3b",
+          "input_origin": {
+            "legacy_l8_case_id": "ORIGIN-SEVEN-AXES-MATCH",
+            "legacy_l8_input_pointer": "/os015_origin_caller_verification/cases/0/input",
+            "legacy_l8_input_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+            "reconstruction_base_pointer": "/os015_origin_caller_verification/cases/0/input",
+            "input_recipe_history_locator": "scaffold/review-handoff/local/a02-origin-unfrozen-input-only/input-recipes.json#/recipes/14",
+            "input_recipe_history_role": "local recipeは著述履歴の識別にのみ使う。再構成はtracked L8 input baseと、この行のRFC 6902 patchで行う。",
+            "recipe_operations": [
+              {
+                "op": "replace",
+                "path": "/os015_raw_input",
+                "value": {
+                  "state": "Absent"
+                }
+              }
+            ],
+            "reconstruction_uses": [
+              "/os015_origin_caller_verification/cases/0/input",
+              "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/24/input_patch"
+            ]
+          },
+          "expected_basis": {
+            "l5_closed_type_pointers": [
+              "/logical_types/32",
+              "/logical_types/33",
+              "/logical_types/34",
+              "/logical_types/35",
+              "/logical_types/59",
+              "/logical_types/66",
+              "/logical_types/69",
+              "/logical_types/71",
+              "/logical_types/72",
+              "/logical_types/73",
+              "/logical_types/76",
+              "/logical_types/77",
+              "/logical_types/78",
+              "/logical_types/79",
+              "/logical_types/80"
+            ],
+            "legacy_l8_expected_whole_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+            "legacy_l8_expected_whole_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+            "expected_base_reconstruction_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+            "source_derived_whole_sha256": "20987acb581f27b251f60254bfc9eba1cce3b3d22e2f5cca94bf433e71677f3b",
+            "whole_freeze_case_id": "U09-RAW-ABSENT",
+            "scope": "Boundかつpair not-readyの局所分岐。raw/typed不一致または片側Absentに基づくNotProduced wholeであり、Unbound returnを根拠にしない。",
+            "l4_bound_not_ready_requirement_pointers": [
+              "/os015_origin_call_contract/input_port/dispatch_precedence/1/when_bound_and_pair_not_ready",
+              "/os015_origin_call_contract/input_port/raw_typed_pair_rule/not_ready",
+              "/os015_origin_call_contract/projection/not_produced_with_bound_locator",
+              "/os015_origin_call_contract/local_project_axes/capture_roots",
+              "/os015_origin_call_contract/local_project_axes/comparison",
+              "/os015_origin_call_contract/return_port"
+            ],
+            "l4_source_file_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+            "l4_source_file_sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
+            "whole_freeze_source_path": "scaffold/review-handoff/local/a02-origin-bound-pair-not-ready-whole-r1/expected-freeze-r1.json",
+            "whole_freeze_file_sha256": "5b3c6c45e74940281065a4650f84eb91173046f943f9189472e1cd86d6fe4570",
+            "whole_freeze_case_pointer": "/whole_construction/cases/3",
+            "whole_freeze_case_canonical_sha256": "c75dfeb689488d993a89cf17ea6e56329e60d6d7b053e0427423572d46e8f90a",
+            "whole_freeze_digest_role": "caseオブジェクトだけのcanonical SHA-256。凍結whole出典の追跡用であり、候補の再構成依存ではない。再構成はL8内base pointerとinline RFC 6902 patchから行う。"
+          }
+        },
+        {
+          "case_id": "U28-RAW-MEMBER-MISSING-TYPED-NULL",
+          "input_patch": [
+            {
+              "op": "remove",
+              "path": "/os015_raw_input/value/records/target_a/source/source_id"
+            },
+            {
+              "op": "replace",
+              "path": "/os015_typed_input/value/records/target_a/source/source_id",
+              "value": null
+            }
+          ],
+          "expected_whole_patch": [
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_typed_input",
+              "value": {
+                "state": "Present",
+                "value": {
+                  "phase": "inspect",
+                  "records": {
+                    "target_a": {
+                      "source": {
+                        "target_id": "north/api~v2",
+                        "target_revision": "v7",
+                        "target_digest": "material:north/api~v2",
+                        "scope": "scope:release/north~blue",
+                        "source_id": "source:north/api~v2",
+                        "source_revision": "s7",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                        "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_a",
+                        "l1_revision": "SYNTHETIC-L1_REVISION-target_a",
+                        "requirement_revision": "rq7",
+                        "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_a",
+                        "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_a",
+                        "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_a",
+                        "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_a",
+                        "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_a",
+                        "decision_ref": "SYNTHETIC-DECISION_REF-target_a",
+                        "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_a",
+                        "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_a"
+                      },
+                      "original_event": {
+                        "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                        "event_revision": "EVENT-r1",
+                        "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+                        "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                        "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+                        "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+                      },
+                      "original_classification": null,
+                      "new_classification": null,
+                      "history": [],
+                      "unresolved_history": [
+                        "UNRESOLVED-target_a"
+                      ],
+                      "authority_origin": "canonical_source",
+                      "authority_state": "current_material",
+                      "current_material_claim": false,
+                      "generated_claims": {
+                        "requirement_meaning": false,
+                        "human_decision": false,
+                        "implementation_permission": false
+                      },
+                      "projection": {
+                        "issue_closed": false,
+                        "pr_merged": false,
+                        "ci_green": false,
+                        "memory_summary": "DISPLAY-ONLY"
+                      }
+                    },
+                    "target_b": {
+                      "source": {
+                        "target_id": "SYNTHETIC-TARGET_ID-target_b",
+                        "target_revision": "SYNTHETIC-TARGET_REVISION-target_b",
+                        "target_digest": "SYNTHETIC-TARGET_DIGEST-target_b",
+                        "scope": "SYNTHETIC-SCOPE-target_b",
+                        "source_id": "SYNTHETIC-SOURCE_ID-target_b",
+                        "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                        "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_b",
+                        "l1_revision": "SYNTHETIC-L1_REVISION-target_b",
+                        "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_b",
+                        "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_b",
+                        "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_b",
+                        "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_b",
+                        "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_b",
+                        "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_b",
+                        "decision_ref": "SYNTHETIC-DECISION_REF-target_b",
+                        "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_b",
+                        "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_b"
+                      },
+                      "original_event": {
+                        "event_id": "SYNTHETIC-EVENT_ID-target_b",
+                        "event_revision": "EVENT-r1",
+                        "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+                        "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                        "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+                        "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+                      },
+                      "original_classification": null,
+                      "new_classification": null,
+                      "history": [],
+                      "unresolved_history": [
+                        "UNRESOLVED-target_b"
+                      ],
+                      "authority_origin": "canonical_source",
+                      "authority_state": "current_material",
+                      "current_material_claim": false,
+                      "generated_claims": {
+                        "requirement_meaning": false,
+                        "human_decision": false,
+                        "implementation_permission": false
+                      },
+                      "projection": {
+                        "issue_closed": false,
+                        "pr_merged": false,
+                        "ci_green": false,
+                        "memory_summary": "DISPLAY-ONLY"
+                      }
+                    }
+                  },
+                  "whole_registry_claim": false,
+                  "context": {
+                    "records": {
+                      "target_a": {
+                        "source": {
+                          "target_id": "SYNTHETIC-TARGET_ID-target_a",
+                          "target_revision": "SYNTHETIC-TARGET_REVISION-target_a",
+                          "target_digest": "SYNTHETIC-TARGET_DIGEST-target_a",
+                          "scope": "SYNTHETIC-SCOPE-target_a",
+                          "source_id": "SYNTHETIC-SOURCE_ID-target_a",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                          "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_a",
+                          "l1_revision": "SYNTHETIC-L1_REVISION-target_a",
+                          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_a",
+                          "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_a",
+                          "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_a",
+                          "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_a",
+                          "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_a",
+                          "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_a",
+                          "decision_ref": "SYNTHETIC-DECISION_REF-target_a",
+                          "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_a",
+                          "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_a"
+                        },
+                        "original_event": {
+                          "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                          "event_revision": "EVENT-r1",
+                          "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                          "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+                          "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+                        },
+                        "original_classification": null,
+                        "new_classification": null,
+                        "history": [],
+                        "unresolved_history": [
+                          "UNRESOLVED-target_a"
+                        ],
+                        "authority_origin": "canonical_source",
+                        "authority_state": "current_material",
+                        "current_material_claim": false,
+                        "generated_claims": {
+                          "requirement_meaning": false,
+                          "human_decision": false,
+                          "implementation_permission": false
+                        },
+                        "projection": {
+                          "issue_closed": false,
+                          "pr_merged": false,
+                          "ci_green": false,
+                          "memory_summary": "DISPLAY-ONLY"
+                        }
+                      },
+                      "target_b": {
+                        "source": {
+                          "target_id": "SYNTHETIC-TARGET_ID-target_b",
+                          "target_revision": "SYNTHETIC-TARGET_REVISION-target_b",
+                          "target_digest": "SYNTHETIC-TARGET_DIGEST-target_b",
+                          "scope": "SYNTHETIC-SCOPE-target_b",
+                          "source_id": "SYNTHETIC-SOURCE_ID-target_b",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                          "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_b",
+                          "l1_revision": "SYNTHETIC-L1_REVISION-target_b",
+                          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_b",
+                          "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_b",
+                          "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_b",
+                          "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_b",
+                          "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_b",
+                          "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_b",
+                          "decision_ref": "SYNTHETIC-DECISION_REF-target_b",
+                          "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_b",
+                          "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_b"
+                        },
+                        "original_event": {
+                          "event_id": "SYNTHETIC-EVENT_ID-target_b",
+                          "event_revision": "EVENT-r1",
+                          "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                          "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+                          "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+                        },
+                        "original_classification": null,
+                        "new_classification": null,
+                        "history": [],
+                        "unresolved_history": [
+                          "UNRESOLVED-target_b"
+                        ],
+                        "authority_origin": "canonical_source",
+                        "authority_state": "current_material",
+                        "current_material_claim": false,
+                        "generated_claims": {
+                          "requirement_meaning": false,
+                          "human_decision": false,
+                          "implementation_permission": false
+                        },
+                        "projection": {
+                          "issue_closed": false,
+                          "pr_merged": false,
+                          "ci_green": false,
+                          "memory_summary": "DISPLAY-ONLY"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "op": "remove",
+              "path": "/original_materials/os015_raw_input/value/records/target_a/source/source_id"
+            },
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_typed_input/value/records/target_a/source/source_id",
+              "value": null
+            }
+          ],
+          "input_canonical_sha256": "dabaf04820dde58949b6d7c3113e5559d4020e6b438a90e50222349fc914a310",
+          "expected_whole_canonical_sha256": "98fc036d1a59f74f4b1bee605c1d232f6044c62d65ae68e9504799de8178fd34",
+          "input_origin": {
+            "legacy_l8_case_id": "ORIGIN-SEVEN-AXES-MATCH",
+            "legacy_l8_input_pointer": "/os015_origin_caller_verification/cases/0/input",
+            "legacy_l8_input_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+            "reconstruction_base_pointer": "/os015_origin_caller_verification/cases/0/input",
+            "input_recipe_history_locator": "scaffold/review-handoff/local/a02-origin-unfrozen-input-only/input-recipes.json#/recipes/35",
+            "input_recipe_history_role": "local recipeは著述履歴の識別にのみ使う。再構成はtracked L8 input baseと、この行のRFC 6902 patchで行う。",
+            "recipe_operations": [
+              {
+                "op": "remove",
+                "path": "/os015_raw_input/value/records/target_a/source/source_id"
+              },
+              {
+                "op": "replace",
+                "path": "/os015_typed_input/value/records/target_a/source/source_id",
+                "value": null
+              }
+            ],
+            "reconstruction_uses": [
+              "/os015_origin_caller_verification/cases/0/input",
+              "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/25/input_patch"
+            ]
+          },
+          "expected_basis": {
+            "l5_closed_type_pointers": [
+              "/logical_types/32",
+              "/logical_types/33",
+              "/logical_types/34",
+              "/logical_types/35",
+              "/logical_types/59",
+              "/logical_types/66",
+              "/logical_types/69",
+              "/logical_types/71",
+              "/logical_types/72",
+              "/logical_types/73",
+              "/logical_types/76",
+              "/logical_types/77",
+              "/logical_types/78",
+              "/logical_types/79",
+              "/logical_types/80"
+            ],
+            "legacy_l8_expected_whole_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+            "legacy_l8_expected_whole_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+            "expected_base_reconstruction_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+            "source_derived_whole_sha256": "98fc036d1a59f74f4b1bee605c1d232f6044c62d65ae68e9504799de8178fd34",
+            "whole_freeze_case_id": "U28-RAW-MEMBER-MISSING-TYPED-NULL",
+            "scope": "Boundかつpair not-readyの局所分岐。raw/typed不一致または片側Absentに基づくNotProduced wholeであり、Unbound returnを根拠にしない。",
+            "l4_bound_not_ready_requirement_pointers": [
+              "/os015_origin_call_contract/input_port/dispatch_precedence/1/when_bound_and_pair_not_ready",
+              "/os015_origin_call_contract/input_port/raw_typed_pair_rule/not_ready",
+              "/os015_origin_call_contract/projection/not_produced_with_bound_locator",
+              "/os015_origin_call_contract/local_project_axes/capture_roots",
+              "/os015_origin_call_contract/local_project_axes/comparison",
+              "/os015_origin_call_contract/return_port"
+            ],
+            "l4_source_file_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+            "l4_source_file_sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
+            "whole_freeze_source_path": "scaffold/review-handoff/local/a02-origin-bound-pair-not-ready-whole-r1/expected-freeze-r1.json",
+            "whole_freeze_file_sha256": "5b3c6c45e74940281065a4650f84eb91173046f943f9189472e1cd86d6fe4570",
+            "whole_freeze_case_pointer": "/whole_construction/cases/4",
+            "whole_freeze_case_canonical_sha256": "517fe16b77aa681802b546e6e0506013fb805f880cc61d237856b569a7e8a506",
+            "whole_freeze_digest_role": "caseオブジェクトだけのcanonical SHA-256。凍結whole出典の追跡用であり、候補の再構成依存ではない。再構成はL8内base pointerとinline RFC 6902 patchから行う。"
+          }
+        },
+        {
+          "case_id": "U29B-RAW-NULL-TYPED-MEMBER-MISSING-JSONVALUE",
+          "input_patch": [
+            {
+              "op": "replace",
+              "path": "/os015_raw_input/value/context/records/target_b/projection/issue_closed",
+              "value": null
+            },
+            {
+              "op": "remove",
+              "path": "/os015_typed_input/value/context/records/target_b/projection/issue_closed"
+            }
+          ],
+          "expected_whole_patch": [
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_typed_input",
+              "value": {
+                "state": "Present",
+                "value": {
+                  "phase": "inspect",
+                  "records": {
+                    "target_a": {
+                      "source": {
+                        "target_id": "north/api~v2",
+                        "target_revision": "v7",
+                        "target_digest": "material:north/api~v2",
+                        "scope": "scope:release/north~blue",
+                        "source_id": "source:north/api~v2",
+                        "source_revision": "s7",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                        "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_a",
+                        "l1_revision": "SYNTHETIC-L1_REVISION-target_a",
+                        "requirement_revision": "rq7",
+                        "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_a",
+                        "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_a",
+                        "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_a",
+                        "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_a",
+                        "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_a",
+                        "decision_ref": "SYNTHETIC-DECISION_REF-target_a",
+                        "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_a",
+                        "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_a"
+                      },
+                      "original_event": {
+                        "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                        "event_revision": "EVENT-r1",
+                        "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+                        "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                        "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+                        "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+                      },
+                      "original_classification": null,
+                      "new_classification": null,
+                      "history": [],
+                      "unresolved_history": [
+                        "UNRESOLVED-target_a"
+                      ],
+                      "authority_origin": "canonical_source",
+                      "authority_state": "current_material",
+                      "current_material_claim": false,
+                      "generated_claims": {
+                        "requirement_meaning": false,
+                        "human_decision": false,
+                        "implementation_permission": false
+                      },
+                      "projection": {
+                        "issue_closed": false,
+                        "pr_merged": false,
+                        "ci_green": false,
+                        "memory_summary": "DISPLAY-ONLY"
+                      }
+                    },
+                    "target_b": {
+                      "source": {
+                        "target_id": "SYNTHETIC-TARGET_ID-target_b",
+                        "target_revision": "SYNTHETIC-TARGET_REVISION-target_b",
+                        "target_digest": "SYNTHETIC-TARGET_DIGEST-target_b",
+                        "scope": "SYNTHETIC-SCOPE-target_b",
+                        "source_id": "SYNTHETIC-SOURCE_ID-target_b",
+                        "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                        "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_b",
+                        "l1_revision": "SYNTHETIC-L1_REVISION-target_b",
+                        "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_b",
+                        "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_b",
+                        "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_b",
+                        "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_b",
+                        "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_b",
+                        "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_b",
+                        "decision_ref": "SYNTHETIC-DECISION_REF-target_b",
+                        "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_b",
+                        "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_b"
+                      },
+                      "original_event": {
+                        "event_id": "SYNTHETIC-EVENT_ID-target_b",
+                        "event_revision": "EVENT-r1",
+                        "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+                        "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                        "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+                        "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+                      },
+                      "original_classification": null,
+                      "new_classification": null,
+                      "history": [],
+                      "unresolved_history": [
+                        "UNRESOLVED-target_b"
+                      ],
+                      "authority_origin": "canonical_source",
+                      "authority_state": "current_material",
+                      "current_material_claim": false,
+                      "generated_claims": {
+                        "requirement_meaning": false,
+                        "human_decision": false,
+                        "implementation_permission": false
+                      },
+                      "projection": {
+                        "issue_closed": false,
+                        "pr_merged": false,
+                        "ci_green": false,
+                        "memory_summary": "DISPLAY-ONLY"
+                      }
+                    }
+                  },
+                  "whole_registry_claim": false,
+                  "context": {
+                    "records": {
+                      "target_a": {
+                        "source": {
+                          "target_id": "SYNTHETIC-TARGET_ID-target_a",
+                          "target_revision": "SYNTHETIC-TARGET_REVISION-target_a",
+                          "target_digest": "SYNTHETIC-TARGET_DIGEST-target_a",
+                          "scope": "SYNTHETIC-SCOPE-target_a",
+                          "source_id": "SYNTHETIC-SOURCE_ID-target_a",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                          "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_a",
+                          "l1_revision": "SYNTHETIC-L1_REVISION-target_a",
+                          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_a",
+                          "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_a",
+                          "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_a",
+                          "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_a",
+                          "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_a",
+                          "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_a",
+                          "decision_ref": "SYNTHETIC-DECISION_REF-target_a",
+                          "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_a",
+                          "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_a"
+                        },
+                        "original_event": {
+                          "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                          "event_revision": "EVENT-r1",
+                          "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                          "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+                          "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+                        },
+                        "original_classification": null,
+                        "new_classification": null,
+                        "history": [],
+                        "unresolved_history": [
+                          "UNRESOLVED-target_a"
+                        ],
+                        "authority_origin": "canonical_source",
+                        "authority_state": "current_material",
+                        "current_material_claim": false,
+                        "generated_claims": {
+                          "requirement_meaning": false,
+                          "human_decision": false,
+                          "implementation_permission": false
+                        },
+                        "projection": {
+                          "issue_closed": false,
+                          "pr_merged": false,
+                          "ci_green": false,
+                          "memory_summary": "DISPLAY-ONLY"
+                        }
+                      },
+                      "target_b": {
+                        "source": {
+                          "target_id": "SYNTHETIC-TARGET_ID-target_b",
+                          "target_revision": "SYNTHETIC-TARGET_REVISION-target_b",
+                          "target_digest": "SYNTHETIC-TARGET_DIGEST-target_b",
+                          "scope": "SYNTHETIC-SCOPE-target_b",
+                          "source_id": "SYNTHETIC-SOURCE_ID-target_b",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                          "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_b",
+                          "l1_revision": "SYNTHETIC-L1_REVISION-target_b",
+                          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_b",
+                          "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_b",
+                          "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_b",
+                          "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_b",
+                          "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_b",
+                          "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_b",
+                          "decision_ref": "SYNTHETIC-DECISION_REF-target_b",
+                          "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_b",
+                          "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_b"
+                        },
+                        "original_event": {
+                          "event_id": "SYNTHETIC-EVENT_ID-target_b",
+                          "event_revision": "EVENT-r1",
+                          "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                          "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+                          "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+                        },
+                        "original_classification": null,
+                        "new_classification": null,
+                        "history": [],
+                        "unresolved_history": [
+                          "UNRESOLVED-target_b"
+                        ],
+                        "authority_origin": "canonical_source",
+                        "authority_state": "current_material",
+                        "current_material_claim": false,
+                        "generated_claims": {
+                          "requirement_meaning": false,
+                          "human_decision": false,
+                          "implementation_permission": false
+                        },
+                        "projection": {
+                          "issue_closed": false,
+                          "pr_merged": false,
+                          "ci_green": false,
+                          "memory_summary": "DISPLAY-ONLY"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_raw_input/value/context/records/target_b/projection/issue_closed",
+              "value": null
+            },
+            {
+              "op": "remove",
+              "path": "/original_materials/os015_typed_input/value/context/records/target_b/projection/issue_closed"
+            }
+          ],
+          "input_canonical_sha256": "a21aed4bcf33f8ff2412b9a52a874ad608195a81368d8c6090157aafd41f1c71",
+          "expected_whole_canonical_sha256": "7172fea5bad15b2eac065fc0e24ad13726dd712a53e92c196b171bf31eb6278d",
+          "input_origin": {
+            "legacy_l8_case_id": "ORIGIN-SEVEN-AXES-MATCH",
+            "legacy_l8_input_pointer": "/os015_origin_caller_verification/cases/0/input",
+            "legacy_l8_input_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+            "reconstruction_base_pointer": "/os015_origin_caller_verification/cases/0/input",
+            "input_recipe_history_locator": "scaffold/review-handoff/local/a02-origin-unfrozen-input-only/input-recipes.json#/recipes/54",
+            "input_recipe_history_role": "local recipeは著述履歴の識別にのみ使う。再構成はtracked L8 input baseと、この行のRFC 6902 patchで行う。",
+            "recipe_operations": [
+              {
+                "op": "replace",
+                "path": "/os015_raw_input/value/context/records/target_b/projection/issue_closed",
+                "value": null
+              },
+              {
+                "op": "remove",
+                "path": "/os015_typed_input/value/context/records/target_b/projection/issue_closed"
+              }
+            ],
+            "reconstruction_uses": [
+              "/os015_origin_caller_verification/cases/0/input",
+              "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/26/input_patch"
+            ]
+          },
+          "expected_basis": {
+            "l5_closed_type_pointers": [
+              "/logical_types/32",
+              "/logical_types/33",
+              "/logical_types/34",
+              "/logical_types/35",
+              "/logical_types/59",
+              "/logical_types/66",
+              "/logical_types/69",
+              "/logical_types/71",
+              "/logical_types/72",
+              "/logical_types/73",
+              "/logical_types/76",
+              "/logical_types/77",
+              "/logical_types/78",
+              "/logical_types/79",
+              "/logical_types/80"
+            ],
+            "legacy_l8_expected_whole_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+            "legacy_l8_expected_whole_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+            "expected_base_reconstruction_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+            "source_derived_whole_sha256": "7172fea5bad15b2eac065fc0e24ad13726dd712a53e92c196b171bf31eb6278d",
+            "whole_freeze_case_id": "U29B-RAW-NULL-TYPED-MEMBER-MISSING-JSONVALUE",
+            "scope": "Boundかつpair not-readyの局所分岐。raw/typed不一致または片側Absentに基づくNotProduced wholeであり、Unbound returnを根拠にしない。",
+            "l4_bound_not_ready_requirement_pointers": [
+              "/os015_origin_call_contract/input_port/dispatch_precedence/1/when_bound_and_pair_not_ready",
+              "/os015_origin_call_contract/input_port/raw_typed_pair_rule/not_ready",
+              "/os015_origin_call_contract/projection/not_produced_with_bound_locator",
+              "/os015_origin_call_contract/local_project_axes/capture_roots",
+              "/os015_origin_call_contract/local_project_axes/comparison",
+              "/os015_origin_call_contract/return_port"
+            ],
+            "l4_source_file_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+            "l4_source_file_sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
+            "whole_freeze_source_path": "scaffold/review-handoff/local/a02-origin-bound-pair-not-ready-whole-r1/expected-freeze-r1.json",
+            "whole_freeze_file_sha256": "5b3c6c45e74940281065a4650f84eb91173046f943f9189472e1cd86d6fe4570",
+            "whole_freeze_case_pointer": "/whole_construction/cases/5",
+            "whole_freeze_case_canonical_sha256": "94ddc165f8b08064223e0e3ba538104cfe8c9bae95d0c524c1fa612db105a028",
+            "whole_freeze_digest_role": "caseオブジェクトだけのcanonical SHA-256。凍結whole出典の追跡用であり、候補の再構成依存ではない。再構成はL8内base pointerとinline RFC 6902 patchから行う。"
+          }
+        },
+        {
+          "case_id": "U30-ARRAY-ORDER-DIFF",
+          "input_patch": [
+            {
+              "op": "replace",
+              "path": "/os015_raw_input/value/records/target_a/unresolved_history",
+              "value": [
+                "first",
+                "second"
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/os015_typed_input/value/records/target_a/unresolved_history",
+              "value": [
+                "second",
+                "first"
+              ]
+            }
+          ],
+          "expected_whole_patch": [
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_typed_input",
+              "value": {
+                "state": "Present",
+                "value": {
+                  "phase": "inspect",
+                  "records": {
+                    "target_a": {
+                      "source": {
+                        "target_id": "north/api~v2",
+                        "target_revision": "v7",
+                        "target_digest": "material:north/api~v2",
+                        "scope": "scope:release/north~blue",
+                        "source_id": "source:north/api~v2",
+                        "source_revision": "s7",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                        "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_a",
+                        "l1_revision": "SYNTHETIC-L1_REVISION-target_a",
+                        "requirement_revision": "rq7",
+                        "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_a",
+                        "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_a",
+                        "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_a",
+                        "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_a",
+                        "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_a",
+                        "decision_ref": "SYNTHETIC-DECISION_REF-target_a",
+                        "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_a",
+                        "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_a"
+                      },
+                      "original_event": {
+                        "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                        "event_revision": "EVENT-r1",
+                        "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+                        "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                        "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+                        "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+                      },
+                      "original_classification": null,
+                      "new_classification": null,
+                      "history": [],
+                      "unresolved_history": [
+                        "UNRESOLVED-target_a"
+                      ],
+                      "authority_origin": "canonical_source",
+                      "authority_state": "current_material",
+                      "current_material_claim": false,
+                      "generated_claims": {
+                        "requirement_meaning": false,
+                        "human_decision": false,
+                        "implementation_permission": false
+                      },
+                      "projection": {
+                        "issue_closed": false,
+                        "pr_merged": false,
+                        "ci_green": false,
+                        "memory_summary": "DISPLAY-ONLY"
+                      }
+                    },
+                    "target_b": {
+                      "source": {
+                        "target_id": "SYNTHETIC-TARGET_ID-target_b",
+                        "target_revision": "SYNTHETIC-TARGET_REVISION-target_b",
+                        "target_digest": "SYNTHETIC-TARGET_DIGEST-target_b",
+                        "scope": "SYNTHETIC-SCOPE-target_b",
+                        "source_id": "SYNTHETIC-SOURCE_ID-target_b",
+                        "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                        "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_b",
+                        "l1_revision": "SYNTHETIC-L1_REVISION-target_b",
+                        "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_b",
+                        "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_b",
+                        "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_b",
+                        "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_b",
+                        "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_b",
+                        "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_b",
+                        "decision_ref": "SYNTHETIC-DECISION_REF-target_b",
+                        "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_b",
+                        "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_b"
+                      },
+                      "original_event": {
+                        "event_id": "SYNTHETIC-EVENT_ID-target_b",
+                        "event_revision": "EVENT-r1",
+                        "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+                        "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                        "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                        "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                        "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                        "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+                        "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+                      },
+                      "original_classification": null,
+                      "new_classification": null,
+                      "history": [],
+                      "unresolved_history": [
+                        "UNRESOLVED-target_b"
+                      ],
+                      "authority_origin": "canonical_source",
+                      "authority_state": "current_material",
+                      "current_material_claim": false,
+                      "generated_claims": {
+                        "requirement_meaning": false,
+                        "human_decision": false,
+                        "implementation_permission": false
+                      },
+                      "projection": {
+                        "issue_closed": false,
+                        "pr_merged": false,
+                        "ci_green": false,
+                        "memory_summary": "DISPLAY-ONLY"
+                      }
+                    }
+                  },
+                  "whole_registry_claim": false,
+                  "context": {
+                    "records": {
+                      "target_a": {
+                        "source": {
+                          "target_id": "SYNTHETIC-TARGET_ID-target_a",
+                          "target_revision": "SYNTHETIC-TARGET_REVISION-target_a",
+                          "target_digest": "SYNTHETIC-TARGET_DIGEST-target_a",
+                          "scope": "SYNTHETIC-SCOPE-target_a",
+                          "source_id": "SYNTHETIC-SOURCE_ID-target_a",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                          "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_a",
+                          "l1_revision": "SYNTHETIC-L1_REVISION-target_a",
+                          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_a",
+                          "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_a",
+                          "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_a",
+                          "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_a",
+                          "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_a",
+                          "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_a",
+                          "decision_ref": "SYNTHETIC-DECISION_REF-target_a",
+                          "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_a",
+                          "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_a"
+                        },
+                        "original_event": {
+                          "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                          "event_revision": "EVENT-r1",
+                          "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                          "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+                          "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+                        },
+                        "original_classification": null,
+                        "new_classification": null,
+                        "history": [],
+                        "unresolved_history": [
+                          "UNRESOLVED-target_a"
+                        ],
+                        "authority_origin": "canonical_source",
+                        "authority_state": "current_material",
+                        "current_material_claim": false,
+                        "generated_claims": {
+                          "requirement_meaning": false,
+                          "human_decision": false,
+                          "implementation_permission": false
+                        },
+                        "projection": {
+                          "issue_closed": false,
+                          "pr_merged": false,
+                          "ci_green": false,
+                          "memory_summary": "DISPLAY-ONLY"
+                        }
+                      },
+                      "target_b": {
+                        "source": {
+                          "target_id": "SYNTHETIC-TARGET_ID-target_b",
+                          "target_revision": "SYNTHETIC-TARGET_REVISION-target_b",
+                          "target_digest": "SYNTHETIC-TARGET_DIGEST-target_b",
+                          "scope": "SYNTHETIC-SCOPE-target_b",
+                          "source_id": "SYNTHETIC-SOURCE_ID-target_b",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                          "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_b",
+                          "l1_revision": "SYNTHETIC-L1_REVISION-target_b",
+                          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_b",
+                          "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_b",
+                          "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_b",
+                          "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_b",
+                          "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_b",
+                          "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_b",
+                          "decision_ref": "SYNTHETIC-DECISION_REF-target_b",
+                          "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_b",
+                          "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_b"
+                        },
+                        "original_event": {
+                          "event_id": "SYNTHETIC-EVENT_ID-target_b",
+                          "event_revision": "EVENT-r1",
+                          "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+                          "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                          "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                          "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                          "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                          "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+                          "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+                        },
+                        "original_classification": null,
+                        "new_classification": null,
+                        "history": [],
+                        "unresolved_history": [
+                          "UNRESOLVED-target_b"
+                        ],
+                        "authority_origin": "canonical_source",
+                        "authority_state": "current_material",
+                        "current_material_claim": false,
+                        "generated_claims": {
+                          "requirement_meaning": false,
+                          "human_decision": false,
+                          "implementation_permission": false
+                        },
+                        "projection": {
+                          "issue_closed": false,
+                          "pr_merged": false,
+                          "ci_green": false,
+                          "memory_summary": "DISPLAY-ONLY"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_raw_input/value/records/target_a/unresolved_history",
+              "value": [
+                "first",
+                "second"
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/original_materials/os015_typed_input/value/records/target_a/unresolved_history",
+              "value": [
+                "second",
+                "first"
+              ]
+            }
+          ],
+          "input_canonical_sha256": "8519cd73da924d96451dec28d85f54e5e4efc4c5f46dcbdff98bcbf511350f96",
+          "expected_whole_canonical_sha256": "422a79cb9784f1f03017c95e16d8dd57fe677f9fe4cbca0ee4cbeb765e901a7f",
+          "input_origin": {
+            "legacy_l8_case_id": "ORIGIN-SEVEN-AXES-MATCH",
+            "legacy_l8_input_pointer": "/os015_origin_caller_verification/cases/0/input",
+            "legacy_l8_input_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+            "reconstruction_base_pointer": "/os015_origin_caller_verification/cases/0/input",
+            "input_recipe_history_locator": "scaffold/review-handoff/local/a02-origin-unfrozen-input-only/input-recipes.json#/recipes/37",
+            "input_recipe_history_role": "local recipeは著述履歴の識別にのみ使う。再構成はtracked L8 input baseと、この行のRFC 6902 patchで行う。",
+            "recipe_operations": [
+              {
+                "op": "replace",
+                "path": "/os015_raw_input/value/records/target_a/unresolved_history",
+                "value": [
+                  "first",
+                  "second"
+                ]
+              },
+              {
+                "op": "replace",
+                "path": "/os015_typed_input/value/records/target_a/unresolved_history",
+                "value": [
+                  "second",
+                  "first"
+                ]
+              }
+            ],
+            "reconstruction_uses": [
+              "/os015_origin_caller_verification/cases/0/input",
+              "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/27/input_patch"
+            ]
+          },
+          "expected_basis": {
+            "l5_closed_type_pointers": [
+              "/logical_types/32",
+              "/logical_types/33",
+              "/logical_types/34",
+              "/logical_types/35",
+              "/logical_types/59",
+              "/logical_types/66",
+              "/logical_types/69",
+              "/logical_types/71",
+              "/logical_types/72",
+              "/logical_types/73",
+              "/logical_types/76",
+              "/logical_types/77",
+              "/logical_types/78",
+              "/logical_types/79",
+              "/logical_types/80"
+            ],
+            "legacy_l8_expected_whole_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+            "legacy_l8_expected_whole_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+            "expected_base_reconstruction_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+            "source_derived_whole_sha256": "422a79cb9784f1f03017c95e16d8dd57fe677f9fe4cbca0ee4cbeb765e901a7f",
+            "whole_freeze_case_id": "U30-ARRAY-ORDER-DIFF",
+            "scope": "Boundかつpair not-readyの局所分岐。raw/typed不一致または片側Absentに基づくNotProduced wholeであり、Unbound returnを根拠にしない。",
+            "l4_bound_not_ready_requirement_pointers": [
+              "/os015_origin_call_contract/input_port/dispatch_precedence/1/when_bound_and_pair_not_ready",
+              "/os015_origin_call_contract/input_port/raw_typed_pair_rule/not_ready",
+              "/os015_origin_call_contract/projection/not_produced_with_bound_locator",
+              "/os015_origin_call_contract/local_project_axes/capture_roots",
+              "/os015_origin_call_contract/local_project_axes/comparison",
+              "/os015_origin_call_contract/return_port"
+            ],
+            "l4_source_file_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+            "l4_source_file_sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
+            "whole_freeze_source_path": "scaffold/review-handoff/local/a02-origin-bound-pair-not-ready-whole-r1/expected-freeze-r1.json",
+            "whole_freeze_file_sha256": "5b3c6c45e74940281065a4650f84eb91173046f943f9189472e1cd86d6fe4570",
+            "whole_freeze_case_pointer": "/whole_construction/cases/6",
+            "whole_freeze_case_canonical_sha256": "f59cc45e808cab5d4a176ba6e9a270fba915ac0526b05dea565768026d9a7deb",
+            "whole_freeze_digest_role": "caseオブジェクトだけのcanonical SHA-256。凍結whole出典の追跡用であり、候補の再構成依存ではない。再構成はL8内base pointerとinline RFC 6902 patchから行う。"
+          }
         }
       ],
       "source_mapping": {
@@ -131481,8 +133124,8 @@
         "command": "python3 docs/governance/audits/source-rebaseline/source-snapshots/os016-origin-unbound-source-check.py --root <repository-or-worktree>",
         "entrypoint": "evaluate_os015_origin_call",
         "normative_source_sha256": "b1d1d386842f7cf54d57aebc04f107c502c1b52398d142d6ebf6a51b3952e6b8",
-        "scope": "L8共有baseと21件の標準RFC 6902 patchから各input/expectedを再構成し、宣言hashを確認する。固定L5 normative_program.source_codeをASTで静的検査した後、宣言された純粋関数を各inputへ適用し、21 wholeを型に敏感なcanonical bytesで照合し、inputの前後不変も確認する。",
-        "limits": "固定OS016 path・entrypoint・source hashに限定した監査script。汎用JSON runner、製品runtime、CI、実source/owner資格の成立は示さない。script自身のhashはformal pinにしない。"
+        "scope": "L8共有baseと21件の既存patch、およびL8の明示base参照を持つ7件のpatchから、計28件のinput/expectedを再構成し宣言hashを確認する。固定L5 normative_program.source_codeをASTで静的検査した後、宣言された純粋関数を各inputへ適用し、wholeを型に敏感なcanonical bytesで照合し、inputの前後不変も確認する。",
+        "limits": "固定OS016 path・entrypoint・source hashに限定した監査script。汎用JSON runner、製品runtime、CI、実source/owner資格の成立、残るA02条件の完了は示さない。script自身のhashはformal pinにしない。"
       },
       "not_claimed": [
         "DeclaredNotProducedのactual targets map各段の未固定例",
