@@ -31526,7 +31526,7 @@
     "L9_plan": {
       "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
       "pointer": "/os015_origin_connection_verification_plan",
-      "file_sha256": "49956fcfec5acf2be790bbc144143fb48060adc1cde8f6707884952871c52623"
+      "file_sha256": "d3dfdf359ddb37be881043c7bd66a7ff6c0d0d09a52679d09e65c699db8323c0"
     },
     "call_contract": "各case.inputは完全InputEnvelope。evaluate_os015_origin_callへ唯一引数として渡し、全PrivateReturn7rootを返してからexpected_wholeと型/presence sensitive canonical whole SHAで比較する。期待は関数operandにしない。",
     "literal_storage": "15input/expected_wholeを一度だけ完全literal JSON値で収載。展開/marker/patch/外部localファイル/追加DSLは不要。raw payload内のmarker似keyも原JSONとして読む。",
@@ -122393,7 +122393,8 @@
     "scope_limits": [
       "今回の15局所対照だけ。旧385+追加期待全再実行は主張しない。",
       "製品runtime/CI/実source資格/配送/受入は成立させない。",
-      "全A02/13axis供給/92親430義務完了へ外挿しない。"
+      "全A02/13axis供給/92親430義務完了へ外挿しない。",
+      "L9 case_planの未固定条件は未完。frozen_case_idsに対応した限定対照だけを照合し、計画全条件の検証済みを主張しない。"
     ]
   }
 }

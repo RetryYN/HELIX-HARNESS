@@ -402100,77 +402100,209 @@
       {
         "id": "ORIGIN-NOT-SELECTED",
         "control": "origin NotSelected",
-        "conditions": "同じ0/1 targets呼出しの原SourceBoundTraceを保持し、origin未供給を新失敗にしない。"
+        "conditions": "同じ0/1 targets呼出しの原SourceBoundTraceを保持し、origin未供給を新失敗にしない。",
+        "frozen_case_ids": [
+          "ORIGIN-NOT-SELECTED"
+        ],
+        "frozen_scope": "targets実引数1件のNotSelected全返却。",
+        "unfrozen_conditions": [
+          "targets実引数0件の全返却期待。0/1同callee・arityの局所spyは別検証であり凍結wholeに算入しない。"
+        ],
+        "coverage_status": "partially_frozen",
+        "selection_reason": "今回の限定caller接続では上記代表対照だけを先固定した。残条件の要否・独立oracle固定・照合は同計画の未完として保持し、今回の15whole一致を残条件の検証済みへ広げない。"
       },
       {
         "id": "ORIGIN-SEVEN-AXES-MATCH",
         "control": "一件をProducedとして5node軸/2project軸同値",
-        "conditions": "原ProjectTarget/actual/context/他node/旧各facetと保持資料を維持し、origin双方Captureと対応結果を返す。"
+        "conditions": "原ProjectTarget/actual/context/他node/旧各facetと保持資料を維持し、origin双方Captureと対応結果を返す。",
+        "frozen_case_ids": [
+          "ORIGIN-SEVEN-AXES-MATCH"
+        ],
+        "frozen_scope": "同IDの原inputと7root全返却を固定。",
+        "unfrozen_conditions": [],
+        "coverage_status": "frozen_for_stated_control"
       },
       {
         "id": "ORIGIN-FIVE-AXIS-LOCAL-DIFF",
         "control": "origin5軸の一値だけを独立に変える",
-        "conditions": "R12がeffective target対actual/context差を既存codeへ返し、独立actual/context比較を保つ。kind/他nodeへ値をコピーしない。"
+        "conditions": "R12がeffective target対actual/context差を既存codeへ返し、独立actual/context比較を保つ。kind/他nodeへ値をコピーしない。",
+        "frozen_case_ids": [
+          "ORIGIN-FIVE-AXIS-PROJECTION-DIFF"
+        ],
+        "frozen_scope": "source_idだけの相違を5軸投影からsource_ref差として識別。",
+        "unfrozen_conditions": [
+          "target_id、target_revision、target_digest、source_revisionの各個別相違。"
+        ],
+        "coverage_status": "partially_frozen",
+        "selection_reason": "今回の限定caller接続では上記代表対照だけを先固定した。残条件の要否・独立oracle固定・照合は同計画の未完として保持し、今回の15whole一致を残条件の検証済みへ広げない。"
       },
       {
         "id": "ORIGIN-TWO-AXIS-LOCAL-CONFLICT",
         "control": "同project二nodeの片方origin scopeとreqrevだけ共に既知相反",
-        "conditions": "ProjectTarget/他nodeを不変、当該sourceだけviolation。A03の13/11軸材料一致とorigin相反の併存を識別。Finding一件へdedupしてもaxis_observationsに2原因と両原値を残す。"
+        "conditions": "ProjectTarget/他nodeを不変、当該sourceだけviolation。A03の13/11軸材料一致とorigin相反の併存を識別。Finding一件へdedupしてもaxis_observationsに2原因と両原値を残す。",
+        "frozen_case_ids": [
+          "ORIGIN-TWO-AXIS-LOCAL-CONFLICT"
+        ],
+        "frozen_scope": "同IDの原inputと7root全返却を固定。",
+        "unfrozen_conditions": [],
+        "coverage_status": "frozen_for_stated_control"
       },
       {
         "id": "ORIGIN-AXIS-UNKNOWN",
         "control": "Produced sourceの対象値null/空/型外、又は原ProjectTarget当該値欠落を局所対照として選ぶ",
-        "conditions": "null/Absent/BlockedのCapture区別を保持して既存unknownへ。missing inputをsourceから補わない。必要な最小対照のみ検証設計で選定する。"
+        "conditions": "null/Absent/BlockedのCapture区別を保持して既存unknownへ。missing inputをsourceから補わない。必要な最小対照のみ検証設計で選定する。",
+        "frozen_case_ids": [
+          "ORIGIN-PRODUCED-NULL",
+          "ORIGIN-LOCAL-AXIS-UNKNOWN"
+        ],
+        "frozen_scope": "Produced source_id=nullとProduced origin scope=nullの2局所対照。",
+        "unfrozen_conditions": [
+          "sourceの空文字・型外、origin requirement_revision=nullの個別対照、原ProjectTarget当該member欠落/null/空/型外、local軸CaptureのAbsent/Blocked対照。target_key側のAbsent/nullは別計画であり代替しない。"
+        ],
+        "coverage_status": "partially_frozen",
+        "selection_reason": "今回の限定caller接続では上記代表対照だけを先固定した。残条件の要否・独立oracle固定・照合は同計画の未完として保持し、今回の15whole一致を残条件の検証済みへ広げない。"
       },
       {
         "id": "ORIGIN-NOT-PRODUCED-BOUND",
         "control": "node locatorは実在しOS015 rawはあるがtyped producer未形成",
-        "conditions": "原caller5値が正常でもeffective5はAbsentでfallbackを識別。局所2unknown/原wire保持/OS015 finding未捏造/他node不変。"
+        "conditions": "原caller5値が正常でもeffective5はAbsentでfallbackを識別。局所2unknown/原wire保持/OS015 finding未捏造/他node不変。",
+        "frozen_case_ids": [
+          "ORIGIN-TYPED-ABSENT"
+        ],
+        "frozen_scope": "SelectedかつBoundでtyped Presence=Absent。",
+        "unfrozen_conditions": [
+          "typed PresentだがMaterialInput閉型を形成しない場合、raw Presence=Absentの場合。"
+        ],
+        "coverage_status": "partially_frozen",
+        "selection_reason": "今回の限定caller接続では上記代表対照だけを先固定した。残条件の要否・独立oracle固定・照合は同計画の未完として保持し、今回の15whole一致を残条件の検証済みへ広げない。"
       },
       {
         "id": "ORIGIN-LOCATOR-UNBOUND",
         "control": "明示選択のlocatorが不在又はpresent-invalid",
-        "conditions": "私有NotProducedで原selection Captureを保持。新node、全nodeunknown化、origin TraceResultを生成しない。"
+        "conditions": "私有NotProducedで原selection Captureを保持。新node、全nodeunknown化、origin TraceResultを生成しない。",
+        "frozen_case_ids": [
+          "ORIGIN-SELECTED-UNBOUND",
+          "ORIGIN-DECLARED-NOT-PRODUCED-UNBOUND"
+        ],
+        "frozen_scope": "Selectedのnode不在とSelectedButNotProducedのnode_key Present(null)。",
+        "unfrozen_conditions": [
+          "project key不在、targets引数Absent/null/非object、map途中とnode値のpresent-invalid、locator key非string（null以外）。"
+        ],
+        "coverage_status": "partially_frozen",
+        "selection_reason": "今回の限定caller接続では上記代表対照だけを先固定した。残条件の要否・独立oracle固定・照合は同計画の未完として保持し、今回の15whole一致を残条件の検証済みへ広げない。"
       },
       {
         "id": "ORIGIN-MISSING-ACTUAL-OR-CONTEXT",
         "control": "origin局所相反と独立actual/context欠落を併存",
-        "conditions": "既存R13のunknownとorigin source violationをrankで併存させ、存在側原資料と残8facet/他nodeを保持する。"
+        "conditions": "既存R13のunknownとorigin source violationをrankで併存させ、存在側原資料と残8facet/他nodeを保持する。",
+        "frozen_case_ids": [
+          "ORIGIN-MISSING-ACTUAL-WITH-ORIGIN-CONFLICT"
+        ],
+        "frozen_scope": "actual欠落とorigin scope/requirement_revisionの既知相反の併存。",
+        "unfrozen_conditions": [
+          "context欠落とorigin相反の併存。"
+        ],
+        "coverage_status": "partially_frozen",
+        "selection_reason": "今回の限定caller接続では上記代表対照だけを先固定した。残条件の要否・独立oracle固定・照合は同計画の未完として保持し、今回の15whole一致を残条件の検証済みへ広げない。"
       },
       {
         "id": "ORIGIN-POINTER-ESCAPE",
         "control": "実map keyに/と~を含む同association",
-        "conditions": "診断node-rootをRFC6901でescapeし、A03 node locatorと私有軸別Captureの同一call対応を確認する。"
+        "conditions": "診断node-rootをRFC6901でescapeし、A03 node locatorと私有軸別Captureの同一call対応を確認する。",
+        "frozen_case_ids": [
+          "ORIGIN-SEVEN-AXES-MATCH",
+          "ORIGIN-TWO-AXIS-LOCAL-CONFLICT",
+          "ORIGIN-FIVE-AXIS-PROJECTION-DIFF",
+          "ORIGIN-PRODUCED-NULL",
+          "ORIGIN-LOCAL-AXIS-UNKNOWN",
+          "ORIGIN-TYPED-ABSENT",
+          "ORIGIN-DECLARED-NOT-PRODUCED-BOUND",
+          "ORIGIN-RAW-TYPED-BOOLNUM-DIFF",
+          "ORIGIN-SELECTED-UNBOUND",
+          "ORIGIN-DECLARED-NOT-PRODUCED-UNBOUND",
+          "ORIGIN-MISSING-ACTUAL-WITH-ORIGIN-CONFLICT",
+          "ORIGIN-BOUND-TARGET-KEY-ABSENT",
+          "ORIGIN-BOUND-TARGET-KEY-NULL",
+          "ORIGIN-BOUND-TARGET-KEY-ARRAY"
+        ],
+        "frozen_scope": "既存Selected系の原project/node keyに/と~を含めて診断/Captureを全返却で固定。専用の別caseは作らない。",
+        "unfrozen_conditions": [],
+        "coverage_status": "frozen_for_stated_control"
       },
       {
         "id": "ORIGIN-DECLARED-NOT-PRODUCED-BOUND",
         "control": "SelectedButNotProducedで実locatorはBound、raw/typed双方Presentかつ全値対応する入力も併存させる。",
-        "conditions": "typed存在や同値からProducedへ再昇格せず、effective5軸Absent・局所2軸unknown・Compared operand_state=not_producedを返す。正常な原caller値へfallbackしない。"
+        "conditions": "typed存在や同値からProducedへ再昇格せず、effective5軸Absent・局所2軸unknown・Compared operand_state=not_producedを返す。正常な原caller値へfallbackしない。",
+        "frozen_case_ids": [
+          "ORIGIN-DECLARED-NOT-PRODUCED-BOUND"
+        ],
+        "frozen_scope": "同IDの原inputと7root全返却を固定。",
+        "unfrozen_conditions": [],
+        "coverage_status": "frozen_for_stated_control"
       },
       {
         "id": "ORIGIN-RAW-TYPED-WHOLE-MISMATCH",
         "control": "SelectedかつBound、raw/typed双方PresentだがMaterialInput内の一値だけ不一致。bool対number、member欠落対null、array順差を識別する対照を含む。",
-        "conditions": "単なる両方の存在やsource7軸一致でProducedにしない。全値対応不成立をNotProduced routeへ返し、原raw/typed双方と同call原因を保持する。JSON number1対1.0やobject key表示順だけの差は現等値規則に従い不一致へ変換しない。"
+        "conditions": "単なる両方の存在やsource7軸一致でProducedにしない。全値対応不成立をNotProduced routeへ返し、原raw/typed双方と同call原因を保持する。JSON number1対1.0やobject key表示順だけの差は現等値規則に従い不一致へ変換しない。",
+        "frozen_case_ids": [
+          "ORIGIN-RAW-TYPED-BOOLNUM-DIFF"
+        ],
+        "frozen_scope": "raw false/typed 0を/context/records/target_b/projection/issue_closedに置く1点。source7軸一致だけの判定を識別。",
+        "unfrozen_conditions": [
+          "raw/typed member欠落対null",
+          "raw/typed array要素順の相違",
+          "raw/typed JSON number 1対1.0の一致",
+          "raw/typed object key表示順だけの差の一致"
+        ],
+        "coverage_status": "partially_frozen",
+        "selection_reason": "今回の限定caller接続では上記代表対照だけを先固定した。残条件の要否・独立oracle固定・照合は同計画の未完として保持し、今回の15whole一致を残条件の検証済みへ広げない。"
       },
       {
         "id": "ORIGIN-DECLARED-NOT-PRODUCED-UNBOUND",
         "control": "SelectedButNotProducedでlocatorが未供給/null/非string又は原targetsのmissing/present-invalidによりUnbound。",
-        "conditions": "SelectedのUnboundと同じ閉じた共通返却、effective_targets=Absent/source_bound_trace=NotProducedを返す。選択variantと最初missing/invalid Captureを保持し、新nodeやorigin traceを作らない。"
+        "conditions": "SelectedのUnboundと同じ閉じた共通返却、effective_targets=Absent/source_bound_trace=NotProducedを返す。選択variantと最初missing/invalid Captureを保持し、新nodeやorigin traceを作らない。",
+        "frozen_case_ids": [
+          "ORIGIN-DECLARED-NOT-PRODUCED-UNBOUND"
+        ],
+        "frozen_scope": "locator node_keyがPresent(null)の共通Unbound返却。",
+        "unfrozen_conditions": [
+          "locator未供給、非string（null以外）、原targetsのmissing/present-invalid各段の対照。"
+        ],
+        "coverage_status": "partially_frozen",
+        "selection_reason": "今回の限定caller接続では上記代表対照だけを先固定した。残条件の要否・独立oracle固定・照合は同計画の未完として保持し、今回の15whole一致を残条件の検証済みへ広げない。"
       },
       {
         "id": "ORIGIN-BOUND-TARGET-KEY-ABSENT",
         "control": "SelectedButNotProducedかつproject/node locator Bound、原target_key Presence=Absent/requested_selectionのtarget key member無し",
-        "conditions": "原OS015 raw/typedとOS016 actual/context/原targets不変。再昇格せずeffective5Absent、2軸unknown。axis.originだけ/selection/target_keyのAbsent又はPresent原value Capture。公開SourceBoundTraceは既存DeclaredNotProducedBound全値を保持。"
+        "conditions": "原OS015 raw/typedとOS016 actual/context/原targets不変。再昇格せずeffective5Absent、2軸unknown。axis.originだけ/selection/target_keyのAbsent又はPresent原value Capture。公開SourceBoundTraceは既存DeclaredNotProducedBound全値を保持。",
+        "frozen_case_ids": [
+          "ORIGIN-BOUND-TARGET-KEY-ABSENT"
+        ],
+        "frozen_scope": "同IDの原inputと7root全返却を固定。",
+        "unfrozen_conditions": [],
+        "coverage_status": "frozen_for_stated_control"
       },
       {
         "id": "ORIGIN-BOUND-TARGET-KEY-NULL",
         "control": "SelectedButNotProducedかつproject/node locator Bound、原target_key Presence=Present(null)/requested_selectionにも実null",
-        "conditions": "原OS015 raw/typedとOS016 actual/context/原targets不変。再昇格せずeffective5Absent、2軸unknown。axis.originだけ/selection/target_keyのAbsent又はPresent原value Capture。公開SourceBoundTraceは既存DeclaredNotProducedBound全値を保持。"
+        "conditions": "原OS015 raw/typedとOS016 actual/context/原targets不変。再昇格せずeffective5Absent、2軸unknown。axis.originだけ/selection/target_keyのAbsent又はPresent原value Capture。公開SourceBoundTraceは既存DeclaredNotProducedBound全値を保持。",
+        "frozen_case_ids": [
+          "ORIGIN-BOUND-TARGET-KEY-NULL"
+        ],
+        "frozen_scope": "同IDの原inputと7root全返却を固定。",
+        "unfrozen_conditions": [],
+        "coverage_status": "frozen_for_stated_control"
       },
       {
         "id": "ORIGIN-BOUND-TARGET-KEY-ARRAY",
         "control": "SelectedButNotProducedかつproject/node locator Bound、原target_key Presence=Present(array)/requested_selectionにも同原配列",
-        "conditions": "原OS015 raw/typedとOS016 actual/context/原targets不変。再昇格せずeffective5Absent、2軸unknown。axis.originだけ/selection/target_keyのAbsent又はPresent原value Capture。公開SourceBoundTraceは既存DeclaredNotProducedBound全値を保持。"
+        "conditions": "原OS015 raw/typedとOS016 actual/context/原targets不変。再昇格せずeffective5Absent、2軸unknown。axis.originだけ/selection/target_keyのAbsent又はPresent原value Capture。公開SourceBoundTraceは既存DeclaredNotProducedBound全値を保持。",
+        "frozen_case_ids": [
+          "ORIGIN-BOUND-TARGET-KEY-ARRAY"
+        ],
+        "frozen_scope": "同IDの原inputと7root全返却を固定。",
+        "unfrozen_conditions": [],
+        "coverage_status": "frozen_for_stated_control"
       }
     ],
     "preservation": "既存cases356/domain_extension_cases29/source_candidate_return_verification.cases4の全値、fixture_inputs/fixture_contract/completion/既存全L4 rulesを不変。新case計画は既存件数に加算しない。",
@@ -402178,7 +402310,8 @@
       "全A02閉包",
       "任意provider接続",
       "実資格/実配送",
-      "92親430義務完了"
+      "92親430義務完了",
+      "case_planのunfrozen_conditionsに列挙した条件の凍結・検収。"
     ],
     "capture_source_view_binding": {
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
@@ -402308,7 +402441,7 @@
         "expected_whole_canonical_sha256": "f870c044373a16a1658d69b76b3ceeb0774e689604b9dbb113663a1b47651292"
       }
     ],
-    "freeze_scope": "全私有7root/SourceBoundTrace/axis Captureを独立先固定した15対照をL8へliteral一度収載。件数をgateにせず、現case_planの識別すべき局所枝に対応させる。旧caseは不変。",
+    "freeze_scope": "15literal wholeは各case_plan.frozen_case_ids/frozen_scopeの限定対照だけ。unfrozen_conditionsは同計画の未完として保持し、計画全条件の凍結・検収を主張しない。原計画の意味と既存の条件は変更しない。",
     "prior_plan_state": {
       "revision": "0027875ac0e1800f2bbdf018651f3e486c196b2c",
       "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
