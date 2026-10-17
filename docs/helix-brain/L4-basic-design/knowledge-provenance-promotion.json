@@ -218,5 +218,45 @@
     },
     "synthetic_only": true,
     "formal_schema_or_actual_execution": false
+  },
+  "private_source_return_contract": {
+    "id": "HELIXBRAIN-L4-007-F02-SOURCE-RETURN",
+    "requirement_ref": "HELIXBRAIN-L3-007-F02",
+    "system_oracle_ref": "HELIXBRAIN-L10-007-F02",
+    "oracle_ref": "HELIXBRAIN-L9-007-F02",
+    "basis_contract": {
+      "pointer": "/contracts/1",
+      "object_canonical_sha256": "b7fefc0944a43040f3ea87b5d2ab56560e28f0702c7672ccf8b58c68ec7ab176"
+    },
+    "purpose": "経路tokenだけでは区別できない原上流target/ownerを、同じ対象知識へのsource宣言として原値付きで返す。上流の意味を変更せず返却候補の情報欠落を補う。",
+    "input_ports": {
+      "packet": "既存F02Inputを変更せず受ける。",
+      "upstream_material": "RawPresence。既存のBRAIN変更手続きの呼出元が保有する一件の原宣言を独立に供給する論理port。falseではAbsentでよい。"
+    },
+    "source_record": {
+      "knowledge_subject": "原packet.original_records.proposal.subject全値と照合する知識対象。",
+      "upstream_target": "別の上流意味のidentity/revision/scope/owner/source_ref。知識subjectと同じidentity/revisionだとは仮定しない。",
+      "additional_members": "原source wholeに保持。無断の正規化・削除なし。"
+    },
+    "consumer": "既存のBRAIN変更手続きの呼出元がnative全段階結果と私有返却候補を受ける。意味変更時は原target/owner/sourceを保持して既存の上流返却経路へ渡す素材とする。実recipient選択・本人性・配送をこの純関数から発行しない。",
+    "behavior": [
+      "同一packetの既存F02結果を一度受け取り全値保持する。",
+      "意味変更falseは追加資料を解釈せず既存BRAIN routeを保持。",
+      "trueは原sourceのknowledge_subjectを同じ原知識へ全値対応させ、原targetの五項目を独立して保持する。",
+      "対象の相反・不足やtarget不完備は局所pointerを返す。別のstage結果/claim/effectを消さない。候補を作れる場合も実権限・昇格は発生しない。"
+    ],
+    "private_entrypoint": {
+      "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
+      "pointer": "/private_upstream_return/function",
+      "symbol": "compose_f02_upstream_return"
+    },
+    "scope_limits": [
+      "既存F02Input、F02ReturnFixtureShape、5段階の計算記述と各原whole期待は維持する。追加するのは一件の原上流資料を受ける私有の論理接続と全返却writer。",
+      "原上流資料の選択元・適用資格・source_ref本文/digest・複数target集合の選択/一意性・実配送/ACKは確定しない。一件の資料から全対象を列挙したとはしない。",
+      "候補ownerは原資料が宣言した値。段階owner、folder、IDの命名、空の成功結果から生成しない。資料不足でもnative結果を消さず、技術差分の新しい人間gateを加えない。",
+      "本体92親430義務の意味閉包、実装Ready、製品Red/Green、CI、実物受入の成立は示さない。"
+    ],
+    "authority_effect": "none",
+    "operation_effect": "none"
   }
 }

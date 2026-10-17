@@ -4738,7 +4738,7 @@
     "資格、独立性の実証、正式schema/codec、owner-qualified binding、実採否、実promotionは未成立。",
     "固定rawで表れない型不正、重複記録、複数異常同時発生、任意のAbsent/null組合せは未評価。",
     "L5/L8の静的比較はL6関数設計/L7関数検証、TDD、runtime、CI、L11実受入を成立させない。",
-    "F02はL10の「不足段階と対象revisionを保持し、既存の変更/検証経路へ返す」に対し、stage_resultsとupstream_routeで原値・不足・経路候補を返す。L3/L4のうち上流意味変更時に該当する上流ownerを特定する部分は入力・返却fieldがなく未具体化。一般的な経路表示をowner特定の代用にしない。",
+    "従来F02Input/F02ReturnFixtureShapeは上流route tokenのみを保持する。その既存型・計算は変更せず、private_upstream_returnが一件の原sourceと知識対象の対応・原target/owner候補を別返却する。source選択・複数target集合・実owner資格・配送は未成立。",
     "B01のL4/L10責務別返却候補は返却fieldがなく未具体化。owner_resultsの内容比較とproduct_content_resultの製品分離表示を、責務別返却候補の代用にしない。"
   ],
   "readiness": {
@@ -4759,9 +4759,10 @@
       "design_contract_ref": "HELIXBRAIN-L4-007-F02",
       "source_path": "docs/helix-brain/L4-basic-design/knowledge-provenance-promotion.json#/contracts/1/output_meanings/1",
       "meaning": "上流意味変更時の該当上流ownerの特定",
-      "boundary": "L10 F02のfailure_observationは「不足段階と対象revisionを保持し、既存の変更/検証経路へ返す」。この既存経路への振分けはupstream_route_ruleが実現する。L3 obligationとL4 output_meanings/content_comparisonにある、上流意味変更時の該当上流ownerの特定は入力・返却fieldがなく未具体化。",
-      "status": "unclosed_in_this_L9_output_contract",
-      "not_claimed": "upstream_routeは既存経路の候補表示であり、該当する上流ownerのidentityや資格を特定したものではない。"
+      "boundary": "従来F02Input/F02ReturnFixtureShapeは上流route tokenのみを保持する。その既存型・計算は変更せず、private_upstream_returnが一件の原sourceと知識対象の対応・原target/owner候補を別返却する。source選択・複数target集合・実owner資格・配送は未成立。",
+      "status": "private_logical_source_return_defined_actual_source_owner_binding_unclosed",
+      "not_claimed": "原source宣言の私有候補は定義したが、実owner資格、原資料の選択・全target集合、source本文/digest、実配送/ACKは未成立。既存native route tokenだけからownerを生成しない。",
+      "current_private_contract": "docs/helix-brain/L4-basic-design/knowledge-provenance-promotion.json#/private_source_return_contract"
     },
     {
       "requirement_ref": "HELIXBRAIN-L3-007-B01",
@@ -4773,5 +4774,175 @@
       "status": "unclosed_in_this_L9_output_contract",
       "not_claimed": "owner別の返却候補はこのL5/L8 pairから生成も資格認定もされない。"
     }
-  ]
+  ],
+  "private_upstream_return": {
+    "requirement_ref": "HELIXBRAIN-L3-007-F02",
+    "system_oracle_ref": "HELIXBRAIN-L10-007-F02",
+    "current_l4_binding": {
+      "path": "docs/helix-brain/L4-basic-design/knowledge-provenance-promotion.json",
+      "file_sha256": "d9f41a778b0afdeb267cf66624f72dfa447f5772ea73978daeeece6a99b7b678",
+      "pointer": "/private_source_return_contract",
+      "object_canonical_sha256": "d17c567519c50813b51f596c49c7c664a85b6f983094329d2b5f54f5e8597adc"
+    },
+    "types": {
+      "JsonValue": {
+        "meaning": "JSONのnull/boolean/number/string/array/object。型、配列順、member有無を保持。"
+      },
+      "RawPresence": {
+        "closed_variants": [
+          {
+            "tag": "absent"
+          },
+          {
+            "tag": "supplied",
+            "raw": "JsonValue"
+          }
+        ],
+        "meaning": "supplied(null)とAbsentは別。source rawの追加/空keyも元wholeに保持。"
+      },
+      "SourceReturnArguments": {
+        "closed_fields": {
+          "packet": "F02Input",
+          "upstream_material": "RawPresence"
+        }
+      },
+      "SubjectCorrespondence": {
+        "closed_fields": {
+          "expected": "既存F02Input.original_records.proposal.subjectの型",
+          "observed": "RawPresence | null",
+          "comparison": [
+            "not_applicable",
+            "missing",
+            "content_conflict",
+            "content_corresponding_in_fixture"
+          ]
+        }
+      },
+      "UpstreamTargetObservations": {
+        "closed_fields": {
+          "identity": "RawPresence",
+          "revision": "RawPresence",
+          "scope": "RawPresence",
+          "owner": "RawPresence",
+          "source_ref": "RawPresence"
+        }
+      },
+      "DeclaredUpstreamCandidate": {
+        "closed_fields": {
+          "identity": "非空string",
+          "revision": "非空string",
+          "scope": "null以外のJsonValue",
+          "owner": "非空string",
+          "source_ref": "null以外のJsonValue"
+        },
+        "meaning": "宣言の構造値を保持する私有候補。scope/source_ref内部の意味・本文・digest・資格を保証しない。"
+      },
+      "UpstreamReturn": {
+        "closed_fields": {
+          "route": "既存F02ReturnFixtureShape.upstream_routeの型",
+          "target_material": "RawPresence | null",
+          "member_observations": "UpstreamTargetObservations | null",
+          "unresolved_pointers": "RFC6901 pointerの順序付きlist",
+          "candidate": "DeclaredUpstreamCandidate | null",
+          "actual_dispatch": false,
+          "owner_qualification": "not_evaluated"
+        }
+      },
+      "Invocation": {
+        "closed_fields": {
+          "native_calls": 1
+        },
+        "meaning": "設計上の一回の呼出し義務で、実測値ではない。"
+      },
+      "SourceReturnResult": {
+        "closed_fields": {
+          "native_input": "F02Input",
+          "native_result": "F02ReturnFixtureShape",
+          "upstream_material": "RawPresence",
+          "subject_correspondence": "SubjectCorrespondence",
+          "upstream_return": "UpstreamReturn",
+          "invocation": "Invocation"
+        }
+      }
+    },
+    "function": {
+      "id": "BRAIN007-F02-SOURCE-RETURN",
+      "symbol": "compose_f02_upstream_return",
+      "signature": "compose_f02_upstream_return(packet: F02Input, upstream_material: RawPresence) -> SourceReturnResult",
+      "argument_type": "SourceReturnArguments",
+      "output_type": "SourceReturnResult",
+      "native_function_ref": "BRAIN007-F02",
+      "native_dependency_bindings": [
+        {
+          "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
+          "pointer": "/logical_type_system/types/F02Input",
+          "object_canonical_sha256": "cbbcec923c65f02ba02965920ac9613340147bdc91bd5446a59aaac381a3d22f",
+          "binding_kind": "same_document_current_object"
+        },
+        {
+          "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
+          "pointer": "/logical_type_system/types/F02ReturnFixtureShape",
+          "object_canonical_sha256": "c8c49a154554549e1e3a902921c1e09480e29b90399261d8aa8e1a28849968fd",
+          "binding_kind": "same_document_current_object"
+        },
+        {
+          "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
+          "pointer": "/pure_calculation_program/functions/BRAIN007-F02",
+          "object_canonical_sha256": "9bf9fe0c887bd124f7a25ade4478071938122a41797def6db35b974bec875107",
+          "binding_kind": "same_document_current_object"
+        },
+        {
+          "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
+          "pointer": "/pure_calculation_program/comparison",
+          "object_canonical_sha256": "219e0be69153dd23cd25399ea433baffe0fcbdd962b4eff6c4137f3cc261ed2c",
+          "binding_kind": "same_document_current_object"
+        }
+      ],
+      "field_writers": {
+        "native_input": "invocationの既存F02入力packetを全値そのままcopy。",
+        "native_result": "既存BRAIN007-F02を一度呼び、そのnative F02Return全値を変更せずcopy。stage/claim/effect/Q/route全memberを保持。",
+        "upstream_material": "呼出し引数RawPresence全値を保持。",
+        "subject_correspondence": {
+          "expected": "native_input.original_records.proposal.subject全値",
+          "observed": "true branchでraw objectからknowledge_subjectを読みPresenceとして保持。親で読めなければAbsent。false branchはnull。",
+          "comparison": "false→not_applicable。true: source field Absent/null→missing、JSON型敏感whole equality→content_corresponding_in_fixture、その他の supplied value→content_conflict。"
+        },
+        "upstream_return": {
+          "route": "native_result.upstream_route",
+          "target_material": "true branchでraw objectのupstream_targetをPresenceで保持。source root/target parentが読めなければAbsent。false branchはnull。",
+          "member_observations": "true branchでupstream_targetがobjectのときだけ5 memberをfixed orderでPresence capture。その他null。",
+          "unresolved_pointers": "source-read-rulesのparent/member規則と順序で生成。",
+          "candidate": "subject correspondenceが一致しtargetがobject、identity/revision/ownerが非空string、scope/source_refがsuppliedかつraw!=nullのときだけ5原値をcopy。それ以外null。",
+          "actual_dispatch": "false定数",
+          "owner_qualification": "not_evaluated定数"
+        },
+        "invocation": {
+          "native_calls": "同一packetでnative F02を一度呼ぶ記録値。"
+        }
+      },
+      "pure_algorithm": [
+        "同一packetの既存BRAIN007-F02を一回呼び、native_inputへ元packet、native_resultへ全返却、upstream_materialへ元Presenceを全値copyする。nativeのstage/claim/不足/独立性/route/effects/Qを編集しない。",
+        "subject_correspondence.expectedはpacket.original_records.proposal.subject全値。upstream_return.routeはnative_result.upstream_route。actual_dispatch=false、owner_qualification=not_evaluated、invocation.native_calls=1は定数。",
+        "packet.upstream_meaning_changed=falseならsource rawのmemberを一切判定しない。observed=null、comparison=not_applicable、target_material/member_observations=null、unresolved_pointers=[]、candidate=nullで返す。元source wholeの記録は保持する。",
+        "trueでupstream_materialがAbsent、又はsupplied rawがnull/非objectなら、observedとtarget_materialを{tag:absent}、comparison=missing、member_observations=null、unresolved_pointers=[空文字列]、candidate=nullとする。原null/非objectは元Presence全体で区別する。子pointerは合成しない。",
+        "trueでraw objectならknowledge_subjectとupstream_targetを互いに独立に観測する。memberが実在すれば{tag:supplied,raw:原値}、無ければ{tag:absent}。親がobjectでない時に架空の子nodeを作らない。",
+        "knowledge_subjectがAbsent/実nullならcomparison=missing。その他の供給値はexpectedとのJSON型を保つ再帰的なwhole比較により一致ならcontent_corresponding_in_fixture、相違ならcontent_conflict。object member集合と配列順を保ち、bool/numberを同一視しない。既存F02Inputのsubjectは文字列4項目の閉recordである。",
+        "subject比較が一致以外なら/knowledge_subjectをunresolved_pointersへ記録する。target_materialがAbsent/実null/非objectなら/upstream_targetを記録しmember_observations=null。subject問題があってもtargetの独立観測を省略しない。",
+        "target raw objectならidentity/revision/scope/owner/source_refの順に原memberをPresenceへ保持する。identity/revision/ownerは供給された非空stringでなければ当該子pointerを記録。scope/source_refはAbsent又は実nullなら当該子pointerを記録する。後者の非nullは内容を運ぶ局所shape条件だけで、適用範囲・source本文・資格の判定ではない。",
+        "true、subject全値一致、target object、五項目の条件が全て成立する時だけ原五値をcandidateへcopyする。それ以外candidate=null。stage ownerを代入せず、原知識subjectと上流targetを同一視しない。",
+        "pointer順は空文字列、/knowledge_subject、/upstream_target、identity/revision/scope/owner/source_refの各子順。親問題は親pointer一件だけ、独立なsiblingsは両方を保持する。これはupstream_material.rawをrootとするpointerであり、packet原sourceや返却objectのpathへrebaseしない。",
+        "6root全値を返す。欠陥・不足を空正常へ変換せず、既存のhuman_gate_added=falseと全native副作用falseを保つ。unknown/追加raw keyはwholeに残す。"
+      ],
+      "source_pointer_namespace": "upstream_material.rawをrootとする。rootは空文字列。返却上の観測mapやnative packetの位置とは別。",
+      "effect": "none"
+    },
+    "scope_limits": [
+      "既存F02Input、F02ReturnFixtureShape、5段階の計算記述と各原whole期待は維持する。追加するのは一件の原上流資料を受ける私有の論理接続と全返却writer。",
+      "原上流資料の選択元・適用資格・source_ref本文/digest・複数target集合の選択/一意性・実配送/ACKは確定しない。一件の資料から全対象を列挙したとはしない。",
+      "候補ownerは原資料が宣言した値。段階owner、folder、IDの命名、空の成功結果から生成しない。資料不足でもnative結果を消さず、技術差分の新しい人間gateを加えない。",
+      "本体92親430義務の意味閉包、実装Ready、製品Red/Green、CI、実物受入の成立は示さない。"
+    ],
+    "formal_schema_codec": "未成立。ここは論理型と値writerの記述。",
+    "execution_state": "not_executed"
+  }
 }
