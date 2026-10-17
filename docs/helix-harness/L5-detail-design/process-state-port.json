@@ -504,6 +504,435 @@
         "operation_effect"
       ],
       "limit": "進行/Refactor/Backflow/Portの候補。実operationや上流意味更新を実施しない。"
+    },
+    "ComparisonEvidenceContext": {
+      "fields": {
+        "assessment_input_ref": "Ref（全比較入力を指す供給済みcarrier参照。派生PVへecho）",
+        "original_packet_ref": "Ref（元独立原packet参照。元資格診断のRefとして保持）"
+      },
+      "scope": "B01/F01の具体comparison引数だけのcontext。既存共通ProcessContextを削除/変換しない。元target/phase/actionはoriginal内の原値を読む。ProcessContext.artifact_ref等から推測代入しない。"
+    },
+    "SourceQualificationObservation": {
+      "fields": {
+        "state": "known|missing|unknown|conflict|stale",
+        "source_ref": "Ref",
+        "reason": "Text"
+      },
+      "rule": "原材料/意味所見の独立資格観測。content不一致でstateを書換えない。carrier knownをembeddedへ継承しない。"
+    },
+    "Observed": {
+      "variants": [
+        "{state:absent}",
+        "{state:null}",
+        "{state:value,value:T}",
+        "{state:wrong_kind,raw:JsonValue}"
+      ],
+      "rule": "入力のabsent/null/値/型外を区別する。bool/数値、known null/unknown nullを同値化しない。"
+    },
+    "MeaningOwnerReturn": {
+      "fields": {
+        "affected_field": "Text",
+        "cause_state": "known|missing|unknown|conflict|stale",
+        "original_source_refs": "list<Ref>",
+        "affected_target": "PartialValue<TargetBinding>",
+        "return_layer": "PartialValue<Text>",
+        "logical_owner_reference": "PartialValue<LogicalOwnerReference>",
+        "reason": "Text",
+        "operation_effect": "literal none"
+      },
+      "rule": "意味不足と上流還流。source資格診断とaliasせず、実recipient資格を解決しない。原資料/所見/profileの実読取sourceを保全する。"
+    },
+    "LogicalOwnerReference": {
+      "variants": [
+        "{kind:contract_role_owner,contract_ref:Text,role:Text}",
+        "{kind:meaning_owner_at_layer,layer:Text}",
+        "{kind:declared_authority_owner,original_reference:Text}"
+      ],
+      "rule": "既存L4の論理owner参照。実actor/資格/配送の証明ではない。"
+    },
+    "B01QualificationDiagnostic": {
+      "fields": {
+        "state": "QualificationState",
+        "source_ref": "Ref",
+        "reason": "Text"
+      },
+      "rule": "独立資格入力の原3field。"
+    },
+    "F01QualificationDiagnostic": {
+      "fields": {
+        "qualification_state": "QualificationState",
+        "original_source_ref": "Ref",
+        "target_binding": "PartialValue<TargetBinding>",
+        "required_for_action": "PartialValue<bool>",
+        "owner_target": "PartialValue<原owner参照|null>",
+        "reason": "Text",
+        "operation_effect": "literal none"
+      },
+      "rule": "既存7field原観測。owner_targetを推定配送先で補わない。"
+    },
+    "DefinitionReturn": {
+      "fields": {
+        "state": "QualificationState",
+        "original_source_ref": "Ref|null",
+        "affected_context": "TargetBinding",
+        "reason": "Text",
+        "owner_target_state": "QualificationState",
+        "owner_target": "原owner参照|null",
+        "operation_effect": "literal none"
+      },
+      "rule": "F01の原phase/action/profile定義不足。B01はabsentのみ。"
+    },
+    "CandidateClaim": {
+      "fields": {
+        "path": "list<Text|Index>",
+        "kind": "json|partial_record",
+        "proposed_value": "Observed<JsonValue>"
+      },
+      "rule": "明示提案範囲だけを保持。旧flat条件mapは各nestedPV.valueへ写像。typed PVはstate/value/ref/reasonのclaimを全保持。"
+    },
+    "CandidateComparison": {
+      "fields": {
+        "state": "not_proposed|compared",
+        "differences": "list<{path,state,source_observation:Observed<JsonValue>,proposed_value:Observed<JsonValue>,reason}>"
+      },
+      "rule": "元9memberを確定してから提示claimを比較。自身へ循環させない。"
+    },
+    "GroundingAssessment": {
+      "closed_members": [
+        "partial_values",
+        "owner_returns",
+        "unaffected_scope",
+        "operation_effect",
+        "source_qualification_results",
+        "qualification_returns",
+        "definition_return",
+        "readable_original_materials",
+        "candidate_comparison"
+      ],
+      "extends": "既存ProcessAssessmentの4coreだけを構造的に合成。他5関数へcastしない。",
+      "fields": {
+        "partial_values": {
+          "members": {
+            "grounding_result": "PartialValue",
+            "grounding_missing": "PartialValue",
+            "technical_quality_result": "PartialValue",
+            "human_convergence_result": "PartialValue",
+            "retained_accepted_axes": "PartialValue",
+            "unresolved_findings": "PartialValue",
+            "ai_interpretation_is_human": "PartialValue",
+            "management_return_layer": "PartialValue",
+            "direct_requirement_write": "PartialValue",
+            "request_as_approval": "PartialValue",
+            "actual_L11_accepted": "PartialValue",
+            "actual_completion": "PartialValue",
+            "management_return_result": "PartialValue",
+            "reaction_as_requirement_approval": "PartialValue",
+            "management_progression_result": "PartialValue",
+            "management_missing_conditions": "PartialValue",
+            "actual_pair_omitted": "PartialValue",
+            "actual_acceptance_omitted": "PartialValue"
+          },
+          "value_rule": "既存PartialValue。非knownはnull、known false/null/空を区別。F01 condition_results.valueはopen identity→PartialValue。"
+        },
+        "owner_returns": "list<MeaningOwnerReturn>",
+        "unaffected_scope": "list<{ref:Ref,value:JsonValue}>",
+        "operation_effect": "literal none",
+        "source_qualification_results": "map<SourceKey,QualificationState>",
+        "qualification_returns": "map<SourceKey,B01QualificationDiagnostic>",
+        "definition_return": "literal {state:absent}",
+        "readable_original_materials": "list<SourceKey>",
+        "candidate_comparison": "CandidateComparison"
+      }
+    },
+    "RevisionProgressionAssessment": {
+      "closed_members": [
+        "partial_values",
+        "owner_returns",
+        "unaffected_scope",
+        "operation_effect",
+        "source_qualification_results",
+        "qualification_returns",
+        "definition_return",
+        "readable_original_materials",
+        "candidate_comparison"
+      ],
+      "extends": "既存ProcessAssessmentの4coreだけを構造的に合成。他5関数へcastしない。",
+      "fields": {
+        "partial_values": {
+          "members": {
+            "action": "PartialValue",
+            "required_conditions": "PartialValue",
+            "condition_results": "PartialValue（knownのvalueはConditionIdentity→PartialValue map。必要条件集合が未確定ならnull）",
+            "additional_approval_needed": "PartialValue",
+            "meaning_authority_return_owner": "PartialValue",
+            "proceed_condition": "PartialValue",
+            "actual_progressed": "PartialValue",
+            "actual_approval_created": "PartialValue",
+            "actual_completion": "PartialValue"
+          },
+          "value_rule": "既存PartialValue。非knownはnull、known false/null/空を区別。F01 condition_results.valueはopen identity→PartialValue。"
+        },
+        "owner_returns": "list<MeaningOwnerReturn>",
+        "unaffected_scope": "list<{ref:Ref,value:JsonValue}>",
+        "operation_effect": "literal none",
+        "source_qualification_results": "map<SourceKey,QualificationState>",
+        "qualification_returns": "map<SourceKey,F01QualificationDiagnostic>",
+        "definition_return": "{state:absent}|{state:present,value:DefinitionReturn}",
+        "readable_original_materials": "list<SourceKey>",
+        "candidate_comparison": "CandidateComparison"
+      }
+    },
+    "B01ComparisonArguments": {
+      "closed_read_fields": {
+        "context": "ComparisonEvidenceContext",
+        "original": "B01OriginalPacket",
+        "qualification_sources": "map<SourceKey,SourceQualificationObservation>",
+        "candidate_claims": "list<CandidateClaim>|null",
+        "unaffected_scope": "list<{ref:Ref,value:JsonValue}>",
+        "grounding_scope_contract": "Observed<GroundingScopeContract>",
+        "grounding_meaning_observations": "map<GroundingRole,Observed<GroundingMeaningObservation>>"
+      },
+      "producer": "既存OS/owner原資料収集境界からのimmutable decoded原値・独立資格と、admitted L4が指定するHARNESS意味所見/phase比較対象供給。",
+      "limit": "正式codec/実資格を採用しない。旧viewは歴史入力で、新引数無しを成功へ補完しない。"
+    },
+    "F01ComparisonArguments": {
+      "closed_read_fields": {
+        "context": "ComparisonEvidenceContext",
+        "original": "F01OriginalPacket",
+        "qualification_sources": "map<SourceKey,SourceQualificationObservation>",
+        "candidate_claims": "list<CandidateClaim>|null",
+        "unaffected_scope": "list<{ref:Ref,value:JsonValue}>",
+        "condition_expectations": "Observed<ConditionExpectations>"
+      },
+      "producer": "既存OS/owner原資料収集境界からのimmutable decoded原値・独立資格と、admitted L4が指定するHARNESS意味所見/phase比較対象供給。",
+      "limit": "正式codec/実資格を採用しない。旧viewは歴史入力で、新引数無しを成功へ補完しない。"
+    },
+    "GroundingRole": [
+      "purpose",
+      "premises",
+      "legacy_assets",
+      "external_examples",
+      "comparison"
+    ],
+    "GroundingScopeContract": {
+      "fields": {
+        "target": "Observed<TargetBinding>",
+        "applicability": "map<GroundingRole,Observed<Applicability>>",
+        "reason": "Text",
+        "basis": "list<BasisReference>"
+      },
+      "Applicability": [
+        "required",
+        "not_required",
+        "not_applicable"
+      ],
+      "rule": "対象scopeの既存工程/要求意味に基づく供給値。5軸を全案件に一律requiredへしない。mapの当該role不在/nullは未解決でありnot_requiredへ変換しない。N/Aは当該scope根拠と理由を保持する。"
+    },
+    "GroundingMeaningObservation": {
+      "fields": {
+        "role": "Observed<GroundingRole>",
+        "target": "Observed<TargetBinding>",
+        "subject_source_ref": "Observed<Ref>",
+        "assessed_material": "Observed<JsonValue>",
+        "conclusion": "Observed<MeaningConclusion>",
+        "reason": "Text",
+        "basis": "list<BasisReference>"
+      },
+      "MeaningConclusion": [
+        "sufficient",
+        "insufficient",
+        "unresolved"
+      ],
+      "rule": "意味判定の原値。資格stateや候補評価とは別。sufficientでも対象/role/ref/materialが違えば観測へ適用しない。未供給/null/型外も全定義する。"
+    },
+    "BasisReference": "{reference:Ref|null,document_locator:Text|null,reason:Text}。producerが所見を支える原資料/批准意味を読む責務を持つ。形式が正しいだけで根拠充足をconsumerが再認定する方式ではない。",
+    "QualificationState": {
+      "enum": [
+        "known",
+        "missing",
+        "unknown",
+        "conflict",
+        "stale"
+      ]
+    },
+    "TargetBinding": {
+      "fields": {
+        "revision": "Text",
+        "scope": "Text"
+      },
+      "source": "原SourceCell.bindingの独立context原値。材料binding/Refから生成しない。"
+    },
+    "MeaningConclusion": {
+      "enum": [
+        "sufficient",
+        "insufficient",
+        "unresolved"
+      ]
+    },
+    "Applicability": {
+      "enum": [
+        "required",
+        "not_required",
+        "not_applicable"
+      ]
+    },
+    "JsonValue": {
+      "domain": "JSON null/bool/finite number/Text/list<JsonValue>/map<Text,JsonValue>",
+      "equality": "meaning-contract.json#/types/JsonValue_equality と pure_common.eq の型/presenceを保つ比較。"
+    },
+    "SourceKey": {
+      "domain": "open Text。既存source_groupsを保持し、独立scope/所見/profileキーを追加する。"
+    },
+    "ConditionIdentity": {
+      "domain": "open Text。既存6identityへ限定しない。"
+    },
+    "GroundingMaterial": {
+      "fields": {
+        "ref": "Ref",
+        "original_contents": "JsonValue"
+      },
+      "view": "元role原record全値をoriginal_contentsとして扱う論理view。旧raw.text等を正規化/捨象せず、assessed_materialは元record全値へ比較する。",
+      "qualification": "SourceQualificationObservationを別に受ける。型だけでknownを生成しない。"
+    },
+    "B01OriginalPacket": {
+      "fields": {
+        "target": "TargetBinding",
+        "grounding": "map<GroundingRole,original role record|null>",
+        "technical_quality": "原technical record|null",
+        "human_convergence": "原human record",
+        "management_improvement": "原management record|null",
+        "management_progression": "原progression record"
+      },
+      "additional_materials": "request/scenario_kind等の元資料は保持し、未読を実承認として解釈しない。",
+      "source_contract": "現L5 /functions/0/qualification_detail/source_groups と旧L9全rawの構造を保持。対象targetは独立context source原値。GroundingMaterialは比較用viewでrawを別shapeへ書換えない。",
+      "read_paths": {
+        "grounding": "grounding.<role> 全値",
+        "technical_quality": [
+          "binding",
+          "executed_in_fixture",
+          "expected_owners",
+          "observed_owners"
+        ],
+        "human_convergence": [
+          "required_axes",
+          "original.kind",
+          "original.binding",
+          "original.accepted_axes",
+          "original.rejected_axes",
+          "unresolved_findings"
+        ],
+        "management_improvement": [
+          "affected_meaning_layer",
+          "finding",
+          "direct_requirement_write"
+        ],
+        "management_progression": [
+          "pair_observation",
+          "acceptance_observation"
+        ]
+      },
+      "domain_limit": "既存declared decoded original logical record領域。任意raw byteのdecode/実source資格をこの純粋モデルで証明しない。"
+    },
+    "F01OriginalPacket": {
+      "fields": {
+        "target": "TargetBinding",
+        "phase": "Text",
+        "action": "Text",
+        "phase_condition_material": "原phase contract|null",
+        "materials": "map<ConditionIdentity,original material record|null>",
+        "delegation": "原delegation record|null"
+      },
+      "phase_contract_fields": {
+        "source": "Ref",
+        "basis": "原値",
+        "required_by_action": "map<Text,list<ConditionIdentity>|null>"
+      },
+      "material_fields": {
+        "ref": "Ref",
+        "binding": "TargetBinding",
+        "kind": "Text",
+        "content": "JsonValue"
+      },
+      "delegation_fields": {
+        "intent_scope": "Text",
+        "technical_detail_within_delegation": "bool",
+        "meaning_change": "bool",
+        "authority_change": "bool",
+        "unassigned_owner": "Text|null"
+      },
+      "rule": "当該actionの原required_by_actionだけを必要集合へ使う。profileからmembershipを作らない。元consultation/implementation_observationは承認又は完了へ使わない。"
+    },
+    "ConditionExpectations": {
+      "fields": {
+        "target": "TargetBinding",
+        "phase": "Text",
+        "profiles": "map<ConditionIdentity,ConditionDefinition>",
+        "basis": "list<ConditionBasis>"
+      },
+      "producer": "admitted L4 F01 condition_provider。観測materials/candidate/expected wholeから生成しない。"
+    },
+    "ConditionBasis": {
+      "fields": {
+        "source_ref": "Ref",
+        "pointer": "Text"
+      },
+      "scope": "独立profile所見の原出典view。GroundingのBasisReferenceとaliasせず、現在原値を保持する。"
+    },
+    "ConditionDefinition": {
+      "fields": {
+        "semantic_role": "Text（型外JSONは定義不成立として扱う）",
+        "required_native_kind": "Text",
+        "expected": "役割別comparand",
+        "reason": "Text",
+        "basis": "list<ConditionBasis>"
+      },
+      "roles": {
+        "agreement": {
+          "native_kind": "requirement_agreement",
+          "expected": {
+            "requirement": "Text"
+          }
+        },
+        "requirements_approval": {
+          "native_kind": "requirements_approval",
+          "expected": {
+            "l3": "Text",
+            "l10": "Text",
+            "delegated": "bool"
+          }
+        },
+        "pair": {
+          "native_kind": "paired_artifacts",
+          "expected": {
+            "left": "Text",
+            "right": "Text",
+            "left_layer": "Text",
+            "right_layer": "Text"
+          }
+        },
+        "verification": {
+          "native_kind": "independent_design_review",
+          "expected": {
+            "expected_state_owners": "list<Text>",
+            "execution_required": "bool"
+          }
+        },
+        "unresolved": {
+          "native_kind": "unresolved_findings",
+          "expected": {
+            "allowed_items": "list<Text>"
+          }
+        },
+        "finding_route": {
+          "native_kind": "backflow_route",
+          "expected": {
+            "finding": "Text",
+            "return_layer": "Text",
+            "affected_scope": "Text"
+          }
+        }
+      },
+      "unknown_branch": "未供給/型外role/未対応role/kind/期待定義はunknownとDefinitionReturn。型検査をmembershipより先へ。新実案件kind/identityをこの6役割へ固定する採択ではない。"
     }
   },
   "common_contract": [
@@ -613,47 +1042,47 @@
         "obligation": "目的/前提/既存資産/外部実例/比較根拠、受容済み軸と未解決findingを工程条件へ結ぶ。技術理由/反証可能な検証と人間受容を独立に確認し、一方で他方を相殺しない。HARNESSは進行条件、OSは判断/反応の原記録と実行/監視を持ち、相談/反応のAI解釈へhuman provenanceを付けない。管理観測/改善から製品要求を直接変更せず、意味が変わる上流へ返す。",
         "oracle_ref": "HARNESS-L10-003-B01"
       },
-      "basic_contract_sha256": "d882e97bbd285f206faf6a83f70815b1e363e51caeed4a20868c9e86a8b4bd40",
+      "basic_contract_sha256": "564ee5bdc3a49504d51a17ca58416c0f181d8f0eaf995146ef9596d9e2389b3a",
       "input": {
-        "context": "ProcessContext",
-        "original_sources": "purpose/premises/legacy_assets/external_examples/comparison、technical_quality oracle/result、human original reaction、AI interpretation、unresolved findings、management original finding/progressionの個別SourceCell",
-        "candidate": "ProcessAssessment | null",
-        "source_qualifications": "各embedded sourceの独立SourceCell資格map。carrierのknownをembedded sourceへ継承しない。"
+        "arguments": "B01ComparisonArguments"
       },
       "output": {
         "partial_values": {
-          "grounding_result": "PartialValue",
-          "grounding_missing": "PartialValue",
-          "technical_quality_result": "PartialValue",
-          "human_convergence_result": "PartialValue",
-          "retained_accepted_axes": "PartialValue",
-          "unresolved_findings": "PartialValue",
-          "ai_interpretation_is_human": "PartialValue",
-          "management_return_layer": "PartialValue",
-          "direct_requirement_write": "PartialValue",
-          "request_as_approval": "PartialValue",
-          "actual_L11_accepted": "PartialValue",
-          "actual_completion": "PartialValue",
-          "management_return_result": "PartialValue",
-          "reaction_as_requirement_approval": "PartialValue",
-          "management_progression_result": "PartialValue",
-          "management_missing_conditions": "PartialValue",
-          "actual_pair_omitted": "PartialValue",
-          "actual_acceptance_omitted": "PartialValue"
+          "members": {
+            "grounding_result": "PartialValue",
+            "grounding_missing": "PartialValue",
+            "technical_quality_result": "PartialValue",
+            "human_convergence_result": "PartialValue",
+            "retained_accepted_axes": "PartialValue",
+            "unresolved_findings": "PartialValue",
+            "ai_interpretation_is_human": "PartialValue",
+            "management_return_layer": "PartialValue",
+            "direct_requirement_write": "PartialValue",
+            "request_as_approval": "PartialValue",
+            "actual_L11_accepted": "PartialValue",
+            "actual_completion": "PartialValue",
+            "management_return_result": "PartialValue",
+            "reaction_as_requirement_approval": "PartialValue",
+            "management_progression_result": "PartialValue",
+            "management_missing_conditions": "PartialValue",
+            "actual_pair_omitted": "PartialValue",
+            "actual_acceptance_omitted": "PartialValue"
+          },
+          "value_rule": "既存PartialValue。非knownはnull、known false/null/空を区別。F01 condition_results.valueはopen identity→PartialValue。"
         },
-        "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
-        "unaffected_scope": "元の有効な非対象資料",
-        "operation_effect": "none",
-        "source_qualification_results": "個別source資格のknown/missing/unknown/conflict/stale map（原入力の資格観測を保全）"
+        "owner_returns": "list<MeaningOwnerReturn>",
+        "unaffected_scope": "list<{ref:Ref,value:JsonValue}>",
+        "operation_effect": "literal none",
+        "source_qualification_results": "map<SourceKey,QualificationState>",
+        "qualification_returns": "map<SourceKey,B01QualificationDiagnostic>",
+        "definition_return": "literal {state:absent}",
+        "readable_original_materials": "list<SourceKey>",
+        "candidate_comparison": "CandidateComparison"
       },
       "internal_steps": [
-        "carrierと全embedded source資格を独立に照合し、qualification_detailのfield_dependenciesだけを当該state/nullへ戻す。known rootや別owner成功でembedded sourceをknownへ補完しない。",
-        "各根拠sourceの対象・原内容・選択肢/比較理由を独立に読む。purpose/premises/旧資産/外部例/比較の不足を当該資料だけへ返す。外部例の合成入力を実researchにしない。",
-        "technical originalと独立oracleの期待owner/観測owner、実行原記録、対象revision/scopeを照合。人の受容・作業依頼で未観測/二重writer/別revisionを相殺しない。",
-        "人のoriginal reactionのkind/source/対象とrequired axesを照合。受容済み軸を保持し未受容/未解決だけを返す。original欠落や別scopeなら受容済み軸はmissing/staleのnull、観測した空集合と区別する。",
-        "AI interpretationのidentityとhuman originalを別に保持。AIの言い換え、work_request、design_axis_reactionを人間decision/要件承認/実物L11受入へ昇格しない。",
-        "管理findingの原意味差を該当上流ownerへ返す。管理Issue/緊急性と当該pair/受入の証拠は別評価。product要求write、pair省略、実受入を行わない。",
-        "各fieldをPartialValueで返す。状態不成立でも読めた別owner資料はknownとして残し、一つの失敗で全結果をmissingにしない。候補評価を追加しても原結果を上書きしない。"
+        "既存qualified source portからimmutable comparison引数を受ける。共通ProcessContextとtrace2Refをaliasしない。独立target対応はb01_f01_comparison_contract.target_bindingsに従う。",
+        "B01はscope適用条件→必要roleだけの原資料/意味所見対応→集約。F01は原action必要membership→当該必要材料/独立profile→委任→集約。非必要資料の診断を全停止へ変換しない。",
+        "元partial_values/owner返却/資格診断/定義返却/読めた資料/無関係scopeを先に組み立て、明示candidate claimとの差だけを追加する。9memberを返し、実作用はnone。"
       ],
       "detail_state": "draft_concrete_typed_cases_pending_semantic_review",
       "qualification_detail": {
@@ -705,20 +1134,20 @@
           ]
         },
         "field_dependencies": {
-          "grounding_result": [
-            "grounding_purpose",
-            "grounding_premises",
-            "grounding_legacy_assets",
-            "grounding_external_examples",
-            "grounding_comparison"
-          ],
-          "grounding_missing": [
-            "grounding_purpose",
-            "grounding_premises",
-            "grounding_legacy_assets",
-            "grounding_external_examples",
-            "grounding_comparison"
-          ],
+          "grounding_result": {
+            "scope_source": "carrier + grounding_scope_contract",
+            "per_required_role": "scope適用条件がrequiredと確定したroleだけにcarrier + grounding_<role> + meaning_<role>を依存させる。各独立資格を別に保持する。",
+            "not_required": "known not_required/根拠付きnot_applicableは当該material/meaning不足を進行集約へ入れない。資格診断は失わない。",
+            "unresolved_scope": "scope/適用条件不明を空必要集合へしない。意味返却と資格診断を分ける。",
+            "other_fields": "既存technical/human/management依存とconstant_false_fieldsは保持。"
+          },
+          "grounding_missing": {
+            "scope_source": "carrier + grounding_scope_contract",
+            "per_required_role": "scope適用条件がrequiredと確定したroleだけにcarrier + grounding_<role> + meaning_<role>を依存させる。各独立資格を別に保持する。",
+            "not_required": "known not_required/根拠付きnot_applicableは当該material/meaning不足を進行集約へ入れない。資格診断は失わない。",
+            "unresolved_scope": "scope/適用条件不明を空必要集合へしない。意味返却と資格診断を分ける。",
+            "other_fields": "既存technical/human/management依存とconstant_false_fieldsは保持。"
+          },
           "technical_quality_result": [
             "technical_quality"
           ],
@@ -759,9 +1188,34 @@
         "carrier_rule": "target/contextのcarrier資格未成立では当該source依存結果をstate/nullにし、別scopeの有効材料を保持する。known carrierでもembeddedの不成立を補完しない。",
         "mixed_failure_rule": "同一fieldに異なる不成立stateがある場合はfieldをunknown/nullとし、個別source_qualification_results/qualification_returnsで全stateを保持。優先順位で不足を捨てない。",
         "source_binding_limit": "source_packet_refは物理carrier参照。primitive/listのlocator refは合成例の内容参照で、実原記録/owner資格ではない。",
-        "logical_type_limit": "内部論理型案。正式schema/codec/trust/署名方式を採用しない。"
+        "logical_type_limit": "内部論理型案。正式schema/codec/trust/署名方式を採用しない。",
+        "meaning_source_groups": {
+          "grounding_scope_contract": [
+            "grounding_scope_contract"
+          ],
+          "meaning_<role>": [
+            "grounding_meaning_observations",
+            "<role>"
+          ]
+        }
       },
-      "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。"
+      "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。",
+      "logical_comparison_model": {
+        "entry": "assess_b01(arguments)",
+        "formal_symbol_preserved": "assess_grounding_quality_and_human_convergence",
+        "output_type": "GroundingAssessment",
+        "shared_constructors": "/b01_f01_comparison_contract/logical_source_code",
+        "logical_source_code": "\"\"\"Scratch pure B01 comparison; consumes logical input only, never an oracle.\"\"\"\nfrom pure_common import *\nROLES=('purpose','premises','legacy_assets','external_examples','comparison')\nPATHS={**{'grounding_'+r:['grounding',r]for r in ROLES},'technical_quality':['technical_quality'],'human_original':['human_convergence','original'],'human_required_axes':['human_convergence','required_axes'],'human_findings':['human_convergence','unresolved_findings'],'AI_interpretation':['human_convergence','ai_interpretation'],'management_finding':['management_improvement'],'management_progression':['management_progression']}\ndef grounding(a):\n raw=a['original'];out=[];role_states=[];identified=[];unresolved_meaning=False;qual_states=[]\n scopequal=dep(a,['grounding_scope_contract'])\n if scopequal!='known':return scopequal,None,scopequal,None,out\n state,scope=obs(a['grounding_scope_contract'])\n if state!='known' or not isinstance(scope,dict):\n  state=state if state!='known'else'conflict';out.append(mreturn(a,'grounding/scope/observation',state,'当該scopeの根拠適用契約を読めない。',logical('meaning_owner')));return state,None,'unknown',None,out\n st,target=obs(scope.get('target',{'state':'absent'}))\n if st!='known' or target!=raw['target']:\n  state=st if st!='known'else'stale'if isinstance(target,dict)and target.get('scope')==raw['target']['scope']else'conflict'\n  out.append(mreturn(a,'grounding/scope/target',state,'根拠適用契約の対象が原資料へ対応しない。',logical('meaning_owner')));return state,None,'unknown',None,out\n # Applicability metadata is a meaning observation, not a qualification flag.\n # Missing/null/empty is unknown; a value outside its declared type is conflict.\n for key,kind in [('reason',str),('basis',list)]:\n  if key not in scope:state='unknown';description='未供給のため適用理由を判定していない。'\n  elif scope[key]is None:state='unknown';description='nullであり適用理由を判定していない。'\n  elif not isinstance(scope[key],kind):state='conflict';description='宣言型へ対応しない。'\n  elif not scope[key]:state='unknown';description='空であり適用理由を判定していない。'\n  else:continue\n  reason='根拠適用契約の'+key+('が'+description if key not in scope else'は'+description)\n  out.append(mreturn(a,'grounding/scope/'+key,state,reason,logical('meaning_owner'),refs=[a['qualification_sources']['grounding_scope_contract']['source_ref']]))\n  return state,None,'unknown',None,out\n required=0\n for role in ROLES:\n  use,application=obs(scope.get('applicability',{}).get(role,{'state':'absent'}))\n  if use=='known'and application in('not_required','not_applicable')and scope.get('reason')and scope.get('basis'):continue\n  if use!='known'or application!='required':\n   state=use if use!='known'else'conflict';role_states.append(state);unresolved_meaning=True\n   # Keep the affected supplied references without interpreting their meaning.\n   affected=source_refs(a,'grounding_'+role,raw.get('grounding',{}).get(role))\n   meaning_ref=a['qualification_sources'].get('meaning_'+role,{}).get('source_ref')\n   if meaning_ref is not None:affected.append(meaning_ref)\n   out.append(mreturn(a,'grounding/'+role+'/applicability',state,'当該roleの必要/非必要/N/A原条件が未供給。',logical('meaning_owner'),refs=affected));continue\n  required+=1;source_key='grounding_'+role;mq='meaning_'+role;source=raw.get('grounding',{}).get(role)\n  qs=qual(a,source_key)\n  if qs!='known':role_states.append(qs);qual_states.append(qs);continue\n  if source is None:\n   role_states.append('missing');identified.append(role);out.append(mreturn(a,'grounding/'+role+'/material','missing','必要な根拠材料を当該roleで観測できない。',logical('meaning_owner')));continue\n  qs=qual(a,mq)\n  if qs!='known':role_states.append(qs);qual_states.append(qs);continue\n  st,ob=obs(a['grounding_meaning_observations'].get(role,{'state':'absent'}))\n  if st!='known'or not isinstance(ob,dict):\n   st=st if st!='known'else'conflict';role_states.append(st);unresolved_meaning=True\n   out.append(mreturn(a,'grounding/'+role+'/observation',st,'意味所見payloadはnullであり十分性を判定していない。'if st=='unknown'else'意味所見payloadを宣言型で読めない。',logical('meaning_owner'),refs=source_refs(a,source_key,source)+[a['qualification_sources'][mq]['source_ref']]));continue\n  axes=[]\n  for axis,expected in [('role',role),('target',raw['target']),('subject_source_ref',a['qualification_sources'][source_key]['source_ref']),('assessed_material',source)]:\n   state,value=obs(ob.get(axis,{'state':'absent'}))\n   if state=='known'and not eq(value,expected):state='stale'if axis=='target'and isinstance(value,dict)and value.get('scope')==raw['target']['scope']else'conflict'\n   if state!='known':\n    reason={'role':'意味所見のroleが当該原材料軸へ対応しない。','target':'意味所見の対象revisionが当該原材料へ対応しない。','subject_source_ref':'意味所見の原source参照が当該原材料へ対応しない。','assessed_material':'意味所見の比較済み原値が当該原材料へ対応しない。'}[axis]\n    axes.append(state);out.append(mreturn(a,'grounding/'+role+'/'+axis,state,reason,logical('meaning_owner'),refs=source_refs(a,source_key,source)+[a['qualification_sources'][mq]['source_ref']]))\n  if axes:role_states.extend(axes);unresolved_meaning=True;continue\n  st,conclusion=obs(ob.get('conclusion',{'state':'absent'}))\n  if st=='known'and conclusion not in('sufficient','insufficient','unresolved'):st='conflict'\n  if not ob.get('reason')or not ob.get('basis'):st='unknown'\n  if st=='known'and conclusion=='sufficient':role_states.append('known');continue\n  if st=='known'and conclusion=='insufficient':\n   role_states.append('known');identified.append(role);state='known';reason=ob['reason']\n  else:\n   state=st if st!='known'else'unknown';role_states.append(state);unresolved_meaning=True\n   reason='意味所見のconclusionは宣言された値域に無い。'if state=='conflict'else ob.get('reason','意味所見は未供給。')\n  out.append(mreturn(a,'grounding/'+role+'/conclusion',state,reason,logical('meaning_owner'),refs=source_refs(a,source_key,source)+[a['qualification_sources'][mq]['source_ref']]))\n state=merge(role_states)\n result='insufficient_condition'if identified else'supported_synthetic_condition'if required else'not_required_condition'\n if unresolved_meaning:missing_state='unknown';missing=None\n elif qual_states:missing_state=merge(qual_states);missing=None\n else:missing_state='known';missing=identified\n return state,result if state=='known'else None,missing_state,missing,out\ndef assess_b01(a):\n raw=a['original'];ref=a['context']['assessment_input_ref'];p={};returns=[]\n def put(k,state,value,reason=B01_REASON):p[k]=pv(state,value,ref,reason)\n gs,gv,ms,mv,gr=grounding(a);put('grounding_result',gs,gv,GROUND_REASON);put('grounding_missing',ms,mv,GROUND_REASON);returns.extend(gr)\n t=raw.get('technical_quality');ts='known';tv='supported_synthetic_observation'\n if t is None:ts='missing'\n elif t.get('binding')!=raw['target']:ts='stale'\n elif not t.get('executed_in_fixture'):ts='missing'\n elif not eq(t.get('expected_owners'),t.get('observed_owners')):ts='conflict'\n q=dep(a,['technical_quality']);put('technical_quality_result',q if q!='known'else ts,tv,B01_QUAL_REASON if q!='known'else B01_REASON)\n if q=='known'and ts!='known':returns.append(mreturn(a,'technical_quality_result',ts,'技術原観測が当該独立oracle/対象へ対応していない。',logical('technical_evidence_owner'),refs=source_refs(a,'technical_quality',t)))\n h=raw['human_convergence'];original=h.get('original');hs='known';hv='supported_synthetic_reaction';axes=[]\n if original is None:hs='missing'\n elif original.get('kind')!='design_axis_reaction':hs='conflict'\n elif original.get('binding')!=raw['target']:hs='stale'\n else:\n  axes=original.get('accepted_axes',[])\n  if any(x not in axes for x in h['required_axes'])or original.get('rejected_axes')or h['unresolved_findings']:hv='partial'\n q=dep(a,['human_original','human_required_axes','human_findings']);put('human_convergence_result',q if q!='known'else hs,hv,B01_QUAL_REASON if q!='known'else B01_REASON)\n aq=dep(a,['human_original']);put('retained_accepted_axes',aq if aq!='known'else hs,axes,B01_QUAL_REASON if aq!='known'else'原反応が当該scopeで未評価。空の観測値へ変換しない。'if hs!='known'else B01_REASON)\n fq=dep(a,['human_findings']);put('unresolved_findings',fq,h['unresolved_findings'],B01_QUAL_REASON if fq!='known'else B01_REASON)\n if q=='known'and(hs!='known'or hv=='partial'):returns.append(mreturn(a,'human_convergence_result',hs,'人の原反応/受容軸/未解決findingの当該不足を保持する。',logical('original_reaction_owner'),refs=source_refs(a,'human_original',original)))\n for k in ['ai_interpretation_is_human','direct_requirement_write','request_as_approval','actual_L11_accepted','actual_completion','reaction_as_requirement_approval','actual_pair_omitted','actual_acceptance_omitted']:put(k,'known',False)\n mg=raw.get('management_improvement');q=dep(a,['management_finding']);layer=mg.get('affected_meaning_layer')if isinstance(mg,dict)else None;rs='conflict'if isinstance(mg,dict)and mg.get('direct_requirement_write')else'known'\n put('management_return_layer',q,layer,B01_QUAL_REASON if q!='known'else B01_REASON);put('management_return_result',q if q!='known'else rs,'supported_synthetic_condition',B01_QUAL_REASON if q!='known'else B01_REASON)\n mp=raw['management_progression'];missing=[k for k,v in [('pair',mp.get('pair_observation')),('acceptance',mp.get('acceptance_observation'))]if v is None];q=dep(a,['management_progression'])\n put('management_progression_result',q if q!='known'else'missing'if missing else'known','supported_synthetic_condition',B01_QUAL_REASON if q!='known'else B01_REASON);put('management_missing_conditions',q,missing,B01_QUAL_REASON if q!='known'else B01_REASON)\n if q=='known'and missing:returns.append(mreturn(a,'management_progression_result','missing','管理Issue/緊急性で当該pair/受入の不足を省略しない。'))\n if dep(a,['management_finding'])=='known'and layer is not None:returns.append(mreturn(a,'management_return_result',rs,'原管理findingの意味が変わる上流へ返す候補: '+mg['finding'],{'kind':'meaning_owner_at_layer','layer':layer},layer,source_refs(a,'management_finding',mg)))\n order=['grounding_result','grounding_missing','technical_quality_result','human_convergence_result','retained_accepted_axes','unresolved_findings','ai_interpretation_is_human','management_return_layer','direct_requirement_write','request_as_approval','actual_L11_accepted','actual_completion','management_return_result','reaction_as_requirement_approval','management_progression_result','management_missing_conditions','actual_pair_omitted','actual_acceptance_omitted'];p={k:p[k]for k in order}\n diagnostics={k:{'state':v['state'],'source_ref':deepcopy(v['source_ref']),'reason':v['reason']}for k,v in a['qualification_sources'].items()if v['state']!='known'}\n readable=[k for k,path in PATHS.items()if value_at(raw,path)is not None]\n return finish(a,p,returns,readable,diagnostics)\n",
+        "source_sha256": "661bb069ec844c02175996cc618c6410efc668eb925e323678a1c6e11f6991c5",
+        "execution_scope": "凍結98/85wholeに対するscratch有限純粋計算の既存root receiptを参照。製品runtime/実owner/任意wire decode成立へ外挿しない。"
+      },
+      "admitted_basic_binding": {
+        "revision": "7ef00ff32c3336fa315a07b041c69d4d1d8439c6",
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "file_sha256": "34caacf28e931e1506a9ad4cca91c4b1afc4195b6f062d6259363734b66d543e",
+        "pointer": "/contracts/0",
+        "value_sha256": "564ee5bdc3a49504d51a17ca58416c0f181d8f0eaf995146ef9596d9e2389b3a"
+      }
     },
     {
       "id": "HARNESS-L5-003-F01",
@@ -776,39 +1230,38 @@
         "obligation": "工程の開始/凍結/差戻し/再開/完了条件を対象scope/revision、必要合意/対成果物/検証/未解決事項へ結ぶ。相談/依頼/採択/要件承認/操作認可を区別し、指示や別revisionから成立を生成しない。委任済み意図の技術的具体化へ不要な反復承認を求めず、未委任の意味/権限変更は対象ownerの判断へ戻す。実装成功だけで完了にしない。",
         "oracle_ref": "HARNESS-L10-003-F01"
       },
-      "basic_contract_sha256": "e758968b70f33eb6eae8a9b6a22cda30186d20052c93cb206add04dd360b7f47",
+      "basic_contract_sha256": "d48826d7e289eca159bba61cb3e0f62bf2a5e5e8cf299683d1248bc9d61ccd4f",
       "input": {
-        "context": "ProcessContext",
-        "original_sources": "SourceCell map（各対象の独立原資料）",
-        "candidate": "ProcessAssessment | null",
-        "source_qualifications": "Context/carrier/phase契約/委任/各原資料を別々に解決したSourceCell資格入力。合成例のstateは実資格の証明ではない。"
+        "arguments": "F01ComparisonArguments"
       },
       "output": {
         "partial_values": {
-          "action": "PartialValue",
-          "required_conditions": "PartialValue",
-          "condition_results": "PartialValue（knownのvalueはConditionIdentity→PartialValue map。必要条件集合が未確定ならnull）",
-          "additional_approval_needed": "PartialValue",
-          "meaning_authority_return_owner": "PartialValue",
-          "proceed_condition": "PartialValue",
-          "actual_progressed": "PartialValue",
-          "actual_approval_created": "PartialValue",
-          "actual_completion": "PartialValue"
+          "members": {
+            "action": "PartialValue",
+            "required_conditions": "PartialValue",
+            "condition_results": "PartialValue（knownのvalueはConditionIdentity→PartialValue map。必要条件集合が未確定ならnull）",
+            "additional_approval_needed": "PartialValue",
+            "meaning_authority_return_owner": "PartialValue",
+            "proceed_condition": "PartialValue",
+            "actual_progressed": "PartialValue",
+            "actual_approval_created": "PartialValue",
+            "actual_completion": "PartialValue"
+          },
+          "value_rule": "既存PartialValue。非knownはnull、known false/null/空を区別。F01 condition_results.valueはopen identity→PartialValue。"
         },
-        "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
-        "unaffected_scope": "元の有効な非対象資料",
-        "operation_effect": "none",
-        "source_qualification_results": "個別source資格の状態を保全し、非必要資料の診断と進行条件の未成立を分ける。"
+        "owner_returns": "list<MeaningOwnerReturn>",
+        "unaffected_scope": "list<{ref:Ref,value:JsonValue}>",
+        "operation_effect": "literal none",
+        "source_qualification_results": "map<SourceKey,QualificationState>",
+        "qualification_returns": "map<SourceKey,F01QualificationDiagnostic>",
+        "definition_return": "{state:absent}|{state:present,value:DefinitionReturn}",
+        "readable_original_materials": "list<SourceKey>",
+        "candidate_comparison": "CandidateComparison"
       },
       "internal_steps": [
-        "Contextの対象revision/scope、工程、操作種別を独立原資料へ照合し、source packet carrier資格とembedded各資料資格を分離する。",
-        "phase_condition_materialの承認済み原契約から当該actionのrequired_by_actionだけを取得する。対象actionの記載欠落・未解決では必要条件を空集合/defaultへ補わない。合成例の条件集合を全工程の共通承認手続きへ拡張しない。",
-        "必要条件ごとに独立sourceの資格・Ref・binding revision/scope・kind・具体内容を照合する。ひとつの不足で他の既知条件を消さず、condition_resultsは既知membership内の個別PartialValue mapを返す。membership自体が未確定ならcontainerを未解決/nullとし、読めた資料診断は別に保持する。",
-        "agreementの対象要求、requirements_approvalのL3/L10と既存委任、pairの左右層/revision、verificationの期待/観測ownerと対象検証、unresolvedの当該scope未解決items、finding_routeのfinding/戻し層/影響scopeを原契約に照合する。相談/依頼/採択/操作認可をrequirements_approvalへ変換しない。",
-        "delegationの独立sourceから意図scope・技術具体化の範囲・意味変更・authority変更を確認する。既存委任内の技術具体化には追加承認を生成せず、未委任の意味/権限差分だけを当該ownerへ返す。未解決委任を追加承認要/不要のboolへ補わない。",
-        "各required conditionと委任差分を合わせて進行条件候補を返す。複数の異なる未解決状態がある場合は集約をunknown/nullとし、個別状態/理由/原参照を全て保持する。失敗優先順位で状態を消さない。",
-        "candidateは原資料と別に比較し、反復承認要求・相談由来の実承認・実装成功由来の完了などの意味差をfieldで返す。candidateの宣言で元資料の資格/結果を更新しない。",
-        "実進行/承認生成/工程完了はこの照合関数の作用として全てfalse、operation_effectはnone。実進行と記録はOS、原authority判断は当該ownerの責務に保持する。"
+        "既存qualified source portからimmutable comparison引数を受ける。共通ProcessContextとtrace2Refをaliasしない。独立target対応はb01_f01_comparison_contract.target_bindingsに従う。",
+        "B01はscope適用条件→必要roleだけの原資料/意味所見対応→集約。F01は原action必要membership→当該必要材料/独立profile→委任→集約。非必要資料の診断を全停止へ変換しない。",
+        "元partial_values/owner返却/資格診断/定義返却/読めた資料/無関係scopeを先に組み立て、明示candidate claimとの差だけを追加する。9memberを返し、実作用はnone。"
       ],
       "detail_state": "draft_basic_typed_qualification_and_content_cases_pending_semantic_review",
       "progression_detail": {
@@ -824,7 +1277,8 @@
           "condition_results": [
             "context",
             "phase_condition_material",
-            "各必要conditionのmaterials原資料"
+            "各必要conditionのmaterials原資料",
+            "condition_expectations（known required identityだけ）"
           ],
           "additional_approval_needed": [
             "context",
@@ -838,7 +1292,8 @@
             "context",
             "phase_condition_material",
             "各必要conditionのmaterials原資料",
-            "delegation"
+            "delegation",
+            "condition_expectations（known required identityだけ）"
           ]
         },
         "constant_false_fields": [
@@ -907,10 +1362,31 @@
               "materials",
               "finding_route"
             ]
+          ],
+          "condition_expectations": [
+            [
+              "condition_expectations"
+            ]
           ]
         },
         "qualification_return_rule": "未知の必要条件membershipはunknown/null、未知の委任は承認要/不要へ補完しない。sourceごとの理由/原参照を残し、owner資格が未成立ならowner_targetを当該state/nullにする。非必要資料の不足は診断だけを保持し、無関係Qを消さない。",
         "undefined_action_rule": "phase契約の当該actionキー欠落はmissing、内容nullはunknown、必要集合の型不一致や未定義操作kindはconflictとして当該field/nullへ返す。別actionの集合や空集合を既定にしない。これらは論理型案の合成比較で正式schemaではない。"
+      },
+      "logical_comparison_model": {
+        "entry": "assess_f01(arguments)",
+        "formal_symbol_preserved": "derive_revision_bound_progression",
+        "output_type": "RevisionProgressionAssessment",
+        "shared_constructors": "/b01_f01_comparison_contract/logical_source_code",
+        "logical_source_code": "\"\"\"Pure F01 comparison against independently supplied condition profiles. No I/O.\"\"\"\nfrom pure_common import *\nACTIONS=('start','freeze','backflow','reopen','complete')\nROLE_KIND={'agreement':'requirement_agreement','requirements_approval':'requirements_approval','pair':'paired_artifacts','verification':'independent_design_review','unresolved':'unresolved_findings','finding_route':'backflow_route'}\nROLE_FIELDS={'agreement':{'requirement':str},'requirements_approval':{'l3':str,'l10':str,'delegated':bool},'pair':{'left':str,'right':str,'left_layer':str,'right_layer':str},'verification':{'expected_state_owners':list,'execution_required':bool},'unresolved':{'allowed_items':list},'finding_route':{'finding':str,'return_layer':str,'affected_scope':str}}\ndef field_state(d,k,kind):\n if not isinstance(d,dict):return'conflict'\n if k not in d:return'missing'\n if d[k]is None:return'unknown'\n return'known'if type(d[k])is kind else'conflict'\ndef target_state(actual,target):\n if actual is ABSENT:return'missing'\n if actual is None:return'unknown'\n if not isinstance(actual,dict):return'conflict'\n s=merge([field_state(actual,'revision',str),field_state(actual,'scope',str)])\n if s!='known':return s\n if actual['scope']!=target['scope']:return'conflict'\n if actual['revision']!=target['revision']:return'stale'\n return'known'\ndef profile_definition(a,key):\n st,payload=obs(a.get('condition_expectations',{'state':'absent'}))\n if st!='known'or not isinstance(payload,dict):return'unknown',None,True\n target=target_state(payload.get('target',ABSENT),a['original']['target']);phase=field_state(payload,'phase',str)\n if phase=='known'and payload['phase']!=a['original']['phase']:phase='conflict'\n st=merge([target,phase])\n if st!='known':return st,None,False\n profiles=payload.get('profiles');d=profiles.get(key)if isinstance(profiles,dict)else None\n if not isinstance(d,dict):return'unknown',None,True\n role=d.get('semantic_role');expected=d.get('expected')\n if type(role)is not str or role not in ROLE_KIND or d.get('required_native_kind')!=ROLE_KIND[role]or not isinstance(expected,dict):return'unknown',None,True\n if not isinstance(d.get('reason'),str)or not d['reason']or not isinstance(d.get('basis'),list)or not d['basis']:return'unknown',None,True\n if not isinstance(payload.get('basis'),list)or not payload['basis']:return'unknown',None,True\n for k,kind in ROLE_FIELDS[role].items():\n  if type(expected.get(k))is not kind:return'unknown',None,True\n  if kind is list and not all(type(x)is str for x in expected[k]):return'unknown',None,True\n return'known',d,False\ndef compare_material(a,key,definition):\n raw=a['original'];body=raw['materials'].get(key)\n if body is None:return'missing'\n if not isinstance(body,dict):return'conflict'\n st=target_state(body.get('binding',ABSENT),raw['target'])\n if st!='known':return st\n st=field_state(body,'kind',str)\n if st!='known':return st\n if body['kind']!=definition['required_native_kind']:return'conflict'\n content=body.get('content',ABSENT)\n if content is ABSENT:return'missing'\n if content is None:return'unknown'\n if not isinstance(content,dict):return'conflict'\n if content.get('source_state')in STATES and content['source_state']!='known':return content['source_state']\n role=definition['semantic_role'];expected=definition['expected'];states=[]\n if role=='verification':\n  for k in ['expected_state_owners','observed_state_owners']:\n   s=field_state(content,k,list)\n   if s=='known'and(not all(type(x)is str for x in content[k])or not eq(content[k],expected['expected_state_owners'])):s='conflict'\n   states.append(s)\n  if expected['execution_required']:\n   s=field_state(content,'executed_in_fixture',bool)\n   if s=='known'and content['executed_in_fixture']is not True:s='conflict'\n   states.append(s)\n elif role=='unresolved':\n  s=field_state(content,'items',list)\n  if s=='known'and(not all(type(x)is str for x in content['items'])or any(x not in expected['allowed_items']for x in content['items'])):s='conflict'\n  states.append(s)\n else:\n  for k,kind in ROLE_FIELDS[role].items():\n   s=field_state(content,k,kind)\n   if s=='known'and not eq(content[k],expected[k]):s='conflict'\n   states.append(s)\n return merge(states)\ndef phase_membership(raw,action):\n phase=raw.get('phase_condition_material');by_action=phase.get('required_by_action')if isinstance(phase,dict)else None\n if not isinstance(by_action,dict):return'unknown',None\n if action not in by_action:return'missing',None\n value=by_action[action]\n if value is None:return'unknown',None\n if not isinstance(value,list)or not all(type(x)is str for x in value):return'conflict',None\n return'known',value\ndef definition_return(a,state,source,reason):return {'state':state,'original_source_ref':deepcopy(source),'affected_context':deepcopy(a['original']['target']),'reason':reason,'owner_target_state':'unknown','owner_target':None,'operation_effect':'none'}\ndef assess_f01(a):\n raw=a['original'];ref=a['context']['assessment_input_ref'];original_ref=a['context']['original_packet_ref'];p={};returns=[];definition=None\n context=dep(a,['context']);valid_action=type(raw.get('action'))is str and raw['action']in ACTIONS\n action_state=context if context!='known'else'known'if valid_action else'conflict'\n action_reason=QUAL if context!='known'else NORMAL if valid_action else DEFINITION\n p['action']=pv(action_state,raw.get('action'),ref,action_reason)\n phaseq=merge([context,qual(a,'phase_contract')]);membership=phaseq;required=None;phase_definition=False\n if phaseq=='known':\n  if valid_action:membership,required=phase_membership(raw,raw['action']);phase_definition=membership!='known'\n  else:membership='conflict';phase_definition=True\n reason=QUAL if phaseq!='known'else NORMAL if membership=='known'else DEFINITION\n p['required_conditions']=pv(membership,required,ref,reason)\n if phase_definition:\n  source=original_ref if not valid_action else a['qualification_sources'].get('phase_contract',{}).get('source_ref')\n  definition=definition_return(a,membership,source,'必要条件原定義または操作Contextの不足を当該source ownerへ返す候補。独立owner資格と実配送先bindingは未成立。')\n conditions={};profile_unresolved=[];conditionq_failed=False;content_failed=False\n if membership=='known':\n  for key in required:\n   q=merge([qual(a,key),qual(a,'condition_expectations')]);material=raw['materials'].get(key)\n   # Original absent material is observed before profile comparison; source diagnostics remain independent.\n   if qual(a,key)!='known':s=q;r=QCONDITION;conditionq_failed=True\n   elif material is None:s='missing';r=CONDITION;content_failed=True\n   elif qual(a,'condition_expectations')!='known':s=q;r=QCONDITION;conditionq_failed=True\n   else:\n    s,d,undefined=profile_definition(a,key)\n    if undefined:profile_unresolved.append(key);r=DEFINITION\n    elif s!='known':r=CONDITION;content_failed=True\n    else:s=compare_material(a,key,d);r=CONDITION;content_failed|=s!='known'\n   conditions[key]=pv(s,'supported_synthetic_material',ref,r)\n   if s!='known'and r==CONDITION:\n    refs=source_refs(a,key,material)\n    if material is not None:refs+=source_refs(a,'condition_expectations',a.get('condition_expectations'))\n    returns.append(mreturn(a,'condition_results/'+key,s,'当該必要条件の原資料内容/kind/対象の不足を保持する。',logical('condition_provider','F01'),refs=refs))\n  p['condition_results']=pv('known',conditions,ref,NORMAL)\n else:p['condition_results']=pv(membership,None,ref,reason)\n if profile_unresolved:definition=definition_return(a,'unknown',a['qualification_sources'].get('condition_expectations',{}).get('source_ref'),'必要条件の独立比較定義が未供給/非対応: '+','.join(profile_unresolved))\n delegation_state=merge([context,qual(a,'delegation')]);additional=None;owner=None;delegation_content=False\n if context=='known'and not valid_action:delegation_state='conflict'\n elif delegation_state=='known':\n  d=raw.get('delegation');delegation_state=merge([field_state(d,'intent_scope',str),field_state(d,'technical_detail_within_delegation',bool),field_state(d,'meaning_change',bool),field_state(d,'authority_change',bool)])\n  if delegation_state=='known':\n   if d['intent_scope']!=raw['target']['scope']:delegation_state='conflict'\n   elif d['meaning_change']or d['authority_change']:\n    additional=True;owner=d.get('unassigned_owner');delegation_state=field_state(d,'unassigned_owner',str)\n   elif d['technical_detail_within_delegation']:additional=False\n   else:delegation_state='unknown'\n  delegation_content=delegation_state!='known'\n dr=QUAL if context!='known'or qual(a,'delegation')!='known'else DEFINITION if not valid_action else CONDITION if delegation_content else NORMAL\n p['additional_approval_needed']=pv(delegation_state,additional,ref,dr);p['meaning_authority_return_owner']=pv(delegation_state,owner,ref,dr)\n if delegation_state=='known'and additional:returns.append(mreturn(a,'meaning_authority_return_owner','known','未委任の意味/権限差分だけを当該ownerへ返す。',{'kind':'declared_authority_owner','original_reference':owner}))\n proceed=merge([membership,delegation_state]+[x['state']for x in conditions.values()]);pr=NORMAL\n if phaseq!='known'or context!='known'or qual(a,'delegation')!='known'or conditionq_failed:pr=QUAL\n elif phase_definition or profile_unresolved:pr=DEFINITION\n elif content_failed or delegation_content:pr=CONDITION\n p['proceed_condition']=pv(proceed,'return_to_owner'if additional else'supported_synthetic_condition',ref,pr)\n for key in ['actual_progressed','actual_approval_created','actual_completion']:p[key]=pv('known',False,ref,NORMAL)\n diagnostics={}\n for key,q in a['qualification_sources'].items():\n  if q['state']=='known':continue\n  if key in ['carrier','context','phase_contract','delegation']:required_state='known';required_value=True\n  elif membership=='known':required_state='known';required_value=bool(required)if key=='condition_expectations'else key in required\n  else:required_state='unknown';required_value=None\n  diagnostics[key]={'qualification_state':q['state'],'original_source_ref':deepcopy(q.get('source_ref')),'target_binding':pv(context,raw['target'],original_ref,'対象bindingはContext/carrierの独立資格へ結ぶ。'),'required_for_action':pv(required_state,required_value,original_ref,'当該actionのphase契約で必要条件membershipを確認する。'),'owner_target':pv(q['state'],None,original_ref,'当該原sourceのowner資格が未成立のため配送先を補わない。宣言ownerは原参照に保全する。'),'reason':'当該資格不足の返却候補。非必要資料は診断を保持し、当該actionの進行条件を止めない。','operation_effect':'none'}\n presentation_order=['agreement','requirements_approval','pair','verification','unresolved','finding_route']\n presentation_order+=sorted(k for k in raw['materials']if k not in presentation_order)\n readable=[k for k in presentation_order if raw['materials'].get(k)is not None]\n return finish(a,p,returns,readable,diagnostics,definition)\n",
+        "source_sha256": "08a1ede6d61e8a4189966a79917e7551bd39e6815635a5c9e30769c1cdf3cf77",
+        "execution_scope": "凍結98/85wholeに対するscratch有限純粋計算の既存root receiptを参照。製品runtime/実owner/任意wire decode成立へ外挿しない。"
+      },
+      "admitted_basic_binding": {
+        "revision": "7ef00ff32c3336fa315a07b041c69d4d1d8439c6",
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "file_sha256": "34caacf28e931e1506a9ad4cca91c4b1afc4195b6f062d6259363734b66d543e",
+        "pointer": "/contracts/1",
+        "value_sha256": "d48826d7e289eca159bba61cb3e0f62bf2a5e5e8cf299683d1248bc9d61ccd4f"
       }
     },
     {
@@ -6210,5 +6686,50 @@
       "022_difference": "同じF04 Verified例の022 SystemDifferenceContextでwhole_obligationsにglobal_balance_conservationがあり、unique_role_mappingがunique_qualityを指す。L3 obligation/L10 oracle/Material/Evidence contentsの同一キーと値を、022 role内の独立selector・同一snapshot原取得記録へ照合する。005のX subcompositionをこのwhole obligationの根拠としない。",
       "caller_assignment": "元business packet、caller ProcessContext、各profile native Context、producer operationは各原値を保持した別端である。request_associationのrole別明示行がその対応関係を表す。Refやscopeの同値だけ、ID文字列、role名、期待値から同対象を生成しない。"
     }
+  },
+  "b01_f01_comparison_contract": {
+    "scope": [
+      "HARNESS-L5-003-B01",
+      "HARNESS-L5-003-F01"
+    ],
+    "model_kind": "純粋な論理比較の設計モデル。製品runtimeは実行していない。",
+    "logical_source_code": "\"\"\"Pure logical constructors/comparison. No file, Git, oracle or case access.\"\"\"\nfrom copy import deepcopy\nSTATES=('known','missing','unknown','conflict','stale')\nABSENT=object()\nB01_REASON='原sourceで確認した合成値。実資格/実承認ではない。'\nB01_QUAL_REASON='依存する原source資格が未成立。空/falseや他ownerの成功で補完しない。'\nGROUND_REASON='独立意味所見と原材料/対象の対応を比較した論理条件。実資格/実research/実承認ではない。'\nNORMAL='当該工程/actionが指定した条件と委任内具体化を別々に保持する。'\nQUAL='依存する独立原資料資格が未成立。未知を空/false/他owner成功で補わない。'\nDEFINITION='当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。'\nCONDITION='当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。'\nQCONDITION='当該必要条件の独立資格が未成立。他の既知条件を保持する。'\ndef pv(state,value,ref,reason):return {'state':state,'value':deepcopy(value)if state=='known'else None,'source_packet_ref':deepcopy(ref),'reason':reason}\ndef merge(states):\n bad={s for s in states if s!='known'}\n return 'known'if not bad else next(iter(bad))if len(bad)==1 else'unknown'\ndef qual(a,key):return a['qualification_sources'].get(key,{}).get('state','missing')\ndef dep(a,keys):return merge([qual(a,'carrier')]+[qual(a,k)for k in keys])\ndef obs(x):\n if not isinstance(x,dict):return'conflict',None\n s=x.get('state')\n if s=='value':return'known',x.get('value')\n return {'absent':'missing','null':'unknown','wrong_kind':'conflict'}.get(s,'conflict'),None\ndef eq(a,b):\n if a is ABSENT or b is ABSENT:return a is b\n if isinstance(a,bool)or isinstance(b,bool):return type(a)==type(b)and a==b\n if isinstance(a,dict)and isinstance(b,dict):return set(a)==set(b)and all(eq(a[k],b[k])for k in a)\n if isinstance(a,list)and isinstance(b,list):return len(a)==len(b)and all(eq(x,y)for x,y in zip(a,b))\n return a==b\ndef logical(role,root='B01'):return {'kind':'contract_role_owner','contract_ref':'HARNESS-L4-003-'+root,'role':role}\ndef mreturn(a,field,state,reason,owner=None,layer=None,refs=None):\n ref=a['context']['assessment_input_ref']\n return {'affected_field':field,'cause_state':state,'original_source_refs':deepcopy(refs or[]),\n 'affected_target':pv('known',a['original']['target'],ref,'原資料の対象revision/scopeを保持する。'),\n 'return_layer':pv('known',layer,ref,'原資料が指定した意味戻し層を保持する。')if layer is not None else pv('unknown',None,ref,'原資料は戻し層を指定していない。'),\n 'logical_owner_reference':pv('known',owner,ref,'既存L4の責務に結ぶ論理owner role。実配送先/実資格ではない。')if owner is not None else pv('unknown',None,ref,'当該原資料に論理owner参照が未供給。別ownerで補完しない。'),\n 'reason':reason,'operation_effect':'none'}\ndef source_refs(a,key,payload):\n r=a['qualification_sources'].get(key,{}).get('source_ref')\n return [deepcopy(r)]if payload is not None and isinstance(r,dict)else[]\ndef value_at(v,path):\n for k in path:\n  try:v=v[k]\n  except(KeyError,IndexError,TypeError):return ABSENT\n return v\ndef observed(value):\n if value is ABSENT:return {'state':'absent'}\n if value is None:return {'state':'null'}\n return {'state':'value','value':deepcopy(value)}\ndef cdiff(out,path,old,new,reason,proposed_observation=None):out.append({'path':deepcopy(path),'state':'conflict','source_observation':observed(old),'proposed_value':deepcopy(proposed_observation)if proposed_observation is not None else observed(new),'reason':reason})\ndef compare_json(out,path,a,b):\n if eq(a,b):return\n if isinstance(a,dict)and isinstance(b,dict):\n  for k in list(a)+[k for k in b if k not in a]:compare_json(out,path+[k],a.get(k,ABSENT),b.get(k,ABSENT))\n else:cdiff(out,path,a,b,'候補の当該宣言は元assessmentの値/状態へ対応しない。')\ndef compare_pv(out,path,a,b):\n if a['state']!=b['state']:cdiff(out,path,a,b,'候補の当該宣言は元assessmentの値/状態へ対応しない。')\n elif path==['partial_values','condition_results']and a['state']=='known':\n  for k in list(a['value'])+[k for k in b['value']if k not in a['value']]:\n   if k in a['value']and k in b['value']:compare_pv(out,path+['value',k],a['value'][k],b['value'][k])\n   else:cdiff(out,path+['value',k],a['value'].get(k,ABSENT),b['value'].get(k,ABSENT),'候補の当該宣言は元assessmentの値/状態へ対応しない。')\n else:compare_json(out,path+['value'],a['value'],b['value'])\n if not eq(a['source_packet_ref'],b['source_packet_ref']):cdiff(out,path+['source_packet_ref'],a['source_packet_ref'],b['source_packet_ref'],'候補の出典参照は現在の比較入力carrierへ対応しない。')\n if a['reason']!=b['reason']:cdiff(out,path+['reason'],a['reason'],b['reason'],'候補の説明文は現在のbase理由構成へ対応しない。')\ndef compare_claims(w,claims):\n if claims is None:return {'state':'not_proposed','differences':[]}\n out=[]\n for claim in claims:\n  path=claim['path'];tag=claim['proposed_value'];actual=value_at(w,path)\n  if tag['state']=='wrong_kind':cdiff(out,path,actual,ABSENT,'候補の当該宣言は元assessmentの値/状態へ対応しない。',tag);continue\n  proposed=tag['value']if tag['state']=='value'else None if tag['state']=='null'else ABSENT\n  if claim['kind']=='partial_record'and isinstance(actual,dict)and isinstance(proposed,dict):compare_pv(out,path,actual,proposed)\n  else:compare_json(out,path,actual,proposed)\n return {'state':'compared','differences':out}\ndef finish(a,p,returns,readable,diagnostics,definition=None):\n w={'partial_values':p,'owner_returns':returns,'source_qualification_results':{k:v['state']for k,v in a['qualification_sources'].items()},'qualification_returns':diagnostics,'definition_return':{'state':'absent'}if definition is None else{'state':'present','value':definition},'readable_original_materials':readable,'candidate_comparison':{'state':'not_proposed','differences':[]},'unaffected_scope':deepcopy(a['unaffected_scope']),'operation_effect':'none'}\n w['candidate_comparison']=compare_claims(w,a['candidate_claims']);return w\n",
+    "logical_source_sha256": "f282a5c594431849be36b567c4612ff0b2d7ee6c081f638abae5d094f9dcae7d",
+    "original_source_contract": "既存SourceCellはimmutable原source/qualification port。comparison viewはref/binding/original_contents/qualificationを別の引数位置へ明示投影し、carrier資格をembeddedへ継承しない。原資格と内容相反は別。",
+    "context_view": "ComparisonEvidenceContextはtrace用2Refだけ。expected target/stage/actionの原contextはoriginalの独立qualified target/phase/actionへ保持し、上記target tableで各材料/独立profileへ照合する。共通ProcessContext6fieldをalias/変更しない。",
+    "target_bindings": [
+      {
+        "consumer": "B01 technical/human",
+        "observed": "original.technical_quality.binding / original.human_convergence.original.binding",
+        "independent_comparand": "original.target（carrier/context原sourceが供給する対象指定。embedded材料bindingからコピーしない）",
+        "qualification": "qualification_sources.carrier/contextは既存独立観測。assessment_input_ref/original_packet_refの存在/hashからknownを生成しない。"
+      },
+      {
+        "consumer": "B01 grounding scope",
+        "observed": "grounding_scope_contract.value.target",
+        "independent_comparand": "original.target",
+        "qualification": "scope契約sourceとcontextは別資格。相互対応を比較し、不一致はgrounding局所返却。他の独立technical/human結果へ同じ失敗を強制しない。"
+      },
+      {
+        "consumer": "B01 meaning",
+        "observed": "grounding_meaning_observations[role].target / subject_source_ref / assessed_material",
+        "independent_comparand": "original.target / qualification_sources[grounding_role].source_ref / original.grounding[role] 全値",
+        "qualification": "所見と材料は別source。roleも独立比較。"
+      },
+      {
+        "consumer": "F01 profile",
+        "observed": "condition_expectations.value.target / phase",
+        "independent_comparand": "original.target / original.phase（独立context原値）",
+        "qualification": "profile source/context別資格。原材料からexpected生成しない。"
+      },
+      {
+        "consumer": "F01 material",
+        "observed": "original.materials[id].binding / kind / content",
+        "independent_comparand": "original.target / provider profile.required_native_kind / profile.expected",
+        "qualification": "profileは独立著述source。outer bindingが同じでも内容comparand相反を識別する。"
+      }
+    ],
+    "candidate_limit": "候補は明示claimのみ。旧typedPVのstate/value/ref/reasonを全保持し、意味差/trace差を別保存。base9memberから自己candidate_comparisonは読まない。",
+    "trace_constructor": "派生PVはsupplied comparison carrier Refへechoし、原資格診断は原source_ref/reasonを保持。出典参照は資格の証明ではない。理由はsource/meaning/定義/候補の責務に沿う固定constructorで、expected template入力を追加しない。"
   }
 }
