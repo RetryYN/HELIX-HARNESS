@@ -414,6 +414,107 @@
         "complete": "{projection_state:\"complete\",write:Write}だけから成る厳密なvariant。S05内部で使い、Writeのbyte配列をBase64文字列に置き換えない。",
         "rejected": "{projection_state:\"conflict\",result:\"conflict\",finding_code:\"schema_invalid | read_mismatch\",pointer:Text,write:null}だけから成る厳密なvariant。内部診断に限り、S05は既存Finding規則と独立に観測したbasisからFindingを組み立てる。",
         "authority": "公開Result variant、Finding、受入判断、receiptではない。"
+      },
+      "FailureOnlyReadCapture": {
+        "selected_plan": "exact request Plan, full native value",
+        "selected_failure_observation": "exact request FailureObservation, full native value",
+        "s01_owner_selection": "exact request OwnerSelectedReceiptContractStage, unchanged",
+        "s07_route_and_resolutions": {
+          "evidence_route": "exact request EvidenceRoute | null, unchanged",
+          "resolutions": "exact request Resolution tuple, unchanged"
+        },
+        "failure_episode": "FailureOnlyReadStage<FailureEpisodeRow6>",
+        "receipt_record": "FailureOnlyReadStage<{row: ContentRecordRow17, row_ref: exact Ref derived by existing row_codec, receipt: ReceiptRecord, content_bytes: exact payload_blob}>",
+        "command_binding": "FailureOnlyReadStage<{row: CommandBindingRow9, identity_result_ref: Ref decoded from exact BLOB, identity_axes: IdentityResult decoded from other exact BLOB}>",
+        "findings": "OS Finding tuple; never HARNESS Finding"
+      },
+      "OwnerSelectedReceiptContractStage": {
+        "variants": {
+          "selected": {
+            "write_id": "S01が選択したreceipt Writeの正確な識別子（Text）",
+            "resolution": "完全なAssetContract valueと正確なRefを持つResolution(kind=asset_contract,state=valid)",
+            "contract_bytes": "当該Resolution valueの不変な正確bytes。SHA-256はresolution.ref.sha256と一致する。"
+          },
+          "not_selected": {
+            "cause": "既存S01 outcomeの閉じた集合: receipt Writeが選択されない | missing | unknown | stale | conflict | closure_mismatch | schema_invalid",
+            "resolutions": "元のResolution tupleをそのまま保持する。",
+            "findings": "元のFinding tupleをそのまま保持し、finding codeや選択済みRefを合成しない。"
+          }
+        }
+      },
+      "FailureEpisodeRow6": {
+        "operation_id": "Text",
+        "episode_id": "Text",
+        "receipt_identity": "Text",
+        "receipt_revision": "Text",
+        "receipt_scope": "Text",
+        "prior_episode_id": "Text | SQL NULL"
+      },
+      "ContentRecordRow17": {
+        "record_identity": "Text",
+        "record_revision": "Text",
+        "scope": "Text",
+        "owner": "Text",
+        "kind": "Text",
+        "source_ref_bytes": "BLOB",
+        "content_contract_ref_bytes": "BLOB",
+        "payload_blob": "BLOB",
+        "payload_sha256": "Text",
+        "required_links_bytes": "BLOB",
+        "write_id": "Text",
+        "asset_id": "Text",
+        "before_ref_bytes": "BLOB | SQL NULL",
+        "after_locator_bytes": "BLOB",
+        "store_id": "Text",
+        "depends_on_write_ids_bytes": "BLOB",
+        "write_ref_axes_bytes": "BLOB"
+      },
+      "CommandBindingRow9": {
+        "command_id": "Text",
+        "identity_result_ref_bytes": "BLOB",
+        "identity_axes_bytes": "BLOB",
+        "operation_id": "Text",
+        "status": "committed | incomplete",
+        "receipt_identity": "Text | SQL NULL",
+        "receipt_revision": "Text | SQL NULL",
+        "receipt_scope": "Text | SQL NULL",
+        "generation_id": "Text | SQL NULL"
+      },
+      "FailureOnlyReadStage<T>": {
+        "variants": {
+          "found": {
+            "value": "T"
+          },
+          "absent": {},
+          "unknown": {
+            "findings": "OS Finding tuple",
+            "observed_raw": "RawSQLRow | null（SELECTで観測した原ordered row全体。read値自体が未観測なら外側null。SQL NULL cell・空BLOB・空tupleとは別）"
+          },
+          "not_attempted": {
+            "reason": "prerequisite_not_found | prerequisite_decode_failed"
+          }
+        }
+      },
+      "FailureOnlyBindingReadRequest": {
+        "plan": "Plan",
+        "failure": "FailureObservation",
+        "evidence_route": "EvidenceRoute | null",
+        "resolutions": "Resolution tuple",
+        "s01_owner_selection": "OwnerSelectedReceiptContractStage",
+        "reader_port": "configured ReceiptRecoveryPort reader capability"
+      },
+      "OwnerContractSourceEvidence": {
+        "resolution": "Resolution（kind=asset_contract。元Ref/state/valueを保持）",
+        "source_bytes": "immutable bytes | null（選択済contractの原bytes。AssetContract.content_bytesという書込payloadとは別）"
+      },
+      "RawSQLValue": {
+        "domain": "SQL text (空文字を含む任意文字列) | SQL integer | SQL real | immutable BLOB bytes (空BLOBを含む) | SQL NULL",
+        "scope": "観測したSQL cellの種別と値をそのまま保持する。既存の非空Textや成功列型へaliasせず、coerce・正規化・修復しない。runtime表現は後続設計で束縛する。"
+      },
+      "RawSQLRow": {
+        "domain": "ordered tuple<RawSQLValue>",
+        "length": "任意の観測列数。空tupleも保持し、6/17/9列へ型で制限しない。",
+        "scope": "正常projection時だけ既存の6/17/9列shape・各列型・codecへ照合する。外側null=未観測と、tuple内SQL NULLを区別する。"
       }
     },
     "finding_codes": [
@@ -973,6 +1074,142 @@
         "selection": "4 checkの全booleanを保存し、codec_orderが定める順の最初のfalseだけをfailureへ投影する。check1で両側ともaxes.result_refと異なる場合も上記の「それ以外」枝を使う。ここで一方の資格・意味の正当性を再認定しない。",
         "blob_pair": "Ref BLOBとaxes.result_refが不一致ならcodec_decode.state=mismatch、failure.kind=result_ref_mismatch、field_pointer=/identity_axes/result_ref。row/Planの後段はnot_evaluated。"
       }
+    },
+    "failure_episode_mapping": {
+      "status": "technical_mapping_for_existing_table",
+      "write_mapping": {
+        "operation_id": "Plan.operation_ref.identity",
+        "episode_id": "Plan.episode_id",
+        "receipt_identity": "receipt content row Ref.identity",
+        "receipt_revision": "receipt content row Ref.revision",
+        "receipt_scope": "receipt content row Ref.scope",
+        "prior_episode_id": "exact prior episode value or SQL NULL"
+      },
+      "read_mapping": "query the same operation_id/episode_id keys from the retained Plan; compare full Plan.operation_ref and FailureObservation.operation_ref before use; never reconstruct the 4-axis Locator from operation_id"
+    },
+    "s01_receipt_contract_selection_mapping": {
+      "visibility": "既存OS recovery caller内のprivateな純粋source選択。S01 public Resultへのfield追加や意味の再裁定はしない。",
+      "input": "S01に渡した同一のPlan、Resolution tuple、S01のResultとFinding tuple、およびOwnerInputPortで収集してcallerが保持したOwnerContractSourceEvidence tuple。source_bytesは各選択契約の原bytesであり、AssetContract.content_bytesから作らない。",
+      "output": "OwnerSelectedReceiptContractStage",
+      "algorithm": [
+        "S01のready(plan)が同一Planを指し、既存S01の全field/Closure照合が成立した場合、そのPlan.writesからkind=receiptの元Writeを選ぶ。書込集合やClosureを再生成しない。",
+        "同じ元Resolution tupleのkind=asset_contractかつstate=validから、S01が当該Write.write_idへ照合したAssetContractを選ぶ。同じ完全なResolution Refに結ばれたOwnerContractSourceEvidence.source_bytesを既存OwnerInputPortの収集入力から取得し、Ref.sha256と原bytesを照合し、decodeした契約値とResolution.valueを全field比較する。AssetContract.content_bytesは保存するassetのpayloadであり、このsource_bytesの代わりにしない。S01が照合したWrite/Closure/AssetContractの全field対応を維持する。",
+        "対象receipt Write、対応AssetContract、完全Refへ結ばれた契約source bytesが特定できた場合だけselected(write_id,resolution,contract_bytes=source_bytes)を返す。Resolution.refは契約sourceの外Ref、AssetContract.asset_refは契約が指す対象asset Refとして原役割を保持し、同じRef型だけを理由に別名化しない。",
+        "S01がreadyでない、receipt候補/元契約bytesがない、又は対応を特定できない場合はnot_selectedを返す。元Resolution tupleと元Finding tupleを保持し、source Ref・承認・成功状態を作らない。選択できないためだけに元S01 Resultを変更しない。",
+        "このprivate選択結果をFailureOnlyBindingReadRequest.s01_owner_selectionへ渡す。S01 public Result自体にstageが既に含まれるとは仮定しない。not_selectedでも既存S07の許可条件とread観測は別に扱う。"
+      ],
+      "authority_boundary": "通常契約のsource選択はS07のEvidenceRoute、authority/resource、保存・read権限の代替ではない。通常content_bytes/required_after/required_linksとfailure receiptの同一性も要求しない。",
+      "source_collection": "既存OwnerInputPortの選択projection契約・原source bytes・全参照の収集範囲を、L5の私有carrierとして保持する。Resolution自体にsource_bytes fieldがあるとは仮定しない。元Ref/state/valueとcollectorのsource bytesの対応を同じimmutable caller入力で保持する。"
+    },
+    "failure_only_read_protocol": {
+      "method": "read_failure_only_binding(FailureOnlyBindingReadRequest) -> FailureOnlyReadCapture",
+      "caller": "既存OS recovery callerはrecover_failed_operation返却後に同じPlan/FailureObservation/EvidenceRoute/Resolution tupleと保持したReceiptRecoveryPort readerを渡す。S01 provenanceは元S01入力/Result/Findingsと既存OwnerInputPortの契約source収集値を用いるprivate selectorから渡す。",
+      "read_order": [
+        "元PlanとFailureObservationのfull operation Locatorおよびepisode_idを照合し、既存S07のroute/authority/resourceのoperation/scope/effect/store条件を確認する。不一致・未解決なら元Findingを保持してreadを開始しない。",
+        "保持したReceiptRecoveryPort readerを使って、failure-only保存とは別のread transactionを一度開始する。failure_episodesをoperation_id=Plan.operation_ref.identityかつepisode_id=Plan.episode_idで読む。6列の原値を保持し、scalar operation_idからLocatorを合成しない。",
+        "episode行があれば、そのreceipt_identity/receipt_revision/receipt_scopeの三値で同transaction内のcontent_recordsを読む。17列すべてを原値で保持する。元row_codecに従いpayload digest、after_locatorの4軸、owner/storeの原BLOB、required links等を逆照合し、閉じたReceiptRecordをdecodeする。receipt Refはrecord_identity/record_revision/scope/owner/payload_sha256からのみ投影する。",
+        "decodeしたReceiptRecordのoperation_ref/episode_id/command_id/scope_ref/basesを元Plan/FailureObservationの該当軸へ照合する。row Refの3address軸はepisodeのFKと照合し、原値を修復しない。",
+        "ReceiptRecordがdecodeできた場合だけ、そのReceiptRecord.command_idをkeyとして同transactionのcommand_bindingsを読む。Plan.command_idは別の比較値であり照会keyの代替にしない。9列の原値を保持する。identity_result_ref_bytesとidentity_axes_bytesは別々に既存command-binding codecでdecode・比較し、M1 Refと9-field IdentityResultを保持する。",
+        "read transactionを終了し、原Plan/FailureObservation/S01 stage/routeとResolution tupleを変えずに、3read stageとOS Finding tupleをFailureOnlyReadCaptureへ返す。S01 stageはDB readの観測値ではない。"
+      ],
+      "absence_and_dependency": [
+        "正常なSELECTでepisode行なしならepisode=absent、receiptとbindingはnot_attempted(prerequisite_not_found)。",
+        "episode行がFKを持つのに同じ正常readでreceipt行が無ければ、receipt=absent、binding=not_attempted(prerequisite_not_found)とし、独立read内record不一致として既存read_mismatch Findingをcaptureへ保持する。",
+        "receiptのdecodeができずcommand keyを得られない場合、bindingはnot_attempted(prerequisite_decode_failed)。原Plan.command_idで補完しない。正常に読んだcommand binding行が無ければbinding=absent。",
+        "read開始前の入力/route不成立、又はread開始・SELECT自体の不能は、その最初のstageをunknown(findings=元OS Findings, observed_raw=null)として保持し、依存keyを得ない後段をnot_attemptedにする。値だけからreadが実施されたと推定しない。"
+      ],
+      "finding_predicates": [
+        {
+          "condition": "原Plan/FObs又は必要nonidentity Refの対象軸相反",
+          "rule": "OS-L5-053-R-reference_conflict"
+        },
+        {
+          "condition": "read開始/SELECTがBUSY・error・未観測、必要route欠落",
+          "rule": "OS-L5-053-R-read_unknown"
+        },
+        {
+          "condition": "既存EvidenceRouteのoperation/scope/authority/storeが不適用",
+          "rule": "OS-L5-053-R-evidence_route_invalid"
+        },
+        {
+          "condition": "閉row/codec必須field・enum・variant・canonical roundtrip不正",
+          "rule": "OS-L5-053-R-schema_invalid"
+        },
+        {
+          "condition": "同じ独立read内のrecord key/FK/Ref/digest/source/projection値が相反又はFK先recordが欠落",
+          "rule": "OS-L5-053-R-read_mismatch"
+        },
+        {
+          "condition": "同commandの独立identity軸相反",
+          "rule": "OS-L5-053-R-identity_conflict"
+        }
+      ],
+      "finding_precedence": "既存finding_rulesとfinding_precedenceを使い、原因は全件保持する。通常のrow absenceだけで成功receipt欠落用receipt_missingや、保存失敗用receipt_failedを生成しない。",
+      "transaction_boundary": "3tableは同じread transactionから取得するprotocol義務。返却値だけでは同一transactionを識別できず、protocol検証はport-call観測と分ける。S07 failure保存とこのreadは別transaction。S05 success ReadSnapshotやgeneration所属を作らず、transaction/snapshot/observation Refを発行しない。",
+      "scope": "私有producer契約。OSのpublic Result/Finding/S07 signatureは保持する。実port/DB/資格/保存の成立は未実証。",
+      "raw_failure_retention": [
+        "各SELECTでrowを観測したら成功型への検査より前にRawSQLRowとして保持する。row長・空文字・BLOB・codecが不正でも観測値を捨てず、修復しない。",
+        "episode原rowのshape/型検査不能はfailure_episode=unknown(findings, observed_raw=当該原row)。依存するreceipt/bindingはnot_attempted(prerequisite_decode_failed)。",
+        "receipt原rowのshape/型・row_codec・ReceiptRecord decode不能はreceipt_record=unknown(findings, observed_raw=当該原17列の観測row)。bindingはnot_attempted(prerequisite_decode_failed)で、Plan.command_idへfallbackしない。観測列数が17以外でも原rowを保持する。",
+        "binding原rowのshape/型・identity_result_ref_bytes又はidentity_axes_bytesのdecode不能はcommand_binding=unknown(findings, observed_raw=当該原9列の観測row)。両原BLOBを保持し、一方のdecode成功値で他方を置換しない。観測列数が9以外でも原rowを保持する。",
+        "入力/route不成立又はread開始/SELECT自体の不能でrow未観測ならunknown.observed_raw=null。正常SELECTの行なしは既存absentとし、未観測やdecode失敗へ読み替えない。"
+      ],
+      "stage_representation": "私有Captureの各read stageはstateをdiscriminantとする閉record。found={state:found,value:T}、absent={state:absent}、unknown={state:unknown,findings:OS Finding tuple,observed_raw:RawSQLRow|null}、not_attempted={state:not_attempted,reason:既定の2値}。public Resultのwire型や新transportは定めない。",
+      "finding_binding": {
+        "scope": "このprivate readで新たに導くstorage-read Findingの4field binding。既存public code/他関数のFinding/authorityを変更しない。",
+        "constructor": {
+          "code": "finding_predicatesが対応させる既存finding_rules.code",
+          "field_pointer": "このFailureOnlyReadCaptureをrootにする下記pointer。decode不能bytesの内部へ仮想JSON pointerを作らない。",
+          "subject_ref": "request.plan.store_refの原完全Ref（照会対象として宣言されたstore）。実store資格の再認定ではない。",
+          "basis_refs": "[request.plan.resource_ref, request.plan.authority_ref] の原完全Refをこの役割順で保持。sort/dedupしない。"
+        },
+        "site_pointers": {
+          "read_begin_unobserved": "/failure_episode",
+          "select_unobserved": "当該stageのroot: /failure_episode | /receipt_record | /command_binding",
+          "physical_row_shape": "当該stageの/observed_raw。原列数が不正なら存在しないcolumn pointerを作らない。",
+          "physical_column_type_or_codec": "当該stageの/observed_raw/{元physical columnの0-based index}。既存row_codec/command_binding_codecで選択した不正columnを使う。",
+          "receipt_payload_decode": "/receipt_record/observed_raw/7（元payload_blob）",
+          "missing_receipt_fk_target": "/receipt_record（absent stage）",
+          "receipt_reference_mismatch": "decoded Ref成立時は/receipt_record/value/row_ref。不成立なら当該raw columnのpointer。",
+          "receipt_payload_axis_mismatch": "/receipt_record/value/receipt/{既存Plan/FObsと不一致となる元ReceiptRecord member名}",
+          "binding_ref_blob_invalid": "/command_binding/observed_raw/1",
+          "binding_axes_blob_invalid": "/command_binding/observed_raw/2",
+          "binding_decoded_identity_mismatch": "/command_binding/value/identity_axes/{既存command_binding_codecが最初の相違とするmember}。group全体の相違なら/command_binding/value/identity_axes。",
+          "precondition_plan_failure_axis": "/selected_failure_observation/{相違member名}。原Planもselected_planに保持する。",
+          "precondition_route": "/s07_route_and_resolutions/evidence_route",
+          "precondition_resolution": "/s07_route_and_resolutions/resolutions/{元tuple index}"
+        },
+        "stage_and_top": "top.findingsはこのprivate read自身の実際に評価した各発生Findingを一度ずつ保持する。unknown.findingsはそのstageの同発生のviewであり、topへviewを再連結しない。別発生が全値同じでも個数を保持しdedupしない。absent variantにfindingsを追加しない。",
+        "order": "各tupleはcodeのUnicode scalar順→field_pointerの同順→{subject_ref,basis_refs}の既存metadata canonical JSON bytes順に安定sort。完全同値の別発生は同値を同数残す。basis_refs内部の役割順は変えない。",
+        "evaluation_order": "既存command codecのRef BLOB先行・axes decode・row check・4check順と非評価後段を維持する。payloadがdecode不能ならbindingを評価せず、評価していない原因を生成しない。",
+        "incoming_findings": "S01 not_selectedの原findingsはs01_owner_selection内に原値保持し、private read topへ自動転載しない。S07 public Result/Findingsは現read request引数でないため再構成/暗黙継承しない。read adapterが既存OS Findingを明示返した場合は原4fieldを保持し、同一発生の再投影だけを避ける。",
+        "known_three_cases": [
+          {
+            "cause": "receipt payload decode不能",
+            "stage": "receipt_record unknown, binding not_attempted(prerequisite_decode_failed)",
+            "code": "schema_invalid",
+            "field_pointer": "/receipt_record/observed_raw/7",
+            "local_count": 1,
+            "top_count": 1
+          },
+          {
+            "cause": "episode FK先receipt absent",
+            "stage": "receipt_record absent, binding not_attempted(prerequisite_not_found)",
+            "code": "read_mismatch",
+            "field_pointer": "/receipt_record",
+            "local_count": 0,
+            "top_count": 1
+          },
+          {
+            "cause": "read_begin未観測",
+            "stage": "failure_episode unknown(observed_raw=null), 後段not_attempted(prerequisite_not_found)",
+            "code": "read_unknown",
+            "field_pointer": "/failure_episode",
+            "local_count": 1,
+            "top_count": 1
+          }
+        ]
+      }
     }
   },
   "functions": [
@@ -1216,7 +1453,10 @@
         "OS-L5-053-R-receipt_failed",
         "OS-L5-053-R-evidence_route_invalid",
         "OS-L5-053-R-boundary_violation"
-      ]
+      ],
+      "post_recovery_read_handoff": "既存OS recovery callerが元S01 Plan/Resolution/Result/Findingsと、既存OwnerInputPortで収集して保持した契約source bytesからprivateなreceipt契約stageを選ぶ。元S07呼出しのPlan/FailureObservation/EvidenceRoute/Resolutionと同じReceiptRecoveryPort readerを用いて、返却後にread_failure_only_bindingを呼ぶ。公開S01/S07 returnへstageを追加せず、FailureOnlyReadCaptureを私有の後続入力として保持する。",
+      "private_read_input": "FailureOnlyBindingReadRequest",
+      "private_read_output": "FailureOnlyReadCapture"
     },
     {
       "id": "OS-L5-053-S08",
@@ -1384,5 +1624,23 @@
     "対象ごとの実OwnerInput/closure/SEC/INFRA binding、外部必須writeのadapter対設計は未成立。各未閉包scopeを保持し、全体の実装準備完了へ読み替えない。",
     "L6/L7のfixed SQL/function/module/test-oracleコード、実toolchain exact SQLite/compile/OS-VFS設定の凍結、実装前Red、最小Green、実L9/L10とPO受入は後続。",
     "HARNESS052の意味正規化algorithm/正式wire schemaは別ownerの設計。ここでOSが意味コアやテンプレート意味を再実装しない。"
-  ]
+  ],
+  "private_failure_read_design_source": {
+    "revision": "2fff1ce814c29e019b01f760eb0e2691d86538e4",
+    "files": [
+      {
+        "path": "docs/helix-os/L4-basic-design/atomic-canonicalization.json",
+        "sha256": "3e14df41a7782889a4d7e1d416afe98b99693e9d7a32bb8fb17c006466129e62"
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+        "sha256": "bb814e4ca598a593523e090b32665b11c1c2981a49ec321f3a0afbd776bc00be"
+      },
+      {
+        "path": "docs/helix-os/L8-unit-verification/atomic-canonicalization.json",
+        "sha256": "89002309fb461c31b6670c54c90c833720b0ea7d83eb09044f1c50ac1344091a"
+      }
+    ],
+    "effect": "source-only design provenance; no new approval/operation authority"
+  }
 }
