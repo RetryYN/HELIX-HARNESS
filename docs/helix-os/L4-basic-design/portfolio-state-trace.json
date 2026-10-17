@@ -1119,7 +1119,7 @@
             "projection_status": "NotProduced",
             "effective_targets": "該当5軸をAbsentにしたcopy",
             "source_bound_trace": "Returned(既存R12 unknownと2軸unknownをjoinした同call結果)",
-            "origin_association_observations": "Compared、operand_state=not_produced"
+            "origin_association_observations": "Compared、operand_state=not_produced。target_keyがAbsent/非stringならlocal_project_axes.target_key_capture_rulesのselection cause Captureを使い、stringなら原literal keyでraw sourceをlocateする。Unbound共通返却が先行する。"
           },
           "when_unbound": "下記Unbound共通返却。"
         }
@@ -1178,12 +1178,12 @@
         "scope",
         "requirement_revision"
       ],
-      "input": "同callのProduced origin.records[target_key].sourceの同名2fieldと、変更しない原targets.projects[project_key]の同名2field。raw pointerからSourceCapture(既存Absent/Blocked/Present)を作り、origin側の原20field/他資料も別保持。",
+      "input": "同callのProduced origin.records[target_key].sourceの同名2fieldと、変更しない原targets.projects[project_key]の同名2field。raw pointerからSourceCapture(既存Absent/Blocked/Present)を作り、origin側の原20field/他資料も別保持。 Bound NotProducedのkey kindによるorigin Captureの原物とnamespaceはtarget_key_capture_rulesに従う。selection namespaceのcause Captureを使うBound NotProducedでは、source軸値を観測したとの主張にはしない。",
       "capture_roots": {
-        "origin": "private invocation root /os015_raw_input/records/{escaped-target-key}/source/{axis}",
+        "origin": "private invocation root /os015_raw_input/records/{escaped-target-key}/source/{axis}。Bound NotProducedでtarget keyがAbsent又は非stringなら、target_key_capture_rulesに従い既存normalised view /selection/target_keyのCaptureをorigin取得不能causeとして使う。",
         "selected_project": "private invocation root /existing_selected_targets/projects/{escaped-project-key}/{axis}"
       },
-      "comparison": "Producedの各軸で両側が非空stringなら同値corresponding、既知差violation/field_conflict。それ以外はunknown/field_unknown。NotProducedではraw Captureを失わずoperand_state=not_produced、両軸unknownとしraw値をtyped producer成功へ昇格しない。Produced時operand_state=produced。",
+      "comparison": "Producedの各軸で両側が非空stringなら同値corresponding、既知差violation/field_conflict。それ以外はunknown/field_unknown。NotProducedではraw Captureを失わずoperand_state=not_produced、両軸unknownとしraw値をtyped producer成功へ昇格しない。Produced時operand_state=produced。 selection namespaceのcause Captureを使う場合、そのvalueをscope/requirement_revisionとして比較しない。",
       "private_function": "compare_os015_origin_project_axes(explicit association, origin production state, origin axis captures, original ProjectTarget axis captures) -> OriginAssociationComparison。現compare_selected_nodeの既存引数は維持し、隠れたglobal operandを追加しない。",
       "output_shape": {
         "project_key": "string:束縛した実locator key",
@@ -1191,6 +1191,100 @@
         "source_disposition": "corresponding|unknown|violation:両軸rank max",
         "axis_observations": "scopeとrequirement_revision各々の閉record{operand_state:produced|not_produced,origin:SourceCapture,selected_project:SourceCapture,disposition:corresponding|unknown|violation,finding_key:null|{code,pointer,return_owner}}",
         "findings": "array<既存Finding>:2原因が同一keyでも軸別観測を残し、TraceResult側だけR10でdedup。"
+      },
+      "target_key_capture_rules": {
+        "scope": "BoundかつNotProducedのorigin target key取得不能枝だけ。Unboundの共通返却、Producedの原5軸投影、既知string key時のraw source Capture、公開TraceResult/SourceBoundTraceは変更しない。",
+        "dispatch_priority": [
+          "既存dispatchでNotSelectedならorigin keyを読まず従来caller返却。",
+          "project/node locatorがUnboundなら既存Unbound_returnを先に返し、Compared又は軸別origin Captureを作らない。",
+          "BoundならSelected/SelectedButNotProducedの既存production判定を保持。SelectedButNotProducedはtyped存在/全値対応があってもNotProducedのまま。",
+          "Bound NotProducedについてだけ、下記key kindでaxis.origin Captureの原物を選ぶ。"
+        ],
+        "normalised_selection_value": {
+          "source": "本節normalised_source_viewで定義した同一view.selection.target_keyを用いる。原callのSelected literal又はSelectedButNotProduced Present.valueをJSON値のまま置き、Absentではmember省略する。原wrapper/variant/requested_selectionはoriginal_materialsへ残し、SourceCaptureはこの論理viewの原物に対応する。",
+          "Selected": "宣言したos015_target_keyの原stringをnormalised view.selection.target_keyへ置く。",
+          "SelectedButNotProduced.Present": "元selection.target_keyのPresent.valueを同view memberへJSON値のまま置く。Present wrapperのstate/value memberをraw source又はkey文字列へ混ぜない。",
+          "SelectedButNotProduced.Absent": "同view.selection objectは存在するがtarget_key memberを省略する。null/空文字/default keyを入れない。元Absent wrapperはoriginal_materials.selection.target_keyに全値保持する。",
+          "original_pointer_binding": "Presentの同view /selection/target_keyは原call selection.target_key.valueのJSON値を指す。Absentの同view位置はその原Presenceが未供給を表す論理memberであり、原wrapper全体を消した/元raw requestに文字通り同pathが無かったとは主張しない。original_materialsとorigin_selectionは原variant/Presence/requested_selectionを保持する。"
+        },
+        "selection_capture_when_not_string": {
+          "condition": "normalised view.selection.target_key memberがAbsent、又はPresent値がstringではない。null/boolean/number/array/objectを含む。",
+          "operation": "既存SourceCapture規則でnormalised viewをroot、tokens=[selection,target_key]として一度Captureし、その同一観測値の独立copyをscopeとrequirement_revisionの両axis.originへ置く。keyをstring化せず、target_a/bへdefaultしない。",
+          "Absent": {
+            "requested_pointer": "/selection/target_key",
+            "reached_pointer": "/selection/target_key",
+            "availability": "absent",
+            "value_member": "無し。最後のtarget_key memberが最初missing。selection objectはnormalised viewの実在object。"
+          },
+          "Present_null": {
+            "requested_pointer": "/selection/target_key",
+            "reached_pointer": "/selection/target_key",
+            "availability": "present",
+            "value": null
+          },
+          "Present_list": {
+            "requested_pointer": "/selection/target_key",
+            "reached_pointer": "/selection/target_key",
+            "availability": "present",
+            "value": "元配列の全JSON値。空配列も保持し、文字列[]を作らない。"
+          },
+          "other_non_string": "同じpresent/reached規則で元boolean/number/object全値を保持する。",
+          "meaning": "axis.originはsource軸値の観測ではなく、origin operandを選ぶtarget keyが得られなかった原causeのCaptureである。requested_pointerがselection namespaceにあることとoperand_state=not_producedで識別し、valueをscope/requirement_revisionへ比較/転記しない。raw OS015全文は既存original_materialsにそのまま残る。"
+        },
+        "raw_source_capture_when_string": {
+          "condition": "normalised view.selection.target_keyがPresent(string)。空文字及びtarget_a/b以外も、NotProduced raw Captureのliteral keyとしてそのまま使う。これでProducedへ昇格しない。",
+          "operation": "従来どおり各axisについてnormalised view /os015_raw_input/records/{RFC6901-escaped literal key}/source/{axis}へSourceCaptureする。未知stringをtarget_a/bへ限定したり、別keyへaliasしない。",
+          "missing_or_blocked": "requested_pointerは当該full path、reached_pointerは既存SourceCaptureどおり最初missing member又は非object ancestor。absentはvalue無し、blocked/presentは原valueを保持。unknown key又は空keyが実rawに無ければ、そのliteral member不在をCaptureする。"
+        },
+        "fixed_result_semantics": "両方式ともBound NotProducedならoperand_state=not_produced、両axis.disposition=unknown、各既存field_unknownのnode-root key、source_disposition=unknownを保持する。source facetへのrank join/既存reduction/A03同call返却は既存契約どおり。新Capture state/type、公開code/state、authority、registry/資格gateは増やさない。",
+        "normal_key_preservation": "target_a/bの既存string keyでは旧raw source axis Captureのrequested/reached/availability/valueが全不変。現12caseの全input/expected/constructor/manifestは変更しない。",
+        "normalised_source_view": {
+          "status": "capture_only_logical_source_view_not_transport_or_qualified_source",
+          "root_definition": "本節で定義する論理viewは下記4root memberだけを認識するobjectである。selection memberは必ずobjectとして存在し、他3memberは原Presence/引数個数に従い存在又は省略する。原callの値を独立copyするだけで、分類/補完/資格/実source生成はしない。",
+          "members": {
+            "os015_raw_input": {
+              "source_port": "input_port.origin_materials.os015_raw_input",
+              "Present": "原Presence Present(x)のxを同名view memberへJSON値のままcopyする。wrapperを置かない。xがnull/非objectでも保持する。",
+              "Absent": "同名view memberを省略する。null/空object/typed値で補完しない。"
+            },
+            "os015_typed_input": {
+              "source_port": "input_port.origin_materials.os015_typed_input",
+              "Present": "原Presence Present(MaterialInput)の全MaterialInput値を同名view memberへ独立copyする。raw入力へ書き戻したり、rawの代わりに用いない。",
+              "Absent": "同名view memberを省略する。rawから型形成済みの値を捏造しない。"
+            },
+            "existing_selected_targets": {
+              "source_port": "input_port.ordinary_callの原0..1 targets引数",
+              "one_argument": "原targets引数のJSON値を同名view memberへ独立copyする。明示null/非object/空objectも原値保持。effective targetsへ投影する前の原値である。",
+              "zero_arguments": "同名view memberを省略する。baseline/actual/context/OS015/effective targetsで補完しない。"
+            },
+            "selection": {
+              "source_port": "input_port.selection",
+              "container": "常に存在するobject。target_key/project_key/node_keyだけを下記variant規則で写す。member不存在とpresent null/空/型外を区別する。",
+              "NotSelected": "空object。originのselection keyは読まず生成しない。",
+              "Selected": {
+                "target_key": "os015_target_keyの原string",
+                "project_key": "portfolio_project_keyの原string",
+                "node_key": "portfolio_node_keyの原string"
+              },
+              "SelectedButNotProduced": {
+                "target_key": "原target_key PresenceがPresent(x)ならxを同view memberへそのまま置き、Absentならmember省略。",
+                "project_key": "原project_key PresenceがPresent(x)ならxを同view memberへそのまま置き、Absentならmember省略。",
+                "node_key": "原node_key PresenceがPresent(x)ならxを同view memberへそのまま置き、Absentならmember省略。"
+              },
+              "no_recovery": "requested_selectionやOS015 target_id/実map keyから省略keyを補完しない。非string JSON値をstring化/配列要素選択しない。"
+            }
+          },
+          "original_retention": "原Presence wrapper、原targets引数0/1個と値、原selection variant/requested_selection、raw/typed入力と実call resultは既存original_materialsとorigin_selectionへ原値保持する。viewはその別表現であり、原callのmemberを消した/書換えたとは主張しない。",
+          "capture_semantics": {
+            "root": "SourceCaptureを生成するときだけ本viewをrootにする。requested_pointerはこのview内の宣言token path、reached_pointerはその実treeを辿った位置である。全tokenをRFC6901で一回escapeする。",
+            "missing_root_member": "例: raw Presence=Absentなら/os015_raw_inputの最初missingでavailability=absent/value無し。targets引数0個なら/existing_selected_targetsの最初missingで同様。selection.target_keyがAbsentならselection objectを辿った/selection/target_keyでabsent/value無し。",
+            "present_non_object": "例: raw Present(null)をwhole rootとしてCaptureすればpresent/value=null。records以下を要求すれば、同じ/os015_raw_inputが最初非object ancestorなのでblocked/value=null。targets1個=nullも同様に、wholeではpresent、projects以下の要求では/existing_selected_targetsでblockedとなる。配列/boolean/number/stringも同じ原kindを保持する。",
+            "original_binding": "view /os015_raw_input及び/os015_typed_inputは原Presence.valueに、/existing_selected_targetsは原targets唯一引数に、/selection各memberは上記原literal又はPresence.valueに対応する。Absent wrapperが元JSONにあっても、view内の値member省略という論理presenceを表す。"
+          },
+          "dispatch_limit": "viewの定義はNotSelected/Unboundのdispatch優先を変えない。NotSelectedは従来callerへ、locator Unboundは既存Unbound_returnへ先に進み、Bound axis比較を作らない。",
+          "A03_namespace_separation": "既存A03の/targetsはSourceCandidateEvaluationへ渡す今回effective targets引数のnamespaceである。本viewの/existing_selected_targetsは変更前の原targetsであり、両者をalias/上書きしない。A03のinput/targets/Capture/13+11+11比較、公開返却形は変更しない。",
+          "authority_limit": "論理viewの同値/copy/Captureはsource custody/owner資格/実配送/受入を成立させない。正式transport/schema/製品codecの選択や新registry/gateではない。"
+        }
       }
     },
     "diagnostic_and_reduction": {
