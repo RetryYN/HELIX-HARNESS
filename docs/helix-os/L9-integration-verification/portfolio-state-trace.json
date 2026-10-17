@@ -423,7 +423,7 @@
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
       "revision_note": "caller-selected target契約に対応するL4 file bytes。対象source revisionの承認を示さない。",
       "binding_kind": "candidate_file_bytes",
-      "file_sha256": "1801f4c383fac5639f7fa795b53c731eddba62c57554579f1a6b1c38eae1388c",
+      "file_sha256": "2ea02d95294ba15e551d95b197930c99230b7e67b5b105c76bad4f32d126e4b6",
       "role": "domain_extension_casesを解釈するためのcaller-selected target契約。候補のfile bytes pinであり、承認・資格を意味しない。",
       "base_source_main": "5b99b6f329183a2c7bf0b12bcba53e9d93769e63"
     }
@@ -402062,7 +402062,7 @@
     }
   },
   "os015_origin_connection_verification_plan": {
-    "status": "case_plan_only_inputs_and_expectations_not_frozen",
+    "status": "limited_case_plan_with_independently_frozen_L8_wholes",
     "requirement_refs": [
       "HELIXOS-L3-016-F01",
       "HELIXOS-L3-016-F03"
@@ -402073,7 +402073,7 @@
     ],
     "l4_candidate_binding": {
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
-      "sha256": "1801f4c383fac5639f7fa795b53c731eddba62c57554579f1a6b1c38eae1388c"
+      "sha256": "2ea02d95294ba15e551d95b197930c99230b7e67b5b105c76bad4f32d126e4b6"
     },
     "contract_pointer": "/os015_origin_call_contract",
     "source_history": {
@@ -402156,16 +402156,165 @@
         "id": "ORIGIN-DECLARED-NOT-PRODUCED-UNBOUND",
         "control": "SelectedButNotProducedでlocatorが未供給/null/非string又は原targetsのmissing/present-invalidによりUnbound。",
         "conditions": "SelectedのUnboundと同じ閉じた共通返却、effective_targets=Absent/source_bound_trace=NotProducedを返す。選択variantと最初missing/invalid Captureを保持し、新nodeやorigin traceを作らない。"
+      },
+      {
+        "id": "ORIGIN-BOUND-TARGET-KEY-ABSENT",
+        "control": "SelectedButNotProducedかつproject/node locator Bound、原target_key Presence=Absent/requested_selectionのtarget key member無し",
+        "conditions": "原OS015 raw/typedとOS016 actual/context/原targets不変。再昇格せずeffective5Absent、2軸unknown。axis.originだけ/selection/target_keyのAbsent又はPresent原value Capture。公開SourceBoundTraceは既存DeclaredNotProducedBound全値を保持。"
+      },
+      {
+        "id": "ORIGIN-BOUND-TARGET-KEY-NULL",
+        "control": "SelectedButNotProducedかつproject/node locator Bound、原target_key Presence=Present(null)/requested_selectionにも実null",
+        "conditions": "原OS015 raw/typedとOS016 actual/context/原targets不変。再昇格せずeffective5Absent、2軸unknown。axis.originだけ/selection/target_keyのAbsent又はPresent原value Capture。公開SourceBoundTraceは既存DeclaredNotProducedBound全値を保持。"
+      },
+      {
+        "id": "ORIGIN-BOUND-TARGET-KEY-ARRAY",
+        "control": "SelectedButNotProducedかつproject/node locator Bound、原target_key Presence=Present(array)/requested_selectionにも同原配列",
+        "conditions": "原OS015 raw/typedとOS016 actual/context/原targets不変。再昇格せずeffective5Absent、2軸unknown。axis.originだけ/selection/target_keyのAbsent又はPresent原value Capture。公開SourceBoundTraceは既存DeclaredNotProducedBound全値を保持。"
       }
     ],
     "preservation": "既存cases356/domain_extension_cases29/source_candidate_return_verification.cases4の全値、fixture_inputs/fixture_contract/completion/既存全L4 rulesを不変。新case計画は既存件数に加算しない。",
     "not_claimed": [
-      "期待値凍結",
-      "局所計算合格",
       "全A02閉包",
       "任意provider接続",
       "実資格/実配送",
       "92親430義務完了"
-    ]
+    ],
+    "capture_source_view_binding": {
+      "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+      "pointer": "/os015_origin_call_contract/local_project_axes/target_key_capture_rules/normalised_source_view",
+      "object_canonical_sha256": "4287be146f2ea542aa64895623af0f3a336d790e3e5d4d2fbe5dfe01688e6141",
+      "meaning": "本L4節が4root/3selection keyの写し方を自己完結して定義する。local oracle constructorを意味正本にしない。"
+    },
+    "frozen_case_refs": [
+      {
+        "id": "ORIGIN-SEVEN-AXES-MATCH",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/0/input",
+        "input_canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+        "expected_pointer": "/os015_origin_caller_verification/cases/0/expected_whole",
+        "expected_whole_canonical_sha256": "3336877b6cef57435db1be004841b8ce8c6421d2a3f1ba397b243f4ce20dc5d4"
+      },
+      {
+        "id": "ORIGIN-TWO-AXIS-LOCAL-CONFLICT",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/1/input",
+        "input_canonical_sha256": "3b9ec51f2927519aae8f2da422f87f0710b7119c6c7267786eb1326ba18e04a5",
+        "expected_pointer": "/os015_origin_caller_verification/cases/1/expected_whole",
+        "expected_whole_canonical_sha256": "6d2bcba7d4f081d27eb17ced479104b27d1c74c2e5be6c73e14f5c278febdca3"
+      },
+      {
+        "id": "ORIGIN-NOT-SELECTED",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/2/input",
+        "input_canonical_sha256": "9983f059408872a274fcd0444962bba8bb78bed5b97c397d1314fd9f087cd361",
+        "expected_pointer": "/os015_origin_caller_verification/cases/2/expected_whole",
+        "expected_whole_canonical_sha256": "478a26ae162653afe0b5eba2ff0f9dd267ef495d412a7e0b298a453bd20fa99c"
+      },
+      {
+        "id": "ORIGIN-FIVE-AXIS-PROJECTION-DIFF",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/3/input",
+        "input_canonical_sha256": "5c7e0d1896b1ddd2f3737e4f929906f721a5bf2a61e6ede8a2f9e20c2f3674db",
+        "expected_pointer": "/os015_origin_caller_verification/cases/3/expected_whole",
+        "expected_whole_canonical_sha256": "574591999070b4a713930bc5422485dcc80ac53ceac0374b3627da615af067bd"
+      },
+      {
+        "id": "ORIGIN-PRODUCED-NULL",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/4/input",
+        "input_canonical_sha256": "c658d525f25b69a3fcacb2897f596e8669d784f6d54cc051f6f7676c5ee7c6b6",
+        "expected_pointer": "/os015_origin_caller_verification/cases/4/expected_whole",
+        "expected_whole_canonical_sha256": "2b3d697ffc1e6f6d9c2b537d1e4c96476e38a36d3a21f3c834b211d050947000"
+      },
+      {
+        "id": "ORIGIN-LOCAL-AXIS-UNKNOWN",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/5/input",
+        "input_canonical_sha256": "326f014e0984226eba2672fadac90f451d311ef2bd442f426a7a94936c07ac15",
+        "expected_pointer": "/os015_origin_caller_verification/cases/5/expected_whole",
+        "expected_whole_canonical_sha256": "f552b4cba7e23abd3beb12e0d199549946bd9512246b4115621f0d92c8167ffe"
+      },
+      {
+        "id": "ORIGIN-TYPED-ABSENT",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/6/input",
+        "input_canonical_sha256": "39ee41b56cdbf569a625a649931621dc84fa31fc042e0c85affbc40e70bf06ec",
+        "expected_pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+        "expected_whole_canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb"
+      },
+      {
+        "id": "ORIGIN-DECLARED-NOT-PRODUCED-BOUND",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/7/input",
+        "input_canonical_sha256": "82433f1b86702547062082b68394a8bb739eb1e856998af328280a20079a7178",
+        "expected_pointer": "/os015_origin_caller_verification/cases/7/expected_whole",
+        "expected_whole_canonical_sha256": "c3466d8a951631b0ad581842f2059b15cd8a86e74d83f1f9f5ec2dedf92227b8"
+      },
+      {
+        "id": "ORIGIN-RAW-TYPED-BOOLNUM-DIFF",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/8/input",
+        "input_canonical_sha256": "ea5f3e32ce064b670ac69535dfaa091428b3de46ac6a74c1c76d6f9a7a5e5e5b",
+        "expected_pointer": "/os015_origin_caller_verification/cases/8/expected_whole",
+        "expected_whole_canonical_sha256": "74fc0dffe013273b7f2297a3377acc64515f7862bf85efc33d216dd157c77fff"
+      },
+      {
+        "id": "ORIGIN-SELECTED-UNBOUND",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/9/input",
+        "input_canonical_sha256": "9517d01884bcf62d5aec9dad6d1e8e27c30465cdbc55a50f2a0d4583533df636",
+        "expected_pointer": "/os015_origin_caller_verification/cases/9/expected_whole",
+        "expected_whole_canonical_sha256": "1cfc39819e6393ba49de327a93a82c8245edd81ac49785ca676c771776bb6c6a"
+      },
+      {
+        "id": "ORIGIN-DECLARED-NOT-PRODUCED-UNBOUND",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/10/input",
+        "input_canonical_sha256": "723e9de9a8a861ab5f654ee227b815336f9a47c4d3c514ea44dfa30cffda5cf3",
+        "expected_pointer": "/os015_origin_caller_verification/cases/10/expected_whole",
+        "expected_whole_canonical_sha256": "00d07965cf9800acd9b1ac50ec214e9a35fa5368f7c6a33c7a926c0471acdcf0"
+      },
+      {
+        "id": "ORIGIN-MISSING-ACTUAL-WITH-ORIGIN-CONFLICT",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/11/input",
+        "input_canonical_sha256": "33c28418b06d68989f7a909ce216d517eb1e1e89dff6676f7b2112ddfe95702e",
+        "expected_pointer": "/os015_origin_caller_verification/cases/11/expected_whole",
+        "expected_whole_canonical_sha256": "504323fa84affa95c13abe7488155d9f18fbcfa95701c7bb02cb5316e6099d5f"
+      },
+      {
+        "id": "ORIGIN-BOUND-TARGET-KEY-ABSENT",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/12/input",
+        "input_canonical_sha256": "4401078ffd472c09f2b92060faf8a9beda9e49423fd67e2db80450f6ada0a0cf",
+        "expected_pointer": "/os015_origin_caller_verification/cases/12/expected_whole",
+        "expected_whole_canonical_sha256": "66d9916a07fbf5ab4bb120f25db5c2655ad0059a94e2a94c56a963303362f043"
+      },
+      {
+        "id": "ORIGIN-BOUND-TARGET-KEY-NULL",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/13/input",
+        "input_canonical_sha256": "a2fb86006055c7e8e7d13d6e1990392177f7ece5d35e97ae0c5f6bf9b0d85888",
+        "expected_pointer": "/os015_origin_caller_verification/cases/13/expected_whole",
+        "expected_whole_canonical_sha256": "3b95e2feb89f1216a2943ad6e11b5d34574538c3bae6fb451871faa98134d850"
+      },
+      {
+        "id": "ORIGIN-BOUND-TARGET-KEY-ARRAY",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "input_pointer": "/os015_origin_caller_verification/cases/14/input",
+        "input_canonical_sha256": "8cce7df3b367782b86aab02861b44572e27fbfd8e9561382e3069ae4c6b2f14c",
+        "expected_pointer": "/os015_origin_caller_verification/cases/14/expected_whole",
+        "expected_whole_canonical_sha256": "f870c044373a16a1658d69b76b3ceeb0774e689604b9dbb113663a1b47651292"
+      }
+    ],
+    "freeze_scope": "全私有7root/SourceBoundTrace/axis Captureを独立先固定した15対照をL8へliteral一度収載。件数をgateにせず、現case_planの識別すべき局所枝に対応させる。旧caseは不変。",
+    "prior_plan_state": {
+      "revision": "0027875ac0e1800f2bbdf018651f3e486c196b2c",
+      "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+      "pointer": "/os015_origin_connection_verification_plan",
+      "sha256": "3ad306f9111c319aea5a2be5c1d8061250a53bd69e628f0cfa0200607a50cf02",
+      "meaning": "期待凍結前の計画/非主張を保持する歴史source。今回全期待の値を生成した計算結果ではない。"
+    }
   }
 }
