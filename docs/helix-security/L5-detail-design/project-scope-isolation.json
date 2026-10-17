@@ -4181,7 +4181,7 @@
     {
       "document": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
       "revision": "current_candidate",
-      "file_sha256": "982ad757b76f844b980a20e175d8efe7c3adc09a11396334ccfe3439d6d5d449",
+      "file_sha256": "130d4f06e7455b5d1533d367a294ca0841684d16fb12ecd0e2f42afb8c6c6a4d",
       "pointer": "/private_composition_contracts/0",
       "object_canonical_sha256": "c1865e886685fb099417baaff79f08b93cbcd86424dd2bf74200bcad4863f91e",
       "binding_kind": "current_candidate_file_and_object"

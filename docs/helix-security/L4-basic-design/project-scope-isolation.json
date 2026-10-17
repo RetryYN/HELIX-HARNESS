@@ -272,6 +272,558 @@
         "HELIXSECURITY-L9-003-F01",
         "HELIXSECURITY-L9-003-F02"
       ]
+    },
+    {
+      "id": "HELIXSECURITY-L4-003-F01-F02-OWNER-CONTEXT-PORT",
+      "contract_kind": "private_owner_context_basic_port_contract",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "system_oracle_refs": [
+        "HELIXSECURITY-L10-003-F01",
+        "HELIXSECURITY-L10-003-F02"
+      ],
+      "source_basis": [
+        {
+          "role": "approved_requirement",
+          "revision": "3a3f4e5657506ce90c0731ffe43243c8d8197739",
+          "document": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "file_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+          "pointer": "/requirements/3",
+          "object_canonical_sha256": "1369f93ccafb41c6ba10e144cba9197e2da1a38aacf2f635416c1c88a06adfa9",
+          "requirement_id": "HELIXSECURITY-L3-003-F01"
+        },
+        {
+          "role": "approved_requirement",
+          "revision": "3a3f4e5657506ce90c0731ffe43243c8d8197739",
+          "document": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "file_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+          "pointer": "/requirements/4",
+          "object_canonical_sha256": "19b26caf00defe161d17757bf7a0eabc001062fa7b8e8cf8f910461297b7e351",
+          "requirement_id": "HELIXSECURITY-L3-003-F02"
+        },
+        {
+          "role": "independent_system_oracle",
+          "revision": "3a3f4e5657506ce90c0731ffe43243c8d8197739",
+          "document": "docs/helix-security/L10-verification/functional-verification.json",
+          "file_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+          "pointer": "/cases/3",
+          "object_canonical_sha256": "17b262cc24e1b75f42eff2910bccaeeb9dfd0d5b487ced623cf09b5a56863615",
+          "oracle_id": "HELIXSECURITY-L10-003-F01"
+        },
+        {
+          "role": "independent_system_oracle",
+          "revision": "3a3f4e5657506ce90c0731ffe43243c8d8197739",
+          "document": "docs/helix-security/L10-verification/functional-verification.json",
+          "file_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+          "pointer": "/cases/4",
+          "object_canonical_sha256": "27841ff00050409c3f65a1ebc6ed29f0a5be70f4b9cd8df77ce13ba585687803",
+          "oracle_id": "HELIXSECURITY-L10-003-F02"
+        },
+        {
+          "role": "existing_logical_shape_reference_only",
+          "revision": "3a3f4e5657506ce90c0731ffe43243c8d8197739",
+          "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+          "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+          "pointers": [
+            "/type_contract/logical_types/ProposalInput",
+            "/type_contract/logical_types/ScopeContext",
+            "/type_contract/logical_types/SourceInput",
+            "/type_contract/logical_types/OwnerSourceMaterial",
+            "/type_contract/logical_types/ConnectionMaterial",
+            "/type_contract/result_types/SameFrameInvocationResult",
+            "/functions/12"
+          ],
+          "scope": "L4のfield名・owner sourceの原node・既存fn12 return shapeを誤記しないための形状参照。新function/型を既に存在するものとして指さない。"
+        },
+        {
+          "role": "legacy_failure_source_preserve_change",
+          "revision": "3a3f4e5657506ce90c0731ffe43243c8d8197739",
+          "document": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+          "file_sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16",
+          "asset_id": "LEGACY-ASSET-D461943347D372ECF6DA",
+          "lines": [
+            24,
+            25,
+            26,
+            39
+          ],
+          "preserve": "owner別のsource/target/scope/environment等を混同せず保持し、欠落・相反を推測で補わない。",
+          "change": "旧SEAのNORMAL/PRIVILEGED分類、human action gate、runtime broker、credential issuanceの要件は現L3-F01/F02の意味へ移さない。",
+          "source_generation": "legacy-generation-2026-09-14"
+        },
+        {
+          "role": "legacy_failure_source_preserve_change",
+          "revision": "3a3f4e5657506ce90c0731ffe43243c8d8197739",
+          "document": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md",
+          "file_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc",
+          "asset_id": "LEGACY-ASSET-349061A71CEF2554B9A7",
+          "lines": [
+            14,
+            15,
+            17,
+            29,
+            30
+          ],
+          "preserve": "異なる対象・scope・source状態を一つのgreenへ折り畳まないという失敗回避観点。",
+          "change": "現契約はowner-contextの内容比較と追跡に限定する。旧受入oracleを現行gateへcopyしない。",
+          "source_generation": "legacy-generation-2026-09-14"
+        }
+      ],
+      "purpose": "各ownerの独立sourceを元consumer contextの同じ対象軸へ明示接続し、identity/scopeの既知差・不足・unknownを失わず比較する。F01/F02のowner責務と元入力/既存返却を保全する。",
+      "logical_port_boundary": {
+        "status": "基本設計契約。typed private record、詳細型、pure algorithm、実caller entrypointは後続L5で著述する。",
+        "not_an_existing_entrypoint": "このL4 sectionは新L5関数または既存未定義function pointerを宣言しない。",
+        "existing_native_shape_refs": [
+          {
+            "type": "Materialized<ProposalInput>",
+            "l5_pointer": "/type_contract/logical_types/ProposalInput"
+          },
+          {
+            "type": "Materialized<ScopeContext>",
+            "l5_pointer": "/type_contract/logical_types/ScopeContext"
+          },
+          {
+            "type": "Materialized<SourceInput>",
+            "l5_pointer": "/type_contract/logical_types/SourceInput"
+          },
+          {
+            "type": "OwnerSourceMaterial",
+            "l5_pointer": "/type_contract/logical_types/OwnerSourceMaterial"
+          },
+          {
+            "type": "ConnectionMaterial",
+            "l5_pointer": "/type_contract/logical_types/ConnectionMaterial"
+          }
+        ],
+        "caller_obligations": [
+          "original ProposalInput、original SourceInput、および各slotでcallerが渡す明示occurrence selectorを分けて保持し、selectorを資格証明として扱わない。",
+          "ownerから渡るnative input/result、raw source body、reference/pointer、presenceを供給された表現のまま別々に保持する。source metadata宣言だけからbodyを再構成しない。",
+          "同じconsumer ProposalInputに対する既存native analysisと owner-context projectionを別結果として束ね、original inputの置換や既存returnの再計算を行わない。",
+          "各slotの宣言metadata（owner、subject_ref、source_ref、source_revision）を、当該slotが明示選択したSourceInput occurrenceの同名4 memberと対応させる。原source bodyやconsumer context全nodeの同値をこの4値照合に代用しない。左右pointerと原presenceを別保持し、一方のpointerを他方へ転記しない。"
+        ]
+      },
+      "eight_occurrence_slots": {
+        "selection_order": [
+          "os_origin",
+          "os_target",
+          "infra_origin",
+          "infra_target",
+          "connect",
+          "state_OS",
+          "state_INFRA",
+          "state_CONNECT"
+        ],
+        "selection_semantics": [
+          "各slotはSourceInput.sources内の明示occurrence indexを持つ。role/owner/subject/refからsourceを探索するfirst/last match、最新sourceの選択、他slotからの補完は禁止。",
+          "indexは非負整数のJSON numberと一致するoriginal=supplied raw値だけ。booleanはJSON numberとして扱わない。indexとraw Field representationが整合する場合だけ対象nodeを選択する。absent/null/非数値/boolean/非整数/負数/範囲外/parent未読はそれぞれ原Fieldを保ちslot局所で未解決とする。",
+          "addressableな原nodeは、role mismatchやbody shape異常でもそのまま保持する。既知のrole/value相反と、未観測・不正indexによるunknownを混同しない。詳細分類/優先順はL5へ。",
+          "同じindexまたは同じRefを複数slotが明示しても自動deduplicate/拒否しない。slot別の原tupleを保持する。"
+        ],
+        "slots": [
+          {
+            "slot": "os_origin",
+            "required_role": "OS",
+            "supplies": "origin側のidentityとtenant適用性"
+          },
+          {
+            "slot": "os_target",
+            "required_role": "OS",
+            "supplies": "target側のidentityとtenant適用性"
+          },
+          {
+            "slot": "infra_origin",
+            "required_role": "INFRA",
+            "supplies": "origin側のenvironment identity"
+          },
+          {
+            "slot": "infra_target",
+            "required_role": "INFRA",
+            "supplies": "target側のenvironment identity"
+          },
+          {
+            "slot": "connect",
+            "required_role": "CONNECT",
+            "supplies": "独立したexpected connection全体"
+          },
+          {
+            "slot": "state_OS",
+            "required_role": "OS",
+            "supplies": "OS ownerのmaterial state"
+          },
+          {
+            "slot": "state_INFRA",
+            "required_role": "INFRA",
+            "supplies": "INFRA ownerのmaterial state"
+          },
+          {
+            "slot": "state_CONNECT",
+            "required_role": "CONNECT",
+            "supplies": "CONNECT ownerのmaterial state"
+          }
+        ]
+      },
+      "thirty_two_member_correspondence": {
+        "destination_root": "ScopeContextの宣言済み葉member 32個",
+        "source_namespace_note": "下表のaccessorは固定L5 logical shape内のmember pathであり、JSON Pointerやwire locatorではない。実raw source locatorは入力側の原pointerをそのまま保持する。",
+        "members": [
+          {
+            "destination_member": "expected_origin.project",
+            "source_slot": "os_origin",
+            "source_logical_accessor": "OwnerSourceMaterial.scope.project",
+            "consumer_logical_accessor": "ProposalInput.context.expected_origin.project",
+            "source_owner": "OS",
+            "comparison_kind": "Field<scope identityの文字列>"
+          },
+          {
+            "destination_member": "expected_origin.tenant",
+            "source_slot": "os_origin",
+            "source_logical_accessor": "OwnerSourceMaterial.scope.tenant",
+            "consumer_logical_accessor": "ProposalInput.context.expected_origin.tenant",
+            "source_owner": "OS",
+            "comparison_kind": "Field<scope identityの文字列>"
+          },
+          {
+            "destination_member": "expected_origin.assignment",
+            "source_slot": "os_origin",
+            "source_logical_accessor": "OwnerSourceMaterial.scope.assignment",
+            "consumer_logical_accessor": "ProposalInput.context.expected_origin.assignment",
+            "source_owner": "OS",
+            "comparison_kind": "Field<scope identityの文字列>"
+          },
+          {
+            "destination_member": "expected_origin.worktree",
+            "source_slot": "os_origin",
+            "source_logical_accessor": "OwnerSourceMaterial.scope.worktree",
+            "consumer_logical_accessor": "ProposalInput.context.expected_origin.worktree",
+            "source_owner": "OS",
+            "comparison_kind": "Field<scope identityの文字列>"
+          },
+          {
+            "destination_member": "expected_origin.revision",
+            "source_slot": "os_origin",
+            "source_logical_accessor": "OwnerSourceMaterial.scope.revision",
+            "consumer_logical_accessor": "ProposalInput.context.expected_origin.revision",
+            "source_owner": "OS",
+            "comparison_kind": "Field<scope identityの文字列>"
+          },
+          {
+            "destination_member": "expected_origin.environment",
+            "source_slot": "infra_origin",
+            "source_logical_accessor": "InfraInput.original_profile.environment_identity",
+            "consumer_logical_accessor": "ProposalInput.context.expected_origin.environment",
+            "source_owner": "INFRA",
+            "comparison_kind": "native Presenceによるenvironment identity"
+          },
+          {
+            "destination_member": "expected_target.project",
+            "source_slot": "os_target",
+            "source_logical_accessor": "OwnerSourceMaterial.scope.project",
+            "consumer_logical_accessor": "ProposalInput.context.expected_target.project",
+            "source_owner": "OS",
+            "comparison_kind": "Field<scope identityの文字列>"
+          },
+          {
+            "destination_member": "expected_target.tenant",
+            "source_slot": "os_target",
+            "source_logical_accessor": "OwnerSourceMaterial.scope.tenant",
+            "consumer_logical_accessor": "ProposalInput.context.expected_target.tenant",
+            "source_owner": "OS",
+            "comparison_kind": "Field<scope identityの文字列>"
+          },
+          {
+            "destination_member": "expected_target.assignment",
+            "source_slot": "os_target",
+            "source_logical_accessor": "OwnerSourceMaterial.scope.assignment",
+            "consumer_logical_accessor": "ProposalInput.context.expected_target.assignment",
+            "source_owner": "OS",
+            "comparison_kind": "Field<scope identityの文字列>"
+          },
+          {
+            "destination_member": "expected_target.worktree",
+            "source_slot": "os_target",
+            "source_logical_accessor": "OwnerSourceMaterial.scope.worktree",
+            "consumer_logical_accessor": "ProposalInput.context.expected_target.worktree",
+            "source_owner": "OS",
+            "comparison_kind": "Field<scope identityの文字列>"
+          },
+          {
+            "destination_member": "expected_target.revision",
+            "source_slot": "os_target",
+            "source_logical_accessor": "OwnerSourceMaterial.scope.revision",
+            "consumer_logical_accessor": "ProposalInput.context.expected_target.revision",
+            "source_owner": "OS",
+            "comparison_kind": "Field<scope identityの文字列>"
+          },
+          {
+            "destination_member": "expected_target.environment",
+            "source_slot": "infra_target",
+            "source_logical_accessor": "InfraInput.original_profile.environment_identity",
+            "consumer_logical_accessor": "ProposalInput.context.expected_target.environment",
+            "source_owner": "INFRA",
+            "comparison_kind": "native Presenceによるenvironment identity"
+          },
+          {
+            "destination_member": "origin_tenant_applicable",
+            "source_slot": "os_origin",
+            "source_logical_accessor": "OS-side port.tenant_applicable",
+            "consumer_logical_accessor": "ProposalInput.context.origin_tenant_applicable",
+            "source_owner": "OS",
+            "comparison_kind": "Field<Bool>"
+          },
+          {
+            "destination_member": "target_tenant_applicable",
+            "source_slot": "os_target",
+            "source_logical_accessor": "OS-side port.tenant_applicable",
+            "consumer_logical_accessor": "ProposalInput.context.target_tenant_applicable",
+            "source_owner": "OS",
+            "comparison_kind": "Field<Bool>"
+          },
+          {
+            "destination_member": "owner_material_states.OS",
+            "source_slot": "state_OS",
+            "source_logical_accessor": "owner-side port.state",
+            "consumer_logical_accessor": "ProposalInput.context.owner_material_states.OS",
+            "source_owner": "OS",
+            "comparison_kind": "Field<MaterialState>"
+          },
+          {
+            "destination_member": "owner_material_states.INFRA",
+            "source_slot": "state_INFRA",
+            "source_logical_accessor": "owner-side port.state",
+            "consumer_logical_accessor": "ProposalInput.context.owner_material_states.INFRA",
+            "source_owner": "INFRA",
+            "comparison_kind": "Field<MaterialState>"
+          },
+          {
+            "destination_member": "owner_material_states.CONNECT",
+            "source_slot": "state_CONNECT",
+            "source_logical_accessor": "owner-side port.state",
+            "consumer_logical_accessor": "ProposalInput.context.owner_material_states.CONNECT",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<MaterialState>"
+          },
+          {
+            "destination_member": "expected_connection.identity",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.identity",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.identity",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<Text>"
+          },
+          {
+            "destination_member": "expected_connection.revision",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.revision",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.revision",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<Text>"
+          },
+          {
+            "destination_member": "expected_connection.origin.project",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.origin.project",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.origin.project",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<Text>"
+          },
+          {
+            "destination_member": "expected_connection.origin.tenant",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.origin.tenant",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.origin.tenant",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<Text>"
+          },
+          {
+            "destination_member": "expected_connection.origin.environment",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.origin.environment",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.origin.environment",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<Text>"
+          },
+          {
+            "destination_member": "expected_connection.origin.assignment",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.origin.assignment",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.origin.assignment",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<Text>"
+          },
+          {
+            "destination_member": "expected_connection.origin.worktree",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.origin.worktree",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.origin.worktree",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<Text>"
+          },
+          {
+            "destination_member": "expected_connection.origin.revision",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.origin.revision",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.origin.revision",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<Text>"
+          },
+          {
+            "destination_member": "expected_connection.target.project",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.target.project",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.target.project",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<Text>"
+          },
+          {
+            "destination_member": "expected_connection.target.tenant",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.target.tenant",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.target.tenant",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<Text>"
+          },
+          {
+            "destination_member": "expected_connection.target.environment",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.target.environment",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.target.environment",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<Text>"
+          },
+          {
+            "destination_member": "expected_connection.target.assignment",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.target.assignment",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.target.assignment",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<Text>"
+          },
+          {
+            "destination_member": "expected_connection.target.worktree",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.target.worktree",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.target.worktree",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<Text>"
+          },
+          {
+            "destination_member": "expected_connection.target.revision",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.target.revision",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.target.revision",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<Text>"
+          },
+          {
+            "destination_member": "expected_connection.allowed_operations",
+            "source_slot": "connect",
+            "source_logical_accessor": "ConnectionMaterial.allowed_operations",
+            "consumer_logical_accessor": "ProposalInput.context.expected_connection.allowed_operations",
+            "source_owner": "CONNECT",
+            "comparison_kind": "Field<OperationList>"
+          }
+        ],
+        "rules": [
+          "OS origin/target 5軸は各明示OS source occurrenceのscope memberと同じ側のProposalInput.context memberを対応させる。",
+          "origin/target environmentは各sideの独立INFRA original_profile environment_identityと対応させる。INFRA native resultのretained profileは原inputと別に保持し、欠けたoriginal inputをresultで補完しない。",
+          "tenant_applicableはsideごとのOS原Bool Field。tenant文字列から適用可否を推定せず、true/false/null/unknown/presenceを分ける。",
+          "owner_material_statesは各ownerの独立MaterialState Field。qualification、fixture result、別owner stateをcastしない。",
+          "15 expected_connection memberは独立CONNECT ConnectionMaterial全体から対応させる。partial header、operation label、別owner scopeから残りmemberを合成しない。"
+        ]
+      },
+      "comparison_and_failure_meaning": {
+        "raw_preservation": "左右の原Field/Materialized全node、tag, pointer, original/raw, typed value, source body, source order, unknown membersを保持し、Absent/null/empty/invalidを同一化しない。Native INFRA original_profileとnative resultも両方保持する。",
+        "locality": "選択不能・親未観測・Field未供給はそのslot/leafだけunknown/unresolved。隣接owner/side/leafの有効値や失敗を消さず、primary-treeや他project fallbackで埋めない。",
+        "known_difference": "同型で観測できる既知値の相反は該当leafにviolation/conflictとして保持する。既知相反と別leafのunknownは併存し、aggregate unknownが既知違反を上書きしない。",
+        "grade_contribution": "tenant applicability false/true等のpolicy差は既存Bool leafの比較として保持する。tenant value leafへ同じ差の重複issueを作らず、必要なgrade寄与だけを追加する。false側の実nonnull tenantは当該tenant leafの既存違反として扱う。寄与の還元は violation > unknown > corresponding。",
+        "f1_index_correction": "indexは非負整数のJSON numberと一致するoriginal=supplied raw値だけ。boolean/string/nullをindexへcoerceせず、index/tag/raw不整合は未解決のまま原値を保つ。",
+        "f3_infra_correction": "Infra Input.original_profile.environment_identityをprimary sourceとし、native result内のprofileを別観測として全値保持・比較する。既知差をunknownで消さず、resultだけでsource input欠落を補わない。",
+        "f2_tenant_correction": "applicability Bool leafの既知相反とtenant value leafのgrade寄与を分け、同じpolicy differenceのissueを二重発行しない。",
+        "declared_metadata_vs_qualification": "owner/subject/source_ref/source_revision等の同slot metadata comparisonは宣言値の整合候補に限る。4値一致でもsource bodyの由来、issuer、資格、custody、実state、実接続、実認可を証明しない。qualified_binding_created=falseを保持する。",
+        "credential_boundary": "credential/secret内容をこのcontractで取得・複写・公開しない。owner material stateやconnection declarationをactual credential/permission/operation resultへ読み替えない。",
+        "not_established": "資格・実接続・runtime invocationは未確立。",
+        "native_representation_boundary": "native input/resultのFieldを読む前に、known・非nullの宣言型の値であり、original=suppliedのrawとtyped valueがJSON型敏感再帰等値であることを確かめる。booleanとnumberを区別し、object key集合・list順・原nullを保つ。不整合時は原Field全nodeを保持して子memberを合成せず、消費するleaf/anchorだけへunknown寄与を残す。未消費native結果は原観測の保持だけとし、追加provider gateを作らない。寄与unknownで他原因の既知violationを上書きしない。詳細の理由・writer・優先順はL5で定める。",
+        "tenant_presence_boundary": "tenant適用がknown falseの場合、実supplied nullのみ非適用marker、実supplied非nullは違反、absentはunknownとする。適用unknownをfalseへ変換せず、tenant値から適用Boolを補わない。"
+      },
+      "thirteen_return_root_meanings": [
+        {
+          "root": "original_input",
+          "meaning": "元ProposalInput/SourceInput/全slot operand、Field/Materialized tag、original/value/pointer、unknown members、順序を保持する。"
+        },
+        {
+          "root": "occurrences",
+          "meaning": "8 slotそれぞれの要求index、期待role、選択された原source occurrenceまたは未成立状態を保持する。"
+        },
+        {
+          "root": "owner_context_candidate",
+          "meaning": "32 destination memberのsource→consumer対応と両原operand、Field/presence/raw/typed valueを保持する候補projection。"
+        },
+        {
+          "root": "consumer_context",
+          "meaning": "元ProposalInput.contextの観測値を保持する。owner投影で書き換えない。"
+        },
+        {
+          "root": "environment_side_traces",
+          "meaning": "OS側environmentとINFRA original_profile environmentの双方を別々に保持し、差や不明を相互補完しない。"
+        },
+        {
+          "root": "role_grades",
+          "meaning": "OS/INFRA/CONNECTごとの寄与を別保持し、既知のviolationを別leafのunknownで消さない。"
+        },
+        {
+          "root": "issues",
+          "meaning": "対象slot/leaf/pointer/ownerに局所化した全findingを保持する。独立原因を重複のない原順規則に従い残す。"
+        },
+        {
+          "root": "existing_analysis_observations",
+          "meaning": "同じcaller frameが供給した既存native analysisを原値で保持し、再計算を主張しない。"
+        },
+        {
+          "root": "native_composition",
+          "meaning": "元ProposalInputに対する既存fn12 SameFrameInvocationResult全7 memberを保持する。owner projectionで入力・返却を置換しない。"
+        },
+        {
+          "root": "qualification_state",
+          "meaning": "literal unclosed。metadata一致を実資格に昇格させない。"
+        },
+        {
+          "root": "qualified_binding_created",
+          "meaning": "literal false。"
+        },
+        {
+          "root": "operation_effect",
+          "meaning": "literal none。dispatch/state change/credential use/ACKを生まない。"
+        },
+        {
+          "root": "port_bindings",
+          "meaning": "8 slotごとのsource metadata比較を保持する。4 metadata一致は宣言整合だけで、source bodyの由来やqualificationの証明ではない。"
+        }
+      ],
+      "existing_fn12_connection": {
+        "existing_function_pointer": "docs/helix-security/L5-detail-design/project-scope-isolation.json#/functions/12",
+        "input": "同じ原Materialized<ProposalInput>そのもの",
+        "return_shape": "既存SameFrameInvocationResultの7 memberを全値保持: native_input, native_proposal, source_frame, backflow_input, native_backflow, operation_correspondence, invocation。",
+        "boundary": "owner-context projectionをProposalInput.contextへ書戻さない。fn12への新引数やnative再評価をこのL4契約から作らない。"
+      },
+      "effects": {
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "dispatch": "none",
+        "state_change": "none"
+      },
+      "implementation_boundary": "この文書はbasic portの意味・接続責務までを定める。詳細型、pure selector/reader/leaf writer、個々の返却field constructor、実callerは未著述であり後続L5へ残す。L5 function pointerを未存在のものとしてここで宣言しない。",
+      "not_established": [
+        "実owner資格/issuer/custody",
+        "OS assignment・INFRA実環境・CONNECT実接続のprovider成立",
+        "actual credential/permission/enforcement",
+        "runtime invocation",
+        "既存205件のL9 fixtureの拡張又は完了",
+        "F01/F02の全scope/全caller/全92親430義務の完了"
+      ],
+      "authority_effect": "none",
+      "operation_effect": "none"
     }
   ]
 }
