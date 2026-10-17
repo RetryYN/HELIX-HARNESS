@@ -122399,7 +122399,7 @@
     "unbound_source_derived_extension": {
       "status": "static_source_derived_expected_patch_set_pending_root_review",
       "case_count": 28,
-      "storage": "標準RFC 6902 JSON Patchを用いる。各input_patchとexpected_whole_patchを共有literal baseへ適用してcaseを再構成する。独自patch命令やruntimeコードは不要。",
+      "storage": "標準RFC 6902 JSON Patchを用いる。各input_patchとexpected_whole_patchを共有literal baseへ適用してcaseを再構成する。独自patch命令やruntimeコードは不要。 reconstruction_base_pointer及びexpected_base_reconstruction_pointerを持つ行は、それぞれが指すtracked L8内のliteral baseへ当該patchを適用する。",
       "base_case": {
         "case_id": "U11-TARGETS-ARGS-ABSENT",
         "input": {
