@@ -15268,7 +15268,7 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
-    "sha256": "8063a909ed4c8caa456a159527fb7e364f0d3289fb86d9b345825269669687d1"
+    "sha256": "b5c0a8927f417a33e325c8e43ed2d5651d9d537e8163b41162614187f8a41c01"
   },
   "command_binding_codec_oracles": {
     "oracle_id": "OS-L8-053-COMMANDBINDING-2BLOB-CODEC",
@@ -17546,6 +17546,6 @@
         "sha256": "89002309fb461c31b6670c54c90c833720b0ea7d83eb09044f1c50ac1344091a"
       }
     ],
-    "effect": "source-only design provenance; no new approval/operation authority"
+    "effect": "設計sourceの来歴に限る。新しい承認・操作権限を生成しない。"
   }
 }

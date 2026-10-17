@@ -416,17 +416,17 @@
         "authority": "公開Result variant、Finding、受入判断、receiptではない。"
       },
       "FailureOnlyReadCapture": {
-        "selected_plan": "exact request Plan, full native value",
-        "selected_failure_observation": "exact request FailureObservation, full native value",
-        "s01_owner_selection": "exact request OwnerSelectedReceiptContractStage, unchanged",
+        "selected_plan": "request.planの完全な原Plan値。変更しない。",
+        "selected_failure_observation": "request.failureの完全な原FailureObservation値。変更しない。",
+        "s01_owner_selection": "request.s01_owner_selectionの原OwnerSelectedReceiptContractStage。変更しない。",
         "s07_route_and_resolutions": {
-          "evidence_route": "exact request EvidenceRoute | null, unchanged",
-          "resolutions": "exact request Resolution tuple, unchanged"
+          "evidence_route": "request.evidence_routeの原EvidenceRoute | null。変更しない。",
+          "resolutions": "request.resolutionsの原Resolution tuple。変更しない。"
         },
         "failure_episode": "FailureOnlyReadStage<FailureEpisodeRow6>",
-        "receipt_record": "FailureOnlyReadStage<{row: ContentRecordRow17, row_ref: exact Ref derived by existing row_codec, receipt: ReceiptRecord, content_bytes: exact payload_blob}>",
-        "command_binding": "FailureOnlyReadStage<{row: CommandBindingRow9, identity_result_ref: Ref decoded from exact BLOB, identity_axes: IdentityResult decoded from other exact BLOB}>",
-        "findings": "OS Finding tuple; never HARNESS Finding"
+        "receipt_record": "FailureOnlyReadStage<{row: ContentRecordRow17, row_ref: 既存row_codecから導く正確なRef, receipt: ReceiptRecord, content_bytes: 原payload_blob bytes}>",
+        "command_binding": "FailureOnlyReadStage<{row: CommandBindingRow9, identity_result_ref: 一方の原BLOBからdecodeしたRef, identity_axes: 他方の原BLOBからdecodeしたIdentityResult}>",
+        "findings": "OSのFinding tuple。HARNESSのFindingへ変換しない。"
       },
       "OwnerSelectedReceiptContractStage": {
         "variants": {
@@ -501,7 +501,7 @@
         "evidence_route": "EvidenceRoute | null",
         "resolutions": "Resolution tuple",
         "s01_owner_selection": "OwnerSelectedReceiptContractStage",
-        "reader_port": "configured ReceiptRecoveryPort reader capability"
+        "reader_port": "設定済みReceiptRecoveryPortのreader capability。"
       },
       "OwnerContractSourceEvidence": {
         "resolution": "Resolution（kind=asset_contract。元Ref/state/valueを保持）",
@@ -1080,12 +1080,12 @@
       "write_mapping": {
         "operation_id": "Plan.operation_ref.identity",
         "episode_id": "Plan.episode_id",
-        "receipt_identity": "receipt content row Ref.identity",
-        "receipt_revision": "receipt content row Ref.revision",
-        "receipt_scope": "receipt content row Ref.scope",
-        "prior_episode_id": "exact prior episode value or SQL NULL"
+        "receipt_identity": "receipt content行のRef.identity",
+        "receipt_revision": "receipt content行のRef.revision",
+        "receipt_scope": "receipt content行のRef.scope",
+        "prior_episode_id": "正確な先行episodeの原値、又はSQL NULL"
       },
-      "read_mapping": "query the same operation_id/episode_id keys from the retained Plan; compare full Plan.operation_ref and FailureObservation.operation_ref before use; never reconstruct the 4-axis Locator from operation_id"
+      "read_mapping": "保持したPlanのoperation_id/episode_idと同じkeyで照会する。利用前に完全なPlan.operation_refとFailureObservation.operation_refを照合する。operation_idから4軸Locatorを再構成しない。"
     },
     "s01_receipt_contract_selection_mapping": {
       "visibility": "既存OS recovery caller内のprivateな純粋source選択。S01 public Resultへのfield追加や意味の再裁定はしない。",
@@ -1209,6 +1209,18 @@
             "top_count": 1
           }
         ]
+      },
+      "protocol_event_observation": {
+        "scope": "expected_protocol_eventsはこのprivate readのcall観測labelであり、既存ProtocolCall.callを追加・変更しない。table/keyはprivate read_orderの照会対象を示す。",
+        "mapping": {
+          "begin_read": "ProtocolCall.call=read_begin",
+          "select_episode": "ProtocolCall.call=read、対象failure_episodes、key=[Plan.operation_ref.identity, Plan.episode_id]",
+          "select_receipt": "ProtocolCall.call=read、対象content_records、key=元episode行のreceipt_identity/receipt_revision/receipt_scope",
+          "select_binding": "ProtocolCall.call=read、対象command_bindings、key=decodeしたReceiptRecord.command_id",
+          "end_read": "ProtocolCall.call=read_end"
+        },
+        "begin_unobserved": "read_beginの成立を観測できない場合、この私有呼出しではend_readを発行せず、read_unknownと未観測値を返す。未確定transactionの隔離・後始末・復旧は既存adapter/recovery契約へ戻し、この観測列を成功終了の証拠にしない。",
+        "successful_begin": "read_beginの成立を観測できた場合は、以後の成功・欠落・decode不成立によらず当該read transactionを一度終了しend_readを観測列へ置く。終了の実成否は既存ProtocolCall.result/transaction_state_afterで別に観測し、labelの存在だけでokにしない。"
       }
     }
   },
@@ -1641,6 +1653,6 @@
         "sha256": "89002309fb461c31b6670c54c90c833720b0ea7d83eb09044f1c50ac1344091a"
       }
     ],
-    "effect": "source-only design provenance; no new approval/operation authority"
+    "effect": "設計sourceの来歴に限る。新しい承認・操作権限を生成しない。"
   }
 }
