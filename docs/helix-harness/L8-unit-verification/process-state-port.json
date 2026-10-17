@@ -21420,7 +21420,7 @@
           "file_sha256": "de8c65b53053a6b857a520c23f70761be3184aa159feec42fb644659977966a3",
           "pointer": "/functions/0",
           "value_sha256": "3def78124cb508edab00e7bc1774b0f3f6485983a2c8ff74ef3dfdf62cadac3d",
-          "use": "immutable old case scope only; never invoke current function using old argument/return view"
+          "use": "固定された旧caseの範囲だけに用いる。旧引数・返却viewで現在の関数を呼び出さない。"
         },
         "current_scope_selection": "現在関数の検証入口はこのcurrent_comparison_scopeだけ。旧case arraysのfunction_refは上記固定旧revisionのidentityを保持した履歴であり、現9member関数へ直接bindしない。",
         "role": "B01",
@@ -38977,7 +38977,7 @@
           "file_sha256": "de8c65b53053a6b857a520c23f70761be3184aa159feec42fb644659977966a3",
           "pointer": "/functions/1",
           "value_sha256": "cea67d680559e835f440dd7aebc60a97cb398067dc85a01072f04641f962aadf",
-          "use": "immutable old case scope only; never invoke current function using old argument/return view"
+          "use": "固定された旧caseの範囲だけに用いる。旧引数・返却viewで現在の関数を呼び出さない。"
         },
         "current_scope_selection": "現在関数の検証入口はこのcurrent_comparison_scopeだけ。旧case arraysのfunction_refは上記固定旧revisionのidentityを保持した履歴であり、現9member関数へ直接bindしない。",
         "role": "F01",
@@ -237360,7 +237360,7 @@
     ],
     "candidate_l5_binding": {
       "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-      "sha256": "80fb94e1a3d1a885b812f63dca9df01eea63a6d7b6a85faf3c3d6bec3da180f4"
+      "sha256": "250fc0b512a2cfba7a273d9548ae3a6c02b641eeee9ff6f784266978fe9f2026"
     },
     "history_and_scope": {
       "basic_revision": "7ef00ff32c3336fa315a07b041c69d4d1d8439c6",
@@ -237383,7 +237383,7 @@
     },
     "operation_effect": "none",
     "source_input_recipes": {
-      "status": "source input only; authored/frozen before oracle; unchanged input0 values",
+      "status": "原source入力だけからoracleより先に著述・固定した。input0の全値は不変。",
       "recipe_kind": "role_literal_base_then_explicit_set_delete",
       "hash_semantics": "UTF8 ensure_ascii=false sort_keys=true compact JSON; absent differs from null and bool differs from number",
       "literal_bases": {
@@ -264163,7 +264163,7 @@
       ]
     },
     "frozen_expectation_recipes": {
-      "status": "re-expression of prior frozen expected wholes only; no new expectation/candidate computation",
+      "status": "既存の凍結期待全値の再表現。新たな期待の生成や候補計算は行っていない。",
       "recipe_kind": "role_literal_base_then_explicit_set_delete",
       "hash_semantics": "UTF8 ensure_ascii=false sort_keys=true compact JSON; absent differs from null and bool differs from number",
       "literal_bases": {
