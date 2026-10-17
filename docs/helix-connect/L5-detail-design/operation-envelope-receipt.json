@@ -1510,6 +1510,14 @@
           {
             "pointer": "/output_literals/normal_check_results",
             "canonical_sha256": "e0695f24acbf201cb566ebae52cbe68c1d0d786da89783c015dc9b86bc9d24c7"
+          },
+          {
+            "pointer": "/logical_types/35",
+            "canonical_sha256": "aa71c12c2e394b9bfe25eaa49688803ed24b9f4a71927fc092c8a81a256a0f87"
+          },
+          {
+            "pointer": "/algorithms/1/steps/5",
+            "canonical_sha256": "4b3a6e54d9acb98c5d7362ef233f928d82670f81318fc0f0e9ce82a605c0275d"
           }
         ]
       }
@@ -1532,7 +1540,8 @@
       ],
       "new_type": "CheckResult",
       "representation_ja": "ComparisonResultは既存token列を保持する。RawStateObservationは既存Stringのaliasであり、CheckResultは両者のunionとする。JSONのfield名・文字列値・area/field/return_ownerを変えない。",
-      "comparison_maps_ja": "header_results/envelope_results/各content又はtarget比較mapのComparisonResult型は変更しない。これらは原状態のechoではなく既存の比較tokenを返す。"
+      "comparison_maps_ja": "header_results/envelope_results/各content又はtarget比較mapのComparisonResult型は変更しない。これらは原状態のechoではなく既存の比較tokenを返す。",
+      "shared_failure_consumers_ja": "FailureFindingはOperationAssessment.failure_reasonsとBusinessAssessment.failure_reasonsの共有型である。このためFN-C003-02のBusinessAssessment.failure_reasons.resultも型上CheckResultになる。FN-C003-02 /algorithms/1/steps/5のwriterは従来のComparisonResult比較tokenだけを書き、原状態のechoを追加しない。業務state/意味/未完の保持、正常/失敗条件、返却JSONは変更しない。共有型の受理域と各writerが実際に生成する値域を区別する。"
     },
     "writer_consumer_binding": [
       {
@@ -1551,6 +1560,12 @@
         "input": "OperationAssessment.failure_reasons",
         "output": "failure_return_owners / technical_receipt_candidate",
         "rule_ja": "既存のowner集合とheld候補の導出を保持する。型に格納できることを互換成立・実receipt・実許可へ昇格しない。"
+      },
+      {
+        "producer": "FN-C003-02 /algorithms/1/steps/5",
+        "input": "元business/target比較及びmeaning authority比較の結果",
+        "output": "BusinessAssessment.failure_reasons[*].result",
+        "rule_ja": "共有FailureFinding.resultの型はCheckResultになるが、このwriterが生成するのは既存ComparisonResultの比較tokenだけ。原状態文字列のecho・新業務判定を追加せず、既存failureの内容と順序を保持する。"
       }
     ],
     "legacy_preserve_change": {
@@ -1576,7 +1591,7 @@
       "change_ja": "旧runtime/DB/adapterは移植せず、現C003の既定writerが返す原文字列を二つのresult型で受けられるようにする。",
       "reason_ja": "今回確認した原状態保持規則と閉enumの不整合を是正する。source不足を想像した新要求・新許可・新gateは追加しない。"
     },
-    "verification_boundary_ja": "対L8は修正前sourceから別担当が著述した有限反例に束縛する。旧62caseの原入力/期待・純粋比較token・normal集合・分類/順序規則は保持し、全入力域・全型・実装Red/Green・製品CIをこの訂正から認定しない。",
+    "verification_boundary_ja": "対L8は修正前sourceから別担当が著述した有限反例に束縛する。旧62caseの原入力/期待・純粋比較token・normal集合・分類/順序規則は保持し、全入力域・全型・実装Red/Green・製品CIをこの訂正から認定しない。 FN-C003-02のBusinessAssessmentも共有FailureFinding型の影響先として記録し、そのwriterは旧比較tokenのままとする。",
     "remaining": [
       "任意raw状態/型外/欠落/nullの全分岐と全型writerの独立意味検収は未完。",
       "実source/receipt/permission資格、formal wire/schema/codec、実通信・受入と全430義務閉包は未成立。"

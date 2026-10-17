@@ -2673,11 +2673,11 @@
         "role": "current_candidate_content_binding_no_git_revision",
         "path": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
         "git_revision_claim": null,
-        "file_sha256": "fe58a0a89f93035e0285cac51edc9c37ef839b1a36c7acecd2f8daa947b4be70",
+        "file_sha256": "c0ac44e7fb95a5f56b313f9ae22ebeadd6f38fee276f12d3682ab489660ae72b",
         "selected_objects": [
           {
             "pointer": "/state_observation_result_type_contract",
-            "canonical_sha256": "d3d095f1f3ec9f461baad76bae5d564e217c19ab4902e48313a6f71dfc11afe8"
+            "canonical_sha256": "2d5bab114375fe9fbe7c2af8f397029ca14dc49c4394bad9570a90a46dea9191"
           },
           {
             "pointer": "/logical_types/49/name",
