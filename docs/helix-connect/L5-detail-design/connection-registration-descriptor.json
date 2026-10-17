@@ -834,5 +834,476 @@
       "原descriptor全体null等はDescriptorPacketのrecord型外。raw→typed caller型外返却/戻し先は別途未結線。",
       "原sourceとownerの実資格、共通pack参照の実解決、登録証跡、通信および利用者受入の成立は本契約から導かない。"
     ]
+  },
+  "private_registration_receipt_seam": {
+    "status": "候補論理契約。既存公開関数・型・返却は変更せず、実行していない。",
+    "l4_binding": {
+      "path": "docs/helix-connect/L4-basic-design/connection-registration-descriptor.json",
+      "file_sha256": "9a9eeed7e658ba03c59318c7b31b463baf808cdd11c4260acbce866786a969f8",
+      "pointer": "/contracts/0",
+      "object_canonical_sha256": "29dfcae36e91585f402b8ee3888f9e83d4fc21bcfae847fc545dd847cf7e058f"
+    },
+    "source_mapping": [
+      {
+        "source": "既存FN-C001-01入力packet",
+        "pointer": "/function_signatures_and_branches/0/signature",
+        "projection": "RegistrationPacketを完全に保持し、原宣言/提出宣言のPresenceと全raw keyを失わない。"
+      },
+      {
+        "source": "既存FN-C001-01の同一呼出し結果",
+        "pointer": "/function_signatures_and_branches/0/return_root",
+        "projection": "ConnectionRegistrationAssessmentを変更せず保持し、各connectionのexact ConnectionAssessmentをrequestへ複写する。"
+      },
+      {
+        "source": "private call-siteから別引数で渡すOperationAuthorityByConnection",
+        "pointer": "/private_registration_receipt_seam/types/OperationAuthorityByConnection",
+        "projection": "同じkeyが無ければabsent、値nullならpresent_null、それ以外はpresent_value(value exact)。各variantはmapの実key/valueだけから作り、original mapをそのまま返却へ保持する。"
+      },
+      {
+        "source": "HELIX-CONNECT責務を担う呼出し元が注入するRegistrationOwnerPort",
+        "pointer": "private_registration_receipt_seam/types/RegistrationOwnerPort",
+        "projection": "requestごとにOwnerPortObservationを返す。配送方法・実provider・実署名はこの論理境界の外。"
+      },
+      {
+        "source": "ownerが観測された原応答",
+        "pointer": "OwnerPortObservation.response_observed.raw_response",
+        "projection": "原JsonValueを保持してからprivate typed responseを解釈する。通信bytesや一般wire codecは定義しない。"
+      },
+      {
+        "source": "C002 native original_registration_receipt shape",
+        "pointer": "/private_registration_receipt_seam/current_native_consumer_pin",
+        "projection": "RegistrationReceiptはcurrent_native_consumer_pinが指すinline closed recordをexact copyするprivate型。native member名/type/required_fields/additional_fieldsを変えない。18-field registered basisは別に保持する。",
+        "source_member_pointer": "/logical_type_definitions/F01Input/fields/packet/definition/fields/original_registration_receipt",
+        "current_pin_ref": "/private_registration_receipt_seam/current_native_consumer_pin"
+      }
+    ],
+    "types": {
+      "OperationAuthorityInput": {
+        "kind": "closed sum",
+        "variants": {
+          "absent": {
+            "fields": [],
+            "source": "OperationAuthorityByConnectionにconnection_key memberが無い"
+          },
+          "present_null": {
+            "fields": [],
+            "source": "該当memberが存在し、そのJSON値がnull"
+          },
+          "present_value": {
+            "fields": [
+              "value: JsonValue exact"
+            ],
+            "source": "該当memberが存在し、そのJSON値がnull以外"
+          }
+        }
+      },
+      "RegistrationOwnerRequest": {
+        "kind": "closed record; no additional members",
+        "fields": {
+          "connection_key": "Text",
+          "original_declaration": "existing Presence<ConnectionDeclaration> exact per-key value",
+          "submitted_declaration": "existing Presence<ConnectionDeclaration> exact per-key value",
+          "assessment": "existing ConnectionAssessment exact value",
+          "operation_authority": "OperationAuthorityInput"
+        }
+      },
+      "RegistrationReceipt": {
+        "kind": "private alias with the exact native C002 closed record shape",
+        "fields": {
+          "connection_identity": {
+            "kind": "string"
+          },
+          "consumer_endpoint": {
+            "kind": "string"
+          },
+          "revision": {
+            "kind": "string"
+          },
+          "scope": {
+            "kind": "string"
+          },
+          "source_endpoint": {
+            "kind": "string"
+          },
+          "state": {
+            "kind": "string"
+          }
+        },
+        "required_fields": [
+          "connection_identity",
+          "consumer_endpoint",
+          "revision",
+          "scope",
+          "source_endpoint",
+          "state"
+        ],
+        "additional_fields": "none",
+        "source_pin_ref": "/private_registration_receipt_seam/current_native_consumer_pin"
+      },
+      "OwnerTypedResponse": {
+        "kind": "closed sum decoded from an observed JsonValue",
+        "variants": {
+          "registered": {
+            "fields": [
+              "receipt: RegistrationReceipt",
+              "registered_basis: Presence<JsonValue> exact raw JSON root; retain absent/null/object/non-object exactly"
+            ]
+          },
+          "held": {
+            "fields": [
+              "owner_values: JsonValue exact"
+            ]
+          },
+          "unknown": {
+            "fields": [
+              "owner_values: JsonValue exact"
+            ]
+          },
+          "undecodable": {
+            "fields": [
+              "decode_observation: JsonValue exact diagnostic/value"
+            ]
+          }
+        }
+      },
+      "OwnerPortObservation": {
+        "kind": "closed sum",
+        "variants": {
+          "no_response_observed": {
+            "fields": []
+          },
+          "response_observed": {
+            "fields": [
+              "raw_response: JsonValue exact",
+              "typed_response: OwnerTypedResponse"
+            ]
+          }
+        },
+        "raw_null_rule": "response_observed.raw_response=nullは観測済みのnullとして保持し、typed_responseがregisteredでもbasis joinを評価しない。受信したtyped値を捨てずobservationへ保持する。"
+      },
+      "RegistrationOwnerPort": {
+        "kind": "private injected function value",
+        "signature": "RegistrationOwnerPort(request: RegistrationOwnerRequest) -> OwnerPortObservation"
+      },
+      "ConnectionRegistrationCall": {
+        "kind": "closed sum",
+        "variants": {
+          "not_invoked": {
+            "fields": [
+              "connection_key: Text",
+              "request: RegistrationOwnerRequest",
+              "reason: comparison_held"
+            ]
+          },
+          "invoked": {
+            "fields": [
+              "connection_key: Text",
+              "request: RegistrationOwnerRequest",
+              "observation: OwnerPortObservation"
+            ]
+          }
+        }
+      },
+      "RegistrationBasisJoinState": {
+        "kind": "closed local enum, not ComparisonResult",
+        "values": [
+          "bound",
+          "known_conflict",
+          "incomplete_or_uncomparable"
+        ]
+      },
+      "RegistrationBasisJoin": {
+        "kind": "closed record",
+        "fields": {
+          "state": "RegistrationBasisJoinState; 69個は18×3 field比較と5×3 receipt軸比較の保持slot数であり、独立した数値閾値ではない。各既定pairwise比較の結果を全て保持し、未読basisはlocal incomplete/unknownの観測として扱う。native ComparisonResultには変換しない。",
+          "field_results": "閉record。RegistrationFieldNameの全18値をkeyとして保持し、各値はRegistrationBasisFieldComparisons。余分なkeyなし。",
+          "receipt_binding_results": "閉record。5 binding axesをkeyとして保持し、各値はRegistrationReceiptAxisComparisons。余分なkeyなし。",
+          "consumer_projection": "ConsumerProjectionAvailability"
+        }
+      },
+      "ConsumerProjectionAvailability": {
+        "kind": "closed sum",
+        "variants": {
+          "unavailable": {
+            "fields": [
+              "reason: held_or_unobserved_or_incomplete_or_conflicting"
+            ]
+          },
+          "available": {
+            "fields": [
+              "value: RegistrationReceipt exact six native members"
+            ]
+          }
+        }
+      },
+      "BasisJoinEvaluation": {
+        "kind": "closed sum",
+        "variants": {
+          "not_evaluated": {
+            "fields": [
+              "reason: comparison_held_not_called | owner_response_not_observed | owner_response_held | owner_response_unknown | owner_response_undecodable | owner_response_null"
+            ]
+          },
+          "evaluated": {
+            "fields": [
+              "value: RegistrationBasisJoin"
+            ]
+          }
+        }
+      },
+      "RegistrationConnectionReturn": {
+        "kind": "closed record",
+        "fields": {
+          "call": "ConnectionRegistrationCall",
+          "original_owner_response": "existing Presence<JsonValue>; absent for not-called/no-response, present_null for observed null, present_value for observed non-null",
+          "basis_join": "BasisJoinEvaluation"
+        }
+      },
+      "RegistrationBatchResult": {
+        "kind": "closed record",
+        "fields": {
+          "original_packet": "RegistrationPacket exact",
+          "assessment": "ConnectionRegistrationAssessment exact",
+          "connection_returns": "one RegistrationConnectionReturn per union key, in existing C001 key order",
+          "operation_authority_by_connection": "exact original input map, unchanged"
+        }
+      },
+      "RegisterConnections": {
+        "kind": "private function value",
+        "signature": "register_connections(packet: RegistrationPacket, assessment: ConnectionRegistrationAssessment, operation_authority_by_connection: OperationAuthorityByConnection, owner_port: RegistrationOwnerPort) -> RegistrationBatchResult",
+        "visibility": "private logical call boundary; not added to public function_signatures_and_branches"
+      },
+      "Text": {
+        "kind": "private scalar alias of JSON string",
+        "definition": "JSON string as used by RegistrationPacket object keys. No additional non-empty restriction is introduced."
+      },
+      "RegistrationConnectionKey": {
+        "kind": "alias",
+        "definition": "Text; exact member key from the original/submitted declaration-key union."
+      },
+      "RegistrationFieldName": {
+        "kind": "closed enum",
+        "values": [
+          "connection_identity",
+          "registration_revision",
+          "source_endpoint",
+          "source_owner",
+          "consumer_endpoint",
+          "consumer_owner",
+          "purpose",
+          "capability",
+          "direction",
+          "scope",
+          "source_meaning_contract",
+          "consumer_meaning_contract",
+          "adapter_revision",
+          "transport_revision",
+          "artifact_revision",
+          "dependency_revision",
+          "compatibility_range",
+          "operational_state"
+        ],
+        "order": "L3-001-F01 / C001 FN-C001-01 field order."
+      },
+      "OperationAuthorityByConnection": {
+        "kind": "private ordered map input",
+        "definition": "object<RegistrationConnectionKey, JsonValue>; retain original member order, exact values, and additional keys. It is an input of the private seam, not an existing logical_type_definitions member.",
+        "per_key_projection": "If the exact connection_key is absent, OperationAuthorityInput.absent; if its value is JSON null, present_null; otherwise present_value(value exact). No qualification or permission is inferred.",
+        "key_semantics": "JSON object member名はRegistrationConnectionKey。Mapに該当memberが無い場合とmember値がnullの場合を区別する。key orderと全raw memberはRegistrationBatchResultで保持する。"
+      },
+      "RegistrationBasisFieldComparisons": {
+        "kind": "closed record",
+        "fields": {
+          "original_vs_submitted": "existing ConnectionAssessment.field_results[name] exact ComparisonResult, always preserved",
+          "original_vs_registered": "RegistrationBasisPairOutcome; original declaration field is reference; registered basis member is candidate when readable",
+          "submitted_vs_registered": "RegistrationBasisPairOutcome; submitted declaration field is reference; registered basis member is candidate when readable",
+          "registered_basis_read": "RegisteredBasisFieldRead exact observation for this named member/root"
+        },
+        "additional_fields": "none",
+        "comparison_order": [
+          "original_vs_submitted",
+          "original_vs_registered",
+          "submitted_vs_registered"
+        ],
+        "missing_unknown_rule": "各pairは左をreference、右をcandidateとしてC001 existing comparatorへ渡す。reference absent/nullはunknown_original_information優先、reference presentかつcandidate absentはmissing、candidate null/type/content mismatchはcontent_conflict。",
+        "field_names": [
+          "connection_identity",
+          "registration_revision",
+          "source_endpoint",
+          "source_owner",
+          "consumer_endpoint",
+          "consumer_owner",
+          "purpose",
+          "capability",
+          "direction",
+          "scope",
+          "source_meaning_contract",
+          "consumer_meaning_contract",
+          "adapter_revision",
+          "transport_revision",
+          "artifact_revision",
+          "dependency_revision",
+          "compatibility_range",
+          "operational_state"
+        ]
+      },
+      "RegistrationReceiptAxisComparisons": {
+        "kind": "closed record",
+        "fields": {
+          "original_to_receipt": "existing ComparisonResult; original declaration axis is reference, receipt member is compared value",
+          "submitted_to_receipt": "existing ComparisonResult; submitted declaration axis is reference, receipt member is compared value",
+          "registered_basis_to_receipt": "RegistrationBasisPairOutcome; returned basis axis is reference when readable; receipt member is candidate"
+        },
+        "additional_fields": "none",
+        "comparison_order": [
+          "original_to_receipt",
+          "submitted_to_receipt",
+          "registered_basis_to_receipt"
+        ],
+        "missing_unknown_rule": "左側をreferenceとして既存比較を適用する。左がabsent/nullならunknown_original_information、左が値ありで右がabsentならmissing、右の明示null/type/content差はcontent_conflict。registered basis rootがnullまたは非objectならregistered_basis_to_receiptだけはbasis_unreadableで、他の二方向native結果を保持する。",
+        "axis_names": [
+          "connection_identity",
+          "registration_revision",
+          "source_endpoint",
+          "consumer_endpoint",
+          "scope"
+        ]
+      },
+      "RegisteredBasisFieldRead": {
+        "kind": "closed sum; records whether a named basis member can be read without changing the raw JSON value",
+        "variants": {
+          "root_absent": {
+            "fields": [
+              "basis root is Presence.absent; named member is absent"
+            ]
+          },
+          "root_present_null": {
+            "fields": [
+              "basis root is Presence.present_null; preserve the null root, do not treat it as an empty object"
+            ]
+          },
+          "root_present_non_object": {
+            "fields": [
+              "raw_root: JsonValue exact; value is JSON string, array, number, or boolean"
+            ]
+          },
+          "member_absent": {
+            "fields": []
+          },
+          "member_present_null": {
+            "fields": []
+          },
+          "member_present_value": {
+            "fields": [
+              "value: JsonValue exact"
+            ]
+          }
+        },
+        "additional_fields": "none"
+      },
+      "RegistrationBasisPairOutcome": {
+        "kind": "closed sum; local observation wrapper, not a new ComparisonResult value",
+        "variants": {
+          "compared": {
+            "fields": [
+              "result: existing ComparisonResult"
+            ]
+          },
+          "basis_unreadable": {
+            "fields": [
+              "basis_read: RegisteredBasisFieldRead; only root_present_null/root_present_non_object"
+            ]
+          }
+        },
+        "rule": "root absent and object-member absent/null/value use existing pairwise comparison rules with exact Presence. A null member inside an object is compared as present_null and may yield content_conflict. A present_null or non-object root cannot expose any member and produces basis_unreadable; retain the exact root Presence/raw value and count the outcome as incomplete/unknown for local join only."
+      }
+    },
+    "algorithm": [
+      "1. 呼出し元は既存compare_connection_declarations(packet)を一度呼び、その完全なpacketとassessmentをregister_connectionsへ渡す。assessmentは別途再計算・修正しない。",
+      "2. key順は既存FN-C001-01の規則を使う。各keyについて原宣言・提出宣言のPresence、exact assessment、operation-authority mapの当該値を含むRegistrationOwnerRequestを組み立てる。",
+      "3. assessment.connection_results[key].registration_receipt_candidateがheldなら、そのrequestとassessmentを保持してConnectionRegistrationCall.not_invokedを返す。owner portを呼ばず、basis_joinはnot_evaluated(comparison_held_not_called)。",
+      "4. requires_actual_qualificationならRegistrationOwnerPort(request)を呼ぶ。no_response_observedはinvoked/no_response_observed、owner応答Presence=absent、basis_join=not_evaluated(owner_response_not_observed)。",
+      "5. response_observedならraw_responseとtyped_responseを元のobservationへ保持する。raw_responseがJSON nullなら、typed_responseのtagにかかわらずowner応答Presence=present_null、basis_join=not_evaluated(owner_response_null)として次のregistered比較へ進まない。non-null原応答ではtyped held/unknown/undecodableを原値保持して対応するnot_evaluatedへ返し、typed registeredだけ後続へ進む。これは宣言済みnull対条件の私有分岐であり、一般wire codecやmalformed拒否を新設しない。",
+      "6. registered responseではraw registered_basis Presence<JsonValue>を先にそのまま保持する。root absentならnamed field candidateはabsentとして既存比較へ渡す。root present_nullまたはpresent_valueがJSON object以外ならmember pathを読まず、原→registered/提出→registered及びregistered_basis→receiptの該当slotはbasis_unreadable(root presence/raw value)とし、追加データで補完しない。rootがobjectなら各18 memberをabsent/null/valueで個別に読む。各方向結果は分けて保持し、explicit member null等がexisting comparatorでcontent_conflictならその結果を保つ。",
+      "7. receiptのconnection_identity/revision/source_endpoint/consumer_endpoint/scopeについて、原→receipt、提出→receipt、registered basis→receiptの3方向を同じ既存ComparisonResult規則で比較し、全値を保持する。receipt.revisionはdeclaration.registration_revisionへ対応する。receipt.stateは原値で保持しoperational_stateへ同一視しない。",
+      "8. 左側を既知基準、右側を比較対象として各pairwise comparisonを行う。readable pairは既存規則どおりreference absent/null→unknown_original_information、known reference/candidate absent→missing、candidate null/type/content difference→content_conflict。basis_unreadableはnative enumへcastせずlocal incompleteとして保持する。どのpairにもcontent_conflictがあればknown_conflictを優先し、なければmissing/unknown/basis_unreadableのいずれかでincomplete_or_uncomparableとする。69は18×3と5×3で列挙した比較slotの総数であり、新しい数値閾値を追加するものではない。",
+      "9. 既定の18 field×3方向と5 receipt axis×3方向の全pairが比較可能かつcontent_corresponding_in_fixtureであり、6 native memberが適合する場合だけstate=boundとしてConsumerProjectionAvailability.availableへexact copyする。69はその全pair集合の個数表記で、別個のgateではない。basis rootがpresent_null/non-objectの場合はunavailable。その他の不一致・不足もunavailableとし、original owner responseとregistered basisを原値で保持する。",
+      "10. C002関数は呼ばない。C002で必要なindependent used tuple・F01Input・FixtureContextを作らない。戻りはkey union順で一件ずつ、他keyの返却を抑止しない。"
+    ],
+    "authority_and_effect_boundary": "candidate・owner文字列・receipt・projectionから資格/authority/通信/業務承認/acceptance/compatibilityを新たに導かない。既存C001 actual effect=falseは不変。 原packet/owner応答のraw保持はこの私有呼出しの入出力を保全する意味に限る。通常trace/receiptへのraw payload/secret/credential値の保存・外部送信を許可せず、その保持・削除・利用区分は既存L2共通契約の元owner/SECURITY責務に従う。",
+    "basis_scope": "L2/L3の18 field全体をowner registered_basisとして保持する。C002六member projectionは消費用adapterであり、18 field basisまたは正式永続schemaと同義ではない。",
+    "not_specified": [
+      "実owner/provider・通信・署名・backend・永続schema",
+      "未承認のwire codecや一般malformed JSON拒否",
+      "C002 full call、独立used tuple、FixtureContext",
+      "正式採択・実登録・実配送・実資格の成立"
+    ],
+    "design_conditions": [
+      "RCP-01",
+      "RCP-02",
+      "RCP-03",
+      "RCP-04",
+      "RCP-05",
+      "RCP-06",
+      "RCP-07",
+      "RCP-08",
+      "RCP-09",
+      "RCP-10",
+      "RCP-R2-11",
+      "RCP-R2-12",
+      "RCP-R2-13",
+      "RCP-R2-14",
+      "RCP-R2-15",
+      "RCP-R3-16",
+      "RCP-R3-17",
+      "RCP-R3-18",
+      "RCP-R3-19",
+      "RCP-R3-20",
+      "RCP-R3-21"
+    ],
+    "execution_state": "not_executed",
+    "current_native_consumer_pin": {
+      "path": "docs/helix-connect/L5-detail-design/compatibility-stale-send-eligibility.json",
+      "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+      "file_sha256": "1a1c78b84e7d01fb725524f955cd165ba87f5991f2ee5965e7d104aa6faaee21",
+      "pointer": "/logical_type_definitions/F01Input/fields/packet/definition/fields/original_registration_receipt",
+      "object_canonical_sha256": "89b74951187a06b400000c5f898b34e683d187e34af553530c7aec8c51b92b36",
+      "role": "single canonical current pin for the exact inline C002 receipt object; all other references point here"
+    },
+    "comparison_semantics": {
+      "comparison_rule": "各pairは既存C001 FN-C001-01のfield比較規則を用い、左側を原値/基準、右側を提出値/owner値としてnative ComparisonResultを得る。existing original_vs_submittedは再計算せずassessmentから保持する。",
+      "result_retention": "18 fieldごとに原→提出（既存native結果）、原→registered、提出→registeredの3観測を保持する。5 receipt axisごとに原→receipt、提出→receipt、registered basis→receiptの3観測を保持する。field pathを読めないbasis rootでは該当basis側観測をRegisteredBasisPairOutcome.basis_unreadableとし、その他のnative比較結果は変更・上書きしない。",
+      "local_aggregation": "いずれかのpairがcontent_conflictならknown_conflictを優先。conflictがなくmissing/unknown_original_informationを含む場合はincomplete_or_uncomparable。全69 pairがcontent_corresponding_in_fixtureの場合だけbound。",
+      "pairwise_rules": "原→提出はexisting ConnectionAssessment.field_resultsを再計算せず利用する。原→registered、提出→registered、各原/提出/registered basis→receiptは左側をreferenceとして既存C001 field comparatorを適用する。各native結果を独立して保持し、reference absent/nullはunknown_original_information、known referenceに対するcandidate absentはmissing、explicit null/type/content disagreementはcontent_conflict。",
+      "aggregate_count": "69は保持対象となるpairwise observation slot数（18×3 + 5×3）。readableなpairは既存native ComparisonResultを保持し、basis rootが読めない枝のslotはlocal basis_unreadableを保持する。これは閾値や新しい成功条件ではない。",
+      "field_result_keyset": [
+        "connection_identity",
+        "registration_revision",
+        "source_endpoint",
+        "source_owner",
+        "consumer_endpoint",
+        "consumer_owner",
+        "purpose",
+        "capability",
+        "direction",
+        "scope",
+        "source_meaning_contract",
+        "consumer_meaning_contract",
+        "adapter_revision",
+        "transport_revision",
+        "artifact_revision",
+        "dependency_revision",
+        "compatibility_range",
+        "operational_state"
+      ],
+      "receipt_binding_keyset": [
+        "connection_identity",
+        "registration_revision",
+        "source_endpoint",
+        "consumer_endpoint",
+        "scope"
+      ],
+      "prose": "registered_basisのPresence<JsonValue>は原値のまま保持する。root absentなら各fieldのcandidate absentとして既存比較規則を適用する。rootがpresent_nullまたはpresent_valueの非object（string/array/number/boolean）ならmemberを読めず、該当basis側slotをbasis_unreadableとしてlocal joinをincomplete_or_uncomparableにする。empty objectや提出値で補完せず、JSON入力を拒否する規則も追加しない。object rootでは各memberのabsent/null/valueを区別し、明示nullのfieldが既存規則でcontent_conflictとなる場合はその結果を保持する。原→提出の既存ComparisonResultや他方向のcontent_conflictをunknownで上書きしない。"
+    }
   }
 }

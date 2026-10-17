@@ -7047,7 +7047,103 @@
         }
       ],
       "execution_state": "not_executed",
-      "effect": "none"
+      "effect": "none",
+      "private_registration_seam_conditions": {
+        "status": "sourceから導いた統合条件。未実行であり、L9完了を示さない。",
+        "source_bindings": [
+          {
+            "path": "docs/helix-connect/L4-basic-design/connection-registration-descriptor.json",
+            "file_sha256": "9a9eeed7e658ba03c59318c7b31b463baf808cdd11c4260acbce866786a969f8",
+            "pointer": "/contracts/0",
+            "object_canonical_sha256": "29dfcae36e91585f402b8ee3888f9e83d4fc21bcfae847fc545dd847cf7e058f"
+          },
+          {
+            "path": "docs/helix-connect/L5-detail-design/connection-registration-descriptor.json",
+            "file_sha256": "a5714fd59746f3397709ff0f52cca57124739711f5a75f68ba9b3a5ba074d23a",
+            "pointer": "/private_registration_receipt_seam",
+            "object_canonical_sha256": "64acf6464340577de9e78fd39c42bf61040a398e1ece62e664cd9c7ee3eab4ff"
+          },
+          {
+            "path": "docs/helix-connect/L8-unit-verification/connection-registration-descriptor.json",
+            "file_sha256": "03f90f2d456eca91d9351b8be3212a965d25a700ab461a64d567dccd90575ab4",
+            "pointer": "/private_registration_receipt_seam_conditions",
+            "object_canonical_sha256": "4aa12e85e4e95743bf2771015a865b97e272dcbd18e326cbb579d6eba3795383"
+          }
+        ],
+        "condition_refs": [
+          "RCP-01",
+          "RCP-02",
+          "RCP-03",
+          "RCP-04",
+          "RCP-05",
+          "RCP-06",
+          "RCP-07",
+          "RCP-08",
+          "RCP-09",
+          "RCP-10",
+          "RCP-R2-11",
+          "RCP-R2-12",
+          "RCP-R2-13",
+          "RCP-R2-14",
+          "RCP-R2-15",
+          "RCP-R3-16",
+          "RCP-R3-17",
+          "RCP-R3-18",
+          "RCP-R3-19",
+          "RCP-R3-20",
+          "RCP-R3-21"
+        ],
+        "required_observations": [
+          {
+            "id": "L9-SEAM-01",
+            "condition_refs": [
+              "RCP-01",
+              "RCP-R2-11",
+              "RCP-R3-21"
+            ],
+            "observation": "held及び局所owner outcome後も元order内の各keyが独立に返る。"
+          },
+          {
+            "id": "L9-SEAM-02",
+            "condition_refs": [
+              "RCP-R2-12",
+              "RCP-R3-17",
+              "RCP-R3-18"
+            ],
+            "observation": "not_invoked・no_response_observed・observed null/valueの違いと原response Presenceが維持される。"
+          },
+          {
+            "id": "L9-SEAM-03",
+            "condition_refs": [
+              "RCP-R2-13",
+              "RCP-R2-15",
+              "RCP-R3-19"
+            ],
+            "observation": "registered receipt/full basisを両入力側へ照合し、native axis結果とraw値を保持。"
+          },
+          {
+            "id": "L9-SEAM-04",
+            "condition_refs": [
+              "RCP-R3-20",
+              "RCP-06",
+              "RCP-07",
+              "RCP-R2-14"
+            ],
+            "observation": "bound時だけ6-field projection。C002自身の独立入力・比較はこのseamの実行対象外。"
+          },
+          {
+            "id": "L9-SEAM-05",
+            "condition_refs": [
+              "RCP-08",
+              "RCP-09",
+              "RCP-10"
+            ],
+            "observation": "effect=false、18-field basisとsix-field projectionの境界、実採択/永続化/配送の未実証を保つ。"
+          }
+        ],
+        "original_obligation_coverage": "既存L9 F01のpositive/negative raw packetとexpected_materialは値を変更しない。追加条件は登録引継ぎ境界の照合を記述し、既存L9全caseを実行したとは主張しない。",
+        "execution_state": "not_executed"
+      }
     },
     {
       "id": "HELIXCONNECT-L9-001-F02",
