@@ -170762,9 +170762,9 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-    "sha256": "49e6ad41c2ca4ed1793c6d7681fe6b0b7f35fb82a1dfb2c83f242fafc7862aa8",
+    "sha256": "e7528dd37bdea9dff19318c39c381c3c43c079911af0dbeffdc3a6df56ac79dd",
     "pointer": "/private_producer_bindings/0",
-    "object_canonical_sha256": "f3859cea4199e09ae60d7323ba55718fec4af35bb80327613fd8c78e424ce638",
+    "object_canonical_sha256": "8b6379651b4ecf3c64edfa0de25cdc75efd21841d5c472a3e205df8d7d3a7a99",
     "binding_kind": "exact_candidate_file_bytes",
     "meaning": "同じ対に置くL5の現在file bytesとprivate producer binding objectを結ぶ。歴史source pinとは区別する。"
   },
@@ -171275,7 +171275,7 @@
     ],
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "14fb667fc42ff05ebcfa8e6a0012f40c6ab5023e4807e3ff2b18ac82838c39ea",
+      "candidate_sha256": "eb491186e02547c8f52d5807defb4c8243d8283786dfdbf286f42b4ebd7c5b94",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
     },
@@ -171293,13 +171293,13 @@
     "requirement_ref": "HELIXOS-L3-020-B01",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "49e6ad41c2ca4ed1793c6d7681fe6b0b7f35fb82a1dfb2c83f242fafc7862aa8",
+      "sha256": "e7528dd37bdea9dff19318c39c381c3c43c079911af0dbeffdc3a6df56ac79dd",
       "pointer": "/private_producer_bindings/1",
-      "object_canonical_sha256": "a1ffca711ef49c8171d57b7809f4c3245e91214dbeae5d38caec1b80df7eeca8"
+      "object_canonical_sha256": "23d1220cf9be875749f64765ad55d8f7894f34aa2a366e1fcb214290c9d4cf46"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "14fb667fc42ff05ebcfa8e6a0012f40c6ab5023e4807e3ff2b18ac82838c39ea",
+      "candidate_sha256": "eb491186e02547c8f52d5807defb4c8243d8283786dfdbf286f42b4ebd7c5b94",
       "pointer": "/owner_return_verification"
     },
     "unit_conditions": [

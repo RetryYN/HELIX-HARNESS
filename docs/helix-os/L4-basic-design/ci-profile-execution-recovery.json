@@ -1841,7 +1841,8 @@
               },
               {
                 "codes": [
-                  "source_unresolved"
+                  "source_unresolved",
+                  "source_conflict"
                 ],
                 "pointers": [
                   "/context/roles/obligation"
@@ -1864,7 +1865,8 @@
               },
               {
                 "codes": [
-                  "source_unresolved"
+                  "source_unresolved",
+                  "source_conflict"
                 ],
                 "pointers": [
                   "/context/roles/plan"
@@ -1896,6 +1898,7 @@
               },
               {
                 "pointer_prefixes": [
+                  "/inputs/plan_ref",
                   "/profile",
                   "/context/profile",
                   "/context/plan_selection_source",

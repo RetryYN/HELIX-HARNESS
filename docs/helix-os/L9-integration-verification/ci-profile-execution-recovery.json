@@ -108936,7 +108936,7 @@
     "owner_outer_field_priority": "最優先でplan_owner.raw_valueのouter Fieldを判定する。raw ownerがabsentならselection outer Field=absent、raw null/empty又はtyped decode失敗ならouter Field=nullとし、後段membership/item規則で上書きしない。raw/typedの不一致や供給済の独立軸/全raw候補はtraceへ保持し省略しない。typed owner内plan_ref/bindingの原Field tag/値は保持する。",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "ff97b906ba537bc6c46622c7b1142a69d768b1a9f63da91d3069666f6076eafc",
+      "body_sha256": "d66a079bc06bebc764a1bdb58c2fcd619598308850760010c85e6e8c7414b408",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -108960,7 +108960,7 @@
     "kind": "finite_independent_producer_to_consumer_integration_observation",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "ff97b906ba537bc6c46622c7b1142a69d768b1a9f63da91d3069666f6076eafc",
+      "body_sha256": "d66a079bc06bebc764a1bdb58c2fcd619598308850760010c85e6e8c7414b408",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -275689,7 +275689,7 @@
     "kind": "T02の独立局所projection素材",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "ff97b906ba537bc6c46622c7b1142a69d768b1a9f63da91d3069666f6076eafc",
+      "body_sha256": "d66a079bc06bebc764a1bdb58c2fcd619598308850760010c85e6e8c7414b408",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract/relation_comparison_units",
       "binding_kind": "同一候補の正式L4 path/本文SHAへ結ぶ。scratchを意味正本にしない。"
     },
@@ -395892,9 +395892,9 @@
     "system_oracle_ref": "HELIXOS-L10-020-B01",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "ff97b906ba537bc6c46622c7b1142a69d768b1a9f63da91d3069666f6076eafc",
+      "body_sha256": "d66a079bc06bebc764a1bdb58c2fcd619598308850760010c85e6e8c7414b408",
       "pointer": "/contracts/3/owner_return_contract",
-      "object_canonical_sha256": "3b759976adf705717386519d04c78eb6417deaef957c66e7a0c509e0b1d16cbf"
+      "object_canonical_sha256": "5ddc6d1fcab037c34002c832e5f64330787580cec7ed454ee504973c4c8bf969"
     },
     "source_basis": {
       "requirement": "/approved_whole_objects/3",
@@ -395954,6 +395954,12 @@
         "condition_ja": "profile_obligation_set_conflictとcross-source二所見を別に与える",
         "expected_ja": "前者はplanのみ。profile_required_obligation_missingとprofile_obligation_inventory_conflictの/profile/obligationsだけは両原operandの対応originへ返す。片側不明でも他側の原診断/確定requestを消さない。",
         "rule": "/contracts/3/owner_return_contract/routing_and_dedup",
+        "rule_path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json"
+      },
+      {
+        "condition_ja": "context.roles.plan/obligationが固定ownerと既知相反する",
+        "expected_ja": "既存algorithm/0,1がその/context/roles/{role}へ返したsource_conflictも元source lookupへ結ぶ。actual rolesの相反と区別し、unknownだけの経路へ狭めない。",
+        "rule": "/diagnostic_contract/algorithm/0",
         "rule_path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json"
       }
     ],
