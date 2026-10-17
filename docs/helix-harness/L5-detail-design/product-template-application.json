@@ -4421,11 +4421,11 @@
     "meaning_comparison": "same_meaning=falseは元意味不一致。条件充足/非適用根拠/未完義務への対応は元ApplicationPolicyに従い、falseを一律N/A/全体失敗にしない。"
   },
   "reference_resolution_contract": {
-    "identity": "Ref.identity/revision/scope/ownerを元recordへexact解決。所在はidentityでない。参照側digestが供給されていれば元source digestも比較。",
+    "identity": "Ref.identity/revision/scope/ownerを元recordへexact解決。所在はidentityでない。参照側digestが供給されていれば元source digestも比較。 数値を含む原scope等のJSON leafは/wire_codec_contract/numeric_encode_profileのtyped_core_json_equalに従い、boolとnumberを分離しnative int/decoded exact numberを同じJSON数値法則で比較する。字句一致を新Ref資格にしない。",
     "body": "SourceEnvelope body内recordsの同ref/type/payloadへ原意味を照合する。source_ref/digest/資格はenvelope側で検査し自己hashをbodyへ再帰埋込みしない。",
     "qualification": "qualification_ref→Qualification→root_ref ∈ 独立qualification_roots。同owner/subject/revision/scope/bytes digestを照合。実trust root成立はunit外。",
     "required_trace": "required_trace_refs→trace_requirementsの同refから要求された端/向き/kind/版/scopeを解決。trace_edgesの実収載だけで必要集合を作らない。",
-    "comparison": "SemanticComparison両端をAxisFact/semantic_recordsへ解決し有資格根拠の同subject/bindingを確認。文字列同名だけでmeaningを決定しない。",
+    "comparison": "SemanticComparison両端をAxisFact/semantic_recordsへ解決し有資格根拠の同subject/bindingを確認。文字列同名だけでmeaningを決定しない。 RawValue/原payloadの値比較も同profileのtyped_core_json_equalへ結び、私有数値nodeをordinary objectとして比較しない。content_bytesの原byte照合/owner根拠は別に保持する。",
     "snapshot_binding": "関数contextは入力snapshotの要求/product/process/application契約へ固定。record固有template/knowledge/oracle版は別軸。無関係scopeは原owner qualificationとscopeで保持し対象scopeへ統合しない。"
   },
   "comparison_material_contract": {
@@ -4446,7 +4446,8 @@
       "RawValue material must conform to the selected logical type. Unknown/null/unobserved and empty evaluated sets are separate states.",
       "Arrays of refs/records compare as identity/revision/scope/owner-bound sets with multiplicity preserved. Do not silently deduplicate conflicting original facts.",
       "Baseline equivalence has only one snapshot and no whole-obligation comparison evidence: not_evaluated with original obligations preserved. Empty differences do not prove semantic equivalence. ADD20 separately evaluates baseline and metadata-only variant, then compares their trace-bound material; domain/risk/scope changes are not metadata.",
-      "No output type adds OS selected/used/Accepted/event/permission or an overall completed flag."
+      "No output type adds OS selected/used/Accepted/event/permission or an overall completed flag.",
+      "原material内のJSON number値同値とinteger制約はwire_codec_contract.numeric_encode_profileのtyped_core_json_equal/core_json_integerへ対応する。host viewを新wire shapeへ変換せず、bool分離/原token trace/既存logical expected値を保持する。"
     ]
   },
   "wire_codec_contract": {
@@ -7548,7 +7549,7 @@
       "unknown": "意味unknown/state/理由/根拠は既存owner出力のまま。codec独自unknownタグやN/A/fallbackを作らない。",
       "opaque_and_extension": "Ref/SourceEnvelope等の入力carrier25型は現行宣言fieldへclosedとする。定義外keyは削除して成功にせず、そのJSON Pointerを持つInputIssueへvalue=nullで返す。宣言されたRawValueのscope/body/material/nonsemantic_metadata等の任意map keyはopaque原値として保持し、未知keyを意味/authorityへaliasしない。carrierの未供給memberは引き続きabsentであり全requiredに変えない。",
       "output": "ApplicationAnalysis/Comparison/AxisResult/Finding/InputIssueの生成済みfieldは全requiredでclosed。欠落結果をdefaultで生成せず、宣言外のselected/used/Acceptedを結果fieldとして出力しない。Ref/Binding/KindObligationなど原資料carrierのabsenceと宣言RawValue内の任意map保存は維持。",
-      "numbers": "JSON numberの値と原lexemeを暗黙float化/整数化/丸めしない。exact値を表現不能なら成功にせず理由付きcodec失敗へ返す。具体library/言語幅/閾値は未選定。booleanをintegerへcoerceしない。"
+      "numbers": "JSON numberの値と原lexemeを暗黙float化/整数化/丸めしない。numeric_encode_profileのCORE所有private exact値/元tokenとstrict native int（bool除外）で保持し、number/integer/JSON型付き値同値と失敗返却を同profileへ接続する。論理domainに数値幅上限を追加せず、実表現/資源失敗は理由付きcodec失敗で原値を残す。実library/ABI/実装成立は未認定。"
     },
     "codec_operations": [
       {
@@ -7560,8 +7561,10 @@
           "UTF-8を置換なしでdecode。失敗はvalue=null/root pointerのInputIssueと元byte位置。原octetsを診断原資料へ残し、logや外部送信の許可にしない。",
           "単一JSON valueを末尾までparse。途中EOF/末尾別value/非JSON numberはvalue=nullのInputIssueへ返す。object decoded key重複は両出現と所在を原rawへ保持しlast-wins/dedupで成功にしない。配列の同identity record重複/相反とは分ける。",
           "選択entryの宣言member供給形とclosed carrierを検査。型不正/定義外carrier keyは該当JSON PointerのInputIssueへvalue=nullで返す。未供給member/null/RawValue opaque内容を除去/補完/coerceしない。",
-          "decode可能なら原値/key集合/null/原配列順/重複を保持してpresenceを別材料に返す。原必要集合/selected知識/資格/意味不一致はこのcodecのshape成功で充足しない。"
-        ]
+          "decode可能なら原値/key集合/null/原配列順/重複を保持してpresenceを別材料に返す。原必要集合/selected知識/資格/意味不一致はこのcodecのshape成功で充足しない。",
+          "数値carrier形成、同JSON number/integer判定、失敗stage/全返却/原診断列はnumeric_encode_profileへ従う。元JSON expected view/6entry/absence/資格責務は変えない。"
+        ],
+        "private_profile_ref": "/wire_codec_contract/numeric_encode_profile"
       },
       {
         "symbol": "encode_core009_wire",
@@ -7571,8 +7574,10 @@
         "steps": [
           "同じschemaで供給型と出力required/closed fieldを照合。型不正や生成結果欠落をcoercion/defaultで修復しない。非JSON値/表現不能値はcodec失敗へ返す。",
           "外側key順/空白/escapeを意味digest方式へ昇格せず、元配列順/重複/値/任意map keyを保持して単一JSONへencode。content_bytesの内部textは空白/改行/key順/escapeも一字ずつ保存する。",
-          "decode(encode(value))の原値/key集合/null/配列/数値/文字列とpresence一致を要求する。外側bytes同一性やcanonical digest選択を要求しない。意味比較/builderのdeterminismをencoderが再実装しない。"
-        ]
+          "decode(encode(value))の原値/key集合/null/配列/数値/文字列とpresence一致を要求する。外側bytes同一性やcanonical digest選択を要求しない。意味比較/builderのdeterminismをencoderが再実装しない。",
+          "未検査host/domainと私有数値不変条件の全枝、lossless表示、wire_octets=nullの全失敗writerと原operand保存はnumeric_encode_profileへ従う。新public wire wrapperを出さない。"
+        ],
+        "private_profile_ref": "/wire_codec_contract/numeric_encode_profile"
       }
     ],
     "source_resolution_stages": [
@@ -7585,11 +7590,338 @@
     "application_boundary": "codecは必要axis/候補母集合/trace端集合を現供給値から創作しない。same_meaning=falseは元不一致、nullは未知、conditional未充足は未完のまま。cacheされたComparison decodeは評価器producer根拠でなく、ApplicationAnalysisの候補/義務/不足/影響はOS selected/used/消込/実受領/POAcceptedを構成しない。",
     "owner_boundary": "同名Refが似ていてもBRAIN/OS型を共有APIへコピーしない。CORE SourceEnvelope/bodyとQualification/owner/scope/body、CORE Comparison.original_axes/materialを原型に対応。正式両端schema/codec/互換/receiptはBRAIN/OS/CONNECTへ残し、毎回承認gate/閾値/実ライブラリ採用/権限変更を追加しない。 BRAIN032同様carrierとRawValueの責務を分けるが、COREの列挙memberはCORE自身の原型に従う。BRAINのcontent/semantic_json/qualification_bodyや型名をコピーしない。初稿のCORE carrier拡張受理に現行根拠があったとは扱わない。",
     "remaining": [
-      "全Context/Result/opaque body record契約の全量凍結、独立review、具体parserのexact number/Unicode/resource条件は未成立。schema図式の静的照合をライブラリ採用/実codec成立にしない。",
+      "全Context/Result/opaque body record契約の全量凍結、独立review及び具体parser/host/資源の実成立は未成立。CORE private exact number/encodeのlogical domain/分岐/writerはnumeric_encode_profileで具体化し、schema静的照合を実codec成立にしない。",
       "正式root/資格供給元/実source custody/意味比較provider/原owner契約、BRAIN→CORE/CORE→OSの正式bindingとCONNECT版/receiptは未閉包。",
       "L6は関数設計、L7は関数検証、実装成果は層外。実装前test/oracle凍結→Red→Green→Refactor、実接続/保存/受入、全92親430対閉包と実装Readyは未成立。",
-      "小数/指数(1.0/1e0/0.1)/1e400とencode非JSON値の具体期待stage/条件は未固定。整数対照成功から数値全域やencode固有分岐成立を生成しない。"
-    ]
+      "小数/指数(1.0/1e0/0.1)/1e400及びencode未検査hostのlogical型/条件/返却はnumeric_encode_profileで指定した。独立有限期待・実装/実行・全資源挙動は別途未成立。既存整数成功や新条件数だけで数値/encode全域実証とはしない。"
+    ],
+    "numeric_encode_profile": {
+      "id": "HARNESS-L5-009-CORE-EXACT-NUMERIC-ENCODE",
+      "owner": "HARNESS-CORE",
+      "scope": "既存六wire entryのJSON numberを丸めず原値と字句を保持し、未検査host encodeの全分岐/返却writerを定義する私有詳細設計。以下のhost名は本節が定義する名目的な論理表現であり、実class/library/ABIの実装又は採用済みruntimeではない。",
+      "requirement_refs": [
+        "HARNESS-L3-009-F01",
+        "HARNESS-L3-009-N01"
+      ],
+      "source_basis": [
+        {
+          "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1",
+          "selected_objects": [
+            {
+              "pointer": "/requirements/23",
+              "canonical_sha256": "0955af985adf56ca021309bfb52a65ea171a2f93d3d4c5aa575c837f8e3612c7"
+            }
+          ]
+        },
+        {
+          "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c",
+          "selected_objects": [
+            {
+              "pointer": "/cases/23",
+              "canonical_sha256": "15a2f858c81c6bd7d592723e5c0670fdcb263e5f952e1e01955ba034b15b0fad"
+            }
+          ]
+        },
+        {
+          "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+          "sha256": "22a5d47b98e37817b314201b674dfb8cc60b09d2f21c3bab4e6caa8184e8e695",
+          "selected_objects": [
+            {
+              "pointer": "/requirements/4",
+              "canonical_sha256": "c9a5b4dec0e0369439898fbca408f8b6e147ffb8dfe0e19e9a8c393e6f228c49"
+            }
+          ]
+        },
+        {
+          "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+          "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+          "sha256": "abe71135f549bdc954d687bdea5405fc62edb8556f27ca0ce9863348591a82fa",
+          "selected_objects": [
+            {
+              "pointer": "/cases/4",
+              "canonical_sha256": "96564f68ad09889c4d005511bc593c5e0d6c633629ddbd507048fc55143031e6"
+            }
+          ]
+        },
+        {
+          "revision": "6802cc295b6747b98101898c47bb865c7ec6bcd7",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "sha256": "a8164bd513a72c59fc2c1f121737f664070ccc10e4658f57defe22d85fe6f76d",
+          "selected_objects": [
+            {
+              "pointer": "/contracts/2",
+              "canonical_sha256": "6cae1e087609eb2ab452726a4ac81a778d06b7856f7b8ea781df397152b46fef"
+            },
+            {
+              "pointer": "/contracts/10",
+              "canonical_sha256": "3aaf414e317ca76dadff8074c3d77dc00e316fedd70edd1dbb2c9e371fead41c"
+            }
+          ]
+        },
+        {
+          "revision": "6802cc295b6747b98101898c47bb865c7ec6bcd7",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "sha256": "f988e414079fc4bece7e17366969aa4d181c476b287f9279dd53cb5189e2181a",
+          "selected_objects": [
+            {
+              "pointer": "/wire_codec_contract/presence/numbers",
+              "canonical_sha256": "8103c278dfbb77614f4c88f2624435601cf474b08a7b5f75b2b08cbe4322160e"
+            },
+            {
+              "pointer": "/wire_codec_contract/codec_operations",
+              "canonical_sha256": "4322e6a73dbf01566b8ae47753919ddc7a0d27a49137deb4c6e7c3ee19a27016"
+            },
+            {
+              "pointer": "/type_contract/types/InputIssue",
+              "canonical_sha256": "62668a1b2b06f04a4070bf78712615a838f73a734129bfcbf6b226d3c9d3b8c1"
+            }
+          ]
+        }
+      ],
+      "authority_scope": "上流source_basis先頭四件はHDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12のexact e509851 F01/N01 objectに限定する。現行全L3/L10 file又は他義務へ承認を拡張しない。技術sourceは別の6802固定資料。",
+      "private_host_types": {
+        "CoreDecimalValue": {
+          "kind": "nominal immutable record",
+          "fields": {
+            "negative": "strict boolean",
+            "coefficient_digits": "strict ASCII decimal string",
+            "power_negative": "strict boolean",
+            "power_digits": "strict ASCII decimal string"
+          },
+          "primitive_invariants": "係数は0又は先頭/末尾とも0でない十進非負整数字句。指数絶対値は0又は先頭0のない十進非負整数字句。指数0のpower_negativeはfalse。係数0はnegative=false、power_negative=false、power_digits=0とする。数字列と符号に幅/桁数上限を設けない。",
+          "denotation": "数学値は符号付き係数×10の符号付き指数乗。符号/係数/指数は任意幅の文字列表現でありfloat/Decimal/有限幅intへ落とさない。これはprivate値同値を一意にする内部表現であり、wire数値字句/canonical key/hashを定めない。"
+        },
+        "CoreNumber": {
+          "kind": "nominal immutable record",
+          "fields": {
+            "original_token": "strict ASCII string",
+            "exact_value": "CoreDecimalValue"
+          },
+          "invariant": "original_token全体は単一JSON number文法に一致し、そのexact数学値がexact_valueの表す値と同じ。ordinary object/dictの同名keyからこの名目型へcastしない。私有型に属するというだけで未検査encodeの不変条件を省略しない。"
+        },
+        "CoreParsedNumber": {
+          "kind": "nominal decode-only record",
+          "fields": {
+            "original_token": "文法検査を通った単一ASCII JSON number token"
+          },
+          "boundary": "構文読取り中のtoken保持用。まだCoreNumberの成功値ではない。wire又は成功RawValueに出さない。"
+        },
+        "CorePairObject": {
+          "kind": "nominal decode-only record",
+          "fields": {
+            "pairs": "decoded strict string keyとCoreParsedValueの原member順列"
+          },
+          "boundary": "同名keyの反復を全保持。通常objectへの移行は重複検査後だけ。ordinary list又は同名pairs keyのobjectからcastしない。"
+        },
+        "CoreParsedValue": {
+          "union": [
+            "JSON null",
+            "strict boolean",
+            "strict string",
+            "CoreParsedNumber",
+            "CoreParsedValue[]",
+            "CorePairObject"
+          ],
+          "boundary": "構文読取りの全原node。成功値domainとは分け、原member/配列順と重複を保持する。"
+        },
+        "CoreJsonValue": {
+          "union": [
+            "JSON null",
+            "strict boolean",
+            "strict string",
+            "strict native int（booleanを除く）",
+            "CoreNumber",
+            "CoreJsonValue[]",
+            "strict string keyからCoreJsonValueへのordinary object"
+          ],
+          "boundary": "有限で循環しない原tree。object member順は値同値には使わず原観測順として保持する。float（有限値/NaN/Infinityを含む）、単体Decimal、tuple/set、任意host object及びdecode専用二型は成功domain外。native intは生成済みmetadataと論理JSON整数の表現として数値nodeと共存する。"
+        },
+        "CoreNumericOccurrence": {
+          "kind": "closed record",
+          "fields": {
+            "locator": "原carrier空rootのRFC6901 pointer",
+            "ordinal": "原tree深さ優先の0起点strict native int",
+            "original_token": "strict string又はnull（decode token又はencode私有nodeの原string。生成native intと型外tokenはnull）",
+            "representation": "lexical_number又はgenerated_integer",
+            "formation": "formed/failed/not_attempted",
+            "number": "CoreNumber又はstrict native int又はnull"
+          },
+          "boundary": "同名keyの別出現は同pointerでも別ordinal。lexical_numberはCoreNumber表現を指しdecode起源や資格を証明しない。未検査encodeでtoken field自体が不在/非stringならこの欄はnull、元field全値/presenceはraw_diagnostics.original_operandへ保ち、failed/number=nullとする。未読値をformedにせず、形成済みだけnumberへ値を置く。"
+        },
+        "CoreMemberOccurrence": {
+          "kind": "closed record",
+          "fields": {
+            "container_pointer": "原object所在",
+            "member_index": "原member列の0起点strict native int",
+            "decoded_key": "元decoded string",
+            "member_pointer": "RFC6901 escaped decoded key pointer"
+          },
+          "boundary": "重複key全出現を保持。配列の同identity record反復と混同しない。"
+        },
+        "CorePresenceObservation": {
+          "kind": "closed record",
+          "fields": {
+            "pointer": "原schema member所在",
+            "state": "supplied/explicit_null/absent/empty_array"
+          },
+          "boundary": "既存presence規則の値を保持する。観測した宣言member又は配列rootの実値が空arrayならempty_array、nullならexplicit_null、未供給memberはabsent、それ以外の供給原値はsupplied。empty object/stringへ新stateを作らない。宣言RawValueのopaque childへschema memberを創作せず、実親が未観測なら架空child absenceを返さない。"
+        },
+        "CoreDecodeOrigin": {
+          "kind": "closed record",
+          "fields": {
+            "raw_octets": "immutable原octets",
+            "parsed_tree": "CoreParsedValue又はnull",
+            "members": "CoreMemberOccurrence[]",
+            "numbers": "CoreNumericOccurrence[]",
+            "phase": "utf8/json/duplicate/number/shape/decoded",
+            "phase_complete": "strict boolean",
+            "observed_byte_offset": "strict native int又はnull。原raw_octetsの0起点byte所在として実際に観測した失敗位置。未観測又は成功ならnull。"
+          },
+          "boundary": "返却までに観測した全原tree/node/原因だけを保持。途中資源失敗はphase_complete=falseで未読分の観測を作らない。原octetsは常時保持する。"
+        },
+        "CoreDecodeResult": {
+          "kind": "closed record",
+          "fields": {
+            "value": "CoreJsonValue又はnull",
+            "presence": "CorePresenceObservation[]",
+            "input_issues": "既存InputIssue[]",
+            "raw_diagnostics": "CoreDecodeOrigin"
+          },
+          "boundary": "input_issues=[]が成功。JSON nullという値と失敗sentinelをvalueだけで識別しない。固定entryがroot nullを拒否すればshape失敗。新wire返却wrapperではない。"
+        },
+        "CoreEncodeOrigin": {
+          "kind": "closed record",
+          "fields": {
+            "original_operand": "未検査host原operandの借用観測",
+            "numbers": "CoreNumericOccurrence[]",
+            "phase": "host/shape/write/encoded",
+            "phase_complete": "strict boolean"
+          },
+          "boundary": "任意host値をJSONへ直列化してechoしない。循環/型外/私有node不整合も原operandと実所在を保持し、ログ/外部送信許可にしない。"
+        },
+        "CoreEncodeResult": {
+          "kind": "closed record",
+          "fields": {
+            "wire_octets": "immutable UTF8 octets又はnull",
+            "input_issues": "既存InputIssue[]",
+            "raw_diagnostics": "CoreEncodeOrigin"
+          },
+          "boundary": "失敗時は部分JSONを返さない。原operandと観測済み全原因はraw_diagnosticsに保持する。公開のencode出力は既存wire_octets/input_issues投影。"
+        }
+      },
+      "signatures": [
+        "decode_core009_wire(raw_octets, fixed_entry, fixed_schema_revision) -> CoreDecodeResult。既存六entry/同schemaを使い新dispatchを発明しない。",
+        "encode_core009_wire(original_operand, fixed_entry, fixed_schema_revision) -> CoreEncodeResult。入力は未検査host観測。domain内と事前仮定しない。",
+        "typed_core_json_equal(left,right) -> boolean。domain内JSON値の論理等値で、出典/資格/同call対応の判定を代行しない。",
+        "core_json_integer(value) -> boolean。domain内のJSON numberの数学的整数判定。host bool又は文字列を整数へ変換しない。"
+      ],
+      "exact_value_formation": [
+        "number文法は -?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)? のASCII全体一致。部分一致/前後空白をtoken内へ含めず、NaN/Infinity/-Infinity、leading plus、余分なleading zeroはJSON構文失敗。",
+        "tokenの符号、整数/小数の数字、明示指数の符号/数字を原順で分ける。係数候補は整数部と小数部数字の連結、指数は明示指数（無ければ0）から小数桁数を引いた任意幅符号付き十進整数。",
+        "係数の先頭0を除き、全て0なら定義した零表現にする。非零では末尾0を全て除き、その除去個数を指数へ足す。これらは任意幅の十進文字列/符号の演算という設計原始操作であり有限幅数値変換で代用しない。",
+        "CoreDecimalValueの全primitive不変条件を確認して元tokenと組にする。1、1.0、1e0のexact_valueは同じ、-0も数学値0だが元tokenは残る。0.1や1e400をfloatへ通さず有限exact値として表現する。",
+        "有効な有限長tokenは論理domainで表現可能。実adapterが割当/資源等により形成できなければnumber段階の表現不能失敗を返す。桁数/指数幅/時間の閾値や特定runtime成功を推測しない。"
+      ],
+      "numeric_predicates": {
+        "number": "strict native int（bool除外）又は全不変条件を満たすCoreNumberだけ。float/単体Decimal/普通のtoken objectは数値domainへ補完しない。",
+        "integer": "numberであり、native int又はexact_valueが零若しくは符号付き指数が0以上の場合。非零係数は末尾0を除いているため負指数は非整数。1.0/1e0はinteger値、0.1は非整数、boolは常に別型。",
+        "typed_equality": "Absentは既存presenceでnullと別。JSON型が違えば不等、ただしnative int/CoreNumberは両方JSON numberとしてexact数学値を比較する。boolはnumberと不等。string/nullは原値、arrayは原順/反復、objectは同decoded key集合と各原値を再帰比較しmember順を値資格にしない。",
+        "schema": "既存schemaのnumber/integer、numeric enum/const、minimum等の数値制約が行使されるときは上記exact意味を使用する。boolを数値enumに一致させず、strict native intとCoreNumber間も同じnumber法則。既存六entryから到達しない追加$defsをpresenceだけでentryへ適用しない。",
+        "logical_view": "既存L8 expected.valueのplain JSON数値は論理JSON値の記述であり、host class dumpではない。case35の9007199254740993等を新wrapper objectへ書換えない。私有host viewとの照合は本typed_equality/数学値と元presence/別token traceによる。"
+      },
+      "decode_ordered_steps": [
+        "1. 同raw_octetsと固定entry/schema revisionを保持し、presence/input_issues/members/numbersは空列、parsed_tree=nullで開始する。strict UTF8を置換なしで読む。失敗はroot InputIssue、value=null、phase=utf8、phase_complete=false。元byte位置は実観測できた範囲だけ。",
+        "2. UTF8 text全体を単一JSONとして読み、全objectはCorePairObject、全numberは文法を通ったCoreParsedNumberとして保持する。途中EOF/末尾別value/無効文法/非JSON numberはjson段階のroot失敗。原text/観測済みpair/tokenを保ち、不正tokenを数学値へ評価しない。",
+        "3. 完全なparsed_treeを原member/要素順の深さ優先で辿り、全member occurrenceと全数値token occurrenceを固定する。同一objectの同decoded keyの重複は値同値/escape差にかかわらず拒否。原因はobject+decoded keyごと一件、両方を含む全出現を保持する。独立した別object/keyの重複も原順で全保持する。重複時はphase=duplicate、value=nullで終了し通常object/factory/shapeへ進まない。",
+        "4. 重複なしtreeの数値を原ordinal順にexact_value_formationへ結ぶ。全成功ならnumbersはformedで原token/CoreNumberを保持し通常object/listへ写す。実形成失敗は当該leafのnumber表現不能InputIssue、phase=numberでvalue=null。先に形成できたnode/全原tokenは残し、資源失敗で継続不能なら残りをnot_attempted/phase_complete=falseにし架空原因を作らない。独立して観測できた複数失敗は原ordinal順に全保持する。",
+        "5. domain内treeを固定entry/schemaへ照合する。既存required/closed/null/RawValue域を変えずnumber/integerだけ本numeric_predicatesへ接続する。独立shape原因は既存declared member順/原array index順で保持し、親型不正の架空child原因を追加しない。shape失敗はphase=shape、value=null。",
+        "6. 全成功なら元JSON値をvalueへ、既存presence規則の全観測をpresenceへ返しinput_issues=[]、phase=decoded、phase_complete=true。元字句とJSON意味を混ぜず、codec成功を必要axis/qualification/意味比較/採用/受領へ昇格しない。"
+      ],
+      "encode_ordered_steps": [
+        "1. 原未検査operandをraw_diagnostics.original_operandへ借用し、原treeの深さ優先/member・要素順でhost domainを確認する。普通objectのkeyはstrict string、配列はlistだけ。循環再到達はその実edge所在のhost失敗で、任意objectをrepr/string/nullへ修復しない。float NaN/Infinityはhost域外であり、wireのNaN字句構文失敗とは原因を分ける。 object keyが非stringの場合は当該実object parentをlocatorとし、keyをstring化して人工child pointerへしない。元key/値はoriginal_operandに全保持する。",
+        "2. CoreNumberは名目型識別後、primitive field形→token全体文法→CoreDecimalValue全不変条件→exact token/value同値の順で検査し、同nodeの最初不成立一件だけを返す。失敗pointerは元carrierの当該数値nodeであり、wireにない/token/exact_valueという人工child pointerを足さない。別原nodeの独立失敗は原順で保存する。",
+        "3. 全host nodeがdomain内なら同固定entry/schemaをnumeric_predicatesと共に照合する。失敗は既存InputIssue/実member locator。未供給key/生成結果required不足を補完せず、いずれかの失敗時wire_octets=null。host段階失敗から未観測のshape原因を創作しない。",
+        "4. 全shape成功のnodeをstrict_value_writerで単一UTF8 JSONへ表現する。CoreNumberは検査済みoriginal_tokenを数値として出し、native intは丸めない符号付き十進字句を出す。普通token/value objectは普通objectのまま。字句/値の相反nodeを片方に合わせて修復しない。",
+        "5. 全体生成可能ならwire_octetsを返しinput_issues=[]、phase=encoded/phase_complete=true。実表現又は資源処理が失敗したときはphase=write、wire_octets=nullとInputIssue、全原operandと観測済み原因を保持する。内部途中bufferは成功wireとして返さない。"
+      ],
+      "strict_value_writer": {
+        "primitives": "null/true/falseは各JSON token。native intはboolを除く数値として丸めない10進表記、CoreNumberは元有効tokenを非quoteで出す。有限長文字列表現/配列/objectを再帰し、wrapperをwire objectへ出さない。",
+        "strings": "quote/backslashはJSON escape、ASCII U+0020〜007Eのその他は原字。その他は小文字hexの\\uXXXX、非BMPは対応surrogate pair、元lone surrogate codepointも単独\\uXXXXとして文字値を保持する。UTF8実装へ不正byte置換を要求しない。",
+        "collections": "listは元順/反復、objectは当該ordinary objectの原member順、decoded keyと各値を保持する。外側空白はseparator comma/colonの単一表示とするが、外側bytes同一/key順を意味digest方式にしない。",
+        "content_bytes": "content_bytesは既存CORE型の文字列値として逐字保存する。外側のJSON escapeが変わってもdecode後文字列の空白/改行/key順/escape textは全一致。内側JSONを再format/hash再生成してsource digestへ代用しない。"
+      },
+      "stage_and_failure_writers": {
+        "decode_stage": "raw_diagnostics.phase=utf8は既存utf8_failed、json/duplicate/numberは既存json_failed、shapeはshape_failed、decodedはdecodedへ対応する。number失敗は有効JSON数値の実表現不能であり、grammar不正という意味ではない。技術reasonで区別する。",
+        "encode_stage": "phaseは私有観測だけ。公開encode返却はwire_octets/input_issuesで、新public encode_failed stage/業務分類を追加しない。",
+        "locator": "UTF8/一般JSON構文は空root。重複keyはそのdecoded key pointer（~→~0、/→~1）。数値/host/shapeは実carrier/node pointer、実所在が観測不能な資源失敗はroot。不正host nodeの内部fieldをwire pointerへ偽装しない。",
+        "outer_source_ref": "外側未資格wire decode/encodeのInputIssue.source_ref=null。payload内Refの見かけからsource資格を作らない。",
+        "reason_literals": {
+          "utf8_invalid": "CORE wireを置換なしのUTF-8として読めない。",
+          "json_invalid": "CORE wireは単一の有効JSON値ではない。",
+          "duplicate_decoded_key": "CORE JSON objectに同じdecoded keyが重複している。",
+          "number_formation_failed": "COREのJSON数値を丸めずに表現できない。",
+          "private_number_fields_invalid": "CORE私有数値carrierの原field形が不正である。",
+          "number_token_invalid": "CORE数値tokenがJSON数値文法に適合しない。",
+          "number_value_invalid": "CORE exact数値の符号・係数・指数の表現が不正である。",
+          "number_token_value_conflict": "CORE数値carrierのtokenとexact値が一致しない。",
+          "non_json_host_value": "CORE JSON値として受け付けないhost型である。",
+          "cyclic_host_value": "CORE JSON値の原参照に循環がある。",
+          "shape_invalid": "CORE wire entryの宣言型又は供給member条件に適合しない。",
+          "boolean_integer_mismatch": "COREの整数memberへbooleanが供給されている。",
+          "serialization_failed": "CORE JSON値を損なわず単一UTF-8 wireへ表現できない。"
+        },
+        "cause_order": "段階順は上記順。段階内は原member/array indexの深さ優先（schemaだけにあるrequired不足は当該schema宣言member順）。同原causeの再発見だけ一回。別node/別key/独立原因は全保持し、一件目成功で他相反を消さない。続行不能な資源失敗より後の未観測を原因へ追加しない。",
+        "shape_precedence": "同memberでbooleanがintegerを満たさない場合はboolean_integer_mismatch一件で一般shape_invalidを重ねない。他の同parent shape原因も最初の原条件の不成立を保持し、親型不正の派生child不足は抑止する。",
+        "no_secret_echo": "理由文字列へ原secret/credential/任意host reprを埋め込まない。原octets/host operand/全pairは既存診断原資料として別保持し、新しい送信/保存許可にしない。",
+        "phase_completion": {
+          "meaning": "phase_completeは返却時の最終phaseで定める原観測範囲を最後まで点検できたかを表す私有観測。operation成功、shape適合又は意味成立とは別。",
+          "utf8": "最初の不正UTF8又は読取り継続不能で終了するとfalse。後段JSON/presenceを観測したことにしない。",
+          "json": "途中EOF/末尾別value/文法失敗又は構文読取り継続不能はfalse。完全なCoreParsedValueが未成立なのでparsed_tree=null、members/numbersは開始時の空列。原octetsは全量保持し、途中原文のpair/tokenを失敗なしtreeへ修復しない。",
+          "duplicate": "完全parsed_treeの全memberを重複点検できた場合は、重複を検出してもtrue。途中資源失敗で残りを点検できなければfalse、実観測範囲だけ保持する。",
+          "number": "完全parsed_treeの全numeric occurrenceをformed又はfailedとして点検し終えた場合true。継続不能でnot_attemptedが残る場合false。独立失敗を観測済みなら全列保持し成功に補完しない。",
+          "shape": "固定entry/schemaの当該原treeで必要な全供給member及びrequired条件を点検し終えた場合はshape原因があってもtrue。親型不正から存在しない子を走査せず、その親原因を点検した状態とする。継続不能で必要範囲が未観測ならfalse。",
+          "decoded": "全成功なのでtrue。",
+          "host": "encodeで全到達可能な原node/edgeをdomain及び数値不変条件について点検できた場合は型外/循環原因があってもtrue。循環edgeは当該実所在で停止し他の独立枝を点検する。資源等で原範囲を点検できなければfalse。",
+          "write": "単一wire全体を生成できず停止した場合false。未生成suffixを成功又は原因として合成せず、wire_octets=nullを返す。",
+          "encoded": "単一wire全体の生成成功なのでtrue。"
+        },
+        "numeric_occurrence_membership": "decodeでは完全parsed_tree上のCoreParsedNumberの各原token、encodeでは原treeで検査した名目的CoreNumber又はstrict native int（boolを除く）だけを数値occurrenceとして保持する。域外のfloat/単体Decimal/tuple等からlexical_number/generated_integerを生成しない。その原値はoriginal_operandと実所在InputIssueに保存し、numbersへ架空nodeを追加しない。decodeの重複検出前に原tokenを列挙した場合はformation=not_attempted/number=null、encodeの不正CoreNumberはformation=failed/number=nullで元token field形が不正ならoriginal_token=null、全fieldはoriginal_operandに保持する。"
+      },
+      "all_return_field_writers": {
+        "decode.value": "全段階成功だけdomain内原JSON値。失敗時null。正常JSON nullは固定entry schemaで受理される場合だけ成功値で、issuesの空/非空と区別する。",
+        "decode.presence": "成功時は既存declared memberのpresence全列。失敗時は[]とし、途中parentから架空child absenceを作らない。raw原観測はraw_diagnosticsへ全保持。",
+        "decode.input_issues": "同上段階/原因/locator/source_ref/reasonの全観測列。成功[]。",
+        "decode.raw_diagnostics": "原octets常時、完成したparsed_tree又はnull、実観測member/numeric全列、最終phase/完了性。observed_byte_offsetは原octetsに対し実観測できた0起点失敗byte位置だけ、未観測/成功はnull。UTF8の旧対照case7は元13を保持する。途中失敗でも原資料を消さず、未実行prefix走査や位置を推測しない。",
+        "encode.wire_octets": "成功時だけ単一wire全体。いずれかの原因/途中生成失敗でnull、部分wireを返さない。",
+        "encode.input_issues": "同上全観測列。成功[]。",
+        "encode.raw_diagnostics": "原operandの同じ借用観測と全数値列、最終phase/完了性。任意hostを新JSONへcastして返さない。"
+      },
+      "consumer_binding": {
+        "codec": "既存codec_operationsの二symbolが本private signature/ordered stepsと全返却writerを使う。公開/既存logical JSON carrier viewは本節numeric_predicates.logical_viewへ対応する。",
+        "rawvalue_and_ref": "原Ref.scope、body/material/nonsemantic_metadata等のRawValue、Ref/binding全値とsource records/payloadのJSON比較はtyped_core_json_equalへ接続する。number tokenの字句一致をRef意味同一性に加えず、source content_bytesの原byte/digest照合は従来どおり別。",
+        "source_result": "既存source_result_reference_projectionのL4 rule snapshotが定めるJSON number法則を変えず、producer_row_materializationのRef全値比較の数値leafを本型へ結ぶ。snapshot本文/既存public返却型は不変。",
+        "generated_integer": "ApplicationAnalysis.side_effect_countなど生成済native intも同number/integer/typed equality法則。decode numberをhost intへ強制変換してorigin tokenを失わず、既存logical JSON expected.valueをhost class比較へしない。",
+        "inner_source": "content_bytes内側のstrict JSON数値読取りにも丸め禁止/元token保持を使うが、既存source_ref/資格/root/未資格局所性を維持する。内側readerのInputIssue.source_refは元source帰属のままでouter nullを上書きせず、外側shape成功を内側source資格としない。 内側ではnumber形成/JSON値読取りの原始操作だけを再利用し、decode_core009_wireの固定entry schema照合をbodyへ適用しない。新しいRawValue wire entryや未知body schemaを足さず、既存source解決段階へ局所失敗を返す。"
+      },
+      "legacy_and_comparison": {
+        "legacy_source": "既存legacy_comparisonのLEGACY-ASSET-4F5A1F0739EC1111D91D（旧L4 §1〜4）、LEGACY-ASSET-98372FEE8A3AC8F9C299（旧L5 field/value_type/trace）を読取参照。原JSON/型/値とderived viewの分離、未知を補完しない点を保持する。",
+        "failure_basis": "既存UTW-014/020/021の欠損空集合化・部分原因消失・自己申告完了を繰り返さず、型外/表現不能と意味unknown、原inputと技術診断を分離する。旧codec/runtime/CIは実行/移植しない。",
+        "brain032_comparison": "PR3325/3327は厳密number/int共存、token/value相反、bool分離、内外source帰属を見落とさない比較材料だけ。本節はCORE自身の6entry/RawValue/body/型/段階から再導出し、BRAINのABI/型名/QualifiedSource/content/semantic_json/算法を共通APIとして採用しない。"
+      },
+      "remaining": [
+        "本節のlogical host表現/全分岐writerは設計上選定した。実host class/factory/library/parser/strict writer/資源時の実挙動、具体adapter/実資格/実接続の実装は未成立。閾値/依存を勝手に追加しない。",
+        "独立L8原入力/期待/全返却は別担当が本sourceから候補実行より先に著述する。既存36codec case/全旧期待と旧source pinはそのまま保持。新domain/host表現で旧logical値を再検証した又は全入力域実行済みとは主張しない。",
+        "全B019/030責務projection、CORE009 F05のstatewriter/元field対応、意味比較provider、OS/CONNECT receiver/原source custody、canonical-sort/digest方式は本profileから閉じない。全92親430義務/L6L7/製品CI/実受入/Readyは未成立。"
+      ],
+      "authority_effect": "none",
+      "operation_effect": "none",
+      "execution_state": "not_executed"
+    }
   },
   "cross_design_candidate_ref_projection": {
     "id": "HARNESS-L5-009-F01-XBD-CANDIDATE-REF-PROJECTION",
@@ -9618,7 +9950,7 @@
           "operation": "一致recordだけcopy。0件/複数件はAbsent、N/A判断を作成/承認しない。"
         }
       ],
-      "ref_equality": "Refのidentity/revision/scope/owner/source_locator/sha256をJSON value semanticsで全比較。",
+      "ref_equality": "Refのidentity/revision/scope/owner/source_locator/sha256をJSON value semanticsで全比較。 数値leafは/wire_codec_contract/numeric_encode_profileのtyped_core_json_equalで比較する。元L4 snapshotのbool/number分離とJSON number法則を保持し、原token一致を追加条件にしない。",
       "json_materialization": "各rowの各Presence memberを順に走査。Absentはobject keyを出力せず、Presentはvalueを出力する。Present nullをAbsentへ畳まない。collection Presenceも保持し、Absent collectionとPresent []を区別。",
       "incomplete_row_rule": "不明/未供給memberを{}・[]・nullへ補わない。欠落/重複joinはAbsentを保ち、下流L4 ruleに欠落として渡す。",
       "authority_limit": "論理的source row materialに限る。実source資格、owner資格、OS record、使用/完了/認可/受入を成立させない。",
