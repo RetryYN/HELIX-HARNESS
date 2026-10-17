@@ -4570,7 +4570,14 @@
       "preserved_baseline": "既存5義務/75concrete_casesと全expected_material、native L5/L8の全旧case/期待/歴史pinはこの追補で変更しない。",
       "execution_state": "not_executed",
       "count_boundary": "以下の条件数や既存case数を全入力域・全義務完了のgateにしない。",
-      "authority_boundary": "新しい要求/認可/権限/owner資格/実provider/recipient/ACK/人間承認は追加しない。実資格/受入/運転成立は未認定。"
+      "authority_boundary": "新しい要求/認可/権限/owner資格/実provider/recipient/ACK/人間承認は追加しない。実資格/受入/運転成立は未認定。",
+      "rules_without_dedicated_conditions": [
+        "13reply+15templateの全28項目を030 original_required_fields/provided_required_fieldsへcastしない規則は共通保持条件にあるが、C01〜C08に専用入力/期待の行はない。",
+        "required_input.meaning等の文字列をparse/分割して一覧・Definition・案件値を補完しない規則は、専用入力/期待の行がない。",
+        "CORE AxisFact.value/FieldCheckMaterial.value_stateと030 ProductValue.state/value/reasonの同名state castを拒否する規則は、専用入力/期待の行がない。",
+        "外部cached自己申告結果を正規producerの同call結果として採用しない規則は、専用入力/期待の行がない。",
+        "全8条件自体もnot_executedの静的接続条件である。以上の未収載分を網羅済み/実行済みへしない。具体adapterのL5/L8と対反例で別途閉じる。"
+      ]
     },
     "source_basis": [
       {
@@ -4931,7 +4938,8 @@
     "unclosed_adapter_boundary": [
       "具体producer/native bodypath、元資料のpointer/occurrenceとquery/field/Refの投影、state/value adapter、qualified sourceへの接続は本基本port条件だけでは閉じていない。未供給をデフォルトで埋めない。",
       "030-F01/F02/F03を同callへ供給する閉型/明示引数・全返却writerと、CORE原snapshotから各投影を作る具体詳細は後続L5/L8の対象。現在の019 native期待を新port全返却の証明へ流用しない。",
-      "実source/owner資格・正式wire codec・実query/receipt・製品適用/OS保存/全92親430義務/L6L7/実装/PO受入は成立未認定。"
+      "実source/owner資格・正式wire codec・実query/receipt・製品適用/OS保存/全92親430義務/L6L7/実装/PO受入は成立未認定。",
+      "B019-F02の製品input/値→COREという責務返却と、CORE009-F05の製品要求値未決→HARNESS008という既存候補の関係を後続L5/L8で書き分ける。CORE返却を最終Backflow先の変更や008の代替にせず、ticket発行はOSに保持する。"
     ],
     "legacy_and_failure_basis": {
       "legacy_source": {
@@ -4954,12 +4962,16 @@
             "id": "UTW-014"
           },
           {
+            "line": 86,
+            "id": "UTW-020"
+          },
+          {
             "line": 87,
             "id": "UTW-021"
           }
         ]
       },
-      "preserve": "汎用template/knowledge定義と製品instance/義務の分離、原版/sourceとinput/negative条件、proposal/receiptと適用/完了の分離を保つ。欠損を空集合へ縮退させず自己申告を完了根拠にしない。",
+      "preserve": "汎用template/knowledge定義と製品instance/義務の分離、原版/sourceとinput/negative条件、proposal/receiptと適用/完了の分離を保つ。欠損を空集合へ縮退させず自己申告を完了根拠にしない。 UTW-020の巨大aggregate集中によるpartial failure診断単位の粗さを踏まえ、局所の原因/原資料を保持する。",
       "change": "旧registry/planner/pair binderを移植せず、現019の返却不足と既存030の定義/値/trace責務を原資料へ結ぶ基本portと対条件だけを追補する。",
       "reason": "承認済019-F02の不足owner返却と030-F01/F02/F03の既存意味を保持し、知識定義と製品値を同じrequired_input文字列から分類する誤りを避ける。authority/実操作を追加しない。",
       "reuse": "旧資産は読取参照と意味再導出のみ。現030/CORE型/規則は元署名/意味を参照し、同名castやrouting複製をしない。"

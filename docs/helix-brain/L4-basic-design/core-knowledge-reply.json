@@ -396,6 +396,22 @@
           {
             "pointer": "/consumer_connections/1",
             "canonical_sha256": "8ef93e6745bf6bf461ab44fe78956fb920063e615af2863561e957c802486968"
+          },
+          {
+            "pointer": "/types/F01Input",
+            "canonical_sha256": "4fc8e72cab9e05272d509258f811859acac9e4c4e430fb856a435fd39fe16b81"
+          },
+          {
+            "pointer": "/types/F03Input",
+            "canonical_sha256": "95b86f5b81bbf5339923ad045fa2570169e0de1e00190875726d1dbfdacc9074"
+          },
+          {
+            "pointer": "/functions/0",
+            "canonical_sha256": "4ee427656c6e035aa920fd60f2cc8b8447a050cb165721b5400b13ab97fd561a"
+          },
+          {
+            "pointer": "/functions/2",
+            "canonical_sha256": "a011b566b15130ba1e3c5307c040ca3bfda468e659f88d3f61a81dff00db9fdd"
           }
         ]
       },
@@ -423,6 +439,28 @@
           {
             "pointer": "/type_contract/types/FieldCheckMaterial",
             "canonical_sha256": "e2b0208919b31b6a113dd13c2f58fd078156706393eb0b7c675b622edc5ff4a1"
+          }
+        ]
+      },
+      {
+        "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/27",
+            "canonical_sha256": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54"
+          }
+        ]
+      },
+      {
+        "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+        "selected_objects": [
+          {
+            "pointer": "/cases/27",
+            "canonical_sha256": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d"
           }
         ]
       }
@@ -508,7 +546,9 @@
             60,
             81,
             92
-          ]
+          ],
+          "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+          "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
         },
         {
           "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
@@ -516,7 +556,9 @@
           "lines": [
             33,
             108
-          ]
+          ],
+          "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+          "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
         },
         {
           "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
@@ -524,17 +566,21 @@
           "lines": [
             45,
             47
-          ]
+          ],
+          "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+          "sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
           "lines": [
             80,
             87
-          ]
+          ],
+          "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+          "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
         }
       ],
-      "preserve": "template定義と製品instance/traceの分離、原不足とproposalの保持、既存authorityを奪わないこと。UTW014欠損→空集合、UTW020局所不足の不可視、UTW021自己申告完了を防ぐ。",
+      "preserve": "template定義と製品instance/traceの分離、原不足とproposalの保持、既存authorityを奪わないこと。UTW-014欠損→空集合、UTW-020の巨大aggregate集中によるpartial failure診断単位の粗さ、UTW-021自己申告完了を防ぐ。",
       "change": "旧registry/planner/式木/固定上限/runtimeは移植せず、現B019返却→030定義/値/trace→CORE009原材料を別portに分ける。",
       "reason": "B019の現在の項目比較だけでは案件値不足の原operand/独立field関係がなく、同名fieldやstateから戻し先を推測する危険があるため。新しいowner裁定/承認を作らず既存の役割と不足を接続する。"
     },
@@ -542,7 +588,8 @@
       "元query/独立field関係を供給する具体producerと原body path、003/004/008/012/032各知識参照の正式binding。",
       "CORE FieldInput/AxisFact/FieldCheckMaterialから030 typed inputへの値保存projection、同frame呼出し/contextの詳細型・writer・非JSON/欠落/反復の全返却oracle。",
       "実source/owner資格・origin/custody・CONNECT実配送・CORE受領/適用・OS記録・全接続の成立。",
-      "既存nativeの有限比較を任意内容の妥当性、未評価stateの十分性、全92親430義務閉包、実装Ready、PO実物受入へ昇格しない。"
+      "既存nativeの有限比較を任意内容の妥当性、未評価stateの十分性、全92親430義務閉包、実装Ready、PO実物受入へ昇格しない。",
+      "B019-F02の製品input/値→COREという責務返却と、CORE009-F05の製品要求値未決→HARNESS008という既存候補の関係を後続L5/L8で書き分ける。CORE返却を最終Backflow先の変更や008の代替にせず、ticket発行はOSに保持する。"
     ],
     "authority_effect": "none",
     "operation_effect": "none"
