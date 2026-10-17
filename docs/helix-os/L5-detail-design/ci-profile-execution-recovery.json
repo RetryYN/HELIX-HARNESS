@@ -3204,5 +3204,59 @@
       ]
     },
     "operand_and_output_note_ja": "HARNESS F03 inventory_refsはL4のunique string set。F02009とF02002はL4のprofile.obligationsをinventory/minimumとの比較左辺に使う。plan selectedはcontext.profileとの計画projectionで別statusとして保持する。"
-  }
+  },
+  "private_producer_bindings": [
+    {
+      "name": "derive_os_plan_selection",
+      "visibility": "private",
+      "signature": "derive_os_plan_selection(input: PlanSelectionDerivationInput) -> PlanSelectionDerivationResult",
+      "paired_current_l4_binding": {
+        "binding_kind": "paired_current_file_bytes",
+        "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+        "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
+        "file_sha256": "2a4d7d99700bf991087dd558350616a2670a700eec405a4f8279d0dbbe5ffa24",
+        "object_canonical_sha256": "00ecf77c8ddc8b372fbf4183b9eda529c8381e8ac8acd88b0d4467001a26ac87",
+        "meaning_ja": "この同一pairの現在L4 contractを指す。L4 source_pinsの歴史revisionは変更しない。"
+      },
+      "type_imports": [
+        {
+          "position": "input",
+          "type_name": "PlanSelectionDerivationInput",
+          "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+          "pointer": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/9"
+        },
+        {
+          "position": "trace",
+          "type_name": "PlanSelectionDerivationTrace",
+          "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+          "pointer": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/10"
+        },
+        {
+          "position": "return",
+          "type_name": "PlanSelectionDerivationResult",
+          "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+          "pointer": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/11"
+        }
+      ],
+      "algorithm_import": {
+        "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+        "pointer": "/contracts/0/selection_producer_contract/private_call_contract/execution_order",
+        "selection_rules_pointer": "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection",
+        "copy_algorithm": false,
+        "scope_ja": "execution_order[0]〜[5]と[6]のitems解決・selection組立までがpure producer。execution_order[6]の「その後で」以降のcontext接続とF02009呼出しはPlanSelectionInvocation側のcaller continuationであり、pure returnにconsumer_returnを追加しない。"
+      },
+      "paired_l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/ci-profile-execution-recovery.json",
+        "pointer": "/selection_producer_verification",
+        "meaning_ja": "L8のproducer単体検証条件の所在。現在L5のfile/object bindingはL8側に置き、循環するfile hashを作らない。"
+      },
+      "call_binding": {
+        "input_ja": "同じ元packetについてF02001のInputProjection.fieldsとPlanSelectionDerivationInput.projected_ci_inputを同一CIInput値に結び、original_packetも同じpacketを保持する。残るL4型宣言operandは同じproducer invocationに渡し、CIInputやexpectedから補わない。",
+        "result_ja": "producerのpure returnはPlanSelectionDerivationResultのselection/trace/harness_f03_minimum_evaluationの3field。selectionをL4規則どおり既存context.plan_selection_sourceへ適用し、traceとminimum evaluationは保持する。consumer_returnはpure resultに含めない。",
+        "consumer_chain_ja": "assembled callerから既存F02009を呼び、返却全体を既存L4規則でF02002の3接続先へ同値接続し、F02002をF02008へ接続する。既存9関数のsignature/return/algorithmは変更しない。",
+        "consumer_result_feedback": "F02009/F02002/F02008の結果をproducer selection/statusへ逆流させない。"
+      },
+      "scope_ja": "L4 producerの型・アルゴリズムを参照するprivate binding。既存9関数の公開ID・signatureを変更しない。実provider・資格・CI実行の成立は含まない。"
+    }
+  ]
 }
