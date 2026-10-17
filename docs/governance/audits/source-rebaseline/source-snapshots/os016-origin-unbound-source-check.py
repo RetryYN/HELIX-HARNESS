@@ -14,7 +14,7 @@ L4_PATH = "docs/helix-os/L4-basic-design/portfolio-state-trace.json"
 L5_PATH = "docs/helix-os/L5-detail-design/portfolio-state-trace.json"
 L8_PATH = "docs/helix-os/L8-unit-verification/portfolio-state-trace.json"
 EXT_POINTER = "/os015_origin_caller_verification/unbound_source_derived_extension"
-PROGRAM_SHA256 = "b1d1d386842f7cf54d57aebc04f107c502c1b52398d142d6ebf6a51b3952e6b8"
+PROGRAM_SHA256 = "5c01b94ab12b1e4053c1d24f33f687916c11b9df7457f2e79875b07de45c9a60"
 ENTRYPOINT = "evaluate_os015_origin_call"
 BOUND_NOT_READY_L4_POINTERS = (
     "/os015_origin_call_contract/input_port/dispatch_precedence/1/when_bound_and_pair_not_ready",
