@@ -131707,7 +131707,7 @@
         "pointer": "/fixture_contract/normal_fixtures/0/input",
         "object_id": "CORE-NORMAL-UNIT-REQUIRED",
         "sha256": "aaf799c2f83df9353aebb44ec537f158ad1c63bbeddcfef2c27c7fbac864a867",
-        "role": "fixed normal input source; not executed"
+        "role": "固定normal入力の原資料。実行していない。"
       },
       {
         "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
@@ -131715,7 +131715,7 @@
         "pointer": "/fixture_contract/additional_input_recipes/14/input_overrides/semantic_records/10/meaning",
         "object_id": "CORE-ADD-INPUT-16",
         "sha256": "aaf799c2f83df9353aebb44ec537f158ad1c63bbeddcfef2c27c7fbac864a867",
-        "role": "fixed ADD16 input override; not executed"
+        "role": "固定ADD16入力差分の原資料。実行していない。"
       },
       {
         "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
@@ -131762,7 +131762,7 @@
     "cases": [
       {
         "id": "HARNESS-L9-009-F05-MATERIAL-DIRECT-WHOLE-OBJECT",
-        "basis": "HARNESS-L3-009-F05 + CORE-NORMAL-UNIT-REQUIRED direct whole source counterexample",
+        "basis": "HARNESS-L3-009-F05とCORE-NORMAL-UNIT-REQUIREDを根拠に、直接の原値全体を保持する反例。",
         "input_base": {
           "projection_operand": {
             "binding": null,
@@ -132148,7 +132148,7 @@
       },
       {
         "id": "HARNESS-L9-009-F05-MATERIAL-NORMAL-EXPLICIT-ENVELOPE",
-        "basis": "CORE-NORMAL-UNIT-REQUIRED field-value meaning literal; source-role and /meaning/value locator explicitly supplied",
+        "basis": "CORE-NORMAL-UNIT-REQUIREDのfield-value原meaningを使い、原役割と/meaning/value所在を明示宣言した有限対照。",
         "input_base": {
           "projection_operand": {
             "binding": null,
@@ -132529,7 +132529,7 @@
       },
       {
         "id": "HARNESS-L9-009-F05-MATERIAL-ADD16-EXPLICIT-NULL",
-        "basis": "HARNESS-L8-009-ADD-16 / CORE-ADD-INPUT-16; explicit envelope value null remains product value unknown while definition is known",
+        "basis": "HARNESS-L8-009-ADD-16／CORE-ADD-INPUT-16を根拠に、宣言されたenvelope.valueの実nullを値未決として区別する。定義側はwhole資料の所在が成立した有限viewであり、native definition_state=knownの認定ではない。",
         "input_base": {
           "projection_operand": {
             "binding": null,
@@ -132933,7 +132933,7 @@
       },
       {
         "id": "HARNESS-L9-009-F05-MATERIAL-UNDECLARED-SAME-SHAPE",
-        "basis": "same raw meaning object as ADD16 but no source role/value locator/null declaration",
+        "basis": "ADD16と同じ原meaning objectで、原役割・値所在・null意味の宣言が無い対照。",
         "input_base": {
           "projection_operand": {
             "binding": null,
@@ -133288,7 +133288,7 @@
       },
       {
         "id": "HARNESS-L9-009-F05-MATERIAL-BOUNDARIES-AND-SIBLING",
-        "basis": "L3 F05 field/source/revision/scope/unfinished duty preservation; independent conflict and local sibling continuity",
+        "basis": "L3 F05のfield/source/版/scope/未完義務を保持し、個別資料とfield集約、局所的な未成立と無関係な兄弟の継続を区別する。",
         "input_base": {
           "projection_operand": {
             "binding": null,
@@ -135708,7 +135708,7 @@
       },
       {
         "id": "HARNESS-L9-009-F05-MATERIAL-DEFINITION-SOURCE-UNRESOLVED-VALUE-UNKNOWN-INDEPENDENT",
-        "basis": "HARNESS-L3/L10-009-F05 + HELIXBRAIN-L3/L10-030-F02; unqualified projection input has no selected definition Ref while the explicitly declared null product value remains a distinct finite value-unknown example; lack of a selected Ref does not establish definition_missing.",
+        "basis": "HARNESS-L3/L10-009-F05とHELIXBRAIN-L3/L10-030-F02に照合する。実資格未成立の有限投影入力で、選択された定義Refが無いことと、独立に宣言された案件値nullの値未決を別に保持する。Ref未選択だけではdefinition_missingは成立しない。",
         "input_base": {
           "projection_operand": {
             "binding": null,
@@ -136066,7 +136066,7 @@
       },
       {
         "id": "HARNESS-L9-009-F05-MATERIAL-EXPLICIT-CONCRETE-NULL-ENVELOPE",
-        "basis": "Case-authored synthetic counterpart to the pinned normal semantic shape: declared concrete_value role with meaning.value=null. It is not a copy of the pinned normal source node; pinned normal content remains unchanged.",
+        "basis": "固定normalのsemantic形に対するケース著述の合成対照。meaning.value=nullへconcrete_valueの意味を宣言する。固定normal原nodeのコピーではなく、既存normal本文は変更しない。",
         "input_base": {
           "projection_operand": {
             "binding": null,
@@ -136449,14 +136449,14 @@
     "condition_coverage": {
       "L3_L10_F05_obligations": [
         {
-          "condition": "definition known vs product value unknown are separate",
+          "condition": "定義側whole資料の所在と案件値未決を区別する。native定義knownの自動認定ではない。",
           "cases": [
             "HARNESS-L9-009-F05-MATERIAL-ADD16-EXPLICIT-NULL",
             "HARNESS-L9-009-F05-MATERIAL-UNDECLARED-SAME-SHAPE"
           ]
         },
         {
-          "condition": "source field/identity/version/scope/grounds/unfinished duty preserved",
+          "condition": "原field/identity/版/scope/根拠/未完義務を保持する。",
           "cases": [
             "HARNESS-L9-009-F05-MATERIAL-DIRECT-WHOLE-OBJECT",
             "HARNESS-L9-009-F05-MATERIAL-NORMAL-EXPLICIT-ENVELOPE",
@@ -136466,20 +136466,20 @@
           ]
         },
         {
-          "condition": "unknown classification is not AI-filled or silently completed",
+          "condition": "分類不明をAIで補完せず、黙って完了扱いしない。",
           "cases": [
             "HARNESS-L9-009-F05-MATERIAL-UNDECLARED-SAME-SHAPE",
             "HARNESS-L9-009-F05-MATERIAL-BOUNDARIES-AND-SIBLING"
           ]
         },
         {
-          "condition": "local success does not compensate another unfinished field",
+          "condition": "局所成功で別fieldの未完を相殺しない。",
           "cases": [
             "HARNESS-L9-009-F05-MATERIAL-BOUNDARIES-AND-SIBLING"
           ]
         },
         {
-          "condition": "declared concrete null is distinct from declared undecided null at the same envelope locator",
+          "condition": "同じenvelope所在でも、明示された具体nullと未決nullを区別する。",
           "cases": [
             "HARNESS-L9-009-F05-MATERIAL-EXPLICIT-CONCRETE-NULL-ENVELOPE",
             "HARNESS-L9-009-F05-MATERIAL-ADD16-EXPLICIT-NULL"
@@ -136586,7 +136586,7 @@
           "sha256": null
         }
       },
-      "source_qualification": "synthetic-input-only; runtime qualification not established"
+      "source_qualification": "合成入力のみ。実稼働の資格成立を示さない。"
     },
     "reconstruction_contract_ja": [
       "各caseのauthoring envelopeを{input:case.input_base, shared_input_context:section.shared_input_context, projection_source_library:section.projection_source_library}として一つに固定する。input_patchを記載順にRFC 6902で適用した/inputを完全なselected projection-operand入力とする。全copy.fromはこのenvelope内で解決し、外部注入を行わない。",
@@ -136607,12 +136607,12 @@
       "definition_state_label": "有限期待のdefinition.state=\"known\"は、原definition Refに対応するSemanticRecord.meaning全体の所在を示すだけである。定義内容の妥当性、完備性、native F05のdefinition_state=known、またはBRAIN030 ProductValueの状態を認定しない。"
     },
     "projection_source_library": {
-      "status": "finite literal source material for selected F05 projection views; this library is not itself an ApplicationInput and does not imply qualification",
+      "status": "選択したF05投影viewのための有限literal原資料。このlibrary自体はApplicationInputではなく、資格成立も意味しない。",
       "source_basis_ref": {
         "revision": "6802cc295b6747b98101898c47bb865c7ec6bcd7",
         "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
         "pointer": "/fixture_contract/normal_fixtures/0/input and /additional_unit_cases/15",
-        "purpose": "only the finite source occurrences cited by each case; no claim that the old complete 464KB input or fn0 path was replayed"
+        "purpose": "各caseが引用する有限の原出現だけを使う。旧464KB完全入力又はfn0経路を再実行したとの主張ではない。"
       },
       "field_inputs": [
         {
