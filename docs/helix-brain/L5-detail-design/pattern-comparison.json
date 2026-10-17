@@ -889,6 +889,316 @@
           "product_decision_owner",
           "requires_all_INT_capabilities"
         ]
+      },
+      "F02ReturnSourceObservation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "enum": [
+              "absent",
+              "present_null",
+              "present_value",
+              "unknown"
+            ]
+          },
+          "raw_value": {
+            "$ref": "#/type_system/definitions/JSONValue"
+          }
+        },
+        "required": [
+          "state",
+          "raw_value"
+        ]
+      },
+      "F02ReturnAxisObservation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "enum": [
+              "absent",
+              "present_null",
+              "present_value",
+              "unknown"
+            ]
+          },
+          "value": {
+            "$ref": "#/type_system/definitions/JSONValue"
+          }
+        },
+        "required": [
+          "state",
+          "value"
+        ]
+      },
+      "F02ReturnAxisComparison": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "comparison_kind": {
+            "enum": [
+              "request_to_invocation",
+              "decision_to_request",
+              "decision_to_invocation",
+              "shortage_field",
+              "destination_role",
+              "decision_ref_presence"
+            ]
+          },
+          "axis": {
+            "enum": [
+              "problem",
+              "requirement_revision",
+              "scope",
+              "shortage_field",
+              "destination_role",
+              "ref"
+            ]
+          },
+          "expected_source_pointer": {
+            "type": "string"
+          },
+          "observed_source_pointer": {
+            "type": "string"
+          },
+          "expected": {
+            "$ref": "#/type_system/definitions/F02ReturnAxisObservation"
+          },
+          "observed": {
+            "$ref": "#/type_system/definitions/F02ReturnAxisObservation"
+          },
+          "status": {
+            "enum": [
+              "matched",
+              "absent",
+              "present_null",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "comparison_operator": {
+            "enum": [
+              "json_equal",
+              "member_of",
+              "is_present_value"
+            ]
+          },
+          "expected_source_document": {
+            "enum": [
+              "request",
+              "invocation_binding",
+              "decision_source",
+              "native_return",
+              "L4_contract",
+              "rule"
+            ]
+          },
+          "observed_source_document": {
+            "enum": [
+              "request",
+              "invocation_binding",
+              "decision_source",
+              "native_return",
+              "L4_contract",
+              "rule"
+            ]
+          }
+        },
+        "required": [
+          "comparison_kind",
+          "axis",
+          "expected_source_pointer",
+          "observed_source_pointer",
+          "expected",
+          "observed",
+          "status",
+          "comparison_operator",
+          "expected_source_document",
+          "observed_source_document"
+        ]
+      },
+      "F02OwnerReturnInvocationInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "native_input": {
+            "$ref": "#/type_system/definitions/F02Input"
+          },
+          "original_request_source": {
+            "$ref": "#/type_system/definitions/F02ReturnSourceObservation"
+          },
+          "invocation_request_binding": {
+            "$ref": "#/type_system/definitions/F02ReturnSourceObservation"
+          },
+          "decision_sources": {
+            "$ref": "#/type_system/definitions/F02ReturnSourceObservation"
+          }
+        },
+        "required": [
+          "native_input",
+          "original_request_source",
+          "invocation_request_binding",
+          "decision_sources"
+        ]
+      },
+      "F02OwnerReturnMaterial": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "shortage_field": {
+            "enum": [
+              "requirement_values",
+              "decision_weights"
+            ]
+          },
+          "native_state": {
+            "enum": [
+              "missing"
+            ]
+          },
+          "input_observation": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "presence": {
+                "enum": [
+                  "present",
+                  "absent",
+                  "unknown"
+                ]
+              },
+              "value": {
+                "$ref": "#/type_system/definitions/JSONValue"
+              }
+            },
+            "required": [
+              "presence",
+              "value"
+            ]
+          },
+          "binding_state": {
+            "enum": [
+              "matched",
+              "absent",
+              "present_null",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "decision_source_state": {
+            "enum": [
+              "present_value",
+              "absent",
+              "present_null",
+              "unknown"
+            ]
+          },
+          "decision_source_ref_state": {
+            "enum": [
+              "present_value",
+              "absent",
+              "present_null",
+              "unknown"
+            ]
+          },
+          "decision_source_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/type_system/definitions/JSONValue"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "destination_role_observation": {
+            "$ref": "#/type_system/definitions/F02ReturnAxisObservation"
+          },
+          "destination_candidate": {
+            "anyOf": [
+              {
+                "enum": [
+                  "CORE",
+                  "INTELLIGENCE",
+                  "human"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "axis_comparisons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/type_system/definitions/F02ReturnAxisComparison"
+            }
+          },
+          "decision_source_value": {
+            "$ref": "#/type_system/definitions/JSONValue"
+          }
+        },
+        "required": [
+          "shortage_field",
+          "native_state",
+          "input_observation",
+          "binding_state",
+          "decision_source_state",
+          "decision_source_ref_state",
+          "decision_source_ref",
+          "destination_role_observation",
+          "destination_candidate",
+          "axis_comparisons",
+          "decision_source_value"
+        ]
+      },
+      "F02OwnerReturnBindingIssue": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "shortage_field": {
+            "enum": [
+              "requirement_values",
+              "decision_weights"
+            ]
+          },
+          "status": {
+            "enum": [
+              "absent",
+              "present_null",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "axis": {
+            "enum": [
+              "problem",
+              "requirement_revision",
+              "scope",
+              "shortage_field",
+              "destination_role",
+              "ref"
+            ]
+          },
+          "expected": {
+            "$ref": "#/type_system/definitions/F02ReturnAxisObservation"
+          },
+          "observed": {
+            "$ref": "#/type_system/definitions/F02ReturnAxisObservation"
+          },
+          "source_pointer": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "shortage_field",
+          "status",
+          "axis",
+          "expected",
+          "observed",
+          "source_pointer"
+        ]
       }
     },
     "finite_fixture_types": [
@@ -1367,6 +1677,75 @@
           "effects",
           "unaffected_Q"
         ]
+      },
+      "F02OwnerReturnEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "native_input_echo": {
+            "$ref": "#/type_system/definitions/F02Input"
+          },
+          "native_return": {
+            "$ref": "#/type_system/returns/F02Return"
+          },
+          "original_request_source_state": {
+            "enum": [
+              "absent",
+              "present_null",
+              "present_value",
+              "unknown"
+            ]
+          },
+          "original_request_source_echo": {
+            "$ref": "#/type_system/definitions/JSONValue"
+          },
+          "invocation_request_binding_state": {
+            "enum": [
+              "absent",
+              "present_null",
+              "present_value",
+              "unknown"
+            ]
+          },
+          "invocation_request_binding_echo": {
+            "$ref": "#/type_system/definitions/JSONValue"
+          },
+          "decision_sources_state": {
+            "enum": [
+              "absent",
+              "present_null",
+              "present_value",
+              "unknown"
+            ]
+          },
+          "decision_sources_echo": {
+            "$ref": "#/type_system/definitions/JSONValue"
+          },
+          "logical_return_materials": {
+            "type": "array",
+            "items": {
+              "$ref": "#/type_system/definitions/F02OwnerReturnMaterial"
+            }
+          },
+          "local_binding_issues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/type_system/definitions/F02OwnerReturnBindingIssue"
+            }
+          }
+        },
+        "required": [
+          "native_input_echo",
+          "native_return",
+          "original_request_source_state",
+          "original_request_source_echo",
+          "invocation_request_binding_state",
+          "invocation_request_binding_echo",
+          "decision_sources_state",
+          "decision_sources_echo",
+          "logical_return_materials",
+          "local_binding_issues"
+        ]
       }
     }
   },
@@ -1518,6 +1897,136 @@
         "INT021 conditionsの正式schema/資格、選択後の実接続/実query、consumer側route受入",
         "owner candidate literalの実在owner identity/資格/権限。各literalはfixture返却候補のみ。"
       ]
+    },
+    {
+      "id": "BRAIN004-F02-OWNER-RETURN",
+      "requirement_ref": "HELIXBRAIN-L3-004-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F02",
+      "l4_ref": "HELIXBRAIN-L4-004-F02",
+      "current_l4_binding": {
+        "path": "docs/helix-brain/L4-basic-design/pattern-comparison.json",
+        "file_sha256": "2cf9f95c09da02bd93086e656e8456c5c546d73d47f88f76e4d592106294a159",
+        "pointer": "/contracts/1/private_owner_return_wrapper",
+        "object_canonical_sha256": "2fc7a2dc113bb215474d81f4022261512757532e2897758a75dff3fe4646ebca"
+      },
+      "signature": {
+        "arguments": [
+          {
+            "name": "invocation",
+            "type": "#/type_system/definitions/F02OwnerReturnInvocationInput"
+          }
+        ],
+        "returns": "#/type_system/returns/F02OwnerReturnEnvelope"
+      },
+      "purity": "pure",
+      "side_effects": "none",
+      "reads": [
+        "invocation.native_input",
+        "invocation.original_request_source.state/raw_value",
+        "invocation.invocation_request_binding.state/raw_value",
+        "invocation.decision_sources.state/raw_value",
+        "current_l4_binding.private_owner_return_wrapper.allowed_destination_roles"
+      ],
+      "calls": [
+        {
+          "function_ref": "BRAIN004-F02",
+          "argument": "invocation.native_input",
+          "count": 1,
+          "result_writer": "result.native_return"
+        }
+      ],
+      "algorithm": [
+        "1. invocation.native_inputを変更せず既存BRAIN004-F02へ一度だけ渡す。結果の全F02Returnをresult.native_returnへ、その原F02Inputをresult.native_input_echoへ全値コピーする。",
+        "2. original_request_source、invocation_request_binding、decision_sourcesのstateを各state返却fieldへ、raw_valueを対応する*_echoへそのままコピーする。state=absent/null/unknownをraw_valueから推定しない。全source payloadと未使用memberを保持する。",
+        "3. native_return.unresolved_inputsをnative順で走査する。対応するrequired_value_stateまたはweight_stateがmissingのfieldだけmaterialを作る。欠けていないfieldのsourceを要求しない。",
+        "4. original_request_sourceとinvocation_request_bindingの各比較operandを、親観測ごとに独立してRFC6901 pointer付きrecordへ写す。outer observation stateがabsent/present_null/unknownなら、そのoperandの子軸へ同stateを伝播し、raw memberの存在や値からstateを推定しない。原値の転記のためのpointer参照は親stateと独立して行い、valueのwriterどおり保持する。outer state=present_valueでもraw payloadがobjectでない/形状不明なら子軸はunknown。original_request_sourceのraw_value内original_declarationは、member不在なら宣言配下の各軸をabsent、nullならpresent_null、object以外ならunknown、objectなら各member不在=absent/null=present_null/値あり=present_valueとして個別に判定する。invocation_request_bindingは宣言された直接memberを同じpresence規則で個別に判定する。いずれも片operandの親/宣言状態で他operandの読取を止めない。AxisObservation.valueは参照可能な元member値をコピーし、存在しない/参照不能ならnull sentinelとstateを保持する。raw全体はechoへ保持し、valueからstateを昇格させない。",
+        "5. decision_sourcesの子stateを判定するためのshortage_field entryの探索は、親stateがpresent_valueでraw_valueがobjectの場合に行う。原値の転記はstate判定と分け、field_writer_mapに従う。親がabsent/present_null/unknownならそのstateをdecision operandへ伝播し、raw全体はechoへ保持する。親state=present_valueでもraw mapが非objectなら子stateはunknown。entry不在はabsent、nullはpresent_null、objectはpresent_value、非object/形状不明はunknown。entryがabsent/present_null/unknownなら配下の各operandへそのstateを伝播し、原値の転記とは分ける。entryのoriginal_declarationも独立して調べ、不在は配下軸absent、nullはpresent_null、object以外はunknown、objectならproblem/requirement_revision/scope/shortage_field/destination_roleを各member不在=absent/null=present_null/値あり=present_valueとして個別に比較する。entry.refはoriginal_declarationとは独立したoperandとしてmember不在=absent/null=present_null/値あり=present_valueを判定し、片側の不足で他の比較を止めない。補完しない。",
+        "6. destination_roleはdecision entry.original_declaration.destination_roleから読む。L4 private_owner_return_wrapper.allowed_destination_rolesの配列に対するmember_of比較を行い、request等に存在しない軸へ等値比較しない。refはdecision entry.refに対してis_present_value比較し、期待状態present_valueをこの手順のruleとして記録する。両比較とも実pointer/state/raw valueを記録し、Absent/null/unknownを区別する。",
+        "7. Materialの全fieldをfield_writer_mapどおり埋める。input_observationはF02Inputでrequiredの当該値をpresence=presentとして原値コピーし、nullも保持する。decision_source_value/refのnull sentinelは独立stateが意味を決める。binding_stateは当該不足の全request/invocation/decision/shortage/role/ref比較をconflict > present_null > absent > unknown > matchedでfoldし、個別comparison/issueを捨てない。",
+        "8. 比較とissueの順序はnative shortage順とし、各problem/requirement_revision/scope軸ではrequest_to_invocation→decision_to_request→decision_to_invocationの順、その後shortage_field、destination_role、refの順にする。各comparisonのstatusはeffective operand双方がpresent_valueかつoperator条件を満たす場合だけmatched。absent/present_null/unknownはraw値が一致してもmatchedにしない。roleが許容値でも全必要比較がmatchedでない限りdestination_candidateはnull sentinelとする。既知相違はconflictとしてcomparisonとissueに残し、別軸のunknown/null/absentで上書きしない。混在statusの既存優先順conflict > present_null > absent > unknown > matchedを維持し、他不足fieldの処理を続ける。",
+        "9. native_input_echo、native_return、3 source state/raw echo、materials、issuesの全必須fieldをfield_writer_mapで書く。不足なしなら配列は空。送信/認可/ACK/INT query/採択は行わない。"
+      ],
+      "preconditions": [
+        "private callerは同じF02 invocationのnative_inputと、原request source・invocation binding・decision source mapを一組として渡す。decision_sources.raw_valueのmember keyは不足field識別子であり、実source資格はこのpure関数が作らない。"
+      ],
+      "postconditions": [
+        "元のF02InputとF02Return全fieldをそれぞれecho/returnし変更しない。",
+        "元sourceのstateと全raw payloadを分けて保持し、decision_sourcesのfieldごとのAbsent/null/valueも区別する。",
+        "論理候補は原sourceが明示する適用先を指すだけで、実判断先の認可や配送を意味しない。"
+      ],
+      "unclosed": [
+        "実source qualificationと実consumerの受領・判断・deliveryは未実証。",
+        "F01 CORE要求値operandと同candidate接合は本関数の対象外。",
+        "003/012一般resolver、未列挙fieldや任意source形状の全域適用は主張しない。"
+      ],
+      "native_f02_dependency_bindings": [
+        {
+          "pointer": "/functions/1",
+          "object_canonical_sha256": "ec1d706175699a2cb12f0ba0baeb9d5816119b7684a9af2a75a789972fbec3c3",
+          "role": "native F02関数の署名・読取・既存返却アルゴリズム"
+        },
+        {
+          "pointer": "/type_system/definitions/F02Input",
+          "object_canonical_sha256": "d3b20e3d82ef7595967e183573e62b862a16027931ebe7d78d8c87df74a9d9ba",
+          "role": "native F02Inputの完全型"
+        },
+        {
+          "pointer": "/type_system/returns/F02Return",
+          "object_canonical_sha256": "cb5c5af1bdc50a73cffddee5d03b418055f609826ae5c7f618f889ad9ae99d9f",
+          "role": "native F02Returnの完全型"
+        },
+        {
+          "pointer": "/rule_catalog/BRAIN004-F02",
+          "object_canonical_sha256": "c48ca2d739c13a754ac6bd454a4ed959fbdf6e3dd28614f60bd06c93cac9ab0c",
+          "role": "F02固有availability/claims/selection規則"
+        },
+        {
+          "pointer": "/rule_catalog/shared",
+          "object_canonical_sha256": "9b713139feba115076ba764fa12a744bd9910f57a89bc12d1079cc46b4c511e6",
+          "role": "presence・JSON等値・effects規則"
+        }
+      ],
+      "field_writer_map": {
+        "result.native_input_echo": "invocation.native_inputの完全コピー。",
+        "result.native_return": "既存BRAIN004-F02が返したF02Return全値の完全コピー。",
+        "result.original_request_source_state": "invocation.original_request_source.stateのコピー。",
+        "result.original_request_source_echo": "invocation.original_request_source.raw_valueのコピー。",
+        "result.invocation_request_binding_state": "invocation.invocation_request_binding.stateのコピー。",
+        "result.invocation_request_binding_echo": "invocation.invocation_request_binding.raw_valueのコピー。",
+        "result.decision_sources_state": "invocation.decision_sources.stateのコピー。",
+        "result.decision_sources_echo": "invocation.decision_sources.raw_valueのコピー。",
+        "result.logical_return_materials": "native_return.unresolved_inputsのうち対応するnative stateがmissingの各memberにつき一件。native順を保持。",
+        "result.local_binding_issues": "一致しない軸比較ごとに一件。field順・軸順を保持し、別軸unknownでconflictを抑えない。",
+        "F02OwnerReturnMaterial.shortage_field": "native_return.unresolved_inputs[i]の値。",
+        "F02OwnerReturnMaterial.native_state": "shortage_fieldに応じてnative_return.required_value_stateまたはweight_stateを選択。",
+        "F02OwnerReturnMaterial.input_observation.presence": "選択したnative F02Input memberは閉型で必須のためpresent。",
+        "F02OwnerReturnMaterial.input_observation.value": "shortage_fieldに応じたinvocation.native_input.requirement_valuesまたはdecision_weightsをnullを含めてコピー。",
+        "F02OwnerReturnMaterial.binding_state": "requestだけでなく当該不足の全比較を conflict > present_null > absent > unknown > matched の優先で集約。",
+        "F02OwnerReturnMaterial.decision_source_state": "decision_sources観測stateとraw_value内の該当memberの存在/null/valueを保持。sourceを合成しない。",
+        "F02OwnerReturnMaterial.decision_source_ref_state": "選択したraw decision entry.refの存在/null/value。",
+        "F02OwnerReturnMaterial.decision_source_ref": "refがpresent_valueなら原値をコピー。それ以外はstateを別保持したうえでnull sentinel。",
+        "F02OwnerReturnMaterial.destination_role_observation": "選択したraw decision entry.original_declaration.destination_roleのstate/value。",
+        "F02OwnerReturnMaterial.destination_candidate": "当該不足に必要な比較が全てmatchedで、roleがL4 allowed_destination_roles配列のmemberの場合だけ原destination_roleをコピー。それ以外はnull sentinel。",
+        "F02OwnerReturnMaterial.axis_comparisons": "宣言済みJSON pointerのpairwise comparison records。手順に記した順序で出力。",
+        "F02OwnerReturnMaterial.decision_source_value": "entryがpresent_valueなら選択したraw decision entryをコピー。それ以外はdecision_source_stateを保持したnull sentinel。",
+        "F02ReturnAxisComparison.comparison_kind/axis": "algorithmが行った分岐/軸。decision_ref_presence/refを含む。",
+        "F02ReturnAxisComparison.expected_source_pointer/observed_source_pointer": "宣言済みsource document内のRFC6901 pointer。L4_contract側は/contracts/1/private_owner_return_wrapper/allowed_destination_roles。",
+        "F02ReturnAxisComparison.expected/observed": "各operandのstateとraw valueをコピー。",
+        "F02ReturnAxisComparison.status": "operatorごとの成功条件だけmatched。それ以外は対応するabsent/present_null/unknown/conflictを保持し、他comparisonを消さない。",
+        "F02OwnerReturnBindingIssue.shortage_field/status/axis/expected/observed/source_pointer": "対応するnative shortageと不一致comparisonからコピーし、新しい原因を推定しない。",
+        "F02ReturnAxisObservation.state": "各operandのeffective stateを親SourceObservationから先に決める。親state=present_valueのときだけmember presence/null/valueを読んで子stateを定める。親absent/present_null/unknownはraw memberの見かけにかかわらずそのまま子stateへ伝播する。parent=present_valueでraw payloadが非object/形状不明の場合はunknown。rawに宣言memberがありpointerで参照できるときはvalueへその元値をコピーする。memberが存在しない/参照不能ならnull sentinelを置き、stateで区別する。valueの転記は親stateを昇格させない。、stateを値から昇格させない。親のraw_value全体は対応するechoへ保持する。",
+        "F02ReturnAxisObservation.value": "operandのraw member value。null sentinelはstateで区別する。",
+        "F02OwnerReturnBindingIssue.shortage_field": "現在のnative_return.unresolved_inputs member。",
+        "F02OwnerReturnBindingIssue.status": "対応comparisonのstate (absent/present_null/unknown/conflict)。",
+        "F02OwnerReturnBindingIssue.axis": "対応comparison recordのaxis。",
+        "F02OwnerReturnBindingIssue.expected": "対応comparison recordのexpected observation。",
+        "F02OwnerReturnBindingIssue.observed": "対応comparison recordのobserved observation。",
+        "F02OwnerReturnBindingIssue.source_pointer": "対応comparison recordのobserved_source_pointer。",
+        "F02ReturnSourceObservation.state": "private callerが供給した観測state。raw_valueから推定しない。",
+        "F02ReturnSourceObservation.raw_value": "private callerが供給したsource raw payload全値。Absent stateは別に保持。",
+        "F02ReturnAxisComparison.comparison_operator": "宣言軸/shortage_fieldはjson_equal、destination_roleはmember_of、decision entry.refはis_present_value。",
+        "F02ReturnAxisComparison.expected_source_document/observed_source_document": "operandの実source domain。ruleはis_present_value判定の期待側に限る。"
+      }
     }
   ],
   "pipeline": {
@@ -1527,7 +2036,7 @@
       "BRAIN004-B01"
     ],
     "interaction": "各L9 rawは各関数の独立fixture。F01の出力をF02/B01の入力として暗黙合成しない。",
-    "failure_return": "F01は候補内容/各軸の不足診断を返すが、BRAIN知識owner返却候補fieldは原L9/現在F01Returnの範囲外で出力しない。加えてL3 F01 failure_returnの「COREへ要求値不足」は、F01に要求値入力がないため不足の診断自体も未実現であり、返却先/material/consumer bindingも未具体化。F02の別fixtureの診断をF01の実現としない。 F02は要求値/重み不足をrequired_value_state/weight_state/unresolved_inputsで診断し選択を保留するが、CORE/INTELLIGENCE/人の該当判断先候補fieldは原L9/現在F02Returnにない。診断から判断先への対応/返却material/consumer bindingは未具体化。 B01のclaim/INT接続owner候補で両者の不足を代用しない。上流義務を保持し該当L4義務の完了を主張しない。 F01/F02/B01は独立fixtureであり、診断/返却を暗黙に合成しない。"
+    "failure_return": "F01は候補内容/各軸の不足診断を返すが、BRAIN知識owner返却候補fieldは原L9/現在F01Returnの範囲外で出力しない。加えてL3 F01 failure_returnの「COREへ要求値不足」は、F01に要求値入力がないため不足の診断自体も未実現であり、返却先/material/consumer bindingも未具体化。F02の別fixtureの診断をF01の実現としない。 既存F02Return自体には判断先fieldがない。追加private same-call wrapperは、外側の原request・invocation binding・decision sourceを照合して不足ごとの論理返却候補と全native returnを保持する。実source qualification・実consumerの受領/判断/配送は未実証であり、直接F02Returnのshapeを変更したものではない。 B01のclaim/INT接続owner候補で両者の不足を代用しない。上流義務を保持し該当L4義務の完了を主張しない。 F01/F02/B01は独立fixtureであり、診断/返却を暗黙に合成しない。"
   },
   "owner_candidate_literals": {
     "CORE-product-decision-owner": {
@@ -1650,7 +2159,7 @@
     "実sourceの来歴、owner資格、CORE/INT接続先、正式schema/codecは未成立。",
     "L9にない一般のcandidate数、任意enum/JSON/null/absent組合せ、実source資格/必要集合、実routing優先/全L4分岐は未閉包。全内容一致時complete=trueは追加局所例でnone_unobservedを返すが実比較完了/採用/許可を生成しない。要求値/重み提示済みで保留する原F02例と、実消費先による選択の成立を分離する。",
     "合成fixtureの出力とfalse-effect定数は、実動作・権限・受入の証明ではない。",
-    "F01は候補内容/各軸の不足診断を返すが、BRAIN知識owner返却候補fieldは原L9/現在F01Returnの範囲外で出力しない。加えてL3 F01 failure_returnの「COREへ要求値不足」は、F01に要求値入力がないため不足の診断自体も未実現であり、返却先/material/consumer bindingも未具体化。F02の別fixtureの診断をF01の実現としない。 F02は要求値/重み不足をrequired_value_state/weight_state/unresolved_inputsで診断し選択を保留するが、CORE/INTELLIGENCE/人の該当判断先候補fieldは原L9/現在F02Returnにない。診断から判断先への対応/返却material/consumer bindingは未具体化。 B01のclaim/INT接続owner候補で両者の不足を代用しない。上流義務を保持し該当L4義務の完了を主張しない。"
+    "F01は候補内容/各軸の不足診断を返すが、BRAIN知識owner返却候補fieldは原L9/現在F01Returnの範囲外で出力しない。加えてL3 F01 failure_returnの「COREへ要求値不足」は、F01に要求値入力がないため不足の診断自体も未実現であり、返却先/material/consumer bindingも未具体化。F02の別fixtureの診断をF01の実現としない。 既存F02Return自体には判断先fieldがない。追加private same-call wrapperは、外側の原request・invocation binding・decision sourceを照合して不足ごとの論理返却候補と全native returnを保持する。実source qualification・実consumerの受領/判断/配送は未実証であり、直接F02Returnのshapeを変更したものではない。 B01のclaim/INT接続owner候補で両者の不足を代用しない。上流義務を保持し該当L4義務の完了を主張しない。"
   ],
   "full_goal_scope_preserved": {
     "parents": 92,
@@ -2234,8 +2743,8 @@
       "requirement_ref": "HELIXBRAIN-L3-004-F02",
       "l4_ref": "HELIXBRAIN-L4-004-F02",
       "required_return": "L3 F02: 要求値/重み不足をCORE/INTELLIGENCE/人の該当判断先へ返す。",
-      "current_projection": "要求値/重み不足を診断して保留。判断先owner候補fieldなし。",
-      "missing_design": "F02の不足診断から該当判断先への対応と返却material/consumer binding。"
+      "current_projection": "既存F02Returnは要求値/重み不足を診断して保留し、判断先fieldを持たない。追加private same-call wrapperは原request・invocation binding・decision sourceのknown一致時に論理返却候補を返し、Absent/null/unknown/既知相違と完全native returnを保持する。",
+      "missing_design": "実source qualification、実consumerによる受領・判断・配送、およびF01 CORE要求値operandとの同candidate接合は未閉包。"
     }
   ]
 }
