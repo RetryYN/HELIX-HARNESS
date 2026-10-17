@@ -402141,6 +402141,21 @@
         "id": "ORIGIN-POINTER-ESCAPE",
         "control": "実map keyに/と~を含む同association",
         "conditions": "診断node-rootをRFC6901でescapeし、A03 node locatorと私有軸別Captureの同一call対応を確認する。"
+      },
+      {
+        "id": "ORIGIN-DECLARED-NOT-PRODUCED-BOUND",
+        "control": "SelectedButNotProducedで実locatorはBound、raw/typed双方Presentかつ全値対応する入力も併存させる。",
+        "conditions": "typed存在や同値からProducedへ再昇格せず、effective5軸Absent・局所2軸unknown・Compared operand_state=not_producedを返す。正常な原caller値へfallbackしない。"
+      },
+      {
+        "id": "ORIGIN-RAW-TYPED-WHOLE-MISMATCH",
+        "control": "SelectedかつBound、raw/typed双方PresentだがMaterialInput内の一値だけ不一致。bool対number、member欠落対null、array順差を識別する対照を含む。",
+        "conditions": "単なる両方の存在やsource7軸一致でProducedにしない。全値対応不成立をNotProduced routeへ返し、原raw/typed双方と同call原因を保持する。JSON number1対1.0やobject key表示順だけの差は現等値規則に従い不一致へ変換しない。"
+      },
+      {
+        "id": "ORIGIN-DECLARED-NOT-PRODUCED-UNBOUND",
+        "control": "SelectedButNotProducedでlocatorが未供給/null/非string又は原targetsのmissing/present-invalidによりUnbound。",
+        "conditions": "SelectedのUnboundと同じ閉じた共通返却、effective_targets=Absent/source_bound_trace=NotProducedを返す。選択variantと最初missing/invalid Captureを保持し、新nodeやorigin traceを作らない。"
       }
     ],
     "preservation": "既存cases356/domain_extension_cases29/source_candidate_return_verification.cases4の全値、fixture_inputs/fixture_contract/completion/既存全L4 rulesを不変。新case計画は既存件数に加算しない。",
