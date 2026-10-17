@@ -6213,6 +6213,990 @@
   "scope_limitations": [
     "L9固定31raw/wholeと、独立した10局所whole（複合3・全内容一致claim1・分岐識別6）を対象とする。実知識/資格/codec/実CORE選択/INT実行は評価しない。",
     "原expected wholeはpinしたL9から変更せず複写。probeは出力wholeを備え、部分projectionではなくrawから計算する。",
-    "F01は候補内容/各軸の不足診断を返すが、BRAIN知識owner返却候補fieldは原L9/現在F01Returnの範囲外で出力しない。加えてL3 F01 failure_returnの「COREへ要求値不足」は、F01に要求値入力がないため不足の診断自体も未実現であり、返却先/material/consumer bindingも未具体化。F02の別fixtureの診断をF01の実現としない。 F02は要求値/重み不足をrequired_value_state/weight_state/unresolved_inputsで診断し選択を保留するが、CORE/INTELLIGENCE/人の該当判断先候補fieldは原L9/現在F02Returnにない。診断から判断先への対応/返却material/consumer bindingは未具体化。 B01のclaim/INT接続owner候補で両者の不足を代用しない。上流義務を保持し該当L4義務の完了を主張しない。"
+    "F01は候補内容/各軸の不足診断を返すが、BRAIN知識owner返却候補fieldは原L9/現在F01Returnの範囲外で出力しない。加えてL3 F01 failure_returnの「COREへ要求値不足」は、F01に要求値入力がないため不足の診断自体も未実現であり、返却先/material/consumer bindingも未具体化。F02の別fixtureの診断をF01の実現としない。 既存F02Return自体には判断先fieldがない。追加private same-call wrapperは、外側の原request・invocation binding・decision sourceを照合して不足ごとの論理返却候補と全native returnを保持する。実source qualification・実consumerの受領/判断/配送は未実証であり、直接F02Returnのshapeを変更したものではない。 B01のclaim/INT接続owner候補で両者の不足を代用しない。上流義務を保持し該当L4義務の完了を主張しない。",
+    "追加した8件はL9のsource-paired symbolic条件を指す未実行の対照計画であり、literal whole、実Red/Green、全域分岐証明ではない。既存41caseの入力/expectedは不変。"
+  ],
+  "candidate_l5_binding": {
+    "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+    "file_sha256": "09ac0f61c7171e35a0c150ee73d4d89096ca0fa3e1ea54af3baa7aaebab192ec",
+    "pointer": "/functions/3",
+    "object_canonical_sha256": "5f49c3c8298fd6e069b0a0df1aa01a439672988e0e1385625aa860e22e914338"
+  },
+  "candidate_l4_binding": {
+    "path": "docs/helix-brain/L4-basic-design/pattern-comparison.json",
+    "file_sha256": "2cf9f95c09da02bd93086e656e8456c5c546d73d47f88f76e4d592106294a159",
+    "pointer": "/contracts/1/private_owner_return_wrapper",
+    "object_canonical_sha256": "2fc7a2dc113bb215474d81f4022261512757532e2897758a75dff3fe4646ebca"
+  },
+  "candidate_l9_owner_return_binding": {
+    "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+    "file_sha256": "68882fca218be824b77e7d407103fbd471b583c0e4eaa0aaad0f304dd8290499",
+    "pointer": "/verification_obligations/1/owner_return_symbolic_oracles",
+    "object_canonical_sha256": "2054fd09c8e4f3c1120a86da721877ff283f6bf8c5ecd1c47940db16eabb74b8"
+  },
+  "owner_return_symbolic_cases": [
+    {
+      "case_id": "BRAIN004-F02-OWNER-RETURN-S01-CORE-value-missing",
+      "condition_id": "S01-CORE-value-missing",
+      "function_ref": "BRAIN004-F02-OWNER-RETURN",
+      "requirement_ref": "HELIXBRAIN-L3-004-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F02",
+      "l4_ref": "HELIXBRAIN-L4-004-F02",
+      "l9_symbolic_condition_pointer": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0",
+      "l9_symbolic_condition_canonical_sha256": "c3480c2f654a7c1aefca173a7baff423949e22d7c793fcb2297828381ccf4eb5",
+      "native_return_basis": {
+        "l9_case_id": "B004-F02-WEIGHTS-PRESENT-VALUES-MISSING",
+        "expected_material_pointer": "/verification_obligations/1/concrete_cases/4/expected_material",
+        "expected_material_canonical_sha256": "276d028e564580f0687ea2da1705f8a099c2d0fa400c24f1c11685bce5b25413"
+      },
+      "symbolic_assertions": {
+        "native_return": "同native_callの固定L9 expected_material全値を完全保持。",
+        "source_echo": "input_original_sources内の原request、invocation binding、decision sourcesを全値保持。",
+        "shortage_materials": [
+          {
+            "shortage_field": "requirement_values",
+            "original_input_pointer": "/requirement_values",
+            "original_input_observation": {
+              "presence": "present",
+              "value": null
+            },
+            "native_state_pointer": "/required_value_state",
+            "native_state_value": "missing",
+            "unresolved_inputs_membership": true,
+            "request_binding": "exact request original_declaration",
+            "destination_candidate": "CORE",
+            "destination_source": "exact decision_sources.requirement_values",
+            "effect": "logical return only"
+          }
+        ],
+        "local_binding_issues": [],
+        "other_native_members": "既存applicability/unknown/held/claims/effects/unaffected_Qを変更しない。",
+        "effect": "none; query/adoption/qualification/delivery/ACKは発生しない。",
+        "wrapper_field_mapping": {
+          "/native_input_echo": "同じconditionのnative_call入力を完全コピーする。",
+          "/native_return": "native_return_basisの既存L9 expected_materialを完全保持する。",
+          "/original_request_source_state": "input_original_sources.request observation state。",
+          "/original_request_source_echo": "input_original_sources.requestのraw payload全値。",
+          "/invocation_request_binding_state": "input_original_sources.invocation_request_binding observation state。",
+          "/invocation_request_binding_echo": "input_original_sources.invocation_request_bindingのraw payload全値。",
+          "/decision_sources_state": "input_original_sources.decision_sources observation state。",
+          "/decision_sources_echo": "input_original_sources.decision_sources raw map全値。Absent/null/value memberの形を保つ。",
+          "/logical_return_materials": "source shortage_materialsの原順、presence/state/ref/destination/fieldをwriter mapに従って写す。",
+          "/local_binding_issues": "source symbolic local_binding_issues全値。"
+        },
+        "comparison_source_pointers": {
+          "request": "original_request_source.raw_value.original_declaration.{problem,requirement_revision,scope}",
+          "invocation_binding": "invocation_request_binding.raw_value.{problem,requirement_revision,scope}",
+          "decision_source": "decision_sources.raw_value[shortage_field].original_declaration.{problem,requirement_revision,scope,shortage_field,destination_role} と同entry.ref",
+          "comparison_rule": "決定sourceの3共通軸を原requestとinvocation bindingへ別々に比較。存在しない軸は参照せず、各recordへ実operand pointerを書く。"
+        }
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "BRAIN004-F02-OWNER-RETURN-S02-foreign-scope",
+      "condition_id": "S02-foreign-scope",
+      "function_ref": "BRAIN004-F02-OWNER-RETURN",
+      "requirement_ref": "HELIXBRAIN-L3-004-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F02",
+      "l4_ref": "HELIXBRAIN-L4-004-F02",
+      "l9_symbolic_condition_pointer": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/1",
+      "l9_symbolic_condition_canonical_sha256": "0f573871f548889e389a9f0a542235944c4ef8bfe2f12f0c7547ea005e87e777",
+      "native_return_basis": {
+        "l9_case_id": "B004-F02-WEIGHTS-PRESENT-VALUES-MISSING",
+        "expected_material_pointer": "/verification_obligations/1/concrete_cases/4/expected_material",
+        "expected_material_canonical_sha256": "276d028e564580f0687ea2da1705f8a099c2d0fa400c24f1c11685bce5b25413"
+      },
+      "symbolic_assertions": {
+        "native_return": "同native_callの固定L9 expected_material全値を完全保持。",
+        "source_echo": "input_original_sources内の原request、invocation binding、decision sourcesを全値保持。",
+        "shortage_materials": [
+          {
+            "shortage_field": "requirement_values",
+            "original_input_pointer": "/requirement_values",
+            "original_input_observation": {
+              "presence": "present",
+              "value": null
+            },
+            "native_state_pointer": "/required_value_state",
+            "native_state_value": "missing",
+            "unresolved_inputs_membership": true,
+            "request_binding": "exact request original_declaration",
+            "destination_candidate": null,
+            "destination_source": "exact decision_sources.requirement_values",
+            "effect": "logical return only"
+          }
+        ],
+        "local_binding_issues": [
+          {
+            "shortage_field": "requirement_values",
+            "axis": "scope",
+            "expected": "product-P/choice",
+            "observed": "product-Q/choice",
+            "meaning": "known foreign declaration; not applied to this request; both operands retained"
+          }
+        ],
+        "other_native_members": "既存applicability/unknown/held/claims/effects/unaffected_Qを変更しない。",
+        "effect": "none; query/adoption/qualification/delivery/ACKは発生しない。",
+        "wrapper_field_mapping": {
+          "/native_input_echo": "同じconditionのnative_call入力を完全コピーする。",
+          "/native_return": "native_return_basisの既存L9 expected_materialを完全保持する。",
+          "/original_request_source_state": "input_original_sources.request observation state。",
+          "/original_request_source_echo": "input_original_sources.requestのraw payload全値。",
+          "/invocation_request_binding_state": "input_original_sources.invocation_request_binding observation state。",
+          "/invocation_request_binding_echo": "input_original_sources.invocation_request_bindingのraw payload全値。",
+          "/decision_sources_state": "input_original_sources.decision_sources observation state。",
+          "/decision_sources_echo": "input_original_sources.decision_sources raw map全値。Absent/null/value memberの形を保つ。",
+          "/logical_return_materials": "source shortage_materialsの原順、presence/state/ref/destination/fieldをwriter mapに従って写す。",
+          "/local_binding_issues": "source symbolic local_binding_issues全値。"
+        },
+        "comparison_source_pointers": {
+          "request": "original_request_source.raw_value.original_declaration.{problem,requirement_revision,scope}",
+          "invocation_binding": "invocation_request_binding.raw_value.{problem,requirement_revision,scope}",
+          "decision_source": "decision_sources.raw_value[shortage_field].original_declaration.{problem,requirement_revision,scope,shortage_field,destination_role} と同entry.ref",
+          "comparison_rule": "決定sourceの3共通軸を原requestとinvocation bindingへ別々に比較。存在しない軸は参照せず、各recordへ実operand pointerを書く。"
+        }
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "BRAIN004-F02-OWNER-RETURN-S03-weight-human",
+      "condition_id": "S03-weight-human",
+      "function_ref": "BRAIN004-F02-OWNER-RETURN",
+      "requirement_ref": "HELIXBRAIN-L3-004-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F02",
+      "l4_ref": "HELIXBRAIN-L4-004-F02",
+      "l9_symbolic_condition_pointer": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/2",
+      "l9_symbolic_condition_canonical_sha256": "bfa5badef0fbf302a72b93a790a1ee569084cb70cf243b9375dc3e45b70722f6",
+      "native_return_basis": {
+        "l9_case_id": "B004-F02-VALUES-PRESENT-WEIGHTS-MISSING",
+        "expected_material_pointer": "/verification_obligations/1/concrete_cases/3/expected_material",
+        "expected_material_canonical_sha256": "fbb66f5c79e5e867c47e2f78f4c917b11c16f95636ca70fa33f37507aa89f3f4"
+      },
+      "symbolic_assertions": {
+        "native_return": "同native_callの固定L9 expected_material全値を完全保持。",
+        "source_echo": "input_original_sources内の原request、invocation binding、decision sourcesを全値保持。",
+        "shortage_materials": [
+          {
+            "shortage_field": "decision_weights",
+            "original_input_pointer": "/decision_weights",
+            "original_input_observation": {
+              "presence": "present",
+              "value": null
+            },
+            "native_state_pointer": "/weight_state",
+            "native_state_value": "missing",
+            "unresolved_inputs_membership": true,
+            "request_binding": "exact request original_declaration",
+            "destination_candidate": "human",
+            "destination_source": "exact decision_sources.decision_weights",
+            "effect": "logical return only"
+          }
+        ],
+        "local_binding_issues": [],
+        "other_native_members": "既存applicability/unknown/held/claims/effects/unaffected_Qを変更しない。",
+        "effect": "none; query/adoption/qualification/delivery/ACKは発生しない。",
+        "wrapper_field_mapping": {
+          "/native_input_echo": "同じconditionのnative_call入力を完全コピーする。",
+          "/native_return": "native_return_basisの既存L9 expected_materialを完全保持する。",
+          "/original_request_source_state": "input_original_sources.request observation state。",
+          "/original_request_source_echo": "input_original_sources.requestのraw payload全値。",
+          "/invocation_request_binding_state": "input_original_sources.invocation_request_binding observation state。",
+          "/invocation_request_binding_echo": "input_original_sources.invocation_request_bindingのraw payload全値。",
+          "/decision_sources_state": "input_original_sources.decision_sources observation state。",
+          "/decision_sources_echo": "input_original_sources.decision_sources raw map全値。Absent/null/value memberの形を保つ。",
+          "/logical_return_materials": "source shortage_materialsの原順、presence/state/ref/destination/fieldをwriter mapに従って写す。",
+          "/local_binding_issues": "source symbolic local_binding_issues全値。"
+        },
+        "comparison_source_pointers": {
+          "request": "original_request_source.raw_value.original_declaration.{problem,requirement_revision,scope}",
+          "invocation_binding": "invocation_request_binding.raw_value.{problem,requirement_revision,scope}",
+          "decision_source": "decision_sources.raw_value[shortage_field].original_declaration.{problem,requirement_revision,scope,shortage_field,destination_role} と同entry.ref",
+          "comparison_rule": "決定sourceの3共通軸を原requestとinvocation bindingへ別々に比較。存在しない軸は参照せず、各recordへ実operand pointerを書く。"
+        }
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "BRAIN004-F02-OWNER-RETURN-S04-weight-INTELLIGENCE",
+      "condition_id": "S04-weight-INTELLIGENCE",
+      "function_ref": "BRAIN004-F02-OWNER-RETURN",
+      "requirement_ref": "HELIXBRAIN-L3-004-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F02",
+      "l4_ref": "HELIXBRAIN-L4-004-F02",
+      "l9_symbolic_condition_pointer": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/3",
+      "l9_symbolic_condition_canonical_sha256": "3372bca041b4da477897f5afdd5b30d026c6d9032be9d53b0dc2ac880829a5ba",
+      "native_return_basis": {
+        "l9_case_id": "B004-F02-VALUES-PRESENT-WEIGHTS-MISSING",
+        "expected_material_pointer": "/verification_obligations/1/concrete_cases/3/expected_material",
+        "expected_material_canonical_sha256": "fbb66f5c79e5e867c47e2f78f4c917b11c16f95636ca70fa33f37507aa89f3f4"
+      },
+      "symbolic_assertions": {
+        "native_return": "同native_callの固定L9 expected_material全値を完全保持。",
+        "source_echo": "input_original_sources内の原request、invocation binding、decision sourcesを全値保持。",
+        "shortage_materials": [
+          {
+            "shortage_field": "decision_weights",
+            "original_input_pointer": "/decision_weights",
+            "original_input_observation": {
+              "presence": "present",
+              "value": null
+            },
+            "native_state_pointer": "/weight_state",
+            "native_state_value": "missing",
+            "unresolved_inputs_membership": true,
+            "request_binding": "exact request original_declaration",
+            "destination_candidate": "INTELLIGENCE",
+            "destination_source": "exact decision_sources.decision_weights",
+            "effect": "logical return only"
+          }
+        ],
+        "local_binding_issues": [],
+        "other_native_members": "既存applicability/unknown/held/claims/effects/unaffected_Qを変更しない。",
+        "effect": "none; query/adoption/qualification/delivery/ACKは発生しない。",
+        "wrapper_field_mapping": {
+          "/native_input_echo": "同じconditionのnative_call入力を完全コピーする。",
+          "/native_return": "native_return_basisの既存L9 expected_materialを完全保持する。",
+          "/original_request_source_state": "input_original_sources.request observation state。",
+          "/original_request_source_echo": "input_original_sources.requestのraw payload全値。",
+          "/invocation_request_binding_state": "input_original_sources.invocation_request_binding observation state。",
+          "/invocation_request_binding_echo": "input_original_sources.invocation_request_bindingのraw payload全値。",
+          "/decision_sources_state": "input_original_sources.decision_sources observation state。",
+          "/decision_sources_echo": "input_original_sources.decision_sources raw map全値。Absent/null/value memberの形を保つ。",
+          "/logical_return_materials": "source shortage_materialsの原順、presence/state/ref/destination/fieldをwriter mapに従って写す。",
+          "/local_binding_issues": "source symbolic local_binding_issues全値。"
+        },
+        "comparison_source_pointers": {
+          "request": "original_request_source.raw_value.original_declaration.{problem,requirement_revision,scope}",
+          "invocation_binding": "invocation_request_binding.raw_value.{problem,requirement_revision,scope}",
+          "decision_source": "decision_sources.raw_value[shortage_field].original_declaration.{problem,requirement_revision,scope,shortage_field,destination_role} と同entry.ref",
+          "comparison_rule": "決定sourceの3共通軸を原requestとinvocation bindingへ別々に比較。存在しない軸は参照せず、各recordへ実operand pointerを書く。"
+        }
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "BRAIN004-F02-OWNER-RETURN-S05-absent-route-sibling-retained",
+      "condition_id": "S05-absent-route-sibling-retained",
+      "function_ref": "BRAIN004-F02-OWNER-RETURN",
+      "requirement_ref": "HELIXBRAIN-L3-004-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F02",
+      "l4_ref": "HELIXBRAIN-L4-004-F02",
+      "l9_symbolic_condition_pointer": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/4",
+      "l9_symbolic_condition_canonical_sha256": "e95ec5ad53c468768e93a29ca1a603e0dbdd92659b51ffa9c833d37920318843",
+      "native_return_basis": {
+        "l9_case_id": "B004-F02-APPLICABLE-UNKNOWN-VALUES-WEIGHTS-MISSING",
+        "expected_material_pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+        "expected_material_canonical_sha256": "d042a4f8cfa1289838477efbd85feb354cc29546826036b236e075948fb67c21"
+      },
+      "symbolic_assertions": {
+        "native_return": "同native_callの固定L9 expected_material全値を完全保持。",
+        "source_echo": "input_original_sources内の原request、invocation binding、decision sourcesを全値保持。",
+        "shortage_materials": [
+          {
+            "shortage_field": "requirement_values",
+            "original_input_pointer": "/requirement_values",
+            "original_input_observation": {
+              "presence": "present",
+              "value": null
+            },
+            "native_state_pointer": "/required_value_state",
+            "native_state_value": "missing",
+            "unresolved_inputs_membership": true,
+            "request_binding": "exact request original_declaration",
+            "destination_candidate": null,
+            "destination_source": "absent decision_sources.requirement_values",
+            "effect": "logical return only"
+          },
+          {
+            "shortage_field": "decision_weights",
+            "original_input_pointer": "/decision_weights",
+            "original_input_observation": {
+              "presence": "present",
+              "value": null
+            },
+            "native_state_pointer": "/weight_state",
+            "native_state_value": "missing",
+            "unresolved_inputs_membership": true,
+            "request_binding": "exact request original_declaration",
+            "destination_candidate": "human",
+            "destination_source": "exact decision_sources.decision_weights",
+            "effect": "logical return only"
+          }
+        ],
+        "local_binding_issues": [
+          {
+            "shortage_field": "requirement_values",
+            "axis": "decision source",
+            "expected": "source-backed applicable destination",
+            "observed": {
+              "presence": "absent"
+            },
+            "meaning": "no default CORE/INT/human; native missing and matched weight sibling retained"
+          }
+        ],
+        "other_native_members": "既存applicability/unknown/held/claims/effects/unaffected_Qを変更しない。",
+        "effect": "none; query/adoption/qualification/delivery/ACKは発生しない。",
+        "wrapper_field_mapping": {
+          "/native_input_echo": "同じconditionのnative_call入力を完全コピーする。",
+          "/native_return": "native_return_basisの既存L9 expected_materialを完全保持する。",
+          "/original_request_source_state": "input_original_sources.request observation state。",
+          "/original_request_source_echo": "input_original_sources.requestのraw payload全値。",
+          "/invocation_request_binding_state": "input_original_sources.invocation_request_binding observation state。",
+          "/invocation_request_binding_echo": "input_original_sources.invocation_request_bindingのraw payload全値。",
+          "/decision_sources_state": "input_original_sources.decision_sources observation state。",
+          "/decision_sources_echo": "input_original_sources.decision_sources raw map全値。Absent/null/value memberの形を保つ。",
+          "/logical_return_materials": "source shortage_materialsの原順、presence/state/ref/destination/fieldをwriter mapに従って写す。",
+          "/local_binding_issues": "source symbolic local_binding_issues全値。"
+        },
+        "comparison_source_pointers": {
+          "request": "original_request_source.raw_value.original_declaration.{problem,requirement_revision,scope}",
+          "invocation_binding": "invocation_request_binding.raw_value.{problem,requirement_revision,scope}",
+          "decision_source": "decision_sources.raw_value[shortage_field].original_declaration.{problem,requirement_revision,scope,shortage_field,destination_role} と同entry.ref",
+          "comparison_rule": "決定sourceの3共通軸を原requestとinvocation bindingへ別々に比較。存在しない軸は参照せず、各recordへ実operand pointerを書く。"
+        }
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "BRAIN004-F02-OWNER-RETURN-S06-unobserved-route-scope",
+      "condition_id": "S06-unobserved-route-scope",
+      "function_ref": "BRAIN004-F02-OWNER-RETURN",
+      "requirement_ref": "HELIXBRAIN-L3-004-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F02",
+      "l4_ref": "HELIXBRAIN-L4-004-F02",
+      "l9_symbolic_condition_pointer": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/5",
+      "l9_symbolic_condition_canonical_sha256": "ea361379eab47c03d3d1d68c99863a5446466502b1a39e0343f071c0962fc09d",
+      "native_return_basis": {
+        "l9_case_id": "B004-F02-WEIGHTS-PRESENT-VALUES-MISSING",
+        "expected_material_pointer": "/verification_obligations/1/concrete_cases/4/expected_material",
+        "expected_material_canonical_sha256": "276d028e564580f0687ea2da1705f8a099c2d0fa400c24f1c11685bce5b25413"
+      },
+      "symbolic_assertions": {
+        "native_return": "同native_callの固定L9 expected_material全値を完全保持。",
+        "source_echo": "input_original_sources内の原request、invocation binding、decision sourcesを全値保持。",
+        "shortage_materials": [
+          {
+            "shortage_field": "requirement_values",
+            "original_input_pointer": "/requirement_values",
+            "original_input_observation": {
+              "presence": "present",
+              "value": null
+            },
+            "native_state_pointer": "/required_value_state",
+            "native_state_value": "missing",
+            "unresolved_inputs_membership": true,
+            "request_binding": "exact request original_declaration",
+            "destination_candidate": null,
+            "destination_source": "exact decision_sources.requirement_values",
+            "effect": "logical return only"
+          }
+        ],
+        "local_binding_issues": [
+          {
+            "shortage_field": "requirement_values",
+            "axis": "scope",
+            "expected": "product-P/choice",
+            "observed": {
+              "presence": "present",
+              "value": null
+            },
+            "meaning": "unknown scope; not a known foreign scope; declaration and native shortage retained"
+          }
+        ],
+        "other_native_members": "既存applicability/unknown/held/claims/effects/unaffected_Qを変更しない。",
+        "effect": "none; query/adoption/qualification/delivery/ACKは発生しない。",
+        "wrapper_field_mapping": {
+          "/native_input_echo": "同じconditionのnative_call入力を完全コピーする。",
+          "/native_return": "native_return_basisの既存L9 expected_materialを完全保持する。",
+          "/original_request_source_state": "input_original_sources.request observation state。",
+          "/original_request_source_echo": "input_original_sources.requestのraw payload全値。",
+          "/invocation_request_binding_state": "input_original_sources.invocation_request_binding observation state。",
+          "/invocation_request_binding_echo": "input_original_sources.invocation_request_bindingのraw payload全値。",
+          "/decision_sources_state": "input_original_sources.decision_sources observation state。",
+          "/decision_sources_echo": "input_original_sources.decision_sources raw map全値。Absent/null/value memberの形を保つ。",
+          "/logical_return_materials": "source shortage_materialsの原順、presence/state/ref/destination/fieldをwriter mapに従って写す。",
+          "/local_binding_issues": "source symbolic local_binding_issues全値。"
+        },
+        "comparison_source_pointers": {
+          "request": "original_request_source.raw_value.original_declaration.{problem,requirement_revision,scope}",
+          "invocation_binding": "invocation_request_binding.raw_value.{problem,requirement_revision,scope}",
+          "decision_source": "decision_sources.raw_value[shortage_field].original_declaration.{problem,requirement_revision,scope,shortage_field,destination_role} と同entry.ref",
+          "comparison_rule": "決定sourceの3共通軸を原requestとinvocation bindingへ別々に比較。存在しない軸は参照せず、各recordへ実operand pointerを書く。"
+        }
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "BRAIN004-F02-OWNER-RETURN-S07-no-shortage-no-return",
+      "condition_id": "S07-no-shortage-no-return",
+      "function_ref": "BRAIN004-F02-OWNER-RETURN",
+      "requirement_ref": "HELIXBRAIN-L3-004-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F02",
+      "l4_ref": "HELIXBRAIN-L4-004-F02",
+      "l9_symbolic_condition_pointer": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/6",
+      "l9_symbolic_condition_canonical_sha256": "d2ed15b01404794eaf7f257a76ad50db82d15522f06ff9ff772c44b5c25bdee1",
+      "native_return_basis": {
+        "l9_case_id": "B004-F02-VALUES-WEIGHTS-PRESENT-STILL-OWNER",
+        "expected_material_pointer": "/verification_obligations/1/concrete_cases/5/expected_material",
+        "expected_material_canonical_sha256": "90201a6ecdb82650df673f0200bc80c2360f35f367064ddde08b921a16eba611"
+      },
+      "symbolic_assertions": {
+        "native_return": "同native_callの固定L9 expected_material全値を完全保持。",
+        "source_echo": "input_original_sources内の原request、invocation binding、decision sourcesを全値保持。",
+        "shortage_materials": [],
+        "local_binding_issues": [],
+        "other_native_members": "既存applicability/unknown/held/claims/effects/unaffected_Qを変更しない。",
+        "effect": "none; query/adoption/qualification/delivery/ACKは発生しない。",
+        "wrapper_field_mapping": {
+          "/native_input_echo": "同じconditionのnative_call入力を完全コピーする。",
+          "/native_return": "native_return_basisの既存L9 expected_materialを完全保持する。",
+          "/original_request_source_state": "input_original_sources.request observation state。",
+          "/original_request_source_echo": "input_original_sources.requestのraw payload全値。",
+          "/invocation_request_binding_state": "input_original_sources.invocation_request_binding observation state。",
+          "/invocation_request_binding_echo": "input_original_sources.invocation_request_bindingのraw payload全値。",
+          "/decision_sources_state": "input_original_sources.decision_sources observation state。",
+          "/decision_sources_echo": "input_original_sources.decision_sources raw map全値。Absent/null/value memberの形を保つ。",
+          "/logical_return_materials": "source shortage_materialsの原順、presence/state/ref/destination/fieldをwriter mapに従って写す。",
+          "/local_binding_issues": "source symbolic local_binding_issues全値。"
+        },
+        "comparison_source_pointers": {
+          "request": "original_request_source.raw_value.original_declaration.{problem,requirement_revision,scope}",
+          "invocation_binding": "invocation_request_binding.raw_value.{problem,requirement_revision,scope}",
+          "decision_source": "decision_sources.raw_value[shortage_field].original_declaration.{problem,requirement_revision,scope,shortage_field,destination_role} と同entry.ref",
+          "comparison_rule": "決定sourceの3共通軸を原requestとinvocation bindingへ別々に比較。存在しない軸は参照せず、各recordへ実operand pointerを書く。"
+        }
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "BRAIN004-F02-OWNER-RETURN-S08-foreign-invocation-revision",
+      "condition_id": "S08-foreign-invocation-revision",
+      "function_ref": "BRAIN004-F02-OWNER-RETURN",
+      "requirement_ref": "HELIXBRAIN-L3-004-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F02",
+      "l4_ref": "HELIXBRAIN-L4-004-F02",
+      "l9_symbolic_condition_pointer": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/7",
+      "l9_symbolic_condition_canonical_sha256": "bec606f6269fe2292f3855fba125c940c4a135a03bc71f2855fae71e0237a66b",
+      "native_return_basis": {
+        "l9_case_id": "B004-F02-WEIGHTS-PRESENT-VALUES-MISSING",
+        "expected_material_pointer": "/verification_obligations/1/concrete_cases/4/expected_material",
+        "expected_material_canonical_sha256": "276d028e564580f0687ea2da1705f8a099c2d0fa400c24f1c11685bce5b25413"
+      },
+      "symbolic_assertions": {
+        "native_return": "同native_callの固定L9 expected_material全値を完全保持。",
+        "source_echo": "input_original_sources内の原request、invocation binding、decision sourcesを全値保持。",
+        "shortage_materials": [
+          {
+            "shortage_field": "requirement_values",
+            "original_input_pointer": "/requirement_values",
+            "original_input_observation": {
+              "presence": "present",
+              "value": null
+            },
+            "native_state_pointer": "/required_value_state",
+            "native_state_value": "missing",
+            "unresolved_inputs_membership": true,
+            "request_binding": "exact request original_declaration",
+            "destination_candidate": null,
+            "destination_source": "exact decision_sources.requirement_values",
+            "effect": "logical return only"
+          }
+        ],
+        "local_binding_issues": [
+          {
+            "shortage_field": "requirement_values",
+            "axis": "invocation requirement_revision",
+            "expected": "requirements-r1",
+            "observed": "requirements-r2",
+            "meaning": "other request revision result not adopted for this shortage route; full native result retained"
+          }
+        ],
+        "other_native_members": "既存applicability/unknown/held/claims/effects/unaffected_Qを変更しない。",
+        "effect": "none; query/adoption/qualification/delivery/ACKは発生しない。",
+        "wrapper_field_mapping": {
+          "/native_input_echo": "同じconditionのnative_call入力を完全コピーする。",
+          "/native_return": "native_return_basisの既存L9 expected_materialを完全保持する。",
+          "/original_request_source_state": "input_original_sources.request observation state。",
+          "/original_request_source_echo": "input_original_sources.requestのraw payload全値。",
+          "/invocation_request_binding_state": "input_original_sources.invocation_request_binding observation state。",
+          "/invocation_request_binding_echo": "input_original_sources.invocation_request_bindingのraw payload全値。",
+          "/decision_sources_state": "input_original_sources.decision_sources observation state。",
+          "/decision_sources_echo": "input_original_sources.decision_sources raw map全値。Absent/null/value memberの形を保つ。",
+          "/logical_return_materials": "source shortage_materialsの原順、presence/state/ref/destination/fieldをwriter mapに従って写す。",
+          "/local_binding_issues": "source symbolic local_binding_issues全値。"
+        },
+        "comparison_source_pointers": {
+          "request": "original_request_source.raw_value.original_declaration.{problem,requirement_revision,scope}",
+          "invocation_binding": "invocation_request_binding.raw_value.{problem,requirement_revision,scope}",
+          "decision_source": "decision_sources.raw_value[shortage_field].original_declaration.{problem,requirement_revision,scope,shortage_field,destination_role} と同entry.ref",
+          "comparison_rule": "決定sourceの3共通軸を原requestとinvocation bindingへ別々に比較。存在しない軸は参照せず、各recordへ実operand pointerを書く。"
+        }
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "BRAIN004-F02-OWNER-RETURN-S09-parent-request-observation-unknown",
+      "condition_id": "S09-parent-request-observation-unknown",
+      "function_ref": "BRAIN004-F02-OWNER-RETURN",
+      "requirement_ref": "HELIXBRAIN-L3-004-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F02",
+      "l4_ref": "HELIXBRAIN-L4-004-F02",
+      "l9_symbolic_condition_pointer": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/8",
+      "l9_symbolic_condition_canonical_sha256": "5fc8edc35fd902a13749e04eee39a7b8f421789eef5d92d75cd3a063d748550d",
+      "invocation_observations_input": {
+        "native_input": {
+          "applicability_original": {
+            "COMPENSATION": "unknown",
+            "EVENTUAL": "applicable",
+            "STRONG": "applicable"
+          },
+          "applicability_provided": {
+            "COMPENSATION": "unknown",
+            "EVENTUAL": "applicable",
+            "STRONG": "applicable"
+          },
+          "claims_rank_adopted": false,
+          "comparison_rank": null,
+          "decision_weights": {
+            "input": "合成の判断先提示重み"
+          },
+          "default_weights": null,
+          "invented_requirement_values": null,
+          "requirement_values": null
+        },
+        "original_request_source": {
+          "state": "unknown",
+          "raw_value": {
+            "ref": "fixture:comparison-request@r1",
+            "original_declaration": {
+              "problem": "comparison-problem-P",
+              "requirement_revision": "requirements-r1",
+              "scope": "product-P/choice"
+            }
+          }
+        },
+        "invocation_request_binding": {
+          "state": "present_value",
+          "raw_value": {
+            "problem": "comparison-problem-P",
+            "requirement_revision": "requirements-r1",
+            "scope": "product-P/choice"
+          }
+        },
+        "decision_sources": {
+          "state": "present_value",
+          "raw_value": {
+            "requirement_values": {
+              "ref": "fixture:decision-source-CORE@r1",
+              "original_declaration": {
+                "problem": "comparison-problem-P",
+                "requirement_revision": "requirements-r1",
+                "scope": "product-P/choice",
+                "shortage_field": "requirement_values",
+                "destination_role": "CORE"
+              }
+            }
+          }
+        }
+      },
+      "frozen_symbolic_expected": {
+        "record_type": "source_derived_symbolic_full_envelope_expectation",
+        "condition_id": "S09-parent-request-observation-unknown",
+        "native_input_echo": {
+          "copy_input_pointer": "/native_input",
+          "canonical_sha256": "c43dbb143a3a6043e5ef746e98058ebaa033ed4819124cab8402c1095be53017"
+        },
+        "native_return": {
+          "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+          "source_file_sha256": "117acc67e8d48ff16e2bb62b56bdcc86c25841512df5fcb03d866eb99b35455a",
+          "snapshot": "scaffold/review-handoff/local/brain004-f02-final-r2-independent-review/L9-integration-verification.json.gz",
+          "pointer": "/verification_obligations/1/concrete_cases/4/expected_material",
+          "canonical_sha256": "276d028e564580f0687ea2da1705f8a099c2d0fa400c24f1c11685bce5b25413",
+          "rule": "exact full native return unchanged; no native evaluator executed"
+        },
+        "original_request_source_state": "unknown",
+        "original_request_source_echo": {
+          "copy_input_pointer": "/original_request_source/raw_value",
+          "canonical_sha256": "61f0e4eebba88263f7fbb452485cf567735806012c5267bd4cb0d30a0cb370b2"
+        },
+        "invocation_request_binding_state": "present_value",
+        "invocation_request_binding_echo": {
+          "copy_input_pointer": "/invocation_request_binding/raw_value",
+          "canonical_sha256": "d8598513892215dbed6cfeec494016f4fc8d41ce914bb1a2a8334a499da2b6d7"
+        },
+        "decision_sources_state": "present_value",
+        "decision_sources_echo": {
+          "copy_input_pointer": "/decision_sources/raw_value",
+          "canonical_sha256": "f6230fc18b8795f0d6e276ffb408dc96c7f09569c97939eedd8c30c8ba17978f"
+        },
+        "logical_return_materials": [
+          {
+            "shortage_field": "requirement_values",
+            "native_state": "missing",
+            "input_observation": {
+              "presence": "present",
+              "value": null
+            },
+            "binding_state": "unknown",
+            "decision_source_state": "present_value",
+            "decision_source_ref_state": "present_value",
+            "decision_source_ref": "fixture:decision-source-CORE@r1",
+            "destination_role_observation": {
+              "state": "present_value",
+              "value": "CORE"
+            },
+            "destination_candidate": null,
+            "axis_comparisons": [
+              {
+                "comparison_kind": "request_to_invocation",
+                "axis": "problem",
+                "expected_source_pointer": "/original_declaration/problem",
+                "observed_source_pointer": "/problem",
+                "expected": {
+                  "state": "unknown",
+                  "value": "comparison-problem-P"
+                },
+                "observed": {
+                  "state": "present_value",
+                  "value": "comparison-problem-P"
+                },
+                "status": "unknown",
+                "comparison_operator": "json_equal",
+                "expected_source_document": "request",
+                "observed_source_document": "invocation_binding"
+              },
+              {
+                "comparison_kind": "decision_to_request",
+                "axis": "problem",
+                "expected_source_pointer": "/original_declaration/problem",
+                "observed_source_pointer": "/original_declaration/problem",
+                "expected": {
+                  "state": "unknown",
+                  "value": "comparison-problem-P"
+                },
+                "observed": {
+                  "state": "present_value",
+                  "value": "comparison-problem-P"
+                },
+                "status": "unknown",
+                "comparison_operator": "json_equal",
+                "expected_source_document": "request",
+                "observed_source_document": "decision_source"
+              },
+              {
+                "comparison_kind": "decision_to_invocation",
+                "axis": "problem",
+                "expected_source_pointer": "/problem",
+                "observed_source_pointer": "/original_declaration/problem",
+                "expected": {
+                  "state": "present_value",
+                  "value": "comparison-problem-P"
+                },
+                "observed": {
+                  "state": "present_value",
+                  "value": "comparison-problem-P"
+                },
+                "status": "matched",
+                "comparison_operator": "json_equal",
+                "expected_source_document": "invocation_binding",
+                "observed_source_document": "decision_source"
+              },
+              {
+                "comparison_kind": "request_to_invocation",
+                "axis": "requirement_revision",
+                "expected_source_pointer": "/original_declaration/requirement_revision",
+                "observed_source_pointer": "/requirement_revision",
+                "expected": {
+                  "state": "unknown",
+                  "value": "requirements-r1"
+                },
+                "observed": {
+                  "state": "present_value",
+                  "value": "requirements-r1"
+                },
+                "status": "unknown",
+                "comparison_operator": "json_equal",
+                "expected_source_document": "request",
+                "observed_source_document": "invocation_binding"
+              },
+              {
+                "comparison_kind": "decision_to_request",
+                "axis": "requirement_revision",
+                "expected_source_pointer": "/original_declaration/requirement_revision",
+                "observed_source_pointer": "/original_declaration/requirement_revision",
+                "expected": {
+                  "state": "unknown",
+                  "value": "requirements-r1"
+                },
+                "observed": {
+                  "state": "present_value",
+                  "value": "requirements-r1"
+                },
+                "status": "unknown",
+                "comparison_operator": "json_equal",
+                "expected_source_document": "request",
+                "observed_source_document": "decision_source"
+              },
+              {
+                "comparison_kind": "decision_to_invocation",
+                "axis": "requirement_revision",
+                "expected_source_pointer": "/requirement_revision",
+                "observed_source_pointer": "/original_declaration/requirement_revision",
+                "expected": {
+                  "state": "present_value",
+                  "value": "requirements-r1"
+                },
+                "observed": {
+                  "state": "present_value",
+                  "value": "requirements-r1"
+                },
+                "status": "matched",
+                "comparison_operator": "json_equal",
+                "expected_source_document": "invocation_binding",
+                "observed_source_document": "decision_source"
+              },
+              {
+                "comparison_kind": "request_to_invocation",
+                "axis": "scope",
+                "expected_source_pointer": "/original_declaration/scope",
+                "observed_source_pointer": "/scope",
+                "expected": {
+                  "state": "unknown",
+                  "value": "product-P/choice"
+                },
+                "observed": {
+                  "state": "present_value",
+                  "value": "product-P/choice"
+                },
+                "status": "unknown",
+                "comparison_operator": "json_equal",
+                "expected_source_document": "request",
+                "observed_source_document": "invocation_binding"
+              },
+              {
+                "comparison_kind": "decision_to_request",
+                "axis": "scope",
+                "expected_source_pointer": "/original_declaration/scope",
+                "observed_source_pointer": "/original_declaration/scope",
+                "expected": {
+                  "state": "unknown",
+                  "value": "product-P/choice"
+                },
+                "observed": {
+                  "state": "present_value",
+                  "value": "product-P/choice"
+                },
+                "status": "unknown",
+                "comparison_operator": "json_equal",
+                "expected_source_document": "request",
+                "observed_source_document": "decision_source"
+              },
+              {
+                "comparison_kind": "decision_to_invocation",
+                "axis": "scope",
+                "expected_source_pointer": "/scope",
+                "observed_source_pointer": "/original_declaration/scope",
+                "expected": {
+                  "state": "present_value",
+                  "value": "product-P/choice"
+                },
+                "observed": {
+                  "state": "present_value",
+                  "value": "product-P/choice"
+                },
+                "status": "matched",
+                "comparison_operator": "json_equal",
+                "expected_source_document": "invocation_binding",
+                "observed_source_document": "decision_source"
+              },
+              {
+                "comparison_kind": "shortage_field",
+                "axis": "shortage_field",
+                "expected_source_pointer": "/unresolved_inputs/0",
+                "observed_source_pointer": "/original_declaration/shortage_field",
+                "expected": {
+                  "state": "present_value",
+                  "value": "requirement_values"
+                },
+                "observed": {
+                  "state": "present_value",
+                  "value": "requirement_values"
+                },
+                "status": "matched",
+                "comparison_operator": "json_equal",
+                "expected_source_document": "native_return",
+                "observed_source_document": "decision_source"
+              },
+              {
+                "comparison_kind": "destination_role",
+                "axis": "destination_role",
+                "expected_source_pointer": "/contracts/1/private_owner_return_wrapper/allowed_destination_roles",
+                "observed_source_pointer": "/original_declaration/destination_role",
+                "expected": {
+                  "state": "present_value",
+                  "value": [
+                    "CORE",
+                    "INTELLIGENCE",
+                    "human"
+                  ]
+                },
+                "observed": {
+                  "state": "present_value",
+                  "value": "CORE"
+                },
+                "status": "matched",
+                "comparison_operator": "member_of",
+                "expected_source_document": "L4_contract",
+                "observed_source_document": "decision_source"
+              },
+              {
+                "comparison_kind": "decision_ref_presence",
+                "axis": "ref",
+                "expected_source_pointer": "",
+                "observed_source_pointer": "/ref",
+                "expected": {
+                  "state": "present_value",
+                  "value": "present_value"
+                },
+                "observed": {
+                  "state": "present_value",
+                  "value": "fixture:decision-source-CORE@r1"
+                },
+                "status": "matched",
+                "comparison_operator": "is_present_value",
+                "expected_source_document": "rule",
+                "observed_source_document": "decision_source"
+              }
+            ],
+            "decision_source_value": {
+              "ref": "fixture:decision-source-CORE@r1",
+              "original_declaration": {
+                "problem": "comparison-problem-P",
+                "requirement_revision": "requirements-r1",
+                "scope": "product-P/choice",
+                "shortage_field": "requirement_values",
+                "destination_role": "CORE"
+              }
+            }
+          }
+        ],
+        "local_binding_issues": [
+          {
+            "shortage_field": "requirement_values",
+            "status": "unknown",
+            "axis": "problem",
+            "expected": {
+              "state": "unknown",
+              "value": "comparison-problem-P"
+            },
+            "observed": {
+              "state": "present_value",
+              "value": "comparison-problem-P"
+            },
+            "source_pointer": "/problem"
+          },
+          {
+            "shortage_field": "requirement_values",
+            "status": "unknown",
+            "axis": "problem",
+            "expected": {
+              "state": "unknown",
+              "value": "comparison-problem-P"
+            },
+            "observed": {
+              "state": "present_value",
+              "value": "comparison-problem-P"
+            },
+            "source_pointer": "/original_declaration/problem"
+          },
+          {
+            "shortage_field": "requirement_values",
+            "status": "unknown",
+            "axis": "requirement_revision",
+            "expected": {
+              "state": "unknown",
+              "value": "requirements-r1"
+            },
+            "observed": {
+              "state": "present_value",
+              "value": "requirements-r1"
+            },
+            "source_pointer": "/requirement_revision"
+          },
+          {
+            "shortage_field": "requirement_values",
+            "status": "unknown",
+            "axis": "requirement_revision",
+            "expected": {
+              "state": "unknown",
+              "value": "requirements-r1"
+            },
+            "observed": {
+              "state": "present_value",
+              "value": "requirements-r1"
+            },
+            "source_pointer": "/original_declaration/requirement_revision"
+          },
+          {
+            "shortage_field": "requirement_values",
+            "status": "unknown",
+            "axis": "scope",
+            "expected": {
+              "state": "unknown",
+              "value": "product-P/choice"
+            },
+            "observed": {
+              "state": "present_value",
+              "value": "product-P/choice"
+            },
+            "source_pointer": "/scope"
+          },
+          {
+            "shortage_field": "requirement_values",
+            "status": "unknown",
+            "axis": "scope",
+            "expected": {
+              "state": "unknown",
+              "value": "product-P/choice"
+            },
+            "observed": {
+              "state": "present_value",
+              "value": "product-P/choice"
+            },
+            "source_pointer": "/original_declaration/scope"
+          }
+        ],
+        "symbolic_boundary": "copy_input_pointerとnative_return pointerはoracle著述用の明示全値参照。正式transport/schema又は実装DSLではない。raw/stateは原値を別々に保持。ref-presence期待値はruleの論理値で、実authority/署名でない。"
+      },
+      "supplemental_source_freeze": {
+        "directory": "scaffold/review-handoff/local/brain004-f02-parent-observation-S09-prefreeze",
+        "input_file": "S09.input.json",
+        "input_sha256": "f0166ab423d32557e9aec0d1c2cf16a6c46b223dd2889bce73cc05d548bf8040",
+        "expected_file": "S09.symbolic-expected.json",
+        "expected_sha256": "521aae0872e2cbec6fb1771591e4733e896c95472da154969b29b75caf82e62c",
+        "source_advice_file": "source-advice.json",
+        "source_advice_sha256": "38ede6413636de766278c599e8676251bb362f69c98ff5c29f810970fd898e86",
+        "authority_effect": "none; supplement source-first freeze. Embedded values are the reproduction source; local authoring path is provenance."
+      },
+      "native_return_basis": {
+        "l9_case_id": "B004-F02-WEIGHTS-PRESENT-VALUES-MISSING",
+        "expected_material_pointer": "/verification_obligations/1/concrete_cases/4/expected_material",
+        "expected_material_canonical_sha256": "276d028e564580f0687ea2da1705f8a099c2d0fa400c24f1c11685bce5b25413",
+        "revision": "969b33b30d846e6ba36e6cc5c6d07fa19e22d9e4",
+        "source_file_sha256": "ea0091daf804437a5ba8e02e97e25d05e82d2bb8e2f4a5e26efa005a4908c6cf"
+      },
+      "authoring_copy_rule": "補足prefreezeのinvocation_observations_inputとfrozen_symbolic_expected全値をそのまま記録する。copy説明は著述時の再現recipeで、runtime命令や実行結果ではない。",
+      "execution_state": "not_executed",
+      "effect": "none"
+    }
   ]
 }

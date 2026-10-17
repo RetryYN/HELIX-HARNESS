@@ -103,12 +103,14 @@
     "components": [
       "pattern_comparison_content_reader",
       "pattern_selection_hold_reader",
-      "comparison_owner_router"
+      "comparison_owner_router",
+      "f02_shortage_return_wrapper"
     ],
     "flow": [
       "候補元内容/比較対象 → 軸/版対応と欠落",
       "適用状態/要求値/重み → 選択保留と不足",
-      "CORE原状態/INT選択条件 → owner別候補返却"
+      "CORE原状態/INT選択条件 → owner別候補返却",
+      "F02不足field → same-call wrapper → 原request/invocation/source宣言の局所照合 → 完全native returnと論理返却候補"
     ],
     "python_boundary": "immutable inputのpure比較。DB/OS保存/CORE write/network/fs/env/clock/候補採用/INT query実行/authority/受入を行わない。",
     "representation_limit": "Pattern名は採択例。fixtureの比較内容/条件state/コスト記述/ID/版/重みは合成であり実方式の評価や知識採用/正式schemaではない。"
@@ -172,7 +174,49 @@
         "推測値や既定重みを採用入力にせず、比較順位を製品採用済みへ進めない。値が揃っても採用は接続先の契約/状態に残す。"
       ],
       "qualification_rule": "原identity/revision/scope/owner/必要候補集合と比較内容を独立照合。missing/unknownは当該軸/入力に保持。実source資格と正式表現は未binding。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "private_owner_return_wrapper": {
+        "id": "BRAIN004-F02-OWNER-RETURN",
+        "requirement_ref": "HELIXBRAIN-L3-004-F02",
+        "system_oracle_ref": "HELIXBRAIN-L10-004-F02",
+        "entry_role": "F02不足返却のprivate same-call wrapper",
+        "same_call_rule": "同一のF02呼出しで受け取った原F02Inputを既存BRAIN004-F02へ一度だけ渡す。既存の完全なF02Returnをそのまま保持し、外側の原request source・invocation binding・decision sourceを照合した論理返却materialを添える。",
+        "input_roles": [
+          {
+            "role": "native_f02_input",
+            "source": "当該呼出しの既存F02Input。F02Input外のscope/revision/problemをここへ合成しない。"
+          },
+          {
+            "role": "original_request_source",
+            "source": "同じ比較呼出しに結び付く原request宣言。problem/requirement_revision/scopeを含むsource全体を保持する。"
+          },
+          {
+            "role": "invocation_request_binding",
+            "source": "同じ呼出しで実際に使われたrequest binding。原request sourceとは別operandとして保持する。"
+          },
+          {
+            "role": "decision_sources",
+            "source": "decision_sourcesは不足field名をkeyに持つ原source map。各entryのoriginal_declarationとrefをrawのまま保持する。"
+          }
+        ],
+        "route_comparison": [
+          "original_request_source.raw_value.original_declaration.problem/requirement_revision/scope と invocation_request_binding.raw_value.problem/requirement_revision/scope",
+          "decision_sources.raw_value[shortage_field].original_declarationの3軸を原request/同call bindingの双方へ照合",
+          "decision sourceのshortage_fieldとnative不足fieldの照合",
+          "destination_roleとL3/L10で許された返却先の照合"
+        ],
+        "return_rule": "native F02InputとF02Returnを無変更でecho/returnする。native return.unresolved_inputsの順に、native stateがmissingのfieldだけ処理する。原request軸はoriginal_declaration内、invocation binding軸はraw直下、decision source軸はdecision_sourcesの不足fieldkey配下original_declarationから読み、同じsource間だけで混ぜずに比較する。全てknown一致し、decision sourceのshortage_fieldが一致し、destination_roleが承認済L3/L10のCORE/INTELLIGENCE/人間の明示値で、source refも存在するときだけ論理候補を返す。",
+        "nonmatch_rule": "Absent、明示null、unknown、既知相違を別状態で保持する。既知相違はconflictのまま残し、別軸のunknownで消さない。request/invocation/decision sourceの原payloadを保持し、該当fieldだけissueへ写す。他の不足fieldの処理を続ける。 SourceObservationのparent stateを各軸の読取前に適用する。parent=present_valueのときだけraw payload内のmember presence/null/valueを読む。parent=absent/present_null/unknownなら、raw内に値が見えても当該子軸はそれぞれabsent/present_null/unknownとして保持し、raw payload自体はechoに全値保持する。独立してknownな他comparisonは継続し、既存priority/foldは変えない。",
+        "no_shortage_rule": "native returnに不足fieldがない場合、返却materialを作らない。不要なsource適用判定を追加条件にしない。",
+        "effects": "none; 実資格、認可、query、delivery、ACK、採択、製品選択を行わない。",
+        "unclosed": "source qualification/実consumerによる受領・判断・実返却は未実証。F01 CORE要求値operandと同candidate接合は本sliceの範囲外。",
+        "allowed_destination_roles": [
+          "CORE",
+          "INTELLIGENCE",
+          "human"
+        ],
+        "allowed_destination_roles_basis": "L3-004-F02/L10-004-F02で示された返却先の原列挙をこのprivate比較契約へ転記。実owner資格を表さない。"
+      }
     },
     {
       "id": "HELIXBRAIN-L4-004-B01",
