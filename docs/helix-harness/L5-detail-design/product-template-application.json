@@ -14115,6 +14115,10 @@
           "supplement_ref": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/obligation_origins"
         },
         {
+          "writer_ref": "/f05_detail_contract/leaf_writer_ledger/20",
+          "supplement_ref": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/collection_reads"
+        },
+        {
           "writer_ref": "/f05_detail_contract/leaf_writer_ledger/21",
           "supplement_ref": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/comparison_links"
         },
@@ -14171,7 +14175,8 @@
         ],
         "present": "六Readの正本rootは同validation.validated.inputを指すvalidation_input。供給済みの型に適合する原collection全値をRead.present.valueへ無変換copyし、locationは表の実memberとする。同値のf05_request内copyへLocationを付け替えない。元順/反復/各原memberと数値profileを保存する。",
         "absent": "実nonnull input objectに表のmemberが無い場合はRead.absent。requestedは表のlocation、parent={root:validation_input,pointer:空文字列}、parent_valueはその実input whole。[]を補わず、原[]はRead.present([])のまま保持する。",
-        "shape_boundary": "これはpartial carrierへ新requiredを課す規則ではない。元schemaが許す各presenceを保持する。collection型が許さないnull又は型外の元wire入力は既存decode/shape失敗のraw whole/診断で保持し、Read<配列>.present(null)へ無断castしない。validation_input未到達を空input又は各Read.absentへ変換しない。"
+        "shape_boundary": "これはpartial carrierへ新requiredを課す規則ではない。元schemaが許す各presenceを保持する。collection型が許さないnull又は型外の元wire入力は既存decode/shape失敗のraw whole/診断で保持し、Read<配列>.present(null)へ無断castしない。validation_input未到達を空input又は各Read.absentへ変換しない。",
+        "proposal_refs": "ObligationMaterial.proposal_refsは同evaluated inputのgap_proposalsが供給配列であるとき、全元proposalのi順に一つのNamedReadを保持する。nameは文字列 /gap_proposals/i/unfinished_obligation_refs（iを実原indexで置換）、readはvalidation_inputの同memberを指すRead<CoreJsonValue>。presentは原Ref列wholeと全反復を無変換copy、member未供給は実proposal parent/parent_valueを持つRead.absent。元proposal全値はgap_proposals_readにも保持する。gap_proposals自体がabsentならNamedRead列は空だが、元collection Read.absentを保持し原[]と同一化しない。selectionでこの保全列を間引かず、各Refのoriginは別のref_readで追う。"
       },
       "obligation_origins": {
         "source_pointers": [
@@ -14198,10 +14203,10 @@
         "formation": "F15のComparisonがformedで、material.unfinished_obligation_refs[k]という実出力nodeが存在する場合だけ、その出力原順kに対応するComparisonLinkを生成する。Comparison.unformedに対して配列indexを捏造しない。owner側の原origin/returned_refs/全wholeは引き続き返す。",
         "member": "member=unfinished_obligation_refs、output_index=k。kは実Comparison.materialの当該返却配列indexで、proposal i/ref j/kindtrace t/raw u/body bとは別namespace。",
         "owner_links_order": [
-          "{root:f05_return,pointer:/owner_material/obligation_material/returned_refs/k} の実node",
+          "{root:f05_return,pointer:/owner_material/obligation_material/returned_refs/r} の実node",
           "{root:f05_return,pointer:/owner_material/obligation_material/occurrences/o} の当該生成元origin whole"
         ],
-        "origin_correspondence": "oはorigin_order内で当該出力原Refを生成した実origin index。同値Refの別occurrenceは各出力出現と別originへ結び、先頭一致へ潰さない。k/oの対応は同walkの実格納時に保持し、linkのため再lookup/分類/整列をしない。",
+        "origin_correspondence": "oはorigin_order内で当該出力原Refを生成した実origin index、rはその同原Ref出現を格納したglobal returned_refsの実index。kはformed Comparisonの実出力indexであり、r又はoと同じとは仮定しない。F14が原originをreturned_refs[r]へ実格納した時にr/oを保持し、F15が既存の原scope/形成規則に従ってその原Ref出現を実出力kへcopyする同walkでk/r/oを結ぶ。同値Refの別occurrenceはそれぞれ別の格納出現へ結び、値の再lookup/先頭一致/別sort/新selectorで対応を作らない。原Ref取得不足又は既存scope対応未形成から必要な実出力と原格納の対応が作れない場合は、既存Comparison生成不能規則でunformedと原原因を保持し、k=rと補完又は未対応出力を捨ててformedにしない。取得済みglobal保全列の長さを当該出力scopeの必要集合にはしない。",
         "root_boundary": "owner_linksはF05DetailedReturnをrootとする既存ReturnLinkだけ。kind_trace_linksは依存Comparison内JSONPointerであり、ReturnLink又はvalidation_input Locationへcastしない。field/gap segmentだけの旧advice絶対pathは流用しない。field_checks/candidate_proposals/original_axes/findingsの既存link規則は本追補で変更しない。"
       },
       "fixed_normal_source_crosswalk": {
