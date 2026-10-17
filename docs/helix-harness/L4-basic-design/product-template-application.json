@@ -3924,9 +3924,9 @@
     "parent_contract_pointer": "/contracts/6",
     "scope": "RequirementGapReturnの私有source-materialization段階。既存FieldInputの定義/値Refから原資料を解決し、元役割を示す根拠がある範囲だけ意味payloadの所在を明示する基本契約。FieldCheckMaterialの状態writer、030 typed input生成、実作用の成立とは別。",
     "preserved_native_boundary": {
-      "input": "既存CompareRequirementGapsContextの同immutable validated、compare_applicability、compare_kind_obligation_trace。新ApplicationInput top-level memberを要求しない。",
+      "input": "同immutable snapshotのF05詳細requestを/f05_validation_material_call_contractに定める。同fn0の原raw/validated/source観測全返却と、compare_applicability/compare_kind_obligation_traceの実Comparison返却又は実未呼出し原因を受ける。元CompareRequirementGapsContext三引数への対応は形成可能な場合に原wholeで保持し、不能なContextを私有viewで存在したことにしない。新ApplicationInput top-level memberを要求しない。",
       "producer": "既存RequirementGapReturn/compare_requirement_gapsが当該fieldごとに原source材料を読む私有段階。別callerのcached結果を同callの材料へしない。",
-      "output": "既存Comparisonのproducer_symbol/input_binding/original_axes/findings/material及びGapReturnMaterialのfield_checks/candidate_proposals/unfinished_obligation_refsは保持。新public field/code/stateを本節から追加しない。",
+      "output": "comparisonの形成/未形成とowner_material全値を同callのF05詳細返却として返す。formed Comparisonのproducer_symbol/input_binding/original_axes/findings/material及びGapReturnMaterialのfield_checks/candidate_proposals/unfinished_obligation_refsの原値・意味・義務対応を保持し、原header/leafが形成不能なら捏造せず原材料と理由を返す。従来Comparison/GapReturnMaterial/FieldCheckMaterialの5/3/5member不変は上流F05要求ではなく技術選択であり、必要なprivate型/返却拡張をL5/L8で明示する。新public field、Finding code又はdomain意味stateを本節から追加しない。私有全返却のmember拡張をpublic field追加と同一視せず、必要なnative型/consumer/公開境界の技術差分は対L5/L8で個別に明示する。",
       "consumer": "同F05の後続definition/value状態writerと不足候補writerへ、原field/Ref/binding/presence/値/理由/投影根拠を渡す。B019→030接続はその後の別consumerであり、本節だけで成立済みとしない。"
     },
     "source_basis": [
@@ -4110,7 +4110,7 @@
       }
     ],
     "ordered_source_materialization": [
-      "1. 同F05 contextと原field_inputs全occurrenceを保持する。validated.input=nullなら原input_issues/未観測を保持し、架空field/空正常材料を生成しない。既存fn0/native比較結果を書き換えない。",
+      "1. /f05_validation_material_call_contractの同F05詳細requestと実call材料を保持し、元Context形成とComparison header形成を別に観測する。原input/Context/headerが未形成ならraw whole/実validated/input_issues/同fn0観測/実前段返却と理由を返し、F05 semantic評価済み又は架空field/空正常材料を生成しない。decode不能時にvalidated.input相対の子Readを作らず、既存fn0/前段返却を書き換えない。形成済みの範囲だけ続くfield source-materializationへ進む。",
       "2. 当該選択scopeの各FieldInputを元順に取り、definition_refsとvalue_fact_refsを別roleで、原null/欠落/空/全Ref反復のまま保持する。元必要field集合を見つかった成功recordから作り直さない。",
       "3. 各原RefからAxisFact/SemanticRecord双方の同binding全対応を解決し、record/source/実body payloadと資格の同snapshot対応を保存する。Ref検索missをJSON member absentへ混同せず、架空index/bodyを作らない。",
       "4. 同Refでもsource本文/record binding/版/scopeが異なる原対応は全て残す。完全同値別occurrenceも元所在を残し、既知相反を別source成功又は後段unknownで消さない。",
@@ -4119,7 +4119,7 @@
       "7. 私有材料を同F05の後続writerへ渡す。source/materializationの未知、投影の未成立、実際に根拠がある定義不足/値未決を別に保つ。当該field/role以外の結果/原状態を停止しない。"
     ],
     "returned_materials": {
-      "native_context": "原validated、二つの指定producer Comparison、原FieldInputの全nodeを同callで保持。新私有viewで元native引数を置換しない。",
+      "native_context": "原F05詳細requestにある同fn0 raw/validated/source観測全返却と二指定producerの実返却/未呼出し原因を同callで保持する。形成可能な元CompareRequirementGapsContext三引数のwhole対応、Context形成とheader形成の別観測、原FieldInput全nodeを保持する。元Context-only署名を互換のまま維持できるとは主張せず、取得口/呼出し/全返却は/f05_validation_material_call_contractへ束縛する。 形成可能な元native三引数wholeと原FieldInputを新私有viewで置換・縮約しない。これは元引数の保持義務であり、正のsource観測を取得できない旧Context-only入口の署名を固定する義務ではない。",
       "field_occurrences": "field元index、field/ref/template/binding/source_ref、definition/value両Ref列と各元index・presence。両roleの一方だけを残さない。",
       "resolved_occurrences": "各Refに対応したAxisFact/SemanticRecordのcarrier/全原record/source Ref/body record pointer/全payload、未対応Ref、同値反復/相反全所在。",
       "source_observations": "raw null/Absent/型外/実値とrequested/reached実parent所在、source bytes/body/既存qualification事実。混合sourceのrawを一つのowner原bodyとして新造しない。",
@@ -4234,7 +4234,7 @@
       }
     ],
     "input_contract": {
-      "native_context": "同immutable snapshotのCompareRequirementGapsContext: validated、compare_applicability、compare_kind_obligation_trace。二つのComparisonは指定producerの同snapshot返却そのもので、別caller/cachedの自己申告を使わない。source材料へ新top-level ApplicationInput memberを要求しない。",
+      "native_context": "/f05_validation_material_call_contractのF05詳細requestを同immutable snapshotの実入力取得口とする。同fn0のraw/validated/source観測wholeと二指定producerの実返却/未呼出しを受け、形成可能時だけ元CompareRequirementGapsContextのvalidated/compare_applicability/compare_kind_obligation_trace三引数への同call whole対応を保持する。別caller/cachedの自己申告を正規返却へしない。未Context時は原材料/理由を返し、本節のsemantic評価を実施したことにしない。source材料へ新ApplicationInput top-level memberを要求しない。",
       "materialization": "同F05呼出しで/field_source_materialization_contractが保持する全原field/role/ref/record/source/body/宣言/投影/局所未成立。呼出し元が任意に供給したqualified=true又はstate文字列を資格経路にしない。",
       "selection": "元選択操作/対象field/templateと要求・product_scope・process/application契約版の範囲だけ。不要field、全knowledge、全required-field集合、完全inventory又は実provider実装を一律の新gateにしない。"
     },
@@ -4393,7 +4393,7 @@
     },
     "detail_and_consumer_boundary": [
       "L5/L8で全private型、全guardと分岐、出現index/各leaf writer、field単位集約、原原因/全返却oracleを具体化する。未定義のvalidate_semantics/classifyGap又は任意oracle boolへ意味判定を隠さない。",
-      "compare_requirement_gapsの詳細返却はcomparisonとowner_materialを同walkで実返却し、原input/Binding未形成ではComparison.input_bindingを捏造しないclosed未形成境界を持たせる。内部originを保持するだけではconsumer受け渡し成立としない。",
+      "compare_requirement_gapsの詳細返却はcomparisonの形成/未形成とowner_material wholeを同walkで実返却する。正のsource照合観測は/f05_validation_material_call_contractの同fn0私有全返却から実callerが取得して実引数へ渡し、旧Contextから再構成しない。原Context形成とheader形成を分け、原input/Binding未形成ではComparison.input_bindingを捏造しない。元Context-only wrapperを不変に維持できるとは主張せず、内部originを保持するだけでもconsumer受け渡し成立としない。",
       "CORE caller実context/返却へpayload/reason/presence/根拠/原義務を運ぶtyped outputをL5/L8で閉じる。B019 core_field_value_contextと030 Definition/ProductValueのquery/field/knowledge版への具体crosswalkは各独立pairの残務とし、本節を追加して成立済みにしない。",
       "旧normal/ADD16の原input/旧期待はe4410407の固定歴史資料として保持する。旧rawに無い定義根拠/値宣言/原命題を遡って存在させず、同rawの未形成と根拠を持つ新正常を独立期待として区別する。旧known保存のための無宣言fallbackはしない。",
       "実source/owner資格/実provider/認可/配送/OS記録/codec/runtime/CI/実受入/全92親430義務の成立を認定しない。"
@@ -4427,5 +4427,387 @@
       "derived_requirement_candidate": "原導出constraint source ownerは実antecedent要求Refのowner又は当該field.binding.application_contract_ref.ownerへ対応する範囲。原候補本文source ownerはproposed_requirement_ref.owner、原提案命題source ownerはGapProposal.ref.ownerへ対応させる。原要求から候補本文への構造対応は別guardであり、候補を要求authorityにしない。",
       "na_candidate": "原N/A候補命題source ownerは当該GapProposal.ref.owner、原N/A判断source ownerは当該NARecord.ref.owner、原policy source ownerは当該ApplicationPolicy.ref.ownerへ個別に対応する範囲。deciderの文字列だけで資格/権限を生成しない。"
     }
+  },
+  "f05_validation_material_call_contract": {
+    "id": "HARNESS-L4-009-F05-VALIDATION-MATERIAL-CALL",
+    "requirement_ref": "HARNESS-L3-009-F05",
+    "system_oracle_ref": "HARNESS-L10-009-F05",
+    "paired_verification_ref": "HARNESS-L9-009-F05-VALIDATION-MATERIAL-CALL",
+    "status": "基本契約の技術差分候補。logical port/原引数/全返却対応のみ。native私有型/全leaf writer/実装成立は後続L5/L8。",
+    "scope": "同fn0の既存照合から正の原source観測を実返却し、実callerがF05へ渡す取得口と同call全返却を定義する。元F05の不足4候補/返却先/定義欠落と値未決の意味は変えない。新runtime/機構/qualification provider/owner/authority/人間gateを作らない。",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "source_basis": [
+      {
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/27",
+            "canonical_sha256": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54"
+          }
+        ],
+        "authority_scope": "HDEC承認対象のF05 selected objectのみ。file全体/下流型/実行/全F05完了の承認を継承しない。"
+      },
+      {
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c",
+        "selected_objects": [
+          {
+            "pointer": "/cases/27",
+            "canonical_sha256": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d"
+          }
+        ],
+        "authority_scope": "HDEC承認対象のF05 selected objectのみ。file全体/下流型/実行/全F05完了の承認を継承しない。"
+      },
+      {
+        "revision": "765fa33fb394716bf9ba0d4a43b482ecb6a5b05f",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "sha256": "713c2ad82a51931bbe5cafa733569d80d7d68f1517de66ebd70c8f11dc3fff11",
+        "selected_objects": [
+          {
+            "pointer": "/field_source_materialization_contract/preserved_native_boundary/input",
+            "canonical_sha256": "ee177f31fe0b20615eb8f87a9e5db64d4446b49a2ec9b9ab6c7f2fd8322ecda1"
+          },
+          {
+            "pointer": "/field_source_materialization_contract/preserved_native_boundary/output",
+            "canonical_sha256": "c64709fd7123065662ac434e022b203e7b00e2543466b0093706ff61ad63b222"
+          },
+          {
+            "pointer": "/field_source_materialization_contract/returned_materials/native_context",
+            "canonical_sha256": "a9b61c33decd49f29720826053891747cebcc2a147e60a943aefbaccc3bfd097"
+          },
+          {
+            "pointer": "/field_source_materialization_contract/ordered_source_materialization/0",
+            "canonical_sha256": "396cd86dc305212a0e3a9f2d4da0336cbc10e33d9d5563d0b7f1f639126ab28a"
+          },
+          {
+            "pointer": "/field_semantic_evidence_contract/input_contract/native_context",
+            "canonical_sha256": "0701c53fed3d419f8ceb68ca9bbc0aa05c198c9d7b40c1a8d1a141a9df994ee3"
+          },
+          {
+            "pointer": "/field_semantic_evidence_contract/detail_and_consumer_boundary/1",
+            "canonical_sha256": "b3075b84b9b20fcc2bdccf351826b8594584d431176efb0f9cc4f2c75ba50bea"
+          }
+        ],
+        "role": "変更前の現行基本境界を固定する技術source。上流承認対象ではない。本節の変更後bytesとのcurrent参照ではない。"
+      },
+      {
+        "revision": "765fa33fb394716bf9ba0d4a43b482ecb6a5b05f",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "sha256": "948f1c60d0795d4ab923ab2a74d36d0b8595c87a2b134e8d7acfa2e9e9f67f96",
+        "selected_objects": [
+          {
+            "pointer": "/functions/0",
+            "canonical_sha256": "b994170051fd6ee2b3d7e4eb40cb910eea3349d27293464787757958e9c753f8"
+          },
+          {
+            "pointer": "/functions/5",
+            "canonical_sha256": "e4419e5d6917e4370d7d94b3a9de29f25948b350abdf52922f3fa6ccf294bdae"
+          },
+          {
+            "pointer": "/functions/9",
+            "canonical_sha256": "dcf6242fcfffc1791a777b776d82927c9507f928ff7a924d4062476c31500157"
+          },
+          {
+            "pointer": "/functions/10",
+            "canonical_sha256": "d2272c71d25684be570fc4a2f56016a16e2ae01fa7cda8f22df0e9ebd6af5de6"
+          },
+          {
+            "pointer": "/type_contract/types/ValidatedApplication",
+            "canonical_sha256": "cd3cd7b651726ed144ae75fb5f5999ade324bfed4c124c47930d432951f31f17"
+          },
+          {
+            "pointer": "/type_contract/types/CompareRequirementGapsContext",
+            "canonical_sha256": "ada408e4c2b400bb0af4c9ed603e378cd7d4966f3cc824927808e990cd75f54f"
+          },
+          {
+            "pointer": "/type_contract/types/Comparison",
+            "canonical_sha256": "b4297394fe444bdaa7bed2c9e9278aeb3983370caab5e019887e805b7993a15a"
+          },
+          {
+            "pointer": "/type_contract/types/ApplicationAnalysis",
+            "canonical_sha256": "8231d61f5f2e5e34acd07ad0ecff8ba2f4959762dafaaf6fb1cbbaf858e6f5b4"
+          },
+          {
+            "pointer": "/type_contract/types/CheckApplicationClaimsContext",
+            "canonical_sha256": "f81d8de2f81b753aa3cf21a9c2d8c1c5df24c03513d67c516b912ca80fd1de08"
+          },
+          {
+            "pointer": "/type_contract/types/BuildApplicationAnalysisContext",
+            "canonical_sha256": "8726b36429ba4a65d9f2ca310c741ba9cb311f0e2abc50236f016ac32fe70a0b"
+          },
+          {
+            "pointer": "/reference_resolution_contract",
+            "canonical_sha256": "15e4dbf2533c44dc5c1ebf4c6440f45710361760bfe3d893559b1c9d7c6078b5"
+          },
+          {
+            "pointer": "/source_result_reference_projection/pipeline_binding",
+            "canonical_sha256": "7380e10a204283cc88eebc191723db1280fa7acfd580409e050865b3553292cb"
+          },
+          {
+            "pointer": "/type_contract/kind",
+            "canonical_sha256": "b826baf82306ddee6e0b2e6661134ef20a76358c65b87b78a7ecd5530d6db05f"
+          },
+          {
+            "pointer": "/wire_codec_contract/presence",
+            "canonical_sha256": "6ec2e07180f539acca5b258cfa37a720bc21ef1df8d5fe765c32b0db6b473506"
+          },
+          {
+            "pointer": "/wire_codec_contract/codec_operations/0",
+            "canonical_sha256": "31994f7c525e698415ea57aaf86584f917663ed7907344fef077d7d36a30ed33"
+          }
+        ],
+        "role": "現行fn0/F05/consumer/必須型とpure DAGの技術source。成功source trace全返却/実orchestratorが既存であるという証拠でも、上流承認対象でもない。"
+      },
+      {
+        "revision": "765fa33fb394716bf9ba0d4a43b482ecb6a5b05f",
+        "path": "docs/helix-brain/L4-basic-design/core-knowledge-reply.json",
+        "sha256": "d9e50e5e9759ba4fed4eb9273bb206ccccdf14eec871ed37877cf96d3808d219",
+        "selected_objects": [
+          {
+            "pointer": "/f02_responsibility_port/input_ports/2",
+            "canonical_sha256": "bd6b28ddb33bad53ce33af98423e7952995826553025eb75ce860f7a6d0e34cb"
+          },
+          {
+            "pointer": "/f02_responsibility_port/input_ports/3",
+            "canonical_sha256": "cf4f942fc89ce3d25bb00a243b64e143e9ac81beba8f8cda51b889ce4fe74bc5"
+          },
+          {
+            "pointer": "/f02_responsibility_port/input_ports/4",
+            "canonical_sha256": "5ec2387c2ed60480a2156e062c25c26155fe5f0bfa8a0a87a1003f37984968c5"
+          },
+          {
+            "pointer": "/f02_responsibility_port/output_materials",
+            "canonical_sha256": "e964d296bef57575f0654db0455c2f57268fe858980323bf0591f5848b55dd5d"
+          }
+        ],
+        "role": "既存B019のCORE案件値入力・独立field/query関係・030元callと全返却を受け渡す基本portの技術source。上流承認や実接続/詳細writerの成立根拠ではない。"
+      },
+      {
+        "revision": "765fa33fb394716bf9ba0d4a43b482ecb6a5b05f",
+        "path": "docs/helix-brain/L5-detail-design/knowledge-query-receipt.json",
+        "sha256": "1381d1ea0e05599a335dc25fc6dcc23879c61cd2bf924986cd71b090149cbe49",
+        "selected_objects": [
+          {
+            "pointer": "/types/F02Input",
+            "canonical_sha256": "c39495f0f179b53f3fd31769735b49ee3a72c3e2d9b086b82ba37b886e88ffe0"
+          },
+          {
+            "pointer": "/types/Definition",
+            "canonical_sha256": "22e3568f6319a559cf8248bccbb26cfea756388c152bbb473e2969e40de93e6b"
+          },
+          {
+            "pointer": "/types/ProductValue",
+            "canonical_sha256": "9ec85f8e0a874052dfe85286d1a2231a3d6485dde9d933ea3949069c0519ea65"
+          },
+          {
+            "pointer": "/consumer_connections/1",
+            "canonical_sha256": "8ef93e6745bf6bf461ab44fe78956fb920063e615af2863561e957c802486968"
+          }
+        ],
+        "role": "既存030のtyped受入口と全11返却rootの技術source。CORE値/意味からこの型への具体projectionや実call成立は後続。"
+      }
+    ],
+    "approved_scope_binding": {
+      "decision_id": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
+      "decision_path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+      "selected_objects_only": [
+        "/requirements/27",
+        "/cases/27"
+      ],
+      "meaning": "原承認対象F05の意味連続性のみ。以下の技術signature/型/個別leafが上流から直接指定されたとは主張しない。"
+    },
+    "current_source_gap": {
+      "pointer": "/type_contract/types/ValidatedApplication",
+      "observation": "現返却はinput/input_issues/unusable_source_refsのみ。正のsource/bytes/body/qualification/root照合の原出現traceを返す型ではない。未掲載sourceをabsence-of-errorでqualifiedへ補完しない。旧F05 Context-only wrapperには追加観測を取得する引数がなく、新coreへ無条件委譲できる互換経路はない。",
+      "source_basis_index": 3
+    },
+    "logical_ports": {
+      "validation_detail": {
+        "signature": "validate_application_input_detail(raw) -> {original_raw_input, validated, source_observations}",
+        "input": "現fn0へ実際に渡した原raw operand whole。logical RawValueとnumeric私有native値を無断castせず、既存decode/原診断境界のまま保持。",
+        "output": {
+          "original_raw_input": "同入力原whole。既存codecが観測したraw診断を持つ場合もその原材料を保持し、未実施decode ASTを生成しない。",
+          "validated": "同一walkの既存fn0責務が返すValidatedApplication whole。既存値/全input_issues/unusable_source_refsを変更しない。",
+          "source_observations": "同fn0が当該原sourceについて実際に得た原source/qualification/root/bytes/body/照合結果の全観測。実元index/locator/ref/body/content_bytes、必要時の実左右原operand、対応/既知差/未観測を別保持。全source取得完備を条件にしない。"
+        },
+        "source_observation_rule": "同fn0の既存source_ref→envelope/body/bytes、資格ref→Qualification→独立root、owner/subject/revision/scope/供給digest条件を原引数へ束縛する。供給digestが無い等の非適用条件は元非適用として保持し新gateにしない。実条件を照合できた局所出現だけが後段の根拠となり、未取得/未観測を成功へ補完しない。新任意qualified boolや別providerを受けない。",
+        "public_projection": "既存validate_application_input(raw)->ValidatedApplicationを残す場合は、同私有validation coreの実返却.validatedへの投影にできる。このwrapperは必要原raw引数を持つ。ownerを使う実callerは詳細を一回だけ呼び、旧wrapperを重ねて呼ばない。",
+        "partial_input_boundary": "元type_contractはlogical_design_not_formal_wire_schemaであり、そのfields記載から入力carrierのrequired集合を新設しない。既存wire_codec_contract.presence及びdecode_core009_wireの供給形検査に従い、未供給carrier keyはAbsentのまま保持する。供給された宣言memberが適合形であるpartial objectは、binding keyが無いことだけでdecode不能にせずinput非nullの原object/key集合として保持する。binding={}も供給された原objectとして保持する。bindingの供給型がarray等であるshape不適合は原raw/実InputIssueとinput=nullへ分ける。いずれも元axis義務/意味/資格の充足ではない。logical型の必須axisとpartial carrierの原presenceをL5/L8の閉native型・decoder呼出し・writerに対応させることは残務で、既存runtime挙動を確認したとは主張しない。"
+      },
+      "f05_detail": {
+        "signature": "compare_requirement_gaps_detail({validation, compare_applicability, compare_kind_obligation_trace}) -> F05DetailedReturn",
+        "input": {
+          "validation": "validation_detailが実際に返した{original_raw_input,validated,source_observations} whole。その同call子返却を実callerが渡す。",
+          "compare_applicability": "returned{comparison:指定producerの実Comparison whole}又はnot_called{実Context/header未形成の原引数/所在/原因}。",
+          "compare_kind_obligation_trace": "returned{comparison:指定producerの実Comparison whole}又はnot_called{実Context/header未形成の原引数/所在/原因}。"
+        },
+        "predecessor_boundary": "原missing/unknown/conflictを含むComparisonも実返却ならreturned。domain不足を未呼出しへ再分類しない。cached結果/別snapshot/自己申告をreturnedの根拠にしない。型がComparisonであることだけで同call対応を認定しない。 not_calledは実callerが具体Context/header不足を観測して明示skipした場合だけ。call event/returnの観測が無いだけではnot_calledにしない。この基本portのreturned/not_calledは、実返却又は明示skipを持つ有限対象に限る。calledだが返却未観測、実call自体unknown等は原caller観測/raw原因を外側の未形成返却へ保持し、いずれの枝にも補完せずF05 semantic評価へ進めない。新しい全producer lifecycle状態機械を本節から作らない。",
+        "output": {
+          "original_request": "上記validation全返却と二実call材料のwhole。",
+          "context_formation": "formed{元CompareRequirementGapsContextの三引数whole対応}又はunformed{実不足端/既知対応差/原原因}。",
+          "header_formation": "formed{原validated.input.binding object}又はunformed{原binding presence/未到達/形/原因}。context形成と独立した観測。",
+          "comparison": "formed{実Comparison whole}又はunformed{実header/native leaf形成不成立の原原因}。局所domain unknownというだけでComparison全体を未形成にしない。",
+          "owner_material": "同requestから保持した原raw/実validated/実前段/同fn0観測、成立した原field/source/body/宣言/値/理由/presenceとその局所未成立、原gap/各支持/義務/返却先候補及び実Comparison出力indexへの対応を全返却する。Context不成立枝は原whole/理由のみで、semantic評価済み材料を生成しない。"
+        },
+        "compatibility": "旧compare_requirement_gaps(Context)->Comparisonをその署名のまま新detailへ委譲できるとは主張しない。旧Contextから正source観測を復元せず、必要なinput/outputの技術差分をL5/L8で明示する。"
+      }
+    },
+    "formation_rules": [
+      "元Context三引数への対応が作れるかと、原Comparison.input_bindingを作れるかは別観測。validated.input=null又は原bindingAbsentへ{}や別field.binding/依存Comparison.bindingを代入しない。",
+      "原binding object={}が実在する場合はその原値をheaderへ保持できる。これは全axis/Ref版/意味/資格が成立した宣言ではなく、bindingAbsentへのdefault補完でもない。全axis完備を呼出しの新gateにしない。",
+      "validation_detailのpartial_input_boundaryに従い、binding未供給のpartial inputとbinding={}を供給するpartial inputをともに原presence付きinput objectとして保持する。前者のheaderはunformed、後者のheaderは原objectのformedと区別する。このheader観測だけでContext/依存producer/意味をformedにせず、常時axisの欠落は元意味担当の個別不足へ残す。",
+      "元Context又は原input/headerが未形成の範囲は原raw/実fn0/実前段全返却と原因を返すだけでF05 semantic評価を行わない。decode不能時にvalidated.input相対の子Read/field occurrenceを捏造しない。原raw全体の保存とsemantic観測を区別する。",
+      "形成済みContext/headerの範囲では既存field source-materialization/semantic evidence規則を使い、同source資格不足/宣言未形成/同Ref相反を当該field/roleへ局所化して独立兄弟を保持。入力不能の原因を定義missing又は案件値unknownへ変えない。",
+      "同fieldの親bindingとの既知差又は対象対応未形成は原左右/版/scope/所在を保持する。別fieldや別scopeの有効原資料で相殺せず、元field.bindingを親へ上書きしない。"
+    ],
+    "actual_caller_trace": [
+      {
+        "step": 1,
+        "producer": "同fn0 validation_detail",
+        "consumer": "CORE application private caller",
+        "mapping": "rawを一回渡し、original_raw_input/validated/source_observations wholeを受け取って同call材料として保持する。新private callerは本基本で定義する論理接続であり、現L5に実orchestrator/runtimeが既存とは主張しない。"
+      },
+      {
+        "step": 2,
+        "producer": "private callerと既存producer DAG",
+        "consumer": "compare_applicability / compare_kind_obligation_trace の元producer",
+        "mapping": "同validation.validatedの実値を元引数へ渡す。必要前段/原headerが形成できず呼ばなかった場合は原不足端/原因を保持する。F05の二依存を返却/未呼出し材料として渡すためであり、9producer全consumerを一括Slot型へ移行しない。codec/projectorは既存の別port。 明示skipの原原因がない返却未観測はnot_calledへ分類せず、原call観測の未形成として外側へ保持する。"
+      },
+      {
+        "step": 3,
+        "producer": "CORE private caller",
+        "consumer": "F05 detail",
+        "mapping": "step1の全validation返却と二指定producerの実call材料をF05 detailの実引数へ渡す。別caller/cache/logの値を取得路にしない。"
+      },
+      {
+        "step": 4,
+        "producer": "F05 detailの同一walk",
+        "consumer": "CORE private caller全返却",
+        "mapping": "原request/二formation/comparison/owner_material wholeを一回の返却として受ける。比較とowner leafは同read材料から作り、Compare返却後のpayload再lookup/再評価、hidden log/global state/副作用callbackでsidecarを回収しない。"
+      },
+      {
+        "step": 5,
+        "producer": "CORE private caller",
+        "consumer": "check_application_claims / build_application_analysis の元Context",
+        "mapping": "F05 comparison.formedの実Comparisonだけを、その同snapshotの他元必須producer実返却とともに元F05引数へ渡す。これらのContextを作れなければ呼ばず原未呼出し原因を外側返却へ残す。比較union/owner wholeを旧Comparison型へcastせず、ApplicationAnalysis.bindingも捏造しない。"
+      },
+      {
+        "step": 6,
+        "producer": "CORE private caller全返却",
+        "consumer": "B019 core_field_value_contextを実現する接続caller",
+        "mapping": "F05詳細wholeを必須のprivate返却memberとして保持し別typed実引数へ渡す。原value/reason/presence/意味judgment/局所原因/版/義務を捨てず、既存B019 RawF02へ混ぜない。B019/030のquery/knowledge/独立field関係/typed projectionは別原材料とその対設計へ残す。",
+        "consumer_source_refs": [
+          {
+            "source_basis_index": 4,
+            "pointer": "/f02_responsibility_port/input_ports/2"
+          },
+          {
+            "source_basis_index": 4,
+            "pointer": "/f02_responsibility_port/output_materials"
+          }
+        ]
+      },
+      {
+        "step": 7,
+        "producer": "B019/030の選択された接続caller",
+        "consumer": "CORE受取caller",
+        "mapping": "選択030 inputの原全値/presence/originと同call全返却又は未呼出し原因を、B019原全返却/接続原材料/残義務と共に返す責務へ結ぶ。本節はcrosswalk/実配送/受領成立を実装済みにしない。",
+        "consumer_source_refs": [
+          {
+            "source_basis_index": 4,
+            "pointer": "/f02_responsibility_port/input_ports/4"
+          },
+          {
+            "source_basis_index": 5,
+            "pointer": "/consumer_connections/1"
+          }
+        ]
+      }
+    ],
+    "outer_return_boundary": "CORE private callerはvalidation whole、実producer返却/未呼出し、F05 detail whole、形成できたAnalysis又は原未形成原因、選択owner接続の全返却/未接続をtyped全返却へ載せる。input不能又はfn9/fn10未呼出しでも原材料を消去せず、全体成功/失敗の一語へ畳まない。ticket発行はOSに残す。",
+    "requirement_and_state_boundary": "原F05の四候補、定義/knowledge版不足→BRAIN、製品要求値未決→HARNESS008、適用contract不整合→HARNESSという責務を保持する。Context/header/comparisonのformationは技術的返却形成の観測で、新domain正解state又はpublic Finding codeではない。意味unknownとqualification/source/宣言の未成立を混ぜない。",
+    "current_technical_differences": [
+      {
+        "source_revision": "765fa33fb394716bf9ba0d4a43b482ecb6a5b05f",
+        "source_path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "source_pointer": "/field_source_materialization_contract/preserved_native_boundary/input",
+        "source_canonical_sha256": "ee177f31fe0b20615eb8f87a9e5db64d4446b49a2ec9b9ab6c7f2fd8322ecda1",
+        "change": "元Context固定入力から実fn0全返却/二実call材料へ取得口を明示。元三引数は形成可能時の原対応として保持。"
+      },
+      {
+        "source_revision": "765fa33fb394716bf9ba0d4a43b482ecb6a5b05f",
+        "source_path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "source_pointer": "/field_source_materialization_contract/preserved_native_boundary/output",
+        "source_canonical_sha256": "c64709fd7123065662ac434e022b203e7b00e2543466b0093706ff61ad63b222",
+        "change": "比較形成と全owner返却を拡張し、旧5/3/5公開shape固定を上流義務として扱わない。 元field_checks/candidate_proposals/unfinished_obligation_refsの保持と新public field/code/state非追加は維持し、私有全返却の拡張と区別する。"
+      },
+      {
+        "source_revision": "765fa33fb394716bf9ba0d4a43b482ecb6a5b05f",
+        "source_path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "source_pointer": "/field_source_materialization_contract/returned_materials/native_context",
+        "source_canonical_sha256": "a9b61c33decd49f29720826053891747cebcc2a147e60a943aefbaccc3bfd097",
+        "change": "元Context-only互換の非主張と原request/実前段/形成観測の全保持へ変更。 形成可能な元native三引数wholeを私有viewで置換・縮約しない保持点は維持する。旧Context-only署名固定を外す理由は、その引数から同fn0の追加観測を取得できず、明示した新取得口が必要だからである。"
+      },
+      {
+        "source_revision": "765fa33fb394716bf9ba0d4a43b482ecb6a5b05f",
+        "source_path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "source_pointer": "/field_source_materialization_contract/ordered_source_materialization/0",
+        "source_canonical_sha256": "396cd86dc305212a0e3a9f2d4da0336cbc10e33d9d5563d0b7f1f639126ab28a",
+        "change": "Context/header形成を分離し、未形成はraw/実診断のみでsemantic未実行を明示。"
+      },
+      {
+        "source_revision": "765fa33fb394716bf9ba0d4a43b482ecb6a5b05f",
+        "source_path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "source_pointer": "/field_semantic_evidence_contract/input_contract/native_context",
+        "source_canonical_sha256": "0701c53fed3d419f8ceb68ca9bbc0aa05c198c9d7b40c1a8d1a141a9df994ee3",
+        "change": "新実取得口へ整合し、元Context三引数の実存在と未形成を区別。"
+      },
+      {
+        "source_revision": "765fa33fb394716bf9ba0d4a43b482ecb6a5b05f",
+        "source_path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "source_pointer": "/field_semantic_evidence_contract/detail_and_consumer_boundary/1",
+        "source_canonical_sha256": "b3075b84b9b20fcc2bdccf351826b8594584d431176efb0f9cc4f2c75ba50bea",
+        "change": "同fn0観測の取得と同walk全返却を新契約へ接続。"
+      }
+    ],
+    "legacy_preserve_change": {
+      "legacy_sources": [
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": "16–60,81–92",
+          "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "lines": "33–77",
+          "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+        }
+      ],
+      "failure_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": "65–101",
+        "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+        "meaning": "UTW-014の欠損から空集合への縮退、UTW-020の巨大aggregateによる部分診断不足、UTW-021の自己申告を完了根拠にする失敗を照合材料として読む。本設計だけで実際の再発防止を証明したとは扱わない。"
+      },
+      "preserve": "旧JSONauthorityのtemplate定義/製品instance、原field/意味owner/trace、原版/source/未完とderived viewの分離を保持する。UTW-014欠損空集合化、UTW-020局所原因隠蔽、UTW-021自己申告完了の失敗に対応して、未形成をraw/原因と共に返す。 元field_checks/candidate_proposals/unfinished_obligation_refs、形成可能な元native引数wholeを私有viewで置換しないこと、新public field/code/stateをこの基本節から追加しない境界を保持する。",
+      "change": "旧registry/planner/式木/runtimeは移植せず、同fn0原観測の私有取得口とF05入力/全返却/caller bindingを現logical portへ明示変更する。元F05 Context-only署名又は公開5/3/5shape不変を互換義務としない。 元native引数wholeを保持する義務と、追加観測を取得する新私有入口の引数型は区別する。後者だけを明示変更し、形成不能な元Contextを私有viewで代替成立させない。",
+      "reason": "現ValidatedApplicationは成功source traceを返さず、旧F05 Context-only wrapperは新coreの追加観測を取得できない。input=null/親bindingAbsent/前段未呼出し時のraw保持と必須Comparison返却の穴を、仮binding/資格bool/hiddenlog/defaultで塞がないため。失敗事例から上流意味/新gateを生成しない。"
+    },
+    "finite_pair_boundary": "L9は本logical portの有限原入力/形成観測/原whole copy対応を独立期待として固定する。fixtureが供給する仮の同call/資格前提は実fn0/producer実行証明ではない。既存field_semantic_evidence_verificationの9有限input/期待及びfield_source_materialization_verificationの旧7caseをこの追補で変更しない。",
+    "detail_obligations_and_nonclaims": [
+      "同fn0 source観測の閉native型/全positive左右operand/check適用性/index/原bytes/body/資格全leaf writerと対L8を詳細で閉じる。native_definition_wholeを含む各投影経路でrole owner対応の原左右/positive結果/局所原因をどの型/返却先へ載せるかも未閉包であり、基本port定義だけでそのwriterを完成扱いしない。",
+      "F05詳細request/形成union/owner whole、field/gap/原理由/presence/全支持/義務/返却先、比較/owner出力indexと整列移送、native出力shapeをL5/L8で閉じる。未定義provider bool又は関数名だけに意味判定を隠さない。",
+      "既存必要typed引数を持つ範囲だけfn9/fn10を呼び、独立claim/partial Analysisを拡張する場合はそのconsumerごとに別の明示技術差分と全返却oracleを閉じる。9producer一括の架空runtime移行又は実private caller実装済みを主張しない。",
+      "B019/030 typed crosswalk、同query/knowledge/field関係、実配送/受領/owner資格、正式codec/資源/実providerは各独立pairの残務。正の原観測保存を実source資格成立へ昇格しない。",
+      "旧normal/ADD16のraw/旧期待は固定歴史として保持し、同rawの未形成と新原根拠を持つ正常を後続oracleで分ける。旧knownを維持する無宣言fallbackはしない。",
+      "新gate/全inventory/全source/全axis完備/人間承認手続は追加しない。実source資格、reader/writer全leaf、実装/test/CI/実受入、全F05及び全92親430義務の閉包/実装準備成立は未認定。"
+    ]
   }
 }
