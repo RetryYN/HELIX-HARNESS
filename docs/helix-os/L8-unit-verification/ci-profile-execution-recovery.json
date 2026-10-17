@@ -170883,7 +170883,13 @@
           "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/6",
           "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/7",
           "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/7",
-          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/8"
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/3",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/4",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/status_reduction",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/1"
         ],
         "input_source": {
           "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
@@ -170955,7 +170961,13 @@
           "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/6",
           "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/7",
           "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/7",
-          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/8"
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/3",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/4",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/status_reduction",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/1"
         ],
         "input_source": {
           "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
@@ -170990,7 +171002,13 @@
           "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/0",
           "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/0",
           "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/7",
-          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/8"
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/3",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/4",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/status_reduction",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/1"
         ],
         "input_source": {
           "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
@@ -171025,7 +171043,13 @@
           "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/0",
           "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/0",
           "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/7",
-          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/8"
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/3",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/4",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/status_reduction",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/1"
         ],
         "input_source": {
           "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
@@ -171052,7 +171076,6 @@
             "f03_source_join_status": "corresponding"
           },
           "harness_f03_minimum_evaluation_tag": "supplied",
-          "trace_input_snapshot": "exact extracted input; actual profile raw values retained",
           "selection": {
             "tag": "supplied",
             "value": {
@@ -171111,13 +171134,21 @@
                 ]
               }
             }
-          },
-          "selection_derivation_ja": "L4 membership/catalog規則によるU1選択。actual/context差はselection sourceではなく、違いはtrace.input_snapshotに保持する。"
+          }
         },
         "source_rules": [
           "/contracts/0/selection_producer_contract/private_call_contract/producer_consumer_boundary/source_plan_producer/does_not_use_as_selection_gate",
           "/contracts/0/selection_producer_contract/private_call_contract/execution_order/5",
-          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/6"
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/6",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/3",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/4",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/status_reduction",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/1",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/5",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/6",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/7"
         ],
         "input_source": {
           "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
@@ -171128,7 +171159,8 @@
         "trace_expectation": {
           "input_snapshot": "input_source pointerと同じ値をL4 trace.input_snapshotへ保持",
           "raw_and_rows": "raw Field tags/values、relation/catalog raw row、source pointer、原配列順・重複を保持。未知/foreign/non-applicable rowsを選択候補へ混ぜない。",
-          "consumer_nonfeedback": "case 1/5で異なるactual/context valuesはtrace.input_snapshotへ残すがselection導出の条件にしない。pure Resultへconsumer_returnを混ぜない。"
+          "consumer_nonfeedback": "case 1/5で異なるactual/context valuesはtrace.input_snapshotへ残すがselection導出の条件にしない。pure Resultへconsumer_returnを混ぜない。",
+          "selection_derivation_ja": "L4 membership/catalog規則によるU1選択。actual/context差はselection sourceではなく、違いはtrace.input_snapshotに保持する。"
         }
       },
       {
@@ -171144,7 +171176,6 @@
             "f03_source_join_status": "corresponding"
           },
           "harness_f03_minimum_evaluation_tag": "supplied",
-          "trace_input_snapshot": "exact extracted input; context raw values retained",
           "selection": {
             "tag": "supplied",
             "value": {
@@ -171203,13 +171234,21 @@
                 ]
               }
             }
-          },
-          "selection_derivation_ja": "L4 membership/catalog規則によるU1選択。actual/context差はselection sourceではなく、違いはtrace.input_snapshotに保持する。"
+          }
         },
         "source_rules": [
           "/contracts/0/selection_producer_contract/private_call_contract/producer_consumer_boundary/source_plan_producer/does_not_use_as_selection_gate",
           "/contracts/0/selection_producer_contract/private_call_contract/execution_order/5",
-          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/6"
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/6",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/3",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/4",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/status_reduction",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/1",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/5",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/6",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/7"
         ],
         "input_source": {
           "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
@@ -171220,7 +171259,8 @@
         "trace_expectation": {
           "input_snapshot": "input_source pointerと同じ値をL4 trace.input_snapshotへ保持",
           "raw_and_rows": "raw Field tags/values、relation/catalog raw row、source pointer、原配列順・重複を保持。未知/foreign/non-applicable rowsを選択候補へ混ぜない。",
-          "consumer_nonfeedback": "case 1/5で異なるactual/context valuesはtrace.input_snapshotへ残すがselection導出の条件にしない。pure Resultへconsumer_returnを混ぜない。"
+          "consumer_nonfeedback": "case 1/5で異なるactual/context valuesはtrace.input_snapshotへ残すがselection導出の条件にしない。pure Resultへconsumer_returnを混ぜない。",
+          "selection_derivation_ja": "L4 membership/catalog規則によるU1選択。actual/context差はselection sourceではなく、違いはtrace.input_snapshotに保持する。"
         }
       }
     ],
@@ -171238,6 +171278,15 @@
       "candidate_sha256": "79b2b58cae7a9889b8f730894c1211050d79dd1f80aeccddbf2191842dd6ecae",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
+    },
+    "f03_candidate_presence_basis": {
+      "source_path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+      "source_revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+      "source_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+      "source_pointer": "/comparison_precedence/3",
+      "function_pointer": "/functions/3",
+      "meaning_ja": "HARNESS F03のcandidateは、originalと独立sourceから計算したobservationへの比較依頼である。candidate missingは比較未依頼を表し、original/sourcesの必須性を置換せず、計算した観測そのものを未供給にしない。この6入力のcandidate absentを必須source欠落へ読み替えない。computed observation自体が不明なら肯定結果は生成しない。",
+      "existing_l4_type_binding_pointer": "/contracts/0/selection_producer_contract/private_call_contract/external_type_bindings/11"
     }
   }
 }
