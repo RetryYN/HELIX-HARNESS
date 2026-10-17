@@ -383,12 +383,91 @@
         "required_authority": "Tuple[MappingRecord]",
         "required_oracle": "Tuple[MappingRecord]",
         "required_typed_edge": "Tuple[MappingRecord]"
+      },
+      "NonApplicabilityReason": {
+        "binding": "Binding",
+        "relation_id": "Text",
+        "axis": "authority_mapping|oracle_mapping|typed_edge_mapping",
+        "owner": "Text",
+        "reason": "Text"
+      },
+      "LineageMappingEvidence": {
+        "validated_input": "ValidatedInput",
+        "non_applicability_sources": "Tuple[Envelope[NonApplicabilityReason]]",
+        "non_applicability_uses": "Tuple[NonApplicabilityUse]"
+      },
+      "NonApplicabilityUse": {
+        "binding": "Binding",
+        "relation_id": "Text",
+        "axis": "authority_mapping|oracle_mapping|typed_edge_mapping",
+        "reason_ref": "Ref"
       }
     },
     "qualification_boundary": "独立owner resolverが当該bindingへ資格付きで供給したsnapshotを入力にする。pure検査はRef/bytes/body/owner/root適用範囲の対応検査だけで、信頼rootの認定・新authorityを生成しない。fixture資格は合成モデル、実資格の証拠ではない。",
     "semantic_validation": "ID/revision/kind/source/影響nullを構造invalidで捨てず、missing/unknown/conflict oracleまで到達させる。owner declared必要集合を空へ縮退しない。相反する異source同ID/revisionは両方保持。",
     "closure": "原記録required集合のmatchedのみ成立。qualified N/Aは非required項目だけ。claim/042参照/operation/原recordのclosureは独立。",
-    "raw_failure": "validateのinput_shape_invalidでLineageInputへdecodeできなければValidatedInput.input=null、input_path付きissuesを返す。後続意味関数はinput=nullではcomparisonを行わず、InputIssue保持のunestablished analysisだけ返す。型正当なsemantic nullやqualification不明はinputを保持して意味判定へ通す。"
+    "raw_failure": "validateのinput_shape_invalidでLineageInputへdecodeできなければValidatedInput.input=null、input_path付きissuesを返す。後続意味関数はinput=nullではcomparisonを行わず、InputIssue保持のunestablished analysisだけ返す。型正当なsemantic nullやqualification不明はinputを保持して意味判定へ通す。",
+    "private_mapping_evidence_contract": {
+      "status": "design_contract",
+      "meaning": "本L5で比較関数と集約分析関数へ渡す内部bundleを定める。既存のclosed LineageInputと3-member ValidatedInputは変更しない。この設計記述から製品実装・実資格・実配送の成立を生成しない。",
+      "selection_operand": "non_applicability_usesが対象軸とreason_refの対応を明示する。理由body自身のbinding/relation/axisは理由内容であり、使用対象を選択する入力ではない。case labelやexpected値からuseを導出しない。",
+      "mapping_record_projection": "MappingRecord.non_applicability_refがある場合、その行のbinding/relation_id/axisとRefから対応するNonApplicabilityUseを投影し、元Refと対象値を完全比較する。食い違いはそのitemのfinding。MappingRecordが無い場合、同じuse tupleを呼出し入力として明示し、MappingRecordやendpointを作らない。",
+      "qualification": "useで選択されたreason Refだけを、同じValidatedInput snapshot内のQualificationとindependent_qualification_rootsで既存のsubject_ref、source/body digest、binding、owner、applicable、exact-root規則に照合する。applicable=falseだけではN/Aにならない。別の承認root、owner registry、gateは追加しない。 Qualification.bindingは選択されたreason Envelopeの原NonApplicabilityReason.bindingへ照合し、ValidatedInput.input.bindingやuse.bindingへ置換しない。資格解決後に別段のreason_scope_checkでuse targetへ照合する。",
+      "reason_scope_check": "選択useのtarget (binding, relation_id, axis) とqualified reason bodyのscopeを照合する。一致する場合だけ当該non-required axisのnot_applicable観測を作る。不一致ならuseとreason Refを保全したtarget-local unknown/inapplicable findingを作り、既存required missingを消さない。未選択のforeign-scope reasonは対象判断へ参加しない。",
+      "required_set_precedence": "独立したRelationBody.required_*集合を先に導く。required mappingのmissing/unknown/conflictをN/A理由で充足または消去しない。",
+      "multiple_reasons": "同じtargetに対する複数の選択済みqualified reason Refは、各RefごとにAxisObservationを返してsource_refs、non_applicability_ref、owner、bindingを保全する。reason文が異なるだけではconflictにせず、一意性gateやfirst-winsを置かない。未選択・無参照sourceはglobal closure条件にしない。",
+      "pointer_conflict": "MappingRecordの明示pointerと対応use/ref/body/qualificationに矛盾があればそのpointer/itemへfindingを残す。異なる正当Refの文面差はconflictではない。",
+      "input_null": "aggregateは最初にbundle.validated_inputをローカルに取り出す。そのinputがnullなら既存の正確な8-member null-input結果を返し、reason sources/usesの検査・選択を行わない。",
+      "consumer_boundary": "build_lineage_analysisはunwrap後のValidatedInputを既存の他のpure comparison/boundary consumerへ渡し、compare_lineage_mappingsにはbundleを渡す。compare_lineage_mappingsも他のaxis計算にはValidatedInputを使い、NA判定だけsourcesとusesを読む。",
+      "reason_local_rules": [
+        {
+          "id": "HARNESS-L5-053-R-non_applicability_source_missing",
+          "trigger": "選択use.reason_refに一致するEnvelopeがない",
+          "axis_state": "unknown",
+          "finding_projection": "Finding全7member。subject_ids=[use.relation_id], binding=use.binding, axis_refs=[use.axis], claim_refs=[], source_refs=[use.reason_ref]を原出現順・重複保持、backflow_owner=null。use.reason_ref.ownerはsource_refs内の原Ref値として保持し、資格済み配送先と解釈しない。",
+          "axis_observation_projection": "AxisObservation全8member。subject_ids=[use.relation_id], binding/axis=use, state=unknown, source_refs=[use.reason_ref], owner=null, cause_refs=[このrule ID], non_applicability_ref=use.reason_ref。source Ref ownerは原Ref内で保持するが資格済みownerへ昇格しない。"
+        },
+        {
+          "id": "HARNESS-L5-053-R-non_applicability_source_bytes_mismatch",
+          "trigger": "選択Envelopeのsource_refとcontent_bytes digest/body decodeが一致しない、または同一Refに異なるbytesが供給される",
+          "axis_state": "unknown",
+          "finding_projection": "Finding全7member。subject_ids=[use.relation_id], binding=use.binding, axis_refs=[use.axis], claim_refs=[], source_refs=[use.reason_ref]を原出現順・重複保持、backflow_owner=null。use.reason_ref.ownerはsource_refs内の原Ref値として保持し、資格済み配送先と解釈しない。",
+          "axis_observation_projection": "AxisObservation全8member。subject_ids=[use.relation_id], binding/axis=use, state=unknown, source_refs=[use.reason_ref], owner=null, cause_refs=[このrule ID], non_applicability_ref=use.reason_ref。source Ref ownerは原Ref内で保持するが資格済みownerへ昇格しない。"
+        },
+        {
+          "id": "HARNESS-L5-053-R-non_applicability_qualification_unresolved",
+          "trigger": "selected Envelopeのqualification_ref/root/subject_ref/hash/binding/owner/applicableが同snapshotの既存Qualification規則を満たさない",
+          "axis_state": "unknown",
+          "finding_projection": "Finding全7member。subject_ids=[use.relation_id], binding=use.binding, axis_refs=[use.axis], claim_refs=[], source_refs=[use.reason_ref]を原出現順・重複保持、backflow_owner=null。use.reason_ref.ownerはsource_refs内の原Ref値として保持し、資格済み配送先と解釈しない。",
+          "axis_observation_projection": "AxisObservation全8member。subject_ids=[use.relation_id], binding/axis=use, state=unknown, source_refs=[use.reason_ref], owner=null, cause_refs=[このrule ID], non_applicability_ref=use.reason_ref。source Ref ownerは原Ref内で保持するが資格済みownerへ昇格しない。"
+        },
+        {
+          "id": "HARNESS-L5-053-R-non_applicability_scope_mismatch",
+          "trigger": "selected qualified reason bodyの(binding, relation_id, axis)が明示use targetと一致しない",
+          "axis_state": "unknown",
+          "finding_projection": "Finding全7member。subject_ids=[use.relation_id], binding=use.binding, axis_refs=[use.axis], claim_refs=[], source_refs=[use.reason_ref], backflow_owner=qualified reason owner。",
+          "axis_observation_projection": "AxisObservation全8member。subject_ids=[use.relation_id], binding/axis=use target, state=unknown, source_refs=[use.reason_ref], owner=qualified reason owner, cause_refs=[このrule ID], non_applicability_ref=use.reason_ref。元のrequired-set observation/findingを併置して保持。"
+        }
+      ],
+      "source_projection_and_order": {
+        "matched_axis_source_refs": "matched軸ではRelationRecordとindependent qualified RelationBodyのEnvelope.source_ref、選択MappingBodyのEnvelope.source_ref、および対応MappingRecord.source_ref/target_refを保持する。全出現を残し、Refキー順に安定整列する。",
+        "missing_axis_source_refs": "missing軸では必要rowの存在と欠落を示すRelationRecordおよびindependent qualified RelationBodyのEnvelope.source_refを保持する。",
+        "reason_axis_source_refs": "reason由来軸ではselected use.reason_refを保持し、供給reason Envelope.source_refとの全field完全一致を要求する。 qualified reasonがuse targetと一致してnon-required axisをnot_applicableにする成功時は、AxisObservation.owner=NonApplicabilityReason.owner、cause_refs=[]、non_applicability_ref=use.reason_refとし、subject_ids=[use.relation_id]、binding=use.binding、axis=use.axis、source_refs=[use.reason_ref]の全8 memberを返す。成功自体のFindingは追加せず、既存required-axis findingは保持する。",
+        "finding_source_refs": "該当AxisObservationを発生させた証拠RefをFindingへ投影する。重複出現を残してRefキー順に安定整列する。",
+        "ref_sort_key": "Ref型の宣言済み全fieldからUTF-8 compact JSONを作る。object member名はUnicode scalar順、array要素順と値は保持し、非ASCII文字はescapeしない。異なるRefはscope/identity等の一部分だけで同値扱いせず、同一keyの複数出現は入力出現順を保つstable sortとする。",
+        "binding_sort_key": "Binding型の宣言済み全field（request_ref, scope, snapshot_refを含む）から同じUTF-8 compact JSON keyを作る。scopeまたはidentityだけでgroup/deduplicateしない。これはこの返却順の局所技術詳細で、strict codec/canonicalization全体の採用を意味しない。",
+        "axis_observation_order": "subject_ids（Text tupleのUnicode scalar昇順）、Bindingキー、axis（Unicode scalar昇順）、owner（nullをTextより前、TextはUnicode scalar昇順）、source_refs（Refキー順）。全sort keyが同一なら入力上の出現順を保つ。",
+        "finding_order": "subject_ids（Text tupleのUnicode scalar昇順）、Bindingキー、axis_refs（Text tupleのUnicode scalar順）、backflow_owner（nullをTextより前、TextはUnicode scalar昇順）、source_refs（Refキー順）、rule_ref（Unicode scalar昇順）。全sort keyが同一なら入力上の出現順を保つ。",
+        "field_projection": "AxisObservationは宣言8 member、Findingは宣言7 memberをすべて出力する。cause_refs/claim_refsの空値は[]、nullable owner/non_applicability_refは明示的null。sortはmemberの併合・重複除去・scope統合に使用しない。"
+      },
+      "preservation_and_scope": {
+        "required_axis_precedence": "各reason由来observation/findingは既存required-axis observation/findingへ追加する。required missing/unknown/conflictを消去・置換・N/A化しない。",
+        "unknown_reason_owner": "source missing/bytes mismatch/qualification unresolvedの3ruleはsource資格を成立させないため AxisObservation.owner=null かつ Finding.backflow_owner=null。raw Refはsource_refs/non_applicability_refで保持する。",
+        "qualified_scope_mismatch_owner": "qualified reasonの対象scope不一致だけは、その理由のqualified body ownerを保持する。",
+        "finite_evidence_boundary": "L8候補にはADD-22〜ADD-27の6件の全値Comparison期待を置き、4 local ruleそれぞれの有限な対応caseを含める（scope mismatchはADD-23、selected source failureはADD-25〜ADD-27）。ADD-24は未選択source control、posthoc_controlは別の事後反例で正式caseでもTDD Redでもない。6 caseとcontrolは有限範囲であり、4 ruleの全入力網羅・実行・製品runtime/CIの成立を示さない。",
+        "selected_use_order": "sourcesはraw候補として保持し、use.reason_refとexact一致したEnvelopeだけをqualification解決する。未選択Envelopeの不正qualificationは対象state/global closureへ波及させない。"
+      }
+    }
   },
   "functions": [
     {
@@ -530,14 +609,18 @@
       "contract_refs": [
         "HARNESS-L5-053-F04"
       ],
-      "input": "ValidatedInput",
+      "input": "LineageMappingEvidence",
       "output": "Comparison",
       "effect": "none。immutable snapshotから戻り値だけ。旧runtime/旧CIなし。",
       "algorithm": [
         "独立qualified RelationBody.required_authority/oracle/typed_edgeの必要集合へ、供給RelationRecordの各対応を別々に双方向join。null/必要mapping不在はmissing、原必要集合の根拠未解決ならunknown、qualified異値はconflict。要求集合を消して成立にしない。",
         "MappingBodyのaxis、relation_id/kind、before/after、source/target Ref、binding、ownerを完全照合。QAがmatchedでもQO/QEを推定せず、receiptで不足を埋めない。",
         "non_applicability_refは当該scope/axisをownerが非適用としたqualified理由へ解決できた場合のみnot_applicable。required mapping欠落をN/Aへ変えない。",
-        "F04の6ruleでclaimと元axisを別に返し、authority_record_owner/oracle_owner/trace_ownerへ原不足を送る。"
+        "F04の6ruleでclaimと元axisを別に返し、authority_record_owner/oracle_owner/trace_ownerへ原不足を送る。",
+        "bundle.non_applicability_usesで対象軸とreason_refの対応を先に読む。MappingRecord.non_applicability_refがある場合はその行からuseを投影し、呼出し側useとfull Ref/対象(binding, relation_id, axis)を照合する。行が無い場合は明示されたtarget-level useを使い、MappingRecordやendpointを作らない。理由bodyは対象選択に使わない。",
+        "選択されたuse.reason_refに一致するEnvelopeだけを、同じsnapshotのQualificationとindependent_qualification_rootsで既存のsubject Ref/hash/binding/owner/applicable/exact-root規則へ照合する。qualified reason bodyの(binding, relation_id, axis)がuse targetと一致し、target axisがindependent required集合外のときだけnot_applicable。scope不一致はuseとRefを保持したitem-local unknown/inapplicable findingとし、required missingを変えない。",
+        "同じtargetの異なるreason文をconflictにしない。選択された各qualified reason Refを個別のAxisObservationとして全て保持し、先着選択・一意性gateは置かない。未選択/無参照sourceは対象stateやglobal closureを変えない。",
+        "reason_local_rulesとsource_projection_and_orderに従い、各selected useに対するAxisObservation（8 member）/Finding（7 member）を全member明示で構成する。source不成立時のowner=null、qualified scope不一致時のreason owner保持、既存required-axis findingの併置を適用する。"
       ],
       "failure_rules": [
         "HARNESS-L5-053-R-authority_mapping_missing",
@@ -545,7 +628,11 @@
         "HARNESS-L5-053-R-typed_edge_mapping_missing",
         "HARNESS-L5-053-R-authority_mapping_unknown",
         "HARNESS-L5-053-R-oracle_revision_mismatch",
-        "HARNESS-L5-053-R-typed_edge_kind_mismatch"
+        "HARNESS-L5-053-R-typed_edge_kind_mismatch",
+        "HARNESS-L5-053-R-non_applicability_source_missing",
+        "HARNESS-L5-053-R-non_applicability_source_bytes_mismatch",
+        "HARNESS-L5-053-R-non_applicability_qualification_unresolved",
+        "HARNESS-L5-053-R-non_applicability_scope_mismatch"
       ],
       "oracle_ref": "HARNESS-L8-053-compare_lineage_mappings",
       "unit_case_refs": [
@@ -556,7 +643,16 @@
         "HARNESS-L8-053-F04-NEG-05",
         "HARNESS-L8-053-F04-NEG-06",
         "HARNESS-L8-053-ADD-12",
-        "HARNESS-L8-053-ADD-13"
+        "HARNESS-L8-053-ADD-13",
+        "HARNESS-L8-053-ADD-22",
+        "HARNESS-L8-053-ADD-23",
+        "HARNESS-L8-053-ADD-24",
+        "HARNESS-L8-053-ADD-25",
+        "HARNESS-L8-053-ADD-26",
+        "HARNESS-L8-053-ADD-27"
+      ],
+      "failure_rule_table_refs": [
+        "/type_contract/private_mapping_evidence_contract/reason_local_rules"
       ]
     },
     {
@@ -623,14 +719,15 @@
         "HARNESS-L5-053-N01",
         "HARNESS-L5-053-B01"
       ],
-      "input": "ValidatedInput",
+      "input": "LineageMappingEvidence",
       "output": "LineageAnalysis",
       "effect": "none。immutable snapshotから戻り値だけ。旧runtime/旧CIなし。",
       "algorithm": [
-        "ValidatedInput.input=nullなら、LineageAnalysisをbinding=null、comparisons=[]、boundaries=[]、input_issues=ValidatedInput.issuesの原順保全、local_closure=unestablished、unresolved_reference=HARNESS-L2-053→HARNESS-L2-042、side_effect_count=0、global_completion=unprovenで返す。comparisons=[]とboundaries=[]は型付きinput/record/operationの未観測を表し、not_requestedを推定しない。binding=nullはこの枝だけに限り、input有りではinput.bindingをそのまま返す。input有りなら各pure比較関数とboundaryを呼び、全axis/claim/finding/ownercauseをbinding/subject/axis単位で保持。各rule判定は担当関数の結果を使い、code/expected入力で結果を作らない。",
+        "最初にbundle.validated_inputをValidatedInputとして取り出す。ValidatedInput.input=nullなら、LineageAnalysisをbinding=null、comparisons=[]、boundaries=[]、input_issues=ValidatedInput.issuesの原順保全、local_closure=unestablished、unresolved_reference=HARNESS-L2-053→HARNESS-L2-042、side_effect_count=0、global_completion=unprovenで返す。comparisons=[]とboundaries=[]は型付きinput/record/operationの未観測を表し、not_requestedを推定しない。binding=nullはこの枝だけに限り、input有りではinput.bindingをそのまま返す。null枝ではreason sources/usesを検査・選択しない。input有りなら各pure比較関数とboundaryを呼び、全axis/claim/finding/ownercauseをbinding/subject/axis単位で保持。各rule判定は担当関数の結果を使い、code/expected入力で結果を作らない。",
         "required axisにmissing/unknown/conflictがある当該local closureはunestablished。全required matched、非requiredのqualified N/Aだけならestablished。これはrecord-only closureであり042未決や実operation成立を消さない。",
         "全findingを消さずasset ID/semantic revision/relation ID/axis/owner/source RefのUnicode scalar昇順へ並べる。nullは専用missing位置として比較し空Textと同一にしない。異bindingは別resultのまま。",
-        "同一入力の再比較と入力順置換は同じsemantic結果。時計/env/fs/network/DB/API/ID生成/保存/rollback/権限発行/受入宣言なし。side_effect_count=0、global_completion=unproven。"
+        "同一入力の再比較と入力順置換は同じsemantic結果。時計/env/fs/network/DB/API/ID生成/保存/rollback/権限発行/受入宣言なし。side_effect_count=0、global_completion=unproven。",
+        "build_lineage_analysisはbundle.validated_inputを他のpure compare/boundary関数へ渡し、compare_lineage_mappingsだけへbundle全体を渡す。input=null時は既存の8-field returnを作り、reason source/useの検査・選択を行わない。"
       ],
       "failure_rules": [],
       "oracle_ref": "HARNESS-L8-053-build_lineage_analysis",
