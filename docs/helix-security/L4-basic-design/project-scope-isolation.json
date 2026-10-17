@@ -369,6 +369,41 @@
           "preserve": "異なる対象・scope・source状態を一つのgreenへ折り畳まないという失敗回避観点。",
           "change": "現契約はowner-contextの内容比較と追跡に限定する。旧受入oracleを現行gateへcopyしない。",
           "source_generation": "legacy-generation-2026-09-14"
+        },
+        {
+          "role": "independent_infra_logical_shape_reference_only",
+          "revision": "3a3f4e5657506ce90c0731ffe43243c8d8197739",
+          "document": "docs/helix-infrastructure/L5-detail-design/resource-topology-environment.json",
+          "file_sha256": "f14b05edf676d626255575dcad4ffdc14a5679bbc19e6751f92014f46257f88d",
+          "pointers": [
+            "/logical_types/1",
+            "/logical_types/43",
+            "/logical_types/52",
+            "/logical_types/53"
+          ],
+          "selected_objects": [
+            {
+              "pointer": "/logical_types/1",
+              "object_canonical_sha256": "c9e2f23b123799ba4bec506f0d661dc9d2fabf71dadd7805a879a6b034b9ea4d",
+              "type_name": "Presence<T>"
+            },
+            {
+              "pointer": "/logical_types/43",
+              "object_canonical_sha256": "48c5593847c5570c1ee5bb8be8cc5923abc39c5ed698f1d62c2c35f5253bb699",
+              "type_name": "Profile_F02"
+            },
+            {
+              "pointer": "/logical_types/52",
+              "object_canonical_sha256": "3c1e12df46c0dacd9a6034116868c8344c0af80dbf7015f9c1c54a9071b81d49",
+              "type_name": "Input_F02"
+            },
+            {
+              "pointer": "/logical_types/53",
+              "object_canonical_sha256": "5b31403bf17dec7fd0c389893cdef0a3ae46d1072004e54ded6f79ffddd19899",
+              "type_name": "Assessment_F02"
+            }
+          ],
+          "scope": "InfraInputはInput_F02、InfraResultはAssessment_F02の本節内別名。型と原presenceの対応根拠だけで、実INFRA provider/資格/実行成功を表さない。"
         }
       ],
       "purpose": "各ownerの独立sourceを元consumer contextの同じ対象軸へ明示接続し、identity/scopeの既知差・不足・unknownを失わず比較する。F01/F02のowner責務と元入力/既存返却を保全する。",
@@ -402,7 +437,40 @@
           "ownerから渡るnative input/result、raw source body、reference/pointer、presenceを供給された表現のまま別々に保持する。source metadata宣言だけからbodyを再構成しない。",
           "同じconsumer ProposalInputに対する既存native analysisと owner-context projectionを別結果として束ね、original inputの置換や既存returnの再計算を行わない。",
           "各slotの宣言metadata（owner、subject_ref、source_ref、source_revision）を、当該slotが明示選択したSourceInput occurrenceの同名4 memberと対応させる。原source bodyやconsumer context全nodeの同値をこの4値照合に代用しない。左右pointerと原presenceを別保持し、一方のpointerを他方へ転記しない。"
-        ]
+        ],
+        "new_basic_logical_records": {
+          "scope": "この節で新たに定める私有論理port。既存OwnerSourceMaterialやSourceInputのmemberを増やさず、callerが原SourceInputと別operandとして供給する。詳細閉型/serializerはL5で定める。",
+          "shared_members": {
+            "source_index": "選択先SourceInput.sourcesの出現indexを持つ原Field。slotとの対応はeight_occurrence_slotsで固定。",
+            "declared_metadata": "owner/subject_ref/source_ref/source_revisionの4つの原Field<Text>と各pointer/presence。選択occurrenceの同名memberとだけ対応比較する。"
+          },
+          "OwnerIdentityPort": {
+            "slots": [
+              "os_origin",
+              "os_target"
+            ],
+            "members": {
+              "source_index": "shared_members/source_index",
+              "declared_metadata": "shared_members/declared_metadata",
+              "tenant_applicable": "独立ownerが供給する原Field<Bool>。各slotの明示occurrenceに対する適用条件で、同occurrenceのscope.tenantやconsumer値から導出しない。"
+            },
+            "source_members": "scopeの5軸とOS environment traceは明示indexが指すOwnerSourceMaterialの原member。tenant_applicableはこの別port operandのmemberで、OwnerSourceMaterialのmemberと偽らない。"
+          },
+          "OwnerStatePort": {
+            "slots": [
+              "state_OS",
+              "state_INFRA",
+              "state_CONNECT"
+            ],
+            "members": {
+              "source_index": "shared_members/source_index",
+              "declared_metadata": "shared_members/declared_metadata",
+              "state": "当該ownerが独立に供給する原Field<MaterialState>。各slotの明示occurrenceに対応する素材状態の宣言で、実資格/許可/実運転成功ではない。"
+            },
+            "source_members": "stateはこの別port operandであり、OwnerSourceMaterialに存在しないstateを読んだことにしない。"
+          },
+          "original_pointer_boundary": "両recordの原node/member pointerと、選択occurrence側の原node/member pointerは別namespaceで保持する。tenant_applicable/stateが欠落/null/unknownでも元nodeを保持し、別sourceやconsumerから補完しない。"
+        }
       },
       "eight_occurrence_slots": {
         "selection_order": [
@@ -567,7 +635,7 @@
           {
             "destination_member": "origin_tenant_applicable",
             "source_slot": "os_origin",
-            "source_logical_accessor": "OS-side port.tenant_applicable",
+            "source_logical_accessor": "OwnerIdentityPort.tenant_applicable",
             "consumer_logical_accessor": "ProposalInput.context.origin_tenant_applicable",
             "source_owner": "OS",
             "comparison_kind": "Field<Bool>"
@@ -575,7 +643,7 @@
           {
             "destination_member": "target_tenant_applicable",
             "source_slot": "os_target",
-            "source_logical_accessor": "OS-side port.tenant_applicable",
+            "source_logical_accessor": "OwnerIdentityPort.tenant_applicable",
             "consumer_logical_accessor": "ProposalInput.context.target_tenant_applicable",
             "source_owner": "OS",
             "comparison_kind": "Field<Bool>"
@@ -583,7 +651,7 @@
           {
             "destination_member": "owner_material_states.OS",
             "source_slot": "state_OS",
-            "source_logical_accessor": "owner-side port.state",
+            "source_logical_accessor": "OwnerStatePort.state",
             "consumer_logical_accessor": "ProposalInput.context.owner_material_states.OS",
             "source_owner": "OS",
             "comparison_kind": "Field<MaterialState>"
@@ -591,7 +659,7 @@
           {
             "destination_member": "owner_material_states.INFRA",
             "source_slot": "state_INFRA",
-            "source_logical_accessor": "owner-side port.state",
+            "source_logical_accessor": "OwnerStatePort.state",
             "consumer_logical_accessor": "ProposalInput.context.owner_material_states.INFRA",
             "source_owner": "INFRA",
             "comparison_kind": "Field<MaterialState>"
@@ -599,7 +667,7 @@
           {
             "destination_member": "owner_material_states.CONNECT",
             "source_slot": "state_CONNECT",
-            "source_logical_accessor": "owner-side port.state",
+            "source_logical_accessor": "OwnerStatePort.state",
             "consumer_logical_accessor": "ProposalInput.context.owner_material_states.CONNECT",
             "source_owner": "CONNECT",
             "comparison_kind": "Field<MaterialState>"
@@ -731,6 +799,22 @@
           "tenant_applicableはsideごとのOS原Bool Field。tenant文字列から適用可否を推定せず、true/false/null/unknown/presenceを分ける。",
           "owner_material_statesは各ownerの独立MaterialState Field。qualification、fixture result、別owner stateをcastしない。",
           "15 expected_connection memberは独立CONNECT ConnectionMaterial全体から対応させる。partial header、operation label、別owner scopeから残りmemberを合成しない。"
+        ],
+        "non_context_traces": [
+          {
+            "side": "origin",
+            "source_slot": "os_origin",
+            "source_logical_accessor": "OwnerSourceMaterial.scope.environment",
+            "destination_trace": "environment_side_traces.origin.os_environment",
+            "meaning": "選択OS occurrenceのscope.environmentを原Field/parent/pointerごと保存。32 context葉のenvironmentはINFRA入力が主operandで、このtraceを補完に使わない。"
+          },
+          {
+            "side": "target",
+            "source_slot": "os_target",
+            "source_logical_accessor": "OwnerSourceMaterial.scope.environment",
+            "destination_trace": "environment_side_traces.target.os_environment",
+            "meaning": "選択OS occurrenceのscope.environmentを原Field/parent/pointerごと保存。32 context葉のenvironmentはINFRA入力が主operandで、このtraceを補完に使わない。"
+          }
         ]
       },
       "comparison_and_failure_meaning": {
@@ -745,7 +829,8 @@
         "credential_boundary": "credential/secret内容をこのcontractで取得・複写・公開しない。owner material stateやconnection declarationをactual credential/permission/operation resultへ読み替えない。",
         "not_established": "資格・実接続・runtime invocationは未確立。",
         "native_representation_boundary": "native input/resultのFieldを読む前に、known・非nullの宣言型の値であり、original=suppliedのrawとtyped valueがJSON型敏感再帰等値であることを確かめる。booleanとnumberを区別し、object key集合・list順・原nullを保つ。不整合時は原Field全nodeを保持して子memberを合成せず、消費するleaf/anchorだけへunknown寄与を残す。未消費native結果は原観測の保持だけとし、追加provider gateを作らない。寄与unknownで他原因の既知violationを上書きしない。詳細の理由・writer・優先順はL5で定める。",
-        "tenant_presence_boundary": "tenant適用がknown falseの場合、実supplied nullのみ非適用marker、実supplied非nullは違反、absentはunknownとする。適用unknownをfalseへ変換せず、tenant値から適用Boolを補わない。"
+        "tenant_presence_boundary": "tenant適用がknown falseの場合、実supplied nullのみ非適用marker、実supplied非nullは違反、absentはunknownとする。適用unknownをfalseへ変換せず、tenant値から適用Boolを補わない。",
+        "infra_presence_to_consumer_field": "InfraInputは固定Input_F02の別名。original_profileの実key environment_identityについて、key不在/明示null/実string/空string/型外を原profileとともに読み、consumer Field<Text>のoriginal/tag/valueと同じpresenceとJSON型の粒度で対応比較する。sourceにField tagを捏造せず、未観測parentをabsent childへ変換しない。実非空string同士だけ内容の既知一致/差を比較し、欠落/null/空/型外は元値を残して当該環境leaf未解決とする。source inputとInfraResult（Assessment_F02）のretained_original_profileは独立operandで、一方の欠落を他方から補わない。"
       },
       "thirteen_return_root_meanings": [
         {
