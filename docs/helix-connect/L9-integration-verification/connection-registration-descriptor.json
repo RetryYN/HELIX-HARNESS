@@ -7053,21 +7053,21 @@
         "source_bindings": [
           {
             "path": "docs/helix-connect/L4-basic-design/connection-registration-descriptor.json",
-            "file_sha256": "9a9eeed7e658ba03c59318c7b31b463baf808cdd11c4260acbce866786a969f8",
+            "file_sha256": "3daf69bf0f995afaaf466001ae3d216bb32423eff5a73552741303f08f0f1a92",
             "pointer": "/contracts/0",
-            "object_canonical_sha256": "29dfcae36e91585f402b8ee3888f9e83d4fc21bcfae847fc545dd847cf7e058f"
+            "object_canonical_sha256": "08553d551c0b888f239a1548c439ced8fd00abc7835a0aec34acd5609a4f9007"
           },
           {
             "path": "docs/helix-connect/L5-detail-design/connection-registration-descriptor.json",
-            "file_sha256": "a5714fd59746f3397709ff0f52cca57124739711f5a75f68ba9b3a5ba074d23a",
+            "file_sha256": "22a18f5bf7b0c3d573a238548d47d100025559f75501ca7d33384d8574c03b78",
             "pointer": "/private_registration_receipt_seam",
-            "object_canonical_sha256": "64acf6464340577de9e78fd39c42bf61040a398e1ece62e664cd9c7ee3eab4ff"
+            "object_canonical_sha256": "b3a18984e552d45c772105f8f3093b210e018daf1cb8504c0ee0683150a8a62a"
           },
           {
             "path": "docs/helix-connect/L8-unit-verification/connection-registration-descriptor.json",
-            "file_sha256": "03f90f2d456eca91d9351b8be3212a965d25a700ab461a64d567dccd90575ab4",
+            "file_sha256": "941d64309f15708f2d053e80d442affd10362c700231138cd9b57ccdf97192d3",
             "pointer": "/private_registration_receipt_seam_conditions",
-            "object_canonical_sha256": "4aa12e85e4e95743bf2771015a865b97e272dcbd18e326cbb579d6eba3795383"
+            "object_canonical_sha256": "9f721cd503e9ce8c321003c11805a742442a9ca5f99d8704ca70ed04fffa3a87"
           }
         ],
         "condition_refs": [
@@ -7108,9 +7108,14 @@
             "condition_refs": [
               "RCP-R2-12",
               "RCP-R3-17",
-              "RCP-R3-18"
+              "RCP-R3-18",
+              "RCP-R3-16",
+              "RCP-02",
+              "RCP-03",
+              "RCP-04",
+              "RCP-05"
             ],
-            "observation": "not_invoked・no_response_observed・observed null/valueの違いと原response Presenceが維持される。"
+            "observation": "not_invoked・no_response_observed・observed null/valueの違いと原response Presenceが維持される。 原authority入力の保持は資格/登録成立を生成しない。"
           },
           {
             "id": "L9-SEAM-03",
@@ -7138,7 +7143,7 @@
               "RCP-09",
               "RCP-10"
             ],
-            "observation": "effect=false、18-field basisとsix-field projectionの境界、実採択/永続化/配送の未実証を保つ。"
+            "observation": "effect=false、18-field basisとsix-field projectionの境界、実採択/永続化/配送の未実証を保つ。 原authority map等の私有入力返却は通常trace/receiptの保存・外部送信の許可にならず、raw payload/secret/credential値の扱いを元owner/SECURITY契約へ戻す。"
           }
         ],
         "original_obligation_coverage": "既存L9 F01のpositive/negative raw packetとexpected_materialは値を変更しない。追加条件は登録引継ぎ境界の照合を記述し、既存L9全caseを実行したとは主張しない。",
