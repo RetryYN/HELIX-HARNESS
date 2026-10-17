@@ -11043,10 +11043,76 @@
             "expectation_basis": "005のL8 original.binding.scopeだけをcandidate/binding側から独立して読み、既知tenant差をscope_state=conflictとする。別軸のqualificationはstaleを保持し、SB06の不成立集合{conflict,stale}によりbinding_state=unknown。raw005読取の省略ではscopeがknownとなり期待が変わる。",
             "execution_state": "not_executed",
             "effect": "none"
+          },
+          {
+            "id": "H003-F03-SCOPE-CONFLICT-AND-PFCS-ABSENT",
+            "contract_ref": "HARNESS-L4-003-F03",
+            "input_base": "F03_provisional",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_cells/0/original_contents/original/binding/scope/tenant",
+                "value": "OTHER-T"
+              },
+              {
+                "op": "replace",
+                "path": "/qualification_observations/by_source_cell/0/producer",
+                "value": "stale"
+              },
+              {
+                "op": "remove",
+                "path": "/source_cells/0/original_contents/target_operation/producer_facing_consumer_scope"
+              }
+            ],
+            "expected_complete_connection_observation": {
+              "records": [
+                {
+                  "role": "005_valley",
+                  "target_state": "known",
+                  "scope_state": "conflict",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "stale",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "unknown"
+                },
+                {
+                  "role": "015_flow",
+                  "target_state": "known",
+                  "scope_state": "known",
+                  "scope_relation_state": "not_required",
+                  "source_qualification_state": "known",
+                  "artifact_revision_state": "not_applicable",
+                  "requirement_revision_state": "not_applicable",
+                  "binding_state": "known"
+                }
+              ],
+              "retained_context": {
+                "$copy": "/context"
+              },
+              "retained_source_cells": {
+                "$copy": "/source_cells"
+              },
+              "retained_qualification_observations": {
+                "$copy": "/qualification_observations"
+              },
+              "unaffected_scope": {
+                "$copy": "/unaffected_scope"
+              },
+              "producer_results_recomputed": false,
+              "actual_stage_updated": false,
+              "actual_owner_qualified": false,
+              "effects": []
+            },
+            "input_canonical_sha256": "bd30d2bb87e36ec392e33846cabf4ae7a483a710d1dd21efb8575911e7a82228",
+            "expected_canonical_sha256": "44f4f90597ed553ff1cae8ad513e7bbf901aab51196582836096377dfca13a72",
+            "expectation_basis": "005 original.binding.scopeの既知tenant相反と、原operationのproducer_facing_consumer_scope欠落を別のscope比較として保持する。scope軸内は既知conflictをmissingより優先しscope_state=conflict。別軸source資格staleを保ち、SB06の異種軸集合{conflict,stale}からbinding_state=unknown。他role、全原入力、資格観測、無関係scope、実作用なしを保持する。",
+            "execution_state": "not_executed",
+            "effect": "none"
           }
         ],
         "expected_recipe_rule": "$copyはbaseのfixture参照を一度束縛してからinput_patchを適用した後のcase inputをrootとするRFC6901 pointer。raw input retentionはコピーし、state/reasonは固定expectedから照合する。$sourceは固定source material用でexpected値を入力から生成しない。",
-        "scope": "source-binding接続の追加18対照。各caseのraw input/期待はSourceCell保持とendpoint比較を観測する。既存F03/F04 whole ProcessAssessmentを置換せず、実producer全域や実資格を証明しない。 015のnative PayloadF03_binding/ PayloadF03_binding_scope型はsource pin済L5定義から照合する。L9のSourceCellはそのFieldValue nestingを保持し、owner_material raw inputはpin済L8値を変更せず参照する。",
+        "scope": "source-binding接続の追加19対照。各caseのraw input/期待はSourceCell保持とendpoint比較を観測する。既存F03/F04 whole ProcessAssessmentを置換せず、実producer全域や実資格を証明しない。 015のnative PayloadF03_binding/ PayloadF03_binding_scope型はsource pin済L5定義から照合する。L9のSourceCellはそのFieldValue nestingを保持し、owner_material raw inputはpin済L8値を変更せず参照する。",
         "qualification_limit": "known等は合成の独立source資格入力を指す。L4有限fixtureの観測sidecarは資格発行・実owner資格・実operation bindingではない。",
         "origin_operation_qualification": "各原target_operation資格をSourceCell.qualification_stateやbinding資格から継承しない。有限観測sidecarのorigin_operationは独立optional入力であり、その欠落/malformedはqualification_input_shapeに従う。"
       }
