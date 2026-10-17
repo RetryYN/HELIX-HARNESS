@@ -178,7 +178,158 @@
     "result_contract": "semantic classificationとexact identity/result/trace、prior refs、differences、unresolved、backflowを返す。sameは先行意味結果、newは候補判定で意味revision発行ではない。OS結果は別ref/state。実装/CI/PO受入/完了authority fieldは無い。",
     "concurrency": "HARNESSはlookup snapshot時点の比較をする。結果を実currentとして継続保証しない。OSのtransaction再照合/CASで競合を閉じ、拒否/失敗結果を意味new/sameで相殺しない。",
     "physical_boundary": "runtime版・Python↔Node transport/API schema・formal配置はL5以降と親配置設計へ残す。意味コアにはDB/root/credential/Git write/API tokenを渡さない。",
-    "receipt_comparison_binding": "HARNESSは比較結果Ref Kへ今回と先行のcommand/scope/全base/rule・scope revision/normalized bytes/digest、同一比較の根拠、先行identity result Ref M1とreceipt Ref REC1を結ぶ。OSは初回Plan.identity_result_refをcommand_bindings.identity_result_ref_bytesへ保存し、同bindingのreceipt identity/revision/scopeをcontent_recordsのreceiptへFKで結ぶ。receipt→同command binding→先行M1の解決内容と今回Kの比較対象を双方向照合する。再送sameではKが同じM1/REC1を指し、既存binding/receipt/M1を更新せず、別意味revision・別成功receiptも作らない。Kは意味比較の出力参照であり、それだけでOSの保存やreceipt結合成立を証明しない。OSから供給する結合snapshotでreceiptからM1、KからM1/REC1への同operation/scope/全根拠対応を観測する。参照または解決内容が不足ならOS outcome bindingのunknown(receipt_comparison_binding)、異対象ならbinding_conflictを返し、semantic sameは別fieldへ保持。OS053の既存lookup/readからこのsnapshotを供給できない範囲はOS053へbackflowし、結合観測未成立を残す。"
+    "receipt_comparison_binding": "HARNESSは比較結果Ref Kへ今回と先行のcommand/scope/全base/rule・scope revision/normalized bytes/digest、同一比較の根拠、先行identity result Ref M1とreceipt Ref REC1を結ぶ。OSは初回Plan.identity_result_refをcommand_bindings.identity_result_ref_bytesへ保存し、同bindingのreceipt identity/revision/scopeをcontent_recordsのreceiptへFKで結ぶ。receipt→同command binding→先行M1の解決内容と今回Kの比較対象を双方向照合する。再送sameではKが同じM1/REC1を指し、既存binding/receipt/M1を更新せず、別意味revision・別成功receiptも作らない。Kは意味比較の出力参照であり、それだけでOSの保存やreceipt結合成立を証明しない。OSから供給する結合snapshotでreceiptからM1、KからM1/REC1への同operation/scope/全根拠対応を観測する。参照または解決内容が不足ならOS outcome bindingのunknown(receipt_comparison_binding)、異対象ならbinding_conflictを返し、semantic sameは別fieldへ保持。OS053の既存lookup/readからこのsnapshotを供給できない範囲はOS053へbackflowし、結合観測未成立を残す。",
+    "input_binding_source_contract": {
+      "scope": "InputBindingの同call原source供給と返却責務。既存F01/F02/F06/B01を具体化し、L5の型/固定比較へ導出する論理契約。",
+      "existing_contract_refs": [
+        "HARNESS-L4-052-F01",
+        "HARNESS-L4-052-F02",
+        "HARNESS-L4-052-F06",
+        "HARNESS-L4-052-B01"
+      ],
+      "source_ownership": {
+        "meaning": "各意味/source ownerが原宣言と資格/適用根拠を供給し、既存収集/呼出境界がその元値を保持してHARNESSへ渡す。HARNESSがsourceをIO再収集したり、OSが意味や資格を新造したりしない。",
+        "collection_boundary": "OSの既存OwnerInputPortが受けるidentity/revision/scope/owner/source bytes/選択projection契約/全参照の収集範囲へ対応する。実caller名・新provider・registry・実資格の成立をこの契約から推論しない。",
+        "separate_roles": "同じ構造型を使うroot/qualificationでもscope relation用とtarget用は別roleの原入力。資料の名前/型/非空から別roleの有効根拠へ読み替えない。"
+      },
+      "same_call_inputs": {
+        "original_command_input": "従来の元CommandInput全field、全Resolution tuple/index、全Ref/null/raw bytesをそのまま保持する。公開CommandInputへtarget_ref等を追加しない。",
+        "original_resolution_bytes": "従来の元full Ref→原bytes map。同Refの各元tuple indexへ個別に対応させ、mapからtupleを再構築せず最初/最後の値で上書きしない。",
+        "owner_source_roles": [
+          {
+            "role": "owner_basis_source",
+            "requirement_refs": [
+              "HARNESS-L3-052-F02",
+              "HARNESS-L3-052-F06"
+            ],
+            "meaning_and_owner": "規則意味ownerが提示した原owner-basis leafのschema/owner Ref/原bytesと外Ref。Ruleのowner_basis_refに対応し、source名やvalidだけでownerを生成しない。"
+          },
+          {
+            "role": "rule_source",
+            "requirement_refs": [
+              "HARNESS-L3-052-F02"
+            ],
+            "meaning_and_owner": "規則意味ownerの原宣言field/版/owner-basis参照と外Ref。規則の自己Refを原bytesへ後書きしない。"
+          },
+          {
+            "role": "applicability_source",
+            "requirement_refs": [
+              "HARNESS-L3-052-F02",
+              "HARNESS-L3-052-F06"
+            ],
+            "meaning_and_owner": "Scope/規則の既存ownerが示す原適用関係。Scopeのidentity/revision/scope/ownerという4軸addressとRule full Ref/ownerを保持し、Scope full hashへ代用しない。"
+          },
+          {
+            "role": "scope_source",
+            "requirement_refs": [
+              "HARNESS-L3-052-F01",
+              "HARNESS-L3-052-F02"
+            ],
+            "meaning_and_owner": "Scope意味ownerの原owner/applicability参照、原bytesと外Scope full Ref。別scope/revisionで補完しない。"
+          },
+          {
+            "role": "oracle_source",
+            "requirement_refs": [
+              "HARNESS-L3-052-F01",
+              "HARNESS-L3-052-F06"
+            ],
+            "meaning_and_owner": "当該要求/検証ownerの原scope Refと要求parent宣言、原bytesと外Oracle Ref。別scope/別parentを流用しない。"
+          },
+          {
+            "role": "relation_source",
+            "requirement_refs": [
+              "HARNESS-L3-052-F01",
+              "HARNESS-L3-052-F02"
+            ],
+            "meaning_and_owner": "既存意味ownerが示すScope/Rule/Oracle/ownerの原対応。callerの自己申告snapshotから対応関係を新造しない。"
+          },
+          {
+            "role": "root",
+            "requirement_refs": [
+              "HARNESS-L3-052-F02",
+              "HARNESS-L3-052-F06"
+            ],
+            "meaning_and_owner": "scope relation sourceに適用する独立rootの原owner/subject/source/sha対応。対象はrelation原Refであり、target用rootへ代用しない。"
+          },
+          {
+            "role": "qualification",
+            "requirement_refs": [
+              "HARNESS-L3-052-F02",
+              "HARNESS-L3-052-F06"
+            ],
+            "meaning_and_owner": "scope relation用の原資格資料と独立した資格観測。原root/owner/subject/source/sha対応と実際の観測variantを保持し、構造validを実資格成立へ昇格させない。"
+          },
+          {
+            "role": "target_read",
+            "requirement_refs": [
+              "HARNESS-L3-052-F01",
+              "HARNESS-L3-052-F06"
+            ],
+            "meaning_and_owner": "対象ownerの原scope/required bases/source refs、原bytesと外source Ref。caller basesから独立した対象母集合であり、自己Refは外側に保持する。"
+          },
+          {
+            "role": "target_qualification",
+            "requirement_refs": [
+              "HARNESS-L3-052-F01",
+              "HARNESS-L3-052-F06"
+            ],
+            "meaning_and_owner": "target_readに適用する原資格資料と独立資格観測。対象subjectは元Command scope Ref。scope relation用qualificationからfallbackしない。"
+          },
+          {
+            "role": "target_root",
+            "requirement_refs": [
+              "HARNESS-L3-052-F01",
+              "HARNESS-L3-052-F06"
+            ],
+            "meaning_and_owner": "target_read用の独立rootの原owner/subject/source/sha対応。対象subjectは元Command scope Ref。scope relation用rootからfallbackしない。"
+          }
+        ],
+        "retention": "元2値と11roleを同じ時点の同じ呼出しへ束ねる。省略/明示null/型不正とstateを保持し、欠落を空集合/仮Ref/別sourceへ補完しない。原source bytes/外Ref/宣言body/観測variantは別の原値として照合する。"
+      },
+      "selection_and_projection": [
+        "原bytesのhash/decode/宣言body、外Refと元owner適用/資格の対応を照合してから閉じたsource投影を使用する。構造状態と実資格観測を分離し、投影自己Refを原bytesへ書き戻さない。原資料に本来ある参照edgeは削除しない。",
+        "target_readの型適合した外source Refと全Resolution.refの全5軸membershipをkind/state/資格成功から分離して観測する。membershipだけではTargetSet使用資格は成立しない。",
+        "target Q/root/target本文の各subjectと元Command scopeをそれぞれ原source側operandへ結ぶ。scope relation用とtarget用のroot/資格資料はそれぞれの対象へ照合し、別roleで不足を埋めない。",
+        "全必要source/原投影/Resolution/資格観測の対応後だけ独立required basesをcaller basesと双方向比較する。qualified対象ownerの原asset memberがexpected base=nullを明示すれば、その同じmemberが当該assetの新規不存在宣言となる。別sourceを一律要求せず、caller null/欠落や不適格sourceから不存在を推論しない。",
+        "Base集合の重複/余剰/欠落と、Resolutionの完全同値反復を区別する。全元tuple/indexを保存し、Resolution反復だけを新しいconflict条件にしない。異値/未解決原因は元indexに保持する。"
+      ],
+      "consumer_and_return": {
+        "ready": "既存ValueResultのreadyが持つValidatedInputだけを、既存normalize_payload/build_command_identityの入力へ渡す。元input/source resolutionsの全要素を保持する。",
+        "unknown_conflict": "既存ValueResult/Finding/Backflowで原field/Ref/owner/戻し先を元callerへ返す。unknown/conflictをreadyや空集合に変換しない。callerは同callの元carrierと診断を保持し、型が成立した原値だけを既存report/trace入力へ接続する。未供給Identity/Comparisonを補完しない。",
+        "source_causes": "sourceのraw shape/bytes/資料対応差を公開Differenceの新axisへcastしない。既存内部原因と同じimmutable原carrierをFinding pointer/index/subject/basisから辿る。private原因を新しい公開fieldとして扱わない。",
+        "unresolved_refs": "各原因が直接未解決として記録した同じ原evidence/Resolutionのclosed Refだけを原因順に連結し、全5軸同値でdedupして最初出現順を保持する。Ref無し欠落は空、依存検査を実行しなかったことだけで他source Refを借用しない。"
+      },
+      "failure_and_backflow": "不足/不正shapeは既存unknown、観測した原値/参照/適用の矛盾は既存conflictへ保持する。意味/規則契約の欠陥はHARNESS上流、案件/source入力不足はOSと当該input ownerへ返す。保存/authority/実recipientの裁定は追加しない。",
+      "detail_derivation": {
+        "planned_names": [
+          "H052CurrentValidationInput",
+          "H052SourceProjectionInputs"
+        ],
+        "definition_boundary": "これらは本基本契約から後続L5へ導出する予定名であり、現在の正式L5に既にある型定義とは主張しない。closed型/原payload schema/固定join/全Finding/Backflow/reductionはL5、独立全返却oracleは対L8へ置く。",
+        "schema_boundary": "現L4にclosed JSON schema全体を重複作成しない。詳細でclosed role/kind集合を定める際は全11roleとOracle原sourceを拒否しない対応を揃え、製品transport/codecをfixture表現から先決めしない。"
+      },
+      "legacy_and_failure_correspondence": {
+        "existing_legacy_refs": [
+          {
+            "pointer": "/legacy_comparison/0",
+            "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF"
+          },
+          {
+            "pointer": "/legacy_comparison/2",
+            "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462"
+          },
+          {
+            "pointer": "/legacy_comparison/3",
+            "asset_id": "LEGACY-ASSET-5D4AF9B5877D5CAD7089"
+          }
+        ],
+        "existing_failure_ref": "/failure_basis",
+        "keep": "旧HIL-FR52のcommand冪等/base比較、同operation同payload dedup/異payload conflict、Python意味/Node外部作用分離を保持する。UTW014の欠落空集合化、UTW020のpartial failure診断、UTW021の自己申告を原operand/未解決/責務分離で防ぐ。",
+        "change": "旧runtime/table/write順を移植せず、既存InputBindingの原source受渡しを11roleと同call原2値へ具体化する。",
+        "reason": "対象/規則/owner/独立target根拠と不足原因を別資料や型名から推定しないため。失敗から新しい要求/gate/authorityを作らない。"
+      },
+      "scope_limit": "実provider/実資格/OS保存/実接続/CI/受入の成立証拠ではない。これらの不在を論理契約完了の新gateにせず、後続義務として区別する。prior/PB1/S07/lookupの別接続候補は混載しない。"
+    }
   },
   "contracts": [
     {
@@ -196,7 +347,8 @@
       ],
       "behavior": "command IDはそのままexact比較し、scopeはidentityとrevision、baseは全対象asset identity/revision/scope、payloadは同一規則から導いた意味digestとnormalized bytesへ結ぶ。path、PR/Issue番号、到着時刻はtransport contextであり代替軸にしない。payload内のpath等は意味ownerが宣言しない限り自動除外しない。baseの並べ方やtransport差で同一identityを分岐させない。",
       "failure": "必要値欠落はunknown、先行同IDで一軸以上相違はconflict。base重複/欠落/対象外を不足のない集合へ丸めない。",
-      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
+      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。",
+      "source_input_contract_ref": "/architecture/input_binding_source_contract"
     },
     {
       "id": "HARNESS-L4-052-F02",
@@ -213,7 +365,8 @@
       ],
       "behavior": "HARNESSの同じNormalizationBoundaryが入力と先行根拠を同じRuleRef/scope revisionで評価する。normalized bytesとdigestを結び、digestが一致しても規則/scope revisionの差を消さない。意味atomの除外/array扱い/数値/Unicode等はRuleRefの宣言に従い、任意のheuristicやOS側正規化を挟まない。具体algorithm/schema/toolchainはL5で閉じる。",
       "failure": "規則missing/unknownならunknown、解決した規則revision/本文の不一致はconflict。未対応ruleをlatest/defaultへ読み替えない。 OSの正規化結果しか供給されずHARNESS規則の独立根拠がない入力はunknown(normalization_basis)であり、new/sameを返さない。",
-      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
+      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。",
+      "source_input_contract_ref": "/architecture/input_binding_source_contract"
     },
     {
       "id": "HARNESS-L4-052-F03",
@@ -277,7 +430,8 @@
       ],
       "behavior": "各必要値とResolutionをexactに照合する。missing/unknown/staleは当該値/owner/戻し先付きunknown、内容やidentity/scope/revisionの矛盾はconflict。別scope/revisionのoracleや先行identityを補助根拠として流用しない。先行未存在と先行参照不足を区別する。",
       "failure": "未解決を空集合、false→true、新command ID、規則の推測へ変換しない。入力の一部成立は未完範囲を消さない。",
-      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
+      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。",
+      "source_input_contract_ref": "/architecture/input_binding_source_contract"
     },
     {
       "id": "HARNESS-L4-052-N01",
@@ -311,7 +465,8 @@
       ],
       "behavior": "HARNESS Python意味コアはimmutable snapshotから意味比較とfinding/traceを返す。Node/OSは入力収集・lookup・全base CAS・canonical revision/event/projection/receipt/rollback/durabilityを持つ。要求採否・authority・PO Acceptedは生成しない。003/004/008/016の条件、FR53履歴変換、旧runtime/DB名/schema、新承認者はここへ混載しない。",
       "failure": "禁止write/authority/history/旧runtime callがあれば境界違反。意味結果を消して運転成功へ単純変換しない。",
-      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。"
+      "backflow": "不明/競合の原因field・対象scope/revision・owner・原証拠を保持。意味/規則の欠陥はHARNESS L3/L4、案件入力/先行lookup/保存観測不足はOSと当該ownerへ返す。上流意味を下流で補完しない。",
+      "source_input_contract_ref": "/architecture/input_binding_source_contract"
     }
   ],
   "remaining": [
