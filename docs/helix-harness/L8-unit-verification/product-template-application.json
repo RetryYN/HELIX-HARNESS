@@ -95224,7 +95224,7 @@
             "profile_candidate_binding": {
                 "revision": "current-unpinned-worktree-candidate",
                 "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-                "file_sha256": "811ff350d32ea30b81c25cd76a3710e182eb576f9fdcabfa2ef3fdc7733b8262",
+                "file_sha256": "948f1c60d0795d4ab923ab2a74d36d0b8595c87a2b134e8d7acfa2e9e9f67f96",
                 "pointer": "/wire_codec_contract/numeric_encode_profile"
             },
             "upstream_decision": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
@@ -95245,12 +95245,14 @@
             "l4_existing_bindings": [
                 {
                     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+                    "revision": "6802cc295b6747b98101898c47bb865c7ec6bcd7",
                     "file_sha256": "a8164bd513a72c59fc2c1f121737f664070ccc10e4658f57defe22d85fe6f76d",
                     "pointer": "/contracts/2",
                     "selected_object_canonical_sha256": "6cae1e087609eb2ab452726a4ac81a778d06b7856f7b8ea781df397152b46fef"
                 },
                 {
                     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+                    "revision": "6802cc295b6747b98101898c47bb865c7ec6bcd7",
                     "file_sha256": "a8164bd513a72c59fc2c1f121737f664070ccc10e4658f57defe22d85fe6f76d",
                     "pointer": "/contracts/10",
                     "selected_object_canonical_sha256": "3aaf414e317ca76dadff8074c3d77dc00e316fedd70edd1dbb2c9e371fead41c"
@@ -95263,13 +95265,13 @@
                 "LEGACY-ASSET-98372FEE8A3AC8F9C299 archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md field/value_type/trace sha256=3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830; semantic rederivation",
                 "UTW-014, UTW-020, UTW-021 archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md sha256=bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
             ],
-            "independent_prefreeze_source": "/home/tenni/HELIX-HARNESS/scaffold/review-handoff/local/core009-numeric-independent-semantic-literals-root-6802cc29.json",
+            "independent_prefreeze_source": "scaffold/review-handoff/local/core009-numeric-independent-semantic-literals-root-6802cc29.json",
             "independent_prefreeze_sha256": "7b3cbac0138252aeab3d09f3e154afc0c6ecf91a2098aaadcde54981c1de57fa",
-            "prefreeze_limitation": "事前案の意味条件を出発点とし、期待はprofile本文・実在L4契約・旧sourceへ戻って手著述した。候補/reader/decoder/codec/validator/model/Decimal/数値実験/product testは実行していない。ignored事前案は著述履歴の識別に限り、規範・入力・期待の解読は本節のtracked本文と固定source参照から行う。baselineは既存wire契約を指し、新profile自体は別のcandidate bindingへ限定する。"
+            "prefreeze_limitation": "事前案の意味条件を出発点とし、期待はprofile本文・実在L4契約・旧sourceへ戻って手著述した。候補/reader/decoder/codec/validator/model/Decimal/数値実験/product testは実行していない。ignored事前案は著述履歴の識別に限り、規範・入力・期待の解読は本節のtracked本文と固定source参照から行う。baselineは既存wire契約を指し、新profile自体は別のcandidate bindingへ限定する。 このrepo-relative pathとSHA-256はignored local著述履歴の識別に限り、source basis・規範・期待の正本ではない。"
         },
         "fixture_notation": {
             "wire": "raw_utf8は固定entryに渡すJSON wire bytesを表す通常JSON文字列。",
-            "typed_host": "host_operand_fixtureはwire JSONではなく、CORE private nominal typeまたはhost 値を明記する型付きfixture表記。tagged literalsは実装class dumpでなく意味を示す独立 oracle notation。 RFC6902 copy recipeはhost_operand_fixture全体をCoreEncodeOrigin.original_operandへ写す期待構築手順であり、schema path上のchildだけ又は説明文では代用しない。",
+            "typed_host": "host_operand_fixtureはwire JSONではなく、型を明示した有限fixture表記である。既存の型付きnodeはtypeとその型のfield、ordinary objectの順序を示す外枠はtype=ordinary objectとmembers_in_orderで記す。case17のbody内ではtagなしの通常dictionaryとprivate nominal値を明確に分けるため、後者を{$fixture_type:<型名>,fields:{...}}と記す。この二つの型付きfixture表記は同じ指定型の原値を表す著述上の記法であり、wire member、実装class dump、普通のobjectのkey/shapeからnominal型を認定する規則ではない。RFC6902 copy recipeはhost_operand_fixture全体をCoreEncodeOrigin.original_operandへ写す期待構築手順であり、schema path上のchildだけ又は説明文では代用しない。",
             "typed_parsed_tree": "raw_diagnostics.parsed_tree_fixtureはCoreParsedValueの型付き原構文treeを示す。objectはCorePairObject.pairs列、numberはCoreParsedNumber.original_tokenで表し、重複と原順を保持する。",
             "logical_expected": "expected_return.valueは既存L8 logical JSON value view。通常JSON artifactで数値tokenがhost数値へ変換される危険を避ける必要がある有限exact値はlogical_json_value_fixture.notation=exact_json_textのjson_utf8文字列で示す。これはwire上のtagged typeではなく比較対象logical JSON値のfixture表記。隣接numeric_nominal_expectationは型付き数値の有限literal。",
             "number_occurrence": "numbersのordinalは原tree深さ優先0起点。native int、型外token fieldはoriginal_token=null、未形成値はnumber=null。",
@@ -96012,7 +96014,7 @@
                         "raw_utf8": "{\"binding\": {}, \"candidate_material\": {\"disposition\": \"conditional\", \"condition\": null}, \"obligations\": [], \"gap_material\": null, \"impact_material\": {\"state\": \"Unknown\"}, \"comparisons\": [{\"producer_symbol\": \"compare_applicability\", \"input_binding\": {}, \"original_axes\": [{\"subject_ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": null}, \"binding\": {}, \"axis\": \"applicability\", \"state\": \"unknown\", \"original_refs\": [], \"reason\": \"合成codec対照：元条件未決\", \"backflow_owner\": null}], \"findings\": [], \"material\": {\"unfinished\": true}}], \"input_issues\": [{\"locator\": \"/universes\", \"reason\": \"合成codec対照：母集合根拠不足\", \"source_ref\": null}], \"source_refs\": [], \"side_effect_count\": 1.0}",
                         "member": "side_effect_count",
                         "raw_token": "1.0",
-                        "expected_return_patch_root": "complete L8 document; apply RFC 6902 operations in listed order. The recipe copies the complete source logical value, full presence and one shared full typed origin literal, then patches only the side_effect_count variation.",
+                        "expected_return_patch_root": "完全なL8文書をrootとし、RFC 6902操作を記載順に適用する。期待構築では元のlogical value全体、presence全体、共有する型付きorigin literalをcopyし、side_effect_countの差分だけをpatchする。",
                         "expected_return_patch": [
                             {
                                 "op": "add",
@@ -96796,7 +96798,7 @@
                         "raw_utf8": "{\"binding\": {}, \"candidate_material\": {\"disposition\": \"conditional\", \"condition\": null}, \"obligations\": [], \"gap_material\": null, \"impact_material\": {\"state\": \"Unknown\"}, \"comparisons\": [{\"producer_symbol\": \"compare_applicability\", \"input_binding\": {}, \"original_axes\": [{\"subject_ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": null}, \"binding\": {}, \"axis\": \"applicability\", \"state\": \"unknown\", \"original_refs\": [], \"reason\": \"合成codec対照：元条件未決\", \"backflow_owner\": null}], \"findings\": [], \"material\": {\"unfinished\": true}}], \"input_issues\": [{\"locator\": \"/universes\", \"reason\": \"合成codec対照：母集合根拠不足\", \"source_ref\": null}], \"source_refs\": [], \"side_effect_count\": 1e0}",
                         "member": "side_effect_count",
                         "raw_token": "1e0",
-                        "expected_return_patch_root": "complete L8 document; apply RFC 6902 operations in listed order. The recipe copies the complete source logical value, full presence and one shared full typed origin literal, then patches only the side_effect_count variation.",
+                        "expected_return_patch_root": "完全なL8文書をrootとし、RFC 6902操作を記載順に適用する。期待構築では元のlogical value全体、presence全体、共有する型付きorigin literalをcopyし、side_effect_countの差分だけをpatchする。",
                         "expected_return_patch": [
                             {
                                 "op": "add",
@@ -97593,7 +97595,7 @@
                         "raw_utf8": "{\"binding\": {}, \"candidate_material\": {\"disposition\": \"conditional\", \"condition\": null}, \"obligations\": [], \"gap_material\": null, \"impact_material\": {\"state\": \"Unknown\"}, \"comparisons\": [{\"producer_symbol\": \"compare_applicability\", \"input_binding\": {}, \"original_axes\": [{\"subject_ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": null}, \"binding\": {}, \"axis\": \"applicability\", \"state\": \"unknown\", \"original_refs\": [], \"reason\": \"合成codec対照：元条件未決\", \"backflow_owner\": null}], \"findings\": [], \"material\": {\"unfinished\": true}}], \"input_issues\": [{\"locator\": \"/universes\", \"reason\": \"合成codec対照：母集合根拠不足\", \"source_ref\": null}], \"source_refs\": [], \"side_effect_count\": 0.1}",
                         "member": "side_effect_count",
                         "raw_token": "0.1",
-                        "expected_return_patch_root": "complete L8 document; apply RFC 6902 operations in listed order. The recipe copies the complete source logical value, full presence and one shared full typed origin literal, then patches only the side_effect_count variation.",
+                        "expected_return_patch_root": "完全なL8文書をrootとし、RFC 6902操作を記載順に適用する。期待構築では元のlogical value全体、presence全体、共有する型付きorigin literalをcopyし、side_effect_countの差分だけをpatchする。",
                         "expected_return_patch": [
                             {
                                 "op": "add",
@@ -98144,7 +98146,7 @@
                         "raw_utf8": "{\"binding\": {}, \"candidate_material\": {\"disposition\": \"conditional\", \"condition\": null}, \"obligations\": [], \"gap_material\": null, \"impact_material\": {\"state\": \"Unknown\"}, \"comparisons\": [{\"producer_symbol\": \"compare_applicability\", \"input_binding\": {}, \"original_axes\": [{\"subject_ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": null}, \"binding\": {}, \"axis\": \"applicability\", \"state\": \"unknown\", \"original_refs\": [], \"reason\": \"合成codec対照：元条件未決\", \"backflow_owner\": null}], \"findings\": [], \"material\": {\"unfinished\": true}}], \"input_issues\": [{\"locator\": \"/universes\", \"reason\": \"合成codec対照：母集合根拠不足\", \"source_ref\": null}], \"source_refs\": [], \"side_effect_count\": true}",
                         "member": "side_effect_count",
                         "raw_token": "true",
-                        "expected_return_patch_root": "complete L8 document; apply RFC 6902 operations in listed order. The recipe copies the complete source logical value, full presence and one shared full typed origin literal, then patches only the side_effect_count variation.",
+                        "expected_return_patch_root": "完全なL8文書をrootとし、RFC 6902操作を記載順に適用する。期待構築では元のlogical value全体、presence全体、共有する型付きorigin literalをcopyし、side_effect_countの差分だけをpatchする。",
                         "expected_return_patch": [
                             {
                                 "op": "add",
@@ -99083,16 +99085,20 @@
                             "body",
                             {
                                 "n": {
-                                    "type": "CoreNumber",
-                                    "original_token": "1e400",
-                                    "exact_value": {
-                                        "type": "CoreDecimalValue",
-                                        "negative": false,
-                                        "coefficient_digits": "1",
-                                        "power_negative": false,
-                                        "power_digits": "400"
+                                    "$fixture_type": "CoreNumber",
+                                    "fields": {
+                                      "original_token": "1e400",
+                                      "exact_value": {
+                                        "$fixture_type": "CoreDecimalValue",
+                                        "fields": {
+                                          "negative": false,
+                                          "coefficient_digits": "1",
+                                          "power_negative": false,
+                                          "power_digits": "400"
+                                        }
+                                      }
                                     }
-                                }
+                                  }
                             }
                         ],
                         [
@@ -99110,7 +99116,7 @@
                     ]
                 },
                 "expected_return": {
-                    "wire_octets_utf8": "{\"ref\":{\"identity\":\"s\",\"revision\":\"r\",\"scope\":{},\"owner\":\"o\",\"source_locator\":null,\"sha256\":null},\"body\":{\"n\":1e400},\"content_bytes\":\"{ \\\"n\\\": 1e400 }\\n\",\"qualification_ref\":null,\"role\":\"semantic_source\"}",
+                    "wire_octets_utf8": "{\"ref\":{\"identity\":\"s\",\"revision\":\"r\",\"scope\":{},\"owner\":\"o\",\"source_locator\":null,\"sha256\":null},\"body\":{\"n\":1e400},\"content_bytes\":\"{ \\\"n\\\": 1e400 }\\u000a\",\"qualification_ref\":null,\"role\":\"semantic_source\"}",
                     "input_issues": [],
                     "raw_diagnostics": {
                         "numbers": [
@@ -99121,16 +99127,20 @@
                                 "representation": "lexical_number",
                                 "formation": "formed",
                                 "number": {
-                                    "type": "CoreNumber",
-                                    "original_token": "1e400",
-                                    "exact_value": {
-                                        "type": "CoreDecimalValue",
-                                        "negative": false,
-                                        "coefficient_digits": "1",
-                                        "power_negative": false,
-                                        "power_digits": "400"
+                                    "$fixture_type": "CoreNumber",
+                                    "fields": {
+                                      "original_token": "1e400",
+                                      "exact_value": {
+                                        "$fixture_type": "CoreDecimalValue",
+                                        "fields": {
+                                          "negative": false,
+                                          "coefficient_digits": "1",
+                                          "power_negative": false,
+                                          "power_digits": "400"
+                                        }
+                                      }
                                     }
-                                }
+                                  }
                             }
                         ],
                         "phase": "encoded",
@@ -99762,7 +99772,7 @@
       "全型不正/定義外carrier key/出力required欠落は同じ所在へ失敗返却。定義外keyを削除/aliasして成功にせず、宣言memberの欠落/nullとRawValue内opaque原値を保持。",
       "decoded ApplicationAnalysis/Comparisonをcaller cached oracleとして評価器へ再利用せず、受領/使用/消込を生成しない。"
     ],
-    "completion_limit": "source pins/旧引用/固定raw bytehash/schema形/期待原値/既存memberと既存36caseの静的照合に加え、numeric_encode_independent_oracleに全有限return literalを固定し、ApplicationAnalysis side_effect_countの1.0/1e0/0.1/true変異もvalue/presence/input_issues/raw_diagnostics全fieldを持つ。実codec/library採用/資格供給元/実custody/独立review、L6関数設計/L7関数検証、層外実装とtest/oracle凍結→Red→Green→Refactor、全92親430対閉包と実装Readyは未成立。有限literalはparser全域/資源挙動の証拠ではない。既存36caseのlogical expected value/presence/inputは不変。",
+    "completion_limit": "source pins/旧引用/固定raw bytehash/schema形/期待原値/既存memberと既存36caseの静的照合に加え、本節のcasesは18エントリであり、うち2エントリはApplicationAnalysisのcase30由来4変異、1エントリはhost型の2変異を持つ。合計21入力変異と別の9述語対照についてだけ、記載した有限期待を固定する。閉じたのは当該literal条件のみ。未行使: number_formation_failed、cyclic_host_value、serialization_failed、encode shape/write失敗、phase_complete=false資源枝、非string key、tuple/set、Unicode escapeの全域（lone/nonBMP surrogate、DELを含む）。これらの実装挙動・全域は未成立。実codec/library採用/資格供給元/実custody/独立review、L6関数設計/L7関数検証、層外実装とtest/oracle凍結→Red→Green→Refactor、全92親430対閉包と実装Readyも未成立。有限literalはparser全域/資源挙動の証拠ではない。既存36caseのlogical expected value/presence/inputは不変。",
     "presence_contract": "expected_presenceは宣言memberごとの{pointer,state}列。原供給構造の既知memberだけを再帰走査し、absent/null内の仮objectや宣言RawValue内opaque mapの宣言を創作しない。配列indexは所在でidentityではない。原値とpresenceをencode/decode往復で照合する。",
     "unfixed_numeric_and_encode_range": [
       {
@@ -99773,7 +99783,7 @@
           "{\"scope\":0.1}"
         ],
         "expected_stage": "finite_literals_fixed",
-        "reason": "1.0/1e0/0.1に加え、case30由来side_effect_countの1.0/1e0/0.1/true各full CoreDecodeResult returnを固定。任意token全域、実parser/資源失敗は未成立。"
+        "reason": "1.0/1e0/0.1の固定tokenとcase30由来side_effect_countの1.0/1e0/0.1/true各full CoreDecodeResult literalのみ閉じた。任意token全域、number_formation_failed、phase_complete=false資源枝、実parser/資源失敗は未成立。"
       },
       {
         "range": "large_exponent",
@@ -99782,13 +99792,13 @@
           "{\"scope\":{\"a/b~c\":[0.1,9007199254740993,1e400,true,null]}}"
         ],
         "expected_stage": "finite_exact_design_oracle",
-        "reason": "有効finite token 1e400のlogical exact値と原token保持を固定。実resource失敗は理由付きとなるがruntime依存/成功条件は未成立。infinity/nullへ補正しない。"
+        "reason": "有効finite token 1e400のlogical exact値と原token保持を固定。実resource失敗、resource停止時のphase_complete=false、成功/失敗のruntime条件は未成立。infinity/nullへ補正しない。"
       },
       {
         "range": "encode_non_json_value",
         "input_examples_description": "JSON carrier外の値・表現不能数値/文字列",
         "expected_stage": "selected_finite_host_literals_fixed",
-        "reason": "名目CoreNumber有効/相反、native int共存、普通dictのtoken/value形、float/単体Decimal拒否とSourceEnvelope内content_bytesの有限literalを固定。全host型/循環/資源/write失敗域は未成立。decode例をencode完了へ代用しない。"
+        "reason": "名目CoreNumber有効/相反、native int共存、普通dictのtoken/value形、float/単体Decimal拒否とSourceEnvelope内content_bytesの有限literalのみ固定。number_formation_failed、cyclic_host_value、serialization_failed、encode shape/write、phase_complete=false資源枝、非string key、tuple/set、Unicode escape全域（lone/nonBMP surrogate、DEL含む）は未行使。全host型/循環/資源/write失敗域は未成立。decode例をencode完了へ代用しない。"
       }
     ],
     "projection_output_field_cases": {
@@ -142222,7 +142232,7 @@
     "candidate_l5_content_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "source_main": "1b50e0e105f0d51b902b26ba0e48d66381705360",
-      "candidate_file_bytes_sha256": "f988e414079fc4bece7e17366969aa4d181c476b287f9279dd53cb5189e2181a",
+      "candidate_file_bytes_sha256": "948f1c60d0795d4ab923ab2a74d36d0b8595c87a2b134e8d7acfa2e9e9f67f96",
       "revision_semantics": "candidate_file_bytes_sha256はこのL8と同じ保存状態のL5 file bytesを固定する。Git revision/承認を示さない。"
     },
     "producer_condition_presence_probes": [

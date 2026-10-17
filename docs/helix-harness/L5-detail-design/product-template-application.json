@@ -7593,7 +7593,7 @@
       "全Context/Result/opaque body record契約の全量凍結、独立review及び具体parser/host/資源の実成立は未成立。CORE private exact number/encodeのlogical domain/分岐/writerはnumeric_encode_profileで具体化し、schema静的照合を実codec成立にしない。",
       "正式root/資格供給元/実source custody/意味比較provider/原owner契約、BRAIN→CORE/CORE→OSの正式bindingとCONNECT版/receiptは未閉包。",
       "L6は関数設計、L7は関数検証、実装成果は層外。実装前test/oracle凍結→Red→Green→Refactor、実接続/保存/受入、全92親430対閉包と実装Readyは未成立。",
-      "小数/指数(1.0/1e0/0.1)/1e400及びencode未検査hostのlogical型/条件/返却はnumeric_encode_profileで指定した。独立有限期待・実装/実行・全資源挙動は別途未成立。既存整数成功や新条件数だけで数値/encode全域実証とはしない。"
+      "小数/指数(1.0/1e0/0.1)/1e400及びencode未検査hostのlogical型/条件/返却はnumeric_encode_profileで指定し、対L8へ有限literal期待を収載した。独立review、未行使分岐、実装/実行・全資源挙動は未成立。既存整数成功や新条件数だけで数値/encode全域実証とはしない。"
     ],
     "numeric_encode_profile": {
       "id": "HARNESS-L5-009-CORE-EXACT-NUMERIC-ENCODE",
@@ -7683,7 +7683,7 @@
           ]
         }
       ],
-      "authority_scope": "上流source_basis先頭四件はHDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12のexact e509851 F01/N01 objectに限定する。現行全L3/L10 file又は他義務へ承認を拡張しない。技術sourceは別の6802固定資料。",
+      "authority_scope": "上流source_basis先頭四件はHDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12のexact e509851 F01/N01 objectに限定する。現行全L3/L10 file又は他義務へ承認を拡張しない。技術sourceは別の6802固定資料。 F01/N01本文が個々の数値表現方式を直接指定しているとは主張しない。JSON数値同値/bool分離は既存L4 rule snapshot.json_equality、丸め禁止/原lexeme保持は6802 L5 presence.numbersを技術起点とする。exact carrier、論理的な数値幅上限を追加しないこと、private表示はこのL5で選ぶ技術設計であり、上流承認の拡張又は実資源の無制限保証ではない。",
       "private_host_types": {
         "CoreDecimalValue": {
           "kind": "nominal immutable record",
@@ -7780,7 +7780,7 @@
             "numbers": "CoreNumericOccurrence[]",
             "phase": "utf8/json/duplicate/number/shape/decoded",
             "phase_complete": "strict boolean",
-            "observed_byte_offset": "strict native int又はnull。原raw_octetsの0起点byte所在として実際に観測した失敗位置。未観測又は成功ならnull。"
+            "observed_byte_offset": "strict native int又はnull。原raw_octetsの0起点byte所在として実際に観測した失敗位置。未観測又は成功ならnull。 本profileのjson構文読取り結果には位置metadataを定義していないため、phase=jsonではnullとする。原textから位置を後計算・推測しない。utf8 primitiveが報告する位置はそのまま保存する。"
           },
           "boundary": "返却までに観測した全原tree/node/原因だけを保持。途中資源失敗はphase_complete=falseで未読分の観測を作らない。原octetsは常時保持する。"
         },
@@ -7852,7 +7852,7 @@
       "strict_value_writer": {
         "primitives": "null/true/falseは各JSON token。native intはboolを除く数値として丸めない10進表記、CoreNumberは元有効tokenを非quoteで出す。有限長文字列表現/配列/objectを再帰し、wrapperをwire objectへ出さない。",
         "strings": "quote/backslashはJSON escape、ASCII U+0020〜007Eのその他は原字。その他は小文字hexの\\uXXXX、非BMPは対応surrogate pair、元lone surrogate codepointも単独\\uXXXXとして文字値を保持する。UTF8実装へ不正byte置換を要求しない。",
-        "collections": "listは元順/反復、objectは当該ordinary objectの原member順、decoded keyと各値を保持する。外側空白はseparator comma/colonの単一表示とするが、外側bytes同一/key順を意味digest方式にしない。",
+        "collections": "listは元順/反復、objectは当該ordinary objectの原member順、decoded keyと各値を保持する。separatorはcomma U+002C一字及びcolon U+003A一字で、前後に空白を挿入しない。これは本private writerの単一表示の選択であり、外側bytes同一/key順を意味digest方式にしない。",
         "content_bytes": "content_bytesは既存CORE型の文字列値として逐字保存する。外側のJSON escapeが変わってもdecode後文字列の空白/改行/key順/escape textは全一致。内側JSONを再format/hash再生成してsource digestへ代用しない。"
       },
       "stage_and_failure_writers": {
@@ -7896,7 +7896,7 @@
         "decode.value": "全段階成功だけdomain内原JSON値。失敗時null。正常JSON nullは固定entry schemaで受理される場合だけ成功値で、issuesの空/非空と区別する。",
         "decode.presence": "成功時は既存declared memberのpresence全列。失敗時は[]とし、途中parentから架空child absenceを作らない。raw原観測はraw_diagnosticsへ全保持。",
         "decode.input_issues": "同上段階/原因/locator/source_ref/reasonの全観測列。成功[]。",
-        "decode.raw_diagnostics": "原octets常時、完成したparsed_tree又はnull、実観測member/numeric全列、最終phase/完了性。observed_byte_offsetは原octetsに対し実観測できた0起点失敗byte位置だけ、未観測/成功はnull。UTF8の旧対照case7は元13を保持する。途中失敗でも原資料を消さず、未実行prefix走査や位置を推測しない。",
+        "decode.raw_diagnostics": "原octets常時、完成したparsed_tree又はnull、実観測member/numeric全列、最終phase/完了性。observed_byte_offsetは原octetsに対し実観測できた0起点失敗byte位置だけ、未観測/成功はnull。UTF8の旧対照case7は元13を保持する。途中失敗でも原資料を消さず、未実行prefix走査や位置を推測しない。 json段階の構文失敗は本profileに位置観測memberがないためobserved_byte_offset=null。これは原位置情報を削除する命令でなく、この詳細で未選定のparser位置APIを仮定しない表示規則であり、原octets全量は保持する。",
         "encode.wire_octets": "成功時だけ単一wire全体。いずれかの原因/途中生成失敗でnull、部分wireを返さない。",
         "encode.input_issues": "同上全観測列。成功[]。",
         "encode.raw_diagnostics": "原operandの同じ借用観測と全数値列、最終phase/完了性。任意hostを新JSONへcastして返さない。"
@@ -7911,11 +7911,11 @@
       "legacy_and_comparison": {
         "legacy_source": "既存legacy_comparisonのLEGACY-ASSET-4F5A1F0739EC1111D91D（旧L4 §1〜4）、LEGACY-ASSET-98372FEE8A3AC8F9C299（旧L5 field/value_type/trace）を読取参照。原JSON/型/値とderived viewの分離、未知を補完しない点を保持する。",
         "failure_basis": "既存UTW-014/020/021の欠損空集合化・部分原因消失・自己申告完了を繰り返さず、型外/表現不能と意味unknown、原inputと技術診断を分離する。旧codec/runtime/CIは実行/移植しない。",
-        "brain032_comparison": "PR3325/3327は厳密number/int共存、token/value相反、bool分離、内外source帰属を見落とさない比較材料だけ。本節はCORE自身の6entry/RawValue/body/型/段階から再導出し、BRAINのABI/型名/QualifiedSource/content/semantic_json/算法を共通APIとして採用しない。"
+        "brain032_comparison": "PR3325/3327は厳密number/int共存、token/value相反、bool分離、内外source帰属を見落とさない比較材料だけ。本節はCORE自身の6entry/RawValue/body/型/段階から再導出し、BRAINのABI/型名/QualifiedSource/content/semantic_json/算法を共通APIとして採用しない。 旧L4 §1〜4と旧L5 §2〜5のtemplate field/value_type/traceとcandidate/canonical分離は保持するが、そこに任意JSON payloadのexact数値carrier/lexeme保持/encode方式の具体規則は見つからなかった。旧検索範囲は上記二文書のnumber/integer/数値/exact/原lexeme/boolと全文の該当節で、template_version等のinteger記述をpayload数値規則へ転用しない。変更点はCORE所有のexact表現と全段階writerを新たに具体化することであり、変更理由は現6802 L5の丸め禁止・原lexeme保持とL4のJSON数値同値/bool分離を、有限幅host任せにせず一貫して成立させるためである。旧source未完成だけを理由にせず、この既存技術契約と21有限対照に対応する。"
       },
       "remaining": [
-        "本節のlogical host表現/全分岐writerは設計上選定した。実host class/factory/library/parser/strict writer/資源時の実挙動、具体adapter/実資格/実接続の実装は未成立。閾値/依存を勝手に追加しない。",
-        "独立L8原入力/期待/全返却は別担当が本sourceから候補実行より先に著述する。既存36codec case/全旧期待と旧source pinはそのまま保持。新domain/host表現で旧logical値を再検証した又は全入力域実行済みとは主張しない。",
+        "本節のlogical host表現/全分岐writerは設計上選定した。実host class/factory/library/parser/strict writer/資源時の実挙動、具体adapter/実資格/実接続の実装は未成立。閾値/依存を勝手に追加しない。 Unicodeの通常文字/DEL/各control/nonBMP/lone surrogateを含む全域の独立oracle・実挙動も未完であり、writer規則の記載だけで成立にしない。",
+        "対L8には候補実行より先に別担当が著述した有限原入力/全返却期待を収載した。既存36codec case/全旧期待と固定履歴source pinは保持し、このL8と同じL5を指すcurrent content bindingだけを更新する。21変異/9述語の有限範囲であり、未行使理由・資源/循環/Unicode等の分岐と独立reviewは別途残る。新domain/host表現で全旧logical値を実行再検証した又は全入力域を実証したとは主張しない。",
         "全B019/030責務projection、CORE009 F05のstatewriter/元field対応、意味比較provider、OS/CONNECT receiver/原source custody、canonical-sort/digest方式は本profileから閉じない。全92親430義務/L6L7/製品CI/実受入/Readyは未成立。"
       ],
       "authority_effect": "none",
