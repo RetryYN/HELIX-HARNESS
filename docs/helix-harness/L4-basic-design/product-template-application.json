@@ -1599,7 +1599,8 @@
       ],
       "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
       "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
-      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。"
+      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。",
+      "field_source_materialization_contract_ref": "/field_source_materialization_contract"
     },
     {
       "id": "HARNESS-L4-009-F06",
@@ -3914,5 +3915,266 @@
       "old_failure_consumer": "旧Registryの重複failureは旧sourceのRegistry適用処理に属する。現L4 F01のbackflowへは候補入力値と設計oracle不足を戻す。"
     },
     "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION"
+  },
+  "field_source_materialization_contract": {
+    "id": "HARNESS-L4-009-F05-FIELD-SOURCE-MATERIALIZATION",
+    "requirement_ref": "HARNESS-L3-009-F05",
+    "system_oracle_ref": "HARNESS-L10-009-F05",
+    "parent_contract_pointer": "/contracts/6",
+    "scope": "RequirementGapReturnの私有source-materialization段階。既存FieldInputの定義/値Refから原資料を解決し、元役割を示す根拠がある範囲だけ意味payloadの所在を明示する基本契約。FieldCheckMaterialの状態writer、030 typed input生成、実作用の成立とは別。",
+    "preserved_native_boundary": {
+      "input": "既存CompareRequirementGapsContextの同immutable validated、compare_applicability、compare_kind_obligation_trace。新ApplicationInput top-level memberを要求しない。",
+      "producer": "既存RequirementGapReturn/compare_requirement_gapsが当該fieldごとに原source材料を読む私有段階。別callerのcached結果を同callの材料へしない。",
+      "output": "既存Comparisonのproducer_symbol/input_binding/original_axes/findings/material及びGapReturnMaterialのfield_checks/candidate_proposals/unfinished_obligation_refsは保持。新public field/code/stateを本節から追加しない。",
+      "consumer": "同F05の後続definition/value状態writerと不足候補writerへ、原field/Ref/binding/presence/値/理由/投影根拠を渡す。B019→030接続はその後の別consumerであり、本節だけで成立済みとしない。"
+    },
+    "source_basis": [
+      {
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/27",
+            "canonical_sha256": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54"
+          }
+        ],
+        "authority_scope": "HDEC承認対象のF05 selected objectだけを上流意味根拠とする。現在file全体の承認継承を宣言しない。"
+      },
+      {
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c",
+        "selected_objects": [
+          {
+            "pointer": "/cases/27",
+            "canonical_sha256": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d"
+          }
+        ],
+        "authority_scope": "HDEC承認対象のF05 selected objectだけを上流意味根拠とする。現在file全体の承認継承を宣言しない。"
+      },
+      {
+        "revision": "6802cc295b6747b98101898c47bb865c7ec6bcd7",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "sha256": "f988e414079fc4bece7e17366969aa4d181c476b287f9279dd53cb5189e2181a",
+        "selected_objects": [
+          {
+            "pointer": "/type_contract/types/FieldInput",
+            "canonical_sha256": "2434d06a74a6df8e04bc4eb2d614d8d9a2aa3419363cd0a5fefb634f4c2c82b2"
+          },
+          {
+            "pointer": "/type_contract/types/FieldCheckMaterial",
+            "canonical_sha256": "e2b0208919b31b6a113dd13c2f58fd078156706393eb0b7c675b622edc5ff4a1"
+          },
+          {
+            "pointer": "/functions/5",
+            "canonical_sha256": "e4419e5d6917e4370d7d94b3a9de29f25948b350abdf52922f3fa6ccf294bdae"
+          },
+          {
+            "pointer": "/reference_resolution_contract",
+            "canonical_sha256": "8f8028e923e991c69c327d1c9cdacc8bdd4f0767238151c7473f316e7a5c879b"
+          },
+          {
+            "pointer": "/wire_codec_contract/schema/$defs/SemanticRecord",
+            "canonical_sha256": "77fd4ecacef4d8f90d9fab77e30157f56242f0bfe1226b8ba78ab1684e4ee9d9"
+          },
+          {
+            "pointer": "/wire_codec_contract/schema/$defs/SourceEnvelope",
+            "canonical_sha256": "41144b81c5dfc5837e3bd920db5d9202d26ad55611795d74cc1c3e3f639e6e7f"
+          },
+          {
+            "pointer": "/wire_codec_contract/source_resolution_stages",
+            "canonical_sha256": "8f4b2814aed338ec4318bd1cd6e6c01092a851b361fc34331bbd2d3f0244bcfb"
+          }
+        ]
+      },
+      {
+        "revision": "6802cc295b6747b98101898c47bb865c7ec6bcd7",
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "sha256": "aaf799c2f83df9353aebb44ec537f158ad1c63bbeddcfef2c27c7fbac864a867",
+        "selected_objects": [
+          {
+            "pointer": "/fixture_contract/normal_fixtures/0/input/semantic_records/9",
+            "canonical_sha256": "495b1f04d65699cd1407a85cd1e6cf141162cbef2f76b87c9bd74abc8d2b2562"
+          },
+          {
+            "pointer": "/fixture_contract/normal_fixtures/0/input/semantic_records/10",
+            "canonical_sha256": "5449ab8a79ea543669f140d382c2163f818441a5e01f89255cecd5443f79b231"
+          },
+          {
+            "pointer": "/fixture_contract/additional_input_recipes/14",
+            "canonical_sha256": "689b13762a75f8d75045b102053867e1e3e4c8f2a4d78fdd741da33ab1622853"
+          },
+          {
+            "pointer": "/additional_unit_cases/15",
+            "canonical_sha256": "e799a2f0f5b658f04efcad25c053d8cf1434e4343910b332ae76dea1872d5c1f"
+          }
+        ]
+      },
+      {
+        "revision": "6802cc295b6747b98101898c47bb865c7ec6bcd7",
+        "path": "docs/helix-brain/L4-basic-design/core-knowledge-reply.json",
+        "sha256": "d9e50e5e9759ba4fed4eb9273bb206ccccdf14eec871ed37877cf96d3808d219",
+        "selected_objects": [
+          {
+            "pointer": "/f02_responsibility_port",
+            "canonical_sha256": "7f12bf6be53cf3a143b285e6cad64f12ecbc5c07614b4637081450d2a3a85b59"
+          }
+        ]
+      },
+      {
+        "revision": "6802cc295b6747b98101898c47bb865c7ec6bcd7",
+        "path": "docs/helix-brain/L5-detail-design/knowledge-query-receipt.json",
+        "sha256": "1381d1ea0e05599a335dc25fc6dcc23879c61cd2bf924986cd71b090149cbe49",
+        "selected_objects": [
+          {
+            "pointer": "/types/ProductValue",
+            "canonical_sha256": "9ec85f8e0a874052dfe85286d1a2231a3d6485dde9d933ea3949069c0519ea65"
+          },
+          {
+            "pointer": "/functions/1",
+            "canonical_sha256": "820383ebb1e4ddae8b2c14892c1e93303a3e4caeb709587b50567f46b10a7054"
+          }
+        ]
+      }
+    ],
+    "original_operand_contract": {
+      "field_domain": "同validated.input.field_inputsの全元occurrence。field.ref/template_ref/binding、definition_refs/value_fact_refs/source_refを全member/presenceと原配列順で保持する。同Refの別indexを黙って一件へ潰さない。",
+      "selected_scope": "既存F05が対象とする要求/製品scope/工程・適用contract及びtemplate/knowledge版に従う。当該操作で非選択のscopeを新しく評価せず、未知の適用をrequiredへ補完しない。",
+      "role": "definition_refsの各Refはdefinition側、value_fact_refsの各Refはproduct-value側という原roleを保持。値sourceの欠落を定義欠落へ、定義sourceの欠落を案件値未設定へ転用しない。",
+      "record_domain": "各Refから原axis_facts及びsemantic_recordsの両collectionを対象に同ref/bindingの全原recordを解決する。片方だけを許す新制限や名前/kindによる優先fallbackを作らない。",
+      "source_domain": "原record.source_refからsourcesの同Ref envelopeへ、body.recordsのcollection/ref/payloadへ結ぶ。全Refのidentity/revision/scope/ownerと供給済digestは既存reference_resolution_contractに従い、source_locatorだけで意味同一性を決めない。",
+      "source_payload": "body.records/{r}/payloadは元recordからsource_refだけをenvelope側へ外付けした対応を照合する。payloadが同名というだけでなく、collection/ref/各原member全値と元bindingを保持し、原source body/bytes/所在を辿れること。",
+      "qualification": "既存validatedのsource/qualification/root照合事実を同snapshotとして使う。本文/metadata/digest一致又は本節の投影宣言だけからowner資格/認可/採用を生成しない。fn0再呼出し又は新trust resolverの義務を増やさない。"
+    },
+    "private_declaration_body_contract": {
+      "status": "本節で設計する新しいlogical body/data contract。載せるwrapperは既存SemanticRecord/SourceEnvelopeのまま。正式profile正本/実producer及びこの宣言を意味解釈するnative詳細writerが既存にあるとは主張しない。",
+      "location": "同ApplicationInput.semantic_recordsの既存SemanticRecord wrapper（ref/binding/kind/meaning/source_ref）に載せる。kind=field_material_projection_declaration、meaningに下記宣言内容を保持する。対応source bodyは既存collection=semantic_recordsのbody.records/{r}/payloadへ、ref/binding/kind/meaningを原値で保持しsource_refだけenvelope側へ外付けする。新collection名/未知native typeをresolverが受理すると仮定しない。",
+      "producer_responsibility": "対象資料の意味を持つ既存ownerが、自己の原source宣言として供給するか、その原役割を示す独立契約/sourceを供給する。consumerが値の形から宣言を自動生成しない。新しいissuer/registry/owner役割を定義しない。",
+      "declaration_fields": {
+        "binding": "対象の原ApplicationBinding。既存の要求/製品scope/工程・適用contract/template/knowledge版の対応を保存する。",
+        "field_ref": "この宣言が対象とする既存FieldInput.refの原full Ref。文字列field名から生成しない。",
+        "material_ref": "対象AxisFact又はSemanticRecordの原full Ref。元definition_refs又はvalue_fact_refsの該当occurrenceへ対応する。",
+        "material_role": "definition又はproduct_value。原FieldInputのどちらのRef列で使うかを宣言し、反対roleへ暗黙転用しない。",
+        "material_carrier": "AxisFact又はSemanticRecord。既存native collection/typeと対応し、kind文字列をcarrierの代わりにしない。",
+        "payload_form": "axis_value、semantic_whole、semantic_value_envelopeの三形。自由な式木/JSON変換program/任意parserではない。",
+        "value_role": "product_valueにだけ適用し、その場合はconcrete_value又はundecided_valueという原意味宣言を必要とする。definitionでは非適用でありmember不在を許す。供給されたnull/対象外の表示/その他原値は非適用の原素材としてそのまま保持し、案件値stateへ変換しない。",
+        "reason_role": "axis_reason、envelope_reason、no_reasonの原出所。存在しない理由をnull/定型文へ生成せず、該当memberのabsence/nullを保つ。",
+        "basis_refs": "この原役割/値意味を示す既存契約又は独立sourceの原Refs。元source自身の宣言である場合も、その原body/record所在とsource Refを外側traceへ残す。空/不足から別資料を借りて補完しない。"
+      },
+      "presence": "member_applicabilityで当該role/formに必要かつ適用される宣言memberの不在/null/型外はそのまま保持し、その宣言による当該投影を未成立とする。非適用memberのpresence/原値にはこの不足判定を適用せず、余剰を削除/修復しない。未宣言は原bodyが存在しないという意味でなく、意味projectionの根拠がないという状態。型外値を既定enumへ修復しない。",
+      "binding_and_origin": "宣言SemanticRecordの実ref/binding/source_refと、対応source/body.records/{r}/payload/meaningの所在を保存し、対象field/materialの原full binding/Refの対応と別に照合する。宣言自身のrefも元full Refとして保持し、SourceEnvelope.refのdigestを自身bodyへ書き戻して自己hashを作らない。source Refは外側envelope traceから借用する。",
+      "selection": "同じ原field/material/roleに対する全宣言occurrenceを元source/record順で読む。同値反復は全所在を保持。当該role/formに適用するform/値意味/版/scopeの相反は先頭/latestで選ばず当該投影未成立とし、非適用memberの差だけを適用相反へ昇格しない。他fieldや独立roleは継続する。",
+      "no_inference": "material.kind=synthetic-original-meaning、value/reasonというkeyの存在、JSON object shape、source owner名だけでは宣言を成立させない。normalのdefinition/valueは同kindなのでkindによるrole推測を禁止する。",
+      "wrapper_and_reader_boundary": "現wire $defs.SemanticRecord.kindはstring、meaningはRawValueなので本logical宣言は既存wrapperの表現域に置ける。これは既存nativeが宣言内容を解釈済みという意味ではない。既存resolverでrecord/ref/payloadの原対応を確かめることと、本節に従いmeaningの宣言役割を読む新しい私有詳細を分ける。kindだけでowner資格又は任意他bodyのenvelope意味を認定しない。",
+      "form_compatibility": "axis_valueはAxisFactのみ、semantic_whole/semantic_value_envelopeはSemanticRecordのみ。axis_reasonはaxis_valueの原reason、envelope_reasonはsemantic_value_envelopeの原meaning.reason、semantic_wholeの理由欄はno_reasonとして元whole外に理由を生成しない。form/carrier/reason出所の既知不一致は当該投影未成立で、元宣言/原recordを両方保持する。",
+      "member_applicability": {
+        "common_required": [
+          "binding",
+          "field_ref",
+          "material_ref",
+          "material_role",
+          "material_carrier",
+          "payload_form",
+          "reason_role",
+          "basis_refs"
+        ],
+        "product_value": "value_roleを追加で必要とする。原null/不在/三形や役割に対応しない値からconcrete_value/undecided_valueを補完しない。",
+        "definition": "value_roleは非適用であり、不在/null/対象外の表示を案件値宣言不足として扱わない。供給された非適用memberと未知追加memberは全原値/presenceを保持するが、それだけで当該definition投影を未成立又は案件値unknownにしない。",
+        "form": "共通reason_roleは常に必要。semantic_wholeではno_reasonが正当な宣言であり、元whole外のreason memberを新たに要求しない。他formのcarrier/reason出所対応はform_compatibilityのままで、新しい形を推測しない。",
+        "contradiction_scope": "既知宣言相反は当該role/formに適用する原memberと実operandの対応について保持する。definitionで非適用のvalue_role同士の差だけを案件値意味相反へしない。material_roleと元Ref列、formと実carrier、適用される原binding/Ref/値意味/理由出所の既知差は原左右値と共に局所未成立へ残す。"
+      }
+    },
+    "carrier_projection_table": [
+      {
+        "form": "axis_value",
+        "source": "対象AxisFactの原valueとreason。body対応は同原source recordsのpayload.value/payload.reason。",
+        "required_basis": "同field/material/role/bindingへ対応した原宣言又は既存原役割契約がaxis_valueを指定している範囲。 既存AxisFactのvalue/reasonというnative member宣言とFieldInputの原role/Ref/binding/source対応がその独立根拠を満たす範囲では、新宣言recordをさらに一律必須にしない。",
+        "payload": "valueはAxisFact.value全体を無変換copy。objectにvalue keyがあっても再unwrapしない。reasonは原reason memberの値/presenceと所在を別に保持。",
+        "null_rule": "原value=nullも実値として保持する。concrete_valueとして許されるnullかundecided_valueなのかは原意味宣言に従い、nullだけで自動判定しない。"
+      },
+      {
+        "form": "semantic_whole",
+        "source": "対象SemanticRecordの原meaning全体。body対応は同原source recordsのpayload.meaning。",
+        "required_basis": "原役割契約又は同対象宣言がmeaning全体を当該definition又は案件値として指定している範囲。",
+        "payload": "scalar/null/list/objectを含むmeaning全体を無変換copy。meaning内部にvalue/reasonがあっても通常のraw object値として扱い、子keyの値を選ばない。",
+        "null_rule": "meaning=nullの実presenceを保持。原宣言がconcrete_valueを示すnull値とundecided_valueを区別し、未知の宣言をnull有効又は値未決へ補完しない。"
+      },
+      {
+        "form": "semantic_value_envelope",
+        "source": "原宣言が当該SemanticRecord.meaningのvalue/reason二memberを値/理由carrierとして指定する。原meaning全体も必ず保存する。",
+        "required_basis": "同対象の原source宣言又は元役割を示す独立根拠がenvelope形とvalue_role/reason_roleを指定している範囲だけ。definition側の同kind recordへ適用しない。",
+        "payload": "meaningが実objectのときだけ/value、/reasonの各原memberをpresenceごと別観測する。key不在と実null、型外reasonを潰さず、再帰unwrap/未知key除去/別bodyからの理由補完はしない。",
+        "null_rule": "value_role=undecided_valueの実value=nullと、value_role=concrete_valueの有効null案件値は別の原意味宣言。適用される原enumが未供給、又はreason_role=envelope_reasonが指定した原reason memberが未供給なら当該投影未成立であり、案件値unknownを生成したことにはしない。reason_role=no_reasonは元理由memberの不在を保つ正当な宣言であり、その不在だけで投影を拒否しない。"
+      }
+    ],
+    "ordered_source_materialization": [
+      "1. 同F05 contextと原field_inputs全occurrenceを保持する。validated.input=nullなら原input_issues/未観測を保持し、架空field/空正常材料を生成しない。既存fn0/native比較結果を書き換えない。",
+      "2. 当該選択scopeの各FieldInputを元順に取り、definition_refsとvalue_fact_refsを別roleで、原null/欠落/空/全Ref反復のまま保持する。元必要field集合を見つかった成功recordから作り直さない。",
+      "3. 各原RefからAxisFact/SemanticRecord双方の同binding全対応を解決し、record/source/実body payloadと資格の同snapshot対応を保存する。Ref検索missをJSON member absentへ混同せず、架空index/bodyを作らない。",
+      "4. 同Refでもsource本文/record binding/版/scopeが異なる原対応は全て残す。完全同値別occurrenceも元所在を残し、既知相反を別source成功又は後段unknownで消さない。",
+      "5. 対象field/material/roleへ対応する原宣言又は独立役割根拠を読む。本節の固定body宣言が未供給なら、既存原資料が同じ意味情報を実際に持つかを原source/所在ごとに示す。generic owner資料や同名keyで穴を補わない。",
+      "6. 指定formの原payload/理由所在を上表どおり取り出し、原whole/子presence/Ref/binding/原宣言と共に保持する。意味根拠なし/相反/形不正は投影未成立で、definition_missing又はunknown_valueの事実に変換しない。",
+      "7. 私有材料を同F05の後続writerへ渡す。source/materializationの未知、投影の未成立、実際に根拠がある定義不足/値未決を別に保つ。当該field/role以外の結果/原状態を停止しない。"
+    ],
+    "returned_materials": {
+      "native_context": "原validated、二つの指定producer Comparison、原FieldInputの全nodeを同callで保持。新私有viewで元native引数を置換しない。",
+      "field_occurrences": "field元index、field/ref/template/binding/source_ref、definition/value両Ref列と各元index・presence。両roleの一方だけを残さない。",
+      "resolved_occurrences": "各Refに対応したAxisFact/SemanticRecordのcarrier/全原record/source Ref/body record pointer/全payload、未対応Ref、同値反復/相反全所在。",
+      "source_observations": "raw null/Absent/型外/実値とrequested/reached実parent所在、source bytes/body/既存qualification事実。混合sourceのrawを一つのowner原bodyとして新造しない。",
+      "projection_basis": "全原宣言/独立role根拠のsource/ref/body pointer、各対象端の原Ref/binding/role、form/value意味/reason出所の対応と既知不一致。",
+      "projection_material": "実行可能なformのpayload全原値/理由presence/所在と原whole。未成立の場合は元資料と未成立箇所を返し、値/null/理由/stateを代入しない。",
+      "local_unestablished": "field/role/原occurrenceごとの検索未解決、原source対応不足、宣言未供給、形不正、既知相反を独立保持。これは私有接合の原因であり新public Finding codeではない。",
+      "native_results": "後続native F05が返すComparison全値、各field_check/候補/未完義務への同call対応を保持する境界。ここでstatewriterを実装済み/旧正常等価と主張しない。"
+    },
+    "failure_and_consumer_boundary": {
+      "no_fabricated_shortage": "source/投影根拠の未供給を、定義がない又は案件値unknownと断定しない。原sourceが明示する欠落/未決と、consumerが未接続である事実を分離する。",
+      "independent_causes": "同fieldの定義原資料に既知相反があり、値sourceが独立に未観測なら双方を保存する。同じ親未観測を子ごとの新不足へ複写しない。無関係fieldの対応済み材料は残す。",
+      "owner_return": "定義/knowledge版不足はBRAIN、製品要求値未決はHARNESS008、適用契約不整合はHARNESSという原F05責務を保持。B019がCOREへ渡す不足素材はこの最終返却先を置換せず、ticket発行はOS。",
+      "030_boundary": "030 ProductValueのstate/value/reasonを本節のform名/原kind/state文字列の類似から生成しない。具体crosswalk・同query/field関係・030全入力/全返却のwriterと対oracleは後続。"
+    },
+    "fixed_fixture_representation": {
+      "scope": "既存normal/ADD-16は固定有限source表現としてのみ区別する対照材料。未供給の正式profileやsource宣言を実fixtureが持っているように追加/修復しない。",
+      "normal": "固定source_basisのnormal semantic_records/9はfield-definition、meaning={meaning:合成operation結果を識別する欄}。/10はfield-value、meaning={value:synthetic-result}。同じkind=synthetic-original-meaningでも原FieldInputのdefinition/value Ref列が役割を分ける。",
+      "add16": "固定CORE-ADD-INPUT-16のsemantic_records/10はvalue=nullとreason=synthetic project value unobservedを明示し、既存ADD-16はdefinition known/value unknownを期待する。normal/ADD-16のexact source/ref/role/原recipe全値の範囲だけenvelope表現の対照とする。",
+      "no_generalization": "この有限表現のvalue/reason keyを任意SemanticRecord.meaningの一般意味規則へしない。明示原役割根拠のない同形object、同名kind、別scope/版へ転用しない。",
+      "baseline_preservation": "既存normalのknownとADD-16のunknownの全入力/期待は現行のまま保持し歴史化しない。新caller/投影材料を実際に接合した場合のnative出力全値への影響は未検証であり、差があれば具体原値/条件として後続対照へ返す。"
+    },
+    "next_detail_obligations": [
+      "既存F05のdefinition_state/value_state全域writerとclosed私有型/引数/返却順、原qualification unknownと案件値unknownの分離、複数source/同値反復/相反/presence/理由の全field writerをL5/L8へ具体化する。",
+      "本logical宣言profileの正本/producer/取得口と、meaning内宣言の私有型/writerは未成立。既存wire wrapperの表現域に載ることと、新宣言内容が有効意味根拠として読めることを分ける。原意味ownerのsource宣言又は独立役割根拠を確定し、元bytes/body/Ref対応とpointer namespaceを次の詳細で閉じる。新規宣言を自動発行しない。",
+      "案件値の有効nullと未決envelope、whole/raw object値とenvelope子値、欠落宣言/既知相反/兄弟継続を識別する独立原入力/全返却期待を候補計算前に固定する。例数を全域完了gateにしない。",
+      "B019/030に必要な同query/選択knowledge/独立field関係、Definition.knowledge/meaningとCORE値の正確なcrosswalkは後続。本節を追加して当該上流/下流の全責務を完了扱いしない。",
+      "実source/owner資格/実provider/実配送/認可/OS記録/CI/実受入/全92親430義務は成立未認定。それらの実装不在だけを論理投影の新常時gateにしない。"
+    ],
+    "legacy_preserve_change": {
+      "legacy_sources": [
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": "16–60,81–92",
+          "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "lines": "33–77",
+          "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+        }
+      ],
+      "failure_source": "既存failure_basisのUTW-014（欠損→空集合）、UTW-020（部分原因を巨大aggregateへ隠す）、UTW-021（自己申告完了）を参照する。",
+      "preserve": "template定義/製品instance、field/value_type/要否/意味owner/trace、原版/source/未完とderived viewの分離。現F05の不足分類/返却先/原caseを保持。",
+      "change": "旧registry/planner/式木/runtimeは移植せず、現FieldInputから両native carrier/source bodyへ原役割を保って解決する私有段階と、明示意味projectionのlogical bodyを新規設計する。",
+      "reason": "FieldCheckMaterialは参照/状態だけで値payload/理由を持たず、SemanticRecord.meaning RawValueからwhole又はvalue childを選ぶ意味は型にない。既存正常とADD-16の有限例を一般source意味へ誤昇格しないため。"
+    },
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "approved_scope_binding": {
+      "decision_id": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
+      "decision_path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+      "current_reference_revision": "6802cc295b6747b98101898c47bb865c7ec6bcd7",
+      "scope": "本節の原要件/対条件はsource_basis先頭二件の承認revision F05 objectに限定し、現6802の同objectと全値同一。現L4/native型/既存fixtureのpinは別の現行技術資料であって上流承認の根拠へ代用しない。"
+    }
   }
 }
