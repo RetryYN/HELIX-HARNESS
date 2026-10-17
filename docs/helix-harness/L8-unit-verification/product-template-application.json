@@ -95224,7 +95224,7 @@
             "profile_candidate_binding": {
                 "revision": "current-unpinned-worktree-candidate",
                 "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-                "file_sha256": "aae1aca73d27463328ebd1df641737395a691fe3940fdfcb76d7e482338aa75a",
+                "file_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
                 "pointer": "/wire_codec_contract/numeric_encode_profile"
             },
             "upstream_decision": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
@@ -142233,7 +142233,7 @@
     "candidate_l5_content_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "source_main": "1b50e0e105f0d51b902b26ba0e48d66381705360",
-      "candidate_file_bytes_sha256": "aae1aca73d27463328ebd1df641737395a691fe3940fdfcb76d7e482338aa75a",
+      "candidate_file_bytes_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
       "revision_semantics": "candidate_file_bytes_sha256はこのL8と同じ保存状態のL5 file bytesを固定する。Git revision/承認を示さない。"
     },
     "producer_condition_presence_probes": [
@@ -143318,7 +143318,7 @@
         "role": "L5詳細設計候補の型・writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aae1aca73d27463328ebd1df641737395a691fe3940fdfcb76d7e482338aa75a",
+        "file_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -143334,7 +143334,7 @@
         "role": "既存入力carrierのwire member",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aae1aca73d27463328ebd1df641737395a691fe3940fdfcb76d7e482338aa75a",
+        "file_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
         "pointers": [
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/sources",
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/qualifications",
@@ -143433,7 +143433,7 @@
         "role": "L5 native ValidationDetailedReturn型・全leaf writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aae1aca73d27463328ebd1df641737395a691fe3940fdfcb76d7e482338aa75a",
+        "file_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -145289,7 +145289,7 @@
         "role": "L5のsource照合・原因診断・利用可能性の集約",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aae1aca73d27463328ebd1df641737395a691fe3940fdfcb76d7e482338aa75a",
+        "file_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/check_storage_plan",
           "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table",
@@ -147084,7 +147084,7 @@
         "role": "L5 F05 types・Context/header・Cause propagation writers",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aae1aca73d27463328ebd1df641737395a691fe3940fdfcb76d7e482338aa75a",
+        "file_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
         "pointers": [
           "/f05_detail_contract/types/F05DetailedRequest",
           "/f05_detail_contract/types/ActualPredecessor",

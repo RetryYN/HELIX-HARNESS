@@ -1723,7 +1723,7 @@
         "HARNESS-L5-009-F05"
       ],
       "algorithm": [
-        "本F05のnative署名/全leaf writerは/f05_detail_contractを正本とする。元Contextは形成済みwholeとして保持し、下記の分類は各原命題の解釈として全支持/未形成を別々に返す。旧Context-only署名又はGapProposal.kindをoracleにしない。",
+        "本F05のnative署名と本節に具体化したleaf writerは/f05_detail_contractを正本とする。元Contextは形成済みwholeとして保持し、下記の分類は各原命題の解釈として全支持/未形成を別々に返す。knowledge版不足の根拠形成/BRAIN返却と当該未完義務scope対応はrecipient_and_obligation_contractの明示残項であり、本節の限定writerが全F05意味を閉じたとはしない。旧Context-only署名又はGapProposal.kindをoracleにしない。",
         "FieldInput定義根拠/案件値を別に照合。定義missing/knowledge版不足はBRAIN、定義known値unknownは008、適用契約不整合はHARNESSへ返す材料。",
         "原不足を質問/矛盾/derived要求候補/N/A判断候補へ分類する根拠を照合。分類未定はunresolved。原field/source/版/scope/未完義務/戻し先を保存。",
         "別template成功で相殺せず原gapと成功候補を別resultにする。候補をticket/人間合意/義務消込へ昇格しない。",
@@ -10258,7 +10258,10 @@
       "carrier": "partial_carrierは指定既存schemaの供給形を厳密に満たすCoreJsonValue objectの名目refinement。schemaから既存Ref/Binding等へ再帰的に対応し、RawValueは既存CoreJsonValue、numberは既存numeric profileへ対応する。未供給はmember省略、nullはschema許容時だけ。新default/全axis必須/ordinary logical JSONからのcastはしない。 wire JsonValue/JSONValue/RawValue leaf名はいずれもCoreJsonValueへの数値profile対応であり、objectの別名として上書きしない。",
       "numeric": "CoreNumber/strict int/booleanを既存typed_core_json_equalとcore_json_integerへ束縛する。生成indexはstrict int>=0、boolをindexへ受理しない。原tokenを失わず、論理JSON literal表示をnative CoreNumber構築済みとしない。",
       "whole": "原wholeの型がCoreJsonValueであることは意図した原opaque資料の保存。derived field/gap/義務の代用袋としては使用しない。",
-      "rule_pointer": "SourceCheck/Causeのrule_pointerは本L5 rootからの実規則pointer。原source根拠の別revision/path/pointerはsource_basis及び当該規則のsource_pointersに分けて辿る。"
+      "rule_pointer": "SourceCheck/Causeのrule_pointerは本L5 rootからの実規則pointer。原source根拠の別revision/path/pointerはsource_basis及び当該規則のsource_pointersに分けて辿る。",
+      "identity_aliases": {
+        "F05NativeContext": "CoreCompareRequirementGapsContextと同一carrierの別名。両types定義のvalidated:CoreValidatedApplication、compare_applicability:CoreComparison、compare_kind_obligation_trace:CoreComparisonは同じ原三引数wholeを指す。ContextFormationとnative_context_crosswalkで名前が異なるだけで、変換/再生成/私有viewへの置換をしない。"
+      }
     },
     "types": {
       "CoreDecodeResult": {
@@ -11717,7 +11720,7 @@
       "decode失敗は既存外側codec返却のまま。private callerのValidationInputには入らず、validationを実施したことにもならない。wire wrapper/API新設の義務はない。native shape失敗は同fn0 validated.input=nullと実InputIssueを返す。両者を同一枝へcastしない。",
       "CoreApplicationInputは既存wire supply形を保つ。binding absentとbinding={}はいずれもinput非nullのpartial objectになり得る。supplied binding arrayはshape不適合。必須axisの意味検査は既存fn1責務でありdecodeの全axis gateにしない。",
       "Readは実parentの存在を先に保持する。input=nullではvalidation_inputをrootにした/field_inputs等の子Readを生成しない。owner_material=raw_onlyで原request/原因だけを返す。header bindingのReadはvalidation_raw又はf05_request内に実在するvalidated.input nodeをreachedとして未到達を示し、非実在input-rootを成功pointerにしない。",
-      "Read.presentのnull/false/0/空配列/空object/空文字列は全て原値である。reason未供給をnull/定型文にせず、読めない子をabsentへ変えない。意味body型不正はbody Formation.unformedと原Readを併記し、partial wire carrier全体のdefault修復をしない。"
+      "Read.presentのnull/false/0/空配列/空object/空文字列は全て原値である。reason未供給をnull/定型文にせず、読めない子をabsentへ変えない。意味body型不正はbody Formation.unformedと原Readを併記し、partial wire carrier全体のdefault修復をしない。 このreason保存規則は原資料のreason/member Readに適用する。生成CoreAxisResult.reasonだけはnative_comparison_projection/axis_leaf_writer/reasonの派生診断説明を使う範囲があり、原reasonの未供給/null/presenceを補修した値ではない。"
     ],
     "reference_and_collection_rules": {
       "matching": "既存reference_resolution_contractのidentity/revision/scope/ownerの全端対応と、供給digest条件を用いる。原full Refはsource_locator/sha256/presenceを含め常時保持し、source_locatorはidentityにしない。供給が足りず対応を判定できない場合はunestablished、必要端が供給され比較済みで異なればdifferent。",
@@ -11990,21 +11993,58 @@
       "candidate_results": "各原proposition occurrenceに一つのGapInterpretationを置き、原body枝に必要な全guardが対応した場合だけformed CandidateJudgment。不能ならunformed/unformed_kind=unresolvedと原原因。original_kind_differenceには元kindと解釈kindの原左右を返す。一致は支持条件ではない。互換的なquestion+derived等を全て返し、priorityやrole相違だけのconflict化をしない。multiple_supportは全formed index/命題Refを保存。実資料に解釈間の排他constraintがあれば別constraint occurrenceと左右関係を保存し支持済候補を消さない。"
     },
     "native_comparison_projection": {
-      "material": "formed Comparison.materialはF05GapReturnMaterialの原3member。candidate_proposalsはSelection.targetedの元gap_proposalsの全原8member/presenceを保つ原提案列であり、原kindを後判定kindへ上書きしない。対象外/対象未形成の元proposalもowner_material.gap_results.raw_onlyへ残す。根拠による4分類はevaluated.gap_results[*].value.candidate_interpretationsへlosslessに返し、元提案列とComparisonLinkで対応する。",
+      "material": "formed Comparison.materialはF05GapReturnMaterialの原3member。candidate_proposalsはSelection.targetedの元gap_proposalsの全原8member/presenceを保つ原提案列であり、原kindを後判定kindへ上書きしない。対象外/対象未形成の元proposalもowner_material.gap_results.raw_onlyへ残す。根拠による4分類はevaluated.gap_results[*].value.candidate_interpretationsへlosslessに返し、元提案列とComparisonLinkで対応する。 unfinished_obligation_refsのglobal原Ref保全と当該field/proposalの未完scope確定はrecipient_and_obligation_contract/obligation_scope_boundaryで区別する。この列の保全/形成だけで当該未完の範囲判定完了としない。",
       "formation": "context/header/inputが形成し、各対象field_checkと元GapReturnMaterialの必要出力leafが実型で形成できる範囲でComparison全5memberを形成する。局所domain state=unknown/missing/conflictは正当な実stateであり、それだけでComparisonをunformedへしない。一方、原Ref/presence不足などで必要FieldCheck生成leafが作れない場合はcomparison unformed/native_leaf_unformedとして全owner原材料/独立兄弟を返す。未形成fieldを除いたfield_checks[]で全体成功にしない。 比較のfield_checks/candidate_proposalsはSelection.targetedの範囲で、原index対応はcomparison_linksへ残す。known outsideのraw-onlyは比較形成不能原因にしない。selection unknownを全scope成功にも原必要集合削除にもせず、同owner原因をconsumerへ必ず渡す。",
       "header": "producer_symbol=compare_requirement_gaps。input_bindingは同validation.validated.inputの実binding object whole。親binding absent又はinputnullへ{}や別Bindingを補わない。",
       "axes": "各formed selected field_checkにつきdefinitionとvalue二つのCoreAxisResultを元field順・definition→value順に作る。subject_ref=元field.ref、binding=元field.binding、axisは既存field.definition/field.value、stateは当該summary、original_refsは元role refs（nullなら空Refsだが元nullはfield_check/ownerに保存）。reasonとbackflow_ownerの全値はaxis_leaf_writerに従う。元field.binding未形成なら必要生成leaf未形成を返し親bindingへ置換しない。",
       "findings": "新Finding codeを設けない。既存F05 failure ruleで原条件が成立したものだけ原rule/source/fieldへ対応して返す。単なる宣言/型/資格未成立をclassification_fabricated等のpublic違反へ変換しない。原入力にはこれらclaimが無い範囲はfindings=[]とし、private Causeを主な診断へ置く。",
       "determinism": "元配列順とindexを保持する本詳細のwriter順を使用し、Comparison materialを作り直すためのsortは追加しない。既存他producerの整列方式/意味には触れない。",
       "axis_leaf_writer": {
-        "reason": "当該summaryが実使用した全evidence/projectionのreason Readを原順に保持する。それらが一つ以上あり、全てpresentの同一stringであればその同一原stringを返す。その他（理由非適用/absence/null/型外/異なる複数理由）はdefinition軸なら固定文字列 /f05_detail_contract/definition_and_value_summary/field_definition、value軸なら固定文字列 /f05_detail_contract/definition_and_value_summary/field_value を診断説明として返す。これは原意味理由の代入ではなく、全元reason Readはownerに保持する。",
+        "reason": "本規則の固定文字列は生成CoreAxisResult.reasonの診断説明にだけ適用する。原evidence/projection/field/宣言のreason Readには転写せず、presence_and_decode_rulesの原reason未供給/null/型外/異値の保存を維持する。当該summaryが実使用した全evidence/projectionのreason Readを原順に保持する。それらが一つ以上あり、全てpresentの同一stringであればその同一原stringを返す。その他（理由非適用/absence/null/型外/異なる複数理由）はdefinition軸なら固定文字列 /f05_detail_contract/definition_and_value_summary/field_definition、value軸なら固定文字列 /f05_detail_contract/definition_and_value_summary/field_value を診断説明として返す。これは原意味理由の代入ではなく、全元reason Readはownerに保持する。",
         "backflow_owner": "当該field RecipientMaterialの形成済根拠が単一recipient=BRAINだけなら既存brain_owner、単一recipient=HARNESS008だけなら既存requirement_008_owner、その他/混合/未形成ならnull。元proposal.backflow_owner又はfield Ref.ownerから生成しない。"
       }
     },
     "recipient_and_obligation_contract": {
-      "recipients": "定義missingの形成済み明示absence根拠→BRAIN。定義knownかつvalue unknownの明示undecided根拠→HARNESS008。元質問が同fieldのapplication/process contractの実operand/資料を対象とする場合→HARNESSへの質問候補（契約不整合の正解を生成しない）。適用contract既知不整合の原独立根拠がある場合もHARNESS。その他分類/資料不足又は混合はrecipient=unresolvedを保持し、元proposal.backflow_owner文字列を結果へ転写しない。元source/field/版/scope/unfinishedRefsと原理由Readを全て結ぶ。",
-      "obligations": "元proposalのunfinished_obligation_refsをproposal順→Ref原順で全件保持し、同call compare_kind_obligation_trace.material.obligationsの元KindObligation Ref全順をその後に連結する。重複は消さずoriginを別々に持つ。各Refは原obligations型/意味/source/condition_refs/reentry_refとkind trace原whole/required_trace_refs/trace_edges/trace_requirementsへ対応させる。元ref未取得はcauseとして残しreturned_refsに取得成功だけを新必要集合として代入しない。原Ref自体が読めない必要生成leafはcomparison unformed。候補分類/NA/兄弟成功で義務消込しない。",
-      "consumer": "CORE外側返却.f05はcomparisonと全owner材料wholeを保持。B019接続callerはこれを別typed実引数core_field_value_contextの素材として受ける。選択030 query/knowledge/field関係/typedinputは別原資料であり、CoreJsonValue/CoreNumberをB030 json型へ無断castしない。原030inputのabsence/null/value/reasonと全returnが別必要で、ReceiptFieldRowのstate/value/reasonだけから原inputを復元しない。具体typed projection/callの閉包は独立pairの残務。"
+      "recipients": "定義missingの形成済み明示absence根拠→BRAIN。定義/knowledge版不足→BRAINという原要求は両方維持するが、knowledge版不足の原根拠取得/typed形成/返却写像はknowledge_revision_gap_boundaryの未閉包であり、一般の資料不足としてunresolvedへ落とすことをこの要求の代替/完了にしない。定義knownかつvalue unknownの明示undecided根拠→HARNESS008。HARNESSへの質問/返却先候補は原適用contract不整合の独立根拠へ対応する範囲に限り、契約不整合の正解をconsumerが生成しない。原process contract資料を質問対象に含むという理由だけではHARNESSへ振り分けない。その他分類/資料不足又は混合はrecipient=unresolvedと各独立原材料を保持し、元proposal.backflow_owner文字列を結果へ転写しない。原source/field/版/scope/unfinishedRefsと原理由Readを全て結ぶ。",
+      "obligations": "元proposalのunfinished_obligation_refsをproposal順→Ref原順で全件保持し、同call compare_kind_obligation_trace.material.obligationsの元KindObligation Ref全順をその後に連結する現技術選定はglobal F05 materialの原Ref保全である。これだけで全Refが各field/proposalに属する当該未完義務だとは判定しない（範囲根拠はobligation_scope_boundaryの未閉包）。重複は消さずoriginを別々に持つ。各Refは原obligations型/意味/source/condition_refs/reentry_refとkind trace原whole/required_trace_refs/trace_edges/trace_requirementsへ対応させる。元ref未取得はcauseとして残しreturned_refsに取得成功だけを新必要集合として代入しない。原Ref自体が読めない必要生成leafはcomparison unformed。候補分類/NA/兄弟成功で義務消込しない。",
+      "consumer": "CORE外側返却.f05はcomparisonと全owner材料wholeを保持。B019接続callerはこれを別typed実引数core_field_value_contextの素材として受ける。選択030 query/knowledge/field関係/typedinputは別原資料であり、CoreJsonValue/CoreNumberをB030 json型へ無断castしない。原030inputのabsence/null/value/reasonと全returnが別必要で、ReceiptFieldRowのstate/value/reasonだけから原inputを復元しない。具体typed projection/callの閉包は独立pairの残務。",
+      "knowledge_revision_gap_boundary": {
+        "source_pointers": [
+          "L3:/requirements/27",
+          "L4:/field_semantic_evidence_contract/basic_candidate_return/owners",
+          "/contracts/6/behavior",
+          "/contracts/6/backflow",
+          "base-L5-948f1c60:/functions/5/algorithm/0"
+        ],
+        "preserved_requirement": "定義/knowledge版不足の返却先はBRAIN。knowledge版不足を定義absence、source資格不足又は単なるlookup missへ同一化せず、この上流意味を変更しない。",
+        "unclosed_operands_and_writer": "現FieldDefinitionEvidence/Projectionの定義/値profileはknowledge版不足の独立原命題を表す閉型ではない。同field/要求/template/knowledgeに必要とされた原版Ref、その版の不足を示す原ownerの独立資料/原body、供給側の実knowledge Ref/版/scopeと原source/資格への対応、それら全presence/左右根拠をRecipientMaterial及びconsumerへ結ぶtyped形成/全leaf writerが未閉包。元FieldInput/Binding/knowledge_records/semantic_recordsの原値は保持するが、key名/単一revision差/参照未取得/qualified成功だけから不足命題又は任意known boolを生成しない。",
+        "completion_boundary": "この不足で返却先根拠をまだ形成できず局所未形成又はunresolvedが残ることは技術的未完成であり、knowledge版不足のBRAIN返却義務をunresolvedへ変えたことにもその義務を完了したことにもしない。独立に形成するfield/候補/原材料を消さず、新しい全体gate又は資格providerを導入しない。"
+      },
+      "obligation_scope_boundary": {
+        "source_pointers": [
+          "L4:/field_semantic_evidence_contract/basic_candidate_return/fields/unfinished_obligation_refs",
+          "/type_contract/types/KindTraceMaterial",
+          "/type_contract/types/ApplicabilityMaterial",
+          "/type_contract/types/GapReturnMaterial",
+          "/functions/4",
+          "/f05_detail_contract/types/ObligationMaterial",
+          "/f05_detail_contract/types/ObligationOrigin"
+        ],
+        "global_preservation": "L4は同call原gap/原kind traceの当該未完Refの順序/反復/返却対応保持と消込禁止を求める。現全KindTrace Refの連結は失われないglobal保全案であり、field/proposal単位の選択又は未完確定の判定器ではない。各Refの原proposal由来/kindtrace由来を保持し、別field成功や候補kindだけでRefを消去しない。",
+        "unclosed_scope_basis": "KindTraceMaterial.obligationsは原KindObligation列を持つが未完flagや各field/proposal所属を型として持たない。L4の当該未完とこの全列が同一範囲であると確定する原source/condition/obligation/subject/binding対応、及び元ApplicabilityMaterial.unfinished_obligation_refsとの関係は現writerで未閉包。原fn3 wholeもoriginal_requestへ保持し、未使用列を消去又は新selectorで逆配布しない。",
+        "nonclaim": "元sourceが示す当該scopeの対応が形成していないRefまで個々のfield/proposalの未完確定として割り当てず、global carrierの形成だけでL4の当該未完契約を充足したとしない。新しい未完判定/selector/必要集合/消込は追加しない。"
+      },
+      "application_contract_recipient_boundary": {
+        "source_pointers": [
+          "L3:/requirements/27",
+          "L4:/field_semantic_evidence_contract/basic_candidate_return/owners",
+          "/contracts/6/backflow",
+          "base-L5-948f1c60:/functions/5/algorithm/0"
+        ],
+        "scope": "HARNESS返却は原適用contract不整合の根拠に対応する既存範囲。process contractを参照した質問という分類だけではHARNESS返却の根拠にならない。",
+        "preserve": "元process/application/requirement資料・原質問・requested operand・gap_basis・source/body/版/scopeは従来どおり全返却へ保持し、質問候補自体を削除又は文章parseで適用不整合へ変換しない。",
+        "remaining": "process資料が原適用contract不整合へ実際に対応する根拠のtyped形成が足りない場合、その返却先形成は局所未閉包のまま残す。process資料全般をHARNESSへ返す新owner権限/要求を追加しない。"
+      }
     },
     "leaf_writer_ledger": [
       {
@@ -12717,7 +12757,7 @@
     },
     "consumer_interpretation_binding": {
       "actual_arguments": "private callerはF05 detailの実comparison.formed.valueを元fn9/fn10 Contextのcompare_requirement_gaps memberへ入れ、同じF05DetailedReturn wholeを各DetailedContext.f05_detailへ実引数で渡す。元必須Context member全値は縮約しない。F05 comparison unformed又は他必須producer返却未取得なら当該consumerは呼ばず原因をouterへ。",
-      "state_candidate_writers": "FieldCheckProjectionの定義/値stateはFieldOwnerResult.summaryからのみ書く。候補の四分類/未解決/複数支持を読む後段はf05_detail.owner_material.evaluated.gap_resultsのevaluated.value.candidate_interpretationsとjudgment/basis/causesを使う。Comparison.material.candidate_proposalsの原kindは原提案ラベルとしてのみ扱い、classificationのoracleへしない。formed candidateと元kind差も同引数から取る。 field/gap raw_onlyのselection原因を併せて読み、短materialの不在を完備/適用外と断定しない。",
+      "state_candidate_writers": "FieldOwnerResult.definition_assessment.judgment（Formation<DefinitionJudgment>）とvalue_assessment.judgment（Formation<ValueJudgment>）の両tag=formed時に限り、それぞれjudgment.value.stateをFieldCheckProjection.definition_state/value_stateへ書く。元Ref/presence等の追加leaf条件はdefinition_and_value_summary/field_checkに従い、一方がunformedならFieldCheckProjectionへ新stateを補わない。FieldOwnerResultにsummary memberは無い。候補の四分類/未解決/複数支持を読む後段はf05_detail.owner_material.tag=evaluated枝のgap_resultsで各GapResult.tag=evaluatedのvalue.candidate_interpretationsと、その各judgment/basis/causesを使う。Comparison.material.candidate_proposalsの原kindは原提案ラベルとしてのみ扱い、classificationのoracleへしない。formed candidateと元kind差も同引数から取る。field/gap raw_onlyのselection原因を併せて読み、短materialの不在を完備/適用外と断定しない。",
       "claim_writer": "check_application_claims_detailは元fn9の各claim条件/source/subject/bindingを保持し、F05に関するcandidate-as-agreement/AI補完/誤返却/別template相殺claimの照合材料はf05_detailの全根拠付き解釈とunfinished/recipientから取る。原kindだけ又はprivate解釈未観測を成功根拠にしない。元fn9他producer意味は変えず、新Finding code/stateは作らない。",
       "analysis_writer": "build_application_analysis_from_detailは元fn10 writerが必要とする全形成済Comparisonをnative_contextから取得し、既存ApplicationAnalysis公開memberへ対応する元材料を返す。原candidate_proposalsを採択済解釈へ変更しない。公開Analysisに無い全解釈/原因/原payloadはCoreApplicationDetailReturn.f05へ必ず同wholeで残す。既存短Analysisだけを新F05全結果と称さない。",
       "technical_difference": "旧fn9/fn10 Context-only署名のまま新解釈を全量取得できるとは主張しない。私有詳細入口への追加F05全返却引数を今回選定し、元Context wholeを形成済みのまま併せて渡す。全9producerをSlot APIへ同時移行する差分ではない。"
@@ -12797,7 +12837,10 @@
       "B019/030の同query/knowledge/独立field関係及び数値表現を含むtyped projection・選択call全入力/全返却・実配送/受領/OS記録・実受入、全92親430義務は別残務。",
       "現failure_rulesのF05 claim predicatesは原条件文章とClaim.kind:string/原proposed_valueを持つ既存契約で、全claim種類の新native式木/任意自然言語意味classifierは本差分で作らない。既存claim条件の原operand対応が元資料で一意に形成できない枝を実Finding成功へ補完しない。全claim入力語彙の詳細原producer契約と全branch oracleの閉包は独立検収が必要。",
       "source観測のusableは供給独立root責務前提の局所原資料照合成立だけ。原source/qual/root必要端が未提示の局所未形成と、実root供給元/custody/原owner認証の取得口未閉包は別である。既存ApplicationInput/ValidationInputに後者の実trace引数が無いため、外部実trust成立は本詳細から導けない。新arg/bool/provider/一律全資料拒否gateは追加しない。",
-      "caller_return_writer_contractは7個Comparison-only観測とF05/claims/analysis専用返却の全leaf/原所在/Cause順を技術選定した文書であり、実call/return観測、既存他producer全意味writer又は選択owner typed port完成を証明しない。L4outer_return_boundaryのstep6/7全返却/未接続は別追補対象。"
+      "caller_return_writer_contractは7個Comparison-only観測とF05/claims/analysis専用返却の全leaf/原所在/Cause順を技術選定した文書であり、実call/return観測、既存他producer全意味writer又は選択owner typed port完成を証明しない。L4outer_return_boundaryのstep6/7全返却/未接続は別追補対象。",
+      "knowledge版不足→BRAINは承認済F05の保持義務。recipient_and_obligation_contract/knowledge_revision_gap_boundaryに挙げた原必要版/供給版/不足原命題/owner-source-body対応のtyped形成と返却writerは未閉包であり、unresolved又は局所未形成を返せたことを要求の意味変更/完了根拠にしない。",
+      "global全KindTrace Ref保全と、個々のfield/proposalの当該未完scope確定は別。obligation_scope_boundaryの原scope/状態対応は未閉包であり、全列保存から当該未完の新selector又は消込を生成しない。",
+      "HARNESS返却先は原適用contract不整合の根拠に対応する範囲。元process資料一般の返却先を新規にHARNESSとせず、原材料を全保持したままapplication_contract_recipient_boundaryの局所形成不足を残す。"
     ],
     "advice_history_boundary": "local corrected5b2c及びevidence-content-separated1d3は著述相談入力に限る。規範の各型/guardは上記tracked原sourceへ結び、ignored助言を必要な解読依存にしない。",
     "type_dependencies": {
