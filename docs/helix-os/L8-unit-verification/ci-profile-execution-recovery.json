@@ -170762,9 +170762,9 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-    "sha256": "12a7db6af846d0d558d09ac1e6e63b9253ff55b52126609e5677b7b15f24ce86",
+    "sha256": "ce25dba7ff5f91f16938179c03f79b636c9156879c3e013772fc71cf8d19c427",
     "pointer": "/private_producer_bindings/0",
-    "object_canonical_sha256": "2ad2e75a5bb6c618127416832d7e9635f8bfe121dfc2e9ce02f9978a682440b2",
+    "object_canonical_sha256": "4635e1f02aed3a264fa8576fdc5f216f66bbc705794896d5d6599eb7fb9145cc",
     "binding_kind": "exact_candidate_file_bytes",
     "meaning": "同じ対に置くL5の現在file bytesとprivate producer binding objectを結ぶ。歴史source pinとは区別する。"
   },
@@ -171275,7 +171275,7 @@
     ],
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "547dd8434e92985ee82faac38237488c154e35bffb37c992d64dca54d942d55d",
+      "candidate_sha256": "b67b5f01a6bd7df3c474d6de30d382bf4a9d9ee6d86f1121f7d4d590c0f8229c",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
     },
@@ -171293,13 +171293,13 @@
     "requirement_ref": "HELIXOS-L3-020-B01",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "12a7db6af846d0d558d09ac1e6e63b9253ff55b52126609e5677b7b15f24ce86",
+      "sha256": "ce25dba7ff5f91f16938179c03f79b636c9156879c3e013772fc71cf8d19c427",
       "pointer": "/private_producer_bindings/1",
-      "object_canonical_sha256": "5fa7176190fa6085fabbece0f5c4c95cfe530c3bcae84cfad0d79cbbc3825beb"
+      "object_canonical_sha256": "3c50b90a9bdc10fee6271c5ae23b5df5d8912df4b87836764aecb92a1155128f"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "547dd8434e92985ee82faac38237488c154e35bffb37c992d64dca54d942d55d",
+      "candidate_sha256": "b67b5f01a6bd7df3c474d6de30d382bf4a9d9ee6d86f1121f7d4d590c0f8229c",
       "pointer": "/owner_return_verification"
     },
     "unit_conditions": [
@@ -171362,5 +171362,147 @@
     ],
     "unfrozen_bounds_ja": "対応表は対条件の被覆でありliteral whole/全call trace期待の先凍結ではない。非返却/fallback/混在dispatch順/重複の具体的な全入力・全返却期待と実行証拠は未固定。既存role素材から新call成功を生成せず、L6/L7の実装前oracle形成で具体化する。",
     "limits_ja": "単体条件とimport/call bindingの設計。新literal whole期待/モデル実行/実物TDDのGreenではない。既存9関数と全旧入力/期待は不変。"
+  },
+  "operation_call_verification": {
+    "kind": "os020_f02_operation_call_l4_l5_l9_correspondence",
+    "requirement_ref": "HELIXOS-L3-020-F02",
+    "system_oracle_ref": "HELIXOS-L10-020-F02",
+    "current_l4_binding": {
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "pointer": "/contracts/1/operation_call_contract",
+      "body_sha256": "066121047e7862401e2c1f477c8ca817ca7f23b06473ed32f12196538af91f47",
+      "object_canonical_sha256": "544af4e30f824a8c2eb5f56801dd09c12688407bf1d38608c26a9ec5c241ea20"
+    },
+    "candidate_l5_binding": {
+      "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+      "pointer": "/private_producer_bindings/2",
+      "sha256": "ce25dba7ff5f91f16938179c03f79b636c9156879c3e013772fc71cf8d19c427",
+      "object_canonical_sha256": "f044e67965d824649417ca8ec30c0e2807fcc4a9cf7e71dd5ebd9a5b3d594ef3"
+    },
+    "current_l9_candidate_binding": {
+      "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+      "pointer": "/operation_call_verification",
+      "candidate_sha256": "b67b5f01a6bd7df3c474d6de30d382bf4a9d9ee6d86f1121f7d4d590c0f8229c",
+      "object_canonical_sha256": "89cfa112cb0ec6e0ed02041f000e404633a3c1395b8f179e83f91dcb70291a27"
+    },
+    "condition_correspondence": [
+      {
+        "condition_id": "OP-SOURCE-01",
+        "requirement_ref": "HELIXOS-L3-020-F02",
+        "system_oracle_ref": "HELIXOS-L10-020-F02",
+        "l4_pointer": "/contracts/1/operation_call_contract/source_conditions/0",
+        "l5_binding_pointer": "/private_producer_bindings/2",
+        "l9_pointer": "/operation_call_verification/conditions/0",
+        "case_refs": []
+      },
+      {
+        "condition_id": "OP-SOURCE-02",
+        "requirement_ref": "HELIXOS-L3-020-F02",
+        "system_oracle_ref": "HELIXOS-L10-020-F02",
+        "l4_pointer": "/contracts/1/operation_call_contract/source_conditions/1",
+        "l5_binding_pointer": "/private_producer_bindings/2",
+        "l9_pointer": "/operation_call_verification/conditions/1",
+        "case_refs": []
+      },
+      {
+        "condition_id": "OP-SOURCE-03",
+        "requirement_ref": "HELIXOS-L3-020-F02",
+        "system_oracle_ref": "HELIXOS-L10-020-F02",
+        "l4_pointer": "/contracts/1/operation_call_contract/source_conditions/2",
+        "l5_binding_pointer": "/private_producer_bindings/2",
+        "l9_pointer": "/operation_call_verification/conditions/2",
+        "case_refs": []
+      },
+      {
+        "condition_id": "OP-SOURCE-04",
+        "requirement_ref": "HELIXOS-L3-020-F02",
+        "system_oracle_ref": "HELIXOS-L10-020-F02",
+        "l4_pointer": "/contracts/1/operation_call_contract/source_conditions/3",
+        "l5_binding_pointer": "/private_producer_bindings/2",
+        "l9_pointer": "/operation_call_verification/conditions/3",
+        "case_refs": []
+      },
+      {
+        "condition_id": "OP-SOURCE-05",
+        "requirement_ref": "HELIXOS-L3-020-F02",
+        "system_oracle_ref": "HELIXOS-L10-020-F02",
+        "l4_pointer": "/contracts/1/operation_call_contract/source_conditions/4",
+        "l5_binding_pointer": "/private_producer_bindings/2",
+        "l9_pointer": "/operation_call_verification/conditions/4",
+        "case_refs": []
+      },
+      {
+        "condition_id": "OP-SOURCE-06",
+        "requirement_ref": "HELIXOS-L3-020-F02",
+        "system_oracle_ref": "HELIXOS-L10-020-F02",
+        "l4_pointer": "/contracts/1/operation_call_contract/source_conditions/5",
+        "l5_binding_pointer": "/private_producer_bindings/2",
+        "l9_pointer": "/operation_call_verification/conditions/5",
+        "case_refs": []
+      },
+      {
+        "condition_id": "OP-SOURCE-07",
+        "requirement_ref": "HELIXOS-L3-020-F02",
+        "system_oracle_ref": "HELIXOS-L10-020-F02",
+        "l4_pointer": "/contracts/1/operation_call_contract/source_conditions/6",
+        "l5_binding_pointer": "/private_producer_bindings/2",
+        "l9_pointer": "/operation_call_verification/conditions/6",
+        "case_refs": []
+      }
+    ],
+    "unit_conditions": [
+      {
+        "id": "F02-UNIT-01",
+        "condition_ja": "同じCIInputのselected prepareを使う。unselected、制約拒否/未解決、host fallback拒否/未解決ではdispatchがnot_calledとなり、空findingを実行成功としない。",
+        "aligns_with": [
+          "OP-SOURCE-01",
+          "OP-SOURCE-03",
+          "OP-SOURCE-04"
+        ]
+      },
+      {
+        "id": "F02-UNIT-02",
+        "condition_ja": "dispatch/monitor/collectionのnot_calledとcalledを区別し、called+Field.absentをnot_calledと混同しない。L4の14 origin memberを原値・Field tag込みで保持する。",
+        "aligns_with": [
+          "OP-SOURCE-02",
+          "OP-SOURCE-04"
+        ]
+      },
+      {
+        "id": "F02-UNIT-03",
+        "condition_ja": "F02004には元CIInputの/resultだけをcapture.result_recordへ置換して一度渡し、独立context/他memberと全CollectionAssessment返却を保持する。",
+        "aligns_with": [
+          "OP-SOURCE-01",
+          "OP-SOURCE-04"
+        ]
+      },
+      {
+        "id": "F02-UNIT-04",
+        "condition_ja": "builder blocked、join unresolved/mismatch、S04 calledの各branchで同一operation stageを保持し、blocked branchからS04を呼ばない。",
+        "aligns_with": [
+          "OP-SOURCE-05",
+          "OP-SOURCE-06",
+          "OP-SOURCE-07"
+        ]
+      },
+      {
+        "id": "F02-UNIT-05",
+        "condition_ja": "plain BindingとField<Binding>、各Write/link/write_id/full Ref/content bytes/declared pathを型・presence敏感に全値比較する。matched sibling/全causeを残し、全13軸known gateやbuilder/decoder再呼出しを加えない。",
+        "aligns_with": [
+          "OP-SOURCE-05",
+          "OP-SOURCE-06"
+        ]
+      },
+      {
+        "id": "F02-UNIT-06",
+        "condition_ja": "S04へconfigured adapterのopaque native capabilityだけを渡し、native Result/Finding/ProtocolCall全返却と内蔵read-afterを保持する。read対象不一致/不足は未成立のまま残し、二重readを作らない。",
+        "aligns_with": [
+          "OP-SOURCE-06",
+          "OP-SOURCE-07"
+        ]
+      }
+    ],
+    "preservation_ja": "既存L8の270case、全input/expected、公開9関数の対応は変更しない。case_refs=[]は新fixtureを作成していないことを表し、既存期待の完了や実行済みを意味しない。",
+    "status_ja": "設計上の対応関係を記録する有限追補。新しいwhole期待、実行証拠、実provider成立、F02全体完了を主張しない。F03は後続対象。"
   }
 }

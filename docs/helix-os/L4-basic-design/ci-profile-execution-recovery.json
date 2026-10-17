@@ -1395,7 +1395,178 @@
       "component": "isolated_operation_and_original_result_material",
       "input_meaning": "SECURITY制約とINFRASTRUCTUREの対象実資源を照合し、CIの隔離実行・監視・回収・再開を行う。success/fail/denied/skipped/interrupted/staleを別に保存し、未実行と起動拒否を実成功にしない。",
       "output_meaning": "7facet別素材対応/unknown/違反、原状態/未完/戻し先素材。実operation none。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "operation_call_contract": {
+        "id": "HELIXOS-L4-020-F02-operation-call",
+        "requirement_ref": "HELIXOS-L3-020-F02",
+        "system_oracle_ref": "HELIXOS-L10-020-F02",
+        "purpose_ja": "F02の選択された準備・隔離operation・監視・回収・比較・保存を、同一入力と同一call返却に結び付けるprivate producer契約。既存の公開9関数の入力・返却と意味は変えない。",
+        "dispatch_selection_ja": "F02003へ同一CIInputとselected phaseを渡す。F02 operation dispatchはphase=prepareが選択され、既存assessmentにoperation拒否/未解決またはhost fallback拒否/未解決がない場合だけ呼ぶ。未選択phaseの空finding、unknownまたはhost fallbackは呼出し成功を意味しない。呼ばない場合はnot_calledと理由を保持する。これは既存制約の伝達であり新しい権限・資格・承認ではない。",
+        "operation_stage_ja": "dispatch→monitor→collectは同一capability/requestと直前の正確な返却を受け渡す。各callのnot_called/called、opaque native返却、handle、source occurrence、owner Fieldは別々に保持する。collection.call_stateとresult_recordのField tagは独立する。F02004が呼ばれるとき、同じCIInputのresultだけをcapture.result_recordへ置換したcomparison_inputを一度だけ作り、全他memberを保持する。F02004の全CollectionAssessmentはF02CollectionComparisonCallに残す。",
+        "capture_member_origins": {
+          "closed_fields_in_order": [
+            "request",
+            "observation",
+            "binding",
+            "profile",
+            "dispatch_request_native",
+            "operation_assessment",
+            "operation_owner_return_native",
+            "os018_assignment_attempt_native",
+            "os018_assignment_attempt_return_native",
+            "security_control_native",
+            "infrastructure_resource_native",
+            "infrastructure_isolation_native",
+            "result_record",
+            "source_occurrences"
+          ],
+          "members": [
+            {
+              "field": "request",
+              "type": "F02OperationPortRequest",
+              "origin_ja": "入口argumentそのもの"
+            },
+            {
+              "field": "observation",
+              "type": "F02OperationObservation",
+              "origin_ja": "dispatch/monitor/collect各call返却とOS018返却の原値"
+            },
+            {
+              "field": "binding",
+              "type": "request.binding",
+              "origin_ja": "Field tag/valueを保持"
+            },
+            {
+              "field": "profile",
+              "type": "request.profile",
+              "origin_ja": "Field tag/valueを保持"
+            },
+            {
+              "field": "dispatch_request_native",
+              "type": "request.dispatch_request_native",
+              "origin_ja": "owner供給のRawValue Fieldを保持"
+            },
+            {
+              "field": "operation_assessment",
+              "type": "request.operation_check.assessment",
+              "origin_ja": "F02003全返却"
+            },
+            {
+              "field": "operation_owner_return_native",
+              "type": "observation.collection.owner_return_native",
+              "origin_ja": "collection.call_state=calledの場合。not_calledではField.absent"
+            },
+            {
+              "field": "os018_assignment_attempt_native",
+              "type": "request.os018_assignment_attempt_native",
+              "origin_ja": "原Field"
+            },
+            {
+              "field": "os018_assignment_attempt_return_native",
+              "type": "observation.os018_assignment_attempt_return_native",
+              "origin_ja": "原Field"
+            },
+            {
+              "field": "security_control_native",
+              "type": "request.security_control_native",
+              "origin_ja": "request内の原Field"
+            },
+            {
+              "field": "infrastructure_resource_native",
+              "type": "request.infrastructure_resource_native",
+              "origin_ja": "request内の原Field"
+            },
+            {
+              "field": "infrastructure_isolation_native",
+              "type": "request.infrastructure_isolation_native",
+              "origin_ja": "request内の原Field"
+            },
+            {
+              "field": "result_record",
+              "type": "observation.collection.result_record",
+              "origin_ja": "calledの場合の原Field。not_calledはField.absent"
+            },
+            {
+              "field": "source_occurrences",
+              "type": "observation.source_occurrences",
+              "origin_ja": "原順・重複を保つField"
+            }
+          ],
+          "field_state_rule_ja": "Fieldのabsent/null/empty/suppliedを保つ。collection not_calledからresult_recordまたはowner_returnを読むことはせず、対応memberはField.absentとする。calledでField.absentが返った場合はその値をそのまま保持し、call_stateから推測しない。"
+        },
+        "persist_sequence_ja": "同じcapture段階返却を一つのPlan builder入力へ結ぶ。builder blockedならjoin/S04を呼ばない。ready時は全Write occurrenceをcaptureと比較し、全行/原因を保持する。すべてmatchedの場合だけOS053 S04を一度呼び、native returnを保持する。S04内蔵のcommit後read-afterを再利用し、追加readを作らない。",
+        "source_conditions": [
+          {
+            "id": "OP-SOURCE-01",
+            "requirement_ref": "HELIXOS-L3-020-F02",
+            "scenario_ja": "承認済みprofileと制約/資源/隔離sourceを同runへ結んだ通常の依頼",
+            "expected_condition_ja": "運転ownerへの依頼と原返却が同じ要求のBindingへ結ばれ、開始/監視/回収の原観測、六結果区分、保存応答を辿れる。素材比較だけの対応を実行済みにしない。",
+            "derivation_ja": "既存L3の隔離実行/監視/回収とL10の結果/環境/許可境界・回収証拠の追跡",
+            "formal_mapping_ja": "同一runのCIInput、phase、operation request、各operation call returnをF02OperationCheckからcaptureへ結ぶ。素材比較の返却を実行済みの証拠へ昇格しない。"
+          },
+          {
+            "id": "OP-SOURCE-02",
+            "requirement_ref": "HELIXOS-L3-020-F02",
+            "scenario_ja": "起動拒否またはskipの原結果を返す",
+            "expected_condition_ja": "denied/skippedの原区分を保持し、successまたは実行済みへ変換しない。開始/回収の有無は原観測ごとに別保持する。",
+            "derivation_ja": "L10 negative denied/skippedをpass",
+            "formal_mapping_ja": "denied/skippedのowner原区分、dispatch/monitor/collection call state、結果Fieldを独立保持する。"
+          },
+          {
+            "id": "OP-SOURCE-03",
+            "requirement_ref": "HELIXOS-L3-020-F02",
+            "scenario_ja": "隔離不能時にhost実行を代替成功として提出する",
+            "expected_condition_ja": "当該実行を不成立とし隔離制約・資源の不足を保持する。別環境を勝手に代替しない。",
+            "derivation_ja": "L10 negative 隔離不能時host fallback",
+            "formal_mapping_ja": "F02003の既存制約Findingを保持し、制約拒否/未解決またはhost fallback拒否/未解決ならdispatchを呼ばない。"
+          },
+          {
+            "id": "OP-SOURCE-04",
+            "requirement_ref": "HELIXOS-L3-020-F02",
+            "scenario_ja": "依頼があっても開始/結果が未観測、又は回収がない",
+            "expected_condition_ja": "未実行/未観測/未回収を供給されたsourceの区分で保持し、要求や期待から実success/collectedを作らない。",
+            "derivation_ja": "L3未実行を実成功にしない/L10未回収を成功",
+            "formal_mapping_ja": "not_called、called+Field.absent/null/empty/suppliedを別に保持し、missing successを補完しない。"
+          },
+          {
+            "id": "OP-SOURCE-05",
+            "requirement_ref": "HELIXOS-L3-020-F02",
+            "scenario_ja": "別HEAD/環境/許可境界/runの結果を同じ依頼へ流用する",
+            "expected_condition_ja": "原結果と相違位置を保持し、別run結果で当該runの欠落や失敗を相殺しない。HEADだけの一致で全Bindingを成立扱いしない。",
+            "derivation_ja": "L3/L10環境/許可境界・結果traceと既存Binding13軸",
+            "formal_mapping_ja": "全Binding field、request/run/source/plan/link/writeを型・presence敏感に対応づけ、別HEAD/runの結果を相殺へ使わない。"
+          },
+          {
+            "id": "OP-SOURCE-06",
+            "requirement_ref": "HELIXOS-L3-020-F02",
+            "scenario_ja": "原六結果の保存要求が失敗又は未成立で返る",
+            "expected_condition_ja": "元の結果・失敗/未完と保存の不足を保持する。保存成功receipt又はread-after済み状態を捏造しない。",
+            "derivation_ja": "L3六結果を別に保存/L10結果と未完を辿れる",
+            "formal_mapping_ja": "operation outcomeとbuilder/join/S04 returnの失敗・未完を保持し、成功receiptやreadbackを捏造しない。"
+          },
+          {
+            "id": "OP-SOURCE-07",
+            "requirement_ref": "HELIXOS-L3-020-F02",
+            "scenario_ja": "保存返却と独立readの対象operation/revision/内容が異なる又は読取不足",
+            "expected_condition_ja": "保存ownerの既存意味に従いmissing/unknown/stale/conflict等を保持し、当該結果が確定保存されたとの対応を生成しない。OS053を選ぶ場合はnative Plan/ReadRequest/ReadSnapshotの契約に従い不足operandを推定しない。",
+            "derivation_ja": "既存OS053保存/readback契約を選択した場合の対条件。新たな保存方式採用ではない",
+            "formal_mapping_ja": "OS053を選択した場合native Plan/Resolution/Result/ReadSnapshot/Write/ReceiptRecord等の契約を保持する。独立readbackの対象不一致/欠落はmissing/unknown/stale/conflictとして元値と原因を保持し、committedを推定しない。S04内蔵read-afterを再利用し二重readは作らない。"
+          }
+        ],
+        "legacy_comparison": {
+          "legacy_source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/impact-ci-recovery.md",
+          "preserve_ja": "impact由来の計画とCI実行結果を分けて追跡し、未完了・回復を成功に畳まない。",
+          "change_ja": "旧の固定profile/scheduler・DB依存を移植せず、現F02の選択済operationとnative owner call/returnを明示的な同一call契約で結ぶ。旧SLAや固定実行件数を新規gateにしない。",
+          "asset_id": "LEGACY-ASSET-D888FB040D52499EE09E",
+          "lines": [
+            19,
+            33,
+            82,
+            113
+          ]
+        },
+        "limits_ja": "この契約はF02の設計上の入力・返却対応を定める。F03 resume、実operation provider、実資格、実OS053保存、CI実行、全whole fixtureの新しい評価は対象外。F02全体完了を意味しない。"
+      }
     },
     {
       "id": "HELIXOS-L4-020-F03",
