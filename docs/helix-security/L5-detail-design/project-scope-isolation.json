@@ -2136,6 +2136,21 @@
       },
       "String": {
         "kind": "string"
+      },
+      "InvocationCount": {
+        "kind": "integer",
+        "allowed_values": [
+          0,
+          1
+        ]
+      },
+      "SameFrameOperationComparison": {
+        "kind": "enum",
+        "values": [
+          "corresponding",
+          "conflict",
+          "unresolved"
+        ]
       }
     },
     "logical_types": {
@@ -2891,6 +2906,32 @@
         "fields": {
           "caller_kind": "Field<CallerKind>"
         }
+      },
+      "SameFrameOperationCorrespondence": {
+        "fields": {
+          "left_node_observed": "Bool",
+          "right_node_observed": "Bool",
+          "left_field": "Field<Operation>",
+          "right_field": "Field<Operation>",
+          "comparison": "SameFrameOperationComparison",
+          "bound": "Bool",
+          "known_operation": "Bool",
+          "authorization_effect": "NoneEffect"
+        },
+        "meaning": "source operand対応の記録。bound/known_operationは認可・実operation許可ではない。left_field/right_fieldのpointerとoriginal/rawは各元node由来。"
+      },
+      "SameFrameInvocationPlan": {
+        "fields": {
+          "compose_scope_proposal_calls": "InvocationCount",
+          "describe_scope_backflow_calls": "InvocationCount",
+          "independent_part_helper_calls": "InvocationCount"
+        },
+        "fixed_values": {
+          "compose_scope_proposal_calls": 1,
+          "describe_scope_backflow_calls": 1,
+          "independent_part_helper_calls": 0
+        },
+        "meaning": "設計上の呼出し回数記述で実runtime呼出し計測ではない。"
       }
     },
     "result_types": {
@@ -3027,6 +3068,17 @@
         "fields": {
           "candidates": "List<BackflowCandidate>",
           "actual_route_invoked": "False"
+        }
+      },
+      "SameFrameInvocationResult": {
+        "fields": {
+          "native_input": "Materialized<ProposalInput>",
+          "native_proposal": "ScopeProposal",
+          "source_frame": "Materialized<ScopeFrame>",
+          "backflow_input": "Materialized<BackflowInput>",
+          "native_backflow": "BackflowAnalysis",
+          "operation_correspondence": "SameFrameOperationCorrespondence",
+          "invocation": "SameFrameInvocationPlan"
         }
       }
     },
@@ -3526,7 +3578,33 @@
         "findingsはcode/pointer/return_owner scalar codepoint順unique（全3field同値だけ）。元ScopeFrame request/contextを別入力として保存し、preserved trueは無変換保持の契約、実identity資格でない。",
         "connection content flagとtenant dispositionは独立part原値、欠落ならfalse/unknownに保持。全actual false/operation none。"
       ],
-      "effect": "none"
+      "effect": "none",
+      "same_frame_nonrecord_supplement": {
+        "when": "入力Materialized<ProposalInput>のroot tagがrecordでない、又はfieldsが読めない/null。既存pure_algorithmのrecord分岐は変更しない。",
+        "writer": {
+          "condition": "scope_unresolved",
+          "origin_identity_preserved": true,
+          "target_identity_preserved": true,
+          "tenant_disposition": {
+            "origin": "unknown",
+            "target": "unknown"
+          },
+          "requested_operation": null,
+          "connection_content_corresponding": false,
+          "findings": [
+            {
+              "code": "scope_input_unresolved",
+              "pointer": "input.pointerそのもの",
+              "return_owner": "scope-binding-owner"
+            }
+          ],
+          "pending_operations": [],
+          "actual_scope_authorized": false,
+          "actual_state_changed": false,
+          "operation_effect": "none"
+        },
+        "precedence": "carrier rootの不正に対する上記findingを一件だけ返す。読めない子partから子findingを合成しない。record rootで読めるpartの既存findingsを消す規則ではない。"
+      }
     },
     {
       "id": "HELIXSECURITY-L5-003-retain_owner_source_material",
@@ -3670,7 +3748,28 @@
         "candidate parentは既存OS018/INFRA001/CONNECT003/SEC003の参照だけ。root資格/正式dispatch routeは未成立。operation未知はnull、scope_materialにはsource_frameの元request origin/target rawだけを保持する。",
         "元findingのreturn_owner scope-binding-ownerを書換えず、candidate_ownerを別fieldで返す。無関係scopeを停止せず実route false。"
       ],
-      "effect": "none"
+      "effect": "none",
+      "same_frame_source_preservation_supplement": {
+        "candidate_order_and_fields": "native BackflowAnalysis.candidatesはfn10既存の順序・全5fieldを保つ。findingのcode/pointer/return_ownerを変更しない。",
+        "operation_finding_owner": [
+          {
+            "condition": "finding.code=scope_input_unresolved かつ finding.pointer=/request/operation",
+            "candidate_owner": "CONNECT",
+            "basis_pointer": "/functions/5/pure_algorithm/0"
+          },
+          {
+            "condition": "finding.code=scope_input_unresolved AND ((finding.pointer=source_frame.pointer AND (source_frame.tag != record OR source_frame.fields unreadable)) OR (finding.pointer=/request AND request parent unavailable))",
+            "candidate_owner": "SECURITY003",
+            "basis_pointer": "/functions/7/same_frame_nonrecord_supplement; /functions/12/field_writers/source_frame"
+          },
+          {
+            "condition": "その他",
+            "candidate_owner": "既存/functions/10/pure_algorithm/0の該当軸route"
+          }
+        ],
+        "scope_material_writer": "source_frame.originalがsuppliedでrawがobject、かつそのraw.requestがobjectの場合だけ、実在するrequest.origin/request.target keyを同名でcopyする。元keyが存在してnullならnullをそのまま保持し、欠落keyは省略する。それ以外は{}。原親tag/original/rawはsource_frame/native_inputに保持する。",
+        "effect": "actual_route_invoked=false。candidate_ownerは候補であり実recipient・資格・配送・ACKではない。"
+      }
     },
     {
       "id": "HELIXSECURITY-L5-003-compare_caller_material",
@@ -3704,6 +3803,264 @@
         "Workerへ未知callerを補完せず、known caller同士に異なるauthorityや包括許可を発明しない。"
       ],
       "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-003-compose_scope_proposal_and_backflow",
+      "symbol": "compose_scope_proposal_and_backflow",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<ProposalInput>"
+        }
+      ],
+      "signature": "compose_scope_proposal_and_backflow(input: Materialized<ProposalInput>) -> SameFrameInvocationResult",
+      "output_type": "SameFrameInvocationResult",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": ""
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/operation"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/operation"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/origin"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/target"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context"
+        }
+      ],
+      "return_root_fields": {
+        "native_input": "Materialized<ProposalInput>",
+        "native_proposal": "ScopeProposal",
+        "source_frame": "Materialized<ScopeFrame>",
+        "backflow_input": "Materialized<BackflowInput>",
+        "native_backflow": "BackflowAnalysis",
+        "operation_correspondence": "SameFrameOperationCorrespondence",
+        "invocation": "SameFrameInvocationPlan"
+      },
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "source_contract_binding": {
+        "document": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+        "pointer": "/private_composition_contracts/0"
+      },
+      "pre": "一つの元Materialized<ProposalInput>をそのまま受け取る。追加入力や8partの再供給を要求しない。",
+      "post": "fn7の全11field結果とfn10の全候補/全5memberを保持して返す。operation correspondenceとinvocationは説明用記録で、scope authorizationやeffectを変えない。",
+      "pure_algorithm": [
+        "1. native_inputへinputのtag/pointer/original/fields/unknown_membersを全値copyする。fn0を呼ばず、inputをparse/materializeし直さない。",
+        "2. source_frameのroot tag/pointer/originalをnative_inputから全値copyする。native_input root tag=recordかつnative_input.fieldsが読取可能な場合だけ、fields.request/contextへそれぞれ元Materialized node全体をそのままborrowする。各借用node自体がAbsent/null/invalidであってもnodeをそのまま保持し、子node状態を理由にsource_frame.fieldsをnullにしない。root tag又はfields条件を満たさない場合だけsource_frame.fields=null。rawを再parseしてtyped childを補わない。",
+        "3. source_frame.unknown_membersはinput.unknown_membersを先に全値copyする。input.originalがsupplied raw objectの時、その実root keyのうちrequest/context以外を走査し、unknown_membersに同keyがない時だけraw値を追加する。同keyがあれば既存map値を保持し、元raw値はnative_input/source_frame.originalに残す。unknown_membersからtyped fieldsを採用しない。",
+        "4. compose_scope_proposal(input)を正確に一回呼ぶ。record+readable fieldsは現行functions[7].pure_algorithmを使う。root非record又はfields不読時はfunctions[7].same_frame_nonrecord_supplementに従いScopeProposal全11fieldを返す。partを再評価しない。",
+        "5. 左operandはrootがrecordでinput.fieldsを読める場合のinput.fields.operation、右operandは同条件に加えてrequest nodeがrecordかつそのfieldsを読める場合のinput.fields.request.fields.operation。実Field nodeの両方が観測できる時はtag/original/valueをJSON型とpresence込みで厳密比較し、pointerは比較対象外、原pointerは保持。3要素が全て同値ならcorresponding/bound=true、異なればconflict/bound=false。Absence/invalidの一致はknown operationを意味しない。known_operationは左の実Fieldがtag=knownでvalueがOperation enumに含まれる場合だけtrue。",
+        "6. 左右のField nodeが親状態条件により未観測で得られない側は、最も近い未観測親がAbsentならtag=absent、他のnull/non-record/unknown状態ならtag=invalid_or_unknownの明示liftを作る。lift.original={tag:absent}, value=nullとし、元root/request親はnative_input/source_frameに保持する。片側でもnode未観測ならcomparison=unresolved/bound=false。 lift.pointerは左を/operation、右を/request/operationとする。これは未観測leafの所在表示であり、原親のpointer/raw/tagはnative_inputへ別に保持する。",
+        "7. backflow_inputは新wire parseでなくtyped logical assembly。rootはtag=record,pointer=\"\",unknown_members={}。originalはtag=suppliedでraw.findingsへnative_proposal.findings全listを常にexact copyする（空listも保持）。raw.operationは左Field.original.tag=suppliedの場合だけそのrawをcopy、raw.source_frameはsource_frame.original.tag=suppliedの場合だけその全rawをcopyし、それ以外は該当keyを省略する。fields.findingsはtag=known,pointer=/findings,original={tag:supplied,raw:同findings},value=同findingsのFieldを構成する。fields.operationは実左Field又はstep6 lift、fields.source_frameはsource_frame全nodeを借用する。元pointerをassembly pathへrebaseしない。",
+        "8. describe_scope_backflow(backflow_input)を正確に一回呼び、native_backflow全root・全candidate memberを保持する。functions[10].same_frame_source_preservation_supplementを適用する。operation correspondenceがconflict/unresolvedでも呼び出しを省略せず、fn7 findingsを損なわない。",
+        "9. invocation={compose_scope_proposal_calls:1,describe_scope_backflow_calls:1,independent_part_helper_calls:0}を返す。この値は設計上の呼出し義務で実実行観測ではない。全resultのeffect/authorizationは各native型のnone/falseを保持する。"
+      ],
+      "effect": "none",
+      "field_writers": {
+        "native_input": {
+          "type": "Materialized<ProposalInput>",
+          "members": {
+            "tag": "input.tag exact copy",
+            "pointer": "input.pointer exact copy",
+            "original": "input.original exact copy",
+            "fields": "input.fields exact copy",
+            "unknown_members": "input.unknown_members exact copy"
+          },
+          "rule": "全rootを同一入力からcopy。再parse・再materialize・値補完をしない。"
+        },
+        "native_proposal": {
+          "type": "ScopeProposal",
+          "source": "compose_scope_proposal(input)を一度呼んだ全返却。record rootかつfields読取可の場合はfunctions[7]既存契約、その他はfunctions[7].same_frame_nonrecord_supplement。",
+          "members": {
+            "condition": "返却そのまま",
+            "origin_identity_preserved": "返却そのまま",
+            "target_identity_preserved": "返却そのまま",
+            "tenant_disposition": "返却そのまま",
+            "requested_operation": "返却そのまま",
+            "connection_content_corresponding": "返却そのまま",
+            "findings": "全順序のまま",
+            "pending_operations": "返却そのまま",
+            "actual_scope_authorized": "返却そのまま",
+            "actual_state_changed": "返却そのまま",
+            "operation_effect": "返却そのまま"
+          }
+        },
+        "source_frame": {
+          "type": "Materialized<ScopeFrame>",
+          "root_members": {
+            "tag": "native_input.tag",
+            "pointer": "native_input.pointer",
+            "original": "native_input.original",
+            "fields": "native_input.tag=recordかつnative_input.fields読取可なら {request: native_input.fields.requestのMaterialized node全値, context: native_input.fields.contextのMaterialized node全値}。それ以外はnull。各nodeのAbsent/null/invalid状態もnodeごと保持する。",
+            "unknown_members": "native_input.unknown_membersを先にcopyし、raw root objectのrequest/context以外は同名memberがない場合だけ追加"
+          },
+          "field_borrow_condition": "native_input root tag=recordかつnative_input.fields読取可能な場合だけ、request/contextのMaterialized nodeを各々そのまま完全borrowする。借用node自身がAbsent/null/invalidでもnodeを保持し、node内部状態が不正であることを理由にfields全体をnullにしない。root/親fields条件不成立の場合だけfields=null。rawからtyped nodeを合成しない。",
+          "collision": "unknown_membersの同名keyは既存値を保持。元rawはnative_input.original/source_frame.originalに残す。"
+        },
+        "backflow_input": {
+          "type": "Materialized<BackflowInput> logical assembly",
+          "root_members": {
+            "tag": "定数record",
+            "pointer": "定数空文字列",
+            "original": {
+              "tag": "定数supplied",
+              "raw": {
+                "findings": "native_proposal.findingsの全listを常にexact copy（空listも供給）",
+                "operation": "左Field.original.tag=suppliedなら元rawをkey付きcopy。それ以外はkey省略",
+                "source_frame": "source_frame.original.tag=suppliedなら元全rawをkey付きcopy。それ以外はkey省略"
+              }
+            },
+            "fields": "下記3fieldを構成",
+            "unknown_members": "定数空object"
+          },
+          "fields": {
+            "findings": {
+              "tag": "known",
+              "pointer": "/findings",
+              "original": {
+                "tag": "supplied",
+                "raw": "native_proposal.findings全listのexact copy"
+              },
+              "value": "native_proposal.findings全listのexact copy"
+            },
+            "operation": "root tag=recordかつnative_input.fields読取可で左実Field nodeがあればその全Fieldをexact borrow。右実operation Fieldはrequest node tag=recordかつrequest.fields読取可の場合だけexact borrow。最寄り未観測親の状態からalgorithm step 6 lift。",
+            "source_frame": "source_frameの全nodeをexact borrow"
+          },
+          "raw_rule": "findingsは今回のfn7返却から常に明示供給する。operation/source_frameだけ各元RawPresenceのsupplied条件でkeyを作り、Absentはkey省略する。原Field/finding pointerをassembly pathへrebaseしない。"
+        },
+        "native_backflow": {
+          "type": "BackflowAnalysis",
+          "source": "describe_scope_backflow(backflow_input)を一度呼んだ全返却。",
+          "members": {
+            "candidates": "全候補・順序・各fieldをそのまま保持",
+            "actual_route_invoked": "native return値をそのまま保持"
+          }
+        },
+        "operation_correspondence": {
+          "type": "SameFrameOperationCorrespondence",
+          "members": {
+            "left_node_observed": "native_input root tag=recordかつinput.fields読取可で、input.fields.operation nodeが実在して読めた場合だけtrue。",
+            "right_node_observed": "native_input root tag=recordかつinput.fields読取可、request node tag=recordかつrequest.fields読取可で、request.fields.operation nodeが実在して読めた場合だけtrue。",
+            "left_field": "実左Field全体をexact borrow、左親未観測ならstep 6 lift。",
+            "right_field": "実右Field全体をexact borrow、request親未観測ならstep 6 lift。",
+            "comparison": "両nodeが観測済みでtag/original/valueがJSON型とpresenceを含め完全一致ならcorresponding、既知差ならconflict、node未観測ならunresolved",
+            "bound": "comparison=correspondingのときだけtrue。それ以外false。",
+            "known_operation": "左の実Fieldがtag=knownかつvalueが閉Operation enumに含まれるときだけtrue。liftからはtrueにしない。",
+            "authorization_effect": "定数none"
+          }
+        },
+        "invocation": {
+          "type": "SameFrameInvocationPlan",
+          "members": {
+            "compose_scope_proposal_calls": "定数1",
+            "describe_scope_backflow_calls": "定数1",
+            "independent_part_helper_calls": "定数0"
+          },
+          "meaning": "設計上の呼出し義務でありruntime invocation countの観測ではない。"
+        }
+      },
+      "native_dependency_bindings": [
+        {
+          "dependency": "fn7",
+          "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+          "binding_kind": "same_document_current_object",
+          "pointer": "/functions/7",
+          "object_canonical_sha256": "25561bb339335cdc7e2f720d045cae3bb36fcd230727b5cd4b0cf11ec516dd50"
+        },
+        {
+          "dependency": "fn10",
+          "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+          "binding_kind": "same_document_current_object",
+          "pointer": "/functions/10",
+          "object_canonical_sha256": "7273b079c91a594b356f40c683cf2082d01e91805f49bd05211bb8bf6eecf311"
+        },
+        {
+          "dependency": "operation comparison helper",
+          "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+          "binding_kind": "same_document_current_object",
+          "pointer": "/functions/5",
+          "object_canonical_sha256": "d908fe046a05fbe5c66d6e7ab7c5bcce5f0c780e9490729c4661e55a71f38228"
+        },
+        {
+          "dependency": "ProposalInput",
+          "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+          "binding_kind": "same_document_current_object",
+          "pointer": "/type_contract/logical_types/ProposalInput",
+          "object_canonical_sha256": "a1347838b0f3401b85c8f367881c40d3c60d929a786ea6642ef1312edd99e9c7"
+        },
+        {
+          "dependency": "ScopeFrame",
+          "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+          "binding_kind": "same_document_current_object",
+          "pointer": "/type_contract/logical_types/ScopeFrame",
+          "object_canonical_sha256": "efd16ba8554f436dae375c1b9f89385010d514367a27aee6ab52c766aa9a21f3"
+        },
+        {
+          "dependency": "BackflowInput",
+          "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+          "binding_kind": "same_document_current_object",
+          "pointer": "/type_contract/logical_types/BackflowInput",
+          "object_canonical_sha256": "6686fda841f45fe7d39244a198b064a4f16c0a26679086ab706b97955ab9f942"
+        },
+        {
+          "dependency": "ScopeProposal",
+          "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+          "binding_kind": "same_document_current_object",
+          "pointer": "/type_contract/result_types/ScopeProposal",
+          "object_canonical_sha256": "eb6dcfcf142f5417e6adc9f562fd8a7e69337bc1fd1d4a9b4d902b5a09846277"
+        },
+        {
+          "dependency": "BackflowAnalysis",
+          "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+          "binding_kind": "same_document_current_object",
+          "pointer": "/type_contract/result_types/BackflowAnalysis",
+          "object_canonical_sha256": "524249921f98d6b92a3ad54ac2a687b2f2f63d361d80c8f2e5a0d8b1e92edea0"
+        },
+        {
+          "dependency": "Materialized<T>",
+          "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+          "binding_kind": "same_document_current_object",
+          "pointer": "/type_contract/result_types/Materialized<T>",
+          "object_canonical_sha256": "a483c243460b15045bab88933f3b85f3db9ff4cd336b735e4a52102669c74798"
+        },
+        {
+          "dependency": "Field<T>",
+          "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+          "binding_kind": "same_document_current_object",
+          "pointer": "/type_contract/result_types/Field<T>",
+          "object_canonical_sha256": "fd48470d5853a0dea2029ad5a57fa55517b76405b15a3097b09be1a3ef5a3ed3"
+        },
+        {
+          "dependency": "RawPresence",
+          "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+          "binding_kind": "same_document_current_object",
+          "pointer": "/type_contract/result_types/RawPresence",
+          "object_canonical_sha256": "7db92685c3f12b94d4afb41179ac89e76c818839eb78604d9ba62254821cd53c"
+        },
+        {
+          "dependency": "Operation domain",
+          "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+          "binding_kind": "same_document_current_object",
+          "pointer": "/type_contract/domains/Operation",
+          "object_canonical_sha256": "a3bc9af6963b3eb1122ae9145aec8d1989da0e276ec1df77e295cdcd07f87a85"
+        }
+      ]
     }
   ],
   "contracts": [
@@ -3814,5 +4171,15 @@
     "finding_pointer_base": "通常functionは当該raw input root。compositionも同rawに原request/contextを持つ。backflowだけは入力findingが参照するsource_frame rootを明示し、候補が元findingを無変換保持する。",
     "missing_member": "dict carrier内のabsent memberはその期待member pointer、carrier全体不正なら実carrier root pointer。",
     "sort": "code/pointer/return_owner scalar codepoint順unique。"
-  }
+  },
+  "private_composition_contract_bindings": [
+    {
+      "document": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+      "revision": "current_candidate",
+      "file_sha256": "c060c7aa1b2670277f1f1cf5c168356f36cb9c4f32d32e76b91cd9bca82d461e",
+      "pointer": "/private_composition_contracts/0",
+      "object_canonical_sha256": "d192bbceaae0b86f952d8039795d5acde3fe7be7dda71e773914ca6a74b9a60d",
+      "binding_kind": "current_candidate_file_and_object"
+    }
+  ]
 }
