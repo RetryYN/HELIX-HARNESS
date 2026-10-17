@@ -305,7 +305,7 @@
       "fields": {
         "area": "String",
         "field": "String",
-        "result": "ComparisonResult",
+        "result": "CheckResult",
         "return_owner": "String"
       }
     },
@@ -315,7 +315,7 @@
       "fields": {
         "area": "String",
         "field": "String",
-        "result": "ComparisonResult",
+        "result": "CheckResult",
         "return_owner": "String"
       }
     },
@@ -684,6 +684,21 @@
         "null": "String",
         "outside_declared_fixture_values": "String"
       }
+    },
+    {
+      "name": "RawStateObservation",
+      "kind": "alias",
+      "target": "String",
+      "description": "元state_observation_policyが返す原状態文字列。任意文字列を保持する論理値であり、新しい状態・資格・正常性を定義しない。"
+    },
+    {
+      "name": "CheckResult",
+      "kind": "union",
+      "members": [
+        "ComparisonResult",
+        "RawStateObservation"
+      ],
+      "description": "既存の比較tokenと、同checkのarea/fieldが示す原状態観測文字列を保持する。返却JSONのresultは従来どおり文字列で、別tagや新memberを追加しない。"
     }
   ],
   "contract_views": {
@@ -1418,5 +1433,153 @@
       "current": "固定L9の原期待に従いAbsent→unknown_field_refのnull→JSON同値→原側unknown marker→相違とする。原側markerは全比較fieldへ適用するが、同値の場合は対応を優先する。unknown_field_ref=contract_revisionのnullだけは同値より先にunknownとする。",
       "reason": "C03D-04/07の指摘により原L9有限比較の導出規則を明文化。原L4/L9、raw、oracle、要求意味は変更しない。一般domainの採択・実資格判定には拡張しない。"
     }
+  },
+  "state_observation_result_type_contract": {
+    "id": "HELIXCONNECT-L5-003-STATE-OBSERVATION-RESULT-TYPE",
+    "requirement_ref": "HELIXCONNECT-L3-003-F01",
+    "system_oracle_ref": "HELIXCONNECT-L10-003-F01",
+    "paired_verification_ref": "HELIXCONNECT-L8-003-STATE-OBSERVATION-RESULT-TYPE",
+    "status": "原状態保持writerに返却型を整合させる限定詳細訂正。実装・資格・全型閉包を認定しない。",
+    "source_basis": [
+      {
+        "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+        "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/5",
+            "canonical_sha256": "39b0d9889e9dfac5242ce56442ba6efde3e040b05fe16d89f3fa7d4d5a107cce"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-connect/L10-verification/functional-verification.json",
+        "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
+        "selected_objects": [
+          {
+            "pointer": "/cases/5",
+            "canonical_sha256": "6180815dc5065cd505f0fa1648ff229172f2278c5aa63988fc4c5d3772797808"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-connect/L4-basic-design/operation-envelope-receipt.json",
+        "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "sha256": "fe85e808b2b2c9243b5e352e623d296d76b712c18b34074b5d1030593ca5e6e7",
+        "selected_objects": [
+          {
+            "pointer": "/contracts/0",
+            "canonical_sha256": "4b41e2f9292c44e246e1ee46969e6d776461df3e0dba9c31080da63c193b4954"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+        "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "sha256": "018f750fc8050158960ee134253056bf925ecfd576bfc5fad4e2de0d6239e4a3",
+        "selected_objects": [
+          {
+            "pointer": "/logical_types/11",
+            "canonical_sha256": "b2275825a05dfc5194a08681eb38c89f89e45694263ddd4d711a79a654dcf942"
+          },
+          {
+            "pointer": "/logical_types/14",
+            "canonical_sha256": "3cc017e765c4f8290f8799df3a3cf1c8da371499177726bc14f08163afd6c509"
+          },
+          {
+            "pointer": "/logical_types/15",
+            "canonical_sha256": "7c94c1ae15c9fb78aa8adeeea8a30e9630c1acd560af718fae395e59396e9aa7"
+          },
+          {
+            "pointer": "/logical_types/26",
+            "canonical_sha256": "762ff0f6cebd9486d952f1e81199fe45bdc8518647dfc32749d5a8503da57995"
+          },
+          {
+            "pointer": "/contract_views/operation/state_observation_policy",
+            "canonical_sha256": "b3d118122e233736777c0067598603b72ace9582fdc891b80778374e226522e0"
+          },
+          {
+            "pointer": "/algorithms/0/steps/4",
+            "canonical_sha256": "f919d904b95b1be2a2e305c4e478d9a31908bae1efcf52dc19796e4a88c50796"
+          },
+          {
+            "pointer": "/algorithms/0/steps/10",
+            "canonical_sha256": "63a5b0142467d992559b5835354a21dcd7f727c899ace532e2ead8ceda682948"
+          },
+          {
+            "pointer": "/output_literals/normal_check_results",
+            "canonical_sha256": "e0695f24acbf201cb566ebae52cbe68c1d0d786da89783c015dc9b86bc9d24c7"
+          }
+        ]
+      }
+    ],
+    "source_type_conflict": {
+      "old_result_type": "ComparisonResult",
+      "old_fields": [
+        "/logical_types/14/fields/result",
+        "/logical_types/15/fields/result"
+      ],
+      "input_state_type": "StateBinding.state -> StringPresence -> Presence<String>",
+      "writer_pointer": "/algorithms/0/steps/4",
+      "state_policy_pointer": "/contract_views/operation/state_observation_policy",
+      "finding_ja": "原domainのPresent文字列を保持するwriterに対し、Check/Findingの返却型が有限enumだけであり、未列挙の原文字列を格納できなかった。"
+    },
+    "selected_type_change": {
+      "fields": [
+        "ComparisonCheck.result",
+        "FailureFinding.result"
+      ],
+      "new_type": "CheckResult",
+      "representation_ja": "ComparisonResultは既存token列を保持する。RawStateObservationは既存Stringのaliasであり、CheckResultは両者のunionとする。JSONのfield名・文字列値・area/field/return_ownerを変えない。",
+      "comparison_maps_ja": "header_results/envelope_results/各content又はtarget比較mapのComparisonResult型は変更しない。これらは原状態のechoではなく既存の比較tokenを返す。"
+    },
+    "writer_consumer_binding": [
+      {
+        "producer": "FN-C003-01 /algorithms/0/steps/4 と既存state_observation_policy",
+        "output": "OperationAssessment.checks[*].result",
+        "rule_ja": "既存writerが返す比較token又は原状態文字列を、原area/field/ownerと共にCheckResultへそのまま格納する。有限enumへ丸めず、原文字列をknown/unknown等の別状態に読み替えない。"
+      },
+      {
+        "producer": "FN-C003-01 /algorithms/0/steps/10",
+        "input": "OperationAssessment.checks",
+        "output": "OperationAssessment.failure_reasons[*].result",
+        "rule_ja": "既存normal_check_resultsとの照合規則を維持し、該当するcheck全値を原順序で保持する。CheckResult型への整合を、正常集合の追加・未知値の成功扱いへ転用しない。"
+      },
+      {
+        "producer": "FN-C003-01 /algorithms/0/steps/10",
+        "input": "OperationAssessment.failure_reasons",
+        "output": "failure_return_owners / technical_receipt_candidate",
+        "rule_ja": "既存のowner集合とheld候補の導出を保持する。型に格納できることを互換成立・実receipt・実許可へ昇格しない。"
+      }
+    ],
+    "legacy_preserve_change": {
+      "sources": [
+        {
+          "asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+          "lines": [
+            27,
+            32
+          ]
+        },
+        {
+          "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+          "lines": [
+            47,
+            57
+          ]
+        }
+      ],
+      "preserve_ja": "既存legacy_comparisonの明示入力・原観測/proposal・非commit、unknown/partialを実成立へ昇格しない境界を保持する。",
+      "change_ja": "旧runtime/DB/adapterは移植せず、現C003の既定writerが返す原文字列を二つのresult型で受けられるようにする。",
+      "reason_ja": "今回確認した原状態保持規則と閉enumの不整合を是正する。source不足を想像した新要求・新許可・新gateは追加しない。"
+    },
+    "verification_boundary_ja": "対L8は修正前sourceから別担当が著述した有限反例に束縛する。旧62caseの原入力/期待・純粋比較token・normal集合・分類/順序規則は保持し、全入力域・全型・実装Red/Green・製品CIをこの訂正から認定しない。",
+    "remaining": [
+      "任意raw状態/型外/欠落/nullの全分岐と全型writerの独立意味検収は未完。",
+      "実source/receipt/permission資格、formal wire/schema/codec、実通信・受入と全430義務閉包は未成立。"
+    ]
   }
 }

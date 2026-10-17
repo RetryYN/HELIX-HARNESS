@@ -2621,5 +2621,236 @@
   "fixture_coverage_limits": [
     "FN-C003-01: 固定48 rawではoriginal_receipts.send/receiveと各target_headerが存在。target_header_resultsのAbsent入力枝はこの集合から独立oracle検証されていない。",
     "FN-C003-02: 固定14 rawではtechnical/business/target比較対象fieldが全て両側Present。Absent入力のmissing出力枝はこの集合から独立oracle検証されていない。"
-  ]
+  ],
+  "state_observation_result_type_verification": {
+    "id": "HELIXCONNECT-L8-003-STATE-OBSERVATION-RESULT-TYPE",
+    "paired_design_ref": "HELIXCONNECT-L5-003-STATE-OBSERVATION-RESULT-TYPE",
+    "status": "source_first_finite_selected_path_oracle",
+    "source_basis": [
+      {
+        "role": "historical_pre_fix_semantic_basis",
+        "path": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+        "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "file_sha256": "018f750fc8050158960ee134253056bf925ecfd576bfc5fad4e2de0d6239e4a3",
+        "selected_objects": [
+          {
+            "pointer": "/logical_types/11",
+            "canonical_sha256": "b2275825a05dfc5194a08681eb38c89f89e45694263ddd4d711a79a654dcf942"
+          },
+          {
+            "pointer": "/logical_types/14/fields/result",
+            "value": "ComparisonResult",
+            "canonical_sha256": "f510b51b8e73dd2045e2a04d753497fae1a9eefe950e2db64ee3a553f2584442"
+          },
+          {
+            "pointer": "/logical_types/15/fields/result",
+            "value": "ComparisonResult",
+            "canonical_sha256": "f510b51b8e73dd2045e2a04d753497fae1a9eefe950e2db64ee3a553f2584442"
+          },
+          {
+            "pointer": "/logical_types/26",
+            "canonical_sha256": "762ff0f6cebd9486d952f1e81199fe45bdc8518647dfc32749d5a8503da57995"
+          },
+          {
+            "pointer": "/contract_views/operation/state_observation_policy",
+            "canonical_sha256": "b3d118122e233736777c0067598603b72ace9582fdc891b80778374e226522e0"
+          },
+          {
+            "pointer": "/algorithms/0/steps/4",
+            "canonical_sha256": "f919d904b95b1be2a2e305c4e478d9a31908bae1efcf52dc19796e4a88c50796"
+          },
+          {
+            "pointer": "/algorithms/0/steps/10",
+            "canonical_sha256": "63a5b0142467d992559b5835354a21dcd7f727c899ace532e2ead8ceda682948"
+          },
+          {
+            "pointer": "/output_literals/normal_check_results",
+            "canonical_sha256": "e0695f24acbf201cb566ebae52cbe68c1d0d786da89783c015dc9b86bc9d24c7"
+          }
+        ]
+      },
+      {
+        "role": "current_candidate_content_binding_no_git_revision",
+        "path": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+        "git_revision_claim": null,
+        "file_sha256": "fe58a0a89f93035e0285cac51edc9c37ef839b1a36c7acecd2f8daa947b4be70",
+        "selected_objects": [
+          {
+            "pointer": "/state_observation_result_type_contract",
+            "canonical_sha256": "d3d095f1f3ec9f461baad76bae5d564e217c19ab4902e48313a6f71dfc11afe8"
+          },
+          {
+            "pointer": "/logical_types/49/name",
+            "value": "RawStateObservation",
+            "canonical_sha256": "4d2b72c5883e03a09cafcf07450bac34219b06a363e1bd82d946e5b93aef57c0"
+          },
+          {
+            "pointer": "/logical_types/50/name",
+            "value": "CheckResult",
+            "canonical_sha256": "186a368a556d7031ffd7d3978631f41bfab5e836392180273e354b2f14fb2e3b"
+          }
+        ]
+      },
+      {
+        "role": "fixed_normal_packet_and_expected_material_source",
+        "path": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "file_sha256": "61469178361dccb64bc0b065c9806c262f7cef24ff3c626a0dd384d56e102a15",
+        "selected_objects": [
+          {
+            "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+            "sha256_utf8": "01b407ba67d88f1617525c87518e5dbfcffa44a20b7323725ba9eec9934de71d",
+            "canonical_sha256": "6715b1a5b435b551d6f3bdc31140e206a20d6b98703579da20fa7aa481207c50"
+          },
+          {
+            "pointer": "/verification_obligations/0/concrete_cases/0/expected_material",
+            "canonical_sha256": "cc84002feaba1ee76975cc12e58d68d7a957ad263f81c57c163b3f5a9297e659"
+          }
+        ]
+      }
+    ],
+    "fixed_input": {
+      "base_l8_case_ref": {
+        "document": "docs/helix-connect/L8-unit-verification/operation-envelope-receipt.json",
+        "pointer": "/cases/0/typed_arguments/input"
+      },
+      "base_source_packet": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256_utf8": "01b407ba67d88f1617525c87518e5dbfcffa44a20b7323725ba9eec9934de71d"
+      },
+      "contract_view_ref": {
+        "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+        "pointer": "/contract_views/operation"
+      },
+      "case_authored_raw_packet_patch": [
+        {
+          "op": "replace",
+          "path": "/original_compatibility/state",
+          "value": "opaque-state-outside-declared-fixture-values"
+        }
+      ],
+      "resulting_raw_utf8_sha256": "269a8262669b7a5a96c1749f514c888ea437da4d5feeaace77a621b6ad86ea9a",
+      "packet_sha256": "269a8262669b7a5a96c1749f514c888ea437da4d5feeaace77a621b6ad86ea9a",
+      "input_comparison_note_ja": "raw_packetはbase raw_utf8をOperationPacketとして得た論理JSON値に固定RFC6902置換を適用する。packet_sha256は置換後raw UTF-8 bytesのSHA-256。L5算法上このmemberは判定に使わない。 raw UTF-8 bytesはraw_utf8_byte_recipeの一意のfragment置換で定義し、RFC6902だけから直列化方式を推測しない。",
+      "raw_utf8_byte_recipe": {
+        "kind": "fixed_single_literal_fragment_replace",
+        "base_raw_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+        "base_raw_sha256": "01b407ba67d88f1617525c87518e5dbfcffa44a20b7323725ba9eec9934de71d",
+        "old_utf8_fragment": "\"original_compatibility\":{\"state\":\"current_compatible_in_fixture_only\",\"target\":",
+        "new_utf8_fragment": "\"original_compatibility\":{\"state\":\"opaque-state-outside-declared-fixture-values\",\"target\":",
+        "occurrence_count": 1,
+        "other_bytes": "copy_unchanged",
+        "output_encoding": "UTF-8",
+        "append_newline": false,
+        "scope_ja": "固定base rawの唯一の指定fragmentだけを置換する当該fixtureのbyte recipe。JSON値のRFC6902置換と一致する。一般wire codec/canonical化方式は追加しない。"
+      }
+    },
+    "expected_selected_paths": [
+      {
+        "path": "/checks/25",
+        "expected": {
+          "area": "compatibility_state",
+          "field": "state",
+          "result": "opaque-state-outside-declared-fixture-values",
+          "return_owner": "endpoint-contract-owner"
+        }
+      },
+      {
+        "path": "/failure_reasons/0",
+        "expected": {
+          "area": "compatibility_state",
+          "field": "state",
+          "result": "opaque-state-outside-declared-fixture-values",
+          "return_owner": "endpoint-contract-owner"
+        }
+      },
+      {
+        "path": "/failure_return_owners/0",
+        "expected": "endpoint-contract-owner"
+      },
+      {
+        "path": "/technical_receipt_candidate",
+        "expected": "held_or_rejected"
+      }
+    ],
+    "expectation_basis_ja": {
+      "source_state_rule": "Presentの互換stateは原文字列を返し、enum外文字列にも資格を与えない。",
+      "normal_set_rule": "opaque-state-outside-declared-fixture-valuesはComparisonResult valuesおよびnormal_check_resultsの双方に存在しない。",
+      "failure_rule": "failure_reasonsはchecksの順を保ちnormal集合外を写す。failure ownerは重複除去・昇順。failureがあればtechnical_receipt_candidate=held_or_rejected。",
+      "check_index_rule": "header 14件 + envelope 2件 + operation identification 1件 + registration binding 4件 + compatibility binding 4件が先行するためcompatibility_state/stateはchecks[25]。固定normal sourceのchecks[25]も同じarea/field/owner。"
+    },
+    "selection_scope_ja": "この有限caseで比較する出力leafは上記4 pathのみ。変異rawと固定normal baselineの間で、これらのleafの期待を固定する。候補実装を実行して作った期待ではない。",
+    "uninstantiated_output_coverage": [
+      {
+        "root_member_pointer": "/header_results",
+        "coverage_ja": "全leaf未instantiated。"
+      },
+      {
+        "root_member_pointer": "/envelope_results",
+        "coverage_ja": "全leaf未instantiated。"
+      },
+      {
+        "root_member_pointer": "/checks",
+        "selected_paths": [
+          "/checks/25"
+        ],
+        "coverage_ja": "selected_paths以外の全indexは未instantiated。"
+      },
+      {
+        "root_member_pointer": "/failure_reasons",
+        "selected_paths": [
+          "/failure_reasons/0"
+        ],
+        "coverage_ja": "selected_paths以外の全indexは未instantiated。"
+      },
+      {
+        "root_member_pointer": "/failure_return_owners",
+        "selected_paths": [
+          "/failure_return_owners/0"
+        ],
+        "coverage_ja": "selected_paths以外の全indexは未instantiated。"
+      },
+      {
+        "root_member_pointer": "/receipt_results",
+        "coverage_ja": "全leaf未instantiated。"
+      },
+      {
+        "root_member_pointer": "/retained_recovery",
+        "coverage_ja": "全leaf未instantiated。"
+      },
+      {
+        "root_member_pointer": "/submitted_recovery",
+        "coverage_ja": "全leaf未instantiated。"
+      },
+      {
+        "root_member_pointer": "/recovery_result",
+        "coverage_ja": "全leaf未instantiated。"
+      },
+      {
+        "root_member_pointer": "/attempt_count",
+        "coverage_ja": "全leaf未instantiated。"
+      },
+      {
+        "root_member_pointer": "/claim_results",
+        "coverage_ja": "全leaf未instantiated。"
+      },
+      {
+        "root_member_pointer": "/effects",
+        "coverage_ja": "全leaf未instantiated。"
+      }
+    ],
+    "limits_ja": [
+      "全OperationAssessmentのreturn equalityを主張しない。",
+      "この1値以外の任意opaque state全域、Absent/null state、全enum値の検証ではない。",
+      "実装Red/Green、実source・通信・permission資格、実operation判定を証明しない。",
+      "旧62caseと履歴pinを変更せず、比較mapのComparisonResultも変更しない。"
+    ],
+    "authoring_provenance": {
+      "first_source_oracle_snapshot_sha256": "09ad2ec3a7b1b8ca0c5f981f815d8846625005e07a6712d04f20d4204db89d41",
+      "stage_ja": "新L5型訂正前の固定sourceから別担当が著述した有限期待。",
+      "published_reproduction_ja": "本節の固定source/pointer/hash、入力patchとbyte recipe、選択4期待及び各理由を本文に収載する。ignored local記録の参照・取得を再現前提にしない。",
+      "scope_ja": "この来歴digestは著述記録の識別子であり、実装実行又は歴史的blindnessの証明ではない。"
+    }
+  }
 }
