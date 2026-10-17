@@ -1470,7 +1470,12 @@
         "HARNESS-L8-009-ADD-06",
         "HARNESS-L8-009-ADD-07"
       ],
-      "oracle_ref": "HARNESS-L8-009-NORMAL-validate_application_input"
+      "oracle_ref": "HARNESS-L8-009-NORMAL-validate_application_input",
+      "private_detail_binding": {
+        "contract_ref": "/f05_detail_contract/entry_points/validation_detail",
+        "projection": "同一private validation walkの実返却.validated。owner callerはdetailを一回呼び、公開wrapperを二重実行しない。",
+        "source_observations_ref": "/f05_detail_contract/source_observation_contract"
+      }
     },
     {
       "id": "HARNESS-L5-009-compare_required_axes",
@@ -1711,13 +1716,14 @@
     },
     {
       "id": "HARNESS-L5-009-compare_requirement_gaps",
-      "symbol": "compare_requirement_gaps",
-      "input": "CompareRequirementGapsContext",
-      "output": "Comparison",
+      "symbol": "compare_requirement_gaps_detail",
+      "input": "F05DetailedRequest",
+      "output": "F05DetailedReturn",
       "contract_refs": [
         "HARNESS-L5-009-F05"
       ],
       "algorithm": [
+        "本F05のnative署名/全leaf writerは/f05_detail_contractを正本とする。元Contextは形成済みwholeとして保持し、下記の分類は各原命題の解釈として全支持/未形成を別々に返す。旧Context-only署名又はGapProposal.kindをoracleにしない。",
         "FieldInput定義根拠/案件値を別に照合。定義missing/knowledge版不足はBRAIN、定義known値unknownは008、適用契約不整合はHARNESSへ返す材料。",
         "原不足を質問/矛盾/derived要求候補/N/A判断候補へ分類する根拠を照合。分類未定はunresolved。原field/source/版/scope/未完義務/戻し先を保存。",
         "別template成功で相殺せず原gapと成功候補を別resultにする。候補をticket/人間合意/義務消込へ昇格しない。",
@@ -1744,7 +1750,9 @@
         "HARNESS-L8-009-ADD-15",
         "HARNESS-L8-009-ADD-16"
       ],
-      "oracle_ref": "HARNESS-L8-009-NORMAL-compare_requirement_gaps"
+      "oracle_ref": "HARNESS-L8-009-NORMAL-compare_requirement_gaps",
+      "logical_producer_symbol": "compare_requirement_gaps",
+      "detail_contract_ref": "/f05_detail_contract"
     },
     {
       "id": "HARNESS-L5-009-compare_selected_knowledge",
@@ -1857,14 +1865,15 @@
     },
     {
       "id": "HARNESS-L5-009-check_application_claims",
-      "symbol": "check_application_claims",
-      "input": "CheckApplicationClaimsContext",
-      "output": "Comparison",
+      "symbol": "check_application_claims_detail",
+      "input": "CheckApplicationClaimsDetailedContext",
+      "output": "CoreComparison",
       "contract_refs": [
         "HARNESS-L5-009-B01",
         "HARNESS-L5-009-N01"
       ],
       "algorithm": [
+        "元CheckApplicationClaimsContext全値はnative_contextに保持。同実F05DetailedReturnをf05_detail引数へ受け、根拠分類/未解決/多重支持/selection原因はその全返却から読む。元kindだけで成功を成立させない。",
         "原比較結果と任意Claimを別に読む。既知owner境界/版/scopeに反する直接write/割当/lease/認可/選択/消込はconflict、裏付け不足完了claimはunknown。",
         "未来OSreceipt/全seed/不要操作入力を常時gateにするclaimを拒否。必要局所入力が揃う範囲では候補/不足材料を返せることを保存。",
         "原known/不足/非適用/未観測/未受領/旧参照をclaimで上書きせず、実検証/受入/全体seed/schema/portfolio完成を生成しない。"
@@ -1903,13 +1912,15 @@
         "HARNESS-L8-009-N01-NEG-06",
         "HARNESS-L8-009-ADD-21"
       ],
-      "oracle_ref": "HARNESS-L8-009-NORMAL-check_application_claims"
+      "oracle_ref": "HARNESS-L8-009-NORMAL-check_application_claims",
+      "logical_producer_symbol": "check_application_claims",
+      "detail_contract_ref": "/f05_detail_contract"
     },
     {
       "id": "HARNESS-L5-009-build_application_analysis",
-      "symbol": "build_application_analysis",
-      "input": "BuildApplicationAnalysisContext",
-      "output": "ApplicationAnalysis",
+      "symbol": "build_application_analysis_from_detail",
+      "input": "BuildApplicationAnalysisDetailedContext",
+      "output": "CoreApplicationAnalysis",
       "contract_refs": [
         "HARNESS-L5-009-B01",
         "HARNESS-L5-009-B02",
@@ -1924,6 +1935,7 @@
         "HARNESS-L5-009-N01"
       ],
       "algorithm": [
+        "元BuildApplicationAnalysisContext全値はnative_contextに保持。同実F05DetailedReturnをf05_detail引数へ受け、私有全材料を外側CoreApplicationDetailReturnへ無変換保持する。公開Analysisだけで全F05返却としない。",
         "各関数producer/bindingを確認して同snapshot/subject/axisの比較材料を統合。別scope結果を再利用せずInputIssue/関連未評価を保持。",
         "context.source_result_reference_projectionがpresentかつ非nullなら同じProjectionResultをApplicationAnalysis.source_result_reference_projectionへcopyする。Absentなら既存shapeを維持し、明示nullなら明示nullを保持する。compare結果やsource_refsから再構成しない。",
         "原候補/義務/不足/影響と無関係有効scopeを元refs/版/理由/ownerへ遡れる材料として返す。全体greenで不足を縮退しない。",
@@ -1938,11 +1950,14 @@
       ],
       "oracle_ref": "HARNESS-L8-009-NORMAL-build_application_analysis",
       "optional_context_members": [
-        "source_result_reference_projection"
+        "native_context.source_result_reference_projection"
       ],
       "reads": [
-        "context.source_result_reference_projection (optional; preserve absence/null)"
-      ]
+        "context.native_context.source_result_reference_projection (optional; preserve absence/null)",
+        "context.f05_detail (同callerの実全返却。Comparisonだけから再構成しない)"
+      ],
+      "logical_producer_symbol": "build_application_analysis",
+      "detail_contract_ref": "/f05_detail_contract"
     },
     {
       "id": "HARNESS-L5-009-project_cross_design_candidate_refs",
@@ -10118,5 +10133,3687 @@
         "archive_quote_sha256": "3a6bddbe4c73e4a6d0f4e0d0c9db39c06d47691f3d2fd1ff0a11675bc7df5f44"
       }
     ]
+  },
+  "f05_detail_contract": {
+    "id": "HARNESS-L5-009-F05-DETAIL",
+    "status": "設計候補。採用L4から降ろす私有詳細契約。L8独立oracle照合・review・実装は未完。",
+    "requirement_ref": "HARNESS-L3-009-F05",
+    "system_oracle_ref": "HARNESS-L10-009-F05",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "source_basis": [
+      {
+        "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "sha256": "4a4e8b68f5096198d1809b850f552c6412af62f60bc16bffd60710880233f888",
+        "selected_objects": [
+          {
+            "pointer": "/field_source_materialization_contract",
+            "canonical_sha256": "9affbb54ace3e5c6f22c92d004999e474be0a36d84b439aaf3d7b60aecd433bf"
+          },
+          {
+            "pointer": "/field_semantic_evidence_contract",
+            "canonical_sha256": "9e07d904164b1e3b595f5c8d64b0779d41599eea00c5d75968b07d9032273d79"
+          },
+          {
+            "pointer": "/f05_validation_material_call_contract",
+            "canonical_sha256": "0bae5fc583b45d6c4631a7dd2a6574361cd299e22623e5f93e90431ef0be368d"
+          }
+        ]
+      },
+      {
+        "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "sha256": "948f1c60d0795d4ab923ab2a74d36d0b8595c87a2b134e8d7acfa2e9e9f67f96",
+        "binding_kind": "former_detail_baseline",
+        "selected_objects": [
+          {
+            "pointer": "/type_contract",
+            "canonical_sha256": "6997edd555a98996c62b61898601c9aea8c5a6e6820d4c3b220d2b8a0efff791"
+          },
+          {
+            "pointer": "/functions/0",
+            "canonical_sha256": "b994170051fd6ee2b3d7e4eb40cb910eea3349d27293464787757958e9c753f8"
+          },
+          {
+            "pointer": "/functions/5",
+            "canonical_sha256": "e4419e5d6917e4370d7d94b3a9de29f25948b350abdf52922f3fa6ccf294bdae"
+          },
+          {
+            "pointer": "/functions/9",
+            "canonical_sha256": "dcf6242fcfffc1791a777b776d82927c9507f928ff7a924d4062476c31500157"
+          },
+          {
+            "pointer": "/functions/10",
+            "canonical_sha256": "d2272c71d25684be570fc4a2f56016a16e2ae01fa7cda8f22df0e9ebd6af5de6"
+          },
+          {
+            "pointer": "/wire_codec_contract",
+            "canonical_sha256": "93132e3cedb19211c0601294a224d76abf609eb1d9355bffc4b84a12d17799c2"
+          }
+        ]
+      },
+      {
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/27",
+            "canonical_sha256": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54"
+          }
+        ],
+        "authority_scope": "HDEC承認対象のF05 selected objectだけを上流意味根拠とする。現在file全体の承認継承を宣言しない。"
+      },
+      {
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c",
+        "selected_objects": [
+          {
+            "pointer": "/cases/27",
+            "canonical_sha256": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d"
+          }
+        ],
+        "authority_scope": "HDEC承認対象のF05 selected objectだけを上流意味根拠とする。現在file全体の承認継承を宣言しない。"
+      }
+    ],
+    "authority_boundary": "e509のF05 selected L3/L10二objectだけを上流意味とする。L4はc9fcb採用の技術設計。新私有型/取得口を上流承認済みの公開API/実runtime/新trust制度へ読み替えない。",
+    "type_language": {
+      "closed_record": "membersは全必須の生成member、宣言外memberなし。これは元partial carrierのrequiredを増やす記述ではない。 optional_membersに明示したmemberだけは元Contextのoptional供給presenceを保ち、省略又は実null/実値を区別する。",
+      "tagged_union": "tagにはvariantsのkeyを文字列literalとして返す。各枝のmemberはその枝だけの全必須member。",
+      "generics": {
+        "Read<T>": "Tは型引数。presentのみvalue:T。absentは実object parentに当該memberが無い場合、unreachedはparent未到達の場合。",
+        "Formation<T>": "formed.value:T又はunformed.causesのみ。",
+        "ActualPredecessor<P>": "Pは実指定producerのliteral symbol。",
+        "CoreProducerComparison<P>": "symbol=Pかつcomparison.producer_symbol=Pを同call producer対応で束縛する。"
+      },
+      "expressions": "string/Natural/JSONPointer/nullは原型。T[]は元順の有限配列、T|nullはnullとのunion、literal:Xは固定値、enum:A|Bは列挙閉集合。$T/$Pは上記宣言generic引数だけ。",
+      "carrier": "partial_carrierは指定既存schemaの供給形を厳密に満たすCoreJsonValue objectの名目refinement。schemaから既存Ref/Binding等へ再帰的に対応し、RawValueは既存CoreJsonValue、numberは既存numeric profileへ対応する。未供給はmember省略、nullはschema許容時だけ。新default/全axis必須/ordinary logical JSONからのcastはしない。 wire JsonValue/JSONValue/RawValue leaf名はいずれもCoreJsonValueへの数値profile対応であり、objectの別名として上書きしない。",
+      "numeric": "CoreNumber/strict int/booleanを既存typed_core_json_equalとcore_json_integerへ束縛する。生成indexはstrict int>=0、boolをindexへ受理しない。原tokenを失わず、論理JSON literal表示をnative CoreNumber構築済みとしない。",
+      "whole": "原wholeの型がCoreJsonValueであることは意図した原opaque資料の保存。derived field/gap/義務の代用袋としては使用しない。",
+      "rule_pointer": "SourceCheck/Causeのrule_pointerは本L5 rootからの実規則pointer。原source根拠の別revision/path/pointerはsource_basis及び当該規則のsource_pointersに分けて辿る。"
+    },
+    "types": {
+      "CoreDecodeResult": {
+        "kind": "existing_type",
+        "pointer": "/wire_codec_contract/numeric_encode_profile/private_host_types/CoreDecodeResult"
+      },
+      "CoreDecodeOrigin": {
+        "kind": "existing_type",
+        "pointer": "/wire_codec_contract/numeric_encode_profile/private_host_types/CoreDecodeOrigin"
+      },
+      "Natural": {
+        "kind": "existing_type",
+        "pointer": "/type_contract/types/Natural"
+      },
+      "JSONPointer": {
+        "kind": "existing_type",
+        "pointer": "/type_contract/types/JSONPointer"
+      },
+      "Relation": {
+        "kind": "enum",
+        "values": [
+          "corresponding",
+          "different",
+          "unestablished"
+        ]
+      },
+      "CheckResult": {
+        "kind": "enum",
+        "values": [
+          "corresponding",
+          "different",
+          "unestablished",
+          "not_applicable"
+        ]
+      },
+      "MaterialRole": {
+        "kind": "enum",
+        "values": [
+          "definition",
+          "product_value"
+        ]
+      },
+      "ProjectionForm": {
+        "kind": "enum",
+        "values": [
+          "axis_value",
+          "semantic_whole",
+          "semantic_value_envelope"
+        ]
+      },
+      "ValueRole": {
+        "kind": "enum",
+        "values": [
+          "concrete_value",
+          "undecided_value"
+        ]
+      },
+      "ReasonRole": {
+        "kind": "enum",
+        "values": [
+          "axis_reason",
+          "envelope_reason",
+          "no_reason"
+        ]
+      },
+      "GapKind": {
+        "kind": "enum",
+        "values": [
+          "question",
+          "contradiction",
+          "derived_requirement_candidate",
+          "na_candidate",
+          "unresolved"
+        ]
+      },
+      "CauseKind": {
+        "kind": "enum",
+        "values": [
+          "input_unobserved",
+          "target_unformed",
+          "source_unresolved",
+          "source_unusable",
+          "source_body_mismatch",
+          "body_unformed",
+          "target_mismatch",
+          "owner_binding_unestablished",
+          "owner_mismatch",
+          "statement_source_conflict",
+          "content_unresolved",
+          "proposition_operand_unresolved",
+          "constraint_mismatch",
+          "aggregation_unestablished",
+          "declaration_unresolved",
+          "projection_unformed",
+          "context_unformed",
+          "header_unformed",
+          "return_unobserved",
+          "call_unobserved",
+          "native_leaf_unformed",
+          "selection_unestablished"
+        ]
+      },
+      "OriginRoot": {
+        "kind": "enum",
+        "values": [
+          "validation_raw",
+          "validation_input",
+          "validation_source_observations",
+          "f05_request",
+          "f05_return",
+          "caller_inputs",
+          "caller_return"
+        ]
+      },
+      "Location": {
+        "kind": "closed_record",
+        "members": {
+          "root": "OriginRoot",
+          "pointer": "JSONPointer"
+        }
+      },
+      "Read": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "present": {
+            "location": "Location",
+            "value": "$T"
+          },
+          "absent": {
+            "requested": "Location",
+            "parent": "Location",
+            "parent_value": "CoreJsonValue"
+          },
+          "unreached": {
+            "requested": "Location",
+            "reached": "Location",
+            "reached_value": "CoreJsonValue"
+          }
+        }
+      },
+      "Cause": {
+        "kind": "closed_record",
+        "members": {
+          "kind": "CauseKind",
+          "target": "Location",
+          "left": "CheckOperand",
+          "right": "CheckOperand",
+          "rule_pointer": "JSONPointer"
+        }
+      },
+      "Formation": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "formed": {
+            "value": "$T"
+          },
+          "unformed": {
+            "causes": "Cause[]"
+          }
+        }
+      },
+      "CoreRef": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/Ref",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreSourceEnvelope": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/SourceEnvelope",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreQualification": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/Qualification",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreApplicationInput": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/ApplicationInput",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreApplicationBinding": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/ApplicationBinding",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreOperationSelection": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/OperationSelection",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreAxisRequirement": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/AxisRequirement",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreAxisFact": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/AxisFact",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreCandidateUniverse": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/CandidateUniverse",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreTemplateSnapshot": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/TemplateSnapshot",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreConditionBinding": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/ConditionBinding",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreSemanticComparison": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/SemanticComparison",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreApplicationPolicy": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/ApplicationPolicy",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreNARecord": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/NARecord",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreKindObligation": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/KindObligation",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreTraceEdge": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/TraceEdge",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreFieldInput": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/FieldInput",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreGapProposal": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/GapProposal",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreKnowledgeUseRecord": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/KnowledgeUseRecord",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreConsumerSnapshot": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/ConsumerSnapshot",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreMeaningDelta": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/MeaningDelta",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreImpactEvidence": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/ImpactEvidence",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreClaim": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/Claim",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreSemanticRecord": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/SemanticRecord",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreTraceRequirement": {
+        "kind": "partial_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/TraceRequirement",
+        "native_leaf_type": "CoreJsonValue",
+        "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+      },
+      "CoreSourceResultProjectionResult": {
+        "kind": "existing_logical_native_correspondence",
+        "pointer": "/type_contract/types/SourceResultProjectionResult",
+        "native_leaf_type": "CoreJsonValue",
+        "rule": "同既存projectionの生成済全member/enum/順序を保持。RawValueの数値leafは既存CoreJsonValue。logical期待literalをnative実全返却としてcastしない。"
+      },
+      "CoreInputIssue": {
+        "kind": "closed_record",
+        "members": {
+          "locator": "JSONPointer",
+          "reason": "string",
+          "source_ref": "CoreRef|null"
+        }
+      },
+      "CoreValidatedApplication": {
+        "kind": "closed_record",
+        "members": {
+          "input": "CoreApplicationInput|null",
+          "input_issues": "CoreInputIssue[]",
+          "unusable_source_refs": "CoreRef[]"
+        }
+      },
+      "CoreAxisResult": {
+        "kind": "closed_record",
+        "members": {
+          "subject_ref": "CoreRef",
+          "binding": "CoreApplicationBinding",
+          "axis": "string",
+          "state": "string",
+          "original_refs": "CoreRef[]",
+          "reason": "string",
+          "backflow_owner": "string|null"
+        }
+      },
+      "CoreFinding": {
+        "kind": "closed_record",
+        "members": {
+          "code": "string",
+          "rule_ref": "string",
+          "subject_ref": "CoreRef",
+          "binding": "CoreApplicationBinding",
+          "axis": "string",
+          "state": "string",
+          "source_refs": "CoreRef[]",
+          "reason": "string",
+          "backflow_owner": "string|null"
+        }
+      },
+      "CoreComparison": {
+        "kind": "closed_record",
+        "members": {
+          "producer_symbol": "string",
+          "input_binding": "CoreApplicationBinding",
+          "original_axes": "CoreAxisResult[]",
+          "findings": "CoreFinding[]",
+          "material": "CoreJsonValue"
+        }
+      },
+      "CoreProducerComparison": {
+        "kind": "closed_record",
+        "members": {
+          "symbol": "$P",
+          "comparison": "CoreComparison"
+        }
+      },
+      "ValidationInput": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "native": {
+            "raw": "CoreJsonValue"
+          },
+          "same_decode_success": {
+            "entry": "literal:ApplicationInput",
+            "schema_revision": "string",
+            "decode": "CoreDecodeResult"
+          }
+        }
+      },
+      "OriginalRawInput": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "native": {
+            "raw": "CoreJsonValue"
+          },
+          "same_decode": {
+            "entry": "literal:ApplicationInput",
+            "schema_revision": "string",
+            "decode": "CoreDecodeResult"
+          }
+        }
+      },
+      "SourceCheckKind": {
+        "kind": "enum",
+        "values": [
+          "content_bytes_body",
+          "source_digest",
+          "source_role",
+          "qualification_ref",
+          "qualification_subject",
+          "qualification_digest",
+          "qualification_owner",
+          "qualification_scope",
+          "qualification_root_ref",
+          "root_owner",
+          "root_subject_revision_scope"
+        ]
+      },
+      "SourceCheck": {
+        "kind": "closed_record",
+        "members": {
+          "kind": "SourceCheckKind",
+          "result": "CheckResult",
+          "left": "CheckOperand",
+          "right": "CheckOperand",
+          "rule_pointer": "JSONPointer",
+          "causes": "Cause[]"
+        }
+      },
+      "RootObservation": {
+        "kind": "closed_record",
+        "members": {
+          "root_index": "Natural",
+          "original_root": "CoreRef",
+          "locator": "Location",
+          "checks": "SourceCheck[]",
+          "causes": "Cause[]"
+        }
+      },
+      "QualificationObservation": {
+        "kind": "closed_record",
+        "members": {
+          "qualification_index": "Natural",
+          "original_qualification": "CoreQualification",
+          "locator": "Location",
+          "root_ref": "Read<CoreRef>",
+          "root_occurrences": "RootObservation[]",
+          "checks": "SourceCheck[]",
+          "causes": "Cause[]"
+        }
+      },
+      "SourceUsability": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "usable": {
+            "check_indices": "Natural[]",
+            "qualification_indices": "Natural[]"
+          },
+          "unusable": {
+            "causes": "Cause[]"
+          },
+          "unestablished": {
+            "causes": "Cause[]"
+          }
+        },
+        "meaning_boundary": "全枝の評価scopeは/f05_detail_contract/source_observation_contract/assessment_scopeに限定する。usableは供給独立root責務を前提とする局所原資料照合成立であり実origin authenticationではない。必要原operand未取得のunestablishedと外部実trust取得口未閉包は別境界。"
+      },
+      "ValidationSourceObservation": {
+        "kind": "closed_record",
+        "members": {
+          "source_index": "Natural",
+          "locator": "Location",
+          "original_source": "CoreSourceEnvelope",
+          "qualification_ref": "Read<CoreRef|null>",
+          "qualification_occurrences": "QualificationObservation[]",
+          "checks": "SourceCheck[]",
+          "usability": "SourceUsability",
+          "causes": "Cause[]"
+        }
+      },
+      "ValidationSourceObservations": {
+        "kind": "closed_record",
+        "members": {
+          "sources_read": "Read<CoreSourceEnvelope[]>",
+          "qualifications_read": "Read<CoreQualification[]>",
+          "roots_read": "Read<CoreRef[]>",
+          "source_occurrences": "ValidationSourceObservation[]",
+          "causes": "Cause[]"
+        }
+      },
+      "ValidationDetailedReturn": {
+        "kind": "closed_record",
+        "members": {
+          "original_raw_input": "OriginalRawInput",
+          "validated": "CoreValidatedApplication",
+          "source_observations": "ValidationSourceObservations"
+        }
+      },
+      "SkipCause": {
+        "kind": "closed_record",
+        "members": {
+          "context_operands": "NamedRead[]",
+          "header_binding": "Read<CoreApplicationBinding>",
+          "causes": "Cause[]"
+        }
+      },
+      "NamedRead": {
+        "kind": "closed_record",
+        "members": {
+          "name": "string",
+          "read": "Read<CoreJsonValue>"
+        }
+      },
+      "ActualPredecessor": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "returned": {
+            "producer": "$P",
+            "comparison": "CoreComparison"
+          },
+          "not_called": {
+            "producer": "$P",
+            "skip": "SkipCause"
+          }
+        }
+      },
+      "F05DetailedRequest": {
+        "kind": "closed_record",
+        "members": {
+          "validation": "ValidationDetailedReturn",
+          "compare_applicability": "ActualPredecessor<literal:compare_applicability>",
+          "compare_kind_obligation_trace": "ActualPredecessor<literal:compare_kind_obligation_trace>"
+        }
+      },
+      "F05NativeContext": {
+        "kind": "closed_record",
+        "members": {
+          "validated": "CoreValidatedApplication",
+          "compare_applicability": "CoreComparison",
+          "compare_kind_obligation_trace": "CoreComparison"
+        }
+      },
+      "ContextFormation": {
+        "kind": "closed_record",
+        "members": {
+          "original_operands": "NamedRead[]",
+          "result": "Formation<F05NativeContext>"
+        }
+      },
+      "HeaderFormation": {
+        "kind": "closed_record",
+        "members": {
+          "binding_read": "Read<CoreApplicationBinding>",
+          "result": "Formation<CoreApplicationBinding>"
+        }
+      },
+      "F05DetailedReturn": {
+        "kind": "closed_record",
+        "members": {
+          "original_request": "F05DetailedRequest",
+          "context_formation": "ContextFormation",
+          "header_formation": "HeaderFormation",
+          "comparison": "Formation<CoreComparison>",
+          "owner_material": "OwnerMaterial"
+        }
+      },
+      "ReturnLink": {
+        "kind": "closed_record",
+        "members": {
+          "root": "literal:f05_return",
+          "pointer": "JSONPointer"
+        }
+      },
+      "CheckLink": {
+        "kind": "closed_record",
+        "members": {
+          "source_observation_index": "Natural",
+          "qualification_occurrence_index": "Natural|null",
+          "root_occurrence_index": "Natural|null",
+          "check_index": "Natural"
+        }
+      },
+      "RecordCollection": {
+        "kind": "enum",
+        "values": [
+          "axis_facts",
+          "semantic_records",
+          "application_policies",
+          "na_records",
+          "obligations",
+          "conditions",
+          "trace_edges",
+          "trace_requirements"
+        ]
+      },
+      "RecordOrigin": {
+        "kind": "closed_record",
+        "members": {
+          "collection": "RecordCollection",
+          "index": "Natural",
+          "locator": "Location"
+        }
+      },
+      "BodyOccurrence": {
+        "kind": "closed_record",
+        "members": {
+          "source_observation_index": "Natural",
+          "source_index": "Natural",
+          "source_locator": "Location",
+          "source_ref": "CoreRef",
+          "body_index": "Natural",
+          "body_locator": "Location",
+          "original_body_entry": "CoreJsonValue",
+          "collection_read": "Read<CoreJsonValue>",
+          "ref_read": "Read<CoreJsonValue>",
+          "payload_read": "Read<CoreJsonValue>",
+          "payload_relation": "Relation",
+          "checks": "SourceCheck[]",
+          "causes": "Cause[]"
+        }
+      },
+      "RoleOwnerPair": {
+        "kind": "closed_record",
+        "members": {
+          "operand_role": "string",
+          "operand_ref": "Read<CoreRef>",
+          "operand_owner": "Read<CoreJsonValue>",
+          "relation": "Relation",
+          "causes": "Cause[]"
+        }
+      },
+      "OwnerBinding": {
+        "kind": "closed_record",
+        "members": {
+          "role": "string",
+          "subject_record": "RecordOrigin",
+          "source_observation_index": "Natural",
+          "wrapper_owner": "Read<CoreJsonValue>",
+          "source_owner": "Read<CoreJsonValue>",
+          "qualification_check_links": "CheckLink[]",
+          "source_wrapper_relation": "Relation",
+          "role_operand_pairs": "RoleOwnerPair[]",
+          "result": "Relation",
+          "causes": "Cause[]"
+        }
+      },
+      "OriginalRecord": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "axis_fact": {
+            "value": "CoreAxisFact"
+          },
+          "semantic_record": {
+            "value": "CoreSemanticRecord"
+          },
+          "policy": {
+            "value": "CoreApplicationPolicy"
+          },
+          "na_record": {
+            "value": "CoreNARecord"
+          },
+          "obligation": {
+            "value": "CoreKindObligation"
+          },
+          "condition": {
+            "value": "CoreConditionBinding"
+          },
+          "trace_edge": {
+            "value": "CoreTraceEdge"
+          },
+          "trace_requirement": {
+            "value": "CoreTraceRequirement"
+          }
+        }
+      },
+      "RecordOccurrence": {
+        "kind": "closed_record",
+        "members": {
+          "origin": "RecordOrigin",
+          "original_record": "OriginalRecord",
+          "ref_read": "Read<CoreRef>",
+          "binding_read": "Read<CoreApplicationBinding>",
+          "source_ref_read": "Read<CoreRef|null>",
+          "ref_relation": "Relation",
+          "binding_relation": "Relation",
+          "source_observation_indices": "Natural[]",
+          "body_occurrences": "BodyOccurrence[]",
+          "owner_bindings": "OwnerBinding[]",
+          "causes": "Cause[]"
+        }
+      },
+      "RefOperand": {
+        "kind": "closed_record",
+        "members": {
+          "original_ref": "Read<CoreRef>",
+          "operand_index": "Natural",
+          "role": "string",
+          "record_occurrences": "RecordOccurrence[]",
+          "causes": "Cause[]"
+        }
+      },
+      "ProjectionDeclarationBody": {
+        "kind": "closed_record",
+        "members": {
+          "binding": "CoreApplicationBinding",
+          "field_ref": "CoreRef",
+          "material_ref": "CoreRef",
+          "material_role": "MaterialRole",
+          "material_carrier": "enum:AxisFact|SemanticRecord",
+          "payload_form": "ProjectionForm",
+          "value_role": "Read<CoreJsonValue>",
+          "reason_role": "ReasonRole",
+          "basis_refs": "CoreRef[]"
+        }
+      },
+      "DeclarationOccurrence": {
+        "kind": "closed_record",
+        "members": {
+          "record": "EvidenceRecordOccurrence",
+          "meaning_read": "Read<CoreJsonValue>",
+          "body": "Formation<ProjectionDeclarationBody>",
+          "basis_operands": "RefOperand[]",
+          "owner_bindings": "OwnerBinding[]",
+          "causes": "Cause[]"
+        }
+      },
+      "ProjectionBasis": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "declaration": {
+            "declaration_link": "ReturnLink"
+          },
+          "native_definition_whole": {
+            "operand_link": "ReturnLink",
+            "meaning_read": "Read<CoreJsonValue>",
+            "owner_binding_links": "ReturnLink[]"
+          },
+          "independent_role_source": {
+            "source_record_link": "ReturnLink",
+            "body_read": "Read<CoreJsonValue>",
+            "resolved_declaration": "ProjectionDeclarationBody",
+            "member_reads": "NamedRead[]",
+            "owner_binding_links": "ReturnLink[]"
+          }
+        }
+      },
+      "ProjectedValue": {
+        "kind": "closed_record",
+        "members": {
+          "payload": "Read<CoreJsonValue>",
+          "reason": "Read<CoreJsonValue>",
+          "original_whole": "Read<CoreJsonValue>",
+          "form": "ProjectionForm",
+          "value_role": "ValueRole|null",
+          "reason_role": "ReasonRole"
+        }
+      },
+      "ProjectionAttempt": {
+        "kind": "closed_record",
+        "members": {
+          "record_link": "ReturnLink",
+          "basis": "ProjectionBasis",
+          "owner_binding_links": "ReturnLink[]",
+          "result": "Formation<ProjectedValue>",
+          "causes": "Cause[]"
+        }
+      },
+      "OperandMaterial": {
+        "kind": "closed_record",
+        "members": {
+          "operand": "RefOperand",
+          "declarations": "DeclarationOccurrence[]",
+          "projection_attempts": "ProjectionAttempt[]",
+          "causes": "Cause[]"
+        }
+      },
+      "RoleMaterial": {
+        "kind": "closed_record",
+        "members": {
+          "role": "MaterialRole",
+          "refs_read": "Read<CoreRef[]|null>",
+          "operands": "OperandMaterial[]",
+          "aggregate": "Formation<ProjectionLinkSet>",
+          "causes": "Cause[]"
+        }
+      },
+      "ProjectionLinkSet": {
+        "kind": "closed_record",
+        "members": {
+          "projection_links": "ReturnLink[]"
+        }
+      },
+      "FieldDefinitionEvidenceBody": {
+        "kind": "closed_record",
+        "members": {
+          "binding": "CoreApplicationBinding",
+          "field_ref": "CoreRef",
+          "template_ref": "CoreRef",
+          "definition_presence": "enum:present|absent|undecided",
+          "content_refs": "CoreRef[]",
+          "basis_refs": "CoreRef[]"
+        }
+      },
+      "BasisOccurrence": {
+        "kind": "closed_record",
+        "members": {
+          "role": "string",
+          "original_ref": "CoreRef",
+          "record_collection": "RecordCollection",
+          "record_index": "Natural",
+          "record_locator": "Location",
+          "source_ref": "CoreRef",
+          "source_index": "Natural",
+          "source_locator": "Location",
+          "body_record_index": "Natural",
+          "body_record_locator": "Location",
+          "operand_locator": "Location"
+        }
+      },
+      "DefinitionJudgment": {
+        "kind": "closed_record",
+        "members": {
+          "state": "enum:known|missing|unknown|conflict",
+          "basis_occurrence_indices": "Natural[]"
+        }
+      },
+      "DefinitionEvidenceInterpretation": {
+        "kind": "closed_record",
+        "members": {
+          "evidence_record": "EvidenceRecordOccurrence",
+          "body_read": "Read<CoreJsonValue>",
+          "body": "Formation<FieldDefinitionEvidenceBody>",
+          "owner_bindings": "OwnerBinding[]",
+          "content_operands": "RefOperand[]",
+          "basis_operands": "RefOperand[]",
+          "content_owner_binding_links": "ReturnLink[]",
+          "judgment": "Formation<DefinitionJudgment>",
+          "reason_read": "Read<CoreJsonValue>",
+          "reentry_read": "Read<CoreJsonValue>",
+          "causes": "Cause[]"
+        }
+      },
+      "DefinitionAssessment": {
+        "kind": "closed_record",
+        "members": {
+          "evidence_interpretations": "DefinitionEvidenceInterpretation[]",
+          "basis_occurrences": "BasisOccurrence[]",
+          "judgment": "Formation<DefinitionJudgment>",
+          "causes": "Cause[]"
+        }
+      },
+      "ValueJudgment": {
+        "kind": "closed_record",
+        "members": {
+          "state": "enum:known|unknown",
+          "projection_links": "ReturnLink[]"
+        }
+      },
+      "ValueAssessment": {
+        "kind": "closed_record",
+        "members": {
+          "judgment": "Formation<ValueJudgment>",
+          "causes": "Cause[]"
+        }
+      },
+      "FieldCheckProjection": {
+        "kind": "closed_record",
+        "members": {
+          "field_ref": "CoreRef",
+          "definition_refs": "CoreRef[]|null",
+          "value_refs": "CoreRef[]|null",
+          "definition_state": "enum:known|missing|unknown|conflict",
+          "value_state": "enum:known|unknown"
+        }
+      },
+      "RecipientMaterial": {
+        "kind": "closed_record",
+        "members": {
+          "recipient": "enum:BRAIN|HARNESS008|HARNESS|unresolved",
+          "subject": "Read<CoreRef>",
+          "basis_links": "ReturnLink[]",
+          "original_owner": "Read<CoreJsonValue>",
+          "original_reason": "Read<CoreJsonValue>",
+          "unfinished_refs": "Read<CoreRef[]>",
+          "causes": "Cause[]"
+        }
+      },
+      "FieldOwnerResult": {
+        "kind": "closed_record",
+        "members": {
+          "field_index": "Natural",
+          "field_locator": "Location",
+          "original_field": "CoreFieldInput",
+          "parent_binding": "Read<CoreApplicationBinding>",
+          "field_binding": "Read<CoreApplicationBinding>",
+          "binding_relation": "Relation",
+          "definition_material": "RoleMaterial",
+          "value_material": "RoleMaterial",
+          "definition_assessment": "DefinitionAssessment",
+          "value_assessment": "ValueAssessment",
+          "field_check": "Formation<FieldCheckProjection>",
+          "recipient_materials": "RecipientMaterial[]",
+          "causes": "Cause[]",
+          "selection": "Selection"
+        }
+      },
+      "GapRoleBody": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "question": {
+            "question": "CoreJsonValue",
+            "requested_operand_refs": "CoreRef[]",
+            "gap_basis_refs": "CoreRef[]"
+          },
+          "contradiction": {
+            "left_proposition_ref": "CoreRef",
+            "right_proposition_ref": "CoreRef",
+            "constraint_ref": "CoreRef"
+          },
+          "derived_requirement_candidate": {
+            "antecedent_requirement_refs": "CoreRef[]",
+            "constraint_ref": "CoreRef",
+            "proposed_requirement_ref": "CoreRef",
+            "proposed_requirement": "CoreJsonValue"
+          },
+          "na_candidate": {
+            "application_policy_ref": "CoreRef",
+            "na_record_ref": "CoreRef"
+          }
+        }
+      },
+      "GapPropositionBody": {
+        "kind": "closed_record",
+        "members": {
+          "binding": "CoreApplicationBinding",
+          "field_ref": "CoreRef",
+          "template_ref": "CoreRef",
+          "proposal_ref": "CoreRef",
+          "subject_ref": "CoreRef",
+          "unfinished_obligation_refs": "CoreRef[]",
+          "basis_refs": "CoreRef[]",
+          "proposition": "GapRoleBody"
+        }
+      },
+      "GapConstraintBody": {
+        "kind": "closed_record",
+        "members": {
+          "binding": "CoreApplicationBinding",
+          "field_ref": "CoreRef",
+          "template_ref": "CoreRef",
+          "relation": "enum:mutually_exclusive|derives_requirement",
+          "left_refs": "CoreRef[]",
+          "right_refs": "CoreRef[]",
+          "basis_refs": "CoreRef[]"
+        }
+      },
+      "ConstraintOccurrence": {
+        "kind": "closed_record",
+        "members": {
+          "record": "EvidenceRecordOccurrence",
+          "body_read": "Read<CoreJsonValue>",
+          "body": "Formation<GapConstraintBody>",
+          "owner_bindings": "OwnerBinding[]",
+          "left_operands": "RefOperand[]",
+          "right_operands": "RefOperand[]",
+          "basis_operands": "RefOperand[]",
+          "reason_read": "Read<CoreJsonValue>",
+          "reentry_read": "Read<CoreJsonValue>",
+          "causes": "Cause[]"
+        }
+      },
+      "QuestionOperands": {
+        "kind": "closed_record",
+        "members": {
+          "requested_operands": "RefOperand[]",
+          "gap_basis_operands": "RefOperand[]",
+          "request_target_relations": "OperandRelation[]"
+        }
+      },
+      "OperandRelation": {
+        "kind": "closed_record",
+        "members": {
+          "left": "Read<CoreJsonValue>",
+          "right": "Read<CoreJsonValue>",
+          "relation": "Relation",
+          "rule_pointer": "JSONPointer",
+          "causes": "Cause[]"
+        }
+      },
+      "ContradictionOperands": {
+        "kind": "closed_record",
+        "members": {
+          "left": "RefOperand",
+          "right": "RefOperand",
+          "constraints": "ConstraintOccurrence[]",
+          "endpoint_relations": "OperandRelation[]"
+        }
+      },
+      "DerivedOperands": {
+        "kind": "closed_record",
+        "members": {
+          "antecedents": "RefOperand[]",
+          "proposed": "RefOperand",
+          "constraints": "ConstraintOccurrence[]",
+          "endpoint_relations": "OperandRelation[]",
+          "proposed_body_relation": "OperandRelation"
+        }
+      },
+      "NAOperands": {
+        "kind": "closed_record",
+        "members": {
+          "policies": "RefOperand",
+          "na_records": "RefOperand",
+          "non_applicable_basis": "RefOperand[]",
+          "attributes": "NamedRead[]",
+          "target_relations": "OperandRelation[]"
+        }
+      },
+      "RoleOperands": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "question": {
+            "value": "QuestionOperands"
+          },
+          "contradiction": {
+            "value": "ContradictionOperands"
+          },
+          "derived_requirement_candidate": {
+            "value": "DerivedOperands"
+          },
+          "na_candidate": {
+            "value": "NAOperands"
+          },
+          "unformed": {
+            "causes": "Cause[]"
+          }
+        }
+      },
+      "CandidateJudgment": {
+        "kind": "closed_record",
+        "members": {
+          "kind": "enum:question|contradiction|derived_requirement_candidate|na_candidate",
+          "basis_occurrence_indices": "Natural[]"
+        }
+      },
+      "KindDifference": {
+        "kind": "closed_record",
+        "members": {
+          "original_kind": "Read<CoreJsonValue>",
+          "interpreted_kind": "GapKind",
+          "relation": "Relation"
+        }
+      },
+      "GapInterpretation": {
+        "kind": "closed_record",
+        "members": {
+          "proposition_occurrence_index": "Natural",
+          "proposition_record": "EvidenceRecordOccurrence",
+          "body_read": "Read<CoreJsonValue>",
+          "body": "Formation<GapPropositionBody>",
+          "owner_bindings": "OwnerBinding[]",
+          "basis_operands": "RefOperand[]",
+          "role_operands": "RoleOperands",
+          "judgment": "Formation<CandidateJudgment>",
+          "unformed_kind": "literal:unresolved",
+          "original_kind_difference": "KindDifference",
+          "reason_read": "Read<CoreJsonValue>",
+          "reentry_read": "Read<CoreJsonValue>",
+          "recipient_materials": "RecipientMaterial[]",
+          "causes": "Cause[]"
+        }
+      },
+      "MultipleSupport": {
+        "kind": "closed_record",
+        "members": {
+          "interpretation_indices": "Natural[]",
+          "proposition_refs": "Read<CoreRef>[]",
+          "constraint_occurrences": "ConstraintOccurrence[]",
+          "causes": "Cause[]"
+        }
+      },
+      "GapOwnerResult": {
+        "kind": "closed_record",
+        "members": {
+          "proposal_index": "Natural",
+          "proposal_locator": "Location",
+          "original_proposal": "CoreGapProposal",
+          "proposal_members": "NamedRead[]",
+          "candidate_interpretations": "GapInterpretation[]",
+          "basis_occurrences": "BasisOccurrence[]",
+          "multiple_support_observations": "MultipleSupport[]",
+          "unfinished_obligation_operands": "RefOperand[]",
+          "causes": "Cause[]",
+          "selection": "Selection"
+        }
+      },
+      "ObligationOrigin": {
+        "kind": "closed_record",
+        "members": {
+          "proposal_index": "Natural|null",
+          "ref_index": "Natural",
+          "ref_read": "Read<CoreRef>",
+          "record_occurrences": "RecordOccurrence[]",
+          "kind_trace_links": "JSONPointer[]",
+          "causes": "Cause[]"
+        }
+      },
+      "ObligationMaterial": {
+        "kind": "closed_record",
+        "members": {
+          "proposal_refs": "NamedRead[]",
+          "kind_trace_return": "CoreComparison",
+          "original_obligations": "Read<CoreKindObligation[]>",
+          "required_trace_refs": "Read<CoreRef[]>",
+          "trace_edges": "Read<CoreTraceEdge[]>",
+          "trace_requirements": "Read<CoreTraceRequirement[]>",
+          "occurrences": "ObligationOrigin[]",
+          "returned_refs": "CoreRef[]",
+          "causes": "Cause[]"
+        }
+      },
+      "ComparisonLink": {
+        "kind": "closed_record",
+        "members": {
+          "member": "enum:field_checks|candidate_proposals|unfinished_obligation_refs|original_axes|findings",
+          "output_index": "Natural",
+          "owner_links": "ReturnLink[]"
+        }
+      },
+      "OwnerMaterial": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "raw_only": {
+            "original_request": "F05DetailedRequest",
+            "causes": "Cause[]"
+          },
+          "evaluated": {
+            "original_request": "F05DetailedRequest",
+            "field_inputs_read": "Read<CoreFieldInput[]>",
+            "gap_proposals_read": "Read<CoreGapProposal[]>",
+            "field_results": "FieldResult[]",
+            "gap_results": "GapResult[]",
+            "obligation_material": "ObligationMaterial",
+            "comparison_links": "ComparisonLink[]",
+            "causes": "Cause[]"
+          }
+        }
+      },
+      "F05GapReturnMaterial": {
+        "kind": "closed_record",
+        "members": {
+          "field_checks": "FieldCheckProjection[]",
+          "candidate_proposals": "CoreGapProposal[]",
+          "unfinished_obligation_refs": "CoreRef[]"
+        }
+      },
+      "ProducerArgument": {
+        "kind": "closed_record",
+        "members": {
+          "producer": "string",
+          "context_member": "string",
+          "comparison": "CoreComparison"
+        }
+      },
+      "CallerInputs": {
+        "kind": "closed_record",
+        "members": {
+          "validation_input": "ValidationInput",
+          "source_result_reference_projection": "Read<CoreJsonValue>"
+        }
+      },
+      "DispatchObservation": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "returned": {
+            "producer": "string",
+            "comparison": "CoreComparison"
+          },
+          "explicit_skip": {
+            "producer": "string",
+            "skip": "SkipCause"
+          },
+          "unobserved": {
+            "producer": "string",
+            "original_operands": "NamedRead[]",
+            "causes": "Cause[]"
+          }
+        }
+      },
+      "CoreApplicationDetailReturn": {
+        "kind": "closed_record",
+        "members": {
+          "validation": "ValidationDetailedReturn",
+          "f05": "Formation<F05DetailedReturn>",
+          "producer_observations": "DispatchObservation[]",
+          "claims": "Formation<CoreComparison>",
+          "analysis": "Formation<CoreApplicationAnalysis>",
+          "causes": "Cause[]"
+        }
+      },
+      "CoreApplicationAnalysis": {
+        "kind": "generated_carrier",
+        "schema_pointer": "/wire_codec_contract/schema/$defs/ApplicationAnalysis",
+        "native_leaf_type": "CoreJsonValue",
+        "required_rule": "同schemaのrequired全memberを元writerから受け、Ref/Bindingのpartial原値は変更しない。owner_materialをこのwire型へ押し込まない。"
+      },
+      "CoreCompareRequiredAxesContext": {
+        "kind": "closed_record",
+        "members": {
+          "validated": "CoreValidatedApplication"
+        }
+      },
+      "CoreCompareCandidateUniverseContext": {
+        "kind": "closed_record",
+        "members": {
+          "validated": "CoreValidatedApplication",
+          "compare_required_axes": "CoreComparison"
+        }
+      },
+      "CoreCompareApplicabilityContext": {
+        "kind": "closed_record",
+        "members": {
+          "validated": "CoreValidatedApplication",
+          "compare_required_axes": "CoreComparison",
+          "compare_candidate_universe": "CoreComparison"
+        }
+      },
+      "CoreCompareKindObligationTraceContext": {
+        "kind": "closed_record",
+        "members": {
+          "validated": "CoreValidatedApplication",
+          "compare_applicability": "CoreComparison"
+        }
+      },
+      "CoreCompareRequirementGapsContext": {
+        "kind": "closed_record",
+        "members": {
+          "validated": "CoreValidatedApplication",
+          "compare_applicability": "CoreComparison",
+          "compare_kind_obligation_trace": "CoreComparison"
+        }
+      },
+      "CoreCompareSelectedKnowledgeContext": {
+        "kind": "closed_record",
+        "members": {
+          "validated": "CoreValidatedApplication",
+          "compare_required_axes": "CoreComparison"
+        }
+      },
+      "CoreCompareMeaningImpactsContext": {
+        "kind": "closed_record",
+        "members": {
+          "validated": "CoreValidatedApplication",
+          "compare_required_axes": "CoreComparison"
+        }
+      },
+      "CoreCompareSemanticEquivalenceContext": {
+        "kind": "closed_record",
+        "members": {
+          "validated": "CoreValidatedApplication",
+          "compare_candidate_universe": "CoreComparison",
+          "compare_applicability": "CoreComparison",
+          "compare_kind_obligation_trace": "CoreComparison"
+        }
+      },
+      "CoreCheckApplicationClaimsContext": {
+        "kind": "closed_record",
+        "members": {
+          "validated": "CoreValidatedApplication",
+          "compare_candidate_universe": "CoreComparison",
+          "compare_applicability": "CoreComparison",
+          "compare_kind_obligation_trace": "CoreComparison",
+          "compare_requirement_gaps": "CoreComparison",
+          "compare_selected_knowledge": "CoreComparison",
+          "compare_meaning_impacts": "CoreComparison",
+          "compare_semantic_equivalence": "CoreComparison"
+        }
+      },
+      "CoreBuildApplicationAnalysisContext": {
+        "kind": "closed_record",
+        "members": {
+          "validated": "CoreValidatedApplication",
+          "compare_required_axes": "CoreComparison",
+          "compare_candidate_universe": "CoreComparison",
+          "compare_applicability": "CoreComparison",
+          "compare_kind_obligation_trace": "CoreComparison",
+          "compare_requirement_gaps": "CoreComparison",
+          "compare_selected_knowledge": "CoreComparison",
+          "compare_meaning_impacts": "CoreComparison",
+          "compare_semantic_equivalence": "CoreComparison",
+          "check_application_claims": "CoreComparison",
+          "source_result_reference_projection": "CoreSourceResultProjectionResult|null"
+        },
+        "optional_members": [
+          "source_result_reference_projection"
+        ]
+      },
+      "CheckApplicationClaimsDetailedContext": {
+        "kind": "closed_record",
+        "members": {
+          "native_context": "CoreCheckApplicationClaimsContext",
+          "f05_detail": "F05DetailedReturn"
+        }
+      },
+      "BuildApplicationAnalysisDetailedContext": {
+        "kind": "closed_record",
+        "members": {
+          "native_context": "CoreBuildApplicationAnalysisContext",
+          "f05_detail": "F05DetailedReturn"
+        }
+      },
+      "CoreJsonValue": {
+        "kind": "existing_type",
+        "pointer": "/wire_codec_contract/numeric_encode_profile/private_host_types/CoreJsonValue"
+      },
+      "PolicySelectionOccurrence": {
+        "kind": "closed_record",
+        "members": {
+          "policy_index": "Natural",
+          "policy_read": "Read<CoreApplicationPolicy>",
+          "decision_index": "Natural",
+          "decision_read": "Read<CoreJsonValue>",
+          "policy_ref_relation": "Relation",
+          "template_relation": "Relation",
+          "binding_relation": "Relation",
+          "disposition_read": "Read<CoreJsonValue>",
+          "causes": "Cause[]"
+        }
+      },
+      "Selection": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "targeted": {
+            "policy_occurrences": "PolicySelectionOccurrence[]"
+          },
+          "outside": {
+            "original_operands": "NamedRead[]",
+            "causes": "Cause[]"
+          },
+          "unestablished": {
+            "original_operands": "NamedRead[]",
+            "policy_occurrences": "PolicySelectionOccurrence[]",
+            "causes": "Cause[]"
+          }
+        }
+      },
+      "FieldResult": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "raw_only": {
+            "field_index": "Natural",
+            "field_locator": "Location",
+            "original_field": "CoreFieldInput",
+            "selection": "Selection",
+            "causes": "Cause[]"
+          },
+          "evaluated": {
+            "value": "FieldOwnerResult"
+          }
+        }
+      },
+      "GapResult": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "raw_only": {
+            "proposal_index": "Natural",
+            "proposal_locator": "Location",
+            "original_proposal": "CoreGapProposal",
+            "selection": "Selection",
+            "causes": "Cause[]"
+          },
+          "evaluated": {
+            "value": "GapOwnerResult"
+          }
+        }
+      },
+      "EvidenceRecordOccurrence": {
+        "kind": "closed_record",
+        "members": {
+          "origin": "RecordOrigin",
+          "original_record": "OriginalRecord",
+          "ref_read": "Read<CoreRef>",
+          "binding_read": "Read<CoreApplicationBinding>",
+          "source_ref_read": "Read<CoreRef|null>",
+          "ref_relation": "Relation",
+          "binding_relation": "Relation",
+          "source_observation_indices": "Natural[]",
+          "body_occurrences": "BodyOccurrence[]",
+          "causes": "Cause[]"
+        }
+      },
+      "CheckOperand": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "original": {
+            "read": "Read<CoreJsonValue>"
+          },
+          "normative_literal": {
+            "value": "CoreJsonValue",
+            "rule_pointer": "JSONPointer"
+          }
+        }
+      }
+    },
+    "entry_points": {
+      "validation_detail": {
+        "symbol": "validate_application_input_detail",
+        "input": "ValidationInput",
+        "output": "ValidationDetailedReturn",
+        "writer_ref": "V01..V07"
+      },
+      "f05_detail": {
+        "symbol": "compare_requirement_gaps_detail",
+        "input": "F05DetailedRequest",
+        "output": "F05DetailedReturn",
+        "writer_ref": "F01..F16"
+      },
+      "private_caller": {
+        "symbol": "build_application_analysis_detail",
+        "input": "CallerInputs",
+        "output": "CoreApplicationDetailReturn",
+        "writer_ref": "C01..C05"
+      },
+      "native_boundary": "新private入口は設計上の取得路であり既存runtimeの発見ではない。既存fn0公開返却はvalidation_detailの同一返却.validatedの投影。F05旧Context-only wrapperは正source観測を取得できないため維持可能としない。codec/fn11/fn12は別port。",
+      "claims_detail": {
+        "symbol": "check_application_claims_detail",
+        "input": "CheckApplicationClaimsDetailedContext",
+        "output": "CoreComparison",
+        "writer_ref": "C03; consumer_interpretation_binding"
+      },
+      "analysis_detail": {
+        "symbol": "build_application_analysis_from_detail",
+        "input": "BuildApplicationAnalysisDetailedContext",
+        "output": "CoreApplicationAnalysis",
+        "writer_ref": "C04; consumer_interpretation_binding"
+      }
+    },
+    "presence_and_decode_rules": [
+      "ValidationInput.nativeのrawは既存CoreJsonValue原operand。same_decode_successはdecode_core009_wireの固定ApplicationInput/schema revisionを伴う一個の実CoreDecodeResult wholeで、input_issues=[]のときだけvalueをrawにできる。valueとraw_diagnosticsを別callから結ばず、value=nullだけで失敗を判定しない。",
+      "decode失敗は既存外側codec返却のまま。private callerのValidationInputには入らず、validationを実施したことにもならない。wire wrapper/API新設の義務はない。native shape失敗は同fn0 validated.input=nullと実InputIssueを返す。両者を同一枝へcastしない。",
+      "CoreApplicationInputは既存wire supply形を保つ。binding absentとbinding={}はいずれもinput非nullのpartial objectになり得る。supplied binding arrayはshape不適合。必須axisの意味検査は既存fn1責務でありdecodeの全axis gateにしない。",
+      "Readは実parentの存在を先に保持する。input=nullではvalidation_inputをrootにした/field_inputs等の子Readを生成しない。owner_material=raw_onlyで原request/原因だけを返す。header bindingのReadはvalidation_raw又はf05_request内に実在するvalidated.input nodeをreachedとして未到達を示し、非実在input-rootを成功pointerにしない。",
+      "Read.presentのnull/false/0/空配列/空object/空文字列は全て原値である。reason未供給をnull/定型文にせず、読めない子をabsentへ変えない。意味body型不正はbody Formation.unformedと原Readを併記し、partial wire carrier全体のdefault修復をしない。"
+    ],
+    "reference_and_collection_rules": {
+      "matching": "既存reference_resolution_contractのidentity/revision/scope/ownerの全端対応と、供給digest条件を用いる。原full Refはsource_locator/sha256/presenceを含め常時保持し、source_locatorはidentityにしない。供給が足りず対応を判定できない場合はunestablished、必要端が供給され比較済みで異なればdifferent。",
+      "binding": "親/field/wrapper/meaning/依存ComparisonのBindingは各原partial objectとpresenceを保存する。対応に必要な原memberが足りない場合は局所未形成で、欠落を隣のBindingから補わない。{}の存在はheader形成を許すが必要意味端の成立ではない。field.bindingの既知差はfield単位target_mismatchへ、同scopeの兄弟を止めない。",
+      "order": "field_inputs原index→definition_refs列→value_fact_refs列の原Ref index→axis_facts全原index→semantic_records全原index→sources全原index→body.records全原indexの順に記録する。根拠meaning bodyはsemantic_records原index順。projection宣言/evidence/constraint各groupの中も同順。各result内basis_occurrencesは当該意味body自身の実record/source/bodyの順、次にそのbodyに列挙されたoperand memberを型members順・Ref列原順、次にそのoperandのrecord/source/body原順で追加する。field定義結果と各proposal結果は独立table。反復はentryを分け、sort/dedup/priorityで意味を選ばない。",
+      "records": "field role Ref及びgap basisの通常本文Refはaxis_factsとsemantic_records双方の全原recordへ照合する。policy/NA/義務/condition/traceは元memberの型が指定するcollectionに別々に解決する。検索missはRefOperand.causesへ保存し、record/body indexを生成しない。",
+      "body": "body.recordsの各実entryについてcollection/ref/payloadを保存し、payloadは元recordのsource_ref memberだけをenvelope側に外付けした原member全値/presenceへ対応させる。本文のcollectionと元record型が異なる場合も当該原entryは残しsource_body_mismatchとする。同Refの既知相反、同値反復及び別bindingを成功subsetから除去しない。"
+    },
+    "source_observation_contract": {
+      "producer": "同fn0の既存照合責務からだけ返す。別callerのqualified bool/任意provider返却/cache/logを入力にしない。元source/qualification/rootの全原indexを保持し、Ref一意map/first/latestへ変えない。",
+      "check_result": "左右の必要原operandが供給され既存条件で一致=corresponding、比較済み既知差=different、適用条件そのものが元契約で成立しない=not_applicable、必要原operand/元owner根拠が不足=unestablished。not_applicableを全check成功へ拡張しない。 SourceCheck.causesの0/1件・kind/全leafはvalidation_cause_diagnostic_contract/check_result_to_causesとcheck_cause_leaf_writerを正本とする。",
+      "checks": [
+        {
+          "kind": "content_bytes_body",
+          "left": "source.content_bytes原stringのCheckOperand.original Read。decoded body又は再生成textのReadではない。",
+          "right": "source.body全原値",
+          "applicability": "semantic sourceの原text/bodyが供給される条件。未供給/parse未形成はunestablished。外側wire bytesや再生成body JSONを元textへ代用しない。",
+          "operation": "元content_bytesをUTF-8 bytesとして既存/wire_codec_contract/source_resolution_stages/1のJSON/numeric読取りへ渡し、その読取り値と右側source.bodyを既存typed_core_json_equalで照合する規範操作。中間decoded bodyを原nodeのReadへ偽装せず、左には操作前の原text、右には原bodyを保存する。読取り未形成はresult=unestablishedと原text/body/原因を保持する。"
+        },
+        {
+          "kind": "source_digest",
+          "left": "source.content_bytes原stringのCheckOperand.original Read。computed digestのReadではない。",
+          "right": "source.ref.sha256",
+          "applicability": "供給non-null digestが条件。absent/nullは当該digest比較だけnot_applicable。byte原値未取得ならunestablished。",
+          "operation": "同原stringのUTF-8 bytesのSHA-256を供給された右digestに照合する既存規範操作。左は原textを保存し、computed digestを元入力nodeとして出さない。"
+        },
+        {
+          "kind": "source_role",
+          "left": "source.role",
+          "right": "literal:semantic_source",
+          "applicability": "意味根拠として使うsource。derived_view/explanation/reference_onlyは原roleを保持し意味source usableへしない。"
+        },
+        {
+          "kind": "qualification_ref",
+          "left": "source.qualification_ref",
+          "right": "各実Qualification.ref",
+          "applicability": "同Ref全対応を記録。未供給/null/検索missはunestablishedで独立qualificationを生成しない。"
+        },
+        {
+          "kind": "qualification_subject",
+          "left": "Qualification.subject_refのidentity/revision/scope/owner",
+          "right": "SourceEnvelope.ref同member",
+          "applicability": "実対応Qualificationごと。subject_ref.sha256供給条件はqualification_digestへ別記。"
+        },
+        {
+          "kind": "qualification_digest",
+          "left": "source.content_bytes原stringのCheckOperand.original Read。",
+          "right": "Qualification.subject_sha256及び供給subject_ref.sha256",
+          "applicability": "各供給non-null digest条件ごとに別check。absent/nullはその比較だけnot_applicable。",
+          "operation": "source_digestと同じ原UTF-8 bytes SHA-256照合を、各供給non-null右digestへ個別に適用する。computed digestの原Readを作らない。"
+        },
+        {
+          "kind": "qualification_owner",
+          "left": "Qualification.owner及びQualification.ref.owner",
+          "right": "SourceEnvelope.ref.owner",
+          "applicability": "同原owner対応。単なる自己記述body文字列やownerラベルだけを独立権限へしない。"
+        },
+        {
+          "kind": "qualification_scope",
+          "left": "Qualification.scope及びsubject_ref.scope",
+          "right": "SourceEnvelope.ref.scope",
+          "applicability": "同scope対応を既存原契約で照合。RawValue包含規則を新設せず、原exact対応で判断できないscope/owner relationはunestablished。"
+        },
+        {
+          "kind": "qualification_root_ref",
+          "left": "Qualification.root_ref",
+          "right": "qualification_roots全原Ref occurrence",
+          "applicability": "元独立root列へのexact対応。自己Qualificationをroot列へ追加しない。"
+        },
+        {
+          "kind": "root_owner",
+          "left": "実qualification_roots[root_index].owner",
+          "right": "Qualification.owner及びSourceEnvelope.ref.owner",
+          "applicability": "元owner直接対応が読める範囲。実root供給元/権限resolverは本詳細が生成しない。"
+        },
+        {
+          "kind": "root_subject_revision_scope",
+          "left": "下記ordered_pairsの各左actual input nodeのCheckOperand.original Read。",
+          "right": "同ordered_pairsの右actual input nodeのCheckOperand.original Read。",
+          "applicability": "実対応Qualification/root occurrenceの元端に限定。Qualification.root_ref各memberと実rootの同member、及び原qualification対象scopeと実root.scopeを対応させる。必要元端未取得はunestablished。root.revision対source.revisionの比較は追加しない。",
+          "storage": "当該RootObservation.checksのみ。配列内順序はcheck_storage_plan/root_checksの後続位置。",
+          "ordered_pairs": [
+            {
+              "left": "/qualifications/{q}/root_ref/identity",
+              "right": "/qualification_roots/{r}/identity",
+              "operation": "既存Ref identity端の型付き値対応"
+            },
+            {
+              "left": "/qualifications/{q}/root_ref/revision",
+              "right": "/qualification_roots/{r}/revision",
+              "operation": "既存Ref revision端の型付き値対応"
+            },
+            {
+              "left": "/qualifications/{q}/root_ref/scope",
+              "right": "/qualification_roots/{r}/scope",
+              "operation": "既存Ref scope端のtyped_core_json_equal対応"
+            },
+            {
+              "left": "/qualifications/{q}/root_ref/owner",
+              "right": "/qualification_roots/{r}/owner",
+              "operation": "既存Ref owner端の型付き値対応"
+            },
+            {
+              "left": "/qualifications/{q}/scope",
+              "right": "/qualification_roots/{r}/scope",
+              "operation": "原qualification対象scopeと実独立rootの原scope対応。新しい包含/委任規則は作らず、原exact対応で決められない関係はunestablished"
+            }
+          ]
+        }
+      ],
+      "aggregation": "SourceUsabilityの原条件/代替経路/未観測の優先と全leafは/f05_detail_contract/validation_cause_diagnostic_contract/source_usability_aggregationを正本とする。評価scopeは既存assessment_scopeの供給独立root責務前提の局所資料照合のまま。実trust取得口の未閉包を新gateにしない。",
+      "diagnostic_boundary": "同fn0の原source/check/lookup Causeと既存primitive診断を/f05_detail_contract/validation_cause_diagnostic_contractどおり全返却する。InputIssue/unusable_source_refsの粒度・原順・全leafは同節の既存返却writerへ固定し、成功資格からraw不足を逆生成しない。decode可能snapshotと独立兄弟は保持する。",
+      "operand_boundary": "SourceCheck/Causeの左右はCheckOperand。実入力から得たoperandはoriginal.readだけで実node/presenceを指し、規範固定値はnormative_literalでその値と宣言箇所の本L5 rule_pointerを返す。固定semantic_sourceやproducer symbol/enum/expected formを入力nodeのReadへ偽装しない。digest check leftは原content_bytesのoriginal Readで、操作は規範に明記しておりcomputed digestを原node Readへしない。",
+      "operand_pair_order": "check_storage_planが全checkの格納階層と局所順の正本。check種別の説明表checksは規範操作/適用性を定め、配列をsource/qualification/rootのどこにも重複格納しない。root_subject_revision_scopeはordered_pairsの5原左右に分解し、root/source revision同値を要求しない。複合nodeを合成したReadを作らない。",
+      "check_storage_plan": {
+        "namespace": "各operand pathはvalidation_input root。s=実sources原index、q=実qualifications原index、r=実qualification_roots原index。source_observation_index/qualification_occurrence_index/root_occurrence_indexは返却配列の別indexで、s/q/rをそのまま代入しない。",
+        "source_checks": {
+          "storage": "ValidationSourceObservation.checks",
+          "ordered_members": [
+            {
+              "kind": "content_bytes_body",
+              "left": "/sources/{s}/content_bytes",
+              "right": "/sources/{s}/body"
+            },
+            {
+              "kind": "source_digest",
+              "left": "/sources/{s}/content_bytes",
+              "right": "/sources/{s}/ref/sha256"
+            },
+            {
+              "kind": "source_role",
+              "left": "/sources/{s}/role",
+              "right_literal": "semantic_source",
+              "literal_rule_pointer": "/f05_detail_contract/source_observation_contract/checks/2"
+            }
+          ]
+        },
+        "qualification_checks": {
+          "storage": "当該ValidationSourceObservation.qualification_occurrences[返却local index].checks",
+          "ordered_members": [
+            {
+              "kind": "qualification_ref",
+              "left": "/sources/{s}/qualification_ref",
+              "right": "/qualifications/{q}/ref"
+            },
+            {
+              "kind": "qualification_subject",
+              "left": "/qualifications/{q}/subject_ref",
+              "right": "/sources/{s}/ref",
+              "operation": "実fullRef Read同士へ既存identity/revision/scope/owner対応を適用。供給subject_ref.sha256は後続digest checkへ分離"
+            },
+            {
+              "kind": "qualification_digest",
+              "left": "/sources/{s}/content_bytes",
+              "right": "/qualifications/{q}/subject_sha256"
+            },
+            {
+              "kind": "qualification_digest",
+              "left": "/sources/{s}/content_bytes",
+              "right": "/qualifications/{q}/subject_ref/sha256"
+            },
+            {
+              "kind": "qualification_owner",
+              "left": "/qualifications/{q}/owner",
+              "right": "/sources/{s}/ref/owner"
+            },
+            {
+              "kind": "qualification_owner",
+              "left": "/qualifications/{q}/ref/owner",
+              "right": "/sources/{s}/ref/owner"
+            },
+            {
+              "kind": "qualification_scope",
+              "left": "/qualifications/{q}/scope",
+              "right": "/sources/{s}/ref/scope"
+            },
+            {
+              "kind": "qualification_scope",
+              "left": "/qualifications/{q}/subject_ref/scope",
+              "right": "/sources/{s}/ref/scope"
+            }
+          ]
+        },
+        "root_checks": {
+          "storage": "当該QualificationObservation.root_occurrences[返却local index].checks",
+          "ordered_members": [
+            {
+              "kind": "qualification_root_ref",
+              "left": "/qualifications/{q}/root_ref",
+              "right": "/qualification_roots/{r}",
+              "operation": "実fullRef Read同士の既存参照対応。source_locatorはidentityにしない"
+            },
+            {
+              "kind": "root_owner",
+              "left": "/qualification_roots/{r}/owner",
+              "right": "/qualifications/{q}/owner"
+            },
+            {
+              "kind": "root_owner",
+              "left": "/qualification_roots/{r}/owner",
+              "right": "/sources/{s}/ref/owner"
+            },
+            {
+              "kind": "root_subject_revision_scope",
+              "ordered_pair_index": 0
+            },
+            {
+              "kind": "root_subject_revision_scope",
+              "ordered_pair_index": 1
+            },
+            {
+              "kind": "root_subject_revision_scope",
+              "ordered_pair_index": 2
+            },
+            {
+              "kind": "root_subject_revision_scope",
+              "ordered_pair_index": 3
+            },
+            {
+              "kind": "root_subject_revision_scope",
+              "ordered_pair_index": 4
+            }
+          ]
+        },
+        "occurrences": "各実source→対応Qualification→対応root occurrenceを元配列順に保持し、各checks配列は上表の局所順。原Ref反復も全経路を残す。実qualification/root未取得には架空occurrence/check_indexを作らず、その直近の原ReadとCauseへ保持する。",
+        "applicability": "実occurrenceがあり、checkの必要memberだけが不在/null/未到達ならそのReadと既存適用条件を同位置のcheckへ書く。digestは実到達したdigest memberのabsence/nullだけが当該比較not_applicable。parent未到達を未供給digestと断定しない。input=null時は既存V03のraw reached/unreached境界のまま、架空source/qual/rootチェック配列を生成しない。"
+      },
+      "assessment_scope": {
+        "scope": "供給独立qualification_rootsを前提とする、原source/Qualification/root資料の同call局所照合。SourceUsability全枝はこのscopeだけを述べる。",
+        "actual_operands": "ValidationInputに実際に渡した同ApplicationInput wholeのsources[s]（ref/body/content_bytes/qualification_ref/role）、対応qualifications[q]（ref/root_ref/subject_ref/subject_sha256/owner/scope/body）、独立root役割として供給されたqualification_roots[r]の原fullRefを使用する。既存bytes/body/参照/owner/scope/digest条件の必要端とその実対応がある範囲で局所形成できる。別qualified bool/外部oracle返却/expected観測は渡さない。",
+        "synthetic_boundary": "同じ原operandを持つ合成fixtureは、既存独立root入力責務を仮定する条件付き資料照合としてusableを期待できる。fixture ID/ownerラベル/bodyの資格文字列がusable判定を選ぶのではなく、同原条件と全原node対応を照合する。fixtureであること又は実producer未実装だけを全資料拒否理由にしない。",
+        "actual_trust_frontier": "原ApplicationInput.qualification_rootsのRef列だけには実root供給元/custody/原owner認証の取得traceが含まれず、ValidationInputにもその別実引数は定義されていない。従ってこの型/返却から実trust根拠を観測済みとは言えない。実trust取得口は既存/wire_codec_contract/source_resolution_stages/3の未閉包を保持し、本修正で新provider/引数/承認gateを作らない。",
+        "distinction": "原資料の必要端不足→同局所SourceUsability.unestablished。原資料照合成立だが実trust取得口未閉包→当該scopeのusableと実trust非認定を併記する契約境界。後者を前者へ無条件変換せず、実認証成功へも昇格しない。"
+      },
+      "usable_index_writer": {
+        "check_indices": "usable枝では、当該ValidationSourceObservation.checksに格納された3check全ての局所indexを原順に返す（[0,1,2]）。当該digest比較が正当にnot_applicableでもその適用性観測entryを含め、別階層indexは混ぜない。",
+        "qualification_indices": "同source.qualification_occurrences内で、一つ以上の全条件対応済み実root経路を持つ全Qualificationの返却local indexを原順に返す。定義/優先はvalidation_cause_diagnostic_contract/source_usability_aggregation。失敗/未観測の別経路も元Cause/InputIssueへ保持し、先頭/Ref一意性で捨てない。"
+      }
+    },
+    "owner_binding_contract": {
+      "storage": "各RecordOccurrence.owner_bindingsはそのcontent recordとsource/body occurrenceのsubject。DeclarationOccurrence/DefinitionEvidenceInterpretation/GapInterpretation/ConstraintOccurrenceのowner_bindingsは各宣言/原命題subject自身。evidenceをcontentへ置換しない。content_owner_binding_linksはcontent側の実entryへだけ向ける。 EvidenceRecordOccurrenceはowner_bindingsを内包せず、対応する宣言/原命題Interpretationのinline owner_bindingsへそのsubject自身の証拠を一度格納する。content RecordOccurrenceとは別型で、content_owner_binding_linksはcontent側entryだけを指す。",
+      "source_wrapper": "wrapper.ref.owner、実source.ref.owner及び同fn0資格checkの原owner対応を先に保持する。必要元relation不足はunestablished、照合済み既知差はdifferent。単なるowner文字列差だけで委任/関係有無を創作しない。",
+      "role_pairs": "各適用operand fullRef/owner Readを全原順でRoleOwnerPairへ。定義はfield.template_ref、非null field.binding.knowledge_ref、対応済definition_refs。値宣言は対応value_fact_refs又はfield.binding.requirement_ref。質問/派生/NA命題はGapProposal.ref。矛盾constraintは実左右Refs又はfield.binding.application_contract_ref、左右命題sourceは各Ref。派生constraintは実antecedent要求Refs又はapplication_contract_ref、proposed bodyはproposed_ref。NA判断はNARecord.ref、policyはApplicationPolicy.ref。各body/field/fullbinding/版/scope対応も別必要。",
+      "aggregate": "共通source_wrapper関係 AND 当該role候補内OR。source_wrapper=differentならrole候補のcorrespondingで相殺不可、result=different/owner_mismatch。source_wrapper=unestablishedならpositiveがあってもresult=unestablished。source_wrapper=correspondingかつ適用role pairに一つ以上correspondingならresult=corresponding、他pair差は保存。全適用候補が読めてdifferentだけならresult=different、positive無く必要元端未取得ならunestablished。field.ref.ownerとの一律一致、新registry/委任/trust rootを作らない。"
+    },
+    "projection_contract": {
+      "declaration_reader": "kind=field_material_projection_declarationの実SemanticRecord.meaningを原objectとして読む。共通8member binding/field_ref/material_ref/material_role/material_carrier/payload_form/reason_role/basis_refsと各供給形、product_valueでは追加value_roleを閉型へ結ぶ。kindだけでは成立せず全対象/source/body/owner/元basis対応を必要とする。definitionのvalue_roleは非適用で元Readを残し、不在/null/差を投影失敗へしない。",
+      "independent_source": "宣言を省けるのは同元source/bodyが上記の同対象role/form/value意味/reason出所各memberを実際に表す場合だけ。member_readsを全必要端へ結び、free text/key/kind推測でresolved_declarationを作らない。別generic sourceがあるだけではこの枝へ入れない。",
+      "native_definition_whole": "definition_refsの対応済みSemanticRecordの原meaning全体。ProjectionBasis.native_definition_wholeは元Ref列/meaning Readとcontent RecordOccurrence.owner_bindingsの実linkを持ち、definition/semantic_whole/value_role=null/reason_role=no_reasonで形成する。追加product_value宣言は要求しない。この取得はdefinition_state=knownを意味しない。",
+      "forms": {
+        "axis_value": "AxisFactのみ。payload=元/value全体（再帰unwrapなし）。axis_reasonなら元/reason Read、no_reasonなら理由無し原presenceを保持。product_valueのconcrete/undecided意味は別に原宣言が要る。",
+        "semantic_whole": "SemanticRecordのみ。payload=original_whole=元/meaning全体。reason_role=no_reason。意味内にreasonがあっても理由出所へしない。原object childは必要時NamedReadとして別保存するがwholeを分解しない。",
+        "semantic_value_envelope": "SemanticRecord.meaning実object。payload=実/value Read（present必須、nullはpresent）。reason_role=envelope_reasonなら実/reason present必須。no_reasonなら意味理由を生成せず原reason presenceも保持。value_roleはconcrete_value/undecided_valueの明示原意味で、null/false/0/key存在から選ばない。"
+      },
+      "failure": "適用form/carrier/role/binding/原Ref/reason/value意味の既知差は当該attempt unformedで全左右を保持。同field/material/roleの適用宣言同士又はsameRef異本文相反はその投影をunformed。非適用memberの差、別Ref値違いだけを相反としない。ProjectionAttemptと各独立payloadを残しfield aggregateだけaggregation_unestablishedにできる。"
+    },
+    "definition_and_value_summary": {
+      "individual_definition": "kind=field_definition_evidenceをbody型へ読む。common binding/field_ref/template_refとwrapper/source/body/owner/qualification全対応を必要とする。presentは非空content_refsの各原Refがfield.definition_refsに実在し、definition roleのcontent/source/body/payloadへ全対応した場合known。absentはcontent_refs=[]の明示原owner命題からmissing。undecided明示命題からunknown。lookup miss/空Ref列/宣言未取得だけではいずれも作らない。evidenceのreason/reentryは全presence保持で新必須gateにしない。",
+      "field_definition": "全個別evidence_judgmentを保存。同値反復はbasis全indexをまとめる。異なるevidence Refの対応済present+absentはconflictと全両根拠。present/undecided又はabsent/undecided併存は個別意味を保存しaggregate unformed。sameevidenceRef source相反は個別支持unformed。未解決の原definition_refs operandがあれば局所missing/unknown/known支持を残してfield judgment unformed/content_unresolved。別contentRef値差は元cardinality/同時許容/集約根拠がなければaggregate unformed、domainconflictは生成しない。",
+      "field_value": "全product_value投影の原value_role=concrete_valueからstate=known、undecided_valueからstate=unknown。これは案件値意味でありqualification/source unknownと別。全同値反復だけなら全projection linksを根拠へ。異なるRefの複数payload/意味、concreteとundecidedの併存又は必要Refs未解決は各投影を残しaggregate unformed/aggregation_unestablished。RawValueの値違いを新conflict又はgapkindへしない。",
+      "field_check": "field.ref、definition_refs、value_fact_refsの各原memberが元FieldCheckMaterialの供給型として取得でき、両summaryがformedの時だけ原5memberのFieldCheckProjectionへ。definition_state/value_stateは上記支持意味。元refs member absentをnull/[]にdefaultしない。summary unformedを新public stateへcastせずfield_check unformedにし、owner全原値/個別支持は保持する。"
+    },
+    "gap_contract": {
+      "scan": "元gap_proposals各occurrenceの全8member presenceをproposal_membersへ保持。対応kind=field_gap_propositionの全semantic_records原indexを読み、meaning型/field/template/proposal/subject/fullbinding/unfinishedRefsを原対象へ対応させる。元proposal.kind/reason/backflow_ownerをoracleにしない。原body未供給ならinterpretations=[]と原proposal/局所原因を残し、架空proposition_occurrence_indexを発行しない。",
+      "question": "元question RawValue全体、非空requested_operand_refs、非空gap_basis_refsを保持。requestedは元field/ref列、field.Bindingのrequirement/process/application/template/knowledge、関連義務、同template/binding policy/conditionの実Refに結ぶ。gap_basisはその同field/義務/契約の独立原AxisFact/SemanticRecord又はpolicy/義務のsource/bodyへ解決し、各requestedとの構造対応をOperandRelationへ。全必要端/source/owner/fieldbinding対応でquestion候補。質問文章や契約本文をparseして正解/不整合を生成せず、取得missだけで質問を生成しない。",
+      "contradiction": "left/rightをそれぞれ原命題の実source/bodyへ解決。constraint.kind=field_gap_constraint、relation=mutually_exclusive、同field/template/fullbinding、left_refs一件=left、right_refs一件=rightを全対応。元ownerが示すこの両原命題の排他関係だけで候補を形成し、値差/文字列差/比較falseだけでは形成しない。",
+      "derived_requirement_candidate": "非空antecedent_requirement_refsの全原要求端をfield.binding.requirement_ref/同field対象の元sourceへ結ぶ。constraint.relation=derives_requirement、left_refsが全antecedentの原順/反復と一致、right_refs一件=proposed_requirement_ref。右原SemanticRecord.meaning全値とproposed_requirementをtyped_core_json_equalで比較して原ownerの導出関係だけを候補化する。文章推論/新採用Refは生成しない。",
+      "na_candidate": "policyとNARecordを型指定collectionの実全record/source/bodyへ解決し両binding/templateと原field/template版/scopeへ対応。policy.non_applicable_basis_refを別operandとして元source/bodyまで保存。reason/decider/target_revisionが供給non-null非空string、reentry_conditionが供給non-null、target_revision=field.template_ref.revisionを必要とする。false/0/空reentryは原値のまま正当。policy.source ownerとpolicy.ref.owner、NA source ownerとNARecord.ref.owner、命題source ownerとproposal.ref.ownerを別に照合。",
+      "constraint": "constraint body自身の共通field/template/binding/Ref/owner/source/全basisを保存し、適用relationの全left/right端を元proposition operandへ照合。未知relation/body欠落/源資料不足は当該interpretation unformed、原原因を保持。",
+      "candidate_results": "各原proposition occurrenceに一つのGapInterpretationを置き、原body枝に必要な全guardが対応した場合だけformed CandidateJudgment。不能ならunformed/unformed_kind=unresolvedと原原因。original_kind_differenceには元kindと解釈kindの原左右を返す。一致は支持条件ではない。互換的なquestion+derived等を全て返し、priorityやrole相違だけのconflict化をしない。multiple_supportは全formed index/命題Refを保存。実資料に解釈間の排他constraintがあれば別constraint occurrenceと左右関係を保存し支持済候補を消さない。"
+    },
+    "native_comparison_projection": {
+      "material": "formed Comparison.materialはF05GapReturnMaterialの原3member。candidate_proposalsはSelection.targetedの元gap_proposalsの全原8member/presenceを保つ原提案列であり、原kindを後判定kindへ上書きしない。対象外/対象未形成の元proposalもowner_material.gap_results.raw_onlyへ残す。根拠による4分類はevaluated.gap_results[*].value.candidate_interpretationsへlosslessに返し、元提案列とComparisonLinkで対応する。",
+      "formation": "context/header/inputが形成し、各対象field_checkと元GapReturnMaterialの必要出力leafが実型で形成できる範囲でComparison全5memberを形成する。局所domain state=unknown/missing/conflictは正当な実stateであり、それだけでComparisonをunformedへしない。一方、原Ref/presence不足などで必要FieldCheck生成leafが作れない場合はcomparison unformed/native_leaf_unformedとして全owner原材料/独立兄弟を返す。未形成fieldを除いたfield_checks[]で全体成功にしない。 比較のfield_checks/candidate_proposalsはSelection.targetedの範囲で、原index対応はcomparison_linksへ残す。known outsideのraw-onlyは比較形成不能原因にしない。selection unknownを全scope成功にも原必要集合削除にもせず、同owner原因をconsumerへ必ず渡す。",
+      "header": "producer_symbol=compare_requirement_gaps。input_bindingは同validation.validated.inputの実binding object whole。親binding absent又はinputnullへ{}や別Bindingを補わない。",
+      "axes": "各formed selected field_checkにつきdefinitionとvalue二つのCoreAxisResultを元field順・definition→value順に作る。subject_ref=元field.ref、binding=元field.binding、axisは既存field.definition/field.value、stateは当該summary、original_refsは元role refs（nullなら空Refsだが元nullはfield_check/ownerに保存）。reasonとbackflow_ownerの全値はaxis_leaf_writerに従う。元field.binding未形成なら必要生成leaf未形成を返し親bindingへ置換しない。",
+      "findings": "新Finding codeを設けない。既存F05 failure ruleで原条件が成立したものだけ原rule/source/fieldへ対応して返す。単なる宣言/型/資格未成立をclassification_fabricated等のpublic違反へ変換しない。原入力にはこれらclaimが無い範囲はfindings=[]とし、private Causeを主な診断へ置く。",
+      "determinism": "元配列順とindexを保持する本詳細のwriter順を使用し、Comparison materialを作り直すためのsortは追加しない。既存他producerの整列方式/意味には触れない。",
+      "axis_leaf_writer": {
+        "reason": "当該summaryが実使用した全evidence/projectionのreason Readを原順に保持する。それらが一つ以上あり、全てpresentの同一stringであればその同一原stringを返す。その他（理由非適用/absence/null/型外/異なる複数理由）はdefinition軸なら固定文字列 /f05_detail_contract/definition_and_value_summary/field_definition、value軸なら固定文字列 /f05_detail_contract/definition_and_value_summary/field_value を診断説明として返す。これは原意味理由の代入ではなく、全元reason Readはownerに保持する。",
+        "backflow_owner": "当該field RecipientMaterialの形成済根拠が単一recipient=BRAINだけなら既存brain_owner、単一recipient=HARNESS008だけなら既存requirement_008_owner、その他/混合/未形成ならnull。元proposal.backflow_owner又はfield Ref.ownerから生成しない。"
+      }
+    },
+    "recipient_and_obligation_contract": {
+      "recipients": "定義missingの形成済み明示absence根拠→BRAIN。定義knownかつvalue unknownの明示undecided根拠→HARNESS008。元質問が同fieldのapplication/process contractの実operand/資料を対象とする場合→HARNESSへの質問候補（契約不整合の正解を生成しない）。適用contract既知不整合の原独立根拠がある場合もHARNESS。その他分類/資料不足又は混合はrecipient=unresolvedを保持し、元proposal.backflow_owner文字列を結果へ転写しない。元source/field/版/scope/unfinishedRefsと原理由Readを全て結ぶ。",
+      "obligations": "元proposalのunfinished_obligation_refsをproposal順→Ref原順で全件保持し、同call compare_kind_obligation_trace.material.obligationsの元KindObligation Ref全順をその後に連結する。重複は消さずoriginを別々に持つ。各Refは原obligations型/意味/source/condition_refs/reentry_refとkind trace原whole/required_trace_refs/trace_edges/trace_requirementsへ対応させる。元ref未取得はcauseとして残しreturned_refsに取得成功だけを新必要集合として代入しない。原Ref自体が読めない必要生成leafはcomparison unformed。候補分類/NA/兄弟成功で義務消込しない。",
+      "consumer": "CORE外側返却.f05はcomparisonと全owner材料wholeを保持。B019接続callerはこれを別typed実引数core_field_value_contextの素材として受ける。選択030 query/knowledge/field関係/typedinputは別原資料であり、CoreJsonValue/CoreNumberをB030 json型へ無断castしない。原030inputのabsence/null/value/reasonと全returnが別必要で、ReceiptFieldRowのstate/value/reasonだけから原inputを復元しない。具体typed projection/callの閉包は独立pairの残務。"
+    },
+    "leaf_writer_ledger": [
+      {
+        "id": "V01",
+        "types": [
+          "ValidationInput",
+          "OriginalRawInput",
+          "ValidationDetailedReturn"
+        ],
+        "targets": [
+          "original_raw_input",
+          "validated",
+          "source_observations"
+        ],
+        "rule_ja": "同fn0一walkのraw引数wholeをOriginalRawInputへ保存。同decode入力ならdecode全返却とentry/revisionを同call保持。既存fn0 validated3memberを同walk結果として返す。input=nullとなるraw shape失敗でもraw whole/input_issuesを返し、input相対子観測は作らない。",
+        "source_pointers": [
+          "/functions/0",
+          "/wire_codec_contract/presence",
+          "L4:/f05_validation_material_call_contract/logical_ports/validation_detail"
+        ]
+      },
+      {
+        "id": "V02",
+        "types": [
+          "Read",
+          "Location",
+          "NamedRead",
+          "Cause",
+          "CheckOperand"
+        ],
+        "targets": [
+          "Read各枝全member",
+          "Cause全member",
+          "CheckOperand各枝全member"
+        ],
+        "rule_ja": "requestedは実読取要求所在、present locationは実node、absent parentは実object、unreached reachedは最後の実node。value/parent_value/reached_valueは原無変換copy。Causeは当該失敗guardの閉kind/rule_pointerと実左右Readで、空の架空左右を生成しない。入力起点/返却起点はOriginRootの別namespace。 Ref検索missの右側は実探索collection wholeのReadを使い、arrayに存在しない架空index Readを作らない。 原資料左右はCheckOperand.original、宣言された固定比較値はnormative_literal（実値+本L5規範pointer）へ分ける。規範literalを元入力Readにしない。 validationのCause全leaf/格納順はvalidation_cause_diagnostic_contract、F01のCause全leaf/正本root/群移送順はcontext_header_cause_contractの各固定patternへ結ぶ。列挙kindの任意選択又は自由な規範pointerではない。",
+        "source_pointers": [
+          "/wire_codec_contract/presence",
+          "L4:/field_semantic_evidence_contract/wrapper_and_source_contract/pointer_namespace"
+        ]
+      },
+      {
+        "id": "V03",
+        "types": [
+          "ValidationSourceObservations",
+          "ValidationSourceObservation"
+        ],
+        "targets": [
+          "sources_read",
+          "qualifications_read",
+          "roots_read",
+          "source_occurrences",
+          "source_index",
+          "locator",
+          "original_source",
+          "qualification_ref",
+          "qualification_occurrences",
+          "checks",
+          "usability",
+          "causes"
+        ],
+        "rule_ja": "inputが実objectの範囲で三原memberをRead。同sources原indexごとにsource whole/ref/body/content_bytes/roleの元presenceを保存。資格参照に対応する全qualifications原occurrenceを原順で結ぶ。未解決はCauseだけで架空qualification/source indexなし。source欠落をempty sourcesへ変換しない。 validated.input=nullではsources/qualifications/roots Readはvalidation_raw wholeをreachedとするunreachedで、semantic collectionを観測したとしない。source_occurrences=[]にはinput_unobserved原因を必ず併記し、評価済み空source集合としない。 source観測全causesの格納/階層集約とinput=null一件patternはvalidation_cause_diagnostic_contractを用いる。",
+        "source_pointers": [
+          "/functions/0/algorithm/1",
+          "/wire_codec_contract/source_resolution_stages",
+          "L4:/f05_validation_material_call_contract/logical_ports/validation_detail/source_observation_rule"
+        ]
+      },
+      {
+        "id": "V04",
+        "types": [
+          "QualificationObservation",
+          "RootObservation"
+        ],
+        "targets": [
+          "qualification_index",
+          "original_qualification",
+          "locator",
+          "root_ref",
+          "root_occurrences",
+          "root_index",
+          "original_root",
+          "checks",
+          "causes"
+        ],
+        "rule_ja": "Qualification ref/subject/digest/owner/scope/bodyをwhole保持、各root_refに対応するqualification_roots全原indexを別entryで保持する。原root_ref/実root fullRefと資格/subjectの原左右を各checkへ。同Ref反復/異本文は全て保持し先頭選択しない。 checksの正確な格納階層/局所順はcheck_storage_planに従う。rootchecksへsource/qualifierchecksを重ねて格納しない。 RootObservation.causes/QualificationObservation.causesはvalidation_cause_diagnostic_contract/cause_storage_and_orderの原順copy。root参照/実root未取得のCauseは同lookup_patternsの2/3で全leafを固定する。",
+        "source_pointers": [
+          "/reference_resolution_contract/qualification",
+          "/wire_codec_contract/source_resolution_stages/3"
+        ]
+      },
+      {
+        "id": "V05",
+        "types": [
+          "SourceCheck"
+        ],
+        "targets": [
+          "kind",
+          "result",
+          "left",
+          "right",
+          "rule_pointer",
+          "causes"
+        ],
+        "rule_ja": "check_storage_planの各実階層/局所順でSourceCheck全memberを書く。left/rightは対応した一つの実原nodeのCheckOperand.original Read（bytes/body又はdigest操作でも左は原content_bytes text）又は宣言literal。kind/result/rule_pointer/causesは各規範操作/適用条件へ結ぶ。root_subject_revision_scopeは5原左右をRootObservation.checksへ別entryで格納し、root.revisionとsource.revisionを比べない。CheckLinkはvalidation返却に格納先が無く、このwriterでは生成しない。 check_result_to_causesの4result→0/1原因とcheck_kind_table/check_cause_leaf_writerで各check.causes全leafを生成する。corresponding/not_applicableは[]のまま。",
+        "source_pointers": [
+          "/reference_resolution_contract",
+          "/wire_codec_contract/source_resolution_stages"
+        ]
+      },
+      {
+        "id": "V06",
+        "types": [
+          "SourceUsability"
+        ],
+        "targets": [
+          "usable.check_indices",
+          "usable.qualification_indices",
+          "unusable.causes",
+          "unestablished.causes"
+        ],
+        "rule_ja": "SourceUsabilityの全条件優先/代替資格経路はvalidation_cause_diagnostic_contract/source_usability_aggregationを正本とする。usable両index列は同表と既存usable_index_writerのlocal原順、unusable/unestablished.causesは当該SourceObservation.causes全値copy。局所資料端の不足と実trust取得口未閉包は既存assessment_scopeのまま分ける。",
+        "source_pointers": [
+          "/functions/0/algorithm/1",
+          "/wire_codec_contract/source_resolution_stages/3",
+          "L4:/f05_validation_material_call_contract/logical_ports/validation_detail"
+        ]
+      },
+      {
+        "id": "V07",
+        "types": [
+          "CoreValidatedApplication",
+          "CoreInputIssue"
+        ],
+        "targets": [
+          "input",
+          "input_issues",
+          "unusable_source_refs",
+          "CoreInputIssue全member"
+        ],
+        "rule_ja": "既存fn0のshape/JSON/numeric診断を無変換保持し、decode可能inputのsource診断と未資格Ref列はvalidation_cause_diagnostic_contract/validated_input_issue_writer及びunusable_source_refs_writerの全leaf/順序で返す。source不足ではinputを非null原partial objectに保つ。primitive原因を新固定reasonへ置換せず、親未形成から子不足を追加しない。",
+        "source_pointers": [
+          "/functions/0",
+          "/wire_codec_contract/source_resolution_stages/4"
+        ]
+      },
+      {
+        "id": "F01",
+        "types": [
+          "F05DetailedRequest",
+          "ActualPredecessor",
+          "ContextFormation",
+          "F05NativeContext",
+          "HeaderFormation",
+          "SkipCause"
+        ],
+        "targets": [
+          "original_request",
+          "context_formation",
+          "header_formation"
+        ],
+        "rule_ja": "実validation wholeと二指定producerの実返却/明示skipを原requestへ保存する。Context.original_operandsの名/所在/順序、Context/header各Formation、Cause全leafと比較/owner raw_onlyへの原順伝播はcontext_header_cause_contractを正本とする。元Context三引数wholeは形成できる時だけ保持し、header実{}とbindingAbsent/inputnull/元形不正を分ける。未知call/返却欠落を明示skipへせず、input/Context/header不能ではsemantic評価をしない。",
+        "source_pointers": [
+          "L4:/f05_validation_material_call_contract/logical_ports/f05_detail",
+          "L4:/f05_validation_material_call_contract/formation_rules"
+        ]
+      },
+      {
+        "id": "F02",
+        "types": [
+          "OwnerMaterial",
+          "FieldOwnerResult",
+          "FieldResult",
+          "GapResult",
+          "Selection",
+          "PolicySelectionOccurrence"
+        ],
+        "targets": [
+          "evaluated.field_inputs_read",
+          "evaluated.gap_proposals_read",
+          "field_results",
+          "field_index",
+          "field_locator",
+          "original_field",
+          "parent_binding",
+          "field_binding",
+          "binding_relation",
+          "causes",
+          "selection全枝全member",
+          "PolicySelectionOccurrence全member",
+          "FieldResult.raw_only全member",
+          "GapResult.raw_only全member"
+        ],
+        "rule_ja": "Context/input/header形成後だけ元collection Readを作る。全元field/proposal whole/indexをselection_contractどおりraw-domainとして保存。実policy_decisions→application_policies[index]/fullRef→template/bindingの全原joinをSelectionへ書く。targetedだけFieldResult.evaluated/GapResult.evaluatedへ進み、outside/unestablishedは各raw_only全原wholeと元原因を返し意味評価しない。既知別scopeをmissing/NAへ変えず選択済兄弟も止めない。",
+        "source_pointers": [
+          "L4:/field_source_materialization_contract/original_operand_contract",
+          "L4:/f05_validation_material_call_contract/formation_rules/5"
+        ]
+      },
+      {
+        "id": "F03",
+        "types": [
+          "RoleMaterial",
+          "OperandMaterial",
+          "RefOperand",
+          "RecordOccurrence",
+          "OriginalRecord",
+          "RecordOrigin",
+          "EvidenceRecordOccurrence"
+        ],
+        "targets": [
+          "definition_material",
+          "value_material",
+          "refs_read",
+          "operands",
+          "operand",
+          "original_ref",
+          "operand_index",
+          "role",
+          "record_occurrences",
+          "origin",
+          "original_record",
+          "ref_read",
+          "binding_read",
+          "source_ref_read",
+          "ref_relation",
+          "binding_relation",
+          "source_observation_indices",
+          "body_occurrences",
+          "owner_bindings",
+          "causes"
+        ],
+        "rule_ja": "definition_refsとvalue_fact_refsを別RoleMaterialへ。実Ref列全index/反復にOperandMaterialを作り、axis_facts→semantic_recordsの全原recordを原ref/binding対応と既知差付きで保持する。Ref lookup missはRefOperand causeであってmember absentではない。record source_refに対する全source観測indexを原順で結びsource unresolvedには架空indexなし。record wholeは型tagで正しいcarrierへ結ぶ。 原宣言/命題のEvidenceRecordOccurrenceは同じrecord原member/source/bodyを保持しownerだけは当該Interpretation inlineへ格納する。",
+        "source_pointers": [
+          "L4:/field_source_materialization_contract/ordered_source_materialization/1",
+          "L4:/field_source_materialization_contract/ordered_source_materialization/2",
+          "/reference_resolution_contract"
+        ]
+      },
+      {
+        "id": "F04",
+        "types": [
+          "BodyOccurrence",
+          "BasisOccurrence"
+        ],
+        "targets": [
+          "BodyOccurrence全member",
+          "basis_occurrences全member"
+        ],
+        "rule_ja": "実source.body.records全原indexを取り、元collection/ref/payloadのReadとtyped値対応結果を返す。元recordからsource_refを外付けした以外のmember/presenceを保ち、原body entry全値はoriginal_body_entryへ。BasisOccurrenceは実取得record/source/bodyの対応所在がある時だけ同resultローカル表へ追加し、そのoriginal_refは読取契機operandの原fullRef。record/source/body/native/interpretationの各indexを相互代入しない。",
+        "source_pointers": [
+          "/reference_resolution_contract/body",
+          "L4:/field_semantic_evidence_contract/basic_candidate_return/basis_occurrence_index_contract"
+        ]
+      },
+      {
+        "id": "F05",
+        "types": [
+          "OwnerBinding",
+          "RoleOwnerPair",
+          "CheckLink"
+        ],
+        "targets": [
+          "owner_bindings各全member",
+          "role_operand_pairs各全member",
+          "OwnerBinding.qualification_check_links各CheckLink全member"
+        ],
+        "rule_ja": "各実record/source/body subjectごとにwrapper/source owner Read、同fn0資格check link、全role operand Ref/owner/版scope対応を保持。owner_binding_contractの共通AND役割ORでresult/causesを作る。source_wrapper既知differentは後段positiveで相殺せず、qualification positiveだけでroleowner成立にしない。native_definition_wholeのcontent ownerはそのRecordOccurrenceへ、evidence own ownerはInterpretationへ別inline保存。 CheckLinkの生成/実格納責務はこのF05 writerでありvalidationではない。OwnerBindingが参照する同validation SourceObservationの既存checksをqualification_check_link_writerの順で列挙し、当該inline OwnerBinding.qualification_check_linksへだけ格納する。値/関係を再評価せず実原indexへリンクする。",
+        "source_pointers": [
+          "L4:/field_semantic_evidence_contract/role_owner_binding",
+          "L4:/field_semantic_evidence_contract/common_target_guards/3"
+        ]
+      },
+      {
+        "id": "F06",
+        "types": [
+          "ProjectionDeclarationBody",
+          "DeclarationOccurrence",
+          "ProjectionBasis"
+        ],
+        "targets": [
+          "declarations",
+          "meaning_read",
+          "body",
+          "basis_operands",
+          "owner_bindings",
+          "ProjectionBasis各枝全member"
+        ],
+        "rule_ja": "全対応宣言meaningを元順に読み型/適用member/実operand/source/body/owner/原basisを照合。body未形成でも原whole/member Readを保持。native_definition_wholeは元definition operand/content meaning/実content owner linkだけを根拠にし、宣言をconsumerが発行しない。独立役割source枝はprojection_contract.independent_sourceの全memberの原所在が有る範囲だけ。",
+        "source_pointers": [
+          "L4:/field_source_materialization_contract/private_declaration_body_contract",
+          "L4:/field_source_materialization_contract/carrier_projection_table/1"
+        ]
+      },
+      {
+        "id": "F07",
+        "types": [
+          "ProjectionAttempt",
+          "ProjectedValue",
+          "ProjectionLinkSet"
+        ],
+        "targets": [
+          "projection_attempts",
+          "record_link",
+          "basis",
+          "owner_binding_links",
+          "result",
+          "payload",
+          "reason",
+          "original_whole",
+          "form",
+          "value_role",
+          "reason_role",
+          "aggregate",
+          "projection_links",
+          "causes"
+        ],
+        "rule_ja": "projection_contract.formsの原payload/理由Readを無変換copy。attemptごとにsource/binding/ref/適用宣言/owner条件を照合してFormationへ。semantic_wholeでreason解釈を生成せず、全meaningをpayload/wholeへ。productのrole未宣言や適用宣言相反はattempt未形成で実原payloadを失わない。全同値投影は全linkを残し、別Ref異値等の集約根拠不足はaggregateだけ未形成にする。",
+        "source_pointers": [
+          "L4:/field_source_materialization_contract/carrier_projection_table",
+          "L4:/field_source_materialization_contract/failure_and_consumer_boundary/independent_causes"
+        ]
+      },
+      {
+        "id": "F08",
+        "types": [
+          "FieldDefinitionEvidenceBody",
+          "DefinitionEvidenceInterpretation",
+          "DefinitionAssessment",
+          "DefinitionJudgment"
+        ],
+        "targets": [
+          "definition_assessment全member",
+          "evidence_interpretations全member",
+          "body",
+          "owner_bindings",
+          "content_operands",
+          "basis_operands",
+          "content_owner_binding_links",
+          "judgment",
+          "basis_occurrences",
+          "reason_read",
+          "reentry_read",
+          "causes"
+        ],
+        "rule_ja": "全定義evidence body/source/全content/basis/ownerを元順に読む。individual_definitionのpresent/absent/undecided guardで個別判断、field_definitionの相反/未形成条件でfield judgmentを作る。各basis indexは当該DefinitionAssessmentの実tableだけ。reason/reentryは元meaning memberのReadで追加gateなし。content owner linkはfield content側の実entry、evidence ownerは自前inlineを保つ。",
+        "source_pointers": [
+          "L4:/field_semantic_evidence_contract/field_definition_evidence_body",
+          "L4:/field_semantic_evidence_contract/basic_candidate_return/fields/definition_evidence_results"
+        ]
+      },
+      {
+        "id": "F09",
+        "types": [
+          "ValueAssessment",
+          "ValueJudgment",
+          "FieldCheckProjection"
+        ],
+        "targets": [
+          "value_assessment",
+          "field_check",
+          "definition_state",
+          "value_state",
+          "field_ref",
+          "definition_refs",
+          "value_refs"
+        ],
+        "rule_ja": "原value_role/全projectionの同値反復/相反/集約元資料とdefinition judgmentからsummaryを作る。未形成を案件値unknown又はdefinition missingへ変換しない。FieldCheckProjectionはdefinition_and_value_summary.field_checkの全leaf条件でformed。元Ref列欠落へnull/[]を補わない。原false/0/nullは型付きpayloadのまま保つ。",
+        "source_pointers": [
+          "L4:/field_source_materialization_contract/failure_and_consumer_boundary",
+          "L4:/field_semantic_evidence_contract/field_definition_evidence_body"
+        ]
+      },
+      {
+        "id": "F10",
+        "types": [
+          "GapOwnerResult",
+          "GapPropositionBody",
+          "GapRoleBody",
+          "GapInterpretation",
+          "CandidateJudgment",
+          "KindDifference"
+        ],
+        "targets": [
+          "gap_results全member",
+          "proposal_members",
+          "candidate_interpretations全member",
+          "body",
+          "owner_bindings",
+          "basis_operands",
+          "role_operands",
+          "judgment",
+          "unformed_kind",
+          "original_kind_difference",
+          "reason_read",
+          "reentry_read",
+          "causes"
+        ],
+        "rule_ja": "gap_contract.scanで元8memberと全原命題を保存。proposition_occurrence_indexは実semantic_records内で見つかった原命題を元順に並べたcandidate_interpretations配列index（native record_indexとは別）。各role bodyへ型を結び、必要guard不能はunformed/unresolved、原kindとの差を別に返す。basis indexは当該GapOwnerResult.basis_occurrencesの実tableへだけ向ける。",
+        "source_pointers": [
+          "L4:/field_semantic_evidence_contract/gap_proposition_body",
+          "L4:/field_semantic_evidence_contract/basic_candidate_return/fields/gap_evidence_results"
+        ]
+      },
+      {
+        "id": "F11",
+        "types": [
+          "RoleOperands",
+          "QuestionOperands",
+          "ContradictionOperands",
+          "DerivedOperands",
+          "NAOperands",
+          "ConstraintOccurrence",
+          "GapConstraintBody",
+          "OperandRelation"
+        ],
+        "targets": [
+          "role_operands各枝全member",
+          "constraints各全member",
+          "request_target_relations",
+          "endpoint_relations",
+          "proposed_body_relation",
+          "target_relations",
+          "attributes"
+        ],
+        "rule_ja": "各roleの全原operandをgap_contract各guardへ結ぶ。questionは全requested実端と独立gap_basis source/body対応、contradictionは排他原constraint左右、derivedは全原要求列→候補本文の原関係、NAはpolicy/判断/basis各原record/sourceと4属性をNamedReadへ保存。Constraintの全left/right/basis/理由/再評価とowner対応も別型で返す。未取得の一端へ架空source/body行なし。",
+        "source_pointers": [
+          "L4:/field_semantic_evidence_contract/gap_proposition_body/roles",
+          "L4:/field_semantic_evidence_contract/gap_constraint_body"
+        ]
+      },
+      {
+        "id": "F12",
+        "types": [
+          "MultipleSupport"
+        ],
+        "targets": [
+          "multiple_support_observations",
+          "interpretation_indices",
+          "proposition_refs",
+          "constraint_occurrences",
+          "causes"
+        ],
+        "rule_ja": "同proposalの全formed interpretation index/原命題Refを保存する。複数が有れば元順に一つの支持群として出す。実原排他constraintの対象が複数interpretationを結ぶ場合だけconstraint_occurrencesを追加、role差だけで競合又はpriority選択しない。全支持/未形成解釈は個別に残す。",
+        "source_pointers": [
+          "L4:/field_semantic_evidence_contract/gap_proposition_body/classification_boundary"
+        ]
+      },
+      {
+        "id": "F13",
+        "types": [
+          "RecipientMaterial"
+        ],
+        "targets": [
+          "field.recipient_materials",
+          "interpretation.recipient_materials",
+          "RecipientMaterial全member"
+        ],
+        "rule_ja": "recipient_and_obligation_contract.recipientsにある原根拠ごとに返却先候補を作り、subject/原reason/元owner Read/unfinished列と支持linkを保持する。複数独立根拠は複数行で返す。根拠未形成又は分類対象不明はunresolved、元owner文字列を信じず全左右を保存する。OS ticket/要求採用を生成しない。",
+        "source_pointers": [
+          "L4:/field_semantic_evidence_contract/basic_candidate_return/owners",
+          "/contracts/6/backflow"
+        ]
+      },
+      {
+        "id": "F14",
+        "types": [
+          "ObligationMaterial",
+          "ObligationOrigin"
+        ],
+        "targets": [
+          "obligation_material全member",
+          "unfinished_obligation_operands",
+          "occurrences全member"
+        ],
+        "rule_ja": "元proposal unfinished各Readと同call原kind trace wholeを保持。proposal→kind trace順に全原Ref/反復をreturned_refsとoriginへ結び、原obligation/condition/reentry/requiredtrace/edge/trace requirementを別Read/RecordOccurrenceで追えるようにする。kind_trace_linksは原依存Comparison内pointerで新f05 ReturnLinkとは別。元Ref未取得原因は保持し成功部分から必要集合を生成しない。",
+        "source_pointers": [
+          "L4:/field_semantic_evidence_contract/basic_candidate_return/fields/unfinished_obligation_refs",
+          "/functions/4",
+          "/type_contract/types/KindObligation"
+        ]
+      },
+      {
+        "id": "F15",
+        "types": [
+          "F05DetailedReturn",
+          "CoreComparison",
+          "CoreAxisResult",
+          "CoreFinding",
+          "F05GapReturnMaterial",
+          "ComparisonLink"
+        ],
+        "targets": [
+          "comparison",
+          "comparison_links",
+          "CoreComparison全member",
+          "F05GapReturnMaterial全member",
+          "CoreAxisResult全member",
+          "CoreFinding全member"
+        ],
+        "rule_ja": "native_comparison_projectionに従い全fieldcheck/元proposal/元未完Refを同walk材料から返す。各実出力配列indexはComparisonLinkで実owner pathへ結ぶ。field/state/候補元kindの対応を失わない。Comparison生成不能ならcomparison unformedで既存形成済ownerを返し、未形成fieldを削除して正常比較を作らない。既存public failure conditionが対応しないprivate CauseはFindingへcastしない。",
+        "source_pointers": [
+          "/type_contract/types/Comparison",
+          "/type_contract/types/GapReturnMaterial",
+          "/type_contract/types/FieldCheckMaterial",
+          "L4:/field_source_materialization_contract/preserved_native_boundary/output"
+        ]
+      },
+      {
+        "id": "F16",
+        "types": [
+          "ReturnLink",
+          "ComparisonLink"
+        ],
+        "targets": [
+          "ReturnLink全member",
+          "comparison_links各全member"
+        ],
+        "rule_ja": "全配列を本節原順で確定した同一walkで実格納先をリンクする。ReturnLink.root=f05_return、pointerは/owner_material（evaluated枝）内の実nodeまでのRFC6901全path。旧adviceのfield segment絶対pathを流用せず、同じglobal wholeの実配列要素だけに限定。raw_only枝にはfield/gapリンクを作らない。リンク生成のため再lookup/別sort/semantic再評価をしない。",
+        "source_pointers": [
+          "L4:/f05_validation_material_call_contract/actual_caller_trace/3",
+          "L4:/field_semantic_evidence_contract/basic_candidate_return/basis_occurrence_index_contract"
+        ]
+      },
+      {
+        "id": "C01",
+        "types": [
+          "CallerInputs",
+          "DispatchObservation"
+        ],
+        "targets": [
+          "validation_input",
+          "producer_observations"
+        ],
+        "rule_ja": "同validation_detailを一回呼びwholeを保持。caller_return_writer_contractの固定7producer目録/原argument所在/準備順/明示skip/未観測/実返却writerでproducer_observations全leafを返す。validation/F05/claims/analysisは各専用正本へ返しComparison-only配列へ複製しない。domain missing/unknown/conflictの実Comparisonはreturned。",
+        "source_pointers": [
+          "L4:/f05_validation_material_call_contract/actual_caller_trace/0",
+          "L4:/f05_validation_material_call_contract/actual_caller_trace/1"
+        ],
+        "detail_writer_pointer": "/f05_detail_contract/caller_return_writer_contract"
+      },
+      {
+        "id": "C02",
+        "types": [
+          "ProducerArgument",
+          "ActualPredecessor",
+          "F05DetailedRequest"
+        ],
+        "targets": [
+          "compare_applicability",
+          "compare_kind_obligation_trace",
+          "f05"
+        ],
+        "rule_ja": "caller_return_writer_contract/f05_writerの二依存実returned/明示skipを同callで束縛しF05 request全値へ。未観測依存又はF05自身のcall/return未観測は同表の原node/Cause全leaf/固定順でouter.f05.unformedへ。input=null/親bindingAbsentでも二依存実材料が有ればF05を呼び、その実DetailedReturnは内側comparison未形成でもouter.f05.formedへ保持。",
+        "source_pointers": [
+          "L4:/f05_validation_material_call_contract/logical_ports/f05_detail/predecessor_boundary"
+        ],
+        "detail_writer_pointer": "/f05_detail_contract/caller_return_writer_contract/f05_writer"
+      },
+      {
+        "id": "C03",
+        "types": [
+          "CoreApplicationDetailReturn"
+        ],
+        "targets": [
+          "validation",
+          "f05",
+          "producer_observations",
+          "claims",
+          "analysis",
+          "causes"
+        ],
+        "rule_ja": "全専用返却/原Comparison wholeは同callから無変換保持。fn9/10はcaller_return_writer_contractの原Context/header準備、Cause全leaf、明示未呼出し/未観測/実返却分岐に従う。F05内側Comparison未形成をF05自体のskipへcastしない。outer.causesは同表の固定移送順。ApplicationAnalysis.bindingは実親objectのみで{}補完しない。",
+        "source_pointers": [
+          "L4:/f05_validation_material_call_contract/actual_caller_trace/4",
+          "/type_contract/types/CheckApplicationClaimsContext",
+          "/type_contract/types/BuildApplicationAnalysisContext"
+        ],
+        "detail_writer_pointer": "/f05_detail_contract/caller_return_writer_contract"
+      },
+      {
+        "id": "C04",
+        "types": [
+          "CoreApplicationAnalysis"
+        ],
+        "targets": [
+          "analysis.formed.value"
+        ],
+        "rule_ja": "fn10が実形成した既存ApplicationAnalysis wholeだけをouterへ保持。source_result_reference_projectionのabsent/null/実全返却は既存pipelineのままで、fn11/12をF05依存として再設計しない。analysis未形成でもvalidation/F05全返却/原未完を失わない。",
+        "source_pointers": [
+          "/functions/10",
+          "/source_result_reference_projection/pipeline_binding"
+        ]
+      },
+      {
+        "id": "C05",
+        "types": [
+          "CoreApplicationDetailReturn"
+        ],
+        "targets": [
+          "B019引数へ渡すf05 whole"
+        ],
+        "rule_ja": "CORE private caller返却.f05.formed.valueの原wholeをB019接続callerが取得できる実typed出力とする。B019 core_field_value_context、独立knowledge field relation、selected_030_call_materialは別portで、今回の型から完成済みB030typed input/実callを生成したとしない。",
+        "source_pointers": [
+          "L4:/f05_validation_material_call_contract/actual_caller_trace/5",
+          "L4:/f05_validation_material_call_contract/actual_caller_trace/6"
+        ]
+      }
+    ],
+    "native_context_crosswalk": {
+      "compare_required_axes": {
+        "original_context_pointer": "/type_contract/types/CompareRequiredAxesContext",
+        "native_context": "CoreCompareRequiredAxesContext",
+        "producer_members": {},
+        "binding_rule": "各Comparisonは元memberが指定する実producerの同validation snapshot全返却。input_bindingの原parent objectが無い場合は当該producer呼出しheader未形成をcallerへ残し、仮Comparisonを作らない。{}は実原objectとして渡せる。元Contextの全member型対応を示すだけで他producerの意味writer再設計/成立は主張しない。"
+      },
+      "compare_candidate_universe": {
+        "original_context_pointer": "/type_contract/types/CompareCandidateUniverseContext",
+        "native_context": "CoreCompareCandidateUniverseContext",
+        "producer_members": {
+          "compare_required_axes": "compare_required_axes"
+        },
+        "binding_rule": "各Comparisonは元memberが指定する実producerの同validation snapshot全返却。input_bindingの原parent objectが無い場合は当該producer呼出しheader未形成をcallerへ残し、仮Comparisonを作らない。{}は実原objectとして渡せる。元Contextの全member型対応を示すだけで他producerの意味writer再設計/成立は主張しない。"
+      },
+      "compare_applicability": {
+        "original_context_pointer": "/type_contract/types/CompareApplicabilityContext",
+        "native_context": "CoreCompareApplicabilityContext",
+        "producer_members": {
+          "compare_required_axes": "compare_required_axes",
+          "compare_candidate_universe": "compare_candidate_universe"
+        },
+        "binding_rule": "各Comparisonは元memberが指定する実producerの同validation snapshot全返却。input_bindingの原parent objectが無い場合は当該producer呼出しheader未形成をcallerへ残し、仮Comparisonを作らない。{}は実原objectとして渡せる。元Contextの全member型対応を示すだけで他producerの意味writer再設計/成立は主張しない。"
+      },
+      "compare_kind_obligation_trace": {
+        "original_context_pointer": "/type_contract/types/CompareKindObligationTraceContext",
+        "native_context": "CoreCompareKindObligationTraceContext",
+        "producer_members": {
+          "compare_applicability": "compare_applicability"
+        },
+        "binding_rule": "各Comparisonは元memberが指定する実producerの同validation snapshot全返却。input_bindingの原parent objectが無い場合は当該producer呼出しheader未形成をcallerへ残し、仮Comparisonを作らない。{}は実原objectとして渡せる。元Contextの全member型対応を示すだけで他producerの意味writer再設計/成立は主張しない。"
+      },
+      "compare_requirement_gaps": {
+        "original_context_pointer": "/type_contract/types/CompareRequirementGapsContext",
+        "native_context": "CoreCompareRequirementGapsContext",
+        "producer_members": {
+          "compare_applicability": "compare_applicability",
+          "compare_kind_obligation_trace": "compare_kind_obligation_trace"
+        },
+        "binding_rule": "各Comparisonは元memberが指定する実producerの同validation snapshot全返却。input_bindingの原parent objectが無い場合は当該producer呼出しheader未形成をcallerへ残し、仮Comparisonを作らない。{}は実原objectとして渡せる。元Contextの全member型対応を示すだけで他producerの意味writer再設計/成立は主張しない。"
+      },
+      "compare_selected_knowledge": {
+        "original_context_pointer": "/type_contract/types/CompareSelectedKnowledgeContext",
+        "native_context": "CoreCompareSelectedKnowledgeContext",
+        "producer_members": {
+          "compare_required_axes": "compare_required_axes"
+        },
+        "binding_rule": "各Comparisonは元memberが指定する実producerの同validation snapshot全返却。input_bindingの原parent objectが無い場合は当該producer呼出しheader未形成をcallerへ残し、仮Comparisonを作らない。{}は実原objectとして渡せる。元Contextの全member型対応を示すだけで他producerの意味writer再設計/成立は主張しない。"
+      },
+      "compare_meaning_impacts": {
+        "original_context_pointer": "/type_contract/types/CompareMeaningImpactsContext",
+        "native_context": "CoreCompareMeaningImpactsContext",
+        "producer_members": {
+          "compare_required_axes": "compare_required_axes"
+        },
+        "binding_rule": "各Comparisonは元memberが指定する実producerの同validation snapshot全返却。input_bindingの原parent objectが無い場合は当該producer呼出しheader未形成をcallerへ残し、仮Comparisonを作らない。{}は実原objectとして渡せる。元Contextの全member型対応を示すだけで他producerの意味writer再設計/成立は主張しない。"
+      },
+      "compare_semantic_equivalence": {
+        "original_context_pointer": "/type_contract/types/CompareSemanticEquivalenceContext",
+        "native_context": "CoreCompareSemanticEquivalenceContext",
+        "producer_members": {
+          "compare_candidate_universe": "compare_candidate_universe",
+          "compare_applicability": "compare_applicability",
+          "compare_kind_obligation_trace": "compare_kind_obligation_trace"
+        },
+        "binding_rule": "各Comparisonは元memberが指定する実producerの同validation snapshot全返却。input_bindingの原parent objectが無い場合は当該producer呼出しheader未形成をcallerへ残し、仮Comparisonを作らない。{}は実原objectとして渡せる。元Contextの全member型対応を示すだけで他producerの意味writer再設計/成立は主張しない。"
+      },
+      "check_application_claims": {
+        "original_context_pointer": "/type_contract/types/CheckApplicationClaimsContext",
+        "native_context": "CoreCheckApplicationClaimsContext",
+        "producer_members": {
+          "compare_candidate_universe": "compare_candidate_universe",
+          "compare_applicability": "compare_applicability",
+          "compare_kind_obligation_trace": "compare_kind_obligation_trace",
+          "compare_requirement_gaps": "compare_requirement_gaps",
+          "compare_selected_knowledge": "compare_selected_knowledge",
+          "compare_meaning_impacts": "compare_meaning_impacts",
+          "compare_semantic_equivalence": "compare_semantic_equivalence"
+        },
+        "binding_rule": "各Comparisonは元memberが指定する実producerの同validation snapshot全返却。input_bindingの原parent objectが無い場合は当該producer呼出しheader未形成をcallerへ残し、仮Comparisonを作らない。{}は実原objectとして渡せる。元Contextの全member型対応を示すだけで他producerの意味writer再設計/成立は主張しない。"
+      },
+      "build_application_analysis": {
+        "original_context_pointer": "/type_contract/types/BuildApplicationAnalysisContext",
+        "native_context": "CoreBuildApplicationAnalysisContext",
+        "producer_members": {
+          "compare_required_axes": "compare_required_axes",
+          "compare_candidate_universe": "compare_candidate_universe",
+          "compare_applicability": "compare_applicability",
+          "compare_kind_obligation_trace": "compare_kind_obligation_trace",
+          "compare_requirement_gaps": "compare_requirement_gaps",
+          "compare_selected_knowledge": "compare_selected_knowledge",
+          "compare_meaning_impacts": "compare_meaning_impacts",
+          "compare_semantic_equivalence": "compare_semantic_equivalence",
+          "check_application_claims": "check_application_claims"
+        },
+        "binding_rule": "各Comparisonは元memberが指定する実producerの同validation snapshot全返却。input_bindingの原parent objectが無い場合は当該producer呼出しheader未形成をcallerへ残し、仮Comparisonを作らない。{}は実原objectとして渡せる。元Contextの全member型対応を示すだけで他producerの意味writer再設計/成立は主張しない。",
+        "optional_native_members": [
+          "source_result_reference_projection"
+        ]
+      }
+    },
+    "consumer_interpretation_binding": {
+      "actual_arguments": "private callerはF05 detailの実comparison.formed.valueを元fn9/fn10 Contextのcompare_requirement_gaps memberへ入れ、同じF05DetailedReturn wholeを各DetailedContext.f05_detailへ実引数で渡す。元必須Context member全値は縮約しない。F05 comparison unformed又は他必須producer返却未取得なら当該consumerは呼ばず原因をouterへ。",
+      "state_candidate_writers": "FieldCheckProjectionの定義/値stateはFieldOwnerResult.summaryからのみ書く。候補の四分類/未解決/複数支持を読む後段はf05_detail.owner_material.evaluated.gap_resultsのevaluated.value.candidate_interpretationsとjudgment/basis/causesを使う。Comparison.material.candidate_proposalsの原kindは原提案ラベルとしてのみ扱い、classificationのoracleへしない。formed candidateと元kind差も同引数から取る。 field/gap raw_onlyのselection原因を併せて読み、短materialの不在を完備/適用外と断定しない。",
+      "claim_writer": "check_application_claims_detailは元fn9の各claim条件/source/subject/bindingを保持し、F05に関するcandidate-as-agreement/AI補完/誤返却/別template相殺claimの照合材料はf05_detailの全根拠付き解釈とunfinished/recipientから取る。原kindだけ又はprivate解釈未観測を成功根拠にしない。元fn9他producer意味は変えず、新Finding code/stateは作らない。",
+      "analysis_writer": "build_application_analysis_from_detailは元fn10 writerが必要とする全形成済Comparisonをnative_contextから取得し、既存ApplicationAnalysis公開memberへ対応する元材料を返す。原candidate_proposalsを採択済解釈へ変更しない。公開Analysisに無い全解釈/原因/原payloadはCoreApplicationDetailReturn.f05へ必ず同wholeで残す。既存短Analysisだけを新F05全結果と称さない。",
+      "technical_difference": "旧fn9/fn10 Context-only署名のまま新解釈を全量取得できるとは主張しない。私有詳細入口への追加F05全返却引数を今回選定し、元Context wholeを形成済みのまま併せて渡す。全9producerをSlot APIへ同時移行する差分ではない。"
+    },
+    "existing_type_and_writer_changes": [
+      {
+        "pointer": "/functions/0",
+        "preserve": "旧公開ValidatedApplication3memberとdecode可能partial snapshot/全診断。",
+        "change": "同責務のprivate validation_detailから正原観測も同callで返し、公開fn0は実返却.validatedへの投影。",
+        "reason": "旧ValidatedApplicationに正traceが無く、absence-of-errorから資格を生成できない。"
+      },
+      {
+        "pointer": "/functions/5",
+        "preserve": "F05要求意味、原Comparison5member/GapReturn3member/FieldCheck5memberは形成済み範囲で保つ。",
+        "change": "旧Context-only署名をprivate F05DetailedRequest→F05DetailedReturnへ置換する詳細入口を正本にする。元Contextはcontext_formation.formedのwholeに保持。",
+        "reason": "正fn0観測・原payload/理由/presence・分類全解釈を元署名だけでは実consumerへ運べない。5/3/5保持は上流義務ではなく今回の技術選択。"
+      },
+      {
+        "pointer": "/functions/9",
+        "preserve": "元Context全必須実Comparison/claim意味/既存Finding。",
+        "change": "私有check_application_claims_detailは元native Context whole+F05全返却を受ける。",
+        "reason": "原GapProposal.kindを後段classification oracleへ戻さない。"
+      },
+      {
+        "pointer": "/functions/10",
+        "preserve": "元Context全必須実Comparison/ApplicationAnalysis公開shape/source projection別port。",
+        "change": "私有analysis detail入口は元native Context whole+F05全返却、外側返却もF05wholeを必須保持。",
+        "reason": "公開短材料が持たないpayload/解釈/原因/原義務を下流B019へ実typed返却する。"
+      },
+      {
+        "pointer": "/type_contract/types/ApplicationInput",
+        "preserve": "logical fieldsとwire no-required partial carrier。",
+        "change": "Core接頭native schema refinementを明示し全Contextへ対応。",
+        "reason": "logical required axesを全axis decode gateにせず、binding absent時の生成header未形成を保つ。"
+      }
+    ],
+    "finite_view_native_mapping": {
+      "view_source": "L9 /f05_validation_material_call_verification及び/field_semantic_evidence_verificationは基本有限view。四member logical source_observationsを本節ValidationSourceObservations型へcastしない。",
+      "mapping": "原source/qual/root/record/body locatorとfull Ref及び既存logical関係表の各行は、対応する同native source_index/qualification_index/root_index/check kind/left/right Readへの投影対応として個別に照合する。対応した有限view列だけをoracle対象にし、同native全returnの未記述check/memberを仮値で埋めない。",
+      "limit": "L8はnative全型/各全leaf writerの別原入力/期待を固定する。L9 viewの条件付き資格前提を実fn0観測全返却/実trust資格へ昇格しない。旧normal/ADD16 raw/旧期待は歴史資料として保存し、無宣言known fallbackをしない。",
+      "field_path_map": {
+        "definition_evidence_results[f]": "/owner_material/field_results/f/value/definition_assessment (FieldResult.tag=evaluatedの場合)",
+        "gap_evidence_results[p]": "/owner_material/gap_results/p/value (GapResult.tag=evaluatedの場合)",
+        "original_context": "/original_request及び/context_formation/result/value (formedの場合)",
+        "basis_occurrence_indices": "上記各result内のbasis_occurrencesだけ。field/gap元index及びraw-only枝へ参照しない。"
+      }
+    },
+    "legacy_and_failure_binding": {
+      "sources": [
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": "16–60,81–92",
+          "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "lines": "33–108",
+          "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": "65–101",
+          "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+        }
+      ],
+      "preserve": "定義と製品instance、source/版/scope/未完、元meaningとderived view、明示unknown/NA/reentry、個別不足と戻し先。",
+      "change": "旧registry/planner/式木/runtimeを移植せず、現SemanticRecord/SourceEnvelope上の採用logical bodyと同call全返却を私有詳細型/writerへ降ろす。新owner/人間gate/全inventory条件なし。",
+      "reason": "UTW014の未取得→空、UTW020のaggregateで部分原因消失、UTW021の自己申告完成を避ける。失敗から新要求を作らず、既承認F05意味を原sourceと全返却で実現する。"
+    },
+    "remaining_and_nonclaims": [
+      "本節は詳細設計候補の著述であり、実reader/writer/codec/validator/算法/製品test/CIを実装実行していない。実装準備完了又は全F05閉包を認定しない。",
+      "同fn0 root/qualificationの実供給元/custody/原owner根拠resolver、宣言/原命題profileの実producer/取得口と独立原source資格成立は未成立。未定義oracle boolへ委ねず未観測原端/条件を全返却へ保持する。",
+      "全native型/writerの対L8原入力/全返却oracle、独立意味review、数値/codec実成立、既存他producerの全leaf writerと全claim枝の実証は残務。本節のnative Context対応表だけで既存全9producerのpartial input挙動が完成したとはしない。",
+      "selected scope/対象操作と元適用結果が実対応しないfield/proposalは対象不成立を局所に返す。取得成功から対象必要集合を作らない。実必要field集合の上流owner資料を本節で発明しない。",
+      "B019/030の同query/knowledge/独立field関係及び数値表現を含むtyped projection・選択call全入力/全返却・実配送/受領/OS記録・実受入、全92親430義務は別残務。",
+      "現failure_rulesのF05 claim predicatesは原条件文章とClaim.kind:string/原proposed_valueを持つ既存契約で、全claim種類の新native式木/任意自然言語意味classifierは本差分で作らない。既存claim条件の原operand対応が元資料で一意に形成できない枝を実Finding成功へ補完しない。全claim入力語彙の詳細原producer契約と全branch oracleの閉包は独立検収が必要。",
+      "source観測のusableは供給独立root責務前提の局所原資料照合成立だけ。原source/qual/root必要端が未提示の局所未形成と、実root供給元/custody/原owner認証の取得口未閉包は別である。既存ApplicationInput/ValidationInputに後者の実trace引数が無いため、外部実trust成立は本詳細から導けない。新arg/bool/provider/一律全資料拒否gateは追加しない。",
+      "caller_return_writer_contractは7個Comparison-only観測とF05/claims/analysis専用返却の全leaf/原所在/Cause順を技術選定した文書であり、実call/return観測、既存他producer全意味writer又は選択owner typed port完成を証明しない。L4outer_return_boundaryのstep6/7全返却/未接続は別追補対象。"
+    ],
+    "advice_history_boundary": "local corrected5b2c及びevidence-content-separated1d3は著述相談入力に限る。規範の各型/guardは上記tracked原sourceへ結び、ignored助言を必要な解読依存にしない。",
+    "type_dependencies": {
+      "existing_numeric_primitives": [
+        "CoreJsonValue",
+        "CoreDecodeResult",
+        "CoreDecodeOrigin"
+      ],
+      "existing_scalar_aliases": [
+        "Natural",
+        "JSONPointer"
+      ],
+      "original_carriers": {
+        "type_names": [
+          "CoreRef",
+          "CoreSourceEnvelope",
+          "CoreQualification",
+          "CoreApplicationInput",
+          "CoreApplicationBinding",
+          "CoreOperationSelection",
+          "CoreAxisRequirement",
+          "CoreAxisFact",
+          "CoreCandidateUniverse",
+          "CoreTemplateSnapshot",
+          "CoreConditionBinding",
+          "CoreSemanticComparison",
+          "CoreApplicationPolicy",
+          "CoreNARecord",
+          "CoreKindObligation",
+          "CoreTraceEdge",
+          "CoreFieldInput",
+          "CoreGapProposal",
+          "CoreKnowledgeUseRecord",
+          "CoreConsumerSnapshot",
+          "CoreMeaningDelta",
+          "CoreImpactEvidence",
+          "CoreClaim",
+          "CoreSemanticRecord",
+          "CoreTraceRequirement"
+        ],
+        "rule": "各schema_pointerが供給形/opaque leaf/参照型を完全指定する。原memberを任意CoreRawへaliasして閉型としない。"
+      },
+      "new_derived_types": {
+        "type_names": [
+          "Relation",
+          "CheckResult",
+          "MaterialRole",
+          "ProjectionForm",
+          "ValueRole",
+          "ReasonRole",
+          "GapKind",
+          "CauseKind",
+          "OriginRoot",
+          "Location",
+          "Read",
+          "Cause",
+          "Formation",
+          "CoreInputIssue",
+          "CoreValidatedApplication",
+          "CoreAxisResult",
+          "CoreFinding",
+          "CoreComparison",
+          "CoreProducerComparison",
+          "ValidationInput",
+          "OriginalRawInput",
+          "SourceCheckKind",
+          "SourceCheck",
+          "RootObservation",
+          "QualificationObservation",
+          "SourceUsability",
+          "ValidationSourceObservation",
+          "ValidationSourceObservations",
+          "ValidationDetailedReturn",
+          "SkipCause",
+          "NamedRead",
+          "ActualPredecessor",
+          "F05DetailedRequest",
+          "F05NativeContext",
+          "ContextFormation",
+          "HeaderFormation",
+          "F05DetailedReturn",
+          "ReturnLink",
+          "CheckLink",
+          "RecordCollection",
+          "RecordOrigin",
+          "BodyOccurrence",
+          "RoleOwnerPair",
+          "OwnerBinding",
+          "OriginalRecord",
+          "RecordOccurrence",
+          "RefOperand",
+          "ProjectionDeclarationBody",
+          "DeclarationOccurrence",
+          "ProjectionBasis",
+          "ProjectedValue",
+          "ProjectionAttempt",
+          "OperandMaterial",
+          "RoleMaterial",
+          "ProjectionLinkSet",
+          "FieldDefinitionEvidenceBody",
+          "BasisOccurrence",
+          "DefinitionJudgment",
+          "DefinitionEvidenceInterpretation",
+          "DefinitionAssessment",
+          "ValueJudgment",
+          "ValueAssessment",
+          "FieldCheckProjection",
+          "RecipientMaterial",
+          "FieldOwnerResult",
+          "GapRoleBody",
+          "GapPropositionBody",
+          "GapConstraintBody",
+          "ConstraintOccurrence",
+          "QuestionOperands",
+          "OperandRelation",
+          "ContradictionOperands",
+          "DerivedOperands",
+          "NAOperands",
+          "RoleOperands",
+          "CandidateJudgment",
+          "KindDifference",
+          "GapInterpretation",
+          "MultipleSupport",
+          "GapOwnerResult",
+          "ObligationOrigin",
+          "ObligationMaterial",
+          "ComparisonLink",
+          "OwnerMaterial",
+          "F05GapReturnMaterial",
+          "ProducerArgument",
+          "CallerInputs",
+          "DispatchObservation",
+          "CoreApplicationDetailReturn",
+          "CoreCompareRequiredAxesContext",
+          "CoreCompareCandidateUniverseContext",
+          "CoreCompareApplicabilityContext",
+          "CoreCompareKindObligationTraceContext",
+          "CoreCompareRequirementGapsContext",
+          "CoreCompareSelectedKnowledgeContext",
+          "CoreCompareMeaningImpactsContext",
+          "CoreCompareSemanticEquivalenceContext",
+          "CoreCheckApplicationClaimsContext",
+          "CoreBuildApplicationAnalysisContext",
+          "CheckApplicationClaimsDetailedContext",
+          "BuildApplicationAnalysisDetailedContext",
+          "PolicySelectionOccurrence",
+          "Selection",
+          "FieldResult",
+          "GapResult",
+          "EvidenceRecordOccurrence",
+          "CheckOperand"
+        ],
+        "rule": "members/variants/enum又は上記generic/optional構文だけで型を指す。guard/由来文章は型member定義の代替ではない。"
+      },
+      "external_primitives": [
+        {
+          "name": "source bytes SHA-256/元UTF-8 JSON body読取り",
+          "source_pointer": "/wire_codec_contract/source_resolution_stages/1",
+          "boundary": "既存fn0責務とnumeric decode原段階へ対応。本文digest一致は実trust資格ではない。"
+        },
+        {
+          "name": "実root/custody/原owner根拠resolver",
+          "source_pointer": "/wire_codec_contract/source_resolution_stages/3",
+          "boundary": "実供給口/実trustは依然未閉包。任意bool/provider型を導入しない。必要原資料端の未観測は局所checks/usabilityへ保持するが、原資料照合成立のscopeと実trust取得口未閉包はassessment_scopeで分け、新しい一律拒否gateにしない。"
+        }
+      ]
+    },
+    "writer_output_roots": {
+      "validation_detail": "ValidationDetailedReturn /original_raw_input,/validated,/source_observations (V01..V07)",
+      "f05_detail": "F05DetailedReturn /original_request,/context_formation,/header_formation,/comparison,/owner_material (F01..F16)",
+      "claims_detail": "CoreComparison 実fn9返却。元native Context及び同F05wholeを実引数にする (C03,consumer_interpretation_binding)",
+      "analysis_detail": "CoreApplicationAnalysis 実fn10返却。元native Context及び同F05wholeを実引数にする (C04,consumer_interpretation_binding)",
+      "actual_private_caller": "CoreApplicationDetailReturn /validation,/f05,/producer_observations,/claims,/analysis,/causes (C01..C05; caller_return_writer_contract)。7観測目録と専用全返却を分離。選択owner接続全返却/未接続typed portは別追補残務。"
+    },
+    "selection_contract": {
+      "raw_domain": "全field_inputs/gap_proposals原occurrenceはFieldResult/GapResultのどちらの枝でも全原whole/index/presenceを保存する。raw domainとsemantic evaluation domainを同一視しない。",
+      "join": "原input.bindingとfield.binding、原field.template_refを保存する。同call fn3.material.policy_decisionsの各実rowからpolicy_occurrence_indexを実application_policies原indexへ結び、policy_refをその原policy.refへ照合する。その原policy.template_ref/bindingと対象fieldへ対応させた全PolicySelectionOccurrenceを返す。decision_indexはpolicy_decisions内の別原index。aggregate disposition/template_refsから各fieldの適用結果を逆配布しない。",
+      "branches": "parent/fieldの既知別scope又は実原template/policyが対象外を示す範囲はSelection.outsideと原左右資料を返しFieldResult.raw_only。元index/fullpolicyRef/対象template/bindingと実fn3分岐の対応により当該fieldが対象scopeだと分かる範囲はtargetedとしてsemantic評価へ進む。required/conditional/na/unresolvedという実dispositionは全原値を保存し、naを対象外へcastせず、unresolvedをrequiredへ補完しない。必要join端/元分岐が未提示ならselection.unestablishedとraw_only。",
+      "gap_target": "GapProposalの原binding/subject_refを原field又は同kind traceの義務Ref/Bindingへ対応させる。field_gap_propositionが元field_ref/template_refを持つ場合はその構造上の対象端も保存して同Field Selectionへ結ぶ。対象端が相反/未提示ならgap selection.unestablishedで元proposalをraw_only保持し、kindから対象fieldを選ばない。原命題bodyを対象定位のため保存することと、当該roleを意味評価したことは別。",
+      "comparison_boundary": "既知対象外raw_onlyをmissing/NAへ分類せず、それを選択済fieldのnative_leaf_unformedと同一視しない。選択未成立も元原因として全ownerへ残し、知らないfieldを必要集合から削除して全域成功と称さない。Comparisonは実targeted範囲の形成済native材料を返せるが、private consumerはowner全scope/未成立も併せて読み、短Comparisonだけで未観測scope成功を主張しない。"
+    },
+    "current_function_bindings": {
+      "0": {
+        "public_symbol": "validate_application_input",
+        "public_projection": "同validate_application_input_detailの実返却.validated",
+        "private_entry_pointer": "/f05_detail_contract/entry_points/validation_detail"
+      },
+      "5": {
+        "former_symbol": "compare_requirement_gaps",
+        "current_private_symbol": "compare_requirement_gaps_detail",
+        "logical_producer_symbol": "compare_requirement_gaps",
+        "former_context_pointer": "/type_contract/types/CompareRequirementGapsContext",
+        "current_signature": "F05DetailedRequest -> F05DetailedReturn"
+      },
+      "9": {
+        "former_symbol": "check_application_claims",
+        "current_private_symbol": "check_application_claims_detail",
+        "logical_producer_symbol": "check_application_claims",
+        "current_signature": "CheckApplicationClaimsDetailedContext -> CoreComparison"
+      },
+      "10": {
+        "former_symbol": "build_application_analysis",
+        "current_private_symbol": "build_application_analysis_from_detail",
+        "current_signature": "BuildApplicationAnalysisDetailedContext -> CoreApplicationAnalysis",
+        "outer_caller_entry": "/f05_detail_contract/entry_points/private_caller"
+      }
+    },
+    "qualification_check_link_writer": {
+      "destination": "同F05の各実OwnerBinding.qualification_check_links。content RecordOccurrence.owner_bindingsと宣言/原命題Interpretation inline owner_bindingsは各自のsubjectの格納先であり、一方へ置換しない。ValidationDetailedReturnには新しいCheckLink配列を追加しない。",
+      "source": "OwnerBinding.source_observation_indexが指す同request.validation.source_observations.source_occurrences内の実source。そこから既存checksを参照するだけでfn0再呼出し/再lookup/再資格判定をしない。",
+      "ordered_links": [
+        {
+          "target": "同source.checksの各実entry原順",
+          "source_observation_index": "当該source_occurrences配列local index",
+          "qualification_occurrence_index": null,
+          "root_occurrence_index": null,
+          "check_index": "同source.checks配列local index"
+        },
+        {
+          "target": "同source.qualification_occurrencesを原順、その各checksの各実entry原順",
+          "source_observation_index": "同上",
+          "qualification_occurrence_index": "同source.qualification_occurrences配列local index",
+          "root_occurrence_index": null,
+          "check_index": "当該QualificationObservation.checks配列local index"
+        },
+        {
+          "target": "各QualificationObservationのchecksの後に、そのroot_occurrences原順、各root.checks原順",
+          "source_observation_index": "同上",
+          "qualification_occurrence_index": "当該QualificationObservation配列local index",
+          "root_occurrence_index": "同QualificationObservation.root_occurrences配列local index",
+          "check_index": "当該RootObservation.checks配列local index"
+        }
+      ],
+      "namespace": "check_indexは上記null階層で決まる単一checks配列に対する0-based index。root_occurrence_indexが非nullならqualification_occurrence_indexも非null。source_index/qualification_index/root_indexの原入力indexとは別であり、原同Ref反復もリンクを全件保存する。",
+      "absence": "原source又は資格/root経路未取得には架空entry/indexを追加しない。実在するpositive/different/unestablished/not_applicable checkは全てリンクし、positiveだけのsubsetへしない。原親未到達の原因は元SourceObservation/OwnerBinding Causeへ保持する。",
+      "traversal": "正本の平坦列順は source.checks全entry → 各qualification_occurrenceを原順に（そのqualification.checks全entry → 同qualificationの各root_occurrenceを原順に各root.checks全entry）。ordered_linksの3行はこの入れ子位置で使うmember対応であり、全qualification.checksを一括で先に出した後に全root.checksを出す別passではない。"
+    },
+    "validation_cause_diagnostic_contract": {
+      "scope": "既存validation SourceCheck11種/4result、参照先未取得、同階層集約、既存ValidatedApplication診断の私有詳細writer。新しい意味predicate/公開Finding/domain state/資格gateではない。元checkの結果判定はsource_observation_contractのまま。",
+      "selection_reason": "935稿では、同じ全原nodeからSourceCheck結果を読めてもCause/InputIssue/源Ref列の全値と順序が一意でなかった。one-source Qualification.owner相違と、二明示skipの最小F05全返却の非一意性を起点に、未規定だった技術出力表現を本節で選定する。",
+      "preserved_boundary": "既存numeric_encode_profileの診断reason/locator/source_ref/原順/段階/全literal、既存L8原raw/旧logical literalとempty/positive全返却は変更しない。新source診断をwire/shape失敗へ混ぜず、decode可能な元inputを保持する。",
+      "check_rule_pointer": "各SourceCheck.rule_pointerは既存source_observation_contract/checksの対応規範を維持する。sourceの3行はchecks/0..2、qualificationの各kindはchecks/3..7、rootの先頭はchecks/8、owner二行はchecks/9。root_subject_revision_scopeの5行だけはcheck_storage_planのordered_pair_index順に /f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/0..4 の個別pointerを使う。既存positive19checkの規範pointerをkind群pointerへ縮退させず、Cause.rule_pointerも各実SourceCheck.rule_pointerの無変換copy。",
+      "check_result_to_causes": [
+        {
+          "result": "corresponding",
+          "causes": []
+        },
+        {
+          "result": "not_applicable",
+          "causes": []
+        },
+        {
+          "result": "different",
+          "causes": "当該checkごとに一件。kindはcheck_kind_table.different_kind、残り全leafはcheck_cause_leaf_writer。"
+        },
+        {
+          "result": "unestablished",
+          "causes": "当該checkごとに一件。kindはcheck_kind_table.unestablished_kind、残り全leafはcheck_cause_leaf_writer。原資料未取得/読取り未形成をdomain missing/値unknownへ変えない。"
+        }
+      ],
+      "check_kind_table": [
+        {
+          "kind": "content_bytes_body",
+          "different_kind": "source_body_mismatch",
+          "unestablished_kind": "body_unformed",
+          "different_reason": "CORE sourceの原content_bytesとbodyが対応しない。",
+          "unestablished_reason": "CORE sourceの原content_bytesとbodyの照合が未成立である。"
+        },
+        {
+          "kind": "source_digest",
+          "different_kind": "source_unusable",
+          "unestablished_kind": "source_unresolved",
+          "different_reason": "CORE sourceの供給digestが原content_bytesに対応しない。",
+          "unestablished_reason": "CORE sourceの供給digestと原content_bytesの照合が未成立である。"
+        },
+        {
+          "kind": "source_role",
+          "different_kind": "source_unusable",
+          "unestablished_kind": "source_unresolved",
+          "different_reason": "CORE sourceはsemantic_sourceとして使う原roleではない。",
+          "unestablished_reason": "CORE sourceの意味根拠としての原roleが未成立である。"
+        },
+        {
+          "kind": "qualification_ref",
+          "different_kind": "target_mismatch",
+          "unestablished_kind": "source_unresolved",
+          "different_reason": "CORE sourceの資格参照と原Qualificationが対応しない。",
+          "unestablished_reason": "CORE sourceの資格参照と原Qualificationの対応が未成立である。"
+        },
+        {
+          "kind": "qualification_subject",
+          "different_kind": "target_mismatch",
+          "unestablished_kind": "target_unformed",
+          "different_reason": "CORE Qualificationの原subjectがsourceの対象版又はscopeへ対応しない。",
+          "unestablished_reason": "CORE Qualificationとsourceの原subject対応が未成立である。"
+        },
+        {
+          "kind": "qualification_digest",
+          "different_kind": "source_unusable",
+          "unestablished_kind": "source_unresolved",
+          "different_reason": "CORE Qualificationの供給subject digestが原source bytesに対応しない。",
+          "unestablished_reason": "CORE Qualificationの供給subject digest照合が未成立である。"
+        },
+        {
+          "kind": "qualification_owner",
+          "different_kind": "owner_mismatch",
+          "unestablished_kind": "owner_binding_unestablished",
+          "different_reason": "CORE Qualificationとsourceの原ownerが対応しない。",
+          "unestablished_reason": "CORE Qualificationとsourceの原owner対応が未成立である。"
+        },
+        {
+          "kind": "qualification_scope",
+          "different_kind": "target_mismatch",
+          "unestablished_kind": "target_unformed",
+          "different_reason": "CORE Qualificationとsourceの原scopeが対応しない。",
+          "unestablished_reason": "CORE Qualificationとsourceの原scope対応が未成立である。"
+        },
+        {
+          "kind": "qualification_root_ref",
+          "different_kind": "target_mismatch",
+          "unestablished_kind": "source_unresolved",
+          "different_reason": "CORE Qualificationの原root参照と供給独立rootが対応しない。",
+          "unestablished_reason": "CORE Qualificationの原root参照と供給独立rootの対応が未成立である。"
+        },
+        {
+          "kind": "root_owner",
+          "different_kind": "owner_mismatch",
+          "unestablished_kind": "owner_binding_unestablished",
+          "different_reason": "COREの供給独立rootと資格又はsourceの原ownerが対応しない。",
+          "unestablished_reason": "COREの供給独立rootの原owner対応が未成立である。"
+        },
+        {
+          "kind": "root_subject_revision_scope",
+          "different_kind": "target_mismatch",
+          "unestablished_kind": "target_unformed",
+          "different_reason": "COREの原root参照又は資格scopeが供給独立rootへ対応しない。",
+          "unestablished_reason": "COREの原root参照又は資格scopeと供給独立rootの対応が未成立である。"
+        }
+      ],
+      "check_cause_leaf_writer": {
+        "kind": "当該SourceCheck.kind/resultに対する上表の一つの既存CauseKind。",
+        "target": "differentでは左original Read.present.location。unestablishedでは左original Readがabsent/unreachedならそのrequested、そうでなく右original Readがabsent/unreachedならそのrequested、それ以外は左original Read.present.location。既存validation checksの左は常に原Readである。targetは比較又は未成立端の診断anchorであり、その左原値が誤っているという裁定ではない。",
+        "left": "SourceCheck.left全値の無変換copy。",
+        "right": "SourceCheck.right全値の無変換copy。",
+        "rule_pointer": "SourceCheck.rule_pointer全値の無変換copy。"
+      },
+      "lookup_patterns": [
+        {
+          "id": "source_qualification_ref_unformed",
+          "guard": "source.qualification_refのReadがabsent/unreached又はpresent nullで、原参照として先へ到達できない。",
+          "kind": "source_unresolved",
+          "target": "当該source.qualification_ref Readのrequested（absent/unreached）又はpresent.location。",
+          "left": "CheckOperand.originalとして当該Read全値。",
+          "right_literal": "Qualification.ref",
+          "right": "CheckOperand.normative_literal。valueはこのright_literal、rule_pointerはこのright_literal node。",
+          "rule_pointer": "このlookup_patterns/0 entry pointer。",
+          "reason": "CORE sourceの資格参照を原資料へ解決できない。",
+          "store": "SourceObservationのlookup原因群に一件。架空Qualification/check/indexなし。"
+        },
+        {
+          "id": "qualification_lookup_unresolved",
+          "guard": "source.qualification_refの原Refは読めるが、実qualifications列が未取得、又は同参照へ対応する実Qualification occurrenceが一件も得られない。",
+          "kind": "source_unresolved",
+          "target": "元source.qualification_refのpresent.location。",
+          "left": "CheckOperand.originalとして元source.qualification_ref Read。",
+          "right": "CheckOperand.originalとしてValidationSourceObservations.qualifications_read全値。検索missを配列child absentにしない。",
+          "rule_pointer": "このlookup_patterns/1 entry pointer。",
+          "reason": "CORE sourceの資格参照に対応する原Qualificationを取得できない。",
+          "store": "SourceObservationのlookup原因群に一件。"
+        },
+        {
+          "id": "qualification_root_ref_unformed",
+          "guard": "実Qualification.root_ref Readがabsent/unreachedで原root参照として先へ到達できない。供給nullは既存schemaのshape失敗であり、この局所枝へ修復しない。",
+          "kind": "source_unresolved",
+          "target": "当該root_ref Readのrequested。",
+          "left": "CheckOperand.originalとして当該root_ref Read。",
+          "right_literal": "independent qualification_roots Ref",
+          "right": "CheckOperand.normative_literal。valueはこのright_literal、rule_pointerはこのright_literal node。",
+          "rule_pointer": "このlookup_patterns/2 entry pointer。",
+          "reason": "CORE Qualificationの独立root参照を原資料へ解決できない。",
+          "store": "当該QualificationObservationのlookup原因群に一件。架空root/check/indexなし。"
+        },
+        {
+          "id": "root_lookup_unresolved",
+          "guard": "実Qualification.root_refの原Refは読めるが、実qualification_roots列が未取得、又は同参照へ対応する実root occurrenceが一件も得られない。",
+          "kind": "source_unresolved",
+          "target": "当該root_refのpresent.location。",
+          "left": "CheckOperand.originalとして当該root_ref Read。",
+          "right": "CheckOperand.originalとしてValidationSourceObservations.roots_read全値。",
+          "rule_pointer": "このlookup_patterns/3 entry pointer。",
+          "reason": "CORE Qualificationの参照に対応する原独立rootを取得できない。",
+          "store": "当該QualificationObservationのlookup原因群に一件。"
+        }
+      ],
+      "lookup_precedence": "sourceについてlookup_patterns/0を満たす時は1を重ねず、参照解決そのものを実施したことにしない。各実Qualificationについて2を満たす時は3を重ねない。0/1又は2/3の同群で一件、別source/Qualification occurrenceは反復を全保持する。既存Ref対応条件自体は変更しない。",
+      "cause_storage_and_order": {
+        "SourceCheck.causes": "上のcheck_result_to_causesどおり0又は1件。各check配列はcheck_storage_planの既存局所順。",
+        "RootObservation.causes": "当該root.checksの各causesをcheck局所順に連結した無変換copy。新aggregate Causeを作らない。",
+        "QualificationObservation.causes": "当該qualification.checksの各causes → 当該qualificationのlookup原因（2又は3があれば一件） → 各実root occurrence原順のRootObservation.causes、の順の無変換copy。",
+        "ValidationSourceObservation.causes": "当該source.checksの各causes → 当該sourceのlookup原因（0又は1があれば一件） → 各実Qualification occurrence原順のQualificationObservation.causes、の順の無変換copy。",
+        "ValidationSourceObservations.causes": "inputが非nullの時、全source occurrence原順のValidationSourceObservation.causesを連結copy。空sourcesなら[]。input=null時は次のinput_unobserved_pattern一件だけで、子source/qual/root原因を生成しない。",
+        "multiplicity": "同じ最下層Causeを親aggregateへcopyする階層間の反復は意図的。別check/別原index/同Ref反復/二owner左右等はdedupせず全保持。同一原eventを同一階層に二度追加する再発見だけを重ねない。",
+        "event_origin": "最下層eventの同一性は原source_observation_indexと、その中のqualification_occurrence_index/root_occurrence_index及びcheck_index、又は当該source/qualificationのlookup pattern位置で区別する。これは元配列から一意に辿れるwriterの由来で、新しい出力fieldではない。Cause値が同値でも別原source/check/lookup indexなら別eventとして保持する。"
+      },
+      "input_unobserved_pattern": {
+        "guard": "同fn0のnative shape読取りでvalidated.input=null。",
+        "kind": "input_unobserved",
+        "target": {
+          "root": "validation_raw",
+          "pointer": ""
+        },
+        "left": "CheckOperand.originalのRead.present。location=validation_raw空root、value=実原raw whole。same_decode_success入力でも原rawは同decode.valueの実原wholeである。",
+        "right_literal": "CoreApplicationInput",
+        "right": "CheckOperand.normative_literal。valueはこのright_literal、rule_pointerはこのright_literal node。",
+        "rule_pointer": "本input_unobserved_pattern entry pointer。",
+        "other_fields": "source/qual/root三Readは既存V03どおりvalidation_raw wholeへreachedしたunreached、source_occurrences=[]。元raw/実InputIssueを保持する。"
+      },
+      "source_usability_aggregation": {
+        "individual_conditions": "既存checkのcorrespondingと正当なnot_applicableは当該条件を阻害しない。differentは既知不成立、unestablishedは原資料条件未形成。実trust取得口の未実装をunestablishedの追加条件にしない。",
+        "source_own_conditions": "同source.checksの3条件のAND。differentが一つでもあれば既知不成立。different無しでunestablishedがあれば未形成。それ以外は対応済み。",
+        "qualification_root_route": "一つの実Qualificationと一つの実root occurrenceの経路は、そのQualification.checksと当該root.checksの全必要条件のAND。differentが一つでもあれば当該経路は既知不成立、different無しでunestablishedがあれば未形成、それ以外は対応済み。root参照/実root未取得（lookup 2/3）は、架空rootを作らない潜在経路であり、その実Qualificationのchecks AND lookup未形成として同じ優先で扱う。従ってQualification側に既知differentがあればその潜在経路も既知不成立。Qualification参照/実Qualification未取得（lookup 0/1）は、未取得のQualification条件を対応済みへ補完しない未形成経路である。",
+        "alternative_routes": "全実経路及び未取得に由来する上記AND評価後の潜在経路のOR。対応済み経路が一つ以上あれば経路群は対応済み。対応済み無しで未形成経路が一つ以上あれば未形成。対応済みも未形成も無く、全実/潜在経路が既知不成立なら経路群は既知不成立。source/qual/root未取得を空ORの成功又は既知不成立へ補完しない。",
+        "final_precedence": [
+          "source自身の条件又は代替経路群のいずれかが既知不成立ならSourceUsability.unusable。未知の独立条件は元原因として併記する。source自身の既知差は正の資格経路で相殺しない。",
+          "既知不成立がなく、source自身の条件又は代替経路群が未形成ならSourceUsability.unestablished。正の経路が無い場合、別の既知不成立経路だけで未取得の代替経路を不成立と決めない。",
+          "source自身及び経路群が対応済みならSourceUsability.usable。別の不成立/未形成代替経路の全Cause/InputIssueは保持し、正の一件だけへ観測を縮退しない。"
+        ],
+        "usable_fields": "既存usable_index_writerの順。check_indicesは同source3checkの[0,1,2]、qualification_indicesは一つ以上の対応済み実root経路を持つ全対応Qualificationの返却local index原順。",
+        "unusable_unestablished_causes": "当該SourceObservation.causes全値をその原順でcopyする。新aggregate Causeへ要約しない。",
+        "locality": "同Refでも別source occurrenceのusable判定を一件へ潰さない。原SourceObservation indexで保持する。旧unusable_source_refsのmembershipだけで全同Ref occurrenceを失格にせず、F05は同原source occurrenceの実観測を読む。"
+      },
+      "validated_input_issue_writer": {
+        "native_shape": "既存schemaの供給形失敗は既存numeric/codec shape writerのlocator/reason/source_ref及び順序をそのまま使い、input=null。binding absentや実{}、未供給field/axisを新shape gateにしない。新source診断はこの枝へ追加しない。",
+        "source_diagnostics_order": "decode可能inputではsource occurrence原順。各sourceについて、同inner JSON/numeric読取りの既存primitive InputIssue原列をそのまま先に保持し、そのsource.causesの平坦順に次の未重複event診断を続ける。異なるsource/check/lookup原eventは全保持。全source判定後に別sortはしない。",
+        "locator": "最下層SourceCheck又はlookupに由来するCause.target.pointerをそのまま使う。validation_input rootに対する元所在/要求所在で、全body/sourceを一律root locatorにしない。",
+        "reason": "SourceCheck原因はcheck_kind_tableのresultに対応する固定reason。lookup原因は当該lookup_patterns entryの固定reason。原owner/rawvalue/秘密等を文字列へ埋め込まない。",
+        "source_ref": "当該source occurrenceの実SourceEnvelope.ref memberが供給されたCoreRef objectなら、その原full値/presenceを無変換copy。ref未供給/未到達ならnull。実{}が供給された場合はその原{}を保持できるが、欠落へ{}又は別record Refを生成しない。",
+        "one_event_once": "public InputIssueは最下層check/lookup原eventにつき一件。root→qual→source→globalの同Causeのaggregate copiesを再び別Issueへしない。source.causes平坦列の各entryが対応する元leaf eventを原index付きで辿る。異なる元checkの同型同値Causeも別eventなので保持。",
+        "primitive_preservation": "content_bytes_body未成立の同inner JSON/numeric読取り原eventについて既存primitiveが既にInputIssueを返した場合、その既存列だけを使い、当該check由来の新固定reason Issueを重ねない。Cause/観測そのものは消さない。primitiveのreason/locator/source_ref/順序は一字も置換せず、別checkの独立原因は続けて保持する。外側wire decode/encodeは別portであり本writerを適用しない。",
+        "nonnull_input": "資格/bytes/body不足のsource診断では元decode可能inputを非nullのまま保つ。InputIssue非空というだけで全snapshot/兄弟sourceを破棄しない。原資料照合scopeと実trust未接続の境界も維持する。"
+      },
+      "unusable_source_refs_writer": "source occurrence原順に、SourceUsabilityがunusable又はunestablishedであり、元SourceEnvelope.refが供給CoreRef objectとして実在する時だけ、その原fullRefを一件copyする。同Ref/同値の別原source indexも反復保存する。refが未供給/未到達なら収載せず、当該Cause/InputIssue.source_ref=nullと元wholeから不足を辿る。usable sourceは収載しないが不成立代替経路のIssue/Causeは保持する。input=nullのshape枝ではsourceを評価していないので既存fn0のshape返却どおりこの列は[]。",
+      "output_preservation": "新type/memberは追加しない。各失敗配列は既存Cause/CoreInputIssue/CoreRef[]を用いる。正のSourceCheck.causes=[]、empty sourceの全原因/Issue/未資格Ref列=[]、正常19checkの3/8/8順と原Read/規範pointer、既存codec原literalは維持する。"
+    },
+    "context_header_cause_contract": {
+      "scope": "F01のContext/header形成と、それが未形成である場合のComparison/owner raw_only全返却。元三引数の構造対応と元input/headerの形成を別観測に保つ。field/gap/obligationの後段意味writerを入力不能枝で実施しない。",
+      "request_boundary": "二依存のreturnedはC02で実callerが取得した指定producerの同call全返却、not_calledは実callerの明示skipである。call/return未観測をこの二枝へ偽装しない。外側未観測枝は既存C02のまま。Scope/原data不足と実trust未接続をContext/headerの新常時gateにしない。",
+      "original_operands_writer": [
+        {
+          "name": "validated",
+          "read": "Read.present、location={root:f05_request,pointer:/validation/validated}、value=同request.validation.validated全値。"
+        },
+        {
+          "name": "compare_applicability",
+          "read": "Read.present、location={root:f05_request,pointer:/compare_applicability}、value=同requestの実returned/not_called枝全値。"
+        },
+        {
+          "name": "compare_kind_obligation_trace",
+          "read": "Read.present、location={root:f05_request,pointer:/compare_kind_obligation_trace}、value=同requestの実returned/not_called枝全値。"
+        }
+      ],
+      "original_operands_order": "上記3entryを常に記載順。入力不能やnot_calledでも実request node wholeのReadであり、存在しないContext member/comparison childを生成しない。nameを自由な説明文に変えない。",
+      "context_patterns": [
+        {
+          "guard": "各依存ActualPredecessor.tag=not_called。",
+          "kind": "context_unformed",
+          "target": "{root:f05_request,pointer:/compare_applicability}又は/compare_kind_obligation_trace。対象依存member whole所在。",
+          "left": "CheckOperand.originalのRead.present。locationはtarget、valueは当該not_called全値（元SkipCause全leaf含む）。",
+          "right_literal": "returned",
+          "right": "CheckOperand.normative_literal。valueは本right_literal、rule_pointerは本right_literal node。",
+          "rule_pointer": "本context_patterns/0 entry pointer。",
+          "multiplicity": "依存memberごとに一件。元skip.causesはleft whole/original_requestに保持し、F05 context.causesへ別追加/書換えしない。"
+        },
+        {
+          "guard": "各依存tag=returnedだがcomparison.producer_symbolが当該元logical producer symbolと既知に異なる。",
+          "kind": "target_mismatch",
+          "target": "{root:f05_request,pointer:当該依存/comparison/producer_symbol}。",
+          "left": "CheckOperand.originalのRead.present。locationはtarget、valueは実producer_symbol。",
+          "right_literals": {
+            "compare_applicability": "compare_applicability",
+            "compare_kind_obligation_trace": "compare_kind_obligation_trace"
+          },
+          "right": "CheckOperand.normative_literal。valueは当該依存のright_literals member、rule_pointerはそのmember node。",
+          "rule_pointer": "本context_patterns/1 entry pointer。",
+          "multiplicity": "当該依存につき一件。他の既知対応差も別guardとして保持。"
+        },
+        {
+          "guard": "各依存tag=returned、元validated.input.binding object及び当該comparison.input_binding objectが実在し、元同snapshot Binding wholeが既存typed_core_json_equal/presence対応で既知に異なる。",
+          "kind": "target_mismatch",
+          "target": "{root:f05_request,pointer:当該依存/comparison/input_binding}。",
+          "left": "CheckOperand.originalのRead.present。locationはtarget、valueは実comparison.input_binding whole。",
+          "right": "CheckOperand.originalのRead.present。location={root:validation_input,pointer:/binding}、value=実親binding object whole。",
+          "rule_pointer": "本context_patterns/2 entry pointer。",
+          "multiplicity": "当該依存につき一件。Bindingの必須axis完備を要求せず、原{}は実{}として比較する。"
+        }
+      ],
+      "context_formation_writer": "original_operandsを先に実requestから保存し、依存member順compare_applicability→compare_kind_obligation_trace、各依存内はcontext_patternsの記載順で実不成立Causeを返す。Causeがあればresult=unformed{causes:この全列}。無ければresult=formed{value:{validated:request.validation.validated,compare_applicability:当該returned.comparison全値,compare_kind_obligation_trace:当該returned.comparison全値}}。parent bindingAbsent/input=nullそれ自体だけをContext構造形成の新gateにせず、header/input不能は独立観測でsemantic評価を止める。比較先parent bindingが実在しない時にcontext_patterns/2の右Readを捏造しない。実callerのsamecall取得責務を型stringの自己主張へ置換しない。",
+      "header_read_and_patterns": [
+        {
+          "guard": "request.validation.validated.input=null。",
+          "binding_read": "Read.unreached。requested={root:f05_request,pointer:/validation/validated/input/binding}、reached={root:f05_request,pointer:/validation/validated/input}、reached_value=null。validation_input root下の子Readを作らない。",
+          "result": "unformed、一件の下記Cause。",
+          "kind": "header_unformed",
+          "target": {
+            "root": "f05_request",
+            "pointer": "/validation/validated/input"
+          },
+          "left": "CheckOperand.originalのRead.present。locationはtarget、value=null（実input node）。",
+          "right_literal": "nonnull CoreApplicationInput",
+          "right": "CheckOperand.normative_literal。valueは本right_literal、rule_pointerは本right_literal node。",
+          "rule_pointer": "本header_read_and_patterns/0 entry pointer。"
+        },
+        {
+          "guard": "実nonnull validated.input objectにbinding memberが未供給。",
+          "binding_read": "Read.absent。requested={root:validation_input,pointer:/binding}、parent={root:validation_input,pointer:空root}、parent_value=同実input object whole。",
+          "result": "unformed、一件の下記Cause。",
+          "kind": "header_unformed",
+          "target": {
+            "root": "validation_input",
+            "pointer": "/binding"
+          },
+          "left": "CheckOperand.originalとしてbinding_read全値をcopy。",
+          "right_literal": "CoreApplicationBinding object",
+          "right": "CheckOperand.normative_literal。valueは本right_literal、rule_pointerは本right_literal node。",
+          "rule_pointer": "本header_read_and_patterns/1 entry pointer。"
+        },
+        {
+          "guard": "実nonnull validated.input objectに元binding objectが供給されている（実{}を含む）。",
+          "binding_read": "Read.present。location={root:validation_input,pointer:/binding}、value=同原binding object whole。",
+          "result": "formed{value:同原binding object whole}。header Causeは[]。",
+          "boundary": "{}を有効な全axis/Ref版/意味/資格の成立へしない。"
+        }
+      ],
+      "raw_shape_failure": "rawのbindingがarray/null等で既存供給型に適合しない場合は、fn0の既存schema/shape診断でvalidated.input=nullとなりheader pattern0を使う。raw whole/原InputIssueはoriginal_requestに残す。input=nullからrawのbinding childを別のtyped headerへ採用せず、bindingAbsentと型外を同じ入力事実へ潰さない。typed CoreApplicationInputに型外bindingを入れて本F05 writerで修復する経路はない。",
+      "propagation": {
+        "unformed_range": "Context.resultがunformed又はheader.resultがunformedの場合、比較を実施せずcomparison={tag:unformed,causes:下記全列}、owner_material={tag:raw_only,original_request:同原request全値,causes:同じ全列}。",
+        "cause_order": "Context.resultがunformedならそのcauses全列 → header.resultがunformedならそのcauses全列。各群は上記で定めた順。formed群は原因を追加しない。新comparison/owner aggregate Causeを要約生成しない。",
+        "original_request": "F05DetailedReturn.original_requestとOwnerMaterial.raw_only.original_requestはどちらも同入力request全値の無変換copy。SkipCause/validated.input_issues/source観測の元Causeもこのwhole内に保持し、伝播列へ改名/重複追加しない。",
+        "formed_range": "Context/header双方formedの場合だけ既存F02以降へ進む。局所source/宣言不足等の後段材料は後段のowner evaluatedに保存し、domain unknown/missingだけでraw_only又はContext skipへ再分類しない。"
+      },
+      "cause_scope": "本節は入力不能/明示skip/既知対応差の技術Cause選定であり新public Finding code又はdomain意味stateでない。原Cause型/全memberを再利用する。各right_literal/right_literalsは原Ref/比較値を偽造した資料ではなく、当該規範に明示した必要枝/型/symbolのliteralである。"
+    },
+    "cause_diagnostic_technical_difference": {
+      "preserve": "935の全type/member、SourceCheck4resultの既存原条件、3/8/8 check順、原Readと固定literal区別、既存numeric/shape診断/旧L8 literal、部分input/no-required、同call/明示skip、原資料照合scopeと実trust非認定、元Context/header分離。",
+      "select": "未規定だったSourceCheck→Cause0/1と全leaf、参照未取得Cause、階層全列のcopy順/反復、代替資格AND/ORの三分岐優先、source InputIssue/未資格Ref列の全値、F01の正本Read root/NamedRead名順/各Causeと伝播順。",
+      "reason": "同935 sourceに対する最小二skip全返却の二通りのCause順、およびone-source qualification.owner差の二differentから全診断を一意に導けなかった具体反例の是正。型だけ通る任意期待を凍結せず、技術表現を詳細正本で選定する。",
+      "source_pointers": [
+        "/functions/0",
+        "/reference_resolution_contract",
+        "/wire_codec_contract/source_resolution_stages",
+        "/wire_codec_contract/numeric_encode_profile/stage_and_failure_writers",
+        "/wire_codec_contract/numeric_encode_profile/consumer_binding/inner_source",
+        "/f05_detail_contract/validation_cause_diagnostic_contract",
+        "/f05_detail_contract/context_header_cause_contract"
+      ],
+      "remaining": "候補reader/算法/validator/codec/製品test/CIは未実装未実行。本選定はL8全literal意味検収又は全F05閉包を認定せず、field/gap/義務の後段全原因patternと実trust/実接続の残務は保持する。"
+    },
+    "caller_return_writer_contract": {
+      "scope_ja": "C01〜C04のprivate caller返却表現を一意化する技術選定。既存型/原producerのdomain意味、同snapshot取得責務、F01 source/Context/header形成、旧codec診断を変えない。call_rowsはwriterの固定対応表であり実dispatcherの実装/実行記録ではない。",
+      "source_pointers": [
+        "L4:/f05_validation_material_call_contract/actual_caller_trace/0",
+        "L4:/f05_validation_material_call_contract/actual_caller_trace/1",
+        "L4:/f05_validation_material_call_contract/actual_caller_trace/4",
+        "L4:/f05_validation_material_call_contract/outer_return_boundary",
+        "/evaluation_dependencies",
+        "/f05_detail_contract/native_context_crosswalk",
+        "/f05_detail_contract/context_header_cause_contract"
+      ],
+      "producer_observations_catalogue": [
+        "compare_required_axes",
+        "compare_candidate_universe",
+        "compare_applicability",
+        "compare_kind_obligation_trace",
+        "compare_selected_knowledge",
+        "compare_meaning_impacts",
+        "compare_semantic_equivalence"
+      ],
+      "catalogue_rule": "CoreApplicationDetailReturn.producer_observationsは上記7entryだけを記載順に一件ずつ返す。各producerは当該literal、returned/explicit_skip/unobservedのいずれか一枝。配列順は実完了時刻/Ref sortではない。fn0はvalidation、F05 detailはf05、fn9はclaims、fn10はanalysisが唯一の返却正本で、このComparison-only目録へ複製しない。fn11/12は既存別projection portで対象外。",
+      "call_rows": [
+        {
+          "producer": "compare_required_axes",
+          "dispatch_index": 0,
+          "return_path": "/producer_observations/0",
+          "context": "CoreCompareRequiredAxesContext",
+          "required_comparisons": [],
+          "observation_rules": {
+            "call_unobserved": {
+              "kind": "call_unobserved",
+              "right_literal": "actual call observed"
+            },
+            "return_unobserved": {
+              "kind": "return_unobserved",
+              "right_literal": "actual return observed"
+            }
+          }
+        },
+        {
+          "producer": "compare_candidate_universe",
+          "dispatch_index": 1,
+          "return_path": "/producer_observations/1",
+          "context": "CoreCompareCandidateUniverseContext",
+          "required_comparisons": [
+            {
+              "context_member": "compare_required_axes",
+              "observation_path": "/producer_observations/0",
+              "producer": "compare_required_axes"
+            }
+          ],
+          "observation_rules": {
+            "call_unobserved": {
+              "kind": "call_unobserved",
+              "right_literal": "actual call observed"
+            },
+            "return_unobserved": {
+              "kind": "return_unobserved",
+              "right_literal": "actual return observed"
+            }
+          }
+        },
+        {
+          "producer": "compare_applicability",
+          "dispatch_index": 2,
+          "return_path": "/producer_observations/2",
+          "context": "CoreCompareApplicabilityContext",
+          "required_comparisons": [
+            {
+              "context_member": "compare_required_axes",
+              "observation_path": "/producer_observations/0",
+              "producer": "compare_required_axes"
+            },
+            {
+              "context_member": "compare_candidate_universe",
+              "observation_path": "/producer_observations/1",
+              "producer": "compare_candidate_universe"
+            }
+          ],
+          "observation_rules": {
+            "call_unobserved": {
+              "kind": "call_unobserved",
+              "right_literal": "actual call observed"
+            },
+            "return_unobserved": {
+              "kind": "return_unobserved",
+              "right_literal": "actual return observed"
+            }
+          }
+        },
+        {
+          "producer": "compare_kind_obligation_trace",
+          "dispatch_index": 3,
+          "return_path": "/producer_observations/3",
+          "context": "CoreCompareKindObligationTraceContext",
+          "required_comparisons": [
+            {
+              "context_member": "compare_applicability",
+              "observation_path": "/producer_observations/2",
+              "producer": "compare_applicability"
+            }
+          ],
+          "observation_rules": {
+            "call_unobserved": {
+              "kind": "call_unobserved",
+              "right_literal": "actual call observed"
+            },
+            "return_unobserved": {
+              "kind": "return_unobserved",
+              "right_literal": "actual return observed"
+            }
+          }
+        },
+        {
+          "producer": "compare_requirement_gaps",
+          "dedicated": "f05",
+          "return_path": "/f05",
+          "context": "F05DetailedRequest",
+          "required_comparisons": [
+            {
+              "context_member": "compare_applicability",
+              "observation_path": "/producer_observations/2",
+              "producer": "compare_applicability"
+            },
+            {
+              "context_member": "compare_kind_obligation_trace",
+              "observation_path": "/producer_observations/3",
+              "producer": "compare_kind_obligation_trace"
+            }
+          ],
+          "observation_rules": {
+            "call_unobserved": {
+              "kind": "call_unobserved",
+              "right_literal": "actual call observed"
+            },
+            "return_unobserved": {
+              "kind": "return_unobserved",
+              "right_literal": "actual return observed"
+            }
+          }
+        },
+        {
+          "producer": "compare_selected_knowledge",
+          "dispatch_index": 4,
+          "return_path": "/producer_observations/4",
+          "context": "CoreCompareSelectedKnowledgeContext",
+          "required_comparisons": [
+            {
+              "context_member": "compare_required_axes",
+              "observation_path": "/producer_observations/0",
+              "producer": "compare_required_axes"
+            }
+          ],
+          "observation_rules": {
+            "call_unobserved": {
+              "kind": "call_unobserved",
+              "right_literal": "actual call observed"
+            },
+            "return_unobserved": {
+              "kind": "return_unobserved",
+              "right_literal": "actual return observed"
+            }
+          }
+        },
+        {
+          "producer": "compare_meaning_impacts",
+          "dispatch_index": 5,
+          "return_path": "/producer_observations/5",
+          "context": "CoreCompareMeaningImpactsContext",
+          "required_comparisons": [
+            {
+              "context_member": "compare_required_axes",
+              "observation_path": "/producer_observations/0",
+              "producer": "compare_required_axes"
+            }
+          ],
+          "observation_rules": {
+            "call_unobserved": {
+              "kind": "call_unobserved",
+              "right_literal": "actual call observed"
+            },
+            "return_unobserved": {
+              "kind": "return_unobserved",
+              "right_literal": "actual return observed"
+            }
+          }
+        },
+        {
+          "producer": "compare_semantic_equivalence",
+          "dispatch_index": 6,
+          "return_path": "/producer_observations/6",
+          "context": "CoreCompareSemanticEquivalenceContext",
+          "required_comparisons": [
+            {
+              "context_member": "compare_candidate_universe",
+              "observation_path": "/producer_observations/1",
+              "producer": "compare_candidate_universe"
+            },
+            {
+              "context_member": "compare_applicability",
+              "observation_path": "/producer_observations/2",
+              "producer": "compare_applicability"
+            },
+            {
+              "context_member": "compare_kind_obligation_trace",
+              "observation_path": "/producer_observations/3",
+              "producer": "compare_kind_obligation_trace"
+            }
+          ],
+          "observation_rules": {
+            "call_unobserved": {
+              "kind": "call_unobserved",
+              "right_literal": "actual call observed"
+            },
+            "return_unobserved": {
+              "kind": "return_unobserved",
+              "right_literal": "actual return observed"
+            }
+          }
+        },
+        {
+          "producer": "check_application_claims",
+          "dedicated": "claims",
+          "return_path": "/claims",
+          "context": "CheckApplicationClaimsDetailedContext",
+          "required_comparisons": [
+            {
+              "context_member": "compare_candidate_universe",
+              "observation_path": "/producer_observations/1",
+              "producer": "compare_candidate_universe"
+            },
+            {
+              "context_member": "compare_applicability",
+              "observation_path": "/producer_observations/2",
+              "producer": "compare_applicability"
+            },
+            {
+              "context_member": "compare_kind_obligation_trace",
+              "observation_path": "/producer_observations/3",
+              "producer": "compare_kind_obligation_trace"
+            },
+            {
+              "context_member": "compare_requirement_gaps",
+              "observation_path": "/f05",
+              "producer": "compare_requirement_gaps"
+            },
+            {
+              "context_member": "compare_selected_knowledge",
+              "observation_path": "/producer_observations/4",
+              "producer": "compare_selected_knowledge"
+            },
+            {
+              "context_member": "compare_meaning_impacts",
+              "observation_path": "/producer_observations/5",
+              "producer": "compare_meaning_impacts"
+            },
+            {
+              "context_member": "compare_semantic_equivalence",
+              "observation_path": "/producer_observations/6",
+              "producer": "compare_semantic_equivalence"
+            }
+          ],
+          "observation_rules": {
+            "call_unobserved": {
+              "kind": "call_unobserved",
+              "right_literal": "actual call observed"
+            },
+            "return_unobserved": {
+              "kind": "return_unobserved",
+              "right_literal": "actual return observed"
+            }
+          }
+        },
+        {
+          "producer": "build_application_analysis",
+          "dedicated": "analysis",
+          "return_path": "/analysis",
+          "context": "BuildApplicationAnalysisDetailedContext",
+          "required_comparisons": [
+            {
+              "context_member": "compare_required_axes",
+              "observation_path": "/producer_observations/0",
+              "producer": "compare_required_axes"
+            },
+            {
+              "context_member": "compare_candidate_universe",
+              "observation_path": "/producer_observations/1",
+              "producer": "compare_candidate_universe"
+            },
+            {
+              "context_member": "compare_applicability",
+              "observation_path": "/producer_observations/2",
+              "producer": "compare_applicability"
+            },
+            {
+              "context_member": "compare_kind_obligation_trace",
+              "observation_path": "/producer_observations/3",
+              "producer": "compare_kind_obligation_trace"
+            },
+            {
+              "context_member": "compare_requirement_gaps",
+              "observation_path": "/f05",
+              "producer": "compare_requirement_gaps"
+            },
+            {
+              "context_member": "compare_selected_knowledge",
+              "observation_path": "/producer_observations/4",
+              "producer": "compare_selected_knowledge"
+            },
+            {
+              "context_member": "compare_meaning_impacts",
+              "observation_path": "/producer_observations/5",
+              "producer": "compare_meaning_impacts"
+            },
+            {
+              "context_member": "compare_semantic_equivalence",
+              "observation_path": "/producer_observations/6",
+              "producer": "compare_semantic_equivalence"
+            },
+            {
+              "context_member": "check_application_claims",
+              "observation_path": "/claims",
+              "producer": "check_application_claims"
+            }
+          ],
+          "observation_rules": {
+            "call_unobserved": {
+              "kind": "call_unobserved",
+              "right_literal": "actual call observed"
+            },
+            "return_unobserved": {
+              "kind": "return_unobserved",
+              "right_literal": "actual return observed"
+            }
+          }
+        }
+      ],
+      "dispatch_order": "call_rows記載順をこのprivate callerの準備/取得順に選定する。各rowのrequired実返却と元headerが形成する範囲だけ実callへ進む。F05は後記の専用準備規則を用いる。先行rowのskip/未観測を理由に全後続を止めず、各rowの元依存だけを読む。fn6/fn7等の独立兄弟はF05不成立だけでskipしない。実parallel runtimeの存在又は実call済みをこの表から生成しない。",
+      "return_roots": {
+        "caller_inputs": "同private entryに実供給されたCallerInputs全値。",
+        "caller_return": "同callのCoreApplicationDetailReturn全値。ただし原Readは既に得たvalidation又は先行rowの格納済み原nodeだけを指す。自分の当該Cause/NamedRead/生成中branch全値をvalueへ入れず、後続未生成nodeを原Readにしない。",
+        "validation_input": "同validation.validated.inputが実nonnullの場合だけその同原object。input=null時にこのrootの子Readを作らない。"
+      },
+      "argument_read_writer": {
+        "validated": "name=validated。Read.present、location={root:caller_return,pointer:/validation/validated}、value=同実ValidatedApplication全値。各非F05 rowの先頭に常に一件。",
+        "comparisons": "各row.required_comparisons記載順、name=context_member。一つのComparison-only observationがreturnedならRead.presentで同observation_path/comparison実whole。explicit_skip/unobservedならRead.presentで同observation_pathの実枝wholeを保持し、存在しないcomparison childを読まない。全Location.root=caller_return。",
+        "f05_comparison": "fn9/10のcompare_requirement_gapsは、outer.f05 formedかつそのvalue.comparison formedの時だけRead.present(/f05/value/comparison/value,実CoreComparison)。outer.f05 unformedならRead.present(/f05,その実Formation whole)、outer.f05 formedでchild comparison unformedならRead.present(/f05/value/comparison,その実Formation whole)。いずれもroot=caller_return。",
+        "claims_comparison": "fn10のcheck_application_claimsはclaims formedならRead.present(/claims/value,実CoreComparison)、unformedならRead.present(/claims,その実Formation whole)。root=caller_return。",
+        "f05_detail": "fn9/10は上記全元Context operandsの後にname=f05_detailを追加。outer.f05 formedならRead.present(/f05/value,同実F05DetailedReturn)、unformedならRead.present(/f05,その実Formation whole)。root=caller_return。",
+        "projection": "fn10のみ最後にname=source_result_reference_projectionを追加し、Read.presentでlocation={root:caller_inputs,pointer:/source_result_reference_projection}、value=供給されたRead wholeを保存する。これはProjectionResultの型へcastした値ではない。元optional memberへの実代入は後記projection_boundaryだけ。",
+        "f05_special": "F05 rowはname=validationのRead.present({root:caller_return,pointer:/validation},同実ValidationDetailedReturn whole)を先頭とし、その後はrequired_comparisons順に原observation枝wholeのRead.presentを置く。F05へ渡すActualPredecessor生成前の取得根拠であり、未観測枝をnot_calledへ変えない。",
+        "storage": "Comparison-only explicit_skip.skip.context_operands及びunobserved.original_operandsへこの列を無変換で格納。fn9/10/F05専用Formationにはこの配列memberを追加しないが、列の原wholeは全てvalidation/先行専用返却/producer_observations/CallerInputsに実在し、各Causeも後記の実nodeへ結ぶ。元Context自体が未形成なら、これをnative Context whole又は実呼出し引数成立と称さない。"
+      },
+      "context_patterns": [
+        {
+          "guard": "非F05 rowのrequired_comparisonsの当該実Comparisonが前記正本に無い（explicit_skip/unobserved、又はF05/claimsの該当Formation unformed）。",
+          "kind": "context_unformed",
+          "target": "argument_read_writerが当該依存に選ぶ実枝wholeのLocation。",
+          "left": "CheckOperand.originalで同実枝whole Read.presentをcopy。",
+          "right_literal": "formed CoreComparison from designated producer",
+          "right": "CheckOperand.normative_literal。value=本right_literal、rule_pointer=本right_literal node。",
+          "rule_pointer": "本context_patterns/0 entry。",
+          "multiplicity": "当該必須Comparison member一件につき一Cause。元枝内のCauseはleft whole内に保持し、この列へflatten転写しない。"
+        },
+        {
+          "guard": "当該必須実Comparisonが有るがproducer_symbolがrequired_comparisonsのproducer literalと既知に異なる。",
+          "kind": "target_mismatch",
+          "target": "当該実Comparison所在の/producer_symbol。",
+          "left": "CheckOperand.original、Read.present(target,その実string)。",
+          "right": "CheckOperand.normative_literal、value=当該row.required_comparisons entryのproducer literal、rule_pointer=そのproducer node。",
+          "rule_pointer": "本context_patterns/1 entry。",
+          "multiplicity": "当該依存一件につき一Cause。"
+        },
+        {
+          "guard": "当該必須Comparison.input_binding objectと原validated.input.binding objectが共に実在し、typed_core_json_equalの既存numeric/presence規則で既知に異なる。",
+          "kind": "target_mismatch",
+          "target": "当該実Comparison所在の/input_binding。",
+          "left": "CheckOperand.original、Read.present(target,その実binding object whole)。",
+          "right": "CheckOperand.original、Read.present({root:validation_input,pointer:/binding},原親binding object whole)。",
+          "rule_pointer": "本context_patterns/2 entry。",
+          "multiplicity": "当該依存一件につき一Cause。parent binding未供給/input=nullではこの右Readを作らず、headerの別原因を使う。"
+        },
+        {
+          "guard": "fn9/10で追加必須引数f05_detailのouter.f05がunformed。",
+          "kind": "context_unformed",
+          "target": {
+            "root": "caller_return",
+            "pointer": "/f05"
+          },
+          "left": "CheckOperand.original、Read.present(target,同実Formation whole)。",
+          "right_literal": "formed F05DetailedReturn",
+          "right": "CheckOperand.normative_literal。value=本right_literal、rule_pointer=本right_literal node。",
+          "rule_pointer": "本context_patterns/3 entry。",
+          "multiplicity": "追加引数の局所Cause一件。compare_requirement_gaps引数のCauseと同じ引数へ潰さず両方を保持。"
+        },
+        {
+          "guard": "fn10でCallerInputs.source_result_reference_projection.tag=unreached。",
+          "kind": "input_unobserved",
+          "target": {
+            "root": "caller_inputs",
+            "pointer": "/source_result_reference_projection"
+          },
+          "left": "CheckOperand.original、Read.present(target,供給Read whole)。",
+          "right_literal": "observed optional projection presence",
+          "right": "CheckOperand.normative_literal。value=本right_literal、rule_pointer=本right_literal node。",
+          "rule_pointer": "本context_patterns/4 entry。",
+          "multiplicity": "一件。未到達をoptional absentに変換しない。"
+        },
+        {
+          "guard": "fn10へ供給されたprojection Read.present.valueがnonnullだが既存SourceResultProjectionResultのnative型対応を満たさない。",
+          "kind": "native_leaf_unformed",
+          "target": {
+            "root": "caller_inputs",
+            "pointer": "/source_result_reference_projection/value"
+          },
+          "left": "CheckOperand.original、Read.present(target,その実CoreJsonValue)。",
+          "right_literal": "CoreSourceResultProjectionResult",
+          "right": "CheckOperand.normative_literal。value=本right_literal、rule_pointer=本right_literal node。",
+          "rule_pointer": "本context_patterns/5 entry。",
+          "multiplicity": "一件。既存/type_contract/types/SourceResultProjectionResult以下の生成member/enum/presence対応であり、新資格/意味gateを作らない。"
+        }
+      ],
+      "context_cause_order": "各非F05 row.required_comparisonsの記載順、その各entry内context_patterns/0→1→2の該当分（/0の場合は当該Comparison自体が無いため/1/2を追加しない）。その後fn9/10は/3、fn10は/4→5。各guardは他の既知差を消さず、重複Causeのdedupや優先勝者選択なし。domain missing/unknown/conflictの実Comparisonは不成立条件でない。",
+      "header_patterns": [
+        {
+          "guard": "同validation.validated.input=null。",
+          "binding_read": "Read.unreached、requested={root:caller_return,pointer:/validation/validated/input/binding}、reached={root:caller_return,pointer:/validation/validated/input}、reached_value=null。",
+          "kind": "header_unformed",
+          "target": {
+            "root": "caller_return",
+            "pointer": "/validation/validated/input"
+          },
+          "left": "CheckOperand.original、Read.present(target,null)。",
+          "right_literal": "nonnull CoreApplicationInput",
+          "right": "CheckOperand.normative_literal。value=本right_literal、rule_pointer=本right_literal node。",
+          "rule_pointer": "本header_patterns/0 entry。"
+        },
+        {
+          "guard": "実nonnull input objectにbinding keyが未供給。",
+          "binding_read": "Read.absent、requested={root:validation_input,pointer:/binding}、parent={root:validation_input,pointer:空root}、parent_value=同実input whole。",
+          "kind": "header_unformed",
+          "target": {
+            "root": "validation_input",
+            "pointer": "/binding"
+          },
+          "left": "CheckOperand.original、同binding_read whole。",
+          "right_literal": "CoreApplicationBinding object",
+          "right": "CheckOperand.normative_literal。value=本right_literal、rule_pointer=本right_literal node。",
+          "rule_pointer": "本header_patterns/1 entry。"
+        },
+        {
+          "guard": "実nonnull input objectの元binding objectが有る（実{}を含む）。",
+          "binding_read": "Read.present({root:validation_input,pointer:/binding},同実binding object whole)。",
+          "causes": "[]。元{}から全axis/資格/版の成立を作らない。"
+        }
+      ],
+      "skip_and_observation_writer": {
+        "prepare": "非F05 rowごとにcontext_cause_orderの列、次にheader_patternsの該当Cause列（高々一件）を連結する。列が非空ならcallerが具体Context/header不足を明示skipする。元contextが形成不能でもheaderは独立観測する。input=null/parent bindingAbsentを元Binding objectへ補完せず、{}は実原objectとして用いる。",
+        "comparison_only_skip": "当該正本obs={tag:explicit_skip,producer:row.producer,skip:{context_operands:上記argument列,header_binding:上記実binding_read,causes:同連結全列}}。この時実callを行ったとは称さない。",
+        "dedicated_consumer_skip": "fn9/10は当該専用Formation={tag:unformed,causes:同連結全列}。元Context/header未形成による明示未呼出しとする。既存型にはSkipCause memberを追加せず、原因の左右原nodeと規範rowから全原引数へ辿れる。",
+        "ready": "準備Causeが空なら各元Context全memberを上記実Comparison/validated/同F05wholeから組み、指定private/元producerへ実引数で渡す。既存fn9/10追加f05_detailは同一実D全値。fn10 optional projectionはprojection_boundaryのまま。型形だけ又はsymbol string自己申告を同call取得根拠にしない。",
+        "returned": "実callから型どおりの実Comparisonを得たComparison-only rowはreturned{producer:row.producer,comparison:その実whole}。fn9はclaims formed.value=実CoreComparison whole、fn10はanalysis formed.value=実CoreApplicationAnalysis whole。domain unknown等をskipへ再分類しない。",
+        "unobserved": "準備が成立した範囲でも実call自体が観測されない場合はcall_unobserved、実callは観測したが返却が観測されない場合はreturn_unobserved。この区別は実callerの原観測であり、入力から任意boolを受けず、return不在だけでcall有無を推測しない。新runtime/例外値の実装は記述せず、closed型に入らないhost例外を原値へ埋めない。",
+        "unobserved_cause": "高々一件。kind=該当row.observation_rulesのkind、target={root:caller_return,pointer:/validation/validated}、left=CheckOperand.original(Read.present(target,同実ValidatedApplication whole))、right=CheckOperand.normative_literal(value=該当observation_rules entry.right_literal,rule_pointer=そのright_literal node)、Cause.rule_pointer=当該row.observation_rulesの該当entry pointer。これは実原validated引数をcause対象とする規約で、非実在call/return nodeのReadではない。producerは当該固有row pointerにより識別できる。",
+        "unobserved_destination": "Comparison-only rowはunobserved{producer:row.producer,original_operands:同argument列,causes:[同Cause]}。fn9/10は当該Formation.unformed.causes=[同Cause]。explicit_skipへ変換しない。返却済み原兄弟wholeと元引数を保持する。"
+      },
+      "f05_writer": {
+        "prepare": "指定二依存について、obs returnedならActualPredecessor.returned{producer:固定指定literal,comparison:実whole}、obs explicit_skipならActualPredecessor.not_called{producer:固定指定literal,skip:同実SkipCause全値}。この二種が双方有ればvalidation全値と共にF05を呼ぶ。親binding不足やinput=nullはF05 callerの新skip条件にせず、F01がraw_onlyで原wholeを返す範囲を保持。",
+        "unobserved_predecessor": "二依存のobs unobservedについて、required_comparisonsの順で各一件Causeを作る。kind=context_unformed、target={root:caller_return,pointer:当該observation_path}、left=original(Read.present(target,その実unobserved whole))、right=normative_literal(value=本predecessor_right_literal,rule_pointer=本predecessor_right_literal node)、Cause.rule_pointer=本f05_writer/unobserved_predecessor node。この列が非空ならF05を明示未呼出しとし、outer.f05=unformed{causes:この全列}。元依存causeをflatten追加せず左whole内に保持する。",
+        "predecessor_right_literal": "returned or explicit_skip",
+        "actual_return": "実DetailedReturn Dを受領したらouter.f05=formed{value:D全値}。D.comparisonがunformedでもformedのまま。同Dをproducer_observationsへ入れず、Dの欠けたComparisonを偽造/skip/未観測へcastしない。",
+        "own_call_or_return_unobserved": "二依存準備は成立したがF05自身のcall又はreturnが未観測ならcall_rowsのF05固有observation_rulesで前記同一全leaf規則のCauseを一件作り、outer.f05=unformed{causes:[そのCause]}。Dが返ったという事実が有る場合はこの枝を選ばない。"
+      },
+      "projection_boundary": "fn10 source_result_reference_projectionは既存/source_result_reference_projection/pipeline_bindingの同snapshot実projector返却だけを元optional memberへ渡す責務を保持。CallerInputsのRead.absentなら元Context memberを省略、present nullなら実null、present nonnullで既存CoreSourceResultProjectionResult型対応がある実wholeなら無変換copy。Read.unreached又は当該型対応不能はcontext_patterns/4又は5。原数値/型を変換又はlogical期待をnative返却へcastせず、fn11/12の新caller/API/意味writerは今回作らない。",
+      "outer_cause_aggregation": "CoreApplicationDetailReturn.causesはproducer_observationsの固定7entry順に、explicit_skip.skip.causes又はunobserved.causesを各列内順のまま連結し、その後outer.f05がunformedならそのcauses、claimsがunformedならそのcauses、analysisがunformedならそのcausesをこの順に連結する。returned/formed群は追加無し。全重複を保持し新要約Causeを作らない。validation診断/source Causeはvalidation whole、実D内のcomparison/owner Causeはf05.formed.value wholeに保持し、このouter列へ別flattenしない。outer.causesはdomain全体成功/失敗の集約ではない。",
+      "owner_connection_frontier": "本caller型はL4step5までの返却とstep6接続callerが取得するF05 wholeを具体化する。L4 outer_return_boundaryの選択B019/030 call全入力/全返却又は未接続原材料のtyped格納先はまだ具体化していない。step6/7は別typed port pairで追補し、今回CoreRaw/placeholder memberを足して全返却完成とはしない。",
+      "technical_selection_ja": "同一原全値でもC01の観測目録/順序及びcaller Cause左右/規範pointer/移送順が未定で全返却を手導出できなかったreadonly監査7b2d54を起点に、未定義だった技術返却表現だけを本表で選定する。既存F01/validation Cause規範、公開Finding code/domain state、既存numeric codec診断/旧logical literalは保持。採用L4を新gate/新owner/任意資格boolへ置換しない。"
+    },
+    "caller_writer_technical_difference": {
+      "previous_l5_sha256": "d8896078706e1d4e3ace2c32e15659035a48523562f9a8124c5c5e6f8d3ae45d",
+      "failure_basis": "readonly core009-f05-private-caller-full-return-readonly-d8896078.json SHA 7b2d5444a8e2c6defd51778b82548f40b75d91073fae9d1696d1055abf769440 のC-F1/C-F3。",
+      "preserve": "既存139型全定義、V01..V07/F01..F16及びC04/C05本文、既存関数/codec/source/Context/header Cause節/旧literalは不変。",
+      "change": "C01〜C03へ固定目録・原argument取得元・Cause pattern/移送順・専用返却規則を接ぐ。全新Causeは既存Cause型で生成し、型member追加なし。",
+      "reason": "実F05DetailedReturn受領と内部Comparison未形成を区別して全wholeを保持し、恣意的な観測配列順/Cause値を選ばず同原観測から一意に著述するため。",
+      "scope": "既存L4同snapshot/caller取得責務の詳細化。実trust、全9producer意味writer、L4step6/7 owner接続は未閉包。"
+    }
   }
 }

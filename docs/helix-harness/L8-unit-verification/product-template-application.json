@@ -143295,5 +143295,4392 @@
         }
       }
     }
+  },
+  "validation_detail_native_full_return_oracle": {
+    "id": "HARNESS-L8-009-F05-VALIDATION-DETAIL-EMPTY-SOURCE-COLLECTIONS",
+    "status": "source_first_synthetic_full_native_return_candidate_not_executed",
+    "purpose_ja": "明示供給した空のsource/qualification/root collectionを、native ValidationDetailedReturnの全memberへ原presenceを保って写す有限合成境界を固定する。実fn0実行、実資格成立、F05 caller又は実運用観測を主張しない。",
+    "source_basis": [
+      {
+        "role": "L4基本設計のpartial-input規則",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "file_sha256": "4a4e8b68f5096198d1809b850f552c6412af62f60bc16bffd60710880233f888",
+        "pointer": "/f05_validation_material_call_contract/logical_ports/validation_detail/partial_input_boundary"
+      },
+      {
+        "role": "L4 validation source observation規則",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "file_sha256": "4a4e8b68f5096198d1809b850f552c6412af62f60bc16bffd60710880233f888",
+        "pointer": "/f05_validation_material_call_contract/logical_ports/validation_detail/source_observation_rule"
+      },
+      {
+        "role": "L5詳細設計候補の型・writer",
+        "kind": "current_candidate_content_binding_without_git_revision",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "file_sha256": "befb22e6f355ad0c65596443fe256c973d66e5c75c02fa9e747ee5e13c2ff8d3",
+        "pointers": [
+          "/f05_detail_contract/types/ValidationInput",
+          "/f05_detail_contract/types/OriginalRawInput",
+          "/f05_detail_contract/types/ValidationDetailedReturn",
+          "/f05_detail_contract/types/ValidationSourceObservations",
+          "/f05_detail_contract/types/Read",
+          "/f05_detail_contract/leaf_writer_ledger/0",
+          "/f05_detail_contract/leaf_writer_ledger/2",
+          "/f05_detail_contract/leaf_writer_ledger/6"
+        ]
+      },
+      {
+        "role": "既存入力carrierのwire member",
+        "kind": "current_candidate_content_binding_without_git_revision",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "file_sha256": "befb22e6f355ad0c65596443fe256c973d66e5c75c02fa9e747ee5e13c2ff8d3",
+        "pointers": [
+          "/wire_codec_contract/schema/$defs/ApplicationInput/properties/sources",
+          "/wire_codec_contract/schema/$defs/ApplicationInput/properties/qualifications",
+          "/wire_codec_contract/schema/$defs/ApplicationInput/properties/qualification_roots"
+        ]
+      }
+    ],
+    "authority_and_fixture_boundary_ja": "L4 partial_input_boundaryに従い、bindingその他の未供給memberを補わず、追加required集合も作らない。三collectionはraw input上に明示供給した空配列であり、absentやnullではない。これは新しいケースauthoring上の条件付き合成入力で、実wire decoder、fn0、資格/trust又はcallerの観測証拠ではない。",
+    "input_literal": {
+      "tag": "native",
+      "raw": {
+        "sources": [],
+        "qualifications": [],
+        "qualification_roots": []
+      }
+    },
+    "input_typed_as": "ValidationInput.native; rawはCoreJsonValue literal。通常のjsonデータをCoreJsonValueへ暗黙にparse/castした期待ではない。",
+    "asserted_output_paths": [
+      "/original_raw_input",
+      "/validated",
+      "/source_observations"
+    ],
+    "expected_native_return": {
+      "original_raw_input": {
+        "tag": "native",
+        "raw": {
+          "sources": [],
+          "qualifications": [],
+          "qualification_roots": []
+        }
+      },
+      "validated": {
+        "input": {
+          "sources": [],
+          "qualifications": [],
+          "qualification_roots": []
+        },
+        "input_issues": [],
+        "unusable_source_refs": []
+      },
+      "source_observations": {
+        "sources_read": {
+          "tag": "present",
+          "location": {
+            "root": "validation_input",
+            "pointer": "/sources"
+          },
+          "value": []
+        },
+        "qualifications_read": {
+          "tag": "present",
+          "location": {
+            "root": "validation_input",
+            "pointer": "/qualifications"
+          },
+          "value": []
+        },
+        "roots_read": {
+          "tag": "present",
+          "location": {
+            "root": "validation_input",
+            "pointer": "/qualification_roots"
+          },
+          "value": []
+        },
+        "source_occurrences": [],
+        "causes": []
+      }
+    },
+    "expected_native_return_rule_ja": "ValidationDetailedReturnの三top-level memberとその全leafを上記literalどおり比較する。original_raw_input.rawとvalidated.inputは同じ入力literalのwhole copy。三Readはvalidation_input root上の実供給memberを指す。empty arraysは観測済みの原空配列で、source_occurrences=[]は観測済みsources=[]の帰結。未供給/read-unreached/caller skip/semantic passを意味しない。unusable_source_refs=[]は明示したsource itemが0件のこのfixture限定期待。",
+    "not_asserted_or_not_exercised_ja": [
+      "input shape failureとInputIssue.reasonの全文字列",
+      "SourceCheck 11種類の非空occurrence/result",
+      "qualification/rootの個別照合や資格成立",
+      "F05 Context/header/Comparison/owner_material及び実caller returned/explicit_skip/unobserved",
+      "他member absent/null時の各Read形、他native writer全分岐、実reader/codec/validator、製品test/CI"
+    ],
+    "legacy_preserve_change_ja": "既存normal_function_oracles、追加36 codec case、既存finite L9 view及びその期待は変更しない。本新caseはValidationDetailedReturn全memberを含む合成空collection境界を追加する。旧expectedをこの新native writerの期待へ流用していない。",
+    "execution_state": "not_executed_source_first_authored_literal"
+  },
+  "validation_detail_native_one_source_full_return_oracle": {
+    "id": "HARNESS-L8-009-F05-VALIDATION-DETAIL-ONE-SOURCE-FULL-RETURN",
+    "status": "source_first_synthetic_full_native_return_candidate_not_executed",
+    "purpose_ja": "tracked L9のnormal原source/qualification/root 1組から、ValidationDetailedReturnの全member、source 3 check・qualification 8 check・root 8 checkを固定literalとRFC6902 copyで再構成する。比較は供給独立root責務を前提にした局所資料照合であり、実fn0、実資格/trust、F05 caller又は実運用観測を主張しない。",
+    "source_basis": [
+      {
+        "role": "L4 partial-input境界とvalidation source observation規則",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "file_sha256": "4a4e8b68f5096198d1809b850f552c6412af62f60bc16bffd60710880233f888",
+        "pointers": [
+          "/f05_validation_material_call_contract/logical_ports/validation_detail/partial_input_boundary",
+          "/f05_validation_material_call_contract/logical_ports/validation_detail/source_observation_rule"
+        ]
+      },
+      {
+        "role": "L5 native ValidationDetailedReturn型・全leaf writer",
+        "kind": "current_candidate_content_binding_without_git_revision",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "file_sha256": "befb22e6f355ad0c65596443fe256c973d66e5c75c02fa9e747ee5e13c2ff8d3",
+        "pointers": [
+          "/f05_detail_contract/types/ValidationInput",
+          "/f05_detail_contract/types/OriginalRawInput",
+          "/f05_detail_contract/types/ValidationDetailedReturn",
+          "/f05_detail_contract/types/ValidationSourceObservations",
+          "/f05_detail_contract/types/ValidationSourceObservation",
+          "/f05_detail_contract/types/QualificationObservation",
+          "/f05_detail_contract/types/RootObservation",
+          "/f05_detail_contract/types/SourceCheck",
+          "/f05_detail_contract/types/CheckOperand",
+          "/f05_detail_contract/types/Read",
+          "/f05_detail_contract/leaf_writer_ledger/0",
+          "/f05_detail_contract/leaf_writer_ledger/2",
+          "/f05_detail_contract/leaf_writer_ledger/3",
+          "/f05_detail_contract/leaf_writer_ledger/4",
+          "/f05_detail_contract/leaf_writer_ledger/5",
+          "/f05_detail_contract/leaf_writer_ledger/6",
+          "/f05_detail_contract/source_observation_contract/check_storage_plan",
+          "/f05_detail_contract/source_observation_contract/usable_index_writer"
+        ]
+      },
+      {
+        "role": "tracked L9 source literal catalog",
+        "kind": "tracked_source_bytes_and_pointer_binding",
+        "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "git_revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "file_sha256": "708c1993ba5458876d57ef5b4f94f6ab4412153344e49a7aa762798b888bf650",
+        "pointer": "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT",
+        "selected_pointers": [
+          "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT/sources/0",
+          "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT/qualifications/0",
+          "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT/qualification_roots/0"
+        ]
+      },
+      {
+        "role": "採用L9有限原観測との対応",
+        "kind": "tracked_source_bytes_and_pointer_binding",
+        "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "git_revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "file_sha256": "708c1993ba5458876d57ef5b4f94f6ab4412153344e49a7aa762798b888bf650",
+        "pointers": [
+          "/f05_validation_material_call_verification/cases/4/input_base_copy",
+          "/f05_validation_material_call_verification/cases/4/input_patch"
+        ],
+        "scope_ja": "case4は固定normalのsource/qualification/root index 0を変更せず、後続indexへ追加する。ここでは元固定catalogからindex 0だけを標準copyで選ぶ。"
+      }
+    ],
+    "authoring_provenance_ja": "原inputはL5 writer補修前に固定したdab28c736269c6f67b3d86934989fb76a65fb7da7a8908558cfaa24a88920c98 snapshotに由来する。これは履歴来歴だけであり、再構成・source basisの依存ではない。出力leaf表現とcheck配置は935a2d61 writer補修後にL4/L5原文から独立に著述した。候補writer出力を参照した期待修正や、盲検歴史独立性を主張しない。",
+    "authority_and_fixture_boundary_ja": "入力はValidationInput.nativeに渡す明示合成partial carrier。raw上でsources/qualifications/qualification_rootsの三arrayに各1件を供給し、それ以外のmemberは補わない。L4/L5はpartial carrierを許し、required集合を新設しない。原source/qualification/rootのwhole、presence、bytes、body、Ref、owner、scope、digestをそのまま使う。qualification rootの局所照合はL5 assessment_scope上の供給独立root責務を条件とする資料比較であり、実issuer/origin/custody/authentication成立ではない。",
+    "input_fixture_descriptor": {
+      "validation_input_tag": "native",
+      "raw_value_pointer_after_recipe": "/one_source_case/input",
+      "initial_patch_seed": {
+        "sources": [],
+        "qualifications": [],
+        "qualification_roots": []
+      },
+      "final_cardinality": {
+        "sources": 1,
+        "qualifications": 1,
+        "qualification_roots": 1
+      }
+    },
+    "input_reconstruction": {
+      "recipe_kind": "fixed_standard_rfc6902_patch_over_tracked_l9_full_file_snapshot",
+      "source_document": {
+        "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "git_revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "file_sha256": "708c1993ba5458876d57ef5b4f94f6ab4412153344e49a7aa762798b888bf650",
+        "namespace": "L9全文JSON root"
+      },
+      "target_overlay_root": "/one_source_case",
+      "patch": [
+        {
+          "op": "add",
+          "path": "/one_source_case",
+          "value": {
+            "input": {
+              "sources": [],
+              "qualifications": [],
+              "qualification_roots": []
+            }
+          }
+        },
+        {
+          "op": "copy",
+          "from": "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT/sources/0",
+          "path": "/one_source_case/input/sources/-"
+        },
+        {
+          "op": "copy",
+          "from": "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT/qualifications/0",
+          "path": "/one_source_case/input/qualifications/-"
+        },
+        {
+          "op": "copy",
+          "from": "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT/qualification_roots/0",
+          "path": "/one_source_case/input/qualification_roots/-"
+        }
+      ],
+      "resulting_input_pointer": "/one_source_case/input",
+      "reconstruction_note_ja": "三copyはL9全文JSONから固定literalの各index 0を選び、array末尾へ一度ずつ追加する。通常JSON値のcopyでありCoreJsonValue/CoreSourceEnvelope/CoreQualification/CoreRefへの候補decoder変換を行わない。入力型タグnativeは独立のcase-authored宣言。"
+    },
+    "input_typed_as": "ValidationInput.native。rawは明示literalであり、RFC6902 copyは原JSON nodeだけを再配置する。",
+    "asserted_output_paths": [
+      "/original_raw_input",
+      "/validated",
+      "/source_observations"
+    ],
+    "expected_native_return_seed": {
+      "original_raw_input": {
+        "tag": "native",
+        "raw": {
+          "sources": [],
+          "qualifications": [],
+          "qualification_roots": []
+        }
+      },
+      "validated": {
+        "input": {
+          "sources": [],
+          "qualifications": [],
+          "qualification_roots": []
+        },
+        "input_issues": [],
+        "unusable_source_refs": []
+      },
+      "source_observations": {
+        "sources_read": {
+          "tag": "present",
+          "location": {
+            "root": "validation_input",
+            "pointer": "/sources"
+          },
+          "value": null
+        },
+        "qualifications_read": {
+          "tag": "present",
+          "location": {
+            "root": "validation_input",
+            "pointer": "/qualifications"
+          },
+          "value": null
+        },
+        "roots_read": {
+          "tag": "present",
+          "location": {
+            "root": "validation_input",
+            "pointer": "/qualification_roots"
+          },
+          "value": null
+        },
+        "source_occurrences": [
+          {
+            "source_index": 0,
+            "locator": {
+              "root": "validation_input",
+              "pointer": "/sources/0"
+            },
+            "original_source": null,
+            "qualification_ref": {
+              "tag": "present",
+              "location": {
+                "root": "validation_input",
+                "pointer": "/sources/0/qualification_ref"
+              },
+              "value": null
+            },
+            "qualification_occurrences": [
+              {
+                "qualification_index": 0,
+                "original_qualification": null,
+                "locator": {
+                  "root": "validation_input",
+                  "pointer": "/qualifications/0"
+                },
+                "root_ref": {
+                  "tag": "present",
+                  "location": {
+                    "root": "validation_input",
+                    "pointer": "/qualifications/0/root_ref"
+                  },
+                  "value": null
+                },
+                "root_occurrences": [
+                  {
+                    "root_index": 0,
+                    "original_root": null,
+                    "locator": {
+                      "root": "validation_input",
+                      "pointer": "/qualification_roots/0"
+                    },
+                    "checks": [
+                      {
+                        "kind": "qualification_root_ref",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/root_ref"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/8",
+                        "causes": []
+                      },
+                      {
+                        "kind": "root_owner",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/9",
+                        "causes": []
+                      },
+                      {
+                        "kind": "root_owner",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/ref/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/9",
+                        "causes": []
+                      },
+                      {
+                        "kind": "root_subject_revision_scope",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/root_ref/identity"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/identity"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/0",
+                        "causes": []
+                      },
+                      {
+                        "kind": "root_subject_revision_scope",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/root_ref/revision"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/revision"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/1",
+                        "causes": []
+                      },
+                      {
+                        "kind": "root_subject_revision_scope",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/root_ref/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/2",
+                        "causes": []
+                      },
+                      {
+                        "kind": "root_subject_revision_scope",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/root_ref/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/3",
+                        "causes": []
+                      },
+                      {
+                        "kind": "root_subject_revision_scope",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/4",
+                        "causes": []
+                      }
+                    ],
+                    "causes": []
+                  }
+                ],
+                "checks": [
+                  {
+                    "kind": "qualification_ref",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/qualification_ref"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/ref"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/3",
+                    "causes": []
+                  },
+                  {
+                    "kind": "qualification_subject",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/subject_ref"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/ref"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/4",
+                    "causes": []
+                  },
+                  {
+                    "kind": "qualification_digest",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/content_bytes"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/subject_sha256"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/5",
+                    "causes": []
+                  },
+                  {
+                    "kind": "qualification_digest",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/content_bytes"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/subject_ref/sha256"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/5",
+                    "causes": []
+                  },
+                  {
+                    "kind": "qualification_owner",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/owner"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/ref/owner"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/6",
+                    "causes": []
+                  },
+                  {
+                    "kind": "qualification_owner",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/ref/owner"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/ref/owner"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/6",
+                    "causes": []
+                  },
+                  {
+                    "kind": "qualification_scope",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/scope"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/ref/scope"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/7",
+                    "causes": []
+                  },
+                  {
+                    "kind": "qualification_scope",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/subject_ref/scope"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/ref/scope"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/7",
+                    "causes": []
+                  }
+                ],
+                "causes": []
+              }
+            ],
+            "checks": [
+              {
+                "kind": "content_bytes_body",
+                "result": "corresponding",
+                "left": {
+                  "tag": "original",
+                  "read": {
+                    "tag": "present",
+                    "location": {
+                      "root": "validation_input",
+                      "pointer": "/sources/0/content_bytes"
+                    },
+                    "value": null
+                  }
+                },
+                "right": {
+                  "tag": "original",
+                  "read": {
+                    "tag": "present",
+                    "location": {
+                      "root": "validation_input",
+                      "pointer": "/sources/0/body"
+                    },
+                    "value": null
+                  }
+                },
+                "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/0",
+                "causes": []
+              },
+              {
+                "kind": "source_digest",
+                "result": "corresponding",
+                "left": {
+                  "tag": "original",
+                  "read": {
+                    "tag": "present",
+                    "location": {
+                      "root": "validation_input",
+                      "pointer": "/sources/0/content_bytes"
+                    },
+                    "value": null
+                  }
+                },
+                "right": {
+                  "tag": "original",
+                  "read": {
+                    "tag": "present",
+                    "location": {
+                      "root": "validation_input",
+                      "pointer": "/sources/0/ref/sha256"
+                    },
+                    "value": null
+                  }
+                },
+                "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/1",
+                "causes": []
+              },
+              {
+                "kind": "source_role",
+                "result": "corresponding",
+                "left": {
+                  "tag": "original",
+                  "read": {
+                    "tag": "present",
+                    "location": {
+                      "root": "validation_input",
+                      "pointer": "/sources/0/role"
+                    },
+                    "value": null
+                  }
+                },
+                "right": {
+                  "tag": "normative_literal",
+                  "value": "semantic_source",
+                  "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/2"
+                },
+                "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/2",
+                "causes": []
+              }
+            ],
+            "usability": {
+              "tag": "usable",
+              "check_indices": [
+                0,
+                1,
+                2
+              ],
+              "qualification_indices": [
+                0
+              ]
+            },
+            "causes": []
+          }
+        ],
+        "causes": []
+      }
+    },
+    "expected_native_return_patch": [
+      {
+        "op": "add",
+        "path": "/one_source_case/expected_native_return",
+        "value": {
+          "original_raw_input": {
+            "tag": "native",
+            "raw": {
+              "sources": [],
+              "qualifications": [],
+              "qualification_roots": []
+            }
+          },
+          "validated": {
+            "input": {
+              "sources": [],
+              "qualifications": [],
+              "qualification_roots": []
+            },
+            "input_issues": [],
+            "unusable_source_refs": []
+          },
+          "source_observations": {
+            "sources_read": {
+              "tag": "present",
+              "location": {
+                "root": "validation_input",
+                "pointer": "/sources"
+              },
+              "value": null
+            },
+            "qualifications_read": {
+              "tag": "present",
+              "location": {
+                "root": "validation_input",
+                "pointer": "/qualifications"
+              },
+              "value": null
+            },
+            "roots_read": {
+              "tag": "present",
+              "location": {
+                "root": "validation_input",
+                "pointer": "/qualification_roots"
+              },
+              "value": null
+            },
+            "source_occurrences": [
+              {
+                "source_index": 0,
+                "locator": {
+                  "root": "validation_input",
+                  "pointer": "/sources/0"
+                },
+                "original_source": null,
+                "qualification_ref": {
+                  "tag": "present",
+                  "location": {
+                    "root": "validation_input",
+                    "pointer": "/sources/0/qualification_ref"
+                  },
+                  "value": null
+                },
+                "qualification_occurrences": [
+                  {
+                    "qualification_index": 0,
+                    "original_qualification": null,
+                    "locator": {
+                      "root": "validation_input",
+                      "pointer": "/qualifications/0"
+                    },
+                    "root_ref": {
+                      "tag": "present",
+                      "location": {
+                        "root": "validation_input",
+                        "pointer": "/qualifications/0/root_ref"
+                      },
+                      "value": null
+                    },
+                    "root_occurrences": [
+                      {
+                        "root_index": 0,
+                        "original_root": null,
+                        "locator": {
+                          "root": "validation_input",
+                          "pointer": "/qualification_roots/0"
+                        },
+                        "checks": [
+                          {
+                            "kind": "qualification_root_ref",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualifications/0/root_ref"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/8",
+                            "causes": []
+                          },
+                          {
+                            "kind": "root_owner",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/owner"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualifications/0/owner"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/9",
+                            "causes": []
+                          },
+                          {
+                            "kind": "root_owner",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/owner"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/sources/0/ref/owner"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/9",
+                            "causes": []
+                          },
+                          {
+                            "kind": "root_subject_revision_scope",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualifications/0/root_ref/identity"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/identity"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/0",
+                            "causes": []
+                          },
+                          {
+                            "kind": "root_subject_revision_scope",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualifications/0/root_ref/revision"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/revision"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/1",
+                            "causes": []
+                          },
+                          {
+                            "kind": "root_subject_revision_scope",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualifications/0/root_ref/scope"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/scope"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/2",
+                            "causes": []
+                          },
+                          {
+                            "kind": "root_subject_revision_scope",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualifications/0/root_ref/owner"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/owner"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/3",
+                            "causes": []
+                          },
+                          {
+                            "kind": "root_subject_revision_scope",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualifications/0/scope"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/scope"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/4",
+                            "causes": []
+                          }
+                        ],
+                        "causes": []
+                      }
+                    ],
+                    "checks": [
+                      {
+                        "kind": "qualification_ref",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/qualification_ref"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/ref"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/3",
+                        "causes": []
+                      },
+                      {
+                        "kind": "qualification_subject",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/subject_ref"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/ref"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/4",
+                        "causes": []
+                      },
+                      {
+                        "kind": "qualification_digest",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/content_bytes"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/subject_sha256"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/5",
+                        "causes": []
+                      },
+                      {
+                        "kind": "qualification_digest",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/content_bytes"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/subject_ref/sha256"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/5",
+                        "causes": []
+                      },
+                      {
+                        "kind": "qualification_owner",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/ref/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/6",
+                        "causes": []
+                      },
+                      {
+                        "kind": "qualification_owner",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/ref/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/ref/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/6",
+                        "causes": []
+                      },
+                      {
+                        "kind": "qualification_scope",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/ref/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/7",
+                        "causes": []
+                      },
+                      {
+                        "kind": "qualification_scope",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/subject_ref/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/ref/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/7",
+                        "causes": []
+                      }
+                    ],
+                    "causes": []
+                  }
+                ],
+                "checks": [
+                  {
+                    "kind": "content_bytes_body",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/content_bytes"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/body"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/0",
+                    "causes": []
+                  },
+                  {
+                    "kind": "source_digest",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/content_bytes"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/ref/sha256"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/1",
+                    "causes": []
+                  },
+                  {
+                    "kind": "source_role",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/role"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "normative_literal",
+                      "value": "semantic_source",
+                      "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/2"
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/2",
+                    "causes": []
+                  }
+                ],
+                "usability": {
+                  "tag": "usable",
+                  "check_indices": [
+                    0,
+                    1,
+                    2
+                  ],
+                  "qualification_indices": [
+                    0
+                  ]
+                },
+                "causes": []
+              }
+            ],
+            "causes": []
+          }
+        }
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input",
+        "path": "/one_source_case/expected_native_return/original_raw_input/raw"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input",
+        "path": "/one_source_case/expected_native_return/validated/input"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources",
+        "path": "/one_source_case/expected_native_return/source_observations/sources_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications",
+        "path": "/one_source_case/expected_native_return/source_observations/qualifications_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualification_roots",
+        "path": "/one_source_case/expected_native_return/source_observations/roots_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/original_source"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/qualification_ref",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_ref/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/original_qualification"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/root_ref",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_ref/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualification_roots/0",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/original_root"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/content_bytes",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/checks/0/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/body",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/checks/0/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/content_bytes",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/checks/1/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/ref/sha256",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/checks/1/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/role",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/checks/2/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/qualification_ref",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/0/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/ref",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/0/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/subject_ref",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/1/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/ref",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/1/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/content_bytes",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/2/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/subject_sha256",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/2/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/content_bytes",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/3/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/subject_ref/sha256",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/3/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/owner",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/ref/owner",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/ref/owner",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/5/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/ref/owner",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/5/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/scope",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/6/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/ref/scope",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/6/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/subject_ref/scope",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/7/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/ref/scope",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/7/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/root_ref",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/0/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualification_roots/0",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/0/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualification_roots/0/owner",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/owner",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualification_roots/0/owner",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/2/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/ref/owner",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/2/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/root_ref/identity",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/3/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualification_roots/0/identity",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/3/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/root_ref/revision",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/4/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualification_roots/0/revision",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/4/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/root_ref/scope",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/5/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualification_roots/0/scope",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/5/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/root_ref/owner",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/6/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualification_roots/0/owner",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/6/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualifications/0/scope",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/7/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/qualification_roots/0/scope",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/7/right/read/value"
+      }
+    ],
+    "expected_native_return_rule_ja": "上記seedへexpected_native_return_patchを順に適用した全objectを、ValidationDetailedReturnの全member/leafで比較する。rootはtracked L9全文fixture、inputは/one_source_case/input。Readのvalue/original_*wholeは実入力nodeへのcopy。source roleの右辺だけはL5 checks/2に宣言されたnormative_literal。各check rule_pointerはL5 check storage/規範規則を指す。source checks[0..2]、qualification occurrence checks[0..7]、root occurrence checks[0..7]は別階層・元順。source usable indexは同source checks [0,1,2]、qualification local index [0]であり、root check indexを混ぜない。all causes=[]はこの選択された完全供給raw literalの有限期待で、実運用全域の診断不存在を主張しない。",
+    "check_observation_table": {
+      "namespace_ja": "各input_pointerはvalidation_input root。各expected_pointerは、expected_native_return_seedを返却rootとした相対pointer。s=source input index 0、q=qualification input index 0、r=root input index 0。",
+      "source_checks": [
+        {
+          "index": 0,
+          "kind": "content_bytes_body",
+          "left_input_pointer": "/sources/0/content_bytes",
+          "right_input_pointer": "/sources/0/body",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/0",
+          "storage": "/source_observations/source_occurrences/0/checks/0"
+        },
+        {
+          "index": 1,
+          "kind": "source_digest",
+          "left_input_pointer": "/sources/0/content_bytes",
+          "right_input_pointer": "/sources/0/ref/sha256",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/1",
+          "storage": "/source_observations/source_occurrences/0/checks/1"
+        },
+        {
+          "index": 2,
+          "kind": "source_role",
+          "left_input_pointer": "/sources/0/role",
+          "right_normative_literal": "semantic_source",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/2",
+          "storage": "/source_observations/source_occurrences/0/checks/2"
+        }
+      ],
+      "qualification_checks": [
+        {
+          "index": 0,
+          "kind": "qualification_ref",
+          "left_input_pointer": "/sources/0/qualification_ref",
+          "right_input_pointer": "/qualifications/0/ref",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/3",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/checks/0"
+        },
+        {
+          "index": 1,
+          "kind": "qualification_subject",
+          "left_input_pointer": "/qualifications/0/subject_ref",
+          "right_input_pointer": "/sources/0/ref",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/4",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/checks/1"
+        },
+        {
+          "index": 2,
+          "kind": "qualification_digest",
+          "left_input_pointer": "/sources/0/content_bytes",
+          "right_input_pointer": "/qualifications/0/subject_sha256",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/5",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/checks/2"
+        },
+        {
+          "index": 3,
+          "kind": "qualification_digest",
+          "left_input_pointer": "/sources/0/content_bytes",
+          "right_input_pointer": "/qualifications/0/subject_ref/sha256",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/5",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/checks/3"
+        },
+        {
+          "index": 4,
+          "kind": "qualification_owner",
+          "left_input_pointer": "/qualifications/0/owner",
+          "right_input_pointer": "/sources/0/ref/owner",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/6",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4"
+        },
+        {
+          "index": 5,
+          "kind": "qualification_owner",
+          "left_input_pointer": "/qualifications/0/ref/owner",
+          "right_input_pointer": "/sources/0/ref/owner",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/6",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/checks/5"
+        },
+        {
+          "index": 6,
+          "kind": "qualification_scope",
+          "left_input_pointer": "/qualifications/0/scope",
+          "right_input_pointer": "/sources/0/ref/scope",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/7",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/checks/6"
+        },
+        {
+          "index": 7,
+          "kind": "qualification_scope",
+          "left_input_pointer": "/qualifications/0/subject_ref/scope",
+          "right_input_pointer": "/sources/0/ref/scope",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/7",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/checks/7"
+        }
+      ],
+      "root_checks": [
+        {
+          "index": 0,
+          "kind": "qualification_root_ref",
+          "left_input_pointer": "/qualifications/0/root_ref",
+          "right_input_pointer": "/qualification_roots/0",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/8",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/0"
+        },
+        {
+          "index": 1,
+          "kind": "root_owner",
+          "left_input_pointer": "/qualification_roots/0/owner",
+          "right_input_pointer": "/qualifications/0/owner",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/9",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1"
+        },
+        {
+          "index": 2,
+          "kind": "root_owner",
+          "left_input_pointer": "/qualification_roots/0/owner",
+          "right_input_pointer": "/sources/0/ref/owner",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/9",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/2"
+        },
+        {
+          "index": 3,
+          "kind": "root_subject_revision_scope",
+          "left_input_pointer": "/qualifications/0/root_ref/identity",
+          "right_input_pointer": "/qualification_roots/0/identity",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/0",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/3"
+        },
+        {
+          "index": 4,
+          "kind": "root_subject_revision_scope",
+          "left_input_pointer": "/qualifications/0/root_ref/revision",
+          "right_input_pointer": "/qualification_roots/0/revision",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/1",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/4"
+        },
+        {
+          "index": 5,
+          "kind": "root_subject_revision_scope",
+          "left_input_pointer": "/qualifications/0/root_ref/scope",
+          "right_input_pointer": "/qualification_roots/0/scope",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/2",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/5"
+        },
+        {
+          "index": 6,
+          "kind": "root_subject_revision_scope",
+          "left_input_pointer": "/qualifications/0/root_ref/owner",
+          "right_input_pointer": "/qualification_roots/0/owner",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/3",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/6"
+        },
+        {
+          "index": 7,
+          "kind": "root_subject_revision_scope",
+          "left_input_pointer": "/qualifications/0/scope",
+          "right_input_pointer": "/qualification_roots/0/scope",
+          "expected": "corresponding",
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/4",
+          "storage": "/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/7"
+        }
+      ]
+    },
+    "static_source_observations": {
+      "source_content_bytes_utf8_length": 46241,
+      "source_content_bytes_sha256": "a39113debc4b68353854881954c8183ad9906586aa4e08f5b1a69cc18877388f",
+      "source_ref_sha256": "a39113debc4b68353854881954c8183ad9906586aa4e08f5b1a69cc18877388f",
+      "qualification_subject_sha256": "a39113debc4b68353854881954c8183ad9906586aa4e08f5b1a69cc18877388f",
+      "qualification_subject_ref_sha256": "a39113debc4b68353854881954c8183ad9906586aa4e08f5b1a69cc18877388f",
+      "content_bytes_standard_json_value_equals_source_body": true,
+      "qualification_ref_equals_source_qualification_ref": true,
+      "qualification_subject_ref_equals_source_ref": true,
+      "qualification_root_ref_equals_selected_root": true,
+      "selected_original_indices": {
+        "source": 0,
+        "qualification": 0,
+        "root": 0
+      },
+      "selected_array_cardinality_after_reconstruction": {
+        "sources": 1,
+        "qualifications": 1,
+        "qualification_roots": 1
+      }
+    },
+    "not_asserted_or_not_exercised_ja": [
+      "実fn0/decoder/source-resolutionの実行、実issuer/trust/custody認証、実運用資格成立",
+      "他の5 source/qualification/root、反復Ref、多経路、known different・unestablished・not_applicable、入力shape失敗とInputIssue全文",
+      "F05 context/header/comparison/owner_material、caller returned/explicit skip/unobservedとその全返却",
+      "ValidationDetailedReturnの別Cause枝、input=null時のunreached、意味評価/製品test/CI"
+    ],
+    "legacy_preserve_change_ja": "既存36 codec case、21 mutation、9 finite logical source/semantic view、既存normal function oracleと全既存raw/expectedは保持する。空配列のfull native return例は維持し、source0一件の独立合成caseを追加する。旧L9 finite expectedをnative writer期待として再利用しない。",
+    "execution_state": "not_executed_source_first_authored_literal"
+  },
+  "validation_detail_native_one_source_owner_mismatch_full_return_oracle": {
+    "id": "HARNESS-L8-009-F05-VALIDATION-DETAIL-ONE-SOURCE-QUALIFICATION-OWNER-DIFFERENT",
+    "status": "source_first_synthetic_full_native_return_candidate_not_executed",
+    "purpose_ja": "1-source base fixtureからQualification.ownerだけを固定foreign literalへ置換する。既知owner差のSourceCheck、cause、source単位usability、既存fn0 diagnosticを含むValidationDetailedReturn全leafを、現L5の新cause writerから固定copy/patchで著述する。",
+    "source_basis": [
+      {
+        "role": "L4 partial carrier・source observation boundary",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "file_sha256": "4a4e8b68f5096198d1809b850f552c6412af62f60bc16bffd60710880233f888",
+        "pointers": [
+          "/f05_validation_material_call_contract/logical_ports/validation_detail/partial_input_boundary",
+          "/f05_validation_material_call_contract/logical_ports/validation_detail/source_observation_rule"
+        ]
+      },
+      {
+        "role": "L5 source checks・cause diagnostic・usability aggregation",
+        "kind": "current_candidate_content_binding_without_git_revision",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "file_sha256": "befb22e6f355ad0c65596443fe256c973d66e5c75c02fa9e747ee5e13c2ff8d3",
+        "pointers": [
+          "/f05_detail_contract/source_observation_contract/check_storage_plan",
+          "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table",
+          "/f05_detail_contract/validation_cause_diagnostic_contract/check_cause_leaf_writer",
+          "/f05_detail_contract/validation_cause_diagnostic_contract/cause_storage_and_order",
+          "/f05_detail_contract/validation_cause_diagnostic_contract/source_usability_aggregation",
+          "/f05_detail_contract/validation_cause_diagnostic_contract/validated_input_issue_writer",
+          "/f05_detail_contract/validation_cause_diagnostic_contract/unusable_source_refs_writer",
+          "/f05_detail_contract/leaf_writer_ledger/2",
+          "/f05_detail_contract/leaf_writer_ledger/4",
+          "/f05_detail_contract/leaf_writer_ledger/5",
+          "/f05_detail_contract/leaf_writer_ledger/6"
+        ]
+      },
+      {
+        "role": "tracked L9 base source literal",
+        "kind": "tracked_source_bytes_and_pointer_binding",
+        "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "git_revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "file_sha256": "708c1993ba5458876d57ef5b4f94f6ab4412153344e49a7aa762798b888bf650",
+        "pointer": "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT",
+        "selected_pointers": [
+          "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT/sources/0",
+          "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT/qualifications/0",
+          "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT/qualification_roots/0"
+        ]
+      },
+      {
+        "role": "凍結済みraw差分の由来",
+        "kind": "historical_local_source_observation_only_not_a_reconstruction_dependency",
+        "path": "scaffold/review-handoff/local/core009-one-source-qualification-owner-diagnostic-gap-935a2d61.json",
+        "sha256": "74b3a3a0c4e465a78c07395754ddc11bff8adf4d72f431510caba0e16bc7cae7",
+        "pointer": "/mutation"
+      }
+    ],
+    "authority_and_fixture_boundary_ja": "Qualification.ownerのみsynthetic-foreign-ownerへ置換し、同Ref/subject/digest/scope/root/ref.owner及び他全source nodeは元固定literalを維持する。意図的な合成既知差であり、実issuer/trustや実fn0実行の証明ではない。decode可能partial inputを保持する。",
+    "input_recipe": {
+      "source_namespace": "tracked L9 full-file JSON root",
+      "source_git_revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+      "source_file_sha256": "708c1993ba5458876d57ef5b4f94f6ab4412153344e49a7aa762798b888bf650",
+      "target_root": "/one_source_owner_mismatch_case",
+      "patch": [
+        {
+          "op": "add",
+          "path": "/one_source_owner_mismatch_case",
+          "value": {
+            "input": {
+              "sources": [],
+              "qualifications": [],
+              "qualification_roots": []
+            }
+          }
+        },
+        {
+          "op": "copy",
+          "from": "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT/sources/0",
+          "path": "/one_source_owner_mismatch_case/input/sources/-"
+        },
+        {
+          "op": "copy",
+          "from": "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT/qualifications/0",
+          "path": "/one_source_owner_mismatch_case/input/qualifications/-"
+        },
+        {
+          "op": "copy",
+          "from": "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT/qualification_roots/0",
+          "path": "/one_source_owner_mismatch_case/input/qualification_roots/-"
+        },
+        {
+          "op": "replace",
+          "path": "/one_source_owner_mismatch_case/input/qualifications/0/owner",
+          "value": "synthetic-foreign-owner"
+        }
+      ],
+      "result_pointer": "/one_source_owner_mismatch_case/input",
+      "targeted_change": "only /qualifications/0/owner is replaced"
+    },
+    "expected_native_return_seed": {
+      "original_raw_input": {
+        "tag": "native",
+        "raw": {
+          "sources": [],
+          "qualifications": [],
+          "qualification_roots": []
+        }
+      },
+      "validated": {
+        "input": {
+          "sources": [],
+          "qualifications": [],
+          "qualification_roots": []
+        },
+        "input_issues": [
+          {
+            "locator": "/qualifications/0/owner",
+            "reason": "CORE Qualificationとsourceの原ownerが対応しない。",
+            "source_ref": null
+          },
+          {
+            "locator": "/qualification_roots/0/owner",
+            "reason": "COREの供給独立rootと資格又はsourceの原ownerが対応しない。",
+            "source_ref": null
+          }
+        ],
+        "unusable_source_refs": []
+      },
+      "source_observations": {
+        "sources_read": {
+          "tag": "present",
+          "location": {
+            "root": "validation_input",
+            "pointer": "/sources"
+          },
+          "value": null
+        },
+        "qualifications_read": {
+          "tag": "present",
+          "location": {
+            "root": "validation_input",
+            "pointer": "/qualifications"
+          },
+          "value": null
+        },
+        "roots_read": {
+          "tag": "present",
+          "location": {
+            "root": "validation_input",
+            "pointer": "/qualification_roots"
+          },
+          "value": null
+        },
+        "source_occurrences": [
+          {
+            "source_index": 0,
+            "locator": {
+              "root": "validation_input",
+              "pointer": "/sources/0"
+            },
+            "original_source": null,
+            "qualification_ref": {
+              "tag": "present",
+              "location": {
+                "root": "validation_input",
+                "pointer": "/sources/0/qualification_ref"
+              },
+              "value": null
+            },
+            "qualification_occurrences": [
+              {
+                "qualification_index": 0,
+                "original_qualification": null,
+                "locator": {
+                  "root": "validation_input",
+                  "pointer": "/qualifications/0"
+                },
+                "root_ref": {
+                  "tag": "present",
+                  "location": {
+                    "root": "validation_input",
+                    "pointer": "/qualifications/0/root_ref"
+                  },
+                  "value": null
+                },
+                "root_occurrences": [
+                  {
+                    "root_index": 0,
+                    "original_root": null,
+                    "locator": {
+                      "root": "validation_input",
+                      "pointer": "/qualification_roots/0"
+                    },
+                    "checks": [
+                      {
+                        "kind": "qualification_root_ref",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/root_ref"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/8",
+                        "causes": []
+                      },
+                      {
+                        "kind": "root_owner",
+                        "result": "different",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/9",
+                        "causes": [
+                          {
+                            "kind": "owner_mismatch",
+                            "target": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/owner"
+                            },
+                            "left": {},
+                            "right": {},
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/9"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "root_owner",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/ref/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/9",
+                        "causes": []
+                      },
+                      {
+                        "kind": "root_subject_revision_scope",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/root_ref/identity"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/identity"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/0",
+                        "causes": []
+                      },
+                      {
+                        "kind": "root_subject_revision_scope",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/root_ref/revision"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/revision"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/1",
+                        "causes": []
+                      },
+                      {
+                        "kind": "root_subject_revision_scope",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/root_ref/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/2",
+                        "causes": []
+                      },
+                      {
+                        "kind": "root_subject_revision_scope",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/root_ref/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/3",
+                        "causes": []
+                      },
+                      {
+                        "kind": "root_subject_revision_scope",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualification_roots/0/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/4",
+                        "causes": []
+                      }
+                    ],
+                    "causes": []
+                  }
+                ],
+                "checks": [
+                  {
+                    "kind": "qualification_ref",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/qualification_ref"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/ref"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/3",
+                    "causes": []
+                  },
+                  {
+                    "kind": "qualification_subject",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/subject_ref"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/ref"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/4",
+                    "causes": []
+                  },
+                  {
+                    "kind": "qualification_digest",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/content_bytes"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/subject_sha256"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/5",
+                    "causes": []
+                  },
+                  {
+                    "kind": "qualification_digest",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/content_bytes"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/subject_ref/sha256"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/5",
+                    "causes": []
+                  },
+                  {
+                    "kind": "qualification_owner",
+                    "result": "different",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/owner"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/ref/owner"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/6",
+                    "causes": [
+                      {
+                        "kind": "owner_mismatch",
+                        "target": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/owner"
+                        },
+                        "left": {},
+                        "right": {},
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/6"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "qualification_owner",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/ref/owner"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/ref/owner"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/6",
+                    "causes": []
+                  },
+                  {
+                    "kind": "qualification_scope",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/scope"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/ref/scope"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/7",
+                    "causes": []
+                  },
+                  {
+                    "kind": "qualification_scope",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/qualifications/0/subject_ref/scope"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/ref/scope"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/7",
+                    "causes": []
+                  }
+                ],
+                "causes": []
+              }
+            ],
+            "checks": [
+              {
+                "kind": "content_bytes_body",
+                "result": "corresponding",
+                "left": {
+                  "tag": "original",
+                  "read": {
+                    "tag": "present",
+                    "location": {
+                      "root": "validation_input",
+                      "pointer": "/sources/0/content_bytes"
+                    },
+                    "value": null
+                  }
+                },
+                "right": {
+                  "tag": "original",
+                  "read": {
+                    "tag": "present",
+                    "location": {
+                      "root": "validation_input",
+                      "pointer": "/sources/0/body"
+                    },
+                    "value": null
+                  }
+                },
+                "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/0",
+                "causes": []
+              },
+              {
+                "kind": "source_digest",
+                "result": "corresponding",
+                "left": {
+                  "tag": "original",
+                  "read": {
+                    "tag": "present",
+                    "location": {
+                      "root": "validation_input",
+                      "pointer": "/sources/0/content_bytes"
+                    },
+                    "value": null
+                  }
+                },
+                "right": {
+                  "tag": "original",
+                  "read": {
+                    "tag": "present",
+                    "location": {
+                      "root": "validation_input",
+                      "pointer": "/sources/0/ref/sha256"
+                    },
+                    "value": null
+                  }
+                },
+                "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/1",
+                "causes": []
+              },
+              {
+                "kind": "source_role",
+                "result": "corresponding",
+                "left": {
+                  "tag": "original",
+                  "read": {
+                    "tag": "present",
+                    "location": {
+                      "root": "validation_input",
+                      "pointer": "/sources/0/role"
+                    },
+                    "value": null
+                  }
+                },
+                "right": {
+                  "tag": "normative_literal",
+                  "value": "semantic_source",
+                  "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/2"
+                },
+                "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/2",
+                "causes": []
+              }
+            ],
+            "usability": {
+              "tag": "unusable",
+              "causes": []
+            },
+            "causes": []
+          }
+        ],
+        "causes": []
+      }
+    },
+    "expected_native_return_patch": [
+      {
+        "op": "add",
+        "path": "/one_source_owner_mismatch_case/expected_native_return",
+        "value": {
+          "original_raw_input": {
+            "tag": "native",
+            "raw": {
+              "sources": [],
+              "qualifications": [],
+              "qualification_roots": []
+            }
+          },
+          "validated": {
+            "input": {
+              "sources": [],
+              "qualifications": [],
+              "qualification_roots": []
+            },
+            "input_issues": [
+              {
+                "locator": "/qualifications/0/owner",
+                "reason": "CORE Qualificationとsourceの原ownerが対応しない。",
+                "source_ref": null
+              },
+              {
+                "locator": "/qualification_roots/0/owner",
+                "reason": "COREの供給独立rootと資格又はsourceの原ownerが対応しない。",
+                "source_ref": null
+              }
+            ],
+            "unusable_source_refs": []
+          },
+          "source_observations": {
+            "sources_read": {
+              "tag": "present",
+              "location": {
+                "root": "validation_input",
+                "pointer": "/sources"
+              },
+              "value": null
+            },
+            "qualifications_read": {
+              "tag": "present",
+              "location": {
+                "root": "validation_input",
+                "pointer": "/qualifications"
+              },
+              "value": null
+            },
+            "roots_read": {
+              "tag": "present",
+              "location": {
+                "root": "validation_input",
+                "pointer": "/qualification_roots"
+              },
+              "value": null
+            },
+            "source_occurrences": [
+              {
+                "source_index": 0,
+                "locator": {
+                  "root": "validation_input",
+                  "pointer": "/sources/0"
+                },
+                "original_source": null,
+                "qualification_ref": {
+                  "tag": "present",
+                  "location": {
+                    "root": "validation_input",
+                    "pointer": "/sources/0/qualification_ref"
+                  },
+                  "value": null
+                },
+                "qualification_occurrences": [
+                  {
+                    "qualification_index": 0,
+                    "original_qualification": null,
+                    "locator": {
+                      "root": "validation_input",
+                      "pointer": "/qualifications/0"
+                    },
+                    "root_ref": {
+                      "tag": "present",
+                      "location": {
+                        "root": "validation_input",
+                        "pointer": "/qualifications/0/root_ref"
+                      },
+                      "value": null
+                    },
+                    "root_occurrences": [
+                      {
+                        "root_index": 0,
+                        "original_root": null,
+                        "locator": {
+                          "root": "validation_input",
+                          "pointer": "/qualification_roots/0"
+                        },
+                        "checks": [
+                          {
+                            "kind": "qualification_root_ref",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualifications/0/root_ref"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/8",
+                            "causes": []
+                          },
+                          {
+                            "kind": "root_owner",
+                            "result": "different",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/owner"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualifications/0/owner"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/9",
+                            "causes": [
+                              {
+                                "kind": "owner_mismatch",
+                                "target": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/owner"
+                                },
+                                "left": {},
+                                "right": {},
+                                "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/9"
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "root_owner",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/owner"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/sources/0/ref/owner"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/9",
+                            "causes": []
+                          },
+                          {
+                            "kind": "root_subject_revision_scope",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualifications/0/root_ref/identity"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/identity"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/0",
+                            "causes": []
+                          },
+                          {
+                            "kind": "root_subject_revision_scope",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualifications/0/root_ref/revision"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/revision"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/1",
+                            "causes": []
+                          },
+                          {
+                            "kind": "root_subject_revision_scope",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualifications/0/root_ref/scope"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/scope"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/2",
+                            "causes": []
+                          },
+                          {
+                            "kind": "root_subject_revision_scope",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualifications/0/root_ref/owner"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/owner"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/3",
+                            "causes": []
+                          },
+                          {
+                            "kind": "root_subject_revision_scope",
+                            "result": "corresponding",
+                            "left": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualifications/0/scope"
+                                },
+                                "value": null
+                              }
+                            },
+                            "right": {
+                              "tag": "original",
+                              "read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/qualification_roots/0/scope"
+                                },
+                                "value": null
+                              }
+                            },
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/4",
+                            "causes": []
+                          }
+                        ],
+                        "causes": []
+                      }
+                    ],
+                    "checks": [
+                      {
+                        "kind": "qualification_ref",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/qualification_ref"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/ref"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/3",
+                        "causes": []
+                      },
+                      {
+                        "kind": "qualification_subject",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/subject_ref"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/ref"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/4",
+                        "causes": []
+                      },
+                      {
+                        "kind": "qualification_digest",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/content_bytes"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/subject_sha256"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/5",
+                        "causes": []
+                      },
+                      {
+                        "kind": "qualification_digest",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/content_bytes"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/subject_ref/sha256"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/5",
+                        "causes": []
+                      },
+                      {
+                        "kind": "qualification_owner",
+                        "result": "different",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/ref/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/6",
+                        "causes": [
+                          {
+                            "kind": "owner_mismatch",
+                            "target": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/owner"
+                            },
+                            "left": {},
+                            "right": {},
+                            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/6"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "qualification_owner",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/ref/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/ref/owner"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/6",
+                        "causes": []
+                      },
+                      {
+                        "kind": "qualification_scope",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/ref/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/7",
+                        "causes": []
+                      },
+                      {
+                        "kind": "qualification_scope",
+                        "result": "corresponding",
+                        "left": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/qualifications/0/subject_ref/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "right": {
+                          "tag": "original",
+                          "read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/0/ref/scope"
+                            },
+                            "value": null
+                          }
+                        },
+                        "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/7",
+                        "causes": []
+                      }
+                    ],
+                    "causes": []
+                  }
+                ],
+                "checks": [
+                  {
+                    "kind": "content_bytes_body",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/content_bytes"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/body"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/0",
+                    "causes": []
+                  },
+                  {
+                    "kind": "source_digest",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/content_bytes"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/ref/sha256"
+                        },
+                        "value": null
+                      }
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/1",
+                    "causes": []
+                  },
+                  {
+                    "kind": "source_role",
+                    "result": "corresponding",
+                    "left": {
+                      "tag": "original",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/sources/0/role"
+                        },
+                        "value": null
+                      }
+                    },
+                    "right": {
+                      "tag": "normative_literal",
+                      "value": "semantic_source",
+                      "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/2"
+                    },
+                    "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/2",
+                    "causes": []
+                  }
+                ],
+                "usability": {
+                  "tag": "unusable",
+                  "causes": []
+                },
+                "causes": []
+              }
+            ],
+            "causes": []
+          }
+        }
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/original_raw_input/raw"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/validated/input"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/sources_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/qualifications_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualification_roots",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/roots_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/original_source"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/qualification_ref",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_ref/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/original_qualification"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/root_ref",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_ref/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualification_roots/0",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/original_root"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/content_bytes",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/checks/0/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/body",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/checks/0/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/content_bytes",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/checks/1/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/ref/sha256",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/checks/1/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/role",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/checks/2/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/qualification_ref",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/0/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/ref",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/0/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/subject_ref",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/1/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/ref",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/1/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/content_bytes",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/2/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/subject_sha256",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/2/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/content_bytes",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/3/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/subject_ref/sha256",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/3/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/owner",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/ref/owner",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/ref/owner",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/5/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/ref/owner",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/5/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/scope",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/6/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/ref/scope",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/6/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/subject_ref/scope",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/7/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/ref/scope",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/7/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/root_ref",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/0/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualification_roots/0",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/0/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualification_roots/0/owner",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/owner",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualification_roots/0/owner",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/2/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/ref/owner",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/2/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/root_ref/identity",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/3/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualification_roots/0/identity",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/3/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/root_ref/revision",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/4/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualification_roots/0/revision",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/4/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/root_ref/scope",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/5/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualification_roots/0/scope",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/5/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/root_ref/owner",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/6/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualification_roots/0/owner",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/6/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualifications/0/scope",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/7/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/qualification_roots/0/scope",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/7/right/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/left/read/location",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/causes/0/target"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/left",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/causes/0/left"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/right",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/causes/0/right"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/rule_pointer",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/causes/0/rule_pointer"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1/left/read/location",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1/causes/0/target"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1/left",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1/causes/0/left"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1/right",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1/causes/0/right"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1/rule_pointer",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1/causes/0/rule_pointer"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1/causes/0",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/causes/0",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/causes/0",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/causes/0",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/causes/1",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/causes/0",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/causes/1",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/causes/0",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/usability/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/causes/1",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/usability/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/causes/0/target/pointer",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/validated/input_issues/0/locator"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/checks/4/causes/0/left",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/validated/input_issues/0/source_ref"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/expected_native_return/source_observations/source_occurrences/0/qualification_occurrences/0/root_occurrences/0/checks/1/causes/0/target/pointer",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/validated/input_issues/1/locator"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/ref",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/validated/input_issues/1/source_ref"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/ref",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/validated/input_issues/0/source_ref"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_owner_mismatch_case/input/sources/0/ref",
+        "path": "/one_source_owner_mismatch_case/expected_native_return/validated/unusable_source_refs/-"
+      }
+    ],
+    "asserted_output_paths": [
+      "/original_raw_input",
+      "/validated",
+      "/source_observations"
+    ],
+    "expected_native_return_rule_ja": "全returnはseedへexpected patchを順に適用した値。Qualification owner check[4]とroot owner check[1]はknown differentで各SourceCheck causesを一件持つ。各Cause target=left original Read location、kind=owner_mismatch、left/right/rule_pointerは当該SourceCheckからcopy。原因階層はroot→qualification→source→globalへL5所定順でcopyし、SourceUsability.unusable.causesはSourceObservation causes whole。fn0 public InputIssueはqualification check[4]、root check[1]の順に一件ずつ。reasonはcheck_kind_table固定literal、locatorはCause.target.pointer、source_refはsource0.ref。unusable_source_refs_writerによりsource0.refを一度収載。",
+    "input_mutation_and_expected_changes_ja": "変更はQualification.ownerだけ。source checksは3 corresponding、qualification checksは[corresponding, corresponding, corresponding, corresponding, different, corresponding, corresponding, corresponding]、root checksは[corresponding,different,corresponding,corresponding,corresponding,corresponding,corresponding,corresponding]。L5 ruleからqualification check[4]及びroot check[1]のcauseが各1件生じる。全raw node・Read payloadはcopy保持。",
+    "not_asserted_or_not_exercised_ja": [
+      "実fn0や実qualification/trust/custody観測",
+      "他source occurrenceやRef反復、unestablished/not_applicable枝、body/digest/shape failure",
+      "F05/caller返却、意味評価、全writer分岐、製品test/CI"
+    ],
+    "execution_state": "not_executed_source_first_authored_literal"
+  },
+  "f05_explicit_skip_binding_absent_full_return_oracle":     {
+    "id": "HARNESS-L8-009-F05-EXPLICIT-SKIP-BINDING-ABSENT-FULL-RETURN",
+    "status": "source_first_synthetic_full_native_return_candidate_not_executed",
+    "purpose_ja": "空source collectionの既存ValidationDetailedReturnをrequest.validationに保持し、binding absentと二producerの明示skipを組み合わせる。Context/headerを別々に形成し、F05DetailedReturnの5 member全leafと原因伝播順を固定する。",
+    "source_basis": [
+      {
+        "role": "L4 F05 caller入力と明示skip境界",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "file_sha256": "4a4e8b68f5096198d1809b850f552c6412af62f60bc16bffd60710880233f888",
+        "pointers": [
+          "/f05_validation_material_call_contract/logical_ports/f05_detail",
+          "/f05_validation_material_call_contract/logical_ports/f05_detail/predecessor_boundary",
+          "/f05_validation_material_call_contract/actual_caller_trace/1"
+        ]
+      },
+      {
+        "role": "L5 F05 types・Context/header・Cause propagation writers",
+        "kind": "current_candidate_content_binding_without_git_revision",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "file_sha256": "befb22e6f355ad0c65596443fe256c973d66e5c75c02fa9e747ee5e13c2ff8d3",
+        "pointers": [
+          "/f05_detail_contract/types/F05DetailedRequest",
+          "/f05_detail_contract/types/ActualPredecessor",
+          "/f05_detail_contract/types/SkipCause",
+          "/f05_detail_contract/types/ContextFormation",
+          "/f05_detail_contract/types/HeaderFormation",
+          "/f05_detail_contract/types/F05DetailedReturn",
+          "/f05_detail_contract/types/OwnerMaterial",
+          "/f05_detail_contract/context_header_cause_contract",
+          "/f05_detail_contract/leaf_writer_ledger/7"
+        ]
+      },
+      {
+        "role": "同一L8文書の空collection full ValidationDetailedReturn literal",
+        "kind": "same_publication_fixed_pointer",
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/validation_detail_native_full_return_oracle/expected_native_return",
+        "scope_ja": "request.validationへの原入力copyだけに使う。F05出力期待や実caller観測へ転用しない。"
+      }
+    ],
+    "authority_and_fixture_boundary_ja": "二not_called predecessorとbinding absenceはこのcase用source-handのtyped input前提。実callerが実際にskipした観測、実same-call又はproducer実行とは称さない。skip inputには各callerの明示skip causeとAbsent binding Readを置く。入力validationは既存空source full return literalを無変換copy。後段semantic評価やComparisonを生成しない。",
+    "source_hand_precondition": {
+      "kind": "case_authored_explicit_caller_skip_assumption",
+      "description_ja": "実bindingがないという原入力事実に基づき、両指定producerをcallerが明示skipした、という合成request premise。未観測call/returnをnot_calledに変換していない。",
+      "producers": [
+        "compare_applicability",
+        "compare_kind_obligation_trace"
+      ],
+      "binding_read": "{tag:absent, requested:{root:validation_input,pointer:/binding}, parent:{root:validation_input,pointer:empty}, parent_value=request.validation.validated.input}",
+      "not_runtime_evidence": true
+    },
+    "input_recipe": {
+      "recipe_kind": "fixed_standard_rfc6902_patch_over_same_publication_L8_JSON_root",
+      "source_pointer_for_validation": "/validation_detail_native_full_return_oracle/expected_native_return",
+      "target_request_pointer": "/f05_explicit_skip_binding_absent_case/request",
+      "patch": [
+        {
+          "op": "add",
+          "path": "/f05_explicit_skip_binding_absent_case",
+          "value": {
+            "request": {
+              "validation": null,
+              "compare_applicability": {
+                "tag": "not_called",
+                "producer": "compare_applicability",
+                "skip": {
+                  "context_operands": [
+                    {
+                      "name": "validated",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "f05_request",
+                          "pointer": "/validation/validated"
+                        },
+                        "value": null
+                      }
+                    }
+                  ],
+                  "header_binding": {
+                    "tag": "absent",
+                    "requested": {
+                      "root": "validation_input",
+                      "pointer": "/binding"
+                    },
+                    "parent": {
+                      "root": "validation_input",
+                      "pointer": ""
+                    },
+                    "parent_value": null
+                  },
+                  "causes": [
+                    {
+                      "kind": "header_unformed",
+                      "target": {
+                        "root": "validation_input",
+                        "pointer": "/binding"
+                      },
+                      "left": {
+                        "tag": "original",
+                        "read": {
+                          "tag": "absent",
+                          "requested": {
+                            "root": "validation_input",
+                            "pointer": "/binding"
+                          },
+                          "parent": {
+                            "root": "validation_input",
+                            "pointer": ""
+                          },
+                          "parent_value": null
+                        }
+                      },
+                      "right": {
+                        "tag": "normative_literal",
+                        "value": "CoreApplicationBinding object",
+                        "rule_pointer": "/f05_detail_contract/context_header_cause_contract/header_read_and_patterns/1/right_literal"
+                      },
+                      "rule_pointer": "/f05_detail_contract/context_header_cause_contract/header_read_and_patterns/1"
+                    }
+                  ]
+                }
+              },
+              "compare_kind_obligation_trace": {
+                "tag": "not_called",
+                "producer": "compare_kind_obligation_trace",
+                "skip": {
+                  "context_operands": [
+                    {
+                      "name": "validated",
+                      "read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "f05_request",
+                          "pointer": "/validation/validated"
+                        },
+                        "value": null
+                      }
+                    }
+                  ],
+                  "header_binding": {
+                    "tag": "absent",
+                    "requested": {
+                      "root": "validation_input",
+                      "pointer": "/binding"
+                    },
+                    "parent": {
+                      "root": "validation_input",
+                      "pointer": ""
+                    },
+                    "parent_value": null
+                  },
+                  "causes": [
+                    {
+                      "kind": "header_unformed",
+                      "target": {
+                        "root": "validation_input",
+                        "pointer": "/binding"
+                      },
+                      "left": {
+                        "tag": "original",
+                        "read": {
+                          "tag": "absent",
+                          "requested": {
+                            "root": "validation_input",
+                            "pointer": "/binding"
+                          },
+                          "parent": {
+                            "root": "validation_input",
+                            "pointer": ""
+                          },
+                          "parent_value": null
+                        }
+                      },
+                      "right": {
+                        "tag": "normative_literal",
+                        "value": "CoreApplicationBinding object",
+                        "rule_pointer": "/f05_detail_contract/context_header_cause_contract/header_read_and_patterns/1/right_literal"
+                      },
+                      "rule_pointer": "/f05_detail_contract/context_header_cause_contract/header_read_and_patterns/1"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "op": "copy",
+          "from": "/validation_detail_native_full_return_oracle/expected_native_return",
+          "path": "/f05_explicit_skip_binding_absent_case/request/validation"
+        },
+        {
+          "op": "copy",
+          "from": "/f05_explicit_skip_binding_absent_case/request/validation/validated",
+          "path": "/f05_explicit_skip_binding_absent_case/request/compare_applicability/skip/context_operands/0/read/value"
+        },
+        {
+          "op": "copy",
+          "from": "/f05_explicit_skip_binding_absent_case/request/validation/validated/input",
+          "path": "/f05_explicit_skip_binding_absent_case/request/compare_applicability/skip/header_binding/parent_value"
+        },
+        {
+          "op": "copy",
+          "from": "/f05_explicit_skip_binding_absent_case/request/validation/validated/input",
+          "path": "/f05_explicit_skip_binding_absent_case/request/compare_applicability/skip/causes/0/left/read/parent_value"
+        },
+        {
+          "op": "copy",
+          "from": "/f05_explicit_skip_binding_absent_case/request/validation/validated",
+          "path": "/f05_explicit_skip_binding_absent_case/request/compare_kind_obligation_trace/skip/context_operands/0/read/value"
+        },
+        {
+          "op": "copy",
+          "from": "/f05_explicit_skip_binding_absent_case/request/validation/validated/input",
+          "path": "/f05_explicit_skip_binding_absent_case/request/compare_kind_obligation_trace/skip/header_binding/parent_value"
+        },
+        {
+          "op": "copy",
+          "from": "/f05_explicit_skip_binding_absent_case/request/validation/validated/input",
+          "path": "/f05_explicit_skip_binding_absent_case/request/compare_kind_obligation_trace/skip/causes/0/left/read/parent_value"
+        }
+      ],
+      "input_materialization_note_ja": "L8の固定empty source ValidationDetailedReturnをrequest.validationへcopyし、各explicit skipのvalidated NamedReadとAbsent.binding.parent_value/Cause.leftをその同inputからcopyする。"
+    },
+    "expected_return_seed": {
+      "original_request": null,
+      "context_formation": {
+        "original_operands": [
+          {
+            "name": "validated",
+            "read": {
+              "tag": "present",
+              "location": {
+                "root": "f05_request",
+                "pointer": "/validation/validated"
+              },
+              "value": null
+            }
+          },
+          {
+            "name": "compare_applicability",
+            "read": {
+              "tag": "present",
+              "location": {
+                "root": "f05_request",
+                "pointer": "/compare_applicability"
+              },
+              "value": null
+            }
+          },
+          {
+            "name": "compare_kind_obligation_trace",
+            "read": {
+              "tag": "present",
+              "location": {
+                "root": "f05_request",
+                "pointer": "/compare_kind_obligation_trace"
+              },
+              "value": null
+            }
+          }
+        ],
+        "result": {
+          "tag": "unformed",
+          "causes": [
+            {
+              "kind": "context_unformed",
+              "target": {
+                "root": "f05_request",
+                "pointer": "/compare_applicability"
+              },
+              "left": {
+                "tag": "original",
+                "read": {
+                  "tag": "present",
+                  "location": {
+                    "root": "f05_request",
+                    "pointer": "/compare_applicability"
+                  },
+                  "value": null
+                }
+              },
+              "right": {
+                "tag": "normative_literal",
+                "value": "returned",
+                "rule_pointer": "/f05_detail_contract/context_header_cause_contract/context_patterns/0/right_literal"
+              },
+              "rule_pointer": "/f05_detail_contract/context_header_cause_contract/context_patterns/0"
+            },
+            {
+              "kind": "context_unformed",
+              "target": {
+                "root": "f05_request",
+                "pointer": "/compare_kind_obligation_trace"
+              },
+              "left": {
+                "tag": "original",
+                "read": {
+                  "tag": "present",
+                  "location": {
+                    "root": "f05_request",
+                    "pointer": "/compare_kind_obligation_trace"
+                  },
+                  "value": null
+                }
+              },
+              "right": {
+                "tag": "normative_literal",
+                "value": "returned",
+                "rule_pointer": "/f05_detail_contract/context_header_cause_contract/context_patterns/0/right_literal"
+              },
+              "rule_pointer": "/f05_detail_contract/context_header_cause_contract/context_patterns/0"
+            }
+          ]
+        }
+      },
+      "header_formation": {
+        "binding_read": {
+          "tag": "absent",
+          "requested": {
+            "root": "validation_input",
+            "pointer": "/binding"
+          },
+          "parent": {
+            "root": "validation_input",
+            "pointer": ""
+          },
+          "parent_value": null
+        },
+        "result": {
+          "tag": "unformed",
+          "causes": [
+            {
+              "kind": "header_unformed",
+              "target": {
+                "root": "validation_input",
+                "pointer": "/binding"
+              },
+              "left": {
+                "tag": "original",
+                "read": {
+                  "tag": "absent",
+                  "requested": {
+                    "root": "validation_input",
+                    "pointer": "/binding"
+                  },
+                  "parent": {
+                    "root": "validation_input",
+                    "pointer": ""
+                  },
+                  "parent_value": null
+                }
+              },
+              "right": {
+                "tag": "normative_literal",
+                "value": "CoreApplicationBinding object",
+                "rule_pointer": "/f05_detail_contract/context_header_cause_contract/header_read_and_patterns/1/right_literal"
+              },
+              "rule_pointer": "/f05_detail_contract/context_header_cause_contract/header_read_and_patterns/1"
+            }
+          ]
+        }
+      },
+      "comparison": {
+        "tag": "unformed",
+        "causes": []
+      },
+      "owner_material": {
+        "tag": "raw_only",
+        "original_request": null,
+        "causes": []
+      }
+    },
+    "expected_return_patch": [
+      {
+        "op": "add",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return",
+        "value": {
+          "original_request": null,
+          "context_formation": {
+            "original_operands": [
+              {
+                "name": "validated",
+                "read": {
+                  "tag": "present",
+                  "location": {
+                    "root": "f05_request",
+                    "pointer": "/validation/validated"
+                  },
+                  "value": null
+                }
+              },
+              {
+                "name": "compare_applicability",
+                "read": {
+                  "tag": "present",
+                  "location": {
+                    "root": "f05_request",
+                    "pointer": "/compare_applicability"
+                  },
+                  "value": null
+                }
+              },
+              {
+                "name": "compare_kind_obligation_trace",
+                "read": {
+                  "tag": "present",
+                  "location": {
+                    "root": "f05_request",
+                    "pointer": "/compare_kind_obligation_trace"
+                  },
+                  "value": null
+                }
+              }
+            ],
+            "result": {
+              "tag": "unformed",
+              "causes": [
+                {
+                  "kind": "context_unformed",
+                  "target": {
+                    "root": "f05_request",
+                    "pointer": "/compare_applicability"
+                  },
+                  "left": {
+                    "tag": "original",
+                    "read": {
+                      "tag": "present",
+                      "location": {
+                        "root": "f05_request",
+                        "pointer": "/compare_applicability"
+                      },
+                      "value": null
+                    }
+                  },
+                  "right": {
+                    "tag": "normative_literal",
+                    "value": "returned",
+                    "rule_pointer": "/f05_detail_contract/context_header_cause_contract/context_patterns/0/right_literal"
+                  },
+                  "rule_pointer": "/f05_detail_contract/context_header_cause_contract/context_patterns/0"
+                },
+                {
+                  "kind": "context_unformed",
+                  "target": {
+                    "root": "f05_request",
+                    "pointer": "/compare_kind_obligation_trace"
+                  },
+                  "left": {
+                    "tag": "original",
+                    "read": {
+                      "tag": "present",
+                      "location": {
+                        "root": "f05_request",
+                        "pointer": "/compare_kind_obligation_trace"
+                      },
+                      "value": null
+                    }
+                  },
+                  "right": {
+                    "tag": "normative_literal",
+                    "value": "returned",
+                    "rule_pointer": "/f05_detail_contract/context_header_cause_contract/context_patterns/0/right_literal"
+                  },
+                  "rule_pointer": "/f05_detail_contract/context_header_cause_contract/context_patterns/0"
+                }
+              ]
+            }
+          },
+          "header_formation": {
+            "binding_read": {
+              "tag": "absent",
+              "requested": {
+                "root": "validation_input",
+                "pointer": "/binding"
+              },
+              "parent": {
+                "root": "validation_input",
+                "pointer": ""
+              },
+              "parent_value": null
+            },
+            "result": {
+              "tag": "unformed",
+              "causes": [
+                {
+                  "kind": "header_unformed",
+                  "target": {
+                    "root": "validation_input",
+                    "pointer": "/binding"
+                  },
+                  "left": {
+                    "tag": "original",
+                    "read": {
+                      "tag": "absent",
+                      "requested": {
+                        "root": "validation_input",
+                        "pointer": "/binding"
+                      },
+                      "parent": {
+                        "root": "validation_input",
+                        "pointer": ""
+                      },
+                      "parent_value": null
+                    }
+                  },
+                  "right": {
+                    "tag": "normative_literal",
+                    "value": "CoreApplicationBinding object",
+                    "rule_pointer": "/f05_detail_contract/context_header_cause_contract/header_read_and_patterns/1/right_literal"
+                  },
+                  "rule_pointer": "/f05_detail_contract/context_header_cause_contract/header_read_and_patterns/1"
+                }
+              ]
+            }
+          },
+          "comparison": {
+            "tag": "unformed",
+            "causes": []
+          },
+          "owner_material": {
+            "tag": "raw_only",
+            "original_request": null,
+            "causes": []
+          }
+        }
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/request",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/original_request"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/request",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/owner_material/original_request"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/request/validation/validated",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/context_formation/original_operands/0/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/request/compare_applicability",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/context_formation/original_operands/1/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/request/compare_kind_obligation_trace",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/context_formation/original_operands/2/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/request/compare_applicability",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/context_formation/result/causes/0/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/expected_return/context_formation/result/causes/0",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/comparison/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/expected_return/context_formation/result/causes/0",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/owner_material/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/request/compare_kind_obligation_trace",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/context_formation/result/causes/1/left/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/expected_return/context_formation/result/causes/1",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/comparison/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/expected_return/context_formation/result/causes/1",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/owner_material/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/request/validation/validated/input",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/header_formation/binding_read/parent_value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/request/validation/validated/input",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/header_formation/result/causes/0/left/read/parent_value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/expected_return/header_formation/result/causes/0",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/comparison/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_explicit_skip_binding_absent_case/expected_return/header_formation/result/causes/0",
+        "path": "/f05_explicit_skip_binding_absent_case/expected_return/owner_material/causes/-"
+      }
+    ],
+    "asserted_output_paths": [
+      "/original_request",
+      "/context_formation",
+      "/header_formation",
+      "/comparison",
+      "/owner_material"
+    ],
+    "expected_return_rule_ja": "expected patch適用後の全5 memberを完全比較する。original_requestはF05 request全値copy、owner_material.raw_only.original_requestも同値whole copy。Context original_operandsはL5固定順 validated/compare_applicability/compare_kind_obligation_traceの3 NamedReadで、全Read valueは実request node copy。各not_called memberからcontext_patterns/0 Causeを依存順2件、header absent Readからheader_read_and_patterns/1 Causeを一件作る。header parent_valueはrequest.validation.validated.input全object。comparison及びraw_only causesはcontext原因全列→header原因の順。right normative literalはcontext_patterns/0/right_literal=`returned`とheader_read_and_patterns/1/right_literal=`CoreApplicationBinding object`。Cause.rule_pointerはそれぞれ該当pattern entry、CheckOperand.right.rule_pointerはそのright_literal node。",
+    "not_asserted_or_not_exercised_ja": [
+      "二producerの実call/skip実運用証拠、実same-call/caller、実fn0 decoder",
+      "returned predecessor枝、known producer mismatch、header formed、Context formed、Comparison formed",
+      "F05 evaluated owner material、field/gap/obligation semantic result、実trust/資格、全native writer、製品test/CI"
+    ],
+    "execution_state": "not_executed_source_first_authored_literal"
   }
 }
