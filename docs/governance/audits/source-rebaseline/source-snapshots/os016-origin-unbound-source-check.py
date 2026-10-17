@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""有限OS016 Unbound資料の再構成・宣言計算監査。製品runnerではない。"""
+"""有限OS016の既存Unbound資料と追加Bound・pair-not-ready資料の再構成・宣言計算監査。製品runnerではない。"""
 from __future__ import annotations
 
 import argparse
@@ -16,6 +16,23 @@ L8_PATH = "docs/helix-os/L8-unit-verification/portfolio-state-trace.json"
 EXT_POINTER = "/os015_origin_caller_verification/unbound_source_derived_extension"
 PROGRAM_SHA256 = "b1d1d386842f7cf54d57aebc04f107c502c1b52398d142d6ebf6a51b3952e6b8"
 ENTRYPOINT = "evaluate_os015_origin_call"
+BOUND_NOT_READY_L4_POINTERS = (
+    "/os015_origin_call_contract/input_port/dispatch_precedence/1/when_bound_and_pair_not_ready",
+    "/os015_origin_call_contract/input_port/raw_typed_pair_rule/not_ready",
+    "/os015_origin_call_contract/projection/not_produced_with_bound_locator",
+    "/os015_origin_call_contract/local_project_axes/capture_roots",
+    "/os015_origin_call_contract/local_project_axes/comparison",
+    "/os015_origin_call_contract/return_port",
+)
+ADDITIONAL_CASE_IDS = (
+    "U03-SOURCE-EMPTY",
+    "U04-SOURCE-TYPE-OUTSIDE",
+    "U05-ORIGIN-REQUIREMENT-REVISION-NULL",
+    "U09-RAW-ABSENT",
+    "U28-RAW-MEMBER-MISSING-TYPED-NULL",
+    "U29B-RAW-NULL-TYPED-MEMBER-MISSING-JSONVALUE",
+    "U30-ARRAY-ORDER-DIFF",
+)
 ALLOWED_TOPLEVEL = {
     "deep_copy", "expand_case", "route_failure", "compare_node_material",
     "evaluate_portfolio", "evaluate_portfolio_selected",
@@ -229,13 +246,48 @@ def main():
         raise AssertionError("base input canonical hash mismatch")
     if canonical_sha256(base["expected_whole"]) != base["expected_whole_canonical_sha256"]:
         raise AssertionError("base whole canonical hash mismatch")
-    if len(extension["case_patch_set"]) != 21:
-        raise AssertionError("fixed OS016 scope requires 21 cases")
+    if extension["case_count"] != 28 or len(extension["case_patch_set"]) != 28:
+        raise AssertionError("fixed OS016 scope requires 28 cases")
+    if tuple(row["case_id"] for row in extension["case_patch_set"][21:]) != ADDITIONAL_CASE_IDS:
+        raise AssertionError("fixed seven-case extension order/identity differs")
 
     results = []
     for index, row in enumerate(extension["case_patch_set"]):
-        input_value = apply_rfc6902(base["input"], row["input_patch"])
-        expected = apply_rfc6902(base["expected_whole"], row["expected_whole_patch"])
+        input_origin = row.get("input_origin", {})
+        expected_basis = row.get("expected_basis", {})
+        input_base = base["input"]
+        expected_base = base["expected_whole"]
+        input_base_pointer = input_origin.get("reconstruction_base_pointer")
+        expected_base_pointer = expected_basis.get("expected_base_reconstruction_pointer")
+        if index < 21 and (input_base_pointer is not None or expected_base_pointer is not None):
+            raise AssertionError(f"legacy row unexpectedly uses alternate base: {row['case_id']}")
+        if index >= 21:
+            if tuple(expected_basis.get("l4_bound_not_ready_requirement_pointers", ())) != BOUND_NOT_READY_L4_POINTERS:
+                raise AssertionError(f"Bound/pair-not-ready L4 basis differs: {row['case_id']}")
+            if expected_basis.get("l4_source_file_path") != L4_PATH:
+                raise AssertionError(f"L4 source path differs: {row['case_id']}")
+            if expected_basis.get("l4_source_file_sha256") != file_sha256(root / L4_PATH):
+                raise AssertionError(f"L4 source hash differs: {row['case_id']}")
+            for pointer in BOUND_NOT_READY_L4_POINTERS:
+                resolve_pointer(l4, pointer)
+            if input_base_pointer != "/os015_origin_caller_verification/cases/0/input":
+                raise AssertionError(f"alternate input base pointer differs: {row['case_id']}")
+            if input_origin.get("legacy_l8_input_pointer") != input_base_pointer:
+                raise AssertionError(f"input provenance/base pointer differs: {row['case_id']}")
+            if expected_base_pointer != "/os015_origin_caller_verification/cases/6/expected_whole":
+                raise AssertionError(f"alternate expected base pointer differs: {row['case_id']}")
+            if expected_basis.get("legacy_l8_expected_whole_pointer") != expected_base_pointer:
+                raise AssertionError(f"expected provenance/base pointer differs: {row['case_id']}")
+        if input_base_pointer is not None:
+            input_base = resolve_pointer(l8, input_base_pointer)
+            if canonical_sha256(input_base) != input_origin.get("legacy_l8_input_canonical_sha256"):
+                raise AssertionError(f"alternate L8 input base hash mismatch: {row['case_id']}")
+        if expected_base_pointer is not None:
+            expected_base = resolve_pointer(l8, expected_base_pointer)
+            if canonical_sha256(expected_base) != expected_basis.get("legacy_l8_expected_whole_canonical_sha256"):
+                raise AssertionError(f"alternate L8 expected base hash mismatch: {row['case_id']}")
+        input_value = apply_rfc6902(input_base, row["input_patch"])
+        expected = apply_rfc6902(expected_base, row["expected_whole_patch"])
         input_hash = canonical_sha256(input_value)
         expected_hash = canonical_sha256(expected)
         if input_hash != row["input_canonical_sha256"]:
