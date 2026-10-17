@@ -64543,7 +64543,7 @@
         "failure_observation": "該当証拠/由来不足と復旧候補を残し、Reverse実行成功を生成しない。",
         "execution_state": "not_executed"
       },
-      "basic_oracle_sha256": "70de51454fcab2b2e022eeee5d5cfd73fefd37c0c76d567bd8c798b1203e355e",
+      "basic_oracle_sha256": "bf9ad931760cb74059f9de9783ef6136e6d7e71a533a1dfd818990f234feeca0",
       "fixture_state": "draft_basic_typed_qualification_and_valley_content_pending_review",
       "comparison_rule": "原sourceの具体内容とtyped部分結果を照合。署名/digest/link存在だけで技術品質や人間受容を生成しない。",
       "cases": [
