@@ -1117,6 +1117,261 @@
           ]
         }
       }
+    },
+    "N01DescriptorRevisionSourceEnvelope": {
+      "kind": "record",
+      "required": [
+        "call_ref",
+        "source_ref",
+        "source_locator",
+        "descriptor_record",
+        "descriptor_identity",
+        "descriptor_revision",
+        "scope"
+      ],
+      "fields": {
+        "call_ref": "JsonField",
+        "source_ref": "JsonField",
+        "source_locator": "JsonField",
+        "descriptor_record": "DescriptorRecord",
+        "descriptor_identity": "JsonField",
+        "descriptor_revision": "JsonField",
+        "scope": "JsonField"
+      },
+      "meaning": "DescriptorRecord原値を変形せず、そこにないdescriptor_revisionを同じsource境界の別Fieldとして保持する。source ref/locatorの提示は実資格を意味しない。"
+    },
+    "N01RangeTargetSource": {
+      "kind": "record",
+      "required": [
+        "call_ref",
+        "source_ref",
+        "source_locator",
+        "reference_token",
+        "identity",
+        "revision",
+        "scope"
+      ],
+      "fields": {
+        "call_ref": "JsonField",
+        "source_ref": "JsonField",
+        "source_locator": "JsonField",
+        "reference_token": "JsonField",
+        "identity": "JsonField",
+        "revision": "JsonField",
+        "scope": "JsonField"
+      },
+      "meaning": "HARNESS ownerから供給されるrange参照と明示target tuple。reference_tokenはopaque JSONでありrange identity/revisionへ変換しない。実source qualificationではない。source_ref/locatorはprovenanceとして原値を出力へ保持する。"
+    },
+    "N01StateTargetSource": {
+      "kind": "record",
+      "required": [
+        "call_ref",
+        "source_ref",
+        "source_locator",
+        "identity",
+        "revision",
+        "scope",
+        "knowledge_identity",
+        "knowledge_revision",
+        "observed_state"
+      ],
+      "fields": {
+        "call_ref": "JsonField",
+        "source_ref": "JsonField",
+        "source_locator": "JsonField",
+        "identity": "JsonField",
+        "revision": "JsonField",
+        "scope": "JsonField",
+        "knowledge_identity": "JsonField",
+        "knowledge_revision": "JsonField",
+        "observed_state": "JsonField"
+      },
+      "meaning": "BRAIN008 ownerから供給されるstate applicability target。identity/revision/scope/knowledge identity/revision/observed_stateは別個の原Fieldとして保持し、tokenへのcastやsource資格の生成をしない。"
+    },
+    "N01F01CallEvidence": {
+      "kind": "record",
+      "required": [
+        "function_ref",
+        "call_ref",
+        "input",
+        "returned"
+      ],
+      "fields": {
+        "function_ref": "HELIXBRAIN-L5-028-F01",
+        "call_ref": "JsonField",
+        "input": "ImportedF01Input",
+        "returned": "ImportedF01Output"
+      },
+      "meaning": "既存F01のcaller invocation envelope。function_refは正確にHELIXBRAIN-L5-028-F01を指し、inputとcomplete returnedは同一invocationからそのまま供給する。compositionは再実行も結果再計算もしない。call_ref一致はcallerが保証する同call indexであり、独立の実資格や実行証明ではない。"
+    },
+    "N01F02CallEvidence": {
+      "kind": "record",
+      "required": [
+        "function_ref",
+        "call_ref",
+        "input",
+        "returned"
+      ],
+      "fields": {
+        "function_ref": "HELIXBRAIN-L5-028-F02",
+        "call_ref": "JsonField",
+        "input": "ImportedF02Input",
+        "returned": "ImportedF02Output"
+      },
+      "meaning": "既存F02のcaller invocation envelope。function_refは正確にHELIXBRAIN-L5-028-F02を指し、inputとcomplete returnedは同一invocationからそのまま供給する。compositionは再実行も結果再計算もしない。call_ref一致はcallerが保証する同call indexであり、独立の実資格や実行証明ではない。"
+    },
+    "N01OwnerApplicationInput": {
+      "kind": "record",
+      "required": [
+        "n01_call_ref",
+        "n01_input",
+        "f01_call",
+        "f02_call",
+        "descriptor_source",
+        "range_target",
+        "state_target"
+      ],
+      "fields": {
+        "n01_call_ref": "JsonField",
+        "n01_input": "ImportedN01Input",
+        "f01_call": "N01F01CallEvidence",
+        "f02_call": "N01F02CallEvidence",
+        "descriptor_source": "N01DescriptorRevisionSourceEnvelope",
+        "range_target": "N01RangeTargetSource",
+        "state_target": "N01StateTargetSource"
+      },
+      "meaning": "一つの親application callの入力。呼出しcorrelation Refはauthority tokenではない。"
+    },
+    "N01OwnerTargetJoinResults": {
+      "kind": "record",
+      "required": [
+        "call_ref",
+        "descriptor_source_ref",
+        "descriptor_locator",
+        "descriptor_source_address_state",
+        "descriptor_identity",
+        "descriptor_revision",
+        "descriptor_scope",
+        "descriptor_record",
+        "knowledge_identity",
+        "knowledge_revision",
+        "knowledge_version_state",
+        "descriptor_kind_contract_artifact",
+        "dependency_identity_version_pairs",
+        "verification_scope",
+        "range_reference_token",
+        "range_identity_revision_scope",
+        "range_source_address_state",
+        "state_identity_revision_scope_observed_state",
+        "state_knowledge_target",
+        "state_source_address_state"
+      ],
+      "fields": {
+        "call_ref": "N01CompositeJoinResult",
+        "descriptor_source_ref": "JsonField",
+        "descriptor_locator": "JsonField",
+        "descriptor_source_address_state": "N01SourceAddressState",
+        "descriptor_identity": "N01CompositeJoinResult",
+        "descriptor_revision": "N01CompositeJoinResult",
+        "descriptor_scope": "N01CompositeJoinResult",
+        "descriptor_record": "N01CompositeJoinResult",
+        "knowledge_identity": "N01CompositeJoinResult",
+        "knowledge_revision": "N01CompositeJoinResult",
+        "knowledge_version_state": "N01CompositeJoinResult",
+        "descriptor_kind_contract_artifact": "N01CompositeJoinResult",
+        "dependency_identity_version_pairs": "N01DependencyJoinResult",
+        "verification_scope": "N01CompositeJoinResult",
+        "range_reference_token": "N01CompositeJoinResult",
+        "range_identity_revision_scope": "N01CompositeJoinResult",
+        "range_source_address_state": "N01SourceAddressState",
+        "state_identity_revision_scope_observed_state": "N01CompositeJoinResult",
+        "state_knowledge_target": "N01CompositeJoinResult",
+        "state_source_address_state": "N01SourceAddressState"
+      },
+      "meaning": "全fieldはalgorithm step 4-10の明示operand mappingから構成。descriptor source_ref/locatorはraw JsonFieldでechoし、source-address stateは有無だけを示す。source-address stateは資格ではない。provenance fieldsを適用性比較結果に偽装しない。"
+    },
+    "N01OwnerApplicationResult": {
+      "kind": "record",
+      "required": [
+        "n01_call_ref",
+        "n01_input",
+        "n01_return",
+        "f01_call",
+        "f02_call",
+        "descriptor_source",
+        "range_target",
+        "state_target",
+        "target_join_results",
+        "owner_contract_result",
+        "evidence_limit"
+      ],
+      "fields": {
+        "n01_call_ref": "JsonField",
+        "n01_input": "ImportedN01Input",
+        "n01_return": "ImportedN01Output",
+        "f01_call": "N01F01CallEvidence",
+        "f02_call": "N01F02CallEvidence",
+        "descriptor_source": "N01DescriptorRevisionSourceEnvelope",
+        "range_target": "N01RangeTargetSource",
+        "state_target": "N01StateTargetSource",
+        "target_join_results": "N01OwnerTargetJoinResults",
+        "owner_contract_result": "ReferenceApplicabilityResult",
+        "evidence_limit": "EvidenceLimit"
+      },
+      "meaning": "全caller input/source envelopeと3つのcallee invocation envelope/complete returnを原値で保持する。evidence_limitはn01_return.evidence_limitから原値copy。owner_contract_resultはN01 candidate_reference_resultとは別の局所表示。"
+    },
+    "N01FieldJoinComparison": {
+      "kind": "record",
+      "required": [
+        "left_operand",
+        "right_operand",
+        "result"
+      ],
+      "fields": {
+        "left_operand": "JsonValue",
+        "right_operand": "JsonValue",
+        "result": "Relation"
+      },
+      "meaning": "一つのpairのleft_operand/right_operandにはalgorithmに明示したinputからのmember path、又はliteral:に続く指定function IDそのものを表すラベルを保持する。比較した原JSON値とAbsent/Nullは出力の原入力echoから辿る。これらラベルはJSON Pointerや実行時の新DSLではない。left_path/right_pathのpairもこの二つのoperandラベルへ写し、resultを併記する。"
+    },
+    "N01CompositeJoinResult": {
+      "kind": "record",
+      "required": [
+        "comparisons",
+        "result"
+      ],
+      "fields": {
+        "comparisons": "list<N01FieldJoinComparison>",
+        "result": "Relation"
+      },
+      "meaning": "全comparisonを原順で保持する。reduce: 既知content_conflictが一つでもあればcontent_conflict、次にmissing、次にunknown、全pairがcontent_corresponding_in_fixtureのときだけ同値。既知相反を欠落・unknownで隠さない。"
+    },
+    "N01DependencyJoinResult": {
+      "kind": "record",
+      "required": [
+        "target_identity",
+        "target_version",
+        "observed_dependency_pairs",
+        "matching_indices",
+        "result"
+      ],
+      "fields": {
+        "target_identity": "JsonField",
+        "target_version": "JsonField",
+        "observed_dependency_pairs": "DependencyIdentityVersionsOrNull",
+        "matching_indices": "list<JsonValue>",
+        "result": "Relation"
+      },
+      "meaning": "target_identity/versionと観測配列の全原値を保持する。対象tupleの片側Absent/nullはmissing、対象tupleの再帰markerはunknown。配列Absent/null/非配列はunknown。それ以外は原配列順に全要素を走査し、identity/versionが供給済み・非null・marker無しで対象tupleとJSON型込み等値の全indexをmatching_indicesへ保持する（0始まり整数、boolではない）。一つでも既知一致があれば対応とし、他要素の未解決値は原配列で保持して全依存評価へ外挿しない。一致0件で未解決要素（非record/必要member欠落/null/marker）があればunknown。一致0件かつ全要素が既知ならcontent_conflict（空配列もこの枝）。重複一致を失敗へ変えず先頭を選ばない。この結果はRequiredReferenceで指定した一tupleのmembershipに限る。"
+    },
+    "N01SourceAddressState": {
+      "kind": "enum",
+      "values": [
+        "missing",
+        "unknown",
+        "supplied"
+      ],
+      "meaning": "source_refとlocatorのField状態だけを示す。suppliedはsource資格・content対応・実在を意味しない。"
     }
   },
   "functions": [
@@ -3205,6 +3460,561 @@
         "comparison_reads": "algorithm各stepのleft/right/from/paths/checks/field_pairs/axis_sources/required_nonnull_pathsが比較または保持の具体pathである。",
         "unread_semantics": "未知map keyや全自由stringの意味、独立targetの真正性/実owner資格は比較しない。"
       }
+    },
+    {
+      "id": "HELIXBRAIN-L5-028-N01-OWNER-BOUND-COMPOSITION",
+      "requirement_ref": "HELIXBRAIN-L3-028-N01",
+      "system_oracle_ref": "HELIXBRAIN-L10-028-N01",
+      "l4_ref": "HELIXBRAIN-L4-028-N01",
+      "l9_ref": "HELIXBRAIN-L9-028-N01",
+      "input_type": {
+        "kind": "record",
+        "required": [
+          "n01_call_ref",
+          "n01_input",
+          "f01_call",
+          "f02_call",
+          "descriptor_source",
+          "range_target",
+          "state_target"
+        ],
+        "fields": {
+          "n01_call_ref": "JsonField",
+          "n01_input": "ImportedN01Input",
+          "f01_call": "N01F01CallEvidence",
+          "f02_call": "N01F02CallEvidence",
+          "descriptor_source": "N01DescriptorRevisionSourceEnvelope",
+          "range_target": "N01RangeTargetSource",
+          "state_target": "N01StateTargetSource"
+        }
+      },
+      "output_type": {
+        "kind": "record",
+        "required": [
+          "n01_call_ref",
+          "n01_input",
+          "n01_return",
+          "f01_call",
+          "f02_call",
+          "descriptor_source",
+          "range_target",
+          "state_target",
+          "target_join_results",
+          "owner_contract_result",
+          "evidence_limit"
+        ],
+        "fields": {
+          "n01_call_ref": "JsonField",
+          "n01_input": "ImportedN01Input",
+          "n01_return": "ImportedN01Output",
+          "f01_call": "N01F01CallEvidence",
+          "f02_call": "N01F02CallEvidence",
+          "descriptor_source": "N01DescriptorRevisionSourceEnvelope",
+          "range_target": "N01RangeTargetSource",
+          "state_target": "N01StateTargetSource",
+          "target_join_results": "N01OwnerTargetJoinResults",
+          "owner_contract_result": "ReferenceApplicabilityResult",
+          "evidence_limit": "EvidenceLimit"
+        }
+      },
+      "algorithm": [
+        {
+          "step": 1,
+          "op": "call_existing_once_and_echo_input",
+          "function_ref": "HELIXBRAIN-L5-028-N01",
+          "input": "input.n01_input",
+          "to": [
+            "output.n01_input",
+            "output.n01_return"
+          ],
+          "copy_fields": [
+            "input.n01_call_ref -> output.n01_call_ref",
+            "input.n01_input -> output.n01_input",
+            "output.n01_return.evidence_limit -> output.evidence_limit"
+          ],
+          "preserve": "N01の完全returnを無変換で保持する。"
+        },
+        {
+          "step": 2,
+          "op": "retain_owner_invocation_envelopes",
+          "from": [
+            "input.f01_call",
+            "input.f02_call"
+          ],
+          "to": [
+            "output.f01_call",
+            "output.f02_call"
+          ],
+          "valid_function_refs": {
+            "f01": "HELIXBRAIN-L5-028-F01",
+            "f02": "HELIXBRAIN-L5-028-F02"
+          },
+          "rule": "各wrapperのfunction_refが指定function IDと等しく、call_refがn01_call_refと一致することをjoinとして評価。input/returned全値はそのまま保持し、同一invocation由来という生成契約はcaller envelopeに属する。compositionはreturnを作り直さない。function_refが異なる時はcall_ref groupをcontent_conflictとして保持し、owner結果はunknown。",
+          "function_ref_exact": {
+            "input.f01_call.function_ref": "HELIXBRAIN-L5-028-F01",
+            "input.f02_call.function_ref": "HELIXBRAIN-L5-028-F02",
+            "meaning": "IDはinvocation envelopeのliteral operandとしてcall_ref groupへ比較記録する。mismatchはknown conflictとして出力しowner resultはunknown。"
+          }
+        },
+        {
+          "step": 3,
+          "op": "retain_source_operands",
+          "from": [
+            "input.descriptor_source",
+            "input.range_target",
+            "input.state_target"
+          ],
+          "to": [
+            "output.descriptor_source",
+            "output.range_target",
+            "output.state_target"
+          ],
+          "rule": "closed recordを全Field状態のままcopy。source_ref/locatorは出力中のprovenanceとして保持。"
+        },
+        {
+          "step": 4,
+          "op": "source_address_state",
+          "groups": [
+            {
+              "from": "input.descriptor_source.{source_ref,source_locator}",
+              "to": [
+                "output.target_join_results.descriptor_source_ref",
+                "output.target_join_results.descriptor_locator",
+                "output.target_join_results.descriptor_source_address_state"
+              ]
+            },
+            {
+              "from": "input.range_target.{source_ref,source_locator}",
+              "to": "output.target_join_results.range_source_address_state"
+            },
+            {
+              "from": "input.state_target.{source_ref,source_locator}",
+              "to": "output.target_join_results.state_source_address_state"
+            }
+          ],
+          "rule": "どちらかAbsent/Nullならmissing、placeholderならunknown、両方が非placeholder Valueならsupplied。suppliedは資格/真実性を示さない。range/stateのref/locatorは元source echoに保持。descriptor source_ref/locatorもraw echoする。"
+        },
+        {
+          "step": 5,
+          "op": "compare_call_and_descriptor_fields",
+          "comparison_groups": [
+            {
+              "to": "call_ref",
+              "pairs": [
+                {
+                  "group": "call_ref",
+                  "left_operand": "input.n01_call_ref",
+                  "right_operand": "input.f01_call.call_ref"
+                },
+                {
+                  "group": "call_ref",
+                  "left_operand": "input.n01_call_ref",
+                  "right_operand": "input.f02_call.call_ref"
+                },
+                {
+                  "group": "call_ref",
+                  "left_operand": "input.n01_call_ref",
+                  "right_operand": "input.descriptor_source.call_ref"
+                },
+                {
+                  "group": "call_ref",
+                  "left_operand": "input.n01_call_ref",
+                  "right_operand": "input.range_target.call_ref"
+                },
+                {
+                  "group": "call_ref",
+                  "left_operand": "input.n01_call_ref",
+                  "right_operand": "input.state_target.call_ref"
+                },
+                {
+                  "group": "call_ref",
+                  "left_operand": "literal:HELIXBRAIN-L5-028-F01",
+                  "right_operand": "input.f01_call.function_ref"
+                },
+                {
+                  "group": "call_ref",
+                  "left_operand": "literal:HELIXBRAIN-L5-028-F02",
+                  "right_operand": "input.f02_call.function_ref"
+                }
+              ],
+              "literal_function_ref_source": "algorithm step 2 exact function_ref check"
+            },
+            {
+              "to": "descriptor_identity",
+              "pairs": [
+                {
+                  "group": "descriptor_identity",
+                  "left_operand": "input.n01_input.candidate_target.descriptor_identity",
+                  "right_operand": "input.descriptor_source.descriptor_identity"
+                },
+                {
+                  "group": "descriptor_identity",
+                  "left_operand": "input.n01_input.candidate_target.descriptor_identity",
+                  "right_operand": "input.descriptor_source.descriptor_record.identity"
+                },
+                {
+                  "group": "descriptor_identity",
+                  "left_operand": "input.n01_input.candidate_target.descriptor_identity",
+                  "right_operand": "input.f01_call.input.submitted_descriptor.identity"
+                }
+              ]
+            },
+            {
+              "to": "descriptor_revision",
+              "pairs": [
+                {
+                  "group": "descriptor_revision",
+                  "left_operand": "input.n01_input.candidate_target.descriptor_revision",
+                  "right_operand": "input.descriptor_source.descriptor_revision"
+                }
+              ]
+            },
+            {
+              "to": "descriptor_scope",
+              "pairs": [
+                {
+                  "group": "descriptor_scope",
+                  "left_operand": "input.n01_input.candidate_target.scope",
+                  "right_operand": "input.descriptor_source.scope"
+                },
+                {
+                  "group": "descriptor_scope",
+                  "left_operand": "input.n01_input.candidate_target.scope",
+                  "right_operand": "input.descriptor_source.descriptor_record.verification_scope"
+                },
+                {
+                  "group": "descriptor_scope",
+                  "left_operand": "input.n01_input.candidate_target.scope",
+                  "right_operand": "input.f01_call.input.submitted_descriptor.verification_scope"
+                }
+              ]
+            },
+            {
+              "to": "descriptor_record",
+              "pairs": [
+                {
+                  "group": "descriptor_record",
+                  "left_operand": "input.descriptor_source.descriptor_record",
+                  "right_operand": "input.f01_call.input.submitted_descriptor"
+                }
+              ]
+            },
+            {
+              "to": "knowledge_identity",
+              "pairs": [
+                {
+                  "group": "knowledge_identity",
+                  "left_operand": "input.n01_input.candidate_target.knowledge_identity",
+                  "right_operand": "input.f01_call.input.submitted_knowledge.identity"
+                },
+                {
+                  "group": "knowledge_identity",
+                  "left_operand": "input.n01_input.candidate_target.knowledge_identity",
+                  "right_operand": "input.f02_call.input.submitted_required_reference.knowledge_identity"
+                }
+              ]
+            },
+            {
+              "to": "knowledge_revision",
+              "pairs": [
+                {
+                  "group": "knowledge_revision",
+                  "left_operand": "input.n01_input.candidate_target.knowledge_revision",
+                  "right_operand": "input.f01_call.input.submitted_knowledge.revision"
+                },
+                {
+                  "group": "knowledge_revision",
+                  "left_operand": "input.n01_input.candidate_target.knowledge_revision",
+                  "right_operand": "input.f02_call.input.submitted_required_reference.knowledge_revision"
+                }
+              ]
+            },
+            {
+              "to": "knowledge_version_state",
+              "pairs": [
+                {
+                  "group": "knowledge_version_state",
+                  "left_operand": "input.f01_call.input.submitted_knowledge.version",
+                  "right_operand": "input.f02_call.input.submitted_required_reference.knowledge_version"
+                },
+                {
+                  "group": "knowledge_version_state",
+                  "left_operand": "input.f01_call.input.submitted_knowledge.state",
+                  "right_operand": "input.f02_call.input.submitted_required_reference.knowledge_state"
+                }
+              ]
+            },
+            {
+              "to": "descriptor_kind_contract_artifact",
+              "pairs": [
+                {
+                  "group": "descriptor_kind_contract_artifact",
+                  "left_operand": "input.f01_call.input.submitted_descriptor.kind",
+                  "right_operand": "input.f02_call.input.submitted_required_reference.descriptor_kind"
+                },
+                {
+                  "group": "descriptor_kind_contract_artifact",
+                  "left_operand": "input.f01_call.input.submitted_descriptor.contract_version",
+                  "right_operand": "input.f02_call.input.submitted_required_reference.contract_version"
+                },
+                {
+                  "group": "descriptor_kind_contract_artifact",
+                  "left_operand": "input.f01_call.input.submitted_descriptor.artifact_version",
+                  "right_operand": "input.f02_call.input.submitted_required_reference.artifact_version"
+                }
+              ]
+            },
+            {
+              "to": "verification_scope",
+              "pairs": [
+                {
+                  "group": "verification_scope",
+                  "left_operand": "input.f01_call.input.submitted_descriptor.verification_scope",
+                  "right_operand": "input.f02_call.input.submitted_required_reference.verification_scope"
+                }
+              ]
+            }
+          ],
+          "pair_rule": "このfunctionのprivate_operator_contract.pair_comparison_ruleに従い全pair/原Field状態を保持する。"
+        },
+        {
+          "step": 6,
+          "op": "compare_dependency_target_membership",
+          "from": "input.f02_call.input.submitted_required_reference.{dependency_identity,dependency_version}",
+          "to": "output.target_join_results.dependency_identity_version_pairs",
+          "against": "input.f01_call.input.submitted_descriptor.dependency_identity_versions",
+          "rule": "target_identity/versionと観測配列の全原値を保持する。対象tupleの片側Absent/nullはmissing、対象tupleの再帰markerはunknown。配列Absent/null/非配列はunknown。それ以外は原配列順に全要素を走査し、identity/versionが供給済み・非null・marker無しで対象tupleとJSON型込み等値の全indexをmatching_indicesへ保持する（0始まり整数、boolではない）。一つでも既知一致があれば対応とし、他要素の未解決値は原配列で保持して全依存評価へ外挿しない。一致0件で未解決要素（非record/必要member欠落/null/marker）があればunknown。一致0件かつ全要素が既知ならcontent_conflict（空配列もこの枝）。重複一致を失敗へ変えず先頭を選ばない。この結果はRequiredReferenceで指定した一tupleのmembershipに限る。"
+        },
+        {
+          "step": 7,
+          "op": "compare_range_fields",
+          "pairs": [
+            {
+              "left_path": "input.range_target.identity",
+              "right_path": "input.f02_call.input.submitted_range_meaning.identity",
+              "group": "range_identity_revision_scope"
+            },
+            {
+              "left_path": "input.range_target.revision",
+              "right_path": "input.f02_call.input.submitted_range_meaning.revision",
+              "group": "range_identity_revision_scope"
+            },
+            {
+              "left_path": "input.range_target.scope",
+              "right_path": "input.f02_call.input.submitted_range_meaning.scope",
+              "group": "range_identity_revision_scope"
+            }
+          ],
+          "token_pairs": [
+            {
+              "left_path": "input.f01_call.input.submitted_descriptor.compatibility_range_ref",
+              "right_path": "input.range_target.reference_token",
+              "group": "range_reference_token"
+            }
+          ],
+          "rule": "opaque reference_token同士をexact JSON Field compareしidentity/revisionへcastしない。3 tuple pairを個別に記録。"
+        },
+        {
+          "step": 8,
+          "op": "compare_state_fields",
+          "target_pairs": [
+            {
+              "left_path": "input.state_target.identity",
+              "right_path": "input.f02_call.input.submitted_state_applicability.identity",
+              "group": "state_identity_revision_scope_observed_state"
+            },
+            {
+              "left_path": "input.state_target.revision",
+              "right_path": "input.f02_call.input.submitted_state_applicability.revision",
+              "group": "state_identity_revision_scope_observed_state"
+            },
+            {
+              "left_path": "input.state_target.scope",
+              "right_path": "input.n01_input.candidate_target.scope",
+              "group": "state_identity_revision_scope_observed_state"
+            },
+            {
+              "left_path": "input.state_target.scope",
+              "right_path": "input.f02_call.input.submitted_state_applicability.scope",
+              "group": "state_identity_revision_scope_observed_state"
+            },
+            {
+              "left_path": "input.state_target.observed_state",
+              "right_path": "input.f02_call.input.submitted_state_applicability.observed_state",
+              "group": "state_identity_revision_scope_observed_state"
+            }
+          ],
+          "knowledge_pairs": [
+            {
+              "left_path": "input.state_target.knowledge_identity",
+              "right_path": "input.n01_input.candidate_target.knowledge_identity",
+              "group": "state_knowledge_target"
+            },
+            {
+              "left_path": "input.state_target.knowledge_revision",
+              "right_path": "input.n01_input.candidate_target.knowledge_revision",
+              "group": "state_knowledge_target"
+            },
+            {
+              "left_path": "input.state_target.knowledge_identity",
+              "right_path": "input.f02_call.input.submitted_state_applicability.knowledge_identity",
+              "group": "state_knowledge_target"
+            },
+            {
+              "left_path": "input.state_target.knowledge_revision",
+              "right_path": "input.f02_call.input.submitted_state_applicability.knowledge_revision",
+              "group": "state_knowledge_target"
+            }
+          ],
+          "rule": "全pairを個別に保持し、state target tokenは作らない。F02のeligible_in_fixtureはnative returnから読み、targetの事実として合成しない。"
+        },
+        {
+          "step": 9,
+          "op": "reduce_each_join_group",
+          "to": "output.target_join_results",
+          "rule": "各groupはN01CompositeJoinResult.comparisonsへ上記全pairを宣言順で格納しresultを conflict > missing > unknown > corresponding の優先で決める。dependency joinは専用membership規則を使う。descriptor_source_ref/locatorと全source envelopesは原valueを保持。source_address_stateは資格でなくpresence観測。",
+          "output_field_map": {
+            "call_ref": "comparison_group[call_ref]",
+            "descriptor_source_ref": "input.descriptor_source.source_ref (raw copy)",
+            "descriptor_locator": "input.descriptor_source.source_locator (raw copy)",
+            "descriptor_source_address_state": "source_address_state(descriptor_source.source_ref, descriptor_source.source_locator)",
+            "descriptor_identity": "comparison_group[descriptor_identity]",
+            "descriptor_revision": "comparison_group[descriptor_revision]",
+            "descriptor_scope": "comparison_group[descriptor_scope]",
+            "descriptor_record": "comparison_group[descriptor_record]",
+            "knowledge_identity": "comparison_group[knowledge_identity]",
+            "knowledge_revision": "comparison_group[knowledge_revision]",
+            "knowledge_version_state": "comparison_group[knowledge_version_state]",
+            "descriptor_kind_contract_artifact": "comparison_group[descriptor_kind_contract_artifact]",
+            "dependency_identity_version_pairs": "dependency_membership(input.f02_call.input.submitted_required_reference, input.f01_call.input.submitted_descriptor.dependency_identity_versions)",
+            "verification_scope": "comparison_group[verification_scope]",
+            "range_reference_token": "comparison_group[range_reference_token]",
+            "range_identity_revision_scope": "comparison_group[range_identity_revision_scope]",
+            "range_source_address_state": "source_address_state(range_target.source_ref, range_target.source_locator)",
+            "state_identity_revision_scope_observed_state": "comparison_group[state_identity_revision_scope_observed_state]",
+            "state_knowledge_target": "comparison_group[state_knowledge_target]",
+            "state_source_address_state": "source_address_state(state_target.source_ref, state_target.source_locator)"
+          }
+        },
+        {
+          "step": 10,
+          "op": "derive_local_owner_contract_result",
+          "to": "output.owner_contract_result",
+          "gate": "全 semantic join groups call_ref, descriptor_identity, descriptor_revision, descriptor_scope, descriptor_record, knowledge_identity, knowledge_revision, knowledge_version_state, descriptor_kind_contract_artifact, dependency_identity_version_pairs, verification_scope, range_reference_token, range_identity_revision_scope, state_identity_revision_scope_observed_state, state_knowledge_target が content_corresponding_in_fixtureで、三source_address_stateがsuppliedのときのみnative F02 resultを反映。 また、f01_content_correspondenceが列挙する全11fieldがcontent_corresponding_in_fixtureであること。",
+          "otherwise": "unknown。各joinのmissing/unknown/content_conflictを消さない。",
+          "native_f02_mapping": {
+            "input": "input.f02_call.input",
+            "return": "input.f02_call.returned",
+            "primary_field": "reference_P_result",
+            "unknown": "unknown",
+            "not_applicable_in_fixture": "not_applicable_in_fixture",
+            "applicable_candidate_in_fixture_only": "applicable_candidate_in_fixture_only",
+            "consistency_read": [
+              "axis_results",
+              "range_meaning_result",
+              "state_meaning_result",
+              "meaning_binding_results",
+              "reference_P_actual_call"
+            ],
+            "rule": "reference_P_resultは既存F02 algorithm step 12の返却を用いる。axis_results全11項、range/state whole relationsとmeaning_binding_resultsを同じreturn内で保存・参照するが再計算しない。reference_P_actual_call=not_establishedは実call成立に読替えない。"
+          },
+          "f01_role": "F01はeligibility enumを返さない。全returnを保持し、knowledge_results全4field/descriptor_results全7fieldの内容対応だけを同候補版軸の利用可能根拠として確認する。missing/unknown/content_conflictなら局所表示unknown。F01をF02 enumへ変換せず、F02 primaryと個別既知診断も原returnとして残す。",
+          "preserve": "n01_return.candidate_reference_resultとevidence_limit、F01/F02 input+complete return、全source envelope、全個別joinを一切上書きせず保持。",
+          "f01_content_correspondence": {
+            "source": "input.f01_call.returned",
+            "knowledge_results": [
+              "identity",
+              "revision",
+              "version",
+              "state"
+            ],
+            "descriptor_results": [
+              "identity",
+              "kind",
+              "contract_version",
+              "artifact_version",
+              "dependency_identity_versions",
+              "compatibility_range_ref",
+              "verification_scope"
+            ],
+            "required_result": "content_corresponding_in_fixture",
+            "all_corresponding": "F02 primary enumの利用へ進む。",
+            "otherwise": "owner_contract_result=unknown。F01のmissing/unknown/content_conflict、全原returnとF02の既知結果はそのまま保存し、F01をeligible/not-applicable enumへ変換しない。",
+            "meaning": "F01が判定した版軸内容の不足・不一致を、F02の適用候補表示で無視しない。同候補へのF01契約適用の条件であり、実source資格/新承認gateではない。"
+          }
+        },
+        {
+          "step": 11,
+          "op": "emit_full_output",
+          "to": "output",
+          "copies": [
+            "input.n01_call_ref",
+            "input.n01_input",
+            "n01_return",
+            "input.f01_call",
+            "input.f02_call",
+            "input.descriptor_source",
+            "input.range_target",
+            "input.state_target",
+            "target_join_results",
+            "owner_contract_result",
+            "n01_return.evidence_limit"
+          ],
+          "rule": "すべての原入力/SourceRef/locator/Field/presenceとcallee全返却を出力へ保持。"
+        }
+      ],
+      "purpose": "N01の未見候補に対して、既存F01/F02の同call owner evidenceを対象結合後に適用するためのprivate composition。既存判定関数の複製や全域資格判定ではない。",
+      "read_contract": {
+        "arguments": [
+          "n01_call_ref",
+          "n01_input",
+          "f01_call",
+          "f02_call",
+          "descriptor_source",
+          "range_target",
+          "state_target"
+        ],
+        "retention_reads": "N01入力/全return、F01/F02 producer invocation envelope、descriptor/range/state source全Fieldを出力へ完全保持する。evidence_limitはN01原returnからcopyする。",
+        "comparison_reads": "algorithm step 5-8で列挙したRFC6901 member pathsだけ。全pair status、dependency matched indices、全native F02 valuesを保持する。",
+        "not_established": "source-address suppliedは実資格でない。欠落/未解決の軸は局所Relationでmissing/unknownを出し、他の軸を引き続き評価・保持する。F02 not_established[7]/[8]はこのN01 compositionから一般的に閉じない。",
+        "caller_binding": "F01/F02 callerは同一invocationのfunction_ref/input/complete returnを一つのevidence recordとして供給する。単なるcall_ref一致でcalleeのinput-return因果を推測しない。"
+      },
+      "private_operator_contract": {
+        "scope": "HELIXBRAIN-L5-028-N01-OWNER-BOUND-COMPOSITION",
+        "operators": {
+          "call_existing_once_and_echo_input": "指定した既存N01をinput.n01_inputで一度呼ぶ。n01_call_refとn01_inputを原値copyし、完全returnとそのevidence_limitを指定出力へcopyする。",
+          "retain_owner_invocation_envelopes": "F01/F02の同一invocation envelopeを無変換copyし、function_ref literalと親call_ref対応を後続call_ref比較へ結ぶ。結果を再計算しない。",
+          "retain_source_operands": "descriptor_source/range_target/state_targetを各出力の同名fieldへ原Field状態込みでcopyする。",
+          "source_address_state": "source_ref/locatorの片側Absent/nullはmissing、再帰markerはunknown、その他supplied。descriptorの両rawFieldは独立にcopyする。suppliedは意味資格ではない。",
+          "compare_call_and_descriptor_fields": "comparison_groupsの順、各pairsの順でpair_comparison_ruleを適用し全pairを各groupへ保持する。",
+          "compare_dependency_target_membership": "target_identity/versionと観測配列の全原値を保持する。対象tupleの片側Absent/nullはmissing、対象tupleの再帰markerはunknown。配列Absent/null/非配列はunknown。それ以外は原配列順に全要素を走査し、identity/versionが供給済み・非null・marker無しで対象tupleとJSON型込み等値の全indexをmatching_indicesへ保持する（0始まり整数、boolではない）。一つでも既知一致があれば対応とし、他要素の未解決値は原配列で保持して全依存評価へ外挿しない。一致0件で未解決要素（非record/必要member欠落/null/marker）があればunknown。一致0件かつ全要素が既知ならcontent_conflict（空配列もこの枝）。重複一致を失敗へ変えず先頭を選ばない。この結果はRequiredReferenceで指定した一tupleのmembershipに限る。",
+          "compare_range_fields": "pairs/token_pairsの宣言順にpair_comparison_ruleを適用して指定groupへ保持する。tokenを意味tupleへ変換しない。",
+          "compare_state_fields": "target_pairs/knowledge_pairsを宣言順にpair_comparison_ruleへ渡す。candidate/scope/knowledge/state対応を別pairとして保持する。",
+          "reduce_each_join_group": "output_field_map全fieldを構成する。groupは全pairとreduce結果、dependencyは専用結果、source-addressはpresence状態、raw ref/locatorは原値。call_refはstep5のcomparison_group[call_ref]から構成する。",
+          "derive_local_owner_contract_result": "全semantic join対応とsource-address suppliedに加え、F01の宣言済みknowledge_results全4field及びdescriptor_results全7fieldの内容対応を確認してからF02 reference_P_resultをそのまま利用する。F01のenum変換やF02の再計算をしない。詳細は同stepのf01_content_correspondenceとnative_f02_mappingに従う。",
+          "emit_full_output": "N01OwnerApplicationResultの全required fieldへcopiesを同名で写す。n01_returnはstep1の完全return、target_join_results/owner_contract_resultは直前step、evidence_limitはn01_return原値。他の入力echoを書換えない。"
+        },
+        "operator_order": [
+          "call_existing_once_and_echo_input",
+          "retain_owner_invocation_envelopes",
+          "retain_source_operands",
+          "source_address_state",
+          "compare_call_and_descriptor_fields",
+          "compare_dependency_target_membership",
+          "compare_range_fields",
+          "compare_state_fields",
+          "reduce_each_join_group",
+          "derive_local_owner_contract_result",
+          "emit_full_output"
+        ],
+        "pair_comparison_rule": "明示pairを宣言順に評価し全pairを保持する。operandはinputの宣言member path又は明示function ID literal。親recordがAbsent/nullなら子memberはAbsentで、原親値はechoへ保持。片側Absent又は明示nullならmissing。次に既存markers（空文字/TBD/unknown）がscalar又はJSON配列・object値へ再帰して現れたらunknown。次に既存json_equality_semanticsのJSON型込み等値ならcontent_corresponding_in_fixture、それ以外content_conflict。boolとnumberを同一視せず、配列順/重複を保持する。各groupのcomparisonsは全operandラベルとresultを保持し、group結果は既知conflict > missing > unknown > corresponding。別pairの既知conflictを不足で消さない。source-address presenceのsuppliedは資格の意味を持たない。",
+        "placeholder_markers": [
+          "",
+          "TBD",
+          "unknown"
+        ],
+        "input_domain": "宣言した閉じた論理型。memberのAbsent/明示null/原値は既存JsonFieldの意味で保持する。実wire validator/codec/source資格はここで作らない。"
+      }
     }
   ],
   "semantics": {
@@ -3253,9 +4063,11 @@
     "全92親/430対の詳細設計閉包",
     {
       "obligation_ref": "HELIXBRAIN-L3-028-N01 / HELIXBRAIN-L4-028-N01.input_meanings[0]",
-      "field": "CandidateTarget.descriptor_version_axis / CandidateTarget.knowledge_version_axis",
-      "reason": "L9-N01固定sourceには未見候補のidentity/revision/scopeはあるが各version軸とdescriptor compatibility range/state applicability recordが供給されていない。L5-N01署名も同じ情報を受け取らないため、F01/F02契約を未見候補へ適用したとは判定しない。",
-      "consumer": "BRAIN L2-008はknowledge revision/state、HARNESS L2-010/011はdescriptor版・依存・scope。対象field witnessの追加まではこの要求の版軸適用義務は未実現であり、accepted/currentへ外挿しない。"
+      "field": "CandidateTarget.descriptor_version_axis / CandidateTarget.knowledge_version_axis / same-target range and state operands",
+      "reason": "L5 N01 base関数と既存13ケースは5軸/evaluationだけであり、F01/F02接続を含まない。追加private entry HELIXBRAIN-L5-028-N01-OWNER-BOUND-COMPOSITIONは明示source/call/target inputとjoin規則を定義したが、このentryの完全literal fixture、実source bytes/資格、owner供給・呼出しは未実証である。descriptor_revisionはsource envelopeに分離し、既存DescriptorRecordを変形しない。",
+      "consumer": "BRAIN L2-008はknowledge revision/state、HARNESS L2-010/011はdescriptor版・依存・scope。",
+      "status": "設計接続を追加。有限fixtureと実source qualificationは未検証として保持。",
+      "qualification_limit": "N01 compositionはF02 not_established[7]/[8]の全域range/state identity/revision bindingを解消せず、F02全体の完了を主張しない。"
     },
     {
       "requirement_ref": "HELIXBRAIN-L3-028-F02",
@@ -3356,7 +4168,8 @@
       "or": "values配列のいずれかがtrueか返す。",
       "present_nonnull": "path memberが存在し、明示nullでないか返す。"
     },
-    "normative_authority": "functions[*].algorithmのstep順・branch priority・operandと本operator_contractが唯一の有限計算規範。required_relation等の説明文は対応する式の意味説明で、別の判定枝を追加しない。型外はinput_type_boundaryに従い関数を呼ばない。実資格を生成しない。"
+    "normative_authority": "functions[*].algorithmのstep順・branch priority・operandと本operator_contractが唯一の有限計算規範。required_relation等の説明文は対応する式の意味説明で、別の判定枝を追加しない。型外はinput_type_boundaryに従い関数を呼ばない。実資格を生成しない。",
+    "scope_ja": "既存operators/operator_orderは既存functions[0]〜[3]に適用する。追加のN01-OWNER-BOUND-COMPOSITIONはそのfunction内のprivate_operator_contractを適用し、既存4関数の演算子・期待・動作を変更しない。"
   },
   "l4_contract_bindings": [
     {
@@ -3560,7 +4373,7 @@
       "requirement_ref": "HELIXBRAIN-L3-028-N01",
       "system_oracle_ref": "HELIXBRAIN-L10-028-N01",
       "oracle_ref": "HELIXBRAIN-L9-028-N01",
-      "contract_sha256": "ec4473c76b4a820d12b1b8549a4d20c93d247ec337e665a7f5c6f4eea258993e",
+      "contract_sha256": "8c1bd2e755ef4659e66d4dbb40c4f5641e4f1f2b9268de97c59be4b4fd46b47a",
       "approved_requirement": {
         "id": "HELIXBRAIN-L3-028-N01",
         "parent": "HELIXBRAIN-L2-028",
@@ -3762,5 +4575,49 @@
     "l9_path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
     "l9_sha256": "5711ef92e478f6ee8dfe7469a0dec52899dde6ecba0fccb403e099285fea29b1",
     "classification": "main統合revision 40517c80ec55dcaf5564d7628c9c48c38669d7cd のL4/L9 bytes。source_main/a451a40d013df12872a3d4f5f837a2ec5f0998a8の歴史pinおよびL3/L10承認wholeとは別の役割。"
-  }
+  },
+  "private_type_imports": [
+    {
+      "alias": "ImportedN01Input",
+      "path": "docs/helix-brain/L5-detail-design/knowledge-descriptor-compatibility.json",
+      "pointer": "/functions/2/input_type",
+      "object_canonical_sha256": "daa57d4a7dc367a41823d7a168ad4841c6501660765df0a5cf25fe9133c98707",
+      "meaning": "既存宣言型への同文書内参照。schema/runtime importではない。"
+    },
+    {
+      "alias": "ImportedN01Output",
+      "path": "docs/helix-brain/L5-detail-design/knowledge-descriptor-compatibility.json",
+      "pointer": "/functions/2/output_type",
+      "object_canonical_sha256": "e59d846df6251be212aaa42937cd1ce210f5759ad3fcab380e64577f58db2c96",
+      "meaning": "既存宣言型への同文書内参照。schema/runtime importではない。"
+    },
+    {
+      "alias": "ImportedF01Input",
+      "path": "docs/helix-brain/L5-detail-design/knowledge-descriptor-compatibility.json",
+      "pointer": "/functions/0/input_type",
+      "object_canonical_sha256": "ce0f7efc481ee3724228275f4be399c22f6b9f3c822a2aac530a6717a300b9ce",
+      "meaning": "既存宣言型への同文書内参照。schema/runtime importではない。"
+    },
+    {
+      "alias": "ImportedF01Output",
+      "path": "docs/helix-brain/L5-detail-design/knowledge-descriptor-compatibility.json",
+      "pointer": "/functions/0/output_type",
+      "object_canonical_sha256": "337904513aeb947f2972e3868860c2e73186213103fa365990218a3417af151e",
+      "meaning": "既存宣言型への同文書内参照。schema/runtime importではない。"
+    },
+    {
+      "alias": "ImportedF02Input",
+      "path": "docs/helix-brain/L5-detail-design/knowledge-descriptor-compatibility.json",
+      "pointer": "/functions/1/input_type",
+      "object_canonical_sha256": "11ca73536106eb35b0c8c00da70d7bf0c04c3334a13046d5eb402423ec93b422",
+      "meaning": "既存宣言型への同文書内参照。schema/runtime importではない。"
+    },
+    {
+      "alias": "ImportedF02Output",
+      "path": "docs/helix-brain/L5-detail-design/knowledge-descriptor-compatibility.json",
+      "pointer": "/functions/1/output_type",
+      "object_canonical_sha256": "b8052688aba717206c6e98118d09fc1217448a4f3eca8be4ac0662987760f001",
+      "meaning": "既存宣言型への同文書内参照。schema/runtime importではない。"
+    }
+  ]
 }
