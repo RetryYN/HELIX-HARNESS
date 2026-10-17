@@ -2048,6 +2048,11 @@
           ]
         },
         "decision_guard_ja": "既存F02007どおりtrueはdecision_promotion_forbidden、falseはそのclaimのFindingなし、その他はdecision_promotion_unresolved。既存Findingをrouteするだけで、独立ownerの正規判断を禁止しない。",
+        "f01_unconnected_branch": {
+          "when_pointer_prefix": "/context/harness_selection_source/f01_full_required_refs",
+          "source_read_ja": "このprefixの元Findingに対してはF01 sourceの結線が本adapterにないため、該当lookup分をOriginRead.Supplied(records=[], issues=[OriginSourceIssue(kind=not_selected, source_pointer=元Finding.pointer, raw_value=元RawPacketの当該pathに値があればそのJSON値・なければnull)])として保持する。欠落と明示null等のField状態は元contextの全値で区別する。source_bundle/F03 witnessからF01 originを補わない。",
+          "router_ja": "該当Findingをorigin_kind=obligationのRouteUnresolvedへ元issue/contextとともに残し、当該source向けrequest/callを作らない。同じreadに別Findingの対応済みF03 recordsがあっても、このF01診断へ流用せず、その別F03 originのcallは継続する。"
+        },
         "limits_ja": [
           "source selector/intakeの論理口の定義であり、実provider・実source資格・実受領・製品runtimeの成立ではない。",
           "F01側の原義務sourceは別対応として未完を保持し、F03対応の成功を全B01完了へ広げない。",

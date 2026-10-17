@@ -108936,7 +108936,7 @@
     "owner_outer_field_priority": "最優先でplan_owner.raw_valueのouter Fieldを判定する。raw ownerがabsentならselection outer Field=absent、raw null/empty又はtyped decode失敗ならouter Field=nullとし、後段membership/item規則で上書きしない。raw/typedの不一致や供給済の独立軸/全raw候補はtraceへ保持し省略しない。typed owner内plan_ref/bindingの原Field tag/値は保持する。",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "d66a079bc06bebc764a1bdb58c2fcd619598308850760010c85e6e8c7414b408",
+      "body_sha256": "0045d2d17e82386a858cc881240419043844de881e5672bd921abd8097e0e982",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -108960,7 +108960,7 @@
     "kind": "finite_independent_producer_to_consumer_integration_observation",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "d66a079bc06bebc764a1bdb58c2fcd619598308850760010c85e6e8c7414b408",
+      "body_sha256": "0045d2d17e82386a858cc881240419043844de881e5672bd921abd8097e0e982",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -275689,7 +275689,7 @@
     "kind": "T02の独立局所projection素材",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "d66a079bc06bebc764a1bdb58c2fcd619598308850760010c85e6e8c7414b408",
+      "body_sha256": "0045d2d17e82386a858cc881240419043844de881e5672bd921abd8097e0e982",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract/relation_comparison_units",
       "binding_kind": "同一候補の正式L4 path/本文SHAへ結ぶ。scratchを意味正本にしない。"
     },
@@ -395892,9 +395892,9 @@
     "system_oracle_ref": "HELIXOS-L10-020-B01",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "d66a079bc06bebc764a1bdb58c2fcd619598308850760010c85e6e8c7414b408",
+      "body_sha256": "0045d2d17e82386a858cc881240419043844de881e5672bd921abd8097e0e982",
       "pointer": "/contracts/3/owner_return_contract",
-      "object_canonical_sha256": "5ddc6d1fcab037c34002c832e5f64330787580cec7ed454ee504973c4c8bf969"
+      "object_canonical_sha256": "258ba7bedf96d8bf71f75ce310ef3cef91e512d6d0c67154e37621029e13c45b"
     },
     "source_basis": {
       "requirement": "/approved_whole_objects/3",
@@ -395933,8 +395933,8 @@
       },
       {
         "id": "RETURN-CALL-BINDING",
-        "scenario_ja": "元packet/CIInput/F02008返却とrouter/consumer受渡しを照合する",
-        "expected_condition_ja": "同一論理呼出しで保持した原値と全診断をconsumer requestへ結ぶ。別callのproposal/原資料を混ぜず、routingの返却だけで実配送/ACK/受入を生成しない。RawPacketに存在しないwire bytes/custodyを仮定しない。"
+        "scenario_ja": "元packet/CIInput/F02008返却とrouter/consumer受渡しを照合する。非返却経路、混在する対応済みrequestの順序/完全同値重複も区別する",
+        "expected_condition_ja": "同一論理呼出しで保持した原値と全診断をconsumer requestへ結ぶ。別callのproposal/原資料を混ぜず、routingの返却だけで実配送/ACK/受入を生成しない。RawPacketに存在しないwire bytes/custodyを仮定しない。 operation/authority/resourceとfallbackはnon_owner_findingsへ原Finding全値を残し、このB01の3intakeへcallしない。対応済みrequestはplan→obligation→decision、各配列の元順で渡す。全field完全同値だけdedupし、同Findingでも別originを失わない。"
       }
     ],
     "additional_controls": [
@@ -395982,6 +395982,21 @@
         "/cases/248/given/input"
       ],
       "meaning_ja": "既存pure比較の原入力の所在。新source/intake呼出しを実行したwhole期待ではなく、元Findingを保持する対条件の入力材料。"
+    },
+    "non_return_input_navigation": {
+      "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+      "pointers": [
+        "/cases/68/given/input",
+        "/cases/69/given/input",
+        "/cases/70/given/input",
+        "/cases/71/given/input",
+        "/cases/72/given/input",
+        "/cases/73/given/input",
+        "/cases/74/given/input",
+        "/cases/75/given/input",
+        "/cases/76/given/input"
+      ],
+      "meaning_ja": "operation/authority/resourceの既存Finding入力。non_owner_findings保持とintake非呼出しはRETURN-CALL-BINDINGの新対条件であり、既存expectedにintake実行結果があるとは扱わない。fallbackも同条件で原Finding保持/非呼出しを照合する。"
     },
     "limits_ja": [
       "条件設計であり、新whole入力/全期待の凍結や実行済みRed/Greenを主張しない。既存caseと期待は変更しない。",

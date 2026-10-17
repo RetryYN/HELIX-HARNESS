@@ -3214,7 +3214,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
-        "file_sha256": "d66a079bc06bebc764a1bdb58c2fcd619598308850760010c85e6e8c7414b408",
+        "file_sha256": "0045d2d17e82386a858cc881240419043844de881e5672bd921abd8097e0e982",
         "object_canonical_sha256": "00ecf77c8ddc8b372fbf4183b9eda529c8381e8ac8acd88b0d4467001a26ac87",
         "meaning_ja": "この同一pairの現在L4 contractを指す。L4 source_pinsの歴史revisionは変更しない。"
       },
@@ -3266,8 +3266,8 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/3/owner_return_contract",
-        "file_sha256": "d66a079bc06bebc764a1bdb58c2fcd619598308850760010c85e6e8c7414b408",
-        "object_canonical_sha256": "5ddc6d1fcab037c34002c832e5f64330787580cec7ed454ee504973c4c8bf969"
+        "file_sha256": "0045d2d17e82386a858cc881240419043844de881e5672bd921abd8097e0e982",
+        "object_canonical_sha256": "258ba7bedf96d8bf71f75ce310ef3cef91e512d6d0c67154e37621029e13c45b"
       },
       "type_and_algorithm_imports": {
         "private_types": "/contracts/3/owner_return_contract/private_types",

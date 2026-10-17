@@ -170762,9 +170762,9 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-    "sha256": "e7528dd37bdea9dff19318c39c381c3c43c079911af0dbeffdc3a6df56ac79dd",
+    "sha256": "12a7db6af846d0d558d09ac1e6e63b9253ff55b52126609e5677b7b15f24ce86",
     "pointer": "/private_producer_bindings/0",
-    "object_canonical_sha256": "8b6379651b4ecf3c64edfa0de25cdc75efd21841d5c472a3e205df8d7d3a7a99",
+    "object_canonical_sha256": "2ad2e75a5bb6c618127416832d7e9635f8bfe121dfc2e9ce02f9978a682440b2",
     "binding_kind": "exact_candidate_file_bytes",
     "meaning": "同じ対に置くL5の現在file bytesとprivate producer binding objectを結ぶ。歴史source pinとは区別する。"
   },
@@ -171275,7 +171275,7 @@
     ],
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "eb491186e02547c8f52d5807defb4c8243d8283786dfdbf286f42b4ebd7c5b94",
+      "candidate_sha256": "547dd8434e92985ee82faac38237488c154e35bffb37c992d64dca54d942d55d",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
     },
@@ -171293,13 +171293,13 @@
     "requirement_ref": "HELIXOS-L3-020-B01",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "e7528dd37bdea9dff19318c39c381c3c43c079911af0dbeffdc3a6df56ac79dd",
+      "sha256": "12a7db6af846d0d558d09ac1e6e63b9253ff55b52126609e5677b7b15f24ce86",
       "pointer": "/private_producer_bindings/1",
-      "object_canonical_sha256": "23d1220cf9be875749f64765ad55d8f7894f34aa2a366e1fcb214290c9d4cf46"
+      "object_canonical_sha256": "5fa7176190fa6085fabbece0f5c4c95cfe530c3bcae84cfad0d79cbbc3825beb"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "eb491186e02547c8f52d5807defb4c8243d8283786dfdbf286f42b4ebd7c5b94",
+      "candidate_sha256": "547dd8434e92985ee82faac38237488c154e35bffb37c992d64dca54d942d55d",
       "pointer": "/owner_return_verification"
     },
     "unit_conditions": [
@@ -171309,7 +171309,7 @@
       },
       {
         "subject": "source classification/route_owner_return",
-        "expected_ja": "原sourceの既知対応/既知相反/比較不能/別対象を区別し、未確定originは局所unresolved/conflictへ保持する。互換する複数originと全raw/native Entry/bytes/Scopeを保持し、claim真偽・label・source_bundleからownerを生成しない。"
+        "expected_ja": "原sourceの既知対応/既知相反/比較不能/別対象を区別し、未確定originは局所unresolved/conflictへ保持する。互換する複数originと全raw/native Entry/bytes/Scopeを保持し、claim真偽・label・source_bundleからownerを生成しない。 operation/authority/resourceとfallbackはnon_owner_findingsへ元Finding全値で保持し、このB01 intakeへ渡さない。F01未接続分はf01_unconnected_branchどおりRouteUnresolvedとしF03 recordを流用しない。"
       },
       {
         "subject": "dispatch_owner_returns/Unit",
@@ -171321,6 +171321,46 @@
       "pointer": "/owner_return_verification/conditions",
       "meaning_ja": "L9の原L3/L10由来7条件へ対応する。L9 expectedの自己一致やcase件数で単体の正しさを生成しない。"
     },
+    "condition_alignment": [
+      {
+        "unit_pointer": "/owner_return_verification/unit_conditions/0",
+        "l9_pointers": [
+          "/owner_return_verification/conditions/0",
+          "/owner_return_verification/conditions/1",
+          "/owner_return_verification/conditions/2",
+          "/owner_return_verification/conditions/6"
+        ],
+        "meaning_ja": "原context/source/診断の同call保持と各役割request。"
+      },
+      {
+        "unit_pointer": "/owner_return_verification/unit_conditions/1",
+        "l9_pointers": [
+          "/owner_return_verification/conditions/0",
+          "/owner_return_verification/conditions/1",
+          "/owner_return_verification/conditions/2",
+          "/owner_return_verification/conditions/3",
+          "/owner_return_verification/conditions/4",
+          "/owner_return_verification/conditions/5",
+          "/owner_return_verification/conditions/6",
+          "/owner_return_verification/additional_controls/0",
+          "/owner_return_verification/additional_controls/1",
+          "/owner_return_verification/additional_controls/2",
+          "/owner_return_verification/additional_controls/3"
+        ],
+        "meaning_ja": "役割分類、unknown/conflict/foreign/互換複数、false claim/source_bundle/dual route/context role相反、およびoperation/authority/resource/fallbackのnon_owner保持。"
+      },
+      {
+        "unit_pointer": "/owner_return_verification/unit_conditions/2",
+        "l9_pointers": [
+          "/owner_return_verification/conditions/3",
+          "/owner_return_verification/conditions/4",
+          "/owner_return_verification/conditions/5",
+          "/owner_return_verification/conditions/6"
+        ],
+        "meaning_ja": "未解決originの非呼出し、他origin継続、plan→obligation→decision順と全field完全同値dedup。"
+      }
+    ],
+    "unfrozen_bounds_ja": "対応表は対条件の被覆でありliteral whole/全call trace期待の先凍結ではない。非返却/fallback/混在dispatch順/重複の具体的な全入力・全返却期待と実行証拠は未固定。既存role素材から新call成功を生成せず、L6/L7の実装前oracle形成で具体化する。",
     "limits_ja": "単体条件とimport/call bindingの設計。新literal whole期待/モデル実行/実物TDDのGreenではない。既存9関数と全旧入力/期待は不変。"
   }
 }
