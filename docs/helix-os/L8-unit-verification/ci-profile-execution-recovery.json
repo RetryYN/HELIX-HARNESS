@@ -170762,7 +170762,7 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-    "sha256": "5af9971564462ea08737a54a56f7cc5ecdf92c209b1123419db2803f639e83cc",
+    "sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
     "pointer": "/private_producer_bindings/0",
     "object_canonical_sha256": "355d46e6480836d3971468b16c8ae75cf0f53b15c6a76160a202faaa281f5fda",
     "binding_kind": "exact_candidate_file_bytes",
@@ -171275,7 +171275,7 @@
     ],
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "9598940f886411fe9dbe587f4ebb30f7c6e4fac9179cd1be25e2e1bb15d0a7b8",
+      "candidate_sha256": "35aee0072a0a32967b744501acc89ed8254b50e3e528e0494a586a6cf4e26af7",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
     },
@@ -171293,13 +171293,13 @@
     "requirement_ref": "HELIXOS-L3-020-B01",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "5af9971564462ea08737a54a56f7cc5ecdf92c209b1123419db2803f639e83cc",
+      "sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
       "pointer": "/private_producer_bindings/1",
       "object_canonical_sha256": "00804993dcef98068143986dfb66abfcac392c9e8b7971252339f94e278c66be"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "9598940f886411fe9dbe587f4ebb30f7c6e4fac9179cd1be25e2e1bb15d0a7b8",
+      "candidate_sha256": "35aee0072a0a32967b744501acc89ed8254b50e3e528e0494a586a6cf4e26af7",
       "pointer": "/owner_return_verification"
     },
     "unit_conditions": [
@@ -171376,13 +171376,13 @@
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/2",
-      "sha256": "5af9971564462ea08737a54a56f7cc5ecdf92c209b1123419db2803f639e83cc",
+      "sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
       "object_canonical_sha256": "90a7660aaa62e58b6f0e7ae17793a826cc4bd543c2e8be1afc2c0f6c4a77db05"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/operation_call_verification",
-      "candidate_sha256": "9598940f886411fe9dbe587f4ebb30f7c6e4fac9179cd1be25e2e1bb15d0a7b8",
+      "candidate_sha256": "35aee0072a0a32967b744501acc89ed8254b50e3e528e0494a586a6cf4e26af7",
       "object_canonical_sha256": "e0c58031d86c4c44dd62f8b667a4cd88bc8ce068788c96243228b7d549435317"
     },
     "condition_correspondence": [
@@ -171536,14 +171536,14 @@
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/3",
-      "sha256": "5af9971564462ea08737a54a56f7cc5ecdf92c209b1123419db2803f639e83cc",
+      "sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
       "object_canonical_sha256": "e93ee50f70741d1d5b201c56625efd8a1b5a76d7e46d285b3ab85ba50726cc33"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/prior_projection_verification",
-      "candidate_sha256": "9598940f886411fe9dbe587f4ebb30f7c6e4fac9179cd1be25e2e1bb15d0a7b8",
-      "object_canonical_sha256": "918f982a421244bd381ba8adadde2c21b49bcac31d99cc10ac81133128869f15"
+      "candidate_sha256": "35aee0072a0a32967b744501acc89ed8254b50e3e528e0494a586a6cf4e26af7",
+      "object_canonical_sha256": "4d5f07ee3793cfe2a38b53fb2c4bdf6bb1b34711b676e43da45c4319009deb8a"
     },
     "unit_conditions": [
       {
@@ -171626,14 +171626,14 @@
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/4",
-      "sha256": "5af9971564462ea08737a54a56f7cc5ecdf92c209b1123419db2803f639e83cc",
-      "object_canonical_sha256": "703a0b5819eb8085b8f9dc38bc5f2a33cf15c71f9e4a37046217fed5de56fdc9"
+      "sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+      "object_canonical_sha256": "8169f346d86828c057f74127017ce8eb8487cf4766d01919d5a0da9419f2b515"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/resume_call_verification",
-      "candidate_sha256": "9598940f886411fe9dbe587f4ebb30f7c6e4fac9179cd1be25e2e1bb15d0a7b8",
-      "object_canonical_sha256": "d38e6323f247bff9fdb52addd11361ba2375f638c4ca27b0c627bdc7c6c461d6"
+      "candidate_sha256": "35aee0072a0a32967b744501acc89ed8254b50e3e528e0494a586a6cf4e26af7",
+      "object_canonical_sha256": "6bf827f520d5681dc520c3c290795f87fcab2bf24ca72b2db32680326a956714"
     },
     "unit_conditions": [
       {
@@ -171645,9 +171645,20 @@
           "/logical_types/19",
           "/functions/2",
           "/functions/4",
+          "/functions/5",
+          "/private_producer_bindings/4/private_types/2",
+          "/private_producer_bindings/4/private_signatures/0",
+          "/private_producer_bindings/4/operand_binding_table/0"
+        ],
+        "case_refs": [],
+        "pre_authoring_native_source_pointers": [
+          "/functions/1/return_derivation/selected_phase",
+          "/logical_types/19",
+          "/functions/2",
+          "/functions/4",
           "/functions/5"
         ],
-        "case_refs": []
+        "source_pointer_roles_ja": "functions等は既存native比較規範、private2はphase非依存の型/capture規範/builder・S04 leaf/I06の出典に限る。今回の再開callerと分岐の検証対象はprivate4。prepare-only stage_rules/0とF02PersistCallReturnは再開の規範として流用せず、準備時の元pointerは別memberに履歴として保全する。"
       },
       {
         "id": "F03-RESUME-UNIT-02",
@@ -171656,9 +171667,19 @@
         "native_source_pointers": [
           "/private_producer_bindings/3/private_types/13",
           "/private_producer_bindings/3/private_signatures/3",
+          "/functions/4",
+          "/private_producer_bindings/4/operand_binding_table/1",
+          "/private_producer_bindings/4/operand_binding_table/2",
+          "/private_producer_bindings/4/operand_binding_table/3",
+          "/private_producer_bindings/4/operand_binding_table/4"
+        ],
+        "case_refs": [],
+        "pre_authoring_native_source_pointers": [
+          "/private_producer_bindings/3/private_types/13",
+          "/private_producer_bindings/3/private_signatures/3",
           "/functions/4"
         ],
-        "case_refs": []
+        "source_pointer_roles_ja": "functions等は既存native比較規範、private2はphase非依存の型/capture規範/builder・S04 leaf/I06の出典に限る。今回の再開callerと分岐の検証対象はprivate4。prepare-only stage_rules/0とF02PersistCallReturnは再開の規範として流用せず、準備時の元pointerは別memberに履歴として保全する。"
       },
       {
         "id": "F03-RESUME-UNIT-03",
@@ -171668,9 +171689,19 @@
           "/logical_types/16",
           "/functions/2",
           "/functions/4",
+          "/functions/5",
+          "/private_producer_bindings/4/operand_binding_table/5",
+          "/private_producer_bindings/4/operand_binding_table/6",
+          "/private_producer_bindings/4/private_signatures/0"
+        ],
+        "case_refs": [],
+        "pre_authoring_native_source_pointers": [
+          "/logical_types/16",
+          "/functions/2",
+          "/functions/4",
           "/functions/5"
         ],
-        "case_refs": []
+        "source_pointer_roles_ja": "functions等は既存native比較規範、private2はphase非依存の型/capture規範/builder・S04 leaf/I06の出典に限る。今回の再開callerと分岐の検証対象はprivate4。prepare-only stage_rules/0とF02PersistCallReturnは再開の規範として流用せず、準備時の元pointerは別memberに履歴として保全する。"
       },
       {
         "id": "F03-RESUME-UNIT-04",
@@ -171679,9 +171710,16 @@
         "native_source_pointers": [
           "/functions/1/common_binding_comparison_program",
           "/functions/4",
+          "/functions/5",
+          "/private_producer_bindings/4/operand_binding_table/7"
+        ],
+        "case_refs": [],
+        "pre_authoring_native_source_pointers": [
+          "/functions/1/common_binding_comparison_program",
+          "/functions/4",
           "/functions/5"
         ],
-        "case_refs": []
+        "source_pointer_roles_ja": "functions等は既存native比較規範、private2はphase非依存の型/capture規範/builder・S04 leaf/I06の出典に限る。今回の再開callerと分岐の検証対象はprivate4。prepare-only stage_rules/0とF02PersistCallReturnは再開の規範として流用せず、準備時の元pointerは別memberに履歴として保全する。"
       },
       {
         "id": "F03-RESUME-UNIT-05",
@@ -171689,18 +171727,36 @@
         "condition_ja": "owner requestのCIInput/check/binding/profile/security/resource/isolationとcurrent/同03返却を型・Field状態込みで比較。同名run_refだけで同callとしない。",
         "native_source_pointers": [
           "/private_producer_bindings/2/private_types/11",
+          "/private_producer_bindings/2/private_types/13",
+          "/private_producer_bindings/4/operand_binding_table/10",
+          "/private_producer_bindings/4/operand_binding_table/11",
+          "/private_producer_bindings/4/operand_binding_table/12",
+          "/private_producer_bindings/4/operand_binding_table/13",
+          "/private_producer_bindings/4/operand_binding_table/14",
+          "/private_producer_bindings/4/operand_binding_table/15",
+          "/private_producer_bindings/4/operand_binding_table/16"
+        ],
+        "case_refs": [],
+        "pre_authoring_native_source_pointers": [
+          "/private_producer_bindings/2/private_types/11",
           "/private_producer_bindings/2/private_types/13"
         ],
-        "case_refs": []
+        "source_pointer_roles_ja": "functions等は既存native比較規範、private2はphase非依存の型/capture規範/builder・S04 leaf/I06の出典に限る。今回の再開callerと分岐の検証対象はprivate4。prepare-only stage_rules/0とF02PersistCallReturnは再開の規範として流用せず、準備時の元pointerは別memberに履歴として保全する。"
       },
       {
         "id": "F03-RESUME-UNIT-06",
         "source_control_id": "R06",
         "condition_ja": "少なくとも一軸known差異なら他軸unknownがあってもnative06.selectedを抑止しない。known差異なしの未選択でrevalidation nullを不足にしない。unknown findingは消さない。",
         "native_source_pointers": [
+          "/functions/5",
+          "/private_producer_bindings/4/private_signatures/0",
+          "/private_producer_bindings/4/operand_binding_table/6"
+        ],
+        "case_refs": [],
+        "pre_authoring_native_source_pointers": [
           "/functions/5"
         ],
-        "case_refs": []
+        "source_pointer_roles_ja": "functions等は既存native比較規範、private2はphase非依存の型/capture規範/builder・S04 leaf/I06の出典に限る。今回の再開callerと分岐の検証対象はprivate4。prepare-only stage_rules/0とF02PersistCallReturnは再開の規範として流用せず、準備時の元pointerは別memberに履歴として保全する。"
       },
       {
         "id": "F03-RESUME-UNIT-07",
@@ -171710,9 +171766,20 @@
           "/private_producer_bindings/2/private_types/0",
           "/private_producer_bindings/2/private_types/1",
           "/private_producer_bindings/2/private_types/2",
+          "/private_producer_bindings/4/private_signatures/1",
+          "/private_producer_bindings/4/private_signatures/2",
+          "/private_producer_bindings/4/private_signatures/3",
+          "/private_producer_bindings/4/private_signatures/4",
+          "/private_producer_bindings/4/operand_binding_table/18"
+        ],
+        "case_refs": [],
+        "pre_authoring_native_source_pointers": [
+          "/private_producer_bindings/2/private_types/0",
+          "/private_producer_bindings/2/private_types/1",
+          "/private_producer_bindings/2/private_types/2",
           "/private_producer_bindings/2/stage_rules/0"
         ],
-        "case_refs": []
+        "source_pointer_roles_ja": "functions等は既存native比較規範、private2はphase非依存の型/capture規範/builder・S04 leaf/I06の出典に限る。今回の再開callerと分岐の検証対象はprivate4。prepare-only stage_rules/0とF02PersistCallReturnは再開の規範として流用せず、準備時の元pointerは別memberに履歴として保全する。"
       },
       {
         "id": "F03-RESUME-UNIT-08",
@@ -171721,9 +171788,18 @@
         "native_source_pointers": [
           "/private_producer_bindings/2/private_types/14",
           "/private_producer_bindings/2/private_types/15",
+          "/private_producer_bindings/2/private_signatures/4",
+          "/private_producer_bindings/4/private_types/3",
+          "/private_producer_bindings/4/private_signatures/4",
+          "/private_producer_bindings/4/private_signatures/5"
+        ],
+        "case_refs": [],
+        "pre_authoring_native_source_pointers": [
+          "/private_producer_bindings/2/private_types/14",
+          "/private_producer_bindings/2/private_types/15",
           "/private_producer_bindings/2/private_signatures/4"
         ],
-        "case_refs": []
+        "source_pointer_roles_ja": "functions等は既存native比較規範、private2はphase非依存の型/capture規範/builder・S04 leaf/I06の出典に限る。今回の再開callerと分岐の検証対象はprivate4。prepare-only stage_rules/0とF02PersistCallReturnは再開の規範として流用せず、準備時の元pointerは別memberに履歴として保全する。"
       },
       {
         "id": "F03-RESUME-UNIT-09",
@@ -171731,9 +171807,16 @@
         "condition_ja": "同CIInputのresultだけを同capture.result_recordへ差替えF02004(comparison_input,resume)へ一回渡す。独立context/expectedは不変、全結果区分・所見・未完を原値で保持。",
         "native_source_pointers": [
           "/functions/3",
+          "/private_producer_bindings/2/private_types/15",
+          "/private_producer_bindings/4/private_types/4",
+          "/private_producer_bindings/4/private_signatures/6"
+        ],
+        "case_refs": [],
+        "pre_authoring_native_source_pointers": [
+          "/functions/3",
           "/private_producer_bindings/2/private_types/15"
         ],
-        "case_refs": []
+        "source_pointer_roles_ja": "functions等は既存native比較規範、private2はphase非依存の型/capture規範/builder・S04 leaf/I06の出典に限る。今回の再開callerと分岐の検証対象はprivate4。prepare-only stage_rules/0とF02PersistCallReturnは再開の規範として流用せず、準備時の元pointerは別memberに履歴として保全する。"
       },
       {
         "id": "F03-RESUME-UNIT-10",
@@ -171744,9 +171827,22 @@
           "/private_producer_bindings/2/private_signatures/6",
           "/private_producer_bindings/2/stage_rules/3",
           "/private_producer_bindings/2/stage_rules/4",
+          "/private_producer_bindings/2/private_signatures/9",
+          "/private_producer_bindings/4/private_types/7",
+          "/private_producer_bindings/4/private_types/8",
+          "/private_producer_bindings/4/private_signatures/7",
+          "/private_producer_bindings/4/private_signatures/8",
+          "/private_producer_bindings/4/operand_binding_table/21"
+        ],
+        "case_refs": [],
+        "pre_authoring_native_source_pointers": [
+          "/private_producer_bindings/2/private_types/4",
+          "/private_producer_bindings/2/private_signatures/6",
+          "/private_producer_bindings/2/stage_rules/3",
+          "/private_producer_bindings/2/stage_rules/4",
           "/private_producer_bindings/2/private_signatures/9"
         ],
-        "case_refs": []
+        "source_pointer_roles_ja": "functions等は既存native比較規範、private2はphase非依存の型/capture規範/builder・S04 leaf/I06の出典に限る。今回の再開callerと分岐の検証対象はprivate4。prepare-only stage_rules/0とF02PersistCallReturnは再開の規範として流用せず、準備時の元pointerは別memberに履歴として保全する。"
       },
       {
         "id": "F03-RESUME-UNIT-11",
@@ -171755,15 +171851,22 @@
         "native_source_pointers": [
           "/functions/3",
           "/functions/4",
+          "/private_producer_bindings/4/private_types/8",
+          "/private_producer_bindings/4/private_signatures/7"
+        ],
+        "case_refs": [],
+        "pre_authoring_native_source_pointers": [
+          "/functions/3",
+          "/functions/4",
           "/private_producer_bindings/2/private_types/23"
         ],
-        "case_refs": []
+        "source_pointer_roles_ja": "functions等は既存native比較規範、private2はphase非依存の型/capture規範/builder・S04 leaf/I06の出典に限る。今回の再開callerと分岐の検証対象はprivate4。prepare-only stage_rules/0とF02PersistCallReturnは再開の規範として流用せず、準備時の元pointerは別memberに履歴として保全する。"
       }
     ],
     "branch_control_alignment": [
       {
         "l9_control_id": "RESUME-PHASE-GUARD",
-        "condition_ja": "入力phase非resume又はunknownならnot_ready、3比較未呼出しで各Field.absent。actualphaseとrequest.operation_checkのphaseを同値に結び、空所見を運転許可へ変換しない。"
+        "condition_ja": "入力phase非resume又はunknownならnot_ready、3比較未呼出しで各Field.absent。actualphaseとrequest.operation_checkのphaseを同値に結び、空所見を運転許可へ変換しない。 phase=resumeでもprior projectionがnot_projected又はunavailableなら元read/setup/projectionとnative3比較を保持したnot_readyであり、運転portを呼ばない。"
       },
       {
         "l9_control_id": "RESUME-NO-FUTURE",
@@ -171775,11 +171878,11 @@
       },
       {
         "l9_control_id": "RESUME-BUILDER-INPUT",
-        "condition_ja": "保存前capture/capability不一致はbuilder未呼出しのinput_unbound、呼出し後のbuild_return.input不一致はbuilder_return_unboundとし、両branchの原値と実call有無を区別する。"
+        "condition_ja": "保存前capture/capability不一致はbuilder未呼出しのinput_unbound、呼出し後のbuild_return.input不一致はbuilder_return_unboundとし、両branchの原値と実call有無を区別する。 builder返却inputの対応後にblockedならbuilder_blockedで元build_return/operand_checksを保持しjoin/S04非呼出し。readyでもI06非対応ならcrosswalk_blockedで元build_return/join_return/operand_checksを保持してS04非呼出し。"
       },
       {
         "l9_control_id": "RESUME-FAILED-CAPTURE-PERSIST",
-        "condition_ja": "F02004所見付きの失敗/未観測captureも保存対象として保持する。S04全nativevariantを保存成功へ一括変換せず、元失敗を後続成功で相殺しない。"
+        "condition_ja": "F02004所見付きの失敗/未観測captureも保存対象として保持する。S04全nativevariantを保存成功へ一括変換せず、元失敗を後続成功で相殺しない。 S04原Resultのready/replay/committed/stale/conflict/incomplete/unknownを同native型のまま全保持し、非成功variantをcommittedへ補完しない。persist_calledは呼出しだけを示し、元capture/F02004所見・未完は各variantでも保持する。"
       },
       {
         "l9_control_id": "RESUME-STORAGE-SELECTION",

@@ -4635,11 +4635,11 @@
           "name": "F03ResumeOperandCheck",
           "kind": "closed_record",
           "fields": {
-            "join_id": "closed enum: phase | prior_caller_read_mode | prior_setup_input | prior_projection_input | prior_field | resume_field | revalidation_field | current_binding_to_resume_binding | operation_capability_presence | operation_request_presence | request_ci_input | request_operation_check | request_binding | request_profile | request_security | request_resource | request_isolation | request_os018_input | operation_same_call | persist_capture | persist_operation_capability",
+            "join_id": "closed enum: phase | prior_caller_read_mode | prior_setup_input | prior_projection_input | prior_field | resume_field | revalidation_field | current_binding_to_resume_binding | operation_capability_presence | operation_request_presence | request_ci_input | request_operation_check | request_binding | request_profile | request_security | request_resource | request_isolation | request_os018_input | operation_same_call | persist_capture | persist_operation_capability | persist_builder_return_input",
             "state": "corresponding | different | unresolved",
             "operand_pointers": "ordered tuple<RFC6901 pointer string>（各stageの返却rootへ相対。/inputに保持した原値、又は同返却の比較値を指す）",
             "causes": "tuple<OS020.RawValue>（原因と所在。原native bytes/portは各typed carrierへ保持）",
-            "stage": "begin | operation | persist"
+            "stage": "begin | operation | persist | persist_after_builder"
           },
           "rule_ja": "意味対応の新public state/findingではなく同call引数対応の私有記録。未到達variant/Field非suppliedをunwrapせず、所在と未評価原因を保持。"
         },
@@ -4756,21 +4756,24 @@
               "input": "F03ResumePersistInput",
               "build_return": "OS020.F02OwnerPlanBuildReturn.blocked（exact return）",
               "join_call": "not_called",
-              "s04_call": "not_called"
+              "s04_call": "not_called",
+              "operand_checks": "tuple<F03ResumeOperandCheck>（保存前2joinと、実builder後persist_builder_return_input）"
             },
             "crosswalk_blocked": {
               "state": "crosswalk_blocked",
               "input": "F03ResumePersistInput",
               "build_return": "OS020.F02OwnerPlanBuildReturn.ready",
               "join_return": "OS020.F02OwnerPlanJoinReturn.unresolved_or_mismatch",
-              "s04_call": "not_called"
+              "s04_call": "not_called",
+              "operand_checks": "tuple<F03ResumeOperandCheck>（保存前2joinと、実builder後persist_builder_return_input）"
             },
             "persist_called": {
               "state": "persist_called",
               "input": "F03ResumePersistInput",
               "build_return": "OS020.F02OwnerPlanBuildReturn.ready",
               "join_return": "OS020.F02OwnerPlanJoinReturn.matched",
-              "s04_native_return": "(OS053.Result, tuple<OS053.Finding>, tuple<OS053.ProtocolCall>)"
+              "s04_native_return": "(OS053.Result, tuple<OS053.Finding>, tuple<OS053.ProtocolCall>)",
+              "operand_checks": "tuple<F03ResumeOperandCheck>（保存前2joinと、実builder後persist_builder_return_input）"
             },
             "builder_return_unbound": {
               "state": "builder_return_unbound",
@@ -4779,7 +4782,8 @@
               "causes": "tuple<OS020.RawValue>",
               "builder_call": "called",
               "join_call": "not_called",
-              "s04_call": "not_called"
+              "s04_call": "not_called",
+              "operand_checks": "tuple<F03ResumeOperandCheck>（保存前2joinと、実builder後persist_builder_return_input）"
             }
           },
           "rule_ja": "全branchのinputに元captured return/全比較を保持。persist_calledはS04を呼んだ意味で、committed/success保証ではない。OS053全nativevariantとread-afterを保持し、F02004 findings空を保存gateにしない。 builderの原返却inputが同build_inputに対応しなければbuilder_return_unboundへ原返却を保持し、未呼出しのinput_unboundと区別する。"
@@ -4932,6 +4936,13 @@
           "right": "persist.operation_return.input.start_return.operation_capability",
           "rule": "実resumeに使った同capability全値。別capabilityからsource/資格を生成しない。不一致はinput_unbound。",
           "stage": "persist"
+        },
+        {
+          "id": "persist_builder_return_input",
+          "left": "実build_return.input",
+          "right": "同F03ResumePersistInput.build_input",
+          "rule": "builder一回の後に全typed原入力を比較。不一致/未評価は原build_returnと照合原因を保持したbuilder_return_unbound、builder_call=called、join/S04=not_called。対応時だけ既存ready/blocked分岐へ進む。",
+          "stage": "persist_after_builder"
         }
       ],
       "private_signatures": [
@@ -5120,7 +5131,7 @@
             "既存独立選択でOS053を選んだ範囲だけこの私有callerを使う。非選択/未確定/typed保存input未供給は外側で非呼出しと元operationreturn/選択状態/未完を保持。新方式判断はしない。",
             "persist_capture及びpersist_operation_capabilityの両guardが不成立ならinput_unbound、builder/join/S04未呼出し。",
             "成立時だけ既存builderを一回。blockedはbuilder_blocked、readyは同supply/同captureでjoin_resume_plan_capture。",
-            "builder原返却のinputを同input.build_inputへ型・全値で照合し、不一致ならbuilder_return_unboundとして原build_returnを保持する。builderは呼出し済みであることを残し、join/S04を呼ばない。対応時だけ元ready/blocked branchへ進む。",
+            "builder原返却のinputを同input.build_inputへ型・全値で照合し、join_id=persist_builder_return_input、stage=persist_after_builderのOperandCheckを保持する。不一致ならbuilder_return_unboundとして原build_return/全operand_checks/原因を保持する。builderは呼出し済みであることを残し、join/S04を呼ばない。対応時だけ元ready/blocked branchへ進む。",
             "join未成立はcrosswalk_blocked、matchedだけ既存S04 leafを一回呼びpersist_called。native resultは全variant保持、既存内蔵read-after再利用、追加read無し。",
             "F02004 findings空/actual成功/回収済を保存gateにしない。失敗/未観測の原captureも保存対象で、保存成功でも元失敗を消さない。"
           ],
@@ -5186,7 +5197,7 @@
       "stage_rules": {
         "begin_ja": "F02002のphase解釈規則だけをimportし、選択phaseがresume以外ならnot_readyとしてnative3比較は未呼出し。resumeならF02003/05/06へ同current/resumeを各一回渡し全返却保持。operand_binding_tableのstage=beginだけを検査する。全begin対応と原projected、supplied request/capability、三所見空の場合だけresume_ready。stage=operation/persistの未来値は開始時に検査も要求もしない。",
         "operation_ja": "実resume_readyの同capability/requestで三段portを呼び、後段入口へ三段原返却と独立late2Fieldを渡す。source table stage=operationの同call/cascade成立ならcapture_resume_return→bind_resume_collectionを各一回。不成立だけnot_captured。called後の未観測・六結果・未実行は原状態保持。",
-        "persist_ja": "既存OS053選択時だけ後段typed入力を構成し、stage=persist両guardが成立した場合にbuilder一回。builder返却input不一致は専用branchで保持。ready supplyと同captureをI06既存規範へ渡し、全必須比較対応のmatchedだけS04一回。比較所見付き・失敗・未観測の原captureを成功へ書き換えず記録する。",
+        "persist_ja": "既存OS053選択時だけ後段typed入力を構成し、stage=persist両guardが成立した場合にbuilder一回。builder返却input不一致は専用branchで保持。ready supplyと同captureをI06既存規範へ渡し、全必須比較対応のmatchedだけS04一回。比較所見付き・失敗・未観測の原captureを成功へ書き換えず記録する。 builder後はstage=persist_after_builderのpersist_builder_return_inputを一回照合し、その結果を全後段branchのoperand_checksに保持する。",
         "native_cause_ja": "公開の所見/Resultを新設せず、native返却をその型のまま保存。私有causesはRawValue原値と所在を保持し、OS020/OS053分類へcastしない。",
         "phase_interpretation_import": {
           "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
