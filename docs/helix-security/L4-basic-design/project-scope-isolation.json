@@ -215,5 +215,63 @@
     "meaning": "基本pairはscope-binding-ownerへ集約し、OS/INFRA/CONNECT等の個別原ownerへの正式振分けはL5へ。",
     "pointer_base": "given.input root。各request/context fieldの実在位置へJSON Pointerを返す。scope fieldはproject等のText key、pointer escapeは~0/~1。",
     "sort": "code/pointer/return_ownerのscalar codepoint順、完全同値3fieldのみunique。"
-  }
+  },
+  "private_composition_contracts": [
+    {
+      "id": "HELIXSECURITY-L4-003-F01-SAME-FRAME-PROPOSAL-BACKFLOW",
+      "basis_contract": {
+        "pointer": "/contracts/0",
+        "object_canonical_sha256": "00f23afe6b9f2202bc6097bd73375dc80411aba2710e2104a7fe9d0bc749b80c"
+      },
+      "purpose": "同じMaterialized<ProposalInput>を原値として保ち、提案比較と不足返却候補の作成を同じ入力frame上で接続する。入力の比較責務、既存F01/F02の意味、Finding.return_ownerを変えない。",
+      "private_entrypoint": {
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "pointer": "/functions/12",
+        "symbol": "compose_scope_proposal_and_backflow",
+        "input": "Materialized<ProposalInput>",
+        "output": "SameFrameInvocationResult"
+      },
+      "order": [
+        "呼出し元が保有する同一Materialized<ProposalInput>を一度受け取る。",
+        "compose_scope_proposalを一回呼び、その全11fieldのScopeProposalを保持する。",
+        "同じ入力からScopeFrame借用viewとBackflowInput logical assemblyを作り、原source pointer namespaceを保つ。",
+        "operation原Fieldの対応記録を作る。これは呼出しgateではない。",
+        "describe_scope_backflowを一回呼び、BackflowAnalysis全値を保持する。",
+        "7rootの閉じた結果を返す。"
+      ],
+      "source_rules": [
+        "Materialized<ProposalInput>のtag/pointer/original/fields/unknown_membersはnative_inputへ全値保持する。fn0による再materializeや8part再評価を挟まない。",
+        "ScopeFrameはnative input rootのtag/pointer/originalを保持する。typed fieldsからrequest/contextが読めるときだけ同じMaterialized nodeを借用する。rawからtyped nodeを補修しない。",
+        "ScopeFrame.unknown_membersは元mapを先に全値copyし、raw root objectにあるrequest/context以外のmemberを元mapにkeyが無い場合だけ加える。同名keyがあれば元mapを保持しrawはnative_input/frame.originalに残す。",
+        "finding.pointer、Field.pointerは元input rootのsource pointerとして保持し、assemblyの物理pathに付け替えない。",
+        "ScopeProposalとBackflowAnalysisは同じ呼出し元入力に対する二つのnative結果としてそれぞれ全値保持する。実資格、認可、配送、保存、ACKは発行しない。"
+      ],
+      "operation_correspondence": [
+        "leftはProposalInput.fields.operation、rightは同じinput.fields.request.fields.operation。比較対象は実node観測状態、tag/original/value。pointerは比較から除くが双方の元pointerを出力に保つ。JSON型とpresenceを厳密に比較する。",
+        "親が観測されField nodeがある両側は、3要素が全て同じときcorresponding/bound=true、それ以外conflict/bound=false。Absenceや同じ不正値の一致はrecord correspondenceであってknown Operationではない。",
+        "親未観測でnodeが無い側は明示liftを使う。親AbsentならField tag=absent、その他の親null/非object/unknownならinvalid_or_unknown。liftは元親を別途保持し、supplied(null)を作らない。片側でもnode未観測ならcomparison=unresolved/bound=false。",
+        "known_operationは実左Fieldが既知閉Operationであることだけを示し、requestとの差やboundと独立する。operation違い/unknownでも両native関数を一回ずつ呼び、全返却を保持する。"
+      ],
+      "effects": {
+        "authorization": "none",
+        "dispatch": "none",
+        "state_change": "none",
+        "operation_effect": "none"
+      },
+      "execution_status": "設計上の関数合成契約。runtime実装・呼出し・認可・配送を観測したという主張ではない。",
+      "contract_addition_state": "現行設計への補足。authorityやruntimeの成立を示さない。F01の返却接続でF02の操作比較結果も保持する。",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "system_oracle_refs": [
+        "HELIXSECURITY-L10-003-F01",
+        "HELIXSECURITY-L10-003-F02"
+      ],
+      "oracle_refs": [
+        "HELIXSECURITY-L9-003-F01",
+        "HELIXSECURITY-L9-003-F02"
+      ]
+    }
+  ]
 }
