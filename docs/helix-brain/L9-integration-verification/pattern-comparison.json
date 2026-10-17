@@ -1935,12 +1935,12 @@
               ],
               "l4_private_wrapper_pointer": "/contracts/1/private_owner_return_wrapper",
               "l5_function_ref": "BRAIN004-F02-OWNER-RETURN",
-              "native_return_is_not_recomputed": "complete native return remains the referenced existing L9 expected_material; this symbolic extension adds only the source-bound shortage material/issue mapping.",
+              "native_return_is_not_recomputed": "完全なnative returnは参照先の既存L9 expected_materialを保持する。このsymbolic追補が加えるのはsource-boundな不足material/issueの対応だけである。",
               "source_condition_authoring_freeze": {
                 "path": "scaffold/review-handoff/local/brain004-f02-owner-return-symbolic-prefreeze-at-969b33b30/symbolic-freeze.json",
                 "revision": "969b33b30d846e6ba36e6cc5c6d07fa19e22d9e4",
                 "sha256": "4221a49f6f561df70f9e0fde734e62cb20c2640ff98569b293c36b19c1dbf440",
-                "authority_effect": "none; authored conditions are reproduced here as a tracked pair record."
+                "authority_effect": "著述時の条件source freezeを示す。埋込み値を保持し、local pathは著述来歴として扱う。"
               }
             },
             "execution_state": "not_executed",
@@ -2044,12 +2044,12 @@
               ],
               "l4_private_wrapper_pointer": "/contracts/1/private_owner_return_wrapper",
               "l5_function_ref": "BRAIN004-F02-OWNER-RETURN",
-              "native_return_is_not_recomputed": "complete native return remains the referenced existing L9 expected_material; this symbolic extension adds only the source-bound shortage material/issue mapping.",
+              "native_return_is_not_recomputed": "完全なnative returnは参照先の既存L9 expected_materialを保持する。このsymbolic追補が加えるのはsource-boundな不足material/issueの対応だけである。",
               "source_condition_authoring_freeze": {
                 "path": "scaffold/review-handoff/local/brain004-f02-owner-return-symbolic-prefreeze-at-969b33b30/symbolic-freeze.json",
                 "revision": "969b33b30d846e6ba36e6cc5c6d07fa19e22d9e4",
                 "sha256": "4221a49f6f561df70f9e0fde734e62cb20c2640ff98569b293c36b19c1dbf440",
-                "authority_effect": "none; authored conditions are reproduced here as a tracked pair record."
+                "authority_effect": "著述時の条件source freezeを示す。埋込み値を保持し、local pathは著述来歴として扱う。"
               }
             },
             "execution_state": "not_executed",
@@ -2145,12 +2145,12 @@
               ],
               "l4_private_wrapper_pointer": "/contracts/1/private_owner_return_wrapper",
               "l5_function_ref": "BRAIN004-F02-OWNER-RETURN",
-              "native_return_is_not_recomputed": "complete native return remains the referenced existing L9 expected_material; this symbolic extension adds only the source-bound shortage material/issue mapping.",
+              "native_return_is_not_recomputed": "完全なnative returnは参照先の既存L9 expected_materialを保持する。このsymbolic追補が加えるのはsource-boundな不足material/issueの対応だけである。",
               "source_condition_authoring_freeze": {
                 "path": "scaffold/review-handoff/local/brain004-f02-owner-return-symbolic-prefreeze-at-969b33b30/symbolic-freeze.json",
                 "revision": "969b33b30d846e6ba36e6cc5c6d07fa19e22d9e4",
                 "sha256": "4221a49f6f561df70f9e0fde734e62cb20c2640ff98569b293c36b19c1dbf440",
-                "authority_effect": "none; authored conditions are reproduced here as a tracked pair record."
+                "authority_effect": "著述時の条件source freezeを示す。埋込み値を保持し、local pathは著述来歴として扱う。"
               }
             },
             "execution_state": "not_executed",
@@ -2246,12 +2246,12 @@
               ],
               "l4_private_wrapper_pointer": "/contracts/1/private_owner_return_wrapper",
               "l5_function_ref": "BRAIN004-F02-OWNER-RETURN",
-              "native_return_is_not_recomputed": "complete native return remains the referenced existing L9 expected_material; this symbolic extension adds only the source-bound shortage material/issue mapping.",
+              "native_return_is_not_recomputed": "完全なnative returnは参照先の既存L9 expected_materialを保持する。このsymbolic追補が加えるのはsource-boundな不足material/issueの対応だけである。",
               "source_condition_authoring_freeze": {
                 "path": "scaffold/review-handoff/local/brain004-f02-owner-return-symbolic-prefreeze-at-969b33b30/symbolic-freeze.json",
                 "revision": "969b33b30d846e6ba36e6cc5c6d07fa19e22d9e4",
                 "sha256": "4221a49f6f561df70f9e0fde734e62cb20c2640ff98569b293c36b19c1dbf440",
-                "authority_effect": "none; authored conditions are reproduced here as a tracked pair record."
+                "authority_effect": "著述時の条件source freezeを示す。埋込み値を保持し、local pathは著述来歴として扱う。"
               }
             },
             "execution_state": "not_executed",
@@ -2372,12 +2372,12 @@
               ],
               "l4_private_wrapper_pointer": "/contracts/1/private_owner_return_wrapper",
               "l5_function_ref": "BRAIN004-F02-OWNER-RETURN",
-              "native_return_is_not_recomputed": "complete native return remains the referenced existing L9 expected_material; this symbolic extension adds only the source-bound shortage material/issue mapping.",
+              "native_return_is_not_recomputed": "完全なnative returnは参照先の既存L9 expected_materialを保持する。このsymbolic追補が加えるのはsource-boundな不足material/issueの対応だけである。",
               "source_condition_authoring_freeze": {
                 "path": "scaffold/review-handoff/local/brain004-f02-owner-return-symbolic-prefreeze-at-969b33b30/symbolic-freeze.json",
                 "revision": "969b33b30d846e6ba36e6cc5c6d07fa19e22d9e4",
                 "sha256": "4221a49f6f561df70f9e0fde734e62cb20c2640ff98569b293c36b19c1dbf440",
-                "authority_effect": "none; authored conditions are reproduced here as a tracked pair record."
+                "authority_effect": "著述時の条件source freezeを示す。埋込み値を保持し、local pathは著述来歴として扱う。"
               }
             },
             "execution_state": "not_executed",
@@ -2484,12 +2484,12 @@
               ],
               "l4_private_wrapper_pointer": "/contracts/1/private_owner_return_wrapper",
               "l5_function_ref": "BRAIN004-F02-OWNER-RETURN",
-              "native_return_is_not_recomputed": "complete native return remains the referenced existing L9 expected_material; this symbolic extension adds only the source-bound shortage material/issue mapping.",
+              "native_return_is_not_recomputed": "完全なnative returnは参照先の既存L9 expected_materialを保持する。このsymbolic追補が加えるのはsource-boundな不足material/issueの対応だけである。",
               "source_condition_authoring_freeze": {
                 "path": "scaffold/review-handoff/local/brain004-f02-owner-return-symbolic-prefreeze-at-969b33b30/symbolic-freeze.json",
                 "revision": "969b33b30d846e6ba36e6cc5c6d07fa19e22d9e4",
                 "sha256": "4221a49f6f561df70f9e0fde734e62cb20c2640ff98569b293c36b19c1dbf440",
-                "authority_effect": "none; authored conditions are reproduced here as a tracked pair record."
+                "authority_effect": "著述時の条件source freezeを示す。埋込み値を保持し、local pathは著述来歴として扱う。"
               }
             },
             "execution_state": "not_executed",
@@ -2579,12 +2579,12 @@
               ],
               "l4_private_wrapper_pointer": "/contracts/1/private_owner_return_wrapper",
               "l5_function_ref": "BRAIN004-F02-OWNER-RETURN",
-              "native_return_is_not_recomputed": "complete native return remains the referenced existing L9 expected_material; this symbolic extension adds only the source-bound shortage material/issue mapping.",
+              "native_return_is_not_recomputed": "完全なnative returnは参照先の既存L9 expected_materialを保持する。このsymbolic追補が加えるのはsource-boundな不足material/issueの対応だけである。",
               "source_condition_authoring_freeze": {
                 "path": "scaffold/review-handoff/local/brain004-f02-owner-return-symbolic-prefreeze-at-969b33b30/symbolic-freeze.json",
                 "revision": "969b33b30d846e6ba36e6cc5c6d07fa19e22d9e4",
                 "sha256": "4221a49f6f561df70f9e0fde734e62cb20c2640ff98569b293c36b19c1dbf440",
-                "authority_effect": "none; authored conditions are reproduced here as a tracked pair record."
+                "authority_effect": "著述時の条件source freezeを示す。埋込み値を保持し、local pathは著述来歴として扱う。"
               }
             },
             "execution_state": "not_executed",
@@ -2688,12 +2688,12 @@
               ],
               "l4_private_wrapper_pointer": "/contracts/1/private_owner_return_wrapper",
               "l5_function_ref": "BRAIN004-F02-OWNER-RETURN",
-              "native_return_is_not_recomputed": "complete native return remains the referenced existing L9 expected_material; this symbolic extension adds only the source-bound shortage material/issue mapping.",
+              "native_return_is_not_recomputed": "完全なnative returnは参照先の既存L9 expected_materialを保持する。このsymbolic追補が加えるのはsource-boundな不足material/issueの対応だけである。",
               "source_condition_authoring_freeze": {
                 "path": "scaffold/review-handoff/local/brain004-f02-owner-return-symbolic-prefreeze-at-969b33b30/symbolic-freeze.json",
                 "revision": "969b33b30d846e6ba36e6cc5c6d07fa19e22d9e4",
                 "sha256": "4221a49f6f561df70f9e0fde734e62cb20c2640ff98569b293c36b19c1dbf440",
-                "authority_effect": "none; authored conditions are reproduced here as a tracked pair record."
+                "authority_effect": "著述時の条件source freezeを示す。埋込み値を保持し、local pathは著述来歴として扱う。"
               }
             },
             "execution_state": "not_executed",
@@ -3187,7 +3187,7 @@
               "expected_sha256": "521aae0872e2cbec6fb1771591e4733e896c95472da154969b29b75caf82e62c",
               "source_advice_file": "source-advice.json",
               "source_advice_sha256": "38ede6413636de766278c599e8676251bb362f69c98ff5c29f810970fd898e86",
-              "authority_effect": "none; supplement source-first freeze. Embedded values are the reproduction source; local authoring path is provenance."
+              "authority_effect": "補助source-first freezeを示す。埋込みの入力/期待は再構成素材として保持し、local pathは著述来歴である。実行、資格成立、authority effectは主張しない。"
             },
             "mapping_basis": {
               "requirements": [
@@ -3197,13 +3197,13 @@
               ],
               "l4_private_wrapper_pointer": "/contracts/1/private_owner_return_wrapper",
               "l5_function_ref": "BRAIN004-F02-OWNER-RETURN",
-              "native_return_is_not_recomputed": "complete native return remains the referenced existing L9 expected_material; this symbolic extension adds only the source-bound shortage material/issue mapping.",
+              "native_return_is_not_recomputed": "完全なnative returnは参照先の既存L9 expected_materialを保持する。このsymbolic追補が加えるのはsource-boundな不足material/issueの対応だけである。",
               "source_condition_authoring_freeze": {
                 "path": "scaffold/review-handoff/local/brain004-f02-parent-observation-S09-prefreeze/S09.input.json",
                 "revision": "969b33b30d846e6ba36e6cc5c6d07fa19e22d9e4",
                 "sha256": "f0166ab423d32557e9aec0d1c2cf16a6c46b223dd2889bce73cc05d548bf8040",
                 "expected_sha256": "521aae0872e2cbec6fb1771591e4733e896c95472da154969b29b75caf82e62c",
-                "authority_effect": "none; complete input and symbolic expected are embedded here; local path records authoring provenance only."
+                "authority_effect": "著述時の条件source freezeを示す。埋込み値を保持し、local pathは著述来歴として扱う。"
               }
             },
             "execution_state": "not_executed",
@@ -3218,9 +3218,9 @@
         ],
         "candidate_l5_binding": {
           "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
-          "file_sha256": "09ac0f61c7171e35a0c150ee73d4d89096ca0fa3e1ea54af3baa7aaebab192ec",
+          "file_sha256": "d27ecfac55b40b5f4ae85d3c1cddfabceafa6d1260f9c7650fb29ef2de3fce60",
           "pointer": "/functions/3",
-          "object_canonical_sha256": "5f49c3c8298fd6e069b0a0df1aa01a439672988e0e1385625aa860e22e914338"
+          "object_canonical_sha256": "20b24914cd5004c0999287fea4938b398dc85b17ef6ea36ab542a49fc6c66bb7"
         },
         "current_l4_binding": {
           "path": "docs/helix-brain/L4-basic-design/pattern-comparison.json",
@@ -3237,9 +3237,37 @@
             "expected_sha256": "521aae0872e2cbec6fb1771591e4733e896c95472da154969b29b75caf82e62c",
             "source_advice_file": "source-advice.json",
             "source_advice_sha256": "38ede6413636de766278c599e8676251bb362f69c98ff5c29f810970fd898e86",
-            "authority_effect": "none; supplement source-first freeze. Embedded values are the reproduction source; local authoring path is provenance."
+            "authority_effect": "著述時の補助source freezeを示す。埋込み値が再構成素材であり、local pathは著述来歴のみを示す。"
           }
-        ]
+        ],
+        "retained_source_value_gloss_ja": {
+          "authority_effect": "以下の日本語説明は、元のpaired/frozen symbolic valueを変更せず読めるようにする注記である。",
+          "applies_to_condition_ids": [
+            "S01-CORE-value-missing",
+            "S02-foreign-scope",
+            "S03-weight-human",
+            "S04-weight-INTELLIGENCE",
+            "S05-absent-route-sibling-retained",
+            "S06-unobserved-route-scope",
+            "S07-no-shortage-no-return",
+            "S08-foreign-invocation-revision"
+          ],
+          "paired_symbolic_expected_field_glosses": {
+            "original_input": "指定されたbaseのraw_pointerにある解析済み原入力をそのまま使う。",
+            "complete_native_return": "指定されたexpected_pointerにあるnative return全体をpatchせず保持する。",
+            "request_source_echo": "input_original_sources.requestをそのまま保持する。",
+            "invocation_request_binding_echo": "input_original_sources.invocation_request_bindingをそのまま保持する。",
+            "decision_source_echo": "input_original_sources.decision_sourcesをそのまま保持し、keyのAbsent/null/valueを区別する。",
+            "shortage_materials.request_binding": "requestのoriginal_declarationをそのまま使う。",
+            "shortage_materials.destination_source": "示したdecision sourceを原sourceとして使い、欠落時に別のsourceを補わない。",
+            "shortage_materials.effect": "論理上の返却候補のみ。",
+            "all_other_native_members": "その他すべてのnative memberを完全保持し、書き換えない。",
+            "no_actual_operation": "query、採用、資格成立、配送、ACKの実作用を生じさせない。",
+            "local_binding_issues": "原conditionのfield×axis要約値を保持する。実出力への展開規則はL8 owner_return_issue_projection_contractを参照する。"
+          },
+          "S09_frozen_rule_gloss_ja": "S09のnative_return.ruleは、native return全値を変更せず、native evaluatorを実行していないという著述時の説明。frozen expected内の原文字列は変更しない。",
+          "state_scope_ja": "S01〜S08は3つの入力source observationがpresent_value。S09はoriginal_request_sourceがunknown、invocation_request_bindingとdecision_sourcesはpresent_value。この違いを維持する。"
+        }
       }
     },
     {
