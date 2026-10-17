@@ -178818,13 +178818,13 @@
     "status": "finite_source_first_composition_expectations_not_execution",
     "current_l4_binding": {
       "document": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-      "file_sha256": "982ad757b76f844b980a20e175d8efe7c3adc09a11396334ccfe3439d6d5d449",
+      "file_sha256": "3ef0816e6a1d1156a970f1230da5e3199076210862463a348a7058772d67bf25",
       "pointer": "/private_composition_contracts/0",
       "object_canonical_sha256": "c1865e886685fb099417baaff79f08b93cbcd86424dd2bf74200bcad4863f91e"
     },
     "candidate_l5_binding": {
       "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
-      "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+      "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
       "pointer": "/functions/12",
       "object_canonical_sha256": "9d99c26d17c8d40e31628e5352d68b10bca6e12189875653dcff7710dad82f8f",
       "binding_kind": "current_candidate_file_and_object"
@@ -178855,14 +178855,14 @@
         "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
         "revision": "current_candidate",
         "pointer": "/functions/7",
-        "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
         "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
       },
       "fn10": {
         "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
         "revision": "current_candidate",
         "pointer": "/functions/10",
-        "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
         "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
       },
       "scope_proposal": {
@@ -179216,14 +179216,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
@@ -179601,14 +179601,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
@@ -180073,14 +180073,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
@@ -180432,14 +180432,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
@@ -180894,14 +180894,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
@@ -181179,14 +181179,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
@@ -181464,14 +181464,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
@@ -181749,14 +181749,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
@@ -182095,14 +182095,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
@@ -182573,14 +182573,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
@@ -182923,14 +182923,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
@@ -183280,14 +183280,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
@@ -183675,14 +183675,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
@@ -184309,14 +184309,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
@@ -184646,14 +184646,14 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
+            "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
             "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
           },
           "ScopeProposal": {
