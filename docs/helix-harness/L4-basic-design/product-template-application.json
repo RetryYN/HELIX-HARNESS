@@ -4143,7 +4143,7 @@
     },
     "next_detail_obligations": [
       "既存F05のdefinition_state/value_state全域writerとclosed私有型/引数/返却順、原qualification unknownと案件値unknownの分離、複数source/同値反復/相反/presence/理由の全field writerをL5/L8へ具体化する。",
-      "原source宣言のform/value意味/reason出所を読む前段と、/field_semantic_evidence_contractの局所定義命題/不足4候補の原body接続を分けてL5/L8へ降ろす。logical producer責務/bodyを記述したことを実producer/実資格/実取得成立とせず、全private型/guard/元bytes/body/Ref/pointer対応と各leaf writerを詳細で閉じる。新規宣言/原命題をconsumerが自動発行しない。",
+      "本logical宣言profileの正本/producer/取得口と、meaning内宣言の私有型/writerは未成立。既存wire wrapperの表現域に載ることと、新宣言内容が有効意味根拠として読めることを分ける。原意味ownerのsource宣言又は独立役割根拠を確定し、原source宣言のform/value意味/reason出所を読む前段と、/field_semantic_evidence_contractの局所定義命題/不足4候補の原body接続を分けてL5/L8へ降ろす。logical producer責務/bodyを記述したことを実producer/実資格/実取得成立とせず、全private型/guard/元bytes/body/Ref対応とpointer namespaceと各leaf writerを詳細で閉じる。新規宣言/原命題をconsumerが自動発行しない。",
       "案件値の有効nullと未決envelope、whole/raw object値とenvelope子値、欠落宣言/既知相反/兄弟継続を識別する独立原入力/全返却期待を候補計算前に固定する。例数を全域完了gateにしない。",
       "B019/030に必要な同query/選択knowledge/独立field関係、Definition.knowledge/meaningとCORE値の正確なcrosswalkは後続。本節を追加して当該上流/下流の全責務を完了扱いしない。",
       "実source/owner資格/実provider/実配送/認可/OS記録/CI/実受入/全92親430義務は成立未認定。それらの実装不在だけを論理投影の新常時gateにしない。"
@@ -4230,7 +4230,7 @@
           "/reference_resolution_contract",
           "/wire_codec_contract/numeric_encode_profile"
         ],
-        "role": "現native carrier/原Ref照合と数値意味。候補関数を実行しない。"
+        "role": "現native carrier/原Ref照合と数値意味。候補関数を実行しない。 上流承認対象ではなく、既存下流の技術設計sourceとして参照する。このL5 file又は各選択pointerの承認、実装成立を継承しない。"
       }
     ],
     "input_contract": {
@@ -4269,8 +4269,8 @@
         "reentry_condition": "RawValue。absence/null/false/0/空/実値を保存する。通常の定義命題へ新必須gateを設けない。"
       },
       "present_guard": "common_target_guardsを満たす局所原命題presentと、非空content_refsの各Refが当該field.definition_refsに実在する元Ref occurrenceへ対応すること。前段で各RefのAxisFact又はSemanticRecord全原record/source/bodyとdefinition roleのpayloadが解決され、当該命題がそれらをこのfieldの定義本文として明示する範囲がknown候補である。全field inventory/complete棚卸しを要求しない。meaning wholeを読み出せた事実、null/non-null、kind、value keyの有無だけではknownを認定しない。原definition_refsのうち未対応の別operandがある場合もその独立未形成と当該支持本文を別に返し、field全体のsummaryを自動でknownへ畳まない。",
-      "absent_guard": "common_target_guardsを満たす同field/template/版/scopeの局所原命題absentがcontent_refs=[]を明示すること。この原ownerの定義不在命題からmissing候補を形成する。field.definition_refs=[]又はRef検索missだけから不在命題を作らない。元fieldが保持する参照と取得不成立も別に残す。全required集合/完備棚卸しは前提にしない。",
-      "undecided_guard": "common_target_guardsを満たす元命題undecidedをunknown候補として保存する。content_refsが供給されていれば全原内容/対応/原未形成を別に残す。元sourceが未取得で命題自体を読めない場合は、この枝へ代入しない。",
+      "absent_guard": "common_target_guardsを満たす同field/template/版/scopeの局所原命題absentがcontent_refs=[]を明示すること。この原ownerの定義不在命題からmissing候補を形成する。field.definition_refs=[]又はRef検索missだけから不在命題を作らない。元fieldが保持する参照と取得不成立も別に残す。全required集合/完備棚卸しは前提にしない。 原field.definition_refsに未解決のoperandがある場合は、その原Ref/所在と取得不成立をcontent_unresolvedとして保存し、局所owner evidenceのformed/missing候補を保持したままfield単位のjudgmentをunformedとする。",
+      "undecided_guard": "common_target_guardsを満たす元命題undecidedをunknown候補として保存する。content_refsが供給されていれば全原内容/対応/原未形成を別に残す。元sourceが未取得で命題自体を読めない場合は、この枝へ代入しない。 原field.definition_refsに未解決のoperandがある場合は、その原Ref/所在と取得不成立をcontent_unresolvedとして保存し、局所owner evidenceのformed/unknown候補を保持したままfield単位のjudgmentをunformedとする。",
       "conflict_boundary": "異なるevidence Refの個別に対応済みのpresentとabsentが同field/full binding/template版/scopeについて相反する場合は、両原命題・全source・内容を根拠にconflict候補を返す。undecidedは既知present/absentを消さず別原命題として保持する。同じevidence Refのsource/body相反又は宣言/対象対応不成立は意味命題としての支持未成立でありunformed原因。別content Refの単なる値違いはconflictでなく、同時許容/cardinality/集約の原意味が未供給ならfield全体の集約未形成を別保存する。",
       "no_required_inventory": "本節は局所資料を最小表現とする。complete inventoryの新body/readerは今回は設けず、全required-field集合を必須にしない。必要集合を取得成功recordから作り直すこともない。"
     },

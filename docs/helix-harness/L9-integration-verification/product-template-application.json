@@ -81195,7 +81195,7 @@
             "document_id": "HELIX-HARNESS-L4-009",
             "candidate_local_pointer": "/contracts/4/source_result_reference_projection",
             "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
-            "candidate_l4_bytes_sha256": "8ea4f2cdab9224d06cb26d58ff0a3755c32cef43fd63936998616352e4a42988",
+            "candidate_l4_bytes_sha256": "713c2ad82a51931bbe5cafa733569d80d7d68f1517de66ebd70c8f11dc3fff11",
             "candidate_l4_path": "docs/helix-harness/L4-basic-design/product-template-application.json"
           },
           "expectation_basis": "L3/L10 F03にある根拠・適用範囲・不足の返却義務と、L4の必須軸、順序付きcondition pair、Presence<JsonValue>診断規則を用いる。各probeのrawと全返却期待はcase内に保持し、local先固定履歴はGit上の時系列証明とは区別する。",
@@ -131696,9 +131696,9 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "8ea4f2cdab9224d06cb26d58ff0a3755c32cef43fd63936998616352e4a42988",
+        "sha256": "713c2ad82a51931bbe5cafa733569d80d7d68f1517de66ebd70c8f11dc3fff11",
         "pointer": "/field_source_materialization_contract",
-        "canonical_sha256": "aaf46886e1603ba55d29453758f5bd57f4997723c2b755a2a8f5901a64ffb1bb",
+        "canonical_sha256": "9649ead62d77847a0839e1cb8c2451fa60cbd76811f6693c51c5a4860d975daf",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
       },
       {
@@ -146464,9 +146464,9 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "8ea4f2cdab9224d06cb26d58ff0a3755c32cef43fd63936998616352e4a42988",
+        "sha256": "713c2ad82a51931bbe5cafa733569d80d7d68f1517de66ebd70c8f11dc3fff11",
         "pointer": "/field_semantic_evidence_contract",
-        "canonical_sha256": "8c0714e57261e7192ff5721564aefc616eb6b0d55c8618fef6e538a0b4fc2d58",
+        "canonical_sha256": "0f1a3a07c4ba6fcde53126e7c89428c12a8a6a7b1d217d0fc58d16e3fcba6e20",
         "role": "現行L4基本候補のreturn/body契約。commit済み歴史revisionとは区別し、同PRの対象bytesと選択節を固定する。",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
       },
@@ -146475,7 +146475,8 @@
         "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
         "sha256": "899f78e08d8b668b1aa485b947a80122c6e35607b406e17c34b0f74cf22e23fa",
         "pointer": "/field_source_materialization_verification",
-        "role": "固定revisionのprojection operand/source library。既存7caseの原値は変更しない。"
+        "role": "固定revisionのprojection operand/source library。既存7caseの原値は変更しない。",
+        "authority_scope": "この固定revisionは既存L9 field_source_materializationの投影素材の歴史的出典だけを示す。L3/L10上流承認でも、現行source/producerの承認でもない。"
       },
       {
         "revision": "e441040710ecac0c9ce1e55bf2cc13a1b4e61530",
@@ -146483,13 +146484,23 @@
         "sha256": "00e5bba38cbf0fb9a67b2ebe8e6f2a32fcd5317731e2b6119dca5e946ab1f97d",
         "pointers": [
           "/fixture_contract/additional_support_fixtures/0/input_overrides/gap_proposals/0",
+          "/fixture_contract/additional_support_fixtures/0/input_overrides/gap_proposals/0/unfinished_obligation_refs/0",
           "/fixture_contract/additional_support_fixtures/0/input_overrides/gap_proposals/1",
           "/fixture_contract/additional_support_fixtures/0/input_overrides/gap_proposals/2",
           "/fixture_contract/additional_support_fixtures/0/input_overrides/gap_proposals/3",
+          "/fixture_contract/normal_fixtures/0/input/semantic_records/0",
           "/fixture_contract/normal_fixtures/0/input/semantic_records/2",
-          "/fixture_contract/normal_fixtures/0/input/sources/1/body/records/25"
+          "/fixture_contract/normal_fixtures/0/input/application_policies/0",
+          "/fixture_contract/normal_fixtures/0/input/sources/0",
+          "/fixture_contract/normal_fixtures/0/input/obligations/0",
+          "/fixture_contract/normal_fixtures/0/input/sources/1",
+          "/fixture_contract/normal_fixtures/0/input/sources/1/body/records/22",
+          "/fixture_contract/normal_fixtures/0/input/sources/1/body/records/23",
+          "/fixture_contract/normal_fixtures/0/input/sources/1/body/records/25",
+          "/fixture_contract/normal_fixtures/0/input/sources/1/body/records/26"
         ],
-        "role": "固定revisionの元合成proposal/適用契約literal。元適用契約のmeaningはsynthetic宣言のみで、不整合を示す本文ではない。"
+        "role": "固定revisionの元合成proposal/適用契約literal。元適用契約のmeaningはsynthetic宣言のみで、不整合を示す本文ではない。",
+        "authority_scope": "この固定revisionはL8の既存fixture literalの歴史的な出典だけを示す。L3/L10上流承認でも、現行source/producerの承認でもない。"
       }
     ],
     "oracle_boundary": {
@@ -146520,7 +146531,7 @@
         {
           "output_path": "/original_context",
           "requirement": "元validated、二producer全返却、前段materializationの全原値と同call対応を保持する",
-          "instantiation": "C is unbound",
+          "instantiation": "Cは未束縛",
           "verification": "not_verified",
           "remaining": "L5/L8でprivate型・全leaf writerとproducer全値literalを閉じてから照合する。"
         }
@@ -146753,8 +146764,8 @@
           "unfinished_obligation_refs": []
         },
         "not_full_return": [
-          "original_context",
-          "domain_observations outside selected field-A"
+          "/original_context の全leaf",
+          "選択したfield-A以外の/domain_observations"
         ],
         "input_base": {
           "projection_operand": {
@@ -147007,8 +147018,8 @@
           "unfinished_obligation_refs": []
         },
         "not_full_return": [
-          "original_context",
-          "domain_observations outside selected field-A"
+          "/original_context の全leaf",
+          "選択したfield-A以外の/domain_observations"
         ],
         "input_base": {
           "projection_operand": {
@@ -147241,8 +147252,8 @@
           "unfinished_obligation_refs": []
         },
         "not_full_return": [
-          "original_context",
-          "domain_observations outside selected field-A"
+          "/original_context の全leaf",
+          "選択したfield-A以外の/domain_observations"
         ],
         "input_base": {
           "projection_operand": {
@@ -147403,8 +147414,8 @@
           "unfinished_obligation_refs": []
         },
         "not_full_return": [
-          "original_context",
-          "domain_observations outside selected field-A"
+          "/original_context の全leaf",
+          "選択したfield-A以外の/domain_observations"
         ],
         "input_base": {
           "projection_operand": {
@@ -147780,7 +147791,9 @@
                     "kind": "question",
                     "basis_occurrence_indices": [
                       0,
-                      1
+                      1,
+                      2,
+                      3
                     ]
                   },
                   "original_kind_difference": {
@@ -147860,6 +147873,76 @@
                   "body_record_index": 23,
                   "body_record_locator": "/sources/1/body/records/23",
                   "operand_locator": "/semantic_records/0/meaning/proposition/requested_operand_refs/1"
+                },
+                {
+                  "role": "question_gap_basis_ref",
+                  "original_ref": {
+                    "identity": "synthetic-application-contract",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-harness-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "record_collection": "semantic_records",
+                  "record_index": 1,
+                  "record_locator": "/semantic_records/1",
+                  "source_ref": {
+                    "identity": "source-synthetic-harness-owner",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-harness-owner",
+                    "source_locator": null,
+                    "sha256": "3e3f9f2f3ce302b0c2c4d42c793ecd9cbb7e3ec7a69b7b35ab952ed248d05d44"
+                  },
+                  "source_index": 1,
+                  "source_locator": "/sources/1",
+                  "body_record_index": 25,
+                  "body_record_locator": "/sources/1/body/records/25",
+                  "operand_locator": "/semantic_records/0/meaning/proposition/gap_basis_refs/0"
+                },
+                {
+                  "role": "question_gap_basis_ref",
+                  "original_ref": {
+                    "identity": "synthetic-obligation-unit",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-core-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "record_collection": "obligations",
+                  "record_index": 0,
+                  "record_locator": "/obligations/0",
+                  "source_ref": {
+                    "identity": "source-synthetic-harness-owner",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-harness-owner",
+                    "source_locator": null,
+                    "sha256": "3e3f9f2f3ce302b0c2c4d42c793ecd9cbb7e3ec7a69b7b35ab952ed248d05d44"
+                  },
+                  "source_index": 1,
+                  "source_locator": "/sources/1",
+                  "body_record_index": 23,
+                  "body_record_locator": "/sources/1/body/records/23",
+                  "operand_locator": "/semantic_records/0/meaning/proposition/gap_basis_refs/1"
                 }
               ]
             }
@@ -148501,7 +148584,9 @@
                     "kind": "question",
                     "basis_occurrence_indices": [
                       0,
-                      1
+                      1,
+                      2,
+                      3
                     ]
                   },
                   "original_kind_difference": {
@@ -148517,9 +148602,9 @@
                     "formation": "formed",
                     "kind": "derived_requirement_candidate",
                     "basis_occurrence_indices": [
-                      2,
-                      3,
-                      4
+                      4,
+                      5,
+                      6
                     ]
                   },
                   "original_kind_difference": {
@@ -148599,6 +148684,76 @@
                   "body_record_index": 23,
                   "body_record_locator": "/sources/4/body/records/23",
                   "operand_locator": "/semantic_records/0/meaning/proposition/requested_operand_refs/1"
+                },
+                {
+                  "role": "question_gap_basis_ref",
+                  "original_ref": {
+                    "identity": "synthetic-application-contract",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-harness-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "record_collection": "semantic_records",
+                  "record_index": 4,
+                  "record_locator": "/semantic_records/4",
+                  "source_ref": {
+                    "identity": "source-synthetic-harness-owner",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-harness-owner",
+                    "source_locator": null,
+                    "sha256": "3e3f9f2f3ce302b0c2c4d42c793ecd9cbb7e3ec7a69b7b35ab952ed248d05d44"
+                  },
+                  "source_index": 4,
+                  "source_locator": "/sources/4",
+                  "body_record_index": 25,
+                  "body_record_locator": "/sources/4/body/records/25",
+                  "operand_locator": "/semantic_records/0/meaning/proposition/gap_basis_refs/0"
+                },
+                {
+                  "role": "question_gap_basis_ref",
+                  "original_ref": {
+                    "identity": "synthetic-obligation-unit",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-core-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "record_collection": "obligations",
+                  "record_index": 0,
+                  "record_locator": "/obligations/0",
+                  "source_ref": {
+                    "identity": "source-synthetic-harness-owner",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-harness-owner",
+                    "source_locator": null,
+                    "sha256": "3e3f9f2f3ce302b0c2c4d42c793ecd9cbb7e3ec7a69b7b35ab952ed248d05d44"
+                  },
+                  "source_index": 4,
+                  "source_locator": "/sources/4",
+                  "body_record_index": 23,
+                  "body_record_locator": "/sources/4/body/records/23",
+                  "operand_locator": "/semantic_records/0/meaning/proposition/gap_basis_refs/1"
                 },
                 {
                   "role": "derived_antecedent_requirement",
@@ -148719,7 +148874,109 @@
                 0,
                 1
               ],
-              "relation": "multiple independent supported interpretations; no priority or contradiction inferred"
+              "relation": "互いに独立して支持された複数の解釈を保持する。優先順位も矛盾も推論しない。",
+              "proposition_refs": [
+                {
+                  "identity": "gap-evidence-question",
+                  "revision": "synthetic-A",
+                  "scope": {
+                    "product": "SYNTHETIC-P",
+                    "tenant": "SYNTHETIC-T",
+                    "environment": "SYNTHETIC-E"
+                  },
+                  "owner": "synthetic-harness-owner",
+                  "source_locator": null,
+                  "sha256": null
+                },
+                {
+                  "identity": "gap-evidence-derived",
+                  "revision": "synthetic-A",
+                  "scope": {
+                    "product": "SYNTHETIC-P",
+                    "tenant": "SYNTHETIC-T",
+                    "environment": "SYNTHETIC-E"
+                  },
+                  "owner": "synthetic-harness-owner",
+                  "source_locator": null,
+                  "sha256": null
+                }
+              ],
+              "proposition_occurrences": [
+                {
+                  "interpretation_index": 0,
+                  "proposition_occurrence_index": 0,
+                  "role": "question_proposition",
+                  "original_ref": {
+                    "identity": "gap-evidence-question",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-harness-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "record_collection": "semantic_records",
+                  "record_index": 0,
+                  "record_locator": "/semantic_records/0",
+                  "source_ref": {
+                    "identity": "source-gap-evidence-question",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-harness-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "source_index": 0,
+                  "source_locator": "/sources/0",
+                  "body_record_index": 0,
+                  "body_record_locator": "/sources/0/body/records/0",
+                  "operand_locator": "/gap_proposals/0/source_refs/0"
+                },
+                {
+                  "interpretation_index": 1,
+                  "proposition_occurrence_index": 1,
+                  "role": "derived_proposition",
+                  "original_ref": {
+                    "identity": "gap-evidence-derived",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-harness-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "record_collection": "semantic_records",
+                  "record_index": 1,
+                  "record_locator": "/semantic_records/1",
+                  "source_ref": {
+                    "identity": "source-gap-evidence-derived",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-harness-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "source_index": 1,
+                  "source_locator": "/sources/1",
+                  "body_record_index": 0,
+                  "body_record_locator": "/sources/1/body/records/0",
+                  "operand_locator": "/gap_proposals/0/source_refs/1"
+                }
+              ]
             }
           ],
           "local_unestablished": [],
@@ -148970,7 +149227,7 @@
                   "sha256": null
                 }
               ],
-              "meaning": "raw kind alone does not classify",
+              "meaning": "GapProposal.kindのラベルだけでは分類しない。",
               "source_ref_indices": [
                 0,
                 1
@@ -149669,7 +149926,7 @@
           "/original_context",
           "/definition_evidence_results"
         ],
-        "case_scope": "selected finite projection only; not a full return oracle.",
+        "case_scope": "選択した有限projectionのみ。full return oracleではない。",
         "expected_echo_patch": [
           {
             "op": "copy",
@@ -150283,7 +150540,19 @@
           "status": "未行使"
         },
         {
-          "role": "source qualification failure/body-content mismatch",
+          "role": "source qualification不成立またはbody/content対応不一致",
+          "status": "未行使"
+        },
+        {
+          "role": "返却先候補のrouting: 定義/knowledge不足はBRAIN、同field定義はある案件値不足はHARNESS008、適用contract不整合はHARNESS向け候補材料として保持する分岐",
+          "status": "未行使"
+        },
+        {
+          "role": "role_owner_bindingでowner対応根拠が未供給となる分岐",
+          "status": "未行使"
+        },
+        {
+          "role": "role_owner_bindingの既知owner不一致分岐",
           "status": "未行使"
         }
       ],
@@ -162747,12 +163016,12 @@
           "role": "semantic_source"
         }
       },
-      "qualification_boundary": "Authored SourceEnvelope.qualification_ref is null. Formed judgments are conditional on existing same-snapshot fn0 qualification/source-body correspondence for those exact source refs. That qualification is not supplied or claimed; absent premise means source is unestablished.",
+      "qualification_boundary": "Authored SourceEnvelope.qualification_refはnullである。形成済み期待は、当該source Refについて同snapshotのfn0 qualificationとsource/body対応が成立することを前提とする条件付き期待で、実資格を供給・主張しない。前提がなければsource未成立として保持する。",
       "gap_proposal_variants": [
         {
           "id": "QUESTION-ONLY",
           "basis_gap_proposal_ref": "BASE-GAP-QUESTION",
-          "change": "source_refs replaced by the actual question evidence Ref, exact application_contract Ref, and exact unfinished obligation Ref.",
+          "change": "source_refsを実在するquestion evidence Ref、application_contract Ref、未完obligation Refへ置換した。",
           "gap_proposal": {
             "ref": {
               "identity": "gap-question",
@@ -162913,12 +163182,12 @@
             ],
             "backflow_owner": "HARNESS008"
           },
-          "case_semantic_boundary": "This authored variant replaces BASE-GAP-QUESTION.source_refs rather than silently omitting gap-evidence-question, the application contract, or the obligation. The obligation record/source is copied separately in the case input."
+          "case_semantic_boundary": "このcase-authored variantはBASE-GAP-QUESTION.source_refsを置き換え、gap-evidence-question、application contract、obligationを黙って省略しない。obligationのrecord/sourceはinputへ別途copyする。"
         },
         {
           "id": "QUESTION-AND-DERIVED",
           "basis_gap_proposal_ref": "BASE-GAP-QUESTION",
-          "change": "source_refs replaced by actual question/derived proposition Refs, exact antecedent requirement Ref, proposed requirement Ref, and constraint Ref; original kind retained as unresolved.",
+          "change": "source_refsを実在するquestion/derived proposition Ref、antecedent requirement Ref、proposed requirement Ref、constraint Refに置換し、原kindはunresolvedのまま保持した。",
           "gap_proposal": {
             "ref": {
               "identity": "gap-question",
@@ -163103,12 +163372,12 @@
             ],
             "backflow_owner": "HARNESS008"
           },
-          "case_semantic_boundary": "This authored unresolved variant retains one proposal while listing both actual proposition records and their underlying antecedent/constraint/proposed bodies."
+          "case_semantic_boundary": "このcase-authored unresolved variantはproposalを1件保持し、両方のproposition recordと、それぞれのantecedent/constraint/proposed bodyを列挙する。"
         },
         {
           "id": "CONTRADICTION-ONLY",
           "basis_gap_proposal_ref": "BASE-GAP-QUESTION",
-          "change": "case-authored raw variant sets kind=contradiction and source_refs to the proposition, left/right records, constraint, and existing contract Ref; source relation is explicit.",
+          "change": "case-authored raw variantでkindをcontradictionにし、source_refsをproposition、左右record、constraint、既存contract Refへ対応させた。元関係を明示する。",
           "gap_proposal": {
             "ref": {
               "identity": "gap-question",
@@ -163297,7 +163566,7 @@
         {
           "id": "NA-ONLY",
           "basis_gap_proposal_ref": "BASE-GAP-QUESTION",
-          "change": "case-authored raw variant sets kind=na_candidate and source_refs to the N/A proposition, original ApplicationPolicy Ref, and explicit NARecord Ref.",
+          "change": "case-authored raw variantでkindをna_candidateにし、source_refsをN/A proposition、元ApplicationPolicy Ref、明示NARecord Refへ対応させた。",
           "gap_proposal": {
             "ref": {
               "identity": "gap-question",
@@ -163460,7 +163729,7 @@
           }
         }
       ],
-      "source_ref_resolution_note": "For the positive question/derived cases the authored GapProposal source_refs are literal case variants whose refs are all present in the selected semantic_records, source mirrors, binding, or obligation collection. The original BASE-GAP-QUESTION source_refs are retained only as source history and are not silently treated as resolved in those cases.",
+      "source_ref_resolution_note": "question/derivedの肯定例では、case-authored GapProposal.source_refsのRefを、選択したsemantic_records、source mirror、binding又はobligation collectionにある原出現へ束縛する。元BASE-GAP-QUESTION.source_refsは履歴として保持し、当該caseで解決済みとは扱わない。",
       "base_literal_source_map": [
         {
           "catalog_pointer": "/field_semantic_evidence_verification/literal_fixture_catalog/base_literals/binding",
@@ -163999,6 +164268,49 @@
       "case_authorship": "fixture組立には固定JSON値のcopyとliteral記述を用いた。候補reader、classifier、validator、source-preparation algorithm、意味algorithm、test、CIは実行していない。",
       "finite_scope": "有限に固定した入力・期待pathのみを扱う。original_context、native全返却、同call producer全値、実資格/配送は成立確認していない。"
     },
-    "no_additional_gate": "条件付きfixture premiseは人間承認や新gateではなく、source qualification未検証を隠さないための境界記述である。"
+    "no_additional_gate": "条件付きfixture premiseは人間承認や新gateではなく、source qualification未検証を隠さないための境界記述である。",
+    "legacy_preserve_change": {
+      "reuse_mode": "意味の再導出。旧JSON authorityと実運用failureを根拠として読み、旧runtime/planner/registryを移植しない。",
+      "legacy_sources": [
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": "16–60,81–92",
+          "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "lines": "33–77",
+          "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+        }
+      ],
+      "failure_sources": [
+        {
+          "id": "UTW-014",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": "80",
+          "file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+          "observed_failure": "source loaderの欠損が空集合へ縮退し、absence blindnessを生む。"
+        },
+        {
+          "id": "UTW-020",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": "86",
+          "file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+          "observed_failure": "DB rebuild/projection/test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い。"
+        },
+        {
+          "id": "UTW-021",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": "87",
+          "file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+          "observed_failure": "completion evidenceが時刻・prose・自己申告へ戻る余地がある。"
+        }
+      ],
+      "preserve": "template定義と製品適用instance、field/value_type/要否/意味owner/trace、原版/source/未完とderived viewの分離を保持する。L9では元source/body/Ref/presence、未完義務と局所候補viewを一緒に保持し、既存7caseの原値も保全する。",
+      "change": "旧registry/planner/式木/runtimeは移植しない。L9は承認済みF05の範囲で、選択されたliteralの元Ref/source/bodyと限定された意味候補viewを明示的に対応させる有限oracleを記述する。",
+      "reason": "UTW-014の欠損を空や不在へ読み替える失敗、UTW-020の部分原因をaggregateへ隠す失敗、UTW-021の自己申告を完了証拠にする失敗を繰り返さない。FieldCheckMaterialに値payload/理由がなくSemanticRecord.meaning RawValueからwhole/value childを選ぶ意味も型にないため、有限期待から一般producer意味やnative全返却を推定しない。"
+    }
   }
 }
