@@ -1135,6 +1135,89 @@
           "origin_association_observations": "NotProduced{selection captures,origin captures,reason:locator_unbound}",
           "original_materials": "全原input/targets引数presence/OS015 raw/typed/実result/選択を保持。lookupの最初不在/blocked/present-invalid位置をCaptureで保持。",
           "operation_effect": "none"
+        },
+        "unbound_capture_mapping": {
+          "status": "proposed_local_technical_clarification",
+          "scope": "dispatchで選択済みvariantがlocator Unboundとなったときの既存OriginObservations.NotProduced payloadだけ。既存6 Capture member、公開型/戻り値、dispatch優先順位を変更しない。",
+          "capture_root": "L4 local_project_axes.target_key_capture_rules.normalised_source_viewで定義された今回invocationのlogical view。Capture生成時だけrootとして使用し、original_materialsは完全保持する。",
+          "selection_captures": {
+            "target_key": {
+              "tokens": [
+                "selection",
+                "target_key"
+              ],
+              "source": "Selected.os015_target_key または SelectedButNotProduced.target_key Presence.value。Absentならlogical view member省略。",
+              "result_type": "NativeSourceCapture"
+            },
+            "project_key": {
+              "tokens": [
+                "selection",
+                "project_key"
+              ],
+              "source": "Selected.portfolio_project_key または SelectedButNotProduced.project_key Presence.value。Absentならlogical view member省略。",
+              "result_type": "NativeSourceCapture"
+            },
+            "node_key": {
+              "tokens": [
+                "selection",
+                "node_key"
+              ],
+              "source": "Selected.portfolio_node_key または SelectedButNotProduced.node_key Presence.value。Absentならlogical view member省略。",
+              "result_type": "NativeSourceCapture"
+            },
+            "capture_rule": "各token列をRFC6901でescapeしてrequested_pointerとし、logical view上でSourceCaptureを取得する。Absent/Present(null)/Present(other JSON)を区別し、keyのstring化/defaultをしない。"
+          },
+          "origin_captures": {
+            "raw_input": {
+              "tokens": [
+                "os015_raw_input"
+              ],
+              "source": "logical viewにおけるraw input root。Presence Absentならview memberを省略し、Present(x)ならxをwrapperなしで保持。",
+              "result_type": "NativeSourceCapture"
+            },
+            "typed_input": {
+              "tokens": [
+                "os015_typed_input"
+              ],
+              "source": "logical viewにおけるtyped input root。Presence Absentならview memberを省略し、Present(MaterialInput)なら全値copy。",
+              "result_type": "NativeSourceCapture"
+            },
+            "capture_rule": "各root memberのwhole値をSourceCaptureする。元Presence wrapperはOriginalMaterialsに保持し、Capture viewへ混ぜない。"
+          },
+          "targets_binding": {
+            "type": "BindingCaptureAttempt",
+            "when_both_project_and_node_keys_are_strings": {
+              "variant": "Captured",
+              "value_tokens": [
+                "existing_selected_targets",
+                "projects",
+                "{portfolio_project_key}",
+                "nodes",
+                "{portfolio_node_key}"
+              ],
+              "rule": "原stringをmap keyとして使用しRFC6901 escapeを1回適用。候補node entryへの完全pointerを1回Captureし、最初のabsent/blocked ancestorまたはleaf値をSourceCaptureへ保持する。空stringを含むstring値を変換しない。"
+            },
+            "otherwise": {
+              "variant": "NotRequested",
+              "reason": "project/node keyのどちらかがAbsent/null/非stringの場合はlocatorを合成せず、selection_capturesで原selectorを保持する。"
+            },
+            "restriction": "target_keyはOS015 record選択用であり、actual targets map locatorを作るtokenに使わない。"
+          },
+          "shared_source_capture_semantics": "L4 normalised_source_view.capture_semanticsに従う。requested_pointerは定義したtoken path、reached_pointerは実viewで最初に見つからないmember又は最初の非object ancestor（leafが存在すればleaf）を表し、availability absent/blocked/presentとvalue memberの有無を既存SourceCapture closed variantsどおりに保持する。",
+          "unbound_return_invariants": {
+            "origin_observations": "NotProduced{selection_captures,origin_captures,reason:locator_unbound}",
+            "effective_targets": "Absent",
+            "projection_status": "NotProduced",
+            "source_bound_trace": "NotProduced",
+            "operation_effect": "none",
+            "original_materials": "全原値/presenceを保持"
+          },
+          "non_changes": [
+            "UnboundはBound axis comparisonより先にdispatchする。",
+            "新しいCapture variant/member/state/Finding/code/authorityを追加しない。",
+            "Captureは原入力の観測であり、owner資格・source成立・実接続を証明しない。",
+            "L5 normative_program、候補model、期待値はこのproposalの根拠にしない。"
+          ]
         }
       },
       "raw_typed_pair_rule": {

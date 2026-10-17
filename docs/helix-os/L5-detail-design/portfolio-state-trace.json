@@ -3987,7 +3987,7 @@
   "os015_origin_caller_contract": {
     "l4_candidate_binding": {
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
-      "sha256": "2ea02d95294ba15e551d95b197930c99230b7e67b5b105c76bad4f32d126e4b6"
+      "sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f"
     },
     "contract_pointer": "/os015_origin_call_contract",
     "source_rule": "本私有callerの意味はL4同節と自己完結Capture view、計算本文は唯一のnormative_program.source_code。旧公開ABI/59型/12関数契約は不変。",

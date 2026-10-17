@@ -423,7 +423,7 @@
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
       "revision_note": "caller-selected target契約に対応するL4 file bytes。対象source revisionの承認を示さない。",
       "binding_kind": "candidate_file_bytes",
-      "file_sha256": "2ea02d95294ba15e551d95b197930c99230b7e67b5b105c76bad4f32d126e4b6",
+      "file_sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
       "role": "domain_extension_casesを解釈するためのcaller-selected target契約。候補のfile bytes pinであり、承認・資格を意味しない。",
       "base_source_main": "5b99b6f329183a2c7bf0b12bcba53e9d93769e63"
     }
@@ -402073,7 +402073,7 @@
     ],
     "l4_candidate_binding": {
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
-      "sha256": "2ea02d95294ba15e551d95b197930c99230b7e67b5b105c76bad4f32d126e4b6"
+      "sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f"
     },
     "contract_pointer": "/os015_origin_call_contract",
     "source_history": {
@@ -402182,14 +402182,43 @@
         "conditions": "私有NotProducedで原selection Captureを保持。新node、全nodeunknown化、origin TraceResultを生成しない。",
         "frozen_case_ids": [
           "ORIGIN-SELECTED-UNBOUND",
-          "ORIGIN-DECLARED-NOT-PRODUCED-UNBOUND"
+          "ORIGIN-DECLARED-NOT-PRODUCED-UNBOUND",
+          "U11-TARGETS-ARGS-ABSENT",
+          "U12-TARGETS-NULL",
+          "U13-TARGETS-NONOBJECT",
+          "U14-PROJECTS-MISSING",
+          "U15-PROJECTS-NULL",
+          "U16-PROJECTS-NONOBJECT",
+          "U17-PROJECT-KEY-MISSING",
+          "U18-PROJECT-ENTRY-NULL",
+          "U19-PROJECT-ENTRY-NONOBJECT",
+          "U20-NODES-MISSING",
+          "U21-NODES-NULL",
+          "U22-NODES-NONOBJECT",
+          "U23-NODE-KEY-MISSING",
+          "U24-NODE-ENTRY-NULL",
+          "U25-NODE-ENTRY-NONOBJECT"
         ],
-        "frozen_scope": "Selectedのnode不在とSelectedButNotProducedのnode_key Present(null)。",
+        "frozen_scope": "Selectedのnode不在とSelectedButNotProducedのnode_key Present(null)。 今回追加のU11-U25はSelected variantでtargets引数Absent/null/非object又はprojects/project/nodes/nodeの最初missing/present-invalidとなる15局所例。",
         "unfrozen_conditions": [
-          "project key不在、targets引数Absent/null/非object、map途中とnode値のpresent-invalid、locator key非string（null以外）。"
+          "SelectedButNotProducedでactual targets map各段がmissing/present-invalidとなる対照（今回追加した15件はSelected variantのみ）。"
         ],
         "coverage_status": "partially_frozen",
-        "selection_reason": "今回の限定caller接続では上記代表対照だけを先固定した。残条件の要否・独立oracle固定・照合は同計画の未完として保持し、今回の15whole一致を残条件の検証済みへ広げない。"
+        "selection_reason": "今回の限定caller接続では上記代表対照だけを先固定した。残条件の要否・独立oracle固定・照合は同計画の未完として保持し、今回の15whole一致を残条件の検証済みへ広げない。",
+        "related_case_group_refs": [
+          {
+            "group_id": "ORIGIN-DECLARED-NOT-PRODUCED-UNBOUND",
+            "case_ids": [
+              "U26-LOCATOR-NODE_KEY-ARRAY",
+              "U26-LOCATOR-PROJECT_KEY-NULL",
+              "U26-LOCATOR-PROJECT_KEY-NUMBER",
+              "U33-PROJECT-KEY-ABSENT",
+              "U34-NODE-KEY-ABSENT",
+              "U35-DECLARED-LOCATOR-ALL-ABSENT"
+            ],
+            "relation": "locator keyのAbsent/null/nonstring側の今回対照はDeclaredNotProduced groupへ分けて参照する。DeclaredNotProduced actual targets map各段のmissing/present-invalidは未完のまま。"
+          }
+        ]
       },
       {
         "id": "ORIGIN-MISSING-ACTUAL-OR-CONTEXT",
@@ -402262,11 +402291,17 @@
         "control": "SelectedButNotProducedでlocatorが未供給/null/非string又は原targetsのmissing/present-invalidによりUnbound。",
         "conditions": "SelectedのUnboundと同じ閉じた共通返却、effective_targets=Absent/source_bound_trace=NotProducedを返す。選択variantと最初missing/invalid Captureを保持し、新nodeやorigin traceを作らない。",
         "frozen_case_ids": [
-          "ORIGIN-DECLARED-NOT-PRODUCED-UNBOUND"
+          "ORIGIN-DECLARED-NOT-PRODUCED-UNBOUND",
+          "U26-LOCATOR-NODE_KEY-ARRAY",
+          "U26-LOCATOR-PROJECT_KEY-NULL",
+          "U26-LOCATOR-PROJECT_KEY-NUMBER",
+          "U33-PROJECT-KEY-ABSENT",
+          "U34-NODE-KEY-ABSENT",
+          "U35-DECLARED-LOCATOR-ALL-ABSENT"
         ],
-        "frozen_scope": "locator node_keyがPresent(null)の共通Unbound返却。",
+        "frozen_scope": "locator node_keyがPresent(null)の共通Unbound返却。 今回追加のU26/U33-U35はSelectedButNotProduced selectorのPresent(number/array/null)又はAbsentとなる6局所例。実targets map各段のmissing/present-invalid対照は今回含まれず、未完のまま保持する。",
         "unfrozen_conditions": [
-          "locator未供給、非string（null以外）、原targetsのmissing/present-invalid各段の対照。"
+          "SelectedButNotProducedでselectorがstringでもactual targets map各段がmissing/present-invalidとなる対照（今回の6件はselector側のAbsent/null/nonstring局所対照のみ）。"
         ],
         "coverage_status": "partially_frozen",
         "selection_reason": "今回の限定caller接続では上記代表対照だけを先固定した。残条件の要否・独立oracle固定・照合は同計画の未完として保持し、今回の15whole一致を残条件の検証済みへ広げない。"
@@ -402439,6 +402474,300 @@
         "input_canonical_sha256": "8cce7df3b367782b86aab02861b44572e27fbfd8e9561382e3069ae4c6b2f14c",
         "expected_pointer": "/os015_origin_caller_verification/cases/14/expected_whole",
         "expected_whole_canonical_sha256": "f870c044373a16a1658d69b76b3ceeb0774e689604b9dbb113663a1b47651292"
+      },
+      {
+        "id": "U11-TARGETS-ARGS-ABSENT",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/0",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/0/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/0/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "db5f7431b26025af733eb66672b75f55f99dc8763fb619dbdcc3f0acb303d080",
+        "expected_whole_canonical_sha256": "afbced499cb7b394a3a713c770c01ac3a861158d3119316dbcec0365958f0595",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U12-TARGETS-NULL",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/1",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/1/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/1/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "ab4b1d2166df5a69d6dbcea7515489472b9d24e4ba32d210a663b8c97e42ba78",
+        "expected_whole_canonical_sha256": "f3062be9292a493c9441288b16ee664bd699edcc3015c6400659a00aba8f26b6",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U13-TARGETS-NONOBJECT",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/2",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/2/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/2/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "420cdfdd26372c29600fade5e7d03f66c668ebc299a32328d278ccc9017a2873",
+        "expected_whole_canonical_sha256": "9fdba98f216d0f4fd51d4db70e6bfcc0d31aed3d70255eb22b26f883f0ae5fa9",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U14-PROJECTS-MISSING",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/3",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/3/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/3/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "cb1a02724cfca5d59b2e69b4a6484b55dd68586187a02460de3bfd489160a06e",
+        "expected_whole_canonical_sha256": "8086d9721446e458966e139fad3d363bb747396ccdd5bef09e1e22131797730d",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U15-PROJECTS-NULL",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/4",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/4/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/4/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "fba5b6abdb7946348192114419e1ff45c4c1fd5875870fd132aa483334fabd1b",
+        "expected_whole_canonical_sha256": "603fd29d69a1defa8ae9b80ff8867d1d2fe671cc1966f0e614df0a7d3045012f",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U16-PROJECTS-NONOBJECT",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/5",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/5/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/5/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "948c31560c365be28dc896226fd63458f38b4f0a74dbd50a3070faf6ef0545bc",
+        "expected_whole_canonical_sha256": "af095bc26a7b72d9990cc3613a05f2d5567f542adae5a5c74f9ad4672618c7d8",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U17-PROJECT-KEY-MISSING",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/6",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/6/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/6/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "df5004bef2d5074c91ee8812d1f57f59e16ed2dff2d05c686d2ed8612bfe557b",
+        "expected_whole_canonical_sha256": "3d16ec13f4b600f0e9bf5e08247a4f976c3f55bc3ae8a070d57ee5b6d4be9202",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U18-PROJECT-ENTRY-NULL",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/7",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/7/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/7/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "de07527f561aef8c38d0897b8f7f4bb3bfcd2f9c1867e93a26bd6a07f5912944",
+        "expected_whole_canonical_sha256": "b20f1da5aceac3882ba79a8b0809d9462b74e9c40dc97e220b5c6e42b1bcd865",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U19-PROJECT-ENTRY-NONOBJECT",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/8",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/8/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/8/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "08b15223a4589e6ec302038f4945ad4b212d8fdd0a8074d1efe0371ea2f0ecbe",
+        "expected_whole_canonical_sha256": "635e3b324c6d5e927b8b97c09433ef27a88dc129ba12ffedb800e1d1a59a3843",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U20-NODES-MISSING",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/9",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/9/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/9/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "1292cbcff050f6ec792375e0d11a803650d91adafa189d5c14cd0a56d284090c",
+        "expected_whole_canonical_sha256": "643f6c7f868599d1eb4be9e81f01506c30c0b242b6503e672899c41bcfee5403",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U21-NODES-NULL",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/10",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/10/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/10/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "95dd1860d132d0ff376eb6ef6f1d486a3adf252ec4e333b7124c6aa42a3e82bc",
+        "expected_whole_canonical_sha256": "a8c1c53ea1bd34f45e36d7ad0996b4ad146b0ff3e7cafc93e2509bb6f11bc900",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U22-NODES-NONOBJECT",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/11",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/11/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/11/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "e4e8c2978f442b1d6786d3de8eead73153349ba4397eccdf64afb85d1630351b",
+        "expected_whole_canonical_sha256": "99e1b11d5d19c36e5c975e72c97f3b919326e9417f919f6c59ef4fc6d1fac5d2",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U23-NODE-KEY-MISSING",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/12",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/12/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/12/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "389a2873b56855a95f64ad6e83911f36aa8b587e3a7a78d51ad26ad9b2b7f48e",
+        "expected_whole_canonical_sha256": "f77ef39dbbcf5082e3cde2fa911d8300145cf3272a3eb00e16dc7c20fc1fcd8a",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U24-NODE-ENTRY-NULL",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/13",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/13/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/13/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "78f2e0bc9523f1fa5829fe04974a00d050b29b37ec007959665a17262e993fba",
+        "expected_whole_canonical_sha256": "b0ebcbe790508a8a5c409db4b55130500eeb0fe840b4f01efcf8228af288578c",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U25-NODE-ENTRY-NONOBJECT",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/14",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/14/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/14/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "2dcb46cd8068165665418f87b21c301c39d9b3c98014e1106d5f80709bfc0a3f",
+        "expected_whole_canonical_sha256": "558af6bbd0c456c0ed7a74f43abbe6ed1a362d33d2e4cd78b07d6c66e59b1f9b",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U26-LOCATOR-NODE_KEY-ARRAY",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/15",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/15/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/15/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "499ae2036b97a4e48227d775eba334dff4af7bcf72b3202f70e8c6cfa5c171ef",
+        "expected_whole_canonical_sha256": "da9f291a3cab2ceae31203cd0ef62fac2202d171bf8134bd476703e679233e83",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U26-LOCATOR-PROJECT_KEY-NULL",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/16",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/16/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/16/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "41e3605da0a2ddf21ae65aeb4608b478b4df83bece2a95d682b4dbd1cd86d3ac",
+        "expected_whole_canonical_sha256": "8d9b35aca56c84d647aa247034fb3ee71b6641257ffa573e2d33313332350a90",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U26-LOCATOR-PROJECT_KEY-NUMBER",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/17",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/17/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/17/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "828298a79bd88c711661f074eb706094ccee6103e06ed591f418d41d560731ca",
+        "expected_whole_canonical_sha256": "07f47676a63af1dbaa88ed85e6400dcca6a3891d5cc8820c3bae78c91d38ee6f",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U33-PROJECT-KEY-ABSENT",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/18",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/18/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/18/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "bef83e654fb7f4611b624fa32fbda2d55336866676cbd15f61a7abc6bc9e4b50",
+        "expected_whole_canonical_sha256": "ae3ddb2e8cf9e05c6a07b2c21615975bbab4b20a1e7b9be4f97bf68d2303100d",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U34-NODE-KEY-ABSENT",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/19",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/19/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/19/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "eb8fc592d043acb8d96f8aa7d093c3e3e6106e94ccb159a315e9f7ee709a79ce",
+        "expected_whole_canonical_sha256": "6b04d81f718212977e0ebe96b3a4fbb4bf8738759636a98f3ef8c966aee86104",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
+      },
+      {
+        "id": "U35-DECLARED-LOCATOR-ALL-ABSENT",
+        "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
+        "storage": "共有literal base + RFC 6902 input/expected patch",
+        "case_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/20",
+        "input_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/20/input_patch",
+        "expected_whole_patch_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/case_patch_set/20/expected_whole_patch",
+        "base_case_pointer": "/os015_origin_caller_verification/unbound_source_derived_extension/base_case",
+        "input_canonical_sha256": "7e78d9a5898a25481d2656dd3aeffaf0bce3e9ab82306d9b74f2b3b86df27f00",
+        "expected_whole_canonical_sha256": "72df484902dde72537fabca49b8b55365f8e2c515f6676450c3b970aac708ea7",
+        "capture_mapping_path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
+        "capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c"
       }
     ],
     "freeze_scope": "15literal wholeは各case_plan.frozen_case_ids/frozen_scopeの限定対照だけ。unfrozen_conditionsは同計画の未完として保持し、計画全条件の凍結・検収を主張しない。原計画の意味と既存の条件は変更しない。",
