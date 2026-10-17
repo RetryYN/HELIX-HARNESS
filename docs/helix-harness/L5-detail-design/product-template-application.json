@@ -13930,7 +13930,7 @@
           "right_literal": "CoreSourceResultProjectionResult",
           "right": "CheckOperand.normative_literal。value=本entry.right_literal、rule_pointer=/f05_detail_contract/caller_return_writer_contract/context_patterns/5/right_literal。",
           "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/context_patterns/5",
-          "multiplicity": "型対応不能が確定した当該入力に一件。既存型対応が未形成という設計状態だけでこのCauseを生成しない。"
+          "multiplicity": "型対応不能が確定した当該入力に一件。既存型対応が未形成という設計状態だけでこのCauseを生成しない。 新資格/意味gateを作らない。"
         }
       ],
       "context_cause_order": "各非F05 row.required_comparisonsの記載順、その各entry内context_patterns/0→1→2の該当分（/0の場合は当該Comparison自体が無いため/1/2を追加しない）。その後fn9/10は/3、fn10は/4→5。各guardは他の既知差を消さず、重複Causeのdedupや優先勝者選択なし。domain missing/unknown/conflictの実Comparisonは不成立条件でない。",
@@ -14008,7 +14008,21 @@
       "preserve": "既存139型全定義、V01..V07/F01..F16及びC04/C05本文、既存関数/codec/source/Context/header Cause節/旧literalは不変。",
       "change": "C01〜C03へ固定目録・原argument取得元・Cause pattern/移送順・専用返却規則を接ぐ。全新Causeは既存Cause型で生成し、型member追加なし。",
       "reason": "実F05DetailedReturn受領と内部Comparison未形成を区別して全wholeを保持し、恣意的な観測配列順/Cause値を選ばず同原観測から一意に著述するため。",
-      "scope": "既存L4同snapshot/caller取得責務の詳細化。実trust、全9producer意味writer、L4step6/7 owner接続は未閉包。"
+      "scope": "既存L4同snapshot/caller取得責務の詳細化。実trust、全9producer意味writer、L4step6/7 owner接続は未閉包。",
+      "round04_corrections": {
+        "source_revision": "14d1c4a410bd8b0704571b097ab0f35c885d0135",
+        "source_l5_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
+        "native_whole_argument_binding": {
+          "preserve": "ValidationDetailedReturn/F05DetailedReturnの実whole、既存専用型、元Context/header不足時の未呼出しと原Cause、unformed Formation原nodeを保持する。",
+          "change": "以前のargument_read_writer.f05_special/f05_detailにはdecode原wholeをNamedRead<CoreJsonValue>へ置く記述があった。formedは既存専用typed引数へ直接束縛する。outer.f05がunformedならF05DetailedReturn型の引数は形成せず、元Formation wholeとcontext_patterns/3のCauseを保持する。旧擬似NamedRead列は専用Formationの返却memberとして元から実格納されていなかった。",
+          "reason": "CoreDecodeOriginのoctets/parse-only nodeを成功JSON値域へcastせず、実Dが無い状態でD型引数を捏造しないため。型member追加又は原診断削除はしない。"
+        },
+        "projection_guard_scope": {
+          "preserve": "新資格/意味gateを作らず、実nonnull projectionの同snapshot取得責務、型対応不能確定時の既存Cause全leaf表現を保持する。",
+          "change": "context_patterns/5はnative型対応不能が原型対応から確定した場合に適用範囲を明記した。任意nonnull CoreJsonValueの完全なtyped形成/判定基準は未閉包であり、未閉包という設計状態だけでCause又は成功を生成しない。",
+          "reason": "以前の完全predicateがあるように読めるguardを、記述済みの診断形と未形成の判定基準へ分け、未検証の能力を成立扱いしないため。"
+        }
+      }
     }
   }
 }
