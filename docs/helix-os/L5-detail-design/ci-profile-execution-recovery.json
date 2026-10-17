@@ -3214,7 +3214,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
-        "file_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
+        "file_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
         "object_canonical_sha256": "00ecf77c8ddc8b372fbf4183b9eda529c8381e8ac8acd88b0d4467001a26ac87",
         "meaning_ja": "この同一pairの現在L4 contractを指す。L4 source_pinsの歴史revisionは変更しない。"
       },
@@ -3266,7 +3266,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/3/owner_return_contract",
-        "file_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
+        "file_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
         "object_canonical_sha256": "258ba7bedf96d8bf71f75ce310ef3cef91e512d6d0c67154e37621029e13c45b"
       },
       "type_and_algorithm_imports": {
@@ -3291,7 +3291,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/1/operation_call_contract",
-        "file_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
+        "file_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
         "object_canonical_sha256": "b8c8141227b2e81be5e2a858d7f552bf0bf0fc534b34b63fe9669eb7ff5ca517"
       },
       "native_imports": [
@@ -3905,6 +3905,462 @@
       "operation_effect": "none",
       "limits_ja": "F02のprivate producer bindingに限る。実operation、OS053 adapter、資格、保存、CIを実行したとは扱わない。F03、再開、全case実行、設計全体の完了は含めない。",
       "applicability_ja": "このprivate保存callerとOS053への委譲は、当該保存に既存OS053 portを選択した場合だけに適用する。方式選択は呼出し側から独立供給される既存の選択根拠に従い、本契約からOS053必須という要求や認可を生成しない。非選択または選択未確定なら、このprivate保存caller・builder・join・S04を呼ばず、元capture/比較結果と未完・選択状態を呼出し側へ保持して返す。他方式の保存成功やfallbackをこのsliceから生成せず、当該方式の既存owner契約へ委ねる。"
+    },
+    {
+      "name": "F03 prior-projection private producer",
+      "visibility": "private",
+      "paired_current_l4_binding": {
+        "binding_kind": "paired_current_file_bytes",
+        "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+        "pointer": "/contracts/2/prior_projection_call_contract",
+        "file_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+        "object_canonical_sha256": "18859b9a615acb625455f56689569bdb681c0f289f11ef3f29fcdeec9ec173e2"
+      },
+      "paired_l9_oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+        "pointer": "/prior_projection_verification"
+      },
+      "native_imports": [
+        {
+          "owner": "OS020",
+          "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+          "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+          "file_sha256": "f7b89937229f5f5b37e7380a8599aaa3cebfa8816bbcfaf5c82e6c37e98d0f60",
+          "pointers": [
+            "/logical_types/0",
+            "/logical_types/1",
+            "/logical_types/2",
+            "/logical_types/9",
+            "/logical_types/10",
+            "/private_producer_bindings/2/private_types/19",
+            "/private_producer_bindings/2/private_types/20",
+            "/private_producer_bindings/2/private_types/21"
+          ],
+          "names": [
+            "OS020.RawValue",
+            "OS020.Field<T>",
+            "OS020.Binding",
+            "OS020.ResultRecord",
+            "OS020.PriorRecord",
+            "OS020.F02ContentDecoderCapability",
+            "OS020.OwnerContentDecodeInput",
+            "OS020.OwnerContentDecodeReturn"
+          ],
+          "note_ja": "self-importはrevision 51edcab4の元L5 objectを指す歴史的source basisであり、新しい現在参照ではない。F02 decoder型は既存定義を参照し複製しない。"
+        },
+        {
+          "owner": "OS053",
+          "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+          "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+          "file_sha256": "b5c0a8927f417a33e325c8e43ed2d5651d9d537e8163b41162614187f8a41c01",
+          "pointers": [
+            "/type_contract/type_model/Result",
+            "/type_contract/type_model/Finding",
+            "/type_contract/type_model/ProtocolCall",
+            "/type_contract/type_model/Write",
+            "/type_contract/type_model/Ref",
+            "/type_contract/type_model/Locator",
+            "/type_contract/type_model/ReadSnapshot",
+            "/type_contract/type_model/ReadRequest",
+            "/type_contract/type_model/ResourceBasis",
+            "/functions/4"
+          ],
+          "names": [
+            "OS053.Result",
+            "OS053.Finding",
+            "OS053.ProtocolCall",
+            "OS053.Write",
+            "OS053.Ref",
+            "OS053.Locator",
+            "OS053.ReadSnapshot",
+            "OS053.ReadRequest",
+            "OS053.ResourceBasis",
+            "OS053.read_committed_bundle (S05)"
+          ],
+          "note_ja": "OS053 S05 reader portの結果・型をnative contractから参照する。reader capability自体はopaque host-portでありOS020 RawValueではない。"
+        }
+      ],
+      "private_types": [
+        {
+          "name": "F03ProjectionRules",
+          "kind": "closed_record",
+          "fields": {
+            "result_record_rule": "OS020.F03ProjectionRecordRule",
+            "prior_record_rule": "OS020.F03ProjectionRecordRule"
+          },
+          "rule_ja": "各ruleは別途供給されたprojection source bytesとowner宣言形式から読む。共通owner codecを新設しない。 result_record_rule.record_type=ResultRecord、prior_record_rule.record_type=PriorRecordを要求し、入替えを型一致としない。"
+        },
+        {
+          "name": "F03PriorProjectionBasis",
+          "kind": "closed_record",
+          "fields": {
+            "projection_source_ref": "OS020.Field<OS053.Ref>",
+            "projection_source_bytes": "OS020.Field<immutable bytes>",
+            "projection_rules": "OS020.Field<OS020.F03ProjectionRules>",
+            "content_contract_ref": "OS020.Field<OS053.Ref>",
+            "content_contract_source_ref": "OS020.Field<OS053.Ref>",
+            "content_contract_source_bytes": "OS020.Field<immutable bytes>",
+            "content_contract_value": "OS020.Field<OS020.RawValue>",
+            "projection_target_locator": "OS020.Field<OS053.Locator>"
+          },
+          "rule_ja": "全source/Ref/bytes/value/rulesは独立owner portから原値で供給する。suppliedのprojection_source_ref.sha256とprojection_source_bytes、content_contract_source_ref.sha256とcontent_contract_source_bytesを照合する。projection_rulesとcontract_valueがそれぞれ原bytesのowner宣言形式に対応することを比較し、ownerの形式/対応が未供給又は不明ならnot_projectedとして保持する。content_contract_refと選択Write.content_contract_refは完全Ref全5軸一致を要する。source/pointer/codecを名前から生成しない。"
+        },
+        {
+          "name": "F03FieldState",
+          "kind": "closed_enum",
+          "values": [
+            "absent",
+            "null",
+            "empty",
+            "supplied"
+          ],
+          "rule_ja": "状態pointerが既存parentの終端だけ欠落ならabsent、解決値がJSON nullならnull、文字列literal \"empty\"又は\"supplied\"なら各状態とする。空文字/空配列/空object/真偽値/他文字列を状態へ推測変換せず、未知tagとして原因と原payloadを保持する。これは宣言されたowner投影形式であり、任意payloadの自動正規化ではない。"
+        },
+        {
+          "name": "F03ProjectionMemberRule",
+          "kind": "closed_record",
+          "fields": {
+            "member": "閉じた宛先member名。record_typeに対応するmember_set_contract内の一つ",
+            "member_type": "string | boolean | list<string> | Binding（対応するmember_type_contractのField inner型と一致）",
+            "field_state_pointer": "RFC6901 pointer string（decoded_payload基準）",
+            "value_pointer": "OS020.Field<RFC6901 pointer string>",
+            "nested_rule": "OS020.Field<OS020.F03ProjectionRecordRule>"
+          },
+          "rule_ja": "declared member/typeを宛先表と照合する。supplied状態ならvalue_pointerはsuppliedかつ解決値がdeclared inner型、他状態ならvalue_pointerはabsent。Binding inner型だけnested_ruleはsuppliedかつrecord_type=Binding、他型ではabsent。終端欠落と途中parent欠落/型違い・array index不正を区別する。元rule/payload/原因を返し、alias/defaultや隣接record補完をしない。"
+        },
+        {
+          "name": "F03ProjectionRecordRule",
+          "kind": "closed_record",
+          "fields": {
+            "record_type": "ResultRecord | PriorRecord | Binding",
+            "record_field_state_pointer": "RFC6901 pointer string（decoded_payload基準）",
+            "record_value_pointer": "OS020.Field<RFC6901 pointer string>",
+            "member_rules": "tuple<OS020.F03ProjectionMemberRule>"
+          },
+          "member_set_contract": {
+            "ResultRecord": [
+              "binding",
+              "source_ref",
+              "outcome",
+              "started",
+              "collected",
+              "success_claim"
+            ],
+            "PriorRecord": [
+              "binding",
+              "outcome",
+              "stop_reason_ref",
+              "return_ref",
+              "resume_condition_ref",
+              "failure_ref",
+              "outstanding"
+            ],
+            "Binding": [
+              "project",
+              "requirement_revision",
+              "scope",
+              "ticket_graph_ref",
+              "head",
+              "base",
+              "pair_ref",
+              "oracle_ref",
+              "harness_version",
+              "environment_ref",
+              "runner_ref",
+              "run_ref",
+              "authority_ref"
+            ]
+          },
+          "rule_ja": "各recordのmember_rulesはmember_set_contractの全memberを各一回だけ持ち、member_type_contractの全型に一致する。重複/欠落/余分member ruleを失敗にする。外側状態もF03FieldStateで判定し、suppliedならrecord_value_pointerはsuppliedかつobject、他状態ならabsent。supplied recordの各Fieldをmember ruleで構成し、Bindingも13個のField<string>を再帰検査する。",
+          "member_type_contract": {
+            "ResultRecord": {
+              "binding": "Field<Binding>",
+              "source_ref": "Field<string>",
+              "outcome": "Field<string>",
+              "started": "Field<boolean>",
+              "collected": "Field<boolean>",
+              "success_claim": "Field<boolean>"
+            },
+            "PriorRecord": {
+              "binding": "Field<Binding>",
+              "outcome": "Field<string>",
+              "stop_reason_ref": "Field<string>",
+              "return_ref": "Field<string>",
+              "resume_condition_ref": "Field<string>",
+              "failure_ref": "Field<string>",
+              "outstanding": "Field<list<string>>"
+            },
+            "Binding": {
+              "project": "Field<string>",
+              "requirement_revision": "Field<string>",
+              "scope": "Field<string>",
+              "ticket_graph_ref": "Field<string>",
+              "head": "Field<string>",
+              "base": "Field<string>",
+              "pair_ref": "Field<string>",
+              "oracle_ref": "Field<string>",
+              "harness_version": "Field<string>",
+              "environment_ref": "Field<string>",
+              "runner_ref": "Field<string>",
+              "run_ref": "Field<string>",
+              "authority_ref": "Field<string>"
+            }
+          }
+        },
+        {
+          "name": "F03PriorReadMode",
+          "kind": "closed_union",
+          "discriminator": "mode",
+          "variants": {
+            "request_read": {
+              "mode": "request_read",
+              "request": "OS053.ReadRequest",
+              "resource_basis": "OS053.ResourceBasis",
+              "reader_capability": "OS053 opaque reader host-port",
+              "snapshot_observation": "OS020.Field<OS053.ReadSnapshot>"
+            },
+            "observed_result": {
+              "mode": "observed_result",
+              "read_return": "OS020.F03PriorObservedReadMaterial"
+            }
+          }
+        },
+        {
+          "name": "F03PriorReadCallReturn",
+          "kind": "closed_union",
+          "discriminator": "call_state",
+          "variants": {
+            "not_called": {
+              "call_state": "not_called",
+              "request": "OS020.Field<OS053.ReadRequest>",
+              "resource_basis": "OS020.Field<OS053.ResourceBasis>",
+              "reader_capability": "OS020.Field<OS053 opaque reader host-port>",
+              "snapshot_observation": "OS020.Field<OS053.ReadSnapshot>",
+              "reason": "OS020.Field<OS020.RawValue>"
+            },
+            "called": {
+              "call_state": "called",
+              "mode": "request_read",
+              "request": "OS053.ReadRequest",
+              "resource_basis": "OS053.ResourceBasis",
+              "reader_capability": "OS053 opaque reader host-port",
+              "result": "OS053.Result",
+              "findings": "tuple<OS053.Finding>",
+              "protocol_trace": "tuple<OS053.ProtocolCall>",
+              "snapshot_observation": "OS020.Field<OS053.ReadSnapshot>"
+            },
+            "observed_result": {
+              "call_state": "observed_result",
+              "read_return": "OS020.F03PriorObservedReadMaterial (原値)"
+            }
+          },
+          "rule_ja": "S05を選択したrequest_readのみ一回callし、そのnative3返却とparallel observationを別々に保持する。"
+        },
+        {
+          "name": "F03PriorObservedReadMaterial",
+          "kind": "closed_record",
+          "fields": {
+            "request": "OS020.Field<OS053.ReadRequest>",
+            "resource_basis": "OS020.Field<OS053.ResourceBasis>",
+            "reader_capability": "OS020.Field<OS053 opaque reader host-port>",
+            "result": "OS053.Result",
+            "findings": "tuple<OS053.Finding>",
+            "protocol_trace": "tuple<OS053.ProtocolCall>",
+            "snapshot_observation": "OS020.Field<OS053.ReadSnapshot>"
+          }
+        },
+        {
+          "name": "F03PriorProjectionInput",
+          "kind": "closed_record",
+          "fields": {
+            "prior_read_return": "OS020.F03PriorReadCallReturn",
+            "projection_basis": "OS020.F03PriorProjectionBasis",
+            "decoder_capability": "OS020.F02ContentDecoderCapability"
+          }
+        },
+        {
+          "name": "F03ProjectionSetupReturn",
+          "kind": "closed_union",
+          "discriminator": "state",
+          "variants": {
+            "unavailable": {
+              "state": "unavailable",
+              "prior_read_return": "OS020.F03PriorReadCallReturn",
+              "projection_basis": "OS020.Field<OS020.F03PriorProjectionBasis>",
+              "decoder_capability": "OS020.Field<OS020.F02ContentDecoderCapability>",
+              "causes": "tuple<OS020.RawValue>"
+            },
+            "available": {
+              "state": "available",
+              "input": "OS020.F03PriorProjectionInput"
+            }
+          },
+          "rule_ja": "available branchは外側のprojection basisとdecoder capabilityがsuppliedの時だけ構成する。basis内部Field不足は後続returnで保持し、補完しない。"
+        },
+        {
+          "name": "F03SnapshotCorrespondence",
+          "kind": "closed_record",
+          "fields": {
+            "native_snapshot": "OS020.Field<OS053.ReadSnapshot>",
+            "snapshot_observation": "OS020.Field<OS053.ReadSnapshot>",
+            "state": "matching | mismatch | unobserved | unresolved",
+            "causes": "tuple<OS020.RawValue>"
+          },
+          "rule_ja": "native_snapshotはResult.replay/committed.read_snapshotだけから得る。他variantではabsent。native suppliedかつparallel absentならstate=unobservedで投影可否の追加不足にしない。双方suppliedならReadSnapshotの全型/全member/原配列順と反復を比較し、同値はmatching、異値はmismatchで投影を止める。parallel null/emptyはabsentと混同せず、正当なField tagだが完全snapshotを比較できない観測未確定としてunresolvedに原状態と原因を残す。native snapshotがない場合はunresolvedでありparallel観測から補完しない。"
+        },
+        {
+          "name": "F03PriorProjectionReturn",
+          "kind": "closed_union",
+          "discriminator": "state",
+          "variants": {
+            "not_projected": {
+              "state": "not_projected",
+              "input": "OS020.F03PriorProjectionInput",
+              "native_result": "OS020.Field<OS053.Result>",
+              "snapshot_correspondence": "OS020.Field<OS020.F03SnapshotCorrespondence>",
+              "native_snapshot": "OS020.Field<OS053.ReadSnapshot>",
+              "candidate_writes": "tuple<OS053.Write>（完全Locator一致したoccurrenceだけを原順・重複込みで保持。元全Writeはnative_snapshot.recordsへ保持。snapshot不在/target不明は空tupleと未評価原因を併記）",
+              "candidate_count": "Natural（0以上の整数、candidate_writesの実件数）",
+              "selected_write": "OS020.Field<OS053.Write>",
+              "decoder_return": "OS020.Field<OS020.OwnerContentDecodeReturn>",
+              "prior_result_record": "OS020.Field<OS020.ResultRecord>",
+              "prior_record": "OS020.Field<OS020.PriorRecord>",
+              "owner_raw_materials": "OS020.Field<OS020.RawValue>",
+              "causes": "tuple<OS020.RawValue>"
+            },
+            "projected": {
+              "state": "projected",
+              "input": "OS020.F03PriorProjectionInput",
+              "native_result": "OS053.Result",
+              "snapshot_correspondence": "OS020.F03SnapshotCorrespondence",
+              "native_snapshot": "OS053.ReadSnapshot",
+              "candidate_writes": "tuple<OS053.Write>（完全Locator一致したoccurrenceだけを原順・重複込みで保持。元全Writeはnative_snapshot.recordsへ保持。snapshot不在/target不明は空tupleと未評価原因を併記）",
+              "candidate_count": "Natural（0以上の整数、candidate_writesの実件数）",
+              "selected_write": "OS053.Write",
+              "decoder_return": "OS020.OwnerContentDecodeReturn.decoded",
+              "prior_result_record": "OS020.Field<OS020.ResultRecord>",
+              "prior_record": "OS020.Field<OS020.PriorRecord>",
+              "owner_raw_materials": "OS020.Field<OS020.RawValue>",
+              "causes": "tuple<OS020.RawValue>"
+            }
+          },
+          "rule_ja": "after_refとprojection_target_locatorを完全Locator全fieldで比較し、全一致occurrenceを原順で列挙する。unique candidateだけを選ぶ。0/複数件・snapshot不在・source/contract/bytes/pointer/decode/type未成立は原値と原因を保持してnot_projected。"
+        },
+        {
+          "name": "F03PriorReadProjectionInput",
+          "kind": "closed_record",
+          "fields": {
+            "read_mode": "OS020.Field<OS020.F03PriorReadMode>",
+            "projection_basis": "OS020.Field<OS020.F03PriorProjectionBasis>",
+            "decoder_capability": "OS020.Field<OS020.F02ContentDecoderCapability>"
+          },
+          "rule_ja": "OS053選択範囲だけの入口。原Fieldのtag/全値を保持し、read mode又はowner sourceを推定しない。"
+        },
+        {
+          "name": "F03PriorReadProjectionReturn",
+          "kind": "closed_record",
+          "fields": {
+            "input": "OS020.F03PriorReadProjectionInput",
+            "prior_read_return": "OS020.F03PriorReadCallReturn",
+            "projection_setup": "OS020.F03ProjectionSetupReturn",
+            "projection_return": "OS020.Field<OS020.F03PriorProjectionReturn>"
+          },
+          "rule_ja": "全memberは同じ呼出しの原input/read/setup/outputを結ぶ。unavailableではprojection_return=absent、availableでは同setup.inputによるproject_prior_recordsの一回の返却をsuppliedで保持する。投影返却のstateをcallerが変更しない。"
+        }
+      ],
+      "private_signatures": [
+        {
+          "name": "read_prior_material",
+          "signature": "read_prior_material(mode: OS020.F03PriorReadMode) -> OS020.F03PriorReadCallReturn",
+          "arguments_from": {
+            "mode": "F03 prior-projection callerが供給するrequest/resource basis/opaque reader capability/parallel observation、又は既存read materialのobserved_result branch"
+          },
+          "call": "request_readだけOS053.read_committed_bundle(request,resource_basis,reader_capability)を一回呼ぶ。calledには同modeのrequest/resource_basis/opaque reader_capabilityとnative3返却をコピーし、snapshot_observationは同modeの独立Fieldを原値でコピーする。observed_resultはread_returnを原値で保持しS05を呼ばない。"
+        },
+        {
+          "name": "decode_prior_content",
+          "signature": "decode_prior_content(capability: OS020.F02ContentDecoderCapability, input: OS020.OwnerContentDecodeInput) -> OS020.OwnerContentDecodeReturn",
+          "arguments_from": {
+            "capability": "OS020.F03PriorProjectionInput.decoder_capability",
+            "input": "unique OS053.Writeとprojection basis内のcontent contract source/ref/bytes/value。全Ref/bytes原値保持"
+          },
+          "call": "独立ownerのcontent decodeを表す本private署名を最大一回呼ぶ。F02ContentDecoderCapabilityのowner_identity/native_capability/source_occurrencesは原RawValue carrierとして保持し、callable関数/実資格としてcastしない。対応するowner形式/providerが未供給・解決不能ならOwnerContentDecodeReturn.unresolved_or_invalidに原input/原因/観測payload Fieldを返す。対応がある場合だけ同input原bytesを宣言形式でdecodeしてdecoded(input,payload)を返す。",
+          "new_private_signature_ja": "F02の既存decoder型をimportして今回新設する私有decode呼出し契約。baseに同名decode署名が既に存在したとは扱わない。"
+        },
+        {
+          "name": "project_prior_records",
+          "signature": "project_prior_records(input: OS020.F03PriorProjectionInput) -> OS020.F03PriorProjectionReturn",
+          "arguments_from": {
+            "input": "F03ProjectionSetupReturn.available.inputからのみ構成"
+          },
+          "call": "read returnを解釈し、native snapshot→candidate occurrence列→unique選択→decoder→pointer投影の順に実行。全入口/返却/原因を保持。"
+        },
+        {
+          "name": "read_and_project_prior",
+          "signature": "read_and_project_prior(input: OS020.F03PriorReadProjectionInput) -> OS020.F03PriorReadProjectionReturn",
+          "arguments_from": {
+            "input": "既存の方式選択を確認した呼出し側から独立に供給される三つの原Field"
+          },
+          "algorithm_ja": [
+            "read_modeがsuppliedならread_prior_material(input.read_mode.value)を一回呼ぶ。request_read/observed_resultの返却を同callのprior_read_returnへ保持する。read_modeがabsent/null/emptyならS05/decoderを呼ばず、prior_read_return.not_calledとしrequest/resource_basis/reader_capability/snapshot_observationはabsent、reasonは原read_modeを含む原因とする。元read_modeのtag/全値はreturn.inputへ保持する。",
+            "projection_basisとdecoder_capabilityの両外側Fieldがsuppliedなら、同prior_read_return及び両valueだけからF03ProjectionSetupReturn.available.inputを構成する。それ以外はunavailableとし同read返却/両原Field/原因を保持し、projection_return=absent。",
+            "availableの時だけproject_prior_records(setup.input)を一回呼び、その原返却をprojection_return.suppliedへ保持する。basis内部Fieldの不足、not_called、snapshot不在、owner形式未供給等をavailable成功で隠さずproject_prior_records内のnot_projectedへ残す。",
+            "後続begin_resumeはprojected.prior_record等とcurrent CIInputの同値を別に照合する。本callerは未来の結果/保存Plan、再開ready、成功receiptを生成しない。"
+          ]
+        }
+      ],
+      "algorithm_ja": [
+        "OS053を選択したrequest_read branchだけ既存S05を呼ぶ。S05はnative (Result, tuple<Finding>, tuple<ProtocolCall>)を返し、parallel snapshot observationはrequest modeから独立Fieldとして同call入力に保持する。not_called/observed_resultにS05を偽って追加callしない。",
+        "native snapshotとparallel observationの規則はF03SnapshotCorrespondenceに従う。native snapshotはResult.replay/committed.read_snapshot限定。parallel absentはpositive projectionを妨げず、両方suppliedの相違はnot_projected、native無しは外側観測で代替しない。",
+        "native snapshot.recordsの全Writeと各出現位置はinput.prior_read_return/native_snapshot内に原順・重複込みで保持する。projection_target_locatorがsuppliedの場合だけafter_refの完全Locatorと比較して一致するoccurrenceをcandidate_writesへ原順に列挙する。candidate_count=実件数。kind filter/dedupしない。比較に必要なtargetが不明なら候補評価未成立をcauseへ残し、空候補を検査済み成功とは扱わない。",
+        "decoder_argument_origins全7項目とF03PriorProjectionBasisのsource/Ref/bytes/owner形式対応を検査する。Write側plain値を外側Fieldのsuppliedからのみunwrapした独立source/ref/bytes/valueと対応付け、未成立ならdecoderを呼ばず原input/selected Write/全causeを保持する。成立時だけdecode_prior_content(input.decoder_capability,同OwnerContentDecodeInput)を一回呼ぶ。",
+        "decoder decoded_payloadのpointer解決とrecord全field構成は閉型ruleに従う。ResultRecord 6、PriorRecord 7、Binding 13の全fieldを一度ずつ構成し、inner Field tagとvalueの型を検査。終端欠落と中間path失敗を区別する。",
+        "投影ではF03ProjectionRulesのrecord_type、閉member集合・member_type_contract、outer/inner状態と全pointerを検査する。decoder_returnがunresolved_or_invalidならpayloadから成功recordを構成しない。投影処理が失敗しても元payloadはdecoder_return/inputに保持し、partial typed値と全causeをnot_projectedへ返す。後続F02005/06の意味評価やoracle/環境の充足判定はここで行わない。",
+        "projectedはnative snapshot有り、optional snapshot比較がmatching又はunobserved、target完全一致候補が正確に一件、全source/ref/bytes/owner形式対応、decoder.decoded、二つのrecord ruleと全typed Field/pointer投影が成立した場合だけ。各recordの外側absent/null/emptyも原Fieldとして返せるが、それを後続のprior義務成立とは扱わない。その他は全原値・未評価理由付きnot_projected。"
+      ],
+      "failure_and_preservation_ja": "not_projectedは、read未実行/失敗、native snapshotなし、観測不一致、candidate 0/複数、basis/source/contract/bytes/pointer/decoder/type不成立を区別し、元の入力・native return・候補列・decoder return・causeを保持する。新しいpublic Findingや権限/承認/gateは加えない。",
+      "phase_boundary_ja": "このbindingはprior-read/decode/projectionだけを定義する。begin_resume、F02003/05/06、operation resume、保存、再評価完了は後続sliceであり、ここでF03全体完了を主張しない。",
+      "applicability_ja": "この私有読取・投影callerは、既存の独立した選択根拠により当該読取へOS053を選択した範囲だけに適用する。非選択・選択未確定なら本callerとS05を呼ばず、元の材料・選択状態・未完は呼出し側に保持する。他方式を禁止せず、そのowner契約へ委ねる。本契約から方式の採用、認可、fallback成功を生成しない。",
+      "authority_effect": "none",
+      "operation_effect": "none",
+      "source_basis": {
+        "requirement": {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+          "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+          "pointer": "/requirements/39",
+          "canonical_sha256": "6afea8cd6d91c2ac23d0b55f1f778c917c1a1aa5245fa1349fe0be905024f856"
+        },
+        "oracle": {
+          "path": "docs/helix-os/L10-verification/functional-verification.json",
+          "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+          "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+          "pointer": "/cases/39",
+          "canonical_sha256": "93874ef255250c36da29314a58c6c3f09dc8d4630cf92741c3a3e9be1147c0d7"
+        }
+      },
+      "legacy_comparison": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/impact-ci-recovery.md",
+        "file_sha256": "1340f9a3f74b2d78c9c901c284ae478b54ff186f1df0d90e138867980f49812b",
+        "read_sections": [
+          "1",
+          "5",
+          "6",
+          "8"
+        ],
+        "preserve_ja": "既存ownerへ薄く委譲し、元HEAD/run/環境・失敗・未完とattempt履歴を保持する。後続成功で元失敗を置換しない。",
+        "change_ja": "旧runtime・DB・固定profileや一律full/nightlyを移植せず、現行OS053 S05とOS020 Field/recordへ意味を再導出する。",
+        "reason_ja": "既決の中断失敗からの再開要求へ、読取返却と原bytesの同call接続を具体化するため。新規承認やauthorityを追加しない。"
+      },
+      "decoder_argument_origins": {
+        "write_id": "selected_write.write_id",
+        "source_ref": "selected_write.source_ref（完全Ref）",
+        "content_contract_ref": "selected_write.content_contract_ref（basis.content_contract_refと全5軸比較後）",
+        "content_bytes": "selected_write.content_bytes（immutable byte array）",
+        "contract_source_ref": "input.projection_basis.content_contract_source_ref.supplied.value",
+        "contract_source_bytes": "input.projection_basis.content_contract_source_bytes.supplied.value",
+        "contract_value": "input.projection_basis.content_contract_value.supplied.value"
+      }
     }
   ]
 }

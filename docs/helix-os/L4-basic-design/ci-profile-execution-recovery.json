@@ -1587,7 +1587,48 @@
       "component": "unresolved_failure_and_revalidation_resume_material",
       "input_meaning": "失敗/中断時に同じHEAD・検証義務・oracle・許可境界へ結んだ未完状態、失敗種別/戻し先/再開条件を保持する。oracle欠落や環境違いは未完にし、検査弱化でgreenにしない。",
       "output_meaning": "7facet別素材対応/unknown/違反、原状態/未完/戻し先素材。実operation none。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "prior_projection_call_contract": {
+        "id": "HELIXOS-L4-020-F03-PRIOR-PROJECTION",
+        "purpose_ja": "失敗・中断記録から再開に使うprior素材を読み、所有元が供給する原bytesをその宣言済み形式でdecodeし、ResultRecord/PriorRecord/Bindingへ型付きで投影する先行sliceを定める。再開開始・再実行・保存は後続範囲である。",
+        "requirement_ref": "HELIXOS-L3-020-F03",
+        "system_oracle_ref": "HELIXOS-L10-020-F03",
+        "approved_source": {
+          "requirement": {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/39",
+            "canonical_sha256": "6afea8cd6d91c2ac23d0b55f1f778c917c1a1aa5245fa1349fe0be905024f856"
+          },
+          "oracle": {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/39",
+            "canonical_sha256": "93874ef255250c36da29314a58c6c3f09dc8d4630cf92741c3a3e9be1147c0d7"
+          }
+        },
+        "entry_contract": {
+          "input": "OS020.F03PriorReadProjectionInput。選択済みOS053の読取mode、独立ownerのprojection basis、decoder capabilityの原Fieldを受け、read_and_project_priorを一度呼ぶ。既存公開CIInput、ExpectedContext及びF03全体の開始inputは変更しない。",
+          "output": "OS020.F03PriorReadProjectionReturn。元caller input、読取の原返却、投影準備のavailable/unavailable及び投影返却の原Fieldを保持する。prior_record等は後続begin_resumeの比較operandであり、ここで再開readyを判定しない。"
+        },
+        "call_order_ja": [
+          "request_readではOS053.read_committed_bundle(S05)を一回呼び、native Result/findings/protocol traceの3返却をそのまま保持する。reader portはopaque native capabilityでありRawValue/JSONへ変換しない。observed_resultでは既に供給された3値を保持し、再読しない。",
+          "native snapshotはResult.replay/committed.read_snapshotだけから読む。独立のparallel snapshot observationはField<OS053.ReadSnapshot>として別に保持する。native snapshotあり+parallel absentはそれ自体で阻害せず、双方suppliedで型敏感比較が相違する場合は双方と原因を保持してnot_projected。native snapshotがない時はparallel観測で補わない。 parallel観測のnull/emptyは正当なField tagのまま保持するが、完全snapshotとして比較できない観測未確定なのでunresolvedにする。",
+          "snapshot.recordsの全Write occurrenceを原順・重複込みで保持する。after_refとprojection_target_locatorを完全Locator全fieldで比べ、kind filterやRef dedupを行わず候補を数える。正確に一件だけを選択する。",
+          "選択したWriteのwrite_id/source_ref/content_contract_ref/content_bytesと、独立に供給されたsource/ref/bytes/value/rulesを対応付け、F02の既存decoder入出力型を使う新しいprivate署名decode_prior_contentへ一回渡す。bytesをRawValueへcastせず、decoder input/return/失敗原因を保持する。",
+          "decoderのdecoded_payloadへ宣言されたRFC6901 pointerを解決し、状態pointerの終端欠落→absent、JSON null→null、文字列literal empty/supplied→各状態として扱う。他のraw tagを任意の空値/真偽値から推測しない。ResultRecord(6 member)、PriorRecord(7 member)、Binding(13 member)の宣言型を検査し、途中parent欠落/型違い/不正indexと終端欠落を分ける。"
+        ],
+        "source_conditions_ja": [
+          "同じscope/HEAD/oracle/許可境界に結ぶ失敗記録を後段へ渡せるよう、投影可能性と未成立理由を元値つきで返す。",
+          "独立source/contract/bytesや宣言pathの不足は投影の未成立として保持する。投影できた値にoracle欠落・環境差・失敗/未完があっても値を書き換えず、後続の同CIInputによるF02003/05/06へ渡す材料として残す。投影成功を再開可能又は未完解消にしない。",
+          "これはprior projectionだけの契約であり、F03開始判定、resume dispatch/monitor/collect、再評価、保存、実operation、実資格、実read providerの成立を主張しない。"
+        ],
+        "failure_preservation_ja": "not_projectedでも入口、全native返却、Field state、原順の全candidate Write、selected有無、decoder input/return、typed projection partial/raw values、全原因を失わない。causeは私有の原RawValueとして保持し、既存OS020/OS053 Findingやcodeへcast・分類対応付けをしない。S05 native findingsは元read返却にそのまま保持し、新public finding/codeを追加しない。",
+        "operation_effect": "none",
+        "applicability_ja": "この私有読取・投影callerは、既存の独立した選択根拠により当該読取へOS053を選択した範囲だけに適用する。非選択・選択未確定なら本callerとS05を呼ばず、元の材料・選択状態・未完は呼出し側に保持する。他方式を禁止せず、そのowner契約へ委ねる。本契約から方式の採用、認可、fallback成功を生成しない。"
+      }
     },
     {
       "id": "HELIXOS-L4-020-B01",

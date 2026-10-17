@@ -108936,7 +108936,7 @@
     "owner_outer_field_priority": "最優先でplan_owner.raw_valueのouter Fieldを判定する。raw ownerがabsentならselection outer Field=absent、raw null/empty又はtyped decode失敗ならouter Field=nullとし、後段membership/item規則で上書きしない。raw/typedの不一致や供給済の独立軸/全raw候補はtraceへ保持し省略しない。typed owner内plan_ref/bindingの原Field tag/値は保持する。",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
+      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -108960,7 +108960,7 @@
     "kind": "finite_independent_producer_to_consumer_integration_observation",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
+      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -275689,7 +275689,7 @@
     "kind": "T02の独立局所projection素材",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
+      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract/relation_comparison_units",
       "binding_kind": "同一候補の正式L4 path/本文SHAへ結ぶ。scratchを意味正本にしない。"
     },
@@ -395892,7 +395892,7 @@
     "system_oracle_ref": "HELIXOS-L10-020-B01",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
+      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
       "pointer": "/contracts/3/owner_return_contract",
       "object_canonical_sha256": "258ba7bedf96d8bf71f75ce310ef3cef91e512d6d0c67154e37621029e13c45b"
     },
@@ -396010,7 +396010,7 @@
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
       "pointer": "/contracts/1/operation_call_contract",
-      "body_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a"
+      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2"
     },
     "source_basis": [
       {
@@ -396136,6 +396136,172 @@
           "OP-SOURCE-06",
           "OP-SOURCE-07"
         ]
+      }
+    ]
+  },
+  "prior_projection_verification": {
+    "kind": "os020_f03_prior_projection_source_and_unit_verification",
+    "requirement_ref": "HELIXOS-L3-020-F03",
+    "system_oracle_ref": "HELIXOS-L10-020-F03",
+    "current_l4_binding": {
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "pointer": "/contracts/2/prior_projection_call_contract",
+      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+      "object_canonical_sha256": "18859b9a615acb625455f56689569bdb681c0f289f11ef3f29fcdeec9ec173e2"
+    },
+    "candidate_l5_binding": {
+      "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+      "pointer": "/private_producer_bindings/3",
+      "sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1",
+      "object_canonical_sha256": "d1ef2ee51e0b9474226f6def0b7a318b75fd51a3682e817384063d6f3e5dc561"
+    },
+    "independent_source_conditions": {
+      "source_path": "scaffold/review-handoff/local/os020-operation-root-source-conditions-at-075f0ed3/conditions.json",
+      "source_sha256": "b2a4ed842d9fd82ac153c265f43ea87ffe0809ae3570addd6d8cc7d2c5f7ddc3",
+      "source_main": "075f0ed32459addc24a92165f3233c0ba2cf7ee3",
+      "basis_note_ja": "下の原四条件は準備時の原文として保全し、適用の訂正を別欄へ記録する。local記録は準備の来歴に限り、規範inputは収載した原条件及び上記source_basisの承認済みL3/L10へ固定する。四条件全体の充足をこのsliceで主張しない。"
+    },
+    "conditions": [
+      {
+        "id": "RES-SOURCE-01",
+        "requirement_ref": "HELIXOS-L3-020-F03",
+        "scenario_ja": "同scopeかつ同HEAD/oracle/許可境界の失敗後に再開を依頼する",
+        "expected_condition_ja": "原failure/未完義務/戻し先/再開条件を別記録として保持し、その原保存記録と次の再開依頼・結果/残未完との対応を辿れる。元失敗を上書きしない。",
+        "derivation_ja": "L3未完状態/失敗種別/戻し先/再開条件とL10同scope再開",
+        "formal_mapping_ja": "prior-read/decode/projectionは失敗recordを上書きせず、projected/not_projectedと全未完原因を保持する。後続resume開始/再開結果の照合はこのslice外。"
+      },
+      {
+        "id": "RES-SOURCE-02",
+        "requirement_ref": "HELIXOS-L3-020-F03",
+        "scenario_ja": "HEAD又は環境等が既知変更で、必要再評価結果が未供給",
+        "expected_condition_ja": "変更した対象の再照合が未成立であることと元未完を保持し、既存F02006の適用条件を満たす場合だけ再検証を要求する。旧greenを代用しない。",
+        "derivation_ja": "L10 HEAD/環境変更を分け適用契約で再照合。未知を既知変更と捏造しない",
+        "formal_mapping_ja": "既知変更軸のF02006再評価条件はこのprojection sliceで評価しない。unknown軸は原因として残し、後続の既存適用条件を適用する。"
+      },
+      {
+        "id": "RES-SOURCE-03",
+        "requirement_ref": "HELIXOS-L3-020-F03",
+        "scenario_ja": "oracle欠落、別環境結果による相殺、失敗check削除、未完resetを提出する",
+        "expected_condition_ja": "元失敗/未完と必要な再評価を保持し、比較対応・再開・後続greenだけで未完を削除しない。",
+        "derivation_ja": "L3 oracle欠落や環境違いは未完、検査弱化でgreenにしない/L10全負例",
+        "formal_mapping_ja": "欠落したoracleや環境差を含む原Fieldを投影しても消去・補完せず保持する。投影が成功することと未完/再開条件が満たされることを区別し、F02003/05/06による意味評価は後続へ残す。"
+      },
+      {
+        "id": "RES-SOURCE-04",
+        "requirement_ref": "HELIXOS-L3-020-F03",
+        "scenario_ja": "保存した原未完と異なるscope/attempt/因果記録を次の再開へ混入する",
+        "expected_condition_ja": "元記録と受渡しの相違を保持し、別案件/別runを同じ未完の履行としない。episode/assignment/attemptをrun_refから推測しない。",
+        "derivation_ja": "既存OS019/018 continuity責務を利用する際の同scope/原未完追跡",
+        "formal_mapping_ja": "OS019 continuityを選択する場合の条件は原義務として保持するが、このprior projection sliceではepisode/attempt/因果を作らず、後続のOS019 consumer照合へ残す。"
+      }
+    ],
+    "slice_conditions": [
+      {
+        "id": "F03-PRIOR-01",
+        "scenario_ja": "OS053 S05選択でResult.replay/committed内にnative snapshotがあり、parallel observationはField.absent",
+        "expected_ja": "他のsource/ref/bytes/unique Write/decoder/pointer条件が成立すればprojectionを許す。absent parallel observationをmissing blockerや二重read要求にしない。",
+        "aligns_with": "RES-SOURCE-01",
+        "case_refs": []
+      },
+      {
+        "id": "F03-PRIOR-02",
+        "scenario_ja": "native snapshotと独立parallel snapshotが双方suppliedであり、いずれかのtyped member/配列順・反復が相違する",
+        "expected_ja": "両snapshot・Field・read tupleを保全し、原因を伴うnot_projectedにする。どちらかを優先して一致扱いしない。",
+        "aligns_with": "RES-SOURCE-01",
+        "case_refs": []
+      },
+      {
+        "id": "F03-PRIOR-03",
+        "scenario_ja": "native Resultにsnapshotを持つvariantがなくparallel observationだけsupplied",
+        "expected_ja": "parallel observationをnative read sourceへ代入せず、not_projected/unresolvedで全原値を保持する。",
+        "aligns_with": "RES-SOURCE-03",
+        "case_refs": []
+      },
+      {
+        "id": "F03-PRIOR-04",
+        "scenario_ja": "candidate Writeが0件又は完全Locator一致の複数occurrenceを持つ",
+        "expected_ja": "全Writeと原順/重複、候補件数を保持し、dedup/filterでunique候補を生成せずnot_projected。",
+        "aligns_with": "RES-SOURCE-01",
+        "case_refs": []
+      },
+      {
+        "id": "F03-PRIOR-05",
+        "scenario_ja": "unique Writeと独立contract/source/bytes/pointer/decoded recordのうち一つが欠落・不一致・型外",
+        "expected_ja": "未成立operandと全原因を保持し、結果record/Bindingを補完せずnot_projected。成功codec/providerの不在を自動defaultで埋めない。",
+        "aligns_with": "RES-SOURCE-03",
+        "case_refs": []
+      },
+      {
+        "id": "F03-PRIOR-06",
+        "scenario_ja": "Field状態pointerにliteral empty/supplied、終端欠落、JSON null、空文字/空配列又は未知tagを供給する",
+        "expected_ja": "宣言状態とraw値の型を混同しない。既存parentの終端欠落→absent、JSON null→null、literal empty/supplied→各tag。他値と不正pathはnot_projectedで原値/位置/原因保持。",
+        "aligns_with": "RES-SOURCE-01",
+        "case_refs": []
+      },
+      {
+        "id": "F03-PRIOR-07",
+        "scenario_ja": "read_mode又はowner basis/decoderの外側Fieldがabsent/null/emptyである",
+        "expected_ja": "caller原Fieldを保持し、mode不足ならread/decoder未呼出し、basis/decoder外側不足ならsetup.unavailable/projection_return.absent。inner不足はnot_projectedへ保持する。native snapshot+parallel absentの許容と混同しない。",
+        "aligns_with": "RES-SOURCE-01",
+        "case_refs": []
+      },
+      {
+        "id": "F03-PRIOR-08",
+        "scenario_ja": "同request/basisへ異なるopaque reader portを渡した二つの呼出しが同native3tupleを返す",
+        "expected_ja": "各return.input.read_modeとcalled.reader_capabilityへ実第三引数を保持し区別する。Ref又はJSONからportを合成しない。",
+        "aligns_with": "RES-SOURCE-01",
+        "case_refs": []
+      }
+    ],
+    "verification_boundary_ja": "これはprior projectionの設計対応だけを記録する。新fixture/expectedを追加しておらずcase_refs=[]。F03全体、resume開始/dispatch/persist、実provider/実資格、model/CI実行、Red/Greenは成立扱いしない。",
+    "source_basis": {
+      "requirement": {
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+        "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+        "pointer": "/requirements/39",
+        "canonical_sha256": "6afea8cd6d91c2ac23d0b55f1f778c917c1a1aa5245fa1349fe0be905024f856"
+      },
+      "oracle": {
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+        "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+        "pointer": "/cases/39",
+        "canonical_sha256": "93874ef255250c36da29314a58c6c3f09dc8d4630cf92741c3a3e9be1147c0d7"
+      }
+    },
+    "applicability_ja": "この私有読取・投影callerは、既存の独立した選択根拠により当該読取へOS053を選択した範囲だけに適用する。非選択・選択未確定なら本callerとS05を呼ばず、元の材料・選択状態・未完は呼出し側に保持する。他方式を禁止せず、そのowner契約へ委ねる。本契約から方式の採用、認可、fallback成功を生成しない。",
+    "source_condition_clarifications": [
+      {
+        "condition_id": "RES-SOURCE-04",
+        "correction_ja": "原derivationのOS019/018併記は、実際に参照するevent-episode-continuityのowner OS019へ訂正して読む。同機構を利用する時だけ適用し、正当に関連付けた次attemptを一律拒否しない。episode/attemptの評価は後続consumerの範囲。",
+        "source": {
+          "path": "docs/helix-os/L4-basic-design/event-episode-continuity.json",
+          "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+          "pointer": "/contracts/2",
+          "file_sha256": "be04a234e500cbc11b683f15ef0799bfa284af1aa48d7316f161258752048ba3"
+        }
+      },
+      {
+        "condition_id": "RES-SOURCE-02",
+        "clarification_ja": "F02006は13軸全既知を前提にせず、一軸以上のknown differenceで選択する。他軸unknownのfindingは残す。known differenceなしの未選択でrevalidationを新必須にしない。このsliceはこの判定を呼ばず、後続へ原値を渡す。"
+      }
+    ],
+    "branch_controls": [
+      {
+        "id": "F03-READ-SELECTION",
+        "condition_ja": "既存の選択根拠でOS053非選択又は選択未確定なら、呼出し側は本private caller/S05を呼ばず、元材料・選択状態・未完を自身へ保持する。他方式の禁止/成功や二重読取を生成しない。",
+        "source_pointer": "/contracts/2/prior_projection_call_contract/applicability_ja"
+      },
+      {
+        "id": "F03-PARALLEL-UNRESOLVED",
+        "condition_ja": "native snapshotがあってもparallel観測がField.null/emptyなら、正当な原tagを保持し完全snapshot比較は未成立としてsnapshot correspondence=unresolved、projection=not_projectedとする。absentだけはunobservedで投影を妨げない対照と区別する。",
+        "source_pointer": "/private_producer_bindings/3/private_types/10/rule_ja"
+      },
+      {
+        "id": "F03-TARGET-UNEVALUATED",
+        "condition_ja": "projection_target_locatorがabsent/null/emptyで完全targetを得られなければ候補比較を未評価とし、原snapshot.records/原target Fieldを入力に保持する。candidate_writesは空tuple/candidate_count=0でも検査済み0件とは異なる未評価原因を残し、decoder未呼出し、not_projected。",
+        "source_pointer": "/private_producer_bindings/3/algorithm_ja/2"
       }
     ]
   }

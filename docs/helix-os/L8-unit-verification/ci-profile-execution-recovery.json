@@ -170762,9 +170762,9 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-    "sha256": "f7b89937229f5f5b37e7380a8599aaa3cebfa8816bbcfaf5c82e6c37e98d0f60",
+    "sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1",
     "pointer": "/private_producer_bindings/0",
-    "object_canonical_sha256": "6f9d76221a9fd083d588cc0214c14634daa1f6ae3c12d9836679d311224e7a68",
+    "object_canonical_sha256": "139952488e37e72ea80eb7413c9c267d1f11e1e051020dfa0bead84c0a7177cc",
     "binding_kind": "exact_candidate_file_bytes",
     "meaning": "同じ対に置くL5の現在file bytesとprivate producer binding objectを結ぶ。歴史source pinとは区別する。"
   },
@@ -171275,7 +171275,7 @@
     ],
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "3f0a5a64c24b5fc4037e011d3f1df28abcecebfdb3a06c00af86d67f866105a8",
+      "candidate_sha256": "2d29a9482239f9b8fed664c1c5e959794ef1320e403515fed90b3087332b283c",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
     },
@@ -171293,13 +171293,13 @@
     "requirement_ref": "HELIXOS-L3-020-B01",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "f7b89937229f5f5b37e7380a8599aaa3cebfa8816bbcfaf5c82e6c37e98d0f60",
+      "sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1",
       "pointer": "/private_producer_bindings/1",
-      "object_canonical_sha256": "cce191f15e243ba45c416c223cbc5b3c4daad0baa418b6b482cc80ae4722c6c8"
+      "object_canonical_sha256": "f570592ce8ec841c7aca8e3096295093cd428ebe8b9c77e053269528b989efba"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "3f0a5a64c24b5fc4037e011d3f1df28abcecebfdb3a06c00af86d67f866105a8",
+      "candidate_sha256": "2d29a9482239f9b8fed664c1c5e959794ef1320e403515fed90b3087332b283c",
       "pointer": "/owner_return_verification"
     },
     "unit_conditions": [
@@ -171370,20 +171370,20 @@
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
       "pointer": "/contracts/1/operation_call_contract",
-      "body_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
+      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
       "object_canonical_sha256": "b8c8141227b2e81be5e2a858d7f552bf0bf0fc534b34b63fe9669eb7ff5ca517"
     },
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/2",
-      "sha256": "f7b89937229f5f5b37e7380a8599aaa3cebfa8816bbcfaf5c82e6c37e98d0f60",
-      "object_canonical_sha256": "3c5130b5d43f3688015c8015ade2f37a97de0772e55959344e15963fcb979f0d"
+      "sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1",
+      "object_canonical_sha256": "da9c0b235c511d60a47742dfe917f64b753033e828dfab6f2c6084dc30b4ae75"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/operation_call_verification",
-      "candidate_sha256": "3f0a5a64c24b5fc4037e011d3f1df28abcecebfdb3a06c00af86d67f866105a8",
-      "object_canonical_sha256": "c1bb8aea2c5651abb12d29d871bc745e020d6737cf679e4994d01dec63061afd"
+      "candidate_sha256": "2d29a9482239f9b8fed664c1c5e959794ef1320e403515fed90b3087332b283c",
+      "object_canonical_sha256": "73826ca446d4e1a4dde6fc1b6ebd16a1ec861596985cfa0eeb8c67b4046da82a"
     },
     "condition_correspondence": [
       {
@@ -171520,6 +171520,96 @@
       {
         "unit_id": "F02-UNIT-06",
         "l9_control_id": "F02-PERSIST-SELECTION"
+      }
+    ]
+  },
+  "prior_projection_verification": {
+    "kind": "os020_f03_prior_projection_l4_l5_l9_correspondence",
+    "requirement_ref": "HELIXOS-L3-020-F03",
+    "system_oracle_ref": "HELIXOS-L10-020-F03",
+    "current_l4_binding": {
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "pointer": "/contracts/2/prior_projection_call_contract",
+      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+      "object_canonical_sha256": "18859b9a615acb625455f56689569bdb681c0f289f11ef3f29fcdeec9ec173e2"
+    },
+    "candidate_l5_binding": {
+      "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+      "pointer": "/private_producer_bindings/3",
+      "sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1",
+      "object_canonical_sha256": "d1ef2ee51e0b9474226f6def0b7a318b75fd51a3682e817384063d6f3e5dc561"
+    },
+    "current_l9_candidate_binding": {
+      "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+      "pointer": "/prior_projection_verification",
+      "candidate_sha256": "2d29a9482239f9b8fed664c1c5e959794ef1320e403515fed90b3087332b283c",
+      "object_canonical_sha256": "29f2eb00c1e226ebee2ee9afec2cefce83c1db29c9e0b0908b3242c1c1fa67eb"
+    },
+    "unit_conditions": [
+      {
+        "id": "F03-PRIOR-UNIT-01",
+        "condition_ja": "request_readでS05 native3tupleを一度保持する。parallel snapshot observationは別Fieldとして保持し、S05の第四返却として扱わない。observed_result/not_calledで追加readしない。",
+        "aligns_with": "F03-PRIOR-01",
+        "case_refs": []
+      },
+      {
+        "id": "F03-PRIOR-UNIT-02",
+        "condition_ja": "native Result.replay/committed.read_snapshotあり＋parallel Field.absentをpositive条件として認める。追加観測・二度目readを必要条件にしない。",
+        "aligns_with": "F03-PRIOR-01",
+        "case_refs": []
+      },
+      {
+        "id": "F03-PRIOR-UNIT-03",
+        "condition_ja": "両snapshot suppliedで全field/Field stateが異なる場合、双方と全causeを保持しnot_projected。native snapshotがない時parallel値だけで補完しない。",
+        "aligns_with": "F03-PRIOR-02/F03-PRIOR-03",
+        "case_refs": []
+      },
+      {
+        "id": "F03-PRIOR-UNIT-04",
+        "condition_ja": "snapshot.recordsのWriteを全件原順・重複込みで走査し、完全Locator一致のみ数える。0/複数は全候補とcountを保持し、kind filter/dedupで成功を作らない。",
+        "aligns_with": "F03-PRIOR-04",
+        "case_refs": []
+      },
+      {
+        "id": "F03-PRIOR-UNIT-05",
+        "condition_ja": "unique Writeについてwrite_id/source_ref/content_contract_ref/content_bytesを別source/ref/bytes/valueと型・presence敏感に対応付ける。owner decoderを最大一回だけ呼び、原bytes/payload/returnを保全する。",
+        "aligns_with": "F03-PRIOR-05",
+        "case_refs": []
+      },
+      {
+        "id": "F03-PRIOR-UNIT-06",
+        "condition_ja": "decoded_payload pointerの終端欠落、途中parent失敗、配列index不正、Field absent/null/empty/suppliedを区別し、ResultRecord 6/PriorRecord 7/Binding 13の全memberを閉型で構成する。各不成立はnot_projectedでpartial/original/causeを保持する。",
+        "aligns_with": "F03-PRIOR-05",
+        "case_refs": []
+      },
+      {
+        "id": "F03-PRIOR-UNIT-07",
+        "condition_ja": "同read modeとcallerの原Fieldから、read return→setup→projection returnへの同call結合を辿る。未呼出しとnative呼出し後の欠落を区別し、opaque reader第三引数はcalledと元inputに原値保持する。",
+        "aligns_with": "F03-PRIOR-07/F03-PRIOR-08",
+        "case_refs": []
+      },
+      {
+        "id": "F03-PRIOR-UNIT-08",
+        "condition_ja": "状態pointerの終端欠落/null/literal empty/suppliedと任意空raw値を区別し、outer recordと全memberのpointer/型表を検査する。member名・型・record種別の差を同形JSONとして通さない。",
+        "aligns_with": "F03-PRIOR-06",
+        "case_refs": []
+      }
+    ],
+    "preservation_ja": "既存L8の全case/input/expectedと関数・原F03 wholeは変更しない。ここではcase_refs=[]の有限設計条件だけを追加し、既存wholeの実行や新expectedを主張しない。",
+    "status_ja": "L4/L5/L9のprior-projection sliceを結ぶ設計対応。F03全義務完了、再開operation、保存、実provider成立、製品CI、独立review済みを意味しない。",
+    "applicability_ja": "この私有読取・投影callerは、既存の独立した選択根拠により当該読取へOS053を選択した範囲だけに適用する。非選択・選択未確定なら本callerとS05を呼ばず、元の材料・選択状態・未完は呼出し側に保持する。他方式を禁止せず、そのowner契約へ委ねる。本契約から方式の採用、認可、fallback成功を生成しない。",
+    "branch_control_alignment": [
+      {
+        "l9_control_id": "F03-READ-SELECTION",
+        "condition_ja": "既存の選択根拠でOS053非選択又は選択未確定なら、呼出し側は本private caller/S05を呼ばず、元材料・選択状態・未完を自身へ保持する。他方式の禁止/成功や二重読取を生成しない。"
+      },
+      {
+        "l9_control_id": "F03-PARALLEL-UNRESOLVED",
+        "condition_ja": "native snapshotがあってもparallel観測がField.null/emptyなら、正当な原tagを保持し完全snapshot比較は未成立としてsnapshot correspondence=unresolved、projection=not_projectedとする。absentだけはunobservedで投影を妨げない対照と区別する。"
+      },
+      {
+        "l9_control_id": "F03-TARGET-UNEVALUATED",
+        "condition_ja": "projection_target_locatorがabsent/null/emptyで完全targetを得られなければ候補比較を未評価とし、原snapshot.records/原target Fieldを入力に保持する。candidate_writesは空tuple/candidate_count=0でも検査済み0件とは異なる未評価原因を残し、decoder未呼出し、not_projected。"
       }
     ]
   }
