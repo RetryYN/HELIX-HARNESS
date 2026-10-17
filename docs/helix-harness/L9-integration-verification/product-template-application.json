@@ -81195,7 +81195,7 @@
             "document_id": "HELIX-HARNESS-L4-009",
             "candidate_local_pointer": "/contracts/4/source_result_reference_projection",
             "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
-            "candidate_l4_bytes_sha256": "bc89e78f056f68665011b8ef37a3125f56a9ff1b4888b63f960fba70878023c9",
+            "candidate_l4_bytes_sha256": "4a4e8b68f5096198d1809b850f552c6412af62f60bc16bffd60710880233f888",
             "candidate_l4_path": "docs/helix-harness/L4-basic-design/product-template-application.json"
           },
           "expectation_basis": "L3/L10 F03にある根拠・適用範囲・不足の返却義務と、L4の必須軸、順序付きcondition pair、Presence<JsonValue>診断規則を用いる。各probeのrawと全返却期待はcase内に保持し、local先固定履歴はGit上の時系列証明とは区別する。",
@@ -131696,9 +131696,9 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "bc89e78f056f68665011b8ef37a3125f56a9ff1b4888b63f960fba70878023c9",
+        "sha256": "4a4e8b68f5096198d1809b850f552c6412af62f60bc16bffd60710880233f888",
         "pointer": "/field_source_materialization_contract",
-        "canonical_sha256": "ae9ce00bc45471330380a8170f57ef51ac5bd1370d4a90b8d18ef0e0fe1253b0",
+        "canonical_sha256": "9affbb54ace3e5c6f22c92d004999e474be0a36d84b439aaf3d7b60aecd433bf",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
       },
       {
@@ -146464,7 +146464,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "bc89e78f056f68665011b8ef37a3125f56a9ff1b4888b63f960fba70878023c9",
+        "sha256": "4a4e8b68f5096198d1809b850f552c6412af62f60bc16bffd60710880233f888",
         "pointer": "/field_semantic_evidence_contract",
         "canonical_sha256": "9e07d904164b1e3b595f5c8d64b0779d41599eea00c5d75968b07d9032273d79",
         "role": "現行L4基本候補のreturn/body契約。commit済み歴史revisionとは区別し、同PRの対象bytesと選択節を固定する。",
@@ -164344,8 +164344,8 @@
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
         "pointer": "/f05_validation_material_call_contract",
-        "file_sha256": "bc89e78f056f68665011b8ef37a3125f56a9ff1b4888b63f960fba70878023c9",
-        "canonical_sha256": "cebfbeb1ff80851cbf53bf54435e0261c0e713474dc5ebbf68a8f5fa67c4eebf",
+        "file_sha256": "4a4e8b68f5096198d1809b850f552c6412af62f60bc16bffd60710880233f888",
+        "canonical_sha256": "0bae5fc583b45d6c4631a7dd2a6574361cd299e22623e5f93e90431ef0be368d",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "status": "作業時のcurrent L4 candidate bytes。commit revisionとは主張しない。"
       },
@@ -164405,8 +164405,8 @@
         "/f05_detail/owner_material"
       ],
       "coverage_rule_ja": "各caseのasserted_output_pathsに列挙した有限pathだけを照合する。expectedに無いreturn枝は製品のabsence期待ではなく未instantiatedであり、空配列/default/falseとして扱わない。 case 0–3はsource_observationsを未instantiatedのまま扱い、case 4だけ条件付き全source/Qualification素材をvalidation whole内の有限copy対象として供給する。",
-      "caller_observation_claim": "none: fixed L8 expected producer literals are conditional isolated-port fixtures, not actual same-call observations.",
-      "unexercised_claims_ja": "実同call、実qualification trust、実source provider、全native writer/producer runtime、外側caller全返却は本有限oracleから認定しない。"
+      "caller_observation_claim": "なし。固定L8期待producer literalは条件付きの単体port fixtureであり、実同call観測ではない。",
+      "unexercised_claims_ja": "bindingがarray等のshape不適合でinput=nullとなる枝、source_observationsの既知差・未観測・非適用の各行は未行使。case 4のsource_observation_tableは8行×10関係の計80件がすべてequalであり、これ以外の関係結果を含まない。実同call、実qualification trust、実source provider、全native writer/producer runtime、外側caller全返却は本有限oracleから認定しない。"
     },
     "literal_fixture_catalog": {
       "source_map": [
@@ -180588,9 +180588,9 @@
         "uninstantiated_output_paths": [
           "/validation_detail/source_observations",
           "/f05_detail/context_formation",
-          "/f05_detail/predecessor_call_materials",
           "/f05_detail/owner_material",
-          "/outer_private_caller_return"
+          "/f05_detail/original_request",
+          "/f05_detail/comparison"
         ],
         "expected_return_patch": [
           {
@@ -180646,9 +180646,9 @@
         "uninstantiated_output_paths": [
           "/validation_detail/source_observations",
           "/f05_detail/context_formation",
-          "/f05_detail/predecessor_call_materials",
           "/f05_detail/owner_material",
-          "/outer_private_caller_return"
+          "/f05_detail/original_request",
+          "/f05_detail/comparison"
         ],
         "expected_return_patch": [
           {
@@ -180709,10 +180709,9 @@
         "uninstantiated_output_paths": [
           "/validation_detail/source_observations",
           "/f05_detail/context_formation",
-          "/f05_detail/predecessor_call_materials",
           "/f05_detail/comparison",
           "/f05_detail/owner_material",
-          "/outer_private_caller_return"
+          "/f05_detail/original_request"
         ],
         "expected_return_patch": [
           {
@@ -180766,15 +180765,16 @@
           "/validation_detail/validated/unusable_source_refs",
           "/f05_detail/context_formation",
           "/f05_detail/header_formation",
-          "/f05_detail/actual_argument_map/validation/original_raw_input",
-          "/f05_detail/actual_argument_map/validation/validated",
-          "/f05_detail/actual_argument_map/compare_applicability/comparison",
-          "/f05_detail/actual_argument_map/compare_kind_obligation_trace/comparison"
+          "/f05_detail/original_request/validation/original_raw_input",
+          "/f05_detail/original_request/validation/validated",
+          "/f05_detail/original_request/compare_applicability/comparison",
+          "/f05_detail/original_request/compare_kind_obligation_trace/comparison"
         ],
         "uninstantiated_output_paths": [
           "/validation_detail/source_observations",
           "/f05_detail/owner_material",
-          "/f05_detail/comparison"
+          "/f05_detail/comparison",
+          "/f05_detail/original_request/validation/source_observations"
         ],
         "expected_return_patch": [
           {
@@ -180835,24 +180835,24 @@
           },
           {
             "op": "add",
-            "path": "/expected/f05_detail/actual_argument_map",
+            "path": "/expected/f05_detail/original_request",
             "value": {}
           },
           {
             "op": "add",
-            "path": "/expected/f05_detail/actual_argument_map/validation",
+            "path": "/expected/f05_detail/original_request/validation",
             "value": {}
           },
           {
             "op": "add",
-            "path": "/expected/f05_detail/actual_argument_map/compare_applicability",
+            "path": "/expected/f05_detail/original_request/compare_applicability",
             "value": {
               "tag": "returned"
             }
           },
           {
             "op": "add",
-            "path": "/expected/f05_detail/actual_argument_map/compare_kind_obligation_trace",
+            "path": "/expected/f05_detail/original_request/compare_kind_obligation_trace",
             "value": {
               "tag": "returned"
             }
@@ -180860,25 +180860,25 @@
           {
             "op": "copy",
             "from": "/case/input",
-            "path": "/expected/f05_detail/actual_argument_map/validation/original_raw_input"
+            "path": "/expected/f05_detail/original_request/validation/original_raw_input"
           },
           {
             "op": "copy",
             "from": "/expected/validation_detail/validated",
-            "path": "/expected/f05_detail/actual_argument_map/validation/validated"
+            "path": "/expected/f05_detail/original_request/validation/validated"
           },
           {
             "op": "copy",
             "from": "/literal_fixture_catalog/fixed_literals/NORMAL-FN3-EXPECTED",
-            "path": "/expected/f05_detail/actual_argument_map/compare_applicability/comparison"
+            "path": "/expected/f05_detail/original_request/compare_applicability/comparison"
           },
           {
             "op": "copy",
             "from": "/literal_fixture_catalog/fixed_literals/NORMAL-FN4-EXPECTED",
-            "path": "/expected/f05_detail/actual_argument_map/compare_kind_obligation_trace/comparison"
+            "path": "/expected/f05_detail/original_request/compare_kind_obligation_trace/comparison"
           }
         ],
-        "comparison_rule_ja": "同rawのsemantic_records/9とsource2/body.records/5はsynthetic-original-meaningのwhole取得に留まり、同fieldのdefinition_presence=present原命題がない。semantic_records/10とsource0/body.records/21のmeaning.valueはあるが、payload form/value_role/reason出所の宣言がない。そこで局所projectionを未形成として保持し、definition missing/value unknownへ再分類しない。旧FN5 expected wholeは履歴catalogのまま残し、新F05 comparison全体のformation/state/wholeはassertしない。Context/header、raw/validated、二returned producer wholeと実引数copyは従来どおり照合する。",
+        "comparison_rule_ja": "同rawのsemantic_records/9とsource2/body.records/5はsynthetic-original-meaningのwhole取得に留まり、同fieldのdefinition_presence=present原命題がない。semantic_records/10とsource0/body.records/21のmeaning.valueはあるが、payload form/value_role/reason出所の宣言がない。そこで局所projectionを未形成として保持し、definition missing/value unknownへ再分類しない。旧FN5 expected wholeは履歴catalogのまま残し、新F05 comparison全体のformation/state/wholeはassertしない。Context/header、raw/validated、二returned producer wholeとoriginal_requestへの引数copyは従来どおり照合する。 original_requestはvalidation.source_observationsを含まない部分範囲としてのみ照合し、その子pathは未instantiatedに列記する。",
         "expected_predecessor_return_literals": {
           "compare_applicability": {
             "tag": "returned",
@@ -180945,7 +180945,7 @@
             "status_ja": "原value wholeは原Ref/source/body対応から取得保持できる。"
           },
           "oracle_expected_root": "/oracle_expected/selected_basic_semantic_view",
-          "scope_ja": "definition whole materialization and value whole materialization are formed; their distinct semantic evidence projections are the exact selected oracle namespace paths above. The Comparison whole is not inferred."
+          "scope_ja": "定義全体の取得保持と値全体の取得保持は形成済みとして照合する。それぞれの意味根拠投影は、上記の選択oracle namespace pathで個別に照合する。比較全体の形成はここから推定しない。"
         },
         "selected_basic_view_namespace": {
           "root": "/oracle_expected/selected_basic_semantic_view",
@@ -181242,7 +181242,7 @@
         "conditional_premises": [
           "基底raw/ValidatedApplication/F03/F04 producer literalは既存normalと同じ条件付きfixture。追加source/Qualification/rootは同一owner、revision、scope、content bytes対応を持つcase-authored条件付き原資料であり、実fn0実行/実資格成立を証明しない。",
           "L9の入力patchは既存L9 field_semantic_evidence_verification/authored_semantic_records/0及びfield_source_materialization_verification/projection_source_libraryの固定原wrapper/sourceをcopyし、正確な原content_bytes SHA-256を持つ新case source identityを明示する。",
-          "比較wholeの新native期待は未閉包。ここではheader/context及びvalidation・二returned producerのactual_argument_map、宣言と元資料から独立に読める基本層局所supportのみを対象とする。"
+          "比較wholeの新native期待は未閉包。ここではheader/context及びvalidation・二returned producerのoriginal_request、宣言と元資料から独立に読める基本層局所supportのみを対象とする。"
         ],
         "asserted_output_paths": [
           "/validation_detail/original_raw_input",
@@ -181252,9 +181252,9 @@
           "/validation_detail/source_observations",
           "/f05_detail/context_formation",
           "/f05_detail/header_formation",
-          "/f05_detail/actual_argument_map/validation",
-          "/f05_detail/actual_argument_map/compare_applicability/comparison",
-          "/f05_detail/actual_argument_map/compare_kind_obligation_trace/comparison"
+          "/f05_detail/original_request/validation",
+          "/f05_detail/original_request/compare_applicability/comparison",
+          "/f05_detail/original_request/compare_kind_obligation_trace/comparison"
         ],
         "uninstantiated_output_paths": [
           "/f05_detail/comparison",
@@ -181954,24 +181954,24 @@
           },
           {
             "op": "add",
-            "path": "/expected/f05_detail/actual_argument_map",
+            "path": "/expected/f05_detail/original_request",
             "value": {}
           },
           {
             "op": "add",
-            "path": "/expected/f05_detail/actual_argument_map/validation",
+            "path": "/expected/f05_detail/original_request/validation",
             "value": {}
           },
           {
             "op": "add",
-            "path": "/expected/f05_detail/actual_argument_map/compare_applicability",
+            "path": "/expected/f05_detail/original_request/compare_applicability",
             "value": {
               "tag": "returned"
             }
           },
           {
             "op": "add",
-            "path": "/expected/f05_detail/actual_argument_map/compare_kind_obligation_trace",
+            "path": "/expected/f05_detail/original_request/compare_kind_obligation_trace",
             "value": {
               "tag": "returned"
             }
@@ -181979,23 +181979,23 @@
           {
             "op": "copy",
             "from": "/expected/validation_detail",
-            "path": "/expected/f05_detail/actual_argument_map/validation"
+            "path": "/expected/f05_detail/original_request/validation"
           },
           {
             "op": "copy",
             "from": "/literal_fixture_catalog/fixed_literals/NORMAL-FN3-EXPECTED",
-            "path": "/expected/f05_detail/actual_argument_map/compare_applicability/comparison"
+            "path": "/expected/f05_detail/original_request/compare_applicability/comparison"
           },
           {
             "op": "copy",
             "from": "/literal_fixture_catalog/fixed_literals/NORMAL-FN4-EXPECTED",
-            "path": "/expected/f05_detail/actual_argument_map/compare_kind_obligation_trace/comparison"
+            "path": "/expected/f05_detail/original_request/compare_kind_obligation_trace/comparison"
           }
         ],
         "source_observation_table_ja": "validation.source_observationsのoracle wholeは、raw sources全8件、Qualification全8件、qualification_roots原配列全体、および8行の固定structural_relation_rowsから成る。各行のleft/rightはこのtable内のRFC6901 locatorで実operandへ解決する。行のequalは原値・UTF8 bytes hashの有限関係であり、実fn0観測やqualification trust成立ではない。raw source tableをsource_observation型と暗黙同一視しない。",
         "selected_basic_view_namespace": {
           "root": "/oracle_expected/selected_basic_semantic_view",
-          "meaning_ja": "oracle_expectedは製品返却と別の有限selected-basic-view namespace。source declarationとraw materialから独立著述したsupportを、このnamespaceの明示pathだけで照合する。F05DetailedReturn.comparison/owner_materialへ投影したとは扱わない。 Definition whole materialization is separately asserted from semantic present support; product-value whole materialization is separately asserted from declared projection.",
+          "meaning_ja": "oracle_expectedは製品返却とは別の有限な選択基本ビュー名前空間である。source declarationとraw materialから独立に記述したsupportを、このnamespaceに列挙したpathだけで照合する。製品のF05DetailedReturn.comparisonまたはowner_materialへ投影したとは扱わない。definition全体の取得保持とpresentの意味根拠、product-value全体の取得保持と宣言済みprojectionを別々に照合する。",
           "asserted_paths": [
             "/oracle_expected/selected_basic_semantic_view/definition_materialization",
             "/oracle_expected/selected_basic_semantic_view/definition_semantic_support",
@@ -182115,14 +182115,16 @@
             "path": "/oracle_expected/selected_basic_semantic_view/source_observation_table"
           }
         ],
-        "unexercised_claims_ja": "実同call、実資格成功、実callerのouter returnは本caseの固定素材から認定しない。native comparison wholeとowner_materialは明記したuninstantiated output pathsのまま。"
+        "unexercised_claims_ja": "実同call、実資格成功、実callerのouter returnは本caseの固定素材から認定しない。native comparison wholeとowner_materialは明記したuninstantiated output pathsのまま。",
+        "comparison_rule_ja": "original_requestはvalidation_detailのsource_observationsを含む全validation返却と二つの前段材料を持つ。asserted_output_pathsはこのL4返却memberの有限whole/pathを照合する。実同callや実資格の成立は主張しない。"
       }
     ],
-    "coverage_boundary_ja": "今回固定した有限対象はcarrier型不正、binding absent、binding={}、旧normal同rawの局所根拠未形成対照、および宣言付きnormalの全8source/qualification材料・Context/header・validation whole copyと二returned producer材料である。comparison native全whole/全private型・owner leaf、元caller skip、called-but-no-return/不明caller、資格判定、fn9/fn10/B019接続は未行使または未閉包。各caseの未instantiated pathを製品absenceとは扱わない。",
+    "coverage_boundary_ja": "今回固定した有限対象はcarrier型不正、binding absent、binding={}、旧normal同rawの局所根拠未形成対照、および宣言付きnormalの全8source/qualification材料・Context/header・validation whole copyと二returned producer材料である。comparison native全whole/全private型・owner leaf、元caller skip、called-but-no-return/不明caller、資格判定、fn9/fn10/B019接続は未行使または未閉包。bindingがarray等のshape不適合でinput=nullとなる枝、source_observationsの既知差・未観測・非適用の各行も未行使である。case 4の正の有限表は8 sourceについて10関係ずつ、計80関係すべてがequalであり、これ以外の関係結果を含まない。各caseのasserted_output_pathsに列挙した有限pathだけを照合し、uninstantiated pathを製品absenceとは扱わない。 case 0–3はsource_observationsを未instantiatedのまま扱い、case 4だけ条件付き全source/Qualification素材をvalidation whole内の有限copy対象として供給する。",
     "legacy_preserve_change": {
       "preserve_ja": "旧L9の11既存case、field_source_materialization_verificationの7case、field_semantic_evidence_verificationの9caseとその全literal/presence/履歴pinは変更しない。旧normal/ADD16出典値の再利用時も既存期待を書換えない。 旧normalのFN5 expected literalはcatalogに固定保持し、新comparison期待のcopy sourceにはしない。",
       "change_ja": "新節では同fn0 raw/validated/source-observation口からF05の実引数whole、Context/header形成、二returned producer材料を有限境界として対検証し、同rawの旧期待不十分と宣言付き新normalの局所意味supportを対照する。native全Comparison expectedを旧FN5 literalから生成しない。",
-      "reason_ja": "旧normal期待はfn0の通常ValidatedApplicationとfn3/fn4/fn5の単体出力を扱うが、fn0詳細wholeからF05 callerへの全取得口/同call返却境界を一組のreturnとして示さない。旧JSON-authorityと失敗監査の教訓を維持し、新runtime/資格/gateを追加しない。"
+      "reason_ja": "旧normal期待はfn0の通常ValidatedApplicationとfn3/fn4/fn5の単体出力を扱うが、fn0詳細wholeからF05 callerへの全取得口/同call返却境界を一組のreturnとして示さない。旧JSON-authorityと失敗監査の教訓を維持し、新runtime/資格/gateを追加しない。",
+      "current_binding_repin_ja": "L4の現行bytesへの参照更新を既存current bindingとして記録する。対象は、既存2節それぞれのsource_basis[2]にあるfile sha256とcanonical_sha256の計4値、およびcases[4]/source_result_reference_cases/r3_independent_probes/candidate_l4_binding/candidate_l4_bytes_sha256の1値。これら5値はcurrent参照の再pinであり、旧case本文・literal・履歴pinの変更ではない。新節のcurrent pin宣言とは区別する。"
     },
     "completion_boundary_ja": "候補型/reader/parser/codec/validator/model/algorithm/test/CIを実行せず、固定JSON nodeのcopyと標準RFC 6902 literal patchだけで構成した条件付き有限対検証である。source qualification、実caller、実同call、private型/全return writer、実装、CI、PO受入、F05全要件/全義務の完了は主張しない。rootが最終current source pinsを再照合する。",
     "patch_evaluation_root_ja": "RFC6902のexternal from pointer namespaceは同publicationのL9全文source snapshot。overlayはcase/expected/oracle_expectedを持ち、/literal_fixture_catalogは本節catalogへの同値alias。順序はinput_base_copy→input_patch→expected_return_patch→selected_basic_view_patch。selected_basic_view_patchの/asserted_pathsはoracle_expected namespaceだけを照合し、product return pathを新設しない。",

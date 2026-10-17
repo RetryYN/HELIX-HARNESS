@@ -3926,7 +3926,7 @@
     "preserved_native_boundary": {
       "input": "同immutable snapshotのF05詳細requestを/f05_validation_material_call_contractに定める。同fn0の原raw/validated/source観測全返却と、compare_applicability/compare_kind_obligation_traceの実Comparison返却又は実未呼出し原因を受ける。元CompareRequirementGapsContext三引数への対応は形成可能な場合に原wholeで保持し、不能なContextを私有viewで存在したことにしない。新ApplicationInput top-level memberを要求しない。",
       "producer": "既存RequirementGapReturn/compare_requirement_gapsが当該fieldごとに原source材料を読む私有段階。別callerのcached結果を同callの材料へしない。",
-      "output": "comparisonの形成/未形成とowner_material全値を同callのF05詳細返却として返す。formed Comparisonのproducer_symbol/input_binding/original_axes/findings/material及び原gap/義務の意味と対応を保持し、原header/leafが形成不能なら捏造せず原材料と理由を返す。従来Comparison/GapReturnMaterial/FieldCheckMaterialの5/3/5member不変は上流F05要求ではなく技術選択であり、必要なprivate型/返却拡張をL5/L8で明示する。新public Finding code又は新domain意味stateを本節から追加しない。",
+      "output": "comparisonの形成/未形成とowner_material全値を同callのF05詳細返却として返す。formed Comparisonのproducer_symbol/input_binding/original_axes/findings/material及びGapReturnMaterialのfield_checks/candidate_proposals/unfinished_obligation_refsの原値・意味・義務対応を保持し、原header/leafが形成不能なら捏造せず原材料と理由を返す。従来Comparison/GapReturnMaterial/FieldCheckMaterialの5/3/5member不変は上流F05要求ではなく技術選択であり、必要なprivate型/返却拡張をL5/L8で明示する。新public field、Finding code又はdomain意味stateを本節から追加しない。私有全返却のmember拡張をpublic field追加と同一視せず、必要なnative型/consumer/公開境界の技術差分は対L5/L8で個別に明示する。",
       "consumer": "同F05の後続definition/value状態writerと不足候補writerへ、原field/Ref/binding/presence/値/理由/投影根拠を渡す。B019→030接続はその後の別consumerであり、本節だけで成立済みとしない。"
     },
     "source_basis": [
@@ -4119,7 +4119,7 @@
       "7. 私有材料を同F05の後続writerへ渡す。source/materializationの未知、投影の未成立、実際に根拠がある定義不足/値未決を別に保つ。当該field/role以外の結果/原状態を停止しない。"
     ],
     "returned_materials": {
-      "native_context": "原F05詳細requestにある同fn0 raw/validated/source観測全返却と二指定producerの実返却/未呼出し原因を同callで保持する。形成可能な元CompareRequirementGapsContext三引数のwhole対応、Context形成とheader形成の別観測、原FieldInput全nodeを保持する。元Context-only署名を互換のまま維持できるとは主張せず、取得口/呼出し/全返却は/f05_validation_material_call_contractへ束縛する。",
+      "native_context": "原F05詳細requestにある同fn0 raw/validated/source観測全返却と二指定producerの実返却/未呼出し原因を同callで保持する。形成可能な元CompareRequirementGapsContext三引数のwhole対応、Context形成とheader形成の別観測、原FieldInput全nodeを保持する。元Context-only署名を互換のまま維持できるとは主張せず、取得口/呼出し/全返却は/f05_validation_material_call_contractへ束縛する。 形成可能な元native三引数wholeと原FieldInputを新私有viewで置換・縮約しない。これは元引数の保持義務であり、正のsource観測を取得できない旧Context-only入口の署名を固定する義務ではない。",
       "field_occurrences": "field元index、field/ref/template/binding/source_ref、definition/value両Ref列と各元index・presence。両roleの一方だけを残さない。",
       "resolved_occurrences": "各Refに対応したAxisFact/SemanticRecordのcarrier/全原record/source Ref/body record pointer/全payload、未対応Ref、同値反復/相反全所在。",
       "source_observations": "raw null/Absent/型外/実値とrequested/reached実parent所在、source bytes/body/既存qualification事実。混合sourceのrawを一つのowner原bodyとして新造しない。",
@@ -4744,14 +4744,14 @@
         "source_path": "docs/helix-harness/L4-basic-design/product-template-application.json",
         "source_pointer": "/field_source_materialization_contract/preserved_native_boundary/output",
         "source_canonical_sha256": "c64709fd7123065662ac434e022b203e7b00e2543466b0093706ff61ad63b222",
-        "change": "比較形成と全owner返却を拡張し、旧5/3/5公開shape固定を上流義務として扱わない。"
+        "change": "比較形成と全owner返却を拡張し、旧5/3/5公開shape固定を上流義務として扱わない。 元field_checks/candidate_proposals/unfinished_obligation_refsの保持と新public field/code/state非追加は維持し、私有全返却の拡張と区別する。"
       },
       {
         "source_revision": "765fa33fb394716bf9ba0d4a43b482ecb6a5b05f",
         "source_path": "docs/helix-harness/L4-basic-design/product-template-application.json",
         "source_pointer": "/field_source_materialization_contract/returned_materials/native_context",
         "source_canonical_sha256": "a9b61c33decd49f29720826053891747cebcc2a147e60a943aefbaccc3bfd097",
-        "change": "元Context-only互換の非主張と原request/実前段/形成観測の全保持へ変更。"
+        "change": "元Context-only互換の非主張と原request/実前段/形成観測の全保持へ変更。 形成可能な元native三引数wholeを私有viewで置換・縮約しない保持点は維持する。旧Context-only署名固定を外す理由は、その引数から同fn0の追加観測を取得できず、明示した新取得口が必要だからである。"
       },
       {
         "source_revision": "765fa33fb394716bf9ba0d4a43b482ecb6a5b05f",
@@ -4796,8 +4796,8 @@
         "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
         "meaning": "UTW-014の欠損から空集合への縮退、UTW-020の巨大aggregateによる部分診断不足、UTW-021の自己申告を完了根拠にする失敗を照合材料として読む。本設計だけで実際の再発防止を証明したとは扱わない。"
       },
-      "preserve": "旧JSONauthorityのtemplate定義/製品instance、原field/意味owner/trace、原版/source/未完とderived viewの分離を保持する。UTW-014欠損空集合化、UTW-020局所原因隠蔽、UTW-021自己申告完了の失敗に対応して、未形成をraw/原因と共に返す。",
-      "change": "旧registry/planner/式木/runtimeは移植せず、同fn0原観測の私有取得口とF05入力/全返却/caller bindingを現logical portへ明示変更する。元F05 Context-only署名又は公開5/3/5shape不変を互換義務としない。",
+      "preserve": "旧JSONauthorityのtemplate定義/製品instance、原field/意味owner/trace、原版/source/未完とderived viewの分離を保持する。UTW-014欠損空集合化、UTW-020局所原因隠蔽、UTW-021自己申告完了の失敗に対応して、未形成をraw/原因と共に返す。 元field_checks/candidate_proposals/unfinished_obligation_refs、形成可能な元native引数wholeを私有viewで置換しないこと、新public field/code/stateをこの基本節から追加しない境界を保持する。",
+      "change": "旧registry/planner/式木/runtimeは移植せず、同fn0原観測の私有取得口とF05入力/全返却/caller bindingを現logical portへ明示変更する。元F05 Context-only署名又は公開5/3/5shape不変を互換義務としない。 元native引数wholeを保持する義務と、追加観測を取得する新私有入口の引数型は区別する。後者だけを明示変更し、形成不能な元Contextを私有viewで代替成立させない。",
       "reason": "現ValidatedApplicationは成功source traceを返さず、旧F05 Context-only wrapperは新coreの追加観測を取得できない。input=null/親bindingAbsent/前段未呼出し時のraw保持と必須Comparison返却の穴を、仮binding/資格bool/hiddenlog/defaultで塞がないため。失敗事例から上流意味/新gateを生成しない。"
     },
     "finite_pair_boundary": "L9は本logical portの有限原入力/形成観測/原whole copy対応を独立期待として固定する。fixtureが供給する仮の同call/資格前提は実fn0/producer実行証明ではない。既存field_semantic_evidence_verificationの9有限input/期待及びfield_source_materialization_verificationの旧7caseをこの追補で変更しない。",
