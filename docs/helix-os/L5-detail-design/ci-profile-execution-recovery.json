@@ -3214,7 +3214,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
-        "file_sha256": "0045d2d17e82386a858cc881240419043844de881e5672bd921abd8097e0e982",
+        "file_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
         "object_canonical_sha256": "00ecf77c8ddc8b372fbf4183b9eda529c8381e8ac8acd88b0d4467001a26ac87",
         "meaning_ja": "この同一pairの現在L4 contractを指す。L4 source_pinsの歴史revisionは変更しない。"
       },
@@ -3266,7 +3266,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/3/owner_return_contract",
-        "file_sha256": "0045d2d17e82386a858cc881240419043844de881e5672bd921abd8097e0e982",
+        "file_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
         "object_canonical_sha256": "258ba7bedf96d8bf71f75ce310ef3cef91e512d6d0c67154e37621029e13c45b"
       },
       "type_and_algorithm_imports": {
@@ -3283,6 +3283,628 @@
       },
       "preservation_ja": "元RawPacket/CIInput/CIProposal全値とFinding tripleを保持し、独立原sourceに対応したtyped requestだけを同callerの役割別intakeへ渡す。Unitを受領/判断完了に昇格しない。",
       "limits_ja": "既存9公開関数/純profile producerを変更しない。F03限定の私有source/intake境界で、F01源資料の接続・実provider/transport/資格は後続。"
+    },
+    {
+      "name": "F02 operation-call private producer",
+      "visibility": "private",
+      "paired_current_l4_binding": {
+        "binding_kind": "paired_current_file_bytes",
+        "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+        "pointer": "/contracts/1/operation_call_contract",
+        "file_sha256": "6dc6e339bbba1b14093918e2fbde172950c5d5f4c6e3d92a95dbe6e1b3d1384a",
+        "object_canonical_sha256": "b8c8141227b2e81be5e2a858d7f552bf0bf0fc534b34b63fe9669eb7ff5ca517"
+      },
+      "native_imports": [
+        {
+          "owner": "OS020",
+          "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+          "revision": "005e25bf096e64a92e443b97f947069f186aa6e8",
+          "file_sha256": "12a7db6af846d0d558d09ac1e6e63b9253ff55b52126609e5677b7b15f24ce86",
+          "pointers": [
+            "/logical_types/0",
+            "/logical_types/1",
+            "/logical_types/2",
+            "/logical_types/6",
+            "/logical_types/7",
+            "/logical_types/8",
+            "/logical_types/9",
+            "/logical_types/15",
+            "/logical_types/16",
+            "/logical_types/20",
+            "/logical_types/28",
+            "/logical_types/29",
+            "/logical_types/31",
+            "/logical_types/32",
+            "/functions/2",
+            "/functions/3"
+          ],
+          "names": [
+            "RawValue",
+            "Field<T>",
+            "Binding",
+            "Profile",
+            "ConditionSource",
+            "IsolationSource",
+            "ResultRecord",
+            "ExpectedContext",
+            "CIInput",
+            "MaybePhase",
+            "Finding",
+            "FacetFinding",
+            "FacetAssessment",
+            "CollectionAssessment",
+            "compare_operation_sources",
+            "compare_result_collection"
+          ]
+        },
+        {
+          "owner": "OS053",
+          "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+          "revision": "005e25bf096e64a92e443b97f947069f186aa6e8",
+          "pointers": [
+            "/type_contract/type_model/Plan",
+            "/type_contract/type_model/Resolution",
+            "/type_contract/type_model/Result",
+            "/type_contract/type_model/Finding",
+            "/type_contract/type_model/ProtocolCall",
+            "/type_contract/type_model/Write",
+            "/type_contract/type_model/ReceiptRecord",
+            "/type_contract/type_model/Base",
+            "/type_contract/type_model/Text",
+            "/type_contract/type_model/Ref",
+            "/type_contract/type_model/Locator",
+            "/functions/3",
+            "/type_contract/type_model/ReadSnapshot",
+            "/type_contract/type_model/ReadRequest"
+          ],
+          "names": [
+            "OS053.Plan",
+            "OS053.Resolution",
+            "OS053.Result",
+            "OS053.Finding",
+            "OS053.ProtocolCall",
+            "OS053.Write",
+            "OS053.ReceiptRecord",
+            "OS053.Base",
+            "OS053.Text",
+            "OS053.Ref",
+            "OS053.Locator",
+            "OS053.persist_atomic_bundle (S04)",
+            "OS053.ReadSnapshot",
+            "OS053.ReadRequest"
+          ],
+          "file_sha256": "b5c0a8927f417a33e325c8e43ed2d5651d9d537e8163b41162614187f8a41c01"
+        }
+      ],
+      "private_types": [
+        {
+          "name": "F02DispatchCallReturn",
+          "kind": "closed_union",
+          "discriminator": "call_state",
+          "variants": {
+            "not_called": {
+              "call_state": "not_called",
+              "request": "F02OperationPortRequest",
+              "reason": "Field<RawValue>"
+            },
+            "called": {
+              "call_state": "called",
+              "request": "F02OperationPortRequest",
+              "owner_return_native": "Field<RawValue>",
+              "operation_handle": "Field<RawValue>",
+              "source_occurrences": "Field<tuple<RawValue>>"
+            }
+          }
+        },
+        {
+          "name": "F02MonitorCallReturn",
+          "kind": "closed_union",
+          "discriminator": "call_state",
+          "variants": {
+            "not_called": {
+              "call_state": "not_called",
+              "dispatch_return": "F02DispatchCallReturn",
+              "request": "F02OperationPortRequest",
+              "reason": "Field<RawValue>"
+            },
+            "called": {
+              "call_state": "called",
+              "request": "F02OperationPortRequest",
+              "dispatch_return": "F02DispatchCallReturn",
+              "owner_return_native": "Field<RawValue>",
+              "observations": "Field<tuple<RawValue>>",
+              "source_occurrences": "Field<tuple<RawValue>>"
+            }
+          }
+        },
+        {
+          "name": "F02CollectionCallReturn",
+          "kind": "closed_union",
+          "discriminator": "call_state",
+          "variants": {
+            "not_called": {
+              "call_state": "not_called",
+              "monitor_return": "F02MonitorCallReturn",
+              "request": "F02OperationPortRequest",
+              "reason": "Field<RawValue>"
+            },
+            "called": {
+              "call_state": "called",
+              "request": "F02OperationPortRequest",
+              "dispatch_return": "F02DispatchCallReturn",
+              "monitor_return": "F02MonitorCallReturn",
+              "owner_return_native": "Field<RawValue>",
+              "result_record": "Field<ResultRecord>",
+              "source_occurrences": "Field<tuple<RawValue>>"
+            }
+          },
+          "rule": "not_calledではresult_recordを読む経路がなく、capture.result_recordはField.absentとして保持する。calledではownerが返したField<ResultRecord>をそのまま保持する。call_stateとField stateは別の値であり、F02004の呼出しと返却はF02CollectionComparisonCallに保持する。"
+        },
+        {
+          "name": "F02OwnerPlanBasis",
+          "kind": "closed_record",
+          "fields": {
+            "operation_ref": "OS053.Locator",
+            "episode_id": "OS053.Text",
+            "command_id": "OS053.Text",
+            "scope_ref": "OS053.Ref",
+            "generation_ref": "OS053.Locator",
+            "expected_current_generation_ref": "OS053.Locator|null",
+            "bases": "tuple<OS053.Base>",
+            "closure_ref": "OS053.Ref",
+            "identity_result_ref": "OS053.Ref",
+            "authority_ref": "OS053.Ref",
+            "resource_ref": "OS053.Ref",
+            "store_ref": "OS053.Ref",
+            "source_resolutions": "tuple<OS053.Resolution>"
+          }
+        },
+        {
+          "name": "F02OwnerPlanBuildInput",
+          "kind": "closed_record",
+          "fields": {
+            "capture": "F02OperationCapture (同callのexact capture)",
+            "basis": "F02OwnerPlanBasis",
+            "operation_capability": "F02OperationCapability",
+            "decoder_capability": "F02ContentDecoderCapability"
+          }
+        },
+        {
+          "name": "OwnerWriteCaptureLink",
+          "kind": "closed_record",
+          "fields": {
+            "write_id": "OS053.Text (同一Plan内Write.write_id)",
+            "capture_pointer": "RFC6901 pointer to F02OperationCapture",
+            "decoded_payload_pointer": "RFC6901 pointer to decoded_payload",
+            "source_ref": "OS053.Ref (Writeと全field一致)",
+            "content_contract_ref": "OS053.Ref (Writeと全field一致)",
+            "decoder_return": "OwnerContentDecodeReturn (同Write bytes/Refへ束縛)"
+          }
+        },
+        {
+          "name": "OwnerPlanSupply",
+          "kind": "closed_record",
+          "fields": {
+            "plan": "OS053.Plan (owner原値)",
+            "resolutions": "tuple<OS053.Resolution> (原順)",
+            "capture_binding": "Binding (全13fieldをcapture.bindingと比較)",
+            "write_capture_links": "tuple<OwnerWriteCaptureLink> (全Write occurrence、原順・重複保持)"
+          }
+        },
+        {
+          "name": "F02OwnerPlanBuildReturn",
+          "kind": "closed_union",
+          "discriminator": "state",
+          "variants": {
+            "ready": {
+              "state": "ready",
+              "input": "F02OwnerPlanBuildInput",
+              "supply": "OwnerPlanSupply"
+            },
+            "blocked": {
+              "state": "blocked",
+              "input": "F02OwnerPlanBuildInput",
+              "native_findings": "tuple<OS053.Finding> (builderがnativeに返したものだけ)",
+              "decoder_returns": "tuple<OwnerContentDecodeReturn>",
+              "private_causes": "tuple<RawValue>"
+            }
+          }
+        },
+        {
+          "name": "F02WriteCaptureAssessment",
+          "kind": "closed_record",
+          "fields": {
+            "write_id": "OS053.Text",
+            "write_occurrence_index": "Natural",
+            "capture_pointer": "RFC6901",
+            "decoded_payload_pointer": "RFC6901",
+            "source_ref_comparison": "corresponding | mismatch | unresolved",
+            "content_contract_ref_comparison": "corresponding | mismatch | unresolved",
+            "content_bytes_comparison": "corresponding | mismatch | unresolved",
+            "payload_to_capture_comparison": "corresponding | mismatch | unresolved",
+            "left_values": "tuple<Field<RawValue>> (JSON operandのみ。immutable bytesはここへ変換しない)",
+            "right_values": "tuple<Field<RawValue>> (JSON operandのみ。immutable bytesはここへ変換しない)",
+            "causes": "tuple<RawValue>"
+          }
+        },
+        {
+          "name": "F02OwnerPlanJoinReturn",
+          "kind": "closed_union",
+          "discriminator": "state",
+          "variants": {
+            "matched": {
+              "state": "matched",
+              "supply": "OwnerPlanSupply",
+              "assessments": "tuple<F02WriteCaptureAssessment>（全比較行をPlan原順で保持）"
+            },
+            "unresolved_or_mismatch": {
+              "state": "unresolved_or_mismatch",
+              "supply": "OwnerPlanSupply",
+              "assessments": "tuple<F02WriteCaptureAssessment>（対応済みを含む全比較行をPlan原順で保持）",
+              "causes": "tuple<RawValue>"
+            }
+          }
+        },
+        {
+          "name": "F02S04AdapterCapability",
+          "kind": "private_opaque_record",
+          "fields": {
+            "owner_identity": "RawValue",
+            "native_capability": "opaque native OS053 host-port capability value (JSON RawValueではない)",
+            "source_occurrences": "tuple<RawValue>"
+          },
+          "rule": "private envelopeであり、OS053 native型や新しいauthorityを定義しない。native_capabilityは独立供給されたopaque host-port valueとしてOS053 S04へ渡す。"
+        },
+        {
+          "name": "F02OperationPortRequest",
+          "kind": "closed_record",
+          "fields": {
+            "ci_input": "CIInput",
+            "binding": "Field<Binding> (ci_input.bindingとField tag/valueが完全一致)",
+            "profile": "Field<Profile> (ci_input.profileとField tag/valueが完全一致)",
+            "dispatch_request_native": "Field<RawValue> (operation ownerから独立供給)",
+            "operation_check": "F02OperationCheck (input=ci_input、phaseとF02003返却を保持)",
+            "os018_assignment_attempt_native": "Field<RawValue> (OS018の原値)",
+            "security_control_native": "Field<ConditionSource> (ci_input.securityと完全一致)",
+            "infrastructure_resource_native": "Field<ConditionSource> (ci_input.resourceと完全一致)",
+            "infrastructure_isolation_native": "Field<IsolationSource> (ci_input.isolationと完全一致)",
+            "source_occurrences": "Field<tuple<RawValue>> (原順・重複保持)"
+          }
+        },
+        {
+          "name": "F02OperationCapability",
+          "kind": "closed_record",
+          "fields": {
+            "owner_identity": "RawValue",
+            "native_capability": "RawValue (operation ownerから独立供給)",
+            "source_occurrences": "tuple<RawValue>"
+          },
+          "rule": "operation ownerから独立に供給されるopaque入力。request、builder capability、decoder capabilityから生成・昇格しない。"
+        },
+        {
+          "name": "F02OperationCheck",
+          "kind": "closed_record",
+          "fields": {
+            "input": "CIInput",
+            "selected_phase": "MaybePhase",
+            "assessment": "FacetAssessment"
+          },
+          "rule": "assessmentは同じinput/phaseを渡したF02003の全返却。F02003の未選択phaseで空のfindingsが返っても、operation実行成功を意味しない。"
+        },
+        {
+          "name": "F02OperationObservation",
+          "kind": "closed_record",
+          "fields": {
+            "dispatch": "F02DispatchCallReturn",
+            "monitor": "F02MonitorCallReturn",
+            "collection": "F02CollectionCallReturn",
+            "os018_assignment_attempt_return_native": "Field<RawValue>",
+            "source_occurrences": "Field<tuple<RawValue>>"
+          }
+        },
+        {
+          "name": "F02OperationCapture",
+          "kind": "closed_record",
+          "preservation": "本契約の14 memberとその原値・Field状態を保持し、意味を補完しない。",
+          "fields": {
+            "request": "F02OperationPortRequest",
+            "observation": "F02OperationObservation",
+            "binding": "Field<Binding>（request.bindingと同値）",
+            "profile": "Field<Profile>",
+            "dispatch_request_native": "Field<RawValue>",
+            "operation_assessment": "FacetAssessment",
+            "operation_owner_return_native": "Field<RawValue>",
+            "os018_assignment_attempt_native": "Field<RawValue>",
+            "os018_assignment_attempt_return_native": "Field<RawValue>",
+            "security_control_native": "Field<ConditionSource>（request.security_control_nativeと同値）",
+            "infrastructure_resource_native": "Field<ConditionSource>（request.infrastructure_resource_nativeと同値）",
+            "infrastructure_isolation_native": "Field<IsolationSource>（request.infrastructure_isolation_nativeと同値）",
+            "result_record": "Field<ResultRecord>",
+            "source_occurrences": "Field<tuple<RawValue>>"
+          }
+        },
+        {
+          "name": "F02CollectionComparisonCall",
+          "kind": "closed_record",
+          "fields": {
+            "source_ci_input": "CIInput (原値を変更せず保持)",
+            "phase": "MaybePhase (このF02 sliceでは選択されたcollect phase)",
+            "actual_result": "Field<ResultRecord> (capture.result_recordと完全一致)",
+            "comparison_input": "CIInput (source_ci_inputの/resultだけをactual_resultへ置換した値)",
+            "assessment": "CollectionAssessment (F02004の全返却)"
+          },
+          "rule": "source_ci_input.contextと他の全memberを原値のまま保持する。actual_resultがabsent/null/emptyならそのField状態を渡す。ResultRecordやExpectedContextは合成しない。"
+        },
+        {
+          "name": "F02OperationCapturedStageReturn",
+          "kind": "closed_record",
+          "fields": {
+            "capture": "F02OperationCapture",
+            "collection_comparison": "F02CollectionComparisonCall"
+          },
+          "rule": "F02004が呼ばれない経路を成功扱いしない。collectionがnot_calledでも原capture.result_recordのFieldを使って比較関数を呼び、その返却を保持する。"
+        },
+        {
+          "name": "F02OwnerPlanBuilderCapability",
+          "kind": "closed_record",
+          "fields": {
+            "owner_identity": "RawValue",
+            "native_capability": "RawValue",
+            "source_occurrences": "tuple<RawValue>"
+          }
+        },
+        {
+          "name": "F02ContentDecoderCapability",
+          "kind": "closed_record",
+          "fields": {
+            "owner_identity": "RawValue",
+            "native_capability": "RawValue",
+            "source_occurrences": "tuple<RawValue>"
+          }
+        },
+        {
+          "name": "OwnerContentDecodeInput",
+          "kind": "closed_record",
+          "fields": {
+            "write_id": "OS053.Write.write_id",
+            "source_ref": "OS053.Ref (selected Write.source_refと全field一致)",
+            "content_contract_ref": "OS053.Ref (selected Write.content_contract_refと全field一致)",
+            "content_bytes": "immutable bytes (selected Write.content_bytesの同一bytes)",
+            "contract_source_ref": "OS053.Ref (independent content-contract source portの返却)",
+            "contract_source_bytes": "immutable bytes (同一contract_source_refの原bytes)",
+            "contract_value": "RawValue (原bytesを当該owner contractでdecodeした原値)"
+          }
+        },
+        {
+          "name": "OwnerContentDecodeReturn",
+          "kind": "closed_union",
+          "discriminator": "state",
+          "variants": {
+            "decoded": {
+              "state": "decoded",
+              "input": "OwnerContentDecodeInput",
+              "decoded_payload": "RawValue"
+            },
+            "unresolved_or_invalid": {
+              "state": "unresolved_or_invalid",
+              "input": "OwnerContentDecodeInput",
+              "causes": "tuple<RawValue>",
+              "observed_payload": "Field<RawValue>"
+            }
+          },
+          "rule": "decoder由来のcauseはOS053 Findingへcastしない。decoded_payloadは捨てずに保持する。"
+        },
+        {
+          "name": "F02PersistCallInput",
+          "kind": "closed_record",
+          "fields": {
+            "operation_return": "F02OperationCapturedStageReturn",
+            "build_input": "F02OwnerPlanBuildInput（build_input.captureはoperation_return.captureと全値一致）",
+            "builder_capability": "F02OwnerPlanBuilderCapability (independent source)",
+            "configured_atomic_commit_adapter": "F02S04AdapterCapability"
+          }
+        },
+        {
+          "name": "F02PersistCallReturn",
+          "kind": "closed_union",
+          "discriminator": "state",
+          "variants": {
+            "builder_blocked": {
+              "state": "builder_blocked",
+              "input": "F02PersistCallInput",
+              "operation_return": "same input.operation_return",
+              "build_return": "F02OwnerPlanBuildReturn.blocked",
+              "s04_call": "not_called"
+            },
+            "crosswalk_blocked": {
+              "state": "crosswalk_blocked",
+              "input": "F02PersistCallInput",
+              "operation_return": "same input.operation_return",
+              "build_return": "F02OwnerPlanBuildReturn.ready",
+              "join_return": "F02OwnerPlanJoinReturn.unresolved_or_mismatch",
+              "s04_call": "not_called"
+            },
+            "persist_called": {
+              "state": "persist_called",
+              "input": "F02PersistCallInput",
+              "operation_return": "same input.operation_return",
+              "build_return": "F02OwnerPlanBuildReturn.ready",
+              "join_return": "F02OwnerPlanJoinReturn.matched",
+              "s04_native_return": "(OS053.Result, tuple<OS053.Finding>, tuple<OS053.ProtocolCall>)。native variantと原順を保持"
+            }
+          },
+          "rule": "CollectionComparisonCallは全3branchで保持する。builder_blocked/crosswalk_blockedではS04を呼ばない。S04はbuilder readyかつ全write join matchedの後に一度だけ呼ぶ。S04固有のpost-commit read-afterを再利用し、二重readを加えない。OS053 native Result、Finding、ProtocolCall全値・variant・順序を保持する。"
+        }
+      ],
+      "private_signatures": [
+        {
+          "name": "check_f02_operation",
+          "signature": "check_f02_operation(input: CIInput, phase: MaybePhase) -> F02OperationCheck",
+          "arguments_from": {
+            "input": "F02 callerからの同一current_ci_input",
+            "phase": "F02で選択されたoperation stageのprepareまたはcollect"
+          },
+          "return_contains": "入力・選択phase・F02003 FacetAssessmentの全返却"
+        },
+        {
+          "name": "dispatch_operation",
+          "signature": "dispatch_operation(capability: F02OperationCapability, request: F02OperationPortRequest) -> F02DispatchCallReturn",
+          "arguments_from": {
+            "capability": "operation ownerから独立供給",
+            "request": "F02 callerから供給。同じCIInputをoperation_checkが保持"
+          }
+        },
+        {
+          "name": "monitor_operation",
+          "signature": "monitor_operation(capability: F02OperationCapability, request: F02OperationPortRequest, dispatch: F02DispatchCallReturn) -> F02MonitorCallReturn",
+          "arguments_from": {
+            "capability": "同じoperation owner capability",
+            "request": "dispatchへ渡した同じrequest",
+            "dispatch": "直前callの完全なreturn"
+          }
+        },
+        {
+          "name": "collect_operation",
+          "signature": "collect_operation(capability: F02OperationCapability, request: F02OperationPortRequest, dispatch: F02DispatchCallReturn, monitor: F02MonitorCallReturn) -> F02CollectionCallReturn",
+          "arguments_from": {
+            "capability": "同じoperation owner capability",
+            "request": "同じrequest",
+            "dispatch": "直前のexact return",
+            "monitor": "直前のexact return"
+          }
+        },
+        {
+          "name": "capture_operation_return",
+          "signature": "capture_operation_return(request: F02OperationPortRequest, observation: F02OperationObservation) -> F02OperationCapture",
+          "arguments_from": {
+            "request": "同一operation callの入口request",
+            "observation": "上記dispatch/monitor/collection/OS018 return"
+          },
+          "return_shape": "本契約の14-field captureを原値とField状態のまま返す。"
+        },
+        {
+          "name": "bind_collection_assessment",
+          "signature": "bind_collection_assessment(source_ci_input: CIInput, phase: MaybePhase, capture: F02OperationCapture) -> F02OperationCapturedStageReturn",
+          "arguments_from": {
+            "source_ci_input": "F02003とoperation requestに使った同じinput",
+            "phase": "同じinputに対して選択されたF02 collect phase",
+            "capture": "capture_operation_returnの完全一致return"
+          },
+          "call": "元CIInputのresultだけをcapture.result_recordへ置換してF02004を一度呼び、同じ入力・collect phase・全assessmentと元captureを返す。capture未生成の経路では本関数の呼出しを作らず、比較・回収成功を推定しない。"
+        },
+        {
+          "name": "build_plan_for_operation",
+          "signature": "build_plan_for_operation(capability: F02OwnerPlanBuilderCapability, input: F02OwnerPlanBuildInput) -> F02OwnerPlanBuildReturn",
+          "arguments_from": {
+            "capability": "独立したF02PersistCallInput.builder_capability",
+            "input": "一つだけのF02PersistCallInput.build_input。captureはoperation stageと同じ"
+          },
+          "calls": "一度だけ呼ぶ。blockedならjoinとS04を呼ばない。",
+          "call": "一度だけ呼ぶ。blockedならjoin/S04は呼ばない。"
+        },
+        {
+          "name": "join_plan_capture",
+          "signature": "join_plan_capture(supply: OwnerPlanSupply, operation_return: F02OperationCapturedStageReturn) -> F02OwnerPlanJoinReturn",
+          "arguments_from": {
+            "supply": "同じready F02OwnerPlanBuildReturn.supply。decoder returnsは全write_capture_links内に保持",
+            "operation_return": "同じF02PersistCallInput.operation_return"
+          },
+          "call": "各Write occurrenceとlinkについて型・presenceに敏感な完全比較を行い、全assessment row/causeを保持する。"
+        },
+        {
+          "name": "call_os053_persist",
+          "signature": "call_os053_persist(input: F02PersistCallInput) -> F02PersistCallReturn",
+          "arguments_from": {
+            "operation_return": "F02004全assessmentを含む同一capture段階の返却",
+            "build_input": "この保存callの唯一のbuild_input。captureは同じ段階返却のcaptureと全値一致",
+            "builder_capability": "同じF02PersistCallInputの独立供給member",
+            "adapter": "同じF02PersistCallInputの独立供給member"
+          },
+          "call": "OS053 port選択済みの場合だけ本callerを使う。build_plan_for_operationを一回呼ぶ。blockedなら停止。ready supplyは同じoperation_returnと照合する。matchedの場合だけnative S04を一回呼ぶ。原input、operation_return、build/join return、native S04全返却を保持する。"
+        },
+        {
+          "name": "call_os053_s04",
+          "signature": "call_os053_s04(plan: OS053.Plan, resolutions: tuple<OS053.Resolution>, native_capability: opaque OS053 configured host-port value) -> (OS053.Result, tuple<OS053.Finding>, tuple<OS053.ProtocolCall>)",
+          "arguments_from": {
+            "plan": "same matched OwnerPlanSupply.plan",
+            "resolutions": "same matched OwnerPlanSupply.resolutions",
+            "native_capability": "同じF02PersistCallInput.configured_atomic_commit_adapter.native_capability。private envelope全体を渡さない。"
+          },
+          "call": "builder readyかつjoin matchedの場合だけ呼ぶ。native S04の既存動作と完全返却を保持する。",
+          "native_call": {
+            "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+            "pointer": "/functions/3",
+            "arguments_ja": "matched supply.plan、同じsupply.resolutions、同じnative_capabilityをnative persist_atomic_bundleへ一度渡し、全native返却を変更せず返す。"
+          }
+        }
+      ],
+      "stage_rules": [
+        {
+          "id": "selected_prepare_dispatch",
+          "rule_ja": "F02003は同一CIInputとphase=prepareで評価する。selectedでない、または既存Findingにoperation拒否/未解決・host fallback拒否/未解決がある場合、dispatchはnot_called。新しい資格条件を導入しない。"
+        },
+        {
+          "id": "same_call_capture",
+          "rule_ja": "入口request、dispatch/monitor/collectのcall stateと返却、OS018原値、source occurrenceを原順で捕捉する。14 memberはL4の対応表と一対一にする。欠落とnull等はField tagを保ち、後段で再読・合成しない。"
+        },
+        {
+          "id": "collection_assessment",
+          "rule_ja": "captureが成立したときだけ、元CIInputのresult以外を変えずresultをcapture.result_recordへ差替え、F02004を一度呼ぶ。戻り値は入力・phase・全assessmentの同call値。capture未成立時は呼出し自体がないため、成功を推定しない。"
+        },
+        {
+          "id": "plan_capture_comparison",
+          "rule_ja": "builderは一度だけ呼ぶ。ready Planの全Write occurrenceと原captureの該当memberをwrite_id、完全Ref、content_contract_ref、RFC6901 pointer、原bytes、owner decoder結果で照合する。比較行と全causeを保持し、matched siblingも落とさない。S04を呼ぶ前に再decode/rebuildしない。"
+        },
+        {
+          "id": "comparison_operands",
+          "rule_ja": "各Plan Write occurrenceについて、OwnerWriteCaptureLink.write_id、OS053.Write.write_id、capture_pointer/decoded_payload_pointerが示す全field、source_refとcontent_contract_refの完全なRef値、immutable content_bytesとlink.decoder_return.inputのwrite_id/source_ref/content_contract_ref/content_bytes各値をWrite/linkへ完全比較し、宣言pointerの全fieldを型・Field presence込みで比較する。left_values/right_valuesはJSON operandだけを保持し、immutable bytesはJSON化せずsupply.plan.writes[i].content_bytesと同link.decoder_return.input.content_bytesをbyte-for-byte比較して元位置へ保持する。capture_bindingはplain Binding、capture.bindingはField<Binding>として比較し、suppliedだけ内側をunwrapする。全Write row/linkを原順・重複込みで走査し、matchedは当該全Writeの必須比較がすべてcorrespondingである場合に限る。全assessment、全causes、matched sibling、元値を保持し、builder/decoderを再呼出ししない。Bindingの13 field全てknownという追加gateは置かない。"
+        },
+        {
+          "id": "native_s04_boundary",
+          "rule_ja": "既存選択根拠がOS053 portを選択した場合に限る。call_os053_persistはbuilderとjoinを一度ずつ評価し、builder readyかつ全write join matchedの場合に限りcall_os053_s04を一度呼ぶ。後者はOS053.persist_atomic_bundleへ同じOS053.Plan、原順Resolution tuple、independent adapter.native_capabilityを渡す。host portはopaque native値でありJSON RawValueではない。OS053.Result、OS053.Finding、OS053.ProtocolCallの全variant・原順を保存し、S04内蔵read-afterを再利用して二度目のreadを加えない。"
+        }
+      ],
+      "paired_l9_oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+        "pointer": "/operation_call_verification"
+      },
+      "source_basis": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+          "pointer": "/requirements/38",
+          "canonical_sha256": "5656d8fcc6e635269406d3c91e3d2eaac6bc6b0d22bf38d3c75fce259c08a2d7",
+          "requirement_ref": "HELIXOS-L3-020-F02"
+        },
+        {
+          "path": "docs/helix-os/L10-verification/functional-verification.json",
+          "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+          "pointer": "/cases/38",
+          "canonical_sha256": "1ad771ecf2d7cbc9cd5224835c4ecdd81512cea746072ce2fb5ff157714613ff",
+          "oracle_ref": "HELIXOS-L10-020-F02"
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+          "file_sha256": "b5c0a8927f417a33e325c8e43ed2d5651d9d537e8163b41162614187f8a41c01",
+          "pointers": [
+            "/functions/3",
+            "/type_contract/type_model/Plan",
+            "/type_contract/type_model/Resolution",
+            "/type_contract/type_model/Result",
+            "/type_contract/type_model/Finding",
+            "/type_contract/type_model/ProtocolCall",
+            "/type_contract/type_model/Write",
+            "/type_contract/type_model/Base",
+            "/type_contract/type_model/Text",
+            "/type_contract/type_model/Ref",
+            "/type_contract/type_model/Locator"
+          ]
+        }
+      ],
+      "authority_effect": "none",
+      "operation_effect": "none",
+      "limits_ja": "F02のprivate producer bindingに限る。実operation、OS053 adapter、資格、保存、CIを実行したとは扱わない。F03、再開、全case実行、設計全体の完了は含めない。",
+      "applicability_ja": "このprivate保存callerとOS053への委譲は、当該保存に既存OS053 portを選択した場合だけに適用する。方式選択は呼出し側から独立供給される既存の選択根拠に従い、本契約からOS053必須という要求や認可を生成しない。非選択または選択未確定なら、このprivate保存caller・builder・join・S04を呼ばず、元capture/比較結果と未完・選択状態を呼出し側へ保持して返す。他方式の保存成功やfallbackをこのsliceから生成せず、当該方式の既存owner契約へ委ねる。"
     }
   ]
 }
