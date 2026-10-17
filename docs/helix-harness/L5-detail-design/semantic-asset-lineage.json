@@ -412,7 +412,7 @@
       "meaning": "本L5で比較関数と集約分析関数へ渡す内部bundleを定める。既存のclosed LineageInputと3-member ValidatedInputは変更しない。この設計記述から製品実装・実資格・実配送の成立を生成しない。",
       "selection_operand": "non_applicability_usesが対象軸とreason_refの対応を明示する。理由body自身のbinding/relation/axisは理由内容であり、使用対象を選択する入力ではない。case labelやexpected値からuseを導出しない。",
       "mapping_record_projection": "MappingRecord.non_applicability_refがある場合、その行のbinding/relation_id/axisとRefから対応するNonApplicabilityUseを投影し、元Refと対象値を完全比較する。食い違いはそのitemのfinding。MappingRecordが無い場合、同じuse tupleを呼出し入力として明示し、MappingRecordやendpointを作らない。",
-      "qualification": "useで選択されたreason Refだけを、同じValidatedInput snapshot内のQualificationとindependent_qualification_rootsで既存のsubject_ref、source/body digest、binding、owner、applicable、exact-root規則に照合する。applicable=falseだけではN/Aにならない。別の承認root、owner registry、gateは追加しない。",
+      "qualification": "useで選択されたreason Refだけを、同じValidatedInput snapshot内のQualificationとindependent_qualification_rootsで既存のsubject_ref、source/body digest、binding、owner、applicable、exact-root規則に照合する。applicable=falseだけではN/Aにならない。別の承認root、owner registry、gateは追加しない。 Qualification.bindingは選択されたreason Envelopeの原NonApplicabilityReason.bindingへ照合し、ValidatedInput.input.bindingやuse.bindingへ置換しない。資格解決後に別段のreason_scope_checkでuse targetへ照合する。",
       "reason_scope_check": "選択useのtarget (binding, relation_id, axis) とqualified reason bodyのscopeを照合する。一致する場合だけ当該non-required axisのnot_applicable観測を作る。不一致ならuseとreason Refを保全したtarget-local unknown/inapplicable findingを作り、既存required missingを消さない。未選択のforeign-scope reasonは対象判断へ参加しない。",
       "required_set_precedence": "独立したRelationBody.required_*集合を先に導く。required mappingのmissing/unknown/conflictをN/A理由で充足または消去しない。",
       "multiple_reasons": "同じtargetに対する複数の選択済みqualified reason Refは、各RefごとにAxisObservationを返してsource_refs、non_applicability_ref、owner、bindingを保全する。reason文が異なるだけではconflictにせず、一意性gateやfirst-winsを置かない。未選択・無参照sourceはglobal closure条件にしない。",
@@ -452,7 +452,7 @@
       "source_projection_and_order": {
         "matched_axis_source_refs": "matched軸ではRelationRecordとindependent qualified RelationBodyのEnvelope.source_ref、選択MappingBodyのEnvelope.source_ref、および対応MappingRecord.source_ref/target_refを保持する。全出現を残し、Refキー順に安定整列する。",
         "missing_axis_source_refs": "missing軸では必要rowの存在と欠落を示すRelationRecordおよびindependent qualified RelationBodyのEnvelope.source_refを保持する。",
-        "reason_axis_source_refs": "reason由来軸ではselected use.reason_refを保持し、供給reason Envelope.source_refとの全field完全一致を要求する。",
+        "reason_axis_source_refs": "reason由来軸ではselected use.reason_refを保持し、供給reason Envelope.source_refとの全field完全一致を要求する。 qualified reasonがuse targetと一致してnon-required axisをnot_applicableにする成功時は、AxisObservation.owner=NonApplicabilityReason.owner、cause_refs=[]、non_applicability_ref=use.reason_refとし、subject_ids=[use.relation_id]、binding=use.binding、axis=use.axis、source_refs=[use.reason_ref]の全8 memberを返す。成功自体のFindingは追加せず、既存required-axis findingは保持する。",
         "finding_source_refs": "該当AxisObservationを発生させた証拠RefをFindingへ投影する。重複出現を残してRefキー順に安定整列する。",
         "ref_sort_key": "Ref型の宣言済み全fieldからUTF-8 compact JSONを作る。object member名はUnicode scalar順、array要素順と値は保持し、非ASCII文字はescapeしない。異なるRefはscope/identity等の一部分だけで同値扱いせず、同一keyの複数出現は入力出現順を保つstable sortとする。",
         "binding_sort_key": "Binding型の宣言済み全field（request_ref, scope, snapshot_refを含む）から同じUTF-8 compact JSON keyを作る。scopeまたはidentityだけでgroup/deduplicateしない。これはこの返却順の局所技術詳細で、strict codec/canonicalization全体の採用を意味しない。",

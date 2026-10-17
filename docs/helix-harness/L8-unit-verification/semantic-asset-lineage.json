@@ -11032,7 +11032,7 @@
       "execution_state": "not_executed",
       "private_input_adapter": {
         "bundle_type": "LineageMappingEvidence",
-        "legacy_invocation_input_selection": "このoracleの旧case（ADD-16〜ADD-21）はtyped_inputがValidatedInputの3 member（input、issues、unusable_envelope_refs）である。呼出し時だけ、その同一objectをvalidated_inputへ入れたbundleを一度構成する。case本文のtyped_inputやexpected_analysisは変更しない。",
+        "legacy_invocation_input_selection": "このoracleでtyped_inputとしてValidatedInputの3 member（input、issues、unusable_envelope_refs）を持つ旧caseはADD-21だけである。呼出し時だけ、その同一objectをvalidated_inputへ入れたbundleを一度構成する。ADD-16〜ADD-20はinput/expectedをproseで記した旧caseでtyped_inputを持たず、具体的な型付き入力が既に存在するとは扱わない。旧case本文・scope・expectedは変更しない。",
         "add21": "ADD-21は元の3-field typed_inputと8-field expected_analysisをそのまま保つ。呼出し時だけLineageMappingEvidence(validated_input=<同じobject>, non_applicability_sources=[], non_applicability_uses=[])を渡す。input-null枝ではreason処理を迂回する。",
         "scope_boundary": "LineageMappingEvidence型を既に持つADD-22以降はcompare_lineage_mappingsのoracleに属する。ここで旧ValidatedInput adapterを再適用しない。"
       }
@@ -11187,7 +11187,7 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json",
-    "sha256": "dbf6c9fbc28d74f7447fc965d92089528e8f35f29058f0c8924d0e477854905b",
+    "sha256": "48de565e7ce09551183792fcc935f2ea8099e5de8b9ea208e178677d1004251d",
     "binding_kind": "exact_candidate_file_bytes",
     "meaning": "公開候補を同pairとして適用する場合の正式L5配置先と候補bytesを結ぶ。現在のformal L5 bytesがこの候補へ置換済みであること、承認、製品実装を主張しない。",
     "rule_bindings": [
