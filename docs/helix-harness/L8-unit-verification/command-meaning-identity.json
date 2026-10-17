@@ -1227,7 +1227,7 @@
     "purpose": "同じComparisonBodyの9項目をOS IdentityResultへ同値投影する対応を検証する。新public関数/Resultを定義しない。",
     "candidate_L5_binding": {
       "path": "docs/helix-harness/L5-detail-design/command-meaning-identity.json",
-      "file_sha256": "0191ed5a9a8ba83b93a9517edd3cbeb4dc5b5e4a2b3612c3529f1ca05dfaf712",
+      "file_sha256": "243d19fe52021bd7f86969db01ff36f6c5bdecda97ffdb4d2b8e73a7ab41513d",
       "pointer": "/os_projection/identity_result_projection"
     },
     "input_freeze": {
@@ -1664,7 +1664,7 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-harness/L5-detail-design/command-meaning-identity.json",
-    "sha256": "0191ed5a9a8ba83b93a9517edd3cbeb4dc5b5e4a2b3612c3529f1ca05dfaf712"
+    "sha256": "243d19fe52021bd7f86969db01ff36f6c5bdecda97ffdb4d2b8e73a7ab41513d"
   },
   "owner_source_fn0_oracles": {
     "status": "有限監査資料の候補。製品実装・完了の認定ではない。",
@@ -1673,7 +1673,7 @@
     "audit_sources": {
       "pure_calculation": {
         "path": "docs/governance/audits/source-rebaseline/source-snapshots/h052-owner-source-finite-calculation.py",
-        "sha256": "a9fddcd8bb0ae2904165d8c15a47bf4f61946ef474c86ee84729961d4944dd71",
+        "sha256": "e6facb30c84f79c024ededd866f8956016f1ff4762aee6ca8adaf374c0545082",
         "entry": "validate_command_input(original_native_carrier)",
         "input_boundary": "純粋計算へ渡すのは元のnative carrierだけ。期待値、case label、manifest、recipe、graph、environment、DB、I/O、runner metadataは渡さない。"
       },
@@ -1685,7 +1685,7 @@
       "runner": {
         "path": "docs/governance/audits/source-rebaseline/source-snapshots/h052-owner-source-frozen-whole-check.py",
         "role": "正式L8の本節を読み、標準patchを展開して出力と照合する。純粋計算からimportしない。runnerの来歴はlocal履歴記録に示す。",
-        "sha256": "cb3b98b3a1685d7550d0974f610e13150635597da6de0abdb6ca143e02b9e677"
+        "sha256": "8f5b16d06cc10eeaca54889e9af149914ca34138787029f5e8492a261f7e1b9c"
       }
     },
     "frozen_materialization": {
@@ -4999,6 +4999,230 @@
       "固定有限監査に限る。fn0の全入力・state・branchや製品実装を示さない。",
       "実provider、資格、OS実行、DB、runtime、CI、PO受入、release、deployの成立を示さない。",
       "pure sourceに列挙されたSourceContractBoundaryは有限監査の範囲限界であり、新しい製品gate/code/typeではない。"
-    ]
+    ],
+    "l9_condition_case_scope": {
+      "source_l9": {
+        "path": "docs/helix-harness/L9-integration-verification/command-meaning-identity.json",
+        "revision": "b71a84d3a2d678af92d84afdb3aac8959f4af4da",
+        "file_sha256": "e6b953fe5c1095d2774b3330529f0943c8f08c70cc61a75d8cfe83868f4c0496",
+        "conditions_pointer": "/input_binding_source_contract_oracles/conditions"
+      },
+      "source_l8_cases": {
+        "path": "docs/helix-harness/L8-unit-verification/command-meaning-identity.json",
+        "revision": "b71a84d3a2d678af92d84afdb3aac8959f4af4da",
+        "file_sha256": "9c02e60457220bba1fcdc8e390c442aebf031242b4a51b46dfa2feca264271ff",
+        "cases_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases",
+        "role": "著述時の固定case snapshot。現文書の同じcase配列は全値不変で保持し、各fixed_case_refsは現文書内pointerを指す。"
+      },
+      "scope": "既存L9の7条件が、現L8の固定10ケースでどこまで具体的に照合されるかを示す対応索引。ケース追加、要求追加、全域完了の認定ではない。",
+      "fixed_case_count": 10,
+      "condition_mappings": [
+        {
+          "condition_index": 0,
+          "condition_pointer": "/input_binding_source_contract_oracles/conditions/0",
+          "condition_label": "同call原2値＋11roleの正常供給と原値保持",
+          "fixed_case_ids": [
+            "normal"
+          ],
+          "coverage": "正常な同一callと11 roleの供給経路を照合する。各roleや全値の任意組合せを網羅する意味ではない。",
+          "not_fixed": "他の入力値・role状態の全組合せ。",
+          "l9_existing_case_refs": [
+            "HARNESS-L9-052-F01",
+            "HARNESS-L9-052-F02",
+            "HARNESS-L9-052-B01"
+          ],
+          "fixed_case_refs": [
+            {
+              "case_id": "normal",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/0"
+            }
+          ]
+        },
+        {
+          "condition_index": 1,
+          "condition_pointer": "/input_binding_source_contract_oracles/conditions/1",
+          "condition_label": "旧8role evidence member省略とtarget role省略",
+          "fixed_case_ids": [
+            "N01-old-member-missing",
+            "N02-target-role-omitted"
+          ],
+          "coverage": "N01は既存roleのowner_basis_source.content_bytes欠落、N02はtarget_qualification roleの省略を個別に置く。",
+          "not_fixed": "全8 roleの省略、その他memberの省略、null/型不正との全組合せ。",
+          "l9_existing_case_refs": [
+            "HARNESS-L9-052-F06"
+          ],
+          "fixed_case_refs": [
+            {
+              "case_id": "N01-old-member-missing",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/1"
+            },
+            {
+              "case_id": "N02-target-role-omitted",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/2"
+            }
+          ]
+        },
+        {
+          "condition_index": 2,
+          "condition_pointer": "/input_binding_source_contract_oracles/conditions/2",
+          "condition_label": "target_read/target_qualification/target_root各state conflict",
+          "fixed_case_ids": [
+            "N03-target_read-conflict",
+            "N04-target_qualification-conflict",
+            "N05-target_root-conflict"
+          ],
+          "coverage": "3つのtarget roleそれぞれについてstate=conflictを個別に置く。",
+          "not_fixed": "各roleのmissing/unknown/stale/valid以外の全状態・併存causeの全組合せ。",
+          "l9_existing_case_refs": [
+            "HARNESS-L9-052-F06"
+          ],
+          "fixed_case_refs": [
+            {
+              "case_id": "N03-target_read-conflict",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/3"
+            },
+            {
+              "case_id": "N04-target_qualification-conflict",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/4"
+            },
+            {
+              "case_id": "N05-target_root-conflict",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/5"
+            }
+          ]
+        },
+        {
+          "condition_index": 3,
+          "condition_pointer": "/input_binding_source_contract_oracles/conditions/3",
+          "condition_label": "target資格subjectとroot許容subjectの独立反対値",
+          "fixed_case_ids": [
+            "N06-target-subject-compound"
+          ],
+          "coverage": "target qualification subjectとroot allowed subjectの複合反対値を1ケースで照合する。",
+          "not_fixed": "各joinを単独で変えた全反例や、他の資格・root値との全組合せ。",
+          "l9_existing_case_refs": [
+            "HARNESS-L9-052-F01",
+            "HARNESS-L9-052-F06"
+          ],
+          "fixed_case_refs": [
+            {
+              "case_id": "N06-target-subject-compound",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/6"
+            }
+          ]
+        },
+        {
+          "condition_index": 4,
+          "condition_pointer": "/input_binding_source_contract_oracles/conditions/4",
+          "condition_label": "Resolution同Ref完全同値反復と既知state差/unknownの併存",
+          "fixed_case_ids": [
+            "N07-resolution-identical-repeat",
+            "N08-resolution-known-state-difference"
+          ],
+          "coverage": "N07は同Ref完全同値反復、N08は既知state差とunknownを含む選択例を照合する。",
+          "not_fixed": "全kind/state/bytes/valueの組合せ、重複順序や重複数の全域。",
+          "l9_existing_case_refs": [
+            "HARNESS-L9-052-F06"
+          ],
+          "fixed_case_refs": [
+            {
+              "case_id": "N07-resolution-identical-repeat",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/7"
+            },
+            {
+              "case_id": "N08-resolution-known-state-difference",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/8"
+            }
+          ]
+        },
+        {
+          "condition_index": 5,
+          "condition_pointer": "/input_binding_source_contract_oracles/conditions/5",
+          "condition_label": "Ref-key map原bytesと各matched Resolution宣言bytesの反対値",
+          "fixed_case_ids": [
+            "N09-map-bytes-difference"
+          ],
+          "coverage": "Ref-key mapとmatched Resolution宣言bytesの不一致を1ケースで照合する。",
+          "not_fixed": "全index・全Ref・複数不一致の組合せ。",
+          "l9_existing_case_refs": [
+            "HARNESS-L9-052-F06",
+            "HARNESS-L9-052-B01"
+          ],
+          "fixed_case_refs": [
+            {
+              "case_id": "N09-map-bytes-difference",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/9"
+            }
+          ]
+        },
+        {
+          "condition_index": 6,
+          "condition_pointer": "/input_binding_source_contract_oracles/conditions/6",
+          "condition_label": "規則/owner/Applicability/Oracle parent/独立targetの既存適用条件",
+          "fixed_case_ids": [
+            "normal",
+            "N03-target_read-conflict",
+            "N04-target_qualification-conflict",
+            "N05-target_root-conflict",
+            "N06-target-subject-compound"
+          ],
+          "coverage": "normalは適合入力経路、N03–N05は各target roleのstate conflict、N06はtarget qualification/root subjectの複合反対値を照合する。これはcondition全体や各join不一致の網羅を意味しない。",
+          "unfixed_subconditions": [
+            "owner_mismatch",
+            "oracle_mismatch",
+            "target_missing",
+            "base_conflict",
+            "qualified ownerのasset_id付きexpected_ref=null宣言"
+          ],
+          "unfixed_note": "上記5枝は固定10ケースに独立の反例として固定されていない。件数を増やさず、未固定範囲として明示する。",
+          "not_fixed": "規則/owner/Applicability/Oracle parent/独立targetに関するその他の分岐、state・scope・revision・asset値の全組合せ。",
+          "l9_existing_case_refs": [
+            "HARNESS-L9-052-F01",
+            "HARNESS-L9-052-F02",
+            "HARNESS-L9-052-F06",
+            "HARNESS-L9-052-B01"
+          ],
+          "fixed_case_refs": [
+            {
+              "case_id": "normal",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/0"
+            },
+            {
+              "case_id": "N03-target_read-conflict",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/3"
+            },
+            {
+              "case_id": "N04-target_qualification-conflict",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/4"
+            },
+            {
+              "case_id": "N05-target_root-conflict",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/5"
+            },
+            {
+              "case_id": "N06-target-subject-compound",
+              "case_pointer": "/owner_source_fn0_oracles/frozen_materialization/cases/6"
+            }
+          ]
+        }
+      ],
+      "case_id_order": [
+        "normal",
+        "N01-old-member-missing",
+        "N02-target-role-omitted",
+        "N03-target_read-conflict",
+        "N04-target_qualification-conflict",
+        "N05-target_root-conflict",
+        "N06-target-subject-compound",
+        "N07-resolution-identical-repeat",
+        "N08-resolution-known-state-difference",
+        "N09-map-bytes-difference"
+      ],
+      "non_claims": [
+        "対応は固定10ケースのcoverage indexであり、L9の要求意味を変更しない。",
+        "本修正ではケース数を増やさず、未固定範囲を記録する。",
+        "実資格、実接続、製品実行、L5/L8全体の完了を主張しない。"
+      ]
+    }
   }
 }

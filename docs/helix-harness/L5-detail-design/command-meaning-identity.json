@@ -387,7 +387,7 @@
         "scope_ref": "Ref",
         "source_ref": "Ref（OS契約/read根拠。HARNESSがreceipt全保存schemaを所有しない）"
       },
-      "Sha256Hex": "64 lowercase hexadecimal characters; same scalar domain as Ref.sha256, without a sha256: prefix",
+      "Sha256Hex": "64文字の小文字16進表記。sha256:接頭辞を付けず、Ref.sha256と同じスカラー領域。",
       "ScopeRawPayload": {
         "owner_ref": "Ref",
         "applicability_ref": "Ref"
@@ -485,8 +485,8 @@
         "target_root": "H052OwnerQualificationRootEvidence | null（同じ既存型のtarget用別instance。scope rootと別）"
       },
       "H052CurrentValidationInput": {
-        "command_input": "exact CommandInput (same original first argument)",
-        "resolution_content_bytes": "exact closed map from full Ref to the original second-argument bytes",
+        "command_input": "元の第1引数と同一のCommandInput",
+        "resolution_content_bytes": "完全なRefをキーとし、第2引数に渡された元bytesを値とする閉じたmapと同一の値",
         "source_projection_inputs": "H052SourceProjectionInputs for the same command timepoint。既存8 roleにtarget_read/target_qualification/target_rootの3 roleを追加したclosed record。"
       },
       "OwnerBasisTechnicalPayload": {
@@ -1599,7 +1599,7 @@
             "rule": "元fn0構文境界を先に適用。scope anchorが不適合なら本source stageでBackflow Ref/診断ownerを新造しない。"
           },
           {
-            "boundary": "H052CurrentValidationInput root / source_projection_inputs container",
+            "boundary": "H052CurrentValidationInputのrootおよびsource_projection_inputsコンテナ",
             "condition": "root又はsource_projection_inputsがobjectでない、root必須field省略/未知field、source_projection_inputs自体省略/null/非object",
             "code": "schema_invalid",
             "result_state": "unknown",
@@ -1876,21 +1876,21 @@
       ],
       "finding_mapping": [
         {
-          "condition": "target_read/target_qualification/target_root role is null",
+          "condition": "target_read/target_qualification/target_root roleの値がnull",
           "code": "required_missing",
           "result_field": "semantic",
           "result_state": "unknown",
           "pointer": "/source_projection_inputs/{role}"
         },
         {
-          "condition": "role member omitted or malformed closed evidence/payload/member type",
+          "condition": "role memberが省略されている、又は閉じたevidence/payload/member typeに不適合",
           "code": "schema_invalid",
           "result_field": "semantic",
           "result_state": "unknown",
-          "pointer": "/source_projection_inputs/{role} (known bad member gets its member pointer)"
+          "pointer": "/source_projection_inputs/{role}（不正memberが特定できる場合はそのmemberのpointer）"
         },
         {
-          "condition": "target source explicitly missing",
+          "condition": "target sourceのstateが明示的にmissing",
           "code": "required_missing",
           "result_field": "semantic",
           "result_state": "unknown",
@@ -1898,42 +1898,42 @@
           "note": "source_refが型適合して供給されていれば、同時にResolution address membershipを観測する。"
         },
         {
-          "condition": "target source present but unknown/stale or qualification/root not resolved",
+          "condition": "target sourceは供給されているが、stateがunknown/stale、又はqualification/rootが解決していない",
           "code": "resolution_unknown",
           "result_field": "semantic",
           "result_state": "unknown",
-          "pointer": "the corresponding source role state/observation"
+          "pointer": "該当するsource roleのstate又はobservation"
         },
         {
-          "condition": "typed full Ref or typed source value differs across observed join",
+          "condition": "型適合したfull Ref又はsource値が、観測されたjoin間で一致しない",
           "code": "reference_conflict",
           "result_field": "semantic",
           "result_state": "conflict",
-          "pointer": "the source-side operand of the mismatched join"
+          "pointer": "不一致となったjoinのsource側operand"
         },
         {
-          "condition": "Resolution valid closed variant has exact-address kind other than target_set",
+          "condition": "Resolutionのvalidなclosed variantについて、完全一致addressでのkindがtarget_set以外",
           "code": "reference_conflict",
           "result_field": "semantic",
           "result_state": "conflict",
           "pointer": "/command_input/resolutions/{index}/kind"
         },
         {
-          "condition": "Resolution unknown kind only",
+          "condition": "Resolutionのkindだけが未知",
           "code": "schema_invalid",
           "result_field": "semantic",
           "result_state": "unknown",
           "pointer": "/command_input/resolutions/{index}/kind"
         },
         {
-          "condition": "other Resolution closed-record shape violation",
+          "condition": "その他のResolution閉recordのshape違反",
           "code": "schema_invalid",
           "result_field": "semantic",
           "result_state": "unknown",
-          "pointer": "/command_input/resolutions/{index} (or known invalid member)"
+          "pointer": "/command_input/resolutions/{index}（不正memberが特定できる場合はそのmemberのpointer）"
         },
         {
-          "condition": "qualified owner original TargetSet member explicitly binds this asset_id to expected_ref=null and all existing source/qualification/root/Observation/bytes/body/Resolution checks succeed",
+          "condition": "qualifiedなownerの原TargetSet memberがasset_idをexpected_ref=nullへ明示的に結び、既存のsource/qualification/root/Observation/bytes/body/Resolution検査がすべて成功している",
           "code": "normal base comparison",
           "result_field": "semantic",
           "result_state": "既存比較規則",
@@ -1941,7 +1941,7 @@
           "note": "同じ原memberが新規不存在宣言である。別role/sourceを要求しない。"
         },
         {
-          "condition": "caller has no base member for an asset explicitly present in the qualified owner declaration",
+          "condition": "qualified owner宣言に明示されたassetについて、callerにbase memberがない",
           "code": "target_missing",
           "result_field": "semantic",
           "result_state": "unknown",
@@ -1949,7 +1949,7 @@
           "note": "owner原nullからcaller側の欠落を補完しない。"
         },
         {
-          "condition": "owner source and complete TargetSet body are successfully qualified/resolved; caller has a base member whose asset_id is absent from required_bases",
+          "condition": "owner sourceと完全なTargetSet bodyがqualified/resolvedであり、callerのbase memberのasset_idがrequired_basesにない",
           "code": "base_conflict",
           "result_field": "semantic",
           "result_state": "conflict",
@@ -1957,19 +1957,19 @@
           "note": "完成した独立集合に対するcaller-only memberは余剰base。逆方向のcaller欠落は既存target_missingを保持する。"
         },
         {
-          "condition": "source/qualification/root/Observation/Resolution/body is missing, unknown, stale or unresolved, so the independent membership cannot be determined",
+          "condition": "source/qualification/root/Observation/Resolution/bodyがmissing、unknown、stale又は未解決のため、独立したmembershipを判定できない",
           "code": "未解決fieldに対応する既存finding",
           "result_field": "semantic",
           "result_state": "unknown (未解決fieldのみ)",
-          "pointer": "該当source role/state/body",
+          "pointer": "該当するsource role/state/body",
           "note": "型適合operandから観測済みのscope/owner/Ref/body矛盾は既存reference_conflict/owner_mismatch等として残し、cause全体を既存reductionへ渡す。"
         },
         {
-          "condition": "qualified explicit contrary base value, duplicate, extra, or caller/target known mismatch",
+          "condition": "qualifiedな明示反対base値、重複、余剰、又はcaller/target間で既知の不一致",
           "code": "base_conflict",
           "result_field": "semantic",
           "result_state": "conflict",
-          "pointer": "/command_input/bases or the exact TargetSet member"
+          "pointer": "/command_input/bases又は該当するTargetSet member"
         },
         {
           "condition": "/source_projection_inputs/target_read/stateがconflictである",
@@ -1979,17 +1979,20 @@
           "pointer": "/source_projection_inputs/target_read/state",
           "basis": [
             {
-              "path": "docs/helix-harness/L5-detail-design/command-meaning-identity.json",
-              "sha256": "fc24266ab42289451e5a58a178f5adaf43d439d856271a9ab2a0617e72297945",
-              "pointer": "/type_contract/finding_rules/3"
-            },
-            {
+              "pointer": "/type_contract/finding_rules/3",
+              "role": "同一文書内の既存reference_conflict規則。file hashを自己参照しない。"
+            }
+          ],
+          "note": "Evidence state自体の明示conflictを分類する。non-valid stateでcontent_bytes/raw_bodyがnullであることだけをschema_invalidへ置換しない。既知の他causeは独立に保持する。",
+          "authoring_history": {
+            "source_reference": {
               "path": "scaffold/review-handoff/local/harness052-target-set-selector-source-read/advice/target-selector-technical-addendum-r2.json",
               "sha256": "c1b63feb3dca66d0c322cebda7a29892d7edac2fd7a110b63772fb32baa3bbb3",
               "pointer": "/deterministic_finding_mapping/3"
-            }
-          ],
-          "note": "Evidence state自体の明示conflictを分類する。non-valid stateでcontent_bytes/raw_bodyがnullであることだけをschema_invalidへ置換しない。既知の他causeは独立に保持する。"
+            },
+            "normative_dependency": false,
+            "role": "著述時の来歴。規則本文は本mappingにあり、再構成・判定でこのGit管理外資料を読まない。"
+          }
         },
         {
           "condition": "/source_projection_inputs/target_qualification/stateがconflictである",
@@ -1999,17 +2002,20 @@
           "pointer": "/source_projection_inputs/target_qualification/state",
           "basis": [
             {
-              "path": "docs/helix-harness/L5-detail-design/command-meaning-identity.json",
-              "sha256": "fc24266ab42289451e5a58a178f5adaf43d439d856271a9ab2a0617e72297945",
-              "pointer": "/type_contract/finding_rules/3"
-            },
-            {
+              "pointer": "/type_contract/finding_rules/3",
+              "role": "同一文書内の既存reference_conflict規則。file hashを自己参照しない。"
+            }
+          ],
+          "note": "Evidence state自体の明示conflictを分類する。non-valid stateでcontent_bytes/raw_bodyがnullであることだけをschema_invalidへ置換しない。既知の他causeは独立に保持する。",
+          "authoring_history": {
+            "source_reference": {
               "path": "scaffold/review-handoff/local/harness052-target-set-selector-source-read/advice/target-selector-technical-addendum-r2.json",
               "sha256": "c1b63feb3dca66d0c322cebda7a29892d7edac2fd7a110b63772fb32baa3bbb3",
               "pointer": "/deterministic_finding_mapping/13"
-            }
-          ],
-          "note": "Evidence state自体の明示conflictを分類する。non-valid stateでcontent_bytes/raw_bodyがnullであることだけをschema_invalidへ置換しない。既知の他causeは独立に保持する。"
+            },
+            "normative_dependency": false,
+            "role": "著述時の来歴。規則本文は本mappingにあり、再構成・判定でこのGit管理外資料を読まない。"
+          }
         },
         {
           "condition": "/source_projection_inputs/target_root/stateがconflictである",
@@ -2019,20 +2025,23 @@
           "pointer": "/source_projection_inputs/target_root/state",
           "basis": [
             {
-              "path": "docs/helix-harness/L5-detail-design/command-meaning-identity.json",
-              "sha256": "fc24266ab42289451e5a58a178f5adaf43d439d856271a9ab2a0617e72297945",
-              "pointer": "/type_contract/finding_rules/3"
-            },
-            {
+              "pointer": "/type_contract/finding_rules/3",
+              "role": "同一文書内の既存reference_conflict規則。file hashを自己参照しない。"
+            }
+          ],
+          "note": "Evidence state自体の明示conflictを分類する。non-valid stateでcontent_bytes/raw_bodyがnullであることだけをschema_invalidへ置換しない。既知の他causeは独立に保持する。",
+          "authoring_history": {
+            "source_reference": {
               "path": "scaffold/review-handoff/local/harness052-target-set-selector-source-read/advice/target-selector-technical-addendum-r2.json",
               "sha256": "c1b63feb3dca66d0c322cebda7a29892d7edac2fd7a110b63772fb32baa3bbb3",
               "pointer": "/deterministic_finding_mapping/16"
-            }
-          ],
-          "note": "Evidence state自体の明示conflictを分類する。non-valid stateでcontent_bytes/raw_bodyがnullであることだけをschema_invalidへ置換しない。既知の他causeは独立に保持する。"
+            },
+            "normative_dependency": false,
+            "role": "著述時の来歴。規則本文は本mappingにあり、再構成・判定でこのGit管理外資料を読まない。"
+          }
         }
       ],
-      "preservation": "成功normal conditional path、既存8 source roles/8 source projection rules、public CommandInput、existing Finding enums/results, original tuples/indexes, all causes and OS projection are retained. No root/provider/authority/schema-wide expansion.",
+      "preservation": "正常なconditional path、既存8 source roles/8 source projection rules、public CommandInput、既存Findingのenum/result、原tuple/index、全cause、OS projectionを保持する。root/provider/authority/schema全般への拡張は行わない。",
       "target_read_owner_declaration": "target_readは独立target ownerが当該scopeについて供給したTargetSetの原宣言である。元producerのnative schemaを発見したとの主張ではなく、既存TargetSetBodyと同じ3-fieldを読み取る限定的なtechnical read表現である。既存target qualification/root/Observationと完全なsource/bytes/body照合が成立した場合に限り、required_bases[i]のasset_idとexpected_refをownerの原宣言として読む。",
       "state_conflict_mapping": {
         "scope": "target_read / target_qualification / target_rootの3既存role",

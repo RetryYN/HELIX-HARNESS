@@ -1,6 +1,8 @@
-"""R8 fn0 finite declaration calculation; immutable carrier argument only, stdlib, no IO.
-Source: R8 local L5 53847c13831789f859929f93857d51c9c58531f925c2b3e76f96bf6a95a2587c.
-This is a scratch design calculation, not product runtime. No oracle/fixture dependency.
+"""H052 fn0の有限設計監査。元carrierのみを受け取り、I/Oを行わない。
+著述時の来歴: R8 local L5 SHA-256 53847c13831789f859929f93857d51c9c58531f925c2b3e76f96bf6a95a2587c。
+このlocal hashは現在仕様の正本ではない。対象はdocs/helix-harness/L5-detail-design/command-meaning-identity.jsonの
+/functions/0、/type_contract/owner_source_projection_mapping、/type_contract/target_set_selector_contract。
+現在の対象fileは対L8のcandidate_l5_bindingが固定する。製品runtimeではなく、期待値/fixtureには依存しない。
 """
 import copy
 import hashlib
