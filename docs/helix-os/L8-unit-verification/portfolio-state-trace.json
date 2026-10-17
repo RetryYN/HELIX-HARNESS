@@ -14529,8 +14529,8 @@
   "actual_state_updated": false,
   "normative_calculation_binding": {
     "L5_path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
-    "L5_sha256": "3e48d41234816f113aa55f22b5cd86aa1dc1e2c0c6799a02dca9b387dc023faa",
-    "program_sha256": "b1d1d386842f7cf54d57aebc04f107c502c1b52398d142d6ebf6a51b3952e6b8",
+    "L5_sha256": "1676ca23bd803393bc07418ade957a5946b7594e48569b5bd70bb0335ad950ab",
+    "program_sha256": "5c01b94ab12b1e4053c1d24f33f687916c11b9df7457f2e79875b07de45c9a60",
     "entrypoints": [
       "expand_case",
       "evaluate_portfolio",
@@ -14549,7 +14549,7 @@
       "execution_state": "not_executed",
       "expected_source": "L8 selected_domain_profile.cases[*]のL9 expected_whole pointer。normative計算後にだけ比較する。",
       "meaning": "L5 source_codeの純粋計算と凍結済みL9 wholeを対照する詳細設計。runtime実行/実source資格を示さない。",
-      "program_sha256": "b1d1d386842f7cf54d57aebc04f107c502c1b52398d142d6ebf6a51b3952e6b8",
+      "program_sha256": "5c01b94ab12b1e4053c1d24f33f687916c11b9df7457f2e79875b07de45c9a60",
       "output_type": "SelectedTraceResult"
     }
   },
@@ -30354,6 +30354,1060 @@
           }
         }
       ]
+    },
+    "project_header_empty_nodes_regression": {
+      "status": "source-fixed-input-and-independent-whole-oracle",
+      "case_count": 4,
+      "purpose": "R12 selected ProjectTargetの4つのheader fieldについて、同じprojectのnodes mapが{}で、別projectには通常nodeが残る場合のfield_unknownを個別に固定する。",
+      "source_rule": {
+        "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+        "revision": "e8b88db4f47b5e2fe544be0727bf209fa7a5f27e",
+        "file_sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
+        "pointer": "/diagnostic_contract/selected_target_rules/0/rule"
+      },
+      "input_sources": {
+        "L9_path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+        "L9_revision": "e8b88db4f47b5e2fe544be0727bf209fa7a5f27e",
+        "L9_file_sha256": "a62f635aa70fe7fb05f21fa12afdc71bda29f2090f9e4b6175e3122e521ff149",
+        "portfolio_pointer": "/domain_extension_cases/0/input/portfolio",
+        "targets_pointer": "/domain_extension_cases/0/input/targets",
+        "L4_diagnostic_contract_pointer": "/diagnostic_contract",
+        "selection_reason": "既存D0001のraw portfolio/targetsを使い、lab actual/contextのsandbox,batchは保持。targetsだけをpatchし、他project release/north~blueとsouthを不変にする。L9 expectedは入力作成に使わない。"
+      },
+      "expected_source": {
+        "normative_basis": [
+          {
+            "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+            "file_sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
+            "pointer": "/diagnostic_contract/selected_target_rules/0"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+            "file_sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
+            "pointer": "/diagnostic_contract/selected_target_rules/2"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+            "file_sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
+            "pointer": "/diagnostic_contract/rules/9"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+            "file_sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
+            "pointer": "/diagnostic_contract/rules/10"
+          }
+        ],
+        "materialization": "全期待は同一文書のshared_expected_baseと各case.expected_patchに保持。根拠は既存R12/R14/R10/R11、下記local履歴の再取得を要しない。",
+        "expected_base_canonical_sha256": "c4cc7f5fda38b08b9188f94ef3b6f12ea70bc5ccd664da47f46ddabf0649e86e",
+        "authoring_history": {
+          "records": {
+            "basis": "os016-r12-header-independent-whole-freeze/first-expected-whole.json",
+            "basis_sha256": "f181d785e966c8ef4fb51a4c7e0e53c9076e745ec6b4283cced2187fef156f51",
+            "case_recipes_sha256": "bffbe4586ac95dd92ee202bf4d4d313a49740ebafcd0ee5e5aedf9e83c8f5170",
+            "source_root_ledger_sha256": "74362148f3bc8a53fef3f3de60d9c6e9430de6f3f98cdc2cb5904364ced67f57",
+            "expected_base_canonical_sha256": "c4cc7f5fda38b08b9188f94ef3b6f12ea70bc5ccd664da47f46ddabf0649e86e",
+            "construction": "共有base literal + 各variantの明示RFC6902 findings置換。L9 expected wholeを期待値として使わない。"
+          },
+          "reconstruction_dependency": false,
+          "role": "独立期待の先固定時点を識別する著述履歴のみ。現在の規範や再構成入力ではない。"
+        }
+      },
+      "shared_expected_base": {
+        "condition": "trace_material_unknown",
+        "node_correspondence": {
+          "release/north~blue": {
+            "north/api~v2": {
+              "source": "corresponding",
+              "owner": "corresponding",
+              "relation": "corresponding",
+              "state": "corresponding",
+              "verification": "corresponding",
+              "acceptance": "corresponding",
+              "provision": "corresponding",
+              "history": "corresponding",
+              "boundary": "corresponding"
+            },
+            "link-api": {
+              "source": "corresponding",
+              "owner": "corresponding",
+              "relation": "corresponding",
+              "state": "corresponding",
+              "verification": "corresponding",
+              "acceptance": "corresponding",
+              "provision": "corresponding",
+              "history": "corresponding",
+              "boundary": "corresponding"
+            },
+            "bundle": {
+              "source": "corresponding",
+              "owner": "corresponding",
+              "relation": "corresponding",
+              "state": "corresponding",
+              "verification": "corresponding",
+              "acceptance": "corresponding",
+              "provision": "corresponding",
+              "history": "corresponding",
+              "boundary": "corresponding"
+            }
+          },
+          "south": {
+            "store": {
+              "source": "corresponding",
+              "owner": "corresponding",
+              "relation": "corresponding",
+              "state": "corresponding",
+              "verification": "corresponding",
+              "acceptance": "corresponding",
+              "provision": "corresponding",
+              "history": "corresponding",
+              "boundary": "corresponding"
+            }
+          },
+          "lab": {
+            "sandbox": {
+              "source": "unknown",
+              "owner": "unknown",
+              "relation": "unknown",
+              "state": "unknown",
+              "verification": "unknown",
+              "acceptance": "unknown",
+              "provision": "unknown",
+              "history": "unknown",
+              "boundary": "unknown"
+            },
+            "batch": {
+              "source": "unknown",
+              "owner": "unknown",
+              "relation": "unknown",
+              "state": "unknown",
+              "verification": "unknown",
+              "acceptance": "unknown",
+              "provision": "unknown",
+              "history": "unknown",
+              "boundary": "unknown"
+            }
+          }
+        },
+        "retained_source_records": {
+          "release/north~blue": {
+            "north/api~v2": {
+              "project_id": "release/north~blue",
+              "requirement_id": "REQ:release/north~blue",
+              "requirement_revision": "rq7",
+              "scope": "scope:release/north~blue",
+              "harness_contract_revision": "hc7",
+              "target_id": "north/api~v2",
+              "target_revision": "v7",
+              "target_digest": "material:north/api~v2",
+              "kind": "unit",
+              "source_ref": "source:north/api~v2",
+              "source_revision": "s7",
+              "difference_ref": "diff:north/api~v2",
+              "operation_record_ref": "ops:north/api~v2"
+            },
+            "link-api": {
+              "project_id": "release/north~blue",
+              "requirement_id": "REQ:release/north~blue",
+              "requirement_revision": "rq7",
+              "scope": "scope:release/north~blue",
+              "harness_contract_revision": "hc7",
+              "target_id": "link-api",
+              "target_revision": "v7",
+              "target_digest": "material:link-api",
+              "kind": "connection",
+              "source_ref": "source:link-api",
+              "source_revision": "s7",
+              "difference_ref": "diff:link-api",
+              "operation_record_ref": "ops:link-api"
+            },
+            "bundle": {
+              "project_id": "release/north~blue",
+              "requirement_id": "REQ:release/north~blue",
+              "requirement_revision": "rq7",
+              "scope": "scope:release/north~blue",
+              "harness_contract_revision": "hc7",
+              "target_id": "bundle",
+              "target_revision": "v7",
+              "target_digest": "material:bundle",
+              "kind": "composite",
+              "source_ref": "source:bundle",
+              "source_revision": "s7",
+              "difference_ref": "diff:bundle",
+              "operation_record_ref": "ops:bundle"
+            }
+          },
+          "south": {
+            "store": {
+              "project_id": "south",
+              "requirement_id": "REQ:south",
+              "requirement_revision": "rq7",
+              "scope": "scope:south",
+              "harness_contract_revision": "hc7",
+              "target_id": "store",
+              "target_revision": "v7",
+              "target_digest": "material:store",
+              "kind": "unit",
+              "source_ref": "source:store",
+              "source_revision": "s7",
+              "difference_ref": "diff:store",
+              "operation_record_ref": "ops:store"
+            }
+          },
+          "lab": {
+            "sandbox": {
+              "project_id": "lab",
+              "requirement_id": "REQ:lab",
+              "requirement_revision": "rq7",
+              "scope": "scope:lab",
+              "harness_contract_revision": "hc7",
+              "target_id": "sandbox",
+              "target_revision": "v7",
+              "target_digest": "material:sandbox",
+              "kind": "unit",
+              "source_ref": "source:sandbox",
+              "source_revision": "s7",
+              "difference_ref": "diff:sandbox",
+              "operation_record_ref": "ops:sandbox"
+            },
+            "batch": {
+              "project_id": "lab",
+              "requirement_id": "REQ:lab",
+              "requirement_revision": "rq7",
+              "scope": "scope:lab",
+              "harness_contract_revision": "hc7",
+              "target_id": "batch",
+              "target_revision": "v7",
+              "target_digest": "material:batch",
+              "kind": "composite",
+              "source_ref": "source:batch",
+              "source_revision": "s7",
+              "difference_ref": "diff:batch",
+              "operation_record_ref": "ops:batch"
+            }
+          }
+        },
+        "retained_state_trace": {
+          "release/north~blue": {
+            "north/api~v2": {
+              "states": {
+                "connection": {
+                  "state": "connected_material",
+                  "source_ref": "state:north/api~v2:connection",
+                  "source_revision": "s7"
+                },
+                "agreement": {
+                  "state": "agreement_material",
+                  "source_ref": "state:north/api~v2:agreement",
+                  "source_revision": "s7"
+                },
+                "implementation": {
+                  "state": "implementation_material",
+                  "source_ref": "state:north/api~v2:implementation",
+                  "source_revision": "s7"
+                },
+                "verification": {
+                  "state": "verification_material",
+                  "source_ref": "state:north/api~v2:verification",
+                  "source_revision": "s7"
+                },
+                "provision": {
+                  "state": "provision_material",
+                  "source_ref": "state:north/api~v2:provision",
+                  "source_revision": "s7"
+                },
+                "knowledge": {
+                  "state": "known_material",
+                  "source_ref": "state:north/api~v2:knowledge",
+                  "source_revision": "s7"
+                },
+                "freshness": {
+                  "state": "current_material",
+                  "source_ref": "state:north/api~v2:freshness",
+                  "source_revision": "s7"
+                }
+              },
+              "verification": {
+                "state": "pass_material",
+                "project_id": "release/north~blue",
+                "requirement_revision": "rq7",
+                "scope": "scope:release/north~blue",
+                "target_id": "north/api~v2",
+                "target_revision": "v7",
+                "kind": "unit",
+                "source_ref": "source:north/api~v2",
+                "source_revision": "s7"
+              },
+              "acceptance": {
+                "state": "accepted_material",
+                "project_id": "release/north~blue",
+                "requirement_revision": "rq7",
+                "scope": "scope:release/north~blue",
+                "target_id": "north/api~v2",
+                "target_revision": "v7",
+                "kind": "unit",
+                "source_ref": "source:north/api~v2",
+                "source_revision": "s7"
+              },
+              "provision": {
+                "state": "provided_material",
+                "project_id": "release/north~blue",
+                "requirement_revision": "rq7",
+                "scope": "scope:release/north~blue",
+                "target_id": "north/api~v2",
+                "target_revision": "v7",
+                "kind": "unit",
+                "source_ref": "source:north/api~v2",
+                "source_revision": "s7",
+                "kanban_ref": "kanban:north/api~v2",
+                "record_ref": "record:north/api~v2"
+              },
+              "unresolved_edges": [],
+              "stale_reasons": [],
+              "relations": [],
+              "owners": [
+                "owner:north/api~v2"
+              ],
+              "kind": "unit"
+            },
+            "link-api": {
+              "states": {
+                "connection": {
+                  "state": "connected_material",
+                  "source_ref": "state:link-api:connection",
+                  "source_revision": "s7"
+                },
+                "agreement": {
+                  "state": "not_agreed",
+                  "source_ref": "state:link-api:agreement",
+                  "source_revision": "s7"
+                },
+                "implementation": {
+                  "state": "not_implemented",
+                  "source_ref": "state:link-api:implementation",
+                  "source_revision": "s7"
+                },
+                "verification": {
+                  "state": "not_verified",
+                  "source_ref": "state:link-api:verification",
+                  "source_revision": "s7"
+                },
+                "provision": {
+                  "state": "not_provided",
+                  "source_ref": "state:link-api:provision",
+                  "source_revision": "s7"
+                },
+                "knowledge": {
+                  "state": "known_material",
+                  "source_ref": "state:link-api:knowledge",
+                  "source_revision": "s7"
+                },
+                "freshness": {
+                  "state": "current_material",
+                  "source_ref": "state:link-api:freshness",
+                  "source_revision": "s7"
+                }
+              },
+              "verification": {
+                "state": "unobserved",
+                "project_id": "release/north~blue",
+                "requirement_revision": "rq7",
+                "scope": "scope:release/north~blue",
+                "target_id": "link-api",
+                "target_revision": "v7",
+                "kind": "connection",
+                "source_ref": "source:link-api",
+                "source_revision": "s7"
+              },
+              "acceptance": {
+                "state": "unobserved",
+                "project_id": "release/north~blue",
+                "requirement_revision": "rq7",
+                "scope": "scope:release/north~blue",
+                "target_id": "link-api",
+                "target_revision": "v7",
+                "kind": "connection",
+                "source_ref": "source:link-api",
+                "source_revision": "s7"
+              },
+              "provision": {
+                "state": "not_provided",
+                "project_id": "release/north~blue",
+                "requirement_revision": "rq7",
+                "scope": "scope:release/north~blue",
+                "target_id": "link-api",
+                "target_revision": "v7",
+                "kind": "connection",
+                "source_ref": "source:link-api",
+                "source_revision": "s7",
+                "kanban_ref": "kanban:link-api",
+                "record_ref": "record:link-api"
+              },
+              "unresolved_edges": [],
+              "stale_reasons": [],
+              "relations": [
+                "north/api~v2@v7"
+              ],
+              "owners": [
+                "owner:link-api"
+              ],
+              "kind": "connection"
+            },
+            "bundle": {
+              "states": {
+                "connection": {
+                  "state": "connected_material",
+                  "source_ref": "state:bundle:connection",
+                  "source_revision": "s7"
+                },
+                "agreement": {
+                  "state": "not_agreed",
+                  "source_ref": "state:bundle:agreement",
+                  "source_revision": "s7"
+                },
+                "implementation": {
+                  "state": "not_implemented",
+                  "source_ref": "state:bundle:implementation",
+                  "source_revision": "s7"
+                },
+                "verification": {
+                  "state": "not_verified",
+                  "source_ref": "state:bundle:verification",
+                  "source_revision": "s7"
+                },
+                "provision": {
+                  "state": "not_provided",
+                  "source_ref": "state:bundle:provision",
+                  "source_revision": "s7"
+                },
+                "knowledge": {
+                  "state": "known_material",
+                  "source_ref": "state:bundle:knowledge",
+                  "source_revision": "s7"
+                },
+                "freshness": {
+                  "state": "current_material",
+                  "source_ref": "state:bundle:freshness",
+                  "source_revision": "s7"
+                }
+              },
+              "verification": {
+                "state": "unobserved",
+                "project_id": "release/north~blue",
+                "requirement_revision": "rq7",
+                "scope": "scope:release/north~blue",
+                "target_id": "bundle",
+                "target_revision": "v7",
+                "kind": "composite",
+                "source_ref": "source:bundle",
+                "source_revision": "s7"
+              },
+              "acceptance": {
+                "state": "unobserved",
+                "project_id": "release/north~blue",
+                "requirement_revision": "rq7",
+                "scope": "scope:release/north~blue",
+                "target_id": "bundle",
+                "target_revision": "v7",
+                "kind": "composite",
+                "source_ref": "source:bundle",
+                "source_revision": "s7"
+              },
+              "provision": {
+                "state": "not_provided",
+                "project_id": "release/north~blue",
+                "requirement_revision": "rq7",
+                "scope": "scope:release/north~blue",
+                "target_id": "bundle",
+                "target_revision": "v7",
+                "kind": "composite",
+                "source_ref": "source:bundle",
+                "source_revision": "s7",
+                "kanban_ref": "kanban:bundle",
+                "record_ref": "record:bundle"
+              },
+              "unresolved_edges": [],
+              "stale_reasons": [],
+              "relations": [
+                "north/api~v2@v7",
+                "link-api@v7"
+              ],
+              "owners": [
+                "owner:bundle"
+              ],
+              "kind": "composite"
+            }
+          },
+          "south": {
+            "store": {
+              "states": {
+                "connection": {
+                  "state": "connected_material",
+                  "source_ref": "state:store:connection",
+                  "source_revision": "s7"
+                },
+                "agreement": {
+                  "state": "agreement_material",
+                  "source_ref": "state:store:agreement",
+                  "source_revision": "s7"
+                },
+                "implementation": {
+                  "state": "implementation_material",
+                  "source_ref": "state:store:implementation",
+                  "source_revision": "s7"
+                },
+                "verification": {
+                  "state": "verification_material",
+                  "source_ref": "state:store:verification",
+                  "source_revision": "s7"
+                },
+                "provision": {
+                  "state": "provision_material",
+                  "source_ref": "state:store:provision",
+                  "source_revision": "s7"
+                },
+                "knowledge": {
+                  "state": "known_material",
+                  "source_ref": "state:store:knowledge",
+                  "source_revision": "s7"
+                },
+                "freshness": {
+                  "state": "current_material",
+                  "source_ref": "state:store:freshness",
+                  "source_revision": "s7"
+                }
+              },
+              "verification": {
+                "state": "pass_material",
+                "project_id": "south",
+                "requirement_revision": "rq7",
+                "scope": "scope:south",
+                "target_id": "store",
+                "target_revision": "v7",
+                "kind": "unit",
+                "source_ref": "source:store",
+                "source_revision": "s7"
+              },
+              "acceptance": {
+                "state": "accepted_material",
+                "project_id": "south",
+                "requirement_revision": "rq7",
+                "scope": "scope:south",
+                "target_id": "store",
+                "target_revision": "v7",
+                "kind": "unit",
+                "source_ref": "source:store",
+                "source_revision": "s7"
+              },
+              "provision": {
+                "state": "provided_material",
+                "project_id": "south",
+                "requirement_revision": "rq7",
+                "scope": "scope:south",
+                "target_id": "store",
+                "target_revision": "v7",
+                "kind": "unit",
+                "source_ref": "source:store",
+                "source_revision": "s7",
+                "kanban_ref": "kanban:store",
+                "record_ref": "record:store"
+              },
+              "unresolved_edges": [],
+              "stale_reasons": [],
+              "relations": [],
+              "owners": [
+                "owner:store"
+              ],
+              "kind": "unit"
+            }
+          },
+          "lab": {
+            "sandbox": {
+              "states": {
+                "connection": {
+                  "state": "connected_material",
+                  "source_ref": "state:sandbox:connection",
+                  "source_revision": "s7"
+                },
+                "agreement": {
+                  "state": "agreement_material",
+                  "source_ref": "state:sandbox:agreement",
+                  "source_revision": "s7"
+                },
+                "implementation": {
+                  "state": "implementation_material",
+                  "source_ref": "state:sandbox:implementation",
+                  "source_revision": "s7"
+                },
+                "verification": {
+                  "state": "verification_material",
+                  "source_ref": "state:sandbox:verification",
+                  "source_revision": "s7"
+                },
+                "provision": {
+                  "state": "provision_material",
+                  "source_ref": "state:sandbox:provision",
+                  "source_revision": "s7"
+                },
+                "knowledge": {
+                  "state": "known_material",
+                  "source_ref": "state:sandbox:knowledge",
+                  "source_revision": "s7"
+                },
+                "freshness": {
+                  "state": "current_material",
+                  "source_ref": "state:sandbox:freshness",
+                  "source_revision": "s7"
+                }
+              },
+              "verification": {
+                "state": "pass_material",
+                "project_id": "lab",
+                "requirement_revision": "rq7",
+                "scope": "scope:lab",
+                "target_id": "sandbox",
+                "target_revision": "v7",
+                "kind": "unit",
+                "source_ref": "source:sandbox",
+                "source_revision": "s7"
+              },
+              "acceptance": {
+                "state": "accepted_material",
+                "project_id": "lab",
+                "requirement_revision": "rq7",
+                "scope": "scope:lab",
+                "target_id": "sandbox",
+                "target_revision": "v7",
+                "kind": "unit",
+                "source_ref": "source:sandbox",
+                "source_revision": "s7"
+              },
+              "provision": {
+                "state": "provided_material",
+                "project_id": "lab",
+                "requirement_revision": "rq7",
+                "scope": "scope:lab",
+                "target_id": "sandbox",
+                "target_revision": "v7",
+                "kind": "unit",
+                "source_ref": "source:sandbox",
+                "source_revision": "s7",
+                "kanban_ref": "kanban:sandbox",
+                "record_ref": "record:sandbox"
+              },
+              "unresolved_edges": [],
+              "stale_reasons": [],
+              "relations": [],
+              "owners": [
+                "owner:sandbox"
+              ],
+              "kind": "unit"
+            },
+            "batch": {
+              "states": {
+                "connection": {
+                  "state": "connected_material",
+                  "source_ref": "state:batch:connection",
+                  "source_revision": "s7"
+                },
+                "agreement": {
+                  "state": "not_agreed",
+                  "source_ref": "state:batch:agreement",
+                  "source_revision": "s7"
+                },
+                "implementation": {
+                  "state": "not_implemented",
+                  "source_ref": "state:batch:implementation",
+                  "source_revision": "s7"
+                },
+                "verification": {
+                  "state": "not_verified",
+                  "source_ref": "state:batch:verification",
+                  "source_revision": "s7"
+                },
+                "provision": {
+                  "state": "not_provided",
+                  "source_ref": "state:batch:provision",
+                  "source_revision": "s7"
+                },
+                "knowledge": {
+                  "state": "known_material",
+                  "source_ref": "state:batch:knowledge",
+                  "source_revision": "s7"
+                },
+                "freshness": {
+                  "state": "current_material",
+                  "source_ref": "state:batch:freshness",
+                  "source_revision": "s7"
+                }
+              },
+              "verification": {
+                "state": "unobserved",
+                "project_id": "lab",
+                "requirement_revision": "rq7",
+                "scope": "scope:lab",
+                "target_id": "batch",
+                "target_revision": "v7",
+                "kind": "composite",
+                "source_ref": "source:batch",
+                "source_revision": "s7"
+              },
+              "acceptance": {
+                "state": "unobserved",
+                "project_id": "lab",
+                "requirement_revision": "rq7",
+                "scope": "scope:lab",
+                "target_id": "batch",
+                "target_revision": "v7",
+                "kind": "composite",
+                "source_ref": "source:batch",
+                "source_revision": "s7"
+              },
+              "provision": {
+                "state": "not_provided",
+                "project_id": "lab",
+                "requirement_revision": "rq7",
+                "scope": "scope:lab",
+                "target_id": "batch",
+                "target_revision": "v7",
+                "kind": "composite",
+                "source_ref": "source:batch",
+                "source_revision": "s7",
+                "kanban_ref": "kanban:batch",
+                "record_ref": "record:batch"
+              },
+              "unresolved_edges": [],
+              "stale_reasons": [],
+              "relations": [
+                "sandbox@v7"
+              ],
+              "owners": [
+                "owner:batch"
+              ],
+              "kind": "composite"
+            }
+          }
+        },
+        "observed_gap_axes": {
+          "release/north~blue": {
+            "north/api~v2": [],
+            "link-api": [
+              "agreement",
+              "implementation",
+              "verification",
+              "provision"
+            ],
+            "bundle": [
+              "agreement",
+              "implementation",
+              "verification",
+              "provision"
+            ]
+          },
+          "south": {
+            "store": []
+          },
+          "lab": {
+            "sandbox": [],
+            "batch": [
+              "agreement",
+              "implementation",
+              "verification",
+              "provision"
+            ]
+          }
+        },
+        "findings": [
+          {
+            "code": "field_unknown",
+            "pointer": "/targets/projects/lab/nodes/batch",
+            "return_owner": "portfolio-trace-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/targets/projects/lab/nodes/sandbox",
+            "return_owner": "portfolio-trace-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/targets/projects/lab/requirement_id",
+            "return_owner": "portfolio-trace-owner"
+          }
+        ],
+        "actual_state_updated": false,
+        "actual_acceptance_created": false,
+        "actual_release_authorized": false,
+        "whole_portfolio_complete": false,
+        "operation_effect": "none"
+      },
+      "cases": [
+        {
+          "case_id": "OS016-R12-HEADER-REQUIREMENT-ID-ABSENT-EMPTY-NODES",
+          "input_source": {
+            "input": {
+              "source": "L9",
+              "pointer": "/domain_extension_cases/0/input/portfolio"
+            },
+            "diagnostic_contract": {
+              "source": "L4",
+              "pointer": "/diagnostic_contract"
+            },
+            "targets": {
+              "source": "L9",
+              "pointer": "/domain_extension_cases/0/input/targets"
+            }
+          },
+          "targets_patch": [
+            {
+              "op": "replace",
+              "path": "/projects/lab/nodes",
+              "value": {}
+            },
+            {
+              "op": "remove",
+              "path": "/projects/lab/requirement_id"
+            }
+          ],
+          "call_arguments_canonical_sha256": "d814dcb76a0980c0d96e39fb1e2aee15d00fb4cf9537b0c91f51babb69f2c10b",
+          "expected_base_pointer": "/selected_domain_profile/project_header_empty_nodes_regression/shared_expected_base",
+          "expected_patch": [],
+          "expected_whole_canonical_sha256": "c4cc7f5fda38b08b9188f94ef3b6f12ea70bc5ccd664da47f46ddabf0649e86e",
+          "all_11_roots": [
+            "condition",
+            "node_correspondence",
+            "retained_source_records",
+            "retained_state_trace",
+            "observed_gap_axes",
+            "findings",
+            "actual_state_updated",
+            "actual_acceptance_created",
+            "actual_release_authorized",
+            "whole_portfolio_complete",
+            "operation_effect"
+          ],
+          "invalid_field_pointer": "/targets/projects/lab/requirement_id"
+        },
+        {
+          "case_id": "OS016-R12-HEADER-REQUIREMENT-REVISION-NULL-EMPTY-NODES",
+          "input_source": {
+            "input": {
+              "source": "L9",
+              "pointer": "/domain_extension_cases/0/input/portfolio"
+            },
+            "diagnostic_contract": {
+              "source": "L4",
+              "pointer": "/diagnostic_contract"
+            },
+            "targets": {
+              "source": "L9",
+              "pointer": "/domain_extension_cases/0/input/targets"
+            }
+          },
+          "targets_patch": [
+            {
+              "op": "replace",
+              "path": "/projects/lab/nodes",
+              "value": {}
+            },
+            {
+              "op": "replace",
+              "path": "/projects/lab/requirement_revision",
+              "value": null
+            }
+          ],
+          "call_arguments_canonical_sha256": "e20bb032a9cb9e4b316d378083001ba454f8a10bc6c7f2c767a11b3597f7436a",
+          "expected_base_pointer": "/selected_domain_profile/project_header_empty_nodes_regression/shared_expected_base",
+          "expected_patch": [
+            {
+              "op": "replace",
+              "path": "/findings",
+              "value": [
+                {
+                  "code": "field_unknown",
+                  "pointer": "/targets/projects/lab/nodes/batch",
+                  "return_owner": "portfolio-trace-owner"
+                },
+                {
+                  "code": "field_unknown",
+                  "pointer": "/targets/projects/lab/nodes/sandbox",
+                  "return_owner": "portfolio-trace-owner"
+                },
+                {
+                  "code": "field_unknown",
+                  "pointer": "/targets/projects/lab/requirement_revision",
+                  "return_owner": "portfolio-trace-owner"
+                }
+              ]
+            }
+          ],
+          "expected_whole_canonical_sha256": "9948fb07cdc9a797821c50f15d9f427983ade2be646a435bd9bed8b3ec7805e0",
+          "all_11_roots": [
+            "condition",
+            "node_correspondence",
+            "retained_source_records",
+            "retained_state_trace",
+            "observed_gap_axes",
+            "findings",
+            "actual_state_updated",
+            "actual_acceptance_created",
+            "actual_release_authorized",
+            "whole_portfolio_complete",
+            "operation_effect"
+          ],
+          "invalid_field_pointer": "/targets/projects/lab/requirement_revision"
+        },
+        {
+          "case_id": "OS016-R12-HEADER-SCOPE-EMPTY-EMPTY-NODES",
+          "input_source": {
+            "input": {
+              "source": "L9",
+              "pointer": "/domain_extension_cases/0/input/portfolio"
+            },
+            "diagnostic_contract": {
+              "source": "L4",
+              "pointer": "/diagnostic_contract"
+            },
+            "targets": {
+              "source": "L9",
+              "pointer": "/domain_extension_cases/0/input/targets"
+            }
+          },
+          "targets_patch": [
+            {
+              "op": "replace",
+              "path": "/projects/lab/nodes",
+              "value": {}
+            },
+            {
+              "op": "replace",
+              "path": "/projects/lab/scope",
+              "value": ""
+            }
+          ],
+          "call_arguments_canonical_sha256": "3595e32b77d46dfcc35003e0c52548930779b0c96fcfddf741f3f789c2ef888f",
+          "expected_base_pointer": "/selected_domain_profile/project_header_empty_nodes_regression/shared_expected_base",
+          "expected_patch": [
+            {
+              "op": "replace",
+              "path": "/findings",
+              "value": [
+                {
+                  "code": "field_unknown",
+                  "pointer": "/targets/projects/lab/nodes/batch",
+                  "return_owner": "portfolio-trace-owner"
+                },
+                {
+                  "code": "field_unknown",
+                  "pointer": "/targets/projects/lab/nodes/sandbox",
+                  "return_owner": "portfolio-trace-owner"
+                },
+                {
+                  "code": "field_unknown",
+                  "pointer": "/targets/projects/lab/scope",
+                  "return_owner": "portfolio-trace-owner"
+                }
+              ]
+            }
+          ],
+          "expected_whole_canonical_sha256": "119c186e4a61a7b1b46a32766e32511fefbb3655889b4383b18959050335af4f",
+          "all_11_roots": [
+            "condition",
+            "node_correspondence",
+            "retained_source_records",
+            "retained_state_trace",
+            "observed_gap_axes",
+            "findings",
+            "actual_state_updated",
+            "actual_acceptance_created",
+            "actual_release_authorized",
+            "whole_portfolio_complete",
+            "operation_effect"
+          ],
+          "invalid_field_pointer": "/targets/projects/lab/scope"
+        },
+        {
+          "case_id": "OS016-R12-HEADER-HARNESS-CONTRACT-REVISION-WRONG-TYPE-EMPTY-NODES",
+          "input_source": {
+            "input": {
+              "source": "L9",
+              "pointer": "/domain_extension_cases/0/input/portfolio"
+            },
+            "diagnostic_contract": {
+              "source": "L4",
+              "pointer": "/diagnostic_contract"
+            },
+            "targets": {
+              "source": "L9",
+              "pointer": "/domain_extension_cases/0/input/targets"
+            }
+          },
+          "targets_patch": [
+            {
+              "op": "replace",
+              "path": "/projects/lab/nodes",
+              "value": {}
+            },
+            {
+              "op": "replace",
+              "path": "/projects/lab/harness_contract_revision",
+              "value": 7
+            }
+          ],
+          "call_arguments_canonical_sha256": "28b67bafa25e1fe9e1a4829648d0ffbb4bc48afd0d5ffc37c734f884acdb4ebe",
+          "expected_base_pointer": "/selected_domain_profile/project_header_empty_nodes_regression/shared_expected_base",
+          "expected_patch": [
+            {
+              "op": "replace",
+              "path": "/findings",
+              "value": [
+                {
+                  "code": "field_unknown",
+                  "pointer": "/targets/projects/lab/harness_contract_revision",
+                  "return_owner": "portfolio-trace-owner"
+                },
+                {
+                  "code": "field_unknown",
+                  "pointer": "/targets/projects/lab/nodes/batch",
+                  "return_owner": "portfolio-trace-owner"
+                },
+                {
+                  "code": "field_unknown",
+                  "pointer": "/targets/projects/lab/nodes/sandbox",
+                  "return_owner": "portfolio-trace-owner"
+                }
+              ]
+            }
+          ],
+          "expected_whole_canonical_sha256": "92902ea876af7bed2147039ef43b08a9357d7857df34c28c301637b65b206b09",
+          "all_11_roots": [
+            "condition",
+            "node_correspondence",
+            "retained_source_records",
+            "retained_state_trace",
+            "observed_gap_axes",
+            "findings",
+            "actual_state_updated",
+            "actual_acceptance_created",
+            "actual_release_authorized",
+            "whole_portfolio_complete",
+            "operation_effect"
+          ],
+          "invalid_field_pointer": "/targets/projects/lab/harness_contract_revision"
+        }
+      ],
+      "preservation": {
+        "existing_selected_domain_profile_case_count": 29,
+        "existing_project_identity_header_probe_count": 4,
+        "new_cases_are_separate_sibling": true,
+        "existing_cases_or_expected_modified": false,
+        "program_execution_state": "期待の先固定時点では未実行。その後の有限宣言照合はPRの対象HEADへ記録する。製品runtime/CIではない。"
+      },
+      "reproducible_source_audit": {
+        "path": "docs/governance/audits/source-rebaseline/source-snapshots/os016-r12-header-source-check.py",
+        "sha256": "0663c3eb932f2ccebe4875bf2f92ad35ab84f4919647d8dd5ac4355e443642ee",
+        "command": "python3 -B docs/governance/audits/source-rebaseline/source-snapshots/os016-r12-header-source-check.py",
+        "scope": "同文書の共有literal/patch、固定L4/L9入力、固定L5純粋宣言から4件の全11rootを照合。local資料/.git不要、製品runtime/CIではない。",
+        "program_sha256": "5c01b94ab12b1e4053c1d24f33f687916c11b9df7457f2e79875b07de45c9a60"
+      }
     }
   },
   "source_candidate_return_verification": {
@@ -31516,7 +32570,7 @@
     ],
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
-      "sha256": "3e48d41234816f113aa55f22b5cd86aa1dc1e2c0c6799a02dca9b387dc023faa"
+      "sha256": "1676ca23bd803393bc07418ade957a5946b7594e48569b5bd70bb0335ad950ab"
     },
     "l4_contract": {
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
@@ -133092,7 +134146,7 @@
         "l4_capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
         "l4_capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c",
         "l5_file_path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
-        "l5_file_sha256": "3e48d41234816f113aa55f22b5cd86aa1dc1e2c0c6799a02dca9b387dc023faa",
+        "l5_file_sha256": "1676ca23bd803393bc07418ade957a5946b7594e48569b5bd70bb0335ad950ab",
         "l5_type_pointers": [
           "/logical_types/32",
           "/logical_types/33",
@@ -133123,7 +134177,7 @@
         "script_path": "docs/governance/audits/source-rebaseline/source-snapshots/os016-origin-unbound-source-check.py",
         "command": "python3 docs/governance/audits/source-rebaseline/source-snapshots/os016-origin-unbound-source-check.py --root <repository-or-worktree>",
         "entrypoint": "evaluate_os015_origin_call",
-        "normative_source_sha256": "b1d1d386842f7cf54d57aebc04f107c502c1b52398d142d6ebf6a51b3952e6b8",
+        "normative_source_sha256": "5c01b94ab12b1e4053c1d24f33f687916c11b9df7457f2e79875b07de45c9a60",
         "scope": "L8共有baseと21件の既存patch、およびL8の明示base参照を持つ7件のpatchから、計28件のinput/expectedを再構成し宣言hashを確認する。固定L5 normative_program.source_codeをASTで静的検査した後、宣言された純粋関数を各inputへ適用し、wholeを型に敏感なcanonical bytesで照合し、inputの前後不変も確認する。",
         "limits": "固定OS016 path・entrypoint・source hashに限定した監査script。汎用JSON runner、製品runtime、CI、実source/owner資格の成立、残るA02条件の完了は示さない。script自身のhashはformal pinにしない。"
       },
