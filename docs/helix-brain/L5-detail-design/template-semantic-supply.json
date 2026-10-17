@@ -5689,7 +5689,7 @@
       "unknown": "意味unknownは元null/原state/reason/sourceで表し、codec独自unknownタグを入力へ作らない。文字列unknown自体から意味分類しない。",
       "empty": "empty_array/空object/空stringを原値で保存。必要集合成立/N/A/既知の判定を伴わない。",
       "raw_maps": "scope/content/qualification_body等のRawValue mapは任意keyを保持。carrierのadditionalProperties:falseと混ぜず、opaque意味をschema都合で削除しない。",
-      "numbers": "JSON numberの値を暗黙float/整数へ丸めない。原raw bytesと必要な数値lexemeを別診断材料に保持できるexactな読取りを必要とする。具体library/言語幅は未選定であり、表現不能ならlossy成功へ変えずcodec失敗に返す。side_effect_countの整数形はbooleanを含まない。"
+      "numbers": "JSON numberの値を暗黙float/整数へ丸めない。原raw bytesと必要な数値lexemeを別診断材料に保持する。numeric_carrier_profileでPythonのexact私有数値carrier/値比較/原字句writerを具体化するが、runtime/library版固定・実adapter・全資源域・実行は未成立。表現不能ならlossy成功へ変えずcodec失敗に返す。side_effect_countの整数形はbooleanを含まない。"
     },
     "codec_operations": [
       {
@@ -5725,11 +5725,166 @@
     ],
     "owner_boundary": "BRAIN Ref/Qualification/SupplyAnalysisだけの形。COREのSourceEnvelope/Qualification/Ref[]やOSのField<T>/QualificationRootと無言共通化しない。両端schema/互換/receiptは各ownerとCONNECTの後続設計。新署名/truststore/issuer/毎回承認gateを要求も発行もしない。",
     "remaining": [
-      "このschema/codec候補の独立review、全Context/Result/findingの全量凍結、具体parser/libraryのexact number/Unicode/容量挙動とresource条件は未成立。容量値や旧safe integer/512件等を既定へ転写しない。",
+      "既存schema/codecの独立review範囲と今回のnumeric_carrier_profileのreview範囲を分ける。全Context/Result/findingの全量凍結、具体parser/libraryの実adapter・Unicode/容量挙動とresource条件は未成立。容量値や旧safe integer/512件等を既定へ転写しない。",
       "正式資格供給元、実source custody/root resolver、opaque資格bodyの原owner契約、BRAIN→CORE/OS正式両端binding/codec/互換/receipt、registry/式木/実fixture/oracle凍結は未閉包。",
       "L6は関数設計、L7は関数検証、実装成果は層外。test/oracle凍結→実装前Red→Green→Refactorと実接続/保存/PO受入は未成立。全92親430対閉包と実装Readyも未成立。",
-      "小数/指数（1.0・1e0・0.1）/1e400とencode非JSON値の具体期待stage・失敗対象条件は未固定。L8 unfixed_numeric_and_encode_rangeへ明示し、具体parser/host幅/encode入口や閾値を推測で新設しない。"
-    ]
+      "numeric_carrier_profileは小数/指数のexact表現、native intとの値比較、bool整数拒否、重複decoded key、token/value相反の私有writerを具体化する。対L8の有限期待と全域閉包は別。1e400/極端な指数・資源失敗・全非JSON host入力の全返却、canonical-sort数値則と後続reader接続は未固定とし、閾値や欠落oracleを推測で補わない。"
+    ],
+    "numeric_carrier_profile": {
+      "id": "HELIXBRAIN-L5-032-EXACT-NUMERIC-CODEC",
+      "status": "私有codecの数値carrier/比較/原字句writerの詳細候補。実装・実行・library版採用ではない。",
+      "owner": "HELIX-BRAIN",
+      "scope": "固定wire entryのRef/QualifiedSource/Qualification/SupplyInput/SupplyAnalysisを既存schemaのまま扱う。JSON値を変えず数値の私有host表示と失敗返却を定める。source_return全reader/CORE/OS/CONNECTへの実接続を認定しない。",
+      "requirement_refs": [
+        "HELIXBRAIN-L3-032-F01",
+        "HELIXBRAIN-L3-032-F03",
+        "HELIXBRAIN-L3-032-F04",
+        "HELIXBRAIN-L3-032-F05",
+        "HELIXBRAIN-L3-032-F07",
+        "HELIXBRAIN-L3-032-N01",
+        "HELIXBRAIN-L3-032-N02"
+      ],
+      "paired_verification_id": "HELIXBRAIN-L8-032-EXACT-NUMERIC-CODEC",
+      "fixed_source": {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "file_sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
+        "pointers": [
+          "/wire_codec_contract/presence_and_value/numbers",
+          "/wire_codec_contract/schema",
+          "/wire_codec_contract/codec_operations",
+          "/wire_codec_contract/source_byte_and_qualification_order",
+          "/source_return_contract/pure_reference_notation/primitive_operators"
+        ]
+      },
+      "technical_selection": {
+        "language_binding": "Python標準jsonのparse_int/parse_floatとobject_pairs_hook、decimal.Decimalの文字列からの厳密構成を用いる私有設計。第三者の新JSON文法parserを新設しない。",
+        "schema_binding": "Draft 2020-12の既存entry/$defsを変更せず、私有number/integer型判定を接続する。python-jsonschema TypeChecker.redefineのinterfaceを設計の候補接続点とする。版固定・依存lock・SECURITY受入・稼働adapterの成立は別途未成立。",
+        "primary_sources": [
+          {
+            "url": "https://docs.python.org/3.13/library/json.html",
+            "use": "数値hookに元数値字句、object_pairs_hookに原順decoded pair列が渡るAPI。資料の版を実行環境採用版にはしない。"
+          },
+          {
+            "url": "https://docs.python.org/3.13/library/decimal.html",
+            "use": "文字列constructorは桁数をcontext precisionで丸めず、Decimal値はimmutable。数値の算術・単項plus・normalize/create_decimal経由で原値を変えない。"
+          },
+          {
+            "url": "https://github.com/python-jsonschema/jsonschema/tree/v4.25.1/jsonschema",
+            "use": "_typesのTypeCheckerと_keywordsのtype/enum/const比較経路をsource-only確認。調査tagであり採用版ではない。"
+          }
+        ],
+        "alternative": "Nodeの通常JSON.parse/JS Number経由で精度を落とした後に回復したとしない。lossless-json固定sourceの同値重複key抑止とAjvの通常number型認識の追加adapterが必要な点を比較した。CONNECTの技術標準をここで置換しない。"
+      },
+      "legacy_preserve_change": {
+        "basis": "既存wire_codec_contract.legacy_comparisonのLEGACY-ASSET-4F5A1F0739EC1111D91D、98372FEE8A3AC8F9C299、EF18357A994D043719D5とfailure_basis UTW-014/020/021を継ぐ。",
+        "preserve": "未検査入力、closed schema、adapterと意味ownerの分離、型失敗と原出典の保持。欠落/局所失敗を空集合や全体greenへ変えない。",
+        "change": "旧unsafe integerや整数template版、JS Number/JSON.stringify、旧TS/Zod/registry/runtimeを再利用しない。現JSON数値値と原字句を別保持する私有Python表現を具体化する。旧runtimeの稼働・testを証拠にしない。"
+      },
+      "private_types": {
+        "ExactJsonNumber": {
+          "fields": {
+            "value": "finite Decimal（元token又は厳密native intから直接構成した数学的数値）",
+            "token": "単一ASCII JSON number字句のstr"
+          },
+          "invariant": "host型を厳密に識別するimmutable私有node。token全体がJSON number文法に合い、そのexact値とvalueが同値。bool/float/任意host objectをcastせず、wrapperの形に似た普通のRawValue objectと区別する。"
+        },
+        "PairObject": {
+          "fields": {
+            "pairs": "(decoded str key, PrivateJsonValue)の原順反復列"
+          },
+          "invariant": "同名keyの全出現を保持する一時node。duplicate検査前にdictへ潰さない。"
+        },
+        "PrivateJsonValue": {
+          "union": [
+            "JSON null",
+            "厳密bool",
+            "厳密str",
+            "厳密native int（bool除外）",
+            "ExactJsonNumber",
+            "PrivateJsonValue[]",
+            "decoded str→PrivateJsonValueの通常object"
+          ],
+          "invariant": "数値wrapperはJSON payloadにタグobjectとして出さない。Decimal単体/float/tuple/set/任意host objectはこのunion外。decode内部のPairObjectは重複検査後にのみ通常objectへ投影する。"
+        },
+        "NumericTokenOccurrence": {
+          "fields": {
+            "locator": "RFC6901 pointer",
+            "ordinal": "原走査順の非boolean整数",
+            "token": "元数値字句str"
+          },
+          "invariant": "数値値の代用・意味identity・source資格ではない。byte offset/spanは未観測なら創作せず原octetsを保持する。"
+        },
+        "PrivateDecodeResult": {
+          "fields": {
+            "value": "PrivateJsonValue|null",
+            "raw_octets": "原octets",
+            "presence": "既存presence材料",
+            "numeric_tokens": "NumericTokenOccurrence[]",
+            "input_issues": "既存InputIssue[]"
+          },
+          "invariant": "既存decode返却の私有材料への対応。新wire wrapper/schemaを増やさない。input_issuesが空なら成功であり、value=nullは正当なJSON nullにもなる。input_issuesが非空なら失敗でvalue=nullとし、値だけで成功/失敗を判定しない。固定entry schemaがroot nullを拒否する場合はshape失敗であり、JSON構文上のnullとentry受理を混同しない。"
+        },
+        "PrivateEncodeResult": {
+          "fields": {
+            "wire_octets": "UTF-8 octets|null",
+            "input_issues": "既存InputIssue[]"
+          },
+          "invariant": "既存encode返却。失敗時に部分JSONや修復値を成功として返さない。"
+        }
+      },
+      "number_rules": {
+        "token_grammar": "ASCIIの -?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)? に全字句一致。先頭/末尾空白、underscore、Unicode数字、NaN/Infinity、+1、leading zero等を数値factoryの成功にしない。文法parserは元文書の単一値/末尾消費も別確認する。",
+        "factory": "数値hookの元strを文法検査後、Decimal(token)へ直接渡す。有限性とexact構成を確認しimmutable ExactJsonNumber(value,token)へ束ねる。Decimal constructorがNaNを返す場合も例外同様の失敗。float経由・context丸め・量子化をしない。",
+        "allowed_number": "有効ExactJsonNumber又はtypeが厳密にintのnative整数。boolはnumber/integerに含まない。decodeの全数値tokenはwrapper、生成済み整数metadataはnative intのままでよい。payloadから生成元を推測しない。",
+        "integer_predicate": "allowed_numberのうち数学的整数値。ExactJsonNumberはfinite Decimalのtupleの桁と指数から小数部ゼロを確かめ、丸めて整数化しない。native intはそのまま。type判定失敗を0へ変換しない。",
+        "value_equality": "数値同士はtokenを比較せずexact valueで相互比較し、wrapper/native intも同じ数値domainへ対応させる。1/1.0/1e0は同値、-0と0も数値同値、trueと1は非同値。Decimalのdataclass field比較やhost truthinessを意味等値に代用しない。",
+        "representation_failure": "文法不正、非有限/非表現可能、token/value相反、host型外、数値構成や出力の実資源失敗は既存codec失敗へ返す。具体的な桁数/指数/件数上限や性能値をここで捏造しない。1e400をfloat Infinity/nullへして成功にしない。"
+      },
+      "decode_steps": [
+        "既存decodeと同じ原UTF-8 octetsを保持し、strict UTF-8→単一JSON値の順で読む。json.loadsへbytesを直接渡してUTF-16等を自動受理させず、先にstrict UTF-8のstrにする。",
+        "parse_int/parse_floatは同じexact数値factory、parse_constantは非JSON定数拒否、object_pairs_hookはPairObjectを構成する。strict=Trueと末尾消費を保持し、default float/int変換を前置しない。",
+        "PairObject/arrayを原順に辿りdecoded key重複を全出現として保持する。escape差や値同値でも重複を拒否し、問題のdecoded key pointerへInputIssueを対応させる。検査前のlast-wins/dedupは不可。",
+        "重複のないtreeだけを通常object/list＋ExactJsonNumberへ写し、固定entry/schemaにshape照合する。number/integer判定は本profileへ接続し、既存required/additionalProperties/RawValue任意keyの意味を保持する。",
+        "原key/null/配列順/同値反復/文字列とnumber値を保持し、numeric_tokensと既存presenceは別材料として返す。shape成功から意味充足/根拠/資格/採否を生成しない。source.content_bytesを検証する後続のstrict JSON読取りも丸めを許さず、外側のdecodeでsource資格を代行しない。"
+      ],
+      "encode_steps": [
+        "未検査PrivateJsonValueの厳密host型とnumber不変条件を原所在で確認する。普通のobjectがtoken/valueというkeyを持つだけでwrapperとして扱わない。固定entry schemaのshapeはdecodeと同じ判定を用いる。",
+        "有効ExactJsonNumberは元tokenをquoteせずJSON numberとして出す。厳密native intは丸めない10進数値字句として出す。float/Decimal単体/任意host objectをstr/reprで通さず、非JSON値をnull/default/省略へ修復しない。",
+        "null/bool/string/object key/arrayの既存JSON値を保持するstrict writerと結び、配列順/反復・RawValue keyを変えない。文字列のescape表記やobject順/空白の一致を意味identity/canonical digestへ追加しない。content_bytes内の元文字列を再formatしない。",
+        "出力が単一UTF-8 JSON値として表現できない場合はwire_octets=nullとInputIssue。成功時は再decodeした値がJSON型付き値同値で、key集合/null/配列順/反復/数値/文字列/presenceを保持することが対検証の対象。実decode/encodeはまだ実行していない。"
+      ],
+      "private_issue_writer": {
+        "type": "既存InputIssue {locator,reason,source_ref}。新public code/enum/authorityを追加しない。",
+        "locator": "数値carrier/shapeの失敗はその実所在pointer。decoded key重複はそのdecoded key pointer。pointerへ結べない文法/UTF-8/資源失敗はroot空pointer。~と/は既存RFC6901則でescape。",
+        "source_ref": null,
+        "reason_literals": {
+          "invalid_number_token": "JSON数値字句が不正。",
+          "number_representation_failed": "JSON数値を丸めず表現できない。",
+          "number_token_value_conflict": "JSON数値carrierの字句と値が相反する。",
+          "non_json_host_value": "JSON carrier外のhost値。",
+          "duplicate_decoded_key": "JSON objectに同じdecoded keyが重複する。",
+          "boolean_integer_mismatch": "整数を要するmemberへbooleanが供給されている。"
+        },
+        "reason_scope": "codecの技術失敗説明の私有writer文字列であり、新しい業務Finding分類ではない。既存UTF-8/文法/shape失敗の責務は保持し、原値やsecretを理由文字列へ埋め込まない。原octets/全pair等は許可を増やさない診断原資料へ別保持する。",
+        "aggregation": "一つの失敗原因を原所在へ保持し、失敗treeはvalue/wire_octetsをnullへ戻す。独立した複数原因の全返却順は既存InputIssue順の具体化として未閉包とし、以下の有限例では一原因を固定する。",
+        "source_ref_scope": "source_ref=nullは、外側wire decodeとその未資格host値のencodeに対する本writerの責務。content_bytes内側のstrict JSON読取りへ数値の精度保持は適用するが、その入力が既知QualifiedSource.refを持つ場合の既存InputIssue source_ref帰属・資格判定・失敗の返却責務をこのnull値で上書きしない。内側readerへの具体adapterはconsumer_adapter_boundaryの未接続範囲。"
+      },
+      "consumer_adapter_boundary": {
+        "required_mapping": "json_kind/type判定、json_equal/所属の数値等値、原snapshotのcopyは本unionを数値として扱う値保存adapterへ対応する。copyはimmutable nodeを保持するかvalue/token双方を不変条件ごと保ち、dict化/float化しない。",
+        "not_established": "source_return読取器への実adapter接続、numeric canonical-sort用の字句則とsorted_values/unique_sorted/sort_by_jsonの具体writer、未接続new_defsのminimum比較は未閉包。既存local readerのint/float/json.dumpsを正本の数値字句則として採用しない。",
+        "no_new_canonical_scheme": "wireの元token保持をcanonical-sort keyや意味digestへ転用しない。数値同値と原字句の違いを保ち、sortの未決を新規正規化方式で推測補完しない。",
+        "wire_schema_scope": "現wire5entryのnumberはRawValue、integerはSupplyAnalysis.side_effect_count。source_return局所new_defsはここへ接続されておらず、source_index/record_indexのminimumを本profileの成立として追加しない。enum/constはTypeCheckerと別経路で、現wireはstring enumのみ。"
+      },
+      "remaining": [
+        "profileの独立reviewと有限期待固定、具体adapter/strict writerの実装・検証。",
+        "library/runtime版固定、全Unicode/資源挙動・失敗locator/全複数原因順の具体化。実行/依存導入は本設計から許可しない。",
+        "source_return数値adapter/canonical-sort lawとnew_defs接続、CORE/OS両端互換/実資格/receipt。",
+        "BRAIN032旧21例の歴史採択根拠、全92親430義務・実装Ready・実物受入の未成立を解消したとはしない。"
+      ],
+      "authority_effect": "none",
+      "operation_effect": "none"
+    }
   },
   "source_return_contract": {
     "id": "HELIXBRAIN-L5-032-SOURCE-RETURN",
