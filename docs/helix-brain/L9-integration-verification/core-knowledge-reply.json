@@ -4551,5 +4551,430 @@
     },
     "synthetic_only": true,
     "formal_schema_or_actual_execution": false
+  },
+  "f02_responsibility_port_verification": {
+    "id": "HELIXBRAIN-L9-019-F02-RESPONSIBILITY-PORT",
+    "l4_ref": "HELIXBRAIN-L4-019-F02-RESPONSIBILITY-PORT",
+    "requirement_ref": "HELIXBRAIN-L3-019-F02",
+    "system_oracle_ref": "HELIXBRAIN-L10-019-F02",
+    "record_kind": "static_source_derived_connection_conditions",
+    "candidate_l4_target_pointers": {
+      "path": "docs/helix-brain/L4-basic-design/core-knowledge-reply.json",
+      "pointers": [
+        "/f02_responsibility_port"
+      ]
+    },
+    "purpose": "原state/返却内容を保持する019-F02と、定義/案件値/受取義務を分ける030/COREの既存責務の接続条件。新しいowner判定器や暗黙adapterを定義しない。",
+    "verification_boundary": {
+      "condition_scope": "基本portのsource役割/同query・field関係/局所返却に関する静的対条件。schema/codec/全whole返却oracleや実行証拠ではない。",
+      "preserved_baseline": "既存5義務/75concrete_casesと全expected_material、native L5/L8の全旧case/期待/歴史pinはこの追補で変更しない。",
+      "execution_state": "not_executed",
+      "count_boundary": "以下の条件数や既存case数を全入力域・全義務完了のgateにしない。",
+      "authority_boundary": "新しい要求/認可/権限/owner資格/実provider/recipient/ACK/人間承認は追加しない。実資格/受入/運転成立は未認定。",
+      "rules_without_dedicated_conditions": [
+        "13reply+15templateの全28項目を030 original_required_fields/provided_required_fieldsへcastしない規則は共通保持条件にあるが、C01〜C08に専用入力/期待の行はない。",
+        "required_input.meaning等の文字列をparse/分割して一覧・Definition・案件値を補完しない規則は、専用入力/期待の行がない。",
+        "CORE AxisFact.value/FieldCheckMaterial.value_stateと030 ProductValue.state/value/reasonの同名state castを拒否する規則は、専用入力/期待の行がない。",
+        "外部cached自己申告結果を正規producerの同call結果として採用しない規則は、専用入力/期待の行がない。",
+        "全8条件自体もnot_executedの静的接続条件である。以上の未収載分を網羅済み/実行済みへしない。具体adapterのL5/L8と対反例で別途閉じる。"
+      ]
+    },
+    "source_basis": [
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+        "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/37",
+            "canonical_sha256": "34444a42fb237e603e1721d2d49ef1151a6d139731a6bea0666dd7e898218ed3"
+          }
+        ],
+        "role": "019-F02の全返却内容・原state/不足とBRAIN/CORE責務。"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+        "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+        "selected_objects": [
+          {
+            "pointer": "/cases/37",
+            "canonical_sha256": "ca97ff5e5789230e58b8a6a6a21a37ea2a1fba5655b11b61214d165f42ec83f7"
+          }
+        ],
+        "role": "各項目欠落/別版/未評価、元source/版/state、不足ownerの原対条件。"
+      },
+      {
+        "path": "docs/helix-brain/L5-detail-design/core-knowledge-reply.json",
+        "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+        "sha256": "94d7fe73d712e347bbb7e475139c3b98f8610d56ae42ef0362472d767283777c",
+        "selected_objects": [
+          {
+            "pointer": "/type_system/definitions/RawF02",
+            "canonical_sha256": "a5bcf7a3d8add9d82b87fbd25998b4af1b56b0cd1ab992356130fdd6c565421d"
+          },
+          {
+            "pointer": "/type_system/definitions/F02Return",
+            "canonical_sha256": "b6099518869622f71b01fb178865929372d6d8ef8a9fc2a8eafa5677bdea9b54"
+          },
+          {
+            "pointer": "/functions/1",
+            "canonical_sha256": "520f58c94dd017db4895079083a08f7aa425b71707fafbd2520e0418700b6cda"
+          },
+          {
+            "pointer": "/calculation_programs/F02",
+            "canonical_sha256": "9d5c5afcb47f44361f0bb05a3d6d68a9881307664cb4102c19d070829f85e9c0"
+          },
+          {
+            "pointer": "/pipeline",
+            "canonical_sha256": "4138fbfd8b7b33b3cd88aecb590a6b253939aa219c36a61c31a73980613055dc"
+          }
+        ],
+        "role": "変更しないnative F02型・原stateを含む全6rootと暗黙合成しない既存境界。"
+      },
+      {
+        "path": "docs/helix-brain/L4-basic-design/knowledge-query-receipt.json",
+        "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+        "sha256": "41231e9359d99f30774116eb2b68a21991355ef53db967ec67bf250e8b4f22e9",
+        "selected_objects": [
+          {
+            "pointer": "/contracts/0",
+            "canonical_sha256": "312a069873953ee707c5885777e6e2d67f824aed251eacd259ef807f0c245f83"
+          },
+          {
+            "pointer": "/contracts/1",
+            "canonical_sha256": "dedb2bbb46630313a3181af2193a2da4dfab7727bf141f0e244218c30ac31c7e"
+          },
+          {
+            "pointer": "/contracts/2",
+            "canonical_sha256": "9c616595b117041afb507eed8d034443b812b40aa7fe3b4ba6566e093363e92a"
+          }
+        ],
+        "role": "030-F01 query相関/依存区分、F02定義と案件値分離、F03同元field/義務の双方向trace。"
+      },
+      {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-query-receipt.json",
+        "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+        "sha256": "1381d1ea0e05599a335dc25fc6dcc23879c61cd2bf924986cd71b090149cbe49",
+        "selected_objects": [
+          {
+            "pointer": "/types/F01Input",
+            "canonical_sha256": "4fc8e72cab9e05272d509258f811859acac9e4c4e430fb856a435fd39fe16b81"
+          },
+          {
+            "pointer": "/types/F02Input",
+            "canonical_sha256": "c39495f0f179b53f3fd31769735b49ee3a72c3e2d9b086b82ba37b886e88ffe0"
+          },
+          {
+            "pointer": "/types/F03Input",
+            "canonical_sha256": "95b86f5b81bbf5339923ad045fa2570169e0de1e00190875726d1dbfdacc9074"
+          },
+          {
+            "pointer": "/types/Definition",
+            "canonical_sha256": "22e3568f6319a559cf8248bccbb26cfea756388c152bbb473e2969e40de93e6b"
+          },
+          {
+            "pointer": "/types/ProductValue",
+            "canonical_sha256": "9ec85f8e0a874052dfe85286d1a2231a3d6485dde9d933ea3949069c0519ea65"
+          },
+          {
+            "pointer": "/types/Unfulfilled",
+            "canonical_sha256": "4d9cfd4bae7583abcc56b0a6fe60eb21e394f865b07a3cea7ae1aef08c4fc040"
+          },
+          {
+            "pointer": "/functions/0",
+            "canonical_sha256": "4ee427656c6e035aa920fd60f2cc8b8447a050cb165721b5400b13ab97fd561a"
+          },
+          {
+            "pointer": "/functions/1",
+            "canonical_sha256": "820383ebb1e4ddae8b2c14892c1e93303a3e4caeb709587b50567f46b10a7054"
+          },
+          {
+            "pointer": "/functions/2",
+            "canonical_sha256": "a011b566b15130ba1e3c5307c040ca3bfda468e659f88d3f61a81dff00db9fdd"
+          },
+          {
+            "pointer": "/reference_program/definitions/field_core",
+            "canonical_sha256": "e3f97909e280fd613110fc84a216d3cde0102aa3a2125f50f1f7cdf6d14ede96"
+          },
+          {
+            "pointer": "/consumer_connections",
+            "canonical_sha256": "b298d2bec1f8b7a8d096e441f4dd408edf15ea86c13f5920f76b114b02343c84"
+          }
+        ],
+        "role": "既存calleeの原引数/返却/責務。原caller資料の投影を未定義のまま成功へ補完しない。"
+      },
+      {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+        "sha256": "f988e414079fc4bece7e17366969aa4d181c476b287f9279dd53cb5189e2181a",
+        "selected_objects": [
+          {
+            "pointer": "/type_contract/types/ApplicationBinding",
+            "canonical_sha256": "b8504acd7ab070731e05fb1e9553d44f101269d7cb267eeb49feadfb93ff8db2"
+          },
+          {
+            "pointer": "/type_contract/types/Ref",
+            "canonical_sha256": "efed2e1170957f3e7d292636c4f965280873d28c120b51aa101f517472236b4b"
+          },
+          {
+            "pointer": "/type_contract/types/FieldInput",
+            "canonical_sha256": "2434d06a74a6df8e04bc4eb2d614d8d9a2aa3419363cd0a5fefb634f4c2c82b2"
+          },
+          {
+            "pointer": "/type_contract/types/AxisFact",
+            "canonical_sha256": "c1cf9f0f8f2a883dbea17a815cdc181e9e66d7d7c73a9a02febbfcec4577cac3"
+          },
+          {
+            "pointer": "/type_contract/types/FieldCheckMaterial",
+            "canonical_sha256": "e2b0208919b31b6a113dd13c2f58fd078156706393eb0b7c675b622edc5ff4a1"
+          },
+          {
+            "pointer": "/functions/5",
+            "canonical_sha256": "e4419e5d6917e4370d7d94b3a9de29f25948b350abdf52922f3fa6ccf294bdae"
+          },
+          {
+            "pointer": "/contracts/6",
+            "canonical_sha256": "a16b963e5edcb12282fe82915ffdff29cefc469dec2f4a54f23e368da9b34401"
+          }
+        ],
+        "role": "CORE009原要求/製品scope/field定義ref/案件値fact ref/元値と返却材料。"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+        "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/27",
+            "canonical_sha256": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54"
+          }
+        ],
+        "role": "CORE009定義欠落/値未決・版scope・元根拠/返却先を分離する承認意味。"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+        "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+        "selected_objects": [
+          {
+            "pointer": "/cases/27",
+            "canonical_sha256": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d"
+          }
+        ],
+        "role": "定義欠落と値未決の混同、分類不明の補完、他template成功による相殺を識別する。"
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+        "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/19",
+            "canonical_sha256": "5937cf346701f6eb5bfb5d4b5e6f85f8e7566d29503fe7224d37a26ca51f25d2"
+          },
+          {
+            "pointer": "/requirements/20",
+            "canonical_sha256": "26936514bca4321eab24bd8561c9f2d37a6e823365641f4d40ec46fb0cda5db9"
+          },
+          {
+            "pointer": "/requirements/21",
+            "canonical_sha256": "99092679c6fead769a711b6e96af479cf2d07649235a885e8ecfdf78b9c99d2b"
+          }
+        ],
+        "role": "030のquery/定義値分離/双方向trace原義務と原対条件。"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+        "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+        "selected_objects": [
+          {
+            "pointer": "/cases/19",
+            "canonical_sha256": "c401aaa01903cae6039cd0fd915640f9a2bd581d30a914225c5bfb206eb82ce9"
+          },
+          {
+            "pointer": "/cases/20",
+            "canonical_sha256": "bbfd828c27e52d0743e820705e2bf7ae3321de2ca44acab8e9991fbd6d436dbd"
+          },
+          {
+            "pointer": "/cases/21",
+            "canonical_sha256": "0b76fac2aca0d1e6abca24f7ce8dc8c225d70504c31536d1ce3c2635ae380f38"
+          }
+        ],
+        "role": "030のquery/定義値分離/双方向trace原義務と原対条件。"
+      }
+    ],
+    "operand_roles": [
+      {
+        "role": "元queryと同query対応",
+        "source_members": [
+          "B019 RawF01.original_query.identity/revision/scope/problem/required_input/constraint/knowledge_ref",
+          "030-F01の原connection/query相関/scope/receiver契約",
+          "030-F03のknowledge/field/義務の原forward/reverse対応"
+        ],
+        "boundary": "同名又はnative019比較結果だけで関係を作らない。F01全関数成功を新gateにせず、適用される既存query/field責務へ必要な元引数を明示する。"
+      },
+      {
+        "role": "選択knowledgeのrequired-fieldsと独立field関係",
+        "source_members": [
+          "030 F02Input.original_required_fields/provided_required_fields",
+          "030 F02Input.original_definitions/provided_definitions",
+          "019 original/provided_replyの13項目とoriginal/provided_template_contractの15項目/各knowledge_ref/meaning/state又はvalue_state"
+        ],
+        "boundary": "各原資料と明示されたfield関係を保持する。13+15項目を案件required-field集合へ自動変換せず、state/value_stateから製品値を生成しない。"
+      },
+      {
+        "role": "CORE案件input値の元根拠",
+        "source_members": [
+          "CORE009 ApplicationBinding.requirement_ref/product_scope/template_ref/knowledge_ref",
+          "CORE009 FieldInput.ref/template_ref/binding/definition_refs/value_fact_refs/source_ref",
+          "CORE009 AxisFact.ref/binding/axis/value/source_ref/reason",
+          "030 ProductValue.state/value/reason"
+        ],
+        "boundary": "value factとProductValueの具体投影は元資料で確認する対象。FieldInputのRef列/AxisFact値から030 stateやowner資格を推定しない。未供給は接続未成立で原材料を保持する。"
+      }
+    ],
+    "common_preservation_rules": [
+      "native F02の原RawF02全値と全6root（reply_results、template_results、knowledge_state、all_pattern_adoption_claim、effects、unaffected_Q）を変更しない。原knowledge_stateは既存返却であり新しい欠落として扱わない。",
+      "019の全13reply項目と15template項目を030の案件required-field一覧へ自動castしない。知識項目の欠落、案件field定義、製品値の不足は原資料の役割と独立field関係で区別する。",
+      "030-F01/F02/F03の既存責務/原引数と全返却を参照し、新しいowner分類算法を複製しない。適用されるcalleeの元資料が供給され、同query/field関係を確認できる範囲だけを接続対象にする。未選択sourceや適用候補操作でない専用入力を新たな常時gateにしない。",
+      "query/field関係又は投影根拠が未供給のとき、空map/null/known stateや架空Refを作って030を呼ばない。原資料/presenceと接続未成立を返す。接続未成立と、既存030が元引数から返す定義missing/製品値unknownを混同しない。",
+      "owner返却候補は原責務への論理素材。実producer/owner資格、recipient、配送、ACK、認可、採用、義務消込、OS記録、製品選択は生成しない。"
+    ],
+    "conditions": [
+      {
+        "id": "B019-F02-RESP-C01",
+        "title": "同query・選択fieldの独立対応",
+        "source_refs": [
+          "HELIXBRAIN-L3-019-F02",
+          "HELIXBRAIN-L10-019-F02",
+          "HELIXBRAIN-L4-030-F01",
+          "HELIXBRAIN-L4-030-F03"
+        ],
+        "input_condition": "元query/版/scope、選択knowledge/required-field一覧、field定義とCORE009 FieldInput/原値factの関係を独立資料として明示する。",
+        "expected_observation": "query相関とfield→義務→同元fieldの対応は既存030-F01/F03の責務へ結び、同じ原queryと宣言されたfieldだけを030-F02の定義/案件値比較へ接続する。native019比較の成功だけで同query/独立原関係を生成しない。"
+      },
+      {
+        "id": "B019-F02-RESP-C02",
+        "title": "knowledge一覧/field定義の欠落",
+        "source_refs": [
+          "HELIXBRAIN-L3-019-F02",
+          "HELIXBRAIN-L10-019-F02",
+          "HELIXBRAIN-L4-030-F02"
+        ],
+        "input_condition": "同query/field対応と投影根拠が供給され、既存030の入力上で選択required-field一覧又は原/提供field定義が欠落している。",
+        "expected_observation": "既存030-F02のrequired_list_state/definition_state、元field identityとBRAIN側未充足素材を保持する。定義欠落を製品値未設定へ読み替えない。019の当該item比較/state/原knowledge_refも保持する。"
+      },
+      {
+        "id": "B019-F02-RESP-C03",
+        "title": "定義対応済み・案件値unknown/未設定",
+        "source_refs": [
+          "HELIXBRAIN-L4-030-F02",
+          "HARNESS-L3-009-F05",
+          "HARNESS-L10-009-F05"
+        ],
+        "input_condition": "同query/field対応、required-field一覧/定義が供給され、案件のProductValue原state/value/reasonがunknown又は未設定として独立に供給されている。",
+        "expected_observation": "既存030-F02の定義結果と案件値state/未決理由、CORE側未充足素材を別に保持する。知識受領候補と案件義務未充足は併存し、値を補完しない。CORE009のdefinition_refsとvalue_fact_refsを一方へ畳まない。"
+      },
+      {
+        "id": "B019-F02-RESP-C04",
+        "title": "原関係又は投影根拠の未供給",
+        "source_refs": [
+          "HELIXBRAIN-L10-019-F02",
+          "HELIXBRAIN-L4-030-F01",
+          "HELIXBRAIN-L4-030-F03"
+        ],
+        "input_condition": "元query対応、選択field関係又は案件値投影根拠のいずれかが未供給/未観測である。",
+        "expected_observation": "該当接続は未成立、元資料/欠落presenceと不足箇所を保持する。未観測製品値を空product_values/null/値missingへ補完せず、必要な原引数がない030呼出しを成立扱いしない。native019返却は消さない。"
+      },
+      {
+        "id": "B019-F02-RESP-C05",
+        "title": "別query・別版・別scope",
+        "source_refs": [
+          "HELIXBRAIN-L4-030-F01",
+          "HELIXBRAIN-L4-030-F03",
+          "HARNESS-L3-009-F05"
+        ],
+        "input_condition": "供給された原関係が別query correlation、knowledge/要求revision、製品scope又はfield義務対応を指している。",
+        "expected_observation": "原左右値/元Ref/原sourceと該当不一致を保持し、その関係を同query対応済みとしない。別対象の値/定義で不足を補完せず、独立に結合できる別fieldの結果は保持する。"
+      },
+      {
+        "id": "B019-F02-RESP-C06",
+        "title": "同名fieldだけでは元対応を生成しない",
+        "source_refs": [
+          "HELIXBRAIN-L10-019-F02",
+          "HELIXBRAIN-L4-030-F03"
+        ],
+        "input_condition": "019 required_input等の表示member名、030 field key、CORE009 axis名の文字列だけが同じで、元source/field/ref関係は未供給である。",
+        "expected_observation": "名前一致を意味同一性/所有資格/対応根拠へ昇格せず接続未成立を保持する。019 knowledge_refの3文字列をCORE009 Refへcastせず、030 Definition.knowledgeへ構造体をstring化しない。"
+      },
+      {
+        "id": "B019-F02-RESP-C07",
+        "title": "既知相反と独立した不足の併存",
+        "source_refs": [
+          "HELIXBRAIN-L10-019-F02",
+          "HELIXBRAIN-L4-030-F02",
+          "HELIXBRAIN-L4-030-F03",
+          "HARNESS-L10-009-F05"
+        ],
+        "input_condition": "接続対象の一fieldに既知の原定義/関係相反があり、別fieldには独立した定義欠落又は定義対応済み案件値unknownがある。",
+        "expected_observation": "既存030の当該fieldごとの原因/返却候補を保持し、全体一括のmissing/unknownで既知相反を消さない。他fieldの定義不足/値未決も継続して保持する。同じ定義不足を案件値不足へ二重分類せず、別原因を他成功で相殺しない。"
+      },
+      {
+        "id": "B019-F02-RESP-C08",
+        "title": "局所未成立・兄弟継続とnative原値保持",
+        "source_refs": [
+          "HELIXBRAIN-L10-019-F02",
+          "HELIXBRAIN-L4-030-F01",
+          "HELIXBRAIN-L4-030-F02",
+          "HELIXBRAIN-L4-030-F03",
+          "HARNESS-L10-009-F05"
+        ],
+        "input_condition": "一部fieldのsource/関係のみ未供給又は不一致、他fieldは独立に対応している。元native019入力にはstate/未評価/未採用と当該13+15内容が供給されている。",
+        "expected_observation": "該当接続だけ未成立として元入力/trace/不足を保持し、他fieldの既存比較/返却素材を止めない。native019全6rootと原state/原素材を保持し、提供state比較やadopted scope解決を追加の成功gateにしない。"
+      }
+    ],
+    "unclosed_adapter_boundary": [
+      "具体producer/native bodypath、元資料のpointer/occurrenceとquery/field/Refの投影、state/value adapter、qualified sourceへの接続は本基本port条件だけでは閉じていない。未供給をデフォルトで埋めない。",
+      "030-F01/F02/F03を同callへ供給する閉型/明示引数・全返却writerと、CORE原snapshotから各投影を作る具体詳細は後続L5/L8の対象。現在の019 native期待を新port全返却の証明へ流用しない。",
+      "実source/owner資格・正式wire codec・実query/receipt・製品適用/OS保存/全92親430義務/L6L7/実装/PO受入は成立未認定。",
+      "B019-F02の製品input/値→COREという責務返却と、CORE009-F05の製品要求値未決→HARNESS008という既存候補の関係を後続L5/L8で書き分ける。CORE返却を最終Backflow先の変更や008の代替にせず、ticket発行はOSに保持する。"
+    ],
+    "legacy_and_failure_basis": {
+      "legacy_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+        "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+        "lines": [
+          19,
+          60
+        ],
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D"
+      },
+      "failure_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "revision": "875bd4b8e30550a09c12196e2bd29e720d22b1cb",
+        "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+        "line_ids": [
+          {
+            "line": 80,
+            "id": "UTW-014"
+          },
+          {
+            "line": 86,
+            "id": "UTW-020"
+          },
+          {
+            "line": 87,
+            "id": "UTW-021"
+          }
+        ]
+      },
+      "preserve": "汎用template/knowledge定義と製品instance/義務の分離、原版/sourceとinput/negative条件、proposal/receiptと適用/完了の分離を保つ。欠損を空集合へ縮退させず自己申告を完了根拠にしない。 UTW-020の巨大aggregate集中によるpartial failure診断単位の粗さを踏まえ、局所の原因/原資料を保持する。",
+      "change": "旧registry/planner/pair binderを移植せず、現019の返却不足と既存030の定義/値/trace責務を原資料へ結ぶ基本portと対条件だけを追補する。",
+      "reason": "承認済019-F02の不足owner返却と030-F01/F02/F03の既存意味を保持し、知識定義と製品値を同じrequired_input文字列から分類する誤りを避ける。authority/実操作を追加しない。",
+      "reuse": "旧資産は読取参照と意味再導出のみ。現030/CORE型/規則は元署名/意味を参照し、同名castやrouting複製をしない。"
+    }
   }
 }
