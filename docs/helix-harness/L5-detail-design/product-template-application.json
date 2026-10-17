@@ -1752,7 +1752,19 @@
       ],
       "oracle_ref": "HARNESS-L8-009-NORMAL-compare_requirement_gaps",
       "logical_producer_symbol": "compare_requirement_gaps",
-      "detail_contract_ref": "/f05_detail_contract"
+      "detail_contract_ref": "/f05_detail_contract",
+      "oracle_binding_boundary": {
+        "oracle_ref_scope": "oracle_refはlogical_producer_symbol=compare_requirement_gapsの旧logical Context/Comparisonに対する歴史的oracle参照。現在のcompare_requirement_gaps_detail(F05DetailedRequest)->F05DetailedReturnの全返却oracleとはしない。",
+        "legacy_l8_pointer": "/normal_function_oracles/5",
+        "legacy_context_type": "CompareRequirementGapsContext",
+        "legacy_output_type": "Comparison",
+        "detail_full_oracle_status": "詳細署名の正常owner評価を含む全返却/全分岐oracleは未形成。旧L8 expected_output又は旧Contextを新署名の期待/入力へ無断castしない。",
+        "limited_detail_oracle": {
+          "id": "HARNESS-L8-009-F05-EXPLICIT-SKIP-BINDING-ABSENT-FULL-RETURN",
+          "l8_pointer": "/f05_explicit_skip_binding_absent_full_return_oracle",
+          "scope": "case-authored二依存明示skipと親binding未供給を前提にした限定5member全返却の未実行候補。正常owner evaluated又は全F05全返却のoracle成立を意味しない。"
+        }
+      }
     },
     {
       "id": "HARNESS-L5-009-compare_selected_knowledge",
@@ -1914,7 +1926,14 @@
       ],
       "oracle_ref": "HARNESS-L8-009-NORMAL-check_application_claims",
       "logical_producer_symbol": "check_application_claims",
-      "detail_contract_ref": "/f05_detail_contract"
+      "detail_contract_ref": "/f05_detail_contract",
+      "oracle_binding_boundary": {
+        "oracle_ref_scope": "oracle_refはlogical_producer_symbol=check_application_claimsの旧logical Context/Comparisonに対する歴史的oracle参照。現在のcheck_application_claims_detail(CheckApplicationClaimsDetailedContext)->CoreComparisonの詳細引数/全返却oracleとはしない。",
+        "legacy_l8_pointer": "/normal_function_oracles/9",
+        "legacy_context_type": "CheckApplicationClaimsContext",
+        "legacy_output_type": "Comparison",
+        "detail_full_oracle_status": "同F05DetailedReturn全値を追加引数とする詳細署名の全返却oracleは未形成。旧L8 expected_outputと旧Contextは元logical producerの資料として保持し、新署名oracle又は同native引数取得の証拠へcastしない。"
+      }
     },
     {
       "id": "HARNESS-L5-009-build_application_analysis",
@@ -1937,7 +1956,7 @@
       "algorithm": [
         "元BuildApplicationAnalysisContext全値はnative_contextに保持。同実F05DetailedReturnをf05_detail引数へ受け、私有全材料を外側CoreApplicationDetailReturnへ無変換保持する。公開Analysisだけで全F05返却としない。",
         "各関数producer/bindingを確認して同snapshot/subject/axisの比較材料を統合。別scope結果を再利用せずInputIssue/関連未評価を保持。",
-        "context.source_result_reference_projectionがpresentかつ非nullなら同じProjectionResultをApplicationAnalysis.source_result_reference_projectionへcopyする。Absentなら既存shapeを維持し、明示nullなら明示nullを保持する。compare結果やsource_refsから再構成しない。",
+        "context.native_context.source_result_reference_projectionがpresentかつ非nullなら同じProjectionResultをApplicationAnalysis.source_result_reference_projectionへcopyする。Absentなら既存shapeを維持し、明示nullなら明示nullを保持する。compare結果やsource_refsから再構成しない。",
         "原候補/義務/不足/影響と無関係有効scopeを元refs/版/理由/ownerへ遡れる材料として返す。全体greenで不足を縮退しない。",
         "決定的整列、immutable入力不変、副作用0。clock/env/fs/network/DB/Git/GitHub/write/割当/lease/実行/認可/OS登録/受入なし。"
       ],
@@ -1957,7 +1976,14 @@
         "context.f05_detail (同callerの実全返却。Comparisonだけから再構成しない)"
       ],
       "logical_producer_symbol": "build_application_analysis",
-      "detail_contract_ref": "/f05_detail_contract"
+      "detail_contract_ref": "/f05_detail_contract",
+      "oracle_binding_boundary": {
+        "oracle_ref_scope": "oracle_refはlogical_producer_symbol=build_application_analysisの旧logical Context/ApplicationAnalysisに対する歴史的oracle参照。現在のbuild_application_analysis_from_detail(BuildApplicationAnalysisDetailedContext)->CoreApplicationAnalysisの詳細引数/全返却oracleとはしない。",
+        "legacy_l8_pointer": "/normal_function_oracles/10",
+        "legacy_context_type": "BuildApplicationAnalysisContext",
+        "legacy_output_type": "ApplicationAnalysis",
+        "detail_full_oracle_status": "同F05DetailedReturn全値を追加引数とする詳細署名の全返却oracleは未形成。旧L8 expected_outputと旧Contextは元logical producerの資料として保持し、新署名oracle又は同native引数取得の証拠へcastしない。"
+      }
     },
     {
       "id": "HARNESS-L5-009-project_cross_design_candidate_refs",

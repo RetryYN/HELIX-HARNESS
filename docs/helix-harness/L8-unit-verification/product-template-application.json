@@ -95224,7 +95224,7 @@
             "profile_candidate_binding": {
                 "revision": "current-unpinned-worktree-candidate",
                 "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-                "file_sha256": "948f1c60d0795d4ab923ab2a74d36d0b8595c87a2b134e8d7acfa2e9e9f67f96",
+                "file_sha256": "aae1aca73d27463328ebd1df641737395a691fe3940fdfcb76d7e482338aa75a",
                 "pointer": "/wire_codec_contract/numeric_encode_profile"
             },
             "upstream_decision": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
@@ -106664,10 +106664,11 @@
     "expected_source_rule": "全73のL9 raw_inputとexpected projectionは独立source oracle。L5規則から出力を導出しL9値は全field比較専用。別のcomposition exampleはL8に独立合成source portのraw wholeとfull builder expectedを固定する。",
     "consumer_binding": {
       "consumer_function_ref": "HARNESS-L5-009-build_application_analysis",
-      "consumer_input_type": "BuildApplicationAnalysisContext",
-      "argument_path": "/source_result_reference_projection",
+      "consumer_input_type": "BuildApplicationAnalysisDetailedContext",
+      "argument_path": "/native_context/source_result_reference_projection",
       "producer_return": "HARNESS-L5-009-project_source_result_references",
-      "mapping_ja": "project_source_result_referencesのProjectionResult全体を同一snapshotのbuild_application_analysis context引数へ渡す。row集計やqualification付加をしない。"
+      "mapping_ja": "project_source_result_referencesのProjectionResult全体を同一snapshotのbuild_application_analysis_from_detail(BuildApplicationAnalysisDetailedContext)のnative_context.source_result_reference_projectionへ無変換で渡す。row集計やqualification付加をしない。",
+      "logical_producer_history_ja": "旧build_application_analysis(BuildApplicationAnalysisContext)と/source_result_reference_projectionの署名は、logical_producer_symbol=build_application_analysisに対する歴史的参照であり、現在のfn10詳細consumer signatureではない."
     },
     "pipeline_binding": {
       "upstream_producer_ref": "HARNESS-L5-009-compare_applicability",
@@ -142232,7 +142233,7 @@
     "candidate_l5_content_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "source_main": "1b50e0e105f0d51b902b26ba0e48d66381705360",
-      "candidate_file_bytes_sha256": "948f1c60d0795d4ab923ab2a74d36d0b8595c87a2b134e8d7acfa2e9e9f67f96",
+      "candidate_file_bytes_sha256": "aae1aca73d27463328ebd1df641737395a691fe3940fdfcb76d7e482338aa75a",
       "revision_semantics": "candidate_file_bytes_sha256はこのL8と同じ保存状態のL5 file bytesを固定する。Git revision/承認を示さない。"
     },
     "producer_condition_presence_probes": [
@@ -143317,7 +143318,7 @@
         "role": "L5詳細設計候補の型・writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "befb22e6f355ad0c65596443fe256c973d66e5c75c02fa9e747ee5e13c2ff8d3",
+        "file_sha256": "aae1aca73d27463328ebd1df641737395a691fe3940fdfcb76d7e482338aa75a",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -143333,7 +143334,7 @@
         "role": "既存入力carrierのwire member",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "befb22e6f355ad0c65596443fe256c973d66e5c75c02fa9e747ee5e13c2ff8d3",
+        "file_sha256": "aae1aca73d27463328ebd1df641737395a691fe3940fdfcb76d7e482338aa75a",
         "pointers": [
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/sources",
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/qualifications",
@@ -143432,7 +143433,7 @@
         "role": "L5 native ValidationDetailedReturn型・全leaf writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "befb22e6f355ad0c65596443fe256c973d66e5c75c02fa9e747ee5e13c2ff8d3",
+        "file_sha256": "aae1aca73d27463328ebd1df641737395a691fe3940fdfcb76d7e482338aa75a",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -143455,7 +143456,7 @@
         ]
       },
       {
-        "role": "tracked L9 source literal catalog",
+        "role": "追跡対象L9のsource literal catalog",
         "kind": "tracked_source_bytes_and_pointer_binding",
         "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
         "git_revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
@@ -145285,10 +145286,10 @@
         ]
       },
       {
-        "role": "L5 source checks・cause diagnostic・usability aggregation",
+        "role": "L5のsource照合・原因診断・利用可能性の集約",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "befb22e6f355ad0c65596443fe256c973d66e5c75c02fa9e747ee5e13c2ff8d3",
+        "file_sha256": "aae1aca73d27463328ebd1df641737395a691fe3940fdfcb76d7e482338aa75a",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/check_storage_plan",
           "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table",
@@ -145304,7 +145305,7 @@
         ]
       },
       {
-        "role": "tracked L9 base source literal",
+        "role": "追跡対象L9の基底source literal",
         "kind": "tracked_source_bytes_and_pointer_binding",
         "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
         "git_revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
@@ -145326,7 +145327,7 @@
     ],
     "authority_and_fixture_boundary_ja": "Qualification.ownerのみsynthetic-foreign-ownerへ置換し、同Ref/subject/digest/scope/root/ref.owner及び他全source nodeは元固定literalを維持する。意図的な合成既知差であり、実issuer/trustや実fn0実行の証明ではない。decode可能partial inputを保持する。",
     "input_recipe": {
-      "source_namespace": "tracked L9 full-file JSON root",
+      "source_namespace": "追跡対象L9 JSONファイル全体を参照rootとする",
       "source_git_revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
       "source_file_sha256": "708c1993ba5458876d57ef5b4f94f6ab4412153344e49a7aa762798b888bf650",
       "target_root": "/one_source_owner_mismatch_case",
@@ -145364,7 +145365,7 @@
         }
       ],
       "result_pointer": "/one_source_owner_mismatch_case/input",
-      "targeted_change": "only /qualifications/0/owner is replaced"
+      "targeted_change": "変更対象は /qualifications/0/owner だけ（その値を置換する）。"
     },
     "expected_native_return_seed": {
       "original_raw_input": {
@@ -147083,7 +147084,7 @@
         "role": "L5 F05 types・Context/header・Cause propagation writers",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "befb22e6f355ad0c65596443fe256c973d66e5c75c02fa9e747ee5e13c2ff8d3",
+        "file_sha256": "aae1aca73d27463328ebd1df641737395a691fe3940fdfcb76d7e482338aa75a",
         "pointers": [
           "/f05_detail_contract/types/F05DetailedRequest",
           "/f05_detail_contract/types/ActualPredecessor",
@@ -147107,12 +147108,13 @@
     "authority_and_fixture_boundary_ja": "二not_called predecessorとbinding absenceはこのcase用source-handのtyped input前提。実callerが実際にskipした観測、実same-call又はproducer実行とは称さない。skip inputには各callerの明示skip causeとAbsent binding Readを置く。入力validationは既存空source full return literalを無変換copy。後段semantic評価やComparisonを生成しない。",
     "source_hand_precondition": {
       "kind": "case_authored_explicit_caller_skip_assumption",
-      "description_ja": "実bindingがないという原入力事実に基づき、両指定producerをcallerが明示skipした、という合成request premise。未観測call/returnをnot_calledに変換していない。",
+      "description_ja": "このoracleへF05境界で直接渡す、case-authoredの合成F05DetailedRequest premise。実bindingがないという原入力事実に基づき両指定producerを明示skipとする。実callerの出力例でも実callerのskip観測でもなく、未観測call/returnをnot_calledへ変換していない。",
+      "caller_to_f05_mapping_ja": "実callerからF05へ渡す実移送規則は、L5 /f05_detail_contract/caller_return_writer_contract/f05_writer/prepare に従う。callerが返した explicit_skip の SkipCause 全値を F05 request の not_called.skip へ無変換で渡し、rootを付け替えず、context_operandsを削らず、Causeの内容・順序も変えない。このcase-authored premiseは実callerの出力を証明しない。",
       "producers": [
         "compare_applicability",
         "compare_kind_obligation_trace"
       ],
-      "binding_read": "{tag:absent, requested:{root:validation_input,pointer:/binding}, parent:{root:validation_input,pointer:empty}, parent_value=request.validation.validated.input}",
+      "binding_read": "原inputのRead説明：{tag:absent, requested:{root:validation_input,pointer:/binding}, parent:{root:validation_input,pointer:empty}, parent_value=request.validation.validated.input}",
       "not_runtime_evidence": true
     },
     "input_recipe": {
