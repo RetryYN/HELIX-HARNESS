@@ -3,9 +3,9 @@
   "layer": "L5",
   "paired_document": "docs/helix-harness/L8-unit-verification/command-meaning-identity.json",
   "parent": "HARNESS-L2-052",
-  "status": "candidate_pending_independent_review",
-  "source_main": "e3ebf6cd675c690760893145502e99ca530cd11f",
-  "scope": "承認済み052の8義務、7 pure関数、型/正規化profile/OSとreceipt結合の詳細とL8。全92親430義務の一部分で実装・実運転未成立。",
+  "status": "候補設計。実装・実行・製品受入の成立を示さない。",
+  "source_main": "988ba22194d90df7dd420ccf73f2cf9fa3df8b18",
+  "scope": "承認済み052の8義務、7 pure関数、型/正規化profile/OSとreceipt結合の詳細とL8。全92親430義務の一部分で実装・実運転未成立。 TargetSet private read/selectorの限定技術補足。公開CommandInputと既存source rolesは維持し、実資格・provider・成功を主張しない。",
   "source_pins": [
     {
       "path": "docs/helix-harness/L4-basic-design/command-meaning-identity.json",
@@ -161,7 +161,7 @@
       },
       "Resolution": {
         "ref": "Ref",
-        "kind": "scope | rule | target_set | lookup | identity_result | receipt | os_outcome | receipt_binding | budget",
+        "kind": "scope | rule | target_set | lookup | identity_result | receipt | os_outcome | receipt_binding | budget | oracle",
         "state": "valid | missing | unknown | stale | conflict",
         "content_bytes": "immutable bytes | null（validでは必須）",
         "value": "kindに対応する閉じた型 | null（非validだけ）"
@@ -386,6 +386,141 @@
         "operation_ref": "Locator",
         "scope_ref": "Ref",
         "source_ref": "Ref（OS契約/read根拠。HARNESSがreceipt全保存schemaを所有しない）"
+      },
+      "Sha256Hex": "64 lowercase hexadecimal characters; same scalar domain as Ref.sha256, without a sha256: prefix",
+      "ScopeRawPayload": {
+        "owner_ref": "Ref",
+        "applicability_ref": "Ref"
+      },
+      "RuleRawPayload": {
+        "algorithm": "decimal_json_v1 | binary64_jcs_v1",
+        "number_semantics": "exact_decimal | ieee754_binary64",
+        "zero_semantics": "unsigned | signed",
+        "object_order": "unordered_utf16",
+        "array_order": "ordered",
+        "string_semantics": "unicode_scalar_exact",
+        "payload_domain": "json_whole_value",
+        "projection": "none",
+        "algorithm_contract_revision": "Text",
+        "owner_basis_ref": "Ref",
+        "binary64_rounding": "nearest_even | not_applicable（decimalのみ）"
+      },
+      "OracleRawPayload": {
+        "scope_ref": "Ref",
+        "requirement_parent": "Text"
+      },
+      "OracleBody": {
+        "oracle_ref": "Ref（外envelopeから投影し、source bytesへ含めない）",
+        "scope_ref": "Ref",
+        "requirement_parent": "Text"
+      },
+      "OwnerScopeRuleOracleBindingBody": {
+        "scope_ref": "Ref",
+        "normalization_rule_ref": "Ref",
+        "oracle_ref": "Ref",
+        "owner_ref": "Ref"
+      },
+      "H052ScopeRawSourceEvidence": {
+        "source_ref": "Ref（外envelope）",
+        "state": "valid | missing | unknown | stale | conflict",
+        "content_bytes": "immutable bytes | null",
+        "raw_body": "ScopeRawPayload | null"
+      },
+      "H052RuleRawSourceEvidence": {
+        "source_ref": "Ref（外envelope）",
+        "state": "valid | missing | unknown | stale | conflict",
+        "content_bytes": "immutable bytes | null",
+        "raw_body": "RuleRawPayload | null"
+      },
+      "H052OracleRawSourceEvidence": {
+        "source_ref": "Ref（外envelope）",
+        "state": "valid | missing | unknown | stale | conflict",
+        "content_bytes": "immutable bytes | null",
+        "raw_body": "OracleRawPayload | null"
+      },
+      "H052OwnerRelationEvidence": {
+        "source_ref": "Ref（外envelope）",
+        "state": "valid | missing | unknown | stale | conflict",
+        "content_bytes": "immutable bytes | null",
+        "raw_body": "OwnerScopeRuleOracleBindingBody | null"
+      },
+      "H052OwnerQualificationBody": {
+        "root_ref": "Ref",
+        "source_ref": "Ref",
+        "owner_ref": "Ref",
+        "subject_ref": "Ref",
+        "source_sha256": "Sha256Hex"
+      },
+      "H052OwnerQualificationRootBody": {
+        "owner_ref": "Ref",
+        "allowed_subject_ref": "Ref",
+        "allowed_source_ref": "Ref",
+        "allowed_source_sha256": "Sha256Hex"
+      },
+      "H052OwnerQualificationEvidence": {
+        "source_ref": "Ref（外envelope）",
+        "state": "valid | missing | unknown | stale | conflict（構造状態。実資格の成立を意味しない）",
+        "content_bytes": "immutable bytes | null",
+        "raw_body": "H052OwnerQualificationBody | null",
+        "qualification_observation": "QualificationObservation"
+      },
+      "H052OwnerQualificationRootEvidence": {
+        "source_ref": "Ref（独立収集入力の外envelope）",
+        "state": "valid | missing | unknown | stale | conflict",
+        "content_bytes": "immutable bytes | null",
+        "raw_body": "H052OwnerQualificationRootBody | null"
+      },
+      "QualificationObservation": "EstablishedEvidence(evidence_ref: Ref) | NotEstablished(reason_ref: Ref) | Unassessed",
+      "H052SourceProjectionInputs": {
+        "scope_source": "H052ScopeRawSourceEvidence",
+        "rule_source": "H052RuleRawSourceEvidence",
+        "oracle_source": "H052OracleRawSourceEvidence",
+        "relation_source": "H052OwnerRelationEvidence",
+        "qualification": "H052OwnerQualificationEvidence",
+        "root": "H052OwnerQualificationRootEvidence",
+        "owner_basis_source": "OwnerBasisTechnicalEvidence",
+        "applicability_source": "ApplicabilityTechnicalEvidence",
+        "target_read": "H052TargetSetTechnicalReadEvidence | null（target専用read role。scope sourceとは別）",
+        "target_qualification": "H052OwnerQualificationEvidence | null（同じ既存型のtarget用別instance。scope qualificationと別）",
+        "target_root": "H052OwnerQualificationRootEvidence | null（同じ既存型のtarget用別instance。scope rootと別）"
+      },
+      "H052CurrentValidationInput": {
+        "command_input": "exact CommandInput (same original first argument)",
+        "resolution_content_bytes": "exact closed map from full Ref to the original second-argument bytes",
+        "source_projection_inputs": "H052SourceProjectionInputs for the same command timepoint。既存8 roleにtarget_read/target_qualification/target_rootの3 roleを追加したclosed record。"
+      },
+      "OwnerBasisTechnicalPayload": {
+        "schema": "literal harness052-owner-basis-read.v1",
+        "owner_ref": "Ref"
+      },
+      "OwnerBasisTechnicalEvidence": {
+        "source_ref": "Ref（外envelope）",
+        "state": "valid | missing | unknown | stale | conflict（構造状態。実資格の成立を意味しない）",
+        "content_bytes": "immutable bytes | null",
+        "raw_body": "OwnerBasisTechnicalPayload | null"
+      },
+      "ApplicabilityTechnicalPayload": {
+        "schema": "literal harness052-scope-rule-applicability-read.v1",
+        "scope_locator": "Locator",
+        "normalization_rule_ref": "Ref",
+        "owner_ref": "Ref"
+      },
+      "ApplicabilityTechnicalEvidence": {
+        "source_ref": "Ref（外envelope）",
+        "state": "valid | missing | unknown | stale | conflict",
+        "content_bytes": "immutable bytes | null",
+        "raw_body": "ApplicabilityTechnicalPayload | null"
+      },
+      "H052TargetSetTechnicalReadPayload": {
+        "scope_ref": "Ref",
+        "required_bases": "unique Base tuple",
+        "source_refs": "Ref tuple（caller basesから独立した要求/対象母集合）"
+      },
+      "H052TargetSetTechnicalReadEvidence": {
+        "source_ref": "Ref（外envelope。payloadのraw bytesへ自己参照として埋めない）",
+        "state": "valid | missing | unknown | stale | conflict",
+        "content_bytes": "immutable bytes | null（validでは必須）",
+        "raw_body": "H052TargetSetTechnicalReadPayload | null（validでは必須）"
       }
     },
     "finding_codes": [
@@ -642,10 +777,1370 @@
       "receipt": "ReceiptSourceBody",
       "os_outcome": "OSOutcomeBody",
       "receipt_binding": "ReceiptBindingBody",
-      "budget": "BudgetBody"
+      "budget": "BudgetBody",
+      "oracle": "OracleBody"
     },
     "resolution_mapping_contract": "Resolution.ref.sha256は供給content_bytes全体を検査。valueは当該既存owner source/contractに指定されたfieldの閉じたread projectionであり、任意の自己申告snapshotは不可。projectionのself Ref（ScopeBody.scope_ref/RuleBody.rule_ref/IdentityBasisBodyを指すref等）は外envelopeの検証済みResolution.refから付すmetadataであり、content_bytesへ自身shaを埋込まない。投影fieldごとに原sourceのpath/値へ逆照合し、source/contract/抽出値不明はrequired_missing/resolution_unknown。新sourceをこの型で設計する場合もselfrefはenvelopeにのみ置く。",
-    "finding_disambiguation": "原Ref/content解決の不一致はreference_conflict、単一RuleBody内の意味profile組合せ矛盾はrule_conflict、各々validと解決した今回/先行identityの規則版を含む差はidentity_conflict。異なる原因が同時にある入力では原因fieldごと併記し、同じ差を二codeへ重複分類しない。各codeのResult.field/stateはfinding_rulesに従う。"
+    "finding_disambiguation": "原Ref/content解決の不一致はreference_conflict、単一RuleBody内の意味profile組合せ矛盾はrule_conflict、各々validと解決した今回/先行identityの規則版を含む差はidentity_conflict。異なる原因が同時にある入力では原因fieldごと併記し、同じ差を二codeへ重複分類しない。各codeのResult.field/stateはfinding_rulesに従う。",
+    "owner_source_projection_mapping": {
+      "scope_raw_members": [
+        "owner_ref",
+        "applicability_ref"
+      ],
+      "scope_ref": "scope_source.source_ref",
+      "scope_normalization_rule_ref": "relation_source.raw_body.normalization_rule_ref",
+      "rule_raw_members": [
+        "algorithm",
+        "number_semantics",
+        "zero_semantics",
+        "object_order",
+        "array_order",
+        "string_semantics",
+        "payload_domain",
+        "projection",
+        "algorithm_contract_revision",
+        "owner_basis_ref",
+        "binary64_rounding"
+      ],
+      "rule_ref": "rule_source.source_ref",
+      "rule_applicable_scope_ref": "relation_source.raw_body.scope_ref",
+      "oracle_raw_members": [
+        "scope_ref",
+        "requirement_parent"
+      ],
+      "oracle_ref": "oracle_source.source_ref",
+      "oracle_resolution_kind": "oracle",
+      "relation_ref": "relation_source.source_ref",
+      "relation_exact_axes": [
+        "scope_ref",
+        "normalization_rule_ref",
+        "oracle_ref",
+        "owner_ref"
+      ],
+      "qualification_body_fields": [
+        "root_ref",
+        "source_ref",
+        "owner_ref",
+        "subject_ref",
+        "source_sha256"
+      ],
+      "qualification_observation": "qualification.qualification_observation。独立した観測variantを保持し、source構造から推定しない",
+      "root_body_fields": [
+        "owner_ref",
+        "allowed_subject_ref",
+        "allowed_source_ref",
+        "allowed_source_sha256"
+      ],
+      "source_graph_order": "owner-basis leaf→Rule→Scope Locator4 address headerの事前宣言→Applicability→Scope full body/Ref→Oracle→relation→root→Q→native projection。Locator4 headerはhash対象外のアドレス値で、Scope full Ref/hashを先に確定したとは扱わない",
+      "non_circularity": "raw payloadに本来含まれる参照edge（例: RuleRaw.owner_basis_ref、OracleRaw.scope_ref）は原値として保持し、そのraw bytesのhash対象に含める。外envelopeのsource_refに対応するnative projection上の自己参照（ScopeBody.scope_ref、RuleBody.rule_ref、OracleBody.oracle_ref）はraw payloadへ書き戻さず、原bytes/外Refの検証後に投影する。relation・qualification・rootも各々の原bytesと外Refを先に固定し、別のprojection Refをhash対象へ後挿入しない",
+      "meaning": "固定mappingを既存validate_command_inputのprivate入力へ適用する。callerがpointer/transformを選ぶDSL、registry、IO、新authorityは追加しない。owner_basis_sourceはrule_source.raw_body.owner_basis_refと外Refを全軸比較し、原bytesからclosed payloadを再decodeしてraw_bodyと照合する",
+      "owner_basis_source": {
+        "payload_fields": [
+          "schema",
+          "owner_ref"
+        ],
+        "schema_literal": "harness052-owner-basis-read.v1",
+        "schema_pointer": "/schema",
+        "owner_ref_pointer": "/owner_ref",
+        "source_ref": "source_projection_inputs.owner_basis_source.source_ref",
+        "content_bytes": "source_projection_inputs.owner_basis_source.content_bytes",
+        "raw_body": "source_projection_inputs.owner_basis_source.raw_body",
+        "selected_by": "source_projection_inputs.rule_source.raw_body.owner_basis_refとowner_basis_source.source_refをRef全軸で完全比較する",
+        "non_circularity": "source_refは外envelopeだけに置く。owner_basis_sourceのraw_body/content_bytesには自己Ref、Rule/Scope/Relation/Q/Rootへの参照を含めない"
+      },
+      "source_verification_steps": [
+        "各evidence record/stateとRefを閉じた型で検査する",
+        "valid sourceのcontent_bytesをraw decodeし、閉じたbodyと照合する",
+        "sha256(original content_bytes)を外source_ref.sha256と照合する",
+        "owner_basis_source payloadはschema/owner_refのみ、applicability_source payloadはschema/scope_locator/normalization_rule_ref/owner_refのみと確認する",
+        "Applicability LocatorはScope Refからidentity/revision/scope/ownerの4軸だけを投影し、sha256を含むRef全体の比較を別joinで保つ",
+        "native projectionのselfRefは外source_refからのみ付与し、raw bytesへ戻してhashしない"
+      ],
+      "joins": [
+        {
+          "id": "basis_selection",
+          "left": "source_projection_inputs.rule_source.raw_body.owner_basis_ref",
+          "right": "source_projection_inputs.owner_basis_source.source_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "rule_source",
+          "finding_code": "reference_conflict",
+          "field_pointer": "/source_projection_inputs/rule_source/raw_body/owner_basis_ref"
+        },
+        {
+          "id": "basis_target",
+          "left": "source_projection_inputs.owner_basis_source.raw_body.owner_ref",
+          "right": "source_projection_inputs.scope_source.raw_body.owner_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "owner_basis_source",
+          "finding_code": "owner_mismatch",
+          "field_pointer": "/source_projection_inputs/owner_basis_source/raw_body/owner_ref"
+        },
+        {
+          "id": "relation_scope_ref",
+          "left": "source_projection_inputs.relation_source.raw_body.scope_ref",
+          "right": "source_projection_inputs.scope_source.source_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "relation_source",
+          "finding_code": "owner_mismatch",
+          "field_pointer": "/source_projection_inputs/relation_source/raw_body/scope_ref"
+        },
+        {
+          "id": "relation_normalization_rule_ref",
+          "left": "source_projection_inputs.relation_source.raw_body.normalization_rule_ref",
+          "right": "source_projection_inputs.rule_source.source_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "relation_source",
+          "finding_code": "owner_mismatch",
+          "field_pointer": "/source_projection_inputs/relation_source/raw_body/normalization_rule_ref"
+        },
+        {
+          "id": "relation_oracle_ref",
+          "left": "source_projection_inputs.relation_source.raw_body.oracle_ref",
+          "right": "source_projection_inputs.oracle_source.source_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "relation_source",
+          "finding_code": "oracle_mismatch",
+          "field_pointer": "/source_projection_inputs/relation_source/raw_body/oracle_ref"
+        },
+        {
+          "id": "relation_owner_ref",
+          "left": "source_projection_inputs.relation_source.raw_body.owner_ref",
+          "right": "source_projection_inputs.scope_source.raw_body.owner_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "relation_source",
+          "finding_code": "owner_mismatch",
+          "field_pointer": "/source_projection_inputs/relation_source/raw_body/owner_ref"
+        },
+        {
+          "id": "qualification_root_ref",
+          "left": "source_projection_inputs.qualification.raw_body.root_ref",
+          "right": "source_projection_inputs.root.source_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "qualification",
+          "finding_code": "reference_conflict",
+          "field_pointer": "/source_projection_inputs/qualification/raw_body/root_ref"
+        },
+        {
+          "id": "qualification_source_ref",
+          "left": "source_projection_inputs.qualification.raw_body.source_ref",
+          "right": "source_projection_inputs.relation_source.source_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "qualification",
+          "finding_code": "owner_mismatch",
+          "field_pointer": "/source_projection_inputs/qualification/raw_body/source_ref"
+        },
+        {
+          "id": "qualification_subject_ref",
+          "left": "source_projection_inputs.qualification.raw_body.subject_ref",
+          "right": "source_projection_inputs.relation_source.source_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "qualification",
+          "finding_code": "owner_mismatch",
+          "field_pointer": "/source_projection_inputs/qualification/raw_body/subject_ref"
+        },
+        {
+          "id": "qualification_owner_ref",
+          "left": "source_projection_inputs.qualification.raw_body.owner_ref",
+          "right": "source_projection_inputs.relation_source.raw_body.owner_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "qualification",
+          "finding_code": "owner_mismatch",
+          "field_pointer": "/source_projection_inputs/qualification/raw_body/owner_ref"
+        },
+        {
+          "id": "qualification_source_sha256",
+          "left": "source_projection_inputs.qualification.raw_body.source_sha256",
+          "right": "source_projection_inputs.relation_source.source_ref.sha256",
+          "operator": "sha256hex_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "qualification",
+          "finding_code": "reference_conflict",
+          "field_pointer": "/source_projection_inputs/qualification/raw_body/source_sha256"
+        },
+        {
+          "id": "root_owner_ref",
+          "left": "source_projection_inputs.root.raw_body.owner_ref",
+          "right": "source_projection_inputs.relation_source.raw_body.owner_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "root",
+          "finding_code": "owner_mismatch",
+          "field_pointer": "/source_projection_inputs/root/raw_body/owner_ref"
+        },
+        {
+          "id": "root_allowed_subject_ref",
+          "left": "source_projection_inputs.root.raw_body.allowed_subject_ref",
+          "right": "source_projection_inputs.relation_source.source_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "root",
+          "finding_code": "owner_mismatch",
+          "field_pointer": "/source_projection_inputs/root/raw_body/allowed_subject_ref"
+        },
+        {
+          "id": "root_allowed_source_ref",
+          "left": "source_projection_inputs.root.raw_body.allowed_source_ref",
+          "right": "source_projection_inputs.relation_source.source_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "root",
+          "finding_code": "owner_mismatch",
+          "field_pointer": "/source_projection_inputs/root/raw_body/allowed_source_ref"
+        },
+        {
+          "id": "root_allowed_source_sha256",
+          "left": "source_projection_inputs.root.raw_body.allowed_source_sha256",
+          "right": "source_projection_inputs.relation_source.source_ref.sha256",
+          "operator": "sha256hex_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "root",
+          "finding_code": "reference_conflict",
+          "field_pointer": "/source_projection_inputs/root/raw_body/allowed_source_sha256"
+        },
+        {
+          "id": "observation_evidence",
+          "left": "source_projection_inputs.qualification.qualification_observation.EstablishedEvidence.evidence_ref",
+          "right": "source_projection_inputs.qualification.source_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "qualification",
+          "finding_code": "reference_conflict",
+          "field_pointer": "/source_projection_inputs/qualification/qualification_observation/EstablishedEvidence/evidence_ref"
+        },
+        {
+          "id": "command_scope_ref",
+          "left": "command_input.scope_ref",
+          "right": "source_projection_inputs.scope_source.source_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "scope_source",
+          "finding_code": "reference_conflict",
+          "field_pointer": "/command_input/scope_ref"
+        },
+        {
+          "id": "command_rule_ref",
+          "left": "command_input.rule_ref",
+          "right": "source_projection_inputs.rule_source.source_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "rule_source",
+          "finding_code": "reference_conflict",
+          "field_pointer": "/command_input/rule_ref"
+        },
+        {
+          "id": "command_oracle_ref",
+          "left": "command_input.oracle_ref",
+          "right": "source_projection_inputs.oracle_source.source_ref",
+          "operator": "ref_exact",
+          "requires": "両operandの構造・外Ref/bytes/bodyを検証済みとする。親sourceが不正/未解決なら依存する派生joinは行わない",
+          "source_member": "oracle_source",
+          "finding_code": "reference_conflict",
+          "field_pointer": "/command_input/oracle_ref"
+        },
+        {
+          "id": "app_selection",
+          "left": "source_projection_inputs.scope_source.raw_body.applicability_ref",
+          "right": "source_projection_inputs.applicability_source.source_ref",
+          "operator": "Ref5_exact",
+          "finding": "reference_conflict",
+          "source_member": "scope_source",
+          "field_pointer": "/source_projection_inputs/scope_source/raw_body/applicability_ref",
+          "precondition": "両operandの原sourceを構造/hash/bodyまで検証済みとする。依存sourceが未解決/不正なら派生joinは行わない"
+        },
+        {
+          "id": "app_scope_address",
+          "left": "source_projection_inputs.applicability_source.raw_body.scope_locator",
+          "right": "Locator4(source_projection_inputs.scope_source.source_ref)",
+          "operator": "Locator4_exact",
+          "finding": "owner_mismatch",
+          "source_member": "applicability_source",
+          "field_pointer": "/source_projection_inputs/applicability_source/raw_body/scope_locator",
+          "precondition": "両operandの原sourceを構造/hash/bodyまで検証済みとする。依存sourceが未解決/不正なら派生joinは行わない"
+        },
+        {
+          "id": "app_rule",
+          "left": "source_projection_inputs.applicability_source.raw_body.normalization_rule_ref",
+          "right": "source_projection_inputs.rule_source.source_ref",
+          "operator": "Ref5_exact",
+          "finding": "owner_mismatch",
+          "source_member": "applicability_source",
+          "field_pointer": "/source_projection_inputs/applicability_source/raw_body/normalization_rule_ref",
+          "precondition": "両operandの原sourceを構造/hash/bodyまで検証済みとする。依存sourceが未解決/不正なら派生joinは行わない"
+        },
+        {
+          "id": "app_owner",
+          "left": "source_projection_inputs.applicability_source.raw_body.owner_ref",
+          "right": "source_projection_inputs.scope_source.raw_body.owner_ref",
+          "operator": "Ref5_exact",
+          "finding": "owner_mismatch",
+          "source_member": "applicability_source",
+          "field_pointer": "/source_projection_inputs/applicability_source/raw_body/owner_ref",
+          "precondition": "両operandの原sourceを構造/hash/bodyまで検証済みとする。依存sourceが未解決/不正なら派生joinは行わない"
+        },
+        {
+          "id": "app_owner_basis",
+          "left": "source_projection_inputs.applicability_source.raw_body.owner_ref",
+          "right": "source_projection_inputs.owner_basis_source.raw_body.owner_ref",
+          "operator": "Ref5_exact",
+          "finding": "owner_mismatch",
+          "source_member": "applicability_source",
+          "field_pointer": "/source_projection_inputs/applicability_source/raw_body/owner_ref",
+          "precondition": "両operandの原sourceを構造/hash/bodyまで検証済みとする。依存sourceが未解決/不正なら派生joinは行わない"
+        },
+        {
+          "id": "oracle_scope",
+          "left": "source_projection_inputs.oracle_source.raw_body.scope_ref",
+          "right": "source_projection_inputs.scope_source.source_ref",
+          "operator": "Ref5_exact",
+          "finding": "oracle_mismatch",
+          "source_member": "oracle_source",
+          "field_pointer": "/source_projection_inputs/oracle_source/raw_body/scope_ref",
+          "precondition": "両operandの原sourceを構造/hash/bodyまで検証済みとする。依存sourceが未解決/不正なら派生joinは行わない"
+        },
+        {
+          "id": "oracle_parent",
+          "left": "source_projection_inputs.oracle_source.raw_body.requirement_parent",
+          "right": "HARNESS-L2-052",
+          "operator": "Text_exact_no_coercion",
+          "finding": "oracle_mismatch",
+          "source_member": "oracle_source",
+          "field_pointer": "/source_projection_inputs/oracle_source/raw_body/requirement_parent",
+          "precondition": "両operandの原sourceを構造/hash/bodyまで検証済みとする。依存sourceが未解決/不正なら派生joinは行わない"
+        }
+      ],
+      "source_evidence_members": [
+        "owner_basis_source",
+        "rule_source",
+        "applicability_source",
+        "scope_source",
+        "oracle_source",
+        "relation_source",
+        "root",
+        "qualification"
+      ],
+      "owner_basis_payload_contract": {
+        "schema": "harness052-owner-basis-read.v1",
+        "closed_fields": [
+          "schema",
+          "owner_ref"
+        ],
+        "source_pointer": "source_projection_inputs.owner_basis_source.content_bytes",
+        "external_ref_pointer": "source_projection_inputs.owner_basis_source.source_ref",
+        "decoded_body_pointer": "source_projection_inputs.owner_basis_source.raw_body",
+        "selection_join": "rule_source.raw_body.owner_basis_ref と owner_basis_source.source_ref のRef全軸完全一致",
+        "inverse": "元bytesを厳密decodeしたclosed payload全体が owner_basis_source.raw_body と完全一致し、sha256(元bytes)が source_ref.sha256 と一致すること",
+        "source_status": "owner source provider/callerと実資格は未確認。型契約の候補であり、実接続済みとは扱わない",
+        "schema_pointer": "/schema",
+        "schema_literal": "harness052-owner-basis-read.v1",
+        "owner_ref_pointer": "/owner_ref",
+        "body_match": "厳密decodeしたclosed payload全体がowner_basis_source.raw_bodyと完全一致すること（Ref全5軸）",
+        "decoder": "既存のclosed JSON raw UTF-8入力境界を使う。重複key、不正UTF-8、surrogate、未知keyを拒否する。hashは元bytesへ適用し、再serialize値で置換しない",
+        "self_ref_policy": "source_refは外envelopeのみ。payloadに自己Ref、Rule/Scope/Relation/Qualification/Rootへの参照を入れない",
+        "supply_boundary": "既存owner根拠の供給側が、このprivate read契約に従うbytes/外Ref/state/bodyを供給する設計。適合provider/callerや実資格の成立は未確認。取得・変換・署名・DB/API実装を追加しない"
+      },
+      "owner_basis_state_branches": [
+        {
+          "condition": "owner_basis_sourceのrecordまたはmemberが欠けている",
+          "code": "required_missing",
+          "result_state": "unknown",
+          "pointer": "/source_projection_inputs/owner_basis_source"
+        },
+        {
+          "condition": "stateがmissing/unknown/stale",
+          "code": "resolution_unknown",
+          "result_state": "unknown",
+          "pointer": "/source_projection_inputs/owner_basis_source/state"
+        },
+        {
+          "condition": "stateがconflict",
+          "code": "reference_conflict",
+          "result_state": "conflict",
+          "pointer": "/source_projection_inputs/owner_basis_source/state"
+        },
+        {
+          "condition": "valid状態でclosed payload/schema/typeが不正、またはbytes/bodyがnull",
+          "code": "schema_invalid",
+          "result_state": "unknown",
+          "pointer": "/source_projection_inputs/owner_basis_source/content_bytes"
+        },
+        {
+          "condition": "原bytes digest、decode body、または外Refが不一致",
+          "code": "reference_conflict",
+          "result_state": "conflict",
+          "pointer": "/source_projection_inputs/owner_basis_source/content_bytes"
+        },
+        {
+          "condition": "RuleRawPayload.owner_basis_refがowner_basis_source.source_refといずれかのRef軸で不一致",
+          "code": "reference_conflict",
+          "result_state": "conflict",
+          "pointer": "/source_projection_inputs/rule_source/raw_body/owner_basis_ref"
+        },
+        {
+          "condition": "decodeしたowner_refが選択されたScopeRawPayload.owner_refと不一致",
+          "code": "owner_mismatch",
+          "result_state": "conflict",
+          "pointer": "/source_projection_inputs/owner_basis_source/raw_body/owner_ref"
+        }
+      ],
+      "owner_basis_state_finding_order": [
+        "closed recordとRefの構造を検査する",
+        "source state分岐を評価する",
+        "原bytesを厳密decodeし、closed payload型/schemaを検査する",
+        "原bytes hashとdecode bodyの完全一致を照合する",
+        "Rule owner_basis_refとsource_refを全Ref軸で照合する",
+        "payload owner_refと選択されたScopeRawPayload.owner_refを全Ref軸で照合する"
+      ],
+      "source_state_branches": [
+        {
+          "condition": "recordまたはmemberが存在しない",
+          "code": "required_missing",
+          "result_state": "unknown",
+          "suppression": "親原因が確定したfieldでは同じ原因の子schema/join findingを重ねない。独立sourceの原因は評価を続ける"
+        },
+        {
+          "condition": "stateがmissing/unknown/stale",
+          "code": "resolution_unknown",
+          "result_state": "unknown",
+          "suppression": "親原因が確定したfieldでは同じ原因の子schema/join findingを重ねない。独立sourceの原因は評価を続ける"
+        },
+        {
+          "condition": "closed型が不正、またはvalid宣言なのにbytes/bodyがnull",
+          "code": "schema_invalid",
+          "result_state": "unknown",
+          "suppression": "親原因が確定したfieldでは同じ原因の子schema/join findingを重ねない。独立sourceの原因は評価を続ける"
+        },
+        {
+          "condition": "stateがconflict",
+          "code": "reference_conflict",
+          "result_state": "conflict",
+          "suppression": "親原因が確定したfieldでは同じ原因の子schema/join findingを重ねない。独立sourceの原因は評価を続ける"
+        },
+        {
+          "condition": "hash/body/外Refが一致しない",
+          "code": "reference_conflict",
+          "result_state": "conflict",
+          "suppression": "親原因が確定したfieldでは同じ原因の子schema/join findingを重ねない。独立sourceの原因は評価を続ける"
+        },
+        {
+          "condition": "QualificationObservationがNotEstablishedまたはUnassessed",
+          "code": "resolution_unknown",
+          "result_state": "unknown",
+          "suppression": "親原因が確定したfieldでは同じ原因の子schema/join findingを重ねない。独立sourceの原因は評価を続ける"
+        }
+      ],
+      "finding_template": {
+        "code": "cause.code（既存FindingCodeのみ）",
+        "field_pointer": "cause.field_pointer（欠損member自体のRFC6901 pointer。joinでは左operandのpointer）",
+        "subject_ref": "cause.source_member.source_refがclosed Refとして成立すればその値、成立しなければnull",
+        "basis_refs": "実在し構文validな左右Ref、元CommandInput.scope_ref、NotEstablished.reason_refを全軸完全一致で重複除去し、Ref5軸のcodepoint順。欠損/構文不正Refは追加しない",
+        "owner": "cause.source_member.source_ref.ownerが構文validならそのText、そうでなければcommand_input.scope_ref.owner",
+        "result_field": "semantic"
+      },
+      "backflow_template": {
+        "owner": "Finding.owner",
+        "layer": "元sourceの不足/矛盾はinput_owner。この技術契約自体の式/型の設計欠陥は別のL5還流記録",
+        "scope_ref": "command_input.scope_ref",
+        "subject_refs": "Finding.basis_refs",
+        "cause_code": "Finding.code"
+      },
+      "finding_details": {
+        "cause_record": "内部cause記録は{code,field_pointer,source_member,left_operand,right_operand,unresolved_refs: Ref tuple,difference: exact scalar/Ref/bytes difference | null}。公開Findingへ新fieldを追加せず、ValueResult.differencesは既存差分情報を保持する",
+        "all_state_field_pointer": "stateは/source_projection_inputs/{source_member}/state。record欠落は/source_projection_inputs/{source_member}。raw field不正は該当field pointer。hash不一致は/source_projection_inputs/{source_member}/content_bytes。body不一致は/source_projection_inputs/{source_member}/raw_body。qualification observation不足は/source_projection_inputs/qualification/qualification_observation",
+        "sort": "既存fn6に合わせてcode、field_pointer、subjectのidentity/revision/scope/ownerをcodepoint順で整列する。null subjectは空のsort keyとして扱うだけで空Refは生成しない。同一Findingの全fieldが一致したものだけ重複除去する",
+        "result_state_by_code": {
+          "schema_invalid": "unknown",
+          "required_missing": "unknown",
+          "resolution_unknown": "unknown",
+          "reference_conflict": "conflict",
+          "owner_mismatch": "conflict",
+          "oracle_mismatch": "conflict",
+          "target_missing": "unknown",
+          "base_conflict": "conflict",
+          "rule_unsupported": "unknown",
+          "rule_conflict": "conflict",
+          "normalization_basis": "unknown",
+          "payload_invalid": "unknown",
+          "number_domain": "unknown",
+          "budget_unknown": "unknown",
+          "resource_limit": "unknown",
+          "provider_failure": "unknown",
+          "payload_binding_conflict": "conflict",
+          "lookup_query": "unknown",
+          "lookup_unknown": "unknown",
+          "prior_missing": "unknown",
+          "identity_conflict": "conflict",
+          "os_not_observed": "not_observed",
+          "os_unknown": "unknown",
+          "os_binding_conflict": "binding_conflict",
+          "receipt_not_observed": "not_observed",
+          "receipt_binding_unknown": "unknown",
+          "receipt_binding_conflict": "binding_conflict",
+          "trace_unknown": "unknown",
+          "prior_mutated": "conflict",
+          "boundary_violation": "conflict"
+        },
+        "classification": "source原Ref/bytes/bodyの矛盾はreference_conflict、適用対象address/ownerの検証済み差はowner_mismatch、oracle対象scope/parentの差はoracle_mismatch。app_ownerとapp_owner_basisに同じ既存codeを使い、全fieldが完全一致したFindingだけ重複除去する",
+        "source_deduplication": "既存の全field同値dedupを維持する。code/pointerだけで異なるbasis_refsやoperand差を併合しない。Locator4をRefへ変換してbasis_refsに加えない",
+        "unresolved_ref_projection": {
+          "scope": "unknown ValueResultの診断tuple著述の技術規則。新required source/gate/role/type/state/authorityではない。conflictの公開shapeは不変。",
+          "cause_local_refs": "各既存internal cause.unresolved_refsは、その原因が直接未解決として記録した同じ原evidence.source_ref又は原Resolution.refのうちclosed Refの実値だけ。原値全5fieldを保持する。",
+          "missing_origin": "role/record自体が未供給、又はsource_ref/ref memberが未供給/型不正なら当該causeのRef tupleは空。他sourceのbasis_refs、関係先Ref、owner Text、Locator、shaから補完しない。evidence member不足でも同じ原recordのsource_ref自体がclosed Refとして供給され、そのsource原値を直接解決できない原因ならそのRefを記録する。",
+          "suppressed_dependencies": "元suppressionによりRule/Scope等の依存検査を実行しなかったことだけから、その依存Ref自身を解決失敗したRefとして追加しない。別に直接観測された独立causeは引き続き評価する。",
+          "public_unknown_projection": "既存diagnostic_binding.ordering_and_reduction.cause_orderに並んだ各internal cause.unresolved_refsをその原tuple順に連結。closed Ref全5軸完全同値でdedupし、最初に出現した原Ref順を保持する。Finding sort/basis_refs sortからこの順を再生成しない。",
+          "no_data_loss": "元Finding全6fieldと原input pointer/index、同一immutable carrier保持、Backflow、各既存code/stateと単一reductionは変更しない。Ref無しの欠落はFinding pointer/subject_ref=nullで保持する。",
+          "bounded_contrasts": {
+            "N01-old-member-missing": "owner_basis_source.content_bytes省略。直接source_refがclosed Refとして同じrecordに存在するためowner_basis source Ref一件。Rule/Scopeは追加しない。",
+            "N02-target-role-omitted": "target_qualification role member自体を省略。原Q source_refは未供給なので空tuple。他role/旧scope資格Qから借用しない。"
+          }
+        }
+      },
+      "value_result_branches": [
+        {
+          "condition": "owner/source stageにFindingがなく、元fn0の全既存required検証も成功",
+          "variant": "ready",
+          "value": "既存ValidatedInputそのもの。source evidenceを公開valueの新memberに加えない"
+        },
+        {
+          "condition": "conflict原因なし、unknown原因が1件以上",
+          "variant": "unknown",
+          "findings": "全unknown causeを既存Finding型へ投影",
+          "unresolved_refs": "各causeの直接未解決Ref原値のみをfinding_details.unresolved_ref_projectionに従い既存cause_order/最初出現順で連結・全5軸dedup。Ref無し欠落は空tupleとしFinding pointer/subject_ref=nullで保持。",
+          "backflow": "各Findingを既存Backflow型へ投影"
+        },
+        {
+          "condition": "conflict原因が1件以上（unknown併存可）",
+          "variant": "conflict",
+          "findings": "conflictとunknownの全原因を保持",
+          "differences": "評価できた左右operandの実差だけを保持し、未評価を不一致として補完しない",
+          "backflow": "全原因をBackflowへ投影。未解決Refは既存Finding.basis_refs/Backflow.subject_refsへ保持し、unknown原因を削除しない"
+        }
+      ],
+      "anchor_precondition": {
+        "scope_ref": "command_input.scope_ref",
+        "meaning": "追加owner-source stageは、元CommandInput.scope_ref/rule_ref/oracle_refのclosed Ref構文検査後に入る。CommandInput自体の構文失敗は既存fn0境界へ返し、このstageからBackflow用Refを捏造しない。carrier内source memberの欠損は本stageで扱う",
+        "diagnostic_owner": "command_input.scope_ref.owner（既存入力の責務ラベルであり、資格成立を示さない）"
+      },
+      "dependency_order": [
+        "owner_basis_sourceの原bytes/外Refを検証する",
+        "RuleRawの原bytes/外Refを固定し、owner_basis_refをowner-basis leafへ完全Ref比較する",
+        "Scope source Refのidentity/revision/scope/owner軸をLocator4のアドレス候補として宣言する。この段階ではScope full Ref/hashを確定しない",
+        "ApplicabilityRawを固定し、scope_locatorをそのLocator4と比較し、normalization_rule_refをRule full Refへ照合する",
+        "Applicability.owner_refをScopeRaw.owner_refとowner-basis owner_refへ照合し、Applicability source_refをScopeRaw.applicability_refへ全Ref一致させる",
+        "Applicability Refを含むScopeRaw原bytesからScope full Ref/hashを検証・保持する",
+        "OracleRaw原bytes/full Refを固定し、scope_ref全5軸とrequirement_parent原Textを検証する",
+        "relation原bytes/full Refを固定しScope/Rule/Oracle/ownerの4軸を照合する",
+        "独立root/Q bytes/外RefとQualificationObservationを照合する",
+        "native projectionを作り、CommandInput/Resolutionと比較して既存Finding/ValueResultへ返す"
+      ],
+      "applicability_raw_members": [
+        "scope_locator",
+        "normalization_rule_ref",
+        "owner_ref"
+      ],
+      "applicability_source": {
+        "payload_fields": [
+          "schema",
+          "scope_locator",
+          "normalization_rule_ref",
+          "owner_ref"
+        ],
+        "schema_literal": "harness052-scope-rule-applicability-read.v1",
+        "source_ref": "source_projection_inputs.applicability_source.source_ref",
+        "state": "source_projection_inputs.applicability_source.state",
+        "content_bytes": "source_projection_inputs.applicability_source.content_bytes",
+        "raw_body": "source_projection_inputs.applicability_source.raw_body",
+        "decoder": "既存のclosed JSON raw UTF-8入力境界を使う。重複key、不正UTF-8、surrogate、未知keyを拒否する。hashは原bytesへ適用し、再serialize値で置換しない",
+        "fixed_paths": {
+          "schema": "/schema",
+          "scope_locator": "/scope_locator",
+          "normalization_rule_ref": "/normalization_rule_ref",
+          "owner_ref": "/owner_ref"
+        },
+        "body_match": "厳密decodeしたclosed payload全体がraw_bodyと完全一致すること（Locator4/Refの型と全fieldを含む）",
+        "scope_selection": "ScopeRawPayload.applicability_refとapplicability_source.source_refをRef全5軸で完全比較する。owner_basis_ref/relation_ref/scope_refとは同一視しない",
+        "self_ref_policy": "source_refは外envelopeのみ。ApplicabilityTechnicalPayloadには自己参照やrelation参照を入れない",
+        "meaning": "独立した適用根拠をsource bytesとRefで運び、既知の固定mappingで選択・逆照合する。callerがpointer/transformを選ぶDSL、registry、IO、新authorityは追加しない"
+      },
+      "locator4_projection": {
+        "input": "ScopeRawSourceEvidence.source_ref: Ref",
+        "output": "Locator",
+        "mapping": {
+          "identity": "source_ref.identity",
+          "revision": "source_ref.revision",
+          "scope": "source_ref.scope",
+          "owner": "source_ref.owner"
+        },
+        "omitted_field": "source_ref.sha256",
+        "role": "Scopeの論理アドレスとApplicabilityTechnicalPayload.scope_locatorを比較するpure projection。RefとLocatorを暗黙にcastしない",
+        "preserve": "Scope source_refのsha256は元content_bytesのhashとして保持し、CommandInput.scope_ref/Relation.scope_ref/Oracle.scope_refとのRef比較では全5軸を維持する"
+      },
+      "scope_digest_preservation": "applicability_source.raw_body.scope_locatorはApplicability source自身を指すRefではなく、適用先のLocator4である。Scope source_refは原content_bytesのhashを含む完全Refとして保持し、CommandInput.scope_refおよびrelation.scope_refと全5軸で比較する。Applicability raw bytesへScope sha256を戻さない。ApplicabilityはRule/Scope/ownerの意味関係を運ぶ独立sourceであり、relationの別名として扱わない",
+      "applicability_owner_duplicate_rule": "app_ownerとapp_owner_basisは既存owner_mismatchを使う。owner-basis ownerとScope ownerが同じRefで、Finding全fieldが一致するときだけ既存の全field同値重複除去で1件にする。code/pointerだけで併合しない。scope_locatorのRef4値をbasis_refsのRefに捏造しない",
+      "oracle_parent_contract": {
+        "expected_parent_literal": "HARNESS-L2-052",
+        "source_pins": [
+          {
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+          },
+          {
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+          }
+        ],
+        "source_records": [
+          {
+            "layer": "L3",
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/13",
+            "id": "HARNESS-L3-052-F01",
+            "parent": "HARNESS-L2-052"
+          },
+          {
+            "layer": "L3",
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/14",
+            "id": "HARNESS-L3-052-F02",
+            "parent": "HARNESS-L2-052"
+          },
+          {
+            "layer": "L3",
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/15",
+            "id": "HARNESS-L3-052-F03",
+            "parent": "HARNESS-L2-052"
+          },
+          {
+            "layer": "L3",
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/16",
+            "id": "HARNESS-L3-052-F04",
+            "parent": "HARNESS-L2-052"
+          },
+          {
+            "layer": "L3",
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/17",
+            "id": "HARNESS-L3-052-F05",
+            "parent": "HARNESS-L2-052"
+          },
+          {
+            "layer": "L3",
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/18",
+            "id": "HARNESS-L3-052-F06",
+            "parent": "HARNESS-L2-052"
+          },
+          {
+            "layer": "L10",
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "pointer": "/cases/13",
+            "id": "HARNESS-L10-052-F01",
+            "parent": "HARNESS-L2-052"
+          },
+          {
+            "layer": "L10",
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "pointer": "/cases/14",
+            "id": "HARNESS-L10-052-F02",
+            "parent": "HARNESS-L2-052"
+          },
+          {
+            "layer": "L10",
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "pointer": "/cases/15",
+            "id": "HARNESS-L10-052-F03",
+            "parent": "HARNESS-L2-052"
+          },
+          {
+            "layer": "L10",
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "pointer": "/cases/16",
+            "id": "HARNESS-L10-052-F04",
+            "parent": "HARNESS-L2-052"
+          },
+          {
+            "layer": "L10",
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "pointer": "/cases/17",
+            "id": "HARNESS-L10-052-F05",
+            "parent": "HARNESS-L2-052"
+          },
+          {
+            "layer": "L10",
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "pointer": "/cases/18",
+            "id": "HARNESS-L10-052-F06",
+            "parent": "HARNESS-L2-052"
+          }
+        ],
+        "meaning": "requirement_parentは対象oracleが属する要求親の原Text。対応L3とL10の各F01-F06で同じHARNESS-L2-052を保持し、aggregate IDや機構名から生成しない",
+        "selection": "fn0設計で固定する要求親。callerから任意のparent selector/allowed setを受けない。CommandInput.oracle_ref、外O Ref、Resolution kind=oracleの既存exact検査を保つ",
+        "consumer": "OracleRaw.requirement_parentをOracleBody.requirement_parentへ同名pathで投影し、HARNESS-L2-052とText完全一致で比較する。trim/casefold/prefix matchingなし。不一致は既存oracle_mismatch。Oracle scope Refは別に完全Ref比較する",
+        "no_runtime_io": "source revisionは設計定数の由来を示す。fn0はfilesystem/Gitを読まない。設計sourceの変更時は通常の変更影響照合で追随する",
+        "no_new_authority": "parent literalの一致はoracle実資格の認定ではない。独立qualification/root観測とsource検証を保持する"
+      },
+      "hash_dependencies": {
+        "owner_basis_leaf": [],
+        "RuleRaw": [
+          "owner_basis_leaf"
+        ],
+        "ScopeLocator4_header": [],
+        "ApplicabilityRaw": [
+          "RuleRaw",
+          "ScopeLocator4_header"
+        ],
+        "ScopeRaw": [
+          "ApplicabilityRaw",
+          "ScopeLocator4_header"
+        ],
+        "OracleRaw": [
+          "ScopeRaw"
+        ],
+        "relation": [
+          "ScopeRaw",
+          "RuleRaw",
+          "OracleRaw"
+        ],
+        "root": [
+          "relation"
+        ],
+        "Q": [
+          "root",
+          "relation"
+        ]
+      },
+      "excluded_hash_edges": [
+        "ApplicabilityRaw.scope_locator→ScopeRaw digest（Locatorはhash参照でない）",
+        "ApplicabilityRaw→relationRef",
+        "ScopeRaw→Q/root",
+        "oracle parent Text→oracle自分自身Ref"
+      ],
+      "applicability_state_branches": [
+        {
+          "condition": "applicability_source recordまたは必須memberが欠けている",
+          "code": "required_missing",
+          "result_state": "unknown",
+          "pointer": "/source_projection_inputs/applicability_source"
+        },
+        {
+          "condition": "stateがmissing/unknown/stale",
+          "code": "resolution_unknown",
+          "result_state": "unknown",
+          "pointer": "/source_projection_inputs/applicability_source/state"
+        },
+        {
+          "condition": "stateがconflict",
+          "code": "reference_conflict",
+          "result_state": "conflict",
+          "pointer": "/source_projection_inputs/applicability_source/state"
+        },
+        {
+          "condition": "原content_bytesのhashがsource_ref.sha256と不一致",
+          "code": "reference_conflict",
+          "result_state": "conflict",
+          "pointer": "/source_projection_inputs/applicability_source/content_bytes"
+        },
+        {
+          "condition": "厳密decode結果と供給raw_bodyが不一致",
+          "code": "reference_conflict",
+          "result_state": "conflict",
+          "pointer": "/source_projection_inputs/applicability_source/raw_body"
+        },
+        {
+          "condition": "closed field/type/enumが不正、またはvalid状態なのにbytes/bodyがnull",
+          "code": "schema_invalid",
+          "result_state": "unknown",
+          "pointer": "/source_projection_inputs/applicability_source/content_bytes"
+        },
+        {
+          "condition": "scope applicability Ref、Locator4、Rule Ref、owner Refの意味join不一致",
+          "pointer": "該当join.field_pointer",
+          "finding_selection": "該当joinの既存FindingCode（app_selection/reference_conflict、app_scope_address/app_rule/app_owner/app_owner_basis/owner_mismatch）",
+          "result_state_selection": "finding_details.result_state_by_codeの既存対応"
+        }
+      ],
+      "projection_mapping": {
+        "ScopeBody.applicability_ref": "applicability_source.source_ref（ScopeRawPayload.applicability_refとの全Ref一致後）",
+        "ApplicabilityTechnicalPayload.scope_locator": "Locator4(scope_source.source_ref)。Ref.sha256を含めない",
+        "OracleBody.requirement_parent": "oracle_source.raw_body.requirement_parent（HARNESS-L2-052とText exact比較後）"
+      },
+      "hash_dependency_note": "ScopeLocator4_headerはScope source Refのidentity/revision/scope/ownerだけを保持するアドレス情報で、sha256/content hashを含まない。ApplicabilityRawはその4軸とRuleRawに依存し、ScopeRaw full bytesはApplicability Refを含む。従ってScopeRawからApplicabilityRawへのfull hash依存はなく、循環しない",
+      "shape_and_missing_precedence": {
+        "scope": "fn0 carrier検査と旧8role/R6 target3規則の適用境界。元code/stateを変えず同じ欠落を二重分類しない。",
+        "old_roles": [
+          "owner_basis_source",
+          "rule_source",
+          "applicability_source",
+          "scope_source",
+          "oracle_source",
+          "relation_source",
+          "root",
+          "qualification"
+        ],
+        "target_roles": [
+          "target_read",
+          "target_qualification",
+          "target_root"
+        ],
+        "rules_in_precedence_order": [
+          {
+            "boundary": "CommandInput.scope_ref/rule_ref/oracle_ref anchor",
+            "rule": "元fn0構文境界を先に適用。scope anchorが不適合なら本source stageでBackflow Ref/診断ownerを新造しない。"
+          },
+          {
+            "boundary": "H052CurrentValidationInput root / source_projection_inputs container",
+            "condition": "root又はsource_projection_inputsがobjectでない、root必須field省略/未知field、source_projection_inputs自体省略/null/非object",
+            "code": "schema_invalid",
+            "result_state": "unknown",
+            "pointer": "最初に観測した当該container又は欠落/不正member自身。不存在containerの子causeは生成しない。"
+          },
+          {
+            "boundary": "existing eight roles",
+            "condition": "role recordが未供給（member省略又はnull）、又はevidence record内の必須memberが省略",
+            "code": "required_missing",
+            "result_state": "unknown",
+            "pointer": "/source_projection_inputs/{role} 又は /source_projection_inputs/{role}/{missing-evidence-member}",
+            "preserve": "R3 source_state_branches/owner_basis_state_branches/applicability_state_branchesのrecord/member不足を保持。同じ省略へschema_invalidを重ねない。"
+          },
+          {
+            "boundary": "target three roles",
+            "condition": "role member省略、evidence必須member省略、又は未知member/不正型/enum",
+            "code": "schema_invalid",
+            "result_state": "unknown",
+            "pointer": "当該role/省略member/不正member自身"
+          },
+          {
+            "boundary": "target three roles",
+            "condition": "role memberはあるが値null",
+            "code": "required_missing",
+            "result_state": "unknown",
+            "pointer": "/source_projection_inputs/{role}"
+          },
+          {
+            "boundary": "all supplied evidence objects",
+            "condition": "観測済みmemberの型/enum/未知memberが不正、又はvalid stateで必須content_bytes/raw_bodyが明示null",
+            "code": "schema_invalid",
+            "result_state": "unknown",
+            "pointer": "当該不正member。old8のmember省略は上段required_missingが優先。"
+          },
+          {
+            "boundary": "decoded raw payload",
+            "condition": "valid source原bytes decode後のpayload closed field/型/schema/enum不正（payload field省略を含む）",
+            "code": "schema_invalid",
+            "result_state": "unknown",
+            "pointer": "/source_projection_inputs/{role}/raw_body/{bad-member}。decode不能時は/content_bytes。",
+            "preserve": "evidence envelope member未供給と、供給済みraw payloadのclosed型不正は異なる。"
+          },
+          {
+            "boundary": "well-typed evidence state",
+            "rule": "元R3/R6 state code/pointerを適用。non-valid stateの許容null bytes/bodyだけをschema_invalidにしない。state conflictと別fieldの不足/不正は独立causeとして保持。"
+          }
+        ],
+        "suppression": "同一member省略に対する親required_missing/schema_invalidが確定した場合だけ、その不存在を原因とする子decode/hash/joinを抑制。別source/別member/観測済みstateの独立causeは評価を続ける。",
+        "ordering": "shape causeのfield pointerはcodepoint順。各causeは既存finding_detailsの全field dedupとsortへ渡す。"
+      }
+    },
+    "target_set_selector_contract": {
+      "status": "対象契約の設計候補。正式配置前のreview対象。",
+      "public_boundary": "公開CommandInputと全9 fieldは不変。変更はprivate H052CurrentValidationInput.source_projection_inputsのsource rolesだけ。既存8 rolesは同じ型・順・意味で保持し、3 roleを追加する。",
+      "selector": "source_projection_inputs.target_read.source_refをselectorとして使用する。別selectorは設けない。Refはidentity/revision/scope/owner/sha256の全5軸で照合し、selector自体を資格やauthorityとして扱わない。target_read=nullはrole未供給、field省略はclosed carrier shape違反。",
+      "read_payload": {
+        "type": "H052TargetSetTechnicalReadPayload",
+        "exact_fields": [
+          "scope_ref",
+          "required_bases",
+          "source_refs"
+        ],
+        "mapping": "TargetSetBodyと同じ3 fieldを閉じた値として写す。元source native保存schemaの発見を主張しない。",
+        "non_circularity": "外source_refをpayload/body/content_bytesへ自己hash参照として挿入しない。bytes hash、JSON decode、typed bodyを別々に照合する。"
+      },
+      "target_qualification_and_root": {
+        "types": "target_qualificationは既存H052OwnerQualificationEvidence、target_rootは既存H052OwnerQualificationRootEvidenceの別instance。scope用のqualification/root instanceを再利用・読み替えしない。",
+        "joins": [
+          {
+            "id": "target_q_root",
+            "left": "/source_projection_inputs/target_qualification/raw_body/root_ref",
+            "right": "/source_projection_inputs/target_root/source_ref",
+            "operator": "full_ref_exact",
+            "source_member": "target_qualification",
+            "field_pointer": "/source_projection_inputs/target_qualification/raw_body/root_ref",
+            "finding_code": "reference_conflict",
+            "result_field": "semantic",
+            "result_state": "conflict",
+            "condition": "両operandを下記operand_guardsに従い観測できるとき",
+            "binding": "diagnostic_binding.source_cause_to_findingへ左右実値/実在Refを渡す。未観測operandから不一致を作らない。"
+          },
+          {
+            "id": "target_q_source",
+            "left": "/source_projection_inputs/target_qualification/raw_body/source_ref",
+            "right": "/source_projection_inputs/target_read/source_ref",
+            "operator": "full_ref_exact",
+            "source_member": "target_qualification",
+            "field_pointer": "/source_projection_inputs/target_qualification/raw_body/source_ref",
+            "finding_code": "reference_conflict",
+            "result_field": "semantic",
+            "result_state": "conflict",
+            "condition": "両operandを下記operand_guardsに従い観測できるとき",
+            "binding": "diagnostic_binding.source_cause_to_findingへ左右実値/実在Refを渡す。未観測operandから不一致を作らない。"
+          },
+          {
+            "id": "target_q_sha",
+            "left": "/source_projection_inputs/target_qualification/raw_body/source_sha256",
+            "right": "/source_projection_inputs/target_read/source_ref/sha256",
+            "operator": "sha256hex_exact",
+            "source_member": "target_qualification",
+            "field_pointer": "/source_projection_inputs/target_qualification/raw_body/source_sha256",
+            "finding_code": "reference_conflict",
+            "result_field": "semantic",
+            "result_state": "conflict",
+            "condition": "両operandを下記operand_guardsに従い観測できるとき",
+            "binding": "diagnostic_binding.source_cause_to_findingへ左右実値/実在Refを渡す。未観測operandから不一致を作らない。"
+          },
+          {
+            "id": "target_g_source",
+            "left": "/source_projection_inputs/target_root/raw_body/allowed_source_ref",
+            "right": "/source_projection_inputs/target_read/source_ref",
+            "operator": "full_ref_exact",
+            "source_member": "target_root",
+            "field_pointer": "/source_projection_inputs/target_root/raw_body/allowed_source_ref",
+            "finding_code": "reference_conflict",
+            "result_field": "semantic",
+            "result_state": "conflict",
+            "condition": "両operandを下記operand_guardsに従い観測できるとき",
+            "binding": "diagnostic_binding.source_cause_to_findingへ左右実値/実在Refを渡す。未観測operandから不一致を作らない。"
+          },
+          {
+            "id": "target_g_sha",
+            "left": "/source_projection_inputs/target_root/raw_body/allowed_source_sha256",
+            "right": "/source_projection_inputs/target_read/source_ref/sha256",
+            "operator": "sha256hex_exact",
+            "source_member": "target_root",
+            "field_pointer": "/source_projection_inputs/target_root/raw_body/allowed_source_sha256",
+            "finding_code": "reference_conflict",
+            "result_field": "semantic",
+            "result_state": "conflict",
+            "condition": "両operandを下記operand_guardsに従い観測できるとき",
+            "binding": "diagnostic_binding.source_cause_to_findingへ左右実値/実在Refを渡す。未観測operandから不一致を作らない。"
+          },
+          {
+            "id": "target_q_subject_scope",
+            "left": "/source_projection_inputs/target_qualification/raw_body/subject_ref",
+            "right": "/command_input/scope_ref",
+            "operator": "full_ref_exact",
+            "source_member": "target_qualification",
+            "field_pointer": "/source_projection_inputs/target_qualification/raw_body/subject_ref",
+            "finding_code": "reference_conflict",
+            "result_field": "semantic",
+            "result_state": "conflict",
+            "condition": "両operandを下記operand_guardsに従い観測できるとき",
+            "binding": "diagnostic_binding.source_cause_to_findingへ左右実値/実在Refを渡す。未観測operandから不一致を作らない。"
+          },
+          {
+            "id": "target_g_subject_scope",
+            "left": "/source_projection_inputs/target_root/raw_body/allowed_subject_ref",
+            "right": "/command_input/scope_ref",
+            "operator": "full_ref_exact",
+            "source_member": "target_root",
+            "field_pointer": "/source_projection_inputs/target_root/raw_body/allowed_subject_ref",
+            "finding_code": "reference_conflict",
+            "result_field": "semantic",
+            "result_state": "conflict",
+            "condition": "両operandを下記operand_guardsに従い観測できるとき",
+            "binding": "diagnostic_binding.source_cause_to_findingへ左右実値/実在Refを渡す。未観測operandから不一致を作らない。"
+          },
+          {
+            "id": "target_t_scope",
+            "left": "/source_projection_inputs/target_read/raw_body/scope_ref",
+            "right": "/command_input/scope_ref",
+            "operator": "full_ref_exact",
+            "source_member": "target_read",
+            "field_pointer": "/source_projection_inputs/target_read/raw_body/scope_ref",
+            "finding_code": "reference_conflict",
+            "result_field": "semantic",
+            "result_state": "conflict",
+            "condition": "両operandを下記operand_guardsに従い観測できるとき",
+            "binding": "diagnostic_binding.source_cause_to_findingへ左右実値/実在Refを渡す。未観測operandから不一致を作らない。"
+          },
+          {
+            "id": "target_owner",
+            "left": "/source_projection_inputs/target_qualification/raw_body/owner_ref",
+            "right": "/source_projection_inputs/target_root/raw_body/owner_ref",
+            "operator": "full_ref_exact",
+            "source_member": "target_qualification",
+            "field_pointer": "/source_projection_inputs/target_qualification/raw_body/owner_ref",
+            "finding_code": "reference_conflict",
+            "result_field": "semantic",
+            "result_state": "conflict",
+            "condition": "両operandを下記operand_guardsに従い観測できるとき",
+            "binding": "diagnostic_binding.source_cause_to_findingへ左右実値/実在Refを渡す。未観測operandから不一致を作らない。"
+          },
+          {
+            "id": "target_observation",
+            "left": "/source_projection_inputs/target_qualification/qualification_observation/EstablishedEvidence/evidence_ref",
+            "right": "/source_projection_inputs/target_qualification/source_ref",
+            "operator": "full_ref_exact",
+            "source_member": "target_qualification",
+            "field_pointer": "/source_projection_inputs/target_qualification/qualification_observation/EstablishedEvidence/evidence_ref",
+            "finding_code": "reference_conflict",
+            "result_field": "semantic",
+            "result_state": "conflict",
+            "condition": "QualificationObservationがEstablishedEvidenceのときだけ",
+            "binding": "diagnostic_binding.source_cause_to_findingへ左右実値/実在Refを渡す。未観測operandから不一致を作らない。"
+          }
+        ],
+        "limit": "既存型を別roleで受ける技術候補であり、資格sourceの実在、独立性、実資格成立を示さない。"
+      },
+      "resolution_selection": {
+        "preserve": "全Resolutionの型・hash・value・既存owner mapping検査、原tuple/indexを維持する。",
+        "address_observation": "target_readがnon-nullでsource_refがfull Refとして適合すれば、state=missing/unknown/staleでもselectorと型適合Resolution Refを全5軸exact比較する。stateはbody/bytesのhash/decodeを制御し、Ref membership観測は妨げない。Q/rootの結果を待たずにaddress match、0件、valid wrong-kind、同Ref矛盾を観測し、早期returnで他causeを隠さない。",
+        "non_dereference": "Malformed selector/Resolution Refをlookup/hash/joinへ渡さない。null/malformed bytesをhash/decode/compareしない。両operandが型適合し値を観測できるときだけfield joinを行う。",
+        "success": "address matchは利用資格ではない。valid target_set Resolution、そのvalue/content_bytesとTの一致、T/Q/G/Observationの全joinが成功した場合のみbodyを既存base比較へ渡す。"
+      },
+      "null_base": {
+        "known_type": "Base.expected_refはRef|null。nullは保持可能な値である。",
+        "owner_declaration_rule": "qualified target_readが独立target owner自身の原TargetSet宣言と確認され、source_ref、target qualification/root/Observation、full 5-axis Ref、source bytes hash、JSON decode、固定3-field raw body、Resolution valueとの全値逆照合が成立した場合、その原required_bases[i] memberのasset_idとexpected_ref=nullを同じassetに対する新規不存在宣言として扱う。別source・別roleは必須にしない。これは要求上の対象宣言であり、物理DB/CASで実際に不存在であることを示さない。",
+        "comparison_rules": [
+          {
+            "condition": "全ての既存資格/source/bytes/body/Resolution照合が成功したowner原memberがasset_idを明示しexpected_ref=nullを持ち、caller側にも同asset expected_ref=nullがある",
+            "result": "原値を保ったまま通常のasset_id双方向比較を行い、追加の不存在operand欠落findingは作らない。"
+          },
+          {
+            "condition": "qualified owner原memberにasset_idがあるがcaller側に同assetのbase memberがない",
+            "code": "target_missing",
+            "result_field": "semantic",
+            "result_state": "unknown",
+            "pointer": "/command_input/bases",
+            "note": "ownerのnull宣言はcaller側memberの欠落を補完しない。"
+          },
+          {
+            "condition": "caller側の同asset expected_refが非nullでqualified owner原memberのexpected_ref=nullと異なる",
+            "code": "base_conflict",
+            "result_field": "semantic",
+            "result_state": "conflict",
+            "pointer": "/command_input/bases/{index}/expected_ref と /source_projection_inputs/target_read/raw_body/required_bases/{index}/expected_ref"
+          },
+          {
+            "condition": "型適合・資格済みの同asset owner原memberがcaller値と異なる具体値を宣言する",
+            "code": "base_conflict",
+            "result_field": "semantic",
+            "result_state": "conflict",
+            "pointer": "/source_projection_inputs/target_read/raw_body/required_bases/{index}/expected_ref"
+          },
+          {
+            "condition": "独立TargetSet全体と必要なsource/資格/root/Observation/Resolutionがmissing、unknown、staleまたは未解決で、caller-only membershipをまだ確定できない",
+            "code": "各未解決causeに対応する既存findingを保持",
+            "result_field": "semantic",
+            "result_state": "unknown (未解決fieldのみ)",
+            "pointer": "該当するsource role/state/body",
+            "note": "既知矛盾のfindingは別に保持し、未解決causeへ畳み込まない。"
+          },
+          {
+            "condition": "独立owner TargetSet全体が全必要照合を通って解決済みで、callerにあるasset_idがrequired_bases全体に存在しない",
+            "code": "base_conflict",
+            "result_field": "semantic",
+            "result_state": "conflict",
+            "pointer": "/command_input/bases/{index}/asset_id と /source_projection_inputs/target_read/raw_body/required_bases",
+            "note": "双方向集合比較で独立集合に対するcaller-only memberは余剰base。target_missingは独立集合にあるassetをcallerが欠落させた場合に限る。"
+          },
+          {
+            "condition": "型適合した既存operand joinでscope/owner/full Ref/body/hash/Resolutionの既知不一致が観測される",
+            "code": "そのjoinに対応する既存finding (例: reference_conflict、owner_mismatch、schema_invalid)",
+            "result_field": "semantic",
+            "result_state": "既存causeに定義されたstate",
+            "pointer": "既知不一致のsource-side member/pointer",
+            "note": "既知の矛盾を一律unknownにせず、既存finding code/state/pointerで他causeとともに集約する。"
+          }
+        ],
+        "responsibility_boundary": "HARNESSはqualified owner原宣言とcaller basesの意味比較だけを行う。OSはcurrentness/CAS、実保存状態、実不存在観測、保存・rollback・durabilityを保持する。",
+        "supersedes_r4_statement": "R4でasset単位の独立不存在operandがないことを一律のrequired_missingとしていた記述を訂正する。独立target owner自身のqualified原TargetSet memberが上記条件を満たせば、その同一memberが宣言operandである。R2 correctionの「根拠欠落をconflictにしない」は保持し、R4の別source必須化だけを取り除く。",
+        "aggregation": "観測されたmissing/unknown/stale causeと、型適合operandから確定した既知conflict causeは元のfinding code/state/pointerを保って全て集約し、既存reductionへ渡す。未解決を矛盾にせず、既知矛盾もunknownへ消さない。"
+      },
+      "observation_order": [
+        "private carrierと全source roleのclosed shape/state/Ref/value型を検査し原値と原順を保持する。",
+        "既存8 roleのsource projection/hash/qualification checksを従来どおり全件行う。",
+        "target_readを検査し、selector Refの型が適合した場合はQualificationより前にResolution address membershipを5軸exactで観測する。",
+        "型適合したT/Q/G/Observation/Resolution/Baseの各operand pairだけjoinし、独立して判断できるcauseを収集する。",
+        "TargetSetの成功使用とowner原null宣言の意味使用はT/Q/G、QualificationObservation、対応Resolution、全既存mappingとbytes→raw→typed全値照合が成立した後だけ許可する。null member自身は別role/sourceを要しない。資格/read/原宣言の未解決を埋めず各原因を併存させる。",
+        "既存のconflict/unknown reductionを適用し全Finding、raw value、tuple index、scope/rule、OS projectionを保持する。"
+      ],
+      "finding_mapping": [
+        {
+          "condition": "target_read/target_qualification/target_root role is null",
+          "code": "required_missing",
+          "result_field": "semantic",
+          "result_state": "unknown",
+          "pointer": "/source_projection_inputs/{role}"
+        },
+        {
+          "condition": "role member omitted or malformed closed evidence/payload/member type",
+          "code": "schema_invalid",
+          "result_field": "semantic",
+          "result_state": "unknown",
+          "pointer": "/source_projection_inputs/{role} (known bad member gets its member pointer)"
+        },
+        {
+          "condition": "target source explicitly missing",
+          "code": "required_missing",
+          "result_field": "semantic",
+          "result_state": "unknown",
+          "pointer": "/source_projection_inputs/target_read/state",
+          "note": "source_refが型適合して供給されていれば、同時にResolution address membershipを観測する。"
+        },
+        {
+          "condition": "target source present but unknown/stale or qualification/root not resolved",
+          "code": "resolution_unknown",
+          "result_field": "semantic",
+          "result_state": "unknown",
+          "pointer": "the corresponding source role state/observation"
+        },
+        {
+          "condition": "typed full Ref or typed source value differs across observed join",
+          "code": "reference_conflict",
+          "result_field": "semantic",
+          "result_state": "conflict",
+          "pointer": "the source-side operand of the mismatched join"
+        },
+        {
+          "condition": "Resolution valid closed variant has exact-address kind other than target_set",
+          "code": "reference_conflict",
+          "result_field": "semantic",
+          "result_state": "conflict",
+          "pointer": "/command_input/resolutions/{index}/kind"
+        },
+        {
+          "condition": "Resolution unknown kind only",
+          "code": "schema_invalid",
+          "result_field": "semantic",
+          "result_state": "unknown",
+          "pointer": "/command_input/resolutions/{index}/kind"
+        },
+        {
+          "condition": "other Resolution closed-record shape violation",
+          "code": "schema_invalid",
+          "result_field": "semantic",
+          "result_state": "unknown",
+          "pointer": "/command_input/resolutions/{index} (or known invalid member)"
+        },
+        {
+          "condition": "qualified owner original TargetSet member explicitly binds this asset_id to expected_ref=null and all existing source/qualification/root/Observation/bytes/body/Resolution checks succeed",
+          "code": "normal base comparison",
+          "result_field": "semantic",
+          "result_state": "既存比較規則",
+          "pointer": "/source_projection_inputs/target_read/raw_body/required_bases/{index}/asset_id と /expected_ref",
+          "note": "同じ原memberが新規不存在宣言である。別role/sourceを要求しない。"
+        },
+        {
+          "condition": "caller has no base member for an asset explicitly present in the qualified owner declaration",
+          "code": "target_missing",
+          "result_field": "semantic",
+          "result_state": "unknown",
+          "pointer": "/command_input/bases",
+          "note": "owner原nullからcaller側の欠落を補完しない。"
+        },
+        {
+          "condition": "owner source and complete TargetSet body are successfully qualified/resolved; caller has a base member whose asset_id is absent from required_bases",
+          "code": "base_conflict",
+          "result_field": "semantic",
+          "result_state": "conflict",
+          "pointer": "/command_input/bases/{index}/asset_id と /source_projection_inputs/target_read/raw_body/required_bases",
+          "note": "完成した独立集合に対するcaller-only memberは余剰base。逆方向のcaller欠落は既存target_missingを保持する。"
+        },
+        {
+          "condition": "source/qualification/root/Observation/Resolution/body is missing, unknown, stale or unresolved, so the independent membership cannot be determined",
+          "code": "未解決fieldに対応する既存finding",
+          "result_field": "semantic",
+          "result_state": "unknown (未解決fieldのみ)",
+          "pointer": "該当source role/state/body",
+          "note": "型適合operandから観測済みのscope/owner/Ref/body矛盾は既存reference_conflict/owner_mismatch等として残し、cause全体を既存reductionへ渡す。"
+        },
+        {
+          "condition": "qualified explicit contrary base value, duplicate, extra, or caller/target known mismatch",
+          "code": "base_conflict",
+          "result_field": "semantic",
+          "result_state": "conflict",
+          "pointer": "/command_input/bases or the exact TargetSet member"
+        },
+        {
+          "condition": "/source_projection_inputs/target_read/stateがconflictである",
+          "code": "reference_conflict",
+          "result_field": "semantic",
+          "result_state": "conflict",
+          "pointer": "/source_projection_inputs/target_read/state",
+          "basis": [
+            {
+              "path": "docs/helix-harness/L5-detail-design/command-meaning-identity.json",
+              "sha256": "fc24266ab42289451e5a58a178f5adaf43d439d856271a9ab2a0617e72297945",
+              "pointer": "/type_contract/finding_rules/3"
+            },
+            {
+              "path": "scaffold/review-handoff/local/harness052-target-set-selector-source-read/advice/target-selector-technical-addendum-r2.json",
+              "sha256": "c1b63feb3dca66d0c322cebda7a29892d7edac2fd7a110b63772fb32baa3bbb3",
+              "pointer": "/deterministic_finding_mapping/3"
+            }
+          ],
+          "note": "Evidence state自体の明示conflictを分類する。non-valid stateでcontent_bytes/raw_bodyがnullであることだけをschema_invalidへ置換しない。既知の他causeは独立に保持する。"
+        },
+        {
+          "condition": "/source_projection_inputs/target_qualification/stateがconflictである",
+          "code": "reference_conflict",
+          "result_field": "semantic",
+          "result_state": "conflict",
+          "pointer": "/source_projection_inputs/target_qualification/state",
+          "basis": [
+            {
+              "path": "docs/helix-harness/L5-detail-design/command-meaning-identity.json",
+              "sha256": "fc24266ab42289451e5a58a178f5adaf43d439d856271a9ab2a0617e72297945",
+              "pointer": "/type_contract/finding_rules/3"
+            },
+            {
+              "path": "scaffold/review-handoff/local/harness052-target-set-selector-source-read/advice/target-selector-technical-addendum-r2.json",
+              "sha256": "c1b63feb3dca66d0c322cebda7a29892d7edac2fd7a110b63772fb32baa3bbb3",
+              "pointer": "/deterministic_finding_mapping/13"
+            }
+          ],
+          "note": "Evidence state自体の明示conflictを分類する。non-valid stateでcontent_bytes/raw_bodyがnullであることだけをschema_invalidへ置換しない。既知の他causeは独立に保持する。"
+        },
+        {
+          "condition": "/source_projection_inputs/target_root/stateがconflictである",
+          "code": "reference_conflict",
+          "result_field": "semantic",
+          "result_state": "conflict",
+          "pointer": "/source_projection_inputs/target_root/state",
+          "basis": [
+            {
+              "path": "docs/helix-harness/L5-detail-design/command-meaning-identity.json",
+              "sha256": "fc24266ab42289451e5a58a178f5adaf43d439d856271a9ab2a0617e72297945",
+              "pointer": "/type_contract/finding_rules/3"
+            },
+            {
+              "path": "scaffold/review-handoff/local/harness052-target-set-selector-source-read/advice/target-selector-technical-addendum-r2.json",
+              "sha256": "c1b63feb3dca66d0c322cebda7a29892d7edac2fd7a110b63772fb32baa3bbb3",
+              "pointer": "/deterministic_finding_mapping/16"
+            }
+          ],
+          "note": "Evidence state自体の明示conflictを分類する。non-valid stateでcontent_bytes/raw_bodyがnullであることだけをschema_invalidへ置換しない。既知の他causeは独立に保持する。"
+        }
+      ],
+      "preservation": "成功normal conditional path、既存8 source roles/8 source projection rules、public CommandInput、existing Finding enums/results, original tuples/indexes, all causes and OS projection are retained. No root/provider/authority/schema-wide expansion.",
+      "target_read_owner_declaration": "target_readは独立target ownerが当該scopeについて供給したTargetSetの原宣言である。元producerのnative schemaを発見したとの主張ではなく、既存TargetSetBodyと同じ3-fieldを読み取る限定的なtechnical read表現である。既存target qualification/root/Observationと完全なsource/bytes/body照合が成立した場合に限り、required_bases[i]のasset_idとexpected_refをownerの原宣言として読む。",
+      "state_conflict_mapping": {
+        "scope": "target_read / target_qualification / target_rootの3既存role",
+        "state_conflict": "各state pointerをreference_conflict / semantic / conflictへ写す。既存の一般source_state_branches/3との接続を明記し、R2の元3条件をrole別に再掲する。",
+        "nonvalid_content": "state=conflictはsourceの非valid状態であり、content_bytes/raw_bodyのnullだけからschema_invalidを作らない。状態枝を決定した後はこのsourceのbody/bytesをvalid sourceとして採用しない。",
+        "separation": "missing/unknown/staleはtarget-specific existing required_missing/resolution_unknown分岐、validで必須bytes/body欠落やclosed type違反はschema_invalid、型適合joinで観測した既知Ref/body/scope/owner不一致は該当する既存reference_conflict/owner_mismatch等で保持する。",
+        "aggregation": "state conflictと他の観測可能causeを併存させ、functions/0/algorithm/9およびtype_contract/owner_source_projection_mapping/value_result_branchesの既存reductionへ渡す。早期returnで他causeを隠さない。"
+      },
+      "diagnostic_binding": {
+        "scope": "既存Finding/cause_recordへの固定operand binding。新しい型/role/公開field/一般DSLではない。source_memberは既存role名、又は原Resolutionの/command_input/resolutions/{i}という内部locatorを指す。",
+        "operand_guards": [
+          "full_ref_exactは閉じたRef全5軸に適合した左右だけを比較。Text owner labelをRefへcastしない。sha256hex_exactは宣言Sha256Hexの実値だけ。",
+          "外source_refとCommandInput Refは型適合した原addressを観測できる範囲で比較し、Qualification全体の成功を待って隠さない。raw_body fieldは元source state/decode/hash/bodyの既存検査に従い原値を確認できるときだけ読む。",
+          "EstablishedEvidenceのevidence_refはそのvariantで実際に供給されたRefだけ。NotEstablished/Unassessedへ仮Refを付けず、元resolution_unknownとreason Refを保持。",
+          "Resolution.ref不正、null/非bytes、invalid kind/valueは対応する比較だけを行わずshape/state causeへ戻す。別index/別source/独立した観測済みRef joinは続ける。"
+        ],
+        "subject_chain_equivalence": "R6のQ.subject=G.allowed_subject=T.scope=Command.scopeをQ.subject対Command.scope、G.allowed_subject対Command.scope、T.scope対Command.scopeへ分解。全一致/不一致の条件は同値。診断は各sourceの左memberへ返し、同じ比較を別chainとして重複実行しない。",
+        "source_cause_to_finding": {
+          "code": "該当固定join又は既存shape/state ruleのcode。FindingCodeにないnormal base comparison等の説明文字列は出力しない。",
+          "field_pointer": "固定join.field_pointer又は観測したmissing/invalid/state/hash/body memberの既存pointer。tokenをRFC6901で一度escape。",
+          "subject_ref": "cause.source_memberで指定した元evidence.source_refがclosed Refならその全値、未供給/型不正ならnull。",
+          "basis_refs": "実際に読んだ左右operandのうちclosed Refであるもの、元command_input.scope_ref、当該observationがNotEstablishedなら実reason_ref。全Ref5軸同値でdedupし5軸codepoint順。Locator4/Text/sha/不正RefからRefを合成しない。",
+          "owner": "元evidence.source_ref.ownerがTextとして適合すればその原Text。未供給/型不正なら元command_input.scope_ref.owner。Refの他fieldが不正でもowner Text自体を観測できるかを個別確認し、identityからownerを作らない。",
+          "result_field": "semantic",
+          "result_state": "既存finding_details.result_state_by_codeとreductionだけで決める。"
+        },
+        "resolution_cause_adapter": {
+          "origin": "原command_input.resolutions tupleの各index i。source_ref memberは存在しないので読まない/付与しない。",
+          "code_and_pointer": [
+            {
+              "cause": "record/必須member/型不正",
+              "code": "schema_invalid",
+              "field_pointer": "/command_input/resolutions/{i} 又は最初に特定した不正/欠落member（複数独立memberは各pointer）"
+            },
+            {
+              "cause": "kindだけが未宣言",
+              "code": "schema_invalid",
+              "field_pointer": "/command_input/resolutions/{i}/kind"
+            },
+            {
+              "cause": "target selector address一致かつ観測済みvalid Resolution.kindがtarget_set以外",
+              "code": "reference_conflict",
+              "field_pointer": "/command_input/resolutions/{i}/kind"
+            },
+            {
+              "cause": "M=0（typed selectorがあるが全原Resolution中に型適合Ref一致なし）",
+              "code": "required_missing",
+              "field_pointer": "/command_input/resolutions",
+              "subject_role": "target_read（不存在Resolutionを作らない）"
+            },
+            {
+              "cause": "必須Resolution state missing/unknown/stale",
+              "code": "resolution_unknown",
+              "field_pointer": "/command_input/resolutions/{i}/state"
+            },
+            {
+              "cause": "Resolution state conflict",
+              "code": "reference_conflict",
+              "field_pointer": "/command_input/resolutions/{i}/state"
+            },
+            {
+              "cause": "同Refのbytes/body/map/state又はprojectionの観測済み不一致",
+              "code": "reference_conflict",
+              "field_pointer": "/command_input/resolutions/{i}/{content_bytes|value|state}（kind差は/kind）"
+            }
+          ],
+          "source_member": "/command_input/resolutions/{i}を内部cause locatorにする。M=0だけはtarget_read。",
+          "subject_ref": "元Resolution.refがclosed Refならその原値。ref不正/未供給ならnull。M=0では型適合したtarget_read.source_ref。",
+          "owner": "元Resolution.ref.ownerがTextとして適合すればその原Text。観測不能/不正ならcommand_input.scope_ref.owner。M=0では元target_read.source_ref.owner。同じnull/owner fallback原則で新ownerを作らない。",
+          "basis_refs": "実在しclosed Refの元Resolution.ref、型適合して観測したselector target_read.source_ref、元command_input.scope_ref、当該比較がRef対Refならその左右Ref。全5軸同値dedup/codepoint順。不正Refは入れない。",
+          "result_field": "semantic。stateは既存code対応。shape不正indexをearly returnの理由にして他indexの原因を消さない。"
+        },
+        "matched_resolution_bytes_and_duplicates": {
+          "M": "selector target_read.source_refと全5軸一致した型適合Resolution.refの原indexを昇順で列挙。kind/state/qualificationをmembership filterにしない。",
+          "byte_map": "resolution_content_bytesは既存full Ref→原bytesの入力mapのまま。各matched iについて同じRef keyの原map値を読み、そのiのdeclared content_bytesと個別にbytes比較。最初/最後のResolutionへmap値を上書きせず、mapから原tupleも再構築しない。",
+          "map_missing_or_bad": "map key不足はrequired_missing/semantic unknown、map値不正はschema_invalid/unknown。field_pointer=/resolution_content_bytes、内部source_memberは当該Resolution index、subject/owner/basisはresolution_cause_adapter。存在しないmap entryをnull bytesへ合成しない。",
+          "per_index_bindings": [
+            "各iの供給content_bytesがbytesなら、原map bytesとの一致とref.sha256対sha256(当該原bytes)を別々に照合する。",
+            "各iがvalid target_setで原bytes decode/closed型検査を通るとき、そのiのResolution.value全fieldを原decode bodyと照合し、target_readの検証済みraw_bodyとも全値逆照合する。",
+            "target_read.content_bytesを観測できれば、各matched iの原bytesと別々に比較する。Q/rootの利用資格未成立だけで既知のbytes/value矛盾を隠さない。",
+            "同Refのmatched i<jの各組について観測済みstate/kind、両側が実bytesのcontent_bytes、両側が型適合して観測できる非null valueをそれぞれ比較する。差のcause pointerは後index jの当該member、左右実値はj/i、元両indexは内部locatorと原tupleで保持。non-validで許されたnull body/bytesを未観測値の差としてconflictへ変換しない。"
+          ],
+          "identical_repetition": "同Ref・同bytes/value/state/kindの反復だけを新しいconflict/duplicate gateにしない。原tupleと全indexを保存し、既存全必要照合が成立すれば使用できる。異値/未解決causeは各indexに保持。",
+          "success": "membershipだけで成功にしない。全必要照合/資格/原宣言が成立した独立TargetSetだけ既存base比較へ渡す。複数同値matchから勝手な内容補修をしない。"
+        },
+        "internal_cause_and_same_call_retention": {
+          "record": "既存internal cause_recordのcode/field_pointer/source_member/left_operand/right_operand/unresolved_refs/differenceを使う。新しい公開返却fieldではない。",
+          "operands": "joinは実際に読んだ左右原値。shape/member欠落は元のraw親record全値をleft_operandとして保持し、right_operandとdifferenceは比較なしのnullにする（欠落memberの実値をnull観測したと主張しない）。",
+          "index": "Resolution cause.source_memberとfield_pointerは原index i、重複pairの比較は後index jのpointerと両元tuple要素を内部左右operand/contextに保持する。raw/typed/mapやtuple順を修復しない。",
+          "public_differences": "任意source shape/bytes差は既存Difference.axisへcastしない。公開differencesは元Difference型で表せる意味axis差のみ。source差の実値はinternal causeと元immutable carrierで保持し、既存Finding.pointer/subject/basisで辿る。",
+          "caller_consumer": "呼出元は同invocationのH052CurrentValidationInputそのものをimmutableに保持し、既存ValueResult/Findingと同じ呼出しの資料として扱う。Finding pointer/index又はmap根pointer+subject Refから、原tuple全matched index/原map値/原source bytesを辿れる。internal causeを公開の新memberであるかのように渡さず、別callのcarrierへ付替えない。"
+        },
+        "ordering_and_reduction": {
+          "cause_order": [
+            "carrier shape",
+            "既存8roleはR3宣言source order/joins order",
+            "target3 roleのshape/stateをtarget_read→target_qualification→target_root",
+            "Resolution原index昇順のshape/address/map/bytes/value",
+            "固定target joins記載順",
+            "同Ref matched pair i<jの辞書順でstate→kind→content_bytes→value",
+            "既存base比較"
+          ],
+          "finding_sort": "既存fn6のcode/field_pointer/subject identity/revision/scope/owner順。同sort keyで全fieldが異なる場合はこのcause orderを保つstable sort。",
+          "dedup": "公開Findingは全6fieldが完全一致したものだけdedup。code/pointerだけで異なるbasis/subject/ownerを併合しない。同一Findingへdedupされた複数indexの元原因/左右値は同carrierとinternal causesに保持。",
+          "reduce": "全独立unknown/conflictを元state対応のまま単一の既存reductionへ渡す。新しい最終state/authorityを追加しない。"
+        }
+      }
+    }
   },
   "normalization_selection": {
     "owner_binding": "profileを一律採用せず、ScopeBody/RuleBodyとowner原契約がnumber semantics/zero semanticsを明示した時だけ適用。未知意味はrule_unsupportedとして上流へ戻す。新profile選択のために既存意味規則の版を黙って変更しない。",
@@ -693,13 +2188,18 @@
         "HARNESS-L4-052-B01"
       ],
       "oracle_ref": "HARNESS-L8-052-validate_command_input",
-      "input": "CommandInput、型対応Resolutionのexact bytes",
+      "input": "H052CurrentValidationInput {command_input: 元のCommandInput引数そのまま, resolution_content_bytes: 元のResolution bytes引数そのまま, source_projection_inputs: 同時点の既存8 source roles＋target_read/target_qualification/target_rootの3 target-specific roles}",
       "output": "ValueResult[ValidatedInput]",
       "effect": "none。immutable入力から新しい戻り値だけ。IO/DB/Git/API/clock/環境変数/秘密情報の参照なし。",
       "algorithm": [
-        "全recordを閉じた型で検査。valid Resolutionはref.sha256とcontent_bytes、対応するvalueのfield/参照を照合。callerのstate=validやhashだけでowner成立を推定せず、scope→rule/applicability/ownerの原根拠と独立target rootを解決する。",
-        "command IDをraw Textとして固定。scope Refはidentity/revision/owner/shaを含めexact。RuleBody.rule_refとCommandInput.rule_ref、ScopeBody.normalization_rule_refを同じ本文へ束縛。別scope/oracle/規則で補完しない。",
-        "caller basesとTargetSet.required_basesをasset_idで双方向集合比較。duplicateは同値でも拒否、欠落はtarget_missing、余剰/異値はbase_conflict。null baseは独立target ownerの新規不存在宣言で裏付ける。ソートは後続表示/encoding用で不足補修ではない。",
+        "入力carrierはclosed shapeで検査する。公開CommandInput、元のResolution bytes、既存8 source roleをそのまま保持し、target3 roleは別roleとして検査する。欠落/shape分類はowner_source_projection_mapping.shape_and_missing_precedenceに従い、旧8roleのrecord/evidence member不足はR3 required_missing、carrier root/target3の省略等は指定のschema_invalidとする。同じ欠落原因へ両codeを出さず、独立原因は残す。各raw member、tuple順、indexを削除・修復しない。",
+        "owner-basis leafのbytes/外Refを先に固定し、RuleRaw.owner_basis_refを全Ref軸で照合する。Scope sourceの4軸address Locatorを宣言し、Ruleとの関係を表すApplicabilityRawを固定する。ApplicabilityRaw.scope_locatorはScope Refからidentity/revision/scope/ownerだけを写したLocatorと比較し、normalization_rule_refはRule full Refと、owner_refはScope ownerおよびowner-basis ownerとそれぞれ比較する。Applicability source_refをScopeRawPayload.applicability_refへ全Ref軸で照合した後、ScopeRaw bytes/full Ref/hashを確定する。Locator4比較でScope.sha256を代用しない。",
+        "OracleRaw.scope_refは本来のraw edgeとしてbytes/hash内に保持し、Scope full Refと全軸比較する。OracleRaw.requirement_parentはL3/L10で固定されたHARNESS-L2-052とText完全一致で比較し、trim/casefold/prefixで補完しない。relationのscope_ref・normalization_rule_ref・oracle_ref・owner_refを全軸で比較し、独立rootとQualificationObservation/Qを照合する。raw bytesに含まれる本来のedgeは消去しない一方、ScopeBody.scope_ref、RuleBody.rule_ref、OracleBody.oracle_ref等の投影自己参照はraw payloadへ書き戻さず、検証済み外Refから付与する。全source投影後に既存closed ScopeBody/RuleBody/OracleBodyへ写し、CommandInputと各ResolutionのRef/bytes/valueを照合する。NotEstablished/Unassessedを構造validから昇格させない。",
+        "target_readがnon-nullなら、まず外source_ref/stateを別々に型検査する。full Refとして適合したsource_refはstate=missing/unknown/staleでもaddress観測へ使える。missing等のstateはcontent/body decodeを止めるが、source_refが与えられた場合のM観測を止めない。validではbytesと固定3-field payloadが必須。payloadはscope_ref/required_bases/source_refsを閉じた型で保持し、source_refは外envelopeにだけ置く。valid宣言、hash、decode body、Resolution valueを相互照合し、raw bodyをcallerへ合わせて書き換えない。",
+        "型適合したtarget_read.source_refと各型適合Resolution.refの全5軸exact membershipを、target qualification/rootの成功可否と分離して観測する。kind filterを先行させない。Q/rootがmissing/unknownでも、M=0、valid wrong-kind、同Refのbytes/value/state矛盾を観測可能な範囲で別々に保持する。Mへの所属だけではTargetSet使用も資格も成立しない。 各indexへの原byte-map照合と同Ref比較、完全Findingへの変換はtarget_set_selector_contract.diagnostic_bindingの固定規則へ従う。",
+        "target_qualification/target_rootは既存H052OwnerQualificationEvidence/RootEvidenceの別instanceとしてのみ読み、既存scope用instanceへfallbackしない。source state・Ref・bytes・raw bodyを型適合の範囲で照合する。Q.root_ref=G.source_ref、Q.source_ref=T.source_ref、Q.source_sha256=T.source_ref.sha256、G.allowed_source_ref=T.source_ref、G.allowed_source_sha256=T.source_ref.sha256、Q.subject_ref=G.allowed_subject_ref=T.raw_body.scope_ref=CommandInput.scope_ref、Q.owner_ref=G.owner_refをexact比較する。EstablishedEvidenceではevidence_ref=target Q source_refも要求する。owner TextをRefへcastしない。 この等値chainはtarget_qualification_and_root.joinsの固定pairへ一度だけ分解して評価し、source_member/左右fieldをdiagnostic_bindingへ渡す。",
+        "target-set bodyを使用できるのはT/Q/G、QualificationObservation、対応Resolution、全既存mappingが成立した後だけ。資格・selector・readの未解決を埋めず、各原因をResult.findingsへ併存させる。",
+        "caller basesと、全照合済みの独立owner原TargetSet.required_basesをasset_idで双方向比較する。owner原TargetSetのrequired_bases[i]にasset_idとexpected_ref=nullが明示され、target_readの資格/root/Observation、full Ref、bytes hash、JSON decode、固定3-field body、Resolution valueとの全値逆照合が成立した場合、その原member自身を当該assetの新規不存在宣言として扱う。別source/roleを要求しない。callerとowner原memberのnull同士は比較可能である。caller欠落はtarget_missing、同一assetの重複・余剰・観測済み異値はbase_conflict。caller側のnull/欠落、TargetSet member欠落、資格不成立、unresolved、malformedから不存在を推論しない。不足/unknown/staleは既存required_missing/resolution_unknown等を保持し、観測済み反対値だけをconflictにする。この意味宣言は物理DB/CASの不存在証明ではなく、その確認はOSに残す。",
         "BudgetBodyをscope/resource原Refへ束縛。個別最大値は入力契約の実値、ここで16/256等の旧固定値を作らない。未供給はbudget_unknown。raw byte長をparse前に確認。",
         "validな部分と未解決causeの両方を返す。semantic conflictが一つでもあればconflict、残る不足はunknownとしてfindingsに保持。どちらもある場合のconflictは不足解決を意味しない。"
       ],
@@ -974,7 +2474,7 @@
     }
   ],
   "os_projection": {
-    "request": "OSの収集/lookup snapshotからCommandInput/ResolutionをpureAPIへ渡す。transportはimmutablebytes/closed JSON envelopeのbase64 bytes、number payloadはrawUTF8を保持、JSON.parse等で数値/duplicate情報を落としてから渡さない。base64はRFC4648標準alphabet/padding、strictdecode、再encoding一致を検査。OS DB root/credential/API tokenを渡さない。",
+    "request": "OSの収集/lookup snapshotからCommandInput/ResolutionをpureAPIへ渡す。transportはimmutablebytes/closed JSON envelopeのbase64 bytes、number payloadはrawUTF8を保持、JSON.parse等で数値/duplicate情報を落としてから渡さない。base64はRFC4648標準alphabet/padding、strictdecode、再encoding一致を検査。OS DB root/credential/API tokenを渡さない。 fn0へは、既存2入力である元CommandInputとResolution bytesを保持したうえで、同一時点の H052CurrentValidationInput.source_projection_inputs として H052SourceProjectionInputs を渡す。この閉じた11 roleは型宣言に従い、scope_source、rule_source、oracle_source、relation_source、qualification、root、owner_basis_source、applicability_source、target_read、target_qualification、target_rootを保持する。公開CommandInputのfieldと元2入力の内容は変更しない。実際のcaller/provider接続は未成立であり、caller名・実資格・DB/APIアクセスをこの契約から捏造しない。",
     "response": "Comparison本文bytesとそのdigestを返しOSがK Refへ束縛。OS053 IdentityResultの全9項目はidentity_result_projectionに従い同値projectionし、payload_digestはcurrent_identity.normalization.semantic_digestの全文を保持する。Kの解決内容にNormalizedPayloadと比較全根拠を残す。ResultRef Kとprior_result M1は別役割。",
     "identity_result_projection": {
       "responsibility": "HARNESSは意味比較とComparisonBody本文bytes/digestを返す。OSはその既存出力addressでK Refへ束縛し、同本文からOS053 IdentityResultを投影する。HARNESSの7 pure関数にIO、保存、認可、Ref発行又は新しい公開関数を追加しない。",
@@ -1009,5 +2509,20 @@
     "owner RuleBodyを各対象scopeへ正式束縛すること、未対応rule/domainのbackflowは未完保持。後続技術選定で要求scopeを縮小しない。",
     "OS053でreceipt結合snapshot/全外部必須canonical write/SEC-INFRA資源/実readを供給すること。schema/transport/process及びbinding記録の実実装は未成立。",
     "配置4論点、formatter/linter/docs意味監査/lockedtoolchainと全92親430義務の残り。実CI/PO実物L11/通常L3/release/internaldeployは未成立。"
-  ]
+  ],
+  "current_basic_binding": {
+    "path": "docs/helix-harness/L4-basic-design/command-meaning-identity.json",
+    "file_sha256": "e10997d0b23ccae57ab123db355197da5c7a0e4384fded76bb5d85a3d7353ebb",
+    "pointer": "/architecture/input_binding_source_contract"
+  },
+  "current_l9_candidate_binding": {
+    "path": "docs/helix-harness/L9-integration-verification/command-meaning-identity.json",
+    "candidate_sha256": "e6b953fe5c1095d2774b3330529f0943c8f08c70cc61a75d8cfe83868f4c0496",
+    "pointer": "/input_binding_source_contract_oracles"
+  },
+  "historical_source_pin_basis": {
+    "revision": "e3ebf6cd675c690760893145502e99ca530cd11f",
+    "pointer": "/source_pins",
+    "role": "元16件の歴史source pin。新しいcurrent bindingとは別に保持する。"
+  }
 }
