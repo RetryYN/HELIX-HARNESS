@@ -3,7 +3,7 @@
   "status": "audit_record_candidate_pending_independent_semantic_review",
   "authority_effect": "none",
   "source_main": "6802cc295b6747b98101898c47bb865c7ec6bcd7",
-  "scope": "固定cases8..28の4root全leafをcurrent L3/L10/L4/L5から再導出した著述と、source-first freeze後の既存tracked L8期待との型敏感全値一致の候補監査記録。採否・実資格・実行・完成を生成しない。",
+  "scope": "固定cases8..28の4root全leafについて、L3/L10承認8対象objectで要求scopeの連続性を確認し、現行L4/L5技術設計候補の読取・NA判断・origin・serializer・sort規則へ照合した著述と、作成側が申告するsource-first freeze後の既存tracked L8期待との型敏感全値一致の候補監査記録。上流8objectが各leafを直接指定するという主張ではなく、候補設計への依存を含む。採否・実資格・実行・完成を生成しない。",
   "self_containment": {
     "normative_sources": "tracked L3/L10/L4/L5とdecision record、有限原値と既存whole期待はtracked L8だけ。ignored fileはauthoring historyの識別に限る。",
     "replay_inputs": "本record内の固定literal/copy/patch ledger、pin付きL4 JSON、tracked L8 raw-only recipe。ignored script又は28MB snapshotが無くても全原leafの値と意味根拠を読める。",
@@ -14,7 +14,7 @@
     "decision_record_sha256": "53f0c2d44b17133b8ad3b6eefab7fbf621203c3cc997131e81d341acb37a7467",
     "approval_head": "47354be8c1ef225dd7eacffe390d268c0dfee784",
     "approval_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2938#issuecomment-6113010770",
-    "scope": "承認14組のうち本再導出が直接使う8objectのexact連続性。集約file全体又は新L4/L5の承認を生成しない。",
+    "scope": "承認14組のうち本再導出が参照する8対象objectのexact本文と要求scopeの連続性だけを確認する。NA reason/reentry・origin全field・sort等の詳細はこの8objectから直接導かれる値ではなく、pin付き現行L4/L5技術設計候補の規則に依存する。集約file全体又は新L4/L5の承認を生成しない。",
     "target_objects": [
       {
         "id": "HELIXBRAIN-L3-032-F01",
@@ -105,7 +105,13 @@
         "object_literal_unchanged": true
       }
     ],
-    "draft_metadata_boundary": "draft/not_executedは承認前bytesに保持されたmetadata。対象revisionの状態はdecision recordから読む。"
+    "draft_metadata_boundary": "L3/L10本文のdraft/not_executedと、decision record frontmatterのrecorded_pending_final_review_and_main_admission/effective_when_this_record_is_admitted_to_mainは、その固定文書に保持されたmetadataである。metadata文字列だけから現在の承認又は未承認を決めない。decision本文は47354be8の14組exact revisionに限る承認を記録し、本記録の8objectはそのselected対象との連続性を確認する。L4/L5候補の採択状態とは別に読む。",
+    "decision_record_state_interpretation": {
+      "frontmatter_status_literal": "recorded_pending_final_review_and_main_admission",
+      "frontmatter_effect_literal": "effective_when_this_record_is_admitted_to_main",
+      "admitted_record_commit": "344c31f8c67e8f80c04251e98bcd3ec6881c4797",
+      "admission_scope": "当該decision record追加commitはsource_main 6802cc29のancestorである。本文が特定する47354be8承認対象の状態と、更新せず保持されたfrontmatter metadataを区別する。対象外objectや現行L4/L5技術設計候補へ承認を拡張しない。"
+    }
   },
   "current_source_pins": [
     {
@@ -188,7 +194,19 @@
       "各caseのexpected_whole_canonical_sha256と四rootを照合する。比較前の意味導出には使わない。"
     ],
     "canonical_hash": "標準JSON object key sort、ensure_ascii=false、compact、UTF-8、末尾LFなし。原file bytes/hashとは別。",
-    "local_namespace": "各caseの/raw_input及び/expected_walk_returnは上記から展開したfixture内pointer。本recordや別trackedfileに存在するliteralpointerだと偽らない。"
+    "local_namespace": "各caseの/raw_input及び/expected_walk_returnは上記から展開したfixture内pointer。本recordや別trackedfileに存在するliteralpointerだと偽らない。",
+    "ordered_raw_patch_projection_hash_definition": {
+      "field": "各cases[].tracked_raw_recipe.ordered_raw_patch_projection_canonical_sha256",
+      "target": "当該ordered_raw_patch_operation_indicesの原順に選んだ同case.fixture_patchのoperation objectだけを並べるJSON配列 [op0, op1, ...]。元operation indexはこのhash対象配列に含めない。空選択は[]。",
+      "serialization": "object keyをsortし、ensure_ascii=false、compact区切り（comma/colon前後に空白無し）、UTF-8、末尾LF無しの標準JSON serialization bytesへSHA-256を適用する。array順と各operationの全原member/値を保つ。",
+      "distinct_historical_pin": {
+        "path": "docs/governance/audits/source-rebaseline/source-snapshots/brain032-current-source-basis-5574a1b0.py",
+        "symbol": "RAW_PATCH_PROJECTION_SHA",
+        "target": "同snapshotのselectedは [[元operation index, operation object], ...] を原順に並べた配列であり、CAN(selected)のhashを照合する。",
+        "serialization": "同snapshotのCANはensure_ascii=false、object key sort、compact comma/colon、UTF-8、末尾LF無し。",
+        "limit": "対象配列が異なる別pinである。本記録のop-only hashと同一値を要求せず、既存RAW_PATCH_PROJECTION_SHAを置換しない。この説明のためにsnapshot内readerを実行していない。"
+      }
+    }
   },
   "field_source_rule_ledger": {
     "meaning_read": {
@@ -262,7 +280,7 @@
     "NA_support_nested_fields": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/DefinitionApplicabilitySupport",
     "NA_judgment_all_11_fields": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection/field_constructors",
     "NA_origin_all_23_fields": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection/origin_constructor/fields",
-    "assessment_all_9_fields": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/Assessment",
+    "assessment_all_9_fields": "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionAssessment/closed_fields",
     "assessment_final_index_and_original_axes": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/index_mapping",
     "axis_all_7_fields": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/AxisResult",
     "meaning_read_origin_all_3_fields": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle/single_calculation",
@@ -272,7 +290,8 @@
     "all_native_7_arrays": "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionNativeMaterial",
     "all_walk_4_roots": "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult",
     "special_noncall": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/common/activation",
-    "target_intent_empty": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/target_read_schedule"
+    "target_intent_empty": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/target_read_schedule",
+    "assessment_field_serializer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/Assessment"
   },
   "finite_positive_slot_bindings": [
     {
@@ -10436,7 +10455,14 @@
     "last": "cases10..22,25,28。NA source identity ORIGINALはMEANINGより後。",
     "two": "cases23,24。同sort keyのNA2判断は原event順を保持。",
     "positive_order": "各slot identity 01..15が先。positive意味のsource列はactual source hash stringがfact source sha=nullよりcanonical Unicode順で先。帰属source列はfact source1件。",
-    "sort_not_executed": "四有限表はsource規則から手著述。candidate sort/評価器の実行結果ではない。"
+    "sort_not_executed": "四有限表はsource規則から手著述。candidate sort/評価器の実行結果ではない。",
+    "normative_L5_pointers": {
+      "component_key": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/component_key",
+      "axis_key_access_paths": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/axis_key_access_paths",
+      "NA_sort_source_column": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column/na",
+      "source_column_serialization": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column/serialization"
+    },
+    "pointer_roles": "上のpointerはsort keyのPresence/成分順とNA source列の規範となる現行L5技術設計候補を指す。none/first/last/twoとpositive_orderは、その規則を本有限入力へ当てた記録側の説明であり規則本文の代用ではない。assessment全9memberの列挙はfield_source_rule_ledger.assessment_all_9_fields、serialization説明は別のassessment_field_serializerへ分ける。"
   },
   "whole_rfc6902_literal_copy_ledgers": {
     "none": [
@@ -33476,6 +33502,12 @@
         "raw_literal_equal": true,
         "different_pointers": [],
         "whole_digest": "3d20ae14439bd4e748e07429d5e4a3c141b30625d0687e8e870bfb1d17645e8b"
+      },
+      "raw_request_pointer_role": {
+        "kind": "requested_observation_location",
+        "meaning": "raw_request_pointerはmemberのpresenceを観測しようとする要求所在。case27ではmember自体がabsentなので、当該pointerを解決成功した値所在として扱わない。",
+        "resolved_parent_pointer": "/raw_input/descriptors/5",
+        "absent_member": "definition_applicability_ref"
       }
     },
     {
@@ -33938,12 +33970,17 @@
       "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_emission_table/19/locator",
       "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_emission_table/19/original_value"
     ],
-    "reading": "mirrorはentry.record本体と定義される。問題locatorはentry所在、問題original_valueはmirror record本体を別指定。source_occurrence.original_valueはentry全値を保持。",
-    "old_authoring_issue": "初回source-only freezeではproblem原値にentry wrapper全体を入れた。source読解とroot検収の後、この一点と固定NA copy元を/record本体へ是正した。",
-    "scope": "tracked L8の旧期待は変更せず、origin/axis/assessment/indexも変更しない。旧期待比較で是正を逆算していない。"
+    "reading": "L5のsupport.original_entry.recordにあるmirror定義とproblem表19のlocator/original_valueを接続して、問題locator=entry、問題原値=entry.record本体と読む。L5にproblem.original_value=entry.recordとそのまま書かれた単独文があるという主張ではない。source_occurrence.original_valueはentry全値を保持する。",
+    "old_authoring_issue": "作成側は初回source-only freezeでproblem原値にentry wrapper全体を入れ、L5の読解とroot検収後にこの一点と固定NA copy元を/record本体へ是正したと申告する。ignored hashはその著述履歴の識別であり、順序/独立性を本記録単独で検証できる証拠ではない。",
+    "scope": "tracked L8の旧期待、origin/axis/assessment/indexは変更していない。作成側は旧期待比較から是正を逆算していないと申告するが、本記録単独ではその歴史的独立性を検証できない。",
+    "existing_L8_consistency_and_limit": {
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/definition_meaning_walk_verification/cases/28/basis/mirror_problem_value",
+      "meaning": "既存L8 basisもraw mirror recordをentry.record本体と記す。現在のL5読解と既存basisの整合は確認できるが、それ自体は是正著述の順序又は旧期待未参照の歴史的独立性の証明ではない。"
+    }
   },
   "source_first_authoring_history": {
-    "role": "以下のignored artefactは著述履歴識別だけ。規範・有限原値・再構成の依存先ではない。",
+    "role": "以下のignored artefact hashは作成側が申告する著述履歴の識別だけであり、規範・有限原値・再構成の依存先ではない。各eventのbefore/after/root_reading等は作成側申告を記録するbooleanであり、本記録単独で順序又は独立性が検証されたという意味ではない。",
     "events": [
       {
         "kind": "source_only_initial_freeze",
@@ -33971,10 +34008,11 @@
         "after_corrected_freeze": true
       }
     ],
-    "prior_exposure_boundary": "旧再構成v1〜v6やpartialauthorの旧期待接触はcurrent L8 history_relationに保持。本source-only authoringをそれらの独立性回復と呼ばない。"
+    "prior_exposure_boundary": "旧再構成v1〜v6やpartialauthorの旧期待接触はcurrent L8 history_relationに保持。本source-only authoringをそれらの独立性回復と呼ばない。",
+    "independence_verification_limit": "source-only/比較前の著述という来歴は著述者申告とignored hash識別に基づく。この記録とtracked sourceだけでは、ignored実体の存在時点、著述時の参照範囲、旧期待未参照を独立検証できない。固定台帳から現在の全値を再構成できることと、著述の歴史的独立性は別である。"
   },
   "post_freeze_literal_comparison": {
-    "method": "Only standard fixed RFC6902 replace/remove replay and generic type-sensitive JSON literal diff. No candidate reader/model/algorithm executed. Current-source candidate was frozen before this comparison.",
+    "method": "作成側/rootが申告する比較方法は、固定RFC6902 replace/removeの標準再適用と、JSON型を区別する一般的なliteral差分照合だけである。この比較で候補reader/model/意味算法は実行していない。現行source候補をこの比較前に凍結したという順序は作成側申告として記録する。",
     "scope": "raw21とfour-root全値の型敏感一致。原authority回復又は独立意味reviewではない。",
     "rows": [
       {
@@ -34193,7 +34231,8 @@
       "whole_equal": 21,
       "whole_different": 0
     },
-    "derivation_not_from_comparison": true
+    "derivation_not_from_comparison": true,
+    "derivation_chronology_evidence_limit": "derivation_not_from_comparison=trueは作成側申告の記録であり、tracked台帳の全値一致又はignored hashだけから独立検証した結論ではない。"
   },
   "verification_and_remaining": {
     "static_completed": [
@@ -34212,6 +34251,12 @@
       "実装、新世代CI、実稼働、運用promotion、PO実物受入"
     ],
     "status": "候補。独立review済み・完成・実装準備全成立とは宣言しない。",
-    "next": "exact current pinを独立reviewへ渡し、全leaf意味・source/qualification境界・索引・原型反例を検収する。新gateは作らない。"
+    "next": "exact current pinを独立reviewへ渡し、全leaf意味・source/qualification境界・索引・原型反例を検収する。新gateは作らない。",
+    "review_evidence_boundary": {
+      "review_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/3330#issuecomment-6239081736",
+      "review_phase": "round1 finding対応中。本修正からreview採択/独立意味review完了を生成しない。",
+      "method_limit": "同reviewコメントにはexact_sort_contractの自作実装による照合と、構造の細部を期待の形を見てから実装したことが記載されている。それらを静的な読取りだけの証拠、又は完全な盲検の独立導出証拠として本記録へ取り込まない。review方式の明確化はPR上で別途確認する。",
+      "author_phase_limit": "本記録のstatic_completed/not_performedとsource-first履歴は作成側が報告する著述・静的照合段階を表す。後続reviewの実施方式やfinding結果を自動で包含しない。"
+    }
   }
 }
