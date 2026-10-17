@@ -691512,7 +691512,109 @@
         "21件と固定sourceの静的再構成に限る。汎用比較関数又は任意入力域の検証器ではない。",
         "本readerはoracle側の再照合資料。製品コード/製品テスト/新世代CI/実資格/受入の代用にしない。",
         "BRAIN032全体の完了、全consumer閉包、L3採否の変更、新しい承認gateは含まない。"
-      ]
+      ],
+      "independent_oracle_replay": {
+        "current_source_bindings": {
+          "L4": {
+            "existing_L8_pointer": "/definition_meaning_walk_verification/current_source_basis_reconstruction/source_pins/L4",
+            "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+            "sha256": "4ef60d6c0d15fa0339f525ad92c5754994dc83b56bb70b3397635e74c9bd88c2"
+          },
+          "L5": {
+            "existing_L8_pointer": "/definition_meaning_walk_verification/current_source_basis_reconstruction/source_pins/L5",
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577"
+          },
+          "L8_input_material": {
+            "base_raw_input_canonical_sha256": "6cd0dc78d931154f9931f950a4fceca68806dde03f5da6a0a22deb7cbca3d084",
+            "base_raw_input_pointer": "/definition_meaning_walk_verification/materials/1/raw_input",
+            "identification_rule": "case 8..28の既存case ID/base pointer/index recipeを使い、指定順のraw patch列をhelper内の21個のcanonical patch-list pinと照合する。21件のexpected/value/hash表を新規複製しない。",
+            "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+            "case_array_pointer": "/definition_meaning_walk_verification/cases",
+            "inclusive_case_indices": [
+              8,
+              28
+            ],
+            "recipe_array_pointer": "/definition_meaning_walk_verification/current_source_basis_reconstruction/cases",
+            "recipe_index_rule": "recipe_index = formal_case_index - 8; recipe[recipe_index].case_index must equal formal_case_index (formal cases 8..28 map to recipe array entries 0..20).",
+            "recipe_entry_fields": [
+              "case_index",
+              "case_id",
+              "ordered_raw_patch_operation_indices",
+              "raw_input_canonical_sha256",
+              "expected_whole_canonical_sha256"
+            ],
+            "raw_patch_payload_pointer_pattern": "/definition_meaning_walk_verification/cases/{formal_case_index}/fixture_patch",
+            "raw_patch_index_field": "ordered_raw_patch_operation_indices",
+            "pointer_semantics": "case_array_pointer and recipe_array_pointer are exact RFC 6901 pointers. raw_patch_payload_pointer_pattern is a placeholder pattern, not a resolved pointer; resolve the numeric formal_case_index against the case array before reading it. No /8..28 range suffix is treated as an RFC 6901 pointer."
+          },
+          "L8_whole_file_hash": "追加後のL8自身は自己bindingしない。raw base、既存case/patch recipes、helperに内包したordered patch hashesによる入力限定pinを用いる。"
+        },
+        "helper": {
+          "command": "python3 -B docs/governance/audits/source-rebaseline/source-snapshots/brain032-independent-current-source-oracle.py",
+          "construction_boundary": "構成前にL8のmaterials[1].raw_inputだけをraw-only wrapperへ取り出し、各caseのordered_raw_patch_operation_indicesが選ぶpatchだけを適用。expectedは21件のwhole構成・positive入力不変性・positive出力再利用確認後のcomparison-only段階で参照する。",
+          "finite_checks": "21件の入力hashとwhole hash、positive input invariance 21件、positive output reuse 21件を照合。不一致はFINITE_AUDIT_FAILかつ非ゼロ終了。この有限結果は製品gateではない。",
+          "path": "docs/governance/audits/source-rebaseline/source-snapshots/brain032-independent-current-source-oracle.py",
+          "role": "L8のraw入力とcurrent L4/L5規則から有限期待wholeを独立再構成する静的audit helper。製品・scaffold runtimeではない。DB、network、旧runtime、旧CI、tracked reader importなし。",
+          "sha256": "44a7b97250fcc0db82b0a41e2c8c1eeeab20e717e6b04f3406bb232f5e6c5283"
+        },
+        "history_and_authority": {
+          "R1_R2": "R1は未定義名、未呼出しinvariance checks、expectedを含むcopy、比較不一致を失敗終了しない点が見つかり履歴保全。R2はそれらを直し、単一helperとしてroot replayと独立4-root比較を通過した。",
+          "approved_targets": "既存current_source_basis_reconstruction.approved_target_basisの8対象L3/L10 object・決定記録をそのまま保持する。今回の追補はL3/L10意味、採否、scopeを変えない。",
+          "earlier_oracle_corrections": "従前のcase8..28 source-derived期待は旧期待を参照・比較した後の訂正履歴を持つ。比較前に全件をcleanroom凍結したとは称さない。R2はL5 sourceに基づくpositive attribution sort (fact sourceのみ)、positive meaning sort、NA projection/source orderを再現する。",
+          "historical_specification": {
+            "meaning": "draft bytesはsnapshotとして回収済みだが、21件がそれを根拠にした採択済みrevision/authorityは未回収。R2再導出はこのauthorityを回復・置換しない。",
+            "pointer": "/definition_meaning_walk_verification/unresolved_specification_provenance",
+            "recovery_record": {
+              "authority_effect": "none",
+              "path": "docs/governance/audits/source-rebaseline/source-snapshots/brain032-na-spec-d0c896ee-recovery.json",
+              "preservation": "既存L8はcase 8..28のraw/expected/call/basis、provenance_state=unknown、pointer_resolution_limitを保持する。",
+              "record_id": "BRAIN032-D0C896EE-DRAFT-BYTES-RECOVERY",
+              "recorded_fact": "一致draft bytes自体は回収済み。未回収なのは当時の正式な出典・採択revisionとの結び付き。snapshot保全を根拠採択へ昇格しない。",
+              "sha256": "f328f7be69f9db49cfee70cce11d59f073b57571f6196054f8a2b19211cc5662"
+            },
+            "sha256": "d0c896ee64d5340d7dbc85d4a760c90e03bcbbcc908cac0bc2e95734aa6d8316"
+          },
+          "prior_L8_file_snapshot_only": {
+            "meaning": "追補前のL8 file snapshotを識別する履歴値。追補後L8のcurrent pinではない。",
+            "revision": "8e685db83249d3a3d93b30134d87862db2a8313e",
+            "sha256": "d3d1644966ecc4fa96325feb6fffbd9ca796677147dd9b1b0146c18a436bf055"
+          }
+        },
+        "limits": [
+          "21個の固定入力と固定L4/L5 sourceの有限audit再現に限る。",
+          "全入力domainの一般化、全BRAIN032義務の完了、製品test、実資格、PO受入、release/deployを示さない。",
+          "tracked readerとの全21比較はrootの独立記録にある事実として参照する。R2 helper自体はtracked readerを呼ばない。"
+        ],
+        "scope": "R2の独立current-source helperを既存BRAIN032 L8 current_source_basis_reconstructionへ追加する再現情報。既存21caseのraw、expected、call、basis、case hash、approved target basisは変更・再掲しない。",
+        "status": "finite_current_source_oracle_replay_verified_by_root; not adopted historical authority and not product/runtime/CI evidence",
+        "verification_history": {
+          "independent_full_value_comparison": {
+            "path": "scaffold/review-handoff/local/brain032-oracle-replay-proposal-r2/root-integrated-full-value-comparison.json",
+            "result": "PASS_ALL21_FULL_VALUE_REPLAY; root independently compared all four output roots for all 21 cases and confirmed every input unchanged.",
+            "sha256": "3341f194c3136c3c1941e30809b7859ff84c7e36ca3a197117f2fb44c07acc48"
+          },
+          "integrated_helper_run": {
+            "path": "scaffold/review-handoff/local/brain032-oracle-replay-proposal-r2/root-first-integrated-helper-run.json",
+            "result": "FINITE_AUDIT_PASS; 21/21 raw input hash and existing whole hash comparisons true; helper hash is bound above.",
+            "sha256": "46cc39efbe44d0edb696d0b410d1e8d0f6243a0276c4da4a7ae0a53277959b70"
+          },
+          "receipt_boundary": "上記2 receiptはscratch上の既存root検証記録であり、helperの実行時入力・import・formal L8の追加dependencyではない。"
+        },
+        "static_validation_history": {
+          "path": "scaffold/review-handoff/local/brain032-oracle-replay-proposal-r2/verify_candidate_static.py",
+          "sha256": "d18afaedd47acff38e5e4044f955c023e2f8fb572a037ceec30631fc36d9e416",
+          "role": "scratchで実施した構文・定義・参照・patch境界の静的検証履歴。正式追加ファイル、実行時依存、必須gateではない。",
+          "receipt_path": "scaffold/review-handoff/local/brain032-oracle-replay-proposal-r2/l8-independent-oracle-replay-addition-static-check.json",
+          "receipt_sha256": "c1d4b1f0997bcb72b3a1154ef680ac76b61faed1cd9c292c193884c387c769ec"
+        },
+        "post_authoring_mismatch_control": {
+          "path": "scaffold/review-handoff/local/brain032-oracle-replay-proposal-r2/root-post-authoring-mismatch-control.json",
+          "sha256": "d068e2343e17640b0133bfee00ec87ede77060a6528b6c72b7d4a139f515c52d",
+          "classification": "post-authoring hash-contamination control; not implementation-before-Red and not TDD Red evidence",
+          "recorded_result": "PASS_POST_AUTHORING_MISMATCH_CONTROL; comparison-only whole hash was corrupted in memory, checker exited 1 with FINITE_AUDIT_FAIL, and fixed source/frozen oracle files were not modified."
+        }
+      }
     }
   }
 }
