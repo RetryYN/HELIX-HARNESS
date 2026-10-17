@@ -1,0 +1,433 @@
+{
+  "record_id": "BRAIN032-CURRENT-SOURCE-REVIEW-BASIS-444254CD",
+  "record_kind": "source_basis_for_independent_finite_semantic_review",
+  "status": "author_side_source_basis_pending_independent_review",
+  "basis_revision": "444254cde81b7ef4df1afdb7882bb8bd34c45114",
+  "authority_effect": "none",
+  "scope": {
+    "summary": "L8に既存のcase 8..28 (21件)について、raw-only入力recipe、現行L4/L5、四つの返却ルートに対する独立意味reviewの入口を一箇所に束ねる。既存要求・期待・設計意味を変更せず、過去の検証結果も新たな意味認定へ昇格しない。",
+    "included": [
+      "有限21 raw入力のL8 recipe参照",
+      "有限fixtureの7固定値の入力と規則の対応",
+      "DefinitionMeaningWalkResultの4返却ルートの宣言fieldとwriter/rule pointer対応",
+      "既存21件×全4root比較の履歴と、その独立意味reviewとは異なる範囲の明示",
+      "有限入力内の識別反例、未確認枝、原draft採択revisionの未確定状態"
+    ],
+    "excluded": [
+      "製品実装、旧runtime、CI、DB、実資格の実行・認定",
+      "任意入力域、全malformed組合せ、非空pair/special/target/intent枝の完了認定",
+      "BRAIN032全体・全consumer・設計全体の完了認定",
+      "元d0c896採択revision/authorityの推定、旧21期待の差替え、追加承認やgate"
+    ],
+    "result_boundary": "DefinitionMeaningWalkResultはL5のprivate結果。ここで4返却ルートを点検しても、新しい公開ABI又は供給元資格を定義しない。"
+  },
+  "current_source_pins": {
+    "L4": {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "file_sha256": "4ef60d6c0d15fa0339f525ad92c5754994dc83b56bb70b3397635e74c9bd88c2"
+    },
+    "L5": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "file_sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577"
+    },
+    "L8": {
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "file_sha256": "60922f1486221706581266a9855957e535e6449f96a357a51d74c47e0981f5c5"
+    },
+    "reader_snapshot": {
+      "path": "docs/governance/audits/source-rebaseline/source-snapshots/brain032-current-source-basis-5574a1b0.py",
+      "file_sha256": "ddda6c993c919b8bbb7f2bc6f190e03aaadf66e4f2f174d9a48abc99db87af41",
+      "role": "既存の有限audit reader。source basisの対象・再現履歴として参照する。reader実行はこのrecord authoringでは行っていない。"
+    },
+    "approved_target_basis_as_preserved_in_L8": {
+      "approval_head": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+      "approval_comment": 6113010770,
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-brain-template032-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+        "sha256": "53f0c2d44b17133b8ad3b6eefab7fbf621203c3cc997131e81d341acb37a7467"
+      },
+      "L3_L10_object_pins": [
+        {
+          "id": "HELIXBRAIN-L3-032-F01",
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "ebc2da3936a606c23ff1c2e08eefd549eb99d2cb51e45cc17e4cd003663cda35"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-F02",
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "e1c325353009052758b9707e509f652fa63def733c3c4c5a82d3fc4d2a640a3e"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-N01",
+          "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+          "object_canonical_sha256": "de8c3d4e53c0b8c4cf0c43bc9cb90430c23f9ed96d6a81cc6c44cca68b538905"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-B01",
+          "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+          "object_canonical_sha256": "f40d88606a3d1373a447e4067b93d82c9c7754867348dc4694e345b88812d7a2"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-F01",
+          "path": "docs/helix-brain/L10-verification/functional-verification.json",
+          "object_canonical_sha256": "ee86fd3f61e9252dbc07b2d92b6dbb571820e7cf3cf4fcfefe2941333cedffd2"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-F02",
+          "path": "docs/helix-brain/L10-verification/functional-verification.json",
+          "object_canonical_sha256": "19a2fbf38750ddddfd9ff26b6f8f564bd3860ab513fa4dc0a9a8b44293caf739"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-N01",
+          "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+          "object_canonical_sha256": "e00b4bb11cfc69b34e50a0333fb0b5efce59e5de7086041df781edd3eeb07d84"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-B01",
+          "path": "docs/helix-brain/L10-verification/business-verification.json",
+          "object_canonical_sha256": "396415ca46e2480b26904724646a3502de4903d7190eb9cdda17f92feca16906"
+        }
+      ],
+      "interpretation": "L8に記録された8対象と批准の連続性をレビュー入口として保持する。このauditは集約L3全体の承認や新しい承認を主張しない。"
+    }
+  },
+  "tracked_L8_review_entry": {
+    "document_path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+    "verification_root_pointer": "/definition_meaning_walk_verification",
+    "current_source_basis_pointer": "/definition_meaning_walk_verification/current_source_basis_reconstruction",
+    "independent_oracle_replay_pointer": "/definition_meaning_walk_verification/current_source_basis_reconstruction/independent_oracle_replay",
+    "historical_provenance_pointer": "/definition_meaning_walk_verification/unresolved_specification_provenance",
+    "raw_base_pointer": "/definition_meaning_walk_verification/materials/1/raw_input",
+    "case_input_pointer_pattern": "/definition_meaning_walk_verification/cases/{case_index}/fixture_patch",
+    "case_index_domain": {
+      "first": 8,
+      "last": 28,
+      "meaning": "pattern中のcase_indexへ8..28の各整数を代入する。これは単一pointerではない。"
+    },
+    "recipe_array_pointer": "/definition_meaning_walk_verification/current_source_basis_reconstruction/cases",
+    "recipe_to_case_rule": "recipe.case_indexはL8 cases配列のcase_index。recipe.ordered_raw_patch_operation_indicesのみを用い、当該fixture_patchのうちraw input変更をraw baseへ原順に適用する。fixture_patch内のexpected/output関連操作は入力構成へ入れない。",
+    "comparison_boundary": {
+      "expected_hash_pointer_pattern": "/definition_meaning_walk_verification/current_source_basis_reconstruction/cases/{recipe_index}/expected_whole_canonical_sha256",
+      "recipe_index_rule": "L8 current_source_basis_reconstruction.cases配列はcase_index 8..28を格納する順序付き21要素であり、recipe_indexはcase_index-8。reviewerは対象recipe.case_indexも照合する。",
+      "public_expected_material_pointer": "/definition_meaning_walk_verification/materials/1/expected_walk_return",
+      "rule": "期待はsource-based構成の後にだけ比較へ使う。入力・source判定・return構成の根拠にはしない。",
+      "public_expected_material_pointer_role": "base materialの所在だけ。各caseの期待値をこのbase値だけで代用しない。",
+      "per_case_expected_comparison_recipe": "既存21期待との比較を行う場合は、各case.fixture_base_pointerが指す元material全体へ、そのcaseのfixture_patch全操作を原順に適用した結果のexpected_walk_returnを用いる。これは比較段階だけの既存期待の復元であり、raw-only入力再構成やsourceからの期待導出へ混ぜない。"
+    }
+  },
+  "historical_provenance_and_prior_exposure": {
+    "recovered_draft_bytes": {
+      "path": "docs/governance/audits/source-rebaseline/source-snapshots/brain032-na-spec-d0c896ee.json",
+      "bytes": 621852,
+      "sha256": "d0c896ee64d5340d7dbc85d4a760c90e03bcbbcc908cac0bc2e95734aa6d8316",
+      "recovery_record_path": "docs/governance/audits/source-rebaseline/source-snapshots/brain032-na-spec-d0c896ee-recovery.json",
+      "recovery_record_sha256": "f328f7be69f9db49cfee70cce11d59f073b57571f6196054f8a2b19211cc5662",
+      "state": "原bytesはtracked回収済み。21件の当時の採択revision/authorityへの対応は未確定。snapshotの自己記載source_mainはrevision存在証明ではない。"
+    },
+    "prior_expected_exposure": "旧expected/reader比較への過去接触がある。v1-v6のsource-derived constructor修正は旧expectedとの比較後に行われた。clean-room、全expectedの比較前独立凍結、旧期待の正誤判定を主張しない。",
+    "prior_21_by_4_comparison": {
+      "current_L8_pointer": "/definition_meaning_walk_verification/current_source_basis_reconstruction/independent_oracle_replay/verification_history/independent_full_value_comparison",
+      "documented_result": "既存記録は、rootが独立に固定した21件の全4返却ルートについて全値一致・入力不変を確認したと記載する。これは既往の有限全値比較として保持する。",
+      "scope_limit": "一致はsource-derived構成の意味正当性、fixture定数の妥当性、未fixture枝の閉包、または旧d0c896 authorityを証明しない。",
+      "PR3293": {
+        "merge": "ca40a82dcbb95ddb9f3d8db20d81c7550d10d0fc",
+        "review_R1": "https://github.com/RetryYN/HELIX-HARNESS/pull/3293#issuecomment-6226627747",
+        "review_R2": "https://github.com/RetryYN/HELIX-HARNESS/pull/3293#issuecomment-6226658490",
+        "read_after": "https://github.com/RetryYN/HELIX-HARNESS/pull/3293#issuecomment-6226679260",
+        "scope_note": "21 input/replay hash一致を含む。このreviewは現在作成するfixture定数/全field意味mapの独立reviewとは区別する。"
+      },
+      "PR3304": {
+        "merge": "e8b88db4f47b5e2fe544be0727bf209fa7a5f27e",
+        "review_R1": "https://github.com/RetryYN/HELIX-HARNESS/pull/3304#issuecomment-6229683596",
+        "review_R2": "https://github.com/RetryYN/HELIX-HARNESS/pull/3304#issuecomment-6229699626",
+        "read_after": "https://github.com/RetryYN/HELIX-HARNESS/pull/3304#issuecomment-6229710189",
+        "scope_note": "R1のF1-F3はR2で解消。F4はpositive出力再利用が独立再導出ではないことと有限定数への依存をInfoとして保持する。未確認と明記されたのはgit管理外root記録、旧tracked readerとの4root全値突合せ、旧原文/UTW本文である。sort/NA投影/link等のL5対応はR1で確認された範囲を保持する。これだけから全4rootの全field意味導出が尽くされたと推定しない。"
+      }
+    }
+  },
+  "finite_fixture_literals_for_review": [
+    {
+      "literal": "slot 5 / TARGET=5",
+      "input_basis": "L8 current-source cases 8..28のraw input。全21 descriptor arrayの長さは15、variation対象のdefinition_applicability_refはdescriptor index 5にありcase 27ではabsent。raw source pathはtracked_L8_review_entry.case_input_pointer_pattern。",
+      "rule_pointers": [
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection/branches",
+        "/functions/1"
+      ],
+      "finite_derivation": "target selectorはこのfixtureでindex 5を選ぶ。L5はslotごとの処理とabsent対supplied-nullを定めるが、global slot 5を規範定数にしない。",
+      "classification": "fixture限定位置。一般slot規則ではない。"
+    },
+    {
+      "literal": "15 sources / sources[0:15] reuse",
+      "input_basis": "case 8 baselineは15 descriptors/sources/qualifications、各descriptorに1 fact。cases 10..28はsource index 15を追加する。全21 raw inputのpositive projection（binding, required kinds, qualification roots, qualifications[0..14], descriptor projection, sources[0..14]）は既存mapでtype-sensitive canonical equalと記録される。",
+      "rule_pointers": [
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_event_cardinality",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/meaning/body"
+      ],
+      "finite_derivation": "raw inputで不変なprefixの範囲に限りpositive portionの再利用を検討する。source occurrence/order保持を一般規範とし、source数15を一般化しない。",
+      "classification": "有限21入力上のprefix長。正の出力を入力同値だけで正当化しない。reviewerはpositive return自体をL5 writer規則に照らす。"
+    },
+    {
+      "literal": "inserted ordinal = 12 + j; baseline ordinal > 12 shifts by delta",
+      "input_basis": "case 8のslot0..4は各2 eventで10。slot5のattribution/positive meaning eventがNA eventより前に2あり、case 8ではNA event直前のcountが12。対象slot judgments数をJとすると、baseline NA event 1個をJ個へ置換した差分はdelta=J-1。",
+      "rule_pointers": [
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/origin_constructor_totality/ordinal",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion/within_slot",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/na_call_schedule"
+      ],
+      "finite_derivation": "ordinalは各origin append直前のjudgment_origins.length。式はこのbaselineのprefix/event countから導く有限挿入式で、threshold 12自体は規範定数ではない。",
+      "reviewer_check": "raw prefixで先行event数を確かめ、全caseの原順でNA originを挿入し、index/origin/assessment対応の全値を評価する。positive sourceの資格/validation条件は別途現L5から確認する。",
+      "classification": "条件付き有限算術。全入力で2 event/slotと証明したものではない。"
+    },
+    {
+      "literal": "fact_locators = ['/descriptors/5/facts/0'] for matching supported record",
+      "input_basis": "cases 8..28のtarget descriptor 5にfact index 0が一つ。L8 raw inputの該当fact Refとsupported record.subject_refの対応を支えるcaseごとのsource/qualification枝を確認する。",
+      "rule_pointers": [
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection/origin_constructor/fields/fact_locators",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection/branches"
+      ],
+      "finite_derivation": "supportがある場合のみrecord.subject_refとraw slot fact Refをref_sameで照合し、全match indexのlocatorを原順で保持。No match/no supportは[]。固定locatorは一件matchする入力の結果であり、一般規則ではない。",
+      "classification": "case条件付き。複数fact/重複matchや別subjectへの一般化は未確認。"
+    },
+    {
+      "literal": "sort_source_refs = supplied([])",
+      "input_basis": "case 8 slot5のrequestはsupplied nullで、applicability read source_occurrences/supportsは空、かつsource array operandsは明示empty。",
+      "rule_pointers": [
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column/na",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column/serialization"
+      ],
+      "finite_derivation": "request Ref自体はsource列へ加えず、read occurrences→support source_refの順。明示supplied emptyはsupplied([])、未供給/型外のsource集合はabsentのままで、同一視しない。",
+      "classification": "case8の明示empty結果。一般的な空配列既定値ではない。"
+    },
+    {
+      "literal": "31 baseline events/axes",
+      "input_basis": "case 8 rawには15 descriptors、1 fact per slot、15 semantic_json sources/qualifications、slot5 supplied-null applicability request。",
+      "rule_pointers": [
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection/common_copy",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_event_cardinality",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection/branches"
+      ],
+      "finite_derivation": "15 attribution + 15 positive meaning events + 1 supplied-null unknown NA event = 31。ただしpositive eventの発生はraw source membership/qualification/validationとpositive helper predicatesがL5どおり成立する場合に限る。31をsource inputだけから無条件に保証しない。",
+      "classification": "条件付きcase8 count。一般のevent/axis countではない。"
+    },
+    {
+      "literal": "NA insertion prefix [:12]",
+      "input_basis": "case8のslot0..4で10 positive events、slot5のNA前 attribution/positive meaningで2 event。",
+      "rule_pointers": [
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion/within_slot",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/na_call_schedule",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/origin_constructor_totality/ordinal"
+      ],
+      "finite_derivation": "原slot順を保ち、slot5のNA originをその時点の12-event prefix後へ配置する。caseによりslot5 request absentならそのeventを挿入しない。",
+      "classification": "case8と同じpositive patternを持つ有限入力への挿入位置。一般indexではない。"
+    }
+  ],
+  "four_public_return_roots": [
+    {
+      "root": "evaluation",
+      "public_path": "DefinitionMeaningWalkResult.evaluation",
+      "declared_type": "DescriptorDefinitionEvaluation",
+      "declared_fields": {
+        "comparison": "Comparison",
+        "assessments": "DescriptorDefinitionAssessment[]"
+      },
+      "field_source_rule_pointers": [
+        "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult",
+        "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionEvaluation",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/original_ref_columns/per_fact_definition",
+        "/functions/1"
+      ],
+      "finite_basis": "15 slotに各1 fact/source/positive operationがある固定入力。各positive eventが成立するには元の資格・validation条件の確認が必要で、slot5のNA枝は独立に変化する。",
+      "independent_review_to_check": "Comparison全memberを元helper returnから再構成し、軸のevent writer/order/sort、assessmentの保存済event handleからfinal axis/finding indexへの写像をfield単位で追う。source validation条件を満たすかを期待値以外のraw/source根拠で確認する。",
+      "not_covered": "全failure predicate、非空pair/special/target/intent/finding、任意multi-fact域。reader constructorの一般実装としての正しさ。"
+    },
+    {
+      "root": "native_material",
+      "public_path": "DefinitionMeaningWalkResult.native_material",
+      "declared_type": "DefinitionNativeMaterial",
+      "declared_fields": {
+        "meaning_reads": "DefinitionMeaningRead[]",
+        "applicability_reads": "DefinitionApplicabilityRead[]",
+        "special_reads": "DefinitionSpecialRead[]",
+        "judgment_origins": "DefinitionJudgmentOrigin[]",
+        "pair_reads": "MeaningPairAnnotatedRead[]",
+        "applicability_judgment_batches": "DefinitionApplicabilityJudgmentBatch[]",
+        "meaning_read_origins": "MeaningReadOriginObservation[]"
+      },
+      "field_source_rule_pointers": [
+        "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionNativeMaterial",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/meaning/body",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_event_cardinality",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/pair_call_schedule",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/na_call_schedule",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/origin_constructor_totality",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_source_producers"
+      ],
+      "finite_basis": "各slotは1 fact。NA requestの不在/null/原資料が変わる固定入力であり、意味pairはない。special carrierの有無は元rawとcall scheduleから再確認する。",
+      "independent_review_to_check": "7 arraysを全て、call scheduleとsource occurrence→support/origin対応へ結び、原値・順序・重複・Absent/emptyの保持とslot-specific no-callを確認する。synthetic qualification dataを実資格成立と読まない。",
+      "not_covered": "multioperation/multifact/problem-link order、special-read、実資格validator、非空pair。"
+    },
+    {
+      "root": "target_reads",
+      "public_path": "DefinitionMeaningWalkResult.target_reads[]",
+      "declared_type": "DescriptorTargetRead[]",
+      "declared_fields_from_L4": {
+        "claim_locator": "string",
+        "claim": "Claim",
+        "candidate_indices": "integer[]",
+        "candidate_refs": "Ref[]",
+        "occurrences": "DescriptorTargetOccurrence[]",
+        "matches": "DescriptorTargetMatch[]",
+        "state": "resolved|unknown|conflict",
+        "problems": "DescriptorTargetProblem[]"
+      },
+      "type_pointer": "/dependency_semantic_ports/schema/new_defs/DescriptorTargetRead",
+      "field_source_rule_pointers": [
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/target_read_schedule",
+        "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult"
+      ],
+      "finite_basis": "全21 rawでclaims=[]。この有限集合では対象readのcall scheduleに入力triggerがない。",
+      "independent_review_to_check": "claims=[]がrawから成立すること、read scheduleとreturn empty arrayの対応を確認。empty returnだけでtarget-read正常/失敗枝をreview済みと扱わない。",
+      "not_covered": "非空claimに対するtarget callとvalid/missing/unknown/staleの各枝。"
+    },
+    {
+      "root": "intent_reads",
+      "public_path": "DefinitionMeaningWalkResult.intent_reads[]",
+      "declared_type": "ClaimIntentRead[]",
+      "declared_fields_from_L4": {
+        "claim_locator": "string",
+        "claim": "Claim",
+        "kind": "PortPresenceString",
+        "proposed_value": "PortPresenceRaw",
+        "intent": "positive|negative|unresolved",
+        "reason": "string"
+      },
+      "type_pointer": "/dependency_semantic_ports/schema/new_defs/ClaimIntentRead",
+      "field_source_rule_pointers": [
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/target_read_schedule",
+        "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult"
+      ],
+      "finite_basis": "全21 rawでclaims=[]。この有限集合ではclaimごとのintent callを発生させる入力がない。",
+      "independent_review_to_check": "raw claims=[]とscheduleを確認し、empty returnをintent valid/invalid branchの検証と混同しない。",
+      "not_covered": "非空claimのintent callとvalid/unknown/missingの各枝。"
+    }
+  ],
+  "finite_counterconditions_for_reviewer": [
+    {
+      "case_index": 8,
+      "case_id": "NA-REQUEST-EXPLICIT-NULL",
+      "raw_patch_pointer": "/definition_meaning_walk_verification/cases/8/fixture_patch",
+      "contrast": "slot5 requestが明示null。不在及び未解決Refと区別する。"
+    },
+    {
+      "case_index": 9,
+      "case_id": "NA-REQUEST-REF-UNRESOLVED",
+      "raw_patch_pointer": "/definition_meaning_walk_verification/cases/9/fixture_patch",
+      "contrast": "Refが供給されても対応する原判断が解決できない。原値と不成立を保持する。"
+    },
+    {
+      "case_index": 10,
+      "case_id": "NA-NATIVE-OWNER-UNKNOWN",
+      "raw_patch_pointer": "/definition_meaning_walk_verification/cases/10/fixture_patch",
+      "contrast": "合成owner原判断のunknown。参照解決の失敗へ丸めない。"
+    },
+    {
+      "case_index": 11,
+      "case_id": "NA-NATIVE-OWNER-APPLICABLE",
+      "raw_patch_pointer": "/definition_meaning_walk_verification/cases/11/fixture_patch",
+      "contrast": "原判断applicable。unknown及び非適用の枝と区別する。"
+    },
+    {
+      "case_index": 12,
+      "case_id": "NA-ORIGINAL-NOT-APPLICABLE-REENTRY-FALSE",
+      "raw_patch_pointer": "/definition_meaning_walk_verification/cases/12/fixture_patch",
+      "contrast": "原判断not_applicableとreentry=false。原理由を保ち、decision欠落と区別する。"
+    },
+    {
+      "case_index": 13,
+      "case_id": "NA-ORIGINAL-DECISION-ABSENT",
+      "raw_patch_pointer": "/definition_meaning_walk_verification/cases/13/fixture_patch",
+      "contrast": "原recordのdecision欠落。ownerのunknown値を捏造しない。"
+    },
+    {
+      "case_index": 27,
+      "case_id": "NA-MATERIAL-PRESENT-REQUEST-ABSENT",
+      "raw_patch_pointer": "/definition_meaning_walk_verification/cases/27/fixture_patch",
+      "contrast": "slot5 requestは不在。case8の明示nullと区別する。"
+    },
+    {
+      "case_index": 28,
+      "case_id": "NA-SOURCE-ZERO-ROOT-FALSE-MIRROR-DIFFERS",
+      "raw_patch_pointer": "/definition_meaning_walk_verification/cases/28/fixture_patch",
+      "contrast": "原source内のreentry=0とroot側のfalseが異なる。case名から意味を推測せず、原recordとmirrorの値を別々に読む。"
+    }
+  ],
+  "independent_review_protocol_to_be_completed_by_reviewer": [
+    "対象revisionと全source file hashを照合し、そのtree上でRFC6901を解決する。case_indexとrecipe_indexの軸を区別して各recipe.case_indexを確かめる。",
+    "raw baseと宣言済みraw-input patchだけから各入力を復元し21入力hashを照合する。既存期待から枝やfield値を選ばず、過去の期待露出は保持する。",
+    "7固定値について入力の事実と対応するL5規則を照合する。positive event数が資格・validation・predicate成立に依存することを含め、有限値と一般規則を区別する。",
+    "4返却ルートの各宣言fieldを、raw operand、既存関数/helper/型/規則、writerの順に辿る。Presence、順序、重複、索引とroot間の対応を確認し、全21固定入力への確認範囲を明記する。未確認枝へ一般化しない。",
+    "cases8〜13/27/28を識別用の対照にする。どの返却fieldにどの差が必要かをsourceから説明する。対照として主張する差が導けない場合は規則を足さずfindingへ残す。",
+    "sourceからの構成を記録した後だけ、既存case期待の全4返却又はwhole hashと比較する。過去の全値一致、今回のsource意味照合、新たな値比較を別に報告する。",
+    "不一致・未解決対応・未観測域を残す。既存期待や歴史authorityを更新せず、実資格/runtimeや全BRAIN032の完了を推定しない。"
+  ],
+  "legacy_and_failure_basis": {
+    "legacy_source": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "asset_context": "旧Design Template JSON authorityのcomponent/正本/生成view/trace境界を参照する。旧registry/planner/runtime/schemaを実行又は採用しない。",
+      "retained_difference": "保持: 意味/owner/trace、unknownとN/Aの区別、正本と生成viewの分離。変更: 旧template評価・runtimeの採用ではなく、現行032の固定source候補への監査入口へ再導出。理由: 承認済み032の責務に沿い、根拠hashと期待一致だけによる意味完了を防ぐ。",
+      "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "read_lines": [
+        16,
+        60
+      ],
+      "companion": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "read_line_ranges": [
+          [
+            65,
+            70
+          ],
+          [
+            97,
+            99
+          ]
+        ],
+        "file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+      }
+    },
+    "failure_evidence": {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.md",
+      "locator": "24行: 設計・検証templateを使わず、選択知識・required項目・source spanから義務と対oracleを追えなくなる失敗。",
+      "use": "承認済み義務を照らす失敗根拠としてのみ使う。ここから新しい規則、固定数又はgateを生成しない。",
+      "file_sha256": "2dfa97ebba7be0f93c4e5fbcb2da13514e029900a2c593e92127ba257ad1fb9b"
+    }
+  },
+  "authoring_provenance": {
+    "historical_local_inputs_not_required_dependencies": [
+      {
+        "path": "scaffold/review-handoff/local/brain032-fixed-literals-current-l5-source-comparison-at-2a3eca91.json",
+        "sha256": "65dc57bead8efa165b7d890d8d37411fd960dd170a7b12dd497af1e4ec258937",
+        "role": "過去の著述入力としての履歴。必要な定数/返却対応は本recordへ収載し、将来reviewは固定したtracked L8/L4/L5を直接読む。local fileの存在をreview条件にしない。"
+      },
+      {
+        "path": "scaffold/review-handoff/local/brain032-four-root-constructor-source-map-at-2a3eca91.json",
+        "sha256": "720e52de817afa91a2ec474b21010e5926351b4d5cf0c6a44637a76c1f9002f5",
+        "role": "過去の著述入力としての履歴。必要な定数/返却対応は本recordへ収載し、将来reviewは固定したtracked L8/L4/L5を直接読む。local fileの存在をreview条件にしない。"
+      }
+    ],
+    "no_execution": true,
+    "no_new_semantic_rule": true,
+    "expected_exposure_disclosed": true,
+    "independent_review_received": false
+  },
+  "review_request_boundary": "この一覧は当該auditに対する依頼範囲の案であり、新しい製品workflow、必須gate又は全作業共通の規則ではない。未確認範囲を伴うreviewから意味完了を生成しない。"
+}
