@@ -170762,9 +170762,9 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-    "sha256": "f10b516c6c05f64b662a85f9b185a7e91f66beeb7abf07a069ee1d1c879d6ab4",
+    "sha256": "49e6ad41c2ca4ed1793c6d7681fe6b0b7f35fb82a1dfb2c83f242fafc7862aa8",
     "pointer": "/private_producer_bindings/0",
-    "object_canonical_sha256": "35214ead5b12a806cf430ff55d0bae6edded2506968403769bd218b8edee383f",
+    "object_canonical_sha256": "f3859cea4199e09ae60d7323ba55718fec4af35bb80327613fd8c78e424ce638",
     "binding_kind": "exact_candidate_file_bytes",
     "meaning": "同じ対に置くL5の現在file bytesとprivate producer binding objectを結ぶ。歴史source pinとは区別する。"
   },
@@ -171275,7 +171275,7 @@
     ],
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "79b2b58cae7a9889b8f730894c1211050d79dd1f80aeccddbf2191842dd6ecae",
+      "candidate_sha256": "19648649e8442067934e3551a3be8cd37eb640ca5d9d38bddaf01a3585b42714",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
     },
@@ -171288,5 +171288,39 @@
       "meaning_ja": "HARNESS F03のcandidateは、originalと独立sourceから計算したobservationへの比較依頼である。candidate missingは比較未依頼を表し、original/sourcesの必須性を置換せず、計算した観測そのものを未供給にしない。この6入力のcandidate absentを必須source欠落へ読み替えない。computed observation自体が不明なら肯定結果は生成しない。",
       "existing_l4_type_binding_pointer": "/contracts/0/selection_producer_contract/private_call_contract/external_type_bindings/11"
     }
+  },
+  "owner_return_verification": {
+    "requirement_ref": "HELIXOS-L3-020-B01",
+    "candidate_l5_binding": {
+      "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+      "sha256": "49e6ad41c2ca4ed1793c6d7681fe6b0b7f35fb82a1dfb2c83f242fafc7862aa8",
+      "pointer": "/private_producer_bindings/1",
+      "object_canonical_sha256": "a1ffca711ef49c8171d57b7809f4c3245e91214dbeae5d38caec1b80df7eeca8"
+    },
+    "current_l9_candidate_binding": {
+      "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+      "candidate_sha256": "19648649e8442067934e3551a3be8cd37eb640ca5d9d38bddaf01a3585b42714",
+      "pointer": "/owner_return_verification"
+    },
+    "unit_conditions": [
+      {
+        "subject": "OwnerReturnContext/source request",
+        "expected_ja": "同call RawPacketの2 member、CIInput、CIProposal、元F03 invocationを全値で保持する。元Source/Fieldの欠落・null・emptyを補わず、既存Findingのcode/pointer/return_ownerを一つも変更しない。"
+      },
+      {
+        "subject": "source classification/route_owner_return",
+        "expected_ja": "原sourceの既知対応/既知相反/比較不能/別対象を区別し、未確定originは局所unresolved/conflictへ保持する。互換する複数originと全raw/native Entry/bytes/Scopeを保持し、claim真偽・label・source_bundleからownerを生成しない。"
+      },
+      {
+        "subject": "dispatch_owner_returns/Unit",
+        "expected_ja": "完全同値requestのみdedupし、plan/duty/decision各配列順で対応consume_*へ全requestを渡す。呼出しtraceは元assessmentと各request/Unitを保持する。他originの不足は対応済みcallを止めず、未解決originにはcallを作らない。UnitはACK/意味判断/実配送成功でない。"
+      }
+    ],
+    "paired_conditions": {
+      "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+      "pointer": "/owner_return_verification/conditions",
+      "meaning_ja": "L9の原L3/L10由来7条件へ対応する。L9 expectedの自己一致やcase件数で単体の正しさを生成しない。"
+    },
+    "limits_ja": "単体条件とimport/call bindingの設計。新literal whole期待/モデル実行/実物TDDのGreenではない。既存9関数と全旧入力/期待は不変。"
   }
 }

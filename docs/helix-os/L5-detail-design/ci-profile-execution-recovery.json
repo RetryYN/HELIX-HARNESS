@@ -3214,7 +3214,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
-        "file_sha256": "2a4d7d99700bf991087dd558350616a2670a700eec405a4f8279d0dbbe5ffa24",
+        "file_sha256": "ff97b906ba537bc6c46622c7b1142a69d768b1a9f63da91d3069666f6076eafc",
         "object_canonical_sha256": "00ecf77c8ddc8b372fbf4183b9eda529c8381e8ac8acd88b0d4467001a26ac87",
         "meaning_ja": "この同一pairの現在L4 contractを指す。L4 source_pinsの歴史revisionは変更しない。"
       },
@@ -3257,6 +3257,32 @@
         "consumer_result_feedback": "F02009/F02002/F02008の結果をproducer selection/statusへ逆流させない。"
       },
       "scope_ja": "L4 producerの型・アルゴリズムを参照するprivate binding。既存9関数の公開ID・signatureを変更しない。実provider・資格・CI実行の成立は含まない。"
+    },
+    {
+      "name": "return_owner_diagnostics",
+      "visibility": "private",
+      "signature": "return_owner_diagnostics(context: OwnerReturnContext, source_ports: OwnerOriginSourcePorts, intakes: OwnerReturnConsumerPorts) -> OwnerReturnDispatchTrace",
+      "paired_current_l4_binding": {
+        "binding_kind": "paired_current_file_bytes",
+        "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+        "pointer": "/contracts/3/owner_return_contract",
+        "file_sha256": "ff97b906ba537bc6c46622c7b1142a69d768b1a9f63da91d3069666f6076eafc",
+        "object_canonical_sha256": "3b759976adf705717386519d04c78eb6417deaef957c66e7a0c509e0b1d16cbf"
+      },
+      "type_and_algorithm_imports": {
+        "private_types": "/contracts/3/owner_return_contract/private_types",
+        "source_ports": "/contracts/3/owner_return_contract/source_ports_and_intakes",
+        "duty_sources": "/contracts/3/owner_return_contract/duty_source_contract",
+        "routing": "/contracts/3/owner_return_contract/finding_routes",
+        "reduction": "/contracts/3/owner_return_contract/routing_and_dedup",
+        "call_order": "/contracts/3/owner_return_contract/caller_protocol"
+      },
+      "paired_l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/ci-profile-execution-recovery.json",
+        "pointer": "/owner_return_verification"
+      },
+      "preservation_ja": "元RawPacket/CIInput/CIProposal全値とFinding tripleを保持し、独立原sourceに対応したtyped requestだけを同callerの役割別intakeへ渡す。Unitを受領/判断完了に昇格しない。",
+      "limits_ja": "既存9公開関数/純profile producerを変更しない。F03限定の私有source/intake境界で、F01源資料の接続・実provider/transport/資格は後続。"
     }
   ]
 }

@@ -1425,7 +1425,648 @@
       "component": "ci_plan_operation_and_decision_owner_boundary",
       "input_meaning": "HARNESSが検証義務/oracleを定め、OS計画側が検証計画を導き、020は組立/実行/回収だけを担う。020が計画やoracleを追加/削除しない。意味review・利用者受入・merge・releaseはCI結果と別判定である。",
       "output_meaning": "7facet別素材対応/unknown/違反、原状態/未完/戻し先素材。実operation none。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "owner_return_contract": {
+        "scope_ja": "B01の計画/義務/判断への越境診断を元source/対象とともに返す私有境界。今回の義務source結線はF03 native行に限定し、F01固有sourceの対応とOS020 F01/F02/F03全閉包は後続に保持する。",
+        "effects": "none (論理呼出し契約。実配送/ACK/認可/受入を生成しない)",
+        "native_imports": [
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "revision": "075f0ed32459addc24a92165f3233c0ba2cf7ee3",
+            "sha256": "f10b516c6c05f64b662a85f9b185a7e91f66beeb7abf07a069ee1d1c879d6ab4",
+            "pointers": [
+              "/logical_types/17",
+              "/logical_types/0",
+              "/logical_types/2",
+              "/logical_types/16",
+              "/logical_types/40",
+              "/logical_types/28",
+              "/logical_types/51",
+              "/logical_types/53",
+              "/logical_types/45"
+            ]
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+            "revision": "075f0ed32459addc24a92165f3233c0ba2cf7ee3",
+            "sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+            "pointers": [
+              "/type_contract/types/Field",
+              "/type_contract/types/Ref",
+              "/type_contract/types/Scope",
+              "/type_contract/types/OriginalSourceEntry",
+              "/type_contract/types/VerificationSources",
+              "/type_contract/types/F03VerificationInput/normal_shape"
+            ]
+          }
+        ],
+        "same_document_import": {
+          "HarnessF03InvocationObservation": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/8"
+        },
+        "field_boundary_ja": "無修飾FieldはOS020のabsent/null/empty/supplied。HARNESS native Ref/Scope/OriginalSourceEntry/義務行内部はHARNESS Fieldのmissing/supplied_null/supplied_valueを保持し、同じタグ体系へcastしない。conditionの明示nullをfalseやN/Aにしない。",
+        "private_types": [
+          {
+            "name": "OwnerOriginRef",
+            "kind": "new_private_record",
+            "fields": {
+              "identity": "string",
+              "revision": "string",
+              "scope": "string",
+              "owner": "string"
+            },
+            "meaning": "selectorが元sourceから供給した論理owner reference axes。既存OS/HARNESS型のaliasではない。資格や実recipientを示さない。"
+          },
+          {
+            "name": "SourceObjectLocator",
+            "kind": "new_private_record",
+            "fields": {
+              "source_revision": "string",
+              "source_path": "string",
+              "source_pointer": "string",
+              "object_canonical_sha256": "string"
+            },
+            "meaning": "元source objectの位置。content bytesの保管を偽らず、正本性も証明しない。"
+          },
+          {
+            "name": "OriginSourceIssue",
+            "kind": "new_private_record",
+            "fields": {
+              "kind": "not_selected | not_observed | unavailable | decode_invalid | no_exact_subject_join | same_subject_conflict",
+              "source_pointer": "string | null",
+              "raw_value": "RawValue | null"
+            },
+            "meaning": "不足情報を元値/位置とともに保持する。"
+          },
+          {
+            "name": "PlanOriginEvidence",
+            "kind": "new_private_record",
+            "fields": {
+              "source_ref": "OwnerOriginRef",
+              "source_locator": "SourceObjectLocator",
+              "plan_ref": "Field<string>",
+              "binding": "Field<Binding>",
+              "source_body": "RawValue",
+              "typed_plan_source": "Field<PlanSelectionSource>"
+            },
+            "joins": [
+              "返されたplan_refを元CIInput.inputs.plan_ref、および存在する場合はtyped_plan_source.plan_refと完全一致で照合する。",
+              "bindingの各軸を元CIInput bindingと照合する。",
+              "source_ref/source_locatorはselectorが返した原値をそのまま保持する。"
+            ],
+            "limit": "現行PlanSelectionSourceにはfull source Ref/owner axesがないため、plan_ref文字列から合成しない。"
+          },
+          {
+            "name": "F03DutySourceWitness",
+            "kind": "private_record",
+            "fields": {
+              "independent_entry": "HARNESS.OriginalSourceEntry",
+              "source_locator": "SourceObjectLocator",
+              "referent_index": "nonnegative integer",
+              "subject_payload_pointer": "string (RFC 6901)",
+              "duty_payload_pointer": "string (RFC 6901)",
+              "inventory_index": "nonnegative integer",
+              "native_subject": "HARNESS.Ref",
+              "native_duty": "HARNESS.F03VerificationInput inventory item (all declared members)",
+              "scope_binding_witness": "Field<ScopeBindingWitness>",
+              "source_role_declaration": "Field<RawValue>",
+              "relation_state": "matched | not_applicable | unknown | conflict",
+              "conflict_observations": "list<NativeSourceConflict>",
+              "unresolved_issues": "list<OriginSourceIssue>"
+            },
+            "meaning_ja": "各pointer/indexは実在する同callの位置。独立entryの原bytes/payload/資格状態を保持し、入力内の位置と外部source locatorを区別する。native_dutyは元行全体で、追加の意味を推測しない。"
+          },
+          {
+            "name": "ObligationOriginEvidence",
+            "kind": "private_record",
+            "fields": {
+              "harness_selection_source": "Field<HarnessSelectionSource>",
+              "f03_invocation": "Field<HarnessF03InvocationObservation>",
+              "subject_binding": "Field<Binding>",
+              "source_witnesses": "list<F03DutySourceWitness>"
+            },
+            "meaning_ja": "元HARNESSのRef/Scope/義務行と独立sourceをnative型のまま保持する。HarnessProfileSource全体やplain HarnessDutySourceの構成を返却の前提にしない。F01の義務をF03から生成しない。"
+          },
+          {
+            "name": "DecisionOriginEvidence",
+            "kind": "new_private_record",
+            "fields": {
+              "claim_field": "meaning_review | accepted | merge | release",
+              "decision_source_ref": "OwnerOriginRef",
+              "owner_ref": "OwnerOriginRef",
+              "subject_binding": "Binding",
+              "source_locator": "SourceObjectLocator",
+              "source_body": "RawValue"
+            },
+            "joins": [
+              "claim_fieldはrouting tableが選んだ正確なclaim pointerに一致する。",
+              "subject_bindingは元CIInput bindingと独立sourceから得たlinked input subjectに一致する。",
+              "decision_source_ref/owner_refは独立decision-origin source portから供給し、claimのtruthinessから導出しない。"
+            ],
+            "limit": "現CIInputにはflag以外の独立decision-source recordがない。これは提案するprivate source carrierであり、既存native typeやdecision qualificationではない。"
+          },
+          {
+            "name": "OriginRead<T>",
+            "kind": "closed_generic_sum_candidate",
+            "variants": {
+              "NotRequested": {},
+              "NotObserved": {},
+              "Supplied": {
+                "records": "list<T>",
+                "issues": "list<OriginSourceIssue>"
+              },
+              "Unavailable": {
+                "issues": "list<OriginSourceIssue>"
+              },
+              "DecodeInvalid": {
+                "raw_value": "RawValue",
+                "issues": "list<OriginSourceIssue>"
+              }
+            },
+            "cardinality": "Suppliedには互換性のある全origin recordを保持でき、複数件を許す。空recordsのSuppliedはsource読取済みで一致originがない状態として該当originを局所unknownにする。件数だけで一意性failureを作らない。"
+          },
+          {
+            "name": "DutyOriginLookupRequest",
+            "kind": "new_private_record",
+            "fields": {
+              "context": "OwnerReturnContext",
+              "harness_selection_source": "Field<HarnessSelectionSource>",
+              "f03_invocation": "Field<HarnessF03InvocationObservation>",
+              "finding_pointers": "list<string>"
+            },
+            "invariant": "request.f03_invocationはrequest.context.same_call_harness_f03_invocationと全Field tag/valueが完全一致する。harness_selection_sourceもcontext.original_ci_input.context.harness_selection_sourceの原Fieldと一致する。いずれかが未供給・不一致ならsourceを補完せず該当originをunknownとする。"
+          },
+          {
+            "name": "OwnerReturnContext",
+            "kind": "new_private_record",
+            "fields": {
+              "original_packet": "RawPacket",
+              "original_ci_input": "CIInput",
+              "ci_proposal": "CIProposal",
+              "same_call_harness_f03_invocation": "Field<HarnessF03InvocationObservation>"
+            },
+            "meaning": "同じOS020呼出しの元packet、CIInput、CIProposal、およびL4 F01/F03 producerへ渡された同一callのHARNESS F03 invocationを保持する。新しいRawPacket memberを追加せず、CIInput/claimからinvocationを合成しない。invocationが未供給ならDutyOriginLookupRequestのduty-specific joinだけunknown。"
+          },
+          {
+            "name": "PlanOwnerReturnRequest",
+            "kind": "new_private_record",
+            "fields": {
+              "context": "OwnerReturnContext",
+              "finding": "Finding",
+              "origin": "PlanOriginEvidence",
+              "source_related_duties": "list<ObligationOriginEvidence>"
+            }
+          },
+          {
+            "name": "HarnessDutyOwnerReturnRequest",
+            "kind": "new_private_record",
+            "fields": {
+              "context": "OwnerReturnContext",
+              "finding": "Finding",
+              "origin": "ObligationOriginEvidence",
+              "related_plan_origins": "list<PlanOriginEvidence>",
+              "selected_source_witness": "F03DutySourceWitness (relation_state=matched)"
+            },
+            "invariant_ja": "返却先の原sourceをselected_source_witnessで一件特定する。origin全体と他のnative原値は保持し、異なる対応済みsourceごとにrequestを生成する。unknown/conflict witnessは該当source向けcallを作らずassessmentへ残す。"
+          },
+          {
+            "name": "DecisionOwnerReturnRequest",
+            "kind": "new_private_record",
+            "fields": {
+              "context": "OwnerReturnContext",
+              "finding": "Finding",
+              "origin": "DecisionOriginEvidence"
+            }
+          },
+          {
+            "name": "RouteUnresolved",
+            "kind": "new_private_record",
+            "fields": {
+              "finding": "Finding",
+              "origin_kind": "plan | obligation | decision",
+              "issues": "list<OriginSourceIssue>"
+            }
+          },
+          {
+            "name": "RouteConflict",
+            "kind": "new_private_record",
+            "fields": {
+              "finding": "Finding",
+              "origin_kind": "plan | obligation | decision",
+              "contradictory_source_values": "list<RawValue>",
+              "source_pointers": "list<string>"
+            }
+          },
+          {
+            "name": "OwnerReturnAssessment",
+            "kind": "new_private_record",
+            "fields": {
+              "context": "OwnerReturnContext",
+              "plan_requests": "list<PlanOwnerReturnRequest>",
+              "obligation_requests": "list<HarnessDutyOwnerReturnRequest>",
+              "decision_requests": "list<DecisionOwnerReturnRequest>",
+              "unresolved": "list<RouteUnresolved>",
+              "conflicts": "list<RouteConflict>",
+              "non_owner_findings": "list<Finding>",
+              "origin_reads": "OwnerOriginReads"
+            },
+            "invariant": "CIProposalの各Findingを一度以上保持し、request・unresolved・conflicts・non_owner_findingsのいずれかへ対応付ける。Finding自体は変更しない。完全同値requestのみ重複を除き、異なるoriginは保持する。"
+          },
+          {
+            "name": "OwnerReturnConsumerPorts",
+            "kind": "new_private_closed_record",
+            "fields": {
+              "plan": "OSPlanOwnerIntake.consume_plan_return",
+              "obligation": "HARNESSDutyOwnerIntake.consume_duty_return",
+              "decision": "DecisionOwnerIntake.consume_decision_return"
+            },
+            "meaning_ja": "役割別intakeの論理callableを明示的に束ねる。実transport/provider/資格を表さない。"
+          },
+          {
+            "name": "OwnerReturnIntakeCall",
+            "kind": "new_private_closed_record",
+            "fields": {
+              "origin_kind": "plan | obligation | decision",
+              "request": "PlanOwnerReturnRequest | HarnessDutyOwnerReturnRequest | DecisionOwnerReturnRequest",
+              "call_result": "Unit"
+            },
+            "meaning_ja": "実際に呼び出したtyped requestとそのUnit戻り値の記録。Unitは関数呼出しの復帰だけを表し、受領、ACK、意味判断完了を表さない。"
+          },
+          {
+            "name": "OwnerReturnDispatchTrace",
+            "kind": "new_private_closed_record",
+            "fields": {
+              "assessment": "OwnerReturnAssessment",
+              "calls": "list<OwnerReturnIntakeCall>"
+            },
+            "meaning_ja": "評価結果と、呼出し順にintakeへ渡したrequest/戻り値を保持する。外部配送記録ではない。"
+          },
+          {
+            "name": "Unit",
+            "kind": "new_private_empty_record",
+            "fields": {},
+            "meaning_ja": "論理callが正常に戻ったことだけを表す空値。acceptanceや完了statusではない。"
+          },
+          {
+            "name": "NativeSourceConflict",
+            "kind": "private_record",
+            "fields": {
+              "left_entry": "HARNESS.OriginalSourceEntry",
+              "right_entry": "HARNESS.OriginalSourceEntry",
+              "left_pointer": "string (RFC 6901)",
+              "right_pointer": "string (RFC 6901)",
+              "left_locator": "Field<SourceObjectLocator>",
+              "right_locator": "Field<SourceObjectLocator>"
+            },
+            "meaning_ja": "同一full Ref/subjectについて既知相反の両native Entryと箇所を保持する。native bytesをJSON RawValueへ変換しない。"
+          },
+          {
+            "name": "OwnerOriginSourcePorts",
+            "kind": "private_record",
+            "fields": {
+              "plan": "OSPlanOriginSourcePort.select",
+              "obligation": "HARNESSDutyOriginSourcePort.select",
+              "decision": "DecisionOriginSourcePort.select"
+            }
+          },
+          {
+            "name": "OwnerOriginReads",
+            "kind": "private_record",
+            "fields": {
+              "plan": "OriginRead<PlanOriginEvidence>",
+              "obligation": "OriginRead<ObligationOriginEvidence>",
+              "decision": "OriginRead<DecisionOriginEvidence>"
+            }
+          },
+          {
+            "name": "PlanOriginLookupRequest",
+            "kind": "private_record",
+            "fields": {
+              "context": "OwnerReturnContext",
+              "plan_ref": "Field<string>",
+              "binding": "Field<Binding>",
+              "finding_pointers": "list<string>"
+            }
+          },
+          {
+            "name": "DecisionOriginLookupRequest",
+            "kind": "private_record",
+            "fields": {
+              "context": "OwnerReturnContext",
+              "claim_fields": "list<meaning_review | accepted | merge | release>",
+              "subject_binding": "Binding"
+            }
+          }
+        ],
+        "source_ports_and_intakes": [
+          {
+            "port": "OSPlanOriginSourcePort.select",
+            "signature": "select_plan_origin(request: PlanOriginLookupRequest) -> OriginRead<PlanOriginEvidence>",
+            "request_fields": {
+              "context": "OwnerReturnContext",
+              "plan_ref": "Field<string>",
+              "binding": "Field<Binding>",
+              "finding_pointers": "list<string>"
+            },
+            "output": "OS plan source-role collectionから正確なoriginを選ぶ。Refやauthorityを新規生成しない。"
+          },
+          {
+            "port": "HARNESSDutyOriginSourcePort.select",
+            "signature": "select_duty_origins(request: DutyOriginLookupRequest) -> OriginRead<ObligationOriginEvidence>",
+            "request_fields": {
+              "context": "OwnerReturnContext（同一callのF03 invocationを含む）",
+              "harness_selection_source": "元CIInput contextのFieldを完全保持したHarnessSelectionSource。",
+              "f03_invocation": "context.same_call_harness_f03_invocationと完全一致するField<HarnessF03InvocationObservation>",
+              "finding_pointers": "list<string>"
+            },
+            "output": "同call原invocationと独立sourceをduty_source_contractに従って照合したnative source witness。plain HarnessDutySourceやF01全recordを生成しない。対応済み以外のwitnessも原値・relation_state・原因を保持し、routerがmatched以外をintake requestに採用しない。"
+          },
+          {
+            "port": "DecisionOriginSourcePort.select",
+            "signature": "select_decision_origins(request: DecisionOriginLookupRequest) -> OriginRead<DecisionOriginEvidence>",
+            "request_fields": {
+              "context": "OwnerReturnContext",
+              "claim_fields": "list<meaning_review | accepted | merge | release>",
+              "subject_binding": "Binding"
+            },
+            "output": "claim fieldとsubject bindingに結び付く独立decision-origin recordを返す。claim値からtargetを選択・導出しない。"
+          },
+          {
+            "port": "OSPlanOwnerIntake.consume",
+            "signature": "consume_plan_return(request: PlanOwnerReturnRequest) -> Unit",
+            "meaning": "役割別のprivate typed intake call。requestを受け取りUnitを返す。Unitはcallから戻ったことだけを示し、宛先の受領/ACK/判断完了を示さない。"
+          },
+          {
+            "port": "HARNESSDutyOwnerIntake.consume",
+            "signature": "consume_duty_return(request: HarnessDutyOwnerReturnRequest) -> Unit",
+            "meaning": "役割別のprivate typed intake call。requestを受け取りUnitを返す。Unitはcallから戻ったことだけを示し、宛先の受領/ACK/判断完了を示さない。"
+          },
+          {
+            "port": "DecisionOwnerIntake.consume",
+            "signature": "consume_decision_return(request: DecisionOwnerReturnRequest) -> Unit",
+            "meaning": "役割別のprivate typed intake call。requestを受け取りUnitを返す。Unitはcallから戻ったことだけを示し、宛先の受領/ACK/判断完了を示さない。"
+          },
+          {
+            "port": "OwnerReturnDispatcher.dispatch",
+            "signature": "dispatch_owner_returns(assessment: OwnerReturnAssessment, intakes: OwnerReturnConsumerPorts) -> OwnerReturnDispatchTrace",
+            "request_fields": {
+              "assessment": "route_owner_returnが作った型付きassessment。原Finding/request/unresolved/conflictを保持する。",
+              "intakes": "役割別intake callables。"
+            },
+            "output": "呼び出したrequestごとのOwnerReturnIntakeCallを固定順で返す。unresolved/conflict/non_owner_findingsはcall対象にせずtrace内assessmentに保持する。"
+          }
+        ],
+        "duty_source_contract": {
+          "request_ja": "DutyOriginLookupRequestは同じOwnerReturnContextのf03_invocationと元CIInputのharness_selection_sourceを全値で受ける。source_bundleの内側は読まず、raw traceに保持する。",
+          "source_steps_ja": [
+            "同call decoded invocationのoriginal/sources/candidate/comparison/minimum_projectionを別々に保持する。minimumやCI選択結果から原義務を作らない。",
+            "source portが独立に供給するOriginalSourceEntryを、同invocation.sources.referentsの実indexへref/original_bytes/decoded_payload/owner_qualification/source_stateの全値で対応付ける。同Ref別bytes/payloadの既知相反は両値をconflictへ保持する。未観測/欠落/比較不能はunknown、foreign/non-applicableは不採用として原値を保持し、件数だけでconflictにしない。",
+            "source役割の原宣言が指定した実payload pointerからsubjectとdutyを読み、subjectをoriginal.bindingへ全native Ref/Scope/Fieldで、duty全体をoriginal.inventoryの実index行へ全memberで照合する。名前による探索やcaller自由著述のrelation mapを使わない。",
+            "OS subject_bindingは元CIInput.bindingとの13 Field全値対応、HARNESS subjectはnative Refのまま保持する。両者を結ぶ資料は独立sourceが供給するscope_binding_witnessとsource_role_declarationの原値を保持し、適用された各軸を既存ScopeBindingWitnessの対応memberへ照合する。Scope構造体をOS scope文字列へ連結・正規化しない。対応根拠がなければ当該joinだけunknown。",
+            "対応済みwitnessは原Entry/bytes/資格状態、実locator、全native duty行とindex/pointerをそのまま保持してHARNESS側intakeへ渡す。型のplain化やcondition/nullの補完は行わない。F01源資料はF03 inventoryやsource_bundleから生成しない。"
+          ],
+          "preservation_ja": "一つのsourceが不足/相反でも、別originの対応済みrequestと全原Findingを消さない。独立sourceの同一性比較は資格・権限の成立宣言ではない。"
+        },
+        "finding_routes": [
+          {
+            "origin_kind": "obligation",
+            "finding_pairs": [
+              {
+                "codes": [
+                  "source_unresolved",
+                  "source_conflict"
+                ],
+                "pointers": [
+                  "/roles/obligation"
+                ]
+              },
+              {
+                "codes": [
+                  "source_unresolved"
+                ],
+                "pointers": [
+                  "/context/roles/obligation"
+                ]
+              }
+            ],
+            "consumer": "HARNESSDutyOwnerIntake"
+          },
+          {
+            "origin_kind": "plan",
+            "finding_pairs": [
+              {
+                "codes": [
+                  "source_unresolved",
+                  "source_conflict"
+                ],
+                "pointers": [
+                  "/roles/plan"
+                ]
+              },
+              {
+                "codes": [
+                  "source_unresolved"
+                ],
+                "pointers": [
+                  "/context/roles/plan"
+                ]
+              }
+            ],
+            "consumer": "OSPlanOwnerIntake"
+          },
+          {
+            "origin_kind": "plan",
+            "finding_pairs": [
+              {
+                "codes": [
+                  "phase_unresolved"
+                ],
+                "pointers": [
+                  "/phase"
+                ]
+              },
+              {
+                "codes": [
+                  "profile_items_unresolved",
+                  "profile_item_set_conflict"
+                ],
+                "pointers": [
+                  "/profile/items",
+                  "/context/profile/items"
+                ]
+              },
+              {
+                "pointer_prefixes": [
+                  "/profile",
+                  "/context/profile",
+                  "/context/plan_selection_source",
+                  "/context/inputs/plan_ref"
+                ],
+                "match": "RFC 6901のsegment境界でprefix照合し、原Finding.pointerを保持する。",
+                "codes": [
+                  "source_unresolved",
+                  "source_conflict"
+                ]
+              },
+              {
+                "codes": [
+                  "profile_obligation_set_conflict"
+                ],
+                "pointers": [
+                  "/profile/items"
+                ]
+              }
+            ],
+            "consumer": "OSPlanOwnerIntake",
+            "related_origins": [],
+            "operand_basis": "actual profile.items[].obligation_ref集合とactual profile.obligationsの集合。どちらもOS計画入力。"
+          },
+          {
+            "origin_kind": "obligation",
+            "finding_pairs": [
+              {
+                "pointer_prefixes": [
+                  "/context/required_obligations",
+                  "/context/harness_selection_source"
+                ],
+                "match": "RFC 6901のsegment境界でprefix照合し、原Finding.pointerを保持する。",
+                "codes": [
+                  "source_unresolved",
+                  "source_conflict"
+                ]
+              }
+            ],
+            "consumer": "HARNESSDutyOwnerIntake"
+          },
+          {
+            "origin_kind": "decision",
+            "finding_pairs": [
+              {
+                "codes": [
+                  "decision_promotion_forbidden",
+                  "decision_promotion_unresolved"
+                ],
+                "pointers": [
+                  "/promotion_claims/meaning_review",
+                  "/promotion_claims/accepted",
+                  "/promotion_claims/merge",
+                  "/promotion_claims/release"
+                ]
+              }
+            ],
+            "consumer": "DecisionOwnerIntake",
+            "rule": "正確なclaim fieldがsource lookupの種類を選ぶ。true/false/nullはowner選択に使わない。"
+          },
+          {
+            "origin_kind": "not_owner_return_scope",
+            "finding_pairs": [
+              {
+                "codes": [
+                  "source_unresolved",
+                  "source_conflict"
+                ],
+                "pointers": [
+                  "/roles/operation",
+                  "/context/roles/operation"
+                ]
+              },
+              {
+                "codes": [
+                  "source_unresolved",
+                  "source_conflict"
+                ],
+                "pointers": [
+                  "/roles/authority",
+                  "/context/roles/authority"
+                ]
+              },
+              {
+                "codes": [
+                  "source_unresolved",
+                  "source_conflict"
+                ],
+                "pointers": [
+                  "/roles/resource",
+                  "/context/roles/resource"
+                ]
+              },
+              {
+                "fallback": true
+              }
+            ]
+          },
+          {
+            "origin_kind": "plan_and_obligation",
+            "finding_pairs": [
+              {
+                "codes": [
+                  "profile_required_obligation_missing"
+                ],
+                "pointers": [
+                  "/profile/obligations"
+                ]
+              },
+              {
+                "codes": [
+                  "profile_obligation_inventory_conflict"
+                ],
+                "pointers": [
+                  "/profile/obligations"
+                ]
+              }
+            ],
+            "consumer": [
+              "OSPlanOwnerIntake",
+              "HARNESSDutyOwnerIntake"
+            ],
+            "rule": "profile_required_obligation_missingは選択集合対HARNESS必要最小集合、profile_obligation_inventory_conflictは選択集合対HARNESS F03 inventory。各側の原operandを独立に照合し、確定originごとにrequestを返す。一側不明ならそのoriginだけunknownとする。",
+            "operand_basis": "profile_required_obligation_missing: OS選択集合対HARNESSの必要最小集合。profile_obligation_inventory_conflict: OS選択集合対HARNESS F03 inventory。両Findingだけをdual routeする。"
+          }
+        ],
+        "routing_and_dedup": {
+          "match_ja": "codesのいずれかとpointersのいずれかのexact pairを優先し、次にcodeとRFC 6901 segment-boundary prefixを照合する。同階層ではfinding_routesの原順、どれにも該当しなければfallbackへ保持する。",
+          "cross_owner_ja": "profile_required_obligation_missingとprofile_obligation_inventory_conflictの各/profile/obligations pairだけはplan_and_obligation行へ一度割り当て、両側の原operandに対応する各originへ返す。profile_obligation_set_conflictはplan-onlyである。",
+          "dedup_ja": "種類別にrequest全fieldのtyped structural equalityで完全同値だけを一件にする。Finding tripleだけで別originを統合しない。同Finding内は元origin順を保ち、原read records/issuesは順序・反復をすべて保持する。",
+          "source_status_ja": "同一subjectの既知相反は両側をconflictへ、欠落/未観測/比較不能は局所unknownへ、別対象はforeignとして不採用・原値保持。互換originの複数という件数だけでunknown/conflictを作らない。"
+        },
+        "caller_protocol": {
+          "signature": "return_owner_diagnostics(context: OwnerReturnContext, source_ports: OwnerOriginSourcePorts, intakes: OwnerReturnConsumerPorts) -> OwnerReturnDispatchTrace",
+          "router_signature": "route_owner_return(context: OwnerReturnContext, origin_reads: OwnerOriginReads) -> OwnerReturnAssessment",
+          "source_port_bindings": {
+            "plan": "OSPlanOriginSourcePort.select",
+            "obligation": "HARNESSDutyOriginSourcePort.select",
+            "decision": "DecisionOriginSourcePort.select"
+          },
+          "steps_ja": [
+            "既存F02001投影と同callのF02008 CIProposal、元RawPacket、同F03 invocationからcontextを受ける。全Findingのcode/pointer/return_ownerを保持し、比較labelを配送先identityへ読み替えない。",
+            "finding_routesで必要な役割を特定し、そのFinding群と元contextから各source portのrequestを作る。planは元inputs.plan_ref/Binding、dutyは元HARNESS source/invocation、decisionは4 claim fieldと元Bindingを使う。claimの真偽からownerを選ばない。",
+            "route_owner_return(context, origin_reads)で対応済みrequest/unresolved/conflict/non_owner_findingsと原source返却を保持する。元sourceがないtargetを補完せず、別originの対応済みrequestは継続する。",
+            "dispatch_owner_returns(assessment, intakes)はplan_requests、obligation_requests、decision_requestsの順、各配列の元順に完全なrequestを対応するconsume_*へ一度渡す。完全同値requestのみ既存dedup規則で一件にする。",
+            "各Unit返却を元requestとともにOwnerReturnIntakeCallへ順序付きで保持して返す。未解決/相反originのcallは作らず、その原資料と原因をassessmentへ残す。Unitは意味判断・ACK・配送成功ではない。"
+          ]
+        },
+        "decision_guard_ja": "既存F02007どおりtrueはdecision_promotion_forbidden、falseはそのclaimのFindingなし、その他はdecision_promotion_unresolved。既存Findingをrouteするだけで、独立ownerの正規判断を禁止しない。",
+        "limits_ja": [
+          "source selector/intakeの論理口の定義であり、実provider・実source資格・実受領・製品runtimeの成立ではない。",
+          "F01側の原義務sourceは別対応として未完を保持し、F03対応の成功を全B01完了へ広げない。",
+          "OS020 F01対L10のticket/資源owner返却、F02運転/保存とF03再開は本B01契約から完了を生成しない。"
+        ],
+        "source_basis": {
+          "business_requirement": "/approved_whole_objects/3",
+          "business_contract": "/contracts/3",
+          "finding_roles": "/diagnostic_contract/owner_roles",
+          "decision_rule": "/diagnostic_contract/algorithm/8"
+        },
+        "legacy_basis": {
+          "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+          "lines": [
+            195,
+            207
+          ],
+          "preserve_ja": "元失敗/義務と対応する上流ownerへの差戻しを保持する。",
+          "change_ja": "旧層番号・旧gate・旧runtimeを移植せず、現在の原source別私有request/intakeへ意味再導出する。"
+        }
+      }
     }
   ],
   "diagnostic_contract": {
