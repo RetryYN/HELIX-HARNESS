@@ -4230,7 +4230,19 @@
       },
       "effect": "none",
       "unit_case_refs": [
-        "SEC003-L8-OWNER-CONTEXT-N01-NORMAL"
+        "SEC003-L8-OWNER-CONTEXT-N01-NORMAL",
+        "SEC003-L8-OWNER-CONTEXT-C03-ROLE-MISMATCH",
+        "SEC003-L8-OWNER-CONTEXT-C06-PROJECT-AND-STATE-PORT",
+        "SEC003-L8-OWNER-CONTEXT-C02-SHARED-REF-OCCURRENCES",
+        "SEC003-L8-OWNER-CONTEXT-C04A-PROJECT-NULL",
+        "SEC003-L8-OWNER-CONTEXT-C04B-PROJECT-ABSENT",
+        "SEC003-L8-OWNER-CONTEXT-C04C-PROJECT-INVALID-BOOLEAN",
+        "SEC003-L8-OWNER-CONTEXT-C04D-PROJECT-RAW-VALUE-MISMATCH",
+        "SEC003-L8-OWNER-CONTEXT-C05A-FALSE-NULL-TENANT",
+        "SEC003-L8-OWNER-CONTEXT-C05B-FALSE-ABSENT-TENANT",
+        "SEC003-L8-OWNER-CONTEXT-C05C-FALSE-NONNULL-TENANT",
+        "SEC003-L8-OWNER-CONTEXT-C07-OS-ENVIRONMENT-DIFFERENT",
+        "SEC003-L8-OWNER-CONTEXT-C08-CONNECTION-REVISION-DIFFERENT"
       ]
     }
   ],
@@ -4357,7 +4369,7 @@
   ],
   "owner_context_detail_contract": {
     "id": "HELIXSECURITY-L5-003-OWNER-CONTEXT-DETAIL",
-    "status": "設計本文。純算法未実行、新L8 whole freeze未成立。実資格・認可・配送・runtime完了を主張しない。",
+    "status": "設計本文。純算法未実行。L8の正常1件と境界12件は原input/全返却期待を固定。全分岐閉包、実資格・認可・配送・runtime完了を主張しない。",
     "source_contract": {
       "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
       "document": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
@@ -5691,7 +5703,7 @@
         "source_generation": "legacy-generation-2026-09-14"
       }
     ],
-    "verification_boundary": "L9 C01〜C10のsource-level条件に対応する詳細定義。新L8の原input/全期待whole freeze・独立検収は別作業で、本算法から期待を生成していない。旧fixture/旧全期待/旧関数0..12は不変。全92親430義務完了や実装readyの認定ではない。",
+    "verification_boundary": "L9 C01〜C10のsource-level条件に対応する詳細定義。L8に正常1件と境界12件の原input/全返却期待を有限例として固定した。各例の原条件への対応と未閉包範囲はL8 source_condition_mappingに示す。全分岐閉包と候補実行は未成立で、本算法から期待を生成していない。旧fixture/旧全期待/旧関数0..12は不変。全92親430義務完了や実装readyの認定ではない。",
     "effect": {
       "authority": "none",
       "operation_effect": "none",
@@ -5860,6 +5872,7 @@
       "pointer": null,
       "presence": null,
       "preservation": "実Absent/null Field又は原parentが観測された場合は、その出典namespace/pointer/RawPresenceを保持し、このoperandなし表記へ置換しない。"
-    }
+    },
+    "legacy_source_scope": "source_contractが指すPR #3323のL4基本契約 /private_composition_contracts/1/source_basis にある旧SEA候補要求・対受入の保持点/変更点を継ぐ。これらをowner-context 8slotの旧詳細設計や、実運用で再現済みの個別障害報告とは扱わない。要求意味は固定L3-F01/F02と対L10から導く。"
   }
 }
