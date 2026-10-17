@@ -250,7 +250,12 @@
           },
           "null": "missing",
           "non_null": "supplied_fixture_only",
-          "absent_or_unknown": "not_evaluated; availability null sentinel"
+          "absent_or_unknown": "presenceがabsent/unknownの場合はavailability未評価、null sentinelを保持する。",
+          "source_applies_to": [
+            "null",
+            "non_null"
+          ],
+          "absent_or_unknown_origin": "F01の独立観測operandに対する規則。参照したnative F02 availabilityの枝ではない。"
         },
         "return_meaning": [
           "native F01全返却は変更せず保持し、native比較結果がmissingまたはcontent_conflictのfieldごとに元candidate/fieldを指すBRAIN知識owner向け比較不足materialを組み立てる。",

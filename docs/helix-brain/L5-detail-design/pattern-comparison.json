@@ -1265,8 +1265,7 @@
           },
           "expected_source_document": {
             "enum": [
-              "original_application_source",
-              "L4_contract"
+              "original_application_source"
             ]
           },
           "observed_source_document": {
@@ -2326,7 +2325,7 @@
       "l4_ref": "HELIXBRAIN-L4-004-F02",
       "current_l4_binding": {
         "path": "docs/helix-brain/L4-basic-design/pattern-comparison.json",
-        "file_sha256": "414c9ad196b22285be97900b1d65886aa72057df0a4b2b9ae63e77bc7bfb3e68",
+        "file_sha256": "93cfd4981db6142e544156c51bfe6cb3ccb05400d467d937a715a22fe117ad99",
         "pointer": "/contracts/1/private_owner_return_wrapper",
         "object_canonical_sha256": "2fc7a2dc113bb215474d81f4022261512757532e2897758a75dff3fe4646ebca"
       },
@@ -2456,9 +2455,9 @@
       "l4_ref": "HELIXBRAIN-L4-004-F01",
       "current_l4_binding": {
         "path": "docs/helix-brain/L4-basic-design/pattern-comparison.json",
-        "file_sha256": "414c9ad196b22285be97900b1d65886aa72057df0a4b2b9ae63e77bc7bfb3e68",
+        "file_sha256": "93cfd4981db6142e544156c51bfe6cb3ccb05400d467d937a715a22fe117ad99",
         "pointer": "/contracts/0/private_owner_return_wrapper",
-        "object_canonical_sha256": "297bb3ecd1730817632842783be4d7ba947653ddac333c3e4b7228e387b0355e"
+        "object_canonical_sha256": "ef6afb9d216f03f7dd2cd982000b5bfd7828d50ccd66fe1df2c1a950ee06deed"
       },
       "native_f01_dependency_bindings": [
         {
@@ -2511,7 +2510,7 @@
       "algorithm": [
         "1. invocation.native_f01_inputを変更せず既存BRAIN004-F01へ一度だけ渡す。native_returnにはF01Return全fieldを完全保持する。",
         "2. 入力4operandをそれぞれ対応するechoへ原値コピーする。original_application_sourceとinvocation_request_bindingはstateとraw_valueを分離して保持し、raw内容からstateを推定しない。",
-        "3. application_binding_comparisonsをこの順で作る: original raw f01_native_input↔native input、original raw requirement_values_observation↔独立requirement_values_observation、request.problem、request.requirement_revision、request.scopeをinvocation bindingの同軸へ。親absent/present_null/unknownはその子へ同状態を伝える。親present_valueでもrawがobjectでなければ子unknown。original raw requestはrequest memberのabsent/null/nonobjectをそれぞれabsent/present_null/unknownとし、objectなら3軸のmember不在=absent/null=present_null/値あり=present_value。invocation bindingは直接3軸へ同じ規則を適用する。各sideのpointer/state/raw値を保持し、双方state=present_valueの場合だけJSON等値比較して一致=matched/不一致=conflict。それ以外はpresent_value側をstatus順位候補から除き、残るnon-present operand stateへF02 owner-return wrapperのalgorithm/7-8で使う優先順（conflict > present_null > absent > unknown > matched）を適用して、このcomparison固有のstatusを決める。既知値同士の等値判定はrule_catalog/shared/json_equalityに従う。raw全体はechoし、片軸の欠落で他軸を止めない。",
+        "3. application_binding_comparisonsをこの順で作る: original raw f01_native_input↔native input、original raw requirement_values_observation↔独立requirement_values_observation、request.problem、request.requirement_revision、request.scopeをinvocation bindingの同軸へ。親absent/present_null/unknownはその子へ同状態を伝える。親present_valueでもrawがobjectでなければ子unknown。original raw requestはrequest memberのabsent/null/nonobjectをそれぞれabsent/present_null/unknownとし、objectなら3軸のmember不在=absent/null=present_null/値あり=present_value。invocation bindingは直接3軸へ同じ規則を適用する。各sideのpointer/state/raw値を保持し、双方state=present_valueの場合だけJSON等値比較して一致=matched/不一致=conflict。それ以外はpresent_value側をstatus順位候補から除き、残るnon-present operand stateへF02 owner-return wrapperのalgorithm/7-8で使う優先順（conflict > present_null > absent > unknown > matched）を適用して、このcomparison固有のstatusを決める。既知値同士の等値判定はrule_catalog/shared/json_equalityに従う。raw全体はechoし、片軸の欠落で他軸を止めない。 2番目の比較はrequirement_values_observation recordのpresence/valueを含む全JSON値を比較する。record内のpresenceを比較operandのstateへ写さない。独立観測recordそのものは宣言型で渡されたpresent_valueであり、presence=absent/unknownでもrecord全体の対応はmatchedになり得る。original側のoperand stateは外側original_application_sourceの親観測と当該record memberの有無/null/値で判定し、record内presenceから昇格/降格させない。",
         "4. application_binding_stateはconflict > present_null > absent > unknown > matchedで全5比較をfoldし、各比較は残す。local_binding_issuesはstatus!=matchedの各comparisonを同じ順で一件ずつ保持する。",
         "5. requirement_values_observation.presence=presentなら既存rule_catalog/BRAIN004-F02/availabilityのnull/non-null分類だけを適用する。value=nullはavailability=missing、非nullはsupplied_fixture_only。presence=absent/unknownならavailability_evaluated=falseかつavailability=nullとし、valueからpresenceを昇格しない。",
         "6. native_return.candidate_resultsをcandidate/input field順で走査し、status=missingまたはcontent_conflictの各root/axisだけBRAIN知識owner向けcomparison materialを作る。provided/required candidate全原値、field pointer、native result pointer、presence、native statusを保持する。存在しない側のvalueはnull sentinelとpresence=absentを分け、両側値不一致はcontent_conflictのまま保持する。CORE観測状態でこのmaterialを抑止しない。",
@@ -2558,8 +2557,8 @@
         "F01OwnerReturnAxisComparison.observed_source_document": "f01_native_input比較はnative_f01_input、requirement_values_observation比較はrequirement_values_observation、request 3軸はinvocation_request_binding。",
         "F01OwnerReturnAxisComparison.expected_source_pointer": "期待側pointerは凍結条件のleft_input_pointerに対応する。前2軸はoriginal_application_source.raw_value内のf01_native_input/requirement_values_observation、request 3軸はrequest/problem、request/requirement_revision、request/scope。",
         "F01OwnerReturnAxisComparison.observed_source_pointer": "観測側pointerは凍結条件のright_input_pointerに対応する。native_f01_input、requirement_values_observation、またはinvocation_request_binding.raw_value内のproblem、requirement_revision、scopeを指すRFC6901 pointer。",
-        "F01OwnerReturnAxisComparison.expected": "凍結条件left_observation_state/left_raw_valueからF02ReturnAxisObservation.state/valueを対応づける。親stateと軸member状態を区別し、元値を保持する。",
-        "F01OwnerReturnAxisComparison.observed": "凍結条件right_observation_state/right_raw_valueからF02ReturnAxisObservation.state/valueを対応づける。親stateと軸member状態を区別し、元値を保持する。",
+        "F01OwnerReturnAxisComparison.expected": "凍結条件left_observation_state/left_raw_valueからF02ReturnAxisObservation.state/valueを対応づける。親stateと軸member状態を区別し、元値を保持する。 requirement_values_observation比較のvalueはpresence/value record全体で、record内presenceをoperand stateに写さない。",
+        "F01OwnerReturnAxisComparison.observed": "凍結条件right_observation_state/right_raw_valueからF02ReturnAxisObservation.state/valueを対応づける。親stateと軸member状態を区別し、元値を保持する。 requirement_values_observation比較では独立record全体のvalueを保持し、そのrecordのpresenceをoperand stateに写さない。",
         "F01OwnerReturnAxisComparison.comparison_operator": "json_equal。両operandがpresent_valueのときだけrule_catalog/shared/json_equalityを評価する。",
         "F01OwnerReturnAxisComparison.status": "両operand present_valueなら等値でmatched、異なればconflict。それ以外は両operand stateへcomparison_status_basis.status_precedenceを適用する。",
         "result.application_binding_state": "全5比較statusをconflict > present_null > absent > unknown > matchedでfold。個別比較は残す。",
@@ -2886,7 +2885,12 @@
           },
           "null": "missing",
           "non_null": "supplied_fixture_only",
-          "absent_or_unknown": "not_evaluated; availability null sentinel"
+          "absent_or_unknown": "presenceがabsent/unknownの場合はavailability未評価、null sentinelを保持する。",
+          "source_applies_to": [
+            "null",
+            "non_null"
+          ],
+          "absent_or_unknown_origin": "F01の独立観測operandに対する規則。参照したnative F02 availabilityの枝ではない。"
         },
         "return_meaning": [
           "native F01全返却は変更せず保持し、native比較結果がmissingまたはcontent_conflictのfieldごとに元candidate/fieldを指すBRAIN知識owner向け比較不足materialを組み立てる。",

@@ -1328,7 +1328,7 @@
                 "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
                 "source_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
                 "source_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
-                "extract": "strict UTF-8 JSON object; its full value is the existing F01Input operand"
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
               },
               "original_application_source": {
                 "state": "present_value",
@@ -1346,8 +1346,7 @@
                     "presence": "present",
                     "value": null
                   }
-                },
-                "patch_ops": []
+                }
               },
               "invocation_request_binding": {
                 "state": "present_value",
@@ -1414,7 +1413,7 @@
                   }
                 }
               ],
-              "operation_effect": "none; native_return.effects and Q are copied unchanged."
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
             },
             "basis": {
               "l3_ref": "HELIXBRAIN-L3-004-F01",
@@ -1439,7 +1438,7 @@
                 "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
                 "source_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
                 "source_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
-                "extract": "strict UTF-8 JSON object; its full value is the existing F01Input operand"
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
               },
               "original_application_source": {
                 "state": "present_value",
@@ -1459,8 +1458,7 @@
                       "input": "合成の提示済み要求値"
                     }
                   }
-                },
-                "patch_ops": []
+                }
               },
               "invocation_request_binding": {
                 "state": "present_value",
@@ -1509,7 +1507,7 @@
               },
               "brain_comparison_materials": [],
               "core_requirement_materials": [],
-              "operation_effect": "none; native_return.effects and Q are copied unchanged."
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
             },
             "basis": {
               "l3_ref": "HELIXBRAIN-L3-004-F01",
@@ -1534,7 +1532,7 @@
                 "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
                 "source_pointer": "/verification_obligations/0/concrete_cases/6/independent_source_packet/raw_utf8",
                 "source_raw_sha256": "f4c40ad02531ebab580445804bab4d27fd8e26838b5e21d50524d0ce01a71305",
-                "extract": "strict UTF-8 JSON object; its full value is the existing F01Input operand"
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
               },
               "original_application_source": {
                 "state": "present_value",
@@ -1552,8 +1550,7 @@
                     "presence": "present",
                     "value": null
                   }
-                },
-                "patch_ops": []
+                }
               },
               "invocation_request_binding": {
                 "state": "present_value",
@@ -1631,7 +1628,7 @@
                   }
                 }
               ],
-              "operation_effect": "none; native_return.effects and Q are copied unchanged."
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
             },
             "basis": {
               "l3_ref": "HELIXBRAIN-L3-004-F01",
@@ -1656,7 +1653,7 @@
                 "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
                 "source_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
                 "source_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
-                "extract": "strict UTF-8 JSON object; its full value is the existing F01Input operand"
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
               },
               "original_application_source": {
                 "state": "present_value",
@@ -1674,8 +1671,7 @@
                     "presence": "present",
                     "value": null
                   }
-                },
-                "patch_ops": []
+                }
               },
               "invocation_request_binding": {
                 "state": "present_value",
@@ -1744,7 +1740,7 @@
                   }
                 }
               ],
-              "operation_effect": "none; native_return.effects and Q are copied unchanged."
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
             },
             "basis": {
               "l3_ref": "HELIXBRAIN-L3-004-F01",
@@ -1769,7 +1765,7 @@
                 "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
                 "source_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
                 "source_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
-                "extract": "strict UTF-8 JSON object; its full value is the existing F01Input operand"
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
               },
               "original_application_source": {
                 "state": "present_value",
@@ -1793,14 +1789,7 @@
                     "presence": "present",
                     "value": null
                   }
-                },
-                "patch_ops": [
-                  {
-                    "op": "replace",
-                    "path": "/required_candidates/STRONG/knowledge_ref/revision",
-                    "value": "knowledge-r2"
-                  }
-                ]
+                }
               },
               "invocation_request_binding": {
                 "state": "present_value",
@@ -1869,7 +1858,7 @@
                   }
                 }
               ],
-              "operation_effect": "none; native_return.effects and Q are copied unchanged."
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
             },
             "basis": {
               "l3_ref": "HELIXBRAIN-L3-004-F01",
@@ -1894,7 +1883,7 @@
                 "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
                 "source_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
                 "source_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
-                "extract": "strict UTF-8 JSON object; its full value is the existing F01Input operand"
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
               },
               "original_application_source": {
                 "state": "unknown",
@@ -1912,8 +1901,7 @@
                     "presence": "present",
                     "value": null
                   }
-                },
-                "patch_ops": []
+                }
               },
               "invocation_request_binding": {
                 "state": "present_value",
@@ -1986,7 +1974,7 @@
                   }
                 }
               ],
-              "operation_effect": "none; native_return.effects and Q are copied unchanged."
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
             },
             "basis": {
               "l3_ref": "HELIXBRAIN-L3-004-F01",
@@ -2011,7 +1999,7 @@
                 "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
                 "source_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
                 "source_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
-                "extract": "strict UTF-8 JSON object; its full value is the existing F01Input operand"
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
               },
               "original_application_source": {
                 "state": "present_value",
@@ -2029,8 +2017,7 @@
                     "presence": "absent",
                     "value": null
                   }
-                },
-                "patch_ops": []
+                }
               },
               "invocation_request_binding": {
                 "state": "present_value",
@@ -2097,7 +2084,7 @@
                   }
                 }
               ],
-              "operation_effect": "none; native_return.effects and Q are copied unchanged."
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
             },
             "basis": {
               "l3_ref": "HELIXBRAIN-L3-004-F01",
@@ -2122,7 +2109,7 @@
                 "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
                 "source_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
                 "source_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
-                "extract": "strict UTF-8 JSON object; its full value is the existing F01Input operand"
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
               },
               "original_application_source": {
                 "state": "present_value",
@@ -2142,8 +2129,7 @@
                       "input": "合成の提示済み要求値"
                     }
                   }
-                },
-                "patch_ops": []
+                }
               },
               "invocation_request_binding": {
                 "state": "present_value",
@@ -2214,7 +2200,7 @@
                   }
                 }
               ],
-              "operation_effect": "none; native_return.effects and Q are copied unchanged."
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
             },
             "basis": {
               "l3_ref": "HELIXBRAIN-L3-004-F01",
@@ -2239,7 +2225,7 @@
                 "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
                 "source_pointer": "/verification_obligations/0/concrete_cases/6/independent_source_packet/raw_utf8",
                 "source_raw_sha256": "f4c40ad02531ebab580445804bab4d27fd8e26838b5e21d50524d0ce01a71305",
-                "extract": "strict UTF-8 JSON object; its full value is the existing F01Input operand"
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
               },
               "original_application_source": {
                 "state": "unknown",
@@ -2257,8 +2243,7 @@
                     "presence": "present",
                     "value": null
                   }
-                },
-                "patch_ops": []
+                }
               },
               "invocation_request_binding": {
                 "state": "present_value",
@@ -2342,7 +2327,7 @@
                   }
                 }
               ],
-              "operation_effect": "none; native_return.effects and Q are copied unchanged."
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
             },
             "basis": {
               "l3_ref": "HELIXBRAIN-L3-004-F01",
@@ -2362,26 +2347,34 @@
         "representation_contract": {
           "scope_ja": "凍結済みsymbolic条件のexpected core materialにあるdeclared_request tupleから、公開返却型F01CoreRequiredValueMaterial.declared_request_observationへの対応。型変換でrequestを補完しない。",
           "source_state": "original_application_source.stateがabsent/present_null/unknownなら伝播する。親present_valueでraw_valueが非objectならunknown。親present_valueかつraw_valueがobjectならrequest member不在=absent、null=present_null、非object=unknown、object=present_value。raw memberの見かけから親stateをpresent_valueへ昇格しない。",
-          "source_value": "original_application_source.raw_value.request memberが参照可能ならJSONValue全体をdeclared_request_observation.raw_valueへ完全コピーする。member欠落ならstate=absent、parent absent/present_null/unknownならそのstateを保持し、raw_valueは原raw全体のechoから参照する。非objectまたは形状不明もobjectへ補完しない。",
+          "source_value": "原値の転記とstate判定は独立する。original_application_sourceの親stateにかかわらず、raw_valueがobjectでrequest memberを参照できれば、そのmemberの全JSONValueをdeclared_request_observation.raw_valueへ完全コピーする。memberを参照できない場合だけ原raw_value全体を保持する。親stateのabsent/present_null/unknownはstateへ伝播し、原値の転記でpresent_valueへ昇格させない。",
           "frozen_expected_mapping": {
             "source_field": "symbolic-expected-conditions.json#/conditions/*/symbolic_expected/core_requirement_return_materials/*/declared_request",
             "destination_field": "#/type_system/definitions/F01CoreRequiredValueMaterial/properties/declared_request_observation",
             "mapping": "凍結materialのdeclared_request tuple全値を、原raw request memberを読めるときにF01CoreRequiredValueMaterial.declared_request_observation.raw_valueへ同じJSONValueとして写す。stateはL5のrequest member実効状態規則で判定し、tuple全値を返却recordの別shapeへ展開/正規化しない。",
             "input_raw_source": "同conditionのtracked original_application_source.raw_value.request",
             "destination_document": "docs/helix-brain/L5-detail-design/pattern-comparison.json; destination_field pointer is resolved in that L5 document."
+          },
+          "observation_record_comparison": "2番目の比較はoriginal側と実operand側のrequirement_values_observation record全体（presence/valueを含む）のJSON等値比較。record内presenceをoperand stateへ写さず、原record対応と実値のavailabilityを独立に扱う。",
+          "input_construction_vocabulary": {
+            "scope": "検証入力を固定Git sourceと明示literalから再構成する著述用表記。製品のpatch APIや実行DSLではない。",
+            "copy_from": "同conditionで再構成したnative_f01_input全値を、original_application_source.raw_value.f01_native_inputへ1回コピーする。",
+            "except_patch": "copy後のf01_native_input値をrootとして、配列順に1回ずつ適用する局所差分。空配列なら無変更。",
+            "operations": "この9条件ではop=replaceのみ。pathはRFC 6901 pointerで既存memberを指し、valueのJSON値へ置換する。RFC 6902全演算の採用ではない。S05の1置換だけを使用する。",
+            "single_location": "差分はcopy_fromと同じrecordのexcept_patchだけに記す。外側への二重記載は行わない。"
           }
         },
         "current_l4_binding": {
           "path": "docs/helix-brain/L4-basic-design/pattern-comparison.json",
-          "file_sha256": "414c9ad196b22285be97900b1d65886aa72057df0a4b2b9ae63e77bc7bfb3e68",
+          "file_sha256": "93cfd4981db6142e544156c51bfe6cb3ccb05400d467d937a715a22fe117ad99",
           "pointer": "/contracts/0/private_owner_return_wrapper",
-          "object_canonical_sha256": "297bb3ecd1730817632842783be4d7ba947653ddac333c3e4b7228e387b0355e"
+          "object_canonical_sha256": "ef6afb9d216f03f7dd2cd982000b5bfd7828d50ccd66fe1df2c1a950ee06deed"
         },
         "current_l5_binding": {
           "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
-          "file_sha256": "5df9de82bb766835fd357bc800ff4ca13b12fad85dcd08c0cf5a6b36c35993d0",
+          "file_sha256": "deb772a866b8e6c1ec5c0252485f081dc097a9d2bdf5a0051b72217f93d044c3",
           "pointer": "/functions/4",
-          "object_canonical_sha256": "a46bdb89fe14fbab8612afa5e58238bdf95c7a4f737276e6ad46b2a99c217a10"
+          "object_canonical_sha256": "c539dfa07ed2c849ad45fb914cad17c5c1b891fad533ca4eecd1bb97b7b9d8af"
         }
       }
     },
@@ -4291,13 +4284,13 @@
         ],
         "candidate_l5_binding": {
           "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
-          "file_sha256": "5df9de82bb766835fd357bc800ff4ca13b12fad85dcd08c0cf5a6b36c35993d0",
+          "file_sha256": "deb772a866b8e6c1ec5c0252485f081dc097a9d2bdf5a0051b72217f93d044c3",
           "pointer": "/functions/3",
-          "object_canonical_sha256": "b01f32569743cbd9ed7dcc85e19f4bf029dd6d09568986b8375cb43834949c06"
+          "object_canonical_sha256": "24ac0ac22160f044183752ab541e98df410728482c1333b5d9c8d8e4f991d81d"
         },
         "current_l4_binding": {
           "path": "docs/helix-brain/L4-basic-design/pattern-comparison.json",
-          "file_sha256": "414c9ad196b22285be97900b1d65886aa72057df0a4b2b9ae63e77bc7bfb3e68",
+          "file_sha256": "93cfd4981db6142e544156c51bfe6cb3ccb05400d467d937a715a22fe117ad99",
           "pointer": "/contracts/1/private_owner_return_wrapper",
           "object_canonical_sha256": "2fc7a2dc113bb215474d81f4022261512757532e2897758a75dff3fe4646ebca"
         },
