@@ -4064,6 +4064,186 @@
           "object_canonical_sha256": "a3bc9af6963b3eb1122ae9145aec8d1989da0e276ec1df77e295cdcd07f87a85"
         }
       ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-003-bind_owner_context_sources",
+      "symbol": "bind_owner_context_sources",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "OwnerContextBindingInput",
+          "type_pointer": "/owner_context_detail_contract/private_types/OwnerContextBindingInput"
+        }
+      ],
+      "signature": "bind_owner_context_sources(input: OwnerContextBindingInput) -> OwnerContextBindingResult",
+      "output_type": "OwnerContextBindingResult",
+      "type_namespace": "/owner_context_detail_contract",
+      "output_type_pointer": "/owner_context_detail_contract/private_types/OwnerContextBindingResult",
+      "source_contract_binding": {
+        "document": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "pointer": "/private_composition_contracts/1"
+      },
+      "read_fields": [
+        {
+          "parameter": "input",
+          "logical_member": "original_proposal_input"
+        },
+        {
+          "parameter": "input",
+          "logical_member": "original_owner_source_input"
+        },
+        {
+          "parameter": "input",
+          "logical_member": "os_origin"
+        },
+        {
+          "parameter": "input",
+          "logical_member": "os_target"
+        },
+        {
+          "parameter": "input",
+          "logical_member": "infra_origin"
+        },
+        {
+          "parameter": "input",
+          "logical_member": "infra_target"
+        },
+        {
+          "parameter": "input",
+          "logical_member": "connect"
+        },
+        {
+          "parameter": "input",
+          "logical_member": "state_OS"
+        },
+        {
+          "parameter": "input",
+          "logical_member": "state_INFRA"
+        },
+        {
+          "parameter": "input",
+          "logical_member": "state_CONNECT"
+        },
+        {
+          "parameter": "input",
+          "logical_member": "existing_analysis_observations"
+        }
+      ],
+      "return_root_fields": {
+        "original_input": "OwnerContextBindingInput",
+        "occurrences": {
+          "os_origin": "OwnerOccurrenceRead",
+          "os_target": "OwnerOccurrenceRead",
+          "infra_origin": "OwnerOccurrenceRead",
+          "infra_target": "OwnerOccurrenceRead",
+          "connect": "OwnerOccurrenceRead",
+          "state_OS": "OwnerOccurrenceRead",
+          "state_INFRA": "OwnerOccurrenceRead",
+          "state_CONNECT": "OwnerOccurrenceRead"
+        },
+        "owner_context_candidate": "OwnerContextLeafView",
+        "consumer_context": "Materialized<ScopeContext>|null",
+        "environment_side_traces": {
+          "origin": "OwnerEnvironmentTrace",
+          "target": "OwnerEnvironmentTrace"
+        },
+        "role_grades": {
+          "OS": "Grade",
+          "INFRA": "Grade",
+          "CONNECT": "Grade"
+        },
+        "issues": "List<ContextPrivateIssue>",
+        "existing_analysis_observations": "RawValue",
+        "native_composition": "SameFrameInvocationResult",
+        "qualification_state": "literal:unclosed",
+        "qualified_binding_created": "literal:false",
+        "operation_effect": "literal:none",
+        "port_bindings": {
+          "os_origin": "OwnerPortBinding",
+          "os_target": "OwnerPortBinding",
+          "infra_origin": "OwnerPortBinding",
+          "infra_target": "OwnerPortBinding",
+          "connect": "OwnerPortBinding",
+          "state_OS": "OwnerPortBinding",
+          "state_INFRA": "OwnerPortBinding",
+          "state_CONNECT": "OwnerPortBinding"
+        }
+      },
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "system_oracle_refs": [
+        "HELIXSECURITY-L10-003-F01",
+        "HELIXSECURITY-L10-003-F02"
+      ],
+      "pre": "原ProposalInput/SourceInputと8slotの原Materialized portを一度受ける。未供給/実null/unknownも型内で保持し、owner資格や全provider成功を前提としない。",
+      "post": "全32leaf/8occurrence/4metadataと原input及び同原ProposalInputで1回のfn12全7rootを保持する。実qualification/認可/配送/作用は行わない。",
+      "pure_algorithm": [
+        "本関数の単一規範算法は /owner_context_detail_contract/main_algorithm。",
+        "親観測は /owner_context_detail_contract/materialized_observation_rules、Field観測は /owner_context_detail_contract/field_observation_rules。",
+        "選択は /owner_context_detail_contract/selection_algorithm、native/INFRA読取は /owner_context_detail_contract/native_field_and_infra_rules。",
+        "内容/寄与還元は /owner_context_detail_contract/comparison_and_reduction_rules、原因発火/抑止は /owner_context_detail_contract/issue_emission_and_suppression。",
+        "返却全fieldは /owner_context_detail_contract/writers、私有issueの左右operandは /owner_context_detail_contract/issue_bindings と /owner_context_detail_contract/selection_issue_operands に従う。別の実装算法をこの関数へ複製しない。"
+      ],
+      "field_writers": {
+        "original_input": {
+          "writer_pointer": "/owner_context_detail_contract/writers/OwnerContextBindingResult/original_input"
+        },
+        "occurrences": {
+          "writer_pointer": "/owner_context_detail_contract/writers/OwnerContextBindingResult/occurrences"
+        },
+        "owner_context_candidate": {
+          "writer_pointer": "/owner_context_detail_contract/writers/OwnerContextBindingResult/owner_context_candidate"
+        },
+        "consumer_context": {
+          "writer_pointer": "/owner_context_detail_contract/writers/OwnerContextBindingResult/consumer_context"
+        },
+        "environment_side_traces": {
+          "writer_pointer": "/owner_context_detail_contract/writers/OwnerContextBindingResult/environment_side_traces"
+        },
+        "role_grades": {
+          "writer_pointer": "/owner_context_detail_contract/writers/OwnerContextBindingResult/role_grades"
+        },
+        "issues": {
+          "writer_pointer": "/owner_context_detail_contract/writers/OwnerContextBindingResult/issues"
+        },
+        "existing_analysis_observations": {
+          "writer_pointer": "/owner_context_detail_contract/writers/OwnerContextBindingResult/existing_analysis_observations"
+        },
+        "native_composition": {
+          "writer_pointer": "/owner_context_detail_contract/writers/OwnerContextBindingResult/native_composition"
+        },
+        "qualification_state": {
+          "writer_pointer": "/owner_context_detail_contract/writers/OwnerContextBindingResult/qualification_state"
+        },
+        "qualified_binding_created": {
+          "writer_pointer": "/owner_context_detail_contract/writers/OwnerContextBindingResult/qualified_binding_created"
+        },
+        "operation_effect": {
+          "writer_pointer": "/owner_context_detail_contract/writers/OwnerContextBindingResult/operation_effect"
+        },
+        "port_bindings": {
+          "writer_pointer": "/owner_context_detail_contract/writers/OwnerContextBindingResult/port_bindings"
+        }
+      },
+      "effect": "none",
+      "unit_case_refs": [
+        "SEC003-L8-OWNER-CONTEXT-N01-NORMAL",
+        "SEC003-L8-OWNER-CONTEXT-C03-ROLE-MISMATCH",
+        "SEC003-L8-OWNER-CONTEXT-C06-PROJECT-AND-STATE-PORT",
+        "SEC003-L8-OWNER-CONTEXT-C02-SHARED-REF-OCCURRENCES",
+        "SEC003-L8-OWNER-CONTEXT-C04A-PROJECT-NULL",
+        "SEC003-L8-OWNER-CONTEXT-C04B-PROJECT-ABSENT",
+        "SEC003-L8-OWNER-CONTEXT-C04C-PROJECT-INVALID-BOOLEAN",
+        "SEC003-L8-OWNER-CONTEXT-C04D-PROJECT-RAW-VALUE-MISMATCH",
+        "SEC003-L8-OWNER-CONTEXT-C05A-FALSE-NULL-TENANT",
+        "SEC003-L8-OWNER-CONTEXT-C05B-FALSE-ABSENT-TENANT",
+        "SEC003-L8-OWNER-CONTEXT-C05C-FALSE-NONNULL-TENANT",
+        "SEC003-L8-OWNER-CONTEXT-C07-OS-ENVIRONMENT-DIFFERENT",
+        "SEC003-L8-OWNER-CONTEXT-C08-CONNECTION-REVISION-DIFFERENT"
+      ]
     }
   ],
   "contracts": [
@@ -4186,5 +4366,1535 @@
       "object_canonical_sha256": "c1865e886685fb099417baaff79f08b93cbcd86424dd2bf74200bcad4863f91e",
       "binding_kind": "current_candidate_file_and_object"
     }
-  ]
+  ],
+  "owner_context_detail_contract": {
+    "id": "HELIXSECURITY-L5-003-OWNER-CONTEXT-DETAIL",
+    "status": "設計本文。純算法未実行。L8の正常1件と境界12件は原input/全返却期待を固定。全分岐閉包、実資格・認可・配送・runtime完了を主張しない。",
+    "source_contract": {
+      "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+      "document": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+      "file_sha256": "3ef0816e6a1d1156a970f1230da5e3199076210862463a348a7058772d67bf25",
+      "pointer": "/private_composition_contracts/1",
+      "object_canonical_sha256": "d54ed70543b448aac5ff1a2e8cb03721d0d875b5feb5ea70b30ab2a07a24b096",
+      "role": "採択済み基本port。固定revisionの意味objectを保持。"
+    },
+    "paired_conditions": {
+      "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+      "document": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+      "file_sha256": "d72519c8da59bfebb616f3ba2fc36a5e7d36b36ac5f5eaf081168256294b9ce0",
+      "pointer": "/owner_context_port_conditions",
+      "object_canonical_sha256": "7285c167bc511b2900739e0b071d4fd02ab7f165cf300406e41e8ca682ce962e",
+      "role": "既存source-level対条件。全値oracle/実行証拠ではない。"
+    },
+    "requirement_refs": [
+      "HELIXSECURITY-L3-003-F01",
+      "HELIXSECURITY-L3-003-F02"
+    ],
+    "system_oracle_refs": [
+      "HELIXSECURITY-L10-003-F01",
+      "HELIXSECURITY-L10-003-F02"
+    ],
+    "imports": {
+      "RawValue": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/domains/RawValue",
+        "object_canonical_sha256": "f8218929ebb0e7f9c95d9bcbd7217fcb5ec67d1845b2d7bacf6c75bcdd059f20",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "Text": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/domains/Text",
+        "object_canonical_sha256": "3800bd8e196395b300ac983dcc8ea092fc94e83b5fe761e130544de8b70243b2",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "Bool": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/domains/Bool",
+        "object_canonical_sha256": "bfab92eeda21b51b5f81b6382eb0047d51cd24d0099191bc0f693b84f5206c01",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "String": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/domains/String",
+        "object_canonical_sha256": "9bddc1fdfb55932e41cf34e4a0bf062564cf848d3e0070d86dcd3a998fdce008",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "Grade": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/domains/Grade",
+        "object_canonical_sha256": "e2aa07e9bb371f9ff17b007e77f1a316904cb1fbbd6ea229fd4de83287d4037f",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "OwnerRole": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/domains/OwnerRole",
+        "object_canonical_sha256": "d4f55a8ddf7ed173b0ba6e557f4b65c52ba305b2534bf893fe8b306089209b73",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "MaterialState": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/domains/MaterialState",
+        "object_canonical_sha256": "d98e0fee0e6936b2b1efa9de63f658677f8f4696c866dd5fc4a9bf2d63e05ae1",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "OperationList": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/domains/OperationList",
+        "object_canonical_sha256": "b29bd9db56c2b46fe7d0caa159f90cf0f2b394bd99cc18b55eba7d6551da13b1",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "Field<T>": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/result_types/Field<T>",
+        "object_canonical_sha256": "fd48470d5853a0dea2029ad5a57fa55517b76405b15a3097b09be1a3ef5a3ed3",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "Materialized<T>": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/result_types/Materialized<T>",
+        "object_canonical_sha256": "a483c243460b15045bab88933f3b85f3db9ff4cd336b735e4a52102669c74798",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "RawPresence": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/result_types/RawPresence",
+        "object_canonical_sha256": "7db92685c3f12b94d4afb41179ac89e76c818839eb78604d9ba62254821cd53c",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "ProposalInput": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/logical_types/ProposalInput",
+        "object_canonical_sha256": "a1347838b0f3401b85c8f367881c40d3c60d929a786ea6642ef1312edd99e9c7",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "ScopeContext": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/logical_types/ScopeContext",
+        "object_canonical_sha256": "b5ec436e1bc3a0c545ab59bd13c70d4a133e800021dbd8d54c3f904f86d3b971",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "SourceInput": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/logical_types/SourceInput",
+        "object_canonical_sha256": "521f1da44f7d3bb925c28ada3f737792555e562a13aa2ca10b069beafa678fe1",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "OwnerSourceMaterial": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/logical_types/OwnerSourceMaterial",
+        "object_canonical_sha256": "20f5c3ce7b0f6ea49143d1470771ff37fac16b61a690e8d5e1b41575ab2f9c40",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "ConnectionMaterial": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/logical_types/ConnectionMaterial",
+        "object_canonical_sha256": "3cfd33b57750716b2771350930e57b98b78c7853fe3be36311e21d77864f9965",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "SameFrameInvocationResult": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/type_contract/result_types/SameFrameInvocationResult",
+        "object_canonical_sha256": "c003ef51dacd3171922cd36a170a397b6e0a5284cd02d70bd9b1b048447274fb",
+        "role": "既存型の固定shape参照。今回追加後のself filehashではない。"
+      },
+      "OSInput": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-os/L5-detail-design/worker-assignment-attempt.json",
+        "file_sha256": "b0a60ba7e9eb3e73b7b6bbf57c50dc128afbabaede45a18f32db6a36f50c6516",
+        "pointer": "/formal_types/Input",
+        "object_canonical_sha256": "a35b4fc9013118b5f07d25e820827aefcaf08322555816076b7b4a96cb75a079",
+        "role": "native原型の本節内alias。名前の似た型やqualificationへcastしない。"
+      },
+      "OSResult": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-os/L5-detail-design/worker-assignment-attempt.json",
+        "file_sha256": "b0a60ba7e9eb3e73b7b6bbf57c50dc128afbabaede45a18f32db6a36f50c6516",
+        "pointer": "/formal_types/ProposalResult",
+        "object_canonical_sha256": "1862c53709a742c212a8b0afb2ec78cc397a92294085c47fa6868388aa441bf1",
+        "role": "native原型の本節内alias。名前の似た型やqualificationへcastしない。"
+      },
+      "InfraInput": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-infrastructure/L5-detail-design/resource-topology-environment.json",
+        "file_sha256": "f14b05edf676d626255575dcad4ffdc14a5679bbc19e6751f92014f46257f88d",
+        "pointer": "/logical_types/52",
+        "object_canonical_sha256": "3c1e12df46c0dacd9a6034116868c8344c0af80dbf7015f9c1c54a9071b81d49",
+        "role": "native原型の本節内alias。名前の似た型やqualificationへcastしない。"
+      },
+      "InfraResult": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-infrastructure/L5-detail-design/resource-topology-environment.json",
+        "file_sha256": "f14b05edf676d626255575dcad4ffdc14a5679bbc19e6751f92014f46257f88d",
+        "pointer": "/logical_types/53",
+        "object_canonical_sha256": "5b31403bf17dec7fd0c389893cdef0a3ae46d1072004e54ded6f79ffddd19899",
+        "role": "native原型の本節内alias。名前の似た型やqualificationへcastしない。"
+      },
+      "InfraProfile": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-infrastructure/L5-detail-design/resource-topology-environment.json",
+        "file_sha256": "f14b05edf676d626255575dcad4ffdc14a5679bbc19e6751f92014f46257f88d",
+        "pointer": "/logical_types/43",
+        "object_canonical_sha256": "48c5593847c5570c1ee5bb8be8cc5923abc39c5ed698f1d62c2c35f5253bb699",
+        "role": "native原型の本節内alias。名前の似た型やqualificationへcastしない。"
+      },
+      "InfraPresence<T>": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-infrastructure/L5-detail-design/resource-topology-environment.json",
+        "file_sha256": "f14b05edf676d626255575dcad4ffdc14a5679bbc19e6751f92014f46257f88d",
+        "pointer": "/logical_types/1",
+        "object_canonical_sha256": "c9e2f23b123799ba4bec506f0d661dc9d2fabf71dadd7805a879a6b034b9ea4d",
+        "role": "native原型の本節内alias。名前の似た型やqualificationへcastしない。"
+      },
+      "ConnectInput": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+        "file_sha256": "018f750fc8050158960ee134253056bf925ecfd576bfc5fad4e2de0d6239e4a3",
+        "pointer": "/logical_types/38",
+        "object_canonical_sha256": "35bd2b938a4dc38369de254434eb41448c53ac8e93836f9be09d00f76f35bd0b",
+        "role": "native原型の本節内alias。名前の似た型やqualificationへcastしない。"
+      },
+      "ConnectResult": {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+        "file_sha256": "018f750fc8050158960ee134253056bf925ecfd576bfc5fad4e2de0d6239e4a3",
+        "pointer": "/logical_types/41",
+        "object_canonical_sha256": "09a37f8f922497299099c347fe8f95e55a39930415ded5e35c0d874fd0347810",
+        "role": "native原型の本節内alias。名前の似た型やqualificationへcastしない。"
+      }
+    },
+    "private_domains": {
+      "OwnerContextSlot": [
+        "os_origin",
+        "os_target",
+        "infra_origin",
+        "infra_target",
+        "connect",
+        "state_OS",
+        "state_INFRA",
+        "state_CONNECT"
+      ],
+      "OwnerContextLeafId": [
+        "/expected_origin/project",
+        "/expected_origin/tenant",
+        "/expected_origin/assignment",
+        "/expected_origin/worktree",
+        "/expected_origin/revision",
+        "/expected_origin/environment",
+        "/expected_target/project",
+        "/expected_target/tenant",
+        "/expected_target/assignment",
+        "/expected_target/worktree",
+        "/expected_target/revision",
+        "/expected_target/environment",
+        "/origin_tenant_applicable",
+        "/target_tenant_applicable",
+        "/owner_material_states/OS",
+        "/owner_material_states/INFRA",
+        "/owner_material_states/CONNECT",
+        "/expected_connection/identity",
+        "/expected_connection/revision",
+        "/expected_connection/origin/project",
+        "/expected_connection/origin/tenant",
+        "/expected_connection/origin/environment",
+        "/expected_connection/origin/assignment",
+        "/expected_connection/origin/worktree",
+        "/expected_connection/origin/revision",
+        "/expected_connection/target/project",
+        "/expected_connection/target/tenant",
+        "/expected_connection/target/environment",
+        "/expected_connection/target/assignment",
+        "/expected_connection/target/worktree",
+        "/expected_connection/target/revision",
+        "/expected_connection/allowed_operations"
+      ],
+      "ContextMetadataMember": [
+        "owner",
+        "subject_ref",
+        "source_ref",
+        "source_revision"
+      ],
+      "ContextSelectionStatus": [
+        "selected",
+        "unresolved"
+      ],
+      "ContextSelectionReason": [
+        "port_parent_unreadable",
+        "index_unresolved",
+        "index_not_integer",
+        "source_parent_unreadable",
+        "source_list_unreadable",
+        "source_list_representation_inconsistent",
+        "index_out_of_range",
+        "source_node_unreadable",
+        "source_node_representation_inconsistent",
+        "source_role_unresolved",
+        "source_role_mismatch"
+      ],
+      "ContextOperandKind": [
+        "sec_field",
+        "infra_profile_member",
+        "unobserved"
+      ],
+      "ContextOperandNamespace": [
+        "owner_source_input",
+        "port_input",
+        "native_input",
+        "native_result",
+        "consumer_input",
+        "contract_literal",
+        "unobserved"
+      ],
+      "ContextContentState": [
+        "known",
+        "explicit_null",
+        "absent",
+        "unknown",
+        "parent_unobserved"
+      ],
+      "ContextIssueReason": [
+        "selection_unresolved",
+        "source_role_mismatch",
+        "source_parent_unobserved",
+        "consumer_parent_unobserved",
+        "source_member_unresolved",
+        "consumer_member_unresolved",
+        "source_representation_inconsistent",
+        "consumer_representation_inconsistent",
+        "content_conflict",
+        "tenant_policy_unresolved",
+        "nonapplicable_tenant_nonnull",
+        "native_return_input_conflict",
+        "environment_source_conflict",
+        "port_source_binding_unresolved",
+        "port_source_binding_conflict"
+      ],
+      "ContextIndex": {
+        "kind": "nonnegative_integer",
+        "representation": "受理したJSON numberの数学的非負整数。booleanは含めない。"
+      }
+    },
+    "private_types": {
+      "OwnerDeclaredMetadata": {
+        "kind": "closed_record",
+        "fields": {
+          "owner": "Field<Text>",
+          "subject_ref": "Field<Text>",
+          "source_ref": "Field<Text>",
+          "source_revision": "Field<Text>"
+        },
+        "meaning_ja": "4つの独立した原Field。raw key欠落は実Absent Field、親欠落/nullは外側Materializedで保持する。"
+      },
+      "OwnerIdentityPort": {
+        "kind": "closed_record",
+        "fields": {
+          "source_index": "Field<RawValue>",
+          "declared_metadata": "Materialized<OwnerDeclaredMetadata>",
+          "tenant_applicable": "Field<Bool>",
+          "native_input": "Field<OSInput>",
+          "native_result": "Field<OSResult>"
+        },
+        "meaning_ja": "L4のOS基本port。scope5軸は指定source occurrenceから借用する。OS native input/resultは未消費の原観測として全値保持し、summaryからidentityや資格を生成しない。未供給は既存Fieldで表す。"
+      },
+      "OwnerEnvironmentPort": {
+        "kind": "closed_record",
+        "fields": {
+          "source_index": "Field<RawValue>",
+          "declared_metadata": "Materialized<OwnerDeclaredMetadata>",
+          "native_input": "Field<InfraInput>",
+          "native_result": "Field<InfraResult>"
+        },
+        "meaning_ja": "独立INFRA owner port。environment主operandは原Input_F02.original_profile。結果のretained profileは別観測であり代替sourceではない。"
+      },
+      "OwnerConnectionPort": {
+        "kind": "closed_record",
+        "fields": {
+          "source_index": "Field<RawValue>",
+          "declared_metadata": "Materialized<OwnerDeclaredMetadata>",
+          "connection": "Materialized<ConnectionMaterial>",
+          "native_input": "Field<ConnectInput>",
+          "native_result": "Field<ConnectResult>"
+        },
+        "meaning_ja": "独立CONNECT full接続port。native input/resultは未消費の原観測として全値保持。partial header/business operationから接続15memberを作らない。"
+      },
+      "OwnerStatePort": {
+        "kind": "closed_record",
+        "fields": {
+          "source_index": "Field<RawValue>",
+          "declared_metadata": "Materialized<OwnerDeclaredMetadata>",
+          "state": "Field<MaterialState>"
+        },
+        "meaning_ja": "ownerの素材状態宣言。資格/実許可/fixture結果とは別。 value=unknown等も既知の素材状態宣言値になり得る。宣言値同士の一致をcurrentや資格へ昇格しない。"
+      },
+      "OwnerContextBindingInput": {
+        "kind": "closed_record",
+        "fields": {
+          "original_proposal_input": "Materialized<ProposalInput>",
+          "original_owner_source_input": "Materialized<SourceInput>",
+          "os_origin": "Materialized<OwnerIdentityPort>",
+          "os_target": "Materialized<OwnerIdentityPort>",
+          "infra_origin": "Materialized<OwnerEnvironmentPort>",
+          "infra_target": "Materialized<OwnerEnvironmentPort>",
+          "connect": "Materialized<OwnerConnectionPort>",
+          "state_OS": "Materialized<OwnerStatePort>",
+          "state_INFRA": "Materialized<OwnerStatePort>",
+          "state_CONNECT": "Materialized<OwnerStatePort>",
+          "existing_analysis_observations": "RawValue"
+        },
+        "meaning_ja": "各原node/unknown memberとcallerが供給した既存analysis全観測を無変換で持つ。port/declared metadata自体の未供給も型内で表す。既存analysisはopaque保存で新しい実call/資格成立としない。"
+      },
+      "ContextOperand": {
+        "kind": "closed_record",
+        "fields": {
+          "kind": "ContextOperandKind",
+          "namespace": "ContextOperandNamespace",
+          "field": "Field<Text>|Field<Bool>|Field<MaterialState>|Field<OperationList>|null",
+          "native_profile": "InfraProfile|null",
+          "nearest_parent": "RawValue|null",
+          "source_accessor": "String",
+          "source_pointer": "String|null",
+          "presence_observed": "Bool",
+          "presence": "RawPresence|null",
+          "content_state": "ContextContentState",
+          "value": "RawValue|null",
+          "blocked_by_selection": "Bool"
+        },
+        "meaning_ja": "field/native_profile/nearest_parentは原node全値。value=nullは未知時の私有sentinelであり原raw nullではない。実presenceを別保持する。"
+      },
+      "ContextPrivateIssue": {
+        "kind": "closed_record",
+        "fields": {
+          "reason": "ContextIssueReason",
+          "slot": "OwnerContextSlot|null",
+          "leaf": "OwnerContextLeafId|null",
+          "left_namespace": "ContextOperandNamespace",
+          "left_pointer": "String|null",
+          "left_presence": "RawPresence|null",
+          "right_namespace": "ContextOperandNamespace",
+          "right_pointer": "String|null",
+          "right_presence": "RawPresence|null"
+        },
+        "meaning_ja": "公開Findingではない。pointerは原source namespace。実資格/配送/認可や新しいpublic codeを作らない。"
+      },
+      "OwnerOccurrenceRead": {
+        "kind": "closed_record",
+        "fields": {
+          "slot": "OwnerContextSlot",
+          "expected_role": "OwnerRole",
+          "requested_index_observed": "Bool",
+          "requested_index": "Field<RawValue>|null",
+          "index": "ContextIndex|null",
+          "status": "ContextSelectionStatus",
+          "selection_grade": "Grade",
+          "node": "Materialized<OwnerSourceMaterial>|null",
+          "node_observation_usable": "Bool",
+          "logical_accessor": "String|null",
+          "source_pointer": "String|null",
+          "reason": "ContextSelectionReason|null",
+          "issues": "List<ContextPrivateIssue>"
+        },
+        "meaning_ja": "statusと寄与gradeを分離。known wrong roleはunresolved/violation。addressable nodeはwrong role等でも保持する。role不一致でも原metadataが観測可なら別に比較できる。"
+      },
+      "ContextMetadataComparison": {
+        "kind": "closed_record",
+        "fields": {
+          "member": "ContextMetadataMember",
+          "source": "ContextOperand",
+          "declared": "ContextOperand",
+          "raw_equal": "Bool|null",
+          "grade": "Grade",
+          "issues": "List<ContextPrivateIssue>"
+        }
+      },
+      "OwnerPortBinding": {
+        "kind": "closed_record",
+        "fields": {
+          "slot": "OwnerContextSlot",
+          "declared_metadata": "Materialized<OwnerDeclaredMetadata>|null",
+          "comparisons": {
+            "owner": "ContextMetadataComparison",
+            "subject_ref": "ContextMetadataComparison",
+            "source_ref": "ContextMetadataComparison",
+            "source_revision": "ContextMetadataComparison"
+          },
+          "grade": "Grade"
+        },
+        "meaning_ja": "4metadataは同portのcaller宣言接合だけ。body同一性/由来/資格を証明しない。不一致でも原body/32対応を保持する。"
+      },
+      "ContextLeafBinding": {
+        "kind": "closed_record",
+        "fields": {
+          "id": "OwnerContextLeafId",
+          "owner": "OwnerRole",
+          "slot": "OwnerContextSlot",
+          "consumer_path": "String",
+          "source": "ContextOperand",
+          "consumer": "ContextOperand",
+          "raw_equal": "Bool|null",
+          "content_grade": "Grade",
+          "binding_grade": "Grade",
+          "grade": "Grade",
+          "issues": "List<ContextPrivateIssue>"
+        }
+      },
+      "OwnerContextLeafView": {
+        "kind": "closed_record",
+        "fields": {
+          "/expected_origin/project": "ContextLeafBinding",
+          "/expected_origin/tenant": "ContextLeafBinding",
+          "/expected_origin/assignment": "ContextLeafBinding",
+          "/expected_origin/worktree": "ContextLeafBinding",
+          "/expected_origin/revision": "ContextLeafBinding",
+          "/expected_origin/environment": "ContextLeafBinding",
+          "/expected_target/project": "ContextLeafBinding",
+          "/expected_target/tenant": "ContextLeafBinding",
+          "/expected_target/assignment": "ContextLeafBinding",
+          "/expected_target/worktree": "ContextLeafBinding",
+          "/expected_target/revision": "ContextLeafBinding",
+          "/expected_target/environment": "ContextLeafBinding",
+          "/origin_tenant_applicable": "ContextLeafBinding",
+          "/target_tenant_applicable": "ContextLeafBinding",
+          "/owner_material_states/OS": "ContextLeafBinding",
+          "/owner_material_states/INFRA": "ContextLeafBinding",
+          "/owner_material_states/CONNECT": "ContextLeafBinding",
+          "/expected_connection/identity": "ContextLeafBinding",
+          "/expected_connection/revision": "ContextLeafBinding",
+          "/expected_connection/origin/project": "ContextLeafBinding",
+          "/expected_connection/origin/tenant": "ContextLeafBinding",
+          "/expected_connection/origin/environment": "ContextLeafBinding",
+          "/expected_connection/origin/assignment": "ContextLeafBinding",
+          "/expected_connection/origin/worktree": "ContextLeafBinding",
+          "/expected_connection/origin/revision": "ContextLeafBinding",
+          "/expected_connection/target/project": "ContextLeafBinding",
+          "/expected_connection/target/tenant": "ContextLeafBinding",
+          "/expected_connection/target/environment": "ContextLeafBinding",
+          "/expected_connection/target/assignment": "ContextLeafBinding",
+          "/expected_connection/target/worktree": "ContextLeafBinding",
+          "/expected_connection/target/revision": "ContextLeafBinding",
+          "/expected_connection/allowed_operations": "ContextLeafBinding"
+        },
+        "meaning_ja": "L4に列挙した32leafだけの別view。混成raw親を持つMaterialized<ScopeContext>ではなく既存native関数の引数でもない。"
+      },
+      "OwnerEnvironmentTrace": {
+        "kind": "closed_record",
+        "fields": {
+          "os_environment": "ContextOperand",
+          "infra_environment": "ContextOperand",
+          "raw_equal": "Bool|null",
+          "grade": "Grade",
+          "issues": "List<ContextPrivateIssue>"
+        },
+        "meaning_ja": "OSとINFRAの原environmentを別保持。環境primaryはINFRAのまま。"
+      },
+      "OwnerContextBindingResult": {
+        "kind": "closed_record",
+        "fields": {
+          "original_input": "OwnerContextBindingInput",
+          "occurrences": {
+            "os_origin": "OwnerOccurrenceRead",
+            "os_target": "OwnerOccurrenceRead",
+            "infra_origin": "OwnerOccurrenceRead",
+            "infra_target": "OwnerOccurrenceRead",
+            "connect": "OwnerOccurrenceRead",
+            "state_OS": "OwnerOccurrenceRead",
+            "state_INFRA": "OwnerOccurrenceRead",
+            "state_CONNECT": "OwnerOccurrenceRead"
+          },
+          "owner_context_candidate": "OwnerContextLeafView",
+          "consumer_context": "Materialized<ScopeContext>|null",
+          "environment_side_traces": {
+            "origin": "OwnerEnvironmentTrace",
+            "target": "OwnerEnvironmentTrace"
+          },
+          "role_grades": {
+            "OS": "Grade",
+            "INFRA": "Grade",
+            "CONNECT": "Grade"
+          },
+          "issues": "List<ContextPrivateIssue>",
+          "existing_analysis_observations": "RawValue",
+          "native_composition": "SameFrameInvocationResult",
+          "qualification_state": "literal:unclosed",
+          "qualified_binding_created": "literal:false",
+          "operation_effect": "literal:none",
+          "port_bindings": {
+            "os_origin": "OwnerPortBinding",
+            "os_target": "OwnerPortBinding",
+            "infra_origin": "OwnerPortBinding",
+            "infra_target": "OwnerPortBinding",
+            "connect": "OwnerPortBinding",
+            "state_OS": "OwnerPortBinding",
+            "state_INFRA": "OwnerPortBinding",
+            "state_CONNECT": "OwnerPortBinding"
+          }
+        }
+      }
+    },
+    "typing_boundary": [
+      "本節の型名はowner_context_detail_contract内で閉じる。既存type_contractへ追加/上書きしない。portsは既存Materialized<T>、各memberは既存Field<T>を使い、未供給/実null/unknown親/原key欠落を型外へ追い出さない。新wire codec/schemaの採用ではない。",
+      "宣言metadataと実source/bodyは同じportでcallerが供給する組の観測。4metadata一致はその宣言の整合候補のみでbody同一性/由来/issuer/資格/認可を証明しない。known不一致/unknownでも全body/consumer/native返却を保持。",
+      "既存fn8/9を本entryから実行しない。fn9の4metadata比較の意味だけ参照し、subset gradeを32fieldの内容/資格完了としない。原analysisはopaque echo。",
+      "native OS/CONNECTの観測は未消費echo。INFRAの原型/Presenceだけを明示environment readerへ使用し、OS summary/partial CONNECT headerから不足identity/接続を生成しない。"
+    ],
+    "slot_roles": {
+      "os_origin": "OS",
+      "os_target": "OS",
+      "infra_origin": "INFRA",
+      "infra_target": "INFRA",
+      "connect": "CONNECT",
+      "state_OS": "OS",
+      "state_INFRA": "INFRA",
+      "state_CONNECT": "CONNECT"
+    },
+    "metadata_order": [
+      "owner",
+      "subject_ref",
+      "source_ref",
+      "source_revision"
+    ],
+    "leaf_order": [
+      "/expected_origin/project",
+      "/expected_origin/tenant",
+      "/expected_origin/assignment",
+      "/expected_origin/worktree",
+      "/expected_origin/revision",
+      "/expected_origin/environment",
+      "/expected_target/project",
+      "/expected_target/tenant",
+      "/expected_target/assignment",
+      "/expected_target/worktree",
+      "/expected_target/revision",
+      "/expected_target/environment",
+      "/origin_tenant_applicable",
+      "/target_tenant_applicable",
+      "/owner_material_states/OS",
+      "/owner_material_states/INFRA",
+      "/owner_material_states/CONNECT",
+      "/expected_connection/identity",
+      "/expected_connection/revision",
+      "/expected_connection/origin/project",
+      "/expected_connection/origin/tenant",
+      "/expected_connection/origin/environment",
+      "/expected_connection/origin/assignment",
+      "/expected_connection/origin/worktree",
+      "/expected_connection/origin/revision",
+      "/expected_connection/target/project",
+      "/expected_connection/target/tenant",
+      "/expected_connection/target/environment",
+      "/expected_connection/target/assignment",
+      "/expected_connection/target/worktree",
+      "/expected_connection/target/revision",
+      "/expected_connection/allowed_operations"
+    ],
+    "leaf_correspondence": [
+      {
+        "id": "/expected_origin/project",
+        "slot": "os_origin",
+        "owner": "OS",
+        "domain": "Text",
+        "reader": "selected_scope_field",
+        "source_accessor": "occurrences.os_origin.node.fields.scope.fields.project",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_origin.fields.project",
+        "consumer_role_pointer": "/context/expected_origin/project",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_origin/tenant",
+        "slot": "os_origin",
+        "owner": "OS",
+        "domain": "Text",
+        "reader": "selected_scope_field",
+        "source_accessor": "occurrences.os_origin.node.fields.scope.fields.tenant",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_origin.fields.tenant",
+        "consumer_role_pointer": "/context/expected_origin/tenant",
+        "tenant_side": "origin"
+      },
+      {
+        "id": "/expected_origin/assignment",
+        "slot": "os_origin",
+        "owner": "OS",
+        "domain": "Text",
+        "reader": "selected_scope_field",
+        "source_accessor": "occurrences.os_origin.node.fields.scope.fields.assignment",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_origin.fields.assignment",
+        "consumer_role_pointer": "/context/expected_origin/assignment",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_origin/worktree",
+        "slot": "os_origin",
+        "owner": "OS",
+        "domain": "Text",
+        "reader": "selected_scope_field",
+        "source_accessor": "occurrences.os_origin.node.fields.scope.fields.worktree",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_origin.fields.worktree",
+        "consumer_role_pointer": "/context/expected_origin/worktree",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_origin/revision",
+        "slot": "os_origin",
+        "owner": "OS",
+        "domain": "Text",
+        "reader": "selected_scope_field",
+        "source_accessor": "occurrences.os_origin.node.fields.scope.fields.revision",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_origin.fields.revision",
+        "consumer_role_pointer": "/context/expected_origin/revision",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_origin/environment",
+        "slot": "infra_origin",
+        "owner": "INFRA",
+        "domain": "Text",
+        "reader": "infra_environment",
+        "source_accessor": "input.infra_origin.fields.native_input.value.original_profile.environment_identity",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_origin.fields.environment",
+        "consumer_role_pointer": "/context/expected_origin/environment",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_target/project",
+        "slot": "os_target",
+        "owner": "OS",
+        "domain": "Text",
+        "reader": "selected_scope_field",
+        "source_accessor": "occurrences.os_target.node.fields.scope.fields.project",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_target.fields.project",
+        "consumer_role_pointer": "/context/expected_target/project",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_target/tenant",
+        "slot": "os_target",
+        "owner": "OS",
+        "domain": "Text",
+        "reader": "selected_scope_field",
+        "source_accessor": "occurrences.os_target.node.fields.scope.fields.tenant",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_target.fields.tenant",
+        "consumer_role_pointer": "/context/expected_target/tenant",
+        "tenant_side": "target"
+      },
+      {
+        "id": "/expected_target/assignment",
+        "slot": "os_target",
+        "owner": "OS",
+        "domain": "Text",
+        "reader": "selected_scope_field",
+        "source_accessor": "occurrences.os_target.node.fields.scope.fields.assignment",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_target.fields.assignment",
+        "consumer_role_pointer": "/context/expected_target/assignment",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_target/worktree",
+        "slot": "os_target",
+        "owner": "OS",
+        "domain": "Text",
+        "reader": "selected_scope_field",
+        "source_accessor": "occurrences.os_target.node.fields.scope.fields.worktree",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_target.fields.worktree",
+        "consumer_role_pointer": "/context/expected_target/worktree",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_target/revision",
+        "slot": "os_target",
+        "owner": "OS",
+        "domain": "Text",
+        "reader": "selected_scope_field",
+        "source_accessor": "occurrences.os_target.node.fields.scope.fields.revision",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_target.fields.revision",
+        "consumer_role_pointer": "/context/expected_target/revision",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_target/environment",
+        "slot": "infra_target",
+        "owner": "INFRA",
+        "domain": "Text",
+        "reader": "infra_environment",
+        "source_accessor": "input.infra_target.fields.native_input.value.original_profile.environment_identity",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_target.fields.environment",
+        "consumer_role_pointer": "/context/expected_target/environment",
+        "tenant_side": null
+      },
+      {
+        "id": "/origin_tenant_applicable",
+        "slot": "os_origin",
+        "owner": "OS",
+        "domain": "Bool",
+        "reader": "selected_port_field",
+        "source_accessor": "input.os_origin.fields.tenant_applicable",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.origin_tenant_applicable",
+        "consumer_role_pointer": "/context/origin_tenant_applicable",
+        "tenant_side": null
+      },
+      {
+        "id": "/target_tenant_applicable",
+        "slot": "os_target",
+        "owner": "OS",
+        "domain": "Bool",
+        "reader": "selected_port_field",
+        "source_accessor": "input.os_target.fields.tenant_applicable",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.target_tenant_applicable",
+        "consumer_role_pointer": "/context/target_tenant_applicable",
+        "tenant_side": null
+      },
+      {
+        "id": "/owner_material_states/OS",
+        "slot": "state_OS",
+        "owner": "OS",
+        "domain": "MaterialState",
+        "reader": "selected_port_field",
+        "source_accessor": "input.state_OS.fields.state",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.owner_material_states.fields.OS",
+        "consumer_role_pointer": "/context/owner_material_states/OS",
+        "tenant_side": null
+      },
+      {
+        "id": "/owner_material_states/INFRA",
+        "slot": "state_INFRA",
+        "owner": "INFRA",
+        "domain": "MaterialState",
+        "reader": "selected_port_field",
+        "source_accessor": "input.state_INFRA.fields.state",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.owner_material_states.fields.INFRA",
+        "consumer_role_pointer": "/context/owner_material_states/INFRA",
+        "tenant_side": null
+      },
+      {
+        "id": "/owner_material_states/CONNECT",
+        "slot": "state_CONNECT",
+        "owner": "CONNECT",
+        "domain": "MaterialState",
+        "reader": "selected_port_field",
+        "source_accessor": "input.state_CONNECT.fields.state",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.owner_material_states.fields.CONNECT",
+        "consumer_role_pointer": "/context/owner_material_states/CONNECT",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_connection/identity",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "Text",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.identity",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.identity",
+        "consumer_role_pointer": "/context/expected_connection/identity",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_connection/revision",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "Text",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.revision",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.revision",
+        "consumer_role_pointer": "/context/expected_connection/revision",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_connection/origin/project",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "Text",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.origin.fields.project",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.origin.fields.project",
+        "consumer_role_pointer": "/context/expected_connection/origin/project",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_connection/origin/tenant",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "Text",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.origin.fields.tenant",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.origin.fields.tenant",
+        "consumer_role_pointer": "/context/expected_connection/origin/tenant",
+        "tenant_side": "origin"
+      },
+      {
+        "id": "/expected_connection/origin/environment",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "Text",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.origin.fields.environment",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.origin.fields.environment",
+        "consumer_role_pointer": "/context/expected_connection/origin/environment",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_connection/origin/assignment",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "Text",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.origin.fields.assignment",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.origin.fields.assignment",
+        "consumer_role_pointer": "/context/expected_connection/origin/assignment",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_connection/origin/worktree",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "Text",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.origin.fields.worktree",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.origin.fields.worktree",
+        "consumer_role_pointer": "/context/expected_connection/origin/worktree",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_connection/origin/revision",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "Text",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.origin.fields.revision",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.origin.fields.revision",
+        "consumer_role_pointer": "/context/expected_connection/origin/revision",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_connection/target/project",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "Text",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.target.fields.project",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.target.fields.project",
+        "consumer_role_pointer": "/context/expected_connection/target/project",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_connection/target/tenant",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "Text",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.target.fields.tenant",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.target.fields.tenant",
+        "consumer_role_pointer": "/context/expected_connection/target/tenant",
+        "tenant_side": "target"
+      },
+      {
+        "id": "/expected_connection/target/environment",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "Text",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.target.fields.environment",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.target.fields.environment",
+        "consumer_role_pointer": "/context/expected_connection/target/environment",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_connection/target/assignment",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "Text",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.target.fields.assignment",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.target.fields.assignment",
+        "consumer_role_pointer": "/context/expected_connection/target/assignment",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_connection/target/worktree",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "Text",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.target.fields.worktree",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.target.fields.worktree",
+        "consumer_role_pointer": "/context/expected_connection/target/worktree",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_connection/target/revision",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "Text",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.target.fields.revision",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.target.fields.revision",
+        "consumer_role_pointer": "/context/expected_connection/target/revision",
+        "tenant_side": null
+      },
+      {
+        "id": "/expected_connection/allowed_operations",
+        "slot": "connect",
+        "owner": "CONNECT",
+        "domain": "OperationList",
+        "reader": "selected_connection_field",
+        "source_accessor": "input.connect.fields.connection.fields.allowed_operations",
+        "consumer_accessor": "input.original_proposal_input.fields.context.fields.expected_connection.fields.allowed_operations",
+        "consumer_role_pointer": "/context/expected_connection/allowed_operations",
+        "tenant_side": null
+      }
+    ],
+    "materialized_observation_rules": [
+      "Materialized<T>全nodeは最初に原値保持する。tag=record、fieldsが非nullの宣言T、original=suppliedかつraw objectの時だけtyped childへの観測を許す。fieldsとrawは異なる表現なのでfull equalityは一切使わない。",
+      "tag=absent/explicit_null/invalid_or_unknown又はfields=nullの場合はchild未観測。recordなのにfields=null、recordでraw非object/absent、非recordなのにfields非null、absentなのにoriginal非absent、explicit_nullなのにoriginalが実nullでない等は原表現不整合として扱い、最初の親全nodeを保持する。unknownをrecordへ補修せずchildを作らない。通常の非record親はunobserved、表現不整合親はrepresentation問題として1原因にする。",
+      "観測可能parentの宣言childを読む時、parent.original.rawの当該keyのRawPresence（key不存在ならabsent、実在ならsupplied(raw=その値)）と、実child.originalだけを対応比較する。Field/Materialized child全nodeとraw memberを丸ごと比較しない。不一致なら実child/parent全値を保存して当該pathの意味値をunknownにし、child側とparent raw member側の原presence/pointerをissueへ残す。",
+      "実child nodeが型付きfields内に無い場合も未観測として最寄りparentを保持し、実Fieldがあったという観測を作らない。raw key不在で実Absent childがある通常のmaterializationは正しく観測したAbsentとする。全raw/nodeはoriginal_inputから辿れ、fn0やdecoderを呼ばない。",
+      "port自体/declared_metadataが欠落・実null・invalidの時も外側Materializedで保持する。原keyが不在なら実Field.original=absent、実nullならsupplied(null)。key不在をunknown wireから復元したとは主張しない。"
+    ],
+    "field_observation_rules": [
+      "simple Field<Text/Bool/MaterialState/OperationList/OwnerRole>を実観測した場合はnodeを全値copyしpresence_observed=true、presence=Field.original、source_pointer=原Field.pointerとする。tag knownで宣言domainの非null値、original=suppliedでrawとvalueがJSON型敏感等値、かつ親child対応が成立する場合だけcontent_state known。 parent-child対応が不成立でも、実child nodeそのものはoriginal_inputとnearest_parent/fieldへ保持する。値の意味使用だけunknownにする。",
+      "tag absent + original absent + value nullは実absent、tag explicit_null + original supplied(null) + value nullは実null。いずれも既知Text等ではない。その他のabsent/explicit_nullの矛盾、knownのdomain/raw/value不整合はunknown/representation問題。invalid_or_unknownは元raw/valueを保持してunknownで、見かけの値からknownへ昇格しない。親child対応不整合の実Fieldも保存するがunknown。",
+      "Textは非空string・無正規化、BoolはJSON boolean、MaterialStateは既存閉集合、OwnerRoleは既存閉集合、OperationListは既存Operationのみの原順list（空/反復も保持）。域外/空Textを補完しない。",
+      "親が未観測ならkind=unobserved、field/native_profile=null、nearest_parent=最初の親全node、presence_observed=false、presence=null、content_state=parent_unobserved、value=null。実childのAbsent/nullを人工的に作らない。selectionによりbodyを使えない時も同様だがblocked_by_selection=trueで、最も近い実node/portをnearest_parentへ保持する。"
+    ],
+    "selection_algorithm": [
+      {
+        "step": 1,
+        "rule": "slotのMaterialized portを親規則で観測する。source_index実Fieldが読めればrequested_index_observed=trueで全Fieldを保存。親未観測ならrequested_index=null/index=null、reason=port_parent_unreadable、status=unresolved、selection_grade=unknown、原portをoriginal_inputへ保持。"
+      },
+      {
+        "step": 2,
+        "rule": "実index Fieldについて順に分類する: tag非known又はvalue=null→index_unresolved。known非null値がJSON number以外（bool含む）、非整数又は負数→index_not_integer。known非負整数でもoriginalがsuppliedの同じJSON numberでない、又は親raw memberとの対応不成立→index_unresolved。それ以外は数学的整数indexを保存。1と1.0は同じnumber、trueはnumberではない。各失敗はunknown寄与であり後続選択をしない。"
+      },
+      {
+        "step": 3,
+        "rule": "original_owner_source_inputをMaterialized規則で読む。親未観測はsource_parent_unreadable。親が読める時はsources実Fieldを取り、そのtag known・非null typed SourceList valueの存在を先に確認する。typed listと有効indexがあれば、raw側検査の成否に先立ち範囲内のaddressable原nodeをnodeへ全保存する（以降失敗しても消さない）。sourcesの原Fieldを読む条件が不成立ならsource_list_unreadable。"
+      },
+      {
+        "step": 4,
+        "rule": "sourcesがtag knownのtyped listである時、そのoriginalがsupplied raw list、親raw.sourcesとsources.originalのRawPresence対応、raw/typed列数一致をこの順に確認する。一つでも不成立ならsource_list_representation_inconsistentで選択を終了するがstep3のaddressable原nodeは保持する。この表現条件が全成立した後だけtyped list範囲外をindex_out_of_rangeとする。原raw配列とtyped Materialized node列を全値同値比較せず、次stepで指定要素だけを対応させる。全rowを先頭検索/role検索しない。"
+      },
+      {
+        "step": 5,
+        "rule": "指定raw list要素のsupplied原値とaddressable node.originalを対応比較する。異なればsource_node_representation_inconsistent。nodeのMaterialized親規則が不成立ならsource_node_unreadable（又は表現不整合ならsource_node_representation_inconsistent）。全nodeを保ちnode_observation_usable=false。"
+      },
+      {
+        "step": 6,
+        "rule": "root/list/指定nodeの対応が成立すればnode_observation_usable=true。role実Fieldとnode raw.roleの対応、simple Field規則を適用する。known閉OwnerRoleと確認できなければsource_role_unresolved、status unresolved、selection_grade unknown。known値が期待roleと異なるならsource_role_mismatch、status unresolved、selection_grade violation。両原role/期待role literalのissueを保持する。known一致だけselected/corresponding/reason null。"
+      },
+      {
+        "step": 7,
+        "rule": "node_observation_usable=trueならrole mismatch/unknownでも原4metadataは観測・比較できる（body採用と別）。内容用scope/port bodyの読取はstatus selectedのみ。非selectedならbody意味値は未読unknown、node/port全値は保持。全8slot/32leaf/元fn12は常に継続。"
+      }
+    ],
+    "native_field_and_infra_rules": [
+      "消費するnative Field<InfraInput/InfraResult>にも、known・非nullの固定ImportedT値・original supplied rawとvalueのJSON型敏感再帰等値・port親raw keyとの対応を要求する。これはraw JSON値同士の同一性照合でありMaterialized rawとfieldsの比較ではない。原Field.pointerは比較対象外。tag absent/explicit_nullの通常形/矛盾、invalid_or_unknownの未確定はsimple Fieldと同じ規則で区別する。",
+      "known値だけあってoriginalがabsent/null/異値の場合、原Field/raw/valueを保持するが子profile/memberを読まない。ContextOperandはnearest_parent=その原Field、field/native_profile=null、presence_observed=false/presence=null/parent_unobserved/value nullとする。原Field自身のpresenceはissue及びoriginal_inputに保持。source_representation_inconsistentを1件出し、同一失敗のsource_parent_unobserved/member_unresolvedを追加しない。",
+      "INFRA主inputの通常absent/null/unknownは環境leafの未観測unknownとsource_parent_unobservedを1件。表現不整合は前項のunknown寄与。これは環境primaryの不足であり、result/OS/他sideから補わない。",
+      "受理できたInfraInput.original_profileを全値保存し、environment_identityの実key presenceを読む。key不在はRawPresence absent、nullはsupplied(null)、stringは原値、空string/型外は保持したままunknown。native PresenceへSEC Field tagを足さず、非空stringのみknown TextとしてconsumerのField<Text>へ内容比較する。ImportedT境界外の値をTへcastせず、その原Field全体を保持して親未観測とする。",
+      "受理できた主inputがある時だけ任意InfraResult.retained_original_profileとの原profile JSON全値/全key presenceを比較する。known raw差はnative_return_input_conflict/violation寄与。result表現不整合はrepresentation issue/unknown寄与、通常のresult absent/null/unknownは比較未評価でgrade寄与なし。inputが読めない時はresultを原echoするのみで代替profileを読まない。",
+      "OS/CONNECT native input/resultは全Field/元member/unknownをoriginal_inputにechoするだけ。このsliceでanchorや同call qualificationの成立に使わず、未供給/矛盾から追加grade/gateを作らない。範囲外native値を原型へcastせず、供給されたFieldをそのまま保持する。"
+    ],
+    "comparison_and_reduction_rules": [
+      "raw_equalは両実presence観測済みの場合だけRawPresenceの型敏感比較。両absentはtrue、absentとsupplied(null)はfalse。supplied同士はJSON null/bool/number/string/list/objectを区別、numberは数値比較（boolを混ぜない）、string無正規化、list順/反復保持、object key順だけ無視しkey集合は厳密。未観測parentはnull sentinel。pointer/typed tag/source metadataをraw_equalへ混ぜない。",
+      "非tenant contentは両known同domain値なら同値corresponding/異値violation+content_conflictを1件、その他はunknown（未知が同値でもknownへ昇格しない）。parent/Field問題は各固有issueを残す。",
+      "tenantにはside別source OwnerIdentityPort.tenant_applicable実Boolと元consumer context Boolを独立に読む。source OS slot selectedの実known Boolだけ適用可。source/consumerそれぞれfalseの時はその側の実supplied nonnull tenantをviolation/nonapplicable_tenant_nonnull、実nullはmarker、absent/親未観測はunknown。未知policyをfalse扱いせずtenant文字列から補わない。",
+      "source/consumer policy両trueなら実known Textのtenant比較、両false+両実nullならcorresponding。policyが両knownでtrue/false相反ならtenant contentへのviolation寄与のみ（policy差専用issueは0件）。同じ差はorigin/target_tenant_applicable Bool leafのcontent_conflict1件が保持する。full connection endpoint tenantにも同じgrade-only寄与を使う。false側nonnull等、他の独立原因は別保持。",
+      "policy未知の側のtenant値は意味比較しない。他のsideの既知false+実nonnull違反は保持する。tenant policy不明は当該tenant leafへtenant_policy_unresolvedを1件（左右原policy Field/未観測parent）。適用bool leaf自身のunknownは通常member/parent原因で、tenant値をその左右operandへ流用しない。",
+      "各slot4metadataはaddressableかつnode_observation_usableの原source各Fieldとport.declared_metadataの原Fieldを4固定順(owner,subject_ref,source_ref,source_revision)で比較。両known Text同値corresponding、既知異値violation+port_source_binding_conflict、他はunknown+port_source_binding_unresolved。別role値をowner Textへcastせず、4metadata一致をbody同一性/由来/資格としない。",
+      "OS environment traceはselected OS occurrence.scope.environment、INFRAはprimary実profile環境を両方原nodeで保持。両known Text差はenvironment_source_conflict/violation寄与を当該環境leafだけに加える。OS secondary未知はtrace unknownだけでINFRA primaryへ追加unknown寄与を作らず、既知primaryを消さない。",
+      "binding_gradeはselection_grade、同slot metadata grade、当該leafで評価されたINFRA result/environment等の寄与をviolation > unknown > correspondingで還元する。F3のunknownはnative原表現要因の寄与だけで最終gradeを代入しない。content_gradeも独立の既知false+nonnull等violationをunknownで上書きしない。leaf.gradeはcontent/bindingの同じ還元。role_gradesはL4原順32leafのowner別還元。どのaggregateも他slot/fn12を止めない。",
+      "MaterialStateのcurrent/absent/unknown/stale/conflictはdeclared value、Field.tagのknown/absent/invalidとは別軸。両側tag knownかつvalue=unknownが同じなら宣言内容の対応gradeはcorrespondingとなるが、実素材current/実資格成立/readyを意味しない。fn12及び元native ownerstateの判定は原返却のまま保持し、このprojection gradeをnative scope可用性へ流用しない。"
+    ],
+    "main_algorithm": [
+      "1. original_inputへ受け取った全OwnerContextBindingInputを無変更で保持する。全Materialized/Field/unknown/native値・原順は保持し、parse/materialize/IOを挟まない。",
+      "2. slot順にselection_algorithmを適用し全OwnerOccurrenceReadを作る。第一の選択失敗reasonと全addressable原nodeを保持、known wrong roleのviolation寄与をunknownに丸めない。",
+      "3. metadata_orderで各slotの4pairを観測・比較しOwnerPortBindingを作る。node_observation_usableを用い、role一致とは切り離してaddressable原metadataを観測する。port親/metadata親不明も原node/null sentinelを区別。",
+      "4. leaf_order全32rowについてsource readerと元consumer pathをMaterialized/Field規則で読む。source bodyはslot.status selectedのみ、他はblocked_by_selectionの未読operandと元node/port保存。metadata相反だけでbody読取を止めない。",
+      "5. raw_equalと意味content寄与を分け、適用Bool/実null tenant/grade-only policy差を独立に扱う。INFRA result/OS環境traceの独立寄与を評価し、全gradeをpriority還元する。既知違反はunknown寄与で上書きしない。",
+      "6. original ProposalInputの実contextをそのままconsumer_contextへ保持。owner_context_candidateは別32leaf view、原contextや8partを置換/再構成しない。",
+      "7. compose_scope_proposal_and_backflow(input.original_proposal_input)を正確に1回呼び、全7root/全nested値をnative_compositionへ保持する。owner投影の選択/不足/相反に関係なく常時呼ぶ。fn7/fn10を重ねて呼ばず、fn0/独立part helperを追加呼出ししない。",
+      "8. 全13rootをwritersに従い返す。issuesはselection→metadata→leaf順、同一原因の親/child/representation派生を二重発行しない。別occurrence/独立原因は維持する。実許可/資格/配送/state変更/ACKを作らない。"
+    ],
+    "writers": {
+      "OwnerContextBindingResult": {
+        "original_input": "全inputを原node/unknown member/native観測/順序/pointerごとexact copy。",
+        "occurrences": "8slot固定順でOwnerOccurrenceRead全field。addressable原nodeは不成立でも保持。",
+        "owner_context_candidate": "全32row.idをkeyにContextLeafBindingを構成する。元contextへ書戻さない。",
+        "consumer_context": "元ProposalInput親を観測できfields.context実nodeが存在すればその全node（node自体absent/null/invalidも含む）、それ以外null sentinel。rawからcontextを再構成しない。",
+        "environment_side_traces": "origin/target各OwnerEnvironmentTrace。OS原値とINFRA原値を別々に保持。",
+        "role_grades": "各roleに属する全leaf.gradeを原row順で既存priority還元。 MaterialState宣言の一致は内容候補だけで、native可用性/readyに変換しない。",
+        "issues": "occurrences各issues→port metadata各pair.issues→32leaf.issuesの順で連結。environment issueは該当環境leafに一回だけ含めtraceにも同原issueを保持するが、globalへtrace分を再連結しない。独立occurrence/leafの原原因はowner/refだけでdedupしない。",
+        "existing_analysis_observations": "inputの同memberを全値exact copy。fn8/fn9を実callした/同じcontextで評価したとは主張しない。",
+        "native_composition": "既存compose_scope_proposal_and_backflow(input.original_proposal_input)を正確に1回呼んだSameFrameInvocationResult全7member、全nested値を無変更で返す。",
+        "qualification_state": "定数unclosed。",
+        "qualified_binding_created": "定数false。",
+        "operation_effect": "定数none。",
+        "port_bindings": "8slot固定順でOwnerPortBinding。元metadata親nodeも全保存。"
+      },
+      "OwnerOccurrenceRead": {
+        "slot": "固定slot名。",
+        "expected_role": "L4固定slot role。",
+        "requested_index_observed": "実port/source_index Fieldが観測できた時のみtrue。",
+        "requested_index": "その原Field全値、未観測時null。",
+        "index": "F1順序で受理した数学的非負整数、その他null。範囲外でも受理したindexを消さない。",
+        "status": "role含む全選択条件が成立した時だけselected。他はunresolved。",
+        "selection_grade": "既知wrong roleだけviolation、未成立unknown、selected対応corresponding。",
+        "node": "型付きlist内でaddressableな指定node全値。raw対応/role/shape失敗でも保持、address不能のみnull。",
+        "node_observation_usable": "原root/list/指定nodeの原presence/型対応が成立した時true。roleの一致とは独立。",
+        "logical_accessor": "accessor_construction/occurrenceの指定どおり、addressable時に実indexを展開したstring。その他null。",
+        "source_pointer": "addressable元node.pointer、他null。",
+        "reason": "最初に成立しなかった選択stepの閉reason。成功だけnull。",
+        "issues": "選択失敗の私有issue1件、成功は空。wrong roleはsource_role_mismatch、その他selection_unresolved。原index/親/roleと必要literalを保持。"
+      },
+      "ContextOperand": {
+        "kind": "実SEC Fieldならsec_field、受理したINFRA profile memberならinfra_profile_member、その他unobserved。",
+        "namespace": "source rowに応じowner_source_input/port_input/native_input、consumerはconsumer_input。未観測も最寄り実parentのnamespace。",
+        "field": "実観測SEC Field全値、未観測/INFRA nativeはnull。",
+        "native_profile": "受理したInfraInput.original_profile全値、その他null。",
+        "nearest_parent": "最初の未観測/表現不整合親全node。それ以外null。selection遮断時のparent/namespace/固定literalはselection_blocked_source_operandsのreader別表に従い、一意に保持する。",
+        "source_accessor": "leafはaccessor_construction/leaf_source又はleaf_consumer、metadataはmetadata_source/metadata_declaredの固定展開、OS環境traceはenvironment_trace_osの同side literal。未観測でも要求上の同じ論理到達式であり、原source_pointerとは別。",
+        "source_pointer": "実Field.pointerは原値を保持。INFRA environment_identity keyが実在するときはnative_input Field.pointerにoriginal_profile/environment_identityのRFC6901 escaped segmentを追記した論理member所在。受理したprofileで当該keyが不在ならoriginal_profile親の所在だけを保持し、実在するchildと偽らない。親未観測は最寄り原parent.pointer又はnull。source_accessorの論理member指定とは別に保持する。",
+        "presence_observed": "実Field node又は受理したnative profileのkey presenceを観測できた場合だけtrue。",
+        "presence": "実Field.original又はnative profile keyのRawPresence、未観測時null。",
+        "content_state": "known/実explicit_null/実absent/unknown/parent_unobservedを各readerで設定。",
+        "value": "knownの場合だけ意味値。その他null sentinelで原rawのnullとは別。",
+        "blocked_by_selection": "source body読取がstatus!=selectedによって遮断された時だけtrue。consumer/metadata/実profile受理時はfalse。"
+      },
+      "ContextMetadataComparison": {
+        "member": "4固定member名。",
+        "source": "原source metadata実Field又は最寄りparent。role不一致でもnode_observation_usableなら観測。 未観測source親の選択とnamespace/固定fieldはmetadata_unobserved_operandsに従う。",
+        "declared": "原port metadata実Field又は最寄りparent。 未観測declared親の選択とnamespace/固定fieldはmetadata_unobserved_operandsに従う。",
+        "raw_equal": "独立RawPresence比較。",
+        "grade": "metadata内容のknown比較、他unknown。",
+        "issues": "同値なら空、既知異値conflict1件、未成立unresolved1件。同一表現不整合の内訳は原nodeに保持しmetadata原因へまとめ重複しない。"
+      },
+      "OwnerPortBinding": {
+        "slot": "固定slot。",
+        "declared_metadata": "観測可能port内の実Materialized metadata全node（node状態不問）、port親未観測ならnull。",
+        "comparisons": "全4pairを固定順で保持。",
+        "grade": "selection_gradeと4pair.gradeを既存priorityで還元。known role相反/metadata相反をunknownで消さない。"
+      },
+      "ContextLeafBinding": {
+        "id": "固定row.id。",
+        "owner": "固定row.owner（期待する論理ownerで実recipientではない）。",
+        "slot": "固定row.slot。",
+        "consumer_path": "固定row.consumer_role_pointer。原Field.pointerとは別の意味上の位置。",
+        "source": "固定readerの実operand/未観測parent。",
+        "consumer": "元ProposalInput.contextの対応実operand/parent。",
+        "raw_equal": "両実presenceの観測比較、未観測null。",
+        "content_grade": "意味比較の各寄与を既存priority還元。",
+        "binding_grade": "selection/metadata/評価されたnative等の各寄与を既存priority還元。",
+        "grade": "content/bindingの既存priority還元。",
+        "issues": "このleafの独立原因だけ原規則順で保持。選択/metadata原因は各専用record/globalに保持済みなのでleafへ複写しない。 親/member readの同一原因はissue_emission_and_suppressionの原順first occurrence規則に従い、後続leafへ複写しない。独立consumer原因は継続。"
+      },
+      "OwnerEnvironmentTrace": {
+        "os_environment": "同side OS selected node.scope.environment原operand/最寄りparent。",
+        "infra_environment": "同side環境leaf.sourceの同じ原operand。",
+        "raw_equal": "両原presenceだけの比較。",
+        "grade": "両known Textなら同値corresponding/異値violation、その他unknown。",
+        "issues": "known差だけenvironment_source_conflict1件。同じissueを該当環境leafにも保持する。secondary未知は追加provider不足を生成しない。"
+      },
+      "ContextPrivateIssue": {
+        "reason": "closed ContextIssueReason。公開Findingではない。",
+        "slot": "当該固定slot。",
+        "leaf": "leaf原因はrow.id、selection/metadata原因はnull。",
+        "left_namespace": "原因の左原operand namespace。 原operand自体がないunobserved/nullはabsent_issue_operand.namespace。",
+        "left_pointer": "左実Field/最寄りparentの原pointer。literal又は原operand自体のないunobserved/nullだけnull。",
+        "left_presence": "左の原RawPresence又は実raw member Presence、未観測だけnull。",
+        "right_namespace": "原因の右原operand namespace。typed value/期待roleのみcontract_literal。 原operand自体がないunobserved/nullはabsent_issue_operand.namespace。",
+        "right_pointer": "右実Field/最寄りparentの原pointer。literal又は原operand自体のないunobserved/nullだけnull。",
+        "right_presence": "右原RawPresence、literalはsupplied(raw=比較literal)、未観測だけnull。"
+      },
+      "OwnerContextLeafView": {
+        "/expected_origin/project": "対応rowのContextLeafBinding全field。",
+        "/expected_origin/tenant": "対応rowのContextLeafBinding全field。",
+        "/expected_origin/assignment": "対応rowのContextLeafBinding全field。",
+        "/expected_origin/worktree": "対応rowのContextLeafBinding全field。",
+        "/expected_origin/revision": "対応rowのContextLeafBinding全field。",
+        "/expected_origin/environment": "対応rowのContextLeafBinding全field。",
+        "/expected_target/project": "対応rowのContextLeafBinding全field。",
+        "/expected_target/tenant": "対応rowのContextLeafBinding全field。",
+        "/expected_target/assignment": "対応rowのContextLeafBinding全field。",
+        "/expected_target/worktree": "対応rowのContextLeafBinding全field。",
+        "/expected_target/revision": "対応rowのContextLeafBinding全field。",
+        "/expected_target/environment": "対応rowのContextLeafBinding全field。",
+        "/origin_tenant_applicable": "対応rowのContextLeafBinding全field。",
+        "/target_tenant_applicable": "対応rowのContextLeafBinding全field。",
+        "/owner_material_states/OS": "対応rowのContextLeafBinding全field。",
+        "/owner_material_states/INFRA": "対応rowのContextLeafBinding全field。",
+        "/owner_material_states/CONNECT": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/identity": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/revision": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/origin/project": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/origin/tenant": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/origin/environment": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/origin/assignment": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/origin/worktree": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/origin/revision": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/target/project": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/target/tenant": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/target/environment": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/target/assignment": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/target/worktree": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/target/revision": "対応rowのContextLeafBinding全field。",
+        "/expected_connection/allowed_operations": "対応rowのContextLeafBinding全field。"
+      }
+    },
+    "issue_bindings": {
+      "selection_unresolved": {
+        "where": "occurrence",
+        "left": "原因となった実index/source parent/sources/node/role（最初の失敗）",
+        "right": "対応先が実観測されたraw/親ならその原presence、さもなくばunobserved/null。",
+        "count": "そのslotの最初の選択失敗に1件、各leafへ複写しない。"
+      },
+      "source_role_mismatch": {
+        "where": "occurrence",
+        "left": "node.roleの原Field/presence（owner_source_input）",
+        "right": "固定expected_roleのsupplied literal、namespace contract_literal/pointer null。",
+        "count": "known wrong role時1件、selection_grade violation。"
+      },
+      "source_parent_unobserved": {
+        "where": "leaf",
+        "left": "最初のsource実parent全nodeのoriginal。",
+        "right": "対応consumer実operand/最寄りparent。",
+        "count": "選択以外による通常source親未観測に1件。selection遮断は元selection issueだけ。"
+      },
+      "consumer_parent_unobserved": {
+        "where": "leaf",
+        "left": "source原operand/parent。",
+        "right": "最初のconsumer実parent全nodeのoriginal。",
+        "count": "通常consumer親未観測に1件。"
+      },
+      "source_member_unresolved": {
+        "where": "leaf",
+        "left": "実source Field.original/native member Presence。",
+        "right": "consumer原operand。",
+        "count": "原Fieldのabsent/null/unknown/domain不明で1件。適用false下の有効実null tenant marker、表現不整合/親未観測とは重複しない。"
+      },
+      "consumer_member_unresolved": {
+        "where": "leaf",
+        "left": "source原operand。",
+        "right": "実consumer Field.original。",
+        "count": "sourceと同じ原則。"
+      },
+      "source_representation_inconsistent": {
+        "where": "leaf",
+        "left": "不整合source実Field.original又はMaterialized.original、原pointerを保持。",
+        "right": "親raw child対応差なら原parent.pointerと実raw member Presence（同じ原namespace）。Field original/value差ならtyped valueをcontract_literal/pointer null/supplied(raw=値)。",
+        "count": "同一失敗1件。unobserved/member問題を重ねず、unknown寄与だけ。"
+      },
+      "consumer_representation_inconsistent": {
+        "where": "leaf",
+        "left": "不整合consumer実Field/parent original。",
+        "right": "上と同じconsumer親raw member又はtyped value literal。",
+        "count": "sourceと同じ原則。"
+      },
+      "content_conflict": {
+        "where": "leaf",
+        "left": "source実known operand。",
+        "right": "consumer実known operand。",
+        "count": "known同domain異値に1件。tenant policy差だけをtenant leafに再発行しない。"
+      },
+      "tenant_policy_unresolved": {
+        "where": "tenant leaf",
+        "left": "source側独立適用Bool実Field/最寄りparent。",
+        "right": "consumer適用Bool実Field/最寄りparent。",
+        "count": "政策Bool不明に1件。tenant値を比較operandに使わない。"
+      },
+      "nonapplicable_tenant_nonnull": {
+        "where": "tenant leaf",
+        "left": "違反側tenantの実supplied非null原operand。",
+        "right": "同じ側の実known false政策Bool。",
+        "count": "false側ごと1件。左右両側該当時2件をsource側→consumer側順。"
+      },
+      "native_return_input_conflict": {
+        "where": "environment leaf",
+        "left": "主InfraInput.original_profile原object。",
+        "right": "受理したInfraResult.retained_original_profile原object。",
+        "count": "両受理known原object差で1件。両presenceはsupplied(raw=各原object)、namespace native_input/native_result、pointerは各親Field.pointer＋元member path。"
+      },
+      "environment_source_conflict": {
+        "where": "environment trace/leaf",
+        "left": "OS原scope.environment Field。",
+        "right": "INFRA primary環境原member。",
+        "count": "known Text差に1件。traceとleafに同じ原issueを保存するがglobalへ一回連結。"
+      },
+      "port_source_binding_unresolved": {
+        "where": "port metadata pair",
+        "left": "原source metadata実Field/最寄りparent。",
+        "right": "原port metadata実Field/最寄りparent。",
+        "count": "既知比較不能に1件。pointer namespaceを混ぜない。"
+      },
+      "port_source_binding_conflict": {
+        "where": "port metadata pair",
+        "left": "原source metadata実known Field。",
+        "right": "原port metadata実known Field。",
+        "count": "既知Text差に1件。body由来/資格判定ではない。"
+      }
+    },
+    "pointer_namespace": [
+      "source/port/consumerのField.pointerは原出典のまま保持し、互いに転記/rebaseしない。source_accessor/consumer_pathは別の論理到達式/役割位置であり原pointerとの同一性を主張しない。",
+      "native profile memberはnative_input/result Field.pointerを根にRFC6901でescapedした原member segmentを追記した論理member位置。raw key不在/未観測親では実child pointerを捏造せず親pointerを保持する。",
+      "Materialized parent raw child対応をissueへ保存する時、parent側pointerは実parent.pointer、presenceはそのraw memberの実key存在性から取る。型付きchild.pointerがその文字列と同じであることは比較条件にしない。",
+      "PrivateIssueのcontract_literalはtyped value又は期待roleの説明operandで独立source観測ではない。Field originalのabsent/nullとtyped null sentinelを混ぜない。"
+    ],
+    "legacy_preserve_change": [
+      {
+        "role": "legacy_failure_source_preserve_change",
+        "revision": "3a3f4e5657506ce90c0731ffe43243c8d8197739",
+        "document": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+        "file_sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16",
+        "asset_id": "LEGACY-ASSET-D461943347D372ECF6DA",
+        "lines": [
+          24,
+          25,
+          26,
+          39
+        ],
+        "preserve": "owner別のsource/target/scope/environment等を混同せず保持し、欠落・相反を推測で補わない。",
+        "change": "旧SEAのNORMAL/PRIVILEGED分類、human action gate、runtime broker、credential issuanceの要件は現L3-F01/F02の意味へ移さない。",
+        "source_generation": "legacy-generation-2026-09-14"
+      },
+      {
+        "role": "legacy_failure_source_preserve_change",
+        "revision": "3a3f4e5657506ce90c0731ffe43243c8d8197739",
+        "document": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md",
+        "file_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc",
+        "asset_id": "LEGACY-ASSET-349061A71CEF2554B9A7",
+        "lines": [
+          14,
+          15,
+          17,
+          29,
+          30
+        ],
+        "preserve": "異なる対象・scope・source状態を一つのgreenへ折り畳まないという失敗回避観点。",
+        "change": "現契約はowner-contextの内容比較と追跡に限定する。旧受入oracleを現行gateへcopyしない。",
+        "source_generation": "legacy-generation-2026-09-14"
+      }
+    ],
+    "verification_boundary": "L9 C01〜C10のsource-level条件に対応する詳細定義。L8に正常1件と境界12件の原input/全返却期待を有限例として固定した。各例の原条件への対応と未閉包範囲はL8 source_condition_mappingに示す。全分岐閉包と候補実行は未成立で、本算法から期待を生成していない。旧fixture/旧全期待/旧関数0..12は不変。全92親430義務完了や実装readyの認定ではない。",
+    "effect": {
+      "authority": "none",
+      "operation_effect": "none",
+      "actual_dispatch": false,
+      "actual_recipient_qualified": false
+    },
+    "native_dependencies": [
+      {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/functions/12",
+        "object_canonical_sha256": "9d99c26d17c8d40e31628e5352d68b10bca6e12189875653dcff7710dad82f8f",
+        "role": "元ProposalInputで1回だけ呼ぶ既存合成関数。"
+      },
+      {
+        "revision": "13f6acc7e1d16f25057e3f78c6e65fe90596a899",
+        "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+        "file_sha256": "4db0c03b38b502108d2a32d36d3e16e0cd546a9b9d98c4d0e2ea0d29f294d21f",
+        "pointer": "/functions/9",
+        "object_canonical_sha256": "bd39c2ad3b6549ce99685ab6818915d9f44cdcbf6605ef26f9936895e072e5e2",
+        "role": "4metadata内容照合意味の参照だけ。資格gap/実call完了を流用しない。"
+      }
+    ],
+    "issue_emission_and_suppression": [
+      "発火順は8slotの最初のselection原因→各slot4metadata→32leaf順である。wrong roleはsource_role_mismatchだけを発火し、status unresolvedだからと別のselector unknown/selection_unresolvedを発火しない。index/raw不整合等で選択終了した時は未読role相反を推定しない。",
+      "source bodyがselectionによって遮断された時、source_parent_unobserved/source_member_unresolvedやsource政策unknownを同じ原因として追加しない。selection原issueとblocked_by_selection=true、原node/portは保存済み。独立したconsumer親/member不足・known false+nonnullは継続して診断する。",
+      "metadata pairの左原値が同じselection原因で未観測ならgradeはunknownでもその派生port_source_binding_unresolvedを追加しない。右declared metadataに独立した欠落/不整合があれば、その右原parent/memberの原因として保持する。role不一致でもnode_observation_usableならmetadata実Fieldを観測比較し、独立known差/不足は維持する。 port親自体が同じselection原因で未観測の場合とmetadata親単位の重複抑止はmetadata_unobserved_operandsに明記する。",
+      "表現不整合をその実parent/Fieldで記録した時、そのために読めなかったchildをさらにparent/member不足として二重発行しない。実Absent/null/unknown childを観測できた場合の不足と、人工child未観測を区別する。",
+      "同一slot内の同じ最初の原parent/member読取失敗が複数row/pairへ影響する場合、原因を(slot, namespace, その原logical accessor, 失敗の分類)で識別し、原順で最初に影響したpair/leafへissueを1回だけ割り当てる。後続row/pairは原operand/unknown寄与を保持してissuesへ同じ派生原因を複写しない。これは純計算内の重複抑止規則で、新source registry/gateではない。pointer文字列やowner/refの一致だけで別occurrence/別side/別memberの原因を併合しない。",
+      "parent原因と独立したconsumer側の原因、別memberの既知相反、同leafでも別namespace/実side由来のfalse+nonnull等は全て保持する。metadata issueをleafへ複写しない。policy差はbool leafのみissueを持ちtenant leafへgrade-only寄与する。environment traceとleafに保持した同一issueをglobalへ二回連結しない。"
+    ],
+    "selection_issue_operands": {
+      "port_parent_unreadable": {
+        "left": "slotの最初のMaterialized parent.original/pointer、namespace port_input",
+        "right": "unobserved/null"
+      },
+      "index_unresolved": {
+        "left": "実source_index Field.original/pointer（node自体未観測なら元port parent.original）",
+        "right": "親raw.source_index対応不一致ならその原parent.pointerと実key RawPresence、namespace port_input。known非負整数のoriginal/value不整合ならvalueをcontract_literal/supplied。その他unobserved/null。"
+      },
+      "index_not_integer": {
+        "left": "実source_index Field.original/pointer、namespace port_input",
+        "right": "valueをcontract_literal/pointer null/supplied(raw=その値)。原index domain外の説明で独立sourceとはしない。"
+      },
+      "source_parent_unreadable": {
+        "left": "原SourceInputの最初のparent.original/pointer、namespace owner_source_input",
+        "right": "unobserved/null。全typed nodeはoriginal_inputへ保持。"
+      },
+      "source_list_unreadable": {
+        "left": "実sources Field.original/pointer、実node未観測なら元source parent.original/pointer",
+        "right": "unobserved/null"
+      },
+      "source_list_representation_inconsistent": {
+        "left": "sources Field.original/pointer、namespace owner_source_input",
+        "right": "親keyとの不一致なら原SourceInput.parent.pointerと実raw.sources Presence。同じField内のlist形/列数不整合ならunobserved/nullとして両原配列/typed列をoriginal_inputに保持（full equalityによる意味判定とはしない）。"
+      },
+      "index_out_of_range": {
+        "left": "実index Field.original/pointer、namespace port_input",
+        "right": "typed listの実lengthをcontract_literal/pointer null/supplied(raw=length)"
+      },
+      "source_node_unreadable": {
+        "left": "addressable原node.original/pointer、namespace owner_source_input",
+        "right": "unobserved/null"
+      },
+      "source_node_representation_inconsistent": {
+        "left": "addressable原node.original/pointer、namespace owner_source_input",
+        "right": "raw list要素対応不一致なら原sources Field.pointerと当該indexのsupplied原raw要素、同じnamespace。node tag/fields矛盾ならunobserved/nullで原node全値保持。"
+      },
+      "source_role_unresolved": {
+        "left": "実role Field.original/pointer、実node未観測なら最寄りnode parent.original/pointer",
+        "right": "親raw.role対応不一致なら原node.parent.pointerと実raw.role Presence、それ以外unobserved/null"
+      },
+      "source_role_mismatch": {
+        "left": "原role Field.original/pointer、namespace owner_source_input",
+        "right": "固定expected_roleをcontract_literal/pointer null/supplied。wrong roleの同じ原因は1件だけ。"
+      }
+    },
+    "accessor_construction": {
+      "scope": "返却stringの著述規則。source_pointerとは別の論理到達式。固定slot/member以外の探索やsource資格を生成しない。",
+      "leaf_source": "leaf_correspondenceの当該row.source_accessorを文字列としてそのままcopy。",
+      "leaf_consumer": "leaf_correspondenceの当該row.consumer_accessorを文字列としてそのままcopy。",
+      "metadata_source": "occurrences.{slot}.node.fields.{member}",
+      "metadata_declared": "input.{slot}.fields.declared_metadata.fields.{member}",
+      "metadata_expansion": "{slot}は固定OwnerContextSlot、{member}は固定metadata_orderの名前に置換する。括弧を残すtemplate文字列を返さない。nodeが未観測でも同じ要求上の到達式を保持し、原pointer実在の証明とはしない。",
+      "environment_trace_os": {
+        "origin": "occurrences.os_origin.node.fields.scope.fields.environment",
+        "target": "occurrences.os_target.node.fields.scope.fields.environment"
+      },
+      "environment_trace_infra": "対応する/expected_origin/environment又は/expected_target/environment leaf.sourceを全field無変更copyする。",
+      "occurrence": "addressableな場合だけinput.original_owner_source_input.fields.sources.value[{index}]を返す。{index}は受理した数学的整数を符号なし10進（0又は先頭0なし）へ表した文字列で置換する。それ以外はnull。role/refやField.pointerからこのstringを逆算しない。"
+    },
+    "selection_blocked_source_operands": {
+      "scope": "source bodyがslot.status!=selectedで遮断された場合だけ。metadata/consumerの実読取と選択issueはこの表で置換しない。原addressable nodeと全portはoriginal_input/occurrencesに保持済み。",
+      "common_literals": {
+        "kind": "unobserved",
+        "field": null,
+        "native_profile": null,
+        "presence_observed": false,
+        "presence": null,
+        "content_state": "parent_unobserved",
+        "value": null,
+        "blocked_by_selection": true
+      },
+      "readers": {
+        "selected_scope_field": {
+          "nearest_parent": "同slot occurrence.nodeが非nullなら、その原Materialized node全値。node=nullならinputの同slot原Materialized port全値。",
+          "namespace": "occurrence.nodeが非nullならowner_source_input、node=nullならport_input。"
+        },
+        "selected_port_field": {
+          "nearest_parent": "inputの同slot原Materialized port全値。addressable source nodeがあってもport原parentを使い、遮断後のField childを読まない。",
+          "namespace": "port_input"
+        },
+        "selected_connection_field": {
+          "nearest_parent": "inputのconnect原Materialized port全値。遮断後のconnection childを読まない。",
+          "namespace": "port_input"
+        },
+        "infra_environment": {
+          "nearest_parent": "inputの同slot原Materialized environment port全値。遮断後のnative_input childを読まない。",
+          "namespace": "port_input"
+        }
+      },
+      "source_accessor": "該当leaf_correspondence.source_accessorの固定文字列をそのままcopy。未観測の所在を実読取したことにはしない。",
+      "source_pointer": "上のnearest_parentの原pointerをcopy。子pointerを作らない。",
+      "os_environment_trace": "selected_scope_fieldと同じparent/namespace規則で、source_accessorのみaccessor_construction.environment_trace_osの同side literal。",
+      "meaning_preserved": "選択原因からの派生unknown issueを追加せず、元selection issueと独立consumer原因を保持する。source資格/認可や新たなgateを生成しない。"
+    },
+    "metadata_unobserved_operands": {
+      "scope": "4metadata比較の未観測operandの著述。body選択とは別で、node_observation_usable=trueならrole不一致でも実metadataを通常規則で読む。source/declaredの未知から実Field childを人工生成しない。",
+      "unobserved_literals": {
+        "kind": "unobserved",
+        "field": null,
+        "native_profile": null,
+        "presence_observed": false,
+        "presence": null,
+        "content_state": "parent_unobserved",
+        "value": null,
+        "blocked_by_selection": false
+      },
+      "source_when_node_unusable": {
+        "condition": "occurrence.node_observation_usable=false",
+        "nearest_parent": "occurrence.nodeが非nullならその原Materialized node全値。node=nullならinputの同slot原Materialized port全値。",
+        "namespace": "nodeが非nullならowner_source_input、node=nullならport_input。",
+        "source_accessor": "accessor_construction.metadata_sourceの固定slot/member展開。",
+        "source_pointer": "上記nearest_parent.pointerの原値copy。未読のmetadata子pointerを作らない。"
+      },
+      "declared_when_port_unreadable": {
+        "nearest_parent": "inputの同slot原Materialized port全値。",
+        "namespace": "port_input",
+        "source_accessor": "accessor_construction.metadata_declaredの固定slot/member展開。",
+        "source_pointer": "その原port.pointerをcopy。"
+      },
+      "declared_when_metadata_parent_unreadable": {
+        "condition": "port親は観測可能で実declared_metadata Materialized nodeがあるが、その親が未観測/表現不整合。",
+        "nearest_parent": "その原declared_metadata Materialized node全値。",
+        "namespace": "port_input",
+        "source_accessor": "accessor_construction.metadata_declaredの固定slot/member展開。",
+        "source_pointer": "その原metadata親.pointerをcopy。"
+      },
+      "issue_suppression": "slotのport_parent_unreadableと同じ原port親の欠落/不整合はsource/declared両側metadataへ派生した同じ原因であり、追加port_source_binding_unresolvedを出さない。4pairは全て保持してgrade=unknown。同じselectionから独立したdeclared_metadata親/memberの不足・不整合は従来どおり保持する。",
+      "parent_cause_identity": "同じ未観測metadata親が4pairへ影響するときの原logical accessorはその親まで（例input.{slot}.fields.declared_metadata）。memberごとの人工child到達式ではなく原親の原因を一つとして、metadata_order先頭の影響pairにissueを保持する。独立した各memberの実Field不足は各memberの原因のまま。"
+    },
+    "absent_issue_operand": {
+      "scope": "selection_issue_operands/issue_bindingsで原Field/親/presenceも比較literalも指定しないunobserved/null operandのPrivateIssue field。実親を保持するkind=unobservedのContextOperandや実Absent Fieldとは別。",
+      "namespace": "unobserved",
+      "pointer": null,
+      "presence": null,
+      "preservation": "実Absent/null Field又は原parentが観測された場合は、その出典namespace/pointer/RawPresenceを保持し、このoperandなし表記へ置換しない。"
+    },
+    "legacy_source_scope": "source_contractが指すPR #3323のL4基本契約 /private_composition_contracts/1/source_basis にある旧SEA候補要求・対受入の保持点/変更点を継ぐ。これらをowner-context 8slotの旧詳細設計や、実運用で再現済みの個別障害報告とは扱わない。要求意味は固定L3-F01/F02と対L10から導く。",
+    "interpretation_notes": [
+      {
+        "topic": "raw_equalとcontent_stateの分離",
+        "meaning": "raw_equalは実RawPresence同士だけの型敏感等値である。実Fieldのrawがconsumer原presenceと同値でも、Field.valueとの表現不整合があればcontent_state=unknownとなる。C04dのraw_equal=trueはtyped値の意味使用を許可せず、representation issueを消さない。",
+        "basis": [
+          "comparison_and_reduction_rules/0",
+          "field_observation_rules/0",
+          "issue_bindings/source_representation_inconsistent"
+        ]
+      },
+      {
+        "topic": "CONNECT endpoint tenantとOS政策",
+        "meaning": "CONNECTのorigin/target tenant leafも、同sideのOS OwnerIdentityPort.tenant_applicableとconsumer context Boolの政策を用いる。診断slotは対象leafの固定connectで、原政策operandのnamespace/pointerはOS portのまま。OS selection遮断由来の政策unknownはCONNECT tenantでも同じselection原因としてissueを重ねず、独立したconsumer原因や既知false+nonnullの原因は保持する。",
+        "basis": [
+          "comparison_and_reduction_rules/2",
+          "comparison_and_reduction_rules/3",
+          "issue_emission_and_suppression/1",
+          "issue_emission_and_suppression/5",
+          "writers/ContextPrivateIssue/slot"
+        ]
+      }
+    ]
+  }
 }
