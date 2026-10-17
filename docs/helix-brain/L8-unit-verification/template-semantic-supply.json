@@ -691536,24 +691536,26 @@
               28
             ],
             "recipe_array_pointer": "/definition_meaning_walk_verification/current_source_basis_reconstruction/cases",
-            "recipe_index_rule": "recipe_index = formal_case_index - 8; recipe[recipe_index].case_index must equal formal_case_index (formal cases 8..28 map to recipe array entries 0..20).",
+            "recipe_index_rule": "recipe_index = formal_case_index - 8。recipe[recipe_index].case_indexはformal_case_indexと一致する。正式case 8..28をrecipe配列要素0..20へ対応させる。",
             "recipe_entry_fields": [
               "case_index",
               "case_id",
+              "input_base_pointer",
               "ordered_raw_patch_operation_indices",
               "raw_input_canonical_sha256",
               "expected_whole_canonical_sha256"
             ],
             "raw_patch_payload_pointer_pattern": "/definition_meaning_walk_verification/cases/{formal_case_index}/fixture_patch",
             "raw_patch_index_field": "ordered_raw_patch_operation_indices",
-            "pointer_semantics": "case_array_pointer and recipe_array_pointer are exact RFC 6901 pointers. raw_patch_payload_pointer_pattern is a placeholder pattern, not a resolved pointer; resolve the numeric formal_case_index against the case array before reading it. No /8..28 range suffix is treated as an RFC 6901 pointer."
+            "pointer_semantics": "case_array_pointerとrecipe_array_pointerは正確なRFC 6901 pointer。raw_patch_payload_pointer_patternは置換前のpatternであり解決済みpointerではない。数値formal_case_indexをcase配列へ適用してから読む。/8..28という範囲表記をRFC 6901 pointerとして扱わない。",
+            "helper_input_field_boundary": "recipeのinput_base_pointerは来歴の項目として保持し、helperはこれを読まない。helperは各正式caseのfixture_base_pointerを固定値へ照合し、materials[1].raw_inputから再構成する。"
           },
           "L8_whole_file_hash": "追加後のL8自身は自己bindingしない。raw base、既存case/patch recipes、helperに内包したordered patch hashesによる入力限定pinを用いる。"
         },
         "helper": {
           "command": "python3 -B docs/governance/audits/source-rebaseline/source-snapshots/brain032-independent-current-source-oracle.py",
           "construction_boundary": "構成前にL8のmaterials[1].raw_inputだけをraw-only wrapperへ取り出し、各caseのordered_raw_patch_operation_indicesが選ぶpatchだけを適用。expectedは21件のwhole構成・positive入力不変性・positive出力再利用確認後のcomparison-only段階で参照する。",
-          "finite_checks": "21件の入力hashとwhole hash、positive input invariance 21件、positive output reuse 21件を照合。不一致はFINITE_AUDIT_FAILかつ非ゼロ終了。この有限結果は製品gateではない。",
+          "finite_checks": "21件の入力hashとwhole hash、positive input invariance 21件、positive output reuse 21件を照合。比較段階のhash不一致はFINITE_AUDIT_FAILかつ非ゼロ終了。raw base/patch列/current L4/L5 source pinの不一致や構成前の検査失敗は、例外によって非ゼロ終了し、FINITE_AUDIT_FAILを出すとは限らない。この有限結果は製品gateではない。",
           "path": "docs/governance/audits/source-rebaseline/source-snapshots/brain032-independent-current-source-oracle.py",
           "role": "L8のraw入力とcurrent L4/L5規則から有限期待wholeを独立再構成する静的audit helper。製品・scaffold runtimeではない。DB、network、旧runtime、旧CI、tracked reader importなし。",
           "sha256": "44a7b97250fcc0db82b0a41e2c8c1eeeab20e717e6b04f3406bb232f5e6c5283"
@@ -691587,16 +691589,16 @@
           "tracked readerとの全21比較はrootの独立記録にある事実として参照する。R2 helper自体はtracked readerを呼ばない。"
         ],
         "scope": "R2の独立current-source helperを既存BRAIN032 L8 current_source_basis_reconstructionへ追加する再現情報。既存21caseのraw、expected、call、basis、case hash、approved target basisは変更・再掲しない。",
-        "status": "finite_current_source_oracle_replay_verified_by_root; not adopted historical authority and not product/runtime/CI evidence",
+        "status": "finite_current_source_oracle_replay_verified_by_root。過去の採択authorityや製品runtime/CIの証拠ではない。",
         "verification_history": {
           "independent_full_value_comparison": {
             "path": "scaffold/review-handoff/local/brain032-oracle-replay-proposal-r2/root-integrated-full-value-comparison.json",
-            "result": "PASS_ALL21_FULL_VALUE_REPLAY; root independently compared all four output roots for all 21 cases and confirmed every input unchanged.",
+            "result": "PASS_ALL21_FULL_VALUE_REPLAY。rootが独立に固定した21件の全4返却との全値一致と、全入力の不変を確認。",
             "sha256": "3341f194c3136c3c1941e30809b7859ff84c7e36ca3a197117f2fb44c07acc48"
           },
           "integrated_helper_run": {
             "path": "scaffold/review-handoff/local/brain032-oracle-replay-proposal-r2/root-first-integrated-helper-run.json",
-            "result": "FINITE_AUDIT_PASS; 21/21 raw input hash and existing whole hash comparisons true; helper hash is bound above.",
+            "result": "FINITE_AUDIT_PASS。21/21の入力hashと既存whole hashが一致。helper hashは上記で固定する。",
             "sha256": "46cc39efbe44d0edb696d0b410d1e8d0f6243a0276c4da4a7ae0a53277959b70"
           },
           "receipt_boundary": "上記2 receiptはscratch上の既存root検証記録であり、helperの実行時入力・import・formal L8の追加dependencyではない。"
@@ -691611,8 +691613,8 @@
         "post_authoring_mismatch_control": {
           "path": "scaffold/review-handoff/local/brain032-oracle-replay-proposal-r2/root-post-authoring-mismatch-control.json",
           "sha256": "d068e2343e17640b0133bfee00ec87ede77060a6528b6c72b7d4a139f515c52d",
-          "classification": "post-authoring hash-contamination control; not implementation-before-Red and not TDD Red evidence",
-          "recorded_result": "PASS_POST_AUTHORING_MISMATCH_CONTROL; comparison-only whole hash was corrupted in memory, checker exited 1 with FINITE_AUDIT_FAIL, and fixed source/frozen oracle files were not modified."
+          "classification": "著述後のhash汚染対照。実装前RedでもTDD Redの証拠でもない。",
+          "recorded_result": "PASS_POST_AUTHORING_MISMATCH_CONTROL。比較用whole hashだけをmemory内で改変し、FINITE_AUDIT_FAILと終了code 1を観測。固定source/凍結oracle fileは変更していない。"
         }
       }
     }
