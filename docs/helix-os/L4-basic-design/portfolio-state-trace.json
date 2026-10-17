@@ -1046,5 +1046,177 @@
         "caller_binding_effect": "旧diagnostic_contract.projects/node_kindsをselected-domain入力に使う呼出元はPortfolioTargetsを構築して第三引数へ渡す。baseline_fixture_compatibilityから自動補完/fallbackしない。"
       }
     }
+  },
+  "os015_origin_call_contract": {
+    "status": "limited_os015_origin_connection_contract_verification_unfrozen",
+    "scope": "callerがOS015 MaterialInput.recordsの一件をoriginとして明示選択した単一project/node associationだけ。通常caller-selectedとbaseline callerの入力・意味・公開返却は保持する。",
+    "requirement_basis": [
+      {
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/27",
+        "id": "HELIXOS-L3-016-F01",
+        "derivation": "要求/版・HARNESS契約版とsourceを別軸で結ぶ。OS015 originのtarget/source5軸とscope/requirement_revision2軸を同じnode associationへ対応させる。"
+      },
+      {
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/29",
+        "id": "HELIXOS-L3-016-F03",
+        "derivation": "unknown/conflictと原sourceを返し、無関係scopeを保持する。origin2軸の相反を全projectへ書戻さず当該node source facetへ縮約する。"
+      }
+    ],
+    "existing_rule_binding": [
+      "R01:非空string比較とunknown/conflict",
+      "R10:rank/既存Finding code・sort・dedup/論理owner",
+      "R11:原資料保持・局所隔離・false effect",
+      "R12:effective selected5軸の独立actual/context比較",
+      "R13-R15:missing/invalidとlocator union保持",
+      "R16:RFC6901と単一reduction"
+    ],
+    "input_port": {
+      "owner": "既存OS016 callerが選択とassociationを供給する。OS015は原MaterialInput/実際に得られた原返却のproducer。callerの選択は資格・受入・配送権限ではない。",
+      "ordinary_call": "第一引数SelectedPortfolioInput、diagnostic_contract、0..1の原targets引数をそのまま保持。NotSelectedは同じ引数個数・値の既存経路へ渡す。",
+      "origin_materials": {
+        "os015_raw_input": "Presence<JSONValue>: Absent/Present(null)/Present(value)を区別して保持。",
+        "os015_typed_input": "Absent | Present(exact MaterialInput)。同じ原wireから型に沿い形成された入力だけ。",
+        "os015_call_result": "NotProduced | Returned{material:exact MaterialAssessment,resolution_candidates:exact array<ResolutionCandidate>}。実際に得た返却だけで、未実行を合成しない。"
+      },
+      "selection": "NotSelected | Selected{os015_target_key:target_a|target_b,portfolio_project_key:string,portfolio_node_key:string} | SelectedButNotProduced{requested_selection:JSONValue,target_key:Presence<JSONValue>,project_key:Presence<JSONValue>,node_key:Presence<JSONValue>}。選択identityはcallerの原値。OS015 target_idからmap keyを作らない。 SelectedButNotProducedは有効locatorがあっても未生成を保持し、typed存在でProducedへ再昇格しない。variant別key抽出と返却はdispatch_precedenceに従う。",
+      "locator_resolution": "actual_targets_lookupとdispatch_precedenceのvariant別key抽出に従う。locatorは原targetsの実map keyだけから束縛し、actual/context/OS015から推測しない。",
+      "producer_boundary": "OS015 typed MaterialInputの形成が宣言型に沿い成立し、選択target record/sourceが同じraw入力に対応するときだけorigin recordをProducedとする。MaterialAssessmentがcorrespondingであることや実call_resultがReturnedであることはrecord投影の新gateにしない。原返却がunknown/conflictならそのまま保持し、OS016の資格や成功へ変換しない。typed形成不成立時にOS015 findingを作らない。 raw/typed全値の対応確認の責務・等値規則・不成立routeはraw_typed_pair_ruleに従う。",
+      "dispatch_precedence": [
+        {
+          "selection_variant": "NotSelected",
+          "key_extraction": "origin keyを読まない。",
+          "target_handling": "原0引数は0引数、原1引数はnull/誤型/空を含め同じ1引数で既存callerへ。",
+          "projection_status": "NotSelected",
+          "effective_targets": "原targetsの同presence/同値",
+          "source_bound_trace": "Returned(原callerのSourceBoundTrace)",
+          "origin_association_observations": "NotRequested"
+        },
+        {
+          "selection_variant": "Selected",
+          "key_extraction": "os015_target_key及びportfolio_project_key/portfolio_node_keyを宣言型から読む。後二keyはstring。空keyも実在map keyなら有効。",
+          "target_handling": "下記実targets lookupがBoundでpair ruleが成立した場合だけProduced。",
+          "when_bound_and_pair_ready": {
+            "projection_status": "Produced",
+            "effective_targets": "5原軸だけ投影したcopy",
+            "source_bound_trace": "Returned(当該joinを通した同call結果)",
+            "origin_association_observations": "Compared、operand_state=produced"
+          },
+          "when_bound_and_pair_not_ready": {
+            "projection_status": "NotProduced",
+            "effective_targets": "該当5軸をAbsentにしたcopy",
+            "source_bound_trace": "Returned(既存R12 unknownと2軸unknownをjoinした同call結果)",
+            "origin_association_observations": "Compared、operand_state=not_produced"
+          },
+          "when_unbound": "下記Unbound共通返却。"
+        },
+        {
+          "selection_variant": "SelectedButNotProduced",
+          "key_extraction": "project_key/node_keyが各Present(string)の場合だけ原stringをcandidate locatorとして読む。target_keyは原Presenceを保持するがProducedを成立させる選択値へ変換しない。",
+          "target_handling": "実targets lookupがBoundでも常にproducer NotProduced。typed入力が存在/同値でも再昇格しない。",
+          "when_bound": {
+            "projection_status": "NotProduced",
+            "effective_targets": "該当5軸をAbsentにしたcopy",
+            "source_bound_trace": "Returned(既存R12 unknownと2軸unknownをjoinした同call結果)",
+            "origin_association_observations": "Compared、operand_state=not_produced"
+          },
+          "when_unbound": "下記Unbound共通返却。"
+        }
+      ],
+      "actual_targets_lookup": {
+        "source": "原0..1 supplied_targetsだけ。OS015 source、actual/context、baselineから作らない。",
+        "Bound": "targets引数がPresent(object)でprojects/project entry/nodes/node entryが全て実object、指定2keyが各段階に実在するとき。共通project field/selector provenanceの値不正だけでlocatorをUnboundへしない。これらは既存R12/R17の別診断を残す。",
+        "Unbound": "targets引数Absent、Present(null/非object)、projects/project/nodes/nodeの最初missing/present-invalid、又はkey未供給/null/非string。不在段階から下位nodeを新造しない。",
+        "Unbound_return": {
+          "projection_status": "NotProduced",
+          "effective_targets": "Absent",
+          "source_bound_trace": "NotProduced",
+          "origin_association_observations": "NotProduced{selection captures,origin captures,reason:locator_unbound}",
+          "original_materials": "全原input/targets引数presence/OS015 raw/typed/実result/選択を保持。lookupの最初不在/blocked/present-invalid位置をCaptureで保持。",
+          "operation_effect": "none"
+        }
+      },
+      "raw_typed_pair_rule": {
+        "responsible_party": "同一invocationのprivate origin caller。既存typed portで受けたMaterialInputとwire原値の対応確認を担い、OS015 pure関数へ一般JSON validatorを追加しない。",
+        "ready": "selection variantがSelected、os015_raw_input=Present(raw)、os015_typed_input=Present(exact MaterialInput)、rawがその型に沿い形成された全JSON値と対応する場合。SourceRecordだけでなくphase/records/whole_registry_claim/context以下の全値とpresenceを対応させる。",
+        "equality": "OS015現formal_reference.primitive_semantics.equalの型付きJSON再帰等値。boolとnumberは別、object key順無視、array順保持、JSON number 1と1.0は同値。MISSINGとnullは別。default追加、空/null置換、member捨て/別source補完はしない。元raw/typed双方は変更せず保持する。digest一致やcarrier refだけをこの対応確認の代替にしない。",
+        "not_ready": "raw又はtyped未供給、raw shapeとdeclared MaterialInputの不対応、rawとtypedの全値不一致。明示SelectedでBoundならproducer NotProduced枝、UnboundならUnbound枝。Present(invalid JSON)をtyped MaterialInputとして認める入力拡張はしない。",
+        "return_observation": "既存私有original_materialsに双方の全値/presenceとselectionを保持し、Comparedの各operand_state=not_producedを返す。新public code/stateや資格判定は追加しない。返却OS015 materialがあれば同input由来の実返却だけを保持するという既存caller preconditionを維持し、ここでFN01再実行して資格を作らない。"
+      }
+    },
+    "projection": {
+      "copy_policy": "原targetsを保持しeffective targetsを別copyで形成。当該nodeの下記5fieldだけ置換し、ProjectTarget/他node/kind/selection_source_*は保持。actual/contextは一切形成・変更しない。",
+      "node_axes": [
+        {
+          "origin_field": "target_id",
+          "selected_field": "target_id"
+        },
+        {
+          "origin_field": "target_revision",
+          "selected_field": "target_revision"
+        },
+        {
+          "origin_field": "target_digest",
+          "selected_field": "target_digest"
+        },
+        {
+          "origin_field": "source_id",
+          "selected_field": "source_ref"
+        },
+        {
+          "origin_field": "source_revision",
+          "selected_field": "source_revision"
+        }
+      ],
+      "value_policy": "JSON値をそのまま投影。null/空/非stringを保持して既存R12 unknownへ。source_digestをtarget_digestへ使わず、OriginalEvent.source_refをSourceRecord.source_idの代替にしない。 source_id/source_revisionは明示選択したmanaged-source identityの限定的な同値operand供給であり、汎用URI/native Ref変換やevent/canonical/decision/responsibilityの同一化ではない。",
+      "five_axis_comparison": "R12どおりeffective NodeTarget各fieldをactual/sourceとcontext/sourceへ個別比較する。actual/context間R01の13軸とkind比較も保持する。OS015 actual/contextをOS016の三側へコピーしない。",
+      "not_produced_with_bound_locator": "同じcopyの当該node5fieldをAbsentにし、原caller5値へfallbackしない。元値はoriginal_materialsに保持。既存R12が各Absent target fieldへfield_unknownを返す。NodeTarget object・kindと他fieldは保持する。"
+    },
+    "local_project_axes": {
+      "axes": [
+        "scope",
+        "requirement_revision"
+      ],
+      "input": "同callのProduced origin.records[target_key].sourceの同名2fieldと、変更しない原targets.projects[project_key]の同名2field。raw pointerからSourceCapture(既存Absent/Blocked/Present)を作り、origin側の原20field/他資料も別保持。",
+      "capture_roots": {
+        "origin": "private invocation root /os015_raw_input/records/{escaped-target-key}/source/{axis}",
+        "selected_project": "private invocation root /existing_selected_targets/projects/{escaped-project-key}/{axis}"
+      },
+      "comparison": "Producedの各軸で両側が非空stringなら同値corresponding、既知差violation/field_conflict。それ以外はunknown/field_unknown。NotProducedではraw Captureを失わずoperand_state=not_produced、両軸unknownとしraw値をtyped producer成功へ昇格しない。Produced時operand_state=produced。",
+      "private_function": "compare_os015_origin_project_axes(explicit association, origin production state, origin axis captures, original ProjectTarget axis captures) -> OriginAssociationComparison。現compare_selected_nodeの既存引数は維持し、隠れたglobal operandを追加しない。",
+      "output_shape": {
+        "project_key": "string:束縛した実locator key",
+        "node_key": "string:束縛した実locator key",
+        "source_disposition": "corresponding|unknown|violation:両軸rank max",
+        "axis_observations": "scopeとrequirement_revision各々の閉record{operand_state:produced|not_produced,origin:SourceCapture,selected_project:SourceCapture,disposition:corresponding|unknown|violation,finding_key:null|{code,pointer,return_owner}}",
+        "findings": "array<既存Finding>:2原因が同一keyでも軸別観測を残し、TraceResult側だけR10でdedup。"
+      }
+    },
+    "diagnostic_and_reduction": {
+      "finding": "各非対応軸は既存field_unknown又はfield_conflict、pointer=/targets/projects/{RFC6901-p}/nodes/{RFC6901-n}、return_owner=portfolio-trace-owner。これは実在effective NodeTarget rootへのassociation診断であり、存在しないnode.scope等leafや正しいactual値の誤りを主張しない。詳細原因pointer/rawはaxis_observationsの両SourceCaptureへ残す。",
+      "join": "node loopの既存selected枝終了後・retention前で、当該node.sourceだけとsource_dispositionをR10 rank maxでjoinしfindingを同call列へ追加。both(actual,context)枝の外で行う。他8facet/他nodeは不変。欠落actual/contextのunknownは保持し、独立origin相反があればsourceだけviolationが併存する。",
+      "reduction": "既存retention/gap、alias/claim検査、全finding+全facetからの単一condition reduction、sort/dedupをそのまま通す。findingsだけ後appendした不整合返却や、第二の最終reducerを作らない。"
+    },
+    "return_port": {
+      "private_call_return": "閉record{original_materials,effective_targets,origin_selection,projection_status,source_bound_trace,origin_association_observations,operation_effect:none}。公開TraceResult11root及びSourceBoundTrace3rootを増やさない。",
+      "original_materials": "原OS016 input/0..1 targets引数、原OS015 raw/typed input・実call_result・requested selectionをpresence含め全値保持。",
+      "effective_targets": "Absent | Present(JSONValue):未生成はAbsent。原targetsの置換ではなく今回比較に使った実引数を保持。NotSelectedでは原0..1 targetsと同じpresence。",
+      "projection_status": "私有NotSelected | Produced | NotProduced。公表state/authorityにはしない。",
+      "source_bound_trace": "私有NotProduced | Returned(exact SourceBoundTrace)。NotSelectedは原caller結果。束縛済みNotProduced producerはunknownを含む実計算結果。locator未束縛はNotProducedでorigin traceを偽造しない。",
+      "origin_association_observations": "私有NotRequested | NotProduced{selection captures,origin captures,reason:locator_unbound} | Compared(OriginAssociationComparison)。全raw/欠落/null/型外の原因をsource captureへ保持。",
+      "consumer": "呼出元が同callのsource_bound_traceとorigin_association_observationsを一緒に受け、TraceResult findingをnodeへ返す際にfinding_keyで軸別原sourceを辿る。後続へ渡す場合も同じbundle又はそのexact参照を渡し、任意別callの所見を結ばない。論理ownerは既存portfolio-trace-owner、実解消先は既存source/ownersを辿る。OS015 FN02候補を配送先資格へcastしない。"
+    },
+    "branches": "input_port.dispatch_precedenceを唯一のvariant優先分岐とする。既存のNotSelected、束縛済みProduced、束縛済みNotProduced、未束縛NotProducedを区別し、通常callerへの暗黙fallbackをしない。",
+    "a03_boundary": "既存A03はeffective targetsを使う同call SourceBoundTraceのactual/context13軸、actual-selected/context-selected11軸を保つ。追加origin2軸を比較したとはしない。A03材料が全一致でもorigin2軸相反が併存できるので、origin consumerは私有axis_observationsも必ず読む。A03入力又は公開型へ架空origin fieldを混ぜない。",
+    "legacy_comparison": {
+      "reuse_class": "semantic_rederivation",
+      "source": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md lines115,129-138",
+      "preserve": "exact source ID/revision/digestとwork scopeの分離、affected ref/obligation単位、既存ownerへのtyped proposal。digestを発行者/実行資格にしない。",
+      "change": "既存OS015 record一件とOS016 selected node一件の私有入力対応と局所再評価を具体化。旧Ticket/DB/runtimeを移植・実行しない。",
+      "reason": "現L3 F01/F03のsource/版対応と局所理由保持を満たし、1node originでProjectTargetを書換え他nodeへ誤伝播させる不接続を防ぐ。"
+    },
+    "verification_boundary": "対L9は条件計画であり、原入力・全返却期待の独立先固定と局所検証は未成立。限定L5/L8の導出、実装前Red→Green→Refactor、実資格・実配送・受入をこの計画の存在で成立扱いしない。ケース件数・全provider・実DB/owner資格/CIをこの限定契約の新gateにはしない。",
+    "placement_boundary": "本節はOS015-originを明示選択する私有callerの追加契約であり、既存diagnostic_contractに供給する設定fieldではない。既存baseline/selected/A03の診断契約・複写・公開引数と返却は不変。新callerの型・関数・全期待のL5/L8具体化は未成立。"
   }
 }

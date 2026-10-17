@@ -423,7 +423,7 @@
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
       "revision_note": "caller-selected target契約に対応するL4 file bytes。対象source revisionの承認を示さない。",
       "binding_kind": "candidate_file_bytes",
-      "file_sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+      "file_sha256": "1801f4c383fac5639f7fa795b53c731eddba62c57554579f1a6b1c38eae1388c",
       "role": "domain_extension_casesを解釈するためのcaller-selected target契約。候補のfile bytes pinであり、承認・資格を意味しない。",
       "base_source_main": "5b99b6f329183a2c7bf0b12bcba53e9d93769e63"
     }
@@ -402060,5 +402060,97 @@
       "kind_oracle_sha256": "fd3c2f99c3a190757d6465fd41c7773777b8ca2fae20dbbbf8194f6489fef73e",
       "role": "git外の先行著述記録の来歴digest。正式な期待の値と原source pointerはこのgroupに含む。git外artifact自体はGitだけから再取得できず、意味の別正本にはしない。"
     }
+  },
+  "os015_origin_connection_verification_plan": {
+    "status": "case_plan_only_inputs_and_expectations_not_frozen",
+    "requirement_refs": [
+      "HELIXOS-L3-016-F01",
+      "HELIXOS-L3-016-F03"
+    ],
+    "oracle_refs": [
+      "HELIXOS-L10-016-F01",
+      "HELIXOS-L10-016-F03"
+    ],
+    "l4_candidate_binding": {
+      "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
+      "sha256": "1801f4c383fac5639f7fa795b53c731eddba62c57554579f1a6b1c38eae1388c"
+    },
+    "contract_pointer": "/os015_origin_call_contract",
+    "source_history": {
+      "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
+      "revision": "ddde2e02c5fef5b5136a1312523adf03b781fd9c",
+      "pointer": "/source_pins/13",
+      "original_l4_sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+      "role": "既存356+29+4caseを解釈していた元L4 file pin。旧case値・原pin出典はsource-indexへ保全し、現在active pinだけ新候補へ追随する。"
+    },
+    "pre_freeze_order": [
+      "現L3/L10と本L4追補に基づいて原入力を固定する。",
+      "要求・対検証から独立に全私有返却と公開SourceBoundTrace/TraceResultの全field期待を先固定する。",
+      "その後に限定L5/L8候補を導出し、必要な局所比較と独立検収を行う。現計画は期待/evaluatorの成立証拠ではない。"
+    ],
+    "observation_shape": [
+      "原OS015/OS016材料と原選択の全値/presence",
+      "effective targets5軸限定差分",
+      "公開TraceResult11rootと既存SourceBoundTrace3root",
+      "私有axis_observations全fieldとfinding key対応",
+      "NotProduced時のclosed variantと全raw Capture",
+      "false effect/noneと実owner資格未成立"
+    ],
+    "case_plan": [
+      {
+        "id": "ORIGIN-NOT-SELECTED",
+        "control": "origin NotSelected",
+        "conditions": "同じ0/1 targets呼出しの原SourceBoundTraceを保持し、origin未供給を新失敗にしない。"
+      },
+      {
+        "id": "ORIGIN-SEVEN-AXES-MATCH",
+        "control": "一件をProducedとして5node軸/2project軸同値",
+        "conditions": "原ProjectTarget/actual/context/他node/旧各facetと保持資料を維持し、origin双方Captureと対応結果を返す。"
+      },
+      {
+        "id": "ORIGIN-FIVE-AXIS-LOCAL-DIFF",
+        "control": "origin5軸の一値だけを独立に変える",
+        "conditions": "R12がeffective target対actual/context差を既存codeへ返し、独立actual/context比較を保つ。kind/他nodeへ値をコピーしない。"
+      },
+      {
+        "id": "ORIGIN-TWO-AXIS-LOCAL-CONFLICT",
+        "control": "同project二nodeの片方origin scopeとreqrevだけ共に既知相反",
+        "conditions": "ProjectTarget/他nodeを不変、当該sourceだけviolation。A03の13/11軸材料一致とorigin相反の併存を識別。Finding一件へdedupしてもaxis_observationsに2原因と両原値を残す。"
+      },
+      {
+        "id": "ORIGIN-AXIS-UNKNOWN",
+        "control": "Produced sourceの対象値null/空/型外、又は原ProjectTarget当該値欠落を局所対照として選ぶ",
+        "conditions": "null/Absent/BlockedのCapture区別を保持して既存unknownへ。missing inputをsourceから補わない。必要な最小対照のみ検証設計で選定する。"
+      },
+      {
+        "id": "ORIGIN-NOT-PRODUCED-BOUND",
+        "control": "node locatorは実在しOS015 rawはあるがtyped producer未形成",
+        "conditions": "原caller5値が正常でもeffective5はAbsentでfallbackを識別。局所2unknown/原wire保持/OS015 finding未捏造/他node不変。"
+      },
+      {
+        "id": "ORIGIN-LOCATOR-UNBOUND",
+        "control": "明示選択のlocatorが不在又はpresent-invalid",
+        "conditions": "私有NotProducedで原selection Captureを保持。新node、全nodeunknown化、origin TraceResultを生成しない。"
+      },
+      {
+        "id": "ORIGIN-MISSING-ACTUAL-OR-CONTEXT",
+        "control": "origin局所相反と独立actual/context欠落を併存",
+        "conditions": "既存R13のunknownとorigin source violationをrankで併存させ、存在側原資料と残8facet/他nodeを保持する。"
+      },
+      {
+        "id": "ORIGIN-POINTER-ESCAPE",
+        "control": "実map keyに/と~を含む同association",
+        "conditions": "診断node-rootをRFC6901でescapeし、A03 node locatorと私有軸別Captureの同一call対応を確認する。"
+      }
+    ],
+    "preservation": "既存cases356/domain_extension_cases29/source_candidate_return_verification.cases4の全値、fixture_inputs/fixture_contract/completion/既存全L4 rulesを不変。新case計画は既存件数に加算しない。",
+    "not_claimed": [
+      "期待値凍結",
+      "局所計算合格",
+      "全A02閉包",
+      "任意provider接続",
+      "実資格/実配送",
+      "92親430義務完了"
+    ]
   }
 }

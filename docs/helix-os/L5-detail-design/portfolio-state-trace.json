@@ -795,9 +795,9 @@
     "diagnostic_contract_ref": {
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
       "pointer": "/diagnostic_contract",
-      "sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+      "sha256": "1801f4c383fac5639f7fa795b53c731eddba62c57554579f1a6b1c38eae1388c",
       "hash_scope": "sha256/file_sha256はL4 file bytes、object_canonical_sha256はpointer先のcanonical JSON bytes。",
-      "file_sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
+      "file_sha256": "1801f4c383fac5639f7fa795b53c731eddba62c57554579f1a6b1c38eae1388c",
       "object_canonical_sha256": "862b8918b5d55fdc2a96aae0a1f1e29c908211769a3df5218c3c2b374d02854d",
       "role": "baseline/selectedの規範計算に明示供給する現行L4診断契約。"
     },
