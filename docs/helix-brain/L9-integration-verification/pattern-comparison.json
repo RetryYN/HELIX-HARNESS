@@ -1310,7 +1310,1073 @@
         }
       ],
       "execution_state": "not_executed",
-      "effect": "none"
+      "effect": "none",
+      "owner_return_symbolic_conditions": {
+        "id": "HELIXBRAIN-L9-004-F01-OWNER-RETURN-SYMBOLIC",
+        "status": "symbolic_source_condition_plan_not_literal_whole",
+        "scope": "F01 native comparison不足とCORE要求値返却の結合を、既存native返却/原値/別軸bindingへ結ぶ。実資格・実実行・公開wholeを主張しない。",
+        "candidate_function_ref": "BRAIN004-F01-OWNER-RETURN",
+        "l4_wrapper_ref": "/contracts/0/private_owner_return_wrapper",
+        "condition_count": 9,
+        "conditions": [
+          {
+            "id": "BRAIN004-F01-OWNER-RETURN-S01-present-null",
+            "condition_id": "S01-present-null",
+            "input_construction": {
+              "native_f01_input": {
+                "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+                "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+                "source_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+                "source_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
+              },
+              "original_application_source": {
+                "state": "present_value",
+                "raw_value": {
+                  "request": {
+                    "problem": "Data Consistency fixture problem",
+                    "requirement_revision": "fixture-required-values-r1",
+                    "scope": "fixture-product-P/pattern-comparison"
+                  },
+                  "f01_native_input": {
+                    "copy_from": "native_f01_input",
+                    "except_patch": []
+                  },
+                  "requirement_values_observation": {
+                    "presence": "present",
+                    "value": null
+                  }
+                }
+              },
+              "invocation_request_binding": {
+                "state": "present_value",
+                "raw_value": {
+                  "problem": "Data Consistency fixture problem",
+                  "requirement_revision": "fixture-required-values-r1",
+                  "scope": "fixture-product-P/pattern-comparison"
+                }
+              },
+              "requirement_values_observation": {
+                "presence": "present",
+                "value": null
+              }
+            },
+            "expected_projection": {
+              "native_return": {
+                "copy_exact_whole_from_l9_expected_material": "/verification_obligations/0/concrete_cases/0/expected_material",
+                "canonical_sha256": "9afc9d493fcdae437dddb1e52e50198cbc34a9cb6e395dc89881d6cd7c1c036b",
+                "meaning": "既存native F01Return全値。候補から再計算しない。"
+              },
+              "input_echoes": "4つのinput operandを各対応するF01OwnerReturnEnvelope fieldへ全値コピー。",
+              "application_binding": {
+                "state": "matched",
+                "comparison_order": [
+                  "f01_native_input",
+                  "requirement_values_observation",
+                  "problem",
+                  "requirement_revision",
+                  "scope"
+                ],
+                "statuses": [
+                  "matched",
+                  "matched",
+                  "matched",
+                  "matched",
+                  "matched"
+                ],
+                "issue_indexes": [],
+                "fold_order": "conflict > present_null > absent > unknown > matched"
+              },
+              "availability": {
+                "evaluated": true,
+                "value": "missing"
+              },
+              "brain_comparison_materials": [],
+              "core_requirement_materials": [
+                {
+                  "desired_role": "CORE",
+                  "destination_candidate": "CORE",
+                  "attribution_state": "matched",
+                  "confirmation": "known_missing",
+                  "availability_evaluated": true,
+                  "availability": "missing",
+                  "requirement_values_observation": {
+                    "presence": "present",
+                    "value": null
+                  },
+                  "declared_request_pointer": "/original_application_source/raw_value/request",
+                  "actual_request_binding_pointer": "/invocation_request_binding/raw_value",
+                  "declared_request_observation": {
+                    "state": "present_value",
+                    "raw_value_source_pointer": "/original_application_source/raw_value/request",
+                    "mapping": "JSONValue全値copy"
+                  }
+                }
+              ],
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
+            },
+            "basis": {
+              "l3_ref": "HELIXBRAIN-L3-004-F01",
+              "l10_ref": "HELIXBRAIN-L10-004-F01",
+              "l4_ref": "/contracts/0/private_owner_return_wrapper",
+              "l5_ref": "/functions/4",
+              "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+              "source_file_sha256": "d65b3fb20e467c4841c1ef40f1440e20ec9cb4d0ef5f9616167b5863153f9ae8",
+              "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+              "source_case_id": "B004-F01-THREE-CANDIDATES-SIX-AXES",
+              "source_case_canonical_sha256": "9164faa7600f0f48ff65bd1bad3f96263b7410a3daa0e6f554dde530e8b572db",
+              "frozen_symbolic_condition_sha256": "f5588035e6cdf64937bd6792fee8900fa3c457fa29d363f9b5300dd8281b2333",
+              "freeze_role": "独立に固定済みの著述履歴。公開再構成はtracked source pointer、literal request/observation、明示copy/patchのみを使う。"
+            }
+          },
+          {
+            "id": "BRAIN004-F01-OWNER-RETURN-S02-present-object",
+            "condition_id": "S02-present-object",
+            "input_construction": {
+              "native_f01_input": {
+                "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+                "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+                "source_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+                "source_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
+              },
+              "original_application_source": {
+                "state": "present_value",
+                "raw_value": {
+                  "request": {
+                    "problem": "Data Consistency fixture problem",
+                    "requirement_revision": "fixture-required-values-r1",
+                    "scope": "fixture-product-P/pattern-comparison"
+                  },
+                  "f01_native_input": {
+                    "copy_from": "native_f01_input",
+                    "except_patch": []
+                  },
+                  "requirement_values_observation": {
+                    "presence": "present",
+                    "value": {
+                      "input": "合成の提示済み要求値"
+                    }
+                  }
+                }
+              },
+              "invocation_request_binding": {
+                "state": "present_value",
+                "raw_value": {
+                  "problem": "Data Consistency fixture problem",
+                  "requirement_revision": "fixture-required-values-r1",
+                  "scope": "fixture-product-P/pattern-comparison"
+                }
+              },
+              "requirement_values_observation": {
+                "presence": "present",
+                "value": {
+                  "input": "合成の提示済み要求値"
+                }
+              }
+            },
+            "expected_projection": {
+              "native_return": {
+                "copy_exact_whole_from_l9_expected_material": "/verification_obligations/0/concrete_cases/0/expected_material",
+                "canonical_sha256": "9afc9d493fcdae437dddb1e52e50198cbc34a9cb6e395dc89881d6cd7c1c036b",
+                "meaning": "既存native F01Return全値。候補から再計算しない。"
+              },
+              "input_echoes": "4つのinput operandを各対応するF01OwnerReturnEnvelope fieldへ全値コピー。",
+              "application_binding": {
+                "state": "matched",
+                "comparison_order": [
+                  "f01_native_input",
+                  "requirement_values_observation",
+                  "problem",
+                  "requirement_revision",
+                  "scope"
+                ],
+                "statuses": [
+                  "matched",
+                  "matched",
+                  "matched",
+                  "matched",
+                  "matched"
+                ],
+                "issue_indexes": [],
+                "fold_order": "conflict > present_null > absent > unknown > matched"
+              },
+              "availability": {
+                "evaluated": true,
+                "value": "supplied_fixture_only"
+              },
+              "brain_comparison_materials": [],
+              "core_requirement_materials": [],
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
+            },
+            "basis": {
+              "l3_ref": "HELIXBRAIN-L3-004-F01",
+              "l10_ref": "HELIXBRAIN-L10-004-F01",
+              "l4_ref": "/contracts/0/private_owner_return_wrapper",
+              "l5_ref": "/functions/4",
+              "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+              "source_file_sha256": "d65b3fb20e467c4841c1ef40f1440e20ec9cb4d0ef5f9616167b5863153f9ae8",
+              "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+              "source_case_id": "B004-F01-THREE-CANDIDATES-SIX-AXES",
+              "source_case_canonical_sha256": "9164faa7600f0f48ff65bd1bad3f96263b7410a3daa0e6f554dde530e8b572db",
+              "frozen_symbolic_condition_sha256": "c7a85a84735da68eaae0c6c42ad8ce207a6136c1eeed79f77f946f6d211a18b6",
+              "freeze_role": "独立に固定済みの著述履歴。公開再構成はtracked source pointer、literal request/observation、明示copy/patchのみを使う。"
+            }
+          },
+          {
+            "id": "BRAIN004-F01-OWNER-RETURN-S03-cost-missing-and-requirement-missing",
+            "condition_id": "S03-cost-missing-and-requirement-missing",
+            "input_construction": {
+              "native_f01_input": {
+                "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+                "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+                "source_pointer": "/verification_obligations/0/concrete_cases/6/independent_source_packet/raw_utf8",
+                "source_raw_sha256": "f4c40ad02531ebab580445804bab4d27fd8e26838b5e21d50524d0ce01a71305",
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
+              },
+              "original_application_source": {
+                "state": "present_value",
+                "raw_value": {
+                  "request": {
+                    "problem": "Data Consistency fixture problem",
+                    "requirement_revision": "fixture-required-values-r1",
+                    "scope": "fixture-product-P/pattern-comparison"
+                  },
+                  "f01_native_input": {
+                    "copy_from": "native_f01_input",
+                    "except_patch": []
+                  },
+                  "requirement_values_observation": {
+                    "presence": "present",
+                    "value": null
+                  }
+                }
+              },
+              "invocation_request_binding": {
+                "state": "present_value",
+                "raw_value": {
+                  "problem": "Data Consistency fixture problem",
+                  "requirement_revision": "fixture-required-values-r1",
+                  "scope": "fixture-product-P/pattern-comparison"
+                }
+              },
+              "requirement_values_observation": {
+                "presence": "present",
+                "value": null
+              }
+            },
+            "expected_projection": {
+              "native_return": {
+                "copy_exact_whole_from_l9_expected_material": "/verification_obligations/0/concrete_cases/6/expected_material",
+                "canonical_sha256": "e8bb43486e0eff5801912b2a1242e0235db1d46fc61935a838f84cae392e9cad",
+                "meaning": "既存native F01Return全値。候補から再計算しない。"
+              },
+              "input_echoes": "4つのinput operandを各対応するF01OwnerReturnEnvelope fieldへ全値コピー。",
+              "application_binding": {
+                "state": "matched",
+                "comparison_order": [
+                  "f01_native_input",
+                  "requirement_values_observation",
+                  "problem",
+                  "requirement_revision",
+                  "scope"
+                ],
+                "statuses": [
+                  "matched",
+                  "matched",
+                  "matched",
+                  "matched",
+                  "matched"
+                ],
+                "issue_indexes": [],
+                "fold_order": "conflict > present_null > absent > unknown > matched"
+              },
+              "availability": {
+                "evaluated": true,
+                "value": "missing"
+              },
+              "brain_comparison_materials": [
+                {
+                  "candidate_key": "EVENTUAL",
+                  "field_pointer": "/provided_candidates/EVENTUAL/axes/cost",
+                  "native_result_pointer": "/candidate_results/EVENTUAL/axes/cost",
+                  "native_status": "missing",
+                  "provided_presence": "absent",
+                  "required_presence": "present",
+                  "provided_candidate_pointer": "/native_f01_input/provided_candidates/EVENTUAL",
+                  "required_candidate_pointer": "/native_f01_input/required_candidates/EVENTUAL"
+                }
+              ],
+              "core_requirement_materials": [
+                {
+                  "desired_role": "CORE",
+                  "destination_candidate": "CORE",
+                  "attribution_state": "matched",
+                  "confirmation": "known_missing",
+                  "availability_evaluated": true,
+                  "availability": "missing",
+                  "requirement_values_observation": {
+                    "presence": "present",
+                    "value": null
+                  },
+                  "declared_request_pointer": "/original_application_source/raw_value/request",
+                  "actual_request_binding_pointer": "/invocation_request_binding/raw_value",
+                  "declared_request_observation": {
+                    "state": "present_value",
+                    "raw_value_source_pointer": "/original_application_source/raw_value/request",
+                    "mapping": "JSONValue全値copy"
+                  }
+                }
+              ],
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
+            },
+            "basis": {
+              "l3_ref": "HELIXBRAIN-L3-004-F01",
+              "l10_ref": "HELIXBRAIN-L10-004-F01",
+              "l4_ref": "/contracts/0/private_owner_return_wrapper",
+              "l5_ref": "/functions/4",
+              "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+              "source_file_sha256": "d65b3fb20e467c4841c1ef40f1440e20ec9cb4d0ef5f9616167b5863153f9ae8",
+              "source_case_pointer": "/verification_obligations/0/concrete_cases/6",
+              "source_case_id": "B004-F01-COST-MISSING",
+              "source_case_canonical_sha256": "f9c7ac578444f66d7579cceec282ed81940cd8d70e2f138d0b8a3cfea32abaa5",
+              "frozen_symbolic_condition_sha256": "0c034d13fc041dbb98d08239b87a9c3def130f719cd93bfdbc744ac6e58d0b5b",
+              "freeze_role": "独立に固定済みの著述履歴。公開再構成はtracked source pointer、literal request/observation、明示copy/patchのみを使う。"
+            }
+          },
+          {
+            "id": "BRAIN004-F01-OWNER-RETURN-S04-foreign-request-scope",
+            "condition_id": "S04-foreign-request-scope",
+            "input_construction": {
+              "native_f01_input": {
+                "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+                "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+                "source_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+                "source_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
+              },
+              "original_application_source": {
+                "state": "present_value",
+                "raw_value": {
+                  "request": {
+                    "problem": "Data Consistency fixture problem",
+                    "requirement_revision": "fixture-required-values-r1",
+                    "scope": "fixture-product-P/pattern-comparison"
+                  },
+                  "f01_native_input": {
+                    "copy_from": "native_f01_input",
+                    "except_patch": []
+                  },
+                  "requirement_values_observation": {
+                    "presence": "present",
+                    "value": null
+                  }
+                }
+              },
+              "invocation_request_binding": {
+                "state": "present_value",
+                "raw_value": {
+                  "problem": "Data Consistency fixture problem",
+                  "requirement_revision": "fixture-required-values-r1",
+                  "scope": "fixture-product-Q/pattern-comparison"
+                }
+              },
+              "requirement_values_observation": {
+                "presence": "present",
+                "value": null
+              }
+            },
+            "expected_projection": {
+              "native_return": {
+                "copy_exact_whole_from_l9_expected_material": "/verification_obligations/0/concrete_cases/0/expected_material",
+                "canonical_sha256": "9afc9d493fcdae437dddb1e52e50198cbc34a9cb6e395dc89881d6cd7c1c036b",
+                "meaning": "既存native F01Return全値。候補から再計算しない。"
+              },
+              "input_echoes": "4つのinput operandを各対応するF01OwnerReturnEnvelope fieldへ全値コピー。",
+              "application_binding": {
+                "state": "conflict",
+                "comparison_order": [
+                  "f01_native_input",
+                  "requirement_values_observation",
+                  "problem",
+                  "requirement_revision",
+                  "scope"
+                ],
+                "statuses": [
+                  "matched",
+                  "matched",
+                  "matched",
+                  "matched",
+                  "conflict"
+                ],
+                "issue_indexes": [
+                  4
+                ],
+                "fold_order": "conflict > present_null > absent > unknown > matched"
+              },
+              "availability": {
+                "evaluated": true,
+                "value": "missing"
+              },
+              "brain_comparison_materials": [],
+              "core_requirement_materials": [
+                {
+                  "desired_role": "CORE",
+                  "destination_candidate": null,
+                  "attribution_state": "conflict",
+                  "confirmation": "known_missing",
+                  "availability_evaluated": true,
+                  "availability": "missing",
+                  "requirement_values_observation": {
+                    "presence": "present",
+                    "value": null
+                  },
+                  "declared_request_pointer": "/original_application_source/raw_value/request",
+                  "actual_request_binding_pointer": "/invocation_request_binding/raw_value",
+                  "declared_request_observation": {
+                    "state": "present_value",
+                    "raw_value_source_pointer": "/original_application_source/raw_value/request",
+                    "mapping": "JSONValue全値copy"
+                  }
+                }
+              ],
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
+            },
+            "basis": {
+              "l3_ref": "HELIXBRAIN-L3-004-F01",
+              "l10_ref": "HELIXBRAIN-L10-004-F01",
+              "l4_ref": "/contracts/0/private_owner_return_wrapper",
+              "l5_ref": "/functions/4",
+              "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+              "source_file_sha256": "d65b3fb20e467c4841c1ef40f1440e20ec9cb4d0ef5f9616167b5863153f9ae8",
+              "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+              "source_case_id": "B004-F01-THREE-CANDIDATES-SIX-AXES",
+              "source_case_canonical_sha256": "9164faa7600f0f48ff65bd1bad3f96263b7410a3daa0e6f554dde530e8b572db",
+              "frozen_symbolic_condition_sha256": "f21dca7fd5da409826701c11ae5846dddbc901b8788ae0a9469cf46d11625ff7",
+              "freeze_role": "独立に固定済みの著述履歴。公開再構成はtracked source pointer、literal request/observation、明示copy/patchのみを使う。"
+            }
+          },
+          {
+            "id": "BRAIN004-F01-OWNER-RETURN-S05-original-native-input-foreign",
+            "condition_id": "S05-original-native-input-foreign",
+            "input_construction": {
+              "native_f01_input": {
+                "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+                "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+                "source_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+                "source_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
+              },
+              "original_application_source": {
+                "state": "present_value",
+                "raw_value": {
+                  "request": {
+                    "problem": "Data Consistency fixture problem",
+                    "requirement_revision": "fixture-required-values-r1",
+                    "scope": "fixture-product-P/pattern-comparison"
+                  },
+                  "f01_native_input": {
+                    "copy_from": "native_f01_input",
+                    "except_patch": [
+                      {
+                        "op": "replace",
+                        "path": "/required_candidates/STRONG/knowledge_ref/revision",
+                        "value": "knowledge-r2"
+                      }
+                    ]
+                  },
+                  "requirement_values_observation": {
+                    "presence": "present",
+                    "value": null
+                  }
+                }
+              },
+              "invocation_request_binding": {
+                "state": "present_value",
+                "raw_value": {
+                  "problem": "Data Consistency fixture problem",
+                  "requirement_revision": "fixture-required-values-r1",
+                  "scope": "fixture-product-P/pattern-comparison"
+                }
+              },
+              "requirement_values_observation": {
+                "presence": "present",
+                "value": null
+              }
+            },
+            "expected_projection": {
+              "native_return": {
+                "copy_exact_whole_from_l9_expected_material": "/verification_obligations/0/concrete_cases/0/expected_material",
+                "canonical_sha256": "9afc9d493fcdae437dddb1e52e50198cbc34a9cb6e395dc89881d6cd7c1c036b",
+                "meaning": "既存native F01Return全値。候補から再計算しない。"
+              },
+              "input_echoes": "4つのinput operandを各対応するF01OwnerReturnEnvelope fieldへ全値コピー。",
+              "application_binding": {
+                "state": "conflict",
+                "comparison_order": [
+                  "f01_native_input",
+                  "requirement_values_observation",
+                  "problem",
+                  "requirement_revision",
+                  "scope"
+                ],
+                "statuses": [
+                  "conflict",
+                  "matched",
+                  "matched",
+                  "matched",
+                  "matched"
+                ],
+                "issue_indexes": [
+                  0
+                ],
+                "fold_order": "conflict > present_null > absent > unknown > matched"
+              },
+              "availability": {
+                "evaluated": true,
+                "value": "missing"
+              },
+              "brain_comparison_materials": [],
+              "core_requirement_materials": [
+                {
+                  "desired_role": "CORE",
+                  "destination_candidate": null,
+                  "attribution_state": "conflict",
+                  "confirmation": "known_missing",
+                  "availability_evaluated": true,
+                  "availability": "missing",
+                  "requirement_values_observation": {
+                    "presence": "present",
+                    "value": null
+                  },
+                  "declared_request_pointer": "/original_application_source/raw_value/request",
+                  "actual_request_binding_pointer": "/invocation_request_binding/raw_value",
+                  "declared_request_observation": {
+                    "state": "present_value",
+                    "raw_value_source_pointer": "/original_application_source/raw_value/request",
+                    "mapping": "JSONValue全値copy"
+                  }
+                }
+              ],
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
+            },
+            "basis": {
+              "l3_ref": "HELIXBRAIN-L3-004-F01",
+              "l10_ref": "HELIXBRAIN-L10-004-F01",
+              "l4_ref": "/contracts/0/private_owner_return_wrapper",
+              "l5_ref": "/functions/4",
+              "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+              "source_file_sha256": "d65b3fb20e467c4841c1ef40f1440e20ec9cb4d0ef5f9616167b5863153f9ae8",
+              "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+              "source_case_id": "B004-F01-THREE-CANDIDATES-SIX-AXES",
+              "source_case_canonical_sha256": "9164faa7600f0f48ff65bd1bad3f96263b7410a3daa0e6f554dde530e8b572db",
+              "frozen_symbolic_condition_sha256": "4265a9418392e9bb0cbb53fe108455eb0f2ea7e82618cd0c79d016830e49e171",
+              "freeze_role": "独立に固定済みの著述履歴。公開再構成はtracked source pointer、literal request/observation、明示copy/patchのみを使う。"
+            }
+          },
+          {
+            "id": "BRAIN004-F01-OWNER-RETURN-S06-application-unknown-same-raw",
+            "condition_id": "S06-application-unknown-same-raw",
+            "input_construction": {
+              "native_f01_input": {
+                "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+                "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+                "source_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+                "source_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
+              },
+              "original_application_source": {
+                "state": "unknown",
+                "raw_value": {
+                  "request": {
+                    "problem": "Data Consistency fixture problem",
+                    "requirement_revision": "fixture-required-values-r1",
+                    "scope": "fixture-product-P/pattern-comparison"
+                  },
+                  "f01_native_input": {
+                    "copy_from": "native_f01_input",
+                    "except_patch": []
+                  },
+                  "requirement_values_observation": {
+                    "presence": "present",
+                    "value": null
+                  }
+                }
+              },
+              "invocation_request_binding": {
+                "state": "present_value",
+                "raw_value": {
+                  "problem": "Data Consistency fixture problem",
+                  "requirement_revision": "fixture-required-values-r1",
+                  "scope": "fixture-product-P/pattern-comparison"
+                }
+              },
+              "requirement_values_observation": {
+                "presence": "present",
+                "value": null
+              }
+            },
+            "expected_projection": {
+              "native_return": {
+                "copy_exact_whole_from_l9_expected_material": "/verification_obligations/0/concrete_cases/0/expected_material",
+                "canonical_sha256": "9afc9d493fcdae437dddb1e52e50198cbc34a9cb6e395dc89881d6cd7c1c036b",
+                "meaning": "既存native F01Return全値。候補から再計算しない。"
+              },
+              "input_echoes": "4つのinput operandを各対応するF01OwnerReturnEnvelope fieldへ全値コピー。",
+              "application_binding": {
+                "state": "unknown",
+                "comparison_order": [
+                  "f01_native_input",
+                  "requirement_values_observation",
+                  "problem",
+                  "requirement_revision",
+                  "scope"
+                ],
+                "statuses": [
+                  "unknown",
+                  "unknown",
+                  "unknown",
+                  "unknown",
+                  "unknown"
+                ],
+                "issue_indexes": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "fold_order": "conflict > present_null > absent > unknown > matched"
+              },
+              "availability": {
+                "evaluated": true,
+                "value": "missing"
+              },
+              "brain_comparison_materials": [],
+              "core_requirement_materials": [
+                {
+                  "desired_role": "CORE",
+                  "destination_candidate": null,
+                  "attribution_state": "unknown",
+                  "confirmation": "known_missing",
+                  "availability_evaluated": true,
+                  "availability": "missing",
+                  "requirement_values_observation": {
+                    "presence": "present",
+                    "value": null
+                  },
+                  "declared_request_pointer": "/original_application_source/raw_value/request",
+                  "actual_request_binding_pointer": "/invocation_request_binding/raw_value",
+                  "declared_request_observation": {
+                    "state": "unknown",
+                    "raw_value_source_pointer": "/original_application_source/raw_value/request",
+                    "mapping": "JSONValue全値copy"
+                  }
+                }
+              ],
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
+            },
+            "basis": {
+              "l3_ref": "HELIXBRAIN-L3-004-F01",
+              "l10_ref": "HELIXBRAIN-L10-004-F01",
+              "l4_ref": "/contracts/0/private_owner_return_wrapper",
+              "l5_ref": "/functions/4",
+              "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+              "source_file_sha256": "d65b3fb20e467c4841c1ef40f1440e20ec9cb4d0ef5f9616167b5863153f9ae8",
+              "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+              "source_case_id": "B004-F01-THREE-CANDIDATES-SIX-AXES",
+              "source_case_canonical_sha256": "9164faa7600f0f48ff65bd1bad3f96263b7410a3daa0e6f554dde530e8b572db",
+              "frozen_symbolic_condition_sha256": "dc0ca2aae9bb39f5475804ce716b9c1a3fc2670298be6857b43fd2fb2bdb0662",
+              "freeze_role": "独立に固定済みの著述履歴。公開再構成はtracked source pointer、literal request/observation、明示copy/patchのみを使う。"
+            }
+          },
+          {
+            "id": "BRAIN004-F01-OWNER-RETURN-S07-member-absent",
+            "condition_id": "S07-member-absent",
+            "input_construction": {
+              "native_f01_input": {
+                "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+                "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+                "source_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+                "source_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
+              },
+              "original_application_source": {
+                "state": "present_value",
+                "raw_value": {
+                  "request": {
+                    "problem": "Data Consistency fixture problem",
+                    "requirement_revision": "fixture-required-values-r1",
+                    "scope": "fixture-product-P/pattern-comparison"
+                  },
+                  "f01_native_input": {
+                    "copy_from": "native_f01_input",
+                    "except_patch": []
+                  },
+                  "requirement_values_observation": {
+                    "presence": "absent",
+                    "value": null
+                  }
+                }
+              },
+              "invocation_request_binding": {
+                "state": "present_value",
+                "raw_value": {
+                  "problem": "Data Consistency fixture problem",
+                  "requirement_revision": "fixture-required-values-r1",
+                  "scope": "fixture-product-P/pattern-comparison"
+                }
+              },
+              "requirement_values_observation": {
+                "presence": "absent",
+                "value": null
+              }
+            },
+            "expected_projection": {
+              "native_return": {
+                "copy_exact_whole_from_l9_expected_material": "/verification_obligations/0/concrete_cases/0/expected_material",
+                "canonical_sha256": "9afc9d493fcdae437dddb1e52e50198cbc34a9cb6e395dc89881d6cd7c1c036b",
+                "meaning": "既存native F01Return全値。候補から再計算しない。"
+              },
+              "input_echoes": "4つのinput operandを各対応するF01OwnerReturnEnvelope fieldへ全値コピー。",
+              "application_binding": {
+                "state": "matched",
+                "comparison_order": [
+                  "f01_native_input",
+                  "requirement_values_observation",
+                  "problem",
+                  "requirement_revision",
+                  "scope"
+                ],
+                "statuses": [
+                  "matched",
+                  "matched",
+                  "matched",
+                  "matched",
+                  "matched"
+                ],
+                "issue_indexes": [],
+                "fold_order": "conflict > present_null > absent > unknown > matched"
+              },
+              "availability": {
+                "evaluated": false,
+                "value": null
+              },
+              "brain_comparison_materials": [],
+              "core_requirement_materials": [
+                {
+                  "desired_role": "CORE",
+                  "destination_candidate": "CORE",
+                  "attribution_state": "matched",
+                  "confirmation": "needs_observation",
+                  "availability_evaluated": false,
+                  "availability": null,
+                  "requirement_values_observation": {
+                    "presence": "absent",
+                    "value": null
+                  },
+                  "declared_request_pointer": "/original_application_source/raw_value/request",
+                  "actual_request_binding_pointer": "/invocation_request_binding/raw_value",
+                  "declared_request_observation": {
+                    "state": "present_value",
+                    "raw_value_source_pointer": "/original_application_source/raw_value/request",
+                    "mapping": "JSONValue全値copy"
+                  }
+                }
+              ],
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
+            },
+            "basis": {
+              "l3_ref": "HELIXBRAIN-L3-004-F01",
+              "l10_ref": "HELIXBRAIN-L10-004-F01",
+              "l4_ref": "/contracts/0/private_owner_return_wrapper",
+              "l5_ref": "/functions/4",
+              "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+              "source_file_sha256": "d65b3fb20e467c4841c1ef40f1440e20ec9cb4d0ef5f9616167b5863153f9ae8",
+              "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+              "source_case_id": "B004-F01-THREE-CANDIDATES-SIX-AXES",
+              "source_case_canonical_sha256": "9164faa7600f0f48ff65bd1bad3f96263b7410a3daa0e6f554dde530e8b572db",
+              "frozen_symbolic_condition_sha256": "43c5b87c62ed24b3399bfff30c7c71b1d787cc329e4ffbf71ee6e5925d698943",
+              "freeze_role": "独立に固定済みの著述履歴。公開再構成はtracked source pointer、literal request/observation、明示copy/patchのみを使う。"
+            }
+          },
+          {
+            "id": "BRAIN004-F01-OWNER-RETURN-S08-member-unknown-same-object",
+            "condition_id": "S08-member-unknown-same-object",
+            "input_construction": {
+              "native_f01_input": {
+                "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+                "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+                "source_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+                "source_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
+              },
+              "original_application_source": {
+                "state": "present_value",
+                "raw_value": {
+                  "request": {
+                    "problem": "Data Consistency fixture problem",
+                    "requirement_revision": "fixture-required-values-r1",
+                    "scope": "fixture-product-P/pattern-comparison"
+                  },
+                  "f01_native_input": {
+                    "copy_from": "native_f01_input",
+                    "except_patch": []
+                  },
+                  "requirement_values_observation": {
+                    "presence": "unknown",
+                    "value": {
+                      "input": "合成の提示済み要求値"
+                    }
+                  }
+                }
+              },
+              "invocation_request_binding": {
+                "state": "present_value",
+                "raw_value": {
+                  "problem": "Data Consistency fixture problem",
+                  "requirement_revision": "fixture-required-values-r1",
+                  "scope": "fixture-product-P/pattern-comparison"
+                }
+              },
+              "requirement_values_observation": {
+                "presence": "unknown",
+                "value": {
+                  "input": "合成の提示済み要求値"
+                }
+              }
+            },
+            "expected_projection": {
+              "native_return": {
+                "copy_exact_whole_from_l9_expected_material": "/verification_obligations/0/concrete_cases/0/expected_material",
+                "canonical_sha256": "9afc9d493fcdae437dddb1e52e50198cbc34a9cb6e395dc89881d6cd7c1c036b",
+                "meaning": "既存native F01Return全値。候補から再計算しない。"
+              },
+              "input_echoes": "4つのinput operandを各対応するF01OwnerReturnEnvelope fieldへ全値コピー。",
+              "application_binding": {
+                "state": "matched",
+                "comparison_order": [
+                  "f01_native_input",
+                  "requirement_values_observation",
+                  "problem",
+                  "requirement_revision",
+                  "scope"
+                ],
+                "statuses": [
+                  "matched",
+                  "matched",
+                  "matched",
+                  "matched",
+                  "matched"
+                ],
+                "issue_indexes": [],
+                "fold_order": "conflict > present_null > absent > unknown > matched"
+              },
+              "availability": {
+                "evaluated": false,
+                "value": null
+              },
+              "brain_comparison_materials": [],
+              "core_requirement_materials": [
+                {
+                  "desired_role": "CORE",
+                  "destination_candidate": "CORE",
+                  "attribution_state": "matched",
+                  "confirmation": "needs_observation",
+                  "availability_evaluated": false,
+                  "availability": null,
+                  "requirement_values_observation": {
+                    "presence": "unknown",
+                    "value": {
+                      "input": "合成の提示済み要求値"
+                    }
+                  },
+                  "declared_request_pointer": "/original_application_source/raw_value/request",
+                  "actual_request_binding_pointer": "/invocation_request_binding/raw_value",
+                  "declared_request_observation": {
+                    "state": "present_value",
+                    "raw_value_source_pointer": "/original_application_source/raw_value/request",
+                    "mapping": "JSONValue全値copy"
+                  }
+                }
+              ],
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
+            },
+            "basis": {
+              "l3_ref": "HELIXBRAIN-L3-004-F01",
+              "l10_ref": "HELIXBRAIN-L10-004-F01",
+              "l4_ref": "/contracts/0/private_owner_return_wrapper",
+              "l5_ref": "/functions/4",
+              "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+              "source_file_sha256": "d65b3fb20e467c4841c1ef40f1440e20ec9cb4d0ef5f9616167b5863153f9ae8",
+              "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+              "source_case_id": "B004-F01-THREE-CANDIDATES-SIX-AXES",
+              "source_case_canonical_sha256": "9164faa7600f0f48ff65bd1bad3f96263b7410a3daa0e6f554dde530e8b572db",
+              "frozen_symbolic_condition_sha256": "266be6b708cedbb0dd948e3b94eef6b493ed9ed142f933696d54b3d219704c6f",
+              "freeze_role": "独立に固定済みの著述履歴。公開再構成はtracked source pointer、literal request/observation、明示copy/patchのみを使う。"
+            }
+          },
+          {
+            "id": "BRAIN004-F01-OWNER-RETURN-S09-application-unknown-with-cost-shortage",
+            "condition_id": "S09-application-unknown-with-cost-shortage",
+            "input_construction": {
+              "native_f01_input": {
+                "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+                "source_path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+                "source_pointer": "/verification_obligations/0/concrete_cases/6/independent_source_packet/raw_utf8",
+                "source_raw_sha256": "f4c40ad02531ebab580445804bab4d27fd8e26838b5e21d50524d0ce01a71305",
+                "extract": "厳密なUTF-8 JSON objectとして読み、その全値を既存F01Input operandとする。"
+              },
+              "original_application_source": {
+                "state": "unknown",
+                "raw_value": {
+                  "request": {
+                    "problem": "Data Consistency fixture problem",
+                    "requirement_revision": "fixture-required-values-r1",
+                    "scope": "fixture-product-P/pattern-comparison"
+                  },
+                  "f01_native_input": {
+                    "copy_from": "native_f01_input",
+                    "except_patch": []
+                  },
+                  "requirement_values_observation": {
+                    "presence": "present",
+                    "value": null
+                  }
+                }
+              },
+              "invocation_request_binding": {
+                "state": "present_value",
+                "raw_value": {
+                  "problem": "Data Consistency fixture problem",
+                  "requirement_revision": "fixture-required-values-r1",
+                  "scope": "fixture-product-P/pattern-comparison"
+                }
+              },
+              "requirement_values_observation": {
+                "presence": "present",
+                "value": null
+              }
+            },
+            "expected_projection": {
+              "native_return": {
+                "copy_exact_whole_from_l9_expected_material": "/verification_obligations/0/concrete_cases/6/expected_material",
+                "canonical_sha256": "e8bb43486e0eff5801912b2a1242e0235db1d46fc61935a838f84cae392e9cad",
+                "meaning": "既存native F01Return全値。候補から再計算しない。"
+              },
+              "input_echoes": "4つのinput operandを各対応するF01OwnerReturnEnvelope fieldへ全値コピー。",
+              "application_binding": {
+                "state": "unknown",
+                "comparison_order": [
+                  "f01_native_input",
+                  "requirement_values_observation",
+                  "problem",
+                  "requirement_revision",
+                  "scope"
+                ],
+                "statuses": [
+                  "unknown",
+                  "unknown",
+                  "unknown",
+                  "unknown",
+                  "unknown"
+                ],
+                "issue_indexes": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "fold_order": "conflict > present_null > absent > unknown > matched"
+              },
+              "availability": {
+                "evaluated": true,
+                "value": "missing"
+              },
+              "brain_comparison_materials": [
+                {
+                  "candidate_key": "EVENTUAL",
+                  "field_pointer": "/provided_candidates/EVENTUAL/axes/cost",
+                  "native_result_pointer": "/candidate_results/EVENTUAL/axes/cost",
+                  "native_status": "missing",
+                  "provided_presence": "absent",
+                  "required_presence": "present",
+                  "provided_candidate_pointer": "/native_f01_input/provided_candidates/EVENTUAL",
+                  "required_candidate_pointer": "/native_f01_input/required_candidates/EVENTUAL"
+                }
+              ],
+              "core_requirement_materials": [
+                {
+                  "desired_role": "CORE",
+                  "destination_candidate": null,
+                  "attribution_state": "unknown",
+                  "confirmation": "known_missing",
+                  "availability_evaluated": true,
+                  "availability": "missing",
+                  "requirement_values_observation": {
+                    "presence": "present",
+                    "value": null
+                  },
+                  "declared_request_pointer": "/original_application_source/raw_value/request",
+                  "actual_request_binding_pointer": "/invocation_request_binding/raw_value",
+                  "declared_request_observation": {
+                    "state": "unknown",
+                    "raw_value_source_pointer": "/original_application_source/raw_value/request",
+                    "mapping": "JSONValue全値copy"
+                  }
+                }
+              ],
+              "operation_effect": "none。native_return.effectsとQは変更せず保持する。"
+            },
+            "basis": {
+              "l3_ref": "HELIXBRAIN-L3-004-F01",
+              "l10_ref": "HELIXBRAIN-L10-004-F01",
+              "l4_ref": "/contracts/0/private_owner_return_wrapper",
+              "l5_ref": "/functions/4",
+              "source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+              "source_file_sha256": "d65b3fb20e467c4841c1ef40f1440e20ec9cb4d0ef5f9616167b5863153f9ae8",
+              "source_case_pointer": "/verification_obligations/0/concrete_cases/6",
+              "source_case_id": "B004-F01-COST-MISSING",
+              "source_case_canonical_sha256": "f9c7ac578444f66d7579cceec282ed81940cd8d70e2f138d0b8a3cfea32abaa5",
+              "frozen_symbolic_condition_sha256": "bf7b29700cff1c7fedfbb06dba361d3c9c686fa8a73f73ef911e6ae35a2ff899",
+              "freeze_role": "独立に固定済みの著述履歴。公開再構成はtracked source pointer、literal request/observation、明示copy/patchのみを使う。"
+            }
+          }
+        ],
+        "representation_contract": {
+          "scope_ja": "凍結済みsymbolic条件のexpected core materialにあるdeclared_request tupleから、公開返却型F01CoreRequiredValueMaterial.declared_request_observationへの対応。型変換でrequestを補完しない。",
+          "source_state": "original_application_source.stateがabsent/present_null/unknownなら伝播する。親present_valueでraw_valueが非objectならunknown。親present_valueかつraw_valueがobjectならrequest member不在=absent、null=present_null、非object=unknown、object=present_value。raw memberの見かけから親stateをpresent_valueへ昇格しない。",
+          "source_value": "原値の転記とstate判定は独立する。original_application_sourceの親stateにかかわらず、raw_valueがobjectでrequest memberを参照できれば、そのmemberの全JSONValueをdeclared_request_observation.raw_valueへ完全コピーする。memberを参照できない場合だけ原raw_value全体を保持する。親stateのabsent/present_null/unknownはstateへ伝播し、原値の転記でpresent_valueへ昇格させない。",
+          "frozen_expected_mapping": {
+            "source_field": "symbolic-expected-conditions.json#/conditions/*/symbolic_expected/core_requirement_return_materials/*/declared_request",
+            "destination_field": "#/type_system/definitions/F01CoreRequiredValueMaterial/properties/declared_request_observation",
+            "mapping": "凍結materialのdeclared_request tuple全値を、原raw request memberを読めるときにF01CoreRequiredValueMaterial.declared_request_observation.raw_valueへ同じJSONValueとして写す。stateはL5のrequest member実効状態規則で判定し、tuple全値を返却recordの別shapeへ展開/正規化しない。",
+            "input_raw_source": "同conditionのtracked original_application_source.raw_value.request",
+            "destination_document": "docs/helix-brain/L5-detail-design/pattern-comparison.json; destination_field pointer is resolved in that L5 document."
+          },
+          "observation_record_comparison": "2番目の比較はoriginal側と実operand側のrequirement_values_observation record全体（presence/valueを含む）のJSON等値比較。record内presenceをoperand stateへ写さず、原record対応と実値のavailabilityを独立に扱う。",
+          "input_construction_vocabulary": {
+            "scope": "検証入力を固定Git sourceと明示literalから再構成する著述用表記。製品のpatch APIや実行DSLではない。",
+            "copy_from": "同conditionで再構成したnative_f01_input全値を、original_application_source.raw_value.f01_native_inputへ1回コピーする。",
+            "except_patch": "copy後のf01_native_input値をrootとして、配列順に1回ずつ適用する局所差分。空配列なら無変更。",
+            "operations": "この9条件ではop=replaceのみ。pathはRFC 6901 pointerで既存memberを指し、valueのJSON値へ置換する。RFC 6902全演算の採用ではない。S05の1置換だけを使用する。",
+            "single_location": "差分はcopy_fromと同じrecordのexcept_patchだけに記す。外側への二重記載は行わない。"
+          }
+        },
+        "current_l4_binding": {
+          "path": "docs/helix-brain/L4-basic-design/pattern-comparison.json",
+          "file_sha256": "93cfd4981db6142e544156c51bfe6cb3ccb05400d467d937a715a22fe117ad99",
+          "pointer": "/contracts/0/private_owner_return_wrapper",
+          "object_canonical_sha256": "ef6afb9d216f03f7dd2cd982000b5bfd7828d50ccd66fe1df2c1a950ee06deed"
+        },
+        "current_l5_binding": {
+          "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+          "file_sha256": "deb772a866b8e6c1ec5c0252485f081dc097a9d2bdf5a0051b72217f93d044c3",
+          "pointer": "/functions/4",
+          "object_canonical_sha256": "c539dfa07ed2c849ad45fb914cad17c5c1b891fad533ca4eecd1bb97b7b9d8af"
+        }
+      }
     },
     {
       "id": "HELIXBRAIN-L9-004-F02",
@@ -3218,13 +4284,13 @@
         ],
         "candidate_l5_binding": {
           "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
-          "file_sha256": "d27ecfac55b40b5f4ae85d3c1cddfabceafa6d1260f9c7650fb29ef2de3fce60",
+          "file_sha256": "deb772a866b8e6c1ec5c0252485f081dc097a9d2bdf5a0051b72217f93d044c3",
           "pointer": "/functions/3",
-          "object_canonical_sha256": "20b24914cd5004c0999287fea4938b398dc85b17ef6ea36ab542a49fc6c66bb7"
+          "object_canonical_sha256": "24ac0ac22160f044183752ab541e98df410728482c1333b5d9c8d8e4f991d81d"
         },
         "current_l4_binding": {
           "path": "docs/helix-brain/L4-basic-design/pattern-comparison.json",
-          "file_sha256": "2cf9f95c09da02bd93086e656e8456c5c546d73d47f88f76e4d592106294a159",
+          "file_sha256": "93cfd4981db6142e544156c51bfe6cb3ccb05400d467d937a715a22fe117ad99",
           "pointer": "/contracts/1/private_owner_return_wrapper",
           "object_canonical_sha256": "2fc7a2dc113bb215474d81f4022261512757532e2897758a75dff3fe4646ebca"
         },
