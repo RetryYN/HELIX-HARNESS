@@ -3603,7 +3603,8 @@
           "actual_state_changed": false,
           "operation_effect": "none"
         },
-        "precedence": "carrier rootの不正に対する上記findingを一件だけ返す。読めない子partから子findingを合成しない。record rootで読めるpartの既存findingsを消す規則ではない。"
+        "precedence": "carrier rootの不正に対する上記findingを一件だけ返す。読めない子partから子findingを合成しない。record rootで読めるpartの既存findingsを消す規則ではない。",
+        "base_difference": "baseのpure_algorithm配列は値を保持する。ただし未規定だったroot非record/fields不読の分岐はこの補足を優先する。base第1文を不足partごとに適用して子pointerのfindingを作る読み方とは異なり、親rootの不足1件へ具体化する。record rootの既存part比較と既存115/205件の期待は変更しない。"
       }
     },
     {
@@ -3758,9 +3759,9 @@
             "basis_pointer": "/functions/5/pure_algorithm/0"
           },
           {
-            "condition": "finding.code=scope_input_unresolved AND ((finding.pointer=source_frame.pointer AND (source_frame.tag != record OR source_frame.fields unreadable)) OR (finding.pointer=/request AND request parent unavailable))",
+            "condition": "finding.code=scope_input_unresolvedで、(finding.pointerがsource_frame.pointerと等しく、source_frame.tagがrecordでない又はsource_frame.fieldsを読めない)か、(finding.pointer=/requestで、source_frameのrequest親が利用できない)場合。括弧の両分岐にcode条件を適用する。",
             "candidate_owner": "SECURITY003",
-            "basis_pointer": "/functions/7/same_frame_nonrecord_supplement; /functions/12/field_writers/source_frame"
+            "basis_pointer": "/functions/7/same_frame_nonrecord_supplement; /type_contract/logical_types/ScopeFrame; /type_contract/result_types/Materialized<T>"
           },
           {
             "condition": "その他",
@@ -3768,7 +3769,9 @@
           }
         ],
         "scope_material_writer": "source_frame.originalがsuppliedでrawがobject、かつそのraw.requestがobjectの場合だけ、実在するrequest.origin/request.target keyを同名でcopyする。元keyが存在してnullならnullをそのまま保持し、欠落keyは省略する。それ以外は{}。原親tag/original/rawはsource_frame/native_inputに保持する。",
-        "effect": "actual_route_invoked=false。candidate_ownerは候補であり実recipient・資格・配送・ACKではない。"
+        "effect": "actual_route_invoked=false。candidate_ownerは候補であり実recipient・資格・配送・ACKではない。",
+        "base_difference": "baseのpure_algorithm配列は値を保持し、未規定だった原request keyの欠落と実nullの保持、および入力親不足の候補ownerの分岐をこの補足で具体化する。",
+        "source_frame_basis": "fn10の既存引数BackflowInput.source_frameで供給されたMaterialized<ScopeFrame>を直接読む。root/fieldsが読める場合だけそのrequest nodeを読む。借用viewを作る呼出し元のfn12本文に依存しない。"
       }
     },
     {
@@ -3914,7 +3917,7 @@
           "collision": "unknown_membersの同名keyは既存値を保持。元rawはnative_input.original/source_frame.originalに残す。"
         },
         "backflow_input": {
-          "type": "Materialized<BackflowInput> logical assembly",
+          "type": "Materialized<BackflowInput>（論理的に組み立てる値）",
           "root_members": {
             "tag": "定数record",
             "pointer": "定数空文字列",
@@ -3981,17 +3984,17 @@
           "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
           "binding_kind": "same_document_current_object",
           "pointer": "/functions/7",
-          "object_canonical_sha256": "25561bb339335cdc7e2f720d045cae3bb36fcd230727b5cd4b0cf11ec516dd50"
+          "object_canonical_sha256": "67aec37a24882da10e46c3bf21c7829365025d38debdb0552f8a02ed38e47a8b"
         },
         {
           "dependency": "fn10",
           "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
           "binding_kind": "same_document_current_object",
           "pointer": "/functions/10",
-          "object_canonical_sha256": "7273b079c91a594b356f40c683cf2082d01e91805f49bd05211bb8bf6eecf311"
+          "object_canonical_sha256": "746e78a473f67ba2e9c4980a612c5a62caa27cbb03fc25f77f977b23b72b724e"
         },
         {
-          "dependency": "operation comparison helper",
+          "dependency": "操作比較の既存補助関数",
           "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
           "binding_kind": "same_document_current_object",
           "pointer": "/functions/5",
@@ -4054,7 +4057,7 @@
           "object_canonical_sha256": "7db92685c3f12b94d4afb41179ac89e76c818839eb78604d9ba62254821cd53c"
         },
         {
-          "dependency": "Operation domain",
+          "dependency": "Operationの閉じた値域",
           "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
           "binding_kind": "same_document_current_object",
           "pointer": "/type_contract/domains/Operation",
@@ -4112,7 +4115,8 @@
         "HELIXSECURITY-L5-003-retain_owner_source_material",
         "HELIXSECURITY-L5-003-compare_consumer_binding",
         "HELIXSECURITY-L5-003-describe_scope_backflow",
-        "HELIXSECURITY-L5-003-compare_caller_material"
+        "HELIXSECURITY-L5-003-compare_caller_material",
+        "HELIXSECURITY-L5-003-compose_scope_proposal_and_backflow"
       ]
     },
     {
@@ -4163,7 +4167,8 @@
         "HELIXSECURITY-L5-003-retain_owner_source_material",
         "HELIXSECURITY-L5-003-compare_consumer_binding",
         "HELIXSECURITY-L5-003-describe_scope_backflow",
-        "HELIXSECURITY-L5-003-compare_caller_material"
+        "HELIXSECURITY-L5-003-compare_caller_material",
+        "HELIXSECURITY-L5-003-compose_scope_proposal_and_backflow"
       ]
     }
   ],
@@ -4176,9 +4181,9 @@
     {
       "document": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
       "revision": "current_candidate",
-      "file_sha256": "c060c7aa1b2670277f1f1cf5c168356f36cb9c4f32d32e76b91cd9bca82d461e",
+      "file_sha256": "982ad757b76f844b980a20e175d8efe7c3adc09a11396334ccfe3439d6d5d449",
       "pointer": "/private_composition_contracts/0",
-      "object_canonical_sha256": "d192bbceaae0b86f952d8039795d5acde3fe7be7dda71e773914ca6a74b9a60d",
+      "object_canonical_sha256": "c1865e886685fb099417baaff79f08b93cbcd86424dd2bf74200bcad4863f91e",
       "binding_kind": "current_candidate_file_and_object"
     }
   ]

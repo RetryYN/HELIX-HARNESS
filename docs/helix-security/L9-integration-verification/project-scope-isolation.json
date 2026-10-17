@@ -28861,25 +28861,25 @@
     "evidence": "205固定合成対照の設計だけ。実隔離/owner資格/対接続/全coverage/実L9L10L11は未成立。"
   },
   "same_frame_invocation_conditions": {
-    "status": "source-linked symbolic integration conditions; no runtime observation",
+    "status": "原sourceに結び付いた有限の接続検証条件。runtimeの観測ではない。",
     "current_l4_binding": {
       "document": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-      "file_sha256": "c060c7aa1b2670277f1f1cf5c168356f36cb9c4f32d32e76b91cd9bca82d461e",
+      "file_sha256": "982ad757b76f844b980a20e175d8efe7c3adc09a11396334ccfe3439d6d5d449",
       "pointer": "/private_composition_contracts/0",
-      "object_canonical_sha256": "d192bbceaae0b86f952d8039795d5acde3fe7be7dda71e773914ca6a74b9a60d"
+      "object_canonical_sha256": "c1865e886685fb099417baaff79f08b93cbcd86424dd2bf74200bcad4863f91e"
     },
     "candidate_l5_binding": {
       "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
-      "file_sha256": "b9da5cebcf8e4adac613ba7b4b0c3bce4d4d729617a57e3cc6713e8cab5fe957",
+      "file_sha256": "0446fb19ad7785f2dd469fe4accdc181fedfd8d00737736bd2d9c737300240ae",
       "pointer": "/functions/12",
-      "object_canonical_sha256": "949e4f98ac0326301e4b9bd714817e7e3e8d504b473e91f32593117dac6682a4",
+      "object_canonical_sha256": "9d99c26d17c8d40e31628e5352d68b10bca6e12189875653dcff7710dad82f8f",
       "binding_kind": "current_candidate_file_and_object"
     },
     "candidate_l8_binding": {
       "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-      "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+      "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
       "pointer": "/same_frame_invocation_contract",
-      "object_canonical_sha256": "7fa1aaad557632be3187ed314992bab348b2a7cbeab2cdb7e36a2fe4769a6fb3"
+      "object_canonical_sha256": "1db873133c2a55697d9fca0c0f311a8b26c3093c374ebd7e55b40e736c993571"
     },
     "conditions": [
       {
@@ -28893,13 +28893,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/0/input_recipe",
             "object_canonical_sha256": "039a078c4c9c0d396d198ac646ce6e57b36b2dec1f9e56c66bdea6cda8d6f9c6"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/0/expected_result_recipe",
             "object_canonical_sha256": "27dad57e3e5fb30b501b0ecef45c77a9cd09a4994f12561b4bee499a1415050b",
             "expected_whole_canonical_sha256": "855b35e2bc74a02e26ca8ff6f891b768c9abf317c595ed166e56a40fc7590c18"
@@ -28932,13 +28932,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/1/input_recipe",
             "object_canonical_sha256": "9a420447dbfb3d2259fa90612a8841374379a32a43525afa1f90eb0f17c5d759"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/1/expected_result_recipe",
             "object_canonical_sha256": "9ef06422cb28bf2be724633d6bbb8e87f5ff0644b4ece87e63800cf6fd0a95ba",
             "expected_whole_canonical_sha256": "6e11854c30140220e1642aed2340de232e0a827c926c99bf03b17ee171457897"
@@ -28971,13 +28971,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/2/input_recipe",
             "object_canonical_sha256": "41ec5204389d19437b3d7cfbec86129bf2042c2bdee15a64b78259ad472d1635"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/2/expected_result_recipe",
             "object_canonical_sha256": "02203adf7ba48a57d526291261246636fd930e76ee63923bc3d87ec9ab8a9da8",
             "expected_whole_canonical_sha256": "98dad6cd529bc88a48a5eaf03ce407c01aa83ae4873fc6a63c28edae39e17c08"
@@ -29010,13 +29010,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/3/input_recipe",
             "object_canonical_sha256": "9c74b988cdfd5f32eb810b1b27e2f698212a5637d4620d601e40797a5609caaf"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/3/expected_result_recipe",
             "object_canonical_sha256": "9a7757dd8bf8f6c3fc4f86bfe16cc595340064c353e8a7cc04916fa640242739",
             "expected_whole_canonical_sha256": "815485dbbe8183d2810b38c171c2dc2e63102e8d1835cb1ccfe34225dad03313"
@@ -29049,13 +29049,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/4/input_recipe",
             "object_canonical_sha256": "2588e25300ab47a330186f198d6cdcd4805844768f56f722d17296b869f2b7f6"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/4/expected_result_recipe",
             "object_canonical_sha256": "24a08ae6cdc3cdaa7b164119ef36b44225796182441b4c18998cc06bb038ea21",
             "expected_whole_canonical_sha256": "3b57c290cc40b5481afa0f85e6c0de007b0d2977a121e3e6bcbb97ebd1482981"
@@ -29088,13 +29088,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/5/input_recipe",
             "object_canonical_sha256": "58d9bead65a062290e3130170df448763bca7d8fd55a834eec062d2a0b3ffe73"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/5/expected_result_recipe",
             "object_canonical_sha256": "f0af773844eb19e7f875444b28014c7878b4f6ad6d27f89a0b4bfd15007bbb45",
             "expected_whole_canonical_sha256": "b8edb6d3bd340bf4c4366f34743a798e079bee927ec0dbcc3f24a762bd9f62fb"
@@ -29127,13 +29127,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/6/input_recipe",
             "object_canonical_sha256": "f183f8ea19e01a4c8980fe581b7bc554914d3294d0b46acc735c9351fe3a770c"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/6/expected_result_recipe",
             "object_canonical_sha256": "557564f3c641b4b7b0ed19cfd516ee1f4f5e0c5d4d50465c653990b05280b495",
             "expected_whole_canonical_sha256": "2327e875b952aed12b6e64ca3d10f7857969796871d61ffb2c58ddc0cad83f0c"
@@ -29166,13 +29166,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/7/input_recipe",
             "object_canonical_sha256": "85bb59a5c2c24e48a903ea0c7d0c237f47ce36f72785fb5e43925e49dd8cd1a4"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/7/expected_result_recipe",
             "object_canonical_sha256": "c1be1c4da1842d9f18b8828e3f26beeecd9ab60389e930313630243609081951",
             "expected_whole_canonical_sha256": "cb9af5f9607c07bf4e02be3921bfb9ca0637aa0594e523ed1cba576f46ae0ae8"
@@ -29205,13 +29205,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/8/input_recipe",
             "object_canonical_sha256": "d380ea857d9adb541f891d36dad9c32b54857ea6775fdd2c07750210349858f2"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/8/expected_result_recipe",
             "object_canonical_sha256": "6e3347538c5ff132af5b6cd15444d0d465a3ab063cc11d72ad72e19f25119633",
             "expected_whole_canonical_sha256": "6208176da88af94370e00834ef70b8fb93ad697087caa92c069318ec52e266d6"
@@ -29244,13 +29244,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/9/input_recipe",
             "object_canonical_sha256": "9bf654b0d30d28d29a1d040447a89642ff484151d9bf317893fc281e2e2fd557"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/9/expected_result_recipe",
             "object_canonical_sha256": "5ef7339f0a3ff8aaea60c48e5e3042f23cf696a163fd4ff863a7980d8301d922",
             "expected_whole_canonical_sha256": "0fccc4b78d5fae9791a52bd54298ba82fb4879eae8383d6f98e60d5b0b90cccf"
@@ -29283,13 +29283,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/10/input_recipe",
             "object_canonical_sha256": "13fbd26c0f0cf5b3cb2ba11aaa43a2e978409800849511dbbb8cb9fcec352b58"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/10/expected_result_recipe",
             "object_canonical_sha256": "10bc0255a23217e20d51edec0f841b339fce35e46cd20c3d2af0cc8e8392351c",
             "expected_whole_canonical_sha256": "cb3fb7f0cb48f87a362679d90b6debd823001adb6d9be85a8f5f72cc9fa0b4f3"
@@ -29322,13 +29322,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/11/input_recipe",
             "object_canonical_sha256": "924e82fa7cd8958e862f598fe251e40f2d3c97111131d814b235934feaa44597"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/11/expected_result_recipe",
             "object_canonical_sha256": "d9441b2d30cf9f6732d516c6a6b0dab4009e7b407907f6eb8b1daba65af70cd6",
             "expected_whole_canonical_sha256": "97d45c7982f20963fc48c024fcff6bf64962136af2442396308200edab616bce"
@@ -29361,13 +29361,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/12/input_recipe",
             "object_canonical_sha256": "90721ae40d08a20c0023232049af59eb10367e9bb6a77a1c4ecfdf341559a70b"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/12/expected_result_recipe",
             "object_canonical_sha256": "692c990a817b9f30c633c1e7947cd60b3da2d4cd15587d2dec19685dd965c806",
             "expected_whole_canonical_sha256": "998e7ac09e9f8494ba223bd1d79a8409b2283f1da657a4f48a852fe1db752312"
@@ -29400,13 +29400,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/13/input_recipe",
             "object_canonical_sha256": "94212833157c461cfa0664c1d6c8bdf472110b707922b7ce1204095125915fa8"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/13/expected_result_recipe",
             "object_canonical_sha256": "b8ab76e69e55ddbe0bf727c34b3c184d324d59abc1063643b7f55674abf2d0d8",
             "expected_whole_canonical_sha256": "92d5250574e55584d0c95667bb6cee91f86c521830de2eba5e1fab6f8771d944"
@@ -29439,13 +29439,13 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/14/input_recipe",
             "object_canonical_sha256": "d249d5c8f79dad6255095ae6465b6086a672622d6f12c26ac72af5aa5cf17b84"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "68bbd93f29d6b4fe72da26a5afe74912af2ac574c69900f96c301c7623f08979",
+            "file_sha256": "c6efd1ee65ff66809dc69929bb2444203bad67e3ebc4a7a2bb8352b8f6c5a13c",
             "pointer": "/same_frame_invocation_contract/cases/14/expected_result_recipe",
             "object_canonical_sha256": "2dd3119bf1e4d11745dafb3d95ecefffac9fcdbf9a7d0742b21835c5aaf75cb8",
             "expected_whole_canonical_sha256": "817a01940006e3a6532e8f397fc79a93b9c23dd2f038088299b4295ccd649e12"
@@ -29468,7 +29468,7 @@
         "operation_effect": "none"
       }
     ],
-    "basis": "L3 F01/F02, L10 F01, L4 current private composition contract, L5 current private function; L8 supplies exact input/expectation recipes. L9 points one way to L8, avoiding self-cycle.",
+    "basis": "L3 F01/F02、L10 F01/F02、現行L4の合成契約と現行L5のprivate関数を根拠とする。L8に入力・全期待の復元手順を保持し、L9からL8へ一方向で参照する。",
     "not_claimed": [
       "15条件は有限 source-based expectation setで、候補function executionやruntime acceptanceではない。",
       "実資格、認可、配送、保存、ACK、全条件網羅を認定しない。",

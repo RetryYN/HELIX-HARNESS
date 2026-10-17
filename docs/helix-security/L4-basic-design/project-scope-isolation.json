@@ -219,9 +219,6 @@
   "private_composition_contracts": [
     {
       "id": "HELIXSECURITY-L4-003-F01-SAME-FRAME-PROPOSAL-BACKFLOW",
-      "requirement_ref": "HELIXSECURITY-L3-003-F01",
-      "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
-      "oracle_ref": "HELIXSECURITY-L9-003-F01",
       "basis_contract": {
         "pointer": "/contracts/0",
         "object_canonical_sha256": "00f23afe6b9f2202bc6097bd73375dc80411aba2710e2104a7fe9d0bc749b80c"
@@ -262,7 +259,19 @@
         "operation_effect": "none"
       },
       "execution_status": "設計上の関数合成契約。runtime実装・呼出し・認可・配送を観測したという主張ではない。",
-      "contract_addition_state": "current additive design description; no authority or runtime claim"
+      "contract_addition_state": "現行設計への補足。authorityやruntimeの成立を示さない。F01の返却接続でF02の操作比較結果も保持する。",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "system_oracle_refs": [
+        "HELIXSECURITY-L10-003-F01",
+        "HELIXSECURITY-L10-003-F02"
+      ],
+      "oracle_refs": [
+        "HELIXSECURITY-L9-003-F01",
+        "HELIXSECURITY-L9-003-F02"
+      ]
     }
   ]
 }
