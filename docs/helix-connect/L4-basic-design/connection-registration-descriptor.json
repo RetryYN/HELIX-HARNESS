@@ -130,7 +130,45 @@
         "原宣言集合と提出宣言集合の両方で同identity異宣言を照合する。どちらかで衝突するidentityを名乗る宣言は全てheldにし、原/提出の衝突理由を分けて返す。"
       ],
       "qualification_rule": "合成宣言一致からsource資格/正式binding/登録/互換適格/通信/許可/authority/Accepted/設計閉包を生成しない。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "private_registration_receipt_seam": {
+        "status": "論理境界の詳細化候補。実provider・正式採択・実登録・永続化・配送は未実証。",
+        "purpose": "FN-C001-01の純粋比較結果を変更せず、HELIX-CONNECTのregistration責務へconnection単位で渡し、原owner応答とfull registered basisを保持して、C002 native receiptへ写す境界を定義する。",
+        "inputs": [
+          "完全なRegistrationPacketとそのFN-C001-01結果",
+          "各connection keyに対応するOperationAuthorityByConnectionの原値（欠落keyはabsent）",
+          "注入されたprivate RegistrationOwnerPort"
+        ],
+        "call_rule": "既存assessment.connection_results[key].registration_receipt_candidateを読む。heldなら原assessment/requestを保持してnot_invoked。requires_actual_qualificationならowner portを呼ぶ。この既存candidate値をqualificationやauthorityへ昇格しない。",
+        "response_rule": "呼出し無し・呼出し後無応答・観測済みraw JSONを区別する。raw応答を保持し、登録済みtyped応答だけで原/提出の両宣言に対し18 fieldと5 receipt binding軸を比較する。比較値は既存ComparisonResultのまま保持し、局所集約は別型にする。",
+        "consumer_boundary": "全必要比較がboundの場合だけ、C002 F01 native receiptの6 memberを直接複写する。C002の独立used tupleとF01Input/FixtureContextを作らず、C002関数を呼ばない。",
+        "failure_and_effect": "held、未応答、unknown、undecodable、missing、conflictは原値と局所状態を保持する。registrationは送信権、transport、業務承認、acceptance、compatibility、authorityを生成しない。",
+        "scope_limit": "一般wire codec/malformed input規則、backend/CAS、実資格評価、provider registry、永続schemaは定義しない。L2で要求されたfull basisは登録済宣言18 fieldとして保持し、C002 six-field projectionと混同しない。",
+        "source_basis": [
+          "docs/helix-connect/L2-requirements/connect-requirements.md#HELIXCONNECT-L2-001:56-65",
+          "docs/helix-connect/L3-requirements/functional-requirements.json#/requirements/0",
+          "docs/helix-connect/L10-verification/functional-verification.json#/cases/0",
+          "/contracts/0/content_comparison",
+          "/contracts/0/qualification_rule",
+          "C001 L5 /logical_type_definitions/ComparisonResult; /RegistrationCandidate; /ConnectionAssessment; /function_signatures_and_branches/0/algorithm/1,3-9",
+          "docs/helix-connect/L5-detail-design/compatibility-stale-send-eligibility.json#/logical_type_definitions/F01Input/fields/packet/definition/fields/original_registration_receipt",
+          {
+            "path": "docs/helix-connect/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
+            "pointer": "/dependency_boundary",
+            "object_canonical_sha256": "e5670b4f75c7493491a03d3bce5e7290e751434586bad1a01c32ee873c3fbdfb",
+            "role_ja": "操作/revision/scopeごとのSEC操作authority/data-useの既存依存を原値で渡す私有入力の根拠。ここで資格/許可は判定しない。"
+          },
+          {
+            "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+            "locator": "HELIXCONNECT-L2-001 入力（62行）：適用SECURITY許可とdata-use/classification識別子。共通契約52行：通常trace/receiptにraw payload/secret/credential値を保存しない。",
+            "role_ja": "適用識別子の原値保持と通常記録への保存禁止を、元owner/SECURITY責務へ結ぶ。"
+          }
+        ]
+      }
     },
     {
       "id": "HELIXCONNECT-L4-001-F02",

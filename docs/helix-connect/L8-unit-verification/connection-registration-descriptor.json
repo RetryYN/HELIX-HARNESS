@@ -4191,8 +4191,689 @@
     ],
     "candidate_L5_bytes_binding": {
       "path": "docs/helix-connect/L5-detail-design/connection-registration-descriptor.json",
-      "sha256": "ad77908dfe293420d59d5d3a4e02a9f281cd19a79b91379b4a38e90f4d212bee",
+      "sha256": "22a18f5bf7b0c3d573a238548d47d100025559f75501ca7d33384d8574c03b78",
       "scope": "同一candidateの正式L5 bytes。上流source/admissionのfactではない。"
     }
+  },
+  "private_registration_receipt_seam_conditions": {
+    "status": "独立source条件の設計対応。literal whole追加・function/model実行なし。既存81 caseは不変。",
+    "current_bindings": [
+      {
+        "path": "docs/helix-connect/L4-basic-design/connection-registration-descriptor.json",
+        "file_sha256": "3daf69bf0f995afaaf466001ae3d216bb32423eff5a73552741303f08f0f1a92",
+        "pointer": "/contracts/0",
+        "object_canonical_sha256": "08553d551c0b888f239a1548c439ced8fd00abc7835a0aec34acd5609a4f9007"
+      },
+      {
+        "path": "docs/helix-connect/L5-detail-design/connection-registration-descriptor.json",
+        "file_sha256": "22a18f5bf7b0c3d573a238548d47d100025559f75501ca7d33384d8574c03b78",
+        "pointer": "/private_registration_receipt_seam",
+        "object_canonical_sha256": "b3a18984e552d45c772105f8f3093b210e018daf1cb8504c0ee0683150a8a62a"
+      }
+    ],
+    "conditions": [
+      {
+        "id": "RCP-01",
+        "expected_rule": "既存assessmentと原入力を保持する。heldのkeyではowner呼出しやreceipt成立を表さず、他の独立keyの処理を抑止しない。",
+        "source_rule": "C001 L5 /function_signatures_and_branches/0/algorithm/1,5-9",
+        "stage": "request_and_return",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/algorithm/2",
+          "/private_registration_receipt_seam/algorithm/9"
+        ]
+      },
+      {
+        "id": "RCP-02",
+        "expected_rule": "requires_actual_qualificationは既存候補値であり、資格取得・登録成立として扱わない。",
+        "source_rule": "C001 L5 /logical_type_definitions/RegistrationCandidate/values; /function_signatures_and_branches/0/algorithm/5",
+        "stage": "request_and_return",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/algorithm/2",
+          "/private_registration_receipt_seam/algorithm/3",
+          "/private_registration_receipt_seam/authority_and_effect_boundary"
+        ]
+      },
+      {
+        "id": "RCP-03",
+        "expected_rule": "source/consumer ownerの文字値は宣言に由来する値または返却先候補として保持し、owner資格やoperation authorityを生成しない。",
+        "source_rule": "C001 L5 /function_signatures_and_branches/0/algorithm/6; L4 /contracts/0/qualification_rule",
+        "stage": "request_and_return",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/types/RegistrationOwnerRequest",
+          "/private_registration_receipt_seam/authority_and_effect_boundary"
+        ]
+      },
+      {
+        "id": "RCP-04",
+        "expected_rule": "RegistrationPacket、key、原/提出宣言、ConnectionAssessment、operation-authority mapをそれぞれ原値で保持する。",
+        "source_rule": "C001 L5 /logical_type_definitions/RegistrationPacket; /ConnectionDeclaration; L2-001 input/output/failure-return",
+        "stage": "request",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/types/RegistrationBatchResult",
+          "/private_registration_receipt_seam/types/RegistrationOwnerRequest",
+          "/private_registration_receipt_seam/types/OperationAuthorityInput"
+        ]
+      },
+      {
+        "id": "RCP-05",
+        "expected_rule": "呼出し無し、呼出し後の無応答、観測済み応答を区別する。観測済み応答のraw JSONを保持し、登録済み応答だけをprojection対象とする。",
+        "source_rule": "L2-001 output/failure-return; L3 F01; L10 F01 failure_observation; R3 correction C001-R2-02",
+        "stage": "owner_response",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/types/OwnerPortObservation",
+          "/private_registration_receipt_seam/algorithm/3",
+          "/private_registration_receipt_seam/algorithm/4",
+          "/private_registration_receipt_seam/algorithm/2"
+        ]
+      },
+      {
+        "id": "RCP-06",
+        "expected_rule": "C002向けprojectionはnative receiptの6 memberを同名・同値で複写する。receipt.revisionから独立used_tupleを作らない。",
+        "source_rule": "C002 L5 original_registration_receipt; original_used_tuple; /function_contracts/0/comparison_spec/ordered_checks",
+        "stage": "consumer_projection",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/types/RegistrationReceipt",
+          "/private_registration_receipt_seam/algorithm/8",
+          "/private_registration_receipt_seam/algorithm/9",
+          "/private_registration_receipt_seam/current_native_consumer_pin"
+        ]
+      },
+      {
+        "id": "RCP-07",
+        "expected_rule": "C002が独立にreceiptとused tupleを受け取った場合のC002自身の比較条件を記録する。このseamから不一致receiptをC002へ配送する義務は導かない。",
+        "source_rule": "C002 L5 /function_contracts/0/algorithm/2-4; /return_projection/field_rules/registration_binding_corresponds_in_fixture; R3 condition erratum",
+        "stage": "consumer_projection",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/algorithm/9",
+          "/private_registration_receipt_seam/not_specified"
+        ]
+      },
+      {
+        "id": "RCP-08",
+        "expected_rule": "登録結果から送信権、transport、業務承認、acceptance、互換性を導かず、既存7 actual effect=falseを維持する。 原packet/owner応答/authority mapは私有callの原入力返却として保持する。通常trace/receiptへのraw payload/secret/credential値の保存・外部送信を許可せず、保持・削除・利用区分は元owner/SECURITY契約へ委ねる。",
+        "source_rule": "C001 L5 /function_signatures_and_branches/0/algorithm/9; L2-001; C002 L5 postconditions",
+        "stage": "effects",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/authority_and_effect_boundary",
+          "/private_registration_receipt_seam/types/RegistrationBatchResult"
+        ]
+      },
+      {
+        "id": "RCP-09",
+        "expected_rule": "ownerのregistered basisに18宣言fieldを保持し、C002の6-field projectionと区別する。正式採択・永続化・実配送は本条件群では実証しない。",
+        "source_rule": "L2-001 output; L3 F01 obligation; C002 six-member receipt; R3 condition erratum",
+        "stage": "basis_and_projection",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/basis_scope",
+          "/private_registration_receipt_seam/types/OwnerTypedResponse",
+          "/private_registration_receipt_seam/types/RegistrationReceipt"
+        ]
+      },
+      {
+        "id": "RCP-10",
+        "expected_rule": "一般wire/malformed JSON規則、backend/CAS、legacy ProductData API、owner資格gateを追加しない。",
+        "source_rule": "C001 typed boundary; legacy source scope; R3 condition scope",
+        "stage": "scope",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/not_specified",
+          "/private_registration_receipt_seam/authority_and_effect_boundary"
+        ]
+      },
+      {
+        "id": "RCP-R2-11",
+        "expected_rule": "元packetとpure assessmentを保持し、既存key union順の全keyを一件ずつ返す。局所結果で後続keyを抑止しない。",
+        "source_rule": "C001 L5 /function_signatures_and_branches/0/algorithm/1; R2 RegisterConnections",
+        "stage": "batch",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/types/RegistrationBatchResult",
+          "/private_registration_receipt_seam/algorithm/9"
+        ]
+      },
+      {
+        "id": "RCP-R2-12",
+        "expected_rule": "owner呼出し後の無応答を観測済みunknown/heldと区別する。無応答、観測JSON null、観測JSON non-nullのPresenceを区別する。",
+        "source_rule": "R2 OwnerPortObservation; Presence; R3 correction C001-R2-02",
+        "stage": "owner_response",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/types/OwnerPortObservation",
+          "/private_registration_receipt_seam/algorithm/4",
+          "/private_registration_receipt_seam/algorithm/3"
+        ]
+      },
+      {
+        "id": "RCP-R2-13",
+        "expected_rule": "registered receiptとregistered basisを原宣言・提出宣言の双方と照合する。object basis内の明示nullや既知差異は既存比較方向のcontent_conflictを保持し、比較不能なbasis rootはraw値を保持したbasis_unreadableとして分ける。",
+        "source_rule": "L2-001 dimensions; C001 L5 /function_signatures_and_branches/0/algorithm/3-5; R2 join",
+        "stage": "basis_join",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/types/RegistrationBasisFieldComparisons",
+          "/private_registration_receipt_seam/types/RegistrationReceiptAxisComparisons",
+          "/private_registration_receipt_seam/algorithm/5",
+          "/private_registration_receipt_seam/algorithm/6",
+          "/private_registration_receipt_seam/algorithm/7"
+        ]
+      },
+      {
+        "id": "RCP-R2-14",
+        "expected_rule": "このseamの出力境界はC002 native six-field receipt projectionまで。独立F01InputとFixtureContextを作らず、C002を呼ばない。",
+        "source_rule": "C002 L5 signature/reads/F01Input/FixtureContext",
+        "stage": "consumer_projection",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/algorithm/9"
+        ]
+      },
+      {
+        "id": "RCP-R2-15",
+        "expected_rule": "returned basisの不足、null、非object、差異をsubmitted declarationから補完しない。member-level結果は既存比較規則に従い、rootを読めない場合はbasis_unreadableを保持する。raw owner responseも保持する。",
+        "source_rule": "C001 L5 /function_signatures_and_branches/0/algorithm/3-5; L2-001 failure-return",
+        "stage": "basis_join",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/algorithm/5",
+          "/private_registration_receipt_seam/types/RegisteredBasisFieldRead"
+        ]
+      },
+      {
+        "id": "RCP-R3-16",
+        "expected_rule": "registration_receipt_candidate=heldのkeyはrequestとassessmentを保持してnot_invokedとし、owner portを呼ばずbasis比較をnot_evaluatedとする。",
+        "source_rule": "C001 L5 /logical_type_definitions/ConnectionAssessment/fields/registration_receipt_candidate; /function_signatures_and_branches/0/algorithm/5",
+        "stage": "held",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/algorithm/2"
+        ]
+      },
+      {
+        "id": "RCP-R3-17",
+        "expected_rule": "requires_actual_qualificationのkeyでowner portを呼び、応答が観測されない場合はinvoked/no_response_observed、owner response Presence=absent、basis_join=not_evaluatedとする。",
+        "source_rule": "L3 F01; L10 F01; existing candidate enum; R3 correction",
+        "stage": "no_response",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/algorithm/3"
+        ]
+      },
+      {
+        "id": "RCP-R3-18",
+        "expected_rule": "観測済みJSON nullまたはtyped held/unknown/undecodableではraw responseとPresenceを保持し、basis_join=not_evaluatedとする。",
+        "source_rule": "L3 F01; L10 F01; L5 Presence; R3 correction",
+        "stage": "observed_nonregistered",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/algorithm/4",
+          "/private_registration_receipt_seam/types/BasisJoinEvaluation"
+        ]
+      },
+      {
+        "id": "RCP-R3-19",
+        "expected_rule": "比較可能なpairごとに既存ComparisonResult四値を保持する。basis rootがnull/非objectでfield pathを読めないpairはlocal basis_unreadableとして保持し、native enumへcastしない。bound/known_conflict/incomplete_or_uncomparableは別のlocal集約型とする。",
+        "source_rule": "C001 L5 /logical_type_definitions/ComparisonResult; R3 correction C001-R2-06",
+        "stage": "axis_results",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/types/RegistrationBasisPairOutcome",
+          "/private_registration_receipt_seam/types/RegistrationBasisJoinState"
+        ]
+      },
+      {
+        "id": "RCP-R3-20",
+        "expected_rule": "全18 basis fieldと5 receipt axisの全pairが比較可能かつcontent_corresponding_in_fixtureで、6 native memberが適合する場合のみprojection=available。basis rootがnull/非objectならunavailableとし、raw receipt/basisを保持する。",
+        "source_rule": "R2 correction C001-R2-05; C001 L5 ComparisonResult; C002 receipt type",
+        "stage": "projection_gate",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/algorithm/8",
+          "/private_registration_receipt_seam/types/ConsumerProjectionAvailability"
+        ]
+      },
+      {
+        "id": "RCP-R3-21",
+        "expected_rule": "既存union順で全keyを返し、held/no-response/unknown/undecodable/conflictの一つが他keyを抑止しない。",
+        "source_rule": "C001 L5 /function_signatures_and_branches/0/algorithm/1; R2 batch result",
+        "stage": "batch",
+        "execution_state": "not_executed",
+        "candidate_l5_target_pointers": [
+          "/private_registration_receipt_seam/algorithm/9"
+        ]
+      }
+    ],
+    "native_result_domains": {
+      "per_axis_comparison": [
+        "content_corresponding_in_fixture",
+        "missing",
+        "unknown_original_information",
+        "content_conflict"
+      ],
+      "local_join": [
+        "bound",
+        "known_conflict",
+        "incomplete_or_uncomparable"
+      ],
+      "call_state": [
+        "not_invoked",
+        "invoked"
+      ],
+      "owner_observation": [
+        "no_response_observed",
+        "response_observed"
+      ],
+      "owner_typed_response": [
+        "registered",
+        "held",
+        "unknown",
+        "undecodable"
+      ],
+      "projection": [
+        "unavailable",
+        "available"
+      ],
+      "basis_pair_observation": [
+        "compared(existing ComparisonResult)",
+        "basis_unreadable(root present_null or present non-object)"
+      ]
+    },
+    "C002_scope": "RCP-07はC002へ独立入力された場合のC002自身の規則のみ。seamの受け渡し義務ではない。seam境界はnative six-member receipt projection。",
+    "RCP09_scope": "18-field registered basisと6-field C002 projectionの論理対応を分けて記録する。正式採択・永続化・実配送は未実証であり、この条件群はその実証を主張しない。",
+    "limits": [
+      "実provider/owner資格・実登録・通信・永続化・配送・ACKは評価していない。",
+      "C002本文/関数、独立used tuple、FixtureContext、既存の全caseと期待値は変更していない。",
+      "literal whole oracle、モデル、runtime、旧CLI/hook/CIは実行していない。"
+    ],
+    "condition_source_mapping": {
+      "meaning": "このsource mappingはtracked正本だけで規範根拠を辿れるようにする。local記録は著述準備履歴として保持し、規範の読取・再構成には必要ない。",
+      "preparation_history": {
+        "role": "local著述・照合の来歴のみ。以下のtracked normative_sourcesとsource_by_conditionから各条件を再照合でき、これらのignored local bytesを規範正本または存在必須依存にしない。",
+        "original_local_records": [
+          {
+            "path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "sha256": "132919d5f468bfb7815b94e7eab682ea28bb8626a4e71563c8f6be97eefca36d"
+          },
+          {
+            "path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/correction-overlay-r3.json",
+            "sha256": "97aa5b19edf49debb64e1de7425a460e8adf666607eae51b7158cc3241b02ae1"
+          },
+          {
+            "path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/conditions-erratum-r3.json",
+            "sha256": "20e6dd08f2a3664859da1a7b2052e21fdf2192bdc3b5b4a8c7040ca5e1a6ad08"
+          }
+        ],
+        "condition_authoring_map": [
+          {
+            "id": "RCP-01",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/0"
+          },
+          {
+            "id": "RCP-02",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/1"
+          },
+          {
+            "id": "RCP-03",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/2"
+          },
+          {
+            "id": "RCP-04",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/3"
+          },
+          {
+            "id": "RCP-05",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/4"
+          },
+          {
+            "id": "RCP-06",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/5"
+          },
+          {
+            "id": "RCP-07",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/6"
+          },
+          {
+            "id": "RCP-08",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/7"
+          },
+          {
+            "id": "RCP-09",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/8"
+          },
+          {
+            "id": "RCP-10",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/9"
+          },
+          {
+            "id": "RCP-R2-11",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/10"
+          },
+          {
+            "id": "RCP-R2-12",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/11"
+          },
+          {
+            "id": "RCP-R2-13",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/12"
+          },
+          {
+            "id": "RCP-R2-14",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/13"
+          },
+          {
+            "id": "RCP-R2-15",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/independent-registration-seam-conditions-r2.json",
+            "source_pointer": "/conditions/14"
+          },
+          {
+            "id": "RCP-R3-16",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/correction-overlay-r3.json",
+            "source_pointer": "/independent_design_conditions/0"
+          },
+          {
+            "id": "RCP-R3-17",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/correction-overlay-r3.json",
+            "source_pointer": "/independent_design_conditions/1"
+          },
+          {
+            "id": "RCP-R3-18",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/correction-overlay-r3.json",
+            "source_pointer": "/independent_design_conditions/2"
+          },
+          {
+            "id": "RCP-R3-19",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/correction-overlay-r3.json",
+            "source_pointer": "/independent_design_conditions/3"
+          },
+          {
+            "id": "RCP-R3-20",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/correction-overlay-r3.json",
+            "source_pointer": "/independent_design_conditions/4"
+          },
+          {
+            "id": "RCP-R3-21",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/correction-overlay-r3.json",
+            "source_pointer": "/independent_design_conditions/5"
+          }
+        ],
+        "errata_history": [
+          {
+            "condition_id": "RCP-07",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/conditions-erratum-r3.json",
+            "source_pointer": "/corrections/0"
+          },
+          {
+            "condition_id": "RCP-09",
+            "source_path": "scaffold/review-handoff/local/connect001-registration-receipt-private-seam-at-005e25bf/conditions-erratum-r3.json",
+            "source_pointer": "/corrections/1"
+          }
+        ]
+      },
+      "normative_sources": {
+        "connect_l2_001": {
+          "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+          "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+          "file_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+          "locator": "「HELIXCONNECT-L2-001 接続登録と端点契約の識別」見出し、56行以降の要求本文と入出力・依存記述。Markdown文書のためJSON Pointerではなく見出し/行 locator を使う。",
+          "role": "登録と両端契約を識別し、接続登録が許可や業務承認を意味しない上流要求。"
+        },
+        "connect_l3_f01": {
+          "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+          "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+          "file_sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
+          "pointer": "/requirements/0",
+          "object_canonical_sha256": "492dc4782812f365ed77db8ad976db9e6008c5b414f1dc81e385a130a37c6aa4",
+          "role": "接続identity、両端契約、登録receiptの要件。"
+        },
+        "connect_l10_f01": {
+          "path": "docs/helix-connect/L10-verification/functional-verification.json",
+          "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+          "file_sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
+          "pointer": "/cases/0",
+          "object_canonical_sha256": "ab65938f6583341d69dc90ec321326dbe6eefa82dddb0bd65b15d396099e6ef0",
+          "role": "L3 F01と対になる登録/未成立・不足field・通信実行の切分けの検証義務。"
+        },
+        "connect_l4_registration": {
+          "path": "docs/helix-connect/L4-basic-design/connection-registration-descriptor.json",
+          "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+          "file_sha256": "0ba016f3b159905a488bb732303a50a9ec056619ab7f4c9337f0e8ad6190f1fe",
+          "pointer": "/contracts/0",
+          "object_canonical_sha256": "d8eca906b3e8e0801a8d90c3f72e6beec1e214886541924d85527f15dbe66fbe",
+          "role": "L4基本設計の元source。後続候補で追加したprivate seamを含まない固定時点の契約であり、qualification/effect境界の既存根拠。"
+        },
+        "connect_c001_l5": {
+          "path": "docs/helix-connect/L5-detail-design/connection-registration-descriptor.json",
+          "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+          "file_sha256": "ad77908dfe293420d59d5d3a4e02a9f281cd19a79b91379b4a38e90f4d212bee",
+          "function_pointer": "/function_signatures_and_branches/0",
+          "function_object_canonical_sha256": "8cdb578921704564fa6f51975c700f76be9295801c36f29d45caafdeb0aa454f",
+          "comparison_result_pointer": "/logical_type_definitions/ComparisonResult",
+          "comparison_result_object_canonical_sha256": "5c4631c9f9090afcbcdc0bb40922e024990d1e947b001b9086a5f1a0d861a929",
+          "role": "C001の既存native関数・比較結果。後続候補で追加したprivate seamはこのsource pinに含めない。"
+        },
+        "connect_c002_l5": {
+          "path": "docs/helix-connect/L5-detail-design/compatibility-stale-send-eligibility.json",
+          "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+          "file_sha256": "1a1c78b84e7d01fb725524f955cd165ba87f5991f2ee5965e7d104aa6faaee21",
+          "receipt_pointer": "/logical_type_definitions/F01Input/fields/packet/definition/fields/original_registration_receipt",
+          "receipt_object_canonical_sha256": "89b74951187a06b400000c5f898b34e683d187e34af553530c7aec8c51b92b36",
+          "function_contract_pointer": "/function_contracts/0",
+          "function_contract_object_canonical_sha256": "b6d5e02b32c138678c216cf4404e000966c3976aadf492075b31b10a3d1c13b0",
+          "role": "C002 native receiptのmember形状、独立used tuple、比較規則。"
+        },
+        "connect_l10_dependency_boundary": {
+          "path": "docs/helix-connect/L10-verification/functional-verification.json",
+          "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+          "file_sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
+          "pointer": "/dependency_boundary",
+          "object_canonical_sha256": "e5670b4f75c7493491a03d3bce5e7290e751434586bad1a01c32ee873c3fbdfb",
+          "role_ja": "操作/revision/scopeごとのSEC操作authority/data-useの既存依存を原値で渡す私有入力の根拠。ここで資格/許可は判定しない。"
+        },
+        "connect_l2_operation_and_raw_boundary": {
+          "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+          "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+          "file_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+          "locator": "HELIXCONNECT-L2-001 入力（62行）：適用SECURITY許可とdata-use/classification識別子。共通契約52行：通常trace/receiptにraw payload/secret/credential値を保存しない。",
+          "role_ja": "適用識別子の原値保持と通常記録への保存禁止を、元owner/SECURITY責務へ結ぶ。"
+        }
+      },
+      "source_by_condition": [
+        {
+          "id": "RCP-01",
+          "normative_source_ids": [
+            "connect_l2_001",
+            "connect_c001_l5"
+          ]
+        },
+        {
+          "id": "RCP-02",
+          "normative_source_ids": [
+            "connect_l3_f01",
+            "connect_l10_f01",
+            "connect_l4_registration",
+            "connect_c001_l5"
+          ]
+        },
+        {
+          "id": "RCP-03",
+          "normative_source_ids": [
+            "connect_l3_f01",
+            "connect_l10_f01",
+            "connect_l4_registration",
+            "connect_c001_l5",
+            "connect_l10_dependency_boundary",
+            "connect_l2_operation_and_raw_boundary"
+          ]
+        },
+        {
+          "id": "RCP-04",
+          "normative_source_ids": [
+            "connect_l2_001",
+            "connect_l3_f01",
+            "connect_c001_l5",
+            "connect_l10_dependency_boundary",
+            "connect_l2_operation_and_raw_boundary"
+          ]
+        },
+        {
+          "id": "RCP-05",
+          "normative_source_ids": [
+            "connect_l2_001",
+            "connect_l3_f01",
+            "connect_l10_f01",
+            "connect_c001_l5"
+          ]
+        },
+        {
+          "id": "RCP-06",
+          "normative_source_ids": [
+            "connect_l3_f01",
+            "connect_l10_f01",
+            "connect_c002_l5"
+          ]
+        },
+        {
+          "id": "RCP-07",
+          "normative_source_ids": [
+            "connect_l3_f01",
+            "connect_l10_f01",
+            "connect_c002_l5"
+          ]
+        },
+        {
+          "id": "RCP-08",
+          "normative_source_ids": [
+            "connect_l2_001",
+            "connect_l3_f01",
+            "connect_l10_f01",
+            "connect_c001_l5",
+            "connect_c002_l5",
+            "connect_l10_dependency_boundary",
+            "connect_l2_operation_and_raw_boundary"
+          ]
+        },
+        {
+          "id": "RCP-09",
+          "normative_source_ids": [
+            "connect_l2_001",
+            "connect_l3_f01",
+            "connect_l10_f01",
+            "connect_c002_l5"
+          ]
+        },
+        {
+          "id": "RCP-10",
+          "normative_source_ids": [
+            "connect_l4_registration",
+            "connect_c001_l5"
+          ]
+        },
+        {
+          "id": "RCP-R2-11",
+          "normative_source_ids": [
+            "connect_l2_001",
+            "connect_c001_l5"
+          ]
+        },
+        {
+          "id": "RCP-R2-12",
+          "normative_source_ids": [
+            "connect_l2_001",
+            "connect_l3_f01",
+            "connect_l10_f01",
+            "connect_c001_l5"
+          ]
+        },
+        {
+          "id": "RCP-R2-13",
+          "normative_source_ids": [
+            "connect_l2_001",
+            "connect_l3_f01",
+            "connect_l10_f01",
+            "connect_c001_l5",
+            "connect_c002_l5"
+          ]
+        },
+        {
+          "id": "RCP-R2-14",
+          "normative_source_ids": [
+            "connect_c002_l5"
+          ]
+        },
+        {
+          "id": "RCP-R2-15",
+          "normative_source_ids": [
+            "connect_l2_001",
+            "connect_l3_f01",
+            "connect_l10_f01",
+            "connect_c001_l5"
+          ]
+        },
+        {
+          "id": "RCP-R3-16",
+          "normative_source_ids": [
+            "connect_c001_l5"
+          ]
+        },
+        {
+          "id": "RCP-R3-17",
+          "normative_source_ids": [
+            "connect_l3_f01",
+            "connect_l10_f01",
+            "connect_c001_l5"
+          ]
+        },
+        {
+          "id": "RCP-R3-18",
+          "normative_source_ids": [
+            "connect_l3_f01",
+            "connect_l10_f01",
+            "connect_c001_l5"
+          ]
+        },
+        {
+          "id": "RCP-R3-19",
+          "normative_source_ids": [
+            "connect_c001_l5"
+          ]
+        },
+        {
+          "id": "RCP-R3-20",
+          "normative_source_ids": [
+            "connect_c001_l5",
+            "connect_c002_l5"
+          ]
+        },
+        {
+          "id": "RCP-R3-21",
+          "normative_source_ids": [
+            "connect_c001_l5"
+          ]
+        }
+      ]
+    },
+    "target_pointer_role_ja": "各conditionのcandidate_l5_target_pointersはcurrent_bindings[1]と同じ候補L5内の検証対象を指す。規範根拠はtracked normative_sourcesへ別に束縛し、検証対象自身から期待を生成しない。"
   }
 }
