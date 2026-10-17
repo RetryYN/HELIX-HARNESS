@@ -5873,6 +5873,28 @@
       "presence": null,
       "preservation": "実Absent/null Field又は原parentが観測された場合は、その出典namespace/pointer/RawPresenceを保持し、このoperandなし表記へ置換しない。"
     },
-    "legacy_source_scope": "source_contractが指すPR #3323のL4基本契約 /private_composition_contracts/1/source_basis にある旧SEA候補要求・対受入の保持点/変更点を継ぐ。これらをowner-context 8slotの旧詳細設計や、実運用で再現済みの個別障害報告とは扱わない。要求意味は固定L3-F01/F02と対L10から導く。"
+    "legacy_source_scope": "source_contractが指すPR #3323のL4基本契約 /private_composition_contracts/1/source_basis にある旧SEA候補要求・対受入の保持点/変更点を継ぐ。これらをowner-context 8slotの旧詳細設計や、実運用で再現済みの個別障害報告とは扱わない。要求意味は固定L3-F01/F02と対L10から導く。",
+    "interpretation_notes": [
+      {
+        "topic": "raw_equalとcontent_stateの分離",
+        "meaning": "raw_equalは実RawPresence同士だけの型敏感等値である。実Fieldのrawがconsumer原presenceと同値でも、Field.valueとの表現不整合があればcontent_state=unknownとなる。C04dのraw_equal=trueはtyped値の意味使用を許可せず、representation issueを消さない。",
+        "basis": [
+          "comparison_and_reduction_rules/0",
+          "field_observation_rules/0",
+          "issue_bindings/source_representation_inconsistent"
+        ]
+      },
+      {
+        "topic": "CONNECT endpoint tenantとOS政策",
+        "meaning": "CONNECTのorigin/target tenant leafも、同sideのOS OwnerIdentityPort.tenant_applicableとconsumer context Boolの政策を用いる。診断slotは対象leafの固定connectで、原政策operandのnamespace/pointerはOS portのまま。OS selection遮断由来の政策unknownはCONNECT tenantでも同じselection原因としてissueを重ねず、独立したconsumer原因や既知false+nonnullの原因は保持する。",
+        "basis": [
+          "comparison_and_reduction_rules/2",
+          "comparison_and_reduction_rules/3",
+          "issue_emission_and_suppression/1",
+          "issue_emission_and_suppression/5",
+          "writers/ContextPrivateIssue/slot"
+        ]
+      }
+    ]
   }
 }
