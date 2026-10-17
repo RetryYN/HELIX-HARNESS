@@ -1380,6 +1380,761 @@
             "scope_limit": "この技術補足と6局所projectionから、pure3全体/Invocation9/consumer14+3の新wholeや全OS020/実資格成立を主張しない。OS017の未知graph rowを供給する新adapter/資格機構はここで創作しない。"
           }
         }
+      },
+      "f01_owner_return_contract": {
+        "record_kind": "f01_owner_return_contract_candidate",
+        "scope": "L10-020-F01のHARNESS/ticket/資源owner返却。B01既存契約/9public関数/producer/期待は変更しない。",
+        "authority_effect": "none",
+        "shared_imports": [
+          {
+            "type_name": "SourceObjectLocator",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/3/owner_return_contract/private_types/1",
+            "reuse": "same_definition_by_reference_no_copy"
+          },
+          {
+            "type_name": "OriginSourceIssue",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/3/owner_return_contract/private_types/2",
+            "reuse": "same_definition_by_reference_no_copy"
+          },
+          {
+            "type_name": "OriginRead<T>",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/3/owner_return_contract/private_types/7",
+            "reuse": "same_definition_by_reference_no_copy"
+          },
+          {
+            "type_name": "OwnerReturnContext",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/3/owner_return_contract/private_types/9",
+            "reuse": "same_definition_by_reference_no_copy"
+          },
+          {
+            "type_name": "Unit",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/3/owner_return_contract/private_types/19",
+            "reuse": "same_definition_by_reference_no_copy"
+          },
+          {
+            "type_name": "NativeSourceConflict",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/3/owner_return_contract/private_types/20",
+            "reuse": "same_definition_by_reference_no_copy"
+          },
+          {
+            "type_name": "ScopeBindingWitness",
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "pointer": "/logical_types/45",
+            "reuse": "same_definition; applicable original correspondence only"
+          }
+        ],
+        "not_reused_as_f01_alias": [
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/3/owner_return_contract/private_types/4",
+            "reason": "F03 inventory専用。F01 duties/catalogとは原役割が違う。"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/3/owner_return_contract/private_types/11",
+            "reason": "selected_source_witnessがF03DutySourceWitness。F01 sourceへ代入しない。"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/3/owner_return_contract/private_types/15",
+            "reason": "B01 Assessmentのplan/obligation/decision構造へticket/resource/F01を混載しない。"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/3/owner_return_contract/f01_unconnected_branch",
+            "reason": "B01の既存限定branch/履歴は不変。F01継続で別のsource lookupを追加する。"
+          }
+        ],
+        "private_types": [
+          {
+            "name": "F01NativeInvocation",
+            "kind": "private_record_proposal",
+            "fields": {
+              "original": "HARNESS.F01VerificationInput",
+              "sources": "HARNESS.VerificationSources",
+              "candidate": "HARNESS.Field<HARNESS.F01VerificationObservation>",
+              "comparison": "HARNESS.Comparison<HARNESS.F01VerificationObservation>",
+              "source_locator": "OS020.Field<SourceObjectLocator>"
+            },
+            "meaning_ja": "同call HARNESS005 F01の全実引数/全返却。F03/source_bundle/CIProfile/minimum/expectedから生成しない。HARNESS FieldとOS020 Fieldを別に保つ。"
+          },
+          {
+            "name": "F01ReturnContext",
+            "kind": "private_record_proposal",
+            "fields": {
+              "base_context": "OwnerReturnContext（既存B01型を参照。元RawPacket/CIInput/CIProposal/F03 invocation全値）",
+              "source_bound_profile": "OS020.Field<SourceBoundProfile>",
+              "harness_f01_invocation": "OS020.Field<F01NativeInvocation>"
+            },
+            "meaning_ja": "B01 contextを変更せず外側で合成する。F03 invocationが無ければ既存Field.absentでよくF01 sourceをそこへ入れない。source_bound_profileは同F02009返却全値で、proposalから再生成しない。"
+          },
+          {
+            "name": "F01OriginLookupRequest",
+            "kind": "private_record_proposal",
+            "fields": {
+              "context": "F01ReturnContext",
+              "finding": "Finding（既存3fieldそのまま）",
+              "requested_kind": "harness_f01 | ticket_scope | runner_resource",
+              "operand_pointers": "list<string>（既存CIInput上の原RFC6901 pointer）"
+            },
+            "meaning_ja": "known code+segment-boundary prefixで候補source classを選ぶ。pointerやcodeからsource/owner資格を作らない。最長実在親Fieldと元RawPacketはcontextに保持。"
+          },
+          {
+            "name": "F01DutySourceWitness",
+            "kind": "private_record_proposal",
+            "fields": {
+              "independent_entry": "HARNESS.OriginalSourceEntry",
+              "referent_index": "nonnegative integer（同F01 sources.referents実index）",
+              "source_locator": "SourceObjectLocator",
+              "subject_payload_pointer": "string (RFC6901)",
+              "duty_payload_pointer": "string (RFC6901)",
+              "native_subject": "HARNESS.Ref",
+              "original_collection": "duties | duty_catalog",
+              "original_index": "nonnegative integer",
+              "native_duty": "HARNESS.F01VerificationInput該当collection原行全member",
+              "scope_binding_witness": "OS020.Field<ScopeBindingWitness>",
+              "source_role_declaration": "OS020.Field<RawValue>",
+              "relation_state": "matched | not_applicable | unknown | conflict",
+              "conflict_observations": "list<NativeSourceConflict>（既存HARNESS専用型参照）",
+              "issues": "list<OriginSourceIssue>"
+            },
+            "meaning_ja": "既存F03DutySourceWitnessをaliasせずF01 original.duties/duty_catalogへ対応する別型。submitted dutiesとcanonical catalogは混同せず、missing属性をcatalogから補完しない。"
+          },
+          {
+            "name": "F01HarnessOrigin",
+            "kind": "private_record_proposal",
+            "fields": {
+              "request": "F01OriginLookupRequest（requested_kind=harness_f01）",
+              "invocation": "F01NativeInvocation",
+              "full_required_observation": "HARNESS.ObservationField<list<string>>（comparison.observation.required_refsと同一）",
+              "nested_full_required": "OS020.Field<list<string>>（同request.context.base_context.original_ci_input.context=C、C.harness_selection_source=H の供給時に読む H.f01_full_required_refs の原Field。A.originalにはcontextを要求しない）",
+              "duty_witnesses": "list<F01DutySourceWitness>",
+              "bound_operand_pointer": "string（当該originが属する原source側の実在pointer。actual/independent context/producer原sourceを混同しない）",
+              "relation_state": "matched | not_applicable | unknown | conflict",
+              "issues": "list<OriginSourceIssue>"
+            },
+            "meaning_ja": "F01全required、F03 minimum、OS selectionを別々に保つ。ObservationFieldがknownならそのvalueとOS側既知setを比較できるが、missing/unknown/conflict/staleをknownへ補完しない。context.harness_f01_invocation=OS020.Field.supplied(A)ならinvocation全member（original/sources/candidate/comparison/source_locator）をAと型・Field・全値で比較する。nested_full_requiredはA.originalではなく、同一requestのbase_context.original_ci_input.context=Field.supplied(C)、C.harness_selection_source=Field.supplied(H)を通じてH.f01_full_required_refsの原Fieldへ結ぶ。C又はHが非suppliedならそのFieldとHARNESS側原値を保持し当該nested joinだけunknown。known別call/別CIInputは両値とissueを保持し当該intakeを作らない。"
+          },
+          {
+            "name": "F01TicketOwnerProjection",
+            "kind": "private_record_proposal",
+            "fields": {
+              "source_locator": "SourceObjectLocator",
+              "source_body": "RawValue（ownerが独立供給した当該projection原record）",
+              "os_binding": "OS020.Field<Binding>",
+              "ticket_graph_ref": "OS020.Field<string>",
+              "change_ref": "OS020.Field<string>",
+              "changed_targets": "OS020.Field<list<string>>",
+              "native_workflow_input": "OS020.Field<OS017.WorkflowInput>"
+            },
+            "meaning_ja": "新しい私有owner読取返却の技術型。OS017 nativeにticket_graph_ref/head/base/run_refが既存memberとしてあるとは主張しない。このprojectionの意味fieldはsource_bodyの同名原memberをOS020 Field境界で読む。native_workflow_inputも同名原native recordを全値保持する。未供給fieldはabsent、null/空は原状態。独立source_bodyに対応元が無ければtyped値で補完せず局所unknown。locatorはこの原projectionを指す。製品codec/永続schemaの採用ではない。"
+          },
+          {
+            "name": "F01TicketOrigin",
+            "kind": "private_record_proposal",
+            "fields": {
+              "request": "F01OriginLookupRequest（requested_kind=ticket_scope）",
+              "projection": "F01TicketOwnerProjection",
+              "selected_ticket_indices": "list<nonnegative integer>（元WorkflowInput.ticket_graph内）",
+              "issues": "list<OriginSourceIssue>",
+              "relation_state": "matched | not_applicable | unknown | conflict",
+              "bound_operand_pointer": "string（当該originが結ばれる一方の原operand pointer。両比較側の値一致をorigin成立条件にしない）"
+            },
+            "meaning_ja": "原graph_ref/change_refとBinding各適用軸、原changed targetとTicketNodeをsourceの明示関係で結ぶ。TicketNode.ticket_ref/backflow_refは戻し先資料でありrecipient Refではない。source_roleの関係が無い場合、名前/同文字列だけでsource所属を作らない。"
+          },
+          {
+            "name": "F01RunnerResourceOwnerProjection",
+            "kind": "private_record_proposal",
+            "fields": {
+              "os_binding": "OS020.Field<Binding>",
+              "resource_ref": "OS020.Field<string>（既存OS operand。資源identityへcastしない）",
+              "environment_ref": "OS020.Field<string>（既存OS operand。INFRA environmentへcastしない）",
+              "runner_ref": "OS020.Field<string>",
+              "native_infra_input": "OS020.Field<INFRA025.Input_F01>",
+              "actual_resource_origin": {
+                "type": "OS020.Field<closed_record>",
+                "fields": {
+                  "source_locator": "SourceObjectLocator",
+                  "source_body": "RawValue（選択された実resource originの原record）",
+                  "source_role_declaration": "OS020.Field<RawValue>（INFRASTRUCTURE等の原宣言を保持）",
+                  "selected_resource": "source | destination（原宣言）",
+                  "native_resource_locator": "OS020.Field<SourceObjectLocator>",
+                  "bound_operand_pointer": "string（実資源不足に結ぶ元operand）",
+                  "relation_state": "matched | not_applicable | unknown | conflict",
+                  "issues": "list<OriginSourceIssue>",
+                  "source_role_declaration_payload_pointer": "string (RFC6901; source_body内のrole宣言)",
+                  "subject_payload_pointer": "string (RFC6901; source_body内の資源subject)",
+                  "applicability_scope_payload_pointer": "string (RFC6901; source_body内の適用scope)",
+                  "applicability_binding_payload_pointer": "string (RFC6901; source_body内のOS binding対応宣言)",
+                  "native_scope_pointer": "literal /original_scope relative to native_infra_input",
+                  "native_resource_pointer": "literal /original_source_resource when selected_resource=source; /original_destination_resource when destination",
+                  "native_resource_identity_pointer": "literal /original_source_resource/identity when source; /original_destination_resource/identity when destination, relative to native_infra_input"
+                },
+                "field_meaning_ja": "actual resource suboriginだけの供給状態。absent/null/emptyはField原状態として保持し、source_locatorやsource_bodyを捏造しない。supplied(record)時だけclosed recordの各pointer/valueを読む。"
+              },
+              "runner_selection_origin": {
+                "type": "OS020.Field<closed_record>",
+                "fields": {
+                  "source_locator": "SourceObjectLocator",
+                  "source_body": "RawValue（runner選定ownerの原record）",
+                  "source_role_declaration": "OS020.Field<RawValue>（runner_selection_owner_kindの原source宣言）",
+                  "runner_selection_owner_kind": "OS020.Field<string>（OS又はINFRASTRUCTUREの原値）",
+                  "subject_payload_pointer": "string (RFC6901)",
+                  "bound_operand_pointer": "string（runner/環境選定不足に結ぶ元operand）",
+                  "relation_state": "matched | not_applicable | unknown | conflict",
+                  "issues": "list<OriginSourceIssue>",
+                  "source_role_declaration_payload_pointer": "string (RFC6901; source_body内のrole宣言)",
+                  "applicability_scope_payload_pointer": "string (RFC6901; source_body内の適用scope)",
+                  "applicability_binding_payload_pointer": "string (RFC6901; source_body内のOS binding対応宣言)",
+                  "native_binding_projection_pointer": "literal /os_binding relative to F01RunnerResourceOwnerProjection"
+                },
+                "field_meaning_ja": "runner selection suboriginだけの供給状態。absent/null/emptyはField原状態として保持し、source_locatorやsource_bodyを捏造しない。supplied(record)時だけclosed recordの各pointer/valueを読む。"
+              },
+              "native_infra_input_origin": {
+                "type": "OS020.Field<closed_record>",
+                "fields": {
+                  "source_locator": "SourceObjectLocator（同じrunner_resource lookupが返した原I carrierのlocator）",
+                  "source_body": "RawValue（source_locatorが指す原owner record。I全体を含む場合も部分recordの場合も原値保持）",
+                  "payload_pointer": "string（RFC6901。source_body内のINFRA025.Input_F01全体の実在位置）"
+                }
+              }
+            },
+            "meaning_ja": "OS binding/参照とnative INFRA全入力をそのまま保持する。2つのoriginは別々のsource/subject/role/stateを持ち、片側のunknown/conflictが他側を消さない。 native_infra_input_originは同じsource lookupから全Iのraw carrierとpayload RFC6901位置を保持し、native_infra_inputがsuppliedでもraw側が部分record/未供給なら全I比較だけunknownとする。actual_resource_originとrunner_selection_originは独立Fieldで、片方のabsent/null/emptyは他方のmatchedを消さない。"
+          },
+          {
+            "name": "F01RunnerResourceOrigin",
+            "kind": "private_record_proposal",
+            "fields": {
+              "request": "F01OriginLookupRequest（requested_kind=runner_resource）",
+              "projection": "F01RunnerResourceOwnerProjection",
+              "issues": "list<OriginSourceIssue>"
+            },
+            "meaning_ja": "同じouter runner_resource lookup内で両suboriginを取得する。各suboriginのpresence/state/issueは独立して保持する。"
+          },
+          {
+            "name": "F01OriginEvidence",
+            "kind": "private_tagged_union_proposal",
+            "variants": {
+              "harness_f01": "F01HarnessOrigin",
+              "ticket_scope": "F01TicketOrigin",
+              "runner_resource": "F01RunnerResourceOrigin"
+            },
+            "meaning_ja": "source kindとnative carrierを一致させる閉union。B01 origin_kind集合を拡大しない。"
+          },
+          {
+            "name": "F01GapRequest",
+            "kind": "private_record_proposal",
+            "fields": {
+              "context": "F01ReturnContext",
+              "finding": "Finding（原triple）",
+              "origin_kind": "harness_f01 | ticket_scope | runner_resource",
+              "origin": "F01OriginEvidence（同kind、対応済み原source）",
+              "selected_source_occurrence": "nonnegative integer（当該OriginRead.Supplied.recordsの元位置）",
+              "related_operand_pointers": "list<string>",
+              "selected_source_subkind": "actual_resource | runner_selection | null（non-runner_resource originではnull）"
+            },
+            "meaning_ja": "HARNESS/ticket/resource役割別intakeへ渡すsource-bearing request。sourceがnot_applicable/unknown/conflictなら確定origin requestは作らず下記unresolved/conflictへ保持する。実recipient/資格/ACKは要求しない。"
+          },
+          {
+            "name": "F01LocalOriginReturn",
+            "kind": "private_record_proposal",
+            "fields": {
+              "finding": "Finding",
+              "origin_kind": "harness_f01 | ticket_scope | runner_resource",
+              "origin_read": "OriginRead<F01OriginEvidence>",
+              "source_occurrence_indices": "list<nonnegative integer>",
+              "issues": "list<OriginSourceIssue>",
+              "classification": "unresolved | conflict | not_applicable",
+              "source_subkind": "actual_resource | runner_selection | null（source read自体未供給または非runner_resourceではnull。個別origin未解決は対応subkindを記録）"
+            },
+            "meaning_ja": "source非供給/未観測/不正/相反の原状態をそのまま局所返却する。source欠落を新source/provider/人間承認gateへ変えず、別matched originは継続。"
+          },
+          {
+            "name": "F01IntakeCall",
+            "kind": "private_record_proposal",
+            "fields": {
+              "origin_kind": "harness_f01 | ticket_scope | runner_resource",
+              "request": "F01GapRequest",
+              "call_result": "Unit（既存B01型参照）"
+            },
+            "meaning_ja": "同callに実引数で渡したrequestとUnitの復帰だけ。transport/ACK/判断/義務消込ではない。"
+          },
+          {
+            "name": "F01OwnerReturnTrace",
+            "kind": "private_record_proposal",
+            "fields": {
+              "context": "F01ReturnContext",
+              "origin_reads": "list<{request:F01OriginLookupRequest,return:OriginRead<F01OriginEvidence>}>（lookup順）",
+              "requests": "list<F01GapRequest>",
+              "local_origin_returns": "list<F01LocalOriginReturn>",
+              "covered_by_existing_b01": "list<Finding>（既存B01 caller対象という分類だけで実call済みとはしない）",
+              "outside_this_f01_extension": "list<Finding>",
+              "intake_calls": "list<F01IntakeCall>"
+            },
+            "meaning_ja": "全Findingは既存B01対象/新request/local原因/範囲外のいずれかへ保持。元public Proposal/SourceBoundProfile全値、Field、source原値/反復を不変保持。new public state/codeを作らない。"
+          }
+        ],
+        "source_ports": [
+          {
+            "signature": "lookup_harness_f01_origin(request: F01OriginLookupRequest) -> OriginRead<F01OriginEvidence>",
+            "kind": "harness_f01",
+            "producer_ja": "HARNESS既存意味ownerのsource読取adapter。requestの同F01 native invocationと独立OriginalSourceEntry/locatorを使う。"
+          },
+          {
+            "signature": "lookup_ticket_scope_origin(request: F01OriginLookupRequest) -> OriginRead<F01OriginEvidence>",
+            "kind": "ticket_scope",
+            "producer_ja": "既存OS ticket/change owner。F01TicketOwnerProjectionは新しい私有返却契約であり、native OS017未宣言memberを仮装しない。projection原source/locatorとnative WorkflowInputを独立供給する。"
+          },
+          {
+            "signature": "lookup_runner_resource_origin(request: F01OriginLookupRequest) -> OriginRead<F01OriginEvidence>",
+            "kind": "runner_resource",
+            "producer_ja": "既存OS runner-selection ownerおよびINFRA resource ownerのsource読取adapter。actual resourceとrunner selectionの原source/subject/roleを別のsuboriginとして返す。"
+          }
+        ],
+        "intake_ports": [
+          {
+            "signature": "consume_harness_f01_gap(request: F01GapRequest[origin_kind=harness_f01]) -> Unit",
+            "role": "HARNESS",
+            "refinement": {
+              "origin_variant": "harness_f01",
+              "request_origin_kind_equals_variant": true
+            }
+          },
+          {
+            "signature": "consume_os_ticket_scope_gap(request: F01GapRequest[origin_kind=ticket_scope]) -> Unit",
+            "role": "OS ticket/workflow責務",
+            "refinement": {
+              "origin_variant": "ticket_scope",
+              "request_origin_kind_equals_variant": true
+            }
+          },
+          {
+            "signature": "consume_infra_resource_gap(request: F01GapRequest[origin_kind=runner_resource, selected_source_subkind=actual_resource]) -> Unit",
+            "role": "INFRASTRUCTURE resource責務",
+            "refinement": {
+              "request.origin_kind": "runner_resource",
+              "request.selected_source_subkind": "actual_resource",
+              "origin.runner_resource.projection.actual_resource_origin": "OS020.Field.supplied(R)",
+              "R.relation_state": "matched",
+              "R.source_role_declaration": "INFRASTRUCTURE（source declaration/subject relationから確認）"
+            }
+          },
+          {
+            "signature": "consume_os_runner_selection_gap(request: F01GapRequest[origin_kind=runner_resource, selected_source_subkind=runner_selection]) -> Unit",
+            "role": "OS既存runner選定責務",
+            "refinement": {
+              "request.origin_kind": "runner_resource",
+              "request.selected_source_subkind": "runner_selection",
+              "origin.runner_resource.projection.runner_selection_origin": "OS020.Field.supplied(T)",
+              "T.relation_state": "matched",
+              "T.runner_selection_owner_kind": "OS020.Field.supplied(\"OS\")"
+            }
+          },
+          {
+            "signature": "consume_infra_runner_selection_gap(request: F01GapRequest[origin_kind=runner_resource, selected_source_subkind=runner_selection]) -> Unit",
+            "role": "INFRASTRUCTUREの既存runner/environment選定責務が原sourceで明示された場合",
+            "refinement": {
+              "request.origin_kind": "runner_resource",
+              "request.selected_source_subkind": "runner_selection",
+              "origin.runner_resource.projection.runner_selection_origin": "OS020.Field.supplied(T)",
+              "T.relation_state": "matched",
+              "T.runner_selection_owner_kind": "OS020.Field.supplied(\"INFRASTRUCTURE\")"
+            }
+          }
+        ],
+        "caller_signature": "dispatch_f01_owner_returns(context: F01ReturnContext, source_ports: F01SourcePorts, intakes: F01IntakePorts) -> F01OwnerReturnTrace",
+        "callable_bundle_definition": "F01SourcePortsは上記3 source_portsのfunction valueをkind別memberで持つ閉record。F01IntakePortsは上記5 intake_portsのfunction valueを役割別memberで持つ閉record（resource1/runner-selection2/HARNESS1/ticket1）。capability/locatorからcallbackを合成しない。",
+        "call_order": [
+          "既存F02001/09/02/08の同call原packet/input/全返却をcontextに受ける。HARNESS F01 invocationと全独立資料は追加明示引数であり、元contextから生成しない。 HARNESS originのinvocationはcontext.harness_f01_invocation.supplied値と同一call bindingで全値照合する。",
+          "原Finding順に既存code+RFC6901 segment境界prefixへ照合。既存B01 handled行はcovered_by_existing_b01へ保持し、新callerが既存B01のcall済みを捏造しない。F01full_required固有prefixは新HARNESS lookupへ向ける。",
+          "各source portを必要なkindだけ呼び、全OriginReadとsource occurrence/原状態/全native値を保持する。sourceのrole/subject/data対応はsource_join_rulesで検査し、空records・未観測・unavailable・decode invalid・foreign・既知相反を区別する。",
+          "各runner_resource occurrenceについてactual_resourceとrunner_selectionを独立評価する。matchedなactual resource originはselection owner状態に関係なく該当resource intakeへ要求を作る。matched selection originは既知OS/INFRA ownerに対応する別selection intakeへ要求を作る。各片側のunknown/conflictはそのsubkindのlocal returnとして残し、他側・他originのmatched処理を止めない。",
+          "完全同値requestはselected_source_subkind、origin source occurrence、Finding、related operandsを含む全構造が一致する場合だけ重複排除する。異なるsubkind/source occurrenceはFinding tripleだけで統合しない。順序はFinding原順→routing kind順→source occurrence順→actual_resource, runner_selection順。",
+          "intake Unitを同requestとともにintake_callsへ保持し全Traceを返す。local unresolved/conflictと範囲外/既存B01分類も返す。CIProposal/facet/Outcome/実作用flag/上流判断は変更しない。"
+        ],
+        "source_join_rules": {
+          "harness_f01": [
+            "同call F01 original/sources/candidate/comparisonは独立に供給し全値保持。OriginalSourceEntryをsources.referents実indexへ全Ref/bytes/decoded_payload/qualification/stateで照合する。B01 duty_source_contractの比較責務を同source役割へ意味再導出するが、F03 source値を再利用しない。 context.harness_f01_invocation=OS020.Field.supplied(A)の場合、origin.invocation全5memberをAへ全値・型・Field/presenceで一致照合する。absent/null/emptyならHARNESS originと外側Fieldを両方保持してそのoriginだけunknown、別callなら相反をissueへ残し当該origin intakeを作らない。",
+            "source原declared payload pointerのsubjectをoriginal.bindingへnative Ref全axis/Scope3member/Fieldで比較。原duty全行をoriginal.duties又はduty_catalogの実indexへ比較し、提出とcanonicalの役割を区別する。unknown duty属性をcatalogから埋めない。",
+            "full_requiredはHARNESS F01 comparison.observation.required_refsのObservationField全variantとnative source_refsを保持し、known時だけOS側の既知setと照合する。full_required_observationは同じinvocation A.comparison.observation.required_refsへ結ぶ。nested_full_requiredはinvocation.originalから読まない。同じrequest.context.base_context.original_ci_input.context=OS020.Field.supplied(C)の場合だけCをunwrapし、C.harness_selection_source=OS020.Field.supplied(H)の場合だけHをunwrapして、H.f01_full_required_refsの原Fieldを保持・照合する。親context又はharness_selection_sourceがabsent/null/emptyなら原Fieldを保持しnested対応だけunknown。intakeを作らない原対応の不一致は、origin.full_required_observation対同call A.comparison.observation.required_refs、origin.nested_full_required対同requestのH.f01_full_required_refs、又は別callへの誤所属を指し、両原値とissueを保持する。元Findingが表すA側requiredとOS側setの既知意味差そのものは、原sourceの誤所属と区別し、対応済みoriginのintakeを継続する。F03 minimum/selected又はactual obligationsからF01 requiredを補わない。",
+            "HARNESS native subjectとOS Bindingの関係は既存ScopeBindingWitness/独立source_role_declarationの適用memberを原値で照合し、Scopeをstringへcastしない。plain HarnessDutySource44/HarnessProfileSource46の全構成は前提にしない。"
+          ],
+          "ticket_scope": [
+            "source portが供給するF01TicketOwnerProjection.source_bodyの同名declared operandとtyped memberをpresence/型/全値で照合し、source_locatorはその原recordに結ぶ。このprivate projectionはsource読取口の新技術引数であり、既存nativeに同名memberがあるという主張ではない。",
+            "projection.ticket_graph_ref/change_refと適用bindingはbound_operand_pointerで指定されたactual又は独立contextの元memberへ比較し、sourceの所属側を明示する。別側のknown差は元Findingとして残し、同じsourceを両側へ強制一致させない。raw/Field不明は当該source対応だけunknown。",
+            "native_workflow_inputはOS020.Field<OS017.WorkflowInput>。supplied(W)時だけW.binding及びW.ticket_graphを読む。W.bindingの共通project/requirement_revision/scopeは各Fieldを保持し、sourceが同namespaceを宣言した軸だけ比較する。plan_revision/contract_revisionをOS020 HEAD/base/runへ変換しない。W全memberと原Fieldは保持する。",
+            "W.ticket_graph=supplied(rows)時だけselected_ticket_indicesの各原index iを当該rowsへ結ぶ。iはlogical nonnegative integerでi<len(rows)の時だけrows[i]を選ぶ（booleanはintegerではない）。選択順/反復と全非選択rowを保持する。各選択rowのticket_ref/target/kind/parent_revision/scope/backflow_ref/dependencies/acceptanceは全Field原値のままintakeへ渡す。indexだけからsource所属を作らず、sourceのtarget/変更scope対応を独立に比較する。",
+            "native_workflow_inputがabsent/null/emptyならWを読む操作はなく、その原Fieldと供給されたindex列を保持して当該必要joinをunknownにする。W.ticket_graphがabsent/null/emptyの時もrowsを捏造せず同様。supplied([])は既知空listであり、原indexがあれば範囲外として原値/issueを保持する。index列が空というだけで原ticket所属成立を主張しない。",
+            "supplied(rows)に範囲外又は型外indexがある場合はそのsource occurrenceの原index/issueを保持し、存在しないrowを補完しない。型外はOriginReadの原decode-invalid/issue境界へ、比較不能はlocal unknown、同一source所属について既知矛盾がある時だけconflict。適用外はnot_applicable。どの枝も別のmatched source occurrenceのintakeを抑止しない。",
+            "native ticket targetとOS changed_targetsにsource宣言のnamespace関係が無ければそのjoinだけunknown。ticket_ref/backflow_refは戻し先の原資料でありrecipient/OwnerOriginRefへのcastはしない。原source不存在は当該lookupのlocal unresolved。"
+          ],
+          "runner_resource": [
+            "同じrunner_resource lookupはactual_resource_originとrunner_selection_originを別々に供給する。各source_body全RawValue/source_locatorを保持し、source_role_declaration_payload_pointer、subject_payload_pointer（selection側ではrunner subject_payload_pointer）、applicability_scope_payload_pointer、applicability_binding_payload_pointerの各RFC6901先を原値のまま検証する。actual側はnative_scope_pointer=/original_scopeとnative_resource_identity_pointer（selected_resourceでsource/destinationを選択）へ、selection側はnative_binding_projection_pointer=/os_bindingへ対応づけ、bound_operand_pointerはF01OriginLookupRequest.operand_pointers中の実operandであることを確認する。pointerはsource-specificな値locatorであり、新たな自由mapping/資格を宣言しない。 scopeとBindingの比較はscope_binding_operand_contractの別pairに従い、元erratumのscope対全Binding比較を採用しない。 actual_resource_origin/runner_selection_originは各OS020.Field。supplied(record)時のみrecordを検査し、非suppliedはそのsuboriginのnot-observed/local unknownとしてField原値を維持する。",
+            "actual_resource_originはnative INFRA Input_F01のoriginal_source_resource又はoriginal_destination_resourceのうちselected_resourceが指定する一方へ、native_resource_locatorと全member/presenceで照合する。resource source role declarationとOS binding/適用scopeの対応がmatchedの場合だけresource subkindをmatchedにする。Input_F01の残り全memberも保持し、owner文字列単独から資格/役割を推論しない。 native全入力とnullable/optional保持はscope_binding_operand_contract.native_whole_retention/selection_jaへ従い、member名や異形scopeを合成しない。 native_infra_input=Field.supplied(I)の全member照合では、native_infra_input_origin=Field.supplied(R)のR.source_body[R.payload_pointer]が実在するときだけそのraw objectとIを全Field/型/presenceで比較する。Rまたは実pointerが未供給・未解決ならIとRを保持し全I raw対応だけunknown。選択partial source_bodyをI全体の代用にしない。",
+            "runner_selection_originはrunner_selection_owner_kindとその独立source declaration/subjectを同値照合する。OS又はINFRASTRUCTUREがknown/matchedならrunner_selection subkindをそれぞれのintakeへ渡す。unknown/null/absent/conflictならrunner selection側だけlocal returnに残す。 runner_selection_originが非suppliedならselectionだけlocal unknownのままにし、actual_resource_originがsupplied/matchedである処理を抑止しない。",
+            "source/body decode不足・foreign scope・既知相反は該当subkindのstate/issuesへ記録する。resource matchedかつselection unknownならINFRA resource requestを作り、selection local unknownも併存させる。他のmatched origin intakeは継続する。actual resourceがunknownならresource requestは作らない。",
+            "resource_ref/environment_ref/runner_ref等のOS opaque stringをINFRA identity/source_ref/environment/operation_refへ暗黙castしない。actualとindependent context間の既知差は元Findingとして保ち、同じsourceに両側一致を要求しない。"
+          ],
+          "common_origin_vs_semantic_difference": [
+            "source-originのmatchedは、その原sourceが宣言された一方のoperand/subjectに対応する意味であり、既存actual対独立contextの値が一致するという意味ではない。actual/expected sourceの双方がある場合は別originへ保持する。",
+            "既存Findingが表すknown相違それ自体を理由に両側の正常origin lookupを抑止しない。sourceの誤所属/同subject別native bytes等は局所origin conflict、元actual/contextの意味差は原Findingとして別に保持する。",
+            "lookup返却kindがrequest.requested_kindと異なる場合や、返却origin.requestが元requestと全値不一致の場合は当該originを採用せず原返却/issueをlocalに保持する。複数matched sourceという件数だけで一律conflictにしない。"
+          ]
+        },
+        "routing_scope_and_codes": [
+          {
+            "priority": 0,
+            "match": "既存B01 finding_routesのorigin_kindがplan/obligation/decision/plan_and_obligationの行に限り、元code+exact pointer又はRFC6901 segment-prefixで照合する。B01 routing_and_dedupのexact優先/dual routeを保持し、F01full_required専用subtreeは先に除外する。",
+            "handling": "上記の実scope一致だけcovered_by_existing_b01へ原Findingを保持する（B01実call済みの主張ではない）。not_owner_return_scope行のroles operation/authority/resource及びfallbackをcovered/handledにしない。除外後も新F01各routingを試し、それにも合致しなければoutside_this_f01_extensionへ保持する。既存B01自体の返却/分類は変更しない。",
+            "included_b01_route_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              6
+            ],
+            "excluded_b01_route_indices": [
+              5
+            ],
+            "excluded_prefix": "/context/harness_selection_source/f01_full_required_refs"
+          },
+          {
+            "priority": 1,
+            "codes": [
+              "source_unresolved",
+              "source_conflict"
+            ],
+            "prefixes": [
+              "/context/harness_selection_source/f01_full_required_refs"
+            ],
+            "candidate_kinds": [
+              "harness_f01"
+            ],
+            "notes": "既存Findingが実際に存在する時だけ。optional source不足から新Findingを生成しない。"
+          },
+          {
+            "priority": 2,
+            "codes": [
+              "source_unresolved",
+              "source_conflict"
+            ],
+            "prefixes": [
+              "/binding/ticket_graph_ref",
+              "/context/binding/ticket_graph_ref",
+              "/binding/head",
+              "/context/binding/head",
+              "/binding/base",
+              "/context/binding/base",
+              "/inputs/change_ref",
+              "/context/inputs/change_ref"
+            ],
+            "candidate_kinds": [
+              "ticket_scope"
+            ]
+          },
+          {
+            "priority": 3,
+            "codes": [
+              "source_unresolved",
+              "source_conflict"
+            ],
+            "prefixes": [
+              "/binding/runner_ref",
+              "/context/binding/runner_ref",
+              "/binding/environment_ref",
+              "/context/binding/environment_ref",
+              "/inputs/resource_ref",
+              "/context/inputs/resource_ref"
+            ],
+            "candidate_kinds": [
+              "runner_resource"
+            ],
+            "candidate_source_subkinds": [
+              "actual_resource",
+              "runner_selection"
+            ],
+            "notes": "該当Findingのoperandに関係する両suboriginを独立に読み、各々のsubject/role/stateでrouteする。一方のselection owner unknownを理由にmatched resource suboriginを抑止しない。"
+          },
+          {
+            "priority": 4,
+            "codes": [
+              "source_unresolved",
+              "source_conflict"
+            ],
+            "prefixes": [
+              "/binding/project",
+              "/context/binding/project",
+              "/binding/requirement_revision",
+              "/context/binding/requirement_revision",
+              "/binding/scope",
+              "/context/binding/scope",
+              "/binding/pair_ref",
+              "/context/binding/pair_ref",
+              "/binding/oracle_ref",
+              "/context/binding/oracle_ref",
+              "/binding/harness_version",
+              "/context/binding/harness_version",
+              "/binding/run_ref",
+              "/context/binding/run_ref",
+              "/inputs/connection_ref",
+              "/context/inputs/connection_ref",
+              "/inputs/evidence_contract_ref",
+              "/context/inputs/evidence_contract_ref"
+            ],
+            "candidate_kinds": [
+              "harness_f01",
+              "ticket_scope",
+              "runner_resource"
+            ],
+            "notes": "汎用binding/共通入力不足はpointerだけで単独ownerに確定しない。各source portのsuboriginが原役割/適用subjectを宣言した対応だけを採用する。runner_resourceではactual_resourceとrunner_selectionを別route候補として照合する。not_applicableは記録して該当subkindのintakeを作らず、必要source無しはそのsubkindのlocal unresolved。"
+          },
+          {
+            "priority": 5,
+            "match": "上記にも既存B01にもないFinding",
+            "handling": "outside_this_f01_extensionへ全値保持。operation/SEC/collection/continuity/revalidationを新F01 owner routeへ誤分類しない。"
+          }
+        ],
+        "explicit_unproved_or_not_claimed": [
+          "独立F01 native invocationとsource witnessが現CIInputへ自動接続済みとは主張しない。本案で追加明示入力とsource portの責務を定義する。",
+          "OS017 nativeからticket_graph_ref/change_ref/head/base/runを全面projectionする既存規則は確認できない。新private owner read contractとして原projection/locatorを独立供給し、不在ならunknown。",
+          "INFRA025 nativeからOS020 runner_ref/environment_refへの意味変換は既存field名だけでは定まらない。原対応資料が無い値を生成しない。",
+          "provider/trust/recipient/delivery/ACKの未成立は本logical methodの新gateではない。lookupがunknownを返す経路自体を閉じ、別sourceの処理を止めない。",
+          "この最小案は既存Findingのsource-bearing返却口の技術案。F01profile全導出、F02/F03運転、全義務完了/実装Readyの認定ではない。",
+          "raw native INFRA Input_F01の全体carrierが未供給/部分recordの場合、全I raw対typed比較は未評価のまま保持する。actual resource又はrunner selectionの片側だけ未観測でも兄弟matched処理を継続する。"
+        ],
+        "legacy_delta": {
+          "reuse": "semantic_rederivation",
+          "preserve": "owner-bearing inventory/元PLANとchange provenance、HEAD/base/run、元失敗/未完を保持し元ownerへ返す。",
+          "change": "旧runtime/test/CI/全量fallback/固定profileをコピーせず現在のField/native source/私有intakeへ限定具体化。",
+          "reason": "L10-F01不足義務/runner/変更scopeをHARNESS/ticket/resource ownerへ返す意味を、source原値と既存公開Finding不変のまま閉じる。"
+        },
+        "scope_binding_operand_contract": {
+          "scope_ja": "F01 source-origin所属比較だけ。既存actual/context意味比較、producer selection、B01/routerの公開state/codeを変更しない。",
+          "source_roles_ja": "source portが独立供給した原role/applicability宣言とsource_body全値を保持する。原宣言が当該軸のnamespace/役割を特定するときだけ以下の同operand比較を適用する。名前・空でない文字列・pointerだけでは所属を成立させない。未供給の宣言を新規に生成せず当該joinをlocal unknownに残す。",
+          "os_binding_ja": "projection.os_binding=OS020.Field.supplied(B)のときだけBinding memberを読む。absent/null/emptyはその元Fieldとraw causeを保持して必要joinをunknown。Bindingを補完しない。",
+          "runner_scope_pair": {
+            "left": "OS020.Field.supplied(T)時のT.source_body[applicability_scope_payload_pointer]の原presence/type/value（suborigin_aliasesに従い、非suppliedなら比較しない）",
+            "right": "projection.os_binding=Field.supplied(B)時の B.scope: OS020.Field<string>",
+            "applicability": "原runner-selection role/applicability宣言が左値をOS020 Binding.scopeと同じscalar scope namespace/役割として明示した場合に限る。",
+            "comparison": "既存F02001の宣言Field投影と同じabsence/null/empty/supplied境界で原scalarとB.scopeを照合する。空object/list/非stringをscalar又は空文字へ変換しない。scope文字列とBinding全recordを比較しない。",
+            "separate_full_binding": "applicability_binding_payload_pointerが指す別の原宣言値だけをprojection.os_bindingの全Field/13memberへ照合する。scope scalarから他12軸を合成しない。",
+            "suborigin_alias_rule": "/suborigin_aliases/runner_selection_origin"
+          },
+          "resource_scope_pair": {
+            "left": "OS020.Field.supplied(R)時のR.source_body[applicability_scope_payload_pointer]の原record/presence（suborigin_aliasesに従い、非suppliedなら比較しない）",
+            "right": "projection.native_infra_input=OS020.Field.supplied(I)時の I.original_scope",
+            "applicability": "原resource role/applicability宣言が左値を同じINFRA025.Input_F01.original_scope全recordとして明示した場合に限る。",
+            "comparison": "requirement_revision/environment/worker/operation_ref/scope/constraint_ref/resourcesの全7memberを、それぞれのoptional/nullable/原型/全値で比較する。optional不在とnullを区別し、resources配列を全値保持する。INFRA record自体をOS020.Fieldに再wrapしたり全Binding/Binding.scopeへcastしない。",
+            "separate_full_binding": "OS bindingへのsource宣言が別にある場合だけapplicability_binding_payload_pointerの原値をprojection.os_bindingへ照合する。INFRA original_scopeから13軸を作らない。",
+            "suborigin_alias_rule": "/suborigin_aliases/actual_resource_origin"
+          },
+          "witness_boundary": "既存ScopeBindingWitness (/logical_types/45)はOS↔HARNESSだけ。INFRA↔OS/runner↔OSの証拠として流用しない。異namespaceを対応させる実在既存sourceが別に供給されない限り、その対応はunknown。今回新witness/provider/authority/必須gateを作らない。",
+          "native_whole_retention": "projection.native_infra_input=Field.supplied(I)時だけIを読む。全I raw比較の左辺は同じrunner_resource lookupのnative_infra_input_origin=Field.supplied(R)にあるsource_body[R.payload_pointer]の実在原値だけとする。pointerが閉じたINFRA Input_F01全体を指す場合、claims/original_scope/original_work_before/submitted_work_after/original_source_resource/original_destination_resource/original_isolation/original_state_evidence/proposed_completion_basisの全member/型/presenceをIと比較する。raw carrier又はpointerが非供給/未解決、又はsource_bodyが選択部分resourceだけならIとsourceは保持し全I照合のみunknownとする。native_resource_locator/source_bodyの部分recordをI全体へ拡張しない。別sourceから値を借りず、資格要件も追加しない。",
+          "selection_ja": "selected_resource=sourceならI.original_source_resource、destinationならI.original_destination_resourceだけをnative_resource_locatorの到達record全member/presenceへ照合する。反対側/最初の非null側へfallbackしない。subject_payload_pointer先は選択側identityへ比較し、identityとresource全recordを比較しない。",
+          "relation_and_issues": "既知同subject対応の全必要比較が成立したsuboriginだけmatched、別対象はnot_applicable、必須材料不足/型外/namespace不明はunknown、比較可能な同subjectの既知不一致はconflict。原sourceとissuesを保持。role/sourceのknown差とactual/context原Findingの意味差を混同しない。",
+          "independent_routes": "actual_resourceがINFRASTRUCTUREの原role/subject/scope/bindingへmatchedならrunner_selectionがunknown/absent/conflictでもconsume_infra_resource_gapを作る。runner_selectionは自身の原role/subjectがmatchedしrunner_selection_owner_kindがsupplied(OS|INFRASTRUCTURE)の場合だけ各selection intakeへ。片側原因を他側へ伝播しない。 actual_resource_originとrunner_selection_originのField状態は独立に観測する。片側Fieldがabsent/null/emptyなら当該suboriginだけlocal unknownとして返し、実在matchedな兄弟のgap requestと全原値を継続する。outer lookupがSuppliedであることを兄弟両方の供給済みと解釈しない。",
+          "request_identity": "selected_source_subkind/origin source occurrence/Finding/related operandsを含むrequest全値同値だけdedup。元全read/反復/issueは保持。順はFinding→routing kind→原source occurrence→actual_resource,runner_selection。Unitは実受領/ACK/owner判断完了ではない。",
+          "suborigin_aliases": {
+            "actual_resource_origin": "origin.runner_resource.projection.actual_resource_origin=OS020.Field.supplied(R)の場合のみunwrapし、Rをactual_resource_originの閉recordとして読む。非suppliedではRを生成せずresource側の必要joinだけunknownにする。",
+            "runner_selection_origin": "origin.runner_resource.projection.runner_selection_origin=OS020.Field.supplied(T)の場合のみunwrapし、Tをrunner_selection_originの閉recordとして読む。非suppliedではTを生成せずselection側の必要joinだけunknownにする。",
+            "siblings": "RとTは別Fieldである。片側の非suppliedは他方のmatched状態・intakeを止めず、偽locator/bodyを作らない。"
+          }
+        },
+        "id": "HELIXOS-L4-020-F01-OWNER-RETURN",
+        "requirement_ref": "HELIXOS-L3-020-F01",
+        "system_oracle_ref": "HELIXOS-L10-020-F01",
+        "approved_requirement": {
+          "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+          "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3"
+        },
+        "source_basis": {
+          "OS_L3": {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/37",
+            "canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3"
+          },
+          "OS_L10": {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/37",
+            "canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c"
+          },
+          "INFRA_L3": {
+            "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+            "pointer": "/requirements/21",
+            "canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3"
+          },
+          "INFRA_L10": {
+            "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+            "pointer": "/cases/21",
+            "canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f"
+          },
+          "OS_L5_Binding": {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/2",
+            "canonical_sha256": "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b"
+          },
+          "INFRA_L5_Input_F01": {
+            "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294",
+            "pointer": "/logical_types/1",
+            "canonical_sha256": "1881ced4bdb5d1a90e9ed57aa2b337f9af8655de62cb32e777274f0e13f608bd"
+          },
+          "native_type_sources": {
+            "HARNESS_F01VerificationInput": {
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+              "file_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/F01VerificationInput",
+              "object_canonical_sha256": "842adca2a9890ec184c39b65a5e119c397ade153d97f51415c145993b7a04f39"
+            },
+            "HARNESS_VerificationSources": {
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+              "file_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/VerificationSources",
+              "object_canonical_sha256": "3acaaa699ba9259686fe05dd07dbc639514e43fa62e5bf7731ce07fe4eede077"
+            },
+            "HARNESS_F01VerificationObservation": {
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+              "file_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/F01VerificationObservation",
+              "object_canonical_sha256": "a0a3e0273c9f9a177b66fd7cbb07d51eaa0bd9b4e86dccdc064bb85a732aed64"
+            },
+            "HARNESS_OriginalSourceEntry": {
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+              "file_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/OriginalSourceEntry",
+              "object_canonical_sha256": "7098c762e3eb2f15dee76f5c281604e521218d630c3a5f17727f8d2bd4300807"
+            },
+            "HARNESS_Field": {
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+              "file_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/Field",
+              "object_canonical_sha256": "32bb89963eac29be5cc305ad4e5eb70b2e37d845f3a56b10eb089f9951f0eeda"
+            },
+            "HARNESS_Ref": {
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+              "file_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/Ref",
+              "object_canonical_sha256": "f1901900e3ac1bbdd6257f312d774cee2d51c030710d6218e2e4fa0de7a0cac0"
+            },
+            "HARNESS_Comparison": {
+              "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+              "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+              "file_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+              "pointer": "/type_contract/types/Comparison",
+              "object_canonical_sha256": "e0ca39a7724631a01ae411dfc124b1b3605caf5d6a670d3451890461a3781245"
+            },
+            "OS017_TicketNode": {
+              "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+              "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+              "file_sha256": "86a1a7addf3dd0a6c436ae79fb166d685ab7ffc45b08b43b037333d1628650d2",
+              "pointer": "/logical_types/6",
+              "object_canonical_sha256": "c208bc18265e777cff2a2602e760035c3aa4f5a641e68014215ee78bb12c7c13"
+            },
+            "OS017_WorkflowInput": {
+              "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+              "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+              "file_sha256": "86a1a7addf3dd0a6c436ae79fb166d685ab7ffc45b08b43b037333d1628650d2",
+              "pointer": "/logical_types/18",
+              "object_canonical_sha256": "47e02da5744166162eaee3615be9399ae44cfc36727957c2ef229c41bb262a81"
+            },
+            "OS020_Field": {
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+              "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+              "pointer": "/logical_types/1",
+              "object_canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3",
+              "label_ja": "OS020 Field"
+            },
+            "OS020_Binding": {
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+              "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+              "pointer": "/logical_types/2",
+              "object_canonical_sha256": "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b",
+              "label_ja": "OS020 Binding"
+            },
+            "OS020_SourceBoundProfile": {
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+              "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+              "pointer": "/logical_types/47",
+              "object_canonical_sha256": "ed15f8592f9e4c65a1df147d327b3d0d250e9e657d8d2ea22d2d24eeaed2944f",
+              "label_ja": "OS020 SourceBoundProfile"
+            },
+            "INFRA025_Input_F01": {
+              "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+              "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+              "file_sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294",
+              "pointer": "/logical_types/1",
+              "object_canonical_sha256": "1881ced4bdb5d1a90e9ed57aa2b337f9af8655de62cb32e777274f0e13f608bd"
+            }
+          }
+        },
+        "caller_operand_contract": {
+          "entry_signature": "dispatch_f01_owner_returns(context: F01ReturnContext, source_ports: F01SourcePorts, intakes: F01IntakePorts) -> F01OwnerReturnTrace",
+          "native_invocation": "F01NativeInvocationはHARNESS F01VerificationInput/VerificationSources/candidate/comparison/source_locatorを別の同call callerから明示受領する。OS020 CIInput、F03 minimum、B01 contextから生成・補完しない。 HARNESS kindではsource join前にcontext.harness_f01_invocationのField状態を確認し、supplied(A)時だけorigin.invocationと全5memberを比較する。外側Field非suppliedなら両方を保全して当該HARNESS対応をunknown、他originは継続する。",
+          "context_binding": "F01ReturnContext.base_contextには同call OwnerReturnContextのoriginal_packet、original_ci_input、ci_proposal等の原全値を保持し、harness_f01_invocation/source_bound_profileはそれぞれの元Fieldとして別保持する。",
+          "lookup_operands": "各lookupはF01OriginLookupRequest内の元Finding triple、requested_kind、CIInputに対するRFC6901 operand_pointers、同call contextを受ける。source portはこれら実operandに対するsource_locator/body/role/subject/application宣言とnative carrierをOriginReadとして返す。request pointer又はowner labelだけでrole・qualification・所属を作らない。",
+          "source_lookup_ports": "lookup_harness_f01_origin、lookup_ticket_scope_origin、lookup_runner_resource_originの3閉portを要求対象に応じて呼ぶ。未供給・decode invalid・unavailable・foreign・known conflictはOriginRead/issue/occurrenceに保持し、値を補わない。",
+          "intake_operands": "5 intake portsはHARNESS F01、OS ticket/workflow、INFRA actual resource、OS runner selection、INFRA runner selectionを別のF01GapRequestで受ける。source kind・subkind・元Finding・source occurrence/index・関連operand pointer・contextを同callで保持し、Unitを受領/ACK/義務消込へ昇格しない。",
+          "routing_independence": "actual_resource relationがINFRA role/subject/selected resourceへmatchedならrunner_selection側unknownでもINFRA resource intakeを継続する。selection側は自身のrole/subject/mappingだけからOS又はINFRA selection intakeへ送る。片側のunknown/conflictで兄弟のmatchedを消さない。",
+          "scope_shape_boundary": "runner scalar scopeはsource roleが同OS scalar namespaceを明示した場合だけBinding.scope Fieldと比較。別full Bindingは別宣言pointerとの13-member comparison。INFRA original_scopeは7-member optional/nullable recordの各presence/type/value比較。OS ScopeBindingWitnessはHARNESS対応だけなのでINFRAへ流用せず、適用source不在はそのjoinのみunknown。",
+          "source_limit": "OS017 WorkflowInputに未宣言のticket/head/base/change fieldsやINFRA Input_F01からOS runner refsへの変換を仮定しない。OS/INFRA owner source read portsは新しいprivate技術境界として明記するが、実provider・実資格・実受領は未成立のまま。"
+        },
+        "legacy_comparison": {
+          "reuse": "意味の再導出",
+          "preserve": [
+            "旧HELIXのowner-bearing inventory/元PLANとsource provenance",
+            "旧L08-L14の失敗を対応ownerへ戻し、元未完状態を保持する意味"
+          ],
+          "change": [
+            "旧runtime/固定profile/全量fallbackを移植せず、現OS/INFRA Fieldとprivate source/intake境界で具体化する",
+            "B01/F03 source/plan/decision型へF01 ticket/resource responsibilityをaliasしない"
+          ],
+          "reason_ja": "OS020 F01の不足義務・runner・変更範囲を該当ownerへ返す意味を保ち、scalar scope/full Binding/INFRA scope recordの型を混同しない。旧sourceは参照のみで実行しない。",
+          "source_reference": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L14-operations/operations-feedback-boundary.md",
+            "sha256": "e940ef2a1bf2903ffbd953e37d00a37884eb3929697642bfb200ad3ee8934af2",
+            "section": "# L14→L0 feedback",
+            "meaning_ja": "未解決の運用証跡・owner・継続課題を保持して上流へ返す旧境界。対応意味を再導出し、旧runtimeは再利用・実行しない。"
+          }
+        },
+        "status": "candidate design contract; not execution, whole oracle, or implementation readiness",
+        "oracle_ref": "HELIXOS-L9-020-F01",
+        "component": "F01 owner-origin lookup, source-local comparison, and source-bearing owner intake dispatch",
+        "input_meaning": "同一F01 callerの原Finding/CIInputとHARNESS F01 invocationを別Fieldで受け、3 source lookup portと5役割別intake portへ渡す。元値・presence・occurrenceを保持し、source不足を補わない。",
+        "output_meaning": "各lookupのOriginReadと元順occurrence、局所unknown/conflict/not_applicable、sourceに結び付いたintake request/UnitをF01OwnerReturnTraceへ保持する。別matched originを兄弟のunknown/conflictで抑止しない。",
+        "operation_effect": "none",
+        "source_proposal_revision": "005e25bf096e64a92e443b97f947069f186aa6e8",
+        "authoring_history_ja": {
+          "source_proposal_revision": "005e25bf096e64a92e443b97f947069f186aa6e8",
+          "meaning_ja": "この値は助言・著述の来歴であり、現在の契約根拠や承認revisionではない。現在の根拠はsource_basisと各source pointerで示す。"
+        }
       }
     },
     {

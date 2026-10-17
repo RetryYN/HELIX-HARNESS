@@ -3214,7 +3214,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
-        "file_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
+        "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
         "object_canonical_sha256": "00ecf77c8ddc8b372fbf4183b9eda529c8381e8ac8acd88b0d4467001a26ac87",
         "meaning_ja": "この同一pairの現在L4 contractを指す。L4 source_pinsの歴史revisionは変更しない。"
       },
@@ -3266,7 +3266,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/3/owner_return_contract",
-        "file_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
+        "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
         "object_canonical_sha256": "258ba7bedf96d8bf71f75ce310ef3cef91e512d6d0c67154e37621029e13c45b"
       },
       "type_and_algorithm_imports": {
@@ -3291,7 +3291,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/1/operation_call_contract",
-        "file_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
+        "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
         "object_canonical_sha256": "b8c8141227b2e81be5e2a858d7f552bf0bf0fc534b34b63fe9669eb7ff5ca517"
       },
       "native_imports": [
@@ -3913,7 +3913,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/2/prior_projection_call_contract",
-        "file_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
+        "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
         "object_canonical_sha256": "18859b9a615acb625455f56689569bdb681c0f289f11ef3f29fcdeec9ec173e2"
       },
       "paired_l9_oracle_ref": {
@@ -4369,7 +4369,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/2/resume_call_contract",
-        "file_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
+        "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
         "object_canonical_sha256": "2dc4d694753023e1cadef20307b664b7d0dcf1cf02146a97d32c565b0987abfd"
       },
       "paired_l9_oracle_ref": {
@@ -5228,6 +5228,185 @@
         "change_ja": "旧runtime/DB/固定profile/一律full-nightlyを移植せず、現current CIInputのresume比較、段階別private callerとtyped原返却へ再導出する。",
         "reason_ja": "承認済み再開要求に対し、原記録→同current→運転→結果/保存の引数対応が未定義だったため。新しい認可・承認gateを生成しない。"
       }
+    },
+    {
+      "name": "dispatch_f01_owner_returns",
+      "visibility": "private",
+      "signature": "dispatch_f01_owner_returns(context: F01ReturnContext, source_ports: F01SourcePorts, intakes: F01IntakePorts) -> F01OwnerReturnTrace",
+      "paired_current_l4_binding": {
+        "binding_kind": "paired_current_file_bytes",
+        "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+        "pointer": "/contracts/0/f01_owner_return_contract",
+        "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+        "object_canonical_sha256": "94b44e5c09e318a717ab38ceceb4d5f95b461ebed1125fde21a4a3b4c6a94ac0",
+        "meaning_ja": "同一pairの現在L4 F01 owner-return契約。L4のsource_pins歴史は変えない。"
+      },
+      "type_and_algorithm_imports": {
+        "private_types": [
+          {
+            "name": "F01NativeInvocation",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/0",
+            "canonical_sha256": "c068d07936cb3a6809c9ac7d3e47a9996fe8e173038dff94271b55b3400f70be"
+          },
+          {
+            "name": "F01ReturnContext",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/1",
+            "canonical_sha256": "6a26bb40394f88c55a59fc77ffe49b6b8232c6e07f3a4a7435ed0d796d25ab0d"
+          },
+          {
+            "name": "F01OriginLookupRequest",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/2",
+            "canonical_sha256": "f36228af7cc1d235c7a95e632ffa942a0c9d92d85f738f7999ab0248dd6f50de"
+          },
+          {
+            "name": "F01DutySourceWitness",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/3",
+            "canonical_sha256": "bcaef84ea3f1a2a9e67c1db559453ba218d557831bad18ee258e927a3edc1fae"
+          },
+          {
+            "name": "F01HarnessOrigin",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/4",
+            "canonical_sha256": "a7a44985f06b17274ecf4d747e9e5ee72ac3aafcf9ae18df01a4ddd0e8b62640"
+          },
+          {
+            "name": "F01TicketOwnerProjection",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/5",
+            "canonical_sha256": "7a452d271fb0c7044592a98f1695465fa18c17654f1fdb2368069abcecf3ab91"
+          },
+          {
+            "name": "F01TicketOrigin",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/6",
+            "canonical_sha256": "13513056367bab398e0c1c3d479ceeb9954420d67d2982f4ba8ee559081277df"
+          },
+          {
+            "name": "F01RunnerResourceOwnerProjection",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/7",
+            "canonical_sha256": "870ae71a364e81dd9104c6a3b50fff884c5048036675c6a1520a18f95f3607e0"
+          },
+          {
+            "name": "F01RunnerResourceOrigin",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/8",
+            "canonical_sha256": "ceac1d34cdb056d9e689f90d34a3479ed6be62ee61ab562fc8e8c3b5c88b575c"
+          },
+          {
+            "name": "F01OriginEvidence",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/9",
+            "canonical_sha256": "cfd1426e45685ff954a22a18f9c8f436b6b0461fb81119842cb7e92c1f4eddcd"
+          },
+          {
+            "name": "F01GapRequest",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/10",
+            "canonical_sha256": "3e5003f6cc864ffa4d572b4f23e311cb386f713fd38409d18e3c512747482d03"
+          },
+          {
+            "name": "F01LocalOriginReturn",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/11",
+            "canonical_sha256": "f405dcf67f830ccb8ed6d11a6c71c5df79f44f91dbc3befac36c0464def83911"
+          },
+          {
+            "name": "F01IntakeCall",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/12",
+            "canonical_sha256": "e071656148ee8427878af242ab6e28aa4aceef873f4788a043fa17497f0b64f3"
+          },
+          {
+            "name": "F01OwnerReturnTrace",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/13",
+            "canonical_sha256": "531f6914757e6047f42019dac3b6615f647b972a738c8e3f94d390b036bc95b9"
+          }
+        ],
+        "source_ports": [
+          {
+            "signature": "lookup_harness_f01_origin(request: F01OriginLookupRequest) -> OriginRead<F01OriginEvidence>",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/source_ports/0",
+            "canonical_sha256": "9e894980355ca2a06b0aa235e524c2dfca19dc9fe6d9901dc3d613a0727cbc01"
+          },
+          {
+            "signature": "lookup_ticket_scope_origin(request: F01OriginLookupRequest) -> OriginRead<F01OriginEvidence>",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/source_ports/1",
+            "canonical_sha256": "29991913f52127f823839567f38d83d5b795189d159a616c3aa60ffc2dd23665"
+          },
+          {
+            "signature": "lookup_runner_resource_origin(request: F01OriginLookupRequest) -> OriginRead<F01OriginEvidence>",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/source_ports/2",
+            "canonical_sha256": "d4b191321a107d1d1efb074d5d70d8557fd25966ad64e292a7aa6e370d347b57"
+          }
+        ],
+        "intake_ports": [
+          {
+            "signature": "consume_harness_f01_gap(request: F01GapRequest[origin_kind=harness_f01]) -> Unit",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/intake_ports/0",
+            "canonical_sha256": "d8a445e1e99ac427131f7f38fac43d47d376913ff9269a37490c02ba522e70d5"
+          },
+          {
+            "signature": "consume_os_ticket_scope_gap(request: F01GapRequest[origin_kind=ticket_scope]) -> Unit",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/intake_ports/1",
+            "canonical_sha256": "8a79ed36531bbc00794d02c02232b0322e8904f7efbf66660475883164bf8141"
+          },
+          {
+            "signature": "consume_infra_resource_gap(request: F01GapRequest[origin_kind=runner_resource, selected_source_subkind=actual_resource]) -> Unit",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/intake_ports/2",
+            "canonical_sha256": "c32e0a51e5c13a02ab2e8e9800f0f63bfdf1b285039d39279ed515e9efd1285b"
+          },
+          {
+            "signature": "consume_os_runner_selection_gap(request: F01GapRequest[origin_kind=runner_resource, selected_source_subkind=runner_selection]) -> Unit",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/intake_ports/3",
+            "canonical_sha256": "69b65bfd7a0401f96296d067116070b6ea4ad05da74627aa7aba5a18c7b3074b"
+          },
+          {
+            "signature": "consume_infra_runner_selection_gap(request: F01GapRequest[origin_kind=runner_resource, selected_source_subkind=runner_selection]) -> Unit",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/0/f01_owner_return_contract/intake_ports/4",
+            "canonical_sha256": "8051f50102c04e145fd93720b3da79a69f15ed08e36ced5f1061f39e34895b61"
+          }
+        ],
+        "routing": {
+          "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+          "pointer": "/contracts/0/f01_owner_return_contract/routing_scope_and_codes"
+        },
+        "call_order": {
+          "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+          "pointer": "/contracts/0/f01_owner_return_contract/call_order"
+        },
+        "source_joins": {
+          "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+          "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules"
+        },
+        "scope_bindings": {
+          "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+          "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract"
+        }
+      },
+      "paired_l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/ci-profile-execution-recovery.json",
+        "pointer": "/f01_owner_return_verification"
+      },
+      "paired_l9_oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+        "pointer": "/f01_owner_return_verification"
+      },
+      "preservation_ja": "元F01 invocation、OwnerReturnContext、Finding、source body/locator/Field、OriginRead occurrence/issueとnative carrierを同callで保持し、matched sourceごとにintakeへ返す。private0 selection及びprivate1 B01/F03とは独立。",
+      "limits_ja": "source lookup provider、実資格、実受領、ACK、製品実装、whole oracleは未成立。Symbolic L9/L8対条件は実行証拠ではない。"
     }
   ]
 }

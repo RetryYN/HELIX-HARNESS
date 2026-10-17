@@ -170762,9 +170762,9 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-    "sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+    "sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
     "pointer": "/private_producer_bindings/0",
-    "object_canonical_sha256": "355d46e6480836d3971468b16c8ae75cf0f53b15c6a76160a202faaa281f5fda",
+    "object_canonical_sha256": "c0a81c09d660c6c2e81bd86d10bea7d65580e8179f623937fe5577c3109c9271",
     "binding_kind": "exact_candidate_file_bytes",
     "meaning": "同じ対に置くL5の現在file bytesとprivate producer binding objectを結ぶ。歴史source pinとは区別する。"
   },
@@ -171275,7 +171275,7 @@
     ],
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "35aee0072a0a32967b744501acc89ed8254b50e3e528e0494a586a6cf4e26af7",
+      "candidate_sha256": "2d64a9fcb4c7f9668f7ebef71095de3db6e6789e6191302122c4fdf08d64ade1",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
     },
@@ -171293,13 +171293,13 @@
     "requirement_ref": "HELIXOS-L3-020-B01",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+      "sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
       "pointer": "/private_producer_bindings/1",
-      "object_canonical_sha256": "00804993dcef98068143986dfb66abfcac392c9e8b7971252339f94e278c66be"
+      "object_canonical_sha256": "a173c84d46458cf4e913aed7b8f857fce8c665a92807ea75ed699e6a82379cb4"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "35aee0072a0a32967b744501acc89ed8254b50e3e528e0494a586a6cf4e26af7",
+      "candidate_sha256": "2d64a9fcb4c7f9668f7ebef71095de3db6e6789e6191302122c4fdf08d64ade1",
       "pointer": "/owner_return_verification"
     },
     "unit_conditions": [
@@ -171370,20 +171370,20 @@
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
       "pointer": "/contracts/1/operation_call_contract",
-      "body_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
+      "body_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
       "object_canonical_sha256": "b8c8141227b2e81be5e2a858d7f552bf0bf0fc534b34b63fe9669eb7ff5ca517"
     },
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/2",
-      "sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
-      "object_canonical_sha256": "90a7660aaa62e58b6f0e7ae17793a826cc4bd543c2e8be1afc2c0f6c4a77db05"
+      "sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+      "object_canonical_sha256": "e7dedc03f40524c09beaf166bd57ebc0cfc8638cd569cc569a87b9a6b53e1442"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/operation_call_verification",
-      "candidate_sha256": "35aee0072a0a32967b744501acc89ed8254b50e3e528e0494a586a6cf4e26af7",
-      "object_canonical_sha256": "e0c58031d86c4c44dd62f8b667a4cd88bc8ce068788c96243228b7d549435317"
+      "candidate_sha256": "2d64a9fcb4c7f9668f7ebef71095de3db6e6789e6191302122c4fdf08d64ade1",
+      "object_canonical_sha256": "3e49c51ca5aa14c629d6dc64725cce76cd31421cfc105110ecbc6e459287f2c7"
     },
     "condition_correspondence": [
       {
@@ -171530,20 +171530,20 @@
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
       "pointer": "/contracts/2/prior_projection_call_contract",
-      "body_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
+      "body_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
       "object_canonical_sha256": "18859b9a615acb625455f56689569bdb681c0f289f11ef3f29fcdeec9ec173e2"
     },
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/3",
-      "sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
-      "object_canonical_sha256": "e93ee50f70741d1d5b201c56625efd8a1b5a76d7e46d285b3ab85ba50726cc33"
+      "sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+      "object_canonical_sha256": "7448b7d2c072cab2ed23fb1fc1e881c3442f1d0166de7d6515bc91a53cb1334c"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/prior_projection_verification",
-      "candidate_sha256": "35aee0072a0a32967b744501acc89ed8254b50e3e528e0494a586a6cf4e26af7",
-      "object_canonical_sha256": "4d5f07ee3793cfe2a38b53fb2c4bdf6bb1b34711b676e43da45c4319009deb8a"
+      "candidate_sha256": "2d64a9fcb4c7f9668f7ebef71095de3db6e6789e6191302122c4fdf08d64ade1",
+      "object_canonical_sha256": "cd550e0cd7a2878100d3abdf3b925e1d46b38f01ad5ea58267dd0a488165e695"
     },
     "unit_conditions": [
       {
@@ -171620,20 +171620,20 @@
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
       "pointer": "/contracts/2/resume_call_contract",
-      "body_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
+      "body_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
       "object_canonical_sha256": "2dc4d694753023e1cadef20307b664b7d0dcf1cf02146a97d32c565b0987abfd"
     },
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/4",
-      "sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
-      "object_canonical_sha256": "8169f346d86828c057f74127017ce8eb8487cf4766d01919d5a0da9419f2b515"
+      "sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+      "object_canonical_sha256": "6d1995e8aaf9f9aac0e232fc439afb8f0b23ba924a3eee344ca59c0eeffac662"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/resume_call_verification",
-      "candidate_sha256": "35aee0072a0a32967b744501acc89ed8254b50e3e528e0494a586a6cf4e26af7",
-      "object_canonical_sha256": "6bf827f520d5681dc520c3c290795f87fcab2bf24ca72b2db32680326a956714"
+      "candidate_sha256": "2d64a9fcb4c7f9668f7ebef71095de3db6e6789e6191302122c4fdf08d64ade1",
+      "object_canonical_sha256": "ed4b894d5ce8038ba6256d1c3533bdb0128621180bce22031db6a1f11edbc2b5"
     },
     "unit_conditions": [
       {
@@ -171890,5 +171890,1240 @@
       }
     ],
     "scope_ja": "prior-read出力からbegin、三段port、late観測/14capture、resume結果比較、選択時保存へ接続する単体設計条件。literal全返却/実実行・資格・保存・製品CI・全閉包は未認定。"
+  },
+  "f01_owner_return_verification": {
+    "requirement_ref": "HELIXOS-L3-020-F01",
+    "system_oracle_ref": "HELIXOS-L10-020-F01",
+    "candidate_l5_binding": {
+      "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+      "sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+      "pointer": "/private_producer_bindings/5",
+      "object_canonical_sha256": "9e629aded0d1fbd29f9637d80f823e9e4e5c621528f9a931fa373ecc59289254",
+      "binding_kind": "exact_candidate_file_bytes"
+    },
+    "current_l4_binding": {
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "body_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+      "pointer": "/contracts/0/f01_owner_return_contract",
+      "object_canonical_sha256": "94b44e5c09e318a717ab38ceceb4d5f95b461ebed1125fde21a4a3b4c6a94ac0"
+    },
+    "current_l9_candidate_binding": {
+      "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+      "candidate_sha256": "2d64a9fcb4c7f9668f7ebef71095de3db6e6789e6191302122c4fdf08d64ade1",
+      "pointer": "/f01_owner_return_verification",
+      "object_canonical_sha256": "66aae4e7cc62e911c79c1df6082d4ab8b43d6a02ba204a0f9ee679bc6c35692c"
+    },
+    "unit_conditions": [
+      {
+        "id": "S01-runner-scalar-same-role",
+        "given_ja": "原runner sourceが同OS scope namespaceのscalar sを宣言し、projection.os_binding=supplied(B), B.scope=supplied(s)。別のapplicability_binding宣言も全Bindingで対応。",
+        "expected_ja": "scope scalarはB.scopeへだけ対応する。scalar対Binding全recordを比較してconflictにしない。runner_ref/environment_ref subjectと元role/他必要joinは独立に評価する。",
+        "corresponding_l9_id": "S01-runner-scalar-same-role",
+        "status": "symbolic unit condition; input/whole/execution not supplied",
+        "basis_ja": "追跡可能な規範source_refsを参照。旧local準備IDはauthoring_historyにのみ記録する。",
+        "source_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/37",
+            "object_canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3",
+            "label_ja": "OS F01要求"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/37",
+            "object_canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c",
+            "label_ja": "OS F01対検証"
+          },
+          {
+            "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+            "pointer": "/requirements/21",
+            "object_canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3",
+            "label_ja": "INFRA F01要求"
+          },
+          {
+            "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+            "pointer": "/cases/21",
+            "object_canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f",
+            "label_ja": "INFRA F01対検証"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract",
+            "object_canonical_sha256": "94b44e5c09e318a717ab38ceceb4d5f95b461ebed1125fde21a4a3b4c6a94ac0",
+            "label_ja": "今回のL4 F01契約"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+            "pointer": "/private_producer_bindings/5",
+            "object_canonical_sha256": "9e629aded0d1fbd29f9637d80f823e9e4e5c621528f9a931fa373ecc59289254",
+            "label_ja": "今回のL5 F01 binding"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/2",
+            "object_canonical_sha256": "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b",
+            "label_ja": "OS020 Binding",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3",
+            "label_ja": "OS020 Field",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "1881ced4bdb5d1a90e9ed57aa2b337f9af8655de62cb32e777274f0e13f608bd",
+            "label_ja": "INFRA Input_F01"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "86a1a7addf3dd0a6c436ae79fb166d685ab7ffc45b08b43b037333d1628650d2",
+            "pointer": "/logical_types/18",
+            "object_canonical_sha256": "47e02da5744166162eaee3615be9399ae44cfc36727957c2ef229c41bb262a81",
+            "label_ja": "OS017 WorkflowInput"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/runner_scope_pair",
+            "object_canonical_sha256": "875e2aa342b50da191436952ff6a92dc25d0afdadb9f113791fc6ea0ea3822bd",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/runner_resource/0",
+            "object_canonical_sha256": "5ab836641b0a42fdfd1dca74390f388f525b08684212a2aece723a345ff917b8",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          }
+        ]
+      },
+      {
+        "id": "S02-distinct-binding-difference",
+        "given_ja": "S01のscalar scopeは同じだが、別applicability_binding原宣言のhead又はrun_refがprojection.os_bindingの同memberと既知不一致。",
+        "expected_ja": "scope一致を全Binding一致に昇格しない。別のknown source-binding相反を該当suborigin conflictと原値/issueへ保持する。actual/contextの元Findingは別に保持。",
+        "corresponding_l9_id": "S02-distinct-binding-difference",
+        "status": "symbolic unit condition; input/whole/execution not supplied",
+        "basis_ja": "追跡可能な規範source_refsを参照。旧local準備IDはauthoring_historyにのみ記録する。",
+        "source_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/37",
+            "object_canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3",
+            "label_ja": "OS F01要求"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/37",
+            "object_canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c",
+            "label_ja": "OS F01対検証"
+          },
+          {
+            "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+            "pointer": "/requirements/21",
+            "object_canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3",
+            "label_ja": "INFRA F01要求"
+          },
+          {
+            "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+            "pointer": "/cases/21",
+            "object_canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f",
+            "label_ja": "INFRA F01対検証"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract",
+            "object_canonical_sha256": "94b44e5c09e318a717ab38ceceb4d5f95b461ebed1125fde21a4a3b4c6a94ac0",
+            "label_ja": "今回のL4 F01契約"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+            "pointer": "/private_producer_bindings/5",
+            "object_canonical_sha256": "9e629aded0d1fbd29f9637d80f823e9e4e5c621528f9a931fa373ecc59289254",
+            "label_ja": "今回のL5 F01 binding"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/2",
+            "object_canonical_sha256": "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b",
+            "label_ja": "OS020 Binding",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3",
+            "label_ja": "OS020 Field",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "1881ced4bdb5d1a90e9ed57aa2b337f9af8655de62cb32e777274f0e13f608bd",
+            "label_ja": "INFRA Input_F01"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "86a1a7addf3dd0a6c436ae79fb166d685ab7ffc45b08b43b037333d1628650d2",
+            "pointer": "/logical_types/18",
+            "object_canonical_sha256": "47e02da5744166162eaee3615be9399ae44cfc36727957c2ef229c41bb262a81",
+            "label_ja": "OS017 WorkflowInput"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/runner_scope_pair/separate_full_binding",
+            "object_canonical_sha256": "619c9d2fd0b27bc6456829b6a15981149fde77c153ec35d31c9242909e893e6c",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/runner_resource/0",
+            "object_canonical_sha256": "5ab836641b0a42fdfd1dca74390f388f525b08684212a2aece723a345ff917b8",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          }
+        ]
+      },
+      {
+        "id": "S03-scalar-not-infra-record",
+        "given_ja": "INFRA original_scope 7member recordとOS Binding.scope scalarが供給される。原sourceは同namespace対応を宣言していない。",
+        "expected_ja": "scalar↔record/fullBinding比較もwitness補完も行わず、その未宣言joinだけunknown。原INFRA record/optional/nullを全保持。他knownmatched originは継続。",
+        "corresponding_l9_id": "S03-scalar-not-infra-record",
+        "status": "symbolic unit condition; input/whole/execution not supplied",
+        "basis_ja": "追跡可能な規範source_refsを参照。旧local準備IDはauthoring_historyにのみ記録する。",
+        "source_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/37",
+            "object_canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3",
+            "label_ja": "OS F01要求"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/37",
+            "object_canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c",
+            "label_ja": "OS F01対検証"
+          },
+          {
+            "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+            "pointer": "/requirements/21",
+            "object_canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3",
+            "label_ja": "INFRA F01要求"
+          },
+          {
+            "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+            "pointer": "/cases/21",
+            "object_canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f",
+            "label_ja": "INFRA F01対検証"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract",
+            "object_canonical_sha256": "94b44e5c09e318a717ab38ceceb4d5f95b461ebed1125fde21a4a3b4c6a94ac0",
+            "label_ja": "今回のL4 F01契約"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+            "pointer": "/private_producer_bindings/5",
+            "object_canonical_sha256": "9e629aded0d1fbd29f9637d80f823e9e4e5c621528f9a931fa373ecc59289254",
+            "label_ja": "今回のL5 F01 binding"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/2",
+            "object_canonical_sha256": "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b",
+            "label_ja": "OS020 Binding",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3",
+            "label_ja": "OS020 Field",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "1881ced4bdb5d1a90e9ed57aa2b337f9af8655de62cb32e777274f0e13f608bd",
+            "label_ja": "INFRA Input_F01"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "86a1a7addf3dd0a6c436ae79fb166d685ab7ffc45b08b43b037333d1628650d2",
+            "pointer": "/logical_types/18",
+            "object_canonical_sha256": "47e02da5744166162eaee3615be9399ae44cfc36727957c2ef229c41bb262a81",
+            "label_ja": "OS017 WorkflowInput"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/resource_scope_pair",
+            "object_canonical_sha256": "fb96da1f5cd3bc02dd104de67348223e4f7e5070016fa4f85e25c2ae3c7c0fce",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/witness_boundary",
+            "object_canonical_sha256": "6b2cba5abc50c5b20f68ff2d4405da8bfdd6e2adac45235d1029a9c1c14f8bfa",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          }
+        ]
+      },
+      {
+        "id": "S04-resource-same-record",
+        "given_ja": "原resource sourceがINFRA original_scope同役割全recordを宣言。I.original_scopeのoptional不在/null/known文字列/known resources列を含め同じ。",
+        "expected_ja": "7member全presence/type/valueの対応のみを支持。worker/operation_ref等をOS project/head/runへ合成せず、全Binding資格や完了へ昇格しない。",
+        "corresponding_l9_id": "S04-resource-same-record",
+        "status": "symbolic unit condition; input/whole/execution not supplied",
+        "basis_ja": "追跡可能な規範source_refsを参照。旧local準備IDはauthoring_historyにのみ記録する。",
+        "source_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/37",
+            "object_canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3",
+            "label_ja": "OS F01要求"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/37",
+            "object_canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c",
+            "label_ja": "OS F01対検証"
+          },
+          {
+            "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+            "pointer": "/requirements/21",
+            "object_canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3",
+            "label_ja": "INFRA F01要求"
+          },
+          {
+            "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+            "pointer": "/cases/21",
+            "object_canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f",
+            "label_ja": "INFRA F01対検証"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract",
+            "object_canonical_sha256": "94b44e5c09e318a717ab38ceceb4d5f95b461ebed1125fde21a4a3b4c6a94ac0",
+            "label_ja": "今回のL4 F01契約"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+            "pointer": "/private_producer_bindings/5",
+            "object_canonical_sha256": "9e629aded0d1fbd29f9637d80f823e9e4e5c621528f9a931fa373ecc59289254",
+            "label_ja": "今回のL5 F01 binding"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/2",
+            "object_canonical_sha256": "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b",
+            "label_ja": "OS020 Binding",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3",
+            "label_ja": "OS020 Field",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "1881ced4bdb5d1a90e9ed57aa2b337f9af8655de62cb32e777274f0e13f608bd",
+            "label_ja": "INFRA Input_F01"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "86a1a7addf3dd0a6c436ae79fb166d685ab7ffc45b08b43b037333d1628650d2",
+            "pointer": "/logical_types/18",
+            "object_canonical_sha256": "47e02da5744166162eaee3615be9399ae44cfc36727957c2ef229c41bb262a81",
+            "label_ja": "OS017 WorkflowInput"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/resource_scope_pair",
+            "object_canonical_sha256": "fb96da1f5cd3bc02dd104de67348223e4f7e5070016fa4f85e25c2ae3c7c0fce",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/runner_resource/1",
+            "object_canonical_sha256": "81bba55395bd59e1d3fe8248d4d25f32d1c67c231aecb6ac8d7ff34f407a1f38",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          }
+        ]
+      },
+      {
+        "id": "S05-resource-presence-difference",
+        "given_ja": "S04と同subject/roleで左scope recordのworker member absent、右I.original_scope.worker=null（又はresources内known差）。",
+        "expected_ja": "optional absentをnullへ畳まない。比較可能な原scopeの型/presence/value差をresource側issue/conflictへ保持。runner側scope判定へ伝播しない。",
+        "corresponding_l9_id": "S05-resource-presence-difference",
+        "status": "symbolic unit condition; input/whole/execution not supplied",
+        "basis_ja": "追跡可能な規範source_refsを参照。旧local準備IDはauthoring_historyにのみ記録する。",
+        "source_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/37",
+            "object_canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3",
+            "label_ja": "OS F01要求"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/37",
+            "object_canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c",
+            "label_ja": "OS F01対検証"
+          },
+          {
+            "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+            "pointer": "/requirements/21",
+            "object_canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3",
+            "label_ja": "INFRA F01要求"
+          },
+          {
+            "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+            "pointer": "/cases/21",
+            "object_canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f",
+            "label_ja": "INFRA F01対検証"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract",
+            "object_canonical_sha256": "94b44e5c09e318a717ab38ceceb4d5f95b461ebed1125fde21a4a3b4c6a94ac0",
+            "label_ja": "今回のL4 F01契約"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+            "pointer": "/private_producer_bindings/5",
+            "object_canonical_sha256": "9e629aded0d1fbd29f9637d80f823e9e4e5c621528f9a931fa373ecc59289254",
+            "label_ja": "今回のL5 F01 binding"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/2",
+            "object_canonical_sha256": "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b",
+            "label_ja": "OS020 Binding",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3",
+            "label_ja": "OS020 Field",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "1881ced4bdb5d1a90e9ed57aa2b337f9af8655de62cb32e777274f0e13f608bd",
+            "label_ja": "INFRA Input_F01"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "86a1a7addf3dd0a6c436ae79fb166d685ab7ffc45b08b43b037333d1628650d2",
+            "pointer": "/logical_types/18",
+            "object_canonical_sha256": "47e02da5744166162eaee3615be9399ae44cfc36727957c2ef229c41bb262a81",
+            "label_ja": "OS017 WorkflowInput"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/resource_scope_pair/comparison",
+            "object_canonical_sha256": "fce17f457059a5f982f230c9aa964f8f0f5defcddc330dee87c4e9a419ea5c69",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/relation_and_issues",
+            "object_canonical_sha256": "c7ed6ff4b27e147d2ddae6988985b0ab9aa3433cacf60651ffd54b17b17ce707",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          }
+        ]
+      },
+      {
+        "id": "S06-resource-match-runner-unknown",
+        "given_ja": "actual_resourceは独立INFRA role/selected native resource/scope/bindingへmatched。runner_selection原owner又はscope宣言だけ未観測。",
+        "expected_ja": "consume_infra_resource_gapをsource-bearing requestで継続。runner側は局所unknownでselectionintakeなし。CIProposal/producer selection/作用flagを変更しない。",
+        "corresponding_l9_id": "S06-resource-match-runner-unknown",
+        "status": "symbolic unit condition; input/whole/execution not supplied",
+        "basis_ja": "追跡可能な規範source_refsを参照。旧local準備IDはauthoring_historyにのみ記録する。",
+        "source_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/37",
+            "object_canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3",
+            "label_ja": "OS F01要求"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/37",
+            "object_canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c",
+            "label_ja": "OS F01対検証"
+          },
+          {
+            "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+            "pointer": "/requirements/21",
+            "object_canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3",
+            "label_ja": "INFRA F01要求"
+          },
+          {
+            "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+            "pointer": "/cases/21",
+            "object_canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f",
+            "label_ja": "INFRA F01対検証"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract",
+            "object_canonical_sha256": "94b44e5c09e318a717ab38ceceb4d5f95b461ebed1125fde21a4a3b4c6a94ac0",
+            "label_ja": "今回のL4 F01契約"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+            "pointer": "/private_producer_bindings/5",
+            "object_canonical_sha256": "9e629aded0d1fbd29f9637d80f823e9e4e5c621528f9a931fa373ecc59289254",
+            "label_ja": "今回のL5 F01 binding"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/2",
+            "object_canonical_sha256": "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b",
+            "label_ja": "OS020 Binding",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3",
+            "label_ja": "OS020 Field",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "1881ced4bdb5d1a90e9ed57aa2b337f9af8655de62cb32e777274f0e13f608bd",
+            "label_ja": "INFRA Input_F01"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "86a1a7addf3dd0a6c436ae79fb166d685ab7ffc45b08b43b037333d1628650d2",
+            "pointer": "/logical_types/18",
+            "object_canonical_sha256": "47e02da5744166162eaee3615be9399ae44cfc36727957c2ef229c41bb262a81",
+            "label_ja": "OS017 WorkflowInput"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/independent_routes",
+            "object_canonical_sha256": "09277756a1616c65499ae094270aca6e42f8c771f43adbe538240dcd3e904a56",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/runner_resource/2",
+            "object_canonical_sha256": "ed5c776a3562c6481602ca24742e7c25073421455308de2a4b506a19c443d8a7",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          }
+        ]
+      },
+      {
+        "id": "S07-runner-match-resource-conflict",
+        "given_ja": "runner_selection原role/subject/scope/bindingがOSへmatched。resource側だけ同subject既知conflict。",
+        "expected_ja": "OS selectionintakeを継続。resource側は原native/source/issue/conflictを保持しresourceintakeなし。同owner/Finding tripleだけでsubkindをdedupしない。",
+        "corresponding_l9_id": "S07-runner-match-resource-conflict",
+        "status": "symbolic unit condition; input/whole/execution not supplied",
+        "basis_ja": "追跡可能な規範source_refsを参照。旧local準備IDはauthoring_historyにのみ記録する。",
+        "source_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/37",
+            "object_canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3",
+            "label_ja": "OS F01要求"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/37",
+            "object_canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c",
+            "label_ja": "OS F01対検証"
+          },
+          {
+            "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+            "pointer": "/requirements/21",
+            "object_canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3",
+            "label_ja": "INFRA F01要求"
+          },
+          {
+            "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+            "pointer": "/cases/21",
+            "object_canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f",
+            "label_ja": "INFRA F01対検証"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract",
+            "object_canonical_sha256": "94b44e5c09e318a717ab38ceceb4d5f95b461ebed1125fde21a4a3b4c6a94ac0",
+            "label_ja": "今回のL4 F01契約"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+            "pointer": "/private_producer_bindings/5",
+            "object_canonical_sha256": "9e629aded0d1fbd29f9637d80f823e9e4e5c621528f9a931fa373ecc59289254",
+            "label_ja": "今回のL5 F01 binding"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/2",
+            "object_canonical_sha256": "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b",
+            "label_ja": "OS020 Binding",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3",
+            "label_ja": "OS020 Field",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "1881ced4bdb5d1a90e9ed57aa2b337f9af8655de62cb32e777274f0e13f608bd",
+            "label_ja": "INFRA Input_F01"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "86a1a7addf3dd0a6c436ae79fb166d685ab7ffc45b08b43b037333d1628650d2",
+            "pointer": "/logical_types/18",
+            "object_canonical_sha256": "47e02da5744166162eaee3615be9399ae44cfc36727957c2ef229c41bb262a81",
+            "label_ja": "OS017 WorkflowInput"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/independent_routes",
+            "object_canonical_sha256": "09277756a1616c65499ae094270aca6e42f8c771f43adbe538240dcd3e904a56",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/runner_resource/3",
+            "object_canonical_sha256": "35991174b5595854638f6d8b51d319e194b6d9c27e9ca87d02b02251317feef1",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          }
+        ]
+      },
+      {
+        "id": "S08-parent-and-scope-absence",
+        "given_ja": "projection.os_bindingがabsent/null/empty又はscope Fieldが未供給。元source原scalar値は保存される。",
+        "expected_ja": "B又はscopeを生成せず当該必要scopejoinだけunknown。兄弟matched resourceを停止しない。元Fieldとraw presenceを全保持。",
+        "corresponding_l9_id": "S08-parent-and-scope-absence",
+        "status": "symbolic unit condition; input/whole/execution not supplied",
+        "basis_ja": "追跡可能な規範source_refsを参照。旧local準備IDはauthoring_historyにのみ記録する。",
+        "source_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/37",
+            "object_canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3",
+            "label_ja": "OS F01要求"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/37",
+            "object_canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c",
+            "label_ja": "OS F01対検証"
+          },
+          {
+            "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+            "pointer": "/requirements/21",
+            "object_canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3",
+            "label_ja": "INFRA F01要求"
+          },
+          {
+            "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+            "pointer": "/cases/21",
+            "object_canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f",
+            "label_ja": "INFRA F01対検証"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract",
+            "object_canonical_sha256": "94b44e5c09e318a717ab38ceceb4d5f95b461ebed1125fde21a4a3b4c6a94ac0",
+            "label_ja": "今回のL4 F01契約"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+            "pointer": "/private_producer_bindings/5",
+            "object_canonical_sha256": "9e629aded0d1fbd29f9637d80f823e9e4e5c621528f9a931fa373ecc59289254",
+            "label_ja": "今回のL5 F01 binding"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/2",
+            "object_canonical_sha256": "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b",
+            "label_ja": "OS020 Binding",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3",
+            "label_ja": "OS020 Field",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "1881ced4bdb5d1a90e9ed57aa2b337f9af8655de62cb32e777274f0e13f608bd",
+            "label_ja": "INFRA Input_F01"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "86a1a7addf3dd0a6c436ae79fb166d685ab7ffc45b08b43b037333d1628650d2",
+            "pointer": "/logical_types/18",
+            "object_canonical_sha256": "47e02da5744166162eaee3615be9399ae44cfc36727957c2ef229c41bb262a81",
+            "label_ja": "OS017 WorkflowInput"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/ticket_scope/3",
+            "object_canonical_sha256": "30efa09c307718b2827a226f8253c26884a331daee292a63e3856c199a37917d",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/os_binding_ja",
+            "object_canonical_sha256": "ff0b2bd8344fc9a85f2504bb5ffec1c493caf38838e3275e87680b702ebde4c4",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          }
+        ]
+      },
+      {
+        "id": "S09-source-destination",
+        "given_ja": "selected_resource=destinationでnative_resource_locatorがsource側を指す又は対応不能。",
+        "expected_ja": "source側や最初の非null resourceへ切替えない。当該selected resource対応はunknown/既知同subject差ならconflictとし全input/issue保持。runner側独立処理は継続。",
+        "corresponding_l9_id": "S09-source-destination",
+        "status": "symbolic unit condition; input/whole/execution not supplied",
+        "basis_ja": "追跡可能な規範source_refsを参照。旧local準備IDはauthoring_historyにのみ記録する。",
+        "source_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/37",
+            "object_canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3",
+            "label_ja": "OS F01要求"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/37",
+            "object_canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c",
+            "label_ja": "OS F01対検証"
+          },
+          {
+            "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+            "pointer": "/requirements/21",
+            "object_canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3",
+            "label_ja": "INFRA F01要求"
+          },
+          {
+            "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+            "pointer": "/cases/21",
+            "object_canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f",
+            "label_ja": "INFRA F01対検証"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract",
+            "object_canonical_sha256": "94b44e5c09e318a717ab38ceceb4d5f95b461ebed1125fde21a4a3b4c6a94ac0",
+            "label_ja": "今回のL4 F01契約"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+            "pointer": "/private_producer_bindings/5",
+            "object_canonical_sha256": "9e629aded0d1fbd29f9637d80f823e9e4e5c621528f9a931fa373ecc59289254",
+            "label_ja": "今回のL5 F01 binding"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/2",
+            "object_canonical_sha256": "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b",
+            "label_ja": "OS020 Binding",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3",
+            "label_ja": "OS020 Field",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "1881ced4bdb5d1a90e9ed57aa2b337f9af8655de62cb32e777274f0e13f608bd",
+            "label_ja": "INFRA Input_F01"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "86a1a7addf3dd0a6c436ae79fb166d685ab7ffc45b08b43b037333d1628650d2",
+            "pointer": "/logical_types/18",
+            "object_canonical_sha256": "47e02da5744166162eaee3615be9399ae44cfc36727957c2ef229c41bb262a81",
+            "label_ja": "OS017 WorkflowInput"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/selection_ja",
+            "object_canonical_sha256": "11c44f900049efb5aa7ca227db7a254e29a59c349e3e08f0fb9f982a58638cb9",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/runner_resource/1",
+            "object_canonical_sha256": "81bba55395bd59e1d3fe8248d4d25f32d1c67c231aecb6ac8d7ff34f407a1f38",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          }
+        ]
+      },
+      {
+        "id": "S10-b01-noninterference",
+        "given_ja": "元Findingが/roles/resource又はB01 fallback、又はF01 full_required subtree。",
+        "expected_ja": "B01 covered分類にしない。F01既存routingを試し、対象にならないものはoutsideへ原値保持。B01 private1/F01 pure0及びsource flagsを変更しない。",
+        "corresponding_l9_id": "S10-b01-noninterference",
+        "status": "symbolic unit condition; input/whole/execution not supplied",
+        "basis_ja": "追跡可能な規範source_refsを参照。旧local準備IDはauthoring_historyにのみ記録する。",
+        "source_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/37",
+            "object_canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3",
+            "label_ja": "OS F01要求"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/37",
+            "object_canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c",
+            "label_ja": "OS F01対検証"
+          },
+          {
+            "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+            "pointer": "/requirements/21",
+            "object_canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3",
+            "label_ja": "INFRA F01要求"
+          },
+          {
+            "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+            "pointer": "/cases/21",
+            "object_canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f",
+            "label_ja": "INFRA F01対検証"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract",
+            "object_canonical_sha256": "94b44e5c09e318a717ab38ceceb4d5f95b461ebed1125fde21a4a3b4c6a94ac0",
+            "label_ja": "今回のL4 F01契約"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+            "pointer": "/private_producer_bindings/5",
+            "object_canonical_sha256": "9e629aded0d1fbd29f9637d80f823e9e4e5c621528f9a931fa373ecc59289254",
+            "label_ja": "今回のL5 F01 binding"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/2",
+            "object_canonical_sha256": "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b",
+            "label_ja": "OS020 Binding",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "84444981c199d99dface975ee9b2ef69f552b5023daf3c1b651aff120ae85029",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3",
+            "label_ja": "OS020 Field",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae"
+          },
+          {
+            "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294",
+            "pointer": "/logical_types/1",
+            "object_canonical_sha256": "1881ced4bdb5d1a90e9ed57aa2b337f9af8655de62cb32e777274f0e13f608bd",
+            "label_ja": "INFRA Input_F01"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "86a1a7addf3dd0a6c436ae79fb166d685ab7ffc45b08b43b037333d1628650d2",
+            "pointer": "/logical_types/18",
+            "object_canonical_sha256": "47e02da5744166162eaee3615be9399ae44cfc36727957c2ef229c41bb262a81",
+            "label_ja": "OS017 WorkflowInput"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/routing_scope_and_codes/0",
+            "object_canonical_sha256": "268bfd01410ff13607e2326395d9671a50c2f1b6139d71192fe7b06d071e97e5",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/not_reused_as_f01_alias/2",
+            "object_canonical_sha256": "1e474e8c30531b85c5ff3524a210ecc0de8f09dced71152647a0327fee6e77a4",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          }
+        ]
+      },
+      {
+        "id": "S11-harness-invocation-same-call",
+        "given_ja": "context.harness_f01_invocationがsupplied(A)で、返されたHARNESS origin invocationは全member中少なくとも1つがAと異なる。",
+        "expected_ja": "元Fieldと両invocation全値を保持し、そのHARNESS originだけlocal conflict/issueとしてintakeを作らない。他matched originと同じAに束縛された別originは継続する。",
+        "corresponding_l9_id": "S11-harness-invocation-same-call",
+        "status": "symbolic unit condition; literal whole/execution not supplied",
+        "source_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/37",
+            "object_canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3",
+            "label_ja": "OS F01要求"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/37",
+            "object_canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c",
+            "label_ja": "OS F01対検証"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/harness_f01",
+            "object_canonical_sha256": "c571987059136cffd7605a41aff029665d8f78345215829077a9bf2d837c3e4b",
+            "label_ja": "invocation全値join"
+          },
+          {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "29a72aef5f56d85e9efdfe89362a31d8d924d26207d75cc8f6e5bb323b80a2c0",
+            "pointer": "/private_producer_bindings/5",
+            "object_canonical_sha256": "9e629aded0d1fbd29f9637d80f823e9e4e5c621528f9a931fa373ecc59289254",
+            "label_ja": "F01 producer binding"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/harness_f01/0",
+            "object_canonical_sha256": "6a09bae83f517d36b7fe971a04402d0bb684f02d164fed73106d62d6ebd7a8cc",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/4/fields/invocation",
+            "object_canonical_sha256": "0a80ee13bb37d793e77a5235b6c98dc10b0f7f57c3460118782ecdc20e12819d",
+            "label_ja": "この条件に対応するcurrent L4 operand/分岐"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/harness_f01/2",
+            "object_canonical_sha256": "918d11fc02415069b4bbf69a69156d85fa889f5968a19b77100ddd106d95bc06",
+            "label_ja": "nested requiredの同call別carrier"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/4/fields/nested_full_required",
+            "object_canonical_sha256": "e06e2d29f4b74bd7d359e1d1d26a4b0cb67fd7263b2259758f1f20ab6bb970f4",
+            "label_ja": "HARNESS原Fieldのsource"
+          }
+        ],
+        "same_call_separate_carrier_control_ja": "同callの正例ではcontext.harness_f01_invocation=OS020.Field.supplied(A)とorigin.invocation=Aを全5memberで一致させる。full_required_observationはA.comparison.observation.required_refs、nested_full_requiredは別carrierのrequest.context.base_context.original_ci_input.context=Field.supplied(C)、C.harness_selection_source=Field.supplied(H)、H.f01_full_required_refsの原Fieldへ束縛する。HARNESS F01VerificationInput A.originalにcontext memberを要求しない。",
+        "carrier_presence_consumption_ja": "消費側のvariant: C/Hがsuppliedなら上記原Fieldを照合する。C又はHがabsent/null/emptyならそのFieldとA側requiredを保持しnested joinのみunknown。origin.nested_full_requiredと同request H.f01_full_required_refsの原Fieldが既知不一致、origin.full_required_observationが同call Aの原観測と既知不一致、又は別call誤所属なら、両原値を保持して当該intakeを作らない。一方、原対応が成立したA側requiredとOS側setの既知意味差は元Findingとして保持し、対応済みorigin intakeを継続する。A自体が非suppliedならHARNESS originと外側Fieldを保持してinvocation joinをunknownとする。"
+      },
+      {
+        "id": "S12-native-infra-raw-full-input",
+        "given_ja": "typed native_infra_inputがsupplied(I)で、同lookup raw carrierがsuppliedかつpayload_pointerが閉じた全Input_F01 objectを指す。",
+        "expected_ja": "raw objectとtyped Iを全member/型/presenceで照合し原値を保持する。carrier/pointerが欠ける又は選択resource部分recordのみなら全I対応だけunknownにし、他のknown source comparisonとmatched intakeを続ける。",
+        "corresponding_l9_id": "S12-native-infra-raw-full-input",
+        "status": "symbolic unit condition; literal whole/execution not supplied",
+        "source_refs": [
+          {
+            "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+            "pointer": "/requirements/21",
+            "object_canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3",
+            "label_ja": "INFRA F01要求"
+          },
+          {
+            "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+            "pointer": "/cases/21",
+            "object_canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f",
+            "label_ja": "INFRA F01対検証"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/7/fields/native_infra_input_origin",
+            "object_canonical_sha256": "bdccf5621c6613d52e03f870ac515e724a550dc8988de299e59bcdde94f7c5dd",
+            "label_ja": "原I carrier"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/native_whole_retention",
+            "object_canonical_sha256": "01e2abe3e536e4f254f6ee2d30ab4583b35bd3f05e7414e6760866192d734350",
+            "label_ja": "全I比較境界"
+          }
+        ]
+      },
+      {
+        "id": "S13-one-suborigin-unobserved",
+        "given_ja": "runner_resource lookupはSuppliedでactual_resource_originがsupplied/matchedだがrunner_selection_originはabsent/null/empty、又はその逆。",
+        "expected_ja": "両FieldとOriginReadをそのまま保持し、未観測側だけlocal unknownにする。matched兄弟のintakeを作り、偽locator/bodyや外側NotObservedで置換しない。",
+        "corresponding_l9_id": "S13-one-suborigin-unobserved",
+        "status": "symbolic unit condition; literal whole/execution not supplied",
+        "source_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/37",
+            "object_canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3",
+            "label_ja": "OS F01要求"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/37",
+            "object_canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c",
+            "label_ja": "OS F01対検証"
+          },
+          {
+            "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+            "pointer": "/requirements/21",
+            "object_canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3",
+            "label_ja": "INFRA F01要求"
+          },
+          {
+            "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+            "revision": "a8edc2c1803de2fda136231a349193064d12d5ae",
+            "file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+            "pointer": "/cases/21",
+            "object_canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f",
+            "label_ja": "INFRA F01対検証"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/private_types/7",
+            "object_canonical_sha256": "870ae71a364e81dd9104c6a3b50fff884c5048036675c6a1520a18f95f3607e0",
+            "label_ja": "独立suborigin Field"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/independent_routes",
+            "object_canonical_sha256": "09277756a1616c65499ae094270aca6e42f8c771f43adbe538240dcd3e904a56",
+            "label_ja": "兄弟独立処理"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/suborigin_aliases",
+            "object_canonical_sha256": "51594e11ee1967d682e222bac0c7f7e14759d7f5904eb8d1ebac07890bc54939",
+            "label_ja": "suborigin Field unwrap"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/intake_ports/2/refinement",
+            "object_canonical_sha256": "6bbba9a3ef15be02b5ec93b1a94f0c7322275b304aaa01539714b35e2e92e8ee",
+            "label_ja": "R consumer operand"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "c072110faec04cc0ff2ece7ce243eca3f480bd3c136ec7ca12e874caf3cf5634",
+            "pointer": "/contracts/0/f01_owner_return_contract/intake_ports/3/refinement",
+            "object_canonical_sha256": "5a98b3179b11129a472d409258fb607d2980a30b85d5ec5ef82cbad504b3ec2f",
+            "label_ja": "T consumer operand"
+          }
+        ],
+        "consumer_operand_unwrap_ja": "消費側のvariant: actual_resource_origin=Field.supplied(R)ならR.relation_state/source_role_declaration等のrecord memberを読む。runner_selection_origin=Field.supplied(T)ならT.relation_state/runner_selection_owner_kind等のrecord memberを読む。Field wrapperそのものにrecord memberを直読しない。",
+        "one_suborigin_non_supplied_consumption_ja": " actual側のみ非suppliedならactual側だけlocal unknownとし、supplied/matched Tのselection intakeを続ける。 selection側のみ非suppliedならselection側だけlocal unknownとし、supplied/matched Rのresource intakeを続ける。双方の原Fieldを保持し、外側lookupだけからR/Tやlocator/bodyを合成しない。"
+      }
+    ],
+    "limits_ja": "有限対条件の著述であり、新しいfixture件数gate、実provider/qualification/ACK、モデル実行、独立whole期待を追加しない。",
+    "authoring_history_ja": {
+      "meaning_ja": "C12/C08/C15/C14/R2/erratum等のignored準備記録は著述履歴としてのみ扱い、規範根拠ではない。規範条件は各unit_conditions.source_refsの追跡可能なL3/L10/current L4/current L5/native型を参照する。10既存symbolic条件と今回追加3条件は入力/whole/実行証拠ではない。"
+    }
   }
 }
