@@ -3486,7 +3486,8 @@
           "descriptor_source": "N01DescriptorRevisionSourceEnvelope",
           "range_target": "N01RangeTargetSource",
           "state_target": "N01StateTargetSource"
-        }
+        },
+        "meaning": "一つの親application callの入力。呼出しcorrelation Refはauthority tokenではない。"
       },
       "output_type": {
         "kind": "record",
@@ -3515,7 +3516,8 @@
           "target_join_results": "N01OwnerTargetJoinResults",
           "owner_contract_result": "ReferenceApplicabilityResult",
           "evidence_limit": "EvidenceLimit"
-        }
+        },
+        "meaning": "全caller input/source envelopeと3つのcallee invocation envelope/complete returnを原値で保持する。evidence_limitはn01_return.evidence_limitから原値copy。owner_contract_resultはN01 candidate_reference_resultとは別の局所表示。"
       },
       "algorithm": [
         {
@@ -4014,7 +4016,10 @@
           "unknown"
         ],
         "input_domain": "宣言した閉じた論理型。memberのAbsent/明示null/原値は既存JsonFieldの意味で保持する。実wire validator/codec/source資格はここで作らない。"
-      }
+      },
+      "input_type_name": "N01OwnerApplicationInput",
+      "output_type_name": "N01OwnerApplicationResult",
+      "inline_signature_rule": "input_type/output_typeは同文書logical_typesのinput_type_name/output_type_nameが指す型の同値展開である。独立した第二の型正本ではなく、変更時は名前参照とinline値の完全一致を照合する。"
     }
   ],
   "semantics": {
@@ -4065,7 +4070,7 @@
       "obligation_ref": "HELIXBRAIN-L3-028-N01 / HELIXBRAIN-L4-028-N01.input_meanings[0]",
       "field": "CandidateTarget.descriptor_version_axis / CandidateTarget.knowledge_version_axis / same-target range and state operands",
       "reason": "L5 N01 base関数と既存13ケースは5軸/evaluationだけであり、F01/F02接続を含まない。追加private entry HELIXBRAIN-L5-028-N01-OWNER-BOUND-COMPOSITIONは明示source/call/target inputとjoin規則を定義したが、このentryの完全literal fixture、実source bytes/資格、owner供給・呼出しは未実証である。descriptor_revisionはsource envelopeに分離し、既存DescriptorRecordを変形しない。",
-      "consumer": "BRAIN L2-008はknowledge revision/state、HARNESS L2-010/011はdescriptor版・依存・scope。",
+      "consumer": "BRAIN L2-008はknowledge revision/state、HARNESS L2-010/011はdescriptor版・依存・scope。対象field witnessの追加まではこの要求の版軸適用義務は未実現であり、accepted/currentへ外挿しない。",
       "status": "設計接続を追加。有限fixtureと実source qualificationは未検証として保持。",
       "qualification_limit": "N01 compositionはF02 not_established[7]/[8]の全域range/state identity/revision bindingを解消せず、F02全体の完了を主張しない。"
     },
@@ -4373,7 +4378,7 @@
       "requirement_ref": "HELIXBRAIN-L3-028-N01",
       "system_oracle_ref": "HELIXBRAIN-L10-028-N01",
       "oracle_ref": "HELIXBRAIN-L9-028-N01",
-      "contract_sha256": "8c1bd2e755ef4659e66d4dbb40c4f5641e4f1f2b9268de97c59be4b4fd46b47a",
+      "contract_sha256": "709a5e61d2420194dbe75e521354b5b1381af7218151547d3ed720971c8290f0",
       "approved_requirement": {
         "id": "HELIXBRAIN-L3-028-N01",
         "parent": "HELIXBRAIN-L2-028",

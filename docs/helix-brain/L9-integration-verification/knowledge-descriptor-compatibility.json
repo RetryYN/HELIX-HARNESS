@@ -10477,7 +10477,7 @@
           {
             "id": "N01C02",
             "given": "同候補の材料に版不一致/range外/state非適用",
-            "expected_observation": "既知不一致/不適用を保持し、N01評価やclaimからapplicableへ昇格しない。 F01の版軸内容比較がmissing/unknown/content_conflictなら、F02 primaryがapplicableでも局所owner_contract_resultはunknown。両calleeの個別原結果は保持する。",
+            "expected_observation": "既知不一致/不適用を保持し、N01評価やclaimからapplicableへ昇格しない。 F01の版軸内容比較がmissing/unknown/content_conflictなら、F02 primaryがapplicableでも局所owner_contract_resultはunknown。両calleeの個別原結果は保持する。 F02の既知not-applicableも、全join/source-address/F01内容対応が成立した場合だけowner_contract_resultへ写す。条件不成立時は局所unknown、F02既知not-applicableはf02_call.returned.reference_P_resultと個別原返却で保持する。",
             "maps_to_l8_condition": "N01C02",
             "execution_state": "not_executed",
             "effect": "none"
@@ -10537,9 +10537,9 @@
       },
       "candidate_l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-descriptor-compatibility.json",
-        "file_sha256": "bbc884626502bf856badf2341a75be5efb0aa77cdb102170f287316f0c43c302",
+        "file_sha256": "d7468c83a2b8bd0f720a907a5036d89835ca7735c6a35d3d02d461df3c9e3f4f",
         "pointer": "/functions/4",
-        "object_canonical_sha256": "98ffffafda89bda1a18936844de84da14fac7d46940df9ec6dd6a2e5a1afc0cd",
+        "object_canonical_sha256": "3b866c99709954d5ed706fd4004812f3e38a63760300a45b072c8529b917087c",
         "meaning": "N01 owner-composition候補へのcurrent binding。L5 historical source_pins/admissionとは別。"
       }
     },
