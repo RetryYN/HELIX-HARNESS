@@ -10448,7 +10448,100 @@
         }
       ],
       "execution_state": "not_executed",
-      "effect": "none"
+      "effect": "none",
+      "connected_application_conditions": {
+        "entry_ref": "HELIXBRAIN-L5-028-N01-OWNER-BOUND-COMPOSITION",
+        "l8_condition_ids": [
+          "N01C01",
+          "N01C02",
+          "N01C03",
+          "N01C04",
+          "N01C05",
+          "N01C06",
+          "N01C07",
+          "N01C08"
+        ],
+        "approved_source_requirements": [
+          "HELIXBRAIN-L3-028-N01 /requirements/3",
+          "HELIXBRAIN-L10-028-N01 /cases/3"
+        ],
+        "conditions": [
+          {
+            "id": "N01C01",
+            "given": "5軸/evaluationを固定し版/range/state材料だけ変更",
+            "expected_observation": "version/range/state operandが供給された軸は同call F01/F02 full input+returnおよび明示target tupleと比較される。CandidateTarget 5軸/evaluation一致だけで版適用にしない。 dependencyはF02の単一required tupleをF01の ordered tuple集合へmembership照合し、全一致indexを保持する。 membershipは既知一致全indexを保持し、0件かつ未解決要素ありはunknown、0件かつ全既知ならconflict。",
+            "maps_to_l8_condition": "N01C01",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "N01C02",
+            "given": "同候補の材料に版不一致/range外/state非適用",
+            "expected_observation": "既知不一致/不適用を保持し、N01評価やclaimからapplicableへ昇格しない。 F01の版軸内容比較がmissing/unknown/content_conflictなら、F02 primaryがapplicableでも局所owner_contract_resultはunknown。両calleeの個別原結果は保持する。 F02の既知not-applicableも、全join/source-address/F01内容対応が成立した場合だけowner_contract_resultへ写す。条件不成立時は局所unknown、F02既知not-applicableはf02_call.returned.reference_P_resultと個別原返却で保持する。",
+            "maps_to_l8_condition": "N01C02",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "N01C03",
+            "given": "version/source/range/stateのAbsent、Null、unknown",
+            "expected_observation": "各sourceのAbsent/Null/placeholderは該当joinのmissing/unknownとして軸と原Field状態を保持する。供給済み兄弟軸は個別評価を続け、全て未供給として潰さない。全source未供給時もapplicableへ補完しない。",
+            "maps_to_l8_condition": "N01C03",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "N01C04",
+            "given": "別revision/scopeのowner evidence",
+            "expected_observation": "当該target joinは成立せず、そのowner full returnは保全されるが対象成功へ転用されない。",
+            "maps_to_l8_condition": "N01C04",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "N01C05",
+            "given": "N01/F01/F02/source envelopeのcall refが違う",
+            "expected_observation": "call join conflict/unknownを保持し、異なる呼出しの結果を混ぜない。 親n01_call_refも原Fieldでechoする。",
+            "maps_to_l8_condition": "N01C05",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "N01C06",
+            "given": "current/accepted/all-packs/other-revision-success claim",
+            "expected_observation": "既存N01 claim_results/effectsとcandidate_reference_resultを変更しない。",
+            "maps_to_l8_condition": "N01C06",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "N01C07",
+            "given": "無関係QとPの局所不足が併存",
+            "expected_observation": "N01 unaffected_reference_QとF01/F02全返却を原値保全する。",
+            "maps_to_l8_condition": "N01C07",
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          {
+            "id": "N01C08",
+            "given": "F02 range/state独立identity/revision binding未供給",
+            "expected_observation": "N01はunknownを保持し、F02 not_established[7]/[8]及びsource qualification未成立を閉じたとしない。",
+            "maps_to_l8_condition": "N01C08",
+            "execution_state": "not_executed",
+            "effect": "none"
+          }
+        ],
+        "existing_case_boundary": "concrete_casesの13既存ケースと全expected_materialは不変。新条件はそのfixture expectedへ逆注入しない。",
+        "owner_boundary": "BRAIN008 knowledge revision/state、HARNESS010/011 descriptor version/dependency/range/scopeの既存責務を維持する。実source資格・実運転・全知識保証は対象外。",
+        "unfinished": "F02 not_established[7]/[8]、実source bytes/qualification、追加unit/integration wholeは未完了のまま。"
+      },
+      "candidate_l5_binding": {
+        "path": "docs/helix-brain/L5-detail-design/knowledge-descriptor-compatibility.json",
+        "file_sha256": "d7468c83a2b8bd0f720a907a5036d89835ca7735c6a35d3d02d461df3c9e3f4f",
+        "pointer": "/functions/4",
+        "object_canonical_sha256": "3b866c99709954d5ed706fd4004812f3e38a63760300a45b072c8529b917087c",
+        "meaning": "N01 owner-composition候補へのcurrent binding。L5 historical source_pins/admissionとは別。"
+      }
     },
     {
       "id": "HELIXBRAIN-L9-028-B01",
