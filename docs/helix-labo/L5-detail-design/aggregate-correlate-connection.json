@@ -199,7 +199,7 @@
     "形式schema/codecおよび実source資格は未成立。",
     "この論理契約は合成packetの静的比較だけで、実接続・実receipts・実authorityを認定しない。",
     "L11、正式実装・資格・実運用は未成立。",
-    "旧42caseのMISSINGは明示nullを含む固定範囲である。追加case（`/cases/42`）はconnection.scope.productのkey欠落を扱うが、他のkey absent、receipt object外、relations list外は46素材でも未検証である。relation identity/revisionの非対称anchorは差分表示に限り、どちらが正しいsourceか・原因ownerかを認定しない。原fixture以外の正式anchorと診断の閉包は後続対設計の未完として保全する。非null non-object scopeではFN01が13個presenceを保ちall_required=falseを返す一方、FN04はscope親/子の所見を返さず、現有限契約はreceipt unqualifiedのままinformation_stateを返す。この状態の診断意味は未閉包であり、成功資格にしない。"
+    "旧42caseのMISSINGは明示nullを含む固定範囲である。追加case（`/cases/42`）はconnection.scope.productのkey欠落を扱うが、他のkey absent、receipt object外、relations list外は46素材でも未検証である。relation identity/revisionの非対称anchorは差分表示に限り、どちらが正しいsourceか・原因ownerかを認定しない。原fixture以外の正式anchorと診断の閉包は後続対設計の未完として保全する。非null non-object scopeではFN01の13個presence/all_required=falseと原scope値を保持し、FN04が必須scope内容不足を親connection.scope/missing/LABO-connection-ownerへ一件返す。親missingはraw不存在を示さず、子4件と重複しない。新caseはscope=7と両receipt echoを保つ限定対照で、この枝以外の未確認shapeや実資格を成立させない。"
   ],
   "document_id": "HELIXLABO-L5-011",
   "layer": "L5",
@@ -585,7 +585,7 @@
           "returns": "ConnectionResult"
         },
         "algorithm": [
-          "findings=[]。transfer.connection_field_presenceから外側connection 9項目を原順で調べる。scopeのraw値がobjectの場合だけ、親scopeの直後に4子項目を順に診断し、absent/nullをfield_path/missing/LABO-connection-ownerで保持する。scopeがabsent/null/object外なら子4項目の診断を生成せず、親scope自身のabsent/null所見がある場合だけそれを保持する。FN01が返した13項目presenceと必須値成立状態はこの診断選別で変更しない。object外の非null値を子欠落へ読み替えず、子の値を推測しない。",
+          "findings=[]。transfer.connection_field_presenceから外側connection 9項目を原順で調べる。scopeのraw値がobjectの場合だけ、親scopeの直後に4子項目を順に診断し、absent/nullをfield_path/missing/LABO-connection-ownerで保持する。scopeがabsent/nullなら子4項目の診断を生成せず、親scope自身のabsent/null所見だけを保持する。scopeが非null object外なら必須scope内容が供給されないため、親connection.scope/missing/LABO-connection-ownerをこの位置に一件だけ保持し、子4項目の理由と重複しない。ここでmissingは必要なscope内容の不足を示し、raw member不存在を主張しない。FN01が返した親presence=value/原raw、子4項目absent、13項目presenceと必須値不成立は変更しない。子の値を推測しない。",
           "raw claimsが非空なら原順にclaims/unsupported_connection_or_causeを追加し、claim=correlation_is_causeのみLABO-correlation-owner、その他LABO-connection-ownerへ返す。このときreceipt/観測/relation所見は追加せず組立てへ進む。有限fixtureの診断選択であり実許可や欠陥消去を意味しない。",
           "claimなしでまだ所見がなければsend→receiveの順でreceiptを確認する。nullはmissing_endpoint_receipt、object外はforeign_referenceをreceipt名のfieldに1件。それ以外はFN02のcheck順で最初のcomparison!=equalをreceipt.<check.field>、state差ならnot_observed、その他foreign_referenceとする。ownerはLABO-connection-owner。最初のreceipt所見でこの走査を止める。",
           "接続・receipt段の所見に続き、元/受信観測がobjectなら、identity,revision,source,scopeの順に受信値nullをmissing/LABO-Aggregate-ownerとして調べ、最初の1件を保持する。このnull検査はraw走査順とは別の先行段階である。null所見がなければ、sourceが両方objectでrevisionが異なる場合はreceived_observation.source.revision/foreign_revisionを保持する。これらspecific所見がなければ、同じmetadata群をidentity,revision,source,scopeの順に比較し、元値・受信値がともに非nullでJSON不一致の最初の1件をreceived_observation.<field>/received_content_conflict/LABO-Aggregate-ownerで返す。元値がabsent/nullで受信値が非nullの場合、この一般metadata比較だけでは新しいconflictを生成せず、raw両値とFN01の観測比較を保持する。metadata群は最大1件で、specific mismatchをgeneric conflictで重ねない。したがってreceived_observation.scope=nullとsource.revision相違が同時にある場合、scopeのmissingを優先しsource.revision/foreign_revisionは併記しない。その後、received fieldsを原順に走査し、元not_observedからreceived observed_in_fixture_onlyかつ非nullへの変化があれば最初の1件をreceived_observation.fields.<key>/missing_not_success/LABO-Aggregate-ownerで保持する。これがなければ、元fields mapと受信fields mapをpresence・nullを含むJSON deep-equal全体として比較し、異なればreceived_observation.fields/received_content_conflict/LABO-Aggregate-ownerを1件返す。fields群は最大1件で、null、key欠落、observed/not_observed等の状態差もこの全体比較から除外しない。値を補完・成功扱いしない。metadata群とfields群は独立であり、両方の所見をこの順で保持できる。この観測段階は先行する接続/receipt所見で短絡しない。",
@@ -780,12 +780,29 @@
       },
       {
         "topic": "非object scopeの未閉包",
-        "rule": "non-null non-object scopeの親/子診断の意味は未閉包。FN01 13-field presence/all_required=falseとFN04の現行返却を維持し、成功資格を付与しない。"
+        "rule": "non-null non-object scopeはFN01 13-field presence/all_required=falseを保持し、FN04が必須scope内容不足を親connection.scope/missing/LABO-connection-ownerへ一件返す。raw不存在を意味せず子4件と重複しない。この限定枝をscope_content_correctionと追加caseで具体化し、全shape診断・実資格の閉包へ外挿しない。"
       },
       {
         "topic": "出典と意味の対応",
         "rule": "旧assetと現在PO原文は役割・範囲の差を明示して意味を再導出する。旧sourceを現行規則へ直接写さない。"
       }
     ]
+  },
+  "scope_content_correction": {
+    "l4_candidate_binding": {
+      "path": "docs/helix-labo/L4-basic-design/aggregate-correlate-connection.json",
+      "sha256": "7ad7548fd27e4e894bb3d2da9e9df721d841905a299fa12e609f982259db2177"
+    },
+    "normative_target_pointer": "/logical_contract/functions/3/algorithm/0",
+    "scope": "FN04の親scope必須内容不足返却のみ。FN01..03/全29型/既存署名とその他FN04分岐を保持。",
+    "missing_meaning": "本対のscope内容（requirement_revision、ticket、product、mechanism）が非null non-object scopeのため供給されない場合は、原scope値とFN01のpresence=value/子4項目absent/必須13値不成立を保持し、connection.scopeの必須内容不足をmissingとしてLABO-connection-ownerへ一件返す。missingはraw member不存在への変換ではない。親一件へ集約し子4件の不足理由を重複しない。実資格・接続成功は発行しない。",
+    "prior_followup_source_pin_role": "candidate_followup_binding.current_source_pins/basic_pair_snapshotは先行著述の履歴参照で値を保持。本限定候補の現在意味は上記current L4 bindingとnormative_target_pointerへ結ぶ。",
+    "case_id": "LABO011-F01-NONOBJECT-SCOPE-CONTENTS-MISSING",
+    "case_count": 47,
+    "oracle_reference": {
+      "path": "docs/helix-labo/L8-unit-verification/aggregate-correlate-connection.json",
+      "pointer": "/cases/46"
+    },
+    "no_new_effects": "実接続/recipient/authority/codec/CI/受入の成立を追加しない。"
   }
 }

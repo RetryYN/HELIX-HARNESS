@@ -137,9 +137,19 @@
         "各接続は固有identity、Aggregate/Correlate endpoint、connector identity/版、適用契約identity/版、要求revision/scopeを持つ。共通pack契約をここで再定義せず実bindingは未完に保持する。",
         "送信内容と受領内容にobservation identity/revision、原source identity/revision、field値/欠測と元source参照を保持する。欠測は成功値/0で補わない。",
         "両端receiptは同接続/同内容/同scopeの送信と受領をそれぞれ参照する。engine単体成功、片側receipt、版違い/未知互換では接続成功を宣言しない。",
-        "episode候補のrelationと元observation側backlinkは同じidentity/revision/scopeを往復参照する。不一致は元記録を保ってcorrelation ownerへ返す。相関を因果確定へ昇格しない。"
+        "episode候補のrelationと元observation側backlinkは同じidentity/revision/scopeを往復参照する。不一致は元記録を保ってcorrelation ownerへ返す。相関を因果確定へ昇格しない。",
+        "本対のscope内容（requirement_revision、ticket、product、mechanism）が非null non-object scopeのため供給されない場合は、原scope値とFN01のpresence=value/子4項目absent/必須13値不成立を保持し、connection.scopeの必須内容不足をmissingとしてLABO-connection-ownerへ一件返す。missingはraw member不存在への変換ではない。親一件へ集約し子4件の不足理由を重複しない。実資格・接続成功は発行しない。"
       ],
       "representation_limit": "参照と不成立理由の合成例。payload digest一致だけで実受領/実接続/評価成立を主張しない。"
     }
-  ]
+  ],
+  "scope_content_correction": {
+    "scope": "非null non-object connection.scopeの必須内容不足を既存connection owner返却へ接合する限定契約。",
+    "basis_pointers": [
+      "/contracts/0/content_rules/0",
+      "/architecture/flow/3",
+      "/contracts/0/content_rules/4"
+    ],
+    "retained": "旧原要件・scope/authority・source/legacy記録・その他content_rulesを保持。実codec/全shape classifier/新code/資格gateを追加しない。"
+  }
 }
