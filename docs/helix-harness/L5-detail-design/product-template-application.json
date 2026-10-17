@@ -14023,6 +14023,236 @@
           "reason": "以前の完全predicateがあるように読めるguardを、記述済みの診断形と未形成の判定基準へ分け、未検証の能力を成立扱いしないため。"
         }
       }
+    },
+    "collection_and_obligation_origin_writer_contract": {
+      "id": "HARNESS-L5-009-F05-COLLECTION-OBLIGATION-ORIGIN-WRITER",
+      "scope": "F02/F14/F15/F16の原collection Read所在、義務originの原index/全値所在及び実出力linkの順序を詳細化する。139 native型と28 leaf_writer_ledger行を変更しない。global原Ref保全とfield/proposal当該未完scope確定を区別し、意味分類/新selector/新資格条件を追加しない。",
+      "source_basis": [
+        {
+          "revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
+          "binding_kind": "追補前の固定詳細正本",
+          "selected_objects": [
+            {
+              "pointer": "/f05_detail_contract/leaf_writer_ledger/8",
+              "canonical_sha256": "ef9b40dcde69d1e9a8324b5798e4450bbbb30365ef72c77cc8cb5891276a9459"
+            },
+            {
+              "pointer": "/f05_detail_contract/leaf_writer_ledger/20",
+              "canonical_sha256": "0858397c470a472e909454a9e9619792eb9e0233db08dbde6f91cdf2ef2f178c"
+            },
+            {
+              "pointer": "/f05_detail_contract/leaf_writer_ledger/21",
+              "canonical_sha256": "837b67ee78237fdce220ee4c21f79b2de4eaff8805697565631e12eb36cd25c6"
+            },
+            {
+              "pointer": "/f05_detail_contract/leaf_writer_ledger/22",
+              "canonical_sha256": "358a7e20ed23b2ff3e322d4c3e6392ce41c37b7a7a027f3043cbead504ad3e35"
+            },
+            {
+              "pointer": "/f05_detail_contract/types/ObligationOrigin",
+              "canonical_sha256": "3c4eb553d762c7d835b75cfcd38c820ec109f8f4933e513df3a3a326f37a1f8c"
+            },
+            {
+              "pointer": "/f05_detail_contract/types/RecordOccurrence",
+              "canonical_sha256": "f1b2f4a85d06d8af30de4cbf26fd7bb52131f70af6089ad50182e98d812d5bf0"
+            },
+            {
+              "pointer": "/f05_detail_contract/types/ComparisonLink",
+              "canonical_sha256": "cd480194d23f573fa01c6957bf8b7d5a323ea33c6c350ce2eda37888f6fac38a"
+            },
+            {
+              "pointer": "/f05_detail_contract/recipient_and_obligation_contract",
+              "canonical_sha256": "49c69d47bfd8195edcb753017ae9018845c00e00f328f65ad5a8c626cbaaa5f4"
+            }
+          ]
+        },
+        {
+          "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "sha256": "00e5bba38cbf0fb9a67b2ebe8e6f2a32fcd5317731e2b6119dca5e946ab1f97d",
+          "binding_kind": "旧normalの固定原raw及び二先行Comparison whole。新F05全返却oracle又は実call観測ではない。",
+          "selected_objects": [
+            {
+              "pointer": "/fixture_contract/normal_fixtures/0/input",
+              "canonical_sha256": "5d545499e0399edb82892e28650e913a60e5767c3007ce3d214b983ba19b89f2"
+            },
+            {
+              "pointer": "/normal_function_oracles/3/expected_output",
+              "canonical_sha256": "ca2c2520f954f42b7ae0c8deb95b371f4d298af479780e5915053b637e2ef6d7"
+            },
+            {
+              "pointer": "/normal_function_oracles/4/expected_output",
+              "canonical_sha256": "18ab90637451144e3623c40e79d395001f5819079b71705ba170b4b4b66f5eb1"
+            },
+            {
+              "pointer": "/fixture_contract/normal_fixtures/0/input/obligations/0",
+              "canonical_sha256": "3aac488909652274950e2b96750dd8895768651c50cb053e5adf0311b53f41ca"
+            },
+            {
+              "pointer": "/fixture_contract/normal_fixtures/0/input/sources/1/body/records/23",
+              "canonical_sha256": "5cbf2f21adab678b0014692b9e1cd52145cfe919b4c42426d74653b821aa2c45"
+            }
+          ]
+        },
+        {
+          "source_basis_ref": "/f05_detail_contract/source_basis",
+          "selected_scope": "L4の三採用契約と旧L5の型/原fn5、承認e509のL3 /requirements/27及びL10 /cases/27だけを既存pinで辿る。本追補は上流意味/承認範囲を広げない。"
+        },
+        {
+          "legacy_source_ref": "/f05_detail_contract/legacy_and_failure_binding/sources",
+          "selected_scope": "旧L4 JSON authority 16–60,81–92、旧L5 JSON authority 33–108、旧失敗監査65–101（UTW-014/020/021）を直接読んだ。JSON正本と元source/個別原因/未完保持を継承する。旧runtime/旧CIは実行しない。"
+        }
+      ],
+      "applies_to": [
+        {
+          "writer_ref": "/f05_detail_contract/leaf_writer_ledger/8",
+          "supplement_ref": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/collection_reads"
+        },
+        {
+          "writer_ref": "/f05_detail_contract/leaf_writer_ledger/20",
+          "supplement_ref": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/obligation_origins"
+        },
+        {
+          "writer_ref": "/f05_detail_contract/leaf_writer_ledger/20",
+          "supplement_ref": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/collection_reads"
+        },
+        {
+          "writer_ref": "/f05_detail_contract/leaf_writer_ledger/21",
+          "supplement_ref": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/comparison_links"
+        },
+        {
+          "writer_ref": "/f05_detail_contract/leaf_writer_ledger/22",
+          "supplement_ref": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/comparison_links"
+        }
+      ],
+      "collection_reads": {
+        "formation": "F01で同requestのContext/input/headerが形成し、OwnerMaterial.evaluatedを生成する枝だけに適用する。input=null又は前段未形成のraw_only枝へcollection Readを捏造しない。",
+        "canonical_locations": [
+          {
+            "destination": "OwnerMaterial.evaluated.field_inputs_read",
+            "location": {
+              "root": "validation_input",
+              "pointer": "/field_inputs"
+            }
+          },
+          {
+            "destination": "OwnerMaterial.evaluated.gap_proposals_read",
+            "location": {
+              "root": "validation_input",
+              "pointer": "/gap_proposals"
+            }
+          },
+          {
+            "destination": "ObligationMaterial.original_obligations",
+            "location": {
+              "root": "validation_input",
+              "pointer": "/obligations"
+            }
+          },
+          {
+            "destination": "ObligationMaterial.required_trace_refs",
+            "location": {
+              "root": "validation_input",
+              "pointer": "/required_trace_refs"
+            }
+          },
+          {
+            "destination": "ObligationMaterial.trace_edges",
+            "location": {
+              "root": "validation_input",
+              "pointer": "/trace_edges"
+            }
+          },
+          {
+            "destination": "ObligationMaterial.trace_requirements",
+            "location": {
+              "root": "validation_input",
+              "pointer": "/trace_requirements"
+            }
+          }
+        ],
+        "present": "六Readの正本rootは同validation.validated.inputを指すvalidation_input。供給済みの型に適合する原collection全値をRead.present.valueへ無変換copyし、locationは表の実memberとする。同値のf05_request内copyへLocationを付け替えない。元順/反復/各原memberと数値profileを保存する。",
+        "absent": "実nonnull input objectに表のmemberが無い場合はRead.absent。requestedは表のlocation、parent={root:validation_input,pointer:空文字列}、parent_valueはその実input whole。[]を補わず、原[]はRead.present([])のまま保持する。",
+        "shape_boundary": "これはpartial carrierへ新requiredを課す規則ではない。元schemaが許す各presenceを保持する。collection型が許さないnull又は型外の元wire入力は既存decode/shape失敗のraw whole/診断で保持し、Read<配列>.present(null)へ無断castしない。validation_input未到達を空input又は各Read.absentへ変換しない。",
+        "proposal_refs": "ObligationMaterial.proposal_refsは同evaluated inputのgap_proposalsが供給配列であるとき、全元proposalのi順に一つのNamedReadを保持する。nameは文字列 /gap_proposals/i/unfinished_obligation_refs（iを実原indexで置換）、readはvalidation_inputの同memberを指すRead<CoreJsonValue>。presentは原Ref列wholeと全反復を無変換copy、member未供給は実proposal parent/parent_valueを持つRead.absent。元proposal全値はgap_proposals_readにも保持する。gap_proposals自体がabsentならNamedRead列は空だが、元collection Read.absentを保持し原[]と同一化しない。selectionでこの保全列を間引かず、各Refのoriginは別のref_readで追う。"
+      },
+      "obligation_origins": {
+        "source_pointers": [
+          "/f05_detail_contract/reference_and_collection_rules",
+          "/f05_detail_contract/recipient_and_obligation_contract/obligations",
+          "/f05_detail_contract/recipient_and_obligation_contract/obligation_scope_boundary",
+          "/type_contract/types/KindObligation",
+          "/type_contract/types/KindTraceMaterial"
+        ],
+        "origin_order": "ObligationMaterial.occurrencesは元gap_proposalsのi順、そのunfinished_obligation_refsのj順のoriginを先に置き、次に同callのkind_trace_return.material.obligationsのt順のoriginを置く。全反復を別entryとして保持する。取得成功だけのsubset、Ref単一map、sort/dedup/priorityへ置換しない。この順序はglobal原Ref保全の現技術選定であり、各field/proposalの当該未完確定ではない。",
+        "member_writers": {
+          "proposal_index": "proposal由来は元gap_proposalsのi。kindtrace由来はnull。返却origin index又はraw義務indexを代入しない。",
+          "ref_index": "proposal由来はその原unfinished_obligation_refsのj、kindtrace由来は元material.obligationsのt。いずれも当該原配列の0-based index。global返却index/SourceObservation local indexへ変更しない。",
+          "ref_read": "proposal由来の正本Locationは{root:validation_input,pointer:/gap_proposals/i/unfinished_obligation_refs/j}。kindtrace由来は{root:f05_request,pointer:/compare_kind_obligation_trace/comparison/material/obligations/t/ref}。i/j/tは上記実原indexでpathを形成し、present.valueには取得契機の原Ref wholeをcopyする。raw lookupで同Ref recordを得てもref_read.locationをそのraw refへ移さない。未供給/未到達は既存Readの実parent/reached wholeで保持し、Refを補完しない。",
+          "record_occurrences": "既存reference_and_collection_rulesの原Ref/record照合で結ぶ実validation_input.obligations recordだけを、そのraw index u順で保持する。各RecordOriginはcollection=obligations,index=u,locator={root:validation_input,pointer:/obligations/u}。original_record={tag:obligation,value:その実CoreKindObligation原whole}。ref_read/binding_read/source_ref_readは同実raw所在の/ref,/binding,/source_refをそれぞれ正本Readとする。同値の依存KindObligationを別raw occurrenceとして追加しない。同Refの反復/相反/binding差を潰す新selectorではなく、既存照合が保持する全出現の所在を定める。",
+          "kind_trace_links": "このJSONPointer[]のrootはObligationMaterial.kind_trace_returnである実Comparison wholeだけ。kindtrace由来tについて実/ref nodeが有れば /material/obligations/t/ref を先に、その後実whole /material/obligations/t を置く。原ref未供給でも実whole linkは保存し、存在しない/ref linkは作らない。proposal由来に既存Ref対応が成立するkindtrace出現を結ぶ場合は原t順に各ref→whole順を保持する。対応未形成からlinkを生成せず、その原因と全原wholeを保持する。",
+          "causes": "既存の原Ref取得/record照合/source/owner各段階の原因保持責務を維持する。本節のnamespace選定だけで[]、content_unresolved又は他のCauseを選定しない。元kindtrace wholeはraw lookup結果とは別にkind_trace_returnへ無縮小で保持し、raw検索の成否で依存payload又は元Refを消さない。"
+        },
+        "body_and_source_namespace": "RecordOccurrence.source_observation_indices及びBodyOccurrence.source_observation_indexは同call ValidationDetailedReturn.source_observations.source_occurrences内の実local index。BodyOccurrence.source_index/body_indexは実validation_input.sourcesのs及びそのbody.recordsのbで、各Locationはvalidation_input /sources/s、/sources/s/body/records/b。両indexを同一と仮定しない。original_body_entry、collection_read/ref_read/payload_readはその実entry及び各原memberを保存する。payloadは元raw recordからsource_refだけをenvelopeへ外付けした対応であって、依存Comparison wholeをbodyとみなさない。SourceCheck/owner_bindings/causesは既存source/owner規則の原左右と実観測を結ぶ。",
+        "reference_boundary": "元record.source_ref wholeとSourceEnvelope.ref wholeを別原値で保存する。既存reference_resolution_contractの供給digest条件を維持し、参照側sha256 nullとenvelope側実digestの差だけでlookup miss又はbody不一致を作らない。Ref値の対応、body対応、local semantic-use qualification及び実trust取得を混同しない。",
+        "returned_refs": "既存F14のglobal保全に従い、origin_orderにある各取得済み原Ref wholeを同順/全反復でreturned_refsへ結ぶ。生成に必要なRef未形成は元originのRead/原因へ保持し、取得できた列を新しい必要集合とはしない。既存comparison生成不能規則を適用し、原Refを合成して列長だけを合わせない。"
+      },
+      "comparison_links": {
+        "formation": "F15のComparisonがformedで、material.unfinished_obligation_refs[k]という実出力nodeが存在する場合だけ、その出力原順kに対応するComparisonLinkを生成する。Comparison.unformedに対して配列indexを捏造しない。owner側の原origin/returned_refs/全wholeは引き続き返す。",
+        "member": "member=unfinished_obligation_refs、output_index=k。kは実Comparison.materialの当該返却配列indexで、proposal i/ref j/kindtrace t/raw u/body bとは別namespace。",
+        "owner_links_order": [
+          "{root:f05_return,pointer:/owner_material/obligation_material/returned_refs/r} の実node",
+          "{root:f05_return,pointer:/owner_material/obligation_material/occurrences/o} の当該生成元origin whole"
+        ],
+        "origin_correspondence": "oはorigin_order内で当該出力原Refを生成した実origin index、rはその同原Ref出現を格納したglobal returned_refsの実index。kはformed Comparisonの実出力indexであり、r又はoと同じとは仮定しない。F14が原originをreturned_refs[r]へ実格納した時にr/oを保持し、F15が既存の原scope/形成規則に従ってその原Ref出現を実出力kへcopyする同walkでk/r/oを結ぶ。同値Refの別occurrenceはそれぞれ別の格納出現へ結び、値の再lookup/先頭一致/別sort/新selectorで対応を作らない。原Ref取得不足又は既存scope対応未形成から必要な実出力と原格納の対応が作れない場合は、既存Comparison生成不能規則でunformedと原原因を保持し、k=rと補完又は未対応出力を捨ててformedにしない。取得済みglobal保全列の長さを当該出力scopeの必要集合にはしない。",
+        "root_boundary": "owner_linksはF05DetailedReturnをrootとする既存ReturnLinkだけ。kind_trace_linksは依存Comparison内JSONPointerであり、ReturnLink又はvalidation_input Locationへcastしない。field/gap segmentだけの旧advice絶対pathは流用しない。field_checks/candidate_proposals/original_axes/findingsの既存link規則は本追補で変更しない。"
+      },
+      "fixed_normal_source_crosswalk": {
+        "boundary": "source_basisのtracked c9 normal原raw26member/二先行wholeを一切置換しない条件付き合成入力で示す所在対照。実producer返却/実qualification成功又は新F05全返却期待の証拠ではない。旧normal fn5 knownを新意味根拠へ再採用しない。",
+        "raw_obligation": {
+          "record_origin": {
+            "collection": "obligations",
+            "index": 0,
+            "locator": {
+              "root": "validation_input",
+              "pointer": "/obligations/0"
+            }
+          },
+          "original_record_value_source_pointer": "/fixture_contract/normal_fixtures/0/input/obligations/0",
+          "body_location": {
+            "root": "validation_input",
+            "pointer": "/sources/1/body/records/23"
+          }
+        },
+        "kindtrace_origin": {
+          "proposal_index": null,
+          "ref_index": 0,
+          "ref_location": {
+            "root": "f05_request",
+            "pointer": "/compare_kind_obligation_trace/comparison/material/obligations/0/ref"
+          },
+          "kind_trace_links": [
+            "/material/obligations/0/ref",
+            "/material/obligations/0"
+          ]
+        },
+        "literal_relations": "原raw義務wholeと旧FN4.material.obligations[0] wholeは一致し、raw義務Refと旧FN3.material.unfinished_obligation_refs[0]と元body entry.refは一致する。原raw義務からsource_refだけを外付けした全memberは元body entry.payloadと一致する。これは固定原値の照合であり、全fieldへの当該未完割当又は義務source資格成立ではない。",
+        "distinct_original_refs": "原raw義務source_ref.sha256はnull、原sources[1].ref.sha256は3e3f9f2f3ce302b0c2c4d42c793ecd9cbb7e3ec7a69b7b35ab952ed248d05d44。原義務ref.ownerはsynthetic-core-owner、原SourceEnvelope.ref.ownerはsynthetic-harness-owner。いずれも元fullRefを保持し、新委任/registry又はowner一致を捏造しない。",
+        "no_empty_raw_inference": "rawには実obligations[0]及び元body entryが存在する。別の空raw合成例に由来するlookup-miss Cause又はrecord_occurrences=[]を本normalへ移植しない。"
+      },
+      "preserve_change_reason": {
+        "preserve": "旧F05の原source/版/scope/義務/戻し先保持、旧JSON正本と未取得/部分原因の区別、現139型/28台帳、既存公開返却/codec/全literalと順序を保持する。",
+        "change": "未選定だった六collectionの正本Read root、義務Ref取得契機とraw record/body/依存wholeの別namespace、origin/member/link順を本節で技術選定する。既存型のmember追加又はsource資格/意味state変更はない。",
+        "reason": "同じ非空normal原値でもvalidation_inputとf05_request copyのLocation、Ref/record wholeのlink本数と順が一意でなく、同入力から正常全返却を手著述できなかったG1/G2を起点にする。UTW-014の未取得→空、UTW-020のaggregateによる個別原因消失、UTW-021の自己申告完成を避け、上流要求意味又は新gateを生成しない。"
+      },
+      "remaining_and_nonclaims": [
+        "本追補はsource/pointer/hash/固定原値照合とJSON著述のみ。実reader/writer/意味算法/validator/codec/製品test/CIを実装実行していない。全owner返却又は正常full-return oracleの成立を宣言しない。",
+        "非空義務RecordOccurrenceの全owner_bindings/Cause/condition_refs/reentry及び全trace資料との詳細返却を本namespaceだけで閉じない。存在するsource/bodyからsource local usable又は実trust成功を捏造しない。同callの実source観測indexと原owner根拠を後続で検収する。",
+        "旧normal rawは新field_definition_evidence又はproduct_value宣言を供給したものではない。旧known期待から新宣言を逆算せず、個別evidence/投影が空又は未形成のfield summary/診断全leafと正常field owner全期待は別残務。今回そのCause又はstateを選定しない。",
+        "recipient_and_obligation_contract/obligation_scope_boundaryのfield/proposal当該未完scope、knowledge_revision_gap_boundaryのknowledge版不足→BRAIN根拠取得/typed返却、B019/030の具体typed接続及び既存caller投影frontierは維持する。全KindTrace Refのglobal保存だけでそれらを完成としない。"
+      ]
     }
   }
 }
