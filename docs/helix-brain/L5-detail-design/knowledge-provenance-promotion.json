@@ -4757,11 +4757,12 @@
       "requirement_ref": "HELIXBRAIN-L3-007-F02",
       "system_oracle_ref": "HELIXBRAIN-L10-007-F02",
       "design_contract_ref": "HELIXBRAIN-L4-007-F02",
-      "source_path": "docs/helix-brain/L4-basic-design/knowledge-provenance-promotion.json#/private_source_return_contract",
+      "source_path": "docs/helix-brain/L4-basic-design/knowledge-provenance-promotion.json#/contracts/1/output_meanings/1",
       "meaning": "上流意味変更時の該当上流ownerの特定",
       "boundary": "従来F02Input/F02ReturnFixtureShapeは上流route tokenのみを保持する。その既存型・計算は変更せず、private_upstream_returnが一件の原sourceと知識対象の対応・原target/owner候補を別返却する。source選択・複数target集合・実owner資格・配送は未成立。",
       "status": "private_logical_source_return_defined_actual_source_owner_binding_unclosed",
-      "not_claimed": "原source宣言の私有候補は定義したが、実owner資格、原資料の選択・全target集合、source本文/digest、実配送/ACKは未成立。既存native route tokenだけからownerを生成しない。"
+      "not_claimed": "原source宣言の私有候補は定義したが、実owner資格、原資料の選択・全target集合、source本文/digest、実配送/ACKは未成立。既存native route tokenだけからownerを生成しない。",
+      "current_private_contract": "docs/helix-brain/L4-basic-design/knowledge-provenance-promotion.json#/private_source_return_contract"
     },
     {
       "requirement_ref": "HELIXBRAIN-L3-007-B01",
@@ -4911,7 +4912,7 @@
           "target_material": "true branchでraw objectのupstream_targetをPresenceで保持。source root/target parentが読めなければAbsent。false branchはnull。",
           "member_observations": "true branchでupstream_targetがobjectのときだけ5 memberをfixed orderでPresence capture。その他null。",
           "unresolved_pointers": "source-read-rulesのparent/member規則と順序で生成。",
-          "candidate": "subject correspondenceが一致しtargetがobject、identity/revision/ownerが非空Text、scope/source_refがsuppliedかつraw!=nullのときだけ5原値をcopy。それ以外null。",
+          "candidate": "subject correspondenceが一致しtargetがobject、identity/revision/ownerが非空string、scope/source_refがsuppliedかつraw!=nullのときだけ5原値をcopy。それ以外null。",
           "actual_dispatch": "false定数",
           "owner_qualification": "not_evaluated定数"
         },

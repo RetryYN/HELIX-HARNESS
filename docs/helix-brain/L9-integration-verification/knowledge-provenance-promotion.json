@@ -7871,15 +7871,15 @@
     },
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
-      "file_sha256": "bc9bd1f0a71cdc0231b210e8db2e5819a8bf95abe46d92d601ca07eb03a264d2",
+      "file_sha256": "132e2ec2926f25293e07a034baecd9f1568a03cba950de8ff4e3c7f1eebd3293",
       "pointer": "/private_upstream_return",
-      "object_canonical_sha256": "1f3e9fa13952735509a2f0037630f459d4e86d837c975149a975c3dcbad8a66e"
+      "object_canonical_sha256": "9afec48c42f2c00aff4bd0a6dd279e4e4414c7853779ff5188a2a195e936b18f"
     },
     "candidate_l8_binding": {
       "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-      "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+      "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
       "pointer": "/private_upstream_return_verification",
-      "object_canonical_sha256": "e8bb997c8bae36d60fef1b59df8aed6ffc9c348d7745efe89271aebda6f01898"
+      "object_canonical_sha256": "1f052518820ff4f49ed76f1461ac5d7adf75dc5c9702e69c5f1c1923e5dd72e4"
     },
     "boundary": "既存27 F02接続例を保持し、sourceful私有返却の条件をL8の入力・完全期待へ一方向参照する。合成source値から実owner資格や実配送を主張しない。",
     "conditions": [
@@ -7887,7 +7887,7 @@
         "source_condition_id": "F01-false-absent",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/0",
           "object_canonical_sha256": "303150a55d5a21c0e18d85eecd817aa671239e0ed4138e2242c53af0535fb13a"
         },
@@ -7900,7 +7900,7 @@
         "source_condition_id": "F02-false-foreign-ignored",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/1",
           "object_canonical_sha256": "4bb8f14e348fff21f7228e7594b76113863014884a7c024a3f7f93bebc781164"
         },
@@ -7913,7 +7913,7 @@
         "source_condition_id": "T01-true-source-absent",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/2",
           "object_canonical_sha256": "8c0ce53a17c03b7702b829d7b6e617bb5bce215c7a881d586d3bec9e4c8f8984"
         },
@@ -7926,7 +7926,7 @@
         "source_condition_id": "T02-true-root-null",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/3",
           "object_canonical_sha256": "d23cff3a7f17ffc3ec2aeb1beeda3fcbccbc2453b758bad2e0fda88bcd363670"
         },
@@ -7939,7 +7939,7 @@
         "source_condition_id": "T03-true-root-list",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/4",
           "object_canonical_sha256": "76bdc322b1fc736f2fc6dc0a1a93be386f44e823054ec46ff359514f1a5d36d7"
         },
@@ -7952,7 +7952,7 @@
         "source_condition_id": "T04-true-subject-revision-conflict",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/5",
           "object_canonical_sha256": "dde6c960c8faf0405dc517c02294753da3b5666f96b231a2b09b3cbb72107767"
         },
@@ -7965,7 +7965,7 @@
         "source_condition_id": "T05-true-target-absent",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/6",
           "object_canonical_sha256": "5296e86d2cbc5f42e561ebcf65ff0cd5ec4e3d00e129a50efb3cb949f25442cf"
         },
@@ -7978,7 +7978,7 @@
         "source_condition_id": "T06-true-target-null",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/7",
           "object_canonical_sha256": "c646a9f9a6c3b0591c465ed087cf766333cdbc9c586ddb1be307310c9d81f84f"
         },
@@ -7991,7 +7991,7 @@
         "source_condition_id": "T07-true-target-identity-absent-revision-empty",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/8",
           "object_canonical_sha256": "5af8c8df751cc9498069026c0b56ca69a2d03bb7481898e22fe6f2766d444ec2"
         },
@@ -8004,7 +8004,7 @@
         "source_condition_id": "T08-true-owner-absent",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/9",
           "object_canonical_sha256": "f0a18b7e357c2370501c6bb45470eb7c01a980341e2b756713b9bc0bde3cf6af"
         },
@@ -8017,7 +8017,7 @@
         "source_condition_id": "T09-true-owner-null",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/10",
           "object_canonical_sha256": "0d52b3a073476d14b8292a342a4bf3493b9756ef9c3c81b44cbb7a0fc2772212"
         },
@@ -8030,7 +8030,7 @@
         "source_condition_id": "T10-true-owner-number",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/11",
           "object_canonical_sha256": "05cb9166b0c4d2f556f08e8816e66560f919d8a4d40838cdae3bfd4521f2343b"
         },
@@ -8043,7 +8043,7 @@
         "source_condition_id": "T11-true-scope-source-ref-null",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/12",
           "object_canonical_sha256": "a5ce2a7d9d3a67517df5ec36509202f0125d5e8ac1a64585fafa54affed4b13a"
         },
@@ -8056,7 +8056,7 @@
         "source_condition_id": "T12-true-opaque-nonnull-scope-ref-and-extra-keys",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/13",
           "object_canonical_sha256": "693aaf6b702d8bc5ddf9c35ed0cc4d81796da3287ea048fa1928286ce71f3863"
         },
@@ -8069,7 +8069,7 @@
         "source_condition_id": "T13-true-proposal-stage-missing-retained",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/14",
           "object_canonical_sha256": "583015d2177fe18710c1ecd5425d9f92a1a96de721daf3e9df73daa9f049a3b8"
         },
@@ -8082,7 +8082,7 @@
         "source_condition_id": "T14-true-self-review-finding-retained",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/15",
           "object_canonical_sha256": "6406339f72af5bc67eedd5c5a82bafacbcc36dc8eb1e59c2a584ccce6131d524"
         },
@@ -8095,7 +8095,7 @@
         "source_condition_id": "T15-true-same-subject-owner-y-discriminator",
         "l8_case": {
           "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "file_sha256": "36fcf19b831e6a2333b379297425f7379745bee1e704d9949a23e898d2a63499",
+          "file_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
           "pointer": "/private_upstream_return_verification/cases/16",
           "object_canonical_sha256": "395e473cc9ac2fce26b7776899f8e6e6a9b9262d7b9e382bd668588bac98a243"
         },
