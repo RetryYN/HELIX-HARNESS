@@ -5513,11 +5513,11 @@
         "reason": "closed ContextIssueReason。公開Findingではない。",
         "slot": "当該固定slot。",
         "leaf": "leaf原因はrow.id、selection/metadata原因はnull。",
-        "left_namespace": "原因の左原operand namespace。",
-        "left_pointer": "左実Field/最寄りparentの原pointer。literalだけnull。",
+        "left_namespace": "原因の左原operand namespace。 原operand自体がないunobserved/nullはabsent_issue_operand.namespace。",
+        "left_pointer": "左実Field/最寄りparentの原pointer。literal又は原operand自体のないunobserved/nullだけnull。",
         "left_presence": "左の原RawPresence又は実raw member Presence、未観測だけnull。",
-        "right_namespace": "原因の右原operand namespace。typed value/期待roleのみcontract_literal。",
-        "right_pointer": "右実Field/最寄りparentの原pointer。literalだけnull。",
+        "right_namespace": "原因の右原operand namespace。typed value/期待roleのみcontract_literal。 原operand自体がないunobserved/nullはabsent_issue_operand.namespace。",
+        "right_pointer": "右実Field/最寄りparentの原pointer。literal又は原operand自体のないunobserved/nullだけnull。",
         "right_presence": "右原RawPresence、literalはsupplied(raw=比較literal)、未観測だけnull。"
       },
       "OwnerContextLeafView": {
@@ -5850,6 +5850,13 @@
       },
       "issue_suppression": "slotのport_parent_unreadableと同じ原port親の欠落/不整合はsource/declared両側metadataへ派生した同じ原因であり、追加port_source_binding_unresolvedを出さない。4pairは全て保持してgrade=unknown。同じselectionから独立したdeclared_metadata親/memberの不足・不整合は従来どおり保持する。",
       "parent_cause_identity": "同じ未観測metadata親が4pairへ影響するときの原logical accessorはその親まで（例input.{slot}.fields.declared_metadata）。memberごとの人工child到達式ではなく原親の原因を一つとして、metadata_order先頭の影響pairにissueを保持する。独立した各memberの実Field不足は各memberの原因のまま。"
+    },
+    "absent_issue_operand": {
+      "scope": "selection_issue_operands/issue_bindingsで原Field/親/presenceも比較literalも指定しないunobserved/null operandのPrivateIssue field。実親を保持するkind=unobservedのContextOperandや実Absent Fieldとは別。",
+      "namespace": "unobserved",
+      "pointer": null,
+      "presence": null,
+      "preservation": "実Absent/null Field又は原parentが観測された場合は、その出典namespace/pointer/RawPresenceを保持し、このoperandなし表記へ置換しない。"
     }
   }
 }
