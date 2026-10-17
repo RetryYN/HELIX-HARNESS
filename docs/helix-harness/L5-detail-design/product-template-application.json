@@ -10732,7 +10732,7 @@
             "causes": "Cause[]"
           }
         },
-        "meaning_boundary": "全枝の評価scopeは/f05_detail_contract/source_observation_contract/assessment_scopeに限定する。usableは供給独立root責務を前提とする局所原資料照合成立であり実origin authenticationではない。必要原operand未取得のunestablishedと外部実trust取得口未閉包は別境界。"
+        "meaning_boundary": "全枝の評価scopeは/f05_detail_contract/source_observation_contract/assessment_scopeに限定する。usableは供給独立root責務を前提とする局所原資料照合成立であり実origin authenticationではない。必要原operand未取得のunestablishedと外部実trust取得口未閉包は別境界。 roleを含むlocal semantic-use分類であり、公開ValidatedApplication.unusable_source_refsはvalidation_cause_diagnostic_contract/public_validation_projectionによる同原材料の別投影である。"
       },
       "ValidationSourceObservation": {
         "kind": "closed_record",
@@ -11727,11 +11727,30 @@
       "binding": "親/field/wrapper/meaning/依存ComparisonのBindingは各原partial objectとpresenceを保存する。対応に必要な原memberが足りない場合は局所未形成で、欠落を隣のBindingから補わない。{}の存在はheader形成を許すが必要意味端の成立ではない。field.bindingの既知差はfield単位target_mismatchへ、同scopeの兄弟を止めない。",
       "order": "field_inputs原index→definition_refs列→value_fact_refs列の原Ref index→axis_facts全原index→semantic_records全原index→sources全原index→body.records全原indexの順に記録する。根拠meaning bodyはsemantic_records原index順。projection宣言/evidence/constraint各groupの中も同順。各result内basis_occurrencesは当該意味body自身の実record/source/bodyの順、次にそのbodyに列挙されたoperand memberを型members順・Ref列原順、次にそのoperandのrecord/source/body原順で追加する。field定義結果と各proposal結果は独立table。反復はentryを分け、sort/dedup/priorityで意味を選ばない。",
       "records": "field role Ref及びgap basisの通常本文Refはaxis_factsとsemantic_records双方の全原recordへ照合する。policy/NA/義務/condition/traceは元memberの型が指定するcollectionに別々に解決する。検索missはRefOperand.causesへ保存し、record/body indexを生成しない。",
-      "body": "body.recordsの各実entryについてcollection/ref/payloadを保存し、payloadは元recordのsource_ref memberだけをenvelope側に外付けした原member全値/presenceへ対応させる。本文のcollectionと元record型が異なる場合も当該原entryは残しsource_body_mismatchとする。同Refの既知相反、同値反復及び別bindingを成功subsetから除去しない。"
+      "body": "body.recordsの各実entryについてcollection/ref/payloadを保存し、payloadは元recordのsource_ref memberだけをenvelope側に外付けした原member全値/presenceへ対応させる。本文のcollectionと元record型が異なる場合も当該原entryは残しsource_body_mismatchとする。同Refの既知相反、同値反復及び別bindingを成功subsetから除去しない。",
+      "nullable_operand_rules": {
+        "source_pointers": [
+          "/reference_resolution_contract/identity",
+          "/reference_resolution_contract/comparison",
+          "/wire_codec_contract/schema/$defs/Ref",
+          "/wire_codec_contract/schema/$defs/Qualification",
+          "/wire_codec_contract/numeric_encode_profile/private_host_types/CoreJsonValue",
+          "L4:/contracts/4/source_result_reference_projection/calculation_rules/reference_identity_requirements",
+          "L4:/field_semantic_evidence_contract/common_target_guards/2",
+          "L4:/field_semantic_evidence_contract/role_owner_binding/common",
+          "L4:/field_semantic_evidence_contract/wrapper_and_source_contract/presence"
+        ],
+        "present_nullable_value": "元schemaが値memberにnullを許す場合のRead.present(null)は供給済みの原値であり、absent/unreachedへ変換しない。既存exact/typed_core_json_equalによる値比較はnull対null=corresponding、null対供給non-null値=different。Ref.identity/revision/owner、Qualification.owner及びRawValue scope等の当該値を参照先の同値memberと照合する場合に適用し、新nonnull/非空文字列gateを作らない。これは当該値端の対応であり意味ownerの権限/実trust成立を生成しない。",
+        "absent_or_unreached": "必要memberがRead.absent/unreachedならその比較はunestablished。供給nullと未供給を同じ入力事実にせず、source/body/Ref全値の原presenceを保持する。",
+        "digest_applicability": "source.ref.sha256、Qualification.subject_sha256及び供給subject_ref.sha256の各digest比較は既存checks/1,5の明示条件を維持し、digest absent/nullはその比較だけnot_applicable。digest supplied non-nullで元bytes等の必要端未取得ならunestablished、実digest既知差はdifferent。nullable値の一般exact比較でこの非適用条件を上書きしない。",
+        "reference_whole_null": "SourceEnvelope.qualification_refのwholeがpresent nullならRef objectのmember比較へ進めないため、lookup_patterns/0の参照先未取得/unestablishedである。nullable member同士の値比較とは別。schemaがnullを許さないQualification.root_ref等のwhole nullは既存shape失敗で、局所Read/value比較へ修復しない。",
+        "selection_and_justification": "nullable値比較のnull/null対応は、schemaの供給済み原nullと欠落を分け、F05が指定するreference_resolution_contractのexact/typed値比較を適用する本詳細の明示技術選定である。元sourceだけから唯一必然だったとは主張しない。L4 F03 projectionのreference_identity_requirementsには選択Ref slotのidentity/revision/scope/owner非null検査が別途あるが、その宣言したprojection Ref slotに適用される規範であり、F05全SourceCheck又は全入力に一律移植しない。",
+        "domain_guard_precedence": "本選定は供給独立rootを前提とする原値端の局所対応であり、実identity/owner authority/実資格取得の認証ではない。F05のmeaning body共通必須member/適用memberがnullで未形成となる既存wrapper_and_source_contract/presence、必要な元owner/authority/relationが未供給なら局所未形成となるrole_owner_binding/common等の個別意味guardは別に維持し、nullable値等値でそれらを相殺しない。個別profileが明示する非null/型条件を本一般値比較で緩和しない。"
+      }
     },
     "source_observation_contract": {
       "producer": "同fn0の既存照合責務からだけ返す。別callerのqualified bool/任意provider返却/cache/logを入力にしない。元source/qualification/rootの全原indexを保持し、Ref一意map/first/latestへ変えない。",
-      "check_result": "左右の必要原operandが供給され既存条件で一致=corresponding、比較済み既知差=different、適用条件そのものが元契約で成立しない=not_applicable、必要原operand/元owner根拠が不足=unestablished。not_applicableを全check成功へ拡張しない。 SourceCheck.causesの0/1件・kind/全leafはvalidation_cause_diagnostic_contract/check_result_to_causesとcheck_cause_leaf_writerを正本とする。",
+      "check_result": "左右の必要原operandが供給され既存条件で一致=corresponding、比較済み既知差=different、適用条件そのものが元契約で成立しない=not_applicable、必要原operand/元owner根拠が不足=unestablished。not_applicableを全check成功へ拡張しない。 SourceCheck.causesの0/1件・kind/全leafはvalidation_cause_diagnostic_contract/check_result_to_causesとcheck_cause_leaf_writerを正本とする。 nullable値memberと未供給/非適用の扱いはreference_and_collection_rules/nullable_operand_rulesに従う。source_roleのCause/usabilityは意味利用scopeだけで、公開fn0診断への写像はvalidation_cause_diagnostic_contract/public_validation_projectionに限定する。",
       "checks": [
         {
           "kind": "content_bytes_body",
@@ -11751,7 +11770,7 @@
           "kind": "source_role",
           "left": "source.role",
           "right": "literal:semantic_source",
-          "applicability": "意味根拠として使うsource。derived_view/explanation/reference_onlyは原roleを保持し意味source usableへしない。"
+          "applicability": "意味根拠として使うsource。derived_view/explanation/reference_onlyは原roleを保持し意味source usableへしない。 これはlocal semantic-useの分類だけであり、schemaで合法なderived_view/explanation/reference_onlyを公開fn0の入力不正/資格失敗へしない。roleの差/未供給由来だけではvalidated.input_issues/unusable_source_refsを増やさない。"
         },
         {
           "kind": "qualification_ref",
@@ -12840,7 +12859,8 @@
       "caller_return_writer_contractは7個Comparison-only観測とF05/claims/analysis専用返却の全leaf/原所在/Cause順を技術選定した文書であり、実call/return観測、既存他producer全意味writer又は選択owner typed port完成を証明しない。L4outer_return_boundaryのstep6/7全返却/未接続は別追補対象。",
       "knowledge版不足→BRAINは承認済F05の保持義務。recipient_and_obligation_contract/knowledge_revision_gap_boundaryに挙げた原必要版/供給版/不足原命題/owner-source-body対応のtyped形成と返却writerは未閉包であり、unresolved又は局所未形成を返せたことを要求の意味変更/完了根拠にしない。",
       "global全KindTrace Ref保全と、個々のfield/proposalの当該未完scope確定は別。obligation_scope_boundaryの原scope/状態対応は未閉包であり、全列保存から当該未完の新selector又は消込を生成しない。",
-      "HARNESS返却先は原適用contract不整合の根拠に対応する範囲。元process資料一般の返却先を新規にHARNESSとせず、原材料を全保持したままapplication_contract_recipient_boundaryの局所形成不足を残す。"
+      "HARNESS返却先は原適用contract不整合の根拠に対応する範囲。元process資料一般の返却先を新規にHARNESSとせず、原材料を全保持したままapplication_contract_recipient_boundaryの局所形成不足を残す。",
+      "roleのlocal semantic-use usabilityと公開fn0 bytes/body/qualification診断/Ref membershipは同原材料の別投影。任意nonnull source_result_reference_projectionの既存logical-native型対応/同call由来のtyped形成基準はprojection_native_correspondence_frontierの具体残務で、fn10全caller閉包又は常時拒否gateとはしない。"
     ],
     "advice_history_boundary": "local corrected5b2c及びevidence-content-separated1d3は著述相談入力に限る。規範の各型/guardは上記tracked原sourceへ結び、ignored助言を必要な解読依存にしない。",
     "type_dependencies": {
@@ -13006,7 +13026,19 @@
           "source_pointer": "/wire_codec_contract/source_resolution_stages/3",
           "boundary": "実供給口/実trustは依然未閉包。任意bool/provider型を導入しない。必要原資料端の未観測は局所checks/usabilityへ保持するが、原資料照合成立のscopeと実trust取得口未閉包はassessment_scopeで分け、新しい一律拒否gateにしない。"
         }
-      ]
+      ],
+      "existing_logical_native_correspondences": {
+        "type_names": [
+          "CoreSourceResultProjectionResult"
+        ],
+        "pointers": [
+          "/f05_detail_contract/types/CoreSourceResultProjectionResult",
+          "/type_contract/types/SourceResultProjectionResult",
+          "/type_contract/types/ProjectionResultRow",
+          "/type_contract/types/ProjectionInputFinding"
+        ],
+        "rule": "既存logical生成返却→同member/enum/順序のnative対応。CoreJsonValue leaf対応だけで任意objectの成功を認定せず、caller側全typed形成基準の未閉包はcaller_return_writer_contract/projection_native_correspondence_frontierに明記する。"
+      }
     },
     "writer_output_roots": {
       "validation_detail": "ValidationDetailedReturn /original_raw_input,/validated,/source_observations (V01..V07)",
@@ -13079,7 +13111,7 @@
       "traversal": "正本の平坦列順は source.checks全entry → 各qualification_occurrenceを原順に（そのqualification.checks全entry → 同qualificationの各root_occurrenceを原順に各root.checks全entry）。ordered_linksの3行はこの入れ子位置で使うmember対応であり、全qualification.checksを一括で先に出した後に全root.checksを出す別passではない。"
     },
     "validation_cause_diagnostic_contract": {
-      "scope": "既存validation SourceCheck11種/4result、参照先未取得、同階層集約、既存ValidatedApplication診断の私有詳細writer。新しい意味predicate/公開Finding/domain state/資格gateではない。元checkの結果判定はsource_observation_contractのまま。",
+      "scope": "既存validation SourceCheck11種/4result、参照先未取得、同階層集約、既存ValidatedApplication診断の私有詳細writer。新しい意味predicate/公開Finding/domain state/資格gateではない。元checkの結果判定はsource_observation_contractのまま。 source_roleだけはlocal semantic-use観測であり、公開ValidatedApplicationの旧fn0責務とはpublic_validation_projectionで分離する。",
       "selection_reason": "935稿では、同じ全原nodeからSourceCheck結果を読めてもCause/InputIssue/源Ref列の全値と順序が一意でなかった。one-source Qualification.owner相違と、二明示skipの最小F05全返却の非一意性を起点に、未規定だった技術出力表現を本節で選定する。",
       "preserved_boundary": "既存numeric_encode_profileの診断reason/locator/source_ref/原順/段階/全literal、既存L8原raw/旧logical literalとempty/positive全返却は変更しない。新source診断をwire/shape失敗へ混ぜず、decode可能な元inputを保持する。",
       "check_rule_pointer": "各SourceCheck.rule_pointerは既存source_observation_contract/checksの対応規範を維持する。sourceの3行はchecks/0..2、qualificationの各kindはchecks/3..7、rootの先頭はchecks/8、owner二行はchecks/9。root_subject_revision_scopeの5行だけはcheck_storage_planのordered_pair_index順に /f05_detail_contract/source_observation_contract/checks/10/ordered_pairs/0..4 の個別pointerを使う。既存positive19checkの規範pointerをkind群pointerへ縮退させず、Cause.rule_pointerも各実SourceCheck.rule_pointerの無変換copy。",
@@ -13121,7 +13153,8 @@
           "different_kind": "source_unusable",
           "unestablished_kind": "source_unresolved",
           "different_reason": "CORE sourceはsemantic_sourceとして使う原roleではない。",
-          "unestablished_reason": "CORE sourceの意味根拠としての原roleが未成立である。"
+          "unestablished_reason": "CORE sourceの意味根拠としての原roleが未成立である。",
+          "public_validation_effect": "このentryのCause/reasonはprivate semantic-use分類用。roleだけによる新CoreInputIssue/公開unusable_source_refs membershipを生成しない。"
         },
         {
           "kind": "qualification_ref",
@@ -13260,7 +13293,7 @@
       },
       "source_usability_aggregation": {
         "individual_conditions": "既存checkのcorrespondingと正当なnot_applicableは当該条件を阻害しない。differentは既知不成立、unestablishedは原資料条件未形成。実trust取得口の未実装をunestablishedの追加条件にしない。",
-        "source_own_conditions": "同source.checksの3条件のAND。differentが一つでもあれば既知不成立。different無しでunestablishedがあれば未形成。それ以外は対応済み。",
+        "source_own_conditions": "同source.checksの3条件のAND。differentが一つでもあれば既知不成立。different無しでunestablishedがあれば未形成。それ以外は対応済み。 この3条件ANDはSourceObservation.usabilityの意味利用scopeだけで、公開fn0 membershipはpublic_validation_projectionがchecks0/1から別に投影する。",
         "qualification_root_route": "一つの実Qualificationと一つの実root occurrenceの経路は、そのQualification.checksと当該root.checksの全必要条件のAND。differentが一つでもあれば当該経路は既知不成立、different無しでunestablishedがあれば未形成、それ以外は対応済み。root参照/実root未取得（lookup 2/3）は、架空rootを作らない潜在経路であり、その実Qualificationのchecks AND lookup未形成として同じ優先で扱う。従ってQualification側に既知differentがあればその潜在経路も既知不成立。Qualification参照/実Qualification未取得（lookup 0/1）は、未取得のQualification条件を対応済みへ補完しない未形成経路である。",
         "alternative_routes": "全実経路及び未取得に由来する上記AND評価後の潜在経路のOR。対応済み経路が一つ以上あれば経路群は対応済み。対応済み無しで未形成経路が一つ以上あれば未形成。対応済みも未形成も無く、全実/潜在経路が既知不成立なら経路群は既知不成立。source/qual/root未取得を空ORの成功又は既知不成立へ補完しない。",
         "final_precedence": [
@@ -13270,20 +13303,33 @@
         ],
         "usable_fields": "既存usable_index_writerの順。check_indicesは同source3checkの[0,1,2]、qualification_indicesは一つ以上の対応済み実root経路を持つ全対応Qualificationの返却local index原順。",
         "unusable_unestablished_causes": "当該SourceObservation.causes全値をその原順でcopyする。新aggregate Causeへ要約しない。",
-        "locality": "同Refでも別source occurrenceのusable判定を一件へ潰さない。原SourceObservation indexで保持する。旧unusable_source_refsのmembershipだけで全同Ref occurrenceを失格にせず、F05は同原source occurrenceの実観測を読む。"
+        "locality": "同Refでも別source occurrenceのusable判定を一件へ潰さない。原SourceObservation indexで保持する。旧unusable_source_refsのmembershipだけで全同Ref occurrenceを失格にせず、F05は同原source occurrenceの実観測を読む。 SourceUsabilityは公開unusable_source_refsのmembership判定型ではなく、roleを含むlocal意味利用判定である。"
       },
       "validated_input_issue_writer": {
         "native_shape": "既存schemaの供給形失敗は既存numeric/codec shape writerのlocator/reason/source_ref及び順序をそのまま使い、input=null。binding absentや実{}、未供給field/axisを新shape gateにしない。新source診断はこの枝へ追加しない。",
-        "source_diagnostics_order": "decode可能inputではsource occurrence原順。各sourceについて、同inner JSON/numeric読取りの既存primitive InputIssue原列をそのまま先に保持し、そのsource.causesの平坦順に次の未重複event診断を続ける。異なるsource/check/lookup原eventは全保持。全source判定後に別sortはしない。",
+        "source_diagnostics_order": "decode可能inputではsource occurrence原順。各sourceについて同inner JSON/numeric読取りの既存primitive InputIssue原列をそのまま先に保持し、そのsource.causesの平坦順にsource_role由来eventを除く未重複public診断を続ける。除外はCause.kindだけでなく元SourceCheck.kind/source index/check indexから辿って行い、同じsource_unusable型のdigest失敗を誤除外しない。異なるsource/check/lookup原eventは全保持。全source判定後に別sortはしない。",
         "locator": "最下層SourceCheck又はlookupに由来するCause.target.pointerをそのまま使う。validation_input rootに対する元所在/要求所在で、全body/sourceを一律root locatorにしない。",
         "reason": "SourceCheck原因はcheck_kind_tableのresultに対応する固定reason。lookup原因は当該lookup_patterns entryの固定reason。原owner/rawvalue/秘密等を文字列へ埋め込まない。",
         "source_ref": "当該source occurrenceの実SourceEnvelope.ref memberが供給されたCoreRef objectなら、その原full値/presenceを無変換copy。ref未供給/未到達ならnull。実{}が供給された場合はその原{}を保持できるが、欠落へ{}又は別record Refを生成しない。",
-        "one_event_once": "public InputIssueは最下層check/lookup原eventにつき一件。root→qual→source→globalの同Causeのaggregate copiesを再び別Issueへしない。source.causes平坦列の各entryが対応する元leaf eventを原index付きで辿る。異なる元checkの同型同値Causeも別eventなので保持。",
+        "one_event_once": "public InputIssueは最下層check/lookup原eventにつき一件。root→qual→source→globalの同Causeのaggregate copiesを再び別Issueへしない。source.causes平坦列の各entryが対応する元leaf eventを原index付きで辿る。異なる元checkの同型同値Causeも別eventなので保持。 source_role eventはこのpublic writerの対象外だが、private SourceCheck/source/global causesから削除しない。",
         "primitive_preservation": "content_bytes_body未成立の同inner JSON/numeric読取り原eventについて既存primitiveが既にInputIssueを返した場合、その既存列だけを使い、当該check由来の新固定reason Issueを重ねない。Cause/観測そのものは消さない。primitiveのreason/locator/source_ref/順序は一字も置換せず、別checkの独立原因は続けて保持する。外側wire decode/encodeは別portであり本writerを適用しない。",
         "nonnull_input": "資格/bytes/body不足のsource診断では元decode可能inputを非nullのまま保つ。InputIssue非空というだけで全snapshot/兄弟sourceを破棄しない。原資料照合scopeと実trust未接続の境界も維持する。"
       },
-      "unusable_source_refs_writer": "source occurrence原順に、SourceUsabilityがunusable又はunestablishedであり、元SourceEnvelope.refが供給CoreRef objectとして実在する時だけ、その原fullRefを一件copyする。同Ref/同値の別原source indexも反復保存する。refが未供給/未到達なら収載せず、当該Cause/InputIssue.source_ref=nullと元wholeから不足を辿る。usable sourceは収載しないが不成立代替経路のIssue/Causeは保持する。input=nullのshape枝ではsourceを評価していないので既存fn0のshape返却どおりこの列は[]。",
-      "output_preservation": "新type/memberは追加しない。各失敗配列は既存Cause/CoreInputIssue/CoreRef[]を用いる。正のSourceCheck.causes=[]、empty sourceの全原因/Issue/未資格Ref列=[]、正常19checkの3/8/8順と原Read/規範pointer、既存codec原literalは維持する。"
+      "unusable_source_refs_writer": "source occurrence原順に、public_validation_projection/public_ref_membershipで既知不成立又は未形成となり、元SourceEnvelope.refが供給CoreRef objectとして実在する時だけ、その原fullRefを一件copyする。role込みSourceUsability.unusable/unestablishedから無条件にこの列へ写さない。同Ref/同値の別原source indexも反復保存する。ref未供給/未到達なら収載せず当該Cause/InputIssue.source_ref=nullと元wholeから不足を辿る。公開membershipが対応済みなら収載しないが、独立な不成立代替経路の原Issue/Causeは従来規則で保持。input=nullのshape枝ではsource未評価なので既存fn0 shape返却どおり[]。",
+      "output_preservation": "新type/memberは追加しない。各失敗配列は既存Cause/CoreInputIssue/CoreRef[]を用いる。正のSourceCheck.causes=[]、empty sourceの全原因/Issue/未資格Ref列=[]、正常19checkの3/8/8順と原Read/規範pointer、既存codec原literalは維持する。",
+      "public_validation_projection": {
+        "source_pointers": [
+          "/functions/0",
+          "/type_contract/types/SourceEnvelope",
+          "/wire_codec_contract/source_resolution_stages/1",
+          "/wire_codec_contract/source_resolution_stages/3",
+          "L4:/f05_validation_material_call_contract/logical_ports/validation_detail/output/validated"
+        ],
+        "same_material": "新arg/bool/provider/type/memberを足さず、同source/qualification/rootの既存全原観測を使う二つの投影を区別する。SourceObservation.checks/causes/usabilityはrole込みのlocal意味利用可否を保持する。公開ValidatedApplicationは従来fn0のbytes/body/digest/参照/資格原条件だけの診断/Ref membershipであり、前者から無条件copyしない。",
+        "public_issue_events": "source_role check eventを公開InputIssueの候補から除く。他のbytes/body/digest/qualification/root/check/lookupの原event診断及びprimitive原診断は従来順/粒度のまま保持。role差が有っても他の実失敗を消去/相殺せず、role差が無くても他の実失敗は診断する。",
+        "public_ref_membership": "公開unusable_source_refsの判定ではsource自身の条件をchecks[0]=content_bytes_body、checks[1]=source_digestのANDとする。source_role checks[2]をこの判定だけから除き、qualification_root_route/alternative_routesはsource_usability_aggregationの同原条件/同AND/OR優先を使う。source二条件又は経路群が既知不成立又は未形成なら当該sourceをpublic membershipへ、双方対応済みなら収載しない。この中間分類は新返却memberではなく同一観測からの明示projectionである。",
+        "role_only_difference": "roleだけdifferent又はunestablishedでbytes/body/資格経路が対応済みの場合、private SourceUsability/Causeはその結果を返すが公開InputIssue/Ref列は増やさない。源Ref/反復/原index/同Ref別occurrenceは従来どおり保持し、roleを資格失敗へcastしない。"
+      }
     },
     "context_header_cause_contract": {
       "scope": "F01のContext/header形成と、それが未形成である場合のComparison/owner raw_only全返却。元三引数の構造対応と元input/headerの形成を別観測に保つ。field/gap/obligationの後段意味writerを入力不能枝で実施しない。",
@@ -13429,11 +13475,15 @@
           "observation_rules": {
             "call_unobserved": {
               "kind": "call_unobserved",
-              "right_literal": "actual call observed"
+              "right_literal": "actual call observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/0/observation_rules/call_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/0/observation_rules/call_unobserved/right_literal"
             },
             "return_unobserved": {
               "kind": "return_unobserved",
-              "right_literal": "actual return observed"
+              "right_literal": "actual return observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/0/observation_rules/return_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/0/observation_rules/return_unobserved/right_literal"
             }
           }
         },
@@ -13446,17 +13496,22 @@
             {
               "context_member": "compare_required_axes",
               "observation_path": "/producer_observations/0",
-              "producer": "compare_required_axes"
+              "producer": "compare_required_axes",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/1/required_comparisons/0/producer"
             }
           ],
           "observation_rules": {
             "call_unobserved": {
               "kind": "call_unobserved",
-              "right_literal": "actual call observed"
+              "right_literal": "actual call observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/1/observation_rules/call_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/1/observation_rules/call_unobserved/right_literal"
             },
             "return_unobserved": {
               "kind": "return_unobserved",
-              "right_literal": "actual return observed"
+              "right_literal": "actual return observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/1/observation_rules/return_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/1/observation_rules/return_unobserved/right_literal"
             }
           }
         },
@@ -13469,22 +13524,28 @@
             {
               "context_member": "compare_required_axes",
               "observation_path": "/producer_observations/0",
-              "producer": "compare_required_axes"
+              "producer": "compare_required_axes",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/2/required_comparisons/0/producer"
             },
             {
               "context_member": "compare_candidate_universe",
               "observation_path": "/producer_observations/1",
-              "producer": "compare_candidate_universe"
+              "producer": "compare_candidate_universe",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/2/required_comparisons/1/producer"
             }
           ],
           "observation_rules": {
             "call_unobserved": {
               "kind": "call_unobserved",
-              "right_literal": "actual call observed"
+              "right_literal": "actual call observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/2/observation_rules/call_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/2/observation_rules/call_unobserved/right_literal"
             },
             "return_unobserved": {
               "kind": "return_unobserved",
-              "right_literal": "actual return observed"
+              "right_literal": "actual return observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/2/observation_rules/return_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/2/observation_rules/return_unobserved/right_literal"
             }
           }
         },
@@ -13497,17 +13558,22 @@
             {
               "context_member": "compare_applicability",
               "observation_path": "/producer_observations/2",
-              "producer": "compare_applicability"
+              "producer": "compare_applicability",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/3/required_comparisons/0/producer"
             }
           ],
           "observation_rules": {
             "call_unobserved": {
               "kind": "call_unobserved",
-              "right_literal": "actual call observed"
+              "right_literal": "actual call observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/3/observation_rules/call_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/3/observation_rules/call_unobserved/right_literal"
             },
             "return_unobserved": {
               "kind": "return_unobserved",
-              "right_literal": "actual return observed"
+              "right_literal": "actual return observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/3/observation_rules/return_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/3/observation_rules/return_unobserved/right_literal"
             }
           }
         },
@@ -13520,22 +13586,28 @@
             {
               "context_member": "compare_applicability",
               "observation_path": "/producer_observations/2",
-              "producer": "compare_applicability"
+              "producer": "compare_applicability",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/4/required_comparisons/0/producer"
             },
             {
               "context_member": "compare_kind_obligation_trace",
               "observation_path": "/producer_observations/3",
-              "producer": "compare_kind_obligation_trace"
+              "producer": "compare_kind_obligation_trace",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/4/required_comparisons/1/producer"
             }
           ],
           "observation_rules": {
             "call_unobserved": {
               "kind": "call_unobserved",
-              "right_literal": "actual call observed"
+              "right_literal": "actual call observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/4/observation_rules/call_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/4/observation_rules/call_unobserved/right_literal"
             },
             "return_unobserved": {
               "kind": "return_unobserved",
-              "right_literal": "actual return observed"
+              "right_literal": "actual return observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/4/observation_rules/return_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/4/observation_rules/return_unobserved/right_literal"
             }
           }
         },
@@ -13548,17 +13620,22 @@
             {
               "context_member": "compare_required_axes",
               "observation_path": "/producer_observations/0",
-              "producer": "compare_required_axes"
+              "producer": "compare_required_axes",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/5/required_comparisons/0/producer"
             }
           ],
           "observation_rules": {
             "call_unobserved": {
               "kind": "call_unobserved",
-              "right_literal": "actual call observed"
+              "right_literal": "actual call observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/5/observation_rules/call_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/5/observation_rules/call_unobserved/right_literal"
             },
             "return_unobserved": {
               "kind": "return_unobserved",
-              "right_literal": "actual return observed"
+              "right_literal": "actual return observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/5/observation_rules/return_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/5/observation_rules/return_unobserved/right_literal"
             }
           }
         },
@@ -13571,17 +13648,22 @@
             {
               "context_member": "compare_required_axes",
               "observation_path": "/producer_observations/0",
-              "producer": "compare_required_axes"
+              "producer": "compare_required_axes",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/6/required_comparisons/0/producer"
             }
           ],
           "observation_rules": {
             "call_unobserved": {
               "kind": "call_unobserved",
-              "right_literal": "actual call observed"
+              "right_literal": "actual call observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/6/observation_rules/call_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/6/observation_rules/call_unobserved/right_literal"
             },
             "return_unobserved": {
               "kind": "return_unobserved",
-              "right_literal": "actual return observed"
+              "right_literal": "actual return observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/6/observation_rules/return_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/6/observation_rules/return_unobserved/right_literal"
             }
           }
         },
@@ -13594,27 +13676,34 @@
             {
               "context_member": "compare_candidate_universe",
               "observation_path": "/producer_observations/1",
-              "producer": "compare_candidate_universe"
+              "producer": "compare_candidate_universe",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/7/required_comparisons/0/producer"
             },
             {
               "context_member": "compare_applicability",
               "observation_path": "/producer_observations/2",
-              "producer": "compare_applicability"
+              "producer": "compare_applicability",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/7/required_comparisons/1/producer"
             },
             {
               "context_member": "compare_kind_obligation_trace",
               "observation_path": "/producer_observations/3",
-              "producer": "compare_kind_obligation_trace"
+              "producer": "compare_kind_obligation_trace",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/7/required_comparisons/2/producer"
             }
           ],
           "observation_rules": {
             "call_unobserved": {
               "kind": "call_unobserved",
-              "right_literal": "actual call observed"
+              "right_literal": "actual call observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/7/observation_rules/call_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/7/observation_rules/call_unobserved/right_literal"
             },
             "return_unobserved": {
               "kind": "return_unobserved",
-              "right_literal": "actual return observed"
+              "right_literal": "actual return observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/7/observation_rules/return_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/7/observation_rules/return_unobserved/right_literal"
             }
           }
         },
@@ -13627,47 +13716,58 @@
             {
               "context_member": "compare_candidate_universe",
               "observation_path": "/producer_observations/1",
-              "producer": "compare_candidate_universe"
+              "producer": "compare_candidate_universe",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/8/required_comparisons/0/producer"
             },
             {
               "context_member": "compare_applicability",
               "observation_path": "/producer_observations/2",
-              "producer": "compare_applicability"
+              "producer": "compare_applicability",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/8/required_comparisons/1/producer"
             },
             {
               "context_member": "compare_kind_obligation_trace",
               "observation_path": "/producer_observations/3",
-              "producer": "compare_kind_obligation_trace"
+              "producer": "compare_kind_obligation_trace",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/8/required_comparisons/2/producer"
             },
             {
               "context_member": "compare_requirement_gaps",
               "observation_path": "/f05",
-              "producer": "compare_requirement_gaps"
+              "producer": "compare_requirement_gaps",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/8/required_comparisons/3/producer"
             },
             {
               "context_member": "compare_selected_knowledge",
               "observation_path": "/producer_observations/4",
-              "producer": "compare_selected_knowledge"
+              "producer": "compare_selected_knowledge",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/8/required_comparisons/4/producer"
             },
             {
               "context_member": "compare_meaning_impacts",
               "observation_path": "/producer_observations/5",
-              "producer": "compare_meaning_impacts"
+              "producer": "compare_meaning_impacts",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/8/required_comparisons/5/producer"
             },
             {
               "context_member": "compare_semantic_equivalence",
               "observation_path": "/producer_observations/6",
-              "producer": "compare_semantic_equivalence"
+              "producer": "compare_semantic_equivalence",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/8/required_comparisons/6/producer"
             }
           ],
           "observation_rules": {
             "call_unobserved": {
               "kind": "call_unobserved",
-              "right_literal": "actual call observed"
+              "right_literal": "actual call observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/8/observation_rules/call_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/8/observation_rules/call_unobserved/right_literal"
             },
             "return_unobserved": {
               "kind": "return_unobserved",
-              "right_literal": "actual return observed"
+              "right_literal": "actual return observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/8/observation_rules/return_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/8/observation_rules/return_unobserved/right_literal"
             }
           }
         },
@@ -13680,57 +13780,70 @@
             {
               "context_member": "compare_required_axes",
               "observation_path": "/producer_observations/0",
-              "producer": "compare_required_axes"
+              "producer": "compare_required_axes",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/9/required_comparisons/0/producer"
             },
             {
               "context_member": "compare_candidate_universe",
               "observation_path": "/producer_observations/1",
-              "producer": "compare_candidate_universe"
+              "producer": "compare_candidate_universe",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/9/required_comparisons/1/producer"
             },
             {
               "context_member": "compare_applicability",
               "observation_path": "/producer_observations/2",
-              "producer": "compare_applicability"
+              "producer": "compare_applicability",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/9/required_comparisons/2/producer"
             },
             {
               "context_member": "compare_kind_obligation_trace",
               "observation_path": "/producer_observations/3",
-              "producer": "compare_kind_obligation_trace"
+              "producer": "compare_kind_obligation_trace",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/9/required_comparisons/3/producer"
             },
             {
               "context_member": "compare_requirement_gaps",
               "observation_path": "/f05",
-              "producer": "compare_requirement_gaps"
+              "producer": "compare_requirement_gaps",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/9/required_comparisons/4/producer"
             },
             {
               "context_member": "compare_selected_knowledge",
               "observation_path": "/producer_observations/4",
-              "producer": "compare_selected_knowledge"
+              "producer": "compare_selected_knowledge",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/9/required_comparisons/5/producer"
             },
             {
               "context_member": "compare_meaning_impacts",
               "observation_path": "/producer_observations/5",
-              "producer": "compare_meaning_impacts"
+              "producer": "compare_meaning_impacts",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/9/required_comparisons/6/producer"
             },
             {
               "context_member": "compare_semantic_equivalence",
               "observation_path": "/producer_observations/6",
-              "producer": "compare_semantic_equivalence"
+              "producer": "compare_semantic_equivalence",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/9/required_comparisons/7/producer"
             },
             {
               "context_member": "check_application_claims",
               "observation_path": "/claims",
-              "producer": "check_application_claims"
+              "producer": "check_application_claims",
+              "producer_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/9/required_comparisons/8/producer"
             }
           ],
           "observation_rules": {
             "call_unobserved": {
               "kind": "call_unobserved",
-              "right_literal": "actual call observed"
+              "right_literal": "actual call observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/9/observation_rules/call_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/9/observation_rules/call_unobserved/right_literal"
             },
             "return_unobserved": {
               "kind": "return_unobserved",
-              "right_literal": "actual return observed"
+              "right_literal": "actual return observed",
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/9/observation_rules/return_unobserved",
+              "right_rule_pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/9/observation_rules/return_unobserved/right_literal"
             }
           }
         }
@@ -13746,10 +13859,10 @@
         "comparisons": "各row.required_comparisons記載順、name=context_member。一つのComparison-only observationがreturnedならRead.presentで同observation_path/comparison実whole。explicit_skip/unobservedならRead.presentで同observation_pathの実枝wholeを保持し、存在しないcomparison childを読まない。全Location.root=caller_return。",
         "f05_comparison": "fn9/10のcompare_requirement_gapsは、outer.f05 formedかつそのvalue.comparison formedの時だけRead.present(/f05/value/comparison/value,実CoreComparison)。outer.f05 unformedならRead.present(/f05,その実Formation whole)、outer.f05 formedでchild comparison unformedならRead.present(/f05/value/comparison,その実Formation whole)。いずれもroot=caller_return。",
         "claims_comparison": "fn10のcheck_application_claimsはclaims formedならRead.present(/claims/value,実CoreComparison)、unformedならRead.present(/claims,その実Formation whole)。root=caller_return。",
-        "f05_detail": "fn9/10は上記全元Context operandsの後にname=f05_detailを追加。outer.f05 formedならRead.present(/f05/value,同実F05DetailedReturn)、unformedならRead.present(/f05,その実Formation whole)。root=caller_return。",
+        "f05_detail": "fn9のCheckApplicationClaimsDetailedContext.f05_detail及びfn10のBuildApplicationAnalysisDetailedContext.f05_detail（両者ともF05DetailedReturn）は、outer.f05.tag=formedの時にlocation={root:caller_return,pointer:/f05/value}の同実D全値へ直接束縛する。decode原wholeを含み得るDをNamedRead列へ追加しない。outer.f05がunformedならD引数は形成せずcontext_patterns/3の既存Causeを用い、その実unformed Formationだけを診断対象とする。",
         "projection": "fn10のみ最後にname=source_result_reference_projectionを追加し、Read.presentでlocation={root:caller_inputs,pointer:/source_result_reference_projection}、value=供給されたRead wholeを保存する。これはProjectionResultの型へcastした値ではない。元optional memberへの実代入は後記projection_boundaryだけ。",
-        "f05_special": "F05 rowはname=validationのRead.present({root:caller_return,pointer:/validation},同実ValidationDetailedReturn whole)を先頭とし、その後はrequired_comparisons順に原observation枝wholeのRead.presentを置く。F05へ渡すActualPredecessor生成前の取得根拠であり、未観測枝をnot_calledへ変えない。",
-        "storage": "Comparison-only explicit_skip.skip.context_operands及びunobserved.original_operandsへこの列を無変換で格納。fn9/10/F05専用Formationにはこの配列memberを追加しないが、列の原wholeは全てvalidation/先行専用返却/producer_observations/CallerInputsに実在し、各Causeも後記の実nodeへ結ぶ。元Context自体が未形成なら、これをnative Context whole又は実呼出し引数成立と称さない。"
+        "f05_special": "F05 rowは専用typed引数F05DetailedRequest.validation:ValidationDetailedReturnを、location={root:caller_return,pointer:/validation}の同実wholeへ直接束縛する。decode原octets/parsed_treeを含み得るValidationDetailedReturnをNamedRead又はRead<CoreJsonValue>へ入れない。二依存はrequired_comparisons原順の実observationからf05_writer/prepareどおりActualPredecessorへ渡す。専用typed request全値が原取得材料を保持し、未観測枝をnot_calledへ変えない。",
+        "storage": "本argument_read_writerのNamedRead列を実格納するのはComparison-only7rowのexplicit_skip.skip.context_operands及びunobserved.original_operandsであり、validated/元Comparison/同目録の先行枝等の既存CoreJsonValue原観測だけに限定する。F05/claims/analysis専用Formationへこの配列memberを追加しない。f05_special及びf05_detailの専用typed wholeは上記の直接bindingと既存validation/F05返却/request/DetailedContextで全保存し、NamedReadへのcast/encode又はdecode原診断の削除で代用しない。元Context自体が未形成ならnative Context whole/実引数成立を生成しない。"
       },
       "context_patterns": [
         {
@@ -13758,8 +13871,8 @@
           "target": "argument_read_writerが当該依存に選ぶ実枝wholeのLocation。",
           "left": "CheckOperand.originalで同実枝whole Read.presentをcopy。",
           "right_literal": "formed CoreComparison from designated producer",
-          "right": "CheckOperand.normative_literal。value=本right_literal、rule_pointer=本right_literal node。",
-          "rule_pointer": "本context_patterns/0 entry。",
+          "right": "CheckOperand.normative_literal。value=本entry.right_literal、rule_pointer=/f05_detail_contract/caller_return_writer_contract/context_patterns/0/right_literal。",
+          "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/context_patterns/0",
           "multiplicity": "当該必須Comparison member一件につき一Cause。元枝内のCauseはleft whole内に保持し、この列へflatten転写しない。"
         },
         {
@@ -13767,8 +13880,8 @@
           "kind": "target_mismatch",
           "target": "当該実Comparison所在の/producer_symbol。",
           "left": "CheckOperand.original、Read.present(target,その実string)。",
-          "right": "CheckOperand.normative_literal、value=当該row.required_comparisons entryのproducer literal、rule_pointer=そのproducer node。",
-          "rule_pointer": "本context_patterns/1 entry。",
+          "right": "CheckOperand.normative_literal。value=当該row.required_comparisons entry.producer、rule_pointer=そのentry.producer_rule_pointerに明示したL5 rootからの絶対pointer。",
+          "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/context_patterns/1",
           "multiplicity": "当該依存一件につき一Cause。"
         },
         {
@@ -13777,7 +13890,7 @@
           "target": "当該実Comparison所在の/input_binding。",
           "left": "CheckOperand.original、Read.present(target,その実binding object whole)。",
           "right": "CheckOperand.original、Read.present({root:validation_input,pointer:/binding},原親binding object whole)。",
-          "rule_pointer": "本context_patterns/2 entry。",
+          "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/context_patterns/2",
           "multiplicity": "当該依存一件につき一Cause。parent binding未供給/input=nullではこの右Readを作らず、headerの別原因を使う。"
         },
         {
@@ -13789,8 +13902,8 @@
           },
           "left": "CheckOperand.original、Read.present(target,同実Formation whole)。",
           "right_literal": "formed F05DetailedReturn",
-          "right": "CheckOperand.normative_literal。value=本right_literal、rule_pointer=本right_literal node。",
-          "rule_pointer": "本context_patterns/3 entry。",
+          "right": "CheckOperand.normative_literal。value=本entry.right_literal、rule_pointer=/f05_detail_contract/caller_return_writer_contract/context_patterns/3/right_literal。",
+          "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/context_patterns/3",
           "multiplicity": "追加引数の局所Cause一件。compare_requirement_gaps引数のCauseと同じ引数へ潰さず両方を保持。"
         },
         {
@@ -13802,12 +13915,12 @@
           },
           "left": "CheckOperand.original、Read.present(target,供給Read whole)。",
           "right_literal": "observed optional projection presence",
-          "right": "CheckOperand.normative_literal。value=本right_literal、rule_pointer=本right_literal node。",
-          "rule_pointer": "本context_patterns/4 entry。",
+          "right": "CheckOperand.normative_literal。value=本entry.right_literal、rule_pointer=/f05_detail_contract/caller_return_writer_contract/context_patterns/4/right_literal。",
+          "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/context_patterns/4",
           "multiplicity": "一件。未到達をoptional absentに変換しない。"
         },
         {
-          "guard": "fn10へ供給されたprojection Read.present.valueがnonnullだが既存SourceResultProjectionResultのnative型対応を満たさない。",
+          "guard": "fn10へ供給されたprojection Read.present.valueがnonnullで、既存CoreSourceResultProjectionResultのnative型対応不能が原型対応から確定した場合。このpatternはその場合のCause全leaf表現だけを選定する。任意CoreJsonValueをそのnative型へ認定/拒否する完全な判定基準とtyped形成はprojection_native_correspondence_frontierの未閉包であり、本guardを実装済みpredicate又は全nonnull入力へ常時適用する規則としない。",
           "kind": "native_leaf_unformed",
           "target": {
             "root": "caller_inputs",
@@ -13815,9 +13928,9 @@
           },
           "left": "CheckOperand.original、Read.present(target,その実CoreJsonValue)。",
           "right_literal": "CoreSourceResultProjectionResult",
-          "right": "CheckOperand.normative_literal。value=本right_literal、rule_pointer=本right_literal node。",
-          "rule_pointer": "本context_patterns/5 entry。",
-          "multiplicity": "一件。既存/type_contract/types/SourceResultProjectionResult以下の生成member/enum/presence対応であり、新資格/意味gateを作らない。"
+          "right": "CheckOperand.normative_literal。value=本entry.right_literal、rule_pointer=/f05_detail_contract/caller_return_writer_contract/context_patterns/5/right_literal。",
+          "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/context_patterns/5",
+          "multiplicity": "型対応不能が確定した当該入力に一件。既存型対応が未形成という設計状態だけでこのCauseを生成しない。"
         }
       ],
       "context_cause_order": "各非F05 row.required_comparisonsの記載順、その各entry内context_patterns/0→1→2の該当分（/0の場合は当該Comparison自体が無いため/1/2を追加しない）。その後fn9/10は/3、fn10は/4→5。各guardは他の既知差を消さず、重複Causeのdedupや優先勝者選択なし。domain missing/unknown/conflictの実Comparisonは不成立条件でない。",
@@ -13832,8 +13945,8 @@
           },
           "left": "CheckOperand.original、Read.present(target,null)。",
           "right_literal": "nonnull CoreApplicationInput",
-          "right": "CheckOperand.normative_literal。value=本right_literal、rule_pointer=本right_literal node。",
-          "rule_pointer": "本header_patterns/0 entry。"
+          "right": "CheckOperand.normative_literal。value=本entry.right_literal、rule_pointer=/f05_detail_contract/caller_return_writer_contract/header_patterns/0/right_literal。",
+          "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/header_patterns/0"
         },
         {
           "guard": "実nonnull input objectにbinding keyが未供給。",
@@ -13845,8 +13958,8 @@
           },
           "left": "CheckOperand.original、同binding_read whole。",
           "right_literal": "CoreApplicationBinding object",
-          "right": "CheckOperand.normative_literal。value=本right_literal、rule_pointer=本right_literal node。",
-          "rule_pointer": "本header_patterns/1 entry。"
+          "right": "CheckOperand.normative_literal。value=本entry.right_literal、rule_pointer=/f05_detail_contract/caller_return_writer_contract/header_patterns/1/right_literal。",
+          "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/header_patterns/1"
         },
         {
           "guard": "実nonnull input objectの元binding objectが有る（実{}を含む）。",
@@ -13861,20 +13974,33 @@
         "ready": "準備Causeが空なら各元Context全memberを上記実Comparison/validated/同F05wholeから組み、指定private/元producerへ実引数で渡す。既存fn9/10追加f05_detailは同一実D全値。fn10 optional projectionはprojection_boundaryのまま。型形だけ又はsymbol string自己申告を同call取得根拠にしない。",
         "returned": "実callから型どおりの実Comparisonを得たComparison-only rowはreturned{producer:row.producer,comparison:その実whole}。fn9はclaims formed.value=実CoreComparison whole、fn10はanalysis formed.value=実CoreApplicationAnalysis whole。domain unknown等をskipへ再分類しない。",
         "unobserved": "準備が成立した範囲でも実call自体が観測されない場合はcall_unobserved、実callは観測したが返却が観測されない場合はreturn_unobserved。この区別は実callerの原観測であり、入力から任意boolを受けず、return不在だけでcall有無を推測しない。新runtime/例外値の実装は記述せず、closed型に入らないhost例外を原値へ埋めない。",
-        "unobserved_cause": "高々一件。kind=該当row.observation_rulesのkind、target={root:caller_return,pointer:/validation/validated}、left=CheckOperand.original(Read.present(target,同実ValidatedApplication whole))、right=CheckOperand.normative_literal(value=該当observation_rules entry.right_literal,rule_pointer=そのright_literal node)、Cause.rule_pointer=当該row.observation_rulesの該当entry pointer。これは実原validated引数をcause対象とする規約で、非実在call/return nodeのReadではない。producerは当該固有row pointerにより識別できる。",
+        "unobserved_cause": "高々一件。kind=当該row.observation_rulesのkind、target={root:caller_return,pointer:/validation/validated}、left=CheckOperand.original(Read.present(target,同実ValidatedApplication whole))、right=CheckOperand.normative_literal(value=当該entry.right_literal,rule_pointer=当該entry.right_rule_pointer)、Cause.rule_pointer=当該entry.rule_pointer。各entryはL5 rootからの完全絶対pointerを値として明示し、局所見出し名/推定展開を返さない。実原validated引数をcause対象とし、非実在call/return nodeのReadは作らない。",
         "unobserved_destination": "Comparison-only rowはunobserved{producer:row.producer,original_operands:同argument列,causes:[同Cause]}。fn9/10は当該Formation.unformed.causes=[同Cause]。explicit_skipへ変換しない。返却済み原兄弟wholeと元引数を保持する。"
       },
       "f05_writer": {
         "prepare": "指定二依存について、obs returnedならActualPredecessor.returned{producer:固定指定literal,comparison:実whole}、obs explicit_skipならActualPredecessor.not_called{producer:固定指定literal,skip:同実SkipCause全値}。この二種が双方有ればvalidation全値と共にF05を呼ぶ。親binding不足やinput=nullはF05 callerの新skip条件にせず、F01がraw_onlyで原wholeを返す範囲を保持。",
-        "unobserved_predecessor": "二依存のobs unobservedについて、required_comparisonsの順で各一件Causeを作る。kind=context_unformed、target={root:caller_return,pointer:当該observation_path}、left=original(Read.present(target,その実unobserved whole))、right=normative_literal(value=本predecessor_right_literal,rule_pointer=本predecessor_right_literal node)、Cause.rule_pointer=本f05_writer/unobserved_predecessor node。この列が非空ならF05を明示未呼出しとし、outer.f05=unformed{causes:この全列}。元依存causeをflatten追加せず左whole内に保持する。",
+        "unobserved_predecessor": "二依存のobs unobservedについてrequired_comparisons原順で各一件Cause。kind=context_unformed、target={root:caller_return,pointer:当該observation_path}、left=original(Read.present(target,その実unobserved whole))、right=normative_literal(value=本f05_writer.predecessor_right_literal,rule_pointer=/f05_detail_contract/caller_return_writer_contract/f05_writer/predecessor_right_literal)、Cause.rule_pointer=/f05_detail_contract/caller_return_writer_contract/f05_writer/unobserved_predecessor。この列が非空ならF05を明示未呼出しとしouter.f05=unformed{causes:この全列}。元依存causeをflatten追加せず左whole内に保持する。",
         "predecessor_right_literal": "returned or explicit_skip",
         "actual_return": "実DetailedReturn Dを受領したらouter.f05=formed{value:D全値}。D.comparisonがunformedでもformedのまま。同Dをproducer_observationsへ入れず、Dの欠けたComparisonを偽造/skip/未観測へcastしない。",
         "own_call_or_return_unobserved": "二依存準備は成立したがF05自身のcall又はreturnが未観測ならcall_rowsのF05固有observation_rulesで前記同一全leaf規則のCauseを一件作り、outer.f05=unformed{causes:[そのCause]}。Dが返ったという事実が有る場合はこの枝を選ばない。"
       },
-      "projection_boundary": "fn10 source_result_reference_projectionは既存/source_result_reference_projection/pipeline_bindingの同snapshot実projector返却だけを元optional memberへ渡す責務を保持。CallerInputsのRead.absentなら元Context memberを省略、present nullなら実null、present nonnullで既存CoreSourceResultProjectionResult型対応がある実wholeなら無変換copy。Read.unreached又は当該型対応不能はcontext_patterns/4又は5。原数値/型を変換又はlogical期待をnative返却へcastせず、fn11/12の新caller/API/意味writerは今回作らない。",
+      "projection_boundary": "fn10 source_result_reference_projectionは既存/source_result_reference_projection/pipeline_bindingの同snapshot実projector返却だけを元optional memberへ渡す責務を保持。CallerInputsのRead.absentなら元Context memberを省略、present nullなら実null、present nonnullで既存CoreSourceResultProjectionResult型対応がある実wholeなら無変換copy。Read.unreached又は当該型対応不能はcontext_patterns/4又は5。原数値/型を変換又はlogical期待をnative返却へcastせず、fn11/12の新caller/API/意味writerは今回作らない。 任意nonnull CoreJsonValueからのnative型対応を本稿で判定済みとはしない。具体未閉包はprojection_native_correspondence_frontierを正本とし、その枝のfn10全caller形成は残務とする。",
       "outer_cause_aggregation": "CoreApplicationDetailReturn.causesはproducer_observationsの固定7entry順に、explicit_skip.skip.causes又はunobserved.causesを各列内順のまま連結し、その後outer.f05がunformedならそのcauses、claimsがunformedならそのcauses、analysisがunformedならそのcausesをこの順に連結する。returned/formed群は追加無し。全重複を保持し新要約Causeを作らない。validation診断/source Causeはvalidation whole、実D内のcomparison/owner Causeはf05.formed.value wholeに保持し、このouter列へ別flattenしない。outer.causesはdomain全体成功/失敗の集約ではない。",
       "owner_connection_frontier": "本caller型はL4step5までの返却とstep6接続callerが取得するF05 wholeを具体化する。L4 outer_return_boundaryの選択B019/030 call全入力/全返却又は未接続原材料のtyped格納先はまだ具体化していない。step6/7は別typed port pairで追補し、今回CoreRaw/placeholder memberを足して全返却完成とはしない。",
-      "technical_selection_ja": "同一原全値でもC01の観測目録/順序及びcaller Cause左右/規範pointer/移送順が未定で全返却を手導出できなかったreadonly監査7b2d54を起点に、未定義だった技術返却表現だけを本表で選定する。既存F01/validation Cause規範、公開Finding code/domain state、既存numeric codec診断/旧logical literalは保持。採用L4を新gate/新owner/任意資格boolへ置換しない。"
+      "technical_selection_ja": "同一原全値でもC01の観測目録/順序及びcaller Cause左右/規範pointer/移送順が未定で全返却を手導出できなかったreadonly監査7b2d54を起点に、未定義だった技術返却表現だけを本表で選定する。既存F01/validation Cause規範、公開Finding code/domain state、既存numeric codec診断/旧logical literalは保持。採用L4を新gate/新owner/任意資格boolへ置換しない。",
+      "projection_native_correspondence_frontier": {
+        "source_pointers": [
+          "/f05_detail_contract/types/CoreSourceResultProjectionResult",
+          "/type_contract/types/SourceResultProjectionResult",
+          "/type_contract/types/ProjectionResultRow",
+          "/type_contract/types/ProjectionInputFinding",
+          "/source_result_reference_projection/pipeline_binding",
+          "/wire_codec_contract/numeric_encode_profile/private_host_types/CoreJsonValue"
+        ],
+        "existing_correspondence": "既存SourceResultProjectionResultはrows:ProjectionResultRow[]とinput_findings:ProjectionInputFinding[]のlogical生成返却。CoreSourceResultProjectionResultは同原member/enum/原順を保持し、RawValue数値leafを既存CoreJsonValueへ対応させる既存logical-native対応型である。source_result_reference_projection/pipeline_bindingの同snapshot実projector返却を保持する責務は変えない。",
+        "unclosed": "CallerInputsのRead<CoreJsonValue>にある任意nonnull値について、rowsの各SourceResultProjectionRow/InvalidComputedRowObservation、input_findingsの各member/presence、既存numeric node、logical/native名目型と原同call返却由来を全て束縛するtyped formation/判定基準は本callerで未閉包。名前/shapeラベル/任意caller boolだけで既存型成功又は型不正を確定しない。",
+        "consumer_boundary": "absent省略とpresent null保存は既存optional規則のまま。実nonnull projectionの型付き全引数が未形成の枝についてfn10呼出し/全caller閉包を成立したとはしない。context_patterns/5は型対応不能が確定した場合の診断形であり、判定未実装を全入力拒否又は成功castへ変換しない。新provider/全axis gate/新wire/APIは追加しない。"
+      }
     },
     "caller_writer_technical_difference": {
       "previous_l5_sha256": "d8896078706e1d4e3ace2c32e15659035a48523562f9a8124c5c5e6f8d3ae45d",

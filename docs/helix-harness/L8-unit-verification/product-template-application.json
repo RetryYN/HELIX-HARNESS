@@ -95224,7 +95224,7 @@
             "profile_candidate_binding": {
                 "revision": "current-unpinned-worktree-candidate",
                 "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-                "file_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
+                "file_sha256": "994bb8c3d8455cbc9f2962f3b8cd4538d4fbf4be2b1daa4499b41a8869c823b4",
                 "pointer": "/wire_codec_contract/numeric_encode_profile"
             },
             "upstream_decision": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
@@ -142233,7 +142233,7 @@
     "candidate_l5_content_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "source_main": "1b50e0e105f0d51b902b26ba0e48d66381705360",
-      "candidate_file_bytes_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
+      "candidate_file_bytes_sha256": "994bb8c3d8455cbc9f2962f3b8cd4538d4fbf4be2b1daa4499b41a8869c823b4",
       "revision_semantics": "candidate_file_bytes_sha256はこのL8と同じ保存状態のL5 file bytesを固定する。Git revision/承認を示さない。"
     },
     "producer_condition_presence_probes": [
@@ -143318,7 +143318,7 @@
         "role": "L5詳細設計候補の型・writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
+        "file_sha256": "994bb8c3d8455cbc9f2962f3b8cd4538d4fbf4be2b1daa4499b41a8869c823b4",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -143334,7 +143334,7 @@
         "role": "既存入力carrierのwire member",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
+        "file_sha256": "994bb8c3d8455cbc9f2962f3b8cd4538d4fbf4be2b1daa4499b41a8869c823b4",
         "pointers": [
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/sources",
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/qualifications",
@@ -143433,7 +143433,7 @@
         "role": "L5 native ValidationDetailedReturn型・全leaf writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
+        "file_sha256": "994bb8c3d8455cbc9f2962f3b8cd4538d4fbf4be2b1daa4499b41a8869c823b4",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -145289,7 +145289,7 @@
         "role": "L5のsource照合・原因診断・利用可能性の集約",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
+        "file_sha256": "994bb8c3d8455cbc9f2962f3b8cd4538d4fbf4be2b1daa4499b41a8869c823b4",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/check_storage_plan",
           "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table",
@@ -147084,7 +147084,7 @@
         "role": "L5 F05 types・Context/header・Cause propagation writers",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2d1756879ec0347c194906e25fa18dfc8615177d389148663838c8da5399d1a1",
+        "file_sha256": "994bb8c3d8455cbc9f2962f3b8cd4538d4fbf4be2b1daa4499b41a8869c823b4",
         "pointers": [
           "/f05_detail_contract/types/F05DetailedRequest",
           "/f05_detail_contract/types/ActualPredecessor",
@@ -147684,5 +147684,162 @@
       "F05 evaluated owner material、field/gap/obligation semantic result、実trust/資格、全native writer、製品test/CI"
     ],
     "execution_state": "not_executed_source_first_authored_literal"
+  },
+  "validation_detail_native_source_role_only_full_return_oracle": {
+    "id": "HARNESS-L8-009-F05-NATIVE-SOURCE-ROLE-ONLY",
+    "status": "limited_design_literal_oracle",
+    "purpose_ja": "source.roleだけをderived_viewへ変え、private意味利用判定と既存public validation診断を分ける反例。実fn0/候補評価器は実行しない。",
+    "source_basis": [
+      {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "file_sha256": "994bb8c3d8455cbc9f2962f3b8cd4538d4fbf4be2b1daa4499b41a8869c823b4",
+        "pointers": [
+          "/f05_detail_contract/source_observation_contract/checks/2",
+          "/f05_detail_contract/validation_cause_diagnostic_contract/public_validation_projection",
+          "/f05_detail_contract/validation_cause_diagnostic_contract/validated_input_issue_writer/source_diagnostics_order",
+          "/f05_detail_contract/validation_cause_diagnostic_contract/unusable_source_refs_writer",
+          "/f05_detail_contract/validation_cause_diagnostic_contract/check_cause_leaf_writer",
+          "/f05_detail_contract/types/SourceCheck",
+          "/f05_detail_contract/types/Cause",
+          "/f05_detail_contract/types/SourceUsability"
+        ]
+      },
+      {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "revision": "14d1c4a410bd8b0704571b097ab0f35c885d0135",
+        "file_sha256": "2998e655fc724dbb263f81dffc63705429ac96889f01721af38275b41f7b446a",
+        "pointers": [
+          "/validation_detail_native_one_source_full_return_oracle/input_reconstruction",
+          "/validation_detail_native_one_source_full_return_oracle/expected_native_return_patch"
+        ]
+      },
+      {
+        "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "file_sha256": "708c1993ba5458876d57ef5b4f94f6ab4412153344e49a7aa762798b888bf650",
+        "pointer": "/f05_validation_material_call_verification/literal_fixture_catalog/fixed_literals/CORE-NORMAL-INPUT"
+      }
+    ],
+    "fixed_reconstruction_order_ja": [
+      "source_basis[1]の固定L8からone-source input_reconstruction.patchとexpected_native_return_patchを読む。これらのnodeは現行の同節とも固定値一致を静的確認。",
+      "source_basis[2]の固定L9全JSONへ元input patchを適用する。",
+      "次のinput_only_patchを適用し、この変更後inputから元expected patchを適用する。expected patchより後にinputだけ変えて古いechoを残さない。",
+      "最後にexpected_return_delta_patchを適用し、/one_source_case/expected_native_returnを全期待値とする。RFC6902は固定copy/add/replaceだけであり候補関数又は意味期待生成器を呼ばない。"
+    ],
+    "input_only_patch": [
+      {
+        "op": "replace",
+        "path": "/one_source_case/input/sources/0/role",
+        "value": "derived_view"
+      }
+    ],
+    "expected_return_delta_patch": [
+      {
+        "op": "replace",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/checks/2/result",
+        "value": "different"
+      },
+      {
+        "op": "add",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/checks/2/causes/-",
+        "value": {
+          "kind": "source_unusable",
+          "target": {
+            "root": "validation_input",
+            "pointer": "/sources/0/role"
+          },
+          "left": {
+            "tag": "original",
+            "read": {
+              "tag": "present",
+              "location": {
+                "root": "validation_input",
+                "pointer": "/sources/0/role"
+              },
+              "value": "derived_view"
+            }
+          },
+          "right": {
+            "tag": "normative_literal",
+            "value": "semantic_source",
+            "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/2"
+          },
+          "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/2"
+        }
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/input/sources/0/role",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/checks/2/causes/0/left/read/value"
+      },
+      {
+        "op": "replace",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/usability",
+        "value": {
+          "tag": "unusable",
+          "causes": [
+            {
+              "kind": "source_unusable",
+              "target": {
+                "root": "validation_input",
+                "pointer": "/sources/0/role"
+              },
+              "left": {
+                "tag": "original",
+                "read": {
+                  "tag": "present",
+                  "location": {
+                    "root": "validation_input",
+                    "pointer": "/sources/0/role"
+                  },
+                  "value": "derived_view"
+                }
+              },
+              "right": {
+                "tag": "normative_literal",
+                "value": "semantic_source",
+                "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/2"
+              },
+              "rule_pointer": "/f05_detail_contract/source_observation_contract/checks/2"
+            }
+          ]
+        }
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/checks/2/causes/0",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/usability/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/checks/2/causes/0",
+        "path": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/one_source_case/expected_native_return/source_observations/source_occurrences/0/checks/2/causes/0",
+        "path": "/one_source_case/expected_native_return/source_observations/causes/-"
+      }
+    ],
+    "expected_static_summary": {
+      "input_member_difference": "/sources/0/roleだけsemantic_source→derived_view",
+      "public_input_issues": [],
+      "public_unusable_source_refs": [],
+      "role_check_result": "different",
+      "role_check_cause_count": 1,
+      "source_cause_count": 1,
+      "source_usability": "unusable",
+      "global_cause_count": 1,
+      "other_18_checks": "元positive全期待と一致",
+      "input_canonical_sha256": "64978a0f346c9e00aea52f595650fa4f5e612f778f4df0ff369797a8f7ae2e1f",
+      "expected_full_return_canonical_sha256": "da250593b234b985ad1179969d9bdbd8e0481468bddfe19c2b554b90dcdf7801"
+    },
+    "independent_basis_ja": "固定正常sourceのbytes/body/digest/Ref/qualification/root/owner/scopeを先に保持し、role差だけを既存SourceCheck規範とpublic_validation_projectionへ手で対応させた。候補返却を期待へコピーしていない。旧one-sourceの固定recipeを明示的な著述材料として再利用する。",
+    "before_after_design_counterexample_ja": "修正前14dのwriterはroleのCauseを公開Issue/Refへも投影するため本期待と矛盾する。修正後の規範ではprivate Causeを保持し公開2列を増やさない。これは規範本文と固定期待の静的反例であり、実装Red/Greenの実観測ではない。",
+    "limits_ja": [
+      "単一derived_view例だけ。全roleやroleとbytes/資格の同時異常を網羅しない。",
+      "実資格/trust/実配送/実fn0/CI又はF05全返却閉包の成立を示さない。",
+      "既存四節と全旧fixture/numeric tokenは変更しない。"
+    ]
   }
 }
