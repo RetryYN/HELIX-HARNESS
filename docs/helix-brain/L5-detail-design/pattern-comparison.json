@@ -1199,6 +1199,319 @@
           "observed",
           "source_pointer"
         ]
+      },
+      "F01OwnerReturnInvocationInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "native_f01_input": {
+            "$ref": "#/type_system/definitions/F01Input"
+          },
+          "original_application_source": {
+            "$ref": "#/type_system/definitions/F02ReturnSourceObservation"
+          },
+          "invocation_request_binding": {
+            "$ref": "#/type_system/definitions/F02ReturnSourceObservation"
+          },
+          "requirement_values_observation": {
+            "$ref": "#/type_system/definitions/F02OwnerReturnMaterial/properties/input_observation"
+          }
+        },
+        "required": [
+          "native_f01_input",
+          "original_application_source",
+          "invocation_request_binding",
+          "requirement_values_observation"
+        ]
+      },
+      "F01OwnerReturnAxisComparison": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "axis": {
+            "enum": [
+              "f01_native_input",
+              "requirement_values_observation",
+              "problem",
+              "requirement_revision",
+              "scope"
+            ]
+          },
+          "expected_source_pointer": {
+            "type": "string"
+          },
+          "observed_source_pointer": {
+            "type": "string"
+          },
+          "expected": {
+            "$ref": "#/type_system/definitions/F02ReturnAxisObservation"
+          },
+          "observed": {
+            "$ref": "#/type_system/definitions/F02ReturnAxisObservation"
+          },
+          "status": {
+            "enum": [
+              "matched",
+              "absent",
+              "present_null",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "comparison_operator": {
+            "enum": [
+              "json_equal"
+            ]
+          },
+          "expected_source_document": {
+            "enum": [
+              "original_application_source",
+              "L4_contract"
+            ]
+          },
+          "observed_source_document": {
+            "enum": [
+              "native_f01_input",
+              "invocation_request_binding",
+              "requirement_values_observation"
+            ]
+          }
+        },
+        "required": [
+          "axis",
+          "expected_source_pointer",
+          "observed_source_pointer",
+          "expected",
+          "observed",
+          "status",
+          "comparison_operator",
+          "expected_source_document",
+          "observed_source_document"
+        ]
+      },
+      "F01OwnerReturnBindingIssue": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "comparison_index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "axis": {
+            "enum": [
+              "f01_native_input",
+              "requirement_values_observation",
+              "problem",
+              "requirement_revision",
+              "scope"
+            ]
+          },
+          "status": {
+            "enum": [
+              "absent",
+              "present_null",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "expected": {
+            "$ref": "#/type_system/definitions/F02ReturnAxisObservation"
+          },
+          "observed": {
+            "$ref": "#/type_system/definitions/F02ReturnAxisObservation"
+          },
+          "source_pointer": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "comparison_index",
+          "axis",
+          "status",
+          "expected",
+          "observed",
+          "source_pointer"
+        ]
+      },
+      "F01CoreRequiredValueMaterial": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "desired_role": {
+            "enum": [
+              "CORE"
+            ]
+          },
+          "destination_candidate": {
+            "anyOf": [
+              {
+                "enum": [
+                  "CORE"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "attribution_state": {
+            "enum": [
+              "matched",
+              "absent",
+              "present_null",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "requirement_values_observation": {
+            "$ref": "#/type_system/definitions/F02OwnerReturnMaterial/properties/input_observation"
+          },
+          "availability_evaluated": {
+            "type": "boolean"
+          },
+          "availability": {
+            "anyOf": [
+              {
+                "enum": [
+                  "missing",
+                  "supplied_fixture_only"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "confirmation": {
+            "enum": [
+              "known_missing",
+              "needs_observation"
+            ]
+          },
+          "declared_request_observation": {
+            "$ref": "#/type_system/definitions/F02ReturnSourceObservation"
+          },
+          "actual_request_binding_observation": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "state": {
+                "enum": [
+                  "present_value",
+                  "absent",
+                  "present_null",
+                  "unknown"
+                ]
+              },
+              "raw_value": {
+                "$ref": "#/type_system/definitions/JSONValue"
+              }
+            },
+            "required": [
+              "state",
+              "raw_value"
+            ]
+          },
+          "source": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "request_pointer": {
+                "type": "string"
+              },
+              "binding_pointer": {
+                "type": "string"
+              },
+              "observation_pointer": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "request_pointer",
+              "binding_pointer",
+              "observation_pointer"
+            ]
+          }
+        },
+        "required": [
+          "desired_role",
+          "destination_candidate",
+          "attribution_state",
+          "requirement_values_observation",
+          "availability_evaluated",
+          "availability",
+          "confirmation",
+          "declared_request_observation",
+          "actual_request_binding_observation",
+          "source"
+        ]
+      },
+      "F01BrainComparisonMaterial": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "desired_role": {
+            "enum": [
+              "BRAIN知識owner"
+            ]
+          },
+          "candidate_key": {
+            "enum": [
+              "STRONG",
+              "EVENTUAL",
+              "COMPENSATION"
+            ]
+          },
+          "field_pointer": {
+            "type": "string"
+          },
+          "native_result_pointer": {
+            "type": "string"
+          },
+          "native_status": {
+            "enum": [
+              "missing",
+              "content_conflict"
+            ]
+          },
+          "provided_presence": {
+            "enum": [
+              "present",
+              "absent"
+            ]
+          },
+          "provided_value_sentinel": {
+            "$ref": "#/type_system/definitions/JSONValue"
+          },
+          "required_presence": {
+            "enum": [
+              "present",
+              "absent"
+            ]
+          },
+          "required_value": {
+            "$ref": "#/type_system/definitions/JSONValue"
+          },
+          "provided_original_candidate": {
+            "$ref": "#/type_system/definitions/JSONValue"
+          },
+          "required_original_candidate": {
+            "$ref": "#/type_system/definitions/JSONValue"
+          }
+        },
+        "required": [
+          "desired_role",
+          "candidate_key",
+          "field_pointer",
+          "native_result_pointer",
+          "native_status",
+          "provided_presence",
+          "provided_value_sentinel",
+          "required_presence",
+          "required_value",
+          "provided_original_candidate",
+          "required_original_candidate"
+        ]
       }
     },
     "finite_fixture_types": [
@@ -1746,6 +2059,114 @@
           "logical_return_materials",
           "local_binding_issues"
         ]
+      },
+      "F01OwnerReturnEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "native_input_echo": {
+            "$ref": "#/type_system/definitions/F01Input"
+          },
+          "native_return": {
+            "$ref": "#/type_system/returns/F01Return"
+          },
+          "original_application_source_state": {
+            "enum": [
+              "absent",
+              "present_null",
+              "present_value",
+              "unknown"
+            ]
+          },
+          "original_application_source_echo": {
+            "$ref": "#/type_system/definitions/JSONValue"
+          },
+          "invocation_request_binding_state": {
+            "enum": [
+              "absent",
+              "present_null",
+              "present_value",
+              "unknown"
+            ]
+          },
+          "invocation_request_binding_echo": {
+            "$ref": "#/type_system/definitions/JSONValue"
+          },
+          "requirement_values_observation": {
+            "$ref": "#/type_system/definitions/F02OwnerReturnMaterial/properties/input_observation"
+          },
+          "application_binding_comparisons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/type_system/definitions/F01OwnerReturnAxisComparison"
+            }
+          },
+          "application_binding_state": {
+            "enum": [
+              "matched",
+              "absent",
+              "present_null",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "local_binding_issues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/type_system/definitions/F01OwnerReturnBindingIssue"
+            }
+          },
+          "availability_evaluated": {
+            "type": "boolean"
+          },
+          "availability": {
+            "anyOf": [
+              {
+                "enum": [
+                  "missing",
+                  "supplied_fixture_only"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "brain_comparison_return_materials": {
+            "type": "array",
+            "items": {
+              "$ref": "#/type_system/definitions/F01BrainComparisonMaterial"
+            }
+          },
+          "core_requirement_return_materials": {
+            "type": "array",
+            "items": {
+              "$ref": "#/type_system/definitions/F01CoreRequiredValueMaterial"
+            }
+          },
+          "operation_effect": {
+            "enum": [
+              "none"
+            ]
+          }
+        },
+        "required": [
+          "native_input_echo",
+          "native_return",
+          "original_application_source_state",
+          "original_application_source_echo",
+          "invocation_request_binding_state",
+          "invocation_request_binding_echo",
+          "requirement_values_observation",
+          "application_binding_comparisons",
+          "application_binding_state",
+          "local_binding_issues",
+          "availability_evaluated",
+          "availability",
+          "brain_comparison_return_materials",
+          "core_requirement_return_materials",
+          "operation_effect"
+        ]
       }
     }
   },
@@ -1905,7 +2326,7 @@
       "l4_ref": "HELIXBRAIN-L4-004-F02",
       "current_l4_binding": {
         "path": "docs/helix-brain/L4-basic-design/pattern-comparison.json",
-        "file_sha256": "2cf9f95c09da02bd93086e656e8456c5c546d73d47f88f76e4d592106294a159",
+        "file_sha256": "414c9ad196b22285be97900b1d65886aa72057df0a4b2b9ae63e77bc7bfb3e68",
         "pointer": "/contracts/1/private_owner_return_wrapper",
         "object_canonical_sha256": "2fc7a2dc113bb215474d81f4022261512757532e2897758a75dff3fe4646ebca"
       },
@@ -2027,6 +2448,166 @@
         "F02ReturnAxisComparison.comparison_operator": "宣言軸/shortage_fieldはjson_equal、destination_roleはmember_of、decision entry.refはis_present_value。",
         "F02ReturnAxisComparison.expected_source_document/observed_source_document": "operandの実source domain。ruleはis_present_value判定の期待側に限る。"
       }
+    },
+    {
+      "id": "BRAIN004-F01-OWNER-RETURN",
+      "requirement_ref": "HELIXBRAIN-L3-004-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F01",
+      "l4_ref": "HELIXBRAIN-L4-004-F01",
+      "current_l4_binding": {
+        "path": "docs/helix-brain/L4-basic-design/pattern-comparison.json",
+        "file_sha256": "414c9ad196b22285be97900b1d65886aa72057df0a4b2b9ae63e77bc7bfb3e68",
+        "pointer": "/contracts/0/private_owner_return_wrapper",
+        "object_canonical_sha256": "297bb3ecd1730817632842783be4d7ba947653ddac333c3e4b7228e387b0355e"
+      },
+      "native_f01_dependency_bindings": [
+        {
+          "pointer": "/functions/0",
+          "object_canonical_sha256": "72ff655764a1e2a34d54360fef841f22ab77624991bfed6dfb3c5a3a3d8229ed",
+          "role": "同じL5内の既存native F01。新functionはこれを一度だけ呼び、全返却を保持。"
+        },
+        {
+          "pointer": "/type_system/definitions/F01Input",
+          "object_canonical_sha256": "aec0ebb8b1f14a368e75dab92328b5879ea278ebdc599afeb219c7f4a7d43b6f",
+          "role": "同じL5内の既存入力型"
+        },
+        {
+          "pointer": "/type_system/returns/F01Return",
+          "object_canonical_sha256": "b5a7a536090066ec369085a79920fcb8abc297be9b02a60246acc65f55cca053",
+          "role": "同じL5内の既存返却型"
+        },
+        {
+          "pointer": "/rule_catalog/BRAIN004-F02/availability",
+          "object_canonical_sha256": "225d4f609f1893f84c10228be176be87fd8416d7084fe3c40d3beff5473297a8",
+          "role": "同じL5内の既存null/non-null分類規則のみ。F02関数は呼ばない。"
+        }
+      ],
+      "signature": {
+        "arguments": [
+          {
+            "name": "invocation",
+            "type_ref": "#/type_system/definitions/F01OwnerReturnInvocationInput"
+          }
+        ],
+        "returns": "#/type_system/returns/F01OwnerReturnEnvelope"
+      },
+      "purity": "pure",
+      "side_effects": "none",
+      "reads": [
+        "invocation.native_f01_input",
+        "invocation.original_application_source.state/raw_value",
+        "invocation.invocation_request_binding.state/raw_value",
+        "invocation.requirement_values_observation.presence/value",
+        "L4 private_owner_return_wrapper"
+      ],
+      "calls": [
+        {
+          "function_ref": "BRAIN004-F01",
+          "argument": "invocation.native_f01_input",
+          "count": 1,
+          "result_writer": "result.native_return"
+        }
+      ],
+      "algorithm": [
+        "1. invocation.native_f01_inputを変更せず既存BRAIN004-F01へ一度だけ渡す。native_returnにはF01Return全fieldを完全保持する。",
+        "2. 入力4operandをそれぞれ対応するechoへ原値コピーする。original_application_sourceとinvocation_request_bindingはstateとraw_valueを分離して保持し、raw内容からstateを推定しない。",
+        "3. application_binding_comparisonsをこの順で作る: original raw f01_native_input↔native input、original raw requirement_values_observation↔独立requirement_values_observation、request.problem、request.requirement_revision、request.scopeをinvocation bindingの同軸へ。親absent/present_null/unknownはその子へ同状態を伝える。親present_valueでもrawがobjectでなければ子unknown。original raw requestはrequest memberのabsent/null/nonobjectをそれぞれabsent/present_null/unknownとし、objectなら3軸のmember不在=absent/null=present_null/値あり=present_value。invocation bindingは直接3軸へ同じ規則を適用する。各sideのpointer/state/raw値を保持し、双方state=present_valueの場合だけJSON等値比較して一致=matched/不一致=conflict。それ以外はpresent_value側をstatus順位候補から除き、残るnon-present operand stateへF02 owner-return wrapperのalgorithm/7-8で使う優先順（conflict > present_null > absent > unknown > matched）を適用して、このcomparison固有のstatusを決める。既知値同士の等値判定はrule_catalog/shared/json_equalityに従う。raw全体はechoし、片軸の欠落で他軸を止めない。",
+        "4. application_binding_stateはconflict > present_null > absent > unknown > matchedで全5比較をfoldし、各比較は残す。local_binding_issuesはstatus!=matchedの各comparisonを同じ順で一件ずつ保持する。",
+        "5. requirement_values_observation.presence=presentなら既存rule_catalog/BRAIN004-F02/availabilityのnull/non-null分類だけを適用する。value=nullはavailability=missing、非nullはsupplied_fixture_only。presence=absent/unknownならavailability_evaluated=falseかつavailability=nullとし、valueからpresenceを昇格しない。",
+        "6. native_return.candidate_resultsをcandidate/input field順で走査し、status=missingまたはcontent_conflictの各root/axisだけBRAIN知識owner向けcomparison materialを作る。provided/required candidate全原値、field pointer、native result pointer、presence、native statusを保持する。存在しない側のvalueはnull sentinelとpresence=absentを分け、両側値不一致はcontent_conflictのまま保持する。CORE観測状態でこのmaterialを抑止しない。",
+        "7. availability=missingならknown_missing、未評価ならneeds_observationとしてCORE materialを作る。COREはL4/L3の論理役割を表し、destination_candidateはapplication_binding_state=matchedかつrequest/binding各軸が読めたときだけCORE、それ以外はnull。declared_request_observationはoriginal raw requestのstateとraw JSONValueをそのまま保持し、request object/fieldを合成しない。実invocation binding観測と独立requirement observationも別fieldで保持し、known_missingとattribution_stateを混同しない。availability=supplied_fixture_onlyならCORE不足materialを作らない。",
+        "8. native_return.effects、claims、retained_candidate_ids、unaffected_Qはnative_return内に完全保持する。wrapperのoperation_effectはnone。"
+      ],
+      "preconditions": [
+        "呼出しは宣言型F01OwnerReturnInvocationInputとして与えられる。実source資格をこの関数は認定しない。"
+      ],
+      "postconditions": [
+        "native F01全返却と入力全operandを保持する。",
+        "BRAIN native比較不足とCORE要求値観測/適用結合を別materialで返す。",
+        "実資格、実owner解決、配送、ACK、CORE更新、実行は行わない。"
+      ],
+      "unclosed": [
+        "任意の実source資格・owner identity/実配送はこの純関数の対象外。",
+        "symbolic conditionsは有限のsource条件であり、新しいliteral public wholeや実行済み証明ではない。"
+      ],
+      "comparison_status_basis": {
+        "status_precedence": {
+          "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+          "pointer": "/functions/3/algorithm/7",
+          "role": "F02 owner-return wrapperで使う混在status優先順だけを再利用する。F02関数は呼び出さない。",
+          "object_canonical_sha256": "cb7a2ae8c6d6cf6b276ae566012b59fde690e627e36e3869a3a2a47d07927e91"
+        },
+        "value_operator": {
+          "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+          "pointer": "/rule_catalog/shared/json_equality",
+          "role": "双方がpresent_valueの比較に限り、JSON値の等値条件を再利用する。",
+          "object_canonical_sha256": "0a79eefb21681ba22bf7395a141cb3bfd4edf5a91661c17d27eb03cadacc7167"
+        }
+      },
+      "field_writer_map": {
+        "result.native_input_echo": "invocation.native_f01_inputの全値コピー。",
+        "result.native_return": "既存BRAIN004-F01を一度呼んだ結果のF01Return全fieldを完全コピー。",
+        "result.original_application_source_state": "invocation.original_application_source.stateをそのままコピーする。",
+        "result.original_application_source_echo": "invocation.original_application_source.raw_value全体をそのままコピーする。",
+        "result.invocation_request_binding_state": "invocation.invocation_request_binding.stateをそのままコピーする。",
+        "result.invocation_request_binding_echo": "invocation.invocation_request_binding.raw_value全体をそのままコピーする。",
+        "result.requirement_values_observation": "invocation.requirement_values_observationのpresence/value全fieldをそのままコピーする。",
+        "result.application_binding_comparisons": "5比較をf01_native_input, requirement_values_observation, problem, requirement_revision, scopeの順で作る。各比較は以下のF01OwnerReturnAxisComparison writerを使い、片側欠落で他比較を止めない。",
+        "F01OwnerReturnAxisComparison.axis": "f01_native_input / requirement_values_observation / problem / requirement_revision / scopeの比較対象名。request.problem→problem、request.requirement_revision→requirement_revision、request.scope→scopeの対応を固定する。",
+        "F01OwnerReturnAxisComparison.expected_source_document": "前2比較はoriginal_application_source、request 3軸はoriginal_application_source。",
+        "F01OwnerReturnAxisComparison.observed_source_document": "f01_native_input比較はnative_f01_input、requirement_values_observation比較はrequirement_values_observation、request 3軸はinvocation_request_binding。",
+        "F01OwnerReturnAxisComparison.expected_source_pointer": "期待側pointerは凍結条件のleft_input_pointerに対応する。前2軸はoriginal_application_source.raw_value内のf01_native_input/requirement_values_observation、request 3軸はrequest/problem、request/requirement_revision、request/scope。",
+        "F01OwnerReturnAxisComparison.observed_source_pointer": "観測側pointerは凍結条件のright_input_pointerに対応する。native_f01_input、requirement_values_observation、またはinvocation_request_binding.raw_value内のproblem、requirement_revision、scopeを指すRFC6901 pointer。",
+        "F01OwnerReturnAxisComparison.expected": "凍結条件left_observation_state/left_raw_valueからF02ReturnAxisObservation.state/valueを対応づける。親stateと軸member状態を区別し、元値を保持する。",
+        "F01OwnerReturnAxisComparison.observed": "凍結条件right_observation_state/right_raw_valueからF02ReturnAxisObservation.state/valueを対応づける。親stateと軸member状態を区別し、元値を保持する。",
+        "F01OwnerReturnAxisComparison.comparison_operator": "json_equal。両operandがpresent_valueのときだけrule_catalog/shared/json_equalityを評価する。",
+        "F01OwnerReturnAxisComparison.status": "両operand present_valueなら等値でmatched、異なればconflict。それ以外は両operand stateへcomparison_status_basis.status_precedenceを適用する。",
+        "result.application_binding_state": "全5比較statusをconflict > present_null > absent > unknown > matchedでfold。個別比較は残す。",
+        "result.local_binding_issues": "statusがmatched以外の各comparisonから同順に一件ずつ作る。",
+        "F01OwnerReturnBindingIssue.comparison_index": "元application_binding_comparisons内の0-based index。",
+        "F01OwnerReturnBindingIssue.axis": "対応するF01OwnerReturnAxisComparison.axisをコピー。",
+        "F01OwnerReturnBindingIssue.status": "対応比較statusをコピー（matchedはissueに含めない）。",
+        "F01OwnerReturnBindingIssue.expected": "対応比較のexpected observation全fieldをコピー。",
+        "F01OwnerReturnBindingIssue.observed": "対応比較のobserved observation全fieldをコピー。",
+        "F01OwnerReturnBindingIssue.source_pointer": "対応比較のobserved_source_pointerをコピー。",
+        "result.availability_evaluated": "requirement_values_observation.presenceがpresentのときtrue、それ以外false。",
+        "result.availability": "presence=present時はvalue=nullをmissing、非nullをsupplied_fixture_onlyとする。未観測時はnull sentinelを置き、presenceを昇格しない。",
+        "result.brain_comparison_return_materials": "native_return.candidate_resultsをcandidate/input field順に走査し、status=missingまたはcontent_conflictの各軸を一件ずつ保持する。",
+        "F01BrainComparisonMaterial.desired_role": "固定値BRAIN知識owner。",
+        "F01BrainComparisonMaterial.candidate_key": "該当native candidate resultのcandidate IDをそのままコピー。",
+        "F01BrainComparisonMaterial.field_pointer": "native candidate入力の該当candidate/fieldを指すRFC6901 pointer。",
+        "F01BrainComparisonMaterial.native_result_pointer": "native_return.candidate_results内の該当candidate/axis結果pointer。",
+        "F01BrainComparisonMaterial.native_status": "native candidate resultの該当axis statusをコピー（missing/content_conflictのみ）。",
+        "F01BrainComparisonMaterial.provided_presence": "provided candidateの該当field存在時present、なければabsent。",
+        "F01BrainComparisonMaterial.provided_value_sentinel": "provided該当fieldの原値。不存在はnull sentinel、presenceは別fieldで保持。",
+        "F01BrainComparisonMaterial.required_presence": "required candidateの該当field存在時present、なければabsent。",
+        "F01BrainComparisonMaterial.required_value": "required該当fieldの原値。不存在はnull sentinel、presenceは別fieldで保持。",
+        "F01BrainComparisonMaterial.provided_original_candidate": "invocation.native_f01_input.provided_candidates[ candidate_key ]の全値。",
+        "F01BrainComparisonMaterial.required_original_candidate": "invocation.native_f01_input.required_candidates[ candidate_key ]の全値。",
+        "result.core_requirement_return_materials": "availability=missingならknown_missing、未評価ならneeds_observationのmaterialを一件作る。availability=supplied_fixture_onlyなら空。",
+        "F01CoreRequiredValueMaterial.desired_role": "固定値CORE。",
+        "F01CoreRequiredValueMaterial.destination_candidate": "application binding matchedかつ必要request/binding軸がknownのときCORE、それ以外null sentinel。",
+        "F01CoreRequiredValueMaterial.attribution_state": "application_binding_stateをコピー。",
+        "F01CoreRequiredValueMaterial.requirement_values_observation": "invocation.requirement_values_observationのpresence/value全fieldをコピー。",
+        "F01CoreRequiredValueMaterial.availability_evaluated": "result.availability_evaluatedをコピー。",
+        "F01CoreRequiredValueMaterial.availability": "result.availabilityをコピー。",
+        "F01CoreRequiredValueMaterial.confirmation": "availability=missingならknown_missing、未評価ならneeds_observation。",
+        "F01CoreRequiredValueMaterial.declared_request_observation": "original_application_sourceのstateを保持し、raw_value.request memberが読めるときはそのJSONValue全値をコピー。親state non-presentまたはmember不可ならstateを保持し、raw_valueはechoから原raw全体を保持する。",
+        "F01CoreRequiredValueMaterial.actual_request_binding_observation": "invocation_request_binding.stateとraw_valueを別々に保持。raw_valueが非objectでも内容を変換しない。",
+        "F01CoreRequiredValueMaterial.source.request_pointer": "/original_application_source/raw_value/request。",
+        "F01CoreRequiredValueMaterial.source.binding_pointer": "/invocation_request_binding/raw_value。",
+        "F01CoreRequiredValueMaterial.source.observation_pointer": "/requirement_values_observation。",
+        "result.operation_effect": "固定値none。",
+        "F02ReturnAxisObservation.state": "元source observationのparent stateがpresent_valueの場合だけmember presence/null/valueを判定し、親stateがabsent/present_null/unknownなら子へ同stateを伝播。値の転記でstateを昇格しない。",
+        "F02ReturnAxisObservation.value": "memberを参照できるとき原JSONValueをコピーし、member欠落または参照不能ならnull sentinelを置く。stateは別fieldに保持する。",
+        "F02ReturnSourceObservation.state": "対応するoriginal_application_sourceまたはinvocation_request_bindingのstateをそのままコピー。",
+        "F02ReturnSourceObservation.raw_value": "対応するsource observationのraw_value全体をそのままコピー。",
+        "F01CoreRequiredValueMaterial.declared_request_observation.state": "original_application_source.stateがabsent/present_null/unknownならそのstateを伝播。親present_valueでraw_valueが非objectならunknown。親present_valueかつraw_valueがobjectならrequest member不在=absent、null=present_null、非object=unknown、object=present_valueとし、field_writer_mapのaxis判定と同じ実効状態を使う。",
+        "F01CoreRequiredValueMaterial.declared_request_observation.raw_value": "original raw_value.request memberを参照できればその全JSONValueをコピーし、参照不能ならraw全体echoを保持する。状態から値を合成しない。",
+        "F01CoreRequiredValueMaterial.actual_request_binding_observation.state": "invocation_request_binding.stateをそのままコピー。",
+        "F01CoreRequiredValueMaterial.actual_request_binding_observation.raw_value": "invocation_request_binding.raw_value全体をそのままコピー。",
+        "F01CoreRequiredValueMaterial.source": "3つのsource pointerを、declared request=/original_application_source/raw_value/request、実binding=/invocation_request_binding/raw_value、独立観測=/requirement_values_observationとして保持する。"
+      }
     }
   ],
   "pipeline": {
@@ -2036,7 +2617,7 @@
       "BRAIN004-B01"
     ],
     "interaction": "各L9 rawは各関数の独立fixture。F01の出力をF02/B01の入力として暗黙合成しない。",
-    "failure_return": "F01は候補内容/各軸の不足診断を返すが、BRAIN知識owner返却候補fieldは原L9/現在F01Returnの範囲外で出力しない。加えてL3 F01 failure_returnの「COREへ要求値不足」は、F01に要求値入力がないため不足の診断自体も未実現であり、返却先/material/consumer bindingも未具体化。F02の別fixtureの診断をF01の実現としない。 既存F02Return自体には判断先fieldがない。追加private same-call wrapperは、外側の原request・invocation binding・decision sourceを照合して不足ごとの論理返却候補と全native returnを保持する。実source qualification・実consumerの受領/判断/配送は未実証であり、直接F02Returnのshapeを変更したものではない。 B01のclaim/INT接続owner候補で両者の不足を代用しない。上流義務を保持し該当L4義務の完了を主張しない。 F01/F02/B01は独立fixtureであり、診断/返却を暗黙に合成しない。"
+    "failure_return": "native BRAIN004-F01の返却型は変更しない。追加private BRAIN004-F01-OWNER-RETURNがnative全返却を保持し、BRAIN比較不足とCORE要求値観測の論理返却候補を別に組み立てる。実source資格、実consumerの受領/判断/配送は未実証。F02/B01の別fixtureをF01結果へ暗黙合成しない。 既存F02Return自体には判断先fieldがない。追加private same-call wrapperは、外側の原request・invocation binding・decision sourceを照合して不足ごとの論理返却候補と全native returnを保持する。実source qualification・実consumerの受領/判断/配送は未実証であり、直接F02Returnのshapeを変更したものではない。"
   },
   "owner_candidate_literals": {
     "CORE-product-decision-owner": {
@@ -2159,7 +2740,8 @@
     "実sourceの来歴、owner資格、CORE/INT接続先、正式schema/codecは未成立。",
     "L9にない一般のcandidate数、任意enum/JSON/null/absent組合せ、実source資格/必要集合、実routing優先/全L4分岐は未閉包。全内容一致時complete=trueは追加局所例でnone_unobservedを返すが実比較完了/採用/許可を生成しない。要求値/重み提示済みで保留する原F02例と、実消費先による選択の成立を分離する。",
     "合成fixtureの出力とfalse-effect定数は、実動作・権限・受入の証明ではない。",
-    "F01は候補内容/各軸の不足診断を返すが、BRAIN知識owner返却候補fieldは原L9/現在F01Returnの範囲外で出力しない。加えてL3 F01 failure_returnの「COREへ要求値不足」は、F01に要求値入力がないため不足の診断自体も未実現であり、返却先/material/consumer bindingも未具体化。F02の別fixtureの診断をF01の実現としない。 既存F02Return自体には判断先fieldがない。追加private same-call wrapperは、外側の原request・invocation binding・decision sourceを照合して不足ごとの論理返却候補と全native returnを保持する。実source qualification・実consumerの受領/判断/配送は未実証であり、直接F02Returnのshapeを変更したものではない。 B01のclaim/INT接続owner候補で両者の不足を代用しない。上流義務を保持し該当L4義務の完了を主張しない。"
+    "F01は候補内容/各軸の不足診断を返すが、BRAIN知識owner返却候補fieldは原L9/現在F01Returnの範囲外で出力しない。加えてL3 F01 failure_returnの「COREへ要求値不足」は、F01に要求値入力がないため不足の診断自体も未実現であり、返却先/material/consumer bindingも未具体化。F02の別fixtureの診断をF01の実現としない。 既存F02Return自体には判断先fieldがない。追加private same-call wrapperは、外側の原request・invocation binding・decision sourceを照合して不足ごとの論理返却候補と全native returnを保持する。実source qualification・実consumerの受領/判断/配送は未実証であり、直接F02Returnのshapeを変更したものではない。 B01のclaim/INT接続owner候補で両者の不足を代用しない。上流義務を保持し該当L4義務の完了を主張しない。",
+    "新private F01 same-call wrapperは有限source条件の論理返却のみを具体化する。実source資格、実CORE consumerの受領/判断/配送、ACK、実行は未binding。native F01関数/返却型は変更しない。"
   ],
   "full_goal_scope_preserved": {
     "parents": 92,
@@ -2198,7 +2780,123 @@
         "各候補の六軸を元source/版へ対応。cost/failure含む欠落は当該軸に保持し他候補で相殺しない。一候補の恒久絶対解を生成しない。"
       ],
       "qualification_rule": "原identity/revision/scope/owner/必要候補集合と比較内容を独立照合。missing/unknownは当該軸/入力に保持。実source資格と正式表現は未binding。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "private_owner_return_wrapper": {
+        "id": "HELIXBRAIN-L4-004-F01-OWNER-RETURN",
+        "requirement_ref": "HELIXBRAIN-L3-004-F01",
+        "system_oracle_ref": "HELIXBRAIN-L10-004-F01",
+        "native_component_ref": "pattern_comparison_content_reader",
+        "private_function_ref": "BRAIN004-F01-OWNER-RETURN",
+        "source_basis": [
+          {
+            "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+            "revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+            "file_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+            "pointer": "/requirements/32",
+            "object_canonical_sha256": "ff6805b7fd10e2e263139af9de343dd3452218921988ea5dbe0a762506736820",
+            "role": "F01の比較不足とBRAIN知識owner/CORE返却句"
+          },
+          {
+            "path": "docs/helix-brain/L10-verification/functional-verification.json",
+            "revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+            "file_sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+            "pointer": "/cases/32",
+            "object_canonical_sha256": "b528666cc66b08990877792e9e78051974762d018aecd9edb25bc14e4844e735",
+            "role": "F01の独立検証と失敗返却句"
+          },
+          {
+            "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+            "revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+            "file_sha256": "d27ecfac55b40b5f4ae85d3c1cddfabceafa6d1260f9c7650fb29ef2de3fce60",
+            "pointer": "/functions/0",
+            "object_canonical_sha256": "72ff655764a1e2a34d54360fef841f22ab77624991bfed6dfb3c5a3a3d8229ed",
+            "role": "一度だけ呼ぶ既存native F01 producer"
+          },
+          {
+            "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+            "revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+            "file_sha256": "d27ecfac55b40b5f4ae85d3c1cddfabceafa6d1260f9c7650fb29ef2de3fce60",
+            "pointer": "/type_system/definitions/F01Input",
+            "object_canonical_sha256": "aec0ebb8b1f14a368e75dab92328b5879ea278ebdc599afeb219c7f4a7d43b6f",
+            "role": "native F01 input型"
+          },
+          {
+            "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+            "revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+            "file_sha256": "d27ecfac55b40b5f4ae85d3c1cddfabceafa6d1260f9c7650fb29ef2de3fce60",
+            "pointer": "/type_system/returns/F01Return",
+            "object_canonical_sha256": "b5a7a536090066ec369085a79920fcb8abc297be9b02a60246acc65f55cca053",
+            "role": "native F01 return型"
+          },
+          {
+            "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+            "revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+            "file_sha256": "d27ecfac55b40b5f4ae85d3c1cddfabceafa6d1260f9c7650fb29ef2de3fce60",
+            "pointer": "/rule_catalog/BRAIN004-F02/availability",
+            "object_canonical_sha256": "225d4f609f1893f84c10228be176be87fd8416d7084fe3c40d3beff5473297a8",
+            "role": "required value null/non-nullの既存分類規則。F02関数は呼ばない。"
+          }
+        ],
+        "input_operands": [
+          {
+            "name": "native_f01_input",
+            "source_ref": {
+              "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+              "pointer": "/type_system/definitions/F01Input"
+            },
+            "meaning": "同じ入力から既存native F01を一度だけ評価する原値"
+          },
+          {
+            "name": "original_application_source",
+            "source_ref": {
+              "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+              "pointer": "/type_system/definitions/F02ReturnSourceObservation"
+            },
+            "meaning": "外側の原application source観測。raw_value内のF01入力・原request・値観測を保持"
+          },
+          {
+            "name": "invocation_request_binding",
+            "source_ref": {
+              "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+              "pointer": "/type_system/definitions/F02ReturnSourceObservation"
+            },
+            "meaning": "実呼出しに結び付くrequest観測"
+          },
+          {
+            "name": "requirement_values_observation",
+            "source_ref": {
+              "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+              "pointer": "/type_system/definitions/F02OwnerReturnMaterial/properties/input_observation"
+            },
+            "meaning": "要求値availabilityを判断する独立観測。original source内echoとは別operand"
+          }
+        ],
+        "availability_rule_source_document": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+        "application_binding_axes": [
+          "f01_native_input",
+          "requirement_values_observation",
+          "problem",
+          "requirement_revision",
+          "scope"
+        ],
+        "availability_rule": {
+          "source_ref": {
+            "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+            "pointer": "/rule_catalog/BRAIN004-F02/availability"
+          },
+          "null": "missing",
+          "non_null": "supplied_fixture_only",
+          "absent_or_unknown": "not_evaluated; availability null sentinel"
+        },
+        "return_meaning": [
+          "native F01全返却は変更せず保持し、native比較結果がmissingまたはcontent_conflictのfieldごとに元candidate/fieldを指すBRAIN知識owner向け比較不足materialを組み立てる。",
+          "要求値観測がpresent nullならknown_missing、Absent/unknownならneeds_observationとし、native availability enumを拡張しない。",
+          "COREはL3 F01の論理返却先であり、適用先候補は原requestと実呼出しbindingの全必要軸がmatchedの場合だけCORE、その他はnull。観測済み不足、属性結合状態、役割を別fieldで保持する。",
+          "既知不足はrequest結合がunknown/conflictでも保持する。native F01不備はCOREの不足観測を抑止しない。",
+          "この契約は純粋な論理返却であり、実資格、実owner識別子、配送、ACK、CORE更新を主張しない。"
+        ],
+        "operation_effect": "none"
+      }
     },
     {
       "id": "HELIXBRAIN-L4-004-F02",
@@ -2736,8 +3434,8 @@
       "requirement_ref": "HELIXBRAIN-L3-004-F01",
       "l4_ref": "HELIXBRAIN-L4-004-F01",
       "required_return": "L3 F01: BRAIN知識ownerへ比較不足、COREへ要求値不足。",
-      "current_projection": "候補内容/比較軸の診断だけ。要求値入力がなくCORE要求値不足の診断自体を行わず、いずれのowner候補fieldも出力しない。",
-      "missing_design": "CORE要求値不足の入力/診断と、BRAIN比較不足/CORE要求値不足の返却先対応・material/consumer binding。"
+      "current_projection": "既存native F01は候補内容/比較軸を返す。追加private wrapperはnative全返却に加え、要求値観測とapplication bindingを別々に保持するCORE論理返却候補、およびnative missing/content_conflictのBRAIN比較不足materialを返す。",
+      "missing_design": "実source資格、実CORE/BRAIN consumerの受領・判断・配送は未binding。pure wrapperでは実接続を成立扱いしない。"
     },
     {
       "requirement_ref": "HELIXBRAIN-L3-004-F02",

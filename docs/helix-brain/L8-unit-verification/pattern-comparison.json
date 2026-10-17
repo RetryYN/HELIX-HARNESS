@@ -6218,21 +6218,21 @@
   ],
   "candidate_l5_binding": {
     "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
-    "file_sha256": "d27ecfac55b40b5f4ae85d3c1cddfabceafa6d1260f9c7650fb29ef2de3fce60",
+    "file_sha256": "5df9de82bb766835fd357bc800ff4ca13b12fad85dcd08c0cf5a6b36c35993d0",
     "pointer": "/functions/3",
-    "object_canonical_sha256": "20b24914cd5004c0999287fea4938b398dc85b17ef6ea36ab542a49fc6c66bb7"
+    "object_canonical_sha256": "b01f32569743cbd9ed7dcc85e19f4bf029dd6d09568986b8375cb43834949c06"
   },
   "candidate_l4_binding": {
     "path": "docs/helix-brain/L4-basic-design/pattern-comparison.json",
-    "file_sha256": "2cf9f95c09da02bd93086e656e8456c5c546d73d47f88f76e4d592106294a159",
+    "file_sha256": "414c9ad196b22285be97900b1d65886aa72057df0a4b2b9ae63e77bc7bfb3e68",
     "pointer": "/contracts/1/private_owner_return_wrapper",
     "object_canonical_sha256": "2fc7a2dc113bb215474d81f4022261512757532e2897758a75dff3fe4646ebca"
   },
   "candidate_l9_owner_return_binding": {
     "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
-    "file_sha256": "d65b3fb20e467c4841c1ef40f1440e20ec9cb4d0ef5f9616167b5863153f9ae8",
+    "file_sha256": "b6557426a30c1acedd74e7c0ea1a3fc23cc836123aa17573b3f5c52f4d3f4873",
     "pointer": "/verification_obligations/1/owner_return_symbolic_oracles",
-    "object_canonical_sha256": "2efa65b2b475e3e64c087b07b2c4fbe88217751bee0b001ea95e8353f6bfc290"
+    "object_canonical_sha256": "5bdd577b31d12a147a397f7bde0a623532b3ca7f620290870b782507ed4493df"
   },
   "owner_return_symbolic_cases": [
     {
@@ -7255,5 +7255,125 @@
       }
     ],
     "scope_ja": "これは新しい実行結果やliteral wholeではなく、既存source summaryをL5の比較recordおよびissue writerへ結ぶ対応規則。S09のfrozen expectedはその完全値のまま保持する。"
-  }
+  },
+  "candidate_f01_l4_binding": {
+    "path": "docs/helix-brain/L4-basic-design/pattern-comparison.json",
+    "file_sha256": "414c9ad196b22285be97900b1d65886aa72057df0a4b2b9ae63e77bc7bfb3e68",
+    "pointer": "/contracts/0/private_owner_return_wrapper",
+    "object_canonical_sha256": "297bb3ecd1730817632842783be4d7ba947653ddac333c3e4b7228e387b0355e"
+  },
+  "candidate_f01_l5_binding": {
+    "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+    "file_sha256": "5df9de82bb766835fd357bc800ff4ca13b12fad85dcd08c0cf5a6b36c35993d0",
+    "pointer": "/functions/4",
+    "object_canonical_sha256": "a46bdb89fe14fbab8612afa5e58238bdf95c7a4f737276e6ad46b2a99c217a10"
+  },
+  "candidate_f01_l9_owner_return_binding": {
+    "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+    "file_sha256": "b6557426a30c1acedd74e7c0ea1a3fc23cc836123aa17573b3f5c52f4d3f4873",
+    "pointer": "/verification_obligations/0/owner_return_symbolic_conditions",
+    "object_canonical_sha256": "356a27f553f191bae64b30b604363d4bfec94d1aa5cb44cb43cd3877fc56f7ba"
+  },
+  "f01_owner_return_scope_ja": "この9件は独立source条件をtracked L9 raw/expectedへ明示的に写すsymbolic条件であり、literal whole、実行結果、実source資格、全域完了を示さない。",
+  "f01_owner_return_symbolic_cases": [
+    {
+      "condition_id": "S01-present-null",
+      "function_ref": "BRAIN004-F01-OWNER-RETURN",
+      "l4_contract_pointer": "/contracts/0/private_owner_return_wrapper",
+      "l9_symbolic_condition_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/0",
+      "l9_symbolic_condition_canonical_sha256": "6219795d1b6037bca5313a9a43f739b82a420c9f9ca418fcfb468708426b6716",
+      "expected_projection_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/0/expected_projection",
+      "l9_source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+      "l9_source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "scope": "symbolic mapping; input and native return come from fixed tracked source refs"
+    },
+    {
+      "condition_id": "S02-present-object",
+      "function_ref": "BRAIN004-F01-OWNER-RETURN",
+      "l4_contract_pointer": "/contracts/0/private_owner_return_wrapper",
+      "l9_symbolic_condition_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/1",
+      "l9_symbolic_condition_canonical_sha256": "8032bd215dfe844a8bb75e02cbaa75a7a887330ddbca0c021a4a8afc09da5ed5",
+      "expected_projection_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/1/expected_projection",
+      "l9_source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+      "l9_source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "scope": "symbolic mapping; input and native return come from fixed tracked source refs"
+    },
+    {
+      "condition_id": "S03-cost-missing-and-requirement-missing",
+      "function_ref": "BRAIN004-F01-OWNER-RETURN",
+      "l4_contract_pointer": "/contracts/0/private_owner_return_wrapper",
+      "l9_symbolic_condition_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/2",
+      "l9_symbolic_condition_canonical_sha256": "b44c1cbeb5fda6f78eadd34a81701ba5a0e9cc793c08f7bc7ea60441aff28190",
+      "expected_projection_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/2/expected_projection",
+      "l9_source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+      "l9_source_case_pointer": "/verification_obligations/0/concrete_cases/6",
+      "scope": "symbolic mapping; input and native return come from fixed tracked source refs"
+    },
+    {
+      "condition_id": "S04-foreign-request-scope",
+      "function_ref": "BRAIN004-F01-OWNER-RETURN",
+      "l4_contract_pointer": "/contracts/0/private_owner_return_wrapper",
+      "l9_symbolic_condition_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/3",
+      "l9_symbolic_condition_canonical_sha256": "cf7c3033eeff005d2bd10f81b1274aebfc922f08ee14c2908fd5bcee4ca59498",
+      "expected_projection_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/3/expected_projection",
+      "l9_source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+      "l9_source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "scope": "symbolic mapping; input and native return come from fixed tracked source refs"
+    },
+    {
+      "condition_id": "S05-original-native-input-foreign",
+      "function_ref": "BRAIN004-F01-OWNER-RETURN",
+      "l4_contract_pointer": "/contracts/0/private_owner_return_wrapper",
+      "l9_symbolic_condition_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/4",
+      "l9_symbolic_condition_canonical_sha256": "194411a812fb811d1936d4d893d40eb62f793a46893b664bec523d46a6fecdc0",
+      "expected_projection_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/4/expected_projection",
+      "l9_source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+      "l9_source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "scope": "symbolic mapping; input and native return come from fixed tracked source refs"
+    },
+    {
+      "condition_id": "S06-application-unknown-same-raw",
+      "function_ref": "BRAIN004-F01-OWNER-RETURN",
+      "l4_contract_pointer": "/contracts/0/private_owner_return_wrapper",
+      "l9_symbolic_condition_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/5",
+      "l9_symbolic_condition_canonical_sha256": "f7d466e0c546fe2fc2f66a1f958d57f8c5eccb64c0a0823806986df3f7083ae0",
+      "expected_projection_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/5/expected_projection",
+      "l9_source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+      "l9_source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "scope": "symbolic mapping; input and native return come from fixed tracked source refs"
+    },
+    {
+      "condition_id": "S07-member-absent",
+      "function_ref": "BRAIN004-F01-OWNER-RETURN",
+      "l4_contract_pointer": "/contracts/0/private_owner_return_wrapper",
+      "l9_symbolic_condition_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/6",
+      "l9_symbolic_condition_canonical_sha256": "0c11cdfafb32f46441a0c0fa8e6faf490a6e3e88c76197ec29e32ecf5fc64e99",
+      "expected_projection_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/6/expected_projection",
+      "l9_source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+      "l9_source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "scope": "symbolic mapping; input and native return come from fixed tracked source refs"
+    },
+    {
+      "condition_id": "S08-member-unknown-same-object",
+      "function_ref": "BRAIN004-F01-OWNER-RETURN",
+      "l4_contract_pointer": "/contracts/0/private_owner_return_wrapper",
+      "l9_symbolic_condition_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/7",
+      "l9_symbolic_condition_canonical_sha256": "f2801626cc9ce2257ed42827b52756f630bcf3af38685be655028520c3b1f9d3",
+      "expected_projection_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/7/expected_projection",
+      "l9_source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+      "l9_source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "scope": "symbolic mapping; input and native return come from fixed tracked source refs"
+    },
+    {
+      "condition_id": "S09-application-unknown-with-cost-shortage",
+      "function_ref": "BRAIN004-F01-OWNER-RETURN",
+      "l4_contract_pointer": "/contracts/0/private_owner_return_wrapper",
+      "l9_symbolic_condition_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/8",
+      "l9_symbolic_condition_canonical_sha256": "1b2202e4e0b77bc22e63b0a7ef07b3d0c0f562fda4004b70f08b24541b114f72",
+      "expected_projection_pointer": "/verification_obligations/0/owner_return_symbolic_conditions/conditions/8/expected_projection",
+      "l9_source_revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+      "l9_source_case_pointer": "/verification_obligations/0/concrete_cases/6",
+      "scope": "symbolic mapping; input and native return come from fixed tracked source refs"
+    }
+  ]
 }

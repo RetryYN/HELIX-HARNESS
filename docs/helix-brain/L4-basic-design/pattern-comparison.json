@@ -144,7 +144,123 @@
         "各候補の六軸を元source/版へ対応。cost/failure含む欠落は当該軸に保持し他候補で相殺しない。一候補の恒久絶対解を生成しない。"
       ],
       "qualification_rule": "原identity/revision/scope/owner/必要候補集合と比較内容を独立照合。missing/unknownは当該軸/入力に保持。実source資格と正式表現は未binding。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "private_owner_return_wrapper": {
+        "id": "HELIXBRAIN-L4-004-F01-OWNER-RETURN",
+        "requirement_ref": "HELIXBRAIN-L3-004-F01",
+        "system_oracle_ref": "HELIXBRAIN-L10-004-F01",
+        "native_component_ref": "pattern_comparison_content_reader",
+        "private_function_ref": "BRAIN004-F01-OWNER-RETURN",
+        "source_basis": [
+          {
+            "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+            "revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+            "file_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+            "pointer": "/requirements/32",
+            "object_canonical_sha256": "ff6805b7fd10e2e263139af9de343dd3452218921988ea5dbe0a762506736820",
+            "role": "F01の比較不足とBRAIN知識owner/CORE返却句"
+          },
+          {
+            "path": "docs/helix-brain/L10-verification/functional-verification.json",
+            "revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+            "file_sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+            "pointer": "/cases/32",
+            "object_canonical_sha256": "b528666cc66b08990877792e9e78051974762d018aecd9edb25bc14e4844e735",
+            "role": "F01の独立検証と失敗返却句"
+          },
+          {
+            "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+            "revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+            "file_sha256": "d27ecfac55b40b5f4ae85d3c1cddfabceafa6d1260f9c7650fb29ef2de3fce60",
+            "pointer": "/functions/0",
+            "object_canonical_sha256": "72ff655764a1e2a34d54360fef841f22ab77624991bfed6dfb3c5a3a3d8229ed",
+            "role": "一度だけ呼ぶ既存native F01 producer"
+          },
+          {
+            "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+            "revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+            "file_sha256": "d27ecfac55b40b5f4ae85d3c1cddfabceafa6d1260f9c7650fb29ef2de3fce60",
+            "pointer": "/type_system/definitions/F01Input",
+            "object_canonical_sha256": "aec0ebb8b1f14a368e75dab92328b5879ea278ebdc599afeb219c7f4a7d43b6f",
+            "role": "native F01 input型"
+          },
+          {
+            "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+            "revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+            "file_sha256": "d27ecfac55b40b5f4ae85d3c1cddfabceafa6d1260f9c7650fb29ef2de3fce60",
+            "pointer": "/type_system/returns/F01Return",
+            "object_canonical_sha256": "b5a7a536090066ec369085a79920fcb8abc297be9b02a60246acc65f55cca053",
+            "role": "native F01 return型"
+          },
+          {
+            "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+            "revision": "aef26f69972e82229c4ac7b129cb6eea92818987",
+            "file_sha256": "d27ecfac55b40b5f4ae85d3c1cddfabceafa6d1260f9c7650fb29ef2de3fce60",
+            "pointer": "/rule_catalog/BRAIN004-F02/availability",
+            "object_canonical_sha256": "225d4f609f1893f84c10228be176be87fd8416d7084fe3c40d3beff5473297a8",
+            "role": "required value null/non-nullの既存分類規則。F02関数は呼ばない。"
+          }
+        ],
+        "input_operands": [
+          {
+            "name": "native_f01_input",
+            "source_ref": {
+              "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+              "pointer": "/type_system/definitions/F01Input"
+            },
+            "meaning": "同じ入力から既存native F01を一度だけ評価する原値"
+          },
+          {
+            "name": "original_application_source",
+            "source_ref": {
+              "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+              "pointer": "/type_system/definitions/F02ReturnSourceObservation"
+            },
+            "meaning": "外側の原application source観測。raw_value内のF01入力・原request・値観測を保持"
+          },
+          {
+            "name": "invocation_request_binding",
+            "source_ref": {
+              "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+              "pointer": "/type_system/definitions/F02ReturnSourceObservation"
+            },
+            "meaning": "実呼出しに結び付くrequest観測"
+          },
+          {
+            "name": "requirement_values_observation",
+            "source_ref": {
+              "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+              "pointer": "/type_system/definitions/F02OwnerReturnMaterial/properties/input_observation"
+            },
+            "meaning": "要求値availabilityを判断する独立観測。original source内echoとは別operand"
+          }
+        ],
+        "availability_rule_source_document": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+        "application_binding_axes": [
+          "f01_native_input",
+          "requirement_values_observation",
+          "problem",
+          "requirement_revision",
+          "scope"
+        ],
+        "availability_rule": {
+          "source_ref": {
+            "path": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
+            "pointer": "/rule_catalog/BRAIN004-F02/availability"
+          },
+          "null": "missing",
+          "non_null": "supplied_fixture_only",
+          "absent_or_unknown": "not_evaluated; availability null sentinel"
+        },
+        "return_meaning": [
+          "native F01全返却は変更せず保持し、native比較結果がmissingまたはcontent_conflictのfieldごとに元candidate/fieldを指すBRAIN知識owner向け比較不足materialを組み立てる。",
+          "要求値観測がpresent nullならknown_missing、Absent/unknownならneeds_observationとし、native availability enumを拡張しない。",
+          "COREはL3 F01の論理返却先であり、適用先候補は原requestと実呼出しbindingの全必要軸がmatchedの場合だけCORE、その他はnull。観測済み不足、属性結合状態、役割を別fieldで保持する。",
+          "既知不足はrequest結合がunknown/conflictでも保持する。native F01不備はCOREの不足観測を抑止しない。",
+          "この契約は純粋な論理返却であり、実資格、実owner識別子、配送、ACK、CORE更新を主張しない。"
+        ],
+        "operation_effect": "none"
+      }
     },
     {
       "id": "HELIXBRAIN-L4-004-F02",
