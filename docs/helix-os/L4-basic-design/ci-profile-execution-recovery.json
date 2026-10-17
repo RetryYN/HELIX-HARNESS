@@ -1615,9 +1615,9 @@
         },
         "call_order_ja": [
           "request_readではOS053.read_committed_bundle(S05)を一回呼び、native Result/findings/protocol traceの3返却をそのまま保持する。reader portはopaque native capabilityでありRawValue/JSONへ変換しない。observed_resultでは既に供給された3値を保持し、再読しない。",
-          "native snapshotはResult.replay/committed.read_snapshotだけから読む。独立のparallel snapshot observationはField<OS053.ReadSnapshot>として別に保持する。native snapshotあり+parallel absentはそれ自体で阻害せず、双方suppliedで型敏感比較が相違する場合は双方と原因を保持してnot_projected。native snapshotがない時はparallel観測で補わない。",
+          "native snapshotはResult.replay/committed.read_snapshotだけから読む。独立のparallel snapshot observationはField<OS053.ReadSnapshot>として別に保持する。native snapshotあり+parallel absentはそれ自体で阻害せず、双方suppliedで型敏感比較が相違する場合は双方と原因を保持してnot_projected。native snapshotがない時はparallel観測で補わない。 parallel観測のnull/emptyは正当なField tagのまま保持するが、完全snapshotとして比較できない観測未確定なのでunresolvedにする。",
           "snapshot.recordsの全Write occurrenceを原順・重複込みで保持する。after_refとprojection_target_locatorを完全Locator全fieldで比べ、kind filterやRef dedupを行わず候補を数える。正確に一件だけを選択する。",
-          "選択したWriteのwrite_id/source_ref/content_contract_ref/content_bytesと、独立に供給されたsource/ref/bytes/value/rulesを対応付けて既存owner decoderへ一回渡す。bytesをRawValueへcastせず、decoder input/return/失敗原因を保持する。",
+          "選択したWriteのwrite_id/source_ref/content_contract_ref/content_bytesと、独立に供給されたsource/ref/bytes/value/rulesを対応付け、F02の既存decoder入出力型を使う新しいprivate署名decode_prior_contentへ一回渡す。bytesをRawValueへcastせず、decoder input/return/失敗原因を保持する。",
           "decoderのdecoded_payloadへ宣言されたRFC6901 pointerを解決し、状態pointerの終端欠落→absent、JSON null→null、文字列literal empty/supplied→各状態として扱う。他のraw tagを任意の空値/真偽値から推測しない。ResultRecord(6 member)、PriorRecord(7 member)、Binding(13 member)の宣言型を検査し、途中parent欠落/型違い/不正indexと終端欠落を分ける。"
         ],
         "source_conditions_ja": [
@@ -1625,7 +1625,7 @@
           "独立source/contract/bytesや宣言pathの不足は投影の未成立として保持する。投影できた値にoracle欠落・環境差・失敗/未完があっても値を書き換えず、後続の同CIInputによるF02003/05/06へ渡す材料として残す。投影成功を再開可能又は未完解消にしない。",
           "これはprior projectionだけの契約であり、F03開始判定、resume dispatch/monitor/collect、再評価、保存、実operation、実資格、実read providerの成立を主張しない。"
         ],
-        "failure_preservation_ja": "not_projectedでも入口、全native返却、Field state、原順の全candidate Write、selected有無、decoder input/return、typed projection partial/raw values、全原因を失わない。原因は既存OS020/OS053分類へ対応付け、ここでは新public finding/codeを追加しない。",
+        "failure_preservation_ja": "not_projectedでも入口、全native返却、Field state、原順の全candidate Write、selected有無、decoder input/return、typed projection partial/raw values、全原因を失わない。causeは私有の原RawValueとして保持し、既存OS020/OS053 Findingやcodeへcast・分類対応付けをしない。S05 native findingsは元read返却にそのまま保持し、新public finding/codeを追加しない。",
         "operation_effect": "none",
         "applicability_ja": "この私有読取・投影callerは、既存の独立した選択根拠により当該読取へOS053を選択した範囲だけに適用する。非選択・選択未確定なら本callerとS05を呼ばず、元の材料・選択状態・未完は呼出し側に保持する。他方式を禁止せず、そのowner契約へ委ねる。本契約から方式の採用、認可、fallback成功を生成しない。"
       }

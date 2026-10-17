@@ -3214,7 +3214,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
-        "file_sha256": "4a7c9fb2bdb5b6c94b634f17a1b8ca0784ba433c5c27b0c735e40df1fe8840c6",
+        "file_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
         "object_canonical_sha256": "00ecf77c8ddc8b372fbf4183b9eda529c8381e8ac8acd88b0d4467001a26ac87",
         "meaning_ja": "この同一pairの現在L4 contractを指す。L4 source_pinsの歴史revisionは変更しない。"
       },
@@ -3266,7 +3266,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/3/owner_return_contract",
-        "file_sha256": "4a7c9fb2bdb5b6c94b634f17a1b8ca0784ba433c5c27b0c735e40df1fe8840c6",
+        "file_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
         "object_canonical_sha256": "258ba7bedf96d8bf71f75ce310ef3cef91e512d6d0c67154e37621029e13c45b"
       },
       "type_and_algorithm_imports": {
@@ -3291,7 +3291,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/1/operation_call_contract",
-        "file_sha256": "4a7c9fb2bdb5b6c94b634f17a1b8ca0784ba433c5c27b0c735e40df1fe8840c6",
+        "file_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
         "object_canonical_sha256": "b8c8141227b2e81be5e2a858d7f552bf0bf0fc534b34b63fe9669eb7ff5ca517"
       },
       "native_imports": [
@@ -3913,8 +3913,8 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/2/prior_projection_call_contract",
-        "file_sha256": "4a7c9fb2bdb5b6c94b634f17a1b8ca0784ba433c5c27b0c735e40df1fe8840c6",
-        "object_canonical_sha256": "c96a178473b67a2b08aa2258f3fb274c8d991c707664b16bc4663786e569f1af"
+        "file_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+        "object_canonical_sha256": "18859b9a615acb625455f56689569bdb681c0f289f11ef3f29fcdeec9ec173e2"
       },
       "paired_l9_oracle_ref": {
         "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
@@ -4206,7 +4206,7 @@
             "state": "matching | mismatch | unobserved | unresolved",
             "causes": "tuple<OS020.RawValue>"
           },
-          "rule_ja": "native_snapshotはResult.replay/committed.read_snapshotだけから得る。他variantではabsent。native suppliedかつparallel absentならstate=unobservedで投影可否の追加不足にしない。双方suppliedならReadSnapshotの全型/全member/原配列順と反復を比較し、同値はmatching、異値はmismatchで投影を止める。parallel null/emptyはabsentと混同せず、供給された型外観測としてunresolvedに原因を残す。native snapshotがない場合はunresolvedでありparallel観測から補完しない。"
+          "rule_ja": "native_snapshotはResult.replay/committed.read_snapshotだけから得る。他variantではabsent。native suppliedかつparallel absentならstate=unobservedで投影可否の追加不足にしない。双方suppliedならReadSnapshotの全型/全member/原配列順と反復を比較し、同値はmatching、異値はmismatchで投影を止める。parallel null/emptyはabsentと混同せず、正当なField tagだが完全snapshotを比較できない観測未確定としてunresolvedに原状態と原因を残す。native snapshotがない場合はunresolvedでありparallel観測から補完しない。"
         },
         {
           "name": "F03PriorProjectionReturn",
@@ -4284,7 +4284,8 @@
             "capability": "OS020.F03PriorProjectionInput.decoder_capability",
             "input": "unique OS053.Writeとprojection basis内のcontent contract source/ref/bytes/value。全Ref/bytes原値保持"
           },
-          "call": "独立ownerのcontent decodeを表す本private署名を最大一回呼ぶ。F02ContentDecoderCapabilityのowner_identity/native_capability/source_occurrencesは原RawValue carrierとして保持し、callable関数/実資格としてcastしない。対応するowner形式/providerが未供給・解決不能ならOwnerContentDecodeReturn.unresolved_or_invalidに原input/原因/観測payload Fieldを返す。対応がある場合だけ同input原bytesを宣言形式でdecodeしてdecoded(input,payload)を返す。"
+          "call": "独立ownerのcontent decodeを表す本private署名を最大一回呼ぶ。F02ContentDecoderCapabilityのowner_identity/native_capability/source_occurrencesは原RawValue carrierとして保持し、callable関数/実資格としてcastしない。対応するowner形式/providerが未供給・解決不能ならOwnerContentDecodeReturn.unresolved_or_invalidに原input/原因/観測payload Fieldを返す。対応がある場合だけ同input原bytesを宣言形式でdecodeしてdecoded(input,payload)を返す。",
+          "new_private_signature_ja": "F02の既存decoder型をimportして今回新設する私有decode呼出し契約。baseに同名decode署名が既に存在したとは扱わない。"
         },
         {
           "name": "project_prior_records",

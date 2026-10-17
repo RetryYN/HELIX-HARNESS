@@ -170762,9 +170762,9 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-    "sha256": "ff1212d77518013cd9e32af9307454f71247e8edcd38ada0d54be4a4fcbb4242",
+    "sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1",
     "pointer": "/private_producer_bindings/0",
-    "object_canonical_sha256": "c5af43109581000d0884ed3e8bd2d7551265389f6b47b89a240821d952c4bcd1",
+    "object_canonical_sha256": "139952488e37e72ea80eb7413c9c267d1f11e1e051020dfa0bead84c0a7177cc",
     "binding_kind": "exact_candidate_file_bytes",
     "meaning": "同じ対に置くL5の現在file bytesとprivate producer binding objectを結ぶ。歴史source pinとは区別する。"
   },
@@ -171275,7 +171275,7 @@
     ],
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "89e301c3baf5c8f41749203ef2be8e0a89eb5eda1f4522e0aea8baca2f47c2c5",
+      "candidate_sha256": "2d29a9482239f9b8fed664c1c5e959794ef1320e403515fed90b3087332b283c",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
     },
@@ -171293,13 +171293,13 @@
     "requirement_ref": "HELIXOS-L3-020-B01",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "ff1212d77518013cd9e32af9307454f71247e8edcd38ada0d54be4a4fcbb4242",
+      "sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1",
       "pointer": "/private_producer_bindings/1",
-      "object_canonical_sha256": "8fbbc9a7e6ecb1820d9f804a26bdbd3220587484da1f90ff0622be098274a040"
+      "object_canonical_sha256": "f570592ce8ec841c7aca8e3096295093cd428ebe8b9c77e053269528b989efba"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "89e301c3baf5c8f41749203ef2be8e0a89eb5eda1f4522e0aea8baca2f47c2c5",
+      "candidate_sha256": "2d29a9482239f9b8fed664c1c5e959794ef1320e403515fed90b3087332b283c",
       "pointer": "/owner_return_verification"
     },
     "unit_conditions": [
@@ -171370,20 +171370,20 @@
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
       "pointer": "/contracts/1/operation_call_contract",
-      "body_sha256": "4a7c9fb2bdb5b6c94b634f17a1b8ca0784ba433c5c27b0c735e40df1fe8840c6",
+      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
       "object_canonical_sha256": "b8c8141227b2e81be5e2a858d7f552bf0bf0fc534b34b63fe9669eb7ff5ca517"
     },
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/2",
-      "sha256": "ff1212d77518013cd9e32af9307454f71247e8edcd38ada0d54be4a4fcbb4242",
-      "object_canonical_sha256": "ab8faa7a63dd65ff1413d621ab22d252dd47bc9f3b6e2510ce215be8a4b35dca"
+      "sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1",
+      "object_canonical_sha256": "da9c0b235c511d60a47742dfe917f64b753033e828dfab6f2c6084dc30b4ae75"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/operation_call_verification",
-      "candidate_sha256": "89e301c3baf5c8f41749203ef2be8e0a89eb5eda1f4522e0aea8baca2f47c2c5",
-      "object_canonical_sha256": "4967effe09b4eb177c376bc8f16060e590a4942c4bcf0994b87c7b5a4b601559"
+      "candidate_sha256": "2d29a9482239f9b8fed664c1c5e959794ef1320e403515fed90b3087332b283c",
+      "object_canonical_sha256": "73826ca446d4e1a4dde6fc1b6ebd16a1ec861596985cfa0eeb8c67b4046da82a"
     },
     "condition_correspondence": [
       {
@@ -171530,20 +171530,20 @@
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
       "pointer": "/contracts/2/prior_projection_call_contract",
-      "body_sha256": "4a7c9fb2bdb5b6c94b634f17a1b8ca0784ba433c5c27b0c735e40df1fe8840c6",
-      "object_canonical_sha256": "c96a178473b67a2b08aa2258f3fb274c8d991c707664b16bc4663786e569f1af"
+      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+      "object_canonical_sha256": "18859b9a615acb625455f56689569bdb681c0f289f11ef3f29fcdeec9ec173e2"
     },
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/3",
-      "sha256": "ff1212d77518013cd9e32af9307454f71247e8edcd38ada0d54be4a4fcbb4242",
-      "object_canonical_sha256": "b9e23db205ae0a733db8416e12a7b8bc9bad40da112e4ed16a5bd97550867bff"
+      "sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1",
+      "object_canonical_sha256": "d1ef2ee51e0b9474226f6def0b7a318b75fd51a3682e817384063d6f3e5dc561"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/prior_projection_verification",
-      "candidate_sha256": "89e301c3baf5c8f41749203ef2be8e0a89eb5eda1f4522e0aea8baca2f47c2c5",
-      "object_canonical_sha256": "fe9aacc8a480477ca3a429751897499e36ec9914f5e08bb81c33d6cd3e784130"
+      "candidate_sha256": "2d29a9482239f9b8fed664c1c5e959794ef1320e403515fed90b3087332b283c",
+      "object_canonical_sha256": "29f2eb00c1e226ebee2ee9afec2cefce83c1db29c9e0b0908b3242c1c1fa67eb"
     },
     "unit_conditions": [
       {
@@ -171597,6 +171597,20 @@
     ],
     "preservation_ja": "既存L8の全case/input/expectedと関数・原F03 wholeは変更しない。ここではcase_refs=[]の有限設計条件だけを追加し、既存wholeの実行や新expectedを主張しない。",
     "status_ja": "L4/L5/L9のprior-projection sliceを結ぶ設計対応。F03全義務完了、再開operation、保存、実provider成立、製品CI、独立review済みを意味しない。",
-    "applicability_ja": "この私有読取・投影callerは、既存の独立した選択根拠により当該読取へOS053を選択した範囲だけに適用する。非選択・選択未確定なら本callerとS05を呼ばず、元の材料・選択状態・未完は呼出し側に保持する。他方式を禁止せず、そのowner契約へ委ねる。本契約から方式の採用、認可、fallback成功を生成しない。"
+    "applicability_ja": "この私有読取・投影callerは、既存の独立した選択根拠により当該読取へOS053を選択した範囲だけに適用する。非選択・選択未確定なら本callerとS05を呼ばず、元の材料・選択状態・未完は呼出し側に保持する。他方式を禁止せず、そのowner契約へ委ねる。本契約から方式の採用、認可、fallback成功を生成しない。",
+    "branch_control_alignment": [
+      {
+        "l9_control_id": "F03-READ-SELECTION",
+        "condition_ja": "既存の選択根拠でOS053非選択又は選択未確定なら、呼出し側は本private caller/S05を呼ばず、元材料・選択状態・未完を自身へ保持する。他方式の禁止/成功や二重読取を生成しない。"
+      },
+      {
+        "l9_control_id": "F03-PARALLEL-UNRESOLVED",
+        "condition_ja": "native snapshotがあってもparallel観測がField.null/emptyなら、正当な原tagを保持し完全snapshot比較は未成立としてsnapshot correspondence=unresolved、projection=not_projectedとする。absentだけはunobservedで投影を妨げない対照と区別する。"
+      },
+      {
+        "l9_control_id": "F03-TARGET-UNEVALUATED",
+        "condition_ja": "projection_target_locatorがabsent/null/emptyで完全targetを得られなければ候補比較を未評価とし、原snapshot.records/原target Fieldを入力に保持する。candidate_writesは空tuple/candidate_count=0でも検査済み0件とは異なる未評価原因を残し、decoder未呼出し、not_projected。"
+      }
+    ]
   }
 }
