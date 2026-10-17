@@ -1136,7 +1136,7 @@
       "output": "Comparison",
       "effect": "none",
       "algorithm": [
-        "照合前にcore_return_requestedの存在/厳密booleanを既存規則で読み、欠落をfalseへ既定しない。core_source_selected/labo_evaluation_selectedのselector所見は同context.validatedを一回借用する/conditional_dependency_detailへ委ね、旧selector passと二重に生成しない。各条件の不足は当該集合だけに局所化し、常時集合/別条件を止めない。",
+        "照合前にcore_return_requestedの存在/厳密booleanを既存規則で読み、欠落をfalseへ既定しない。core_source_selected/labo_evaluation_selectedのselector所見は同context.validatedを一回借用する/conditional_dependency_detailへ委ね、旧selector passと二重に生成しない。各条件の不足は当該集合だけに局所化し、常時集合/別条件を止めない。 core_return_requestedが欠落した場合は既存R-dependency_selector_unknown（failure_rules/106）に従い、axis=dependency_selection,state=unknownと同R106の旧reason_templateによる所見を一回だけ返す。そのCORE返却条件集合だけを評価せず、常時集合/他明示selector/handoffを停止しない。新private二channelのselector所見へ重ねてemitしない。",
         "HELIXBRAIN-L3-032-F09で常時必須とされた完全identityは、HELIXBRAIN-L2-003、HELIXBRAIN-L2-005、HELIXBRAIN-L2-007、HELIXBRAIN-L2-008、HELIXBRAIN-L2-028である。core_return_requested=trueの場合に追加で必要な完全identityは、HELIXBRAIN-L2-019、HELIXBRAIN-L2-022、HELIXBRAIN-L2-030である。Ref.identityはopaque値として完全一致で照合し、短縮表示から意味IDを推測しない。必要Ref[]またはmemberが欠けた場合、欠けた各identityについてaxis=dependency_reference,state=missingを返す。空配列・欠落を充足としない。欠落Refのrevision/scope/owner/source_locator/sha256を生成しない。subject_refは入力binding.knowledge_refがobjectとして供給されていればその原Ref、欠落していてbinding.template_refがobjectなら当該template_refを診断subjectとして用いる。後者はcandidate/template Refをknowledge_refへ代入・aliasするものではなく、bindingおよびComparison.input_binding内のknowledge_ref欠落をそのまま保つ。template_refもobjectでない場合はsubject_refを捏造しない。subject_ref:Refを必須とする依存AxisResult/Findingは形成できないため、入力のRef欠落を保持し、その依存所見を成功扱いにもmissingのtyped所見にも変換しない。既存validation/construction issueは各既存関数の入力条件が満たされる場合に限る別出力である。具体的に、入力root bindingがobjectでknowledge_ref/template_refのどちらもobject Refでないとき、既存construction_issuesはlocator=/binding、source_ref=nullのInputIssueを返し、build_supply_analysisのinput_issuesへ保持する。その他のissue発生は各既存条件に従い、subject候補Ref欠落だけから追加所見を仮定しない。AxisResult.binding/Finding.binding/Comparison.input_bindingは同じ入力bindingの原memberを保ち、欠落knowledge_refを補わない。別の既存builder/constructor経路のconstruction_issues(context.validated)は、候補と同template/knowledge bindingが結べない条件で、候補locatorのInputIssueをsource_return_verificationの既存別入力から返す。NEG-13ではその候補locator=/candidates/0のIssueを併せて観測しない。candidate Issueの根拠はsource_return_verification/cases/18（HELIXBRAIN-L8-032-LOCAL-CANDIDATE-KNOWLEDGE-REF-ABSENT）の独立した入力・期待であり、本関数Comparisonへ混ぜない。ADD-28は別条件のroot binding locator=/binding InputIssueを既存builder経路で投影し、Comparisonのdependency AxisResult/Findingとは別出力・別観測として保持する。AxisResult.original_refsとFinding.source_refsには該当categoryに実際に供給されたRefだけを入れ、欠落identityのRefは追加しない。categoryがalways_refs/core_return_refsのどちらかを診断対象sourceから追跡する。identityが供給されてもqualification/current revision/scope/owner/digestは既存full-Ref比較で別途検査する。別sourceの成功はこの不足を補償しない（HELIXBRAIN-L5-032-R-selected_source_substitution）。core_source_selected/labo_evaluation_selectedのstrict true参照・qualification/原operation/025条件と対応selector診断は/conditional_dependency_detailの同call private readと公開投影が担当し、旧generic selected-source/evaluation参照passは重ねて実行しない。元false時unselected_refs source-state pass及び別の既存rule85/89等の選択source/claim責務は置換せず元predicate/対象/理由/全返却のまま保持する。返却決定順は常時identityのL3-F09列挙順003/005/007/008/028、選択済みCORE返却identityの列挙順019/022/030、selector所見順core_return_requested、core_source_selected、labo_evaluation_selectedとする。同一axisに複数所見があってもaggregateで統合・上書きせず、各所見のreasonとidentityを保持する。",
         "受渡しstateをdefinitionから分離しnot_receivedを保存する。候補供給前の相手完了receipt要求claimは既存順序とconflict。receipt単独の製品N/A/義務消込claimはunknown。",
         "参照資料roleをsemantic authorityに変換しない。reference_as_authorityの既存責務を保持し、必須定義代替の既存rule87だけは/source_return_contract/descriptor_target_dataflow/consumerとpublic_outputの同call原target/全assessment/実basis predicateで担当Claim出現につき一件返す。旧rule87を別generic passで二重実行しない。",
@@ -3150,7 +3150,7 @@
   },
   "remaining": [
     "L5/L8候補で論理型、descriptor/source解決、claim、条件別依存とpure関数、単体oracleを具体化した。独立review待ち。",
-    "正式schema/key/型/式木/wire/registry/resolver、各field意味/要否/oracle最終照合、BRAIN運用promotionと全seed採用は未成立。L2-018/020/025のうち018/020/025をどのselectorが必要とするかの対応は未決で、025を両selectorへ一律必須としない。",
+    "正式schema/key/型/式木/wire/registry/resolver、各field意味/要否/oracle最終照合、BRAIN運用promotionと全seed採用は未成立。F09の採択済みL4 conditional_source_dependency_contractにおける限定対応は、core_source_selected=trueで018、labo_evaluation_selected=trueで020、025は選択channelの原operation_kind/knowledge_fields単位である。conditional_dependency_detailがこの対応を具体化しており、対応自体を未決とは扱わない。025を両selectorへ一律必須とせず、実owner producer/body供給・資格及び本section外の残務は別に保持する。",
     "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは未成立。",
     "failure_rules 107件、原L9負例105件、全L8 additional_unit_cases 35件（このF09で追加した局所NEG-07〜13とADD-25〜28を含む）、正常function oracle 9件を候補として記録。F09のNEG-01〜06はL9対応、NEG-07〜13とADD-25〜28はL8局所検証でL9入力/期待との統合照合ではない。有限例の意味識別力・全任意入力閉包は未証明。",
     "formal wire/parser/実source資格resolver/資源条件/言語・依存・配置と実fixture/oracle凍結/実装前Red/Greenは未成立。独立意味review未実施。",
@@ -10453,7 +10453,7 @@
             "canonical_sha256": "a0764c55db8f816858d1d4cbad1027e44f1c544464c7b1bf1aa150a6f8df468e"
           }
         ],
-        "role": "本詳細の固定意味根拠。本文追補後の自ファイルhashを逆参照しない。"
+        "role": "本F09詳細の固定意味根拠はselected_objectsの/conditional_source_dependency_contract。/dependency_semantic_portsは既存他consumer/receipt/claim等との責務境界を確認する文脈参照として固定し、そのbroader port schema/ordered branchesをF09の新しい必要集合/操作/資格predicate又は全返却writerの根拠へ流用しない。本文追補後の自ファイルhashを逆参照しない。"
       },
       {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
@@ -10469,7 +10469,7 @@
             "canonical_sha256": "9305b707c11e7a5c56a0f5d4b4a61abc1547c108afd5f6cdfaa2d6a273095650"
           }
         ],
-        "role": "本詳細の固定意味根拠。本文追補後の自ファイルhashを逆参照しない。"
+        "role": "本F09詳細の有限対条件根拠はselected_objectsの/conditional_source_dependency_verification（17field projectionとwholeを区別）。/dependency_semantic_port_verificationは別の既存port検証を混載/充足済みにしないための文脈参照であり、F09の意味/期待を生成する根拠又は新private wholeの証拠ではない。本文追補後の自ファイルhashを逆参照しない。"
       },
       {
         "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
@@ -11195,15 +11195,15 @@
       }
     ],
     "result_field_writers": {
-      "operation_source_ref": "同knowledgeの原provenanceで、dependency_operations memberが実在するarray（明示[]も含む）を持つusable semantic_json sourceだけをcontainer所在候補とする。member absentの一般semantic sourceを候補にせず、明示null/nonarrayは原unknown/presenceを保持し解決済containerへ昇格しない。一意に対応した元container Refだけをcopyし、候補なし/未解決/異なる複数container曖昧はnull。025 rowは当該群のcontainerが一意なら同Ref。元全source/原不正/反復はinput/originsへ保持し、この所在traceを選択/資格/採用stateにしない。",
-      "operation_locators": "025 rowは当該群の実原record全所在、true channelの固定018/020 rowは同channelで実際に観測した全原operation所在を元順で保持。selector false/absent又は原operation未観測は[]。全同値反復/相反を残し、025成功/usableへの昇格を表すmetadataにしない。",
+      "operation_source_ref": "同knowledgeの原provenanceで、dependency_operations memberが実在するarray（明示[]も含む）を持つusable semantic_json sourceだけをcontainer所在候補とする。member absentの一般semantic sourceを候補にせず、明示null/nonarrayは原unknown/presenceを保持し解決済containerへ昇格しない。一意に対応した元container Refだけをcopyし、候補なし/未解決/異なる複数container曖昧はnull。025 rowは当該群のcontainerが一意なら同Ref。元全source/原不正/反復はinput/originsへ保持し、この所在traceを選択/資格/採用stateにしない。 この共通所在Refはselector false及びabsentのrowにも同じ既存provenance/container条件で返す。選択が未成立という理由だけで一律nullにせず、該当containerなし/未解決/曖昧な場合だけ上記nullとする。operation_refs/locators=[]という条件集合未評価とは別fieldである。",
+      "operation_locators": "025 rowは当該群の実原record全所在、true channelの固定018/020 rowは同channelで実際に観測した全原operation所在を元順で保持。selector false/absent又は原operation未観測は[]。全同値反復/相反を残し、025成功/usableへの昇格を表すmetadataにしない。 各文字列は同validated.input空rootから実recordを指す完全RFC6901 pointer /sources/{S}/content/dependency_operations/{O} とする（S/Oは各原配列の0起点10進index）。operation.ref.source_locatorの値、短縮path、単独O indexで置き換えない。",
       "operation_refs": "operation_locators各原record.refとして実在するRefを元順/反復で借用。true channelの固定018/020 rowにも同じ全traceを保持する。Refでない原値はprivate observationsへ残し生成しない。selector false/absentは[]。",
       "binding": "原input.bindingを全member/presenceごと無変更copy。Scope/default/欠落knowledge_refを補わない。",
       "channel": "評価対象の固定channel literal core_source又はlabo_evaluation。未知元channelをいずれかへ補完した値ではない。",
       "operation_scope": "当該rowがtraceする元operation occurrenceがちょうど一件でoperation_scope memberを実観測したときだけその原RawValue。0件/複数では同値scope反復でもscalar null。全元scope/presenceはpurpose=target_scopeのobservationsへ原順で保持する。selector false/absentはnull。",
       "dependency_identity": "selector_absent（及び現validationから未到達のselector_unknown）はdependency_identity=nullとして条件集合未評価を保持する。厳密falseのchannel_not_selectedとtrueの固定参照rowだけ、core_source→HELIXBRAIN-L2-018、labo_evaluation→HELIXBRAIN-L2-020という固定診断名を保持。原operationの025操作/参照rowはHELIXBRAIN-L2-025。提出Refから必要集合を生成しない。",
       "expected_refs": "同rowで原operation.contract_bindingsに実在した当該identity Refを元順/反復で保持。未供給又はRefでない原値は[]へ成功縮約せず、その原Observation/unknown原因を別保持。025原hint不在unknownは独立rowへ。固定018/020 hint無しでも既存source照合は失効しない。",
-      "actual_refs": "参照を評価したchannelの当該提出categoryに実在する全Refを元順/反復で保持。他identityの原Refもcategory素材として残す。selector未決/falseは評価しないので[]。欠けたRefは生成せず、型外raw categoryはinput/observationsへ残す。",
+      "actual_refs": "selector trueの当該channelでは、固定018/020参照rowだけでなくoperation相のrow及び全025参照/操作/hint不足rowにも、当該提出categoryに実在する全Refを元順/反復で保持する。他identityのRefも原category素材として残し、rowのdependency_identityへ絞らない。selector未決/falseは条件集合未評価なので[]。欠けたRefは生成せず型外raw categoryはinput/observationsへ残す。この原素材保持だけではactual_refの比較実行/成功を意味しない。",
       "state": "当該reasonのL4 state。代表参照は明示priorityで決定。operation unknown/非選択をknowledge operational_stateへ変換せず、別row missing/相反と併存。",
       "reason_code": "L4 decision_table.reason_rulesから当該predicateで決める内部22語。input/Claim/L9期待から読まない。selector_unknownの通常未到達を保持。",
       "backflow_owner": "selector診断はnull、dependency_reference/dependency_operationのmissing/unknown/conflictだけliteral knowledge_owner、resolved/unobservedはnull。個別Ref.ownerは原traceへ保持しこのroleへcastしない。"
@@ -11305,7 +11305,7 @@
     },
     "scope_limits": [
       "本sectionは算法の論理設計本文。実装コード/算法/reader/codec/validator/model/stdlib実験/test/旧CI/実portは未実行。",
-      "L9旧17fieldは有限表示projection。新正規private4root/12field resultと同一wholeではない。全22語中selector_unknownは通常validationから未到達、他未観測13語の全期待/実行は本著述から成立しない。",
+      "L9旧17fieldは有限表示projection。新正規private4root/12field resultと同一wholeではない。L9の10有限projectionで未観測の13語にはselector_unknownを含む。新L8 private whole 10件で未収載のreasonは別集合の11語であり、この13語と同じ集合/件数ではない。selector_unknownは通常validationから未到達。binding={}は既存wire carrierとして通常readを続けるが、この専用private/public wholeは未収載であり、binding absentの境界wholeをその代用としない。未収載分の全期待/実行は本著述から成立しない。",
       "018/020/025の実native owner producerへの新body carrier供給、030 ReceiptInvocationOrigin/OSObligationMeaningIncomingのtyped供給、実qualified source/custody/root運用は未成立。本readは現L4内の参照範囲を具体化するがそれらを発行/実行しない。",
       "read_receipt_claim_origin/read_claim_intent/descriptor-target/定義meaning/NA/rule87は現既存source_returnと採択L4の対応済範囲を保ち、本条件readerへ無関係に混載しない。canonical body参照は固定/025原contractを読む同input/Ref/source/資格範囲に限る。",
       "数値leaf診断表示bridgeだけを具体化。全source_return数値sort/law/new_defs、実言語adapter/資源/全Unicode、全F09/14義務/全92親430義務、L6/L7/層外実装/実資格/CI/PO受入/Readyは未成立。"
@@ -11357,7 +11357,7 @@
         "operation": "selector trueのT各Oについて、表記した順でwhole→7原member。Oがnonobjectならwhole原値とterminal一件を保ち、memberを補完しない。 名目nodeと表記内順はobservation_node_contract.purpose_node_tableの同purposeへ従う。",
         "contract_source": "actual_and_source集合の各Sを元順で、表記順に観測。source全体の再発見だけdedup。未資格又はbody不正でも原node保持は許し、資格成功を意味しない。 名目nodeと表記内順はobservation_node_contract.purpose_node_tableの同purposeへ従う。",
         "contract_hint": "selector trueのT各O元順。containerの後、実arrayなら全H元順。非Ref/別identity要素も原値保持し、expected_refsへcastしない。 名目nodeと表記内順はobservation_node_contract.purpose_node_tableの同purposeへ従う。",
-        "target_scope": "selector trueのみ。上記群の順、各群は既定原順。原要素がobjectでないときもterminal_captureへ従いscopeを生成しない。source/body全体をscope値へ代入しない。 名目nodeと表記内順はobservation_node_contract.purpose_node_tableの同purposeへ従う。",
+        "target_scope": "selector trueのみ。先にbinding.knowledge_ref.scope、次にoperation_sourceの各原source.ref.scope。その後Tの各Oを原順に辿り、各Oにつきref.scope→operation_scopeの二nodeを続けて置く（全Oのref.scopeを先にまとめない）。次にcontract_sourceの各Sを原順に辿り、各Sにつきref.scope→content.condition_scopeを続けて置く（全Sのref.scopeを先にまとめない）。次にTのO元順→各OのH元順でhint.scope、最後にcategoryのA元順でactual.scope。原要素がobjectでないときはterminal_captureへ従いscopeを生成しない。source/body全体をscope値へ代入しない。 名目nodeと組内順はobservation_node_contract.purpose_node_tableのtarget_scopeへ従う。",
         "actual_ref": "selector trueで実category arrayの全A元順。Ref/非Ref全値、他identity/反復を原素材として保持。 名目nodeと表記内順はobservation_node_contract.purpose_node_tableの同purposeへ従う。",
         "binding": "binding absentのinput_boundaries一件だけ。通常originでは生成しない。 名目nodeと表記内順はobservation_node_contract.purpose_node_tableの同purposeへ従う。"
       },
@@ -11387,7 +11387,7 @@
         "fixed_reference": "selector trueの固定018/020 rowは、当該channelに既知対応する全Oと、channel又はbindingの対応が未決のOを原所在順に保持する。既知に別channel又は別bindingのOはこのrowの操作集合へ混ぜない（元source全値/inputには残る）。この集合をFとする。",
         "operation_or_025_reference": "一つの原operation群に対応する025のoperation/reference/hint不足rowは当該群の全Oを保持する。operation_basis_absent rowはFのうち群へ確定できなかった原Oを保持する。実Oがなければ空。これをGとする。",
         "selected_population": "以下の操作対象Tは固定rowではF、025/operation rowではG。selector absent/falseはT=[]、category/actual/hint/contract_source/target_scopeの集合も空とし、共通所在trace以外を条件評価しない。",
-        "actual_and_source": "selector trueの全rowでcategory原array全Aを保つ。contract_source集合はAのRefに一致する全SをA→S順で先に、その後T内の全HのRefに一致する全SをO→H→S順で追加する。既知body相反/未資格sourceも原所在traceから削らず、意味比較の実行可否は既存branchに従う。"
+        "actual_and_source": "selector trueの全rowでcategory原array全Aを保つ。contract_source集合はAのRefに一致する全SをA→S順で先に、その後T内の全HのRefに一致する全SをO→H→S順で追加する。既知body相反/未資格sourceも原所在traceから削らず、意味比較の実行可否は既存branchに従う。 固定018/020 rowのTに025 hintがある場合も、この原hintに対応するSをcontract_sourceへ含め、その各Sのref.scope/content.condition_scopeをtarget_scopeへ同じ規定順で保持する。これは全Tの原traceであり、025を固定018/020の開始gate又は当該reference causeの実operandにする意味でない。causeごとのhint_indices/source_indicesは引き続きcause_operand_tableの実比較範囲だけ。"
       },
       "purpose_node_table": [
         {
@@ -11461,15 +11461,13 @@
           "purpose": "target_scope",
           "nominal_nodes": [
             "/binding/knowledge_ref/scope",
-            "operation_source集合の実source全体nodeの/ref/scope",
-            "Tの各Oの/ref/scope",
-            "Tの各Oの/operation_scope",
-            "contract_source集合の各Sの/ref/scope",
-            "contract_source集合の各Sの/content/condition_scope",
-            "Tの各Hの/scope",
-            "/dependencies/{C}/{A}/scope"
+            "operation_source集合の実source全体nodeをS元順に各Sの/ref/scope",
+            "TをO元順に各Oごとの組（/ref/scope、/operation_scope）",
+            "contract_source集合をS元順に各Sごとの組（/ref/scope、/content/condition_scope）",
+            "TのO元順→各O内H元順の各Hの/scope",
+            "/dependencies/{C}/{A}/scope（A元順）"
           ],
-          "population": "selector trueのみ。上記群の順、各群は既定原順。原要素がobjectでないときもterminal_captureへ従いscopeを生成しない。source/body全体をscope値へ代入しない。"
+          "population": "selector trueのみ。先にbinding.knowledge_ref.scope、次にoperation_sourceの各原source.ref.scope。その後Tの各Oを原順に辿り、各Oにつきref.scope→operation_scopeの二nodeを続けて置く（全Oのref.scopeを先にまとめない）。次にcontract_sourceの各Sを原順に辿り、各Sにつきref.scope→content.condition_scopeを続けて置く（全Sのref.scopeを先にまとめない）。次にTのO元順→各OのH元順でhint.scope、最後にcategoryのA元順でactual.scope。原要素がobjectでないときはterminal_captureへ従いscopeを生成しない。source/body全体をscope値へ代入しない。"
         },
         {
           "purpose": "actual_ref",

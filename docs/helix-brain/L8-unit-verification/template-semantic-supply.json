@@ -10272,7 +10272,7 @@
       "requirement_ref": "HELIXBRAIN-L3-032-F09",
       "system_oracle_ref": "HELIXBRAIN-L10-032-F09",
       "positive_fixture_ref": "TEMPLATE-SUPPLY-BASE-01",
-      "positive_input": "常時入力だけの局所候補、COREへ返す候補、CORE由来またはLABO評価を選んだ候補を分ける。本限定候補は常時必須003/005/007/008/028、選択済みCORE返却019/022/030、既存source/evaluation selectorを扱う。025のconditional selector対応は未決のため範囲外とし、両selectorへの一律必須を定めない。 selector欠落対照はADD-26、knowledge_refと必須member同時欠落はNEG-13で、入力/返却の局所範囲に限って確認する。",
+      "positive_input": "常時入力だけの局所候補、COREへ返す候補、CORE由来またはLABO評価を選んだ候補を分ける。本限定候補は常時必須003/005/007/008/028、選択済みCORE返却019/022/030、既存source/evaluation selectorを扱う。この既存caseの有限input/期待だけでは025のoperation単位条件を行使しない。採択済みの018→core_source、020→labo_evaluation、025→原operation/kind/scopeの対応と対期待はconditional_dependency_verificationに追補し、両selectorへの一律必須を定めない。 selector欠落対照はADD-26、knowledge_refと必須member同時欠落はNEG-13で、入力/返却の局所範囲に限って確認する。",
       "expected_observation": "選択条件で必要になる不足だけを返し、未選択source成功を主張しない。F09局所のNEG-07〜13とADD-25〜28は明示された局所入力/期待だけを比較し、NEG-07〜13は原L9 integration caseへ接続しない。ADD-25は既知false、ADD-26はCORE返却member欠落と別selector不明の併存、ADD-27は常時member欠落とselector不明の併存、ADD-28はsubject Ref双方欠落時の型付きF09依存所見の形成限界と、既存builder InputIssueへの所在保持を別projectionで確認する。source_return_verification/cases/18の候補locator=/candidates/0 issueは別条件であり、NEG-13とは同時観測しない。",
       "original_system_negative_input": "receiver未受領を知識定義欠落へ変える、または選択sourceの欠落を別sourceで補う、または旧template/seed/設計例をauthorityや必須項目の代替にする。",
       "original_system_failure_observation": "定義欠落と接続未成立を分離し、知識owner/CORE/OSへ原因別に返す。参照資料からのauthority生成や必須項目の代替を成立させない。",
@@ -20443,7 +20443,7 @@
       "document_id": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
       "pointer": "/wire_codec_contract/schema",
       "canonical_sha256": "535d8f0b8f2e71c709e66418fa079cb4f757a7a6d0530b50267a452d74036640",
-      "candidate_current_file_sha256": "a2cce2a65c11301c12087053d05dc4bbdef82c713b1482fa78a77c3753170c7b",
+      "candidate_current_file_sha256": "4e3fb7bea21d9604f80810207077733a5a047c9dac4cfbac53ed4c389cbe45be",
       "candidate_current_schema_canonical_sha256": "ace94a797cce9f3b0ead1f9a909eef564b08bbdcfc6ba6ef0d5ffbd60fe21f66",
       "candidate_note": "既存canonical pinは歴史的参照として保持。二つのnullable結果memberを含む現在candidate schemaの静的照合用。"
     },
@@ -56884,7 +56884,7 @@
     ],
     "candidate_design_bytes_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "file_bytes_sha256": "a2cce2a65c11301c12087053d05dc4bbdef82c713b1482fa78a77c3753170c7b",
+      "file_bytes_sha256": "4e3fb7bea21d9604f80810207077733a5a047c9dac4cfbac53ed4c389cbe45be",
       "meaning": "同一candidate文書の現在bytesを照合するbinding。過去revisionにこの追補が存在したというsource pinではない。",
       "scope": "このfieldは同じPR候補のcurrent L5ファイル全bytesを指す。旧資産source引用hashはlegacy_comparison.source_assetsにあり変更しない。"
     },
@@ -66714,7 +66714,7 @@
         "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
         "pointer": "/functions/8",
         "sha256": "8b42b107322b595ed694280bd2d7a7c49974291526be0b0e2f05a0f08ee52fa9",
-        "candidate_file_bytes_sha256": "a2cce2a65c11301c12087053d05dc4bbdef82c713b1482fa78a77c3753170c7b",
+        "candidate_file_bytes_sha256": "4e3fb7bea21d9604f80810207077733a5a047c9dac4cfbac53ed4c389cbe45be",
         "candidate_pointer_canonical_sha256": "bf868a14d00aae1498233d9137be6f1fbfc3dc90dc138cd0edeb5950a328727c",
         "candidate_note": "function本体の現在candidate bytes。歴史的revision/pinは上書きしない。"
       },
@@ -66733,21 +66733,21 @@
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary/producer_symbol_by_member",
-        "candidate_file_bytes_sha256": "a2cce2a65c11301c12087053d05dc4bbdef82c713b1482fa78a77c3753170c7b",
+        "candidate_file_bytes_sha256": "4e3fb7bea21d9604f80810207077733a5a047c9dac4cfbac53ed4c389cbe45be",
         "candidate_pointer_canonical_sha256": "dc690dc5e77f88850db94330710d02ade0b9883a3c6a3480c5dbdb2604cc52e8",
         "note": "AnalysisContext memberから宣言済みproducer_symbolへの対応。axes/findingsのfixtureはtest doubleであり実producer出力でない。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/output_member_rules/1",
-        "candidate_file_bytes_sha256": "a2cce2a65c11301c12087053d05dc4bbdef82c713b1482fa78a77c3753170c7b",
+        "candidate_file_bytes_sha256": "4e3fb7bea21d9604f80810207077733a5a047c9dac4cfbac53ed4c389cbe45be",
         "candidate_pointer_canonical_sha256": "1c6c240dee25be650e0db206ee755072fdfb497070696081b551f27314ad1e12",
         "note": "candidate欠落/空の区別を既存member_presence/construction_issuesへ結ぶ現在candidate値。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary",
-        "candidate_file_bytes_sha256": "a2cce2a65c11301c12087053d05dc4bbdef82c713b1482fa78a77c3753170c7b",
+        "candidate_file_bytes_sha256": "4e3fb7bea21d9604f80810207077733a5a047c9dac4cfbac53ed4c389cbe45be",
         "candidate_pointer_canonical_sha256": "8a73e82f6d1538f8330a45fa36755f95e56c08abef6785395cd4df9bb9f12506",
         "note": "producer_symbol/input_bindingの適合条件と局所issue。"
       }
@@ -83508,7 +83508,7 @@
     "candidate_L5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
       "base_revision": "fabd7834720a6ddc3f02553034de25b51ac4fc5a",
-      "file_sha256": "a2cce2a65c11301c12087053d05dc4bbdef82c713b1482fa78a77c3753170c7b",
+      "file_sha256": "4e3fb7bea21d9604f80810207077733a5a047c9dac4cfbac53ed4c389cbe45be",
       "binding_kind": "current_working_file_bytes",
       "scope": "base_revisionのgit blobと同bytesという主張ではない。正式候補L5全bytesへ照合。"
     },
@@ -692951,7 +692951,7 @@
     "operation_effect": "none",
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "sha256": "a2cce2a65c11301c12087053d05dc4bbdef82c713b1482fa78a77c3753170c7b",
+      "sha256": "4e3fb7bea21d9604f80810207077733a5a047c9dac4cfbac53ed4c389cbe45be",
       "scope": "今回の現行L5全bytes。過去replay source pinとは別。"
     },
     "historical_replay_semantic_continuity": {
@@ -693036,9 +693036,9 @@
       ],
       "candidate_l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "sha256": "a2cce2a65c11301c12087053d05dc4bbdef82c713b1482fa78a77c3753170c7b",
+        "sha256": "4e3fb7bea21d9604f80810207077733a5a047c9dac4cfbac53ed4c389cbe45be",
         "pointer": "/conditional_dependency_detail",
-        "canonical_sha256": "7e3803aced2a37223d71911d73f18e67277e50e2199fb52eaa7b208a84f8692d",
+        "canonical_sha256": "766ab74095750a631999fd76ed8c7ac9e8b74a7ab699a0dfc969f619463ffa75",
         "binding_kind": "current_candidate_bytes",
         "revision_semantics": "同じPRで提出する現行candidate bytesへの束縛。固定base revisionにこの追補が存在したという履歴pinではない。"
       }
@@ -693218,7 +693218,7 @@
                   "tenant": "synthetic-T",
                   "environment": "synthetic-E"
                 },
-                "owner": "synthetic-knowledge-owner",
+                "owner": "synthetic-oracle-owner",
                 "source_locator": null,
                 "sha256": null
               },
@@ -693230,7 +693230,7 @@
                   "tenant": "synthetic-T",
                   "environment": "synthetic-E"
                 },
-                "owner": "synthetic-knowledge-owner",
+                "owner": "synthetic-pack-owner",
                 "source_locator": null,
                 "sha256": null
               },
@@ -693303,7 +693303,7 @@
             "pointer": "/conditional_dependency_detail/reason_display_bridge"
           }
         ],
-        "authoring_method": "Expectation literal is authored independently from L5 read/write output. The ordinary JSON serializer is used only for this finite data notation; a single explicitly declared number marker is manually represented by the original ExactJsonNumber token. No candidate helper/reader/writer/model/Decimal/codec/test was called.",
+        "authoring_method": "L5の候補read/write出力から生成せず、独立した有限期待literalとして著述した。通常JSON serializerはこの有限データ表記にだけ使い、明示した一つの数値slotは原ExactJsonNumber tokenを文字列中へ手で記す。候補helper/reader/writer/model/Decimal/codec/testは実行していない。bindingのownerは固定normal_control原値へ照合する。",
         "execution_state": "not_executed",
         "authority_effect": "none",
         "operation_effect": "none"
@@ -693543,76 +693543,6 @@
             "op": "copy",
             "from": "/arguments/validated/input/binding",
             "path": "/expected/results/1/binding"
-          },
-          {
-            "op": "copy",
-            "from": "/arguments/validated/input/dependencies/core_source_selected",
-            "path": "/expected/origins/0/observations/0/value"
-          },
-          {
-            "op": "copy",
-            "from": "/arguments/validated/input/binding/knowledge_ref",
-            "path": "/expected/origins/0/observations/1/value"
-          },
-          {
-            "op": "copy",
-            "from": "/arguments/validated/input/knowledge_records",
-            "path": "/expected/origins/0/observations/2/value"
-          },
-          {
-            "op": "copy",
-            "from": "/arguments/validated/input/knowledge_records/0",
-            "path": "/expected/origins/0/observations/3/value"
-          },
-          {
-            "op": "copy",
-            "from": "/arguments/validated/input/knowledge_records/0/provenance_refs",
-            "path": "/expected/origins/0/observations/4/value"
-          },
-          {
-            "op": "copy",
-            "from": "/arguments/validated/input/sources",
-            "path": "/expected/origins/0/observations/5/value"
-          },
-          {
-            "op": "copy",
-            "from": "/arguments/validated/input/knowledge_records/0/provenance_refs/0",
-            "path": "/expected/origins/0/observations/6/value"
-          },
-          {
-            "op": "copy",
-            "from": "/arguments/validated/input/dependencies/labo_evaluation_selected",
-            "path": "/expected/origins/1/observations/0/value"
-          },
-          {
-            "op": "copy",
-            "from": "/arguments/validated/input/binding/knowledge_ref",
-            "path": "/expected/origins/1/observations/1/value"
-          },
-          {
-            "op": "copy",
-            "from": "/arguments/validated/input/knowledge_records",
-            "path": "/expected/origins/1/observations/2/value"
-          },
-          {
-            "op": "copy",
-            "from": "/arguments/validated/input/knowledge_records/0",
-            "path": "/expected/origins/1/observations/3/value"
-          },
-          {
-            "op": "copy",
-            "from": "/arguments/validated/input/knowledge_records/0/provenance_refs",
-            "path": "/expected/origins/1/observations/4/value"
-          },
-          {
-            "op": "copy",
-            "from": "/arguments/validated/input/sources",
-            "path": "/expected/origins/1/observations/5/value"
-          },
-          {
-            "op": "copy",
-            "from": "/arguments/validated/input/knowledge_records/0/provenance_refs/0",
-            "path": "/expected/origins/1/observations/6/value"
           },
           {
             "op": "copy",
@@ -706607,7 +706537,7 @@
         "execution_state": "not_executed"
       }
     ],
-    "input_boundary_unit_scope": "合成ValidatedSupply引数に対する追加3whole。input=nullと原Issue保持、binding absent、false selectorが供給されてもBinding必須rowを作らない境界。binding={}は欠落ではなく、通常readを続け公開subject形成不能を既存境界へ保持する。全入力shape/全分岐の網羅ではない。",
+    "input_boundary_unit_scope": "合成ValidatedSupply引数に対する追加3whole。input=nullと原Issue保持、binding absent、false selectorが供給されてもBinding必須rowを作らない境界。binding={}は欠落ではなく、通常readを続け公開subject形成不能を既存境界へ保持する。全入力shape/全分岐の網羅ではない。 binding={}がpresentである場合の通常read専用wholeは未収載であり、binding absentの追加3例からその分岐の期待/実行済みを推定しない。",
     "l9_projection_unobserved_reason_codes": [
       "selector_unknown",
       "reference_frame_unknown",
