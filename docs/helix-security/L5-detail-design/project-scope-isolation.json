@@ -4228,7 +4228,10 @@
           "writer_pointer": "/owner_context_detail_contract/writers/OwnerContextBindingResult/port_bindings"
         }
       },
-      "effect": "none"
+      "effect": "none",
+      "unit_case_refs": [
+        "SEC003-L8-OWNER-CONTEXT-N01-NORMAL"
+      ]
     }
   ],
   "contracts": [
