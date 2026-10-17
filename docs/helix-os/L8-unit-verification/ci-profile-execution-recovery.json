@@ -170759,5 +170759,534 @@
       }
     ],
     "design_locator_notation": "selection_contract_correctionsのdesign_locatorは設計上の所在を示す記法でありRFC6901 JSON Pointerではない。functions/F02002はidがF02002の要素、logical_types/HarnessF03SelectionSourceはnameがHarnessF03SelectionSourceの要素、comparison_rulesの名前はid一致で選ぶ。*は該当全要素、andは複数箇所、callsの関数名はfunction一致で選ぶ。実JSON Pointerを持つsource_contract_refsとは区別する。"
+  },
+  "candidate_l5_binding": {
+    "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+    "sha256": "f10b516c6c05f64b662a85f9b185a7e91f66beeb7abf07a069ee1d1c879d6ab4",
+    "pointer": "/private_producer_bindings/0",
+    "object_canonical_sha256": "35214ead5b12a806cf430ff55d0bae6edded2506968403769bd218b8edee383f",
+    "binding_kind": "exact_candidate_file_bytes",
+    "meaning": "同じ対に置くL5の現在file bytesとprivate producer binding objectを結ぶ。歴史source pinとは区別する。"
+  },
+  "selection_producer_verification": {
+    "status": "condition_design_only_no_new_raw_or_whole_frozen",
+    "contract_pair": {
+      "l5_pointer": "/private_producer_bindings/0",
+      "l4_path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "l4_pointer": "/contracts/0/selection_producer_contract/private_call_contract",
+      "l5_binding_pointer": "/candidate_l5_binding"
+    },
+    "producer_signature": "derive_os_plan_selection(input: PlanSelectionDerivationInput) -> PlanSelectionDerivationResult",
+    "input_type_ref": {
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "pointer": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/9"
+    },
+    "pure_result_type_ref": {
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "pointer": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/11"
+    },
+    "pure_return_fields": [
+      {
+        "name": "selection",
+        "type": "Field<PlanSelectionSource>",
+        "pointer": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/11/fields/selection"
+      },
+      {
+        "name": "trace",
+        "type": "PlanSelectionDerivationTrace",
+        "pointer": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/11/fields/trace"
+      },
+      {
+        "name": "harness_f03_minimum_evaluation",
+        "type": "Field<HarnessF03MinimumEvaluation>",
+        "pointer": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/11/fields/harness_f03_minimum_evaluation"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "OS020-PRODUCER-VALID-SELECTION",
+        "l9_index": 0,
+        "scenario": "owner binding、relation membership、F03 minimum、catalog itemが全て対応する正常選択",
+        "expected": {
+          "trace_status": "corresponding",
+          "axes": {
+            "owner_status": "corresponding",
+            "membership_status": "corresponding",
+            "item_resolution_status": "corresponding",
+            "f03_source_join_status": "corresponding"
+          },
+          "selection": {
+            "tag": "supplied",
+            "value": {
+              "plan_ref": {
+                "tag": "supplied",
+                "value": "SYNTHETIC-PLAN_REF"
+              },
+              "binding": {
+                "tag": "supplied",
+                "value": {
+                  "project": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-PROJECT"
+                  },
+                  "requirement_revision": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-REQUIREMENT_REVISION"
+                  },
+                  "scope": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-SCOPE"
+                  },
+                  "ticket_graph_ref": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-TICKET_GRAPH_REF"
+                  }
+                }
+              },
+              "selected_obligation_refs": {
+                "tag": "supplied",
+                "value": [
+                  "U1"
+                ]
+              },
+              "items": {
+                "tag": "supplied",
+                "value": [
+                  {
+                    "id": {
+                      "tag": "supplied",
+                      "value": "CHECK-U1"
+                    },
+                    "obligation_ref": {
+                      "tag": "supplied",
+                      "value": "U1"
+                    },
+                    "oracle_ref": {
+                      "tag": "supplied",
+                      "value": "ORACLE-020"
+                    },
+                    "environment_ref": {
+                      "tag": "supplied",
+                      "value": "ENV-1"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "harness_f03_minimum_evaluation_tag": "supplied"
+        },
+        "source_rules": [
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/0",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/1",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/5",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/6",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/3",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/4",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/status_reduction",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/1"
+        ],
+        "input_source": {
+          "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+          "pointer": "/producer_selection_integration_verification/cases/0/raw/arguments/input",
+          "case_id": "NORMAL-MINIMUM-U1",
+          "recipe": "このpointerのJSON値をそのままPlanSelectionDerivationInputとして切り出す。expected_observation/expected canonical hashは読まない。"
+        },
+        "trace_expectation": {
+          "input_snapshot": "input_source pointerと同じ値をL4 trace.input_snapshotへ保持",
+          "raw_and_rows": "raw Field tags/values、relation/catalog raw row、source pointer、原配列順・重複を保持。未知/foreign/non-applicable rowsを選択候補へ混ぜない。",
+          "consumer_nonfeedback": "case 1/5で異なるactual/context valuesはtrace.input_snapshotへ残すがselection導出の条件にしない。pure Resultへconsumer_returnを混ぜない。"
+        }
+      },
+      {
+        "case_id": "OS020-PRODUCER-MEMBERSHIP-ITEM-UNKNOWN",
+        "l9_index": 2,
+        "scenario": "membershipは確定するがcatalogに選択refのitemがない",
+        "expected": {
+          "trace_status": "unknown",
+          "axes": {
+            "owner_status": "corresponding",
+            "membership_status": "corresponding",
+            "item_resolution_status": "unknown",
+            "f03_source_join_status": "corresponding"
+          },
+          "selection": {
+            "tag": "supplied",
+            "value": {
+              "plan_ref": {
+                "tag": "supplied",
+                "value": "SYNTHETIC-PLAN_REF"
+              },
+              "binding": {
+                "tag": "supplied",
+                "value": {
+                  "project": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-PROJECT"
+                  },
+                  "requirement_revision": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-REQUIREMENT_REVISION"
+                  },
+                  "scope": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-SCOPE"
+                  },
+                  "ticket_graph_ref": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-TICKET_GRAPH_REF"
+                  }
+                }
+              },
+              "selected_obligation_refs": {
+                "tag": "supplied",
+                "value": [
+                  "U1"
+                ]
+              },
+              "items": {
+                "tag": "null"
+              }
+            }
+          },
+          "harness_f03_minimum_evaluation_tag": "supplied"
+        },
+        "source_rules": [
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/5",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/6",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/3",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/4",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/status_reduction",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/1"
+        ],
+        "input_source": {
+          "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+          "pointer": "/producer_selection_integration_verification/cases/2/raw/arguments/input",
+          "case_id": "MEMBERSHIP-KNOWN-ITEMS-UNKNOWN",
+          "recipe": "このpointerのJSON値をそのままPlanSelectionDerivationInputとして切り出す。expected_observation/expected canonical hashは読まない。"
+        },
+        "trace_expectation": {
+          "input_snapshot": "input_source pointerと同じ値をL4 trace.input_snapshotへ保持",
+          "raw_and_rows": "raw Field tags/values、relation/catalog raw row、source pointer、原配列順・重複を保持。未知/foreign/non-applicable rowsを選択候補へ混ぜない。",
+          "consumer_nonfeedback": "case 1/5で異なるactual/context valuesはtrace.input_snapshotへ残すがselection導出の条件にしない。pure Resultへconsumer_returnを混ぜない。"
+        }
+      },
+      {
+        "case_id": "OS020-PRODUCER-OWNER-ABSENT",
+        "l9_index": 3,
+        "scenario": "owner raw Field absent。membership/itemでselection outer tagを上書きしない",
+        "expected": {
+          "trace_status": "unknown",
+          "axes": {
+            "owner_status": "not_supplied",
+            "membership_status": "unknown",
+            "item_resolution_status": "not_supplied",
+            "f03_source_join_status": "corresponding"
+          },
+          "selection": {
+            "tag": "absent"
+          },
+          "harness_f03_minimum_evaluation_tag": "supplied"
+        },
+        "source_rules": [
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/0",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/0",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/3",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/4",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/status_reduction",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/1"
+        ],
+        "input_source": {
+          "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+          "pointer": "/producer_selection_integration_verification/cases/3/raw/arguments/input",
+          "case_id": "OWNER-ABSENT",
+          "recipe": "このpointerのJSON値をそのままPlanSelectionDerivationInputとして切り出す。expected_observation/expected canonical hashは読まない。"
+        },
+        "trace_expectation": {
+          "input_snapshot": "input_source pointerと同じ値をL4 trace.input_snapshotへ保持",
+          "raw_and_rows": "raw Field tags/values、relation/catalog raw row、source pointer、原配列順・重複を保持。未知/foreign/non-applicable rowsを選択候補へ混ぜない。",
+          "consumer_nonfeedback": "case 1/5で異なるactual/context valuesはtrace.input_snapshotへ残すがselection導出の条件にしない。pure Resultへconsumer_returnを混ぜない。"
+        }
+      },
+      {
+        "case_id": "OS020-PRODUCER-OWNER-NULL",
+        "l9_index": 4,
+        "scenario": "owner raw Field null。raw null/decode状態をabsentへ丸めずselection outer nullとする",
+        "expected": {
+          "trace_status": "unknown",
+          "axes": {
+            "owner_status": "unknown",
+            "membership_status": "unknown",
+            "item_resolution_status": "not_supplied",
+            "f03_source_join_status": "corresponding"
+          },
+          "selection": {
+            "tag": "null"
+          },
+          "harness_f03_minimum_evaluation_tag": "supplied"
+        },
+        "source_rules": [
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/0",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/0",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/3",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/4",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/status_reduction",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/1"
+        ],
+        "input_source": {
+          "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+          "pointer": "/producer_selection_integration_verification/cases/4/raw/arguments/input",
+          "case_id": "OWNER-NULL",
+          "recipe": "このpointerのJSON値をそのままPlanSelectionDerivationInputとして切り出す。expected_observation/expected canonical hashは読まない。"
+        },
+        "trace_expectation": {
+          "input_snapshot": "input_source pointerと同じ値をL4 trace.input_snapshotへ保持",
+          "raw_and_rows": "raw Field tags/values、relation/catalog raw row、source pointer、原配列順・重複を保持。未知/foreign/non-applicable rowsを選択候補へ混ぜない。",
+          "consumer_nonfeedback": "case 1/5で異なるactual/context valuesはtrace.input_snapshotへ残すがselection導出の条件にしない。pure Resultへconsumer_returnを混ぜない。"
+        }
+      },
+      {
+        "case_id": "OS020-PRODUCER-ACTUAL-UNDERSELECTS",
+        "l9_index": 1,
+        "scenario": "actual profile obligationsがproducer selectionより少ない入力でもproducer selectionはactualから抑止されない",
+        "expected": {
+          "trace_status": "corresponding",
+          "axes": {
+            "owner_status": "corresponding",
+            "membership_status": "corresponding",
+            "item_resolution_status": "corresponding",
+            "f03_source_join_status": "corresponding"
+          },
+          "harness_f03_minimum_evaluation_tag": "supplied",
+          "selection": {
+            "tag": "supplied",
+            "value": {
+              "plan_ref": {
+                "tag": "supplied",
+                "value": "SYNTHETIC-PLAN_REF"
+              },
+              "binding": {
+                "tag": "supplied",
+                "value": {
+                  "project": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-PROJECT"
+                  },
+                  "requirement_revision": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-REQUIREMENT_REVISION"
+                  },
+                  "scope": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-SCOPE"
+                  },
+                  "ticket_graph_ref": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-TICKET_GRAPH_REF"
+                  }
+                }
+              },
+              "selected_obligation_refs": {
+                "tag": "supplied",
+                "value": [
+                  "U1"
+                ]
+              },
+              "items": {
+                "tag": "supplied",
+                "value": [
+                  {
+                    "id": {
+                      "tag": "supplied",
+                      "value": "CHECK-U1"
+                    },
+                    "obligation_ref": {
+                      "tag": "supplied",
+                      "value": "U1"
+                    },
+                    "oracle_ref": {
+                      "tag": "supplied",
+                      "value": "ORACLE-020"
+                    },
+                    "environment_ref": {
+                      "tag": "supplied",
+                      "value": "ENV-1"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "source_rules": [
+          "/contracts/0/selection_producer_contract/private_call_contract/producer_consumer_boundary/source_plan_producer/does_not_use_as_selection_gate",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/5",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/6",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/3",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/4",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/status_reduction",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/1",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/5",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/6",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/7"
+        ],
+        "input_source": {
+          "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+          "pointer": "/producer_selection_integration_verification/cases/1/raw/arguments/input",
+          "case_id": "ACTUAL-UNDERSELECTS-PRODUCER-U1",
+          "recipe": "このpointerのJSON値をそのままPlanSelectionDerivationInputとして切り出す。expected_observation/expected canonical hashは読まない。"
+        },
+        "trace_expectation": {
+          "input_snapshot": "input_source pointerと同じ値をL4 trace.input_snapshotへ保持",
+          "raw_and_rows": "raw Field tags/values、relation/catalog raw row、source pointer、原配列順・重複を保持。未知/foreign/non-applicable rowsを選択候補へ混ぜない。",
+          "consumer_nonfeedback": "case 1/5で異なるactual/context valuesはtrace.input_snapshotへ残すがselection導出の条件にしない。pure Resultへconsumer_returnを混ぜない。",
+          "selection_derivation_ja": "L4 membership/catalog規則によるU1選択。actual/context差はselection sourceではなく、違いはtrace.input_snapshotに保持する。"
+        }
+      },
+      {
+        "case_id": "OS020-PRODUCER-CONTEXT-DIFFERS",
+        "l9_index": 5,
+        "scenario": "expected context profile differsでもproducer selectionはcontext比較結果から逆算しない",
+        "expected": {
+          "trace_status": "corresponding",
+          "axes": {
+            "owner_status": "corresponding",
+            "membership_status": "corresponding",
+            "item_resolution_status": "corresponding",
+            "f03_source_join_status": "corresponding"
+          },
+          "harness_f03_minimum_evaluation_tag": "supplied",
+          "selection": {
+            "tag": "supplied",
+            "value": {
+              "plan_ref": {
+                "tag": "supplied",
+                "value": "SYNTHETIC-PLAN_REF"
+              },
+              "binding": {
+                "tag": "supplied",
+                "value": {
+                  "project": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-PROJECT"
+                  },
+                  "requirement_revision": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-REQUIREMENT_REVISION"
+                  },
+                  "scope": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-SCOPE"
+                  },
+                  "ticket_graph_ref": {
+                    "tag": "supplied",
+                    "value": "SYNTHETIC-TICKET_GRAPH_REF"
+                  }
+                }
+              },
+              "selected_obligation_refs": {
+                "tag": "supplied",
+                "value": [
+                  "U1"
+                ]
+              },
+              "items": {
+                "tag": "supplied",
+                "value": [
+                  {
+                    "id": {
+                      "tag": "supplied",
+                      "value": "CHECK-U1"
+                    },
+                    "obligation_ref": {
+                      "tag": "supplied",
+                      "value": "U1"
+                    },
+                    "oracle_ref": {
+                      "tag": "supplied",
+                      "value": "ORACLE-020"
+                    },
+                    "environment_ref": {
+                      "tag": "supplied",
+                      "value": "ENV-1"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "source_rules": [
+          "/contracts/0/selection_producer_contract/private_call_contract/producer_consumer_boundary/source_plan_producer/does_not_use_as_selection_gate",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/5",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/6",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/3",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/summary_axes/4",
+          "/contracts/0/selection_producer_contract/private_call_contract/field_tag_mapping/status_reduction",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/7",
+          "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/8",
+          "/contracts/0/selection_producer_contract/private_call_contract/execution_order/1",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/5",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/6",
+          "/contracts/0/selection_producer_contract/private_call_contract/exact_binding_and_selection/7"
+        ],
+        "input_source": {
+          "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+          "pointer": "/producer_selection_integration_verification/cases/5/raw/arguments/input",
+          "case_id": "EXPECTED-CONTEXT-DIFFERS-PRODUCER-U1",
+          "recipe": "このpointerのJSON値をそのままPlanSelectionDerivationInputとして切り出す。expected_observation/expected canonical hashは読まない。"
+        },
+        "trace_expectation": {
+          "input_snapshot": "input_source pointerと同じ値をL4 trace.input_snapshotへ保持",
+          "raw_and_rows": "raw Field tags/values、relation/catalog raw row、source pointer、原配列順・重複を保持。未知/foreign/non-applicable rowsを選択候補へ混ぜない。",
+          "consumer_nonfeedback": "case 1/5で異なるactual/context valuesはtrace.input_snapshotへ残すがselection導出の条件にしない。pure Resultへconsumer_returnを混ぜない。",
+          "selection_derivation_ja": "L4 membership/catalog規則によるU1選択。actual/context差はselection sourceではなく、違いはtrace.input_snapshotに保持する。"
+        }
+      }
+    ],
+    "expectation_basis_ja": "Selectionのtag・選択ref・item/null、Trace statusをL4のexact_binding_and_selection・field_tag_mapping・producer_consumer_boundaryから明記する。L9からはraw input pointerだけを採り、L9 expected_observationを複製しない。全trace/whole expectedはまだ凍結していない。",
+    "future_whole_requirements_ja": "独立wholeを追加する場合はResult全体を対象に、3fieldの全値/presence、trace.input_snapshot、raw pointer/row保持、配列順・重複、全statusを別途固定する。producer pure returnにPlanSelectionInvocation.consumer_returnは含めない。",
+    "preservation_ja": "既存/source_bound_selection_pipelineの4case、L8他全section/expected、L9全integration case/expectedは不変。新sectionは純producerの条件設計のみ。",
+    "limits_ja": [
+      "新raw input/whole expectedは作成していない",
+      "runtime/provider/qualification/実CI実行は未検証",
+      "case数・coverage率の新閾値を設けない",
+      "本節が定義するのはprivate producerの単体検証条件であり、全返却の凍結・実行証拠、F02の隔離実行・回収・再開、OS020全体の完了を証明しない。"
+    ],
+    "current_l9_candidate_binding": {
+      "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+      "candidate_sha256": "79b2b58cae7a9889b8f730894c1211050d79dd1f80aeccddbf2191842dd6ecae",
+      "pointer": "/producer_selection_integration_verification/cases",
+      "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
+    },
+    "f03_candidate_presence_basis": {
+      "source_path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+      "source_revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+      "source_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+      "source_pointer": "/comparison_precedence/3",
+      "function_pointer": "/functions/3",
+      "meaning_ja": "HARNESS F03のcandidateは、originalと独立sourceから計算したobservationへの比較依頼である。candidate missingは比較未依頼を表し、original/sourcesの必須性を置換せず、計算した観測そのものを未供給にしない。この6入力のcandidate absentを必須source欠落へ読み替えない。computed observation自体が不明なら肯定結果は生成しない。",
+      "existing_l4_type_binding_pointer": "/contracts/0/selection_producer_contract/private_call_contract/external_type_bindings/11"
+    }
   }
 }
