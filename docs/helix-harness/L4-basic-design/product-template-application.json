@@ -1600,7 +1600,8 @@
       "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
       "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
       "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。",
-      "field_source_materialization_contract_ref": "/field_source_materialization_contract"
+      "field_source_materialization_contract_ref": "/field_source_materialization_contract",
+      "field_semantic_evidence_contract_ref": "/field_semantic_evidence_contract"
     },
     {
       "id": "HARNESS-L4-009-F06",
@@ -4142,7 +4143,7 @@
     },
     "next_detail_obligations": [
       "既存F05のdefinition_state/value_state全域writerとclosed私有型/引数/返却順、原qualification unknownと案件値unknownの分離、複数source/同値反復/相反/presence/理由の全field writerをL5/L8へ具体化する。",
-      "本logical宣言profileの正本/producer/取得口と、meaning内宣言の私有型/writerは未成立。既存wire wrapperの表現域に載ることと、新宣言内容が有効意味根拠として読めることを分ける。原意味ownerのsource宣言又は独立役割根拠を確定し、元bytes/body/Ref対応とpointer namespaceを次の詳細で閉じる。新規宣言を自動発行しない。",
+      "原source宣言のform/value意味/reason出所を読む前段と、/field_semantic_evidence_contractの局所定義命題/不足4候補の原body接続を分けてL5/L8へ降ろす。logical producer責務/bodyを記述したことを実producer/実資格/実取得成立とせず、全private型/guard/元bytes/body/Ref/pointer対応と各leaf writerを詳細で閉じる。新規宣言/原命題をconsumerが自動発行しない。",
       "案件値の有効nullと未決envelope、whole/raw object値とenvelope子値、欠落宣言/既知相反/兄弟継続を識別する独立原入力/全返却期待を候補計算前に固定する。例数を全域完了gateにしない。",
       "B019/030に必要な同query/選択knowledge/独立field関係、Definition.knowledge/meaningとCORE値の正確なcrosswalkは後続。本節を追加して当該上流/下流の全責務を完了扱いしない。",
       "実source/owner資格/実provider/実配送/認可/OS記録/CI/実受入/全92親430義務は成立未認定。それらの実装不在だけを論理投影の新常時gateにしない。"
@@ -4175,6 +4176,256 @@
       "reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
       "current_reference_revision": "6802cc295b6747b98101898c47bb865c7ec6bcd7",
       "scope": "本節の原要件/対条件はsource_basis先頭二件の承認revision F05 objectに限定し、現6802の同objectと全値同一。現L4/native型/既存fixtureのpinは別の現行技術資料であって上流承認の根拠へ代用しない。"
+    }
+  },
+  "field_semantic_evidence_contract": {
+    "id": "HARNESS-L4-009-F05-FIELD-SEMANTIC-EVIDENCE",
+    "requirement_ref": "HARNESS-L3-009-F05",
+    "system_oracle_ref": "HARNESS-L10-009-F05",
+    "paired_verification_ref": "HARNESS-L9-009-F05-FIELD-SEMANTIC-EVIDENCE",
+    "upstream_materialization_ref": "/field_source_materialization_contract",
+    "scope": "既存RequirementGapReturnのsource materialization後に、原ownerが表現した局所定義存在/不在/未決と不足候補の原命題を同field/版/scopeへ結ぶ基本契約。原read、根拠付きの候補judgment、未形成を返す。L5のnative Comparison/FieldCheck writer、CORE caller全返却、B019/030 typed crosswalkの成立とは別。F05の原要求意味/返却責務は変更しない。",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "source_basis": [
+      {
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/27",
+            "canonical_sha256": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54"
+          }
+        ],
+        "authority_scope": "HDEC承認対象のF05 selected objectだけを上流意味根拠とする。現在file全体の承認継承を宣言しない。"
+      },
+      {
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c",
+        "selected_objects": [
+          {
+            "pointer": "/cases/27",
+            "canonical_sha256": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d"
+          }
+        ],
+        "authority_scope": "HDEC承認対象のF05 selected objectだけを上流意味根拠とする。現在file全体の承認継承を宣言しない。"
+      },
+      {
+        "revision": "e441040710ecac0c9ce1e55bf2cc13a1b4e61530",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "sha256": "567e54f9daa772d91a757e354512f58aaae316580804a31bf11868cc416ec67b",
+        "pointer": "/field_source_materialization_contract",
+        "role": "前段の原source/materializationと基本body境界。上流承認対象ではない。"
+      },
+      {
+        "revision": "e441040710ecac0c9ce1e55bf2cc13a1b4e61530",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "sha256": "948f1c60d0795d4ab923ab2a74d36d0b8595c87a2b134e8d7acfa2e9e9f67f96",
+        "pointers": [
+          "/type_contract/types/FieldInput",
+          "/type_contract/types/GapProposal",
+          "/type_contract/types/SemanticRecord",
+          "/reference_resolution_contract",
+          "/wire_codec_contract/numeric_encode_profile"
+        ],
+        "role": "現native carrier/原Ref照合と数値意味。候補関数を実行しない。"
+      }
+    ],
+    "input_contract": {
+      "native_context": "同immutable snapshotのCompareRequirementGapsContext: validated、compare_applicability、compare_kind_obligation_trace。二つのComparisonは指定producerの同snapshot返却そのもので、別caller/cachedの自己申告を使わない。source材料へ新top-level ApplicationInput memberを要求しない。",
+      "materialization": "同F05呼出しで/field_source_materialization_contractが保持する全原field/role/ref/record/source/body/宣言/投影/局所未成立。呼出し元が任意に供給したqualified=true又はstate文字列を資格経路にしない。",
+      "selection": "元選択操作/対象field/templateと要求・product_scope・process/application契約版の範囲だけ。不要field、全knowledge、全required-field集合、完全inventory又は実provider実装を一律の新gateにしない。"
+    },
+    "wrapper_and_source_contract": {
+      "carrier": "既存ApplicationInput.semantic_recordsのSemanticRecord(ref,binding,kind,meaning,source_ref)を使用する。新kindは原bodyのlogical reader選択にだけ用い、その文字列を結果として信用しない。meaningは下記bodyの原値であり、wireのRawValue/partial carrierを変更しない。",
+      "source_payload": "同source_refが指す既存SourceEnvelope.body.records/{r}のcollection=semantic_records、ref=当該record.ref、payload={ref,binding,kind,meaning}へ全原member/presenceを照合する。source_refだけは従来どおり外側envelopeに保持する。原source bytes/body/record_index/Ref/全meaning/pointerを返し、source digestを自身bodyへ埋め戻さない。",
+      "qualification": "既存fn0の同snapshot ValidatedApplication.input_issues/unusable_source_refs及び元source/Qualification/root/bytes/body照合事実を使用する。本文一致やkindだけから資格を生成しない。実trust/issuer/認可/実配送を認定せず、論理fixtureの原資格対応を実資格成立へ昇格しない。実producerの実装不在だけで同snapshotの有効な合成論理材料を全て拒否しない。",
+      "producer_responsibility": "定義内容/不在は元knowledge/templateの意味を持つ既存owner、案件の質問・要求候補とconstraint/非適用命題はその元意味を持つ既存ownerが原source本文として表現する。既存owner責務を技術的bodyへ表すもので、registry/新owner/新authority/新承認者/人間gateを作らない。consumer自身は宣言/原命題を発行しない。",
+      "presence": "下記bodyの共通必須memberと枝で適用するmemberが不在/null/型外なら、元body/presenceを返して当該解釈を未形成とする。reason/reentry_conditionは原memberのabsent/supplied null/実値を別保存し、通常のpresent/absent/undecidedへ新必須条件にしない。未知追加memberと枝で非適用のmemberも原wholeに保持し、その差だけで相反としない。",
+      "pointer_namespace": "入力locatorは同validated.input rootの/field_inputs/{f}、/gap_proposals/{p}、/semantic_records/{s}、/sources/{i}/body/records/{r}/payloadを指す。member不存在のrequested locatorは成功した解決pointerではない。未到達parentから子absenceを捏造せず、最後に実在したparent/原wholeを別保存する。"
+    },
+    "common_target_guards": [
+      "1. 元field/proposalのindexと全原値を保存する。入力input=null、collection未供給/型外、field Ref/Binding未形成は未観測又は当該対象の未形成であり、空正常・domain missing/unknownを生成しない。無関係な元collection/fieldの読取は継続する。",
+      "2. body.bindingとそのSemanticRecord.bindingを当該原FieldInput.bindingへ、body.field_ref/template_refを同field.ref/template_refへ照合する。Bindingのrequirement_ref/product_scope/process_contract_ref/application_contract_refを同snapshotに束縛し、template/knowledge/oracleの原presenceと供給版は別memberのまま全て照合する。欠落版を隣のRefから補完しない。",
+      "3. Refは既存reference_resolution_contractのidentity/revision/scope/ownerと供給されたdigest条件で比較する。source_locatorは所在でidentityにしない。全full Refと原値は出力へ保持する。Binding/RawValueの数値leafは現wire_codec_contract.numeric_encode_profileのtyped_core_json_equalに従い、booleanとnumberを混同しない。新しいhost/数値比較を設計又は実行しない。",
+      "4. record/source/body.recordsの元collection/ref/payloadと前段の資格対応が成立する出現だけが意味根拠になれる。対応しない原出現/同Refの異本文/型外も全て局所原因へ保存する。原kind・bodyのrole・原proposal.kindだけでこの照合を省略しない。",
+      "5. role_owner_bindingの当該原owner対応を確認する。原field RefのownerがCOREであっても定義source ownerが元template/knowledge側に対応すれば、field.owner不一致だけでは拒否しない。実owner/源資料の不足は局所未形成で、他fieldを止めない。",
+      "6. 全対応出現を原field→元Ref列index→record/source/body原index順に保持する。意味根拠body自体はsemantic_records原index順に保持する。完全同値反復も所在を全て残し、先頭/latest/別field成功で相反又は未形成を消さない。"
+    ],
+    "field_definition_evidence_body": {
+      "kind": "field_definition_evidence",
+      "common_required": {
+        "binding": "ApplicationBinding。元wrapperとfieldの同full binding。",
+        "field_ref": "Ref。当該FieldInput.refの原identity/版/scope/owner。",
+        "template_ref": "Ref。当該FieldInput.template_ref。",
+        "definition_presence": "present | absent | undecided。元ownerの局所定義内容に関する原命題。候補stateの入力ではない。",
+        "content_refs": "Ref[]。当該fieldの原定義内容を指す元Ref全順/反復。",
+        "basis_refs": "Ref[]。元意味/版/局所不在/未決を示す付加原資料。空でも当該ownerの元body/外側source所在は根拠として保存し、consumerが他資料を補完しない。"
+      },
+      "optional_original_members": {
+        "reason": "RawValue。memberが無い場合とnull/実値を区別。原理由の文字列parseによる新意味推論なし。",
+        "reentry_condition": "RawValue。absence/null/false/0/空/実値を保存する。通常の定義命題へ新必須gateを設けない。"
+      },
+      "present_guard": "common_target_guardsを満たす局所原命題presentと、非空content_refsの各Refが当該field.definition_refsに実在する元Ref occurrenceへ対応すること。前段で各RefのAxisFact又はSemanticRecord全原record/source/bodyとdefinition roleのpayloadが解決され、当該命題がそれらをこのfieldの定義本文として明示する範囲がknown候補である。全field inventory/complete棚卸しを要求しない。meaning wholeを読み出せた事実、null/non-null、kind、value keyの有無だけではknownを認定しない。原definition_refsのうち未対応の別operandがある場合もその独立未形成と当該支持本文を別に返し、field全体のsummaryを自動でknownへ畳まない。",
+      "absent_guard": "common_target_guardsを満たす同field/template/版/scopeの局所原命題absentがcontent_refs=[]を明示すること。この原ownerの定義不在命題からmissing候補を形成する。field.definition_refs=[]又はRef検索missだけから不在命題を作らない。元fieldが保持する参照と取得不成立も別に残す。全required集合/完備棚卸しは前提にしない。",
+      "undecided_guard": "common_target_guardsを満たす元命題undecidedをunknown候補として保存する。content_refsが供給されていれば全原内容/対応/原未形成を別に残す。元sourceが未取得で命題自体を読めない場合は、この枝へ代入しない。",
+      "conflict_boundary": "異なるevidence Refの個別に対応済みのpresentとabsentが同field/full binding/template版/scopeについて相反する場合は、両原命題・全source・内容を根拠にconflict候補を返す。undecidedは既知present/absentを消さず別原命題として保持する。同じevidence Refのsource/body相反又は宣言/対象対応不成立は意味命題としての支持未成立でありunformed原因。別content Refの単なる値違いはconflictでなく、同時許容/cardinality/集約の原意味が未供給ならfield全体の集約未形成を別保存する。",
+      "no_required_inventory": "本節は局所資料を最小表現とする。complete inventoryの新body/readerは今回は設けず、全required-field集合を必須にしない。必要集合を取得成功recordから作り直すこともない。"
+    },
+    "gap_proposition_body": {
+      "kind": "field_gap_proposition",
+      "common_required": {
+        "binding": "ApplicationBinding。当該field/proposalの元full binding。",
+        "field_ref": "Ref。当該FieldInput.ref。",
+        "template_ref": "Ref。当該FieldInput.template_ref。",
+        "proposal_ref": "Ref。当該GapProposal.ref。",
+        "subject_ref": "Ref。当該GapProposal.subject_ref。field.ref又は同依存KindObligationの原Refに実際に対応する対象で、同名文字列から結ばない。",
+        "unfinished_obligation_refs": "Ref[]。元GapProposalの同列と対応させ、原義務body/元template/Binding及び同call kind/trace材料を保存する。消込なし。",
+        "basis_refs": "Ref[]。当該原命題の元source資料。",
+        "proposition": "下記四つのrole別objectの一つ。原ラベル以外のoperandとtarget/source/body対応を必要とする。"
+      },
+      "target_guard": "common_target_guardsに加え、proposal_ref/subject_ref/binding/unfinished_obligation_refsを同入力gap_proposalsの元occurrenceと照合する。field/proposal/義務の同snapshot対応が形成できなければunresolved候補と元提案を別返却する。元proposal.kind/reason/backflow_ownerは原値として保持するが結果を転写しない。",
+      "roles": {
+        "question": {
+          "fields": {
+            "role": "question",
+            "question": "RawValue。原ownerが問う内容の全原値。",
+            "requested_operand_refs": "Ref[]。非空。原field/definition/value/関連義務のRef又は、当該fieldの原Bindingが指すrequirement/process_contract/application_contract/template/knowledge Ref、当該template/Bindingの原ApplicationPolicy.ref/condition_refs。当該scopeの実operandに限定し、名前からRefを生成しない。",
+            "gap_basis_refs": "Ref[]。非空。原ownerの質問に対応する独立した同field/義務/契約の原資料Ref。対応済み定義不在/未決又は明示undecided_valueに限らず、元適用contract/原policy/元要求/原constraint等の対象資料を含む。各原record/source/bodyと当該operandとの実対応を保持し、questionのkind又は質問本文だけを根拠にしない。"
+          },
+          "guard": "対象field/proposal/義務と元ownerの原質問sourceが対応し、全requested_operand_refsが上記の原field/Ref列/Binding/関連義務/policyに実在すること。gap_basis_refsの各Refを既存AxisFact/SemanticRecord又は当該policy/義務の元record/source/bodyへ独立解決し、同fieldのfull Binding/template/版/scopeとrequested operandへの元対応を保存すること。field/義務に関する資料はその原field/義務Refで、契約資料は同field.Bindingの当該契約Refとその元bodyで結ぶ。構造上このfield/proposalの質問が当該原operand/資料を指す場合に質問候補を形成し、定義不在/案件値未決だけへ限定しない。適用contract不整合等についての原ownerの質問も保持できるが、consumerが契約本文/原質問のRawValueをparseして不整合又は問いの正解を発明しない。source取得missだけ、同名key又はquestionラベルだけから質問を生成しない。"
+        },
+        "contradiction": {
+          "fields": {
+            "role": "contradiction",
+            "left_proposition_ref": "Ref。左原命題record。",
+            "right_proposition_ref": "Ref。右原命題record。",
+            "constraint_ref": "Ref。下記field_gap_constraintのmutually_exclusive原関係。"
+          },
+          "guard": "両端を元AxisFact/SemanticRecordの実原bodyへ別々に解決し、同field/binding/template/版/scopeについて当該constraint.left_refsとright_refsがそれぞれ左右命題一件へ対応すること。元ownerがこの両命題の同時充足不可を構造として明示する場合だけ矛盾候補を形成する。別Refの値差、RawValueの文字列相違、same_meaning=false、元proposal.kindだけを矛盾の根拠にしない。左右命題のtruth値をconsumerが文章parseして発明しない。"
+        },
+        "derived_requirement_candidate": {
+          "fields": {
+            "role": "derived_requirement_candidate",
+            "antecedent_requirement_refs": "Ref[]。非空。元要求の原Ref列。",
+            "constraint_ref": "Ref。下記field_gap_constraintのderives_requirement原関係。",
+            "proposed_requirement_ref": "Ref。候補本文を持つ原SemanticRecord。要求合意Refではない。",
+            "proposed_requirement": "RawValue。原候補本文全値。"
+          },
+          "guard": "元要求Refsをその元source/bodyと同binding.requirement_ref/当該field対象へ結び、constraint.left_refsを原antecedent_requirement_refsの全順/反復へ対応させる。constraint.right_refsの一件はproposed_requirement_refであり、その同原SemanticRecord.meaning全値がproposed_requirementと型付きJSON同値であること。元ownerがこの要求から候補本文を導く関係を明示した範囲だけ派生要求候補を形成する。自然言語の推論を未定義providerへ委ねず、候補を要求採用/人間合意へ昇格しない。"
+        },
+        "na_candidate": {
+          "fields": {
+            "role": "na_candidate",
+            "application_policy_ref": "Ref。同入力の元ApplicationPolicy。",
+            "na_record_ref": "Ref。同入力の元NARecord。"
+          },
+          "guard": "元policyとN/A原recordをそれぞれsource/bodyへ解決し、両者のfull binding/template_refと対象field/template版/scopeを対応させる。原N/A reason/decider/target_revisionは供給non-null非空string、reentry_conditionは供給non-nullで、target_revisionは当該template_ref.revisionと一致する範囲で非適用判断候補を形成する。false/0/空の原reentry値はtruthinessで失わない。原policyのnon_applicable_basis_refとその元根拠は別保存し、当該N/A候補の原命題に結ぶ。conditional false/ラベルだけではN/Aとしない。これはN/A候補の根拠の保持で、当該field又は製品義務を消す作用ではない。"
+        }
+      },
+      "classification_boundary": "一つの元proposalに対して全原命題を保存し、原命題occurrence順のcandidate_interpretationsを返す。各interpretationはそのroleの必要operand/source/constraintが対応すればformedの独立候補kind、未決/対応不成立ならunformed/kind=unresolvedと原原因を持つ。元proposal.kindは各interpretationの原kind差として保存し、一致を必須条件にせず元提案を書き換えない。questionとderived_requirement_candidate等、異なるroleの支持は互換的に併存し得るため、roleが違うこと又は支持が複数あることだけで相反/unresolvedへ変換せず、priority/first/latestで単一kindを選ばない。複数支持の全原Ref/出現とinterpretation indexをmultiple_support_observationsへ保存する。原資料が候補原命題間の排他/相反を実際に指定する場合は、その元constraint/左右Ref/本文と該当interpretationへの対応及び未形成原因を別観測に残し、支持済み候補を消さない。原根拠不明を元kind又はAI任意補完で閉じず、全体一語の成功/失敗又は新public Finding code/stateを作らない。"
+    },
+    "gap_constraint_body": {
+      "kind": "field_gap_constraint",
+      "common_required": {
+        "binding": "ApplicationBinding。当該元field/propositionに対応。",
+        "field_ref": "Ref。当該FieldInput.ref。",
+        "template_ref": "Ref。当該FieldInput.template_ref。",
+        "relation": "mutually_exclusive | derives_requirement。原ownerの意味関係であり返却kind/stateでない。",
+        "left_refs": "Ref[]。mutually_exclusiveでは一件、derives_requirementでは非空の元要求列。",
+        "right_refs": "Ref[]。両relationとも一件。右原命題又は元候補本文record。",
+        "basis_refs": "Ref[]。原関係の元資料。"
+      },
+      "guard": "constraint自体も共通source/Ref/binding/field/template/版/scope照合を満たし、元left/right全端が該当propositionの原operand列に対応する場合だけ使用する。relationの語から任意他field/値/原命題へ一般化しない。文章を評価する式木/任意program/boolean oracle口は作らない。",
+      "original_reason": "reason/reentry_condition等が供給されていれば全原値/presenceを保持し、非適用の余剰memberを適用相反へ変えない。"
+    },
+    "basic_candidate_return": {
+      "kind": "同F05 snapshotに束縛した基本候補view。native全返却型ではない。",
+      "fields": {
+        "original_context": "同immutable入力の元validated/二つの指定producer全返却とmaterialization原材料への同call対応。",
+        "domain_observations": "field_inputs/gap_proposalsそれぞれのrequested所在、実到達parent、原member presence/whole。input=nullでは未観測で、[]を評価済み成功にしない。",
+        "definition_evidence_results": "元field順に、field_locator/原field、全evidence/content/source/body出現、judgment={formation:formed,state:known|missing|unknown|conflict,basis_occurrence_indices}又は{formation:unformed,causes}、reason_observations/reentry_observationsを返す。原意味候補はnative definition_stateの実返却成立ではない。相反しないpresentとundecidedも個別根拠を残し、field単位集約未形成を可視にする。 個別evidenceごとの原解釈もevidence_judgmentsへ全件保存する。単一の相反しない意味だけを支持する全同値出現はまとめたjudgmentから全basis indexを参照する。present/absentの既知相反はformed conflictと全左右根拠を保存し、present/undecided併存、別内容Refの許容/集約が不明、又は対象根拠のsource相反/未形成があればfield単位はunformedとして各個別解釈と原因を残す。 各resultにbasis_occurrences配列を持ち、judgment及びevidence_judgmentsのbasis_occurrence_indicesは同resultの当該配列だけを指す。",
+        "gap_evidence_results": "元proposal順に、proposal_locator/元proposal、全evidence/constraint/operand/source/body出現、candidate_interpretations配列を返す。配列各要素はproposition_occurrence_index、原role、judgment={formation:formed,kind:question|contradiction|derived_requirement_candidate|na_candidate,basis_occurrence_indices}又は{formation:unformed,kind:unresolved,causes}、original_kind_differenceを持つ。原kind差は原GapProposal.kindと当該根拠kind/interpretation indexを結び、元提案を置換しない。同一proposalの質問と派生要求候補がそれぞれ支持されれば両方のformed interpretationを全原資料付きで返す。支持のないroleを推測追加せず、元命題が未供給なら配列は[]として元proposalと局所未形成を保存し、評価済み成功にしない。単一judgmentへまとめない。 各resultにbasis_occurrences配列を持ち、各candidate_interpretation.judgmentのbasis_occurrence_indicesは同resultの当該配列だけを指す。",
+        "local_unestablished": "field/proposal/role/元Ref-index/record/source/bodyごとの親未観測、source未取得/未資格、body対応不足、宣言型不正、対象不一致、同Ref相反、未形成/集約条件不足の原左右値/presence/locator。domain missing/unknownとは別。新public codeではない。",
+        "unfinished_obligation_refs": "同callの元gap提案/元kind traceにある当該未完義務の全原Ref/順序/反復と返却対応を保持する。候補分類や別field成功で消込しない。",
+        "multiple_support_observations": "同proposalで支持された全candidate_interpretationsのindexと各原命題Ref/原occurrenceを保持する。これは複数支持の観測であり、それだけを未形成/意味矛盾の原因にしない。元資料が候補命題間のmutually_exclusive等を実際に指定している範囲は、その原constraintのsource/body/左右Ref/原関係と両interpretation indexを別に保持する。必要な元資料が未形成ならその原原因を局所に保存する。原関係のないrole組合せの互換性/排他性をラベルから発明せず、支持済み候補も未形成候補も個別に残す。"
+      },
+      "owners": "定義/knowledge版不足の根拠はBRAIN、同field定義があり原案件値が未決の根拠はHARNESS008、原適用contract不整合はHARNESSへの候補材料として保持する。混合原因は独立に返し、元proposal.backflow_ownerだけを信用せず各原因/原版/scope/義務へ対応を返す。具体recipient資格/Backflow ticket発行/要求合意は生成せず、ticket発行はOSへ残す。",
+      "locality": "不成立source/命題は当該field/proposal/roleに局所化し、成立した兄弟を返す。分類/集約の未形成があってもraw value/reason/presenceと前段の独立project valueを失わない。別template成功又は上位aggregateで不足を相殺しない。",
+      "cause_vocabulary": [
+        "input_unobserved",
+        "target_unformed",
+        "source_unresolved",
+        "source_unusable",
+        "source_body_mismatch",
+        "body_unformed",
+        "target_mismatch",
+        "owner_binding_unestablished",
+        "owner_mismatch",
+        "statement_source_conflict",
+        "content_unresolved",
+        "proposition_operand_unresolved",
+        "constraint_mismatch",
+        "aggregation_unestablished"
+      ],
+      "cause_boundary": "上記は私有基本viewの局所原因の閉集合で、native/public Finding code/stateではない。各causeは対象field/proposal/role/原Ref-indexとrequested/reached locator、左右原値/presenceを持つ。kind差はoriginal_kind_differenceとして原値とともに別観測し、支持された意味を未決へ置換する原因にしない。 複数role支持それ自体はcauseではなくmultiple_support_observationsに置く。実際の原constraint/源資料の未形成又は既知不一致は既存の該当causeで出現単位に保存し、他の支持済みinterpretationを消さない。",
+      "basis_occurrence_index_contract": {
+        "namespace": "definition_evidence_resultsの各resultとgap_evidence_resultsの各resultはそれぞれ独立したbasis_occurrences配列を持つ。当該result内の全basis_occurrence_indicesは、その配列に実在するentryへの0-based indexだけを指す。別resultの表、native collection index、source/bodyの元index、proposition_occurrence_index又はcandidate interpretation indexを代入しない。",
+        "entry_fields": {
+          "role": "当該元read occurrenceの定義/値又は原命題roleと、このresultのconstraint/operandへの対応用途。原roleの所在もoperand_locator等へ保持し、表の追加から意味分類を発明しない。",
+          "original_ref": "operand_locatorで実際に読んだ原full Ref全値。record.ref/source_refへ勝手に置換せず、原record自体のfull Refもrecord_locatorから辿れる全原値として保持する。",
+          "record_collection": "元入力のaxis_facts/semantic_records/当該policy/義務等の実record collection名。新native collectionを作らない。",
+          "record_index": "当該元collection内で実際に取得したrecordの0-based原index。basis配列indexと別。",
+          "record_locator": "同validated.input rootの当該実record所在。",
+          "source_ref": "当該実SourceEnvelope.refの原full Ref全値。original_refとは別の原役割。",
+          "source_index": "元sources配列内の実sourceの0-based原index。",
+          "source_locator": "同validated.input rootの実SourceEnvelope node所在。Ref.source_locator member又はbasis配列indexと混同しない。",
+          "body_record_index": "当該source.body.records内の実body recordの0-based原index。",
+          "body_record_locator": "同validated.input rootの実/sources/{source_index}/body/records/{body_record_index}所在。原payloadはその/payloadに対応する。",
+          "operand_locator": "この根拠を読む契機となった元field/ref列又は原命題/constraintのRef member等の実所在。複数roleで同recordを使う場合も各元operandとの対応を残す。"
+        },
+        "original_occurrences": "実際に取得して元record/source/bodyの対応所在を保持できた出現を表へ置く。未取得source/body又は未到達Refに架空entry/indexを作らず、元観測と局所未形成へ保持する。表への収載だけで意味支持を認定せず、各judgmentが既存guardで使用した根拠だけをそのbasis_occurrence_indicesへ結ぶ。",
+        "multiplicity_and_order": "同じ元occurrenceの反復、同値複写、複数role/元operandとの対応を黙って一件へ潰さずentryとして保持する。表はcommon_target_guardsの第6項（/field_semantic_evidence_contract/common_target_guards/5）の元出現順を壊さず、意味分類のため新sort/dedup/priorityを導入しない。",
+        "finite_oracle_and_detail_boundary": "L9が明示する固定basis_occurrences表の配列順とindex期待は当該有限caseの表だけへ適用する。全入力で異なるread groupを連結する具体writer順序/全leaf writer/型はL5/L8で閉じる残務であり、このindex namespace追補で全域writerを完成扱いしない。"
+      }
+    },
+    "detail_and_consumer_boundary": [
+      "L5/L8で全private型、全guardと分岐、出現index/各leaf writer、field単位集約、原原因/全返却oracleを具体化する。未定義のvalidate_semantics/classifyGap又は任意oracle boolへ意味判定を隠さない。",
+      "compare_requirement_gapsの詳細返却はcomparisonとowner_materialを同walkで実返却し、原input/Binding未形成ではComparison.input_bindingを捏造しないclosed未形成境界を持たせる。内部originを保持するだけではconsumer受け渡し成立としない。",
+      "CORE caller実context/返却へpayload/reason/presence/根拠/原義務を運ぶtyped outputをL5/L8で閉じる。B019 core_field_value_contextと030 Definition/ProductValueのquery/field/knowledge版への具体crosswalkは各独立pairの残務とし、本節を追加して成立済みにしない。",
+      "旧normal/ADD16の原input/旧期待はe4410407の固定歴史資料として保持する。旧rawに無い定義根拠/値宣言/原命題を遡って存在させず、同rawの未形成と根拠を持つ新正常を独立期待として区別する。旧known保存のための無宣言fallbackはしない。",
+      "実source/owner資格/実provider/認可/配送/OS記録/codec/runtime/CI/実受入/全92親430義務の成立を認定しない。"
+    ],
+    "legacy_preserve_change": {
+      "legacy_sources": [
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": "16–60,81–92",
+          "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "lines": "33–77",
+          "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+        }
+      ],
+      "failure_source": "既存failure_basisの旧predecessor audit UTW-014（欠損→空集合）、UTW-020（部分原因をaggregateへ隠す）、UTW-021（自己申告completion）を意味根拠とは別の失敗対応として読む。",
+      "preserve": "template定義と製品instance/原値、原field/意味owner/要否/trace、個別unknown/N/A理由/再評価、原版/source/未完とderived viewの分離、原F05の4候補と返却先。",
+      "change": "旧registry/planner/式木/runtimeを移植せず、現SemanticRecord/SourceEnvelope上へ局所定義命題と原質問/排他/導出/非適用関係を技術的logical bodyとして表す。全inventory完備性/新owner/承認gateは追加しない。",
+      "reason": "前段は原payloadの所在を決めるが、meaning全体の取得だけで定義存在/不在又は4分類は定まらない。原意味を有限body/対象operandへ束縛して、source取得不成立とdomain不足及び分類不明の混同を防ぐ。"
+    },
+    "role_owner_binding": {
+      "common": "意味bodyのwrapper.ref.ownerと実SourceEnvelope.ref.owner/既存qualificationの元owner対応を保持し、以下の当該operand Ref ownerとの対応を照合する。FieldInput.ref.ownerとの一律一致は要求しない。qualification有効だけで任意ownerを当該意味ownerへしない。既存直接対応が無い場合に新delegation/role registry/trust rootを補完しない。原owner/authority又はrelationの入力が未供給ならowner_binding_unestablished、供給された当該roleの全ownerと既知に異なればowner_mismatchとして局所未形成を返す。",
+      "definition": "当該field.template_ref、同field.binding.knowledge_ref、同field.definition_refsにある対応済み原Refのownerのいずれかへ原定義命題source ownerが対応する範囲。knowledge_refが元nullでも、当該template又は局所definition Refに直接対応する根拠を別に利用できる。template/knowledgeの版とfull bindingを併せて照合し、同じowner名だけで別field/scopeへ転用しない。",
+      "product_value_basis": "当該field.value_fact_refsの実対応Ref又は同field.binding.requirement_refのownerが、前段の値原意味宣言/元value source ownerへ対応する範囲。当該role/form/value_roleの原宣言も別に必要で、定義Ref owner又はfield.ref.ownerから案件値のconcrete/undecided意味を生成しない。",
+      "question": "当該原GapProposal.ref.ownerと原question命題source ownerの対応。対象不足の定義/案件値根拠は上記各role owner対応を別に満たす。COREが質問候補を持つことをknowledge定義/案件値の裁定権へしない。",
+      "contradiction": "原constraint source ownerは同constraintの実左右原命題Refのowner又は当該field.binding.application_contract_ref.ownerへ対応する範囲。左右本文の元source ownerは各原Refのownerへ個別に対応させる。field/binding/版/原排他関係まで同時に対応させ、owner名の一致だけでは矛盾を生成しない。",
+      "derived_requirement_candidate": "原導出constraint source ownerは実antecedent要求Refのowner又は当該field.binding.application_contract_ref.ownerへ対応する範囲。原候補本文source ownerはproposed_requirement_ref.owner、原提案命題source ownerはGapProposal.ref.ownerへ対応させる。原要求から候補本文への構造対応は別guardであり、候補を要求authorityにしない。",
+      "na_candidate": "原N/A候補命題source ownerは当該GapProposal.ref.owner、原N/A判断source ownerは当該NARecord.ref.owner、原policy source ownerは当該ApplicationPolicy.ref.ownerへ個別に対応する範囲。deciderの文字列だけで資格/権限を生成しない。"
     }
   }
 }
