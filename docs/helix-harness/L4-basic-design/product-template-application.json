@@ -4050,7 +4050,7 @@
     "private_declaration_body_contract": {
       "status": "本節で設計する新しいlogical body/data contract。載せるwrapperは既存SemanticRecord/SourceEnvelopeのまま。正式profile正本/実producer及びこの宣言を意味解釈するnative詳細writerが既存にあるとは主張しない。",
       "location": "同ApplicationInput.semantic_recordsの既存SemanticRecord wrapper（ref/binding/kind/meaning/source_ref）に載せる。kind=field_material_projection_declaration、meaningに下記宣言内容を保持する。対応source bodyは既存collection=semantic_recordsのbody.records/{r}/payloadへ、ref/binding/kind/meaningを原値で保持しsource_refだけenvelope側へ外付けする。新collection名/未知native typeをresolverが受理すると仮定しない。",
-      "producer_responsibility": "対象資料の意味を持つ既存ownerが、自己の原source宣言として供給するか、その原役割を示す独立契約/sourceを供給する。consumerが値の形から宣言を自動生成しない。新しいissuer/registry/owner役割を定義しない。",
+      "producer_responsibility": "対象資料の意味を持つ既存ownerが、自己の原source宣言として供給するか、その原役割を示す独立契約/sourceを供給する。consumerが値の形から宣言を自動生成しない。新しいissuer/registry/owner役割を定義しない。 これは既存ownerの原意味を読む私有の設計責務であり、新しい要求の採択、承認者、供給義務の上流変更又は人間gateを追加する記述ではない。原宣言又は独立根拠がまだ無い対象はその未成立を残す。",
       "declaration_fields": {
         "binding": "対象の原ApplicationBinding。既存の要求/製品scope/工程・適用contract/template/knowledge版の対応を保存する。",
         "field_ref": "この宣言が対象とする既存FieldInput.refの原full Ref。文字列field名から生成しない。",
@@ -4089,14 +4089,14 @@
       {
         "form": "axis_value",
         "source": "対象AxisFactの原valueとreason。body対応は同原source recordsのpayload.value/payload.reason。",
-        "required_basis": "同field/material/role/bindingへ対応した原宣言又は既存原役割契約がaxis_valueを指定している範囲。 既存AxisFactのvalue/reasonというnative member宣言とFieldInputの原role/Ref/binding/source対応がその独立根拠を満たす範囲では、新宣言recordをさらに一律必須にしない。",
+        "required_basis": "同field/material/role/bindingへ対応した原宣言又は既存原役割契約がaxis_valueを指定している範囲。 既存AxisFactのvalue/reasonというnative member宣言とFieldInputの原role/Ref/binding/source対応がその独立根拠を満たす範囲では、新宣言recordをさらに一律必須にしない。 native memberの所在だけでproduct_valueのconcrete_value/undecided_value意味を確定しない。宣言を省けるのは既存原役割契約が当該値意味と理由出所まで実際に示す場合だけであり、未供給ならraw value/reasonを保持してその意味投影を未成立とする。",
         "payload": "valueはAxisFact.value全体を無変換copy。objectにvalue keyがあっても再unwrapしない。reasonは原reason memberの値/presenceと所在を別に保持。",
         "null_rule": "原value=nullも実値として保持する。concrete_valueとして許されるnullかundecided_valueなのかは原意味宣言に従い、nullだけで自動判定しない。"
       },
       {
         "form": "semantic_whole",
         "source": "対象SemanticRecordの原meaning全体。body対応は同原source recordsのpayload.meaning。",
-        "required_basis": "原役割契約又は同対象宣言がmeaning全体を当該definition又は案件値として指定している範囲。",
+        "required_basis": "原役割契約又は同対象宣言がmeaning全体を当該definition又は案件値として指定している範囲。 definition_refsが指す有資格のSemanticRecordでは、本私有段階の定義資料はその原meaning全体であり、原Ref列のdefinition役割とnative meaning memberをwhole所在の根拠にする。これは定義内容の妥当性又はnative definition_state=knownを自動認定する規則ではない。product_value側では同じRef列の役割だけでwholeとenvelopeを選べず、原形/値意味/理由出所を別に確定する必要がある。この差は同名keyやkindからでなく、定義資料のwhole保持と案件値の意味投影という異なる出力責務に由来する。",
         "payload": "scalar/null/list/objectを含むmeaning全体を無変換copy。meaning内部にvalue/reasonがあっても通常のraw object値として扱い、子keyの値を選ばない。",
         "null_rule": "meaning=nullの実presenceを保持。原宣言がconcrete_valueを示すnull値とundecided_valueを区別し、未知の宣言をnull有効又は値未決へ補完しない。"
       },
@@ -4105,7 +4105,7 @@
         "source": "原宣言が当該SemanticRecord.meaningのvalue/reason二memberを値/理由carrierとして指定する。原meaning全体も必ず保存する。",
         "required_basis": "同対象の原source宣言又は元役割を示す独立根拠がenvelope形とvalue_role/reason_roleを指定している範囲だけ。definition側の同kind recordへ適用しない。",
         "payload": "meaningが実objectのときだけ/value、/reasonの各原memberをpresenceごと別観測する。key不在と実null、型外reasonを潰さず、再帰unwrap/未知key除去/別bodyからの理由補完はしない。",
-        "null_rule": "value_role=undecided_valueの実value=nullと、value_role=concrete_valueの有効null案件値は別の原意味宣言。適用される原enumが未供給、又はreason_role=envelope_reasonが指定した原reason memberが未供給なら当該投影未成立であり、案件値unknownを生成したことにはしない。reason_role=no_reasonは元理由memberの不在を保つ正当な宣言であり、その不在だけで投影を拒否しない。"
+        "null_rule": "value_role=undecided_valueの実value=nullと、value_role=concrete_valueの有効null案件値は別の原意味宣言。適用される原enumが未供給、又はreason_role=envelope_reasonが指定した原reason memberが未供給なら当該投影未成立であり、案件値unknownを生成したことにはしない。reason_role=no_reasonは元理由memberの不在を保つ正当な宣言であり、その不在だけで投影を拒否しない。 この形のpayloadには原meaning.value memberの供給が必要である。member不存在は明示nullでも未決値でもなく、宣言がundecided_valueであっても投影未成立として原meaning/宣言/absenceを残す。concrete_value/undecided_valueの宣言をvalueそのものの供給へ代用しない。"
       }
     ],
     "ordered_source_materialization": [
@@ -4129,7 +4129,7 @@
     },
     "failure_and_consumer_boundary": {
       "no_fabricated_shortage": "source/投影根拠の未供給を、定義がない又は案件値unknownと断定しない。原sourceが明示する欠落/未決と、consumerが未接続である事実を分離する。",
-      "independent_causes": "同fieldの定義原資料に既知相反があり、値sourceが独立に未観測なら双方を保存する。同じ親未観測を子ごとの新不足へ複写しない。無関係fieldの対応済み材料は残す。",
+      "independent_causes": "同fieldの定義原資料に既知相反があり、値sourceが独立に未観測なら双方を保存する。同じ親未観測を子ごとの新不足へ複写しない。無関係fieldの対応済み材料は残す。 別Refの複数値は各原record/宣言/値の投影とfield全体の集約を分ける。値が異なるだけでは複数値許容/cardinality/元制約が不明であり、fieldのconflict・gap候補又は返却先をここで決定しない。全左右値/所在を保持し、集約条件が未形成の当該fieldはfield-level projection_established=falseとして後続state writerへ渡す。これは新しいnative state値ではない。",
       "owner_return": "定義/knowledge版不足はBRAIN、製品要求値未決はHARNESS008、適用契約不整合はHARNESSという原F05責務を保持。B019がCOREへ渡す不足素材はこの最終返却先を置換せず、ticket発行はOS。",
       "030_boundary": "030 ProductValueのstate/value/reasonを本節のform名/原kind/state文字列の類似から生成しない。具体crosswalk・同query/field関係・030全入力/全返却のwriterと対oracleは後続。"
     },

@@ -81195,7 +81195,7 @@
             "document_id": "HELIX-HARNESS-L4-009",
             "candidate_local_pointer": "/contracts/4/source_result_reference_projection",
             "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
-            "candidate_l4_bytes_sha256": "bb35082e1b3bdb5d9d13d950fbf3513cea035e3600bcd9d019e4f70c7a8ec5b6",
+            "candidate_l4_bytes_sha256": "5ee0d3afc633493bb2f6e70f716db0bdaa81f7888166674f2ea706a4c362128d",
             "candidate_l4_path": "docs/helix-harness/L4-basic-design/product-template-application.json"
           },
           "expectation_basis": "L3/L10 F03にある根拠・適用範囲・不足の返却義務と、L4の必須軸、順序付きcondition pair、Presence<JsonValue>診断規則を用いる。各probeのrawと全返却期待はcase内に保持し、local先固定履歴はGit上の時系列証明とは区別する。",
@@ -131696,9 +131696,9 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "bb35082e1b3bdb5d9d13d950fbf3513cea035e3600bcd9d019e4f70c7a8ec5b6",
+        "sha256": "5ee0d3afc633493bb2f6e70f716db0bdaa81f7888166674f2ea706a4c362128d",
         "pointer": "/field_source_materialization_contract",
-        "canonical_sha256": "83fd93a83ed5a85500c434ae5a5da1d88d2dbc101b8a72a89ce0bbd35d67c1cb",
+        "canonical_sha256": "d270da3b599b3b4dfe77af81959860d29c19c732acc44746af7274df89cb4e86",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
       },
       {
@@ -131720,16 +131720,18 @@
       {
         "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
         "revision": "legacy-generation-2026-09-14",
-        "line": "30,37,85-91",
+        "line": "23–30,36–41,58–60,80–91",
         "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
-        "retained_ja": "identityや所在を意味の代替にせず、必須fieldとtraceを明示し、欠損を空集合や合格へ丸めない。",
-        "changed_ja": "今回のL9材料は旧規則のcopyではなく、承認済みL3/L10 F05と現行対条件からsource role/value projectionを具体化する。"
+        "retained_ja": "template JSONを構造的意味の正本とし、Markdown等をderived viewとして直接編集しないこと（23–30）、各componentの責務とfailure境界（36–41）、back-propagationをfinding/proposalとして戻すこと（58–60）、unknownをfalseへ丸めず評価errorとすること、およびcompletionに必須field/trace/unresolved条件を含めること（80–91）。",
+        "changed_ja": "今回のL9材料は旧規則のcopyではなく、承認済みL3/L10 F05と現行対条件からsource role/value projectionを具体化する。旧template registry、式木、runtimeは移植しない。"
       },
       {
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
         "revision": "legacy-generation-2026-07-20",
-        "line": "80",
-        "finding": "UTW-014 absence blindness"
+        "line": "80,86–87",
+        "finding": "別の歴史的failure evidence。UTW-014はsource loaderの欠損→空集合化、UTW-020は巨大aggregateによる部分失敗診断の粗さ、UTW-021は時刻/prose/自己申告へ戻るcompletion evidenceの弱さを記録する。旧設計文書の引用とは分離する。",
+        "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+        "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
       },
       {
         "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
@@ -131748,14 +131750,14 @@
         "canonical_sha256": "bbfd828c27e52d0743e820705e2bf7ae3321de2ca44acab8e9991fbd6d436dbd"
       }
     ],
-    "finite_source_boundary_ja": "projection_source_library内のcase-authored synthetic logical fixturesは、pinned normal/ADD16 sourcesに元から存在するという主張ではない。各宣言entryはL4指定どおりSemanticRecord wrapper (ref/binding/kind/meaning/source_ref) とSourceEnvelope.ref/body.records配列内の{collection:\"semantic_records\",ref,payload}を完全値で対にし、同じmeaningをbody payloadへ置く。source_origin_map.literal_source_library_pointerが実際にRFC copyしたlibrary nodeを示し、original_source_occurrence/declaration_for_source_occurrenceは原資料位置を装うものではなくケース内の説明ラベルである。pinned_source_pointerだけがL8の対象revision/path内の実原資料位置を示す。これらのfixture値をnative collectionとして受理するschema・資格・producer・decoder・deliveryは未成立。",
+    "finite_source_boundary_ja": "projection_source_library内のcase-authored synthetic logical fixtureは、固定normal/ADD16 sourceに元から含まれるとの主張ではない。各宣言entryはL4指定どおりSemanticRecord wrapper (ref/binding/kind/meaning/source_ref) とSourceEnvelope.ref/body.records配列内の{collection:\"semantic_records\",ref,payload}を完全値で対にし、同じmeaningをbody payloadへ置く。source_origin_map.literal_source_library_pointerはRFC copyしたlibrary nodeの実所在を示す。original_source_occurrence/declaration_for_source_occurrenceは原資料位置を装うpointerではなく、case内の説明用labelである。pinned_source_pointerだけがL8の固定revision/path内の原資料nodeを指す。これらfixture値をnative collectionとして受理するschema・資格・producer・decoder・deliveryは未成立である。",
     "return_contract_ja": [
       "各FieldInputの定義と製品値を別roleで返す。original binding、field identity、source Ref/occurrence/scope、raw payload、宣言wrapper/meaning/bodyのpresence/type、locator、null role、source count、unfinished obligationを保持する。",
-      "有限caseのstateは独立宣言とpayloadに従う。Case 0はAxisFact.value全nodeのconcrete object（内部nullを含む）、Case 1はmeaning.valueのdeclared concrete string、Case 2はADD16由来のundecided null、Case 6はcase-authored synthetic declared concrete nullを区別する。definitionにはvalue_roleを適用しない。これらのstateはfinite fixture expectationsでありnative qualified resultではない。有限caseを全域規則へ一般化しない。",
-      "相反する同field sourceは全occurrenceを保持しconflict。invalid declaration、absent target/source、foreign scopeはprojection未成立。未知や未宣言をdefinition missing/value unknownへ自動変換しない。",
-      "成功した兄弟の材料を返しても、別fieldの未完義務を消さない。COREの不足材料とBRAIN030-F02 ProductValue論理材料は同fieldのraw value/presence/reason/Refs/binding/scope/occurrenceを保つ必要情報の期待例で、native typed output/adapterの実装済証拠ではない。",
+      "有限caseの状態期待は独立に固定した各fixtureだけに適用する。Case 0はAxisFact.value全体の具体値（内部nullを含む）、Case 1はmeaning.valueに明示された具体文字列、Case 2はADD16の明示された未決null、Case 6はcase-authored synthetic宣言による具体nullを区別する。定義側の意味全体を原Ref列とnative meaning所在から読むことは、nativeのdefinition_state=knownを認定することではない。product_valueの役割宣言はdefinitionには適用しない。これらは有限fixtureの期待で、native資格済み結果ではなく、他の入力へ一般化しない。",
+      "同一Refの原source・binding・版・scope間の相反と、同じfield/material/roleに対する宣言の相反は該当投影を未成立として全出現を保持する。別Refの値が異なる場合は各Refの投影とfield全体の集約を分ける。値の違いだけではfield単位の相反、gap候補、返却先を決めない。集約条件が未確定のfieldはprojection_established=false、state=nullの局所未成立として後続へ渡す。invalid declaration、対象source/値memberの不在、foreign scopeも局所投影未成立とし、要求の定義欠落や案件値unknownへ自動変換しない。",
+      "成功した兄弟の材料を返しても、別fieldの未完義務を消さない。COREの不足材料とBRAIN030-F02 ProductValue論理材料は同fieldのraw value/presence/reason/Refs/binding/scope/occurrenceを保つ必要情報の期待例で、native typed output/adapterの実装済証拠ではない。 この配列と各candidate_view_boundaryはBRAIN030-F02 ProductValueに必要となる情報の有限な候補viewであり、native ProductValue型の実返却や状態writerの結果を示さない。",
       "COREの不足返却はHARNESS008の最終Backflow/agreementではなく、OS ticket発行・停止理由保持・再開記録でもない。",
-      "known/unknown/unresolved等は各caseの固定された有限logical fixtureに対する独立期待である。source qualificationはunestablishedであり、native F05 resultはnot established。"
+      "known/unknown/unresolved等の状態語は、各caseの固定logical fixtureに対する独立期待であり、native状態の認定ではない。source資格は未成立、native F05結果も未成立である。"
     ],
     "cases": [
       {
@@ -132640,7 +132642,7 @@
                 "null_evidence": {
                   "member_presence": "present",
                   "member_value": null,
-                  "meaning": "unknown only because explicit declaration names this member and its null meaning"
+                  "meaning": "この有限fixtureでは、明示宣言がこのmemberとnullの意味を指定していることだけを理由にunknownとする。"
                 },
                 "projection_operand_pointer": "/projection_operand/semantic_records/1",
                 "source_body_record_pointer": "/projection_operand/sources/1/body/records/0/payload",
@@ -133601,9 +133603,9 @@
                 "source_body_record_pointer": "/projection_operand/sources/0/body/records/0/payload"
               },
               "product_value": {
-                "materialization": "conflict",
+                "materialization": "unestablished",
                 "projection_established": false,
-                "state": "conflict",
+                "state": null,
                 "value": null,
                 "source_presence": "multiple_present",
                 "raw_payloads": [
@@ -133657,41 +133659,6 @@
                   "tenant": "SYNTHETIC-T",
                   "environment": "SYNTHETIC-E"
                 },
-                "classification": "conflict",
-                "backflow_owner": "unknown",
-                "gap_candidate": {
-                  "classification": "conflict",
-                  "axis": "field.value",
-                  "state": "conflict",
-                  "backflow_owner": "unknown"
-                },
-                "provenance_source_refs": [
-                  {
-                    "identity": "source-synthetic-core-owner",
-                    "revision": "synthetic-A",
-                    "scope": {
-                      "product": "SYNTHETIC-P",
-                      "tenant": "SYNTHETIC-T",
-                      "environment": "SYNTHETIC-E"
-                    },
-                    "owner": "synthetic-core-owner",
-                    "source_locator": null,
-                    "sha256": null
-                  },
-                  {
-                    "identity": "source-synthetic-core-owner",
-                    "revision": "synthetic-A",
-                    "scope": {
-                      "product": "SYNTHETIC-P",
-                      "tenant": "SYNTHETIC-T",
-                      "environment": "SYNTHETIC-E"
-                    },
-                    "owner": "synthetic-core-owner",
-                    "source_locator": null,
-                    "sha256": null
-                  }
-                ],
-                "source_occurrence": null,
                 "projection_operand_sources": [
                   {
                     "original_source_occurrence": {
@@ -133723,6 +133690,164 @@
                     "record_pointer": "/projection_operand/axis_facts/1",
                     "reason_member_pointer": "/projection_operand/axis_facts/1/reason",
                     "presence": "absent"
+                  }
+                ],
+                "individual_source_projection_observations": [
+                  {
+                    "projection_established": true,
+                    "raw_value": {
+                      "value": "left"
+                    },
+                    "source_occurrence": {
+                      "collection": "axis_facts",
+                      "index": 1,
+                      "pointer": "/axis_facts/1/value"
+                    },
+                    "source_value_pointer": "/projection_operand/axis_facts/0/value",
+                    "declaration_ref": {
+                      "identity": "projection-declaration-axis-fact-B1",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "declaration_operand_pointer": "/projection_operand/semantic_records/1",
+                    "declaration_source_body_record_pointer": "/projection_operand/sources/2/body/records/0/payload",
+                    "record_ref": {
+                      "identity": "axis-fact-B1",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "source_body_record_pointer": "/projection_operand/sources/1/body/records/0/payload",
+                    "record_source_ref": {
+                      "identity": "source-synthetic-core-owner",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "record_source_ref_pointer": "/projection_operand/axis_facts/0/source_ref",
+                    "source_envelope_ref": {
+                      "identity": "source-synthetic-core-owner",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "source_envelope_ref_pointer": "/projection_operand/sources/1/ref",
+                    "declaration_source_envelope_ref": {
+                      "identity": "source-synthetic-declaration-04-00-00",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "declaration_source_envelope_ref_pointer": "/projection_operand/sources/2/ref"
+                  },
+                  {
+                    "projection_established": true,
+                    "raw_value": {
+                      "value": "right"
+                    },
+                    "source_occurrence": {
+                      "collection": "axis_facts",
+                      "index": 2,
+                      "pointer": "/axis_facts/2/value"
+                    },
+                    "source_value_pointer": "/projection_operand/axis_facts/1/value",
+                    "declaration_ref": {
+                      "identity": "projection-declaration-axis-fact-B2",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "declaration_operand_pointer": "/projection_operand/semantic_records/2",
+                    "declaration_source_body_record_pointer": "/projection_operand/sources/3/body/records/0/payload",
+                    "record_ref": {
+                      "identity": "axis-fact-B2",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "source_body_record_pointer": "/projection_operand/sources/1/body/records/1/payload",
+                    "record_source_ref": {
+                      "identity": "source-synthetic-core-owner",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "record_source_ref_pointer": "/projection_operand/axis_facts/1/source_ref",
+                    "source_envelope_ref": {
+                      "identity": "source-synthetic-core-owner",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "source_envelope_ref_pointer": "/projection_operand/sources/1/ref",
+                    "declaration_source_envelope_ref": {
+                      "identity": "source-synthetic-declaration-04-00-01",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "declaration_source_envelope_ref_pointer": "/projection_operand/sources/3/ref"
                   }
                 ]
               }
@@ -134251,7 +134376,7 @@
               "consumer": "BRAIN030-F02 ProductValue logical material",
               "projection_established": false,
               "source_presence": "multiple_present",
-              "source_role_declaration_presence": null,
+              "source_role_declaration_presence": "present",
               "value_locator": null,
               "value_state": null,
               "value": null,
@@ -134325,7 +134450,8 @@
                 "tenant": "SYNTHETIC-T",
                 "environment": "SYNTHETIC-E"
               },
-              "why_state_alone_is_insufficient": "元値/理由/Presence/Ref/binding/occurrenceがないと、unknownと既知object全体、あるいは投影未成立を区別できない。"
+              "why_state_alone_is_insufficient": "元値/理由/Presence/Ref/binding/occurrenceがないと、unknownと既知object全体、あるいは投影未成立を区別できない。",
+              "candidate_view_boundary": "BRAIN030-F02へ渡す情報の有限候補viewであり、native ProductValue出力や状態判定ではない。"
             },
             {
               "consumer": "BRAIN030-F02 ProductValue logical material",
@@ -135680,7 +135806,7 @@
                 "null_evidence": {
                   "member_presence": "present",
                   "member_value": null,
-                  "meaning": "unknown only because explicit declaration names this member and its null meaning"
+                  "meaning": "この有限fixtureでは、明示宣言がこのmemberとnullの意味を指定していることだけを理由にunknownとする。"
                 },
                 "projection_operand_pointer": "/projection_operand/semantic_records/0",
                 "source_body_record_pointer": "/projection_operand/sources/0/body/records/0/payload",
@@ -136318,7 +136444,7 @@
         ]
       }
     ],
-    "completion_boundary_ja": "この節は7件の有限なlogical inputとreturn expectationを扱う。標準RFC 6902 copyだけで、明示した一つのenvelopeから共有source libraryを各case operandへ組み立て、原source値はexpected.input_echo内へ一度だけ保持する。stateの期待は独立literalである。source qualificationは全caseで未成立、native F05 resultも未成立である。pinned_source_pointerを持つcaseだけがL8の固定revision/pathにあるsource nodeを利用し、その他はcase作成のsynthetic library literalを使う。候補writer/reader/codec/model/validator/testは実行していない。production schema/profile producer、資格、実配送、normal全経路成功、L5 whole-state writer、OS ticket、HARNESS008最終Backflow、要求合意、採用、PO受入の成立を示さない。既存のL9 F05 negative casesおよび元case群は変更していない。",
+    "completion_boundary_ja": "この節は7件の有限なlogical inputと独立return expectationを扱う。標準RFC 6902 copyだけで、明示した一つのenvelopeから共有source libraryを各case operandへ組み立て、原source値はexpected.input_echo内へ一度だけ保持する。状態期待は独立literalである。source資格は全caseで未成立、native F05結果も未成立である。pinned_source_pointerを持つcaseだけがL8の固定revision/pathにあるsource nodeを利用し、その他はcase-authored synthetic library literalを使う。候補writer/reader/codec/model/validator/testは実行していない。正式schema/profile producer、資格、実配送、normal全経路成功、L5 whole-state writer、OS ticket、HARNESS008最終Backflow、要求合意、採用、PO受入の成立を示さない。既存のL9 F05 negative casesおよび元case群は変更していない。",
     "execution_state": "not_executed",
     "condition_coverage": {
       "L3_L10_F05_obligations": [
@@ -136368,6 +136494,16 @@
         "HARNESS-L9-009-F05-NEG-05",
         "HARNESS-L9-009-F05-NEG-06",
         "HARNESS-L9-009-F05-NEG-07"
+      ],
+      "unexercised_L4_branches_ja": [
+        "semantic_whole形の原meaning全体をproduct_valueとして投影する条件。",
+        "axis_reasonを理由として使うreason_roleの条件。",
+        "宣言のないaxis_valueで、原役割契約だけから意味投影できる場合とできない場合。",
+        "同一field/material/roleに対する同値反復宣言と、適用される宣言memberの相反。",
+        "宣言payload_formと実carrier、またはreason_roleと原reason出所が一致しない場合。",
+        "definition側に新しい論理宣言が存在する場合。",
+        "validated.input=nullで原issuesと未観測を保持する場合。",
+        "同一Refが複数bindingまたは別occurrenceに現れる場合。"
       ]
     },
     "shared_input_context": {
@@ -136465,7 +136601,10 @@
       "qualification": "projection_operand.qualification_roots/qualificationsは明示empty、source qualificationはunestablished。既知/未知というstate labelは有限の独立期待値で、native qualification・adoption・native F05 resultを主張しない。",
       "bytes": "各fixture SourceEnvelope.content_bytesはそのliteral bodyのcompact UTF-8 JSON表記、Ref.sha256=null、qualification_ref=null。したがってdigest/qualification/trustを主張しない。",
       "expected_trace": "expected.source_occurrenceとsource_origin_map.original_source_occurrenceは各caseのsource label。actual operand traceはprojection_operand_pointer/source_body_record_pointerとliteral_source_library_pointer、実際に固定L8 nodeを利用した箇所だけpinned_source_pointerで示す。raw payloadはexpected.input_echo内に一度だけ置き、期待state/value/presence/role/locatorはindependent literalに保つ。product_value.reason_presenceはsourceのreason member presenceを示し、raw valueは実在時だけreason_source_observationsに記録する。AxisFact.value内のdomain objectにあるreason keyはAxisFact.reasonとは区別する。",
-      "pinned_source": "pinned_source_pointer resolves inside docs/helix-harness/L8-unit-verification/product-template-application.json at fixed revision 6802cc295b6747b98101898c47bb865c7ec6bcd7; outer input object identity/hash is carried in source_basis. Other source entries are case-authored synthetic literals."
+      "pinned_source": "pinned_source_pointerは、revision 6802cc295b6747b98101898c47bb865c7ec6bcd7時点のdocs/helix-harness/L8-unit-verification/product-template-application.json内を指す。外側input objectのidentity/hashはsource_basisに記録する。その他のsource entryはcase-authored synthetic literalである。この有限viewでdefinitionのmeaning全体を原Refと所在に対応づけられても、それだけでnative F05のdefinition_state=knownやBRAIN030 ProductValueを生成・認定しない。",
+      "candidate_view_boundary": "brain030_product_value_material_candidatesは、後続consumerが必要とする原値・理由・presence・Ref・binding・scope・occurrenceを示す有限の候補viewである。native BRAIN030 ProductValueの型、field状態、受理済みdeliveryまたはwriter出力ではない。",
+      "producer_boundary": "宣言供給を既存ownerの原資料に求める記述は、この私有projection設計の具体化である。要求の意味、承認者、上流の供給義務、人間gateを新設・変更しない。",
+      "definition_state_label": "有限期待のdefinition.state=\"known\"は、原definition Refに対応するSemanticRecord.meaning全体の所在を示すだけである。定義内容の妥当性、完備性、native F05のdefinition_state=known、またはBRAIN030 ProductValueの状態を認定しない。"
     },
     "projection_source_library": {
       "status": "finite literal source material for selected F05 projection views; this library is not itself an ApplicationInput and does not imply qualification",
