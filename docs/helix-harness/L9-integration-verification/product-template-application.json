@@ -81195,7 +81195,7 @@
             "document_id": "HELIX-HARNESS-L4-009",
             "candidate_local_pointer": "/contracts/4/source_result_reference_projection",
             "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
-            "candidate_l4_bytes_sha256": "5ee0d3afc633493bb2f6e70f716db0bdaa81f7888166674f2ea706a4c362128d",
+            "candidate_l4_bytes_sha256": "567e54f9daa772d91a757e354512f58aaae316580804a31bf11868cc416ec67b",
             "candidate_l4_path": "docs/helix-harness/L4-basic-design/product-template-application.json"
           },
           "expectation_basis": "L3/L10 F03にある根拠・適用範囲・不足の返却義務と、L4の必須軸、順序付きcondition pair、Presence<JsonValue>診断規則を用いる。各probeのrawと全返却期待はcase内に保持し、local先固定履歴はGit上の時系列証明とは区別する。",
@@ -131696,9 +131696,9 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "5ee0d3afc633493bb2f6e70f716db0bdaa81f7888166674f2ea706a4c362128d",
+        "sha256": "567e54f9daa772d91a757e354512f58aaae316580804a31bf11868cc416ec67b",
         "pointer": "/field_source_materialization_contract",
-        "canonical_sha256": "d270da3b599b3b4dfe77af81959860d29c19c732acc44746af7274df89cb4e86",
+        "canonical_sha256": "83f26c1ae5d5cd09ff95d2f0b1bec4fad700874a76dd13fa5bae2f6b5a3968b1",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
       },
       {

@@ -4138,7 +4138,7 @@
       "normal": "固定source_basisのnormal semantic_records/9はfield-definition、meaning={meaning:合成operation結果を識別する欄}。/10はfield-value、meaning={value:synthetic-result}。同じkind=synthetic-original-meaningでも原FieldInputのdefinition/value Ref列が役割を分ける。",
       "add16": "固定CORE-ADD-INPUT-16のsemantic_records/10はvalue=nullとreason=synthetic project value unobservedを明示し、既存ADD-16はdefinition known/value unknownを期待する。normal/ADD-16のexact source/ref/role/原recipe全値の範囲だけenvelope表現の対照とする。",
       "no_generalization": "この有限表現のvalue/reason keyを任意SemanticRecord.meaningの一般意味規則へしない。明示原役割根拠のない同形object、同名kind、別scope/版へ転用しない。",
-      "baseline_preservation": "既存normalのknownとADD-16のunknownの全入力/期待は現行のまま保持し歴史化しない。新caller/投影材料を実際に接合した場合のnative出力全値への影響は未検証であり、差があれば具体原値/条件として後続対照へ返す。"
+      "baseline_preservation": "本L4/L9追補では既存normal/ADD-16の原入力と期待bytesを変更しない。これは、その期待が未供給のprofile/原意味宣言を備えること、又は将来の詳細writerにも同じknown/unknownを返させる互換義務を意味しない。詳細writerを具体化する時は、原入力/旧期待をexact revisionで歴史資料として保全し、必要な宣言・意味根拠を持つ新正常及び同rawの未成立を識別する対照期待を原要求/原意味から別途定める。新sourceを元fixtureへ遡って存在したことにせず、差分の原値/条件/理由を記録する。"
     },
     "next_detail_obligations": [
       "既存F05のdefinition_state/value_state全域writerとclosed私有型/引数/返却順、原qualification unknownと案件値unknownの分離、複数source/同値反復/相反/presence/理由の全field writerをL5/L8へ具体化する。",
