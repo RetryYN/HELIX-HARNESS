@@ -5477,8 +5477,8 @@
       },
       "ContextMetadataComparison": {
         "member": "4固定member名。",
-        "source": "原source metadata実Field又は最寄りparent。role不一致でもnode_observation_usableなら観測。",
-        "declared": "原port metadata実Field又は最寄りparent。",
+        "source": "原source metadata実Field又は最寄りparent。role不一致でもnode_observation_usableなら観測。 未観測source親の選択とnamespace/固定fieldはmetadata_unobserved_operandsに従う。",
+        "declared": "原port metadata実Field又は最寄りparent。 未観測declared親の選択とnamespace/固定fieldはmetadata_unobserved_operandsに従う。",
         "raw_equal": "独立RawPresence比較。",
         "grade": "metadata内容のknown比較、他unknown。",
         "issues": "同値なら空、既知異値conflict1件、未成立unresolved1件。同一表現不整合の内訳は原nodeに保持しmetadata原因へまとめ重複しない。"
@@ -5716,7 +5716,7 @@
     "issue_emission_and_suppression": [
       "発火順は8slotの最初のselection原因→各slot4metadata→32leaf順である。wrong roleはsource_role_mismatchだけを発火し、status unresolvedだからと別のselector unknown/selection_unresolvedを発火しない。index/raw不整合等で選択終了した時は未読role相反を推定しない。",
       "source bodyがselectionによって遮断された時、source_parent_unobserved/source_member_unresolvedやsource政策unknownを同じ原因として追加しない。selection原issueとblocked_by_selection=true、原node/portは保存済み。独立したconsumer親/member不足・known false+nonnullは継続して診断する。",
-      "metadata pairの左原値が同じselection原因で未観測ならgradeはunknownでもその派生port_source_binding_unresolvedを追加しない。右declared metadataに独立した欠落/不整合があれば、その右原parent/memberの原因として保持する。role不一致でもnode_observation_usableならmetadata実Fieldを観測比較し、独立known差/不足は維持する。",
+      "metadata pairの左原値が同じselection原因で未観測ならgradeはunknownでもその派生port_source_binding_unresolvedを追加しない。右declared metadataに独立した欠落/不整合があれば、その右原parent/memberの原因として保持する。role不一致でもnode_observation_usableならmetadata実Fieldを観測比較し、独立known差/不足は維持する。 port親自体が同じselection原因で未観測の場合とmetadata親単位の重複抑止はmetadata_unobserved_operandsに明記する。",
       "表現不整合をその実parent/Fieldで記録した時、そのために読めなかったchildをさらにparent/member不足として二重発行しない。実Absent/null/unknown childを観測できた場合の不足と、人工child未観測を区別する。",
       "同一slot内の同じ最初の原parent/member読取失敗が複数row/pairへ影響する場合、原因を(slot, namespace, その原logical accessor, 失敗の分類)で識別し、原順で最初に影響したpair/leafへissueを1回だけ割り当てる。後続row/pairは原operand/unknown寄与を保持してissuesへ同じ派生原因を複写しない。これは純計算内の重複抑止規則で、新source registry/gateではない。pointer文字列やowner/refの一致だけで別occurrence/別side/別memberの原因を併合しない。",
       "parent原因と独立したconsumer側の原因、別memberの既知相反、同leafでも別namespace/実side由来のfalse+nonnull等は全て保持する。metadata issueをleafへ複写しない。policy差はbool leafのみissueを持ちtenant leafへgrade-only寄与する。environment traceとleafに保持した同一issueをglobalへ二回連結しない。"
@@ -5815,6 +5815,41 @@
       "source_pointer": "上のnearest_parentの原pointerをcopy。子pointerを作らない。",
       "os_environment_trace": "selected_scope_fieldと同じparent/namespace規則で、source_accessorのみaccessor_construction.environment_trace_osの同side literal。",
       "meaning_preserved": "選択原因からの派生unknown issueを追加せず、元selection issueと独立consumer原因を保持する。source資格/認可や新たなgateを生成しない。"
+    },
+    "metadata_unobserved_operands": {
+      "scope": "4metadata比較の未観測operandの著述。body選択とは別で、node_observation_usable=trueならrole不一致でも実metadataを通常規則で読む。source/declaredの未知から実Field childを人工生成しない。",
+      "unobserved_literals": {
+        "kind": "unobserved",
+        "field": null,
+        "native_profile": null,
+        "presence_observed": false,
+        "presence": null,
+        "content_state": "parent_unobserved",
+        "value": null,
+        "blocked_by_selection": false
+      },
+      "source_when_node_unusable": {
+        "condition": "occurrence.node_observation_usable=false",
+        "nearest_parent": "occurrence.nodeが非nullならその原Materialized node全値。node=nullならinputの同slot原Materialized port全値。",
+        "namespace": "nodeが非nullならowner_source_input、node=nullならport_input。",
+        "source_accessor": "accessor_construction.metadata_sourceの固定slot/member展開。",
+        "source_pointer": "上記nearest_parent.pointerの原値copy。未読のmetadata子pointerを作らない。"
+      },
+      "declared_when_port_unreadable": {
+        "nearest_parent": "inputの同slot原Materialized port全値。",
+        "namespace": "port_input",
+        "source_accessor": "accessor_construction.metadata_declaredの固定slot/member展開。",
+        "source_pointer": "その原port.pointerをcopy。"
+      },
+      "declared_when_metadata_parent_unreadable": {
+        "condition": "port親は観測可能で実declared_metadata Materialized nodeがあるが、その親が未観測/表現不整合。",
+        "nearest_parent": "その原declared_metadata Materialized node全値。",
+        "namespace": "port_input",
+        "source_accessor": "accessor_construction.metadata_declaredの固定slot/member展開。",
+        "source_pointer": "その原metadata親.pointerをcopy。"
+      },
+      "issue_suppression": "slotのport_parent_unreadableと同じ原port親の欠落/不整合はsource/declared両側metadataへ派生した同じ原因であり、追加port_source_binding_unresolvedを出さない。4pairは全て保持してgrade=unknown。同じselectionから独立したdeclared_metadata親/memberの不足・不整合は従来どおり保持する。",
+      "parent_cause_identity": "同じ未観測metadata親が4pairへ影響するときの原logical accessorはその親まで（例input.{slot}.fields.declared_metadata）。memberごとの人工child到達式ではなく原親の原因を一つとして、metadata_order先頭の影響pairにissueを保持する。独立した各memberの実Field不足は各memberの原因のまま。"
     }
   }
 }
