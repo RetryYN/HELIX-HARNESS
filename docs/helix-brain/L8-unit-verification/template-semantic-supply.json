@@ -20443,7 +20443,7 @@
       "document_id": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
       "pointer": "/wire_codec_contract/schema",
       "canonical_sha256": "535d8f0b8f2e71c709e66418fa079cb4f757a7a6d0530b50267a452d74036640",
-      "candidate_current_file_sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
+      "candidate_current_file_sha256": "1410760643573271c88b74bcb00dbe9babec543b62c594e2bb81dd4736664a2b",
       "candidate_current_schema_canonical_sha256": "ace94a797cce9f3b0ead1f9a909eef564b08bbdcfc6ba6ef0d5ffbd60fe21f66",
       "candidate_note": "既存canonical pinは歴史的参照として保持。二つのnullable結果memberを含む現在candidate schemaの静的照合用。"
     },
@@ -21864,7 +21864,7 @@
       "QUALIFICATION-NORMAL": "root/source原契約未供給なら形成立のみ",
       "QUALIFICATION-ROOT-ABSENT": "独立root欠落を自己補充しない"
     },
-    "completion_limit": "schema整合・固定rawの構文/供給形/期待値とsource byte hashの静的照合のみ。実codec、正式資格供給元/実custody/独立review、L6関数設計/L7関数検証、層外実装前test/oracle凍結→Red→Green→Refactor、全92親430対と実装Readyは未成立。 小数/指数（1.0・1e0・0.1）、1e400の具体数値表現とencodeへの非JSON値入力は、具体parser/host値型/encode入口未選定により期待stageと失敗条件の範囲未固定。unfixed_numeric_and_encode_rangeに保持し、27固定rawと整数対照の合格からこの範囲の完了を生成しない。",
+    "completion_limit": "schema整合・固定rawの構文/供給形/期待値とsource byte hashの静的照合のみ。実codec、正式資格供給元/実custody/独立review、L6関数設計/L7関数検証、層外実装前test/oracle凍結→Red→Green→Refactor、全92親430対と実装Readyは未成立。 numeric_carrier_verificationに小数/指数・bool/整数metadata・原字句・host token/value相反等の有限projection期待10件を固定したが、全codec返却whole/全数値域/実adapterを閉じていない。large exponent/resource/全encode非JSON域はunfixed_numeric_and_encode_rangeへ保持し、27既存例又は新10条件の件数から完了を生成しない。",
     "presence_contract": "decoded各caseのexpected_presenceは、既存input_structure_verificationの{pointer,state}と同じ形の列。宣言memberを原供給構造の各所在で列挙する。supplied構造object/配列要素の宣言memberへ再帰し、absent/nullの内側objectを創作しない。RawValue mapのopaque keyは宣言memberへ拡張しない。各pointerは原順序indexとRFC6901 escaping。presenceもencode/decode往復の比較対象。",
     "unfixed_numeric_and_encode_range": [
       {
@@ -21874,8 +21874,8 @@
           "{\"scope\":1e0}",
           "{\"scope\":0.1}"
         ],
-        "expected_stage": "not_fixed",
-        "reason": "JSON number値を丸めない規則は保持するが、lexeme保存とexact数値carrier/具体parserの対応は未選定。整数fixture成功をこの範囲の実証にしない。"
+        "expected_stage": "partially_fixed_projection_expectations",
+        "reason": "今回の私有exact数値profileに対するC01/C02/C10等の有限入力・projection期待はnumeric_carrier_verificationへ固定した。全小数/指数域・全codec返却field・実adapter/実行の完了ではない。整数fixtureだけでこの範囲を完了にしない。"
       },
       {
         "range": "large_exponent",
@@ -21883,13 +21883,13 @@
           "{\"scope\":1e400}"
         ],
         "expected_stage": "not_fixed",
-        "reason": "JSON numberとしてのsyntaxと具体数値表現幅を分離する。float infinity化/JSON null化を成功へ丸めない。具体parser未選定のためdecode成功または理由付き表現不能失敗の対象条件は未固定。"
+        "reason": "JSON numberとしてのsyntaxと具体数値表現/資源域を分離する。私有exact数値方式はL5 numeric_carrier_profileで具体化したが、この1e400入力の成功又は理由付き表現不能失敗の全返却期待はまだ固定していない。float Infinity/null化を成功にしない。"
       },
       {
         "range": "encode_non_json_value",
         "input_examples_description": "JSON carrier外の値、非表現可能数値・文字列",
-        "expected_stage": "not_fixed",
-        "reason": "具体言語/host値型/encode入口と失敗分類の凍結が未成立。decode負例やshape_failedモデルでencode固有分岐を検証済みにしない。"
+        "expected_stage": "partially_fixed_projection_expectations",
+        "reason": "今回のhost carrier表現とtoken/value相反の単一失敗projectionはC07/C08で固定した。任意の非JSON host値・非表現可能数値/文字列・資源失敗の全返却域は未固定。decode負例だけでencode固有分岐を実証済みにしない。"
       }
     ],
     "builder_result_nullable_controls": {
@@ -83508,7 +83508,7 @@
     "candidate_L5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
       "base_revision": "fabd7834720a6ddc3f02553034de25b51ac4fc5a",
-      "file_sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
+      "file_sha256": "1410760643573271c88b74bcb00dbe9babec543b62c594e2bb81dd4736664a2b",
       "binding_kind": "current_working_file_bytes",
       "scope": "base_revisionのgit blobと同bytesという主張ではない。正式候補L5全bytesへ照合。"
     },
@@ -691174,7 +691174,7 @@
         },
         "L5": {
           "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
+          "sha256": "1410760643573271c88b74bcb00dbe9babec543b62c594e2bb81dd4736664a2b",
           "semantic_pointers": [
             "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/applicability/body/algorithm",
             "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/na_call_schedule",
@@ -691523,7 +691523,7 @@
           "L5": {
             "existing_L8_pointer": "/definition_meaning_walk_verification/current_source_basis_reconstruction/source_pins/L5",
             "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-            "sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577"
+            "sha256": "1410760643573271c88b74bcb00dbe9babec543b62c594e2bb81dd4736664a2b"
           },
           "L8_input_material": {
             "base_raw_input_canonical_sha256": "6cd0dc78d931154f9931f950a4fceca68806dde03f5da6a0a22deb7cbca3d084",
@@ -691618,5 +691618,1327 @@
         }
       }
     }
+  },
+  "numeric_carrier_verification": {
+    "id": "HELIXBRAIN-L8-032-EXACT-NUMERIC-CODEC",
+    "status": "原入力定数と手書きprojection期待10件の追補。候補実行・全codec返却whole・全数値域・実資格の完了ではない。",
+    "design_ref": {
+      "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointer": "/wire_codec_contract/numeric_carrier_profile",
+      "id": "HELIXBRAIN-L5-032-EXACT-NUMERIC-CODEC",
+      "binding_note": "同pairの現候補節を検証対象とする。自ファイルのcurrent SHAを本節で自己生成しない。"
+    },
+    "requirement_refs": [
+      "HELIXBRAIN-L3-032-F01",
+      "HELIXBRAIN-L3-032-F03",
+      "HELIXBRAIN-L3-032-F04",
+      "HELIXBRAIN-L3-032-F05",
+      "HELIXBRAIN-L3-032-F07",
+      "HELIXBRAIN-L3-032-N01",
+      "HELIXBRAIN-L3-032-N02"
+    ],
+    "system_oracle_refs": [
+      "HELIXBRAIN-L10-032-F01",
+      "HELIXBRAIN-L10-032-F03",
+      "HELIXBRAIN-L10-032-F04",
+      "HELIXBRAIN-L10-032-F05",
+      "HELIXBRAIN-L10-032-F07",
+      "HELIXBRAIN-L10-032-N01",
+      "HELIXBRAIN-L10-032-N02"
+    ],
+    "source_basis": [
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "pointer": "/requirements/0",
+        "canonical_sha256": "ebc2da3936a606c23ff1c2e08eefd549eb99d2cb51e45cc17e4cd003663cda35"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "pointer": "/requirements/2",
+        "canonical_sha256": "93b39b1ea026f5612778723b5d37f6ee527d8c40c463438f3ab7dbb68ffe23e5"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "pointer": "/requirements/3",
+        "canonical_sha256": "390ebf2ef95297e3e5a92953ced6e11bea20b67872df46bc16b8c4b4dacd0772"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "pointer": "/requirements/4",
+        "canonical_sha256": "8031f597a4a329d36a8d011f817ff9415e41d7a1d4da14c572b82e128711eeb7"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "pointer": "/requirements/6",
+        "canonical_sha256": "7dce3a2032a47efb9e1f84c405490dab93da3a4fdb07f216c92a84a3b7c6c17c"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+        "sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9",
+        "pointer": "/requirements/0",
+        "canonical_sha256": "de8c3d4e53c0b8c4cf0c43bc9cb90430c23f9ed96d6a81cc6c44cca68b538905"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+        "sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9",
+        "pointer": "/requirements/1",
+        "canonical_sha256": "f0d6f9144bf520ab710d4e8123a518245d404e5d697ed4d9a6599b400c8716fb"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+        "pointer": "/cases/0",
+        "canonical_sha256": "ee86fd3f61e9252dbc07b2d92b6dbb571820e7cf3cf4fcfefe2941333cedffd2"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+        "pointer": "/cases/2",
+        "canonical_sha256": "30e2b6c86cb68df1a4ba4a9583c30af421ec84b5e5a7640b608956df27c945ae"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+        "pointer": "/cases/3",
+        "canonical_sha256": "d4d7ffc68d7396d92d86e02a764de50dd8bfc0bbb0f269c3d32a268047fd3420"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+        "pointer": "/cases/4",
+        "canonical_sha256": "cfa8fc2a5e9a23bdc55890925d6b8a20e33b16afd8c897f3a2e7f3191cc0522f"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+        "pointer": "/cases/6",
+        "canonical_sha256": "5f50afa77e347bfae8e3cd628236ca399e15ac5314bc50bf06edd3280f672732"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+        "sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba",
+        "pointer": "/cases/0",
+        "canonical_sha256": "e00b4bb11cfc69b34e50a0333fb0b5efce59e5de7086041df781edd3eeb07d84"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+        "sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba",
+        "pointer": "/cases/1",
+        "canonical_sha256": "38231e93eae445b7a4327fd4c6ecd431eb35b36701544fcfa4fce456b13851ae"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "4ef60d6c0d15fa0339f525ad92c5754994dc83b56bb70b3397635e74c9bd88c2",
+        "pointer": "/contracts/2",
+        "canonical_sha256": "ebeaa7deee5bd9e479440c65ca23a1b56ab1d32458d63a0668670f2e8b5b1389"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "4ef60d6c0d15fa0339f525ad92c5754994dc83b56bb70b3397635e74c9bd88c2",
+        "pointer": "/contracts/4",
+        "canonical_sha256": "e702f7c288c183c27253fac65769aae1cf68582289b6a28e60958ba89be730ed"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "4ef60d6c0d15fa0339f525ad92c5754994dc83b56bb70b3397635e74c9bd88c2",
+        "pointer": "/contracts/5",
+        "canonical_sha256": "1bbe2096d66ed8d7f101ea86877df9245d7ea4c3ef70c117d84c06458b1dcc95"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "4ef60d6c0d15fa0339f525ad92c5754994dc83b56bb70b3397635e74c9bd88c2",
+        "pointer": "/contracts/6",
+        "canonical_sha256": "4ed612c915a4c30f1e7f1e6f8d09c00b93e2ef8c02d9fa6431b8de8c17b416d8"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "4ef60d6c0d15fa0339f525ad92c5754994dc83b56bb70b3397635e74c9bd88c2",
+        "pointer": "/contracts/11",
+        "canonical_sha256": "54226d80b7340e014e142ff65c805710884383ac02f03d5417d66aedf14565b7"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "4ef60d6c0d15fa0339f525ad92c5754994dc83b56bb70b3397635e74c9bd88c2",
+        "pointer": "/contracts/12",
+        "canonical_sha256": "3994410ceccd2d73d893c62243385e70dc1ab8f2069938dddd624ba6fa5afc20"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
+        "pointer": "/wire_codec_contract",
+        "canonical_sha256": "84d8739febfaa53ed24bed77e7dd6fbb345a0b96bf6ace59ecca8f59d0bd612d"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
+        "pointer": "/wire_codec_contract/schema/$defs/Ref",
+        "canonical_sha256": "567f39178b42bdb4bbcd93eb5eedbcddb962717e7c561fddcaa28c881112800d"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
+        "pointer": "/wire_codec_contract/schema/$defs/RawValue",
+        "canonical_sha256": "1b18ddf7a04ca743d13e6d856c0f5232fff918606df723711664bb6f2f7ddfb7"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
+        "pointer": "/wire_codec_contract/schema/$defs/InputIssue",
+        "canonical_sha256": "71ba36237e114230a9fdd09e40d914daa0a158b07fd381d2ad245ba108cbf824"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
+        "pointer": "/wire_codec_contract/schema/$defs/SupplyAnalysis",
+        "canonical_sha256": "9d4354f48ee83a653aee40abbc42201d1a1f25e24debb92672fdbbbebcb20ebe"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
+        "pointer": "/source_return_contract/pure_reference_notation/primitive_operators/json_equal",
+        "canonical_sha256": "de622d28611f226861643ce53862ba6a31f3029d00a40f3cfcc8eca8bda68473"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "sha256": "60922f1486221706581266a9855957e535e6449f96a357a51d74c47e0981f5c5",
+        "pointer": "/wire_codec_verification/cases/7",
+        "canonical_sha256": "b4e4aee5c6571721e89c3813e3558b4d5544b6db3438b2bf5bceb5e2efcc4806"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "sha256": "60922f1486221706581266a9855957e535e6449f96a357a51d74c47e0981f5c5",
+        "pointer": "/wire_codec_verification/cases/26",
+        "canonical_sha256": "a88f39d634d8806bb864f943ea7167b6729132b7601e34ec6028736e62ce73e1"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "sha256": "60922f1486221706581266a9855957e535e6449f96a357a51d74c47e0981f5c5",
+        "pointer": "/wire_codec_verification/encoder_obligations",
+        "canonical_sha256": "191dbb3b187c031f58a5a458c3826aa37189a69615c12dc39291e38e79e873a9"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "sha256": "60922f1486221706581266a9855957e535e6449f96a357a51d74c47e0981f5c5",
+        "pointer": "/wire_codec_verification/presence_contract",
+        "canonical_sha256": "b003a847f30a9d333626bc292baaae422bb959c8bbb2724bb0a1f27363e04307"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "sha256": "60922f1486221706581266a9855957e535e6449f96a357a51d74c47e0981f5c5",
+        "pointer": "/wire_codec_verification/unfixed_numeric_and_encode_range",
+        "canonical_sha256": "c31f431da2df4f25e85e842ab2f359ade4c8b7b4b716e9924da7a068aad3c46a"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "sha256": "335a1b7ae3b75ba0061620dadcc0c296ba07f266561060c5454ece96eabee00c",
+        "pointer": "/cases/2",
+        "canonical_sha256": "fdfbdc716d6d31844b24b4a2f77158b7f21ba11ca46f6c1eceaa8fd175d6e784"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "sha256": "335a1b7ae3b75ba0061620dadcc0c296ba07f266561060c5454ece96eabee00c",
+        "pointer": "/cases/11",
+        "canonical_sha256": "c61163de3fb9f7e2b034215e1a6f76779c60d9f55a4ac1b271af4ad81113a7d0"
+      },
+      {
+        "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "sha256": "335a1b7ae3b75ba0061620dadcc0c296ba07f266561060c5454ece96eabee00c",
+        "pointer": "/cases/12",
+        "canonical_sha256": "be27218b27d47b2eb4727c6e26c19cdb536a6d1691bb919abae5a3cb6847eb9b"
+      }
+    ],
+    "authoring_boundary": {
+      "source_first": "原L3/L10→L4/L9→固定L5 wire/equalityと既存L8のstage/shapeから手書きした条件。原wire payloadを実decodeして期待を生成せず、candidate/reader/model/parser/validatorの結果を根拠にしていない。",
+      "expectation_kind": "全10件ともprojection expectation。numeric_occurrences/value_shape_literal/presence/比較期待と、選択した単一失敗のInputIssueを固定するが、PrivateDecodeResultの全presence/token走査ordinal又は出力octets全bytesなど全返却fieldのwholeは固定していない。",
+      "self_contained": "全新入力定数・期待・原Git revision/pointerを本節へ収載する。ignored local資料は履歴識別だけであり、検証時の必須読取/実行依存にしない。",
+      "numeric_notation": "exact_mathematical_decimal_textは数学値を表す十進説明文字列であり、実numberをwire stringへcastする指定ではない。numeric_occurrencesは手書き期待の原所在索引で、実NumericTokenOccurrence全fieldの代替ではない。",
+      "host_notation": "host_node_assignmentはvalue/tokenの私有型付きliteral説明。実wrapperをwireへobjectとして混入しない。元local条件のkind_literal=numberは型種の説明であり、現ExactJsonNumberの未宣言memberへしない。",
+      "ordinary_object": "kind/value/tokenというkeyを持つ普通のRawValue objectはそのままobject。名前だけでprivate wrapperへ変換/検査しない。",
+      "stage": "decoded/shape_failed/json_failedは既存L8の期待段階label。encode失敗には新public stageを追加せずwire_octets=nullと既存InputIssueを直接記す。",
+      "null_result": "decodeのvalue=nullだけで成功/失敗を判定しない。input_issues空なら許容されたJSON nullを含む成功、非空なら失敗null。固定5entryのroot object制約を広げず、Ref.scopeやSupplyAnalysis.bindingの正当なnullを失敗にしない。"
+    },
+    "writer_binding": {
+      "design_pointer": "/wire_codec_contract/numeric_carrier_profile/private_issue_writer",
+      "public_shape": "既存InputIssue {locator,reason:string,source_ref:Ref|null}のみ。新public code/reason enumを設けない。",
+      "source_ref_scope": "今回の外側wire decode及び未資格host encodeのInputIssue.source_refだけ実null。content_bytes内側strict parseの既知QualifiedSource.ref/資格/既存失敗帰属を上書きせず、内側adapter実接続を認定しない。",
+      "single_cause_scope": "C05/C06/C07の固定入力にある単一原因だけを1件へ写す。任意複数原因の全順序/重複規則をこの件数から一般化しない。",
+      "reason_binding_clarification": [
+        {
+          "condition": "B032-NUM-C05-BOOL-IS-NOT-INTEGER-METADATA",
+          "reason_pointer": "/wire_codec_contract/numeric_carrier_profile/private_issue_writer/reason_literals/boolean_integer_mismatch",
+          "literal": "整数を要するmemberへbooleanが供給されている。"
+        },
+        {
+          "condition": "B032-NUM-C06-EQUAL-NUMBER-ESCAPED-DUPLICATE-NAME",
+          "reason_pointer": "/wire_codec_contract/numeric_carrier_profile/private_issue_writer/reason_literals/duplicate_decoded_key",
+          "literal": "JSON objectに同じdecoded keyが重複する。"
+        },
+        {
+          "condition": "B032-NUM-C07-HOST-CARRIER-TOKEN-VALUE-CONFLICT",
+          "reason_pointer": "/wire_codec_contract/numeric_carrier_profile/private_issue_writer/reason_literals/number_token_value_conflict",
+          "literal": "JSON数値carrierの字句と値が相反する。"
+        }
+      ],
+      "clarification_note": "独立条件の値同値/失敗/所在期待は保持し、準備段階の別技術理由文字列を正式pairの現L5私有writerへ束縛する。reason全体をenum化せず、過去の原InputIssue.reasonを変更しない。"
+    },
+    "cases": [
+      {
+        "id": "B032-NUM-C01-EQUAL-SPELLINGS",
+        "operations": [
+          "decode",
+          "json_equal",
+          "encode_then_decode"
+        ],
+        "input": {
+          "entry_type": "Ref",
+          "schema_binding": {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/schema",
+            "entry_point": "/wire_codec_contract/entry_points/Ref"
+          },
+          "raw_utf8": "{\"scope\":[1,1.0,1e0]}",
+          "raw_utf8_sha256": "0d3165068b72e1e89119af18b4ce307b2918dbacd81164dce940f479ae4a8826"
+        },
+        "expected": {
+          "stage": "decoded",
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "value_shape_literal": {
+            "root_member_keys": [
+              "scope"
+            ],
+            "scope_kind": "array",
+            "scope_child_kinds": [
+              "number",
+              "number",
+              "number"
+            ]
+          },
+          "numeric_occurrences": [
+            {
+              "pointer": "/scope/0",
+              "original_token_text": "1",
+              "exact_mathematical_decimal_text": "1"
+            },
+            {
+              "pointer": "/scope/1",
+              "original_token_text": "1.0",
+              "exact_mathematical_decimal_text": "1"
+            },
+            {
+              "pointer": "/scope/2",
+              "original_token_text": "1e0",
+              "exact_mathematical_decimal_text": "1"
+            }
+          ],
+          "expected_presence": [
+            {
+              "pointer": "/identity",
+              "state": "absent"
+            },
+            {
+              "pointer": "/revision",
+              "state": "absent"
+            },
+            {
+              "pointer": "/scope",
+              "state": "supplied"
+            },
+            {
+              "pointer": "/owner",
+              "state": "absent"
+            },
+            {
+              "pointer": "/source_locator",
+              "state": "absent"
+            },
+            {
+              "pointer": "/sha256",
+              "state": "absent"
+            }
+          ],
+          "codec_input_issues": [],
+          "original_octets_retained_exact": true,
+          "semantic_comparisons": [
+            {
+              "left": "/scope/0",
+              "right": "/scope/1",
+              "equal": true
+            },
+            {
+              "left": "/scope/1",
+              "right": "/scope/2",
+              "equal": true
+            },
+            {
+              "left": "/scope/0",
+              "right": "/scope/2",
+              "equal": true
+            }
+          ],
+          "roundtrip": "key集合/presence/配列順とJSON number値を保持。外側bytes完全一致は要求しない。"
+        },
+        "design_ref": "HELIXBRAIN-L5-032-EXACT-NUMERIC-CODEC",
+        "expectation_kind": "projection_expectation_not_complete_codec_return",
+        "execution_state": "not_executed",
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "candidate_l5_target_pointers": [
+          "/wire_codec_contract/numeric_carrier_profile/number_rules/value_equality",
+          "/wire_codec_contract/numeric_carrier_profile/decode_steps",
+          "/wire_codec_contract/numeric_carrier_profile/encode_steps"
+        ],
+        "normative_basis": [
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/presence_and_value/numbers"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/schema/$defs/Ref"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/schema/$defs/RawValue"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/codec_operations/0"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/codec_operations/1"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/source_return_contract/pure_reference_notation/primitive_operators/json_equal"
+          }
+        ]
+      },
+      {
+        "id": "B032-NUM-C02-DISTINCT-CLOSE-DECIMALS",
+        "operations": [
+          "decode",
+          "json_equal"
+        ],
+        "input": {
+          "entry_type": "Ref",
+          "schema_binding": {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/schema",
+            "entry_point": "/wire_codec_contract/entry_points/Ref"
+          },
+          "raw_utf8": "{\"scope\":[0.1,0.10000000000000001]}",
+          "raw_utf8_sha256": "8e881409c2360b02746b02608aa6dff665719d9e72504ccff8f2875c6865eaa3"
+        },
+        "expected": {
+          "stage": "decoded",
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "value_shape_literal": {
+            "root_member_keys": [
+              "scope"
+            ],
+            "scope_kind": "array",
+            "scope_child_kinds": [
+              "number",
+              "number"
+            ]
+          },
+          "numeric_occurrences": [
+            {
+              "pointer": "/scope/0",
+              "original_token_text": "0.1",
+              "exact_mathematical_decimal_text": "0.1"
+            },
+            {
+              "pointer": "/scope/1",
+              "original_token_text": "0.10000000000000001",
+              "exact_mathematical_decimal_text": "0.10000000000000001"
+            }
+          ],
+          "expected_presence": [
+            {
+              "pointer": "/identity",
+              "state": "absent"
+            },
+            {
+              "pointer": "/revision",
+              "state": "absent"
+            },
+            {
+              "pointer": "/scope",
+              "state": "supplied"
+            },
+            {
+              "pointer": "/owner",
+              "state": "absent"
+            },
+            {
+              "pointer": "/source_locator",
+              "state": "absent"
+            },
+            {
+              "pointer": "/sha256",
+              "state": "absent"
+            }
+          ],
+          "codec_input_issues": [],
+          "original_octets_retained_exact": true,
+          "semantic_comparisons": [
+            {
+              "left": "/scope/0",
+              "right": "/scope/1",
+              "equal": false
+            }
+          ],
+          "forbidden_alternative": "binary float丸めで同じ値にした成功、数値文字列化、null化。"
+        },
+        "design_ref": "HELIXBRAIN-L5-032-EXACT-NUMERIC-CODEC",
+        "expectation_kind": "projection_expectation_not_complete_codec_return",
+        "execution_state": "not_executed",
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "candidate_l5_target_pointers": [
+          "/wire_codec_contract/numeric_carrier_profile/number_rules/factory",
+          "/wire_codec_contract/numeric_carrier_profile/number_rules/value_equality"
+        ],
+        "normative_basis": [
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/presence_and_value/numbers"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/source_return_contract/pure_reference_notation/primitive_operators/json_equal"
+          }
+        ]
+      },
+      {
+        "id": "B032-NUM-C03-BOOL-NUMBER-DISTINCT",
+        "operations": [
+          "decode",
+          "json_equal"
+        ],
+        "input": {
+          "entry_type": "Ref",
+          "schema_binding": {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/schema",
+            "entry_point": "/wire_codec_contract/entry_points/Ref"
+          },
+          "raw_utf8": "{\"scope\":[true,1,false,0]}",
+          "raw_utf8_sha256": "a810f9c353475fbf93a45bd5a89100dfe112859a9a4abf3e9f6ee42711faed17"
+        },
+        "expected": {
+          "stage": "decoded",
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "value_shape_literal": {
+            "root_member_keys": [
+              "scope"
+            ],
+            "scope_kind": "array",
+            "scope_child_kinds": [
+              "boolean",
+              "number",
+              "boolean",
+              "number"
+            ],
+            "boolean_literals": [
+              {
+                "pointer": "/scope/0",
+                "value": true
+              },
+              {
+                "pointer": "/scope/2",
+                "value": false
+              }
+            ]
+          },
+          "numeric_occurrences": [
+            {
+              "pointer": "/scope/1",
+              "original_token_text": "1",
+              "exact_mathematical_decimal_text": "1"
+            },
+            {
+              "pointer": "/scope/3",
+              "original_token_text": "0",
+              "exact_mathematical_decimal_text": "0"
+            }
+          ],
+          "expected_presence": [
+            {
+              "pointer": "/identity",
+              "state": "absent"
+            },
+            {
+              "pointer": "/revision",
+              "state": "absent"
+            },
+            {
+              "pointer": "/scope",
+              "state": "supplied"
+            },
+            {
+              "pointer": "/owner",
+              "state": "absent"
+            },
+            {
+              "pointer": "/source_locator",
+              "state": "absent"
+            },
+            {
+              "pointer": "/sha256",
+              "state": "absent"
+            }
+          ],
+          "codec_input_issues": [],
+          "original_octets_retained_exact": true,
+          "semantic_comparisons": [
+            {
+              "left": "/scope/0",
+              "right": "/scope/1",
+              "equal": false
+            },
+            {
+              "left": "/scope/2",
+              "right": "/scope/3",
+              "equal": false
+            }
+          ],
+          "number_type_false_for": [
+            "/scope/0",
+            "/scope/2"
+          ]
+        },
+        "design_ref": "HELIXBRAIN-L5-032-EXACT-NUMERIC-CODEC",
+        "expectation_kind": "projection_expectation_not_complete_codec_return",
+        "execution_state": "not_executed",
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "candidate_l5_target_pointers": [
+          "/wire_codec_contract/numeric_carrier_profile/number_rules/allowed_number",
+          "/wire_codec_contract/numeric_carrier_profile/number_rules/value_equality"
+        ],
+        "normative_basis": [
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/schema/$defs/RawValue"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/source_return_contract/pure_reference_notation/primitive_operators/json_equal"
+          }
+        ]
+      },
+      {
+        "id": "B032-NUM-C04-NATIVE-INT-METADATA-ROUNDTRIP",
+        "operations": [
+          "encode",
+          "decode",
+          "json_equal"
+        ],
+        "input": {
+          "entry_type": "SupplyAnalysis",
+          "schema_pointer": "/wire_codec_contract/schema/$defs/SupplyAnalysis",
+          "json_carrier_literal": {
+            "binding": null,
+            "candidate_refs": [],
+            "comparisons": [],
+            "input_issues": [],
+            "source_refs": [],
+            "required_inputs": [],
+            "counterexamples": null,
+            "limits": {},
+            "side_effect_count": 0
+          },
+          "host_representation_annotations": [
+            {
+              "pointer": "/side_effect_count",
+              "host_type": "strict_native_int",
+              "literal_decimal": "0"
+            }
+          ],
+          "wire_text_counterpart": "{\"binding\":null,\"candidate_refs\":[],\"comparisons\":[],\"input_issues\":[],\"source_refs\":[],\"required_inputs\":[],\"counterexamples\":null,\"limits\":{},\"side_effect_count\":0}",
+          "wire_text_sha256": "651e41acab444a005e5e869fe506a2c07e7ff22c3aabb7e3b0b728eed5e6584d"
+        },
+        "expected": {
+          "encode_success": true,
+          "encoded_numeric_occurrences": [
+            {
+              "pointer": "/side_effect_count",
+              "emitted_token": "0"
+            }
+          ],
+          "decode_stage": "decoded",
+          "wire_shape_accepted": true,
+          "redecoded_number": {
+            "pointer": "/side_effect_count",
+            "original_token_text": "0",
+            "exact_mathematical_decimal_text": "0"
+          },
+          "semantic_equal_to_original_carrier": true,
+          "presence_equal_to_original": true,
+          "semantic_output_shape_literal": {
+            "binding": null,
+            "candidate_refs": [],
+            "comparisons": [],
+            "input_issues": [],
+            "source_refs": [],
+            "required_inputs": [],
+            "counterexamples": null,
+            "limits": {},
+            "side_effect_count": 0
+          },
+          "side_effect_count_numeric_domain": "numberかつinteger。boolではない。",
+          "meaning_completion_effect": "none"
+        },
+        "design_ref": "HELIXBRAIN-L5-032-EXACT-NUMERIC-CODEC",
+        "expectation_kind": "projection_expectation_not_complete_codec_return",
+        "execution_state": "not_executed",
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "candidate_l5_target_pointers": [
+          "/wire_codec_contract/numeric_carrier_profile/number_rules/allowed_number",
+          "/wire_codec_contract/numeric_carrier_profile/number_rules/integer_predicate",
+          "/wire_codec_contract/numeric_carrier_profile/number_rules/value_equality",
+          "/wire_codec_contract/numeric_carrier_profile/encode_steps"
+        ],
+        "normative_basis": [
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/schema/$defs/SupplyAnalysis"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/codec_operations/1"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/source_return_contract/pure_reference_notation/primitive_operators/json_equal"
+          }
+        ]
+      },
+      {
+        "id": "B032-NUM-C05-BOOL-IS-NOT-INTEGER-METADATA",
+        "operations": [
+          "decode",
+          "encode"
+        ],
+        "input": {
+          "entry_type": "SupplyAnalysis",
+          "schema_pointer": "/wire_codec_contract/schema/$defs/SupplyAnalysis",
+          "raw_utf8": "{\"binding\":null,\"candidate_refs\":[],\"comparisons\":[],\"input_issues\":[],\"source_refs\":[],\"required_inputs\":[],\"counterexamples\":null,\"limits\":{},\"side_effect_count\":true}",
+          "raw_utf8_sha256": "30e5d1218cd754e7f678afb90c33b64af5d59afe654a11a59a0ea69eba85fc23",
+          "json_carrier_literal": {
+            "binding": null,
+            "candidate_refs": [],
+            "comparisons": [],
+            "input_issues": [],
+            "source_refs": [],
+            "required_inputs": [],
+            "counterexamples": null,
+            "limits": {},
+            "side_effect_count": true
+          },
+          "host_representation_annotations": [
+            {
+              "pointer": "/side_effect_count",
+              "host_type": "boolean",
+              "literal": true
+            }
+          ]
+        },
+        "expected": {
+          "decode": {
+            "stage": "shape_failed",
+            "value": null,
+            "wire_shape_accepted": false,
+            "input_issue_locator": "/side_effect_count",
+            "input_issues": [
+              {
+                "locator": "/side_effect_count",
+                "reason": "整数を要するmemberへbooleanが供給されている。",
+                "source_ref": null
+              }
+            ]
+          },
+          "encode": {
+            "wire_octets": null,
+            "must_return_existing_InputIssue": true,
+            "same_schema_failure_subject": "/side_effect_count",
+            "input_issues": [
+              {
+                "locator": "/side_effect_count",
+                "reason": "整数を要するmemberへbooleanが供給されている。",
+                "source_ref": null
+              }
+            ]
+          },
+          "boolean_retained_as_original": true,
+          "must_not_substitute_native_integer_one_or_zero": true,
+          "meaning_completion_effect": "none"
+        },
+        "design_ref": "HELIXBRAIN-L5-032-EXACT-NUMERIC-CODEC",
+        "expectation_kind": "projection_expectation_not_complete_codec_return",
+        "execution_state": "not_executed",
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "candidate_l5_target_pointers": [
+          "/wire_codec_contract/numeric_carrier_profile/number_rules/integer_predicate",
+          "/wire_codec_contract/numeric_carrier_profile/private_issue_writer/reason_literals/boolean_integer_mismatch"
+        ],
+        "normative_basis": [
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/presence_and_value/numbers"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/schema/$defs/SupplyAnalysis/properties/side_effect_count"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/codec_operations/1"
+          }
+        ],
+        "existing_stage_basis": {
+          "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+          "document": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "pointer": "/wire_codec_verification/cases/26/expected"
+        }
+      },
+      {
+        "id": "B032-NUM-C06-EQUAL-NUMBER-ESCAPED-DUPLICATE-NAME",
+        "operations": [
+          "decode"
+        ],
+        "input": {
+          "entry_type": "Ref",
+          "schema_binding": {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/schema",
+            "entry_point": "/wire_codec_contract/entry_points/Ref"
+          },
+          "raw_utf8": "{\"scope\":{\"n\":1,\"\\u006e\":1.0}}",
+          "raw_utf8_sha256": "9c7170e6388da1375d48f058da6959750dec4fb415b25262f01c69cadd974bc0"
+        },
+        "expected": {
+          "stage": "json_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "input_issue_locator": "/scope/n",
+          "original_octets_retained_exact": true,
+          "duplicate_occurrences_literal": [
+            {
+              "object_pointer": "/scope",
+              "decoded_member_name": "n",
+              "raw_key_token": "\"n\"",
+              "value_token": "1",
+              "occurrence_index": 0
+            },
+            {
+              "object_pointer": "/scope",
+              "decoded_member_name": "n",
+              "raw_key_token": "\"\\u006e\"",
+              "value_token": "1.0",
+              "occurrence_index": 1
+            }
+          ],
+          "diagnostic_occurrence_retention": "両出現を残す。数値値同値だからという理由でdedup又はlast-wins成功にしない。",
+          "meaning_completion_effect": "none",
+          "input_issues": [
+            {
+              "locator": "/scope/n",
+              "reason": "JSON objectに同じdecoded keyが重複する。",
+              "source_ref": null
+            }
+          ]
+        },
+        "design_ref": "HELIXBRAIN-L5-032-EXACT-NUMERIC-CODEC",
+        "expectation_kind": "projection_expectation_not_complete_codec_return",
+        "execution_state": "not_executed",
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "candidate_l5_target_pointers": [
+          "/wire_codec_contract/numeric_carrier_profile/decode_steps/2",
+          "/wire_codec_contract/numeric_carrier_profile/private_issue_writer/reason_literals/duplicate_decoded_key"
+        ],
+        "normative_basis": [
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/codec_operations/0/steps/1"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/codec_operations/0/steps/3"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/source_return_contract/pure_reference_notation/primitive_operators/json_equal"
+          }
+        ],
+        "existing_stage_basis": {
+          "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+          "document": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "pointer": "/wire_codec_verification/cases/7/expected"
+        }
+      },
+      {
+        "id": "B032-NUM-C07-HOST-CARRIER-TOKEN-VALUE-CONFLICT",
+        "operations": [
+          "encode"
+        ],
+        "input": {
+          "entry_type": "Ref",
+          "json_carrier_base": {
+            "scope": null
+          },
+          "host_node_assignment": {
+            "pointer": "/scope",
+            "host_type": "ExactJsonNumber",
+            "members": {
+              "value": {
+                "notation": "finite_Decimal_exact_decimal_text",
+                "text": "1"
+              },
+              "token": "2"
+            }
+          },
+          "annotation_boundary": "私有host型ExactJsonNumberのvalue/tokenだけを著述する説明値。wire JSONへこのobjectを出さず、普通のRawValue objectと区別する。"
+        },
+        "expected": {
+          "wire_octets": null,
+          "must_return_existing_InputIssue": true,
+          "failure_subject_pointer": "/scope",
+          "must_not_repair_value_or_token": true,
+          "must_not_output_successful_number_two": true,
+          "meaning_completion_effect": "none",
+          "input_issues": [
+            {
+              "locator": "/scope",
+              "reason": "JSON数値carrierの字句と値が相反する。",
+              "source_ref": null
+            }
+          ]
+        },
+        "not_claimed": "新stage/code/reason enum又は新public carrierを追加する条件ではない。",
+        "design_ref": "HELIXBRAIN-L5-032-EXACT-NUMERIC-CODEC",
+        "expectation_kind": "projection_expectation_not_complete_codec_return",
+        "execution_state": "not_executed",
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "candidate_l5_target_pointers": [
+          "/wire_codec_contract/numeric_carrier_profile/private_types/ExactJsonNumber/invariant",
+          "/wire_codec_contract/numeric_carrier_profile/encode_steps/0",
+          "/wire_codec_contract/numeric_carrier_profile/private_issue_writer/reason_literals/number_token_value_conflict"
+        ],
+        "normative_basis": [
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/codec_operations/1/steps/0"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/codec_operations/1/steps/2"
+          }
+        ]
+      },
+      {
+        "id": "B032-NUM-C08-HOST-CARRIER-VALID-TOKEN-CONTROL",
+        "operations": [
+          "encode",
+          "decode",
+          "json_equal"
+        ],
+        "input": {
+          "entry_type": "Ref",
+          "json_carrier_base": {
+            "scope": null
+          },
+          "host_node_assignment": {
+            "pointer": "/scope",
+            "host_type": "ExactJsonNumber",
+            "members": {
+              "value": {
+                "notation": "finite_Decimal_exact_decimal_text",
+                "text": "1"
+              },
+              "token": "1.0"
+            }
+          },
+          "annotation_boundary": "私有host型ExactJsonNumberのvalue/tokenだけを著述する説明値。wire JSONへこのobjectを出さず、普通のRawValue objectと区別する。"
+        },
+        "expected": {
+          "encode_success": true,
+          "emitted_numeric_token_at_scope": "1.0",
+          "decoded_shape": {
+            "root_member_keys": [
+              "scope"
+            ],
+            "scope_kind": "number"
+          },
+          "redecoded_number": {
+            "pointer": "/scope",
+            "original_token_text": "1.0",
+            "exact_mathematical_decimal_text": "1"
+          },
+          "semantic_equal_to_original": true,
+          "expected_presence": [
+            {
+              "pointer": "/identity",
+              "state": "absent"
+            },
+            {
+              "pointer": "/revision",
+              "state": "absent"
+            },
+            {
+              "pointer": "/scope",
+              "state": "supplied"
+            },
+            {
+              "pointer": "/owner",
+              "state": "absent"
+            },
+            {
+              "pointer": "/source_locator",
+              "state": "absent"
+            },
+            {
+              "pointer": "/sha256",
+              "state": "absent"
+            }
+          ],
+          "meaning_completion_effect": "none"
+        },
+        "technical_expectation_limit": "原token再利用は選定候補の私有trace保証。外側wire bytes canonical化や全codec共通の新意味とはしない。",
+        "design_ref": "HELIXBRAIN-L5-032-EXACT-NUMERIC-CODEC",
+        "expectation_kind": "projection_expectation_not_complete_codec_return",
+        "execution_state": "not_executed",
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "candidate_l5_target_pointers": [
+          "/wire_codec_contract/numeric_carrier_profile/private_types/ExactJsonNumber/invariant",
+          "/wire_codec_contract/numeric_carrier_profile/encode_steps/1"
+        ],
+        "normative_basis": [
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/codec_operations/1/steps/2"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/source_return_contract/pure_reference_notation/primitive_operators/json_equal"
+          }
+        ]
+      },
+      {
+        "id": "B032-NUM-C09-PLAIN-OBJECT-IS-NOT-HOST-CARRIER",
+        "operations": [
+          "decode",
+          "encode_then_decode"
+        ],
+        "input": {
+          "entry_type": "Ref",
+          "schema_binding": {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/schema",
+            "entry_point": "/wire_codec_contract/entry_points/Ref"
+          },
+          "raw_utf8": "{\"scope\":{\"kind\":\"number\",\"value\":1,\"token\":\"2\"}}",
+          "raw_utf8_sha256": "6c9fc25fb1b7ef47b7d8e9e19ebc1d7952404887d01746d8a991c93bec1c4370"
+        },
+        "expected": {
+          "stage": "decoded",
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "value_shape_literal": {
+            "root_member_keys": [
+              "scope"
+            ],
+            "scope_kind": "object",
+            "scope_member_keys": [
+              "kind",
+              "value",
+              "token"
+            ],
+            "string_literals": [
+              {
+                "pointer": "/scope/kind",
+                "value": "number"
+              },
+              {
+                "pointer": "/scope/token",
+                "value": "2"
+              }
+            ]
+          },
+          "numeric_occurrences": [
+            {
+              "pointer": "/scope/value",
+              "original_token_text": "1",
+              "exact_mathematical_decimal_text": "1"
+            }
+          ],
+          "expected_presence": [
+            {
+              "pointer": "/identity",
+              "state": "absent"
+            },
+            {
+              "pointer": "/revision",
+              "state": "absent"
+            },
+            {
+              "pointer": "/scope",
+              "state": "supplied"
+            },
+            {
+              "pointer": "/owner",
+              "state": "absent"
+            },
+            {
+              "pointer": "/source_locator",
+              "state": "absent"
+            },
+            {
+              "pointer": "/sha256",
+              "state": "absent"
+            }
+          ],
+          "codec_input_issues": [],
+          "original_octets_retained_exact": true,
+          "must_not_recognize_host_carrier_from_member_names": true,
+          "must_not_fail_for_object_token_value_mismatch": true,
+          "roundtrip": "普通のRawValue objectのkey集合とstring/numberの別を保持する。"
+        },
+        "design_ref": "HELIXBRAIN-L5-032-EXACT-NUMERIC-CODEC",
+        "expectation_kind": "projection_expectation_not_complete_codec_return",
+        "execution_state": "not_executed",
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "candidate_l5_target_pointers": [
+          "/wire_codec_contract/numeric_carrier_profile/private_types/PrivateJsonValue",
+          "/wire_codec_contract/numeric_carrier_profile/encode_steps/0"
+        ],
+        "normative_basis": [
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/schema/$defs/RawValue/anyOf/5"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/presence_and_value/raw_maps"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/codec_operations/0/steps/3"
+          }
+        ]
+      },
+      {
+        "id": "B032-NUM-C10-ORIGINAL-NUMERIC-LEXEMES-AND-OCTETS",
+        "operations": [
+          "decode",
+          "encode_then_decode"
+        ],
+        "input": {
+          "entry_type": "Ref",
+          "schema_binding": {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/schema",
+            "entry_point": "/wire_codec_contract/entry_points/Ref"
+          },
+          "raw_utf8": "{\"scope\":{\"a\":1E+00,\"b\":0.10}}",
+          "raw_utf8_sha256": "add1544ca0d20efec1a9f8e6b018b5037ba4e7ea97824d0094226775c6492935"
+        },
+        "expected": {
+          "stage": "decoded",
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "value_shape_literal": {
+            "root_member_keys": [
+              "scope"
+            ],
+            "scope_kind": "object",
+            "scope_member_keys": [
+              "a",
+              "b"
+            ],
+            "scope_child_kinds": [
+              "number",
+              "number"
+            ]
+          },
+          "numeric_occurrences": [
+            {
+              "pointer": "/scope/a",
+              "original_token_text": "1E+00",
+              "exact_mathematical_decimal_text": "1"
+            },
+            {
+              "pointer": "/scope/b",
+              "original_token_text": "0.10",
+              "exact_mathematical_decimal_text": "0.1"
+            }
+          ],
+          "expected_presence": [
+            {
+              "pointer": "/identity",
+              "state": "absent"
+            },
+            {
+              "pointer": "/revision",
+              "state": "absent"
+            },
+            {
+              "pointer": "/scope",
+              "state": "supplied"
+            },
+            {
+              "pointer": "/owner",
+              "state": "absent"
+            },
+            {
+              "pointer": "/source_locator",
+              "state": "absent"
+            },
+            {
+              "pointer": "/sha256",
+              "state": "absent"
+            }
+          ],
+          "codec_input_issues": [],
+          "original_octets_retained_exact": true,
+          "original_numeric_tokens_retained": [
+            "1E+00",
+            "0.10"
+          ],
+          "numeric_tokens_not_semantic_identity": true,
+          "roundtrip": "原key集合/値/presenceは同値。外側空白/object key順/bytes完全一致や新semantic digestは要求しない。"
+        },
+        "design_ref": "HELIXBRAIN-L5-032-EXACT-NUMERIC-CODEC",
+        "expectation_kind": "projection_expectation_not_complete_codec_return",
+        "execution_state": "not_executed",
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "candidate_l5_target_pointers": [
+          "/wire_codec_contract/numeric_carrier_profile/decode_steps/4",
+          "/wire_codec_contract/numeric_carrier_profile/encode_steps/1",
+          "/wire_codec_contract/numeric_carrier_profile/consumer_adapter_boundary/no_new_canonical_scheme"
+        ],
+        "normative_basis": [
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/presence_and_value/numbers"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/codec_operations/1/steps/1"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/wire_codec_contract/codec_operations/1/steps/2"
+          },
+          {
+            "revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+            "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "pointer": "/source_return_contract/pure_reference_notation/primitive_operators/json_equal"
+          }
+        ]
+      }
+    ],
+    "closed_finite_scope": "同値表記1/1.0/1e0、近接小数の非同値、boolとnumber、native integer metadata往復/bool拒否、等値数値を持つdecoded重複key、token/value相反の失敗と整合正例、普通objectの非cast、原数値字句/bytesの別保持。例数10を新gateへしない。",
+    "remaining": [
+      "10projection以外の全codec返却field/全token ordinal/全InputIssue複数原因順のwhole固定は未成立。",
+      "1e400その他極端な指数/桁数/容量/深さ、実Unicode/host資源失敗の全域と返却対応は未固定。許容上限や性能値を推測で追加しない。",
+      "source_return局所new_defsのminimum、実consumer adapter、数値canonical-sort writer/law及びsorted_values/unique_sorted/sort_by_json接続は別未閉包。原tokenをcanonical numeric key/digestへ転用しない。",
+      "parser/Decimal/validator/reader/model/native/runtime/test/旧CIは未実行、library/runtime版固定・実資格/認可/受領・全92親430義務/実装Readyは未成立。"
+    ],
+    "preserve_existing": "既存wire_codec_verification/cases 27件、歴史canonical/file pins、旧function oracle/意味期待/nullable controlは不変。新有限projectionから旧全域の合格を生成しない。",
+    "authoring_history": {
+      "independent_condition_record_sha256": "002a507cefc2b3dacd796c7660b8600921dd760f1be892a5f4865469d12e8d4f",
+      "source_first_packet_manifest_sha256": "c51c267ff0929a3aa884555cf8ea4d6523d5df97e55b462eb3a3d97d1c0ee269",
+      "role": "検証用必須sourceではなく、候補実行より前の手書き条件の履歴識別。全必要constantは本節内にある。"
+    },
+    "authority_effect": "none",
+    "operation_effect": "none"
   }
 }
