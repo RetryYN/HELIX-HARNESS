@@ -5466,7 +5466,7 @@
         "namespace": "source rowに応じowner_source_input/port_input/native_input、consumerはconsumer_input。未観測も最寄り実parentのnamespace。",
         "field": "実観測SEC Field全値、未観測/INFRA nativeはnull。",
         "native_profile": "受理したInfraInput.original_profile全値、その他null。",
-        "nearest_parent": "最初の未観測/表現不整合親全node。それ以外null。selectionで遮断時はaddressable node又は元port全node。",
+        "nearest_parent": "最初の未観測/表現不整合親全node。それ以外null。selection遮断時のparent/namespace/固定literalはselection_blocked_source_operandsのreader別表に従い、一意に保持する。",
         "source_accessor": "leafはaccessor_construction/leaf_source又はleaf_consumer、metadataはmetadata_source/metadata_declaredの固定展開、OS環境traceはenvironment_trace_osの同side literal。未観測でも要求上の同じ論理到達式であり、原source_pointerとは別。",
         "source_pointer": "実Field.pointerは原値を保持。INFRA environment_identity keyが実在するときはnative_input Field.pointerにoriginal_profile/environment_identityのRFC6901 escaped segmentを追記した論理member所在。受理したprofileで当該keyが不在ならoriginal_profile親の所在だけを保持し、実在するchildと偽らない。親未観測は最寄り原parent.pointer又はnull。source_accessorの論理member指定とは別に保持する。",
         "presence_observed": "実Field node又は受理したnative profileのkey presenceを観測できた場合だけtrue。",
@@ -5780,6 +5780,41 @@
       },
       "environment_trace_infra": "対応する/expected_origin/environment又は/expected_target/environment leaf.sourceを全field無変更copyする。",
       "occurrence": "addressableな場合だけinput.original_owner_source_input.fields.sources.value[{index}]を返す。{index}は受理した数学的整数を符号なし10進（0又は先頭0なし）へ表した文字列で置換する。それ以外はnull。role/refやField.pointerからこのstringを逆算しない。"
+    },
+    "selection_blocked_source_operands": {
+      "scope": "source bodyがslot.status!=selectedで遮断された場合だけ。metadata/consumerの実読取と選択issueはこの表で置換しない。原addressable nodeと全portはoriginal_input/occurrencesに保持済み。",
+      "common_literals": {
+        "kind": "unobserved",
+        "field": null,
+        "native_profile": null,
+        "presence_observed": false,
+        "presence": null,
+        "content_state": "parent_unobserved",
+        "value": null,
+        "blocked_by_selection": true
+      },
+      "readers": {
+        "selected_scope_field": {
+          "nearest_parent": "同slot occurrence.nodeが非nullなら、その原Materialized node全値。node=nullならinputの同slot原Materialized port全値。",
+          "namespace": "occurrence.nodeが非nullならowner_source_input、node=nullならport_input。"
+        },
+        "selected_port_field": {
+          "nearest_parent": "inputの同slot原Materialized port全値。addressable source nodeがあってもport原parentを使い、遮断後のField childを読まない。",
+          "namespace": "port_input"
+        },
+        "selected_connection_field": {
+          "nearest_parent": "inputのconnect原Materialized port全値。遮断後のconnection childを読まない。",
+          "namespace": "port_input"
+        },
+        "infra_environment": {
+          "nearest_parent": "inputの同slot原Materialized environment port全値。遮断後のnative_input childを読まない。",
+          "namespace": "port_input"
+        }
+      },
+      "source_accessor": "該当leaf_correspondence.source_accessorの固定文字列をそのままcopy。未観測の所在を実読取したことにはしない。",
+      "source_pointer": "上のnearest_parentの原pointerをcopy。子pointerを作らない。",
+      "os_environment_trace": "selected_scope_fieldと同じparent/namespace規則で、source_accessorのみaccessor_construction.environment_trace_osの同side literal。",
+      "meaning_preserved": "選択原因からの派生unknown issueを追加せず、元selection issueと独立consumer原因を保持する。source資格/認可や新たなgateを生成しない。"
     }
   }
 }
