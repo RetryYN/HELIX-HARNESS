@@ -775,9 +775,9 @@
     "diagnostic_contract_ref": {
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
       "pointer": "/diagnostic_contract",
-      "sha256": "2ea02d95294ba15e551d95b197930c99230b7e67b5b105c76bad4f32d126e4b6",
+      "sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
       "hash_scope": "sha256/file_sha256はL4 file bytes、object_canonical_sha256はpointer先のcanonical JSON bytes。",
-      "file_sha256": "2ea02d95294ba15e551d95b197930c99230b7e67b5b105c76bad4f32d126e4b6",
+      "file_sha256": "932537cf055e7c3de23ca9a211c48ef5362cba45c29b0c92be0b9d36b16ddb5f",
       "object_canonical_sha256": "862b8918b5d55fdc2a96aae0a1f1e29c908211769a3df5218c3c2b374d02854d",
       "role": "baseline/selectedの規範計算に明示供給する現行L4診断契約。"
     },
@@ -14529,7 +14529,7 @@
   "actual_state_updated": false,
   "normative_calculation_binding": {
     "L5_path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
-    "L5_sha256": "9d0049a0c804b849de476c1242ec603d82c46a70429cc289b7268edf49703b70",
+    "L5_sha256": "3e48d41234816f113aa55f22b5cd86aa1dc1e2c0c6799a02dca9b387dc023faa",
     "program_sha256": "b1d1d386842f7cf54d57aebc04f107c502c1b52398d142d6ebf6a51b3952e6b8",
     "entrypoints": [
       "expand_case",
@@ -31516,7 +31516,7 @@
     ],
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
-      "sha256": "9d0049a0c804b849de476c1242ec603d82c46a70429cc289b7268edf49703b70"
+      "sha256": "3e48d41234816f113aa55f22b5cd86aa1dc1e2c0c6799a02dca9b387dc023faa"
     },
     "l4_contract": {
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
@@ -131449,7 +131449,7 @@
         "l4_capture_mapping_pointer": "/os015_origin_call_contract/input_port/actual_targets_lookup/unbound_capture_mapping",
         "l4_capture_mapping_canonical_sha256": "0281487c220b9568f4c60640a6bce36656bcb33f221cc3bdea9205195fe3df4c",
         "l5_file_path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
-        "l5_file_sha256": "9d0049a0c804b849de476c1242ec603d82c46a70429cc289b7268edf49703b70",
+        "l5_file_sha256": "3e48d41234816f113aa55f22b5cd86aa1dc1e2c0c6799a02dca9b387dc023faa",
         "l5_type_pointers": [
           "/logical_types/32",
           "/logical_types/33",
