@@ -1628,6 +1628,43 @@
         "failure_preservation_ja": "not_projectedでも入口、全native返却、Field state、原順の全candidate Write、selected有無、decoder input/return、typed projection partial/raw values、全原因を失わない。causeは私有の原RawValueとして保持し、既存OS020/OS053 Findingやcodeへcast・分類対応付けをしない。S05 native findingsは元read返却にそのまま保持し、新public finding/codeを追加しない。",
         "operation_effect": "none",
         "applicability_ja": "この私有読取・投影callerは、既存の独立した選択根拠により当該読取へOS053を選択した範囲だけに適用する。非選択・選択未確定なら本callerとS05を呼ばず、元の材料・選択状態・未完は呼出し側に保持する。他方式を禁止せず、そのowner契約へ委ねる。本契約から方式の採用、認可、fallback成功を生成しない。"
+      },
+      "resume_call_contract": {
+        "id": "HELIXOS-L4-020-F03-RESUME-CALL",
+        "requirement_ref": "HELIXOS-L3-020-F03",
+        "system_oracle_ref": "HELIXOS-L10-020-F03",
+        "purpose_ja": "既存prior読取・投影返却を同current CIInputへ結び、再開比較→運転依頼/監視/回収→原観測capture/結果比較→選択済保存を段階別private入口として定義する。未来の実結果や保存Planを開始前inputへ集めない。",
+        "approved_source": {
+          "requirement": {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "pointer": "/requirements/39",
+            "canonical_sha256": "6afea8cd6d91c2ac23d0b55f1f778c917c1a1aa5245fa1349fe0be905024f856"
+          },
+          "oracle": {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "pointer": "/cases/39",
+            "canonical_sha256": "93874ef255250c36da29314a58c6c3f09dc8d4630cf92741c3a3e9be1147c0d7"
+          }
+        },
+        "phase_and_readiness_ja": "既存F02002のselected_phase規則だけを参照し、current.phaseをPhaseへ解釈する。resume以外/unknownはnot_ready、F02003/05/06は未呼出しで原返却Field.absent。resumeなら三関数へ同current/literal resumeを各一回渡し全返却を保持する。prior caller chain、projected prior、resume/revalidation、requestとtarget Bindingの対応と既存三所見を確認する。全F02002 metadata/profile比較を新gateにせず、空所見や構造一致を実権限・実起動・未完解消にしない。",
+        "entry_and_exit": {
+          "begin_resume": "独立current CIInput、正式F03PriorReadProjectionReturn、原resume/revalidationとowner request/capabilityを受け、原operand/比較返却を保持したnot_ready又はresume_readyを返す。S05/decode/projectを再実行しない。",
+          "operation_ports": "resume_readyの同じcapability/requestで新private dispatch_resume→monitor_resume→collect_resumeを呼ぶ。未呼出しは後段へ伝播し、called後の応答未観測とは区別する。F02のprepare-only dispatchを偽callしない。",
+          "complete_resume_operation": "三段実返却と独立late原Field(OS018 attempt返却、source occurrences)を後段inputとして受ける。同call対応が成立したら14member captureとF02004 resume比較へ結ぶ。不成立は原input付きnot_captured。late absenceだけでcaptureを拒否せず、未来観測の必須gateにしない。",
+          "persist_resume": "同captured returnと独立builder/basis/decoder/adapterを後段で受ける。同capture/capabilityとbuilder返却inputの対応を確認し、builder一回→全Write join→matchedならS04一回へ結ぶ。失敗・未観測・比較所見付きcaptureも原値の保存対象とする。"
+        },
+        "target_binding_rule_ja": "投影prior_record↔current.prior、原resume/revalidation↔current同memberを全Field値で比較する。current.bindingはresume側bindingへ結び、prior.bindingはnative F02005のcontext.prior側へ比較する。priorとcurrentのBinding一致を新必須にせず、HEAD/環境変更後の適切な再評価を受け付ける。",
+        "revalidation_rule_ja": "F02006は少なくとも一軸のknown差異でselectedとなり、他軸unknownの所見も別に残す。known差異なしの未選択ではrevalidation absent/nullを新たな不足gateにしない。旧失敗や未完を後続Green/別環境の結果で消さない。",
+        "reuse_boundary_ja": "F02のphase非依存carrier、14member capture原値対応、builder入出力、I06全Write比較規範、native S04 leafを参照する。collect専用comparison/stage/persist全callerはaliasせず、resume専用wrapperでphase=resumeを保持する。",
+        "conditional_continuity_ja": "OS019 continuityやOS023 handoffの原補助材料は存在する場合にそのowner形式のまま保持する。ここで当該calleeを呼んだとはせず、known必須の再開gateやidentity生成を加えない。適用・後継attemptの判定は既存各owner契約に従う。",
+        "persistence_applicability_ja": "保存のprivate callerは、既存の独立選択根拠によりOS053を選択した範囲だけに適用する。非選択・選択未確定・後段typed保存input未供給なら外側でpersist_resumeを呼ばず、元operation return・選択状態・未完を保持する。他方式を禁止せず、そのowner契約へ委ねる。方式選択、認可、fallback成功を本契約から生成しない。",
+        "failure_preservation_ja": "各入口、原Field/bytes/port、全native返却・所見と私有原因を保持する。causeをpublic Finding/codeへcast又は分類対応付けしない。S04全Result/Finding/ProtocolCallと内蔵read-afterを保持し、追加readを必須にしない。",
+        "operation_effect": "none",
+        "scope_limit_ja": "これは再開の論理呼出し契約。実provider/実資格/配送/実運転/実保存/製品CI/実物受入、F03全体・全430義務・実装Readyの成立は未認定。"
       }
     },
     {

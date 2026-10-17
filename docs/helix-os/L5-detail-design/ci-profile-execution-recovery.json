@@ -3214,7 +3214,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
-        "file_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+        "file_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
         "object_canonical_sha256": "00ecf77c8ddc8b372fbf4183b9eda529c8381e8ac8acd88b0d4467001a26ac87",
         "meaning_ja": "この同一pairの現在L4 contractを指す。L4 source_pinsの歴史revisionは変更しない。"
       },
@@ -3266,7 +3266,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/3/owner_return_contract",
-        "file_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+        "file_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
         "object_canonical_sha256": "258ba7bedf96d8bf71f75ce310ef3cef91e512d6d0c67154e37621029e13c45b"
       },
       "type_and_algorithm_imports": {
@@ -3291,7 +3291,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/1/operation_call_contract",
-        "file_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+        "file_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
         "object_canonical_sha256": "b8c8141227b2e81be5e2a858d7f552bf0bf0fc534b34b63fe9669eb7ff5ca517"
       },
       "native_imports": [
@@ -3913,7 +3913,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/2/prior_projection_call_contract",
-        "file_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+        "file_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
         "object_canonical_sha256": "18859b9a615acb625455f56689569bdb681c0f289f11ef3f29fcdeec9ec173e2"
       },
       "paired_l9_oracle_ref": {
@@ -4360,6 +4360,862 @@
         "contract_source_ref": "input.projection_basis.content_contract_source_ref.supplied.value",
         "contract_source_bytes": "input.projection_basis.content_contract_source_bytes.supplied.value",
         "contract_value": "input.projection_basis.content_contract_value.supplied.value"
+      }
+    },
+    {
+      "name": "F03 resume operation and conditional persistence private producer",
+      "visibility": "private",
+      "paired_current_l4_binding": {
+        "binding_kind": "paired_current_file_bytes",
+        "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+        "pointer": "/contracts/2/resume_call_contract",
+        "file_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
+        "object_canonical_sha256": "2dc4d694753023e1cadef20307b664b7d0dcf1cf02146a97d32c565b0987abfd"
+      },
+      "paired_l9_oracle_ref": {
+        "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+        "pointer": "/resume_call_verification"
+      },
+      "source_basis": {
+        "requirement": {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+          "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+          "pointer": "/requirements/39",
+          "canonical_sha256": "6afea8cd6d91c2ac23d0b55f1f778c917c1a1aa5245fa1349fe0be905024f856"
+        },
+        "oracle": {
+          "path": "docs/helix-os/L10-verification/functional-verification.json",
+          "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+          "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+          "pointer": "/cases/39",
+          "canonical_sha256": "93874ef255250c36da29314a58c6c3f09dc8d4630cf92741c3a3e9be1147c0d7"
+        }
+      },
+      "authority_effect": "none",
+      "operation_effect": "none",
+      "persistence_applicability_ja": "保存のprivate callerは、既存の独立選択根拠によりOS053を選択した範囲だけに適用する。非選択・選択未確定・後段typed保存input未供給なら外側でpersist_resumeを呼ばず、元operation return・選択状態・未完を保持する。他方式を禁止せず、そのowner契約へ委ねる。方式選択、認可、fallback成功を本契約から生成しない。",
+      "native_imports": [
+        {
+          "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+          "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+          "file_sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1",
+          "pointers": [
+            "/logical_types/0",
+            "/logical_types/1",
+            "/logical_types/2",
+            "/logical_types/6",
+            "/logical_types/7",
+            "/logical_types/8",
+            "/logical_types/9",
+            "/logical_types/11",
+            "/logical_types/12",
+            "/logical_types/16",
+            "/logical_types/19",
+            "/logical_types/20",
+            "/logical_types/31",
+            "/logical_types/32",
+            "/logical_types/33",
+            "/functions/1/return_derivation/selected_phase",
+            "/functions/2",
+            "/functions/3",
+            "/functions/4",
+            "/functions/5",
+            "/private_producer_bindings/2/private_types/0",
+            "/private_producer_bindings/2/private_types/1",
+            "/private_producer_bindings/2/private_types/2",
+            "/private_producer_bindings/2/private_types/3",
+            "/private_producer_bindings/2/private_types/4",
+            "/private_producer_bindings/2/private_types/5",
+            "/private_producer_bindings/2/private_types/6",
+            "/private_producer_bindings/2/private_types/7",
+            "/private_producer_bindings/2/private_types/8",
+            "/private_producer_bindings/2/private_types/9",
+            "/private_producer_bindings/2/private_types/10",
+            "/private_producer_bindings/2/private_types/11",
+            "/private_producer_bindings/2/private_types/12",
+            "/private_producer_bindings/2/private_types/13",
+            "/private_producer_bindings/2/private_types/14",
+            "/private_producer_bindings/2/private_types/15",
+            "/private_producer_bindings/2/private_types/18",
+            "/private_producer_bindings/2/private_types/19",
+            "/private_producer_bindings/2/private_types/20",
+            "/private_producer_bindings/2/private_types/21",
+            "/private_producer_bindings/3/private_types/13",
+            "/private_producer_bindings/2/private_signatures/6",
+            "/private_producer_bindings/2/private_signatures/9",
+            "/private_producer_bindings/2/stage_rules/3",
+            "/private_producer_bindings/2/stage_rules/4"
+          ],
+          "names": [
+            "OS020.RawValue",
+            "OS020.Field<T>",
+            "OS020.Binding",
+            "OS020.Profile",
+            "OS020.ConditionSource",
+            "OS020.IsolationSource",
+            "OS020.ResultRecord",
+            "OS020.ResumeRecord",
+            "OS020.RevalidationRecord",
+            "OS020.CIInput",
+            "OS020.Phase",
+            "OS020.MaybePhase",
+            "OS020.FacetAssessment",
+            "OS020.CollectionAssessment",
+            "OS020.RevalidationAssessment",
+            "OS020 phase interpretation rule",
+            "OS020.F02003",
+            "OS020.F02004",
+            "OS020.F02005",
+            "OS020.F02006",
+            "OS020.F02DispatchCallReturn",
+            "OS020.F02MonitorCallReturn",
+            "OS020.F02CollectionCallReturn",
+            "OS020.F02OwnerPlanBasis",
+            "OS020.F02OwnerPlanBuildInput",
+            "OS020.OwnerWriteCaptureLink",
+            "OS020.OwnerPlanSupply",
+            "OS020.F02OwnerPlanBuildReturn",
+            "OS020.F02WriteCaptureAssessment",
+            "OS020.F02OwnerPlanJoinReturn",
+            "OS020.F02S04AdapterCapability",
+            "OS020.F02OperationPortRequest",
+            "OS020.F02OperationCapability",
+            "OS020.F02OperationCheck",
+            "OS020.F02OperationObservation",
+            "OS020.F02OperationCapture",
+            "OS020.F02OwnerPlanBuilderCapability",
+            "OS020.F02ContentDecoderCapability",
+            "OS020.OwnerContentDecodeInput",
+            "OS020.OwnerContentDecodeReturn",
+            "OS020.F03PriorReadProjectionReturn",
+            "OS020.build_plan_for_operation",
+            "OS020.call_os053_s04",
+            "OS020.I06_plan_capture_comparison",
+            "OS020.I06_comparison_operands"
+          ],
+          "object_canonical_sha256": [
+            "a7210ab837f2368b193ae61b11484adeb8bb43f334a975d3079aaf7204678768",
+            "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3",
+            "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b",
+            "40955bb830410b3a52ea93388f6f832fbc1df282ef6d2951752b0017120255a1",
+            "113424d04d2bc669f8a9608bd540d9d6961d4864795625d33e3ef0ee709f8951",
+            "36cf1e42ba5dbb19bf89f01a61cb19c8549f3efcd53808bf24f6575b70d089bd",
+            "fa8bb20d7de5ad515d4f78d8d53d2de4b90d2635b1ac6384cfe3c9a557c267b3",
+            "68a83b412a6be1a0abf10eea7ddbce2b14ce03245cb892cb4b32d3b0d55058c9",
+            "cedcc4de0dc4378f7cacc826870a1cb45b3a8b8618401e55d1edbbd813bd15ed",
+            "f7f7d57e9d5f0786aad5e67ce07c06275826b8df2d4307b99ae13f09f21aa944",
+            "d296e0a7888934771c7d3dad3b69e3b0d302d5069e1b4c73da272c77c36588fb",
+            "e18ec127070d44707a44f1a3725576911f581296dfadb4fc1ae2b63b7809b2fa",
+            "efb6db064e1288cb6d4e1ebea1c95a267bbded168ea1c66ea638b53d2246d3dc",
+            "ae4f33264ddb5bc820627674e4bbad707573912ce82c3de079769a7ade4c358c",
+            "aab49acad83dcab59e2fbe2c13f570fb49a878a5d63c20a63e6e733531d1abcc",
+            "ad63e6ee825d6ca072e0debfde06b85fcf662a893b6ce201d816cd7a12baf602",
+            "16b6fe41d638032b87934861ec9289d8ecbf95fea1adfd60deeafce7d648832d",
+            "69356ec145279e8b1b904ae2cf984787e731a717067d6662f3a10af1397be499",
+            "3b5ead84a00a69dd504bc6a0e2cd20110df79fb16ba20fbd9eae71a877f3c04a",
+            "2159e957c37486f3db6e8c1906611bc898a16efee2375f178ade306e475f7791",
+            "c34740e9d37aa03dc2b24a29deea3e77884197f6476c78691e462af8f3b54fb4",
+            "6e3fc0fe6b711528eaa07edc773f82e451867da2984838b9606c25c0477ef092",
+            "cbb7fbcebd12530462993a628f8960b64f0e96d2c9e391be6f19e40d521a97f1",
+            "3d2679d292d85e7c4d4377b31207eccf72a357381232fbdb878f98121e107ebf",
+            "828aea2ca8545f70d55d49ebcbc4b8cff16686ad0cc8dc75feb5ec8e1862ac22",
+            "4825bb2e002c6707e50a88de7f3b6c5785d87d149b05d7daac4670be0f0e4e29",
+            "1d21f3b5e6e36ce7038916ab2dcd10308e8d9f39ef7083fd368351f6677b14b9",
+            "b8125aede50bc57b26577f291120fa6a284468f50e827754b437b3225c37555f",
+            "85f4ee53d3a3b129ea458a3e42acd11dc1bf191d45d603b170508f38d02bf18c",
+            "09ae530f75ebfc5c4acdd607ad1cb331b26cf92141cc82444a5a357094db7287",
+            "f409a825a30d201031df3aafac4332b9c66fd30576fa0b85a4465822c04aa951",
+            "ab202de7f332da8864ed7441c3522f96ea9c6c24d6ca32076c621a9e0062c12b",
+            "ed01383e7aba514cb09eaf31c98105be084f81f2fc530bf08e78ac3c09699dfa",
+            "31ed286910cc4e9925702705302c349862767bdec964183670de274e2ecabcfc",
+            "07f52b30048eaeac88c7454862d2ea12ea477406352cffdb4fd0f2366e018bc5",
+            "873b43076383c06f3597da33899f827013cf077bee37c73bd616ada88e81ed59",
+            "926591bf93c3d96e8178c6c5ad7c49ef0435e9c6a2c35d3eb7f4d34480139a20",
+            "ffde1189884be21caae418c4e1d96fe3da303b51f1481c25c4113226eb59385c",
+            "210fe387abdbc60282905934b0c28d22c8ac4b09f5383defe6d47362d0f67678",
+            "3742a9695c99917fca76d2b4656883c5be65fbf11bbbaa67ed1ff78253ed97fa",
+            "395fcbb1bc513e46f182695a1279f054b3706542bd5977bc619811bd6b96e20d",
+            "21eba620211001c9eabe11748e4886482ede15243807e7cfc5b5359fc92bad5c",
+            "1e2b44a8f6d0072979ff8a58f00edcbe97f557e4622453bd25697e59c4dd4dff",
+            "b8a01a419d23abeda9eb28d49a53263133e9dedd1491aa98a2cdafa9c1ca8f60",
+            "e44aa51721154a9239ca533b6b43f94537a19f1f0bd5ad0e864cb45abf97504d"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+          "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+          "file_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+          "pointers": [
+            "/contracts/1/operation_call_contract/capture_member_origins"
+          ],
+          "names": [
+            "OS020.F02_capture_14_member_origins"
+          ],
+          "object_canonical_sha256": [
+            "c9499ba0e52b11472fd6a6de6d5292872f80fd02c3ade6ec5cdf75f0c51d13c3"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+          "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+          "file_sha256": "b5c0a8927f417a33e325c8e43ed2d5651d9d537e8163b41162614187f8a41c01",
+          "pointers": [
+            "/type_contract/type_model/Plan",
+            "/type_contract/type_model/Resolution",
+            "/type_contract/type_model/Result",
+            "/type_contract/type_model/Finding",
+            "/type_contract/type_model/ProtocolCall",
+            "/functions/3"
+          ],
+          "names": [
+            "OS053.Plan",
+            "OS053.Resolution",
+            "OS053.Result",
+            "OS053.Finding",
+            "OS053.ProtocolCall",
+            "OS053.persist_atomic_bundle(S04)"
+          ],
+          "object_canonical_sha256": [
+            "7edfab05d6848c0f7a5c272eafdfc54be2522bed2ab0f46ec045870efb481bb8",
+            "7a73b70ead6ddfd95cc1e6eecad51c333deb8c520b70757d7234bbf3b988900f",
+            "2cdd29712d534dbcac9ae2fe57205a9fb7ee17a22d657d5eeb7c41f7e6f031fc",
+            "50f09a73d234bf705bf5bb5bf407629b1c2bceb8a2387194526eac58c5bfa629",
+            "336dc1a2d08b57a9d7bcc3dc96fdd32c5f644a4623622e10d891694426fbe130",
+            "c7af19c0095cff2b24c4b40617ef15fce0372a496d5ad8231e4f67401af8d921"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/event-episode-continuity.json",
+          "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+          "file_sha256": "6b2eb2204b5b0b84ff6efb66e4886c5605df9ec7370d6dc3a6d2633ac5bbf290",
+          "pointers": [
+            "/logical_types/14"
+          ],
+          "names": [
+            "OS019.ContinuityInput"
+          ],
+          "object_canonical_sha256": [
+            "84f2913693dd7e0b813ec403489e44cf52529cfadfe2c2c0839422023585e8b3"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-worker-acceptance-handoff.json",
+          "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+          "file_sha256": "7332834239368e4ee40e5feb45759bfc5b4c9e3b06b8acbaec9c3cf1ba21ecf7",
+          "pointers": [
+            "/types/3"
+          ],
+          "names": [
+            "OS023.ExpandedInput"
+          ],
+          "object_canonical_sha256": [
+            "3ef1b3452d939802072057b34044aa933b9cf618cbe5b45d1d7a7dfda3b04e94"
+          ]
+        }
+      ],
+      "private_types": [
+        {
+          "name": "F03ResumeEntry",
+          "kind": "closed_record",
+          "fields": {
+            "current_ci_input": "OS020.CIInput",
+            "prior_projection_return": "OS020.F03PriorReadProjectionReturn（正式private prior callerの同じ実返却）",
+            "resume_record": "OS020.Field<OS020.ResumeRecord>",
+            "revalidation_record": "OS020.Field<OS020.RevalidationRecord>",
+            "operation_capability": "OS020.Field<OS020.F02OperationCapability>",
+            "operation_request": "OS020.Field<OS020.F02OperationPortRequest>",
+            "os018_assignment_attempt_native": "OS020.Field<OS020.RawValue>",
+            "os019_continuity_input": "OS020.Field<OS019.ContinuityInput>",
+            "os023_handoff_input": "OS020.Field<OS023.ExpandedInput>"
+          },
+          "rule_ja": "全値独立供給。既存prior caller返却を実入口として一度だけ受け、S05/decode/projectを再実行しない。OS019/23原FieldはR6の原補助素材を保持するだけで、新caller/known必須/ready gateにしない。未来capture/late result/build_input/Planは含まない。"
+        },
+        {
+          "name": "F03ResumeOperandCheck",
+          "kind": "closed_record",
+          "fields": {
+            "join_id": "closed enum: phase | prior_caller_read_mode | prior_setup_input | prior_projection_input | prior_field | resume_field | revalidation_field | current_binding_to_resume_binding | operation_capability_presence | operation_request_presence | request_ci_input | request_operation_check | request_binding | request_profile | request_security | request_resource | request_isolation | request_os018_input | operation_same_call | persist_capture | persist_operation_capability",
+            "state": "corresponding | different | unresolved",
+            "operand_pointers": "ordered tuple<RFC6901 pointer string>（各stageの返却rootへ相対。/inputに保持した原値、又は同返却の比較値を指す）",
+            "causes": "tuple<OS020.RawValue>（原因と所在。原native bytes/portは各typed carrierへ保持）",
+            "stage": "begin | operation | persist"
+          },
+          "rule_ja": "意味対応の新public state/findingではなく同call引数対応の私有記録。未到達variant/Field非suppliedをunwrapせず、所在と未評価原因を保持。"
+        },
+        {
+          "name": "F03ResumeStartReturn",
+          "kind": "closed_union",
+          "discriminator": "state",
+          "variants": {
+            "not_ready": {
+              "state": "not_ready",
+              "input": "F03ResumeEntry",
+              "selected_phase": "OS020.MaybePhase",
+              "operation_check": "OS020.Field<OS020.F02OperationCheck>",
+              "failure_comparison": "OS020.Field<OS020.FacetAssessment>",
+              "revalidation_comparison": "OS020.Field<OS020.RevalidationAssessment>",
+              "operand_checks": "tuple<F03ResumeOperandCheck>",
+              "causes": "tuple<OS020.RawValue>"
+            },
+            "resume_ready": {
+              "state": "resume_ready",
+              "input": "F03ResumeEntry",
+              "selected_phase": "literal resume",
+              "operation_check": "OS020.F02OperationCheck",
+              "failure_comparison": "OS020.FacetAssessment",
+              "revalidation_comparison": "OS020.RevalidationAssessment",
+              "operand_checks": "tuple<F03ResumeOperandCheck>",
+              "operation_capability": "OS020.F02OperationCapability（同input.operation_capability.supplied.value）",
+              "operation_request": "OS020.F02OperationPortRequest（同input.operation_request.supplied.value）"
+            }
+          },
+          "rule_ja": "phase非resume/unknownでは3native比較未呼出し、対応Field.absent。phase=resumeなら3比較を一回ずつ行い、その原全返却をnot_readyではField.supplied、readyではplain値で保持。ready値は新copy/期待から生成しない。"
+        },
+        {
+          "name": "F03ResumeOperationObservationInput",
+          "kind": "closed_record",
+          "fields": {
+            "start_return": "F03ResumeStartReturn.resume_ready（実返却）",
+            "dispatch_return": "OS020.F02DispatchCallReturn",
+            "monitor_return": "OS020.F02MonitorCallReturn",
+            "collection_return": "OS020.F02CollectionCallReturn",
+            "os018_assignment_attempt_return_native": "OS020.Field<OS020.RawValue>",
+            "source_occurrences": "OS020.Field<tuple<OS020.RawValue>>"
+          },
+          "rule_ja": "三段call後の入口。最後の2Fieldはこの段階の独立原観測素材から受ける。dispatch/monitor/collectionにはそのmemberが無く、collectionから抽出/合成しない。Field.absentは未観測であり、それだけでnot_capturedにしない。ready前の未来必須inputにも置かない。"
+        },
+        {
+          "name": "F03ResumeCollectionComparisonCall",
+          "kind": "closed_record",
+          "fields": {
+            "source_ci_input": "OS020.CIInput",
+            "phase": "literal resume",
+            "actual_result": "OS020.Field<OS020.ResultRecord>",
+            "comparison_input": "OS020.CIInput",
+            "assessment": "OS020.CollectionAssessment"
+          },
+          "rule_ja": "comparison_inputはsource_ci_inputの/resultだけactual_resultへ差替え。他member/contextは全値不変。F02004(comparison_input,resume)全返却。F02 collect comparison型へcastしない。"
+        },
+        {
+          "name": "F03ResumeCapturedStageReturn",
+          "kind": "closed_record",
+          "fields": {
+            "capture": "existing OS020.F02OperationCapture（同14member）",
+            "collection_comparison": "F03ResumeCollectionComparisonCall"
+          },
+          "rule_ja": "capturedは原観測をrecord化した意味。実起動/回収/成功を表すstateではない。collection.not_calledでもcapture.result_record=Field.absentを使いF02004の原unknown返却を保持できる。"
+        },
+        {
+          "name": "F03ResumeOperationReturn",
+          "kind": "closed_union",
+          "discriminator": "state",
+          "variants": {
+            "not_captured": {
+              "state": "not_captured",
+              "input": "F03ResumeOperationObservationInput",
+              "operand_checks": "tuple<F03ResumeOperandCheck>",
+              "causes": "tuple<OS020.RawValue>"
+            },
+            "captured": {
+              "state": "captured",
+              "input": "F03ResumeOperationObservationInput",
+              "operand_checks": "tuple<F03ResumeOperandCheck>",
+              "operation_return": "F03ResumeCapturedStageReturn"
+            }
+          },
+          "rule_ja": "not_capturedは下記operation同call結合が不成立の実branch。元三段返却/late原Fieldをinputへ保持しcapture/F02004を作らない。完全typed observationが同callなら14copyを構成でき、単なるcollection.not_called/Field.absentをこのbranchへ押込まない。"
+        },
+        {
+          "name": "F03ResumePersistInput",
+          "kind": "closed_record",
+          "fields": {
+            "operation_return": "F03ResumeOperationReturn.captured（同実call）",
+            "build_input": "existing OS020.F02OwnerPlanBuildInput（実capture後に構成）",
+            "builder_capability": "existing OS020.F02OwnerPlanBuilderCapability（独立）",
+            "adapter": "existing OS020.F02S04AdapterCapability（独立）"
+          },
+          "rule_ja": "OS053を既存独立選択で選んだ時だけ使う後段入口。build_input.capture/operation_capabilityを下記guardで確認する。future Plan/build_inputをbeginへ要求しない。prior decode capabilityを新writeのdecoderへ自動流用しない。"
+        },
+        {
+          "name": "F03ResumePersistReturn",
+          "kind": "closed_union",
+          "discriminator": "state",
+          "variants": {
+            "input_unbound": {
+              "state": "input_unbound",
+              "input": "F03ResumePersistInput",
+              "operand_checks": "tuple<F03ResumeOperandCheck>",
+              "causes": "tuple<OS020.RawValue>",
+              "builder_call": "not_called",
+              "join_call": "not_called",
+              "s04_call": "not_called"
+            },
+            "builder_blocked": {
+              "state": "builder_blocked",
+              "input": "F03ResumePersistInput",
+              "build_return": "OS020.F02OwnerPlanBuildReturn.blocked（exact return）",
+              "join_call": "not_called",
+              "s04_call": "not_called"
+            },
+            "crosswalk_blocked": {
+              "state": "crosswalk_blocked",
+              "input": "F03ResumePersistInput",
+              "build_return": "OS020.F02OwnerPlanBuildReturn.ready",
+              "join_return": "OS020.F02OwnerPlanJoinReturn.unresolved_or_mismatch",
+              "s04_call": "not_called"
+            },
+            "persist_called": {
+              "state": "persist_called",
+              "input": "F03ResumePersistInput",
+              "build_return": "OS020.F02OwnerPlanBuildReturn.ready",
+              "join_return": "OS020.F02OwnerPlanJoinReturn.matched",
+              "s04_native_return": "(OS053.Result, tuple<OS053.Finding>, tuple<OS053.ProtocolCall>)"
+            },
+            "builder_return_unbound": {
+              "state": "builder_return_unbound",
+              "input": "F03ResumePersistInput",
+              "build_return": "OS020.F02OwnerPlanBuildReturn（同実callの原返却）",
+              "causes": "tuple<OS020.RawValue>",
+              "builder_call": "called",
+              "join_call": "not_called",
+              "s04_call": "not_called"
+            }
+          },
+          "rule_ja": "全branchのinputに元captured return/全比較を保持。persist_calledはS04を呼んだ意味で、committed/success保証ではない。OS053全nativevariantとread-afterを保持し、F02004 findings空を保存gateにしない。 builderの原返却inputが同build_inputに対応しなければbuilder_return_unboundへ原返却を保持し、未呼出しのinput_unboundと区別する。"
+        }
+      ],
+      "operand_binding_table": [
+        {
+          "id": "phase",
+          "left": "E.current_ci_input.phase",
+          "right": "Phase enum/selected-phase interpretation imported from F02002",
+          "rule": "Field.suppliedの値がPhase閉集合ならMaybePhaseへ、そのほかnull。selected_phase=resumeだけ後続native3比較を呼ぶ。他phase/unknownをresumeへ補完しない。",
+          "stage": "begin"
+        },
+        {
+          "id": "prior_caller_read_mode",
+          "left": "E.prior_projection_return.input.read_mode",
+          "right": "E.prior_projection_return.prior_read_return",
+          "rule": "正式private3 caller規則をimport。request_readのrequest/basis/opaqueport/parallel Field、observed_resultの原read_return、非suppliedのnot_calledを同値結合する。原modeを再解釈/再読しない。",
+          "stage": "begin"
+        },
+        {
+          "id": "prior_setup_input",
+          "left": "E.prior_projection_return.projection_setup.available.input",
+          "right": "同caller.prior_read_return及び同caller.input.projection_basis/decoder_capabilityのsupplied値",
+          "rule": "available時のみ全値対応。外側Field非supplied/他branchは元値とunresolved原因。",
+          "stage": "begin"
+        },
+        {
+          "id": "prior_projection_input",
+          "left": "同caller.projection_return.supplied.value.input",
+          "right": "同caller.projection_setup.available.input",
+          "rule": "同値かつprojection_return.state=projectedだけready候補。not_projected/unavailable/非suppliedはnot_readyで原carrier保持。",
+          "stage": "begin"
+        },
+        {
+          "id": "prior_field",
+          "left": "同projected.prior_record",
+          "right": "E.current_ci_input.prior",
+          "rule": "全Field tag/型/全値のexact対応。prior.bindingをcurrent.bindingへ等置しない。",
+          "stage": "begin"
+        },
+        {
+          "id": "resume_field",
+          "left": "E.resume_record",
+          "right": "E.current_ci_input.resume",
+          "rule": "Field全値一致。supplied要否の意味判定は元F02005が行う。",
+          "stage": "begin"
+        },
+        {
+          "id": "revalidation_field",
+          "left": "E.revalidation_record",
+          "right": "E.current_ci_input.revalidation",
+          "rule": "Field全値一致。F02006未選択ならabsent同士/null同士もそのまま成立し、既知revalidation recordを必須にしない。未選択時にfield内容の再検証を追加しない。",
+          "stage": "begin"
+        },
+        {
+          "id": "current_binding_to_resume_binding",
+          "left": "E.current_ci_input.binding",
+          "right": "E.resume_record.supplied.value.binding（外側supplied時だけ読む）",
+          "rule": "Field<Binding>全値対応。native05はresume.binding↔context.binding、prior.binding↔context.prior.bindingを評価する。このjoinでactual currentも当該resume targetへ結ぶ。prior/currentの正当なHEAD/環境変更を拒否しない。",
+          "stage": "begin"
+        },
+        {
+          "id": "operation_capability_presence",
+          "left": "E.operation_capability",
+          "right": "readyのplain capability",
+          "rule": "外側suppliedだけunwrap。raw metadataを実callable/実資格へ昇格しない。",
+          "stage": "begin"
+        },
+        {
+          "id": "operation_request_presence",
+          "left": "E.operation_request",
+          "right": "readyのplain operation_request",
+          "rule": "外側suppliedだけunwrap。未供給/型外は原Field保持。",
+          "stage": "begin"
+        },
+        {
+          "id": "request_ci_input",
+          "left": "request.ci_input",
+          "right": "E.current_ci_input",
+          "rule": "同CIInput全値。",
+          "stage": "begin"
+        },
+        {
+          "id": "request_operation_check",
+          "left": "request.operation_check",
+          "right": "今回F02003(E.current_ci_input,resume)から作ったF02OperationCheck",
+          "rule": "input/selected_phase/全FacetAssessmentの全値一致。別call/別phaseのempty findingを流用しない。",
+          "stage": "begin"
+        },
+        {
+          "id": "request_binding",
+          "left": "request.binding",
+          "right": "E.current_ci_input.binding",
+          "rule": "全Field tag/Binding値一致。",
+          "stage": "begin"
+        },
+        {
+          "id": "request_profile",
+          "left": "request.profile",
+          "right": "E.current_ci_input.profile",
+          "rule": "全Field tag/Profile値一致。全F02002 metadata判定を新readygateにしない。",
+          "stage": "begin"
+        },
+        {
+          "id": "request_security",
+          "left": "request.security_control_native",
+          "right": "E.current_ci_input.security",
+          "rule": "全Field値一致。",
+          "stage": "begin"
+        },
+        {
+          "id": "request_resource",
+          "left": "request.infrastructure_resource_native",
+          "right": "E.current_ci_input.resource",
+          "rule": "全Field値一致。",
+          "stage": "begin"
+        },
+        {
+          "id": "request_isolation",
+          "left": "request.infrastructure_isolation_native",
+          "right": "E.current_ci_input.isolation",
+          "rule": "全Field値一致。",
+          "stage": "begin"
+        },
+        {
+          "id": "request_os018_input",
+          "left": "request.os018_assignment_attempt_native",
+          "right": "E.os018_assignment_attempt_native",
+          "rule": "原Field全値一致。known実assignmentを新必須化せず、対応する原absenceも保持。",
+          "stage": "begin"
+        },
+        {
+          "id": "operation_same_call",
+          "left": "dispatch/monitor/collection各requestと直前return",
+          "right": "ObservationInput.start_return.operation_request及び同入力の先行return",
+          "rule": "各request完全一致、monitor.dispatch_return=実dispatch、collection.monitor_return=実monitor。collection.calledにだけあるdispatch_returnはそのbranchだけ比較。capabilityはstart_returnに実値保持。 dispatch.not_calledならmonitor/collectionはnot_called、monitor.not_calledならcollectionはnot_calledであることも確認する。collection.calledを先行not_calledと接続しない。",
+          "stage": "operation"
+        },
+        {
+          "id": "persist_capture",
+          "left": "persist.build_input.capture",
+          "right": "persist.operation_return.operation_return.capture",
+          "rule": "builder前に同14member全値一致。相反/不明ならinput_unbound、原input保持でbuilder/join/S04を呼ばない。",
+          "stage": "persist"
+        },
+        {
+          "id": "persist_operation_capability",
+          "left": "persist.build_input.operation_capability",
+          "right": "persist.operation_return.input.start_return.operation_capability",
+          "rule": "実resumeに使った同capability全値。別capabilityからsource/資格を生成しない。不一致はinput_unbound。",
+          "stage": "persist"
+        }
+      ],
+      "private_signatures": [
+        {
+          "name": "begin_resume",
+          "signature": "begin_resume(E:F03ResumeEntry) -> F03ResumeStartReturn",
+          "actual_operands": {
+            "phase": "E.current_ci_input.phaseをF02002のselected_phase規則だけで解釈",
+            "prior": "E.prior_projection_return（正式private3実返却）",
+            "current": "同E.current_ci_input",
+            "request_and_capability": "同Eの原Field"
+          },
+          "call_conditions": [
+            "phase非resume/nullはnative03/05/06を呼ばずnot_ready、3返却Field.absent。phase原因と元entryを保持。",
+            "phase=resumeなら、projection可否や別join不足にかかわらず独立した既存03/05/06比較を同current/literal resumeで各一回行う。全原返却を保持し、known差をunknown軸があるだけで未選択にしない。",
+            "readyはprojected入力chain/表の必要joinがすべて対応し、supplied capability/request、operation_check.selected_phase=resume、03/05/06の既存findingsが空の場合だけ。F02006.selected false時はrevalidationの追加present/known gateなし。",
+            "その他not_ready。nativeのknown conflict/unknown所見を統合・消去せず別全返却で保持。"
+          ],
+          "native_calls": [
+            {
+              "source": "/functions/2",
+              "arguments": {
+                "input": "E.current_ci_input",
+                "phase": "resume（phase guard後）"
+              },
+              "return_to": "operation_check.assessment（operation_check.input=E.current_ci_input）",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+              "file_sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1"
+            },
+            {
+              "source": "/functions/4",
+              "arguments": {
+                "input": "同E.current_ci_input",
+                "phase": "同resume"
+              },
+              "return_to": "failure_comparison",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+              "file_sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1"
+            },
+            {
+              "source": "/functions/5",
+              "arguments": {
+                "input": "同E.current_ci_input",
+                "phase": "同resume"
+              },
+              "return_to": "revalidation_comparison（selectedも全所見も保持）",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+              "file_sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1"
+            }
+          ],
+          "visibility": "private",
+          "definition_ja": "今回具体化する私有署名。再利用するのは明示importされた既存型/規範/leafに限り、この同名関数がbaseに存在したとは扱わない。",
+          "return_preservation_ja": "同じstageの原input/全返却/原Fieldを保持し、native比較所見と私有原因を混同・消去しない。"
+        },
+        {
+          "name": "dispatch_resume",
+          "signature": "dispatch_resume(capability:F02OperationCapability, request:F02OperationPortRequest) -> F02DispatchCallReturn",
+          "actual_operands": {
+            "capability": "実resume_ready.operation_capability",
+            "request": "同resume_ready.operation_request"
+          },
+          "call_conditions": [
+            "F03 resume_readyの同値capability/requestだけで既存operation ownerへ依頼する新しい私有port署名。F02 prepare-only dispatch_operationを呼ばない。",
+            "provider/実返却が未解決の境界はnot_called reasonへ原値保持。呼出し後の応答Field.absentはcalledのまま保持。RawValue capabilityを関数へcastしない。"
+          ],
+          "visibility": "private",
+          "definition_ja": "今回具体化する私有署名。再利用するのは明示importされた既存型/規範/leafに限り、この同名関数がbaseに存在したとは扱わない。",
+          "return_preservation_ja": "同じstageの原input/全返却/原Fieldを保持し、native比較所見と私有原因を混同・消去しない。"
+        },
+        {
+          "name": "monitor_resume",
+          "signature": "monitor_resume(capability:F02OperationCapability, request:F02OperationPortRequest, dispatch:F02DispatchCallReturn) -> F02MonitorCallReturn",
+          "actual_operands": {
+            "capability": "同ready capability",
+            "request": "同ready request",
+            "dispatch": "同dispatch_resume原返却"
+          },
+          "call_conditions": [
+            "dispatch.not_calledならowner monitorを呼ばずnot_calledへ先行返却/理由保持。dispatch.calledなら同owner portへ同値引数を渡し、そのcalled/not_called返却を保持。",
+            "handle Fieldのknownを全owner共通の新gateにしない。called後の未観測を未呼出しへ変更しない。"
+          ],
+          "visibility": "private",
+          "definition_ja": "今回具体化する私有署名。再利用するのは明示importされた既存型/規範/leafに限り、この同名関数がbaseに存在したとは扱わない。",
+          "return_preservation_ja": "同じstageの原input/全返却/原Fieldを保持し、native比較所見と私有原因を混同・消去しない。"
+        },
+        {
+          "name": "collect_resume",
+          "signature": "collect_resume(capability:F02OperationCapability, request:F02OperationPortRequest, dispatch:F02DispatchCallReturn, monitor:F02MonitorCallReturn) -> F02CollectionCallReturn",
+          "actual_operands": {
+            "capability": "同ready capability",
+            "request": "同ready request",
+            "dispatch": "同実dispatch返却",
+            "monitor": "同実monitor返却"
+          },
+          "call_conditions": [
+            "先行dispatch/monitorがnot_calledならowner collectを呼ばずnot_calledへ原request/monitor/理由保持。その他は同owner portから得たcall state/原Field/全returnを保持。",
+            "result_recordやOS018 late2Fieldをここで生成しない。"
+          ],
+          "visibility": "private",
+          "definition_ja": "今回具体化する私有署名。再利用するのは明示importされた既存型/規範/leafに限り、この同名関数がbaseに存在したとは扱わない。",
+          "return_preservation_ja": "同じstageの原input/全返却/原Fieldを保持し、native比較所見と私有原因を混同・消去しない。"
+        },
+        {
+          "name": "complete_resume_operation",
+          "signature": "complete_resume_operation(input:F03ResumeOperationObservationInput) -> F03ResumeOperationReturn",
+          "actual_operands": {
+            "request": "input.start_return.operation_request",
+            "observation.dispatch": "input.dispatch_return",
+            "observation.monitor": "input.monitor_return",
+            "observation.collection": "input.collection_return",
+            "observation.os018_assignment_attempt_return_native": "input.os018_assignment_attempt_return_native（独立late原Field）",
+            "observation.source_occurrences": "input.source_occurrences（独立late原Field）"
+          },
+          "call_conditions": [
+            "operation_same_callのrequest/先行返却とnot_called cascadeのいずれかが不成立ならnot_captured。原input/三段返却/late Field/原因を保持し、capture/F02004を作らない。",
+            "同call対応が成立したらcapture_resume_returnで14memberを構成し、bind_resume_collectionでF02004を一回。capturedはrecord化だけで実成功ではない。",
+            "late2Fieldがabsentでもその原値を保持し、collection.return不存在memberから埋めない。"
+          ],
+          "visibility": "private",
+          "definition_ja": "今回具体化する私有署名。再利用するのは明示importされた既存型/規範/leafに限り、この同名関数がbaseに存在したとは扱わない。",
+          "return_preservation_ja": "同じstageの原input/全返却/原Fieldを保持し、native比較所見と私有原因を混同・消去しない。"
+        },
+        {
+          "name": "capture_resume_return",
+          "signature": "capture_resume_return(request:F02OperationPortRequest, observation:F02OperationObservation) -> F02OperationCapture",
+          "actual_operands": {
+            "request": "同ObservationInput.start_return.operation_request",
+            "observation": "前記6実operandから構成した同F02OperationObservation"
+          },
+          "algorithm_import": {
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "pointer": "/contracts/1/operation_call_contract/capture_member_origins",
+            "scope": "14copy+Field stateのみ。F02 prepare/collect policyをimportしない。",
+            "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+            "file_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2"
+          },
+          "call_conditions": [
+            "called collectionのresult_record/owner_return_nativeは原Field、not_calledはそのmemberが無いのでField.absent。全request/observation/反復を保持。"
+          ],
+          "visibility": "private",
+          "definition_ja": "今回具体化する私有署名。再利用するのは明示importされた既存型/規範/leafに限り、この同名関数がbaseに存在したとは扱わない。",
+          "return_preservation_ja": "同じstageの原input/全返却/原Fieldを保持し、native比較所見と私有原因を混同・消去しない。"
+        },
+        {
+          "name": "bind_resume_collection",
+          "signature": "bind_resume_collection(source:CIInput, capture:F02OperationCapture) -> F03ResumeCapturedStageReturn",
+          "actual_operands": {
+            "source": "同start_return.input.current_ci_input",
+            "capture": "同capture_resume_returnの原返却",
+            "comparison_input": "sourceの/resultのみcapture.result_recordへ置換（他/context全値不変）"
+          },
+          "native_calls": [
+            {
+              "source": "/functions/3",
+              "arguments": {
+                "input": "comparison_input",
+                "phase": "resume"
+              },
+              "return_to": "F03ResumeCollectionComparisonCall.assessment",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+              "file_sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1"
+            }
+          ],
+          "call_conditions": [
+            "captureが実構成できた時だけ一回。F02 collect-only bind_collection_assessmentは呼ばない。",
+            "not_called/absent/null/empty actual_resultも既存F02004へそのFieldのまま渡し、その全返却を保持。"
+          ],
+          "visibility": "private",
+          "definition_ja": "今回具体化する私有署名。再利用するのは明示importされた既存型/規範/leafに限り、この同名関数がbaseに存在したとは扱わない。",
+          "return_preservation_ja": "同じstageの原input/全返却/原Fieldを保持し、native比較所見と私有原因を混同・消去しない。"
+        },
+        {
+          "name": "persist_resume",
+          "signature": "persist_resume(input:F03ResumePersistInput) -> F03ResumePersistReturn",
+          "actual_operands": {
+            "captured": "実complete_resume_operation.captured",
+            "build_input": "実capture後に独立owner basis/operation capability/decoder capabilityと同captureから構成",
+            "builder_capability": "同input.builder_capability",
+            "adapter": "同input.adapter（native値はadapter.native_capability）"
+          },
+          "call_conditions": [
+            "既存独立選択でOS053を選んだ範囲だけこの私有callerを使う。非選択/未確定/typed保存input未供給は外側で非呼出しと元operationreturn/選択状態/未完を保持。新方式判断はしない。",
+            "persist_capture及びpersist_operation_capabilityの両guardが不成立ならinput_unbound、builder/join/S04未呼出し。",
+            "成立時だけ既存builderを一回。blockedはbuilder_blocked、readyは同supply/同captureでjoin_resume_plan_capture。",
+            "builder原返却のinputを同input.build_inputへ型・全値で照合し、不一致ならbuilder_return_unboundとして原build_returnを保持する。builderは呼出し済みであることを残し、join/S04を呼ばない。対応時だけ元ready/blocked branchへ進む。",
+            "join未成立はcrosswalk_blocked、matchedだけ既存S04 leafを一回呼びpersist_called。native resultは全variant保持、既存内蔵read-after再利用、追加read無し。",
+            "F02004 findings空/actual成功/回収済を保存gateにしない。失敗/未観測の原captureも保存対象で、保存成功でも元失敗を消さない。"
+          ],
+          "native_calls": [
+            {
+              "source": "/private_producer_bindings/2/private_signatures/6",
+              "arguments": {
+                "capability": "input.builder_capability",
+                "input": "同input.build_input"
+              },
+              "return_to": "build_return全値（return.inputも同build_inputへ対応）",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+              "file_sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1"
+            },
+            {
+              "source": "/private_producer_bindings/2/private_signatures/9",
+              "arguments": {
+                "plan": "同ready build_return.supply.plan",
+                "resolutions": "同supply.resolutions原順",
+                "native_capability": "同input.adapter.native_capability"
+              },
+              "return_to": "s04_native_return全3tuple",
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+              "file_sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1"
+            }
+          ],
+          "visibility": "private",
+          "definition_ja": "今回具体化する私有署名。再利用するのは明示importされた既存型/規範/leafに限り、この同名関数がbaseに存在したとは扱わない。",
+          "return_preservation_ja": "同じstageの原input/全返却/原Fieldを保持し、native比較所見と私有原因を混同・消去しない。"
+        },
+        {
+          "name": "join_resume_plan_capture",
+          "signature": "join_resume_plan_capture(supply:OwnerPlanSupply, capture:F02OperationCapture) -> F02OwnerPlanJoinReturn",
+          "actual_operands": {
+            "supply": "同一ready builderのsupply",
+            "capture": "同input.operation_return.operation_return.capture"
+          },
+          "algorithm_import": [
+            {
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "pointer": "/private_producer_bindings/2/stage_rules/3",
+              "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+              "file_sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1"
+            },
+            {
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "pointer": "/private_producer_bindings/2/stage_rules/4",
+              "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+              "file_sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1"
+            }
+          ],
+          "call_conditions": [
+            "全Write occurrence、full Ref/原bytes/両RFC6901 path/Field Binding unwrapのI06規範をそのまま参照。全assessment/cause/一致sibling保持、全必須比較correspondingだけmatched。",
+            "F02 join_plan_capture(supply,F02Stage)を呼んだとは書かない。F02 stage/persist Returnへcastしない。builder/decoderを再呼出ししない。"
+          ],
+          "visibility": "private",
+          "definition_ja": "今回具体化する私有署名。再利用するのは明示importされた既存型/規範/leafに限り、この同名関数がbaseに存在したとは扱わない。",
+          "return_preservation_ja": "同じstageの原input/全返却/原Fieldを保持し、native比較所見と私有原因を混同・消去しない。"
+        }
+      ],
+      "stage_rules": {
+        "begin_ja": "F02002のphase解釈規則だけをimportし、選択phaseがresume以外ならnot_readyとしてnative3比較は未呼出し。resumeならF02003/05/06へ同current/resumeを各一回渡し全返却保持。operand_binding_tableのstage=beginだけを検査する。全begin対応と原projected、supplied request/capability、三所見空の場合だけresume_ready。stage=operation/persistの未来値は開始時に検査も要求もしない。",
+        "operation_ja": "実resume_readyの同capability/requestで三段portを呼び、後段入口へ三段原返却と独立late2Fieldを渡す。source table stage=operationの同call/cascade成立ならcapture_resume_return→bind_resume_collectionを各一回。不成立だけnot_captured。called後の未観測・六結果・未実行は原状態保持。",
+        "persist_ja": "既存OS053選択時だけ後段typed入力を構成し、stage=persist両guardが成立した場合にbuilder一回。builder返却input不一致は専用branchで保持。ready supplyと同captureをI06既存規範へ渡し、全必須比較対応のmatchedだけS04一回。比較所見付き・失敗・未観測の原captureを成功へ書き換えず記録する。",
+        "native_cause_ja": "公開の所見/Resultを新設せず、native返却をその型のまま保存。私有causesはRawValue原値と所在を保持し、OS020/OS053分類へcastしない。",
+        "phase_interpretation_import": {
+          "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+          "revision": "1b524d642aaa03cc72d5016c545ee9b1702d54c0",
+          "file_sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1",
+          "pointers": [
+            "/functions/1/return_derivation/selected_phase",
+            "/logical_types/19"
+          ]
+        },
+        "typed_equality_ja": "型・Field tag/member presence・record全member・list原順/反復・byte exactに敏感な対応。opaque host portは同じ供給原値を保持する同call対応でありJSON化やRefからの同一性生成をしない。意味上のknown/資格をstructural equalityから生成しない。"
+      },
+      "limits_ja": [
+        "段階別の同call引数・返却具体化に限る。実provider/資格・CI起動/保存/受入は未成立。",
+        "OS019/OS023原補助材料は保持だけで、caller/判定/実identityを新設・生成しない。",
+        "literal全入力/全返却oracle凍結、実装前Red/Green、全92親430義務・実装Readyは未認定。"
+      ],
+      "legacy_comparison": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/impact-ci-recovery.md",
+        "file_sha256": "1340f9a3f74b2d78c9c901c284ae478b54ff186f1df0d90e138867980f49812b",
+        "sections": [
+          "1",
+          "5",
+          "6",
+          "8"
+        ],
+        "preserve_ja": "既存ownerへ薄く委譲し、元HEAD/run/環境・失敗・未完・attempt履歴を残す。後続成功で元記録を置換しない。",
+        "change_ja": "旧runtime/DB/固定profile/一律full-nightlyを移植せず、現current CIInputのresume比較、段階別private callerとtyped原返却へ再導出する。",
+        "reason_ja": "承認済み再開要求に対し、原記録→同current→運転→結果/保存の引数対応が未定義だったため。新しい認可・承認gateを生成しない。"
       }
     }
   ]

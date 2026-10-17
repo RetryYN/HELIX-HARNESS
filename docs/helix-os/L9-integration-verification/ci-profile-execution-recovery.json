@@ -108936,7 +108936,7 @@
     "owner_outer_field_priority": "最優先でplan_owner.raw_valueのouter Fieldを判定する。raw ownerがabsentならselection outer Field=absent、raw null/empty又はtyped decode失敗ならouter Field=nullとし、後段membership/item規則で上書きしない。raw/typedの不一致や供給済の独立軸/全raw候補はtraceへ保持し省略しない。typed owner内plan_ref/bindingの原Field tag/値は保持する。",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+      "body_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -108960,7 +108960,7 @@
     "kind": "finite_independent_producer_to_consumer_integration_observation",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+      "body_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -275689,7 +275689,7 @@
     "kind": "T02の独立局所projection素材",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+      "body_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract/relation_comparison_units",
       "binding_kind": "同一候補の正式L4 path/本文SHAへ結ぶ。scratchを意味正本にしない。"
     },
@@ -395892,7 +395892,7 @@
     "system_oracle_ref": "HELIXOS-L10-020-B01",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+      "body_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
       "pointer": "/contracts/3/owner_return_contract",
       "object_canonical_sha256": "258ba7bedf96d8bf71f75ce310ef3cef91e512d6d0c67154e37621029e13c45b"
     },
@@ -396010,7 +396010,7 @@
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
       "pointer": "/contracts/1/operation_call_contract",
-      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2"
+      "body_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902"
     },
     "source_basis": [
       {
@@ -396146,14 +396146,14 @@
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
       "pointer": "/contracts/2/prior_projection_call_contract",
-      "body_sha256": "657bfd98fa8e0d0cee7f1c89971d6808a8078d2a73a0d3743c0d4b3a66e12aa2",
+      "body_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
       "object_canonical_sha256": "18859b9a615acb625455f56689569bdb681c0f289f11ef3f29fcdeec9ec173e2"
     },
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/3",
-      "sha256": "67dfbd504804b3f4289d49ee8818c1fcb5cd8ad0c51d4826f3362448767ca0a1",
-      "object_canonical_sha256": "d1ef2ee51e0b9474226f6def0b7a318b75fd51a3682e817384063d6f3e5dc561"
+      "sha256": "5af9971564462ea08737a54a56f7cc5ecdf92c209b1123419db2803f639e83cc",
+      "object_canonical_sha256": "e93ee50f70741d1d5b201c56625efd8a1b5a76d7e46d285b3ab85ba50726cc33"
     },
     "independent_source_conditions": {
       "source_path": "scaffold/review-handoff/local/os020-operation-root-source-conditions-at-075f0ed3/conditions.json",
@@ -396304,5 +396304,211 @@
         "source_pointer": "/private_producer_bindings/3/algorithm_ja/2"
       }
     ]
+  },
+  "resume_call_verification": {
+    "kind": "os020_f03_resume_stage_source_conditions",
+    "requirement_ref": "HELIXOS-L3-020-F03",
+    "system_oracle_ref": "HELIXOS-L10-020-F03",
+    "source_basis": {
+      "requirement": {
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+        "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+        "pointer": "/requirements/39",
+        "canonical_sha256": "6afea8cd6d91c2ac23d0b55f1f778c917c1a1aa5245fa1349fe0be905024f856"
+      },
+      "oracle": {
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "51edcab4d57197c60756d6915cfa1022e759e1f4",
+        "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+        "pointer": "/cases/39",
+        "canonical_sha256": "93874ef255250c36da29314a58c6c3f09dc8d4630cf92741c3a3e9be1147c0d7"
+      }
+    },
+    "current_l4_binding": {
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "pointer": "/contracts/2/resume_call_contract",
+      "body_sha256": "d588f3acadc3a00e4ad0abf2674ab2d529a1afd35cf0b0ace1978a2148031902",
+      "object_canonical_sha256": "2dc4d694753023e1cadef20307b664b7d0dcf1cf02146a97d32c565b0987abfd"
+    },
+    "candidate_l5_binding": {
+      "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+      "pointer": "/private_producer_bindings/4",
+      "sha256": "5af9971564462ea08737a54a56f7cc5ecdf92c209b1123419db2803f639e83cc",
+      "object_canonical_sha256": "703a0b5819eb8085b8f9dc38bc5f2a33cf15c71f9e4a37046217fed5de56fdc9"
+    },
+    "original_source_conditions": [
+      {
+        "id": "RES-SOURCE-01",
+        "requirement_ref": "HELIXOS-L3-020-F03",
+        "scenario_ja": "同scopeかつ同HEAD/oracle/許可境界の失敗後に再開を依頼する",
+        "expected_condition_ja": "原failure/未完義務/戻し先/再開条件を別記録として保持し、その原保存記録と次の再開依頼・結果/残未完との対応を辿れる。元失敗を上書きしない。",
+        "derivation_ja": "L3未完状態/失敗種別/戻し先/再開条件とL10同scope再開"
+      },
+      {
+        "id": "RES-SOURCE-02",
+        "requirement_ref": "HELIXOS-L3-020-F03",
+        "scenario_ja": "HEAD又は環境等が既知変更で、必要再評価結果が未供給",
+        "expected_condition_ja": "変更した対象の再照合が未成立であることと元未完を保持し、既存F02006の適用条件を満たす場合だけ再検証を要求する。旧greenを代用しない。",
+        "derivation_ja": "L10 HEAD/環境変更を分け適用契約で再照合。未知を既知変更と捏造しない"
+      },
+      {
+        "id": "RES-SOURCE-03",
+        "requirement_ref": "HELIXOS-L3-020-F03",
+        "scenario_ja": "oracle欠落、別環境結果による相殺、失敗check削除、未完resetを提出する",
+        "expected_condition_ja": "元失敗/未完と必要な再評価を保持し、比較対応・再開・後続greenだけで未完を削除しない。",
+        "derivation_ja": "L3 oracle欠落や環境違いは未完、検査弱化でgreenにしない/L10全負例"
+      },
+      {
+        "id": "RES-SOURCE-04",
+        "requirement_ref": "HELIXOS-L3-020-F03",
+        "scenario_ja": "保存した原未完と異なるscope/attempt/因果記録を次の再開へ混入する",
+        "expected_condition_ja": "元記録と受渡しの相違を保持し、別案件/別runを同じ未完の履行としない。episode/assignment/attemptをrun_refから推測しない。",
+        "derivation_ja": "既存OS019/018 continuity責務を利用する際の同scope/原未完追跡"
+      }
+    ],
+    "original_condition_note_ja": "原四条件は準備時の原文として保全する。local記録は来歴に限り、規範は本節収載条件とsource_basisの承認済みL3/L10。原RES04のOS019/018併記は実owner OS019の条件付きcontinuityとして読み、正当な後継attemptを禁止しない。",
+    "conditions": [
+      {
+        "id": "R01",
+        "topic_ja": "phase",
+        "condition_ja": "current.phaseを既存F02002.selected_phaseの規則で読む。選択phaseと各03/05/06引数とoperation_checkを結ぶ。resume以外/unknownは未選択の空finding又は未呼出しでもreadyにしない。",
+        "source_pointers": [
+          "/functions/1/return_derivation/selected_phase",
+          "/logical_types/19",
+          "/functions/2",
+          "/functions/4",
+          "/functions/5"
+        ]
+      },
+      {
+        "id": "R02",
+        "topic_ja": "原読取の結合",
+        "condition_ja": "正式prior-read/decode/project返却の原input→read→setup→projection対応を保持し、projected.prior_recordと独立current.priorをField全値で比較。不一致/未投影を同callの成功へ補完しない。",
+        "source_pointers": [
+          "/private_producer_bindings/3/private_types/13",
+          "/private_producer_bindings/3/private_signatures/3",
+          "/functions/4"
+        ]
+      },
+      {
+        "id": "R03",
+        "topic_ja": "resume/revalidation入力",
+        "condition_ja": "入力で別供給するresume/revalidation Fieldと同current CIInputの各memberを全値で結ぶ。native03/05/06も同CIInput/phase。contextや旧失敗を結果から書き換えない。",
+        "source_pointers": [
+          "/logical_types/16",
+          "/functions/2",
+          "/functions/4",
+          "/functions/5"
+        ]
+      },
+      {
+        "id": "R04",
+        "topic_ja": "新旧Bindingの区別",
+        "condition_ja": "current bindingはresume側の対象bindingへ結び、prior bindingは旧context.prior側へ照合する。prior↔current一致を新gateにせず、known変更後の適切な再評価を受け付ける。",
+        "source_pointers": [
+          "/functions/1/common_binding_comparison_program",
+          "/functions/4",
+          "/functions/5"
+        ]
+      },
+      {
+        "id": "R05",
+        "topic_ja": "requestの同値",
+        "condition_ja": "owner requestのCIInput/check/binding/profile/security/resource/isolationとcurrent/同03返却を型・Field状態込みで比較。同名run_refだけで同callとしない。",
+        "source_pointers": [
+          "/private_producer_bindings/2/private_types/11",
+          "/private_producer_bindings/2/private_types/13"
+        ]
+      },
+      {
+        "id": "R06",
+        "topic_ja": "再評価の選択",
+        "condition_ja": "少なくとも一軸known差異なら他軸unknownがあってもnative06.selectedを抑止しない。known差異なしの未選択でrevalidation nullを不足にしない。unknown findingは消さない。",
+        "source_pointers": [
+          "/functions/5"
+        ]
+      },
+      {
+        "id": "R07",
+        "topic_ja": "運転の原返却",
+        "condition_ja": "resume専用呼出しでdispatch→monitor→collectの同request/直前原返却を結ぶ。dispatch未呼出しなら後段not_called、Field.absentとcalled後欠落を区別し、別のphase用callerを偽callしない。",
+        "source_pointers": [
+          "/private_producer_bindings/2/private_types/0",
+          "/private_producer_bindings/2/private_types/1",
+          "/private_producer_bindings/2/private_types/2",
+          "/private_producer_bindings/2/stage_rules/0"
+        ]
+      },
+      {
+        "id": "R08",
+        "topic_ja": "late観測の原値",
+        "condition_ja": "OS018 attempt原返却と追加source occurrencesは三段CallReturnに無いので、別供給原Fieldをlate observation inputに保持して14member captureへ渡す。absenceを観測成功/開始前future必須にしない。",
+        "source_pointers": [
+          "/private_producer_bindings/2/private_types/14",
+          "/private_producer_bindings/2/private_types/15",
+          "/private_producer_bindings/2/private_signatures/4"
+        ]
+      },
+      {
+        "id": "R09",
+        "topic_ja": "回収比較",
+        "condition_ja": "同CIInputのresultだけを同capture.result_recordへ差替えF02004(comparison_input,resume)へ一回渡す。独立context/expectedは不変、全結果区分・所見・未完を原値で保持。",
+        "source_pointers": [
+          "/functions/3",
+          "/private_producer_bindings/2/private_types/15"
+        ]
+      },
+      {
+        "id": "R10",
+        "topic_ja": "同capture保存",
+        "condition_ja": "OS053選択時だけ、同captureをbuildinputへ結びbuilder1回→ready supply/I06全比較→matchedならnative S04一回。非選択/未確定、builderblocked、join不一致はS04非呼出し。S04の既存内蔵read-after以外の追加read必須なし。",
+        "source_pointers": [
+          "/private_producer_bindings/2/private_types/4",
+          "/private_producer_bindings/2/private_signatures/6",
+          "/private_producer_bindings/2/stage_rules/3",
+          "/private_producer_bindings/2/stage_rules/4",
+          "/private_producer_bindings/2/private_signatures/9"
+        ]
+      },
+      {
+        "id": "R11",
+        "topic_ja": "失敗の記録保持",
+        "condition_ja": "F02004所見付きの失敗/未実行/未観測captureも元値として保持し、所見が空でないことを原記録保存の拒否理由にしない。保存成功を運転成功へ変換せず、元失敗を後続Greenで消さない。",
+        "source_pointers": [
+          "/functions/3",
+          "/functions/4",
+          "/private_producer_bindings/2/private_types/23"
+        ]
+      }
+    ],
+    "branch_controls": [
+      {
+        "id": "RESUME-PHASE-GUARD",
+        "condition_ja": "入力phase非resume又はunknownならnot_ready、3比較未呼出しで各Field.absent。actualphaseとrequest.operation_checkのphaseを同値に結び、空所見を運転許可へ変換しない。"
+      },
+      {
+        "id": "RESUME-NO-FUTURE",
+        "condition_ja": "begin入力に運転結果・late観測・build_input/Planを必要としない。未選択revalidationのnull、late観測absenceを新不足gateにしない。"
+      },
+      {
+        "id": "RESUME-CALL-CASCADE",
+        "condition_ja": "先行not_calledなのに後続called、別request/別先行returnを渡した場合は原三段返却付きnot_captured。正当なall-not_calledは原absence付きcapture/F02004へ保持でき、実成功にはしない。"
+      },
+      {
+        "id": "RESUME-BUILDER-INPUT",
+        "condition_ja": "保存前capture/capability不一致はbuilder未呼出しのinput_unbound、呼出し後のbuild_return.input不一致はbuilder_return_unboundとし、両branchの原値と実call有無を区別する。"
+      },
+      {
+        "id": "RESUME-FAILED-CAPTURE-PERSIST",
+        "condition_ja": "F02004所見付きの失敗/未観測captureも保存対象として保持する。S04全nativevariantを保存成功へ一括変換せず、元失敗を後続成功で相殺しない。"
+      },
+      {
+        "id": "RESUME-STORAGE-SELECTION",
+        "condition_ja": "保存のprivate callerは、既存の独立選択根拠によりOS053を選択した範囲だけに適用する。非選択・選択未確定・後段typed保存input未供給なら外側でpersist_resumeを呼ばず、元operation return・選択状態・未完を保持する。他方式を禁止せず、そのowner契約へ委ねる。方式選択、認可、fallback成功を本契約から生成しない。"
+      }
+    ],
+    "preservation_ja": "原L3/L10、既存全caseの入力/期待・公開関数/型、prior projectionのoptional snapshot条件は保持。新literal fixture又はwhole期待を生成しない。",
+    "verification_boundary_ja": "source条件と呼出し対応の設計であり、case_refsは各単体条件で未固定。条件数や型数を充足gateにせず、実provider/資格/運転/保存/CI・全F03完了を認定しない。"
   }
 }
