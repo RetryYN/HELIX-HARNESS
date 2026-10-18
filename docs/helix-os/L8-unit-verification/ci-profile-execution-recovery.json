@@ -170767,7 +170767,7 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-    "sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+    "sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
     "pointer": "/private_producer_bindings/0",
     "object_canonical_sha256": "04dbe1216473f462663232a11c3a3bb007bad20f67fd09ae2b0e631d47724d22",
     "binding_kind": "exact_candidate_file_bytes",
@@ -171280,7 +171280,7 @@
     ],
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "319ddd9512abed7748654d7a1bc6ae06800be6fc29a3dc287f9701194d4f0bac",
+      "candidate_sha256": "68de9202fc56e9b8ed5f8a503d10810eb8ebc585d0c64f578d780594b7b39268",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
     },
@@ -171298,13 +171298,13 @@
     "requirement_ref": "HELIXOS-L3-020-B01",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+      "sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
       "pointer": "/private_producer_bindings/1",
       "object_canonical_sha256": "63f762bfe8201153c855aa2aec5be391589101c0b61d4278b4d4252302f46d5c"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "319ddd9512abed7748654d7a1bc6ae06800be6fc29a3dc287f9701194d4f0bac",
+      "candidate_sha256": "68de9202fc56e9b8ed5f8a503d10810eb8ebc585d0c64f578d780594b7b39268",
       "pointer": "/owner_return_verification"
     },
     "unit_conditions": [
@@ -171381,13 +171381,13 @@
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/2",
-      "sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+      "sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
       "object_canonical_sha256": "e73285ce1636a0a84018656dcb4f70a14e32189215a7612736612d0799e9ad20"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/operation_call_verification",
-      "candidate_sha256": "319ddd9512abed7748654d7a1bc6ae06800be6fc29a3dc287f9701194d4f0bac",
+      "candidate_sha256": "68de9202fc56e9b8ed5f8a503d10810eb8ebc585d0c64f578d780594b7b39268",
       "object_canonical_sha256": "9f2acd849068f49d7113e7d9fc02089de7531667804083219bae5c29eb89583c"
     },
     "condition_correspondence": [
@@ -171541,14 +171541,14 @@
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/3",
-      "sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+      "sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
       "object_canonical_sha256": "2484d1aefeb5070ad9eac35f6e523ad40f3e31b2581b88854e9b30dc94c79342"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/prior_projection_verification",
-      "candidate_sha256": "319ddd9512abed7748654d7a1bc6ae06800be6fc29a3dc287f9701194d4f0bac",
-      "object_canonical_sha256": "8d5d2ee926a324076dabe49b3add9d6cb8dabdc6cb940629719adba88f8fba57"
+      "candidate_sha256": "68de9202fc56e9b8ed5f8a503d10810eb8ebc585d0c64f578d780594b7b39268",
+      "object_canonical_sha256": "3d573219ffc0e67698c0446f5a74e3d2b225553818e546cbd2916795d0a48ca8"
     },
     "unit_conditions": [
       {
@@ -171631,14 +171631,14 @@
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/4",
-      "sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+      "sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
       "object_canonical_sha256": "2f11f11a5fe36fcb1ce5cfe2709576289c60f06d44cdee962b3736b2774b6a1e"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/resume_call_verification",
-      "candidate_sha256": "319ddd9512abed7748654d7a1bc6ae06800be6fc29a3dc287f9701194d4f0bac",
-      "object_canonical_sha256": "f23de4dfde1c08e39dc874035d19bc62d6c8915b05bbe3d9c2b08ee447b2371e"
+      "candidate_sha256": "68de9202fc56e9b8ed5f8a503d10810eb8ebc585d0c64f578d780594b7b39268",
+      "object_canonical_sha256": "f77ba232a13a4ce0cf67d8d5e0fa82a9b7f9b6414d869f52169aec52a49c6667"
     },
     "unit_conditions": [
       {
@@ -171901,7 +171901,7 @@
     "system_oracle_ref": "HELIXOS-L10-020-F01",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+      "sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
       "pointer": "/private_producer_bindings/5",
       "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
       "binding_kind": "exact_candidate_file_bytes"
@@ -171914,9 +171914,9 @@
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "319ddd9512abed7748654d7a1bc6ae06800be6fc29a3dc287f9701194d4f0bac",
+      "candidate_sha256": "68de9202fc56e9b8ed5f8a503d10810eb8ebc585d0c64f578d780594b7b39268",
       "pointer": "/f01_owner_return_verification",
-      "object_canonical_sha256": "c8bfea711ea3f4266f65943e48e9db8d4399ded3edba6a1ab58fffd717ce593f"
+      "object_canonical_sha256": "183cbc57119179b692b39eb07b2bf7eef9e37013f032c03df3ed257556491747"
     },
     "unit_conditions": [
       {
@@ -171968,7 +171968,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172070,7 +172070,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172172,7 +172172,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172274,7 +172274,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172376,7 +172376,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172478,7 +172478,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172580,7 +172580,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172682,7 +172682,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172784,7 +172784,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172886,7 +172886,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172979,7 +172979,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "F01 producer binding"
@@ -173180,7 +173180,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "同callerのL5 import"
           }
@@ -173240,7 +173240,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "同callerのL5 import"
           }
@@ -173300,7 +173300,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "同callerのL5 import"
           }
@@ -173360,7 +173360,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "同callerのL5 import"
           }
@@ -173413,7 +173413,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "同callerのL5 import"
           }
@@ -173473,7 +173473,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "同callerのL5 import"
           }
@@ -173492,7 +173492,7 @@
     "independent_expected_basis_ja": "期待は採用L4のf02009_return_mappingとchild_field_preservationから導く。L9は固定seedからraw/caller/全返却14memberを再構成する有限input・paired oracleとして参照する。L5 /functions/8 の既存期待本文を期待生成元として使わない。",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+      "sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
       "objects": [
         {
           "pointer": "/contracts/4",
@@ -173673,13 +173673,13 @@
     },
     "current_l5_detail_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "revision_relation": "same candidate tree; exact L5 content/object hashes are pinned; no self-containing commit SHA is asserted",
-      "file_sha256": "25f8dcec1039117bd62aa7bd5dd09ce0974c3b8d265d5b97c75f4a578b1129cf",
+      "revision_relation": "同じ候補treeの正確なL5全file/object hashへ束縛する。自己包含するcommit SHAは主張しない。",
+      "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
       "pointer": "/contracts/5",
-      "object_canonical_sha256": "d93eaaa88d063420785f238840bce0927e2aa24a3eaa305d3f185bead31831c1",
+      "object_canonical_sha256": "6dd67d99f6b18bd2ad790ae36e2bb9dba2f4c41ef044533514b55d542706ce78",
       "source_role_ja": "同じ候補treeにあるL5 detail。自己包含するcommit SHAは主張せず、whole-file/object hashで候補内容を結ぶ。rootのcommit後に正式revisionへ追随する。"
     },
-    "workspace_materialization_ja": "fixed_sourceは固定Git seed全JSONをpath/revision/file_sha256で取得し、casesは4件の初期arguments objectから始める。各caseのRFC6902 copy/add recipeをcandidate outputとは独立に適用してexpected_observation全体を組み立てる。RFC source recipeはMのL9から内容一致で転記され、4 case whole hashで束縛する。",
+    "workspace_materialization_ja": "fixed_sourceは固定Git seed全JSONをpath/revision/file_sha256で取得し、casesは4件の初期arguments objectから始める。各caseのRFC6902 copy/add recipeをcandidate outputとは独立に適用してexpected_observation全体を組み立てる。RFC source recipeはfixed_l9_sourceが固定するrevision 9b2e3c9ae109425843be21e3ed1587dd6a88aa07のL9から内容一致で転記され、4 case whole hashで束縛する。",
     "oracle_separation_ja": "L9の固定GitはF02009/F02002/F02008旧全入力・全返却を供給する。元seedはF02003..07を呼び出していない。5 facetの全返却literalはL4適用表と固定L5 derivationから手起草された期待で、過去に観測済みとは記さない。expected値作成へcandidate関数を使わず、将来のactual writer return全体と独立に比較する。",
     "cases": [
       {
@@ -173861,7 +173861,7 @@
         "assembled_caller_canonical_sha256": "52e69ec55e381c2bd5f54ee8e85e960109bad7318729571eae6032167ff10e76",
         "expected_full_invocation_canonical_sha256": "af7ff9e60873525f1102ddba765d44e6738e9c750340c846c8948dbb35b0fdc7",
         "expected_projection_canonical_sha256": "4d335684dc2523e4d7fa8fc70f46accdcd2c523eec3c2b946e3bb98369a23206",
-        "oracle_provenance_ja": "F02009/F02002/F02008の既存全返却は固定Gitの訂正済み期待を再利用。5facetはF02003/04/05のphase規則、F02006はL4適用表のresume限定、F02007の4claim=falseから手起草した全返却。L5のF02006算法だけからphase限定を断定しない。これはcandidate実行ではなく有限設計接続oracle。",
+        "oracle_provenance_ja": "F02009/F02002/F02008の既存全返却は固定Gitの訂正済み期待を再利用。5facetはF02003/04/05のphase規則、F02006はL4適用表のresume限定、F02007の4claim=falseから手起草した全返却。phase限定の意味源は既存L4適用表であり、この詳細pairのL5 F02006算法にも同じresume限定を明文化している。これはcandidate実行ではなく有限設計接続oracle。",
         "execution_state": "not_executed"
       },
       {
@@ -174043,7 +174043,7 @@
         "assembled_caller_canonical_sha256": "2ec5aef7393973fa082590add195dd3c1836195cb065a480716f7867ec798480",
         "expected_full_invocation_canonical_sha256": "75a2a9a81063bdb597432220bdb399e3cbcaf22c83c2685c557589d680d335db",
         "expected_projection_canonical_sha256": "43d36e9527ae809a4a5b39a569fbdd91dcf03f38a7e42bddea26ce4ac1f1e2ea",
-        "oracle_provenance_ja": "F02009/F02002/F02008の既存全返却は固定Gitの訂正済み期待を再利用。5facetはF02003/04/05のphase規則、F02006はL4適用表のresume限定、F02007の4claim=falseから手起草した全返却。L5のF02006算法だけからphase限定を断定しない。これはcandidate実行ではなく有限設計接続oracle。",
+        "oracle_provenance_ja": "F02009/F02002/F02008の既存全返却は固定Gitの訂正済み期待を再利用。5facetはF02003/04/05のphase規則、F02006はL4適用表のresume限定、F02007の4claim=falseから手起草した全返却。phase限定の意味源は既存L4適用表であり、この詳細pairのL5 F02006算法にも同じresume限定を明文化している。これはcandidate実行ではなく有限設計接続oracle。",
         "execution_state": "not_executed"
       },
       {
@@ -174225,7 +174225,7 @@
         "assembled_caller_canonical_sha256": "473a4395f4c6b14b2dfa30c15ce36aa19cf6f4fcf5b0440b8da7aeb3b7dadccc",
         "expected_full_invocation_canonical_sha256": "73ca791581e12385d135d03dd407c3a4df07e49f8f63f7c370956b3eaad3328b",
         "expected_projection_canonical_sha256": "2b5089d98bcb8c020c4dc1a5f7d30105d3f6c8acd19a497bfa6f232c852134a2",
-        "oracle_provenance_ja": "F02009/F02002/F02008の既存全返却は固定Gitの訂正済み期待を再利用。5facetはF02003/04/05のphase規則、F02006はL4適用表のresume限定、F02007の4claim=falseから手起草した全返却。L5のF02006算法だけからphase限定を断定しない。これはcandidate実行ではなく有限設計接続oracle。",
+        "oracle_provenance_ja": "F02009/F02002/F02008の既存全返却は固定Gitの訂正済み期待を再利用。5facetはF02003/04/05のphase規則、F02006はL4適用表のresume限定、F02007の4claim=falseから手起草した全返却。phase限定の意味源は既存L4適用表であり、この詳細pairのL5 F02006算法にも同じresume限定を明文化している。これはcandidate実行ではなく有限設計接続oracle。",
         "execution_state": "not_executed"
       },
       {
@@ -174407,7 +174407,7 @@
         "assembled_caller_canonical_sha256": "d229809f052b05c3ecea88f9ade884ffca2aee25d830114f6d5b3b5c03859594",
         "expected_full_invocation_canonical_sha256": "d4cdc23a671ffb49dfa0d3a90c0bb9c6da46b29df6632c456ac7b10c038778f5",
         "expected_projection_canonical_sha256": "c2f89c14c757b2af153f7661afcd9d0ddefb136ffdfb6194416924eebf5bffa3",
-        "oracle_provenance_ja": "F02009/F02002/F02008の既存全返却は固定Gitの訂正済み期待を再利用。5facetはF02003/04/05のphase規則、F02006はL4適用表のresume限定、F02007の4claim=falseから手起草した全返却。L5のF02006算法だけからphase限定を断定しない。これはcandidate実行ではなく有限設計接続oracle。",
+        "oracle_provenance_ja": "F02009/F02002/F02008の既存全返却は固定Gitの訂正済み期待を再利用。5facetはF02003/04/05のphase規則、F02006はL4適用表のresume限定、F02007の4claim=falseから手起草した全返却。phase限定の意味源は既存L4適用表であり、この詳細pairのL5 F02006算法にも同じresume限定を明文化している。これはcandidate実行ではなく有限設計接続oracle。",
         "execution_state": "not_executed"
       }
     ],

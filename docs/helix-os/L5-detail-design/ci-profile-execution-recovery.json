@@ -900,7 +900,7 @@
                   "logical_destination": "/context/source_bound_selection",
                   "parent": "/context",
                   "parent_requirement": "Field.supplied(ExpectedContext)",
-                  "write": "供給済み/context recordの既存source_bound_selection memberだけをField.supplied(R)へ設定する。ここはsource_bound memberではない。"
+                  "write": "供給済み/context recordの既存source_bound_selection memberだけをField.supplied(R)へ設定する。ここはsource_bound memberではない。 /context/source_bound_selectionは宣言済みoptional memberで、親contextがsupplied recordなら元keyが不在でもそのmemberだけを追加する。元親Field.absent/null/emptyにrecordや子を作ることとは区別する。他のkeyの不在は保持する。"
                 }
               ],
               "parent_presence_rule": "各宛先の全parentがField.supplied(declared record)の場合だけ当該memberを設定する。親がabsent/null/emptyならその親Field全体を維持してchildを作らない。未指定memberと他memberは全値保持する。3枝すべて接続できることをsource-bound branchの成立とし、partial接続から成立を主張しない。"
@@ -1144,7 +1144,7 @@
         "Field<T>からProfileBodyを作る一般規則、canonical digest、codecの選択はここでは行わない。",
         "固定L9の4件ではsource_bound attachmentの3親すべてがsupplied。absent/null/empty/partialの親組合せは未評価であり、L4の既存保持則を超える保証をしない。"
       ],
-      "retained_and_changed_ja": "旧CIS-R-01/04/07/10の証拠束縛・義務不変・unknown保持を維持する。旧固定stage/runtime/telemetry方式は移植せず、現行契約が指定する8呼出しを原値で結ぶ。T29/T35/T40の照合をL8全値oracle bindingへ反映し、gate/runtime新設の根拠にはしない。",
+      "retained_and_changed_ja": "旧CIS-R-01/04/07/10の証拠束縛・義務不変・unknown保持を維持する。旧固定stage/runtime/telemetry方式は移植せず、現行契約が指定する8呼出しを原値で結ぶ。T29/T35/T40の照合をL8全値oracle bindingへ反映し、gate/runtime新設の根拠にはしない。 L4 /contracts/0/ci_material_same_call_contract/unclosed_ja/0 のうち19 private型・8call writerと有限4件のL8追随、同unclosed_ja/3とcall_rules_ja/3のF02006 phase明文化は、このL5 contracts/5・functions/5と対L8 ci_material_same_call_unit_verificationで追随した。L9 /ci_material_same_call_verification/limits_ja/1,/3 と f02006_phase_oracle_source/role の後続詳細という説明も、この限定範囲について追随済みとして読む。これらの原基本記述は前段時点の未完を保持するもので、一般Field→ProfileBody形成・一般typed domain・partial parent・全phaseの閉包は引き続き未完。",
       "legacy_inventory": [
         {
           "asset_id": "LEGACY-ASSET-DA012A9B04D5BE9419CE",
@@ -3131,7 +3131,7 @@
       ],
       "return_derivation": {
         "selected": "resumeで旧/current bindingにknown相反が1つ以上の時true。unknownのみで変更を推測しない。",
-        "findings": "L4 diagnostic_contract.comparison_table.revalidationの適用phases=[resume]に従い、resume以外はselected=false/findings=[]で比較を適用しない。resumeではunknown旧/current source、必要時だけrevalidationの現在/旧binding/source/state比較。不要時だけのnullを不足gateにしない。中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。同じcode/pointerの異なるfacet/dispositionは別所見として保持し、全関数をまたぐfacet集約前に消さない。"
+        "findings": "L4 diagnostic_contract.comparison_table.revalidationの適用phases=[resume]に従い、resume以外はselected=false/findings=[]で比較を適用しない。resumeではunknown旧/current source、必要時だけrevalidationの現在/旧binding/source/state比較。revalidationが不要な場合のnullは不足gateにしない。中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。同じcode/pointerの異なるfacet/dispositionは別所見として保持し、全関数をまたぐfacet集約前に消さない。"
       },
       "preconditions": [
         "原270素材の宣言record/list/primitive形。全宣言Fieldのabsence/null/empty/valueを保持した論理値を供給する。",
@@ -3421,7 +3421,7 @@
       "prepare/collect/resumeだけsecurity/resource/isolationのsource_refをcontext.operation_sources同keyと、securityはcontext.binding.authority_ref、resource/isolationはcontext.inputsのresource_ref/isolation_refへ比較。state=revoked/denied/stale/failed/hostは原state operation_condition_rejected、current（security）/observed_material（resource）/isolated_material（isolation）以外はoperation_condition_unresolved。host_fallback=trueはhost_fallback_forbidden、false以外はhost_fallback_unresolved。素材対応から実権限・実資源・CI起動を生成しない。",
       "collect/resumeだけresult.bindingをcontext.bindingへ、source_refをcontext.result.source_refへ比較。outcomeは8閉集合。actual/expected閉集合外は原outcome位置result_outcome_unresolved、両known相反はactual outcome source_conflict。original_result_outcomeはactual閉集合値またはnull。actual not_executed/unobservedは原outcome result_unobservedでunknown保持。started/collectedの両側非booleanは原位置result_start_unresolved/result_collection_unresolved、両boolean相反だけactual field source_conflict。started=falseでsuccess/fail/interrupted、started=trueでdenied/skipped/not_executedはactual started result_start_conflict。六終端状態でcollected=falseはresult_uncollected、未実行/未観測をその条件で終端回収義務へ捏造しない。success_claim=trueでsuccessかつstarted=trueかつcollected=trueが満たされない場合false_success_claim、型非booleanはsuccess_claim_unresolved。結果区分は原値で、成功だけで元失敗を相殺しない。",
       "resumeだけprior.bindingをcontext.prior.binding、resume.bindingをcontext.bindingへ比較。priorとresumeのstop_reason_ref/return_ref/resume_condition_ref/failure_refはcontext.prior同fieldへ比較。prior/expected outcomeが閉集合外は原pointer prior_outcome_unresolved、known相反はactual prior/outcome prior_failure_rewritten。prior.outstandingはcontext.prior同fieldへset比較、resume.outstandingがset型不明はoutstanding_unresolved、known旧集合がknownresume集合に包含されない場合outstanding_obligation_lost。義務の実解消receiptや全履歴は未成立。",
-      "context.prior.bindingとcontext.bindingの13fieldを見て片側unknownなら/context/prior/binding→revalidationのresume_source_unresolvedを保持。両known相反が1つでもあるときだけrevalidationを読む。record非dictなら/revalidation revalidation_missing、dictならbindingをcontext.bindingへ比較、prior_bindingをcontext.prior.bindingへ各field比較、source_refをcontext.revalidation_source_refへ比較。stateがrecorded_material以外ならrevalidation_unresolved。HEAD/環境等の変更を旧greenで補完せず、旧失敗と新対象の再照合素材を別に保持する。",
+      "L4 diagnostic_contract.comparison_table.revalidationの適用phases=[resume]に従い、phase!=resumeではselected=false/findings=[]としてresume比較を適用しない。resumeではcontext.prior.bindingとcontext.bindingの13fieldを見て片側unknownなら/context/prior/binding→revalidationのresume_source_unresolvedを保持。両known相反が1つでもあるときだけrevalidationを読む。record非dictなら/revalidation revalidation_missing、dictならbindingをcontext.bindingへ比較、prior_bindingをcontext.prior.bindingへ各field比較、source_refをcontext.revalidation_source_refへ比較。stateがrecorded_material以外ならrevalidation_unresolved。HEAD/環境等の変更を旧greenで補完せず、旧失敗と新対象の再照合素材を別に保持する。",
       "全phaseでpromotion_claimsのmeaning_review/accepted/merge/release=trueはdecision_promotion_forbidden、false以外はdecision_promotion_unresolvedを当該fieldへ。これらはCI結果からの昇格主張であり、別ownerの正規判断を禁止するfieldではない。",
       "facetはviolation優先、次unknown、それ以外corresponding。conditionは同じ優先でci_material_violation/ci_material_unknown/ci_material_correspondingの3値。findingはcode/pointer/return_ownerで一意化して同順序でsort、ownerはci-operation-owner。profile_materialはownership/profile全対応時だけ原profile、digestはfixture JSON UTF-8 sort_keys=true compact separator ensure_ascii=false allow_nan=falseのSHA-256（正式codecでない）。collection_material_correspondingはcollect/resumeでownership/profile/operation/collection全対応、resume_material_correspondingはresumeでdecision_boundary以外全対応。その他はfalse。すべてactual flags=false、whole_ci_verified=false、operation_effect=none。assemble/prepareではoriginal_result_outcome=null。素材aggregate対応を実CI合格・実受入・実装Readyへしない。"
     ],
