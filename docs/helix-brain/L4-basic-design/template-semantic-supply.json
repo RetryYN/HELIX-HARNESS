@@ -5506,5 +5506,3058 @@
       ],
       "contract_scope": "原規範・owner意味解釈・理由付き定義非適用の提供と比較。旧runtime・CI・schema・承認lifecycleを実行又は移植しない。"
     }
+  },
+  "field_value_applicability_contract": {
+    "id": "HELIXBRAIN-L4-032-F03-FIELD-MATERIAL",
+    "status": "working_design_candidate",
+    "requirements": [
+      "HELIXBRAIN-L3-032-F03"
+    ],
+    "purpose": "L4内の閉じた原snapshot/元Comparison/field定義read/値/適用I/OでF03を自立させる。L5private型又は同walk索引を基本の引数へ要求しない。",
+    "imports": [],
+    "closed_types": {
+      "F03Problem": {
+        "fields": {
+          "cause": {
+            "enum": [
+              "owner_unresolved",
+              "definition_empty",
+              "definition_known",
+              "definition_unknown",
+              "value_unknown",
+              "value_supplied",
+              "applicability_null",
+              "applicability_unknown",
+              "applicability_na",
+              "field_na",
+              "parent_na_no_transfer",
+              "field_unknown",
+              "container_absent",
+              "field_owner_not_found",
+              "app_null",
+              "definition_material_absent",
+              "definition_material_differs",
+              "record_unknown",
+              "na_incomplete",
+              "lookup_unresolved",
+              "frame_differs",
+              "records_differ",
+              "reference_fixture",
+              "origin_absent",
+              "null_or_type",
+              "not_declared",
+              "ambiguous",
+              "kind_conflict",
+              "qualification_unresolved",
+              "fact_unresolved",
+              "field_refs_invalid",
+              "definition_missing",
+              "definition_conflict",
+              "definition_na",
+              "applicability_applicable",
+              "field_applicable",
+              "value_na",
+              "request_field_absent",
+              "request_field_null",
+              "request_field_type",
+              "request_binding_absent",
+              "request_binding_null",
+              "request_binding_type",
+              "field_snapshot_differs",
+              "field_owner_unresolved",
+              "field_subject_differs",
+              "field_binding_differs",
+              "field_mirror_differs",
+              "meaning_refs_absent",
+              "meaning_refs_null",
+              "meaning_refs_type",
+              "meaning_refs_empty",
+              "target_unknown",
+              "target_conflict",
+              "selected_fact_unresolved",
+              "selected_fact_source_unresolved",
+              "selected_fact_body_null",
+              "selected_fact_body_absent",
+              "attribution_unknown",
+              "attribution_conflict",
+              "meaning_read_unresolved",
+              "meaning_negative",
+              "meaning_undetermined",
+              "meaning_basis_unresolved",
+              "meaning_positive",
+              "qualified_pair_false",
+              "qualified_pair_unknown",
+              "snapshot_unavailable"
+            ]
+          },
+          "locator": "string",
+          "original_value": "F03BPresenceRaw",
+          "source_ref": "F03BPresenceRef",
+          "source_index": "integer>=0|null",
+          "relevance": {
+            "enum": [
+              "target",
+              "different_target",
+              "source_unattributed"
+            ]
+          },
+          "reason": {
+            "enum": [
+              "原fieldの独立owner宣言を同subject/full Binding/bodyへ結べない。",
+              "原ownerが対応するfieldの意味参照を明示空としている。元field定義missingを保持する。",
+              "同原fieldの選択factについて同callの元意味判定knownを保持する。",
+              "同原fieldの選択factに対応する元意味判定を取得できない。",
+              "原案件値はunknownである。元理由とknowledge版を保持する。",
+              "原製品ownerの供給値を保持する。汎用定義へ採用しない。",
+              "field固有の適用参照は明示nullであり非適用を生成しない。",
+              "原field適用判断はunknownであり非適用へ変換しない。",
+              "同fieldの原owner判断と理由と再評価条件が非適用を支持する。",
+              "根拠付き非適用は当該fieldだけに保持する。",
+              "根拠付きsection非適用だけを保持しfieldへ転写しない。",
+              "field固有の適用判断は未決である。",
+              "owner原sourceにdescriptor_targets memberが供給されていない。targetを生成しない。",
+              "当該原fieldに対応する独立ownerのsection_field_recordsを取得できない。",
+              "原fieldのapplicability_refは明示nullである。",
+              "同callの元definition私有材料が供給されていない。",
+              "元definition私有材料は同callの公開Comparisonに対応しない。",
+              "原recordはunknownを保持している。",
+              "原非適用判断に必要な原理由又は再評価条件又は判定者が未供給である。",
+              "原requestに対応するroot又はowner source recordを解決できない。",
+              "原subject又はfull Bindingが当該requestと既知に異なる。",
+              "同じ原record Refの異なる本文を保持する。先頭又は最新を選ばない。",
+              "参照fixture値を稼働値へ採用しない。",
+              "原案件値のowner由来が未供給である。",
+              "原request又はcontainerのnull又は型外を保持する。",
+              "原targetに対応するowner宣言を取得できない。",
+              "同原targetに複数の異なるslot対応がある。",
+              "同原targetとslotの既知kind対応が相反する。",
+              "原sourceの既存資格又はbody照合が未成立である。",
+              "原field意味参照を同slotの原factへ結べない。",
+              "原fieldのmeaning_fact_refsは未供給又はnull又は型外である。",
+              "選択した原field意味factの元missing判定を保持する。",
+              "選択した原field意味factの元conflict判定を保持する。",
+              "選択した原field意味factの元非適用判定を保持する。",
+              "同fieldの原owner判断applicableを保持する。",
+              "同fieldの原適用判断applicableだけを保持する。",
+              "当該原値が指す同fieldの根拠付き非適用を別観点として保持する。",
+              "原field引数が供給されていない。",
+              "原field引数は明示nullである。",
+              "原field引数をSectionFieldへ対応できない。",
+              "原Bindingが供給されていない。",
+              "原Bindingは明示nullである。",
+              "原Bindingを型付きframeへ対応できない。",
+              "原field引数と同snapshot原locatorのfield全値が異なる。",
+              "同field/subject/full Binding/bodyの独立owner宣言を取得できない。",
+              "原field宣言のsubject Refが当該fieldと既知に異なる。",
+              "原field宣言のfull Bindingが当該frameと既知に異なる。",
+              "当該原field宣言とroot fieldの全typed bodyが異なる。",
+              "原owner対応fieldにmeaning_fact_refsが供給されていない。",
+              "原owner対応fieldのmeaning_fact_refsは明示nullである。",
+              "原owner対応fieldのmeaning_fact_refsがRef配列でない。",
+              "原owner対応fieldのmeaning_fact_refsは明示空配列である。",
+              "fieldの原descriptor targetを一意のslot対応へ結べない。",
+              "fieldの原descriptor targetとslotの既知対応が相反する。",
+              "選択した原意味Refを対応slotの実factへ結べない。",
+              "選択した原意味factのsource又は既存資格を解決できない。",
+              "選択した原意味factのbodyは明示nullである。",
+              "選択した原意味factのbodyが供給されていない。",
+              "選択factの原owner帰属を解決できない。帰属から意味knownを生成しない。",
+              "選択factの既知owner分類対応が相反する。",
+              "原意味readerの当該fact支持を取得できない。",
+              "原ownerの意味判断は当該descriptor定義を支持しない。",
+              "原ownerの意味判断は未決である。",
+              "原意味判断の原理由又は意味basis又は固定frame対応が未解決である。",
+              "固定frame/原fact/body/原理由/basisへ対応する肯定意味判断を保持する。",
+              "同subject/revision/scopeのqualified原意味比較は非同値を示す。",
+              "原意味比較の資格又は原判断が未解決である。",
+              "同callの原snapshotを取得できない。"
+            ]
+          }
+        },
+        "required_fields": [
+          "cause",
+          "locator",
+          "original_value",
+          "source_ref",
+          "source_index",
+          "relevance",
+          "reason"
+        ],
+        "additional_members": false
+      },
+      "F03OwnerSectionFieldEntry": {
+        "fields": {
+          "record": "F03BSectionField"
+        },
+        "required_fields": [
+          "record"
+        ],
+        "additional_members": false
+      },
+      "F03FieldTargetRequest": {
+        "fields": {
+          "binding": "F03BPresenceRaw",
+          "descriptor_slot_ref": "F03BPresenceRaw"
+        },
+        "required_fields": [
+          "binding",
+          "descriptor_slot_ref"
+        ],
+        "additional_members": false
+      },
+      "F03FieldTargetOccurrence": {
+        "fields": {
+          "source_ref": "F03BPresenceRef",
+          "source_index": "integer>=0",
+          "source_locator": "string",
+          "declaration_locator": "string",
+          "declaration": "F03BRawValue",
+          "source_binding": "F03BPresenceRaw",
+          "typed_declaration": "F03TargetPresence"
+        },
+        "required_fields": [
+          "source_ref",
+          "source_index",
+          "source_locator",
+          "declaration_locator",
+          "declaration",
+          "source_binding",
+          "typed_declaration"
+        ],
+        "additional_members": false
+      },
+      "F03FieldTargetMatch": {
+        "fields": {
+          "target_ref": "F03BRef",
+          "binding": "F03BBinding",
+          "slot_identity": "string",
+          "descriptor_kind": {
+            "enum": [
+              "template identity",
+              "version",
+              "layer/pair",
+              "applicability",
+              "required input",
+              "required section",
+              "required field",
+              "relation",
+              "意味owner",
+              "trace",
+              "negative oracle",
+              "measurement",
+              "completion",
+              "downstream kind",
+              "supersession"
+            ]
+          },
+          "source_refs": "F03BRef[]",
+          "declaration_locators": "string[]",
+          "slot_locators": "string[]"
+        },
+        "required_fields": [
+          "target_ref",
+          "binding",
+          "slot_identity",
+          "descriptor_kind",
+          "source_refs",
+          "declaration_locators",
+          "slot_locators"
+        ],
+        "additional_members": false
+      },
+      "F03FieldTargetRead": {
+        "fields": {
+          "field_locator": "string",
+          "request": "F03FieldTargetRequest",
+          "state": {
+            "enum": [
+              "resolved",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "occurrences": "F03FieldTargetOccurrence[]",
+          "matches": "F03FieldTargetMatch[]",
+          "problems": "F03Problem[]"
+        },
+        "required_fields": [
+          "field_locator",
+          "request",
+          "state",
+          "occurrences",
+          "matches",
+          "problems"
+        ],
+        "additional_members": false
+      },
+      "F03RecordRequest": {
+        "fields": {
+          "kind": {
+            "enum": [
+              "field",
+              "value",
+              "field_applicability",
+              "value_applicability",
+              "parent_section"
+            ]
+          },
+          "field_locator": "string",
+          "subject_ref": "F03BPresenceRaw",
+          "binding": "F03BPresenceRaw",
+          "request_locator": "string",
+          "requested_ref": "F03BPresenceRaw"
+        },
+        "required_fields": [
+          "kind",
+          "field_locator",
+          "subject_ref",
+          "binding",
+          "request_locator",
+          "requested_ref"
+        ],
+        "additional_members": false
+      },
+      "F03RootOccurrence": {
+        "fields": {
+          "index": "integer>=0",
+          "locator": "string",
+          "original_value": "F03BRawValue"
+        },
+        "required_fields": [
+          "index",
+          "locator",
+          "original_value"
+        ],
+        "additional_members": false
+      },
+      "F03SourceOccurrence": {
+        "fields": {
+          "source_index": "integer>=0",
+          "record_index": "integer>=0",
+          "locator": "string",
+          "source_ref": "F03BRef",
+          "original_value": "F03BRawValue"
+        },
+        "required_fields": [
+          "source_index",
+          "record_index",
+          "locator",
+          "source_ref",
+          "original_value"
+        ],
+        "additional_members": false
+      },
+      "F03RecordSupport": {
+        "fields": {
+          "root_occurrence_index": "integer>=0",
+          "source_occurrence_index": "integer>=0"
+        },
+        "required_fields": [
+          "root_occurrence_index",
+          "source_occurrence_index"
+        ],
+        "additional_members": false
+      },
+      "F03RecordRead": {
+        "fields": {
+          "request": "F03RecordRequest",
+          "state": {
+            "enum": [
+              "not_requested",
+              "resolved",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "root_occurrences": "F03RootOccurrence[]",
+          "source_occurrences": "F03SourceOccurrence[]",
+          "supports": "F03RecordSupport[]",
+          "problems": "F03Problem[]"
+        },
+        "required_fields": [
+          "request",
+          "state",
+          "root_occurrences",
+          "source_occurrences",
+          "supports",
+          "problems"
+        ],
+        "additional_members": false
+      },
+      "F03ReasonMaterial": {
+        "fields": {
+          "branch": {
+            "enum": [
+              "definition_empty",
+              "definition_known",
+              "definition_unknown",
+              "value_unknown",
+              "value_supplied",
+              "applicability_null",
+              "applicability_unknown",
+              "applicability_na",
+              "field_na",
+              "parent_na_no_transfer",
+              "field_unknown",
+              "definition_conflict",
+              "applicability_applicable",
+              "field_applicable",
+              "value_na"
+            ]
+          },
+          "field_locator": "string",
+          "request_locator": "string",
+          "root_locators": "string[]",
+          "source_locators": "string[]",
+          "original_presence": "F03BPresenceRaw",
+          "original_reason": "F03BPresenceRaw",
+          "original_owner": "F03BPresenceRaw",
+          "original_decision": "F03BPresenceRaw",
+          "original_reentry": "F03BPresenceRaw",
+          "knowledge_ref": "F03BRef",
+          "definition_cause": "F03BPresenceString"
+        },
+        "required_fields": [
+          "branch",
+          "field_locator",
+          "request_locator",
+          "root_locators",
+          "source_locators",
+          "original_presence",
+          "original_reason",
+          "original_owner",
+          "original_decision",
+          "original_reentry",
+          "knowledge_ref",
+          "definition_cause"
+        ],
+        "additional_members": false
+      },
+      "F03Event": {
+        "fields": {
+          "branch": {
+            "enum": [
+              "definition_empty",
+              "definition_known",
+              "definition_unknown",
+              "value_unknown",
+              "value_supplied",
+              "applicability_null",
+              "applicability_unknown",
+              "applicability_na",
+              "field_na",
+              "parent_na_no_transfer",
+              "field_unknown",
+              "definition_conflict",
+              "applicability_applicable",
+              "field_applicable",
+              "value_na"
+            ]
+          },
+          "subject_ref": "F03BPresenceRef",
+          "binding": "F03BPresenceBinding",
+          "axis": {
+            "enum": [
+              "field.definition",
+              "field.value",
+              "applicability.evaluation",
+              "field.applicability"
+            ]
+          },
+          "state": {
+            "enum": [
+              "known",
+              "missing",
+              "unknown",
+              "conflict",
+              "not_applicable",
+              "supplied",
+              "applicable"
+            ]
+          },
+          "original_refs": "F03BRef[]",
+          "reason_material": "F03ReasonMaterial",
+          "reason": "string (reason_writer exact)",
+          "backflow_owner": "string|null",
+          "definition_judgment_indices": "integer>=0[]"
+        },
+        "required_fields": [
+          "branch",
+          "subject_ref",
+          "binding",
+          "axis",
+          "state",
+          "original_refs",
+          "reason_material",
+          "reason",
+          "backflow_owner",
+          "definition_judgment_indices"
+        ],
+        "additional_members": false
+      },
+      "F03Row": {
+        "fields": {
+          "field_locator": "string",
+          "field": "F03BSectionField",
+          "definition_read": "F03FieldDefinitionRead",
+          "value_reads": "F03RecordRead[]",
+          "applicability_read": "F03RecordRead",
+          "parent_reads": "F03RecordRead[]",
+          "events": "F03Event[]",
+          "axis_indices": "integer>=0[]",
+          "finding_indices": "integer>=0[]"
+        },
+        "required_fields": [
+          "field_locator",
+          "field",
+          "definition_read",
+          "value_reads",
+          "applicability_read",
+          "parent_reads",
+          "events",
+          "axis_indices",
+          "finding_indices"
+        ],
+        "additional_members": false
+      },
+      "F03Evaluation": {
+        "fields": {
+          "comparison": "F03BComparison",
+          "rows": "F03Row[]",
+          "problems": "F03Problem[]"
+        },
+        "required_fields": [
+          "comparison",
+          "rows",
+          "problems"
+        ],
+        "additional_members": false
+      },
+      "F03TargetPresence": {
+        "one_of": [
+          {
+            "fields": {
+              "presence": {
+                "const": "absent"
+              }
+            },
+            "required_fields": [
+              "presence"
+            ],
+            "additional_members": false
+          },
+          {
+            "fields": {
+              "presence": {
+                "const": "supplied"
+              },
+              "value": "F03BOwnerDescriptorTarget"
+            },
+            "required_fields": [
+              "presence",
+              "value"
+            ],
+            "additional_members": false
+          }
+        ]
+      },
+      "F03BRawValue": {
+        "domain": "JSON null|boolean|exact-number|string|array<F03BRawValue>|object<string,F03BRawValue>",
+        "meaning": "原JSON全値を保持する開いた値domain。構造型の追加member許可ではない。数値/文字列を相互変換しない。"
+      },
+      "F03BRef": {
+        "fields": {
+          "identity": "string|null",
+          "revision": "string|null",
+          "scope": "F03BRawValue",
+          "owner": "string|null",
+          "source_locator": "string|null",
+          "sha256": "string|null"
+        },
+        "required_fields": [],
+        "additional_members": false
+      },
+      "F03BBinding": {
+        "fields": {
+          "template_ref": "F03BRef",
+          "knowledge_ref": "F03BRef",
+          "requirement_ref": "F03BRef",
+          "oracle_ref": "F03BRef",
+          "pack_ref": "F03BRef",
+          "pack_contract_version": "string|null",
+          "pack_artifact_version": "string|null",
+          "pack_dependency_versions": "F03BRef[]",
+          "version_target": "string|null"
+        },
+        "required_fields": [],
+        "additional_members": false
+      },
+      "F03BMeaningFact": {
+        "fields": {
+          "source_ref": "F03BRef",
+          "owner": "string|null",
+          "binding": "F03BBinding",
+          "meaning": "F03BRawValue",
+          "condition": "F03BRawValue",
+          "reason": "string|null",
+          "oracle_ref": "F03BRef|null",
+          "ref": "F03BRef"
+        },
+        "required_fields": [],
+        "additional_members": false
+      },
+      "F03BDescriptorSlot": {
+        "fields": {
+          "slot_identity": "string",
+          "descriptor_kind": {
+            "enum": [
+              "template identity",
+              "version",
+              "layer/pair",
+              "applicability",
+              "required input",
+              "required section",
+              "required field",
+              "relation",
+              "意味owner",
+              "trace",
+              "negative oracle",
+              "measurement",
+              "completion",
+              "downstream kind",
+              "supersession"
+            ]
+          },
+          "binding": "F03BBinding",
+          "facts": "F03BMeaningFact[]|null",
+          "comparison_refs": "F03BRef[]",
+          "definition_applicability_ref": "F03BRef|null"
+        },
+        "required_fields": [],
+        "additional_members": false
+      },
+      "F03BSectionField": {
+        "fields": {
+          "ref": "F03BRef",
+          "descriptor_slot_ref": "F03BRef",
+          "parent_section_ref": "F03BRef|null",
+          "meaning_fact_refs": "F03BRef[]",
+          "requiredness_fact_refs": "F03BRef[]",
+          "normative_rule_refs": "F03BRef[]",
+          "oracle_refs": "F03BRef[]",
+          "value_fact_refs": "F03BRef[]",
+          "applicability_ref": "F03BRef|null"
+        },
+        "required_fields": [],
+        "additional_members": false
+      },
+      "F03BValueFact": {
+        "fields": {
+          "subject_ref": "F03BRef",
+          "binding": "F03BBinding",
+          "value": "F03BRawValue",
+          "source_ref": "F03BRef|null",
+          "reason": "string|null",
+          "origin": {
+            "enum": [
+              "project_owner",
+              "reference_fixture",
+              "absent"
+            ]
+          },
+          "applicability_ref": "F03BRef|null",
+          "ref": "F03BRef"
+        },
+        "required_fields": [],
+        "additional_members": false
+      },
+      "F03BApplicabilityRecord": {
+        "fields": {
+          "ref": "F03BRef",
+          "subject_ref": "F03BRef",
+          "binding": "F03BBinding",
+          "owner": "string|null",
+          "decision": {
+            "enum": [
+              "applicable",
+              "not_applicable",
+              "unknown"
+            ]
+          },
+          "reason": "string|null",
+          "reentry_condition": "F03BRawValue",
+          "source_ref": "F03BRef|null"
+        },
+        "required_fields": [],
+        "additional_members": false
+      },
+      "F03BKnowledgeRecord": {
+        "fields": {
+          "ref": "F03BRef",
+          "operational_state": "F03BRawValue",
+          "provenance_refs": "F03BRef[]",
+          "limited_adoption_ref": "F03BRef|null",
+          "evaluation_scope": "F03BRawValue",
+          "evaluation_ref": "F03BRef|null",
+          "os_registration_ref": "F03BRef|null",
+          "independent_verification_ref": "F03BRef|null",
+          "adoption_ref": "F03BRef|null",
+          "limits": "F03BRawValue",
+          "counterexamples": "F03BRawValue"
+        },
+        "required_fields": [],
+        "additional_members": false
+      },
+      "F03BQualifiedSource": {
+        "fields": {
+          "ref": "F03BRef",
+          "content": "F03BRawValue",
+          "content_bytes": "string",
+          "qualification_ref": "F03BRef|null",
+          "role": "semantic_json | derived_view | explanation | reference_only"
+        },
+        "required_fields": [],
+        "additional_members": false
+      },
+      "F03BMeaningComparison": {
+        "fields": {
+          "left_fact_ref": "F03BRef",
+          "right_fact_ref": "F03BRef",
+          "comparison_source_ref": "F03BRef",
+          "equivalent": "boolean|null",
+          "reason": "string|null"
+        },
+        "required_fields": [],
+        "additional_members": false
+      },
+      "F03BAxisResult": {
+        "fields": {
+          "subject_ref": "F03BRef",
+          "binding": "F03BBinding",
+          "axis": "string",
+          "state": "string",
+          "original_refs": "F03BRef[]",
+          "reason": "string",
+          "backflow_owner": "string|null"
+        },
+        "required_fields": [
+          "subject_ref",
+          "binding",
+          "axis",
+          "state",
+          "original_refs",
+          "reason",
+          "backflow_owner"
+        ],
+        "additional_members": false
+      },
+      "F03BFinding": {
+        "fields": {
+          "code": "string",
+          "rule_ref": "string",
+          "subject_ref": "F03BRef",
+          "binding": "F03BBinding",
+          "axis": "string",
+          "state": "string",
+          "source_refs": "F03BRef[]",
+          "reason": "string",
+          "backflow_owner": "string|null"
+        },
+        "required_fields": [
+          "code",
+          "rule_ref",
+          "subject_ref",
+          "binding",
+          "axis",
+          "state",
+          "source_refs",
+          "reason",
+          "backflow_owner"
+        ],
+        "additional_members": false
+      },
+      "F03BComparison": {
+        "fields": {
+          "axes": "F03BAxisResult[]",
+          "findings": "F03BFinding[]",
+          "producer_symbol": "string",
+          "input_binding": "F03BBinding|null"
+        },
+        "required_fields": [
+          "axes",
+          "findings",
+          "producer_symbol",
+          "input_binding"
+        ],
+        "additional_members": false
+      },
+      "F03BInputIssue": {
+        "fields": {
+          "locator": "string",
+          "reason": "string",
+          "source_ref": "F03BRef|null"
+        },
+        "required_fields": [
+          "locator",
+          "reason",
+          "source_ref"
+        ],
+        "additional_members": false
+      },
+      "F03BPresenceRaw": {
+        "one_of": [
+          {
+            "fields": {
+              "presence": {
+                "const": "absent"
+              }
+            },
+            "required_fields": [
+              "presence"
+            ],
+            "additional_members": false
+          },
+          {
+            "fields": {
+              "presence": {
+                "const": "supplied"
+              },
+              "value": "F03BRawValue"
+            },
+            "required_fields": [
+              "presence",
+              "value"
+            ],
+            "additional_members": false
+          }
+        ]
+      },
+      "F03BPresenceRef": {
+        "one_of": [
+          {
+            "fields": {
+              "presence": {
+                "const": "absent"
+              }
+            },
+            "required_fields": [
+              "presence"
+            ],
+            "additional_members": false
+          },
+          {
+            "fields": {
+              "presence": {
+                "const": "supplied"
+              },
+              "value": "F03BRef"
+            },
+            "required_fields": [
+              "presence",
+              "value"
+            ],
+            "additional_members": false
+          }
+        ]
+      },
+      "F03BPresenceBinding": {
+        "one_of": [
+          {
+            "fields": {
+              "presence": {
+                "const": "absent"
+              }
+            },
+            "required_fields": [
+              "presence"
+            ],
+            "additional_members": false
+          },
+          {
+            "fields": {
+              "presence": {
+                "const": "supplied"
+              },
+              "value": "F03BBinding"
+            },
+            "required_fields": [
+              "presence",
+              "value"
+            ],
+            "additional_members": false
+          }
+        ]
+      },
+      "F03BPresenceString": {
+        "one_of": [
+          {
+            "fields": {
+              "presence": {
+                "const": "absent"
+              }
+            },
+            "required_fields": [
+              "presence"
+            ],
+            "additional_members": false
+          },
+          {
+            "fields": {
+              "presence": {
+                "const": "supplied"
+              },
+              "value": "string"
+            },
+            "required_fields": [
+              "presence",
+              "value"
+            ],
+            "additional_members": false
+          }
+        ]
+      },
+      "F03BOwnerDescriptorTarget": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "target_ref",
+          "slot_identity",
+          "descriptor_kind"
+        ],
+        "properties": {
+          "target_ref": {
+            "$ref": "#/$defs/F03BRef"
+          },
+          "slot_identity": {
+            "type": "string"
+          },
+          "descriptor_kind": {
+            "enum": [
+              "template identity",
+              "version",
+              "layer/pair",
+              "applicability",
+              "required input",
+              "required section",
+              "required field",
+              "relation",
+              "意味owner",
+              "trace",
+              "negative oracle",
+              "measurement",
+              "completion",
+              "downstream kind",
+              "supersession"
+            ]
+          }
+        }
+      },
+      "F03BDefinitionNormativeScope": {
+        "type": "object",
+        "properties": {
+          "parent_requirement": {
+            "const": "HELIXBRAIN-L2-032"
+          },
+          "functional_requirement": {
+            "const": "HELIXBRAIN-L3-032-F01"
+          },
+          "scope_kind": {
+            "const": "generic_design_template_descriptor"
+          }
+        },
+        "required": [
+          "parent_requirement",
+          "functional_requirement",
+          "scope_kind"
+        ],
+        "additionalProperties": false
+      },
+      "F03BDefinitionNormativeFrame": {
+        "type": "object",
+        "properties": {
+          "revision": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "file_sha256": {
+            "type": "string"
+          },
+          "catalog_pointer": {
+            "type": "string"
+          },
+          "catalog_canonical_sha256": {
+            "type": "string"
+          },
+          "scope": {
+            "$ref": "#/$defs/F03BDefinitionNormativeScope"
+          },
+          "entry_pointer": {
+            "type": "string"
+          },
+          "entry_canonical_sha256": {
+            "type": "string"
+          },
+          "entry_value": {
+            "type": "object",
+            "properties": {
+              "descriptor": {
+                "type": "string"
+              },
+              "meaning": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "descriptor",
+              "meaning"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "revision",
+          "path",
+          "file_sha256",
+          "catalog_pointer",
+          "catalog_canonical_sha256",
+          "scope",
+          "entry_pointer",
+          "entry_canonical_sha256",
+          "entry_value"
+        ],
+        "additionalProperties": false
+      },
+      "F03BDefinitionMeaningArguments": {
+        "type": "object",
+        "properties": {
+          "binding": {
+            "$ref": "#/$defs/F03BOriginalBinding"
+          },
+          "slot_identity": {
+            "type": "string"
+          },
+          "descriptor_kind": {
+            "type": "string"
+          },
+          "fact_ref": {
+            "$ref": "#/$defs/F03BOriginalRef"
+          },
+          "fact_body": {
+            "$ref": "#/$defs/F03BOriginalRawValue"
+          },
+          "normative_argument": {
+            "$ref": "#/$defs/F03BDefinitionNormativeFrame"
+          }
+        },
+        "required": [
+          "binding",
+          "slot_identity",
+          "descriptor_kind",
+          "fact_ref",
+          "fact_body",
+          "normative_argument"
+        ],
+        "additionalProperties": false
+      },
+      "F03BDefinitionMeaningDecision": {
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string",
+            "enum": [
+              "defines_descriptor",
+              "does_not_define_descriptor",
+              "undetermined"
+            ]
+          },
+          "reason": {
+            "$ref": "#/$defs/F03BOriginalPresenceString"
+          },
+          "raw_semantic_basis": {
+            "$ref": "#/$defs/F03BOriginalPresenceRaw"
+          },
+          "basis_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/F03BOriginalRef"
+            }
+          }
+        },
+        "required": [
+          "relation",
+          "reason",
+          "raw_semantic_basis",
+          "basis_refs"
+        ],
+        "additionalProperties": false
+      },
+      "F03BDefinitionMeaningOperation": {
+        "type": "object",
+        "properties": {
+          "operation_ref": {
+            "$ref": "#/$defs/F03BOriginalRef"
+          },
+          "arguments": {
+            "$ref": "#/$defs/F03BDefinitionMeaningArguments"
+          },
+          "decision": {
+            "$ref": "#/$defs/F03BDefinitionMeaningDecision"
+          }
+        },
+        "required": [
+          "operation_ref",
+          "arguments",
+          "decision"
+        ],
+        "additionalProperties": false
+      },
+      "F03BDefinitionMeaningProblem": {
+        "type": "object",
+        "properties": {
+          "cause": {
+            "type": "string",
+            "enum": [
+              "population_unresolved",
+              "source_unresolved",
+              "container_absent",
+              "container_null",
+              "container_type",
+              "record_decode_failed",
+              "binding_unresolved",
+              "binding_differs",
+              "slot_differs",
+              "kind_unresolved",
+              "kind_differs",
+              "fact_unresolved",
+              "fact_differs",
+              "body_differs",
+              "normative_frame_differs",
+              "normative_body_differs",
+              "semantic_basis_unresolved",
+              "decision_undetermined",
+              "decision_negative",
+              "applicability_unresolved",
+              "applicability_subject_differs",
+              "applicability_request_null"
+            ]
+          },
+          "source_ref": {
+            "$ref": "#/$defs/F03BOriginalPresenceRef"
+          },
+          "source_index": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "locator": {
+            "type": "string"
+          },
+          "original_value": {
+            "$ref": "#/$defs/F03BOriginalPresenceRaw"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "cause",
+          "source_ref",
+          "source_index",
+          "locator",
+          "original_value",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "F03BDefinitionMeaningOccurrence": {
+        "type": "object",
+        "properties": {
+          "source_ref": {
+            "$ref": "#/$defs/F03BOriginalRef"
+          },
+          "source_index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "record_index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "locator": {
+            "type": "string"
+          },
+          "original_record": {
+            "$ref": "#/$defs/F03BOriginalRawValue"
+          },
+          "decoded_record": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "presence": {
+                    "const": "absent"
+                  }
+                },
+                "required": [
+                  "presence"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "presence": {
+                    "const": "supplied"
+                  },
+                  "value": {
+                    "$ref": "#/$defs/F03BDefinitionMeaningOperation"
+                  }
+                },
+                "required": [
+                  "presence",
+                  "value"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "source_ref",
+          "source_index",
+          "record_index",
+          "locator",
+          "original_record",
+          "decoded_record"
+        ],
+        "additionalProperties": false
+      },
+      "F03BDefinitionMeaningSupport": {
+        "type": "object",
+        "properties": {
+          "source_ref": {
+            "$ref": "#/$defs/F03BOriginalRef"
+          },
+          "source_index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "record_index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "locator": {
+            "type": "string"
+          },
+          "operation": {
+            "$ref": "#/$defs/F03BDefinitionMeaningOperation"
+          },
+          "normative_frame": {
+            "$ref": "#/$defs/F03BDefinitionNormativeFrame"
+          }
+        },
+        "required": [
+          "source_ref",
+          "source_index",
+          "record_index",
+          "locator",
+          "operation",
+          "normative_frame"
+        ],
+        "additionalProperties": false
+      },
+      "F03BDefinitionMeaningRead": {
+        "type": "object",
+        "properties": {
+          "slot_locator": {
+            "type": "string"
+          },
+          "fact_locator": {
+            "type": "string"
+          },
+          "binding": {
+            "$ref": "#/$defs/F03BOriginalPresenceBinding"
+          },
+          "normative_frame": {
+            "$ref": "#/$defs/F03BDefinitionNormativeFrame"
+          },
+          "acquisition_state": {
+            "type": "string",
+            "enum": [
+              "resolved",
+              "unknown"
+            ]
+          },
+          "occurrences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/F03BDefinitionMeaningOccurrence"
+            }
+          },
+          "supports": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/F03BDefinitionMeaningSupport"
+            }
+          },
+          "problems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/F03BDefinitionMeaningProblem"
+            }
+          }
+        },
+        "required": [
+          "slot_locator",
+          "fact_locator",
+          "binding",
+          "normative_frame",
+          "acquisition_state",
+          "occurrences",
+          "supports",
+          "problems"
+        ],
+        "additionalProperties": false
+      },
+      "F03BDefinitionApplicabilitySourceEntry": {
+        "type": "object",
+        "properties": {
+          "slot_identity": {
+            "type": "string"
+          },
+          "descriptor_kind": {
+            "type": "string"
+          },
+          "record": {
+            "$ref": "#/$defs/F03BOriginalApplicabilityRecord"
+          }
+        },
+        "required": [
+          "slot_identity",
+          "descriptor_kind",
+          "record"
+        ],
+        "additionalProperties": false
+      },
+      "F03BDefinitionApplicabilitySupport": {
+        "type": "object",
+        "properties": {
+          "source_ref": {
+            "$ref": "#/$defs/F03BOriginalRef"
+          },
+          "source_index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "record_index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "locator": {
+            "type": "string"
+          },
+          "original_entry": {
+            "$ref": "#/$defs/F03BDefinitionApplicabilitySourceEntry"
+          },
+          "subject_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/F03BOriginalRef"
+            }
+          }
+        },
+        "required": [
+          "source_ref",
+          "source_index",
+          "record_index",
+          "locator",
+          "original_entry",
+          "subject_refs"
+        ],
+        "additionalProperties": false
+      },
+      "F03BDefinitionApplicabilityRead": {
+        "type": "object",
+        "properties": {
+          "slot_locator": {
+            "type": "string"
+          },
+          "request": {
+            "$ref": "#/$defs/F03BOriginalPresenceRef"
+          },
+          "acquisition_state": {
+            "type": "string",
+            "enum": [
+              "not_requested",
+              "resolved",
+              "unknown"
+            ]
+          },
+          "source_occurrences": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "source_ref": {
+                  "$ref": "#/$defs/F03BOriginalRef"
+                },
+                "source_index": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "record_index": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "locator": {
+                  "type": "string"
+                },
+                "original_value": {
+                  "$ref": "#/$defs/F03BOriginalRawValue"
+                }
+              },
+              "required": [
+                "source_ref",
+                "source_index",
+                "record_index",
+                "locator",
+                "original_value"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "supports": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/F03BDefinitionApplicabilitySupport"
+            }
+          },
+          "problems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/F03BDefinitionMeaningProblem"
+            }
+          }
+        },
+        "required": [
+          "slot_locator",
+          "request",
+          "acquisition_state",
+          "source_occurrences",
+          "supports",
+          "problems"
+        ],
+        "additionalProperties": false
+      },
+      "F03BDefinitionMeaningRequest": {
+        "type": "object",
+        "properties": {
+          "slot_locator": {
+            "type": "string"
+          },
+          "fact_locator": {
+            "type": "string"
+          },
+          "normative_entry_pointer": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "slot_locator",
+          "fact_locator",
+          "normative_entry_pointer"
+        ],
+        "additionalProperties": false
+      },
+      "F03BDefinitionApplicabilityRequest": {
+        "type": "object",
+        "properties": {
+          "slot_locator": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "slot_locator"
+        ],
+        "additionalProperties": false
+      },
+      "F03BValidatedSnapshot": {
+        "same_level_opaque_alias": "ValidatedSupply",
+        "origin": "同一fn0呼出しが返したValidatedSupplyそのものを指す別名。構造wrapperを作らず、別call値との結合も行わない。",
+        "source_contract_pointer": "/definition_meaning_resolution_contract/call_bindings/existing_logical_type",
+        "fixed_type_source": {
+          "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "pointer": "/type_contract/types/ValidatedSupply",
+          "file_sha256": "d2c13e9e7ea69962d5d124ed782549f0a194dc043075568dbe55a227b3aa27cb"
+        },
+        "opaque_value_rule": "同一fn0がdecodeしたinput・input_issues・unusable_source_refsの全値をそのまま参照する。F03 raw inputから再decode/castしない。"
+      },
+      "F03BasicContext": {
+        "fields": {
+          "snapshot": "F03BValidatedSnapshot",
+          "definitions": "F03BComparison"
+        },
+        "required_fields": [
+          "snapshot",
+          "definitions"
+        ],
+        "additional_members": false
+      },
+      "F03FieldDefinitionRequest": {
+        "fields": {
+          "field_locator": "string",
+          "field": "F03BPresenceRaw",
+          "binding": "F03BPresenceRaw"
+        },
+        "required_fields": [
+          "field_locator",
+          "field",
+          "binding"
+        ],
+        "additional_members": false
+      },
+      "F03MeaningReadPresence": {
+        "one_of": [
+          {
+            "fields": {
+              "presence": {
+                "const": "absent"
+              }
+            },
+            "required_fields": [
+              "presence"
+            ],
+            "additional_members": false
+          },
+          {
+            "fields": {
+              "presence": {
+                "const": "supplied"
+              },
+              "value": "F03BDefinitionMeaningRead"
+            },
+            "required_fields": [
+              "presence",
+              "value"
+            ],
+            "additional_members": false
+          }
+        ]
+      },
+      "F03MeaningFactPresence": {
+        "one_of": [
+          {
+            "fields": {
+              "presence": {
+                "const": "absent"
+              }
+            },
+            "required_fields": [
+              "presence"
+            ],
+            "additional_members": false
+          },
+          {
+            "fields": {
+              "presence": {
+                "const": "supplied"
+              },
+              "value": "F03BMeaningFact"
+            },
+            "required_fields": [
+              "presence",
+              "value"
+            ],
+            "additional_members": false
+          }
+        ]
+      },
+      "F03AttributionSupport": {
+        "fields": {
+          "source_ref": "F03BRef",
+          "source_index": "integer>=0",
+          "group_index": "integer>=0",
+          "fact_index": "integer>=0",
+          "group_locator": "string",
+          "fact_locator": "string",
+          "original_group": "F03BRawValue",
+          "original_fact": "F03BMeaningFact"
+        },
+        "required_fields": [
+          "source_ref",
+          "source_index",
+          "group_index",
+          "fact_index",
+          "group_locator",
+          "fact_locator",
+          "original_group",
+          "original_fact"
+        ],
+        "additional_members": false
+      },
+      "F03AttributionRead": {
+        "fields": {
+          "state": {
+            "enum": [
+              "known",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "supports": "F03AttributionSupport[]",
+          "problems": "F03Problem[]"
+        },
+        "required_fields": [
+          "state",
+          "supports",
+          "problems"
+        ],
+        "additional_members": false
+      },
+      "F03FieldFactRead": {
+        "fields": {
+          "request_locator": "string",
+          "requested_ref": "F03BPresenceRaw",
+          "slot_locator": "string|null",
+          "fact_locator": "string|null",
+          "fact": "F03MeaningFactPresence",
+          "attribution_read": "F03AttributionRead",
+          "meaning_read": "F03MeaningReadPresence",
+          "problems": "F03Problem[]"
+        },
+        "required_fields": [
+          "request_locator",
+          "requested_ref",
+          "slot_locator",
+          "fact_locator",
+          "fact",
+          "attribution_read",
+          "meaning_read",
+          "problems"
+        ],
+        "additional_members": false
+      },
+      "F03DefinitionPairSupport": {
+        "fields": {
+          "root_occurrence_index": "integer>=0",
+          "source_occurrence_index": "integer>=0",
+          "comparison": "F03BMeaningComparison"
+        },
+        "required_fields": [
+          "root_occurrence_index",
+          "source_occurrence_index",
+          "comparison"
+        ],
+        "additional_members": false
+      },
+      "F03DefinitionPairRead": {
+        "fields": {
+          "left_fact_read_index": "integer>=0",
+          "right_fact_read_index": "integer>=0",
+          "state": {
+            "enum": [
+              "known",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "root_occurrences": "F03RootOccurrence[]",
+          "source_occurrences": "F03SourceOccurrence[]",
+          "supports": "F03DefinitionPairSupport[]",
+          "problems": "F03Problem[]"
+        },
+        "required_fields": [
+          "left_fact_read_index",
+          "right_fact_read_index",
+          "state",
+          "root_occurrences",
+          "source_occurrences",
+          "supports",
+          "problems"
+        ],
+        "additional_members": false
+      },
+      "F03FieldDefinitionJudgment": {
+        "fields": {
+          "branch": {
+            "enum": [
+              "definition_known",
+              "definition_empty",
+              "definition_unknown",
+              "definition_conflict"
+            ]
+          },
+          "cause": {
+            "enum": [
+              "request_field_absent",
+              "request_field_null",
+              "request_field_type",
+              "request_binding_absent",
+              "request_binding_null",
+              "request_binding_type",
+              "field_snapshot_differs",
+              "field_owner_unresolved",
+              "field_subject_differs",
+              "field_binding_differs",
+              "field_mirror_differs",
+              "meaning_refs_absent",
+              "meaning_refs_null",
+              "meaning_refs_type",
+              "meaning_refs_empty",
+              "target_unknown",
+              "target_conflict",
+              "selected_fact_unresolved",
+              "selected_fact_source_unresolved",
+              "selected_fact_body_null",
+              "selected_fact_body_absent",
+              "attribution_unknown",
+              "attribution_conflict",
+              "meaning_read_unresolved",
+              "meaning_negative",
+              "meaning_undetermined",
+              "meaning_basis_unresolved",
+              "meaning_positive",
+              "qualified_pair_false",
+              "qualified_pair_unknown",
+              "snapshot_unavailable"
+            ]
+          },
+          "state": {
+            "enum": [
+              "known",
+              "missing",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "request_ref_index": "integer>=0|null",
+          "fact_read_indices": "integer>=0[]",
+          "meaning_support_indices": "integer>=0[]",
+          "pair_read_indices": "integer>=0[]",
+          "original_refs": "F03BRef[]",
+          "original_reason": "F03BPresenceRaw",
+          "original_semantic_basis": "F03BPresenceRaw",
+          "reason": "string (fixed problem_reason_table[cause])"
+        },
+        "required_fields": [
+          "branch",
+          "cause",
+          "state",
+          "request_ref_index",
+          "fact_read_indices",
+          "meaning_support_indices",
+          "pair_read_indices",
+          "original_refs",
+          "original_reason",
+          "original_semantic_basis",
+          "reason"
+        ],
+        "additional_members": false
+      },
+      "F03FieldDefinitionRead": {
+        "fields": {
+          "request": "F03FieldDefinitionRequest",
+          "owner_read": "F03RecordRead",
+          "target_read": "F03FieldTargetRead",
+          "fact_reads": "F03FieldFactRead[]",
+          "pair_reads": "F03DefinitionPairRead[]",
+          "judgments": "F03FieldDefinitionJudgment[]",
+          "problems": "F03Problem[]"
+        },
+        "required_fields": [
+          "request",
+          "owner_read",
+          "target_read",
+          "fact_reads",
+          "pair_reads",
+          "judgments",
+          "problems"
+        ],
+        "additional_members": false
+      },
+      "F03BOriginalRawValue": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          },
+          {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/F03BOriginalRawValue"
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/$defs/F03BOriginalRawValue"
+            }
+          }
+        ]
+      },
+      "F03BOriginalRef": {
+        "type": "object",
+        "properties": {
+          "identity": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "scope": {
+            "$ref": "#/$defs/F03BOriginalRawValue"
+          },
+          "owner": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_locator": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "F03BOriginalBinding": {
+        "type": "object",
+        "properties": {
+          "template_ref": {
+            "$ref": "#/$defs/F03BOriginalRef"
+          },
+          "knowledge_ref": {
+            "$ref": "#/$defs/F03BOriginalRef"
+          },
+          "requirement_ref": {
+            "$ref": "#/$defs/F03BOriginalRef"
+          },
+          "oracle_ref": {
+            "$ref": "#/$defs/F03BOriginalRef"
+          },
+          "pack_ref": {
+            "$ref": "#/$defs/F03BOriginalRef"
+          },
+          "pack_contract_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "pack_artifact_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "pack_dependency_versions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/F03BOriginalRef"
+            }
+          },
+          "version_target": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "F03BOriginalApplicabilityRecord": {
+        "type": "object",
+        "properties": {
+          "ref": {
+            "$ref": "#/$defs/F03BOriginalRef"
+          },
+          "subject_ref": {
+            "$ref": "#/$defs/F03BOriginalRef"
+          },
+          "binding": {
+            "$ref": "#/$defs/F03BOriginalBinding"
+          },
+          "owner": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "applicable",
+              "not_applicable",
+              "unknown"
+            ]
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reentry_condition": {
+            "$ref": "#/$defs/F03BOriginalRawValue"
+          },
+          "source_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/F03BOriginalRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "F03BOriginalPresenceRaw": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "presence": {
+                "const": "absent"
+              }
+            },
+            "required": [
+              "presence"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "presence": {
+                "const": "supplied"
+              },
+              "value": {
+                "$ref": "#/$defs/F03BOriginalRawValue"
+              }
+            },
+            "required": [
+              "presence",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "F03BOriginalPresenceRef": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "presence": {
+                "const": "absent"
+              }
+            },
+            "required": [
+              "presence"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "presence": {
+                "const": "supplied"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/F03BOriginalRef"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "presence",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "F03BOriginalPresenceBinding": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "presence": {
+                "const": "absent"
+              }
+            },
+            "required": [
+              "presence"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "presence": {
+                "const": "supplied"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/F03BOriginalBinding"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "presence",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "F03BOriginalPresenceString": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "presence": {
+                "const": "absent"
+              }
+            },
+            "required": [
+              "presence"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "presence": {
+                "const": "supplied"
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "presence",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "carrier_contracts": [
+      {
+        "key": "section_field_records",
+        "location": "QualifiedSource.content.section_field_records",
+        "entry_type": "F03OwnerSectionFieldEntry",
+        "binding": "同source.content.binding",
+        "producer": "原field ownerのsemantic source writer",
+        "consumer": "F03 field owner read",
+        "whole_mirror": "root SectionField全typed値とentry.record全typed値を照合し、refは既存ref_same、frameはbinding_sameを併用。consumerがrootからsourceを作文しない。",
+        "origin": "同snapshot usable semantic_json sources全出現から原field.refが一致するentryを取得。存在する全raw entryをsource原index順に保持し、取得support不成立で削らない。source未資格ならtyped再decodeしない。",
+        "absence": "原source未取得はunknown。明示[]だけでfield定義missingにしない。field whole/frame/資格対応した後のrecord.meaning_fact_refs=[]だけがfield固有missing。"
+      },
+      {
+        "key": "value_facts",
+        "location": "QualifiedSource.content.value_facts",
+        "entry_type": "F03BValueFact",
+        "binding": "同source.content.bindingとrecord.binding",
+        "producer": "CORE等の原製品値owner writer",
+        "consumer": "F03 value read",
+        "whole_mirror": "field.value_fact_refs全Ref→input.values全record.ref→record.source_ref→usable semantic_json source→value_facts原record全typed値。record.subject_ref=field.ref/full Binding/bodyを別々に照合。source_ref含むwhole値を両列保存。",
+        "origin": "CORE値sourceはValueFact.source_refから直接取得しknowledge provenance掲載を要求しない。",
+        "absence": "root/source/原値の未供給/null/型外/lookup missをF03Problemで区別。reference_fixture/absentを実値へしない。"
+      },
+      {
+        "key": "field_applicability_records",
+        "location": "QualifiedSource.content.field_applicability_records",
+        "entry_type": "F03BApplicabilityRecord",
+        "binding": "同source.content.bindingとrecord.binding",
+        "producer": "CORE等の原適用判断owner writer",
+        "consumer": "field/value/parent原requestのF03 applicability read",
+        "whole_mirror": "指定applicability_ref→input.applicability_records全record.ref→record.source_ref→usable semantic_json source→原record全typed値。原subject/full Binding/qualified sourceを照合。",
+        "origin": "原record.source_ref直接取得。判断者はrecord.owner、対象版/scopeは原subject Ref、理由/reentryは原値で保持。",
+        "NA": "decision not_applicable、owner/reason/reentry_condition供給non-null、同subject/版/scope/full Binding/資格/body支持が揃う場合だけNA支持。新NA判断を推論しない。applicableの成立へNA理由/reentryの追加gateを置かない。"
+      }
+    ],
+    "functions": [
+      {
+        "symbol": "read_field_descriptor_target",
+        "input": "(F03BValidatedSnapshot,F03FieldTargetRequest,field_locator:string)",
+        "output": "F03FieldTargetRead",
+        "effect": "none",
+        "ordered_branches": [
+          "request原binding/descriptor_slot_ref全presenceを保持。Ref又はBinding未形成はunknown。",
+          "binding.knowledge_ref→原KnowledgeRecord全Ref/body→原provenance全Ref→usable semantic_json全sourceを取得。完全同値record反復も原index保持。異body同Refの複数recordはunknown。",
+          "source.content.bindingとdescriptor_targetsを読み、absent/null/type/[]を別problemへ保持。対応targetを宣言しないsourceの問題はsource_unattributedであり独立明示targetを相殺しない。",
+          "全raw target宣言をoccurrencesへ保持。既存ref_same/binding_sameでrequestへ比較し、対象cohortのslot/kindを得る。別frame問題を全targetへ伝播しない。",
+          "同target同Bindingにdistinct slot複数はunknown、同slot既知kind差はconflict。exact同slot/kindの全caller slot locatorを記録し、slot無しも住所resolved/locators=[]で保存。",
+          "関連conflict→関連unknown→resolved。全source/宣言/slot反復を保持。Refのsource_locator及び片側sha欠落を新必須gateにしない。Claim/ClaimIntentReadを作らず呼ばない。"
+        ]
+      },
+      {
+        "symbol": "read_field_owner_record",
+        "input": "(F03BValidatedSnapshot,F03RecordRequest)",
+        "output": "F03RecordRead",
+        "effect": "none",
+        "meaning": "kind=fieldはsection_field_records、kind=valueはvalue_facts、field/value/parent applicabilityはfield_applicability_records。上記原carrier経路/whole/subject/frameを使う。rootとsource全出現をsupport前に保存しindex linkで結ぶ。同Ref異bodyはread conflict、stateを原意味conflictへ自動転写しない。"
+      },
+      {
+        "symbol": "read_original_field_definition",
+        "input": "(snapshot:F03BValidatedSnapshot,request:F03FieldDefinitionRequest)",
+        "output": "F03FieldDefinitionRead",
+        "effect": "none",
+        "call_order": [
+          "原request.field/presence/Binding/同snapshot全値対応",
+          "原field wholeの独立owner read",
+          "F03 fieldtarget read",
+          "meaning refs原順のselected fact/source/owner帰属read",
+          "各selected factの既存L4 read_original_definition_meaning",
+          "実在する関連MeaningComparison原recordのqualified pair read",
+          "全judgmentを原出現順に保存"
+        ],
+        "logical_subports": "原意味readは既存L4 DefinitionMeaningRequest/DefinitionMeaningReadの同じ固定normative frame・原fact.body・qualification・basis条件を使う。source/ref/label/帰属knownだけを肯定意味decisionへしない。"
+      },
+      {
+        "symbol": "evaluate_field_values",
+        "input": "F03BasicContext",
+        "output": "F03Evaluation",
+        "effect": "none",
+        "meaning": "原field definition port実returnのjudgmentsを各eventへ投影し、独立value/app/parent readを結合する。公開fn2はcomparisonだけを返す。L5private型は要求しない。"
+      }
+    ],
+    "same_call": {
+      "basic_context": "F03BasicContext={snapshot:F03BValidatedSnapshot,definitions:F03BComparison}。snapshotは同一fn0返却ValidatedSupplyへのopaque aliasであり、wrapper/cache/任意assessmentを注入しない。",
+      "call": "evaluate_field_values(context)は各原fieldからF03FieldDefinitionRequestを構成し、read_original_field_definition(context.snapshot,request)を一回呼び、その実returnだけでfield definition eventを作る。value/app/parent各readも同じValidatedSupply aliasから直接呼ぶ。",
+      "provenance": "fn0から得た同一ValidatedSupplyをF03BValidatedSnapshot aliasとして直接保持する。F03 requestのfield/binding/subject_refはraw-presenceで原値を保持し、typed Ref/Bindingを作るのは対応する既存guardがformedとした後だけ。返却root/source locator/index/ref/bodyは同snapshotに解決する。",
+      "carry": "適合した元C1 generic2軸を全7memberで独立保持。field read未取得/unknownで消さない。",
+      "detail_followup": "L5/L8で同一fn1 walkを一回計算し基本意味readを索引付きで再利用する実現を明示設計できる。そのprivatewholee/ValueContext3は基本の型/import/fixture入力にしない。詳細の実現がこの基本全returnへ一致することを後続pairで確かめる。"
+    },
+    "finite_branch_contract": [
+      {
+        "branch": "definition_empty",
+        "condition": "原field whole/subject/frame/資格support有り、meaning_fact_refsが明示[]",
+        "axis": "field.definition",
+        "state": "missing",
+        "reason": "原ownerが対応するfieldの意味参照を明示空としている。元field定義missingを保持する。"
+      },
+      {
+        "branch": "definition_known",
+        "condition": "選択原factへ同call既存意味judgment knownが対応",
+        "axis": "field.definition",
+        "state": "known",
+        "reason": "同原fieldの選択factについて同callの元意味判定knownを保持する。"
+      },
+      {
+        "branch": "definition_unknown",
+        "condition": "非空原meaning refsでtarget/fact/同call意味根拠不足、又は原refs absent/null/type",
+        "axis": "field.definition",
+        "state": "unknown",
+        "reason": "同原fieldの選択factに対応する元意味判定を取得できない。"
+      },
+      {
+        "branch": "value_unknown",
+        "condition": "原値null、元値根拠未供給、origin absent/reference_fixture又はvalue ref lookup未解決",
+        "axis": "field.value",
+        "state": "unknown",
+        "reason": "原案件値はunknownである。元理由とknowledge版を保持する。"
+      },
+      {
+        "branch": "value_supplied",
+        "condition": "同field/frame/qualified source/bodyのproject_owner non-null値",
+        "axis": "field.value",
+        "state": "supplied",
+        "reason": "原製品ownerの供給値を保持する。汎用定義へ採用しない。"
+      },
+      {
+        "branch": "applicability_null",
+        "condition": "field.applicability_refの明示null",
+        "axis": "applicability.evaluation",
+        "state": "unknown",
+        "reason": "field固有の適用参照は明示nullであり非適用を生成しない。"
+      },
+      {
+        "branch": "applicability_unknown",
+        "condition": "原適用decision unknown又は原source/root/body/NA根拠の不足",
+        "axis": "applicability.evaluation",
+        "state": "unknown",
+        "reason": "原field適用判断はunknownであり非適用へ変換しない。"
+      },
+      {
+        "branch": "applicability_na",
+        "condition": "同fieldの根拠付きNA全要素が支持",
+        "axis": "applicability.evaluation",
+        "state": "not_applicable",
+        "reason": "同fieldの原owner判断と理由と再評価条件が非適用を支持する。"
+      },
+      {
+        "branch": "field_na",
+        "condition": "当該fieldの根拠付きNAをfield適用へ投影",
+        "axis": "field.applicability",
+        "state": "not_applicable",
+        "reason": "根拠付き非適用は当該fieldだけに保持する。"
+      },
+      {
+        "branch": "parent_na_no_transfer",
+        "condition": "親sectionだけ支持NA、子field判断無し",
+        "axis": "field.applicability",
+        "state": "unknown",
+        "reason": "根拠付きsection非適用だけを保持しfieldへ転写しない。"
+      },
+      {
+        "branch": "field_unknown",
+        "condition": "active案件fieldの固有適用判断無し",
+        "axis": "field.applicability",
+        "state": "unknown",
+        "reason": "field固有の適用判断は未決である。"
+      },
+      {
+        "branch": "definition_conflict",
+        "condition": "既存原判定又は原supported適用判断が当該selected field/valueへ対応した場合だけ。原値及び全出現は別に保持する。",
+        "axis": "field.definition",
+        "state": "conflict",
+        "reason": "選択した原field意味factの元conflict判定を保持する。"
+      },
+      {
+        "branch": "applicability_applicable",
+        "condition": "既存原判定又は原supported適用判断が当該selected field/valueへ対応した場合だけ。原値及び全出現は別に保持する。",
+        "axis": "applicability.evaluation",
+        "state": "applicable",
+        "reason": "同fieldの原owner判断applicableを保持する。"
+      },
+      {
+        "branch": "field_applicable",
+        "condition": "既存原判定又は原supported適用判断が当該selected field/valueへ対応した場合だけ。原値及び全出現は別に保持する。",
+        "axis": "field.applicability",
+        "state": "applicable",
+        "reason": "同fieldの原適用判断applicableだけを保持する。"
+      },
+      {
+        "branch": "value_na",
+        "condition": "既存原判定又は原supported適用判断が当該selected field/valueへ対応した場合だけ。原値及び全出現は別に保持する。",
+        "axis": "field.value",
+        "state": "not_applicable",
+        "reason": "当該原値が指す同fieldの根拠付き非適用を別観点として保持する。"
+      }
+    ],
+    "additional_leaf_rules": [
+      {
+        "condition": "原supported decision applicable",
+        "observation": "applicability.evaluation applicable。理由は原supported decision/record全値の投影。NAを推論しない。"
+      },
+      {
+        "condition": "基本field definition portの原judgment known/missing/unknown/conflictが複数出現",
+        "observation": "元judgmentを全出現保存しknownでunknown/conflictを相殺しない。generic C1のnot_applicable等はcarryの原全値で独立保持する。"
+      },
+      {
+        "condition": "source rootRef/bytes/body/digest/資格未成立",
+        "observation": "既存fn0 InputIssue/元sourceを残しF03資格unknown。unusable source内部entryを再decode/発明しない。"
+      },
+      {
+        "condition": "container又はrequest absent/null/型外",
+        "observation": "各原presenceとlocatorで別problem、既存raw snapshot全値保持。absenceを[]又はNAへしない。"
+      },
+      {
+        "condition": "複数原record又はRef/body不一致",
+        "observation": "全root/source出現とsupport index保存。source取得conflictを案件value.stateの新conflictへしない。元値イベントを並べる。"
+      },
+      {
+        "condition": "parent_section_ref supplied Ref",
+        "observation": "root原applicability_recordsのsubject_refが親Refへ既存ref_sameする各原recordを別parent requestとして読む。親recordをchild主体へ書換えずfieldのapplicability_refとして借りない。"
+      },
+      {
+        "condition": "value.applicability_ref supplied Ref",
+        "observation": "value_applicability requestを明示作成して同field subjectを照合。field側Ref又は他value側Refと同一と推定しない。原値とNAを別観点で保持する。"
+      },
+      {
+        "condition": "value.applicability_ref absent/null",
+        "observation": "その値用readはnot_requested又はunknownを原presenceで保持し値供給自体を新必須gateにしない。"
+      },
+      {
+        "condition": "Ref/Binding形成不能",
+        "observation": "F03Problem/private観測のみ。公開Axis/Finding用の代替Ref/Bindingを生成しない。"
+      },
+      {
+        "condition": "validated.input=null",
+        "observation": "Comparison axes/findings=[]、producer=fn2、input_binding=null、rows=[]。元InputIssueはbuilderが保存する。"
+      }
+    ],
+    "problem_reason_table": {
+      "owner_unresolved": "原fieldの独立owner宣言を同subject/full Binding/bodyへ結べない。",
+      "definition_empty": "原ownerが対応するfieldの意味参照を明示空としている。元field定義missingを保持する。",
+      "definition_known": "同原fieldの選択factについて同callの元意味判定knownを保持する。",
+      "definition_unknown": "同原fieldの選択factに対応する元意味判定を取得できない。",
+      "value_unknown": "原案件値はunknownである。元理由とknowledge版を保持する。",
+      "value_supplied": "原製品ownerの供給値を保持する。汎用定義へ採用しない。",
+      "applicability_null": "field固有の適用参照は明示nullであり非適用を生成しない。",
+      "applicability_unknown": "原field適用判断はunknownであり非適用へ変換しない。",
+      "applicability_na": "同fieldの原owner判断と理由と再評価条件が非適用を支持する。",
+      "field_na": "根拠付き非適用は当該fieldだけに保持する。",
+      "parent_na_no_transfer": "根拠付きsection非適用だけを保持しfieldへ転写しない。",
+      "field_unknown": "field固有の適用判断は未決である。",
+      "container_absent": "owner原sourceにdescriptor_targets memberが供給されていない。targetを生成しない。",
+      "field_owner_not_found": "当該原fieldに対応する独立ownerのsection_field_recordsを取得できない。",
+      "app_null": "原fieldのapplicability_refは明示nullである。",
+      "definition_material_absent": "同callの元definition私有材料が供給されていない。",
+      "definition_material_differs": "元definition私有材料は同callの公開Comparisonに対応しない。",
+      "record_unknown": "原recordはunknownを保持している。",
+      "na_incomplete": "原非適用判断に必要な原理由又は再評価条件又は判定者が未供給である。",
+      "lookup_unresolved": "原requestに対応するroot又はowner source recordを解決できない。",
+      "frame_differs": "原subject又はfull Bindingが当該requestと既知に異なる。",
+      "records_differ": "同じ原record Refの異なる本文を保持する。先頭又は最新を選ばない。",
+      "reference_fixture": "参照fixture値を稼働値へ採用しない。",
+      "origin_absent": "原案件値のowner由来が未供給である。",
+      "null_or_type": "原request又はcontainerのnull又は型外を保持する。",
+      "not_declared": "原targetに対応するowner宣言を取得できない。",
+      "ambiguous": "同原targetに複数の異なるslot対応がある。",
+      "kind_conflict": "同原targetとslotの既知kind対応が相反する。",
+      "qualification_unresolved": "原sourceの既存資格又はbody照合が未成立である。",
+      "fact_unresolved": "原field意味参照を同slotの原factへ結べない。",
+      "field_refs_invalid": "原fieldのmeaning_fact_refsは未供給又はnull又は型外である。",
+      "definition_missing": "選択した原field意味factの元missing判定を保持する。",
+      "definition_conflict": "選択した原field意味factの元conflict判定を保持する。",
+      "definition_na": "選択した原field意味factの元非適用判定を保持する。",
+      "applicability_applicable": "同fieldの原owner判断applicableを保持する。",
+      "field_applicable": "同fieldの原適用判断applicableだけを保持する。",
+      "value_na": "当該原値が指す同fieldの根拠付き非適用を別観点として保持する。",
+      "request_field_absent": "原field引数が供給されていない。",
+      "request_field_null": "原field引数は明示nullである。",
+      "request_field_type": "原field引数をSectionFieldへ対応できない。",
+      "request_binding_absent": "原Bindingが供給されていない。",
+      "request_binding_null": "原Bindingは明示nullである。",
+      "request_binding_type": "原Bindingを型付きframeへ対応できない。",
+      "field_snapshot_differs": "原field引数と同snapshot原locatorのfield全値が異なる。",
+      "field_owner_unresolved": "同field/subject/full Binding/bodyの独立owner宣言を取得できない。",
+      "field_subject_differs": "原field宣言のsubject Refが当該fieldと既知に異なる。",
+      "field_binding_differs": "原field宣言のfull Bindingが当該frameと既知に異なる。",
+      "field_mirror_differs": "当該原field宣言とroot fieldの全typed bodyが異なる。",
+      "meaning_refs_absent": "原owner対応fieldにmeaning_fact_refsが供給されていない。",
+      "meaning_refs_null": "原owner対応fieldのmeaning_fact_refsは明示nullである。",
+      "meaning_refs_type": "原owner対応fieldのmeaning_fact_refsがRef配列でない。",
+      "meaning_refs_empty": "原owner対応fieldのmeaning_fact_refsは明示空配列である。",
+      "target_unknown": "fieldの原descriptor targetを一意のslot対応へ結べない。",
+      "target_conflict": "fieldの原descriptor targetとslotの既知対応が相反する。",
+      "selected_fact_unresolved": "選択した原意味Refを対応slotの実factへ結べない。",
+      "selected_fact_source_unresolved": "選択した原意味factのsource又は既存資格を解決できない。",
+      "selected_fact_body_null": "選択した原意味factのbodyは明示nullである。",
+      "selected_fact_body_absent": "選択した原意味factのbodyが供給されていない。",
+      "attribution_unknown": "選択factの原owner帰属を解決できない。帰属から意味knownを生成しない。",
+      "attribution_conflict": "選択factの既知owner分類対応が相反する。",
+      "meaning_read_unresolved": "原意味readerの当該fact支持を取得できない。",
+      "meaning_negative": "原ownerの意味判断は当該descriptor定義を支持しない。",
+      "meaning_undetermined": "原ownerの意味判断は未決である。",
+      "meaning_basis_unresolved": "原意味判断の原理由又は意味basis又は固定frame対応が未解決である。",
+      "meaning_positive": "固定frame/原fact/body/原理由/basisへ対応する肯定意味判断を保持する。",
+      "qualified_pair_false": "同subject/revision/scopeのqualified原意味比較は非同値を示す。",
+      "qualified_pair_unknown": "原意味比較の資格又は原判断が未解決である。",
+      "snapshot_unavailable": "同callの原snapshotを取得できない。"
+    },
+    "reason_writer": {
+      "input": "F03ReasonMaterial全12member。definition_causeで元field取得不足と意味未決を区別し、元meaning decision reason/basisはF03FieldDefinitionRead内でもwhole保持する。",
+      "prefix": "event.branchに対応するproblem_reason_table[branch] literal",
+      "serialization": "prefix + U+000A + diagnostic_json(reason_material)。diagnostic_jsonは既存exact JSON意味を用い、object keyはUnicode codepoint昇順、空白なし、stringはUTF-8文字を保持、数値は既存exact numberを保持。branch/state/causeをreason textから逆算しない。",
+      "public_reason": "Axis.reasonは同event.reason全値。NA元reason/owner/reentry/knowledge版を型付き素材からこの固定writerで保存。"
+    },
+    "projection_order": {
+      "carry": "definitions.axesのrequired section.definition/required field.definition全出現を元順/全7memberで先頭copy。C1他axis/findingsをC2へ混載しない。",
+      "population": "input.section_fields全原出現。root/applicability/values空かつ実field無しならrows=[]かつcarryのみ。",
+      "reads": "field原順→read_original_field_definition一回（owner→target→selected fact→帰属→意味read→実関連pair→judgment）→field適用→values原Ref順→parent root原index順。",
+      "case_activation": "実value refs非空/型外、実nonnull app Ref/型外、又は実root当該subject候補/親支持recordがあるときだけ案件axis active。明示null readはprivateに保持し、nullだけの非active fieldに案件axisを作らない。field.definitionは原field宣言/意味資料に対して独立。",
+      "events": "field.definition→applicability.evaluation→field.value→field.applicability。全同軸出現は原request/root/source順で保持。",
+      "public": "全7field AxisResult、全9field Finding、Comparison4fieldを維持。public original_refs/ownerは実読取原値だけ。input_binding=snapshot.input.binding。",
+      "claims": "本5case claims=[]。既存rule54..57のclaim検査は同subject/full Bindingの原kind/intended valueへ対応し元stateを更新しない。L5追補で既存Claim protocolのF03値表現/排他選択を閉じる。L4で新Claim要求を全fieldへ置かない。"
+    },
+    "legacy_rederivation": {
+      "mode": "semantic_rederivation",
+      "old_sources": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": [
+            16,
+            92
+          ],
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "lines": [
+            30,
+            148
+          ],
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": [
+            80,
+            87
+          ],
+          "failure_ids": [
+            "UTW-014",
+            "UTW-020",
+            "UTW-021"
+          ]
+        }
+      ],
+      "retain": "原identity/owner/source/trace・template定義と製品値分離・unknown非NA・局所原資料保持。",
+      "change": "原source/field/value/app型の必要boundaryだけL4 F03B型へ再導出。基本意味判断は原L4 meaningread→judgmentで閉じ、L5private whole-e/索引/ValueContext3を依存から除去する。",
+      "reason": "原field source/frame/対象対応と独立値/判断を明示し、未取得を明示emptyと誤認しないため。実source未観測は局所unknownとして設計に閉じ、成立を偽造しない。 基本→詳細の導出順とL4/L9自立性を守り、元source読取をL5private値注入で代替しないため。"
+    },
+    "limits": [
+      "L4/L9のpure論理境界と5caseの全期待。実trust/custody/稼働資格・全producer完成ではない。",
+      "L5/L8のsame-e/索引/ValueContext3実現は後続。基本returnを任意caller値から注入する手段を設けない。",
+      "全15定義・他案件・他sourceの全体成功gateを追加しない。"
+    ],
+    "closed_type_language": {
+      "primitive_types": {
+        "string": "JSON string",
+        "integer>=0": "JSON integer and minimum=0",
+        "null": "JSON null",
+        "RawValue": "exact imported F03BRawValue全domain"
+      },
+      "constructors": {
+        "T[]": "Tの原順JSON array",
+        "T|null": "T又はJSON null",
+        "integer>=0[]": "非負integerの原順array"
+      },
+      "nominal_refs": "primitive/constructor以外のF03型名はこのclosed_typesへ全解決する。例外はsame_level_opaque_aliasesに明記したF03BValidatedSnapshotだけで、既存L4 ValidatedSupplyへの同一fn0値別名である。L5 private import、別call値、raw inputからのdecode/castはしない。",
+      "closed_fields": "custom fields recordはrequired_fieldsに明記したmemberだけ必須。fieldsに宣言済みでrequired_fieldsに無いmemberは任意であり、未供給はkeyを追加せず保持する。JSON Schema recordはrequired列だけ必須、required不在は必須member無し。additional_members:false/additionalProperties:falseによる宣言外key禁止は維持する。全new F03Read/判断/Request/Presence/生成returnの明示required列は変更しない。absenceをnull/[]/defaultへ補完しない。",
+      "reason_dependency": "F03Problem.reason=problem_reason_table[cause]。F03FieldDefinitionJudgmentのbranch/state/reasonはfield_definition_cause_table[cause]。F03Eventはfinite_branch_contract/固定reason_writer。",
+      "existing_L4_schema_refs": "F03BDefinitionMeaning*等は固定L4の既存意味read contractを参照し、今回のValidatedSupply alias以外に型を追加importしない。",
+      "same_level_opaque_aliases": {
+        "F03BValidatedSnapshot": {
+          "target": "ValidatedSupply",
+          "source_contract_pointer": "/definition_meaning_resolution_contract/call_bindings/existing_logical_type",
+          "same_fn0_value_only": true,
+          "raw_redecode_or_cast": false,
+          "wrapper_shape_added": false
+        }
+      },
+      "original_port_schema_types": "F03BOriginal*は既存L4 assembled original portのJSON Schema型。これら及びF03BDefinition* JSON Schema recordの#/$defs/F03B...はこのclosed_types名表で解決する。JSON Schema required不在の宣言memberは任意、oneOf/anyOf/type:[...,null]/additionalProperties:false等は原schemaどおり。custom formed helperへ変換/cast又はnull補完しない。"
+    },
+    "read_decision_precedence": [
+      {
+        "phase": 0,
+        "rule": "request形と元presenceを読む。absentはnot_requested、null/型外はunknown。field declaration root自身のrequestには原field.refを渡す。"
+      },
+      {
+        "phase": 1,
+        "rule": "root全record候補/原source候補を全出現取得。同Refでも既知別subject/frameは局所frame_differs。source usableでなければ資格unknownとしてtyped再decodeしない。"
+      },
+      {
+        "phase": 2,
+        "rule": "全raw source entryを取得時点でsource_occurrencesへ保存。typed body/full frame/subject/source_ref mirror成立した組合せだけsupportsへindex link。"
+      },
+      {
+        "phase": 3,
+        "rule": "同request/ref/frameのroot原recordに異なるwhole本文がある場合read=conflict。型外/未帰属source entryの存在だけで独立した同target支持を相殺しない。"
+      },
+      {
+        "phase": 4,
+        "rule": "支持1件以上ならread=resolved、支持0件ならunknown。resolvedは原decision/value/definitionの成功と別。record=unknown/NA不完全も取得支持自体から消さない。"
+      },
+      {
+        "phase": 5,
+        "rule": "原decision/valueの各support別eventを有限branchへ投影。applicable/NA/unknownや異なる値の全原判断を保持し、合成単一stateへ畳まない。"
+      }
+    ],
+    "field_definition_precedence": [
+      {
+        "order": 0,
+        "condition": "snapshot.inputがnull又はroot field locatorが解決できない",
+        "action": "snapshot_unavailable又はrequest_field_absent/null/typeを原presence別にjudgment unknownとして返す。原field/Ref/Bindingを生成しない。"
+      },
+      {
+        "order": 1,
+        "condition": "request.field/Bindingがabsent/null/型外又は同snapshot原値と異なる",
+        "action": "専用causeを全値/presence/locatorで保存しunknown。未資格元fieldの[]をmissingへしない。"
+      },
+      {
+        "order": 2,
+        "condition": "原field owner宣言のsubject/full Binding/body/資格が未解決又は既知差",
+        "action": "field_owner_unresolved/field_subject_differs/field_binding_differs/field_mirror_differsを原出現別にunknown。全owner source取得を新global gateにしない。"
+      },
+      {
+        "order": 3,
+        "condition": "原owner対応が成立したfieldのmeaning_fact_refs",
+        "action": "absent/null/typeを別cause unknown。明示[]だけmeaning_refs_empty/missing。[]からfact/slotを生成しない。"
+      },
+      {
+        "order": 4,
+        "condition": "非空meaning refsのfieldtarget/実slot/selected fact",
+        "action": "target unknown/conflict、selected fact absent/source/bodyの各causeを別保存。source未取得をmeaning missingへ変えない。"
+      },
+      {
+        "order": 5,
+        "condition": "各selected factの帰属source/content.binding/group slot/kind/ref/body",
+        "action": "F03AttributionReadに全原group/fact支持を保存。既知kind相反はattribution_conflict、未解決はattribution_unknown。knownは住所/分類対応だけで意味knownへしない。"
+      },
+      {
+        "order": 6,
+        "condition": "原fact/source/frame/帰属の対応が成立しmeaning bodyが供給nonnull",
+        "action": "既存L4意味readerへ原slot/fact locatorと固定規範entryを渡し全DefinitionMeaningReadを保存。各supportの全arguments/body/frame/decision/reason/raw_semantic_basisへ対応するdefines_descriptorだけmeaning_positive/known。取得resolved/record presence/decision文字列だけではknownにしない。"
+      },
+      {
+        "order": 7,
+        "condition": "原meaning body null/absent又は意味read支持無し/否定/未決/basis不足",
+        "action": "selected_fact_body_null/absent、meaning_read_unresolved/negative/undetermined/basis_unresolvedを原出現別unknownにする。別known supportで元原因を削らない。"
+      },
+      {
+        "order": 8,
+        "condition": "実在する同subject/revision/scopeのselected fact pair比較",
+        "action": "root原MeaningComparison→comparison_source_ref→usable semantic_json content.meaning_comparisons原whole bodyの支持を全保存。qualified equivalent=falseだけqualified_pair_false/conflict。trueはpair read knownでありfield definition knownの代替にしない。unknown/未資格/本文差はqualified_pair_unknown。全pair存在を新必須gateにしない。"
+      },
+      {
+        "order": 9,
+        "condition": "複数selected refs/slot/fact/source/意味support/pair",
+        "action": "各原出現のfact_read/judgmentを原順に保存。同Ref異body/別frameを先頭又は最新選択しない。同targetのknownとunknown/conflictを並べて保持。"
+      }
+    ],
+    "source_pins": {
+      "fixed_fixture_seed": {
+        "revision": "fc48948137e8749ece2b7560ae82dc6804a686ac",
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "file_sha256": "621edfff59786d35e947f9f2167de54627400e8085dd5ff589a6a5d33d8fe6ff",
+        "pointer": "/definition_meaning_walk_verification/materials/0",
+        "role": "固定raw/C1/原意味readの既存oracle値。private whole-eの型又は結果を基本へimportしない。"
+      },
+      "inventory_only_lower_source": {
+        "revision": "3d0fcfcde6338272d9d1a5f70cfb0e7ce4df446b",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "file_sha256": "8bdfe4b804fca433bc6c2294ba7ba5735462973fa41664a5cd3157505d699893",
+        "pointer": "/type_contract/types",
+        "role": "元型のfield意味を読むinventory。L4正規dependency又は実行importではない。"
+      },
+      "fixed_basic_basis": [
+        {
+          "revision": "3d0fcfcde6338272d9d1a5f70cfb0e7ce4df446b",
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "file_sha256": "4ef60d6c0d15fa0339f525ad92c5754994dc83b56bb70b3397635e74c9bd88c2",
+          "pointers": [
+            "/dependency_semantic_ports/schema/new_defs",
+            "/definition_meaning_resolution_contract/schema/new_defs",
+            "/definition_meaning_resolution_contract/readers/0",
+            "/definition_meaning_resolution_contract/consumer_branch_table"
+          ],
+          "role": "固定baseの再導出根拠。候補自file全bytes又は現在参照ではない。"
+        }
+      ]
+    },
+    "boundary_type_rederivation": {
+      "same_L4_reuse": "Ref/Binding/RawValue/Presence及び既存意味read schemaをL4内のF03B名前へ閉じて投影。既存下位source importを新F03契約の正規依存にしない。",
+      "new_boundary_types": [
+        {
+          "name": "F03BRef",
+          "source_inventory": "/type_contract/types/Ref",
+          "preserved": "元field集合/JSON意味/nullable/enum/owner境界",
+          "changed": "F03B名のL4境界型として自立させる。private samee/索引を含めない。",
+          "consumer": "F03 source/view/read又はComparison全値返却"
+        },
+        {
+          "name": "F03BBinding",
+          "source_inventory": "/type_contract/types/Binding",
+          "preserved": "元field集合/JSON意味/nullable/enum/owner境界",
+          "changed": "F03B名のL4境界型として自立させる。private samee/索引を含めない。",
+          "consumer": "F03 source/view/read又はComparison全値返却"
+        },
+        {
+          "name": "F03BMeaningFact",
+          "source_inventory": "/type_contract/types/MeaningFact",
+          "preserved": "元field集合/JSON意味/nullable/enum/owner境界",
+          "changed": "F03B名のL4境界型として自立させる。private samee/索引を含めない。",
+          "consumer": "F03 source/view/read又はComparison全値返却"
+        },
+        {
+          "name": "F03BDescriptorSlot",
+          "source_inventory": "/type_contract/types/DescriptorSlot",
+          "preserved": "元field集合/JSON意味/nullable/enum/owner境界",
+          "changed": "F03B名のL4境界型として自立させる。private samee/索引を含めない。",
+          "consumer": "F03 source/view/read又はComparison全値返却"
+        },
+        {
+          "name": "F03BSectionField",
+          "source_inventory": "/type_contract/types/SectionField",
+          "preserved": "元field集合/JSON意味/nullable/enum/owner境界",
+          "changed": "F03B名のL4境界型として自立させる。private samee/索引を含めない。",
+          "consumer": "F03 source/view/read又はComparison全値返却"
+        },
+        {
+          "name": "F03BValueFact",
+          "source_inventory": "/type_contract/types/ValueFact",
+          "preserved": "元field集合/JSON意味/nullable/enum/owner境界",
+          "changed": "F03B名のL4境界型として自立させる。private samee/索引を含めない。",
+          "consumer": "F03 source/view/read又はComparison全値返却"
+        },
+        {
+          "name": "F03BApplicabilityRecord",
+          "source_inventory": "/type_contract/types/ApplicabilityRecord",
+          "preserved": "元field集合/JSON意味/nullable/enum/owner境界",
+          "changed": "F03B名のL4境界型として自立させる。private samee/索引を含めない。",
+          "consumer": "F03 source/view/read又はComparison全値返却"
+        },
+        {
+          "name": "F03BKnowledgeRecord",
+          "source_inventory": "/type_contract/types/KnowledgeRecord",
+          "preserved": "元field集合/JSON意味/nullable/enum/owner境界",
+          "changed": "F03B名のL4境界型として自立させる。private samee/索引を含めない。",
+          "consumer": "F03 source/view/read又はComparison全値返却"
+        },
+        {
+          "name": "F03BQualifiedSource",
+          "source_inventory": "/type_contract/types/QualifiedSource",
+          "preserved": "元field集合/JSON意味/nullable/enum/owner境界",
+          "changed": "F03B名のL4境界型として自立させる。private samee/索引を含めない。",
+          "consumer": "F03 source/view/read又はComparison全値返却"
+        },
+        {
+          "name": "F03BMeaningComparison",
+          "source_inventory": "/type_contract/types/MeaningComparison",
+          "preserved": "元field集合/JSON意味/nullable/enum/owner境界",
+          "changed": "F03B名のL4境界型として自立させる。private samee/索引を含めない。",
+          "consumer": "F03 source/view/read又はComparison全値返却"
+        },
+        {
+          "name": "F03BAxisResult",
+          "source_inventory": "/type_contract/types/AxisResult",
+          "preserved": "元field集合/JSON意味/nullable/enum/owner境界",
+          "changed": "F03B名のL4境界型として自立させる。private samee/索引を含めない。",
+          "consumer": "F03 source/view/read又はComparison全値返却"
+        },
+        {
+          "name": "F03BFinding",
+          "source_inventory": "/type_contract/types/Finding",
+          "preserved": "元field集合/JSON意味/nullable/enum/owner境界",
+          "changed": "F03B名のL4境界型として自立させる。private samee/索引を含めない。",
+          "consumer": "F03 source/view/read又はComparison全値返却"
+        },
+        {
+          "name": "F03BComparison",
+          "source_inventory": "/type_contract/types/Comparison",
+          "preserved": "元field集合/JSON意味/nullable/enum/owner境界",
+          "changed": "F03B名のL4境界型として自立させる。private samee/索引を含めない。",
+          "consumer": "F03 source/view/read又はComparison全値返却"
+        },
+        {
+          "name": "F03BInputIssue",
+          "source_inventory": "/type_contract/types/InputIssue",
+          "preserved": "元field集合/JSON意味/nullable/enum/owner境界",
+          "changed": "F03B名のL4境界型として自立させる。private samee/索引を含めない。",
+          "consumer": "F03 source/view/read又はComparison全値返却"
+        }
+      ],
+      "raw_snapshot": "F03BValidatedSnapshot.inputは原validated JSON全値のecho。F03は必要な原memberのtyped viewだけをdecodeし、その型不成立を個別presence/problemへ返す。未使用root memberを捨てるschemaではない。源の資格判定は既存前段結果を消費し、この型存在だけで資格を発行しない。",
+      "schema_projection": "既存L4 definition_meaning_resolution_contract/schema/new_defs全14schemaを同名F03B型へ投影し、依存helper8型はF03BOriginalRawValue/Ref/Binding/ApplicabilityRecord/PresenceRaw/Ref/Binding/Stringという専用名で元JSON Schema全値を保存する。全local $ref名だけremapし、required/nullable union/enum/additionalProperties/原member presenceを一切狭めない。新formed用途のF03BPresenceRef/Binding/Stringを原port返却型へ代用しない。"
+    },
+    "field_definition_cause_table": [
+      {
+        "cause": "request_field_absent",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原field引数が供給されていない。"
+      },
+      {
+        "cause": "request_field_null",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原field引数は明示nullである。"
+      },
+      {
+        "cause": "request_field_type",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原field引数をSectionFieldへ対応できない。"
+      },
+      {
+        "cause": "request_binding_absent",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原Bindingが供給されていない。"
+      },
+      {
+        "cause": "request_binding_null",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原Bindingは明示nullである。"
+      },
+      {
+        "cause": "request_binding_type",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原Bindingを型付きframeへ対応できない。"
+      },
+      {
+        "cause": "field_snapshot_differs",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原field引数と同snapshot原locatorのfield全値が異なる。"
+      },
+      {
+        "cause": "field_owner_unresolved",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "同field/subject/full Binding/bodyの独立owner宣言を取得できない。"
+      },
+      {
+        "cause": "field_subject_differs",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原field宣言のsubject Refが当該fieldと既知に異なる。"
+      },
+      {
+        "cause": "field_binding_differs",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原field宣言のfull Bindingが当該frameと既知に異なる。"
+      },
+      {
+        "cause": "field_mirror_differs",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "当該原field宣言とroot fieldの全typed bodyが異なる。"
+      },
+      {
+        "cause": "meaning_refs_absent",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原owner対応fieldにmeaning_fact_refsが供給されていない。"
+      },
+      {
+        "cause": "meaning_refs_null",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原owner対応fieldのmeaning_fact_refsは明示nullである。"
+      },
+      {
+        "cause": "meaning_refs_type",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原owner対応fieldのmeaning_fact_refsがRef配列でない。"
+      },
+      {
+        "cause": "meaning_refs_empty",
+        "branch": "definition_empty",
+        "state": "missing",
+        "reason": "原owner対応fieldのmeaning_fact_refsは明示空配列である。"
+      },
+      {
+        "cause": "target_unknown",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "fieldの原descriptor targetを一意のslot対応へ結べない。"
+      },
+      {
+        "cause": "target_conflict",
+        "branch": "definition_conflict",
+        "state": "conflict",
+        "reason": "fieldの原descriptor targetとslotの既知対応が相反する。"
+      },
+      {
+        "cause": "selected_fact_unresolved",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "選択した原意味Refを対応slotの実factへ結べない。"
+      },
+      {
+        "cause": "selected_fact_source_unresolved",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "選択した原意味factのsource又は既存資格を解決できない。"
+      },
+      {
+        "cause": "selected_fact_body_null",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "選択した原意味factのbodyは明示nullである。"
+      },
+      {
+        "cause": "selected_fact_body_absent",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "選択した原意味factのbodyが供給されていない。"
+      },
+      {
+        "cause": "attribution_unknown",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "選択factの原owner帰属を解決できない。帰属から意味knownを生成しない。"
+      },
+      {
+        "cause": "attribution_conflict",
+        "branch": "definition_conflict",
+        "state": "conflict",
+        "reason": "選択factの既知owner分類対応が相反する。"
+      },
+      {
+        "cause": "meaning_read_unresolved",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原意味readerの当該fact支持を取得できない。"
+      },
+      {
+        "cause": "meaning_negative",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原ownerの意味判断は当該descriptor定義を支持しない。"
+      },
+      {
+        "cause": "meaning_undetermined",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原ownerの意味判断は未決である。"
+      },
+      {
+        "cause": "meaning_basis_unresolved",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原意味判断の原理由又は意味basis又は固定frame対応が未解決である。"
+      },
+      {
+        "cause": "meaning_positive",
+        "branch": "definition_known",
+        "state": "known",
+        "reason": "固定frame/原fact/body/原理由/basisへ対応する肯定意味判断を保持する。"
+      },
+      {
+        "cause": "qualified_pair_false",
+        "branch": "definition_conflict",
+        "state": "conflict",
+        "reason": "同subject/revision/scopeのqualified原意味比較は非同値を示す。"
+      },
+      {
+        "cause": "qualified_pair_unknown",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "原意味比較の資格又は原判断が未解決である。"
+      },
+      {
+        "cause": "snapshot_unavailable",
+        "branch": "definition_unknown",
+        "state": "unknown",
+        "reason": "同callの原snapshotを取得できない。"
+      }
+    ],
+    "field_definition_leaf_order": [
+      {
+        "order": 0,
+        "condition": "snapshot.inputがnull又はroot field locatorが解決できない",
+        "action": "snapshot_unavailable又はrequest_field_absent/null/typeを原presence別にjudgment unknownとして返す。原field/Ref/Bindingを生成しない。"
+      },
+      {
+        "order": 1,
+        "condition": "request.field/Bindingがabsent/null/型外又は同snapshot原値と異なる",
+        "action": "専用causeを全値/presence/locatorで保存しunknown。未資格元fieldの[]をmissingへしない。"
+      },
+      {
+        "order": 2,
+        "condition": "原field owner宣言のsubject/full Binding/body/資格が未解決又は既知差",
+        "action": "field_owner_unresolved/field_subject_differs/field_binding_differs/field_mirror_differsを原出現別にunknown。全owner source取得を新global gateにしない。"
+      },
+      {
+        "order": 3,
+        "condition": "原owner対応が成立したfieldのmeaning_fact_refs",
+        "action": "absent/null/typeを別cause unknown。明示[]だけmeaning_refs_empty/missing。[]からfact/slotを生成しない。"
+      },
+      {
+        "order": 4,
+        "condition": "非空meaning refsのfieldtarget/実slot/selected fact",
+        "action": "target unknown/conflict、selected fact absent/source/bodyの各causeを別保存。source未取得をmeaning missingへ変えない。"
+      },
+      {
+        "order": 5,
+        "condition": "各selected factの帰属source/content.binding/group slot/kind/ref/body",
+        "action": "F03AttributionReadに全原group/fact支持を保存。既知kind相反はattribution_conflict、未解決はattribution_unknown。knownは住所/分類対応だけで意味knownへしない。"
+      },
+      {
+        "order": 6,
+        "condition": "原fact/source/frame/帰属の対応が成立しmeaning bodyが供給nonnull",
+        "action": "既存L4意味readerへ原slot/fact locatorと固定規範entryを渡し全DefinitionMeaningReadを保存。各supportの全arguments/body/frame/decision/reason/raw_semantic_basisへ対応するdefines_descriptorだけmeaning_positive/known。取得resolved/record presence/decision文字列だけではknownにしない。"
+      },
+      {
+        "order": 7,
+        "condition": "原meaning body null/absent又は意味read支持無し/否定/未決/basis不足",
+        "action": "selected_fact_body_null/absent、meaning_read_unresolved/negative/undetermined/basis_unresolvedを原出現別unknownにする。別known supportで元原因を削らない。"
+      },
+      {
+        "order": 8,
+        "condition": "実在する同subject/revision/scopeのselected fact pair比較",
+        "action": "root原MeaningComparison→comparison_source_ref→usable semantic_json content.meaning_comparisons原whole bodyの支持を全保存。qualified equivalent=falseだけqualified_pair_false/conflict。trueはpair read knownでありfield definition knownの代替にしない。unknown/未資格/本文差はqualified_pair_unknown。全pair存在を新必須gateにしない。"
+      },
+      {
+        "order": 9,
+        "condition": "複数selected refs/slot/fact/source/意味support/pair",
+        "action": "各原出現のfact_read/judgmentを原順に保存。同Ref異body/別frameを先頭又は最新選択しない。同targetのknownとunknown/conflictを並べて保持。"
+      }
+    ],
+    "field_definition_judgment_writer": {
+      "request_ref_index": "meaning_fact_refsの原index。request/owner/empty等の全体原因はnull。",
+      "fact_read_indices": "当該判断に実際に使った全fact_reads indexを原順保存。上書きや値検索による復元無し。",
+      "meaning_support_indices": "当該fact_read.meaning_read.value.supports内の実support index。判断1件が複数factreadを持つpairでは[]でpair_read_indicesを使う。",
+      "pair_read_indices": "当該qualified原pair readのindex。",
+      "original_refs": "実際に用いた原field/target/knowledge/source/fact/operation/basis Refを原値/原順で保存。Refを文字列から作らない。",
+      "original_reason": "元meaning decision.reasonの原presence。positiveでも原stringを補完しない。",
+      "original_semantic_basis": "元decision.raw_semantic_basisの原presence。",
+      "reason": "field_definition_cause_table[cause].reason exact literal。",
+      "state_and_branch": "同表のexact値。型付き原operation全値はmeaning_readで別保存し、reason文字列からstate/causeを逆算しない。"
+    },
+    "existing_meaning_reader_return_member_mapping": {
+      "source_reader": "/definition_meaning_resolution_contract/call_bindings/meaning_signature",
+      "target_reader": "read_original_field_definition(snapshot,request).fact_reads[actual_fact_read_index].meaning_read.value : F03BDefinitionMeaningRead",
+      "member_pairs": [
+        {
+          "source": "slot_locator",
+          "target": "slot_locator"
+        },
+        {
+          "source": "fact_locator",
+          "target": "fact_locator"
+        },
+        {
+          "source": "binding",
+          "target": "binding"
+        },
+        {
+          "source": "normative_frame",
+          "target": "normative_frame"
+        },
+        {
+          "source": "acquisition_state",
+          "target": "acquisition_state"
+        },
+        {
+          "source": "occurrences",
+          "target": "occurrences",
+          "preservation": "全原順・反復・source/record index・locator・original_record・decoded_recordを保持"
+        },
+        {
+          "source": "supports",
+          "target": "supports",
+          "preservation": "全原順・source/index/record/locator・operation・normative_frameを保持"
+        },
+        {
+          "source": "problems",
+          "target": "problems",
+          "preservation": "全cause/source_ref/source_index/locator/original_value/reasonを保持"
+        }
+      ],
+      "mapping_rule": "既存DefinitionMeaningReadの8memberすべてをこのvalueへ全値対応する。absence/null/required/追加member禁止の原schemaを保持し、型名及びlocal $refだけをこの原port専用closureへremapする。状態/根拠/原recordの統合・欠落・再解釈・null補完無し。",
+      "target_container": "F03FieldFactRead.meaning_read.presence=supplied の value 全体。外側F03FieldDefinitionReadそのものの8memberではない。"
+    },
+    "request_presence_correction": {
+      "request_types": [
+        "F03FieldTargetRequest",
+        "F03RecordRequest",
+        "F03FieldDefinitionRequest"
+      ],
+      "raw_presence_type": "F03BPresenceRaw",
+      "changed_members": [
+        {
+          "type": "F03FieldTargetRequest",
+          "member": "binding",
+          "type_after": "F03BPresenceRaw"
+        },
+        {
+          "type": "F03RecordRequest",
+          "member": "subject_ref",
+          "type_after": "F03BPresenceRaw"
+        },
+        {
+          "type": "F03RecordRequest",
+          "member": "binding",
+          "type_after": "F03BPresenceRaw"
+        },
+        {
+          "type": "F03FieldDefinitionRequest",
+          "member": "binding",
+          "type_after": "F03BPresenceRaw"
+        }
+      ],
+      "unchanged_global_types": [
+        "F03BPresenceBinding",
+        "F03BPresenceRef"
+      ],
+      "raw_value_domain": "supplied F03BPresenceRaw.value preserves JSON null/object/scalar/array without casting; absent and supplied null remain distinct.",
+      "formed_guard": "Only after the existing local function guard has a typed, matching source may a typed F03BBinding/F03BRef be used downstream; no value is invented on absent/null/type-invalid input."
+    }
   }
 }
