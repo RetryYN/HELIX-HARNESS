@@ -143305,13 +143305,13 @@
       {
         "role": "L4基本設計のpartial-input規則",
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "file_sha256": "64145bfe3f5091e6136a58c0ccbe3389795c3da168a14063f9191762772b06fd",
+        "file_sha256": "f8a030b2645323c9e685cc7411c7436d4f51f854e14af7a9a14d02f80eec5b5c",
         "pointer": "/f05_validation_material_call_contract/logical_ports/validation_detail/partial_input_boundary"
       },
       {
         "role": "L4 validation source observation規則",
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "file_sha256": "64145bfe3f5091e6136a58c0ccbe3389795c3da168a14063f9191762772b06fd",
+        "file_sha256": "f8a030b2645323c9e685cc7411c7436d4f51f854e14af7a9a14d02f80eec5b5c",
         "pointer": "/f05_validation_material_call_contract/logical_ports/validation_detail/source_observation_rule"
       },
       {
@@ -143423,7 +143423,7 @@
       {
         "role": "L4 partial-input境界とvalidation source observation規則",
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "file_sha256": "64145bfe3f5091e6136a58c0ccbe3389795c3da168a14063f9191762772b06fd",
+        "file_sha256": "f8a030b2645323c9e685cc7411c7436d4f51f854e14af7a9a14d02f80eec5b5c",
         "pointers": [
           "/f05_validation_material_call_contract/logical_ports/validation_detail/partial_input_boundary",
           "/f05_validation_material_call_contract/logical_ports/validation_detail/source_observation_rule"
@@ -145279,7 +145279,7 @@
       {
         "role": "L4 partial carrier・source observation boundary",
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "file_sha256": "64145bfe3f5091e6136a58c0ccbe3389795c3da168a14063f9191762772b06fd",
+        "file_sha256": "f8a030b2645323c9e685cc7411c7436d4f51f854e14af7a9a14d02f80eec5b5c",
         "pointers": [
           "/f05_validation_material_call_contract/logical_ports/validation_detail/partial_input_boundary",
           "/f05_validation_material_call_contract/logical_ports/validation_detail/source_observation_rule"
@@ -147073,7 +147073,7 @@
       {
         "role": "L4 F05 caller入力と明示skip境界",
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "file_sha256": "64145bfe3f5091e6136a58c0ccbe3389795c3da168a14063f9191762772b06fd",
+        "file_sha256": "f8a030b2645323c9e685cc7411c7436d4f51f854e14af7a9a14d02f80eec5b5c",
         "pointers": [
           "/f05_validation_material_call_contract/logical_ports/f05_detail",
           "/f05_validation_material_call_contract/logical_ports/f05_detail/predecessor_boundary",
