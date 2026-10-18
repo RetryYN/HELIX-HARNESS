@@ -17987,9 +17987,9 @@
       "effect": "pure。入力snapshot/source treeを変更せず、ID発行・永続化・通信・資格発行を行わない。"
     },
     "call_boundary": {
-      "placement": "既存ApplicationInputBinding内で、同一callのowner-held origin/before/after文脈を確認した後、既存callerが完成ApplicationInputのraw memberを作り既存HARNESS-L5-009-validate_application_input (functions/0)へ渡す直前。source member以外のassembly責務は既存callerに残す。",
-      "formed_handoff": "formed_raw_projectionだけを既存callerが同じcallのraw ApplicationInput.sources位置へ差し込み、同一raw全体をfn0へ渡す。これ自体はvalid SourceEnvelope、選択authority、資格、実delivery/lineageの成立ではない。",
-      "unformed_handoff": "未形成resultを成功sourcesとして使わない。元callのraw/presenceを変更せず保持し、fallback/default/reselectをしない。既存fn0を呼ぶcallerがある場合も、builder由来の投影成功とは記録しない。"
+      "placement": "既存ApplicationInputBinding内で、同一callで供給されたorigin/before/after文脈を確認した後、呼出し側（未特定）がApplicationInputのraw memberを組み立て、既存HARNESS-L5-009-validate_application_input (functions/0)へ渡す直前。source member以外のassembly責務と実callerの特定は本節で成立させない。",
+      "formed_handoff": "formed_raw_projectionだけを呼出し側（未特定）が同じcallのraw ApplicationInput.sources位置へ差し込み、同一raw全体をfn0へ渡す。これ自体はvalid SourceEnvelope、選択authority、資格、実delivery/lineageの成立ではない。",
+      "unformed_handoff": "未形成resultを成功sourcesとして使わない。元callのraw/presenceを変更せず保持し、fallback/default/reselectをしない。既存fn0を呼ぶ呼出し側（未特定）がある場合も、builder由来の投影成功とは記録しない。"
     },
     "input_contract": {
       "presence": "各argumentは既存PresenceJsonValueを通し、absentとpresent-nullを区別する。collectionは既存CollectionPresence規則でabsent/null/empty/value/invalid_typeを分ける。Ref nullable規則を四field全供給gateへ変えない。",
