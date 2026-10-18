@@ -9286,7 +9286,166 @@
                 "record.subject_refは同slot原fact Ref、又は既存owner target宣言が同full Binding/exact slot/kindへ明示した元Refにだけ対応させる。slot文字列/一意候補推測でRefを作らない。全slotへ新target portを常時要求しない。",
                 "全候補recordと原presence/decision/reason/reentry_conditionを保持。異なる原判断をfirst/NA優先で消さず、原source未解決/資格不足は当該判断のunknown問題へ保持する。",
                 "supportsは同対象の原判断全値。acquisition resolvedは原decisionのNA又は定義成立を意味しない。案件/section/別field NAは当該slotへ転用しない。"
-              ]
+              ],
+              "source_occurrence_retention": {
+                "population": "既存body.algorithm[1]の独立source解決で、供給request Refに対応する原NA判断候補のsource entryとして実際に取得した各出現を対象とする。この追補は探索元source/対象slot/kind/要求Refの選択条件を新設・拡張しない。未取得sourceや未訪問recordの出現を作らない。",
+                "append_before_support_filter": "対象の原source entryを取得した時点でsource_occurrencesへ保存し、その後のroot mirror全値対応、原subject対応又は既存資格の不成立を理由に削除しない。supportsは別列であり、source_occurrencesをsupportsの写像又は成功分だけの列にしない。",
+                "fields": {
+                  "source_ref": "同原sources[source_index].ref全値。requestのrecord Ref又は診断fallbackへ置換しない。",
+                  "source_index": "同immutable validated.input.sourcesの原array index。",
+                  "record_index": "同source.content.definition_applicability_recordsの原array index。",
+                  "locator": "/sources/{source_index}/content/definition_applicability_records/{record_index}。",
+                  "original_value": "locatorが指す原source entry全値。entry.recordのみへ縮小しない。"
+                },
+                "order_and_multiplicity": "既存problem_common.orderのsource原index→carrier原record index順。同値出現も各原indexで一件ずつ保持し、support数又はjudgment数で複製・間引き・dedupしない。",
+                "non_support": "mirror/subject/資格の対応失敗は既存problem規則へ保持し、この保存だけでsupport、acquisition resolved、NA又はdefinition knownを成立させない。",
+                "unobtained": "source entry未取得には架空Ref/index/locator/原値を供給しない。request absent/nullの非取得は既存分岐のまま。",
+                "separate_problem_value": "problem_emission_table/19のmirror不成立problem.original_valueは原entry.record本体、problem.locatorは原entry所在。source_occurrence.original_valueのentry全値とは別である。"
+              },
+              "private_field_writer": {
+                "status": "NA private返却を一意にする今回の詳細技術選定候補。要求意味の変更、唯一の歴史的解釈の回復又は実行成立を表さない。",
+                "acquisition_state": {
+                  "request_absent": "not_requested",
+                  "request_supplied_null": "unknown",
+                  "supplied_ref_supports_nonempty": "resolved",
+                  "supplied_ref_supports_empty": "unknown",
+                  "meaning_boundary": "supportsは既存root/source/full Binding/slot/kind/subject/資格対応を満たした当該原判断全出現。原entryの所在取得だけでresolvedにしない。decision unknown/absentを支持資料から消さず、resolvedをNA又はdefinition knownへ転写しない。"
+                },
+                "support_subject_refs": "各成立supportについて、そのsupport.original_entry.record.subject_refの原Ref全値一出現だけをsubject_refs=[原Ref]に保存する。同slot全facts又は全owner target候補列をcopyしない。別supportの対象も混ぜない。原反復は各support出現で保持する。",
+                "target_binding": "record.subject_refが同slot factRefと違っても、既存constructor.subject_resolutionにより同source/current full Binding/exact slot/kindの明示descriptor_targets.target_refへ対応すれば支持できる。既存owner/provenance/source資格条件を省かず、新Claim/port/Refをreaderが生成しない。全照合候補原値はimmutable inputに保持する。",
+                "problem19_source_fields": "problem_common.fieldsをそのまま適用する。当該原sourceを未取得の場合だけsource_ref=absent/source_index=null。原source取得済みのmirror不一致等ではその原Refと原source indexを保持し、root無対応というラベルだけで一律absent/nullにしない。source取得域/既存problem multiplicityを増やさない。",
+                "preserved": "既存NA branch/理由/存在presence/全出現保持/同call links/public shape/codec境界。既存21固定期待、資格失敗diagnostic、元定義軸を変更しない。",
+                "selected": "NA acquisitionとsupport.subject_refsの出力列を一意化する。表19はcommon規則の適用範囲を明記するだけ。",
+                "reason": "現在の型/原文だけでは取得所在地と支持取得の状態境界、subject_refs生成元が一意でなく、同入力に異なるprivate返却が許された。元原判断の対象と成立支持を直接追える生成単位に閉じる。追加owner宣言は新caseの原供給条件であり、全案件の新gateではない。"
+              },
+              "writer_rederivation_basis": {
+                "status": "原NA entry保持とprivate writerの生成単位を明文にする詳細設計候補。",
+                "source_inventory_first": {
+                  "upstream_objects": [
+                    {
+                      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+                      "file_bytes_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+                      "source_revision": "1c8865d879482f7088c5f1765fc63b60be0b72d5",
+                      "objects": [
+                        {
+                          "pointer": "/requirements/0",
+                          "canonical_sha256": "ebc2da3936a606c23ff1c2e08eefd549eb99d2cb51e45cc17e4cd003663cda35"
+                        },
+                        {
+                          "pointer": "/requirements/1",
+                          "canonical_sha256": "e1c325353009052758b9707e509f652fa63def733c3c4c5a82d3fc4d2a640a3e"
+                        }
+                      ]
+                    },
+                    {
+                      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+                      "file_bytes_sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+                      "source_revision": "1c8865d879482f7088c5f1765fc63b60be0b72d5",
+                      "objects": [
+                        {
+                          "pointer": "/cases/0",
+                          "canonical_sha256": "ee86fd3f61e9252dbc07b2d92b6dbb571820e7cf3cf4fcfefe2941333cedffd2"
+                        },
+                        {
+                          "pointer": "/cases/1",
+                          "canonical_sha256": "19a2fbf38750ddddfd9ff26b6f8f564bd3860ab513fa4dc0a9a8b44293caf739"
+                        }
+                      ]
+                    }
+                  ],
+                  "legacy_and_failure": {
+                    "disposition": "意味の再導出",
+                    "read_sources": [
+                      {
+                        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+                        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+                        "lines": [
+                          [
+                            16,
+                            92
+                          ]
+                        ],
+                        "file_bytes_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+                      },
+                      {
+                        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+                        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+                        "lines": [
+                          [
+                            30,
+                            78
+                          ],
+                          [
+                            110,
+                            148
+                          ]
+                        ],
+                        "file_bytes_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+                      }
+                    ],
+                    "retained": "原owner/source/trace、unknownをfalseへ丸めないこと、理由/再評価条件付きNA、原atomのmapped/unmapped保持。",
+                    "changed": "旧runtime/式/lifecycleを移植せず、現在の原NA entryの成功/不成立別保存列を明文化する。旧source自体にNA source_occurrences private列の仕様は無い。",
+                    "reason": "原entryをsupport失敗で落とす読みでは原出現/根拠と派生sort列が変わり得る。単にhashを更新するのではなく保存境界を直接追えるようにする。",
+                    "failure_source": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.md:24-25（source spanから義務/oracle追跡、件数/hashだけのreview不足）。失敗から新製品gateを作らない。"
+                  },
+                  "upstream_limit": "L3 F01は15項目の独立識別と同template/version/knowledge revision/source対応、F02は不足/未定義/矛盾のidentity/source/revision/理由/owner返却を要求する。L10は元revisionと原項目差/未解決を残す。これらはsource_occurrences列やsort列の各leafを直接指定していない。今回の列への保存・単位の選定は現L4/L5の原資料保持を具体化する技術差分。"
+                },
+                "historical_source": {
+                  "binding_kind": "fixed_git_revision_bytes",
+                  "source_revision": "1c8865d879482f7088c5f1765fc63b60be0b72d5",
+                  "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+                  "file_bytes_sha256": "4e3fb7bea21d9604f80810207077733a5a047c9dac4cfbac53ed4c389cbe45be",
+                  "selected_objects": [
+                    {
+                      "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/applicability",
+                      "canonical_sha256": "8901ea8e89ad192652f73a87345ff00fde10374198a869490e45477202e73f81"
+                    },
+                    {
+                      "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection/origin_constructor/retention",
+                      "canonical_sha256": "1a160589aeb7f67bb26b89e26c33bee812c2cc46ff65a296c3ea2ddfe573e84b"
+                    },
+                    {
+                      "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle/acquisition",
+                      "canonical_sha256": "3bbdc94faabae488219279de84237797a1f1f7b004999e3fb5f372942e732a83"
+                    },
+                    {
+                      "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_common/fields",
+                      "canonical_sha256": "73882fdc326f36a1c82ecf383ab60ba66e693225d868cfce0057164a86bdc957"
+                    }
+                  ]
+                },
+                "current_basic_source": {
+                  "binding_kind": "current_working_file_bytes",
+                  "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+                  "file_bytes_sha256": "4ef60d6c0d15fa0339f525ad92c5754994dc83b56bb70b3397635e74c9bd88c2",
+                  "selected_objects": [
+                    {
+                      "pointer": "/definition_meaning_resolution_contract/readers/1",
+                      "canonical_sha256": "e722950b08892359ccb204806f5f57cf76621c5c8c7da7afd2ef68698453b70f"
+                    },
+                    {
+                      "pointer": "/definition_meaning_resolution_contract/call_bindings/applicability_request_constructor",
+                      "canonical_sha256": "9927e04021a5a1faa2bdb34102d264e945d365d982cc7eec9c2746970d232a8d"
+                    },
+                    {
+                      "pointer": "/dependency_semantic_ports/descriptor_target_contract/carrier",
+                      "canonical_sha256": "43811ac6a66f18147bc6460bd67faa024c1e43ced4e28c4ec187cabd6d48b2fc"
+                    },
+                    {
+                      "pointer": "/dependency_semantic_ports/schema/new_defs/OwnerDescriptorTarget",
+                      "canonical_sha256": "4d9e81ea7400dfdca555bd6611be8c13482f88a462e5ec9d98046f29d9da7978"
+                    }
+                  ]
+                },
+                "review_trigger": {
+                  "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/3330#issuecomment-6244502927",
+                  "scope": "X1の成功supportだけを出現として残す読み、X2の他supportまで扇出させる読み、X3の未一意private fieldを識別した。期待参照後reviewでありhistorical blind証拠ではない。"
+                },
+                "retained": "原NA source entry/root mirror/full Binding/全presence/decision/reason/reentry、同値反復、元definitionとの独立、全assessmentと既存21case/監査literalを保持。",
+                "changed": "source_occurrencesをsupports成功集合と分離して保存し、sort列の一judgment単位を明記。NA acquisitionは要求absent/not_requested、null/unknown、支持一件以上/resolved・0/unknown。各support.subject_refsは当該原record.subject_ref一出現に選定。",
+                "reason": "同一原入力から異なるprivate全返却が許される未記述を閉じ、元根拠と派生列の生成依存を追えるようにする。15意味/NAの上流意味や資格取得の責務を変更しない。類推だけで一意だったとは主張せず今回の技術選定として記録する。",
+                "remaining": "新caseは条件付き原owner資料によるNA reader/projectorの有限全返却。全walk/sort/remap/index/実trust/実装の完成証拠ではない。d0c896由来不明と監査の歴史独立性境界を保持する。"
+              }
             },
             "constructor": {
               "caller": "同fn1 private coreの現在の原slot。slotの存在を原入力で確認した後。",
@@ -9425,7 +9584,7 @@
             "per_fact": "原fact.source_ref → 当該meaning_read.occurrences[].source_ref。原読取順/反復を一旦保持する。",
             "attribution": "当該原fact.source_ref。helper公開original_refsは変更しない。",
             "pair_and_pending": "原pairのfact.source_refを原fact index順 → 同pairに対応した全MeaningComparison.comparison_source_refを原comparison index順。元qualified/unqualifiedの双方の原source参照を保持。",
-            "na": "requestはNA record Refなのでsource列へ入れない。applicability read.source_occurrences[].source_ref → 元support record.source_ref。",
+            "na": "requestはNA record Refなのでsource列へ入れない。各NA origin/judgmentごとに、同じapplicability read.source_occurrences[].source_refを原出現順で全件連結し、そのjudgmentに対応する当該supportがある場合だけ、そのsupport.original_entry.record.source_refの供給object Refを一件追加する。他judgment/supportのrecord.source_refは追加しない。source列presence、sorted_values、同値反復の扱いはna_public_projection.origin_constructor.fields.sort_source_refsに従う。",
             "special": "当該special read.source_occurrences[].source_ref → rule3の独立比較のcomparison_source_ref（rule3だけ）。",
             "no_fact": "sources原memberがarrayとして供給されていればsupplied([])。原source集合の情報自体が未供給/型外ならabsent。意味source又は根拠Refを生成しない。",
             "serialization": "各列の供給object Refを既存sorted_valuesでcanonical JSON Unicode順へ整列し全重複を維持した配列をsupplied(value)にする。source_ref field欠落そのものはnative/原inputに保持。全元情報が未供給ならabsent。supplied nullをsupplied Refとして入れない。",
