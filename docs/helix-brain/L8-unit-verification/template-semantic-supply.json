@@ -11069,7 +11069,7 @@
       "name": "field-na-grounded",
       "input_fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
       "typed_mutation_plan": "同field/revision/scopeのCORE理由/再評価付きN/Aを供給",
-      "expected_observation": "field not_applicable保存。定義known保持。案件採用の実作用なし",
+      "expected_observation": "固定normal入力とこの構築計画は、現F03の原owner/field定義・適用性carrierを具体化していない。根拠付きN/Aとdefinition knownを成立させず、各fieldのdefinition_unknown、案件値unknown、適用性unknownを元field・knowledge版・不足理由と分離して保持する。CORE理由/再評価を供給するという計画文だけでは原source支持にならない。これは未形成sourceの局所期待であり、実入力・全返却を凍結した根拠付きN/Aの正例ではない。案件採用の実作用なし。",
       "expected_side_effect_count": 0,
       "execution_state": "not_executed",
       "fixture_refinement": "logical input construction plan; runtime fixture/oracle freeze unestablished"
@@ -11080,7 +11080,7 @@
       "name": "unknown-value-locality",
       "input_fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
       "typed_mutation_plan": "field値をnullへ変え定義原facts保持",
-      "expected_observation": "value unknownだけが不足。definition knownと他field供給値保持",
+      "expected_observation": "固定normal入力は現F03の原field定義/値/適用性carrierを供給していない。計画上の値null化でその不足を解消せず、definition_unknown、field.value unknown、適用性unknownを別に保持する。旧source内の定義factや他field値を現carrierのknown/suppliedへ読み替えない。nullと未供給の原値は区別して保存する。これは未形成sourceの局所期待で、値だけ未決という単独欠陥や他field供給済みを証明しない。",
       "expected_side_effect_count": 0,
       "execution_state": "not_executed",
       "fixture_refinement": "logical input construction plan; runtime fixture/oracle freeze unestablished"
@@ -15024,7 +15024,30 @@
         "current_l4_file_sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
         "current_detail_oracle_pointer": "/field_value_applicability_detail_verification",
         "boundary": "公開signature/要求F03の意味は維持する。原入力を修復して旧成功期待へ合わせず、現在の基本契約から支持できない旧未実行期待だけを訂正し、その原文は固定baseと本記録に保持する。全現normal返却の新literalは未収載である。",
-        "current_basic_contract_canonical_sha256": "b936641956cb36e2ff7f9c66c09e1eaf7e61f0206c35e6dd8b0e7ed02148f0d4"
+        "current_basic_contract_canonical_sha256": "b936641956cb36e2ff7f9c66c09e1eaf7e61f0206c35e6dd8b0e7ed02148f0d4",
+        "affected_additional_case_expectations": [
+          {
+            "case_id": "HELIXBRAIN-L8-032-ADD-11",
+            "case_pointer": "/additional_unit_cases/10",
+            "prior_expectation_pointer": "/additional_unit_cases/10/expected_observation",
+            "prior_expected_observation": "field not_applicable保存。定義known保持。案件採用の実作用なし",
+            "prior_execution_state": "not_executed",
+            "typed_mutation_plan_unchanged": "同field/revision/scopeのCORE理由/再評価付きN/Aを供給",
+            "correction_reason": "固定normalと元構築計画は現在のF03 carrierを実形成しないため、known又は根拠付きN/Aの期待を支持しない。元入力を補修せず局所unknownへ訂正する。",
+            "current_expected_observation_pointer": "/additional_unit_cases/10/expected_observation"
+          },
+          {
+            "case_id": "HELIXBRAIN-L8-032-ADD-12",
+            "case_pointer": "/additional_unit_cases/11",
+            "prior_expectation_pointer": "/additional_unit_cases/11/expected_observation",
+            "prior_expected_observation": "value unknownだけが不足。definition knownと他field供給値保持",
+            "prior_execution_state": "not_executed",
+            "typed_mutation_plan_unchanged": "field値をnullへ変え定義原facts保持",
+            "correction_reason": "固定normalと元構築計画は現在のF03 carrierを実形成しないため、known又は根拠付きN/Aの期待を支持しない。元入力を補修せず局所unknownへ訂正する。",
+            "current_expected_observation_pointer": "/additional_unit_cases/11/expected_observation"
+          }
+        ],
+        "positive_intent_boundary": "ADD-11の元の根拠付きN/A意図は未実体化の構築計画として保つ。実際の根拠付きN/Aを扱う既存有限例は /field_value_applicability_detail_verification/fixed_goldens/3 の固定L9例であり、ADD-11を同入力や実行済み正例へ読み替えない。ADD-12も元値unknown単独の構築意図を保持するが、その実入力の成立を主張しない。"
       }
     },
     {
@@ -20462,7 +20485,7 @@
       "document_id": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
       "pointer": "/wire_codec_contract/schema",
       "canonical_sha256": "535d8f0b8f2e71c709e66418fa079cb4f757a7a6d0530b50267a452d74036640",
-      "candidate_current_file_sha256": "45f4824ea11aef5111f1a75747818855c8fb87ef11e7c20d3ab8ea44ff215cd2",
+      "candidate_current_file_sha256": "34f3fe74ee7b430c8b0af8fa55c9d573b5282dbe5deddfa2abb6e3307751b678",
       "candidate_current_schema_canonical_sha256": "ace94a797cce9f3b0ead1f9a909eef564b08bbdcfc6ba6ef0d5ffbd60fe21f66",
       "candidate_note": "既存canonical pinは歴史的参照として保持。二つのnullable結果memberを含む現在candidate schemaの静的照合用。"
     },
@@ -56903,7 +56926,7 @@
     ],
     "candidate_design_bytes_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "file_bytes_sha256": "45f4824ea11aef5111f1a75747818855c8fb87ef11e7c20d3ab8ea44ff215cd2",
+      "file_bytes_sha256": "34f3fe74ee7b430c8b0af8fa55c9d573b5282dbe5deddfa2abb6e3307751b678",
       "meaning": "同一candidate文書の現在bytesを照合するbinding。過去revisionにこの追補が存在したというsource pinではない。",
       "scope": "このfieldは同じPR候補のcurrent L5ファイル全bytesを指す。旧資産source引用hashはlegacy_comparison.source_assetsにあり変更しない。"
     },
@@ -66733,7 +66756,7 @@
         "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
         "pointer": "/functions/8",
         "sha256": "8b42b107322b595ed694280bd2d7a7c49974291526be0b0e2f05a0f08ee52fa9",
-        "candidate_file_bytes_sha256": "45f4824ea11aef5111f1a75747818855c8fb87ef11e7c20d3ab8ea44ff215cd2",
+        "candidate_file_bytes_sha256": "34f3fe74ee7b430c8b0af8fa55c9d573b5282dbe5deddfa2abb6e3307751b678",
         "candidate_pointer_canonical_sha256": "bf868a14d00aae1498233d9137be6f1fbfc3dc90dc138cd0edeb5950a328727c",
         "candidate_note": "function本体の現在candidate bytes。歴史的revision/pinは上書きしない。"
       },
@@ -66752,21 +66775,21 @@
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary/producer_symbol_by_member",
-        "candidate_file_bytes_sha256": "45f4824ea11aef5111f1a75747818855c8fb87ef11e7c20d3ab8ea44ff215cd2",
+        "candidate_file_bytes_sha256": "34f3fe74ee7b430c8b0af8fa55c9d573b5282dbe5deddfa2abb6e3307751b678",
         "candidate_pointer_canonical_sha256": "dc690dc5e77f88850db94330710d02ade0b9883a3c6a3480c5dbdb2604cc52e8",
         "note": "AnalysisContext memberから宣言済みproducer_symbolへの対応。axes/findingsのfixtureはtest doubleであり実producer出力でない。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/output_member_rules/1",
-        "candidate_file_bytes_sha256": "45f4824ea11aef5111f1a75747818855c8fb87ef11e7c20d3ab8ea44ff215cd2",
+        "candidate_file_bytes_sha256": "34f3fe74ee7b430c8b0af8fa55c9d573b5282dbe5deddfa2abb6e3307751b678",
         "candidate_pointer_canonical_sha256": "1c6c240dee25be650e0db206ee755072fdfb497070696081b551f27314ad1e12",
         "note": "candidate欠落/空の区別を既存member_presence/construction_issuesへ結ぶ現在candidate値。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary",
-        "candidate_file_bytes_sha256": "45f4824ea11aef5111f1a75747818855c8fb87ef11e7c20d3ab8ea44ff215cd2",
+        "candidate_file_bytes_sha256": "34f3fe74ee7b430c8b0af8fa55c9d573b5282dbe5deddfa2abb6e3307751b678",
         "candidate_pointer_canonical_sha256": "8a73e82f6d1538f8330a45fa36755f95e56c08abef6785395cd4df9bb9f12506",
         "note": "producer_symbol/input_bindingの適合条件と局所issue。"
       }
@@ -83525,9 +83548,9 @@
       "artifact_ref": {
         "identity": "HELIXBRAIN-L8-032-DEFINITION-MEANING-WALK",
         "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json",
-        "file_sha256": "4a4b0a031df01b096aeaf9a63fd74b19647d67eedf92a940916c386705540a45",
+        "file_sha256": "75c61e09de26ab61763ce5847f5161fdee7db2045e3c1625645403cc24364caf",
         "pointer": "",
-        "canonical_sha256": "c5338fbc817112ccdcf1432c54890dc96c7aa7c3f27cdb5ce0405cd348cf2bd7"
+        "canonical_sha256": "b40da03bb3190a50d7a3d2e28b7ca47660ba9d202cecce1a24ca5ca9427db56a"
       },
       "logical_binding": {
         "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
@@ -84935,7 +84958,7 @@
     "operation_effect": "none",
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "sha256": "45f4824ea11aef5111f1a75747818855c8fb87ef11e7c20d3ab8ea44ff215cd2",
+      "sha256": "34f3fe74ee7b430c8b0af8fa55c9d573b5282dbe5deddfa2abb6e3307751b678",
       "scope": "今回の現行L5全bytes。過去replay source pinとは別。"
     },
     "historical_replay_semantic_continuity": {
@@ -84975,7 +84998,7 @@
           "current_object_sha256": "09d2fcd7c488791e79a0ab509fd74cc6e6564081db186e182b0e3e62ab5aebf3",
           "change": "本PRはNA sort source列の一judgment単位を明文化した。固定sourceの原値は履歴として保持し、現行objectとの不変を主張しない。旧case/materialを変更せず、その有限期待との対応を別節で照合する。",
           "fixed_file_sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
-          "current_file_sha256": "45f4824ea11aef5111f1a75747818855c8fb87ef11e7c20d3ab8ea44ff215cd2"
+          "current_file_sha256": "34f3fe74ee7b430c8b0af8fa55c9d573b5282dbe5deddfa2abb6e3307751b678"
         }
       ]
     }
@@ -85028,7 +85051,7 @@
       ],
       "candidate_l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "sha256": "45f4824ea11aef5111f1a75747818855c8fb87ef11e7c20d3ab8ea44ff215cd2",
+        "sha256": "34f3fe74ee7b430c8b0af8fa55c9d573b5282dbe5deddfa2abb6e3307751b678",
         "pointer": "/conditional_dependency_detail",
         "canonical_sha256": "766ab74095750a631999fd76ed8c7ac9e8b74a7ab699a0dfc969f619463ffa75",
         "binding_kind": "current_candidate_bytes",
@@ -110366,7 +110389,7 @@
     "purpose_ja": "既決L4の20有限CanonicalBodyRead全値と、case0同V/F01→fn6全Comparisonを、canonical実readと元unselected出現の詳細writerへ対応付ける。",
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "sha256": "45f4824ea11aef5111f1a75747818855c8fb87ef11e7c20d3ab8ea44ff215cd2",
+      "sha256": "34f3fe74ee7b430c8b0af8fa55c9d573b5282dbe5deddfa2abb6e3307751b678",
       "selected_objects": [
         {
           "pointer": "/type_contract/imports",
@@ -111762,7 +111785,7 @@
         },
         "formation": "literal_skeleton.inputは{}。固定importsがexpected_validatedを/input/snapshotへ、expected_public_fn1_returnを/input/definitionsへ追加し、各case patchがその入力の原出現を更新する。よってdetail invocationへ渡すgolden inputは各materialized fixtureの/input（snapshot+definitionsのF03BasicContext）。",
         "wrapper_exclusion": "materialized fixture全体、L9 caseのtyped metadata wrapper、/expected、case object自体をdetail関数引数にしない。/input/contextという追加階層は原L9 materializationに存在しない。",
-        "materialization_status": "このWorkerは全case fixtureを再展開しておらず、rootによる再展開・照合待ち。"
+        "materialization_status": "固定L9の7例を標準の格納操作から再構成し、各input/expected/fixtureのcanonical SHAと、/inputのsnapshot・definitions構造を静的照合した。意味処理・reader・validatorの実行ではない。"
       }
     },
     "fixed_goldens": [
@@ -111778,7 +111801,7 @@
         "role": "既存L9 goldenへの固定参照。入力/期待/fixture本文を複製せず、生成処理や実行成功とは扱わない。",
         "materialized_input_pointer": "/input",
         "materialized_input_type": "F03BasicContext",
-        "detail_argument_excludes": "case/fixture wrapper and /expected",
+        "detail_argument_excludes": "case又はfixtureの外側objectと/expectedを引数に含めない。",
         "case_object_canonical_sha256": "79778d64bff826a45bec48f89f9b9a745a2b5f5fe7a9b5fc7584a29c1f2aa968"
       },
       {
@@ -111793,7 +111816,7 @@
         "role": "既存L9 goldenへの固定参照。入力/期待/fixture本文を複製せず、生成処理や実行成功とは扱わない。",
         "materialized_input_pointer": "/input",
         "materialized_input_type": "F03BasicContext",
-        "detail_argument_excludes": "case/fixture wrapper and /expected",
+        "detail_argument_excludes": "case又はfixtureの外側objectと/expectedを引数に含めない。",
         "case_object_canonical_sha256": "6ca38c893a49a90b9f3f789ff6c28788842492c50c925f72b044efbaf943d019"
       },
       {
@@ -111808,7 +111831,7 @@
         "role": "既存L9 goldenへの固定参照。入力/期待/fixture本文を複製せず、生成処理や実行成功とは扱わない。",
         "materialized_input_pointer": "/input",
         "materialized_input_type": "F03BasicContext",
-        "detail_argument_excludes": "case/fixture wrapper and /expected",
+        "detail_argument_excludes": "case又はfixtureの外側objectと/expectedを引数に含めない。",
         "case_object_canonical_sha256": "e9ce73021b60134e26825000212a81cb49fe39c8e97f2838d72cfb9cf2d0b7b5"
       },
       {
@@ -111823,7 +111846,7 @@
         "role": "既存L9 goldenへの固定参照。入力/期待/fixture本文を複製せず、生成処理や実行成功とは扱わない。",
         "materialized_input_pointer": "/input",
         "materialized_input_type": "F03BasicContext",
-        "detail_argument_excludes": "case/fixture wrapper and /expected",
+        "detail_argument_excludes": "case又はfixtureの外側objectと/expectedを引数に含めない。",
         "case_object_canonical_sha256": "65b7f24df4484a068a36cdb290f95da73d8cdf0d71543570c55c5192bdf22d34"
       },
       {
@@ -111838,7 +111861,7 @@
         "role": "既存L9 goldenへの固定参照。入力/期待/fixture本文を複製せず、生成処理や実行成功とは扱わない。",
         "materialized_input_pointer": "/input",
         "materialized_input_type": "F03BasicContext",
-        "detail_argument_excludes": "case/fixture wrapper and /expected",
+        "detail_argument_excludes": "case又はfixtureの外側objectと/expectedを引数に含めない。",
         "case_object_canonical_sha256": "113dd400ea4756e05503c1f4768791e2bcc40ea5db59e95a823055c5d1a28af5"
       },
       {
@@ -111853,7 +111876,7 @@
         "role": "既存L9 goldenへの固定参照。入力/期待/fixture本文を複製せず、生成処理や実行成功とは扱わない。",
         "materialized_input_pointer": "/input",
         "materialized_input_type": "F03BasicContext",
-        "detail_argument_excludes": "case/fixture wrapper and /expected",
+        "detail_argument_excludes": "case又はfixtureの外側objectと/expectedを引数に含めない。",
         "case_object_canonical_sha256": "67976afbdc943e540ceab2beb1e4da6f5a2a0b3ce1bbab4a76c1f588168391bf"
       },
       {
@@ -111868,7 +111891,7 @@
         "role": "既存L9 goldenへの固定参照。入力/期待/fixture本文を複製せず、生成処理や実行成功とは扱わない。",
         "materialized_input_pointer": "/input",
         "materialized_input_type": "F03BasicContext",
-        "detail_argument_excludes": "case/fixture wrapper and /expected",
+        "detail_argument_excludes": "case又はfixtureの外側objectと/expectedを引数に含めない。",
         "case_object_canonical_sha256": "6f06eaa8125dd0d54c752196b4fd5e6f1cff516adfe846d3c1f60e78cc7a0de5"
       }
     ],
@@ -111908,15 +111931,15 @@
       "new_fullrunner_limit": "新fullrunnerのactual success fixtureとそのanalysis意味全体は未形成。opaque actualを後で得ても、このnodeは当該analysisの成功oracleを定義しない。",
       "unexercised": "L9の既存7ケース外の全malformed/duplicate/frame/claim/source qualification分岐、実producer全供給、全owner資格、native実意味判断の真実性、全15 descriptor成功、CORE製品field mappingと実配送は未評価。",
       "authority_limit": "このnodeは既存F03の意味をL8参照へ保つ技術的対照であり、要求意味変更、新要求、新承認、source qualification、全供給gate、完了・受入・実装を生成しない。",
-      "fixture_reconstruction": "L9の各case fixture/inputはhash参照で固定したが、このWorkerでは全fixtureを再展開していない。rootが再展開し、/inputをF03BasicContextとして確認する。",
+      "fixture_reconstruction": "固定L9の7例の格納再構成とcanonical SHA一致は確認済み。再構成は原値の回収であり、期待の意味正当性、全入力域、実reader・候補関数の実行成功を証明しない。",
       "approval_byte_distinction": "承認時whole-file SHAと現在base whole-file SHAは別に記録。現在baseのselected F03 canonical SHAは承認時selected canonical SHAと一致する。",
       "claim_protocol": "既存L4 projection_order/claimsが後続L5へ残すF03 rule54..57のClaim値表現・排他選択は、この7golden（claims=[]）では閉じない。新たなClaim入力や定義/値の裁定を作らず、原残件を保持する。"
     },
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
       "pointer": "/field_value_applicability_detail",
-      "file_sha256": "45f4824ea11aef5111f1a75747818855c8fb87ef11e7c20d3ab8ea44ff215cd2",
-      "canonical_sha256": "0d21153679eccf6c66525d1da55da10095c74923d1bf295bbc66865f264c0aed",
+      "file_sha256": "34f3fe74ee7b430c8b0af8fa55c9d573b5282dbe5deddfa2abb6e3307751b678",
+      "canonical_sha256": "0f73e09dabcd5bf56d6e14762de91588c82e7f7d9dcc82cd3d2d184a9c7e8f02",
       "binding_state": "current_candidate_content_binding"
     },
     "authority_effect": "none",

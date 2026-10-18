@@ -3481,7 +3481,7 @@
     }
   ],
   "execution_contract": {
-    "entry": "validate_supply_input → evaluation_order → build_supply_analysis。descriptor target経路は/source_return_contract/descriptor_target_dataflow/raw_runnerに従い同walk e/原target reads/usesを一回構成しprivate fn6/fn7へ供給。public直呼出しは同contract/direct_wrappersに従う。 descriptor-target raw entryはrun_descriptor_target_flow_with_field_value_detailがorder 4のF03 detailを一回取得し、既存run_descriptor_target_flowはSupplyAnalysis/DescriptorTargetCallObservation二memberだけを射影する。public fn2直呼出しも同じdetailのComparison projectionである。",
+    "entry": "validate_supply_input → evaluation_order → build_supply_analysis。descriptor target経路は/source_return_contract/descriptor_target_dataflow/raw_runnerに従い同walk e/原target reads/usesを一回構成しprivate fn6/fn7へ供給する。public直呼出しは/source_return_contract/descriptor_target_dataflow/direct_wrappersに従う。descriptor-target raw entryはrun_descriptor_target_flow_with_field_value_detailがorder 4のF03 detailを一回取得し、既存run_descriptor_target_flowはSupplyAnalysis/DescriptorTargetCallObservation二memberだけを射影する。公開fn2直呼出しも同じF03 detail一回からComparisonを射影する。",
     "invalid_raw": "decode不能input=nullなら意味関数はempty Comparisonを返すが成功claimなし。InputIssueをbuildが必ず保存する。欠落required集合はdecode可能意味欠落としてnull入力にしない。",
     "qualification": "未資格sourceに依存する原意味はunknown。異bindingの有資格項目は比較できる。異版/異scopeのresult混入はinput_issueで保持し結果を使わない。",
     "normal_outcome": "各原axisを保持したcandidate material。原handoff=not_receivedと全definition=knownの併存を許す。案件採用/義務完成の出力なし。",
@@ -6756,7 +6756,7 @@
       },
       {
         "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
-        "effect": "既存descriptor.definition/applicability resultを読むだけ。attribute knownをdefinition known、value supplied、N/Aへ写さない。"
+        "effect": "同じValidatedSupply snapshotから原section_fields、field owner/source、descriptor target、meaning factsとqualification、value/applicability/parentをL4 F03規則で読むprivate evaluate_field_values_detailを一回実行する。公開fn2はF03Evaluation.comparisonを既存Comparisonへ射影して返す。帰属knownをdefinition known、value supplied、N/Aへ写さない。"
       },
       {
         "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
@@ -7793,7 +7793,8 @@
         "fn6": "旧DependencyContextから同validatedのwalkを一回計算し、w.evaluation/w.target_reads/w.intent_readsでuses/frameを構築しfn6_detailへ。raw runnerはこのwrapperを呼ばない。",
         "fn7": "旧ClaimContextから同validatedのwalkを一回計算し、w.evaluation/w.target_reads/w.intent_readsでuses/frameを構築しfn7_detailへ。既存dependencies_handoffは同snapshot正規fn6の結果という条件を保持。",
         "preconditions": "旧Context.meaning/既存comparison_compositionの同immutable/same producer/binding条件を保持する。異caller cacheを新indexとして信用しない。旧public APIへ新required field追加なし。",
-        "builder": "旧5builder testdouble呼出しは従来どおり。index/portsの実供給をbuilder保持wholeの前提に足さない。"
+        "builder": "旧5builder testdouble呼出しは従来どおり。index/portsの実供給をbuilder保持wholeの前提に足さない。",
+        "fn2": "既存ValueContextから同じValidatedSupply snapshotのF03 private detailを一回評価し、F03Evaluation.comparisonを既存Comparisonへfieldwise射影して返す。public signature/output shapeは維持し、F03Evaluation全体を返さない。raw runnerはこのpublic wrapperを再呼出しせず、同じdetailのcomparison projectionをAnalysisContextへ渡す。"
       },
       "codec_boundary": "公開SupplyInput/Claim/ValidatedSupplyのwire/schemaを変更しない。basicの5target view/Presence/intent型はprivate importしてRawValueから局所constructorで構成し、untrusted raw全体へ新closed-success schemaを一律適用しない。新index/transportは同call計算の内部recordでrawから受理するpublic口ではない。型定義だけで正式codec/実providerの実装を成立済みにしない。",
       "open_items": [
@@ -12683,7 +12684,7 @@
     "meaning_reader_boundary": {
       "existing_bundle_owner": "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle は既存fn1/F01 descriptor意味reader（read_original_definition_meaning_bundle）の返却保存である。『F02』とは扱わず、F03 field meaning readerと型/意味が同一とは仮定しない。",
       "reuse_condition": "流用を行えるのは、同じimmutable ValidatedSupply、完全一致するDefinitionMeaningRequest全memberとpresence、同じoriginal fact occurrenceの同一性が当該call内で確認できる場合のみ。ref/slot/body/eだけの一致では使わない。条件を示せない場合はF03 L4規則の専用read_original_field_definition内で当該field factの元meaning readを行う。",
-      "no_conversion": "F01 descriptor meaning readをF03 FieldDefinitionReadへcast、補完、短縮、またはowner/qualificationの置換をしない。L4既存meaning readerの8返却memberの対応はL4 F03 source pointer /existing_meaning_reader_return_member_mappingに従う。"
+      "no_conversion": "F01 descriptor meaning readをF03 FieldDefinitionReadへcast、補完、短縮、またはowner/qualificationの置換をしない。L4既存meaning readerの8返却memberの対応はL4 F03 source pointer /field_value_applicability_contract/existing_meaning_reader_return_member_mappingに従う。"
     },
     "finite_expected_distinctions": {
       "paired_verification_source": {
@@ -12819,7 +12820,7 @@
       "read_f03_field_descriptor_target": {
         "source_function_pointer": "/field_value_applicability_contract/functions/0",
         "source_material": "同一F03BValidatedSnapshotのinput.section_fieldsで原field occurrence index fを保持する。field_locatorはL4で定義されたRFC6901 locator（例: /section_fields/0）であり、配列indexそのものとして解釈しない。fとlocatorの対応はL4の元snapshot/locator規則で解決し、同snapshot.input.sourcesの全原出現を順に走査する。qualified semantic_json sourceのcontent.bindingとcontent.descriptor_targets内の全raw targetを取得し、request Ref/Binding/target slot/kindをF03 L4のref_same/binding_same・branch規則で比較する。source/local target全出現、slot locator、原値、problemsを削らずF03FieldTargetRead全closed memberへ保存する。",
-        "result_storage": "F03FieldDefinitionRead.target_read。元source/target取得とF03MeaningFactの意味判定を同一視しない。"
+        "result_storage": "F03FieldDefinitionRead.target_read。元source/target取得とF03BMeaningFactの意味判定を同一視しない。"
       },
       "read_f03_field_owner_record": {
         "source_function_pointer": "/field_value_applicability_contract/functions/1",
@@ -12869,7 +12870,7 @@
     "planning_correction_ref": {
       "path": "scaffold/review-handoff/local/field-attribution-ecc5c161/plan-corrections.json",
       "sha256": "7142246fc34d497d9d7ef5ce29ef7c946b83e64f625c6683802c69da1930d54e",
-      "correction": "旧計画のF02表記は誤記。既存bundleはfn1/F01 descriptor meaningであり、F03専用意味readへの自動流用を認めない。"
+      "correction": "既存bundleはfn1/F01 descriptor meaning readerの返却保存であり、F03 field meaning readerとは型・意味が同一ではない。F03専用meaning readへの自動流用はしない。"
     },
     "legacy_oracle_boundary": {
       "existing_l8_normal_pointer": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json#/function_oracles/2",
