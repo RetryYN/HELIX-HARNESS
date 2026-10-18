@@ -926,6 +926,84 @@
           "selection_observation"
         ],
         "meaning": "canonical実read由来Axis専用14member。conditional/selector/unselected/handoffの別writer材料を混入しない。reasonはこの材料から形成し、材料内に循環参照しない。"
+      },
+      "UnselectedSelectionObservation": {
+        "kind": "closed_record",
+        "fields": {
+          "core_source_selected": "RawValue",
+          "labo_evaluation_selected": "RawValue",
+          "port_call": "literal not_called_for_unselected_ref",
+          "raw_source_role": "RawValue",
+          "source_ref": "Ref"
+        },
+        "required_fields": [
+          "port_call"
+        ],
+        "field_order": [
+          "core_source_selected",
+          "labo_evaluation_selected",
+          "port_call",
+          "raw_source_role",
+          "source_ref"
+        ],
+        "meaning": "既存unselected source-state Axisのno-call trace専用。optional memberは原供給時だけ。absentをfalse/nullへ補完しない。strict falseと未供給/未知を別に保持し、値だけでoriginや新Axisを生成しない。"
+      },
+      "UnselectedAxisTraceMaterial": {
+        "kind": "closed_record",
+        "fields": {
+          "format": "literal BRAIN032-F09-axis-reason-trace-v1",
+          "producer_symbol": "literal compare_dependencies_and_handoff",
+          "axis": "literal unselected_source",
+          "state": "literal unobserved",
+          "subject_ref": "Ref",
+          "binding": "Binding",
+          "original_refs": "Ref[]",
+          "backflow_owner": "null",
+          "request_locator": "string",
+          "source_category_locator": "literal /dependencies/unselected_refs",
+          "cause": "null",
+          "canonical_body_support": "CanonicalBodySupportRow[]",
+          "handoff_record": "null",
+          "selection_observation": "UnselectedSelectionObservation"
+        },
+        "required_fields": [
+          "format",
+          "producer_symbol",
+          "axis",
+          "state",
+          "subject_ref",
+          "binding",
+          "original_refs",
+          "backflow_owner",
+          "request_locator",
+          "source_category_locator",
+          "cause",
+          "canonical_body_support",
+          "handoff_record",
+          "selection_observation"
+        ],
+        "field_order": [
+          "format",
+          "producer_symbol",
+          "axis",
+          "state",
+          "subject_ref",
+          "binding",
+          "original_refs",
+          "backflow_owner",
+          "request_locator",
+          "source_category_locator",
+          "cause",
+          "canonical_body_support",
+          "handoff_record",
+          "selection_observation"
+        ],
+        "meaning": "元unselected_refs実出現に属する通常unselected_source Axisを同Vから形成する専用14member。canonical実read材料と分離し、cause=null、canonical_body_support=[]、handoff_record=null。canonical read/Invocationや仮old Axisを形成しない。",
+        "invariants": [
+          "state=unobservedでもcause=nullであり、canonical実readのcause/state対応をこのdomainへ流用しない。",
+          "canonical_body_support=[]、handoff_record=null。selection_observationは必ずno-call閉object。",
+          "original_refsは元unselected_refsの当該出現一件を全値保持。subject/Bindingは同V原root Bindingの既存dependency subject形成規則、ownerはliteral null。"
+        ]
       }
     },
     "invariants": [
@@ -1300,7 +1378,7 @@
       "effect": "none",
       "algorithm": [
         "照合前にcore_return_requestedの存在/厳密booleanを既存規則で読み、欠落をfalseへ既定しない。core_source_selected/labo_evaluation_selectedのselector所見は同context.validatedを一回借用する/conditional_dependency_detailへ委ね、旧selector passと二重に生成しない。各条件の不足は当該集合だけに局所化し、常時集合/別条件を止めない。 core_return_requestedが欠落した場合は既存R-dependency_selector_unknown（failure_rules/106）に従い、axis=dependency_selection,state=unknownと同R106の旧reason_templateによる所見を一回だけ返す。そのCORE返却条件集合だけを評価せず、常時集合/他明示selector/handoffを停止しない。新private二channelのselector所見へ重ねてemitしない。",
-        "HELIXBRAIN-L3-032-F09で常時必須とされた完全identityは、HELIXBRAIN-L2-003、HELIXBRAIN-L2-005、HELIXBRAIN-L2-007、HELIXBRAIN-L2-008、HELIXBRAIN-L2-028である。core_return_requested=trueの場合に追加で必要な完全identityは、HELIXBRAIN-L2-019、HELIXBRAIN-L2-022、HELIXBRAIN-L2-030である。Ref.identityはopaque値として完全一致で照合し、短縮表示から意味IDを推測しない。必要Ref[]またはmemberが欠けた場合、欠けた各identityについてaxis=dependency_reference,state=missingを返す。空配列・欠落を充足としない。欠落Refのrevision/scope/owner/source_locator/sha256を生成しない。subject_refは入力binding.knowledge_refがobjectとして供給されていればその原Ref、欠落していてbinding.template_refがobjectなら当該template_refを診断subjectとして用いる。後者はcandidate/template Refをknowledge_refへ代入・aliasするものではなく、bindingおよびComparison.input_binding内のknowledge_ref欠落をそのまま保つ。template_refもobjectでない場合はsubject_refを捏造しない。subject_ref:Refを必須とする依存AxisResult/Findingは形成できないため、入力のRef欠落を保持し、その依存所見を成功扱いにもmissingのtyped所見にも変換しない。既存validation/construction issueは各既存関数の入力条件が満たされる場合に限る別出力である。具体的に、入力root bindingがobjectでknowledge_ref/template_refのどちらもobject Refでないとき、既存construction_issuesはlocator=/binding、source_ref=nullのInputIssueを返し、build_supply_analysisのinput_issuesへ保持する。その他のissue発生は各既存条件に従い、subject候補Ref欠落だけから追加所見を仮定しない。AxisResult.binding/Finding.binding/Comparison.input_bindingは同じ入力bindingの原memberを保ち、欠落knowledge_refを補わない。別の既存builder/constructor経路のconstruction_issues(context.validated)は、候補と同template/knowledge bindingが結べない条件で、候補locatorのInputIssueをsource_return_verificationの既存別入力から返す。NEG-13ではその候補locator=/candidates/0のIssueを併せて観測しない。candidate Issueの根拠はsource_return_verification/cases/18（HELIXBRAIN-L8-032-LOCAL-CANDIDATE-KNOWLEDGE-REF-ABSENT）の独立した入力・期待であり、本関数Comparisonへ混ぜない。ADD-28は別条件のroot binding locator=/binding InputIssueを既存builder経路で投影し、Comparisonのdependency AxisResult/Findingとは別出力・別観測として保持する。AxisResult.original_refsとFinding.source_refsには該当categoryに実際に供給されたRefだけを入れ、欠落identityのRefは追加しない。categoryがalways_refs/core_return_refsのどちらかを診断対象sourceから追跡する。identityが供給されてもqualification/current revision/scope/owner/digestは既存full-Ref比較で別途検査する。別sourceの成功はこの不足を補償しない（HELIXBRAIN-L5-032-R-selected_source_substitution）。core_source_selected/labo_evaluation_selectedのstrict true参照・qualification/原operation/025条件と対応selector診断は/conditional_dependency_detailの同call private readと公開投影が担当し、旧generic selected-source/evaluation参照passは重ねて実行しない。元false時unselected_refs source-state pass及び別の既存rule85/89等の選択source/claim責務は置換せず元predicate/対象/理由/全返却のまま保持する。返却決定順は常時identityのL3-F09列挙順003/005/007/008/028、選択済みCORE返却identityの列挙順019/022/030、selector所見順core_return_requested、core_source_selected、labo_evaluation_selectedとする。同一axisに複数所見があってもaggregateで統合・上書きせず、各所見のreasonとidentityを保持する。 常時/CORE返却の原Ref body読取と公開reasonは/canonical_dependency_detailの同V→request→全CanonicalBodyRead→CanonicalReadInvocation→元Axis writer結線に従う。category欠落/emptyのrequired missing先行no-callを保持し、conditional私有経路を重ねて実行しない。generic frame比較は独立operand未形成のnot_observed境界を保つ。",
+        "HELIXBRAIN-L3-032-F09で常時必須とされた完全identityは、HELIXBRAIN-L2-003、HELIXBRAIN-L2-005、HELIXBRAIN-L2-007、HELIXBRAIN-L2-008、HELIXBRAIN-L2-028である。core_return_requested=trueの場合に追加で必要な完全identityは、HELIXBRAIN-L2-019、HELIXBRAIN-L2-022、HELIXBRAIN-L2-030である。Ref.identityはopaque値として完全一致で照合し、短縮表示から意味IDを推測しない。必要Ref[]またはmemberが欠けた場合、欠けた各identityについてaxis=dependency_reference,state=missingを返す。空配列・欠落を充足としない。欠落Refのrevision/scope/owner/source_locator/sha256を生成しない。subject_refは入力binding.knowledge_refがobjectとして供給されていればその原Ref、欠落していてbinding.template_refがobjectなら当該template_refを診断subjectとして用いる。後者はcandidate/template Refをknowledge_refへ代入・aliasするものではなく、bindingおよびComparison.input_binding内のknowledge_ref欠落をそのまま保つ。template_refもobjectでない場合はsubject_refを捏造しない。subject_ref:Refを必須とする依存AxisResult/Findingは形成できないため、入力のRef欠落を保持し、その依存所見を成功扱いにもmissingのtyped所見にも変換しない。既存validation/construction issueは各既存関数の入力条件が満たされる場合に限る別出力である。具体的に、入力root bindingがobjectでknowledge_ref/template_refのどちらもobject Refでないとき、既存construction_issuesはlocator=/binding、source_ref=nullのInputIssueを返し、build_supply_analysisのinput_issuesへ保持する。その他のissue発生は各既存条件に従い、subject候補Ref欠落だけから追加所見を仮定しない。AxisResult.binding/Finding.binding/Comparison.input_bindingは同じ入力bindingの原memberを保ち、欠落knowledge_refを補わない。別の既存builder/constructor経路のconstruction_issues(context.validated)は、候補と同template/knowledge bindingが結べない条件で、候補locatorのInputIssueをsource_return_verificationの既存別入力から返す。NEG-13ではその候補locator=/candidates/0のIssueを併せて観測しない。candidate Issueの根拠はsource_return_verification/cases/18（HELIXBRAIN-L8-032-LOCAL-CANDIDATE-KNOWLEDGE-REF-ABSENT）の独立した入力・期待であり、本関数Comparisonへ混ぜない。ADD-28は別条件のroot binding locator=/binding InputIssueを既存builder経路で投影し、Comparisonのdependency AxisResult/Findingとは別出力・別観測として保持する。AxisResult.original_refsとFinding.source_refsには該当categoryに実際に供給されたRefだけを入れ、欠落identityのRefは追加しない。categoryがalways_refs/core_return_refsのどちらかを診断対象sourceから追跡する。identityが供給されてもqualification/current revision/scope/owner/digestは既存full-Ref比較で別途検査する。別sourceの成功はこの不足を補償しない（HELIXBRAIN-L5-032-R-selected_source_substitution）。core_source_selected/labo_evaluation_selectedのstrict true参照・qualification/原operation/025条件と対応selector診断は/conditional_dependency_detailの同call private readと公開投影が担当し、旧generic selected-source/evaluation参照passは重ねて実行しない。元false時unselected_refs source-state passのpredicate/対象/状態/原Ref/subject/Binding/返却順は保持する。その元実出現から形成した通常unselected_source AxisResult.reasonだけは/canonical_dependency_detail/unselected_axis_trace_writerに従い、既存L4固定prefix「未選択sourceは未観測。」を保って14memberの正規TRACEを付す具体表示へ対応させる。別の既存rule85/89等の選択source/claim責務及びFinding.reason/全返却は元predicate/理由のまま保持し、no-callからFindingを増やさない。返却決定順は常時identityのL3-F09列挙順003/005/007/008/028、選択済みCORE返却identityの列挙順019/022/030、selector所見順core_return_requested、core_source_selected、labo_evaluation_selectedとする。同一axisに複数所見があってもaggregateで統合・上書きせず、各所見のreasonとidentityを保持する。 常時/CORE返却の原Ref body読取と公開reasonは/canonical_dependency_detailの同V→request→全CanonicalBodyRead→CanonicalReadInvocation→元Axis writer結線に従う。category欠落/emptyのrequired missing先行no-callを保持し、conditional私有経路を重ねて実行しない。generic frame比較は独立operand未形成のnot_observed境界を保つ。",
         "受渡しstateをdefinitionから分離しnot_receivedを保存する。候補供給前の相手完了receipt要求claimは既存順序とconflict。receipt単独の製品N/A/義務消込claimはunknown。",
         "参照資料roleをsemantic authorityに変換しない。reference_as_authorityの既存責務を保持し、必須定義代替の既存rule87だけは/source_return_contract/descriptor_target_dataflow/consumerとpublic_outputの同call原target/全assessment/実basis predicateで担当Claim出現につき一件返す。旧rule87を別generic passで二重実行しない。",
         "同immutable DependencyContext.validatedをread_conditional_dependenciesへ一回渡し、正規private input/results/origins/input_boundaries全値を同callへ保持する。同返却をprepare_conditional_dependency_projectionへ渡し、元source/operation/Refの全traceをlossless reasonwriterで既存AxisResult/Findingへ結ぶ。二channelの旧generic passを置換し、公開所見をreason_pendingへ落とさない。既存subject形成不能の限界、元Comparison4/Axis7/Finding9とpublic返却順は/conditional_dependency_detail/fn6_integrationに従う。 helperのbinding欠落境界でfn6全体を早期returnしない。旧独立selector/Claim/他診断と既存InputIssueは元形成条件のまま保持する。 channel_not_selected私有rowから新公開Axis/Findingは生成せず、元unselected_refs/R89のfalse経路を残す。"
@@ -11906,7 +11984,7 @@
   },
   "canonical_dependency_detail": {
     "id": "HELIXBRAIN-L5-032-CANONICAL-DEPENDENCY-DETAIL",
-    "status": "local design candidate, unadopted",
+    "status": "詳細設計候補（候補処理は未実行）",
     "basic_source": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
@@ -11921,7 +11999,9 @@
       "CanonicalReadFrame",
       "CanonicalBodySupportRow",
       "CanonicalAxisCause",
-      "CanonicalAxisTraceMaterial"
+      "CanonicalAxisTraceMaterial",
+      "UnselectedSelectionObservation",
+      "UnselectedAxisTraceMaterial"
     ],
     "type_binding_ja": "型は/type_contract/types及び/type_contract/imports。2locator request/whole returnはL4型をimportし、依存defsは原schema assemblyで解決する。",
     "private_functions": [
@@ -11976,6 +12056,39 @@
         },
         "effect": "none",
         "writer_ref": "/canonical_dependency_detail/reason_writer"
+      },
+      {
+        "symbol": "project_unselected_axis_trace",
+        "signature": {
+          "arguments": [
+            {
+              "name": "validated",
+              "type": "ValidatedSupply"
+            },
+            {
+              "name": "unselected_index",
+              "type": "nonboolean integer >=0（元dependencies.unselected_refsの実在index）"
+            }
+          ],
+          "returns": "AxisResult[]"
+        },
+        "effect": "none",
+        "entry_boundary": "同fn6の元false時unselected_refs source-state passが、同V原unselected_refsの実indexを処理するiterationで一回だけ呼ぶ。old Axis/cached結果/外部predicateを引数にせず、下記全7member writerが同Vから直接形成する。",
+        "writer_ref": "/canonical_dependency_detail/unselected_axis_trace_writer"
+      },
+      {
+        "symbol": "write_unselected_axis_reason",
+        "signature": {
+          "arguments": [
+            {
+              "name": "material",
+              "type": "UnselectedAxisTraceMaterial"
+            }
+          ],
+          "returns": "string"
+        },
+        "effect": "none",
+        "writer_ref": "/canonical_dependency_detail/unselected_axis_trace_writer/reason_writer"
       }
     ],
     "body_read_writer": {
@@ -12056,7 +12169,8 @@
           "records": "[]",
           "problems": "mapping1 whole一件",
           "terminal": true,
-          "product_reachability": "原category実Refを保持できる入力ならlower readを保持可能。typed public subject/binding形成とは別。"
+          "product_reachability": "原category実Refを保持できる入力ならlower readを保持可能。typed public subject/binding形成とは別。",
+          "typed_reachability_limit_ja": "現SupplyInput schemaのbindingはobject又はkey欠落であり、input object内binding:nullは型内の独立ValidatedSupply前提ではない。raw binding:nullのdecode不成立は元fn0のinput:null境界で保持する。ここでL4の低位logical null分岐を残すことから、製品callerで当該null枝を行使済みとは主張しない。"
         },
         {
           "mapping_indices": [
@@ -12172,9 +12286,23 @@
         }
       ],
       "helper_arbitrary_locator_limit_ja": "2string request型は任意pointer先がRefである保証ではない。本L5製品callerは既存decoded categoryの実Ref出現だけからrequestを形成する。一般低位helperへRef以外/parent不一致/非RFC pointerを渡す入口は今回追加しない。その型外任意呼出しを成功/unknownへcastして全関数成立と称さず、製品caller到達範囲と明確に分ける。",
-      "mixed_state_resolution_ja": "G4のframe conflict＋後続source unknownは既存frame先行終端で到達しない。現source段のProblemはunknownのみなので新しいstate優先順位は不要。既存port返却を受けた公Axisはそのstateを保持し、problems配列から再集約しない。",
+      "mixed_state_resolution_ja": "L4 /dependency_semantic_ports/diagnostic_return_contract/common_rules/branch_orderに従いframe不明/相反を先行終端し、その同一返却へ後続source不足を混在させない。現source段のProblemはunknownのみなので新しいstate優先順位は不要。既存port返却を受けた公Axisはそのstateを保持し、problems配列から再集約しない。",
       "source_occurrence_and_boolean_boundary_ja": "source_usable(V,Ref)は既存Ref単位のboolean述語であり、個々source indexの資格・digest/body照合を再計算した結果ではない。全原sources indexを独立に保持し、role=semantic_json・既存fullRef対応と同V.unusable_source_refs exclusionの元意味を再利用する。Ref同値の別出現をdedupせず、booleanだけからsource index別の資格証明/採択されたQualification indexを創作しない。bytes/body/digest/root/ownerの既存fn0入力と全rawはframe.inputへ保持する。",
-      "rawvalue_numeric_interpretation_boundary_ja": "L4 imported schema RawValueはJSON論理値domain、L5 RawValueのhost実現は既存PrivateJsonValue（ExactJsonNumber又は厳密native intを含む）。前者のJSON numberをhost floatへcastしたり、後者の数値wrapperをJSON objectへdict化したりしない。CanonicalBodyReadへのcontent全値コピーは同immutable原nodeを値保存で借用し、token/value両方を保持する。JSON Schemaの論理型importはnew runtime validator/new codecの実行ではない。新input bag/codec/共通型統合を加えず、L6で必要な実host/schema adapterの成立は別の実装条件として残す。"
+      "rawvalue_numeric_interpretation_boundary_ja": "L4 imported schema RawValueはJSON論理値domain、L5 RawValueのhost実現は既存PrivateJsonValue（ExactJsonNumber又は厳密native intを含む）。前者のJSON numberをhost floatへcastしたり、後者の数値wrapperをJSON objectへdict化したりしない。CanonicalBodyReadへのcontent全値コピーは同immutable原nodeを値保存で借用し、token/value両方を保持する。JSON Schemaの論理型importはnew runtime validator/new codecの実行ではない。新input bag/codec/共通型統合を加えず、L6で必要な実host/schema adapterの成立は別の実装条件として残す。",
+      "record_set_scope_ja": {
+        "basic_order_basis": [
+          "/dependency_semantic_ports/canonical_ordered_branches/4",
+          "/dependency_semantic_ports/canonical_ordered_branches/5",
+          "/dependency_semantic_ports/canonical_ordered_branches/6",
+          "/dependency_semantic_ports/canonical_ordered_branches/7",
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/7",
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/8",
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/9",
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/11"
+        ],
+        "matching_and_record_domain_ja": "fullRef/roleで対応する原source集合と、既存validate適合を通って段6で返却recordとなる集合を分ける。段5の使用不能な原出現はmapping7のQualifiedSource全値をoriginal_presenceに保存し、contentがnullでもそこへ保持する。別のusable sourceの成功でその問題を消さない。",
+        "null_and_multiple_domain_ja": "段7/8とmapping9/11のsource locatorは、先行する段6で実際に返したrecordへ結ばれた原source/body locatorの全出現を指す。本詳細のusable recordとはこの段6のrecord集合の意味であり、source一覧全体を再分類する独自predicateではない。段5でrecordを形成しなかった使用不能sourceを段7/8のbody比較へ昇格しない。全対応raw/source/問題は段5のwhole及びsame-V inputで保持し、未適合bodyの内容評価から新問題や成功を発明しない。"
+      }
     },
     "public_axis_writer": {
       "signature": "project_canonical_read_axis(frame:CanonicalReadFrame,invocation_index:実在integer)->AxisResult[]",
@@ -12204,8 +12332,9 @@
         "unknown_or_multiple_route": "元資格routeをこの原対応から特定できない範囲ではoptional Q metadataを形成せず、必須4memberとinner原値だけを保持する。route欠落を新source失敗/state変更/gateにしない。同じsourceに既存対応する複数Q occurrenceは元順で各rowを保持し、Ref dedupしない。元全Q/source/rawはframe.inputへ保全。",
         "order": "record順、各record内でQ原index順。Q補足がないrecordも必須4memberのrow一件を保持。member emit順はCanonicalBodySupportRow.field_order。"
       },
-      "prefix": "result.problems=[]なら既存prefix canonical owner本文を同scope/target/versionで全値提供。を使う。問題1件以上なら原順先頭problem.reasonだけをprefix、全問題はcauseへ残す。missing/no-callは元callerの別prefix規則であり本実read writerへ架空Problemを渡さない。",
-      "axis_closed7": "subject_ref,binding,axis,state,original_refs,reason,backflow_ownerの既存7memberだけ。reason=write_canonical_axis_reason(上記14member全値)。materialにreasonは無く循環しない。"
+      "prefix": "result.problems=[]なら固定literal「canonical owner本文を同scope/target/versionで全値提供。」を使う。問題1件以上なら原順先頭problem.reasonだけをprefixにし、全問題はcauseへ残す。missing/no-callは元callerの別prefix規則であり本実read writerへ架空Problemを渡さない。",
+      "axis_closed7": "subject_ref,binding,axis,state,original_refs,reason,backflow_ownerの既存7memberだけ。reason=write_canonical_axis_reason(上記14member全値)。materialにreasonは無く循環しない。",
+      "formed_canonical_material_invariant_ja": "このcanonical実read専用の形成済み材料では、cause=nullとstate=resolvedは同値。unknownは元problems非空のsingle又は2件以上配列を保持する。配列を空/1件で形成しない。別の未選択source TRACE材料やhandoffへこの不変条件を一般化しない。"
     },
     "reason_writer": {
       "source": {
@@ -12232,7 +12361,7 @@
         "完全identity一致する実Ref occurrenceごとrequest={request_ref_locator:/dependencies/{元category}/{元index},category_locator:/dependencies/{元category}}を生成する。固定identity列からRefのrevision/scope/owner/digestを生成せず、同値Ref反復も別callにする。型外rawはfn0のdecode失敗/原InputIssue境界を保持しRefへcastしない。",
         "result=read_canonical_dependency_body(canonical_frame.input,request)を同Vへ一回だけ適用し、invocation={request:原request,result:全6member result}をcanonical_frame.invocations末尾へappend。no-callはappendしない。",
         "直後の実invocation_indexでproject_canonical_read_axis(canonical_frame,index)のAxisResult列を元generic dependency所見の位置へ保持する。既存generic canonical body由来Axisをこの実returned materialで具体化し、旧body由来passを重ねてemitしない。必要identity missingは既存writerのまま、その他既存Failure predicate/Finding/Claim所見を本writerで上書きしない。",
-        "元selector core_return/core_source/labo順、既決conditional同V一回read/元投影、元unselected occurrenceのsource-state pass、元handoff/Claim/全既存Finding責務を元順/元predicateのまま続ける。conditionalへcanonical portを追加しない。",
+        "元selector core_return/core_source/labo順、既決conditional同V一回read/元投影を元順/元predicateのまま続ける。元false時unselected_refs source-state passの同iterationで/canonical_dependency_detail/unselected_axis_trace_writerの全7member writerへ同V/原実indexを一回渡し、原L4 prefixと14member TRACEによるreasonを含むAxisを元位置へ形成する。元predicate/状態/subject/Binding/原Ref順/旧Findingは変更しない。元handoff/Claim/全既存Findingは元責務のまま保持し、conditional/unselectedへcanonical body portを追加しない。",
         "Comparison.axes/findingsは上記既存順で保持し、producer_symbolは元literal compare_dependencies_and_handoff、input_bindingは同V原Binding又は元null。canonical_frameは同callのprivate全値としてreason writer完了まで保持し、public返却/member/cache/第二entrypointへしない。"
       ],
       "frame_observation": "現generic独立frame比較not_observed。新evidence引数を足さず、既知比較成功/相反を捏造しない。条件付きknown conflict保証を消さず未形成と明示する。",
@@ -12243,6 +12372,79 @@
       "generic known-frame conflictの比較先/typed前提は未形成。conditional実H/A根拠は既存専担経路のまま。",
       "実owner/trust resolver/parser/資源/数値adapter/runtimeの成立はこの論理詳細案から認定しない。",
       "全F09旧Finding predicate/その他原domain writerの実装をこのcanonical実read sliceで置換しない。"
-    ]
+    ],
+    "fixed_source_scope_relation_ja": "既存conditional_dependency_detail/fixed_source_basisのroleはそのconditional詳細に対する固定根拠と文脈参照の境界を保つ。本節は2d2ff029のcanonical実read/既存public投影だけをbasic_sourceとreason_writer/sourceに個別束縛し、conditional必要集合/operation/qualification predicate又はF09全域の返却writerへbroader portを流用しない。新canonical節の追加を理由に旧conditional predicateを置換しない。",
+    "unselected_axis_trace_writer": {
+      "source_basis": [
+        {
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
+          "file_sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+          "pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer/unselected_axis_occurrence_order",
+          "canonical_sha256": "1078199536b278d91f717f5d323e2315363a46025ca682bba9d01ba569745fe2"
+        },
+        {
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
+          "file_sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+          "pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer/reason_serialization/trace_value_rules/selection_observation",
+          "canonical_sha256": "3cdcebcf33d8238a8f8704beabae4863942e74555b49e2ba1a25f2633308a99d"
+        },
+        {
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
+          "file_sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+          "pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer/domain_applicability",
+          "canonical_sha256": "df0105d29cb34e7068e508041505d5cfcb6c34182b93bf1b348500e388d22176"
+        }
+      ],
+      "scope_ja": "元unselected_refs出現を扱う旧source-state passの既存predicate/false判定/出力形成だけを入口とする。source選択・必要集合・実観測・資格を新たに判定するhelperではない。private channel_not_selected rowから新しい公Axisを作らない。",
+      "origin_and_guard_ja": "入口は元fn6 false時unselected_refs source-state passの同iterationであり、同validatedと原配列の実unselected_indexを明示してproject_unselected_axis_traceを一回呼ぶ。元strict boolean/absenceの選択分岐、当該原passのpredicate/対象/順序を変更せず、selector値だけでoriginを分類する新OR/AND式又はchannel数分のemitを作らない。同V.inputがobject、root bindingがobject、当該原unselected_refs[index]が既存Refとして供給され、下記dependency subjectが形成できる場合だけAxis一件。subject/Binding形成不能なら[]で原V/既存InputIssueを保持。これは元typed形成境界の具体化であり新global gateではない。",
+      "original_node_and_presence_ja": "同validated.input全値、元unselected_ref全member/presence/原順、元source全値/role/bytes/qualification、元selectorsのkey有無/原値はそのまま保持する。Refのmissing memberを補わず、原null/false/0/空文字/[]を互換変換しない。仮のold Axis/仮理由/別call snapshotを生成又は注入しない。",
+      "native_selector_domain_ja": "現logical_input_structure/schema/$defs/DependencySelectionの2selectorはboolean又はmember absentであり、raw null/nonbooleanは正規typed Vの成功domainではなく元decode/selector不成立側へ分離する。traceのRawValue型はL4原値保存表現を狭めず、供給された型値をそのまま掲載するだけ。absent/unknownをfalseへ既定せず、selector値だけでunselected originや新所見を形成しない。",
+      "trace_member_writers": {
+        "format": "literal BRAIN032-F09-axis-reason-trace-v1",
+        "producer_symbol": "literal compare_dependencies_and_handoff",
+        "axis": "上記同iteration Axis.axisのliteral unselected_source。",
+        "state": "上記同iteration Axis.stateのliteral unobserved。",
+        "subject_ref": "上記同V原Bindingから形成した原subject Ref全値。",
+        "binding": "上記同V原root Binding全値。",
+        "original_refs": "上記当該原unselected_refs[index]一件全値の配列。",
+        "backflow_owner": "上記literal null。",
+        "request_locator": "元indexから実RFC6901 /dependencies/unselected_refs/{unselected_index}。これはtrace所在でCanonicalReadRequest/Invocationではない。",
+        "source_category_locator": "literal /dependencies/unselected_refs。",
+        "cause": "null。canonical BodyReadProblemも別classification原因も発明しない。",
+        "canonical_body_support": "[]。canonical body portはnot_called。",
+        "handoff_record": "null。別handoff recordを混入しない。",
+        "selection_observation": "下記5許可member/1必須memberの原presence writer。"
+      },
+      "selection_observation_writers": {
+        "core_source_selected": "同V.input.dependenciesのcore_source_selected keyが供給されていればそのRawValueをコピー、absentならkey省略。false/null補完なし。",
+        "labo_evaluation_selected": "同じくlabo_evaluation_selectedの供給原RawValueだけ、absentなら省略。",
+        "port_call": "固定literal not_called_for_unselected_ref。実readのstate又は成功を表さない。",
+        "raw_source_role": "当該元unselected_refに既存ref_sameで対応する同V.input.sourcesの原出現がちょうど一件に特定でき、そのsourceのrole memberが供給されているときだけその原RawValue。role=reference_onlyも掲載値でありsemantic権威へ昇格しない。",
+        "source_ref": "上記同じ一つに特定した原source.ref全値。source occurrenceが一つに特定できない場合は省略。raw_source_roleの供給有無とは各原member presenceを分け、元unselected_refへ置換しない。"
+      },
+      "raw_source_join_ja": "対応source候補は既存ref_same（identity/revision/scope/owner双方供給、両digest供給時比較、source_locatorはidentity外）による同snapshot raw sourcesの全出現。semantic_json限定/資格/root/source_usable判定をこの掲載lookupへ追加しない。候補0/複数なら末尾2memberの拡張を作らない。同値source反復もRef dedupで一件にせず、未特定をsource全体不存在又はglobal unavailableへ変換しない。原全候補/未解決Ref/roleは同Vに保持。",
+      "axis_result_writer_ja": "project_unselected_axis_trace(validated,index)は上記全7memberを同iterationで形成し[AxisResult]を返す。subject/Binding形成不能の場合だけ[]。既存元passの当該出力位置をこの同V writerで技術具体化し、旧prose reason Axisを別にappendしない。元predicate/false判定/対象/形成条件/非reason原値/返却順と旧Findingを保持する。",
+      "reason_writer": {
+        "signature": "write_unselected_axis_reason(material:UnselectedAxisTraceMaterial)->string",
+        "prefix": "固定literal「未選択sourceは未観測。」。L4 reason_serialization/prefix_table/3の原値をそのまま使う。cause=nullだからcanonical成功prefixを使うというdomain横断推論をしない。",
+        "grammar_reuse": "固定prefix + LF + TRACE= + compact UTF-8 JSON object。14memberの順序とRef/Binding/RawValue原順/反復、strict numeric leaf/value-preserving string規則は既存/canonical_dependency_detail/reason_writerのclosed_grammar/value_bridge/string_leaf/reuse_boundaryとL4原grammarを再利用する。canonical実read用prefix_from_material_only_jaは使わない。",
+        "closed_material_ja": "UnselectedAxisTraceMaterialの14宣言memberを全てemit。selection_observationはUnselectedSelectionObservation.field_orderのうち実present memberだけをemitし、optional absentをnull補完しない。追加field/prefix引数/cacheを作らない。"
+      },
+      "caller_connection_ja": "元fn6 false時unselected_refs source-state passを元位置/元predicateで進め、元unselected_refsの実index順にproject_unselected_axis_trace(context.validated,index)を一回呼び、その0又は1件を元Axis位置へ保持する。全7memberの生成源は上記sameiteration writerに閉じており、既存未定義producer/ambient/cached Axisへ依存しない。両channel falseでも元Ref一出現をchannel数で複製しない。canonical_frame.invocationsへは追加せず、selector unknown/conditional selected/private channel_not_selected/旧Finding/Claim/handoffは元責務を保つ。",
+      "source_relation_ja": "conditional_dependency_detail/fixed_source_basis/0/roleの非流用条件は既存selected conditional詳細の必要集合/operation/資格predicateと全返却writerに適用した元境界であり維持する。このno-call writerは別domainの元unselected source-state Axis.reasonについて、現L4 unselected_axis_occurrence_order/selection_observationの表示義務を直接具体化する。新conditional必要集合やprivate row→公Axis投影の根拠には使わない。",
+      "legacy_and_change_ja": "原identity/owner/版/target/binding/原値と未観測、元false predicate、旧R89等のFindingを保持する。変更はL5の「元理由/全返却のまま」という未具体化文言を、既存L4固定prefix＋正規TRACEに対応するreason表示へ明示すること。旧schema/lifecycle/runtimeを復元せず、件数/局所greenから実観測を作らない。",
+      "axis_seven_member_source_writer": {
+        "subject_ref": "同V.input.binding.knowledge_refがobject Refならその全値。無ければ同じbinding.template_refがobject Refならその原Refを診断subjectとして用いる。両方形成不能ならAxis[]。template_refをknowledge_refへ代入しない。/functions/6/algorithm/1とL4 public_projection/dependency_subjectの元条件を具体化する。",
+        "binding": "同V.input.bindingの原object全値。absent/型不成立をsource/basis/{}から補完せず、そのtyped Axisを形成しない。各内部Refの欠落memberも原presenceのまま。",
+        "axis": "L4 unselected_axis_occurrence_order/axis_valuesのliteral unselected_source。source-state原出現にのみ形成しprivate channel_not_selected rowから作らない。",
+        "state": "同axis_valuesのliteral unobserved。selector unknownをfalseへしてこのstateを作らず、原false経路の当該原出現だけに適用する。",
+        "original_refs": "[同V.input.dependencies.unselected_refs[unselected_index]の原Ref全値]。一原出現につき一件、元配列index順。同値Refの反復をdedupせず、両channel falseでも二重化しない。",
+        "reason": "下記14memberを同じiteration内で上記subject/binding/original_refsと原Vから形成し、write_unselected_axis_reasonへ一回渡す。固定L4 prefix「未選択sourceは未観測。」＋LF＋TRACE=＋正規14member JSON text。placeholder/既存reason自然文解析/再wrapをしない。",
+        "backflow_owner": "同axis_valuesのliteral null。通常未観測Axisのownerと、別predicateで形成するR89 Finding/knowledge_ownerを混同しない。"
+      }
+    }
   }
 }
