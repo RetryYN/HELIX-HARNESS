@@ -11164,6 +11164,7 @@
           "field": {
             "original_request": "F05DetailedRequest",
             "field_index": "Natural",
+            "definition_material": "RoleMaterial",
             "definition_assessment": "DefinitionAssessment",
             "value_material": "RoleMaterial",
             "value_assessment": "ValueAssessment",
@@ -12335,9 +12336,9 @@
         "source_pointers": [
           "L4:/field_source_materialization_contract/ordered_source_materialization/1",
           "L4:/field_source_materialization_contract/ordered_source_materialization/2",
-        "/reference_resolution_contract",
-        "/f05_detail_contract/source_material_leaf_writer_contract/role_and_operand_labels",
-        "/f05_detail_contract/source_material_leaf_writer_contract/record_and_body_occurrence_leaf"
+          "/reference_resolution_contract",
+          "/f05_detail_contract/source_material_leaf_writer_contract/role_and_operand_labels",
+          "/f05_detail_contract/source_material_leaf_writer_contract/record_and_body_occurrence_leaf"
         ]
       },
       {
@@ -12350,11 +12351,11 @@
           "BodyOccurrence全member",
           "basis_occurrences全member"
         ],
-        "rule_ja": "実source.body.records全原indexを取り、元collection/ref/payloadのReadとtyped値対応結果を返す。元recordからsource_refを外付けした以外のmember/presenceを保ち、原body entry全値はoriginal_body_entryへ。BodyOccurrence.checks=[]をsource_material_leaf_writer_contract/body_occurrence_leafの明示選択とするが、source/qualification/root check全値はValidationSourceObservation階層に残し、body.checks空を成功にしない。BasisOccurrenceは実取得record/source/bodyの対応所在がある時だけ同resultローカル表へ追加し、そのoriginal_refは読取契機operandの原fullRef。record/source/body/native/interpretationの各indexを相互代入しない。",
+        "rule_ja": "実source.body.records全原indexを取り、元collection/ref/payloadのReadとtyped値対応結果を返す。元recordからsource_refを外付けした以外のmember/presenceを保ち、原body entry全値はoriginal_body_entryへ。BodyOccurrence.checks=[]をsource_material_leaf_writer_contract/record_and_body_occurrence_leafの明示選択とするが、source/qualification/root check全値はValidationSourceObservation階層に残し、body.checks空を成功にしない。BasisOccurrenceは実取得record/source/bodyの対応所在がある時だけ同resultローカル表へ追加し、そのoriginal_refは読取契機operandの原fullRef。record/source/body/native/interpretationの各indexを相互代入しない。",
         "source_pointers": [
           "/reference_resolution_contract/body",
-        "L4:/field_semantic_evidence_contract/basic_candidate_return/basis_occurrence_index_contract",
-        "/f05_detail_contract/source_material_leaf_writer_contract/record_and_body_occurrence_leaf"
+          "L4:/field_semantic_evidence_contract/basic_candidate_return/basis_occurrence_index_contract",
+          "/f05_detail_contract/source_material_leaf_writer_contract/record_and_body_occurrence_leaf"
         ]
       },
       {
@@ -12372,8 +12373,8 @@
         "rule_ja": "意味role適用contentについて、実RecordOccurrenceのbody_occurrences各原出現ごとにOwnerBindingを一件置き、wrapper/source owner Read、同fn0資格CheckLink、全role operand Ref/owner/版scope対応を保持する。owner_binding_contractの共通AND役割ORでresult/causesを作る。source_wrapper既知differentは後段positiveで相殺せず、qualification positiveだけでroleowner成立にしない。native_definition_wholeのcontent ownerはそのRecordOccurrenceへ、evidence own ownerはInterpretationへ別inline保存する。CheckLinkは当該OwnerBinding.qualification_check_linksへだけ格納し、同source observationの全source/qualification/root checksをsource_material_leaf_writer_contract/owner_binding_leafの実local index順で列挙する。値/関係を再評価せず実原indexへリンクする。",
         "source_pointers": [
           "L4:/field_semantic_evidence_contract/role_owner_binding",
-        "L4:/field_semantic_evidence_contract/common_target_guards/3",
-        "/f05_detail_contract/source_material_leaf_writer_contract/owner_binding_leaf"
+          "L4:/field_semantic_evidence_contract/common_target_guards/3",
+          "/f05_detail_contract/source_material_leaf_writer_contract/owner_binding_leaf"
         ]
       },
       {
@@ -12420,11 +12421,12 @@
           "projection_links",
           "causes"
         ],
-        "rule_ja": "projection_contract.formsの原payload/理由Readを無変換copy。実ProjectionBasisがある出現だけProjectionAttemptを作り、source/binding/ref/適用宣言/owner条件を照合してFormationへ。役割宣言/ProjectionBasisがまだ作れない出現ではattemptを捏造せず、原content RecordOccurrenceと原因をOperandMaterialへ保持する。native_definition_wholeはdefinition側だけの実基底で、明示field_definition_evidence/known又はvalue roleの代用にしない。semantic_wholeでは元meaning全体をpayload/original_wholeへ保ち、reason presenceはsource_material_leaf_writer_contract/projection_leafによりReadへ写すだけで意味理由を生成しない。実基底のproduct role未宣言又は適用宣言相反は実attemptをunformedにし原payloadを失わない。各RoleMaterial.aggregateのformed ProjectionLinkSetは実formed attempt.result.valueへ、全同値投影link及び別Ref異値等の既存aggregate規則はsource_material_leaf_writer_contract/projection_leafに従う。",
+        "rule_ja": "projection_contract.formsの原payload/理由Readを無変換copy。実ProjectionBasisがある出現だけProjectionAttemptを作り、source/binding/ref/適用宣言/owner条件を照合してFormationへ。役割宣言/ProjectionBasisがまだ作れない出現ではattemptを捏造せず、原content RecordOccurrenceと原因をOperandMaterialへ保持する。native_definition_wholeはdefinition側だけの実基底で、明示field_definition_evidence/known又はvalue roleの代用にしない。semantic_wholeでは元meaning全体をpayload/original_wholeへ保ち、reason presenceはsource_material_leaf_writer_contract/projection_leafによりReadへ写すだけで意味理由を生成しない。実基底のproduct role未宣言又は適用宣言相反は実attemptをunformedにし原payloadを失わない。各RoleMaterial.aggregateのformed ProjectionLinkSetは実formed attempt.result.valueへ、全同値投影link及び別Ref異値等の既存aggregate規則はprojection_contract/failureに従う。",
         "source_pointers": [
           "L4:/field_source_materialization_contract/carrier_projection_table",
-        "L4:/field_source_materialization_contract/failure_and_consumer_boundary/independent_causes",
-        "/f05_detail_contract/source_material_leaf_writer_contract/projection_leaf"
+          "L4:/field_source_materialization_contract/failure_and_consumer_boundary/independent_causes",
+          "/f05_detail_contract/source_material_leaf_writer_contract/projection_leaf",
+          "/f05_detail_contract/projection_contract/failure"
         ]
       },
       {
@@ -12629,8 +12631,8 @@
         "rule_ja": "全配列を本節原順で確定した同一walkで実格納先をリンクする。ReturnLink.root=f05_return、pointerはowner_material直下の各実variant payloadと実配列nodeまでのRFC6901全pathで、tag文字列を仮想path segmentにしない。record_link/ProjectionBasis operand_link/owner_binding_links/formed aggregate projection_linksはsource_material_leaf_writer_contract/return_link_leafの実終点を使う。raw_only枝及び存在しない/unformed nodeにはlinkを作らない。ComparisonLinkはF15が返した実output memberに限る。旧adviceのfield segment絶対pathを流用せず、同じglobal wholeの実配列要素だけに限定し、再lookup/別sort/semantic再評価をしない。",
         "source_pointers": [
           "L4:/f05_validation_material_call_contract/actual_caller_trace/3",
-        "L4:/field_semantic_evidence_contract/basic_candidate_return/basis_occurrence_index_contract",
-        "/f05_detail_contract/source_material_leaf_writer_contract/return_link_leaf"
+          "L4:/field_semantic_evidence_contract/basic_candidate_return/basis_occurrence_index_contract",
+          "/f05_detail_contract/source_material_leaf_writer_contract/return_link_leaf"
         ]
       },
       {
@@ -12872,8 +12874,32 @@
       {
         "pointer": "/f05_detail_contract/types/RecipientWriteContext",
         "preserve": "F13の内部writer境界。",
-        "change": "field/gap_interpretationの閉じた二枝で、recipient分類に必要な既存前段材料を渡す。",
+        "change": "field/gap_interpretationの閉じた二枝で、recipient分類に必要な既存前段材料を渡す。field枝にはdefinition_material及びvalue_materialを別々のRoleMaterialとして含め、各実ReturnLinkの終点を選べる。",
         "reason": "完成FieldOwnerResult/GapInterpretationを自分の入力へ含める循環を避ける。"
+      },
+      {
+        "pointer": "/f05_detail_contract/leaf_writer_ledger/10",
+        "preserve": "原Ref/Read/presence/whole、原Cause、既存source/body/owner/qualification/投影の意味と責務境界。",
+        "change": "BodyOccurrence.checks=[]を明示選択し、全source/qualification/root checkはValidationSourceObservation階層と実CheckLinkで保持する。",
+        "reason": "bodyへ複写したかどうかで資格成功を推定せず、保管先と対応を固定するため。"
+      },
+      {
+        "pointer": "/f05_detail_contract/leaf_writer_ledger/11",
+        "preserve": "原Ref/Read/presence/whole、原Cause、既存source/body/owner/qualification/投影の意味と責務境界。",
+        "change": "contentの各実body occurrenceごとにOwnerBinding一件とし、source→各qualificationとそのrootsの実返却local順でCheckLinkを列挙する。",
+        "reason": "同じrecord/sourceの複数出現又は資格不足を落とさず、原indexと返却local indexを混同しないため。"
+      },
+      {
+        "pointer": "/f05_detail_contract/leaf_writer_ledger/13",
+        "preserve": "原Ref/Read/presence/whole、原Cause、既存source/body/owner/qualification/投影の意味と責務境界。",
+        "change": "実ProjectionBasisの無いcontentはprojection_attempts=[]とし、原RecordOccurrenceと原因を保持する。実基底のあるattempt.result.unformedとは区別する。",
+        "reason": "未形成という説明を架空attemptへ変換せず、未取得と実評価失敗を分けるため。"
+      },
+      {
+        "pointer": "/f05_detail_contract/leaf_writer_ledger/22",
+        "preserve": "原Ref/Read/presence/whole、原Cause、既存source/body/owner/qualification/投影の意味と責務境界。",
+        "change": "ReturnLinkはroot=f05_returnの実member pathを指し、evaluated等のtag値をpathへ挿入しない。",
+        "reason": "実格納先に解決するlinkを記述し、元の存在しないnamespaceを追随させないため。"
       }
     ],
     "finite_view_native_mapping": {
@@ -14070,7 +14096,7 @@
     "caller_writer_technical_difference": {
       "previous_l5_sha256": "d8896078706e1d4e3ace2c32e15659035a48523562f9a8124c5c5e6f8d3ae45d",
       "failure_basis": "readonly core009-f05-private-caller-full-return-readonly-d8896078.json SHA 7b2d5444a8e2c6defd51778b82548f40b75d91073fae9d1696d1055abf769440 のC-F1/C-F3。",
-      "preserve": "既存139型全定義、V01..V07/F01..F16及びC04/C05本文、既存関数/codec/source/Context/header Cause節/旧literalは不変。",
+      "preserve": "このcaller追補時点の139型、V01..V07/F01..F16及びC04/C05本文、既存関数/codec/source/Context/header Cause節/旧literalを起点にする。その後の型・writer変更は同じf05_detail_contract/existing_type_and_writer_changesを正とし、本PRでは既存2型の変更と内部2型の追加により141型となる。139型全定義が現HEADでも不変という宣言ではない。",
       "change": "C01〜C03へ固定目録・原argument取得元・Cause pattern/移送順・専用返却規則を接ぐ。全新Causeは既存Cause型で生成し、型member追加なし。",
       "reason": "実F05DetailedReturn受領と内部Comparison未形成を区別して全wholeを保持し、恣意的な観測配列順/Cause値を選ばず同原観測から一意に著述するため。",
       "scope": "既存L4同snapshot/caller取得責務の詳細化。実trust、全9producer意味writer、L4step6/7 owner接続は未閉包。",
@@ -14166,7 +14192,7 @@
                 "tag": "present",
                 "location": {
                   "root": "validation_input",
-                "pointer": "/field_inputs/i"
+                  "pointer": "/field_inputs/i"
                 }
               }
             },
@@ -14251,7 +14277,7 @@
         "raw_obligation_u_and_record_r": "uはvalidation_input.obligationsの同Walk実raw indexでRecordOccurrence.origin.indexとlocator /obligations/u に一致する。rは同じObligationOrigin.record_occurrences[]内のlocal indexで、record_details[r].record_occurrence_index=r。ObligationOrigin.ref_indexやreturned_refs indexをu/rへ流用しない。",
         "condition_j_and_v": "jは原CoreKindObligation.condition_refs内のRefOperand.operand_index。vはそのcondition Refに既存F03が結んだvalidation_input.conditionsの実RecordOccurrence.origin.index。要求Ref位置と取得record位置を同一視しない。",
         "present_read_value": "Cause.left/right内の各Read.present.valueはそのRead.locationが指す同一rootの実原JSON node全体を無変換でcopyする必須値。Cause例中のlocationだけからvalueを省略したまま返さない。Absent.parent_valueとUnreached.reached_valueも同じく実親/実到達node全体をcopyし、実観測がない枝はRead形を発明しない。normative_literal.valueだけは本L5の固定規範値であり、入力Readへ偽装しない。",
-        "source_body_checks": "source_observation_indicesは既存F03の全対応source occurrenceをその実local index順に結ぶ。body_occurrencesの実body-entry対応はF04から書き、BodyOccurrence.checksはsource_material_leaf_writer_contract/body_occurrence_leafで明示した[]を使う。source/qualification/rootの全checkは同じValidationSourceObservationへ保持し、OwnerBinding CheckLinkから辿る。BodyOccurrence.checks=[]はpayload対応又は資格成功の意味ではなく、bodyのref/payloadの原Read・Relation・Causesは独立して保存する。"
+        "source_body_checks": "source_observation_indicesは既存F03の全対応source occurrenceをその実local index順に結ぶ。body_occurrencesの実body-entry対応はF04から書き、BodyOccurrence.checksはsource_material_leaf_writer_contract/record_and_body_occurrence_leafで明示した[]を使う。source/qualification/rootの全checkは同じValidationSourceObservationへ保持し、OwnerBinding CheckLinkから辿る。BodyOccurrence.checks=[]はpayload対応又は資格成功の意味ではなく、bodyのref/payloadの原Read・Relation・Causesは独立して保存する。"
       },
       "cause_propagation_order": {
         "field_owner": "FieldOwnerResult.causesはselection/raw operand/source/body/owner生成原因→projection生成原因→definition evidence/summary生成原因→value summary生成原因の順に各段階で生成した原因を一回ずつ置く。通常のD0/V0 patternではV0→D0。F13のU0は各recipient rowから独立生成せず、同fieldに対する未完scopeが一つ未形成の場合はそのfield scopeのCause一件を作る。該当fieldの各recipient rowのunfinished_refs.unformed.causes及びRecipientMaterial.causesへ同一Causeをcopyし、FieldOwnerResult.causes末尾へ生成元一回だけ追加する。",
@@ -14281,7 +14307,7 @@
       },
       "remaining_and_nonclaims_ja": [
         "実reader/writer/意味算法/codec/validator/test/CIの実装又は実行はしていない。全F05実装完了/native producer受入とはしない。",
-      "正常旧rawのdefinition_refsに対応する原meaning全体はnative_definition_wholeの定義内容基底として保持する。ただし明示field_definition_evidenceの個別判断又はproduct_valueのrole/form/value_role宣言を供給したものにはせず、旧logical known期待からその根拠を逆生成しない。新normal oracleの全raw/ValidationDetailedReturn/owner body/全Cause出力は別に閉じる必要があり、ここで過去fixtureの意味を遡及変更しない。",
+        "正常旧rawのdefinition_refsに対応する原meaning全体はnative_definition_wholeの定義内容基底として保持する。ただし明示field_definition_evidenceの個別判断又はproduct_valueのrole/form/value_role宣言を供給したものにはせず、旧logical known期待からその根拠を逆生成しない。新normal oracleの全raw/ValidationDetailedReturn/owner body/全Cause出力は別に閉じる必要があり、ここで過去fixtureの意味を遡及変更しない。",
         "RecipientMaterialの各Formationは出典が選定できるかの状態で、BRAIN/HARNESS008/HARNESSの実資格、送達、Backflow/ticket又は受理を成立させない。元owner/reason/unfinished参照を作れない枝はunformedとその実basis causeを残す。",
         "field/proposal当該未完義務scope、knowledge版不足の独立原命題→BRAIN、application contract不整合のtyped根拠、非null reentry参照先/consumer、B019/030の実typed接続/数値全返却、実root/custody/qualification取得口は未閉包のまま。global Ref保全から局所scopeを割当てない。",
         "source/body/root準備が未閉包なだけで既存有効missing/unknown/conflict又はformed positiveを常にunformedへしない。N0は既存comparisonが要求するtargeted FieldCheckProjectionの未形成に限る。"
@@ -14289,7 +14315,7 @@
     },
     "source_material_leaf_writer_contract": {
       "id": "HARNESS-L5-009-F05-SOURCE-MATERIAL-LEAF-WRITER",
-      "scope_ja": "F03/F04/F05/F07/F16の既存閉型へ、実field content operandからRecordOccurrence・body・owner・projection・ReturnLinkを同一walkで書くleaf選択を追補する。既存Role/qualification/source/body/summary意味とF05 request shapeを変えず、type/ledger数も増やさない。",
+      "scope_ja": "F03/F04/F05/F07/F16の既存閉型へ、実field content operandからRecordOccurrence・body・owner・projection・ReturnLinkを同一walkで書くleaf選択を追補する。既存Role/qualification/source/body/summary意味とF05 request shapeを保持する。本PR全体では既存2型を変更し内部2型を追加して139型から141型へ、leaf ledgerは28行を保持する。各差分はexisting_type_and_writer_changesへ記録する。",
       "source_basis": [
         {
           "l4_objects": [
@@ -14373,7 +14399,7 @@
       "return_link_leaf": {
         "record_link": "ProjectionAttempt.record_linkは当該operandに格納された実RecordOccurrenceへ向ける。",
         "native_basis_links": "native_definition_whole.operand_linkは実RefOperandへ向ける。ProjectionBasis.owner_binding_linksとProjectionAttempt.owner_binding_linksは当該RecordOccurrence.owner_bindingsの実全entryへ向け、同じroot=f05_returnを使う。",
-      "aggregate_projection_links": "形成済みaggregate枝のRoleMaterial.aggregate.value.projection_linksは各実形成ProjectionAttemptのresult.value nodeへ向ける。unformed result、basis、attempt containerへ代替linkしない。実walkでlink先が存在しないときはリンクを作らず既存unformedを保持する。",
+        "aggregate_projection_links": "形成済みaggregate枝のRoleMaterial.aggregate.value.projection_linksは各実形成ProjectionAttemptのresult.value nodeへ向ける。unformed result、basis、attempt containerへ代替linkしない。実walkでlink先が存在しないときはリンクを作らず既存unformedを保持する。",
         "pointer_namespace": "ReturnLink.pointerはroot=f05_returnに対するRFC6901 pointerで、OwnerMaterial.evaluatedはtag値であってpath memberではない。field result例は/owner_material/field_results/f/value/...。各f/operand/record/body/attempt/owner-binding indexは実格納配列のlocal index。再lookup、tag名挿入、別sortで作らない。ComparisonLinkはF15/F16の実formed Comparison output memberに限り、unformed Comparisonから配列indexやlinkを作らない。",
         "normal_definition_path_ja": "固定normal fixtureのfield result 0・definition operand 0・semantic_records[9]の例に限る実格納pathは、RecordOccurrence=/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0、RefOperand=/owner_material/field_results/0/value/definition_material/operands/0/operand、OwnerBinding=/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/owner_bindings/0、formed ProjectedValue=/owner_material/field_results/0/value/definition_material/operands/0/projection_attempts/0/result/value。これらの数字はこの固定normalの格納位置であり全入力定数ではない。"
       },
@@ -14438,13 +14464,14 @@
         },
         {
           "id": "field_summary_unformed_without_recipient_statement",
-          "guard_ja": "個別recipient根拠が無く、fieldのdefinition又はvalue assessmentがunformed。",
+          "guard_ja": "field全体ではなく各assessmentを独立単位とする。当該definition又はvalue assessmentがunformedで、その同じassessmentについて個別recipient根拠が無い場合に、そのassessmentのunresolved行を一件作る。反対側assessmentの形成済みrecipient根拠はこのguardを抑止しない。",
           "recipient": "unresolved",
-          "row_order": "元definition assessmentの行を先、次に元value assessmentの行。複数実statementは独立行で保持。",
+          "row_order": "definition側の実根拠行又は未形成行を先、次にvalue側の実根拠行又は未形成行。各側はその元assessmentに対応する実材料を使用し、複数実statementは独立行で保持する。",
           "subject_and_basis": "元field.ref、該当実assessment.judgment、次に該当RoleMaterialへのReturnLink。未存在evidence/attempt linkを作らない。",
           "original_owner_reason": "当該assessmentの実原因列を元owner/reason Formationのunformed.causesへ保持する。通常D0行はD0、V0行はV0。content ownerを未供給recipient根拠のownerとしない。",
           "unfinished": "U0 unformed。global義務wholeはObligationMaterialへ別保持。",
-          "causes": "該当assessment原因列→U0。未形成の保持であり新しいdomain不足判断ではない。"
+          "causes": "該当assessment原因列→U0。未形成の保持であり新しいdomain不足判断ではない。",
+          "mixed_example_ja": "definition側に明示absenceのBRAIN行が形成されvalue assessmentだけがunformedなら、definition側BRAIN行を保持しvalue側unresolved行も返す。definition側unresolved行を追加せず、BRAIN行をvalue側の根拠へ転用しない。U0は同field scopeで一回生成して各該当rowへcopyする。"
         },
         {
           "id": "gap_interpretation_with_original_statement",
@@ -14725,7 +14752,7 @@
       },
       "remaining_and_nonclaims": [
         "本追補はsource/pointer/hash/固定原値照合とJSON著述のみ。実reader/writer/意味算法/validator/codec/製品test/CIを実装実行していない。全owner返却又は正常full-return oracleの成立を宣言しない。",
-        "ObligationOrigin.record_detailsにcondition_refs/reentry_refの原Read/operandを結ぶ保管先はこの追補で定義したが、非空義務/condition RecordOccurrenceのsource/body lookup、qualification、意味role別owner_bindings、owner Cause/trace全値と実source observation indexの同call対応は別の未閉包範囲。存在するsource/bodyからsource local usable又は実trust成功を捏造しない。",
+        "ObligationOrigin.record_detailsにcondition_refs/reentry_refの原Read/operandを結ぶ保管先を定義し、condition_reentry_materialization/condition_recordは既存F03/F04規則へsource/body lookupと実source observation indexの返却local対応を結ぶ。今回の有限normal oracleもそのcondition RecordOccurrenceを行使する。実取得・資格・意味role別owner bindingの全入力領域、実same-call観測及び非null reentryの参照先/consumerは未閉包のまま。原source/bodyの存在又は静的期待からsource local usable又は実trust成功を生成しない。",
         "旧normal rawは新field_definition_evidence又はproduct_value宣言を供給したものではない。旧known期待から新宣言を逆算しない。本collection namespace追補ではこのrawについてsummary Cause/stateを選定しない一方、field_summary_and_custody_writer_contractのD0/V0/N0/U0は各明示guardが成立する別の有限入力でのCause技術選定である。個別evidence/投影の全入力領域と正常field owner全期待は別残務。",
         "recipient_and_obligation_contract/obligation_scope_boundaryのfield/proposal当該未完scope、knowledge_revision_gap_boundaryのknowledge版不足→BRAIN根拠取得/typed返却、B019/030の具体typed接続及び既存caller投影frontierは維持する。全KindTrace Refのglobal保存だけでそれらを完成としない。"
       ]
