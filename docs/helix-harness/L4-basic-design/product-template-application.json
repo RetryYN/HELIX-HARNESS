@@ -4396,7 +4396,8 @@
       "compare_requirement_gapsの詳細返却はcomparisonの形成/未形成とowner_material wholeを同walkで実返却する。正のsource照合観測は/f05_validation_material_call_contractの同fn0私有全返却から実callerが取得して実引数へ渡し、旧Contextから再構成しない。原Context形成とheader形成を分け、原input/Binding未形成ではComparison.input_bindingを捏造しない。元Context-only wrapperを不変に維持できるとは主張せず、内部originを保持するだけでもconsumer受け渡し成立としない。",
       "CORE caller実context/返却へpayload/reason/presence/根拠/原義務を運ぶtyped outputをL5/L8で閉じる。B019 core_field_value_contextと030 Definition/ProductValueのquery/field/knowledge版への具体crosswalkは各独立pairの残務とし、本節を追加して成立済みにしない。",
       "旧normal/ADD16の原input/旧期待はe4410407の固定歴史資料として保持する。旧rawに無い定義根拠/値宣言/原命題を遡って存在させず、同rawの未形成と根拠を持つ新正常を独立期待として区別する。旧known保存のための無宣言fallbackはしない。",
-      "実source/owner資格/実provider/認可/配送/OS記録/codec/runtime/CI/実受入/全92親430義務の成立を認定しない。"
+      "実source/owner資格/実provider/認可/配送/OS記録/codec/runtime/CI/実受入/全92親430義務の成立を認定しない。",
+      "field当該未完scopeの選択可能な原body/source/owner対応とglobal原Ref保管の区別は/field_obligation_scope_contractを参照。新profileを全案件必須gateにせず、nativeOrigin全型/writer/oracleはL5/L8で別に閉じる。"
     ],
     "legacy_preserve_change": {
       "legacy_sources": [
@@ -4809,5 +4810,477 @@
       "旧normal/ADD16のraw/旧期待は固定歴史として保持し、同rawの未形成と新原根拠を持つ正常を後続oracleで分ける。旧knownを維持する無宣言fallbackはしない。",
       "新gate/全inventory/全source/全axis完備/人間承認手続は追加しない。実source資格、reader/writer全leaf、実装/test/CI/実受入、全F05及び全92親430義務の閉包/実装準備成立は未認定。"
     ]
+  },
+  "field_obligation_scope_contract": {
+    "id": "HARNESS-L4-009-F05-FIELD-OBLIGATION-SCOPE",
+    "requirement_ref": "HARNESS-L3-009-F05",
+    "system_oracle_ref": "HARNESS-L10-009-F05",
+    "paired_verification_ref": "HARNESS-L9-009-F05-FIELD-OBLIGATION-SCOPE",
+    "status": "candidate",
+    "authority_effect": "既承認F05の原field/obligation/unfinished/scope保持の技術表現。新未完定義/裁定権/owner/承認gate/実trustを追加しない。",
+    "source_basis": [
+      {
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/27",
+            "canonical_sha256": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54"
+          }
+        ],
+        "authority_scope": "HDEC承認対象のF05 selected objectだけを上流意味根拠とする。現在file全体の承認継承を宣言しない。"
+      },
+      {
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c",
+        "selected_objects": [
+          {
+            "pointer": "/cases/27",
+            "canonical_sha256": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d"
+          }
+        ],
+        "authority_scope": "HDEC承認対象のF05 selected objectだけを上流意味根拠とする。現在file全体の承認継承を宣言しない。"
+      },
+      {
+        "revision": "5671be77cc8d9b3902f1c7aaccbf2315cb7ab64d",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "sha256": "4a4e8b68f5096198d1809b850f552c6412af62f60bc16bffd60710880233f888",
+        "role": "固定base5671基本source（現在mainのbindingとは区別）。これを新節採用済みと扱わない。"
+      },
+      {
+        "revision": "5671be77cc8d9b3902f1c7aaccbf2315cb7ab64d",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "sha256": "fe261105f9e235dce839a79292da268a9eb6d5391b3a59ae84cd85e610313d95",
+        "pointers": [
+          "/f05_detail_contract/recipient_and_obligation_contract/obligation_scope_boundary",
+          "/f05_detail_contract/recipient_leaf_writer_contract/unfinished_scope_unformed",
+          "/f05_detail_contract/types/ObligationOrigin"
+        ],
+        "role": "現scope不足/原U0/legacy形のsource。新union採択済みでない。"
+      }
+    ],
+    "upstream_refs": [
+      "/field_source_materialization_contract",
+      "/field_semantic_evidence_contract"
+    ],
+    "carrier": {
+      "field_kind": "field_unfinished_obligation_scope",
+      "wrapper": "既存SemanticRecord ref/binding/kind/meaning/source_ref。meaning原wholeからFieldScopeBodyの5memberを型付き投影する。meaning wholeとclosed5memberは同形としない。optional原reason/reentry_conditionはその投影外でReadとしてpresence/原値を保ち、その存在をbody型外としない。その他追加memberのrawwholeは保持するが、本profileの意味operandへ自動追加せず、意味解釈や裁定根拠にしない。既存SourceEnvelopeの同collection/ref/payloadへsource_refだけ外付けして全原対応。ApplicationInput top-level/FieldInput required追加無し。",
+      "optional_original_members": [
+        "reason",
+        "reentry_condition"
+      ],
+      "selection_boundary": "scope原profileは選択可能。profile無しを[]/成功にせずU0、known outsideのrawfield/既知別scopeは原値を保ち新評価しない。型増加だけでscope確定の裁定権を増やさない。"
+    },
+    "field_body_required": {
+      "binding": "ApplicationBinding",
+      "field_ref": "Ref",
+      "template_ref": "Ref",
+      "unfinished_obligation_refs": "Ref[]",
+      "basis_refs": "Ref[]"
+    },
+    "role_owner_binding": {
+      "reuse": "/field_semantic_evidence_contract/role_owner_binding/common のsource-wrapper共通条件と既存局所資格責務を保持。",
+      "eligible_operands": [
+        "当該元field.ref",
+        "当該Field Selectionの実policy index/fullRef/template/binding対応が成立した原ApplicationPolicy.ref各出現",
+        "当該元field.binding.application_contract_ref"
+      ],
+      "operand_order": [
+        "field.ref",
+        "selected_policy.ref 原出現順",
+        "field.binding.application_contract_ref"
+      ],
+      "combination": "source_wrapper共通AND、役割候補OR。既知共通differentはpositiveで相殺せず、全原Ref/owner/presenceを保存。本文の当該field/fullbinding/template/原義務対応が独立必要。",
+      "technical_choice": "このfield関係owner候補の閉集合は既存F05の唯一記述済み規則ではなく、元field identity/trace、policyの適用/義務意味、適用contractの原関係owner責務から本節で選ぶ技術差分。原sourceが示す関係だけを使い、新selector/必要集合/消込を発明しない。",
+      "limits": "BRAIN/定義owner/値owner/caller名や資格成功だけへfallbackしない。原関係owner不明/端未取得は局所未形成。nullable端を実authorityへ昇格せず既存rawnull/presenceを保持。"
+    },
+    "guards_and_order": [
+      "元field/Scope声明Ref/Binding/template/source/body/qualification/関係ownerの全原端を同snapshotへ対応。kind/同名keyだけでは支持しない。",
+      "原unfinishedRef列を実Ref[]として読む。明示[]だけを空列の原命題とし、null/absent/型外は原Readとbody_unformed。",
+      "各Refの原raw義務/source/body/condition/reentryを保管し、globalKindTrace/原proposalの各全Ref/順/反復を独立保持する。scope関係から新義務集合/完了stateを生成しない。",
+      "全samefield profile/source/body出現を原順で保持。同値支持も全Read/全originを保持し、型付き配列同値が全支持に成立した時だけ先頭実Readを表示代表にする。異なる有効列はaggregation_unestablished、sameRef異本文はstatement_source_conflict。",
+      "不成立/未取得は当該field/profile/sourceへ局所化。別field/別template成功で相殺せず、有効なknown/missing/unknown/conflictをscope不成立だけで書換えない。"
+    ],
+    "proposal_preservation": "元GapProposalの自己宣言unfinished列Readをそのまま保持し、新field profileをproposalの必須gateにしない。qualified field_gap_propositionの共通field/proposal/subject/fullbinding/unfinished対応は既存規則で別に保持するが、proposal列をfield全scopeへ昇格しない。",
+    "global_retention": "global原Ref保管とfield-local scopeは別。globalKindTraceを各fieldへ全copyせず、scope[]/候補分類/兄弟成功でglobalRefを消さない。",
+    "basic_view_contract": {
+      "is_product_input": false,
+      "C": "同F05の元validated/二producer全返却/前段資料の同call parameter。値は本finite viewで未束縛、実trust証明でない。",
+      "fixture_input": "{raw:元ApplicationInput全値,global_refs:同Cの原global保管Ref列fragment}。test著述用viewでApplicationInputへglobal_refsを追加しない。",
+      "return_type": "ScopeReturn",
+      "index_domain": "ScopeOccurrence/QualificationViewのNatural実indexはこの有限viewで各原record/source/body/qualification/root出現が供給され特定済みの範囲を表す。lookup欠落/複数全域の正式返却型ではない。未供給に0/nullを補完せず、その未行使範囲のraw/局所原因をnative詳細で保持する義務を残す。",
+      "type_language": "closed_recordは全member必須/宣言外無し、tagged_unionはtag値の枝memberのみ、Read/Formationは下記閉型。JSONValue/Natural/JSONPointer/Ref/Binding等は既存logical型を参照。nativeCoreNumber/Read/新Originunionへ無断castしない。",
+      "types": {
+        "Location": {
+          "kind": "closed_record",
+          "members": {
+            "root": "literal:fixture_input",
+            "pointer": "JSONPointer"
+          }
+        },
+        "Read<T>": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "present": {
+              "location": "Location",
+              "value": "T"
+            },
+            "absent": {
+              "requested": "Location",
+              "parent": "Location",
+              "parent_value": "JSONValue"
+            },
+            "unreached": {
+              "requested": "Location",
+              "reached": "Location",
+              "reached_value": "JSONValue"
+            }
+          }
+        },
+        "Operand": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "original": {
+              "read": "Read<JSONValue>"
+            },
+            "normative_literal": {
+              "value": "JSONValue",
+              "rule_pointer": "JSONPointer"
+            }
+          }
+        },
+        "Cause": {
+          "kind": "closed_record",
+          "members": {
+            "kind": "enum:input_unobserved|target_unformed|source_unresolved|source_unusable|source_body_mismatch|body_unformed|target_mismatch|owner_binding_unestablished|owner_mismatch|statement_source_conflict|content_unresolved|proposition_operand_unresolved|constraint_mismatch|aggregation_unestablished",
+            "target": "Location",
+            "left": "Operand",
+            "right": "Operand",
+            "rule_pointer": "JSONPointer"
+          }
+        },
+        "Formation<T>": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "formed": {
+              "value": "T"
+            },
+            "unformed": {
+              "causes": "Cause[]"
+            }
+          }
+        },
+        "FieldScopeBody": {
+          "kind": "closed_record",
+          "members": {
+            "binding": "ApplicationBinding",
+            "field_ref": "Ref",
+            "template_ref": "Ref",
+            "unfinished_obligation_refs": "Ref[]",
+            "basis_refs": "Ref[]"
+          }
+        },
+        "ProposalScopeBody": {
+          "kind": "closed_record",
+          "members": {
+            "binding": "ApplicationBinding",
+            "field_ref": "Ref",
+            "template_ref": "Ref",
+            "proposal_ref": "Ref",
+            "subject_ref": "Ref",
+            "unfinished_obligation_refs": "Ref[]",
+            "basis_refs": "Ref[]"
+          }
+        },
+        "RolePair": {
+          "kind": "closed_record",
+          "members": {
+            "operand_role": "enum:field.ref|selected_policy.ref|field.binding.application_contract_ref",
+            "operand_ref": "Read<Ref>",
+            "operand_owner": "Read<JSONValue>",
+            "relation": "Relation",
+            "causes": "Cause[]"
+          }
+        },
+        "OwnerView": {
+          "kind": "closed_record",
+          "members": {
+            "wrapper_owner": "Read<JSONValue>",
+            "source_owner": "Read<JSONValue>",
+            "source_wrapper_relation": "Relation",
+            "role_pairs": "RolePair[]",
+            "result": "Relation",
+            "causes": "Cause[]"
+          }
+        },
+        "OwnerObservation": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "evaluated": {
+              "value": "OwnerView"
+            },
+            "not_evaluated": {
+              "reason": "literal:outside_or_unestablished_target"
+            }
+          }
+        },
+        "QualificationView": {
+          "kind": "closed_record",
+          "members": {
+            "qualification_index": "Natural",
+            "qualification_read": "Read<Qualification>",
+            "root_index": "Natural",
+            "root_read": "Read<Ref>",
+            "relation": "Relation",
+            "causes": "Cause[]"
+          }
+        },
+        "RefOperandView": {
+          "kind": "closed_record",
+          "members": {
+            "ref_index": "Natural",
+            "ref_read": "Read<Ref>",
+            "record_reads": "Read<KindObligation>[]",
+            "causes": "Cause[]"
+          }
+        },
+        "ScopeInterpretation": {
+          "kind": "closed_record",
+          "members": {
+            "body_occurrence_index": "Natural",
+            "judgment": "Formation<Read<Ref[]>>",
+            "causes": "Cause[]"
+          }
+        },
+        "ScopeOccurrence": {
+          "kind": "closed_record",
+          "members": {
+            "semantic_record_index": "Natural",
+            "source_index": "Natural",
+            "body_index": "Natural",
+            "record_read": "Read<SemanticRecord>",
+            "source_read": "Read<SourceEnvelope>",
+            "body_entry_read": "Read<JSONValue>",
+            "meaning_read": "Read<JSONValue>",
+            "refs_read": "Read<JSONValue>",
+            "target_field_indices": "Natural[]",
+            "evaluated_field_indices": "Natural[]",
+            "qualification": "QualificationView",
+            "body": "Formation<FieldScopeBody>",
+            "owner_binding": "OwnerObservation",
+            "unfinished_operands": "RefOperandView[]",
+            "interpretations": "ScopeInterpretation[]",
+            "reason_read": "Read<JSONValue>",
+            "reentry_read": "Read<JSONValue>",
+            "causes": "Cause[]"
+          }
+        },
+        "FieldResult": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "evaluated": {
+              "field_index": "Natural",
+              "field_read": "Read<FieldInput>",
+              "scope_occurrence_indices": "Natural[]",
+              "judgment": "Formation<Read<Ref[]>>",
+              "support_occurrence_indices": "Natural[]",
+              "causes": "Cause[]"
+            },
+            "raw_only": {
+              "field_index": "Natural",
+              "field_read": "Read<FieldInput>",
+              "reason": "enum:outside|unestablished",
+              "causes": "Cause[]"
+            }
+          }
+        },
+        "ProposalRelation": {
+          "kind": "closed_record",
+          "members": {
+            "record_read": "Read<SemanticRecord>",
+            "body_read": "Read<JSONValue>",
+            "body": "Formation<ProposalScopeBody>",
+            "body_refs_read": "Read<JSONValue>",
+            "relation": "Relation",
+            "causes": "Cause[]"
+          }
+        },
+        "ProposalObservation": {
+          "kind": "closed_record",
+          "members": {
+            "proposal_index": "Natural",
+            "proposal_read": "Read<GapProposal>",
+            "declared_refs_read": "Read<Ref[]>",
+            "common_relations": "ProposalRelation[]",
+            "causes": "Cause[]"
+          }
+        },
+        "ScopeReturn": {
+          "kind": "closed_record",
+          "members": {
+            "field_results": "FieldResult[]",
+            "scope_occurrences": "ScopeOccurrence[]",
+            "proposal_observations": "ProposalObservation[]",
+            "global_refs_read": "Read<Ref[]>",
+            "causes": "Cause[]"
+          }
+        }
+      },
+      "existing_logical_aliases": {
+        "Natural": {
+          "source_revision": "5671be77cc8d9b3902f1c7aaccbf2315cb7ab64d",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/type_contract/types/Natural"
+        },
+        "JSONPointer": {
+          "source_revision": "5671be77cc8d9b3902f1c7aaccbf2315cb7ab64d",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/type_contract/types/JSONPointer"
+        },
+        "Ref": {
+          "source_revision": "5671be77cc8d9b3902f1c7aaccbf2315cb7ab64d",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/type_contract/types/Ref"
+        },
+        "ApplicationBinding": {
+          "source_revision": "5671be77cc8d9b3902f1c7aaccbf2315cb7ab64d",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/type_contract/types/ApplicationBinding"
+        },
+        "FieldInput": {
+          "source_revision": "5671be77cc8d9b3902f1c7aaccbf2315cb7ab64d",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/type_contract/types/FieldInput"
+        },
+        "Qualification": {
+          "source_revision": "5671be77cc8d9b3902f1c7aaccbf2315cb7ab64d",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/type_contract/types/Qualification"
+        },
+        "KindObligation": {
+          "source_revision": "5671be77cc8d9b3902f1c7aaccbf2315cb7ab64d",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/type_contract/types/KindObligation"
+        },
+        "SemanticRecord": {
+          "source_revision": "5671be77cc8d9b3902f1c7aaccbf2315cb7ab64d",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/type_contract/types/SemanticRecord"
+        },
+        "SourceEnvelope": {
+          "source_revision": "5671be77cc8d9b3902f1c7aaccbf2315cb7ab64d",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/type_contract/types/SourceEnvelope"
+        },
+        "GapProposal": {
+          "source_revision": "5671be77cc8d9b3902f1c7aaccbf2315cb7ab64d",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/type_contract/types/GapProposal"
+        }
+      },
+      "logical_primitives": {
+        "JSONValue": "null|boolean|number|string|JSONValue[]|map<string,JSONValue>。論理JSONでありnativeCoreNumberへの構築又はcastを主張しない。",
+        "Relation": "enum:corresponding|different|unestablished"
+      },
+      "cause_vocabulary_source": "/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+      "cause_vocabulary": [
+        "input_unobserved",
+        "target_unformed",
+        "source_unresolved",
+        "source_unusable",
+        "source_body_mismatch",
+        "body_unformed",
+        "target_mismatch",
+        "owner_binding_unestablished",
+        "owner_mismatch",
+        "statement_source_conflict",
+        "content_unresolved",
+        "proposition_operand_unresolved",
+        "constraint_mismatch",
+        "aggregation_unestablished"
+      ],
+      "cause_semantics": "既存14語の意味/局所性を保持する。source未取得/不成立、body/target/owner未形成、同Refsource相反と異なる有効scope列集約を分ける。候補scope事実からdomain定義missing/値unknown/NA/完了を発明しない。",
+      "projection_boundary": "ScopeReturnはこの有限基本viewの全member/leaf。元C/native SourceCheck/InputIssue/全Comparison/全F05wholeは返却typeに偽のnull/{}を置かず別の未束縛symbolic義務として保持する。"
+    },
+    "cause_patterns": {
+      "scope_unestablished": {
+        "kind": "aggregation_unestablished",
+        "right": {
+          "value": "original field-specific unfinished obligation scope"
+        },
+        "meaning": "原scope支持未供給。global配列をfieldへcastせず、元globalRef viewと局所対象を保持。"
+      },
+      "source_unusable": {
+        "kind": "source_unusable",
+        "right": {
+          "value": "local source qualification corresponding"
+        },
+        "meaning": "Cの同fn0局所資格関係が不成立。原q.owner/source.owner左右を保持し、実trustと分ける。"
+      },
+      "owner_mismatch": {
+        "kind": "owner_mismatch",
+        "right": {
+          "value": "corresponding original scope relationship owner"
+        },
+        "meaning": "既存原関係owner候補とsourceOwnerが全既知差。BRAIN/定義owner/callerをfallbackにしない。"
+      },
+      "body_unformed": {
+        "kind": "body_unformed",
+        "right": {
+          "value": "Ref[]"
+        },
+        "meaning": "必要原列null/欠落/型外。rawReadを保持して[]へdefaultしない。"
+      },
+      "content_unresolved": {
+        "kind": "content_unresolved",
+        "right": {
+          "value": "original obligation operand"
+        },
+        "meaning": "原Refのraw義務取得不足。実探索列をCause右へ保存し架空index無し。"
+      },
+      "aggregation_unestablished": {
+        "kind": "aggregation_unestablished",
+        "right": {
+          "value": "same original scope columns"
+        },
+        "meaning": "qualified有効列の原値相反を両Readで保持。"
+      },
+      "statement_source_conflict": {
+        "kind": "statement_source_conflict",
+        "right": {
+          "value": "same original statement source"
+        },
+        "meaning": "sameRef異本文を全原source/Readと保持。"
+      },
+      "proposal_scope_mismatch": {
+        "kind": "target_mismatch",
+        "right": {
+          "value": "same original proposal scope"
+        },
+        "meaning": "元proposal自己宣言列と対応body列の差。両原列を保持し修復union無し。"
+      }
+    },
+    "native_detail_frontier": {
+      "proposal": "既存ObligationOrigin legacy閉shapeと新scope_source/scope_assessmentをclosed_shape_unionへする案はL5/L8の技術候補。旧whole不変の条件/同値全Read・原因移送・原namespaceをそこで閉じる。L4本節は採用済みnative型を主張しない。",
+      "unclosed": [
+        "native全leaf writer/oracleとclosed_shape_union採択",
+        "新9sourceValidation/同snapshot前段全wholeとP1/P2",
+        "knowledge版不足/非nullreentry/B019030/実trust"
+      ]
+    },
+    "legacy_preserve_change": {
+      "sources": "既存field_semantic_evidence_contract/source_basis及びf05_detail_contract/legacy_and_failure_bindingでpinした旧L4/L5 JSONauthority、UTW014/020/021を直接照合。",
+      "preserve": "原field/obligation束縛、意味owner/trace/reentry、全source/版/scope、未取得/相反/部分原因。",
+      "change": "現carrier上へ局所原scope bodyと基本finite viewを追加する。旧registry/runtime/自由文predicateを移植しない。",
+      "reason": "globalRefだけではfield当該scopeを一意に保てずU0が残った実不足を解く。上流意味/新gateを失敗文言から生成しない。"
+    }
   }
 }
