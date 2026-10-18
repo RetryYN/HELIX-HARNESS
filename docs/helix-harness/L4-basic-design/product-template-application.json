@@ -2060,7 +2060,7 @@
                 "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
                 "source_revision": "legacy-generation-2026-09-14",
                 "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
-                "lines": "34–60,80–92",
+                "lines": "36–60,81–92",
                 "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
                 "consumer_lines": "34–44,46–59",
                 "consumer": "ApplicabilityEvaluatorが要求atom・obligation等を受けて適用判定し、Portfolio/PairGraph等が後続成果へつなぐ旧責務。F03で関連する利用側は現行L5 compare_applicabilityとpolicy出現位置ごとの決定。",
