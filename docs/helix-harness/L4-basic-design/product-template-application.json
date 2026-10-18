@@ -6387,5 +6387,237 @@
       "入力版出現の判断を利用認可/全域availability/本文integrity成功に昇格しない。実source起源・fn0/producer実行・配送・実受入は未成立。",
       "field実index未特定時の3operandはFieldOperandRead.field_lookup_unestablishedで原collection/全候補/lookup条件を保持する。既存Readのrequested leafを捏造しない。今回のlookup no-match/multiple全期待以外の原target/collection未形成・同時相反・native到達可能性全域は未行使のまま。"
     ]
+  },
+  "selected_brain_source_occurrence_contract": {
+    "id": "HARNESS-L4-009-BRAIN-SOURCE-OCCURRENCE",
+    "requirement_refs": [
+      "HELIXBRAIN-L3-032-F01",
+      "HARNESS-L3-009-F01",
+      "HARNESS-L3-009-F05"
+    ],
+    "system_oracle_refs": [
+      "HELIXBRAIN-L10-032-F01",
+      "HARNESS-L10-009-F01",
+      "HARNESS-L10-009-F05"
+    ],
+    "scope": "元のSupplyInput.sourcesに存在する一つの明示occurrenceを、同一適用呼出しで明示されたApplicationInput.sourcesの一つのdestination occurrenceへ受け渡す際の基本設計。全BRAIN供給内容、template/query/source relation、資格記録の転送、ApplicationInput全体の組立ては対象外。",
+    "authority_effect": "既決L3/L10の意味を変更せず、新しい上流義務、採否、受領完了、資格、gateを作らない。BRAIN032のF01は汎用15項目を識別する契約であり、原source bodyをSupplyAnalysisへ返す義務を追加しない。CORE009 F01/F05の承認範囲に従い、ここでは既存入力間の選択source occurrenceを具体化する。",
+    "operation_effect": "設計上の一対一projection記述。新public field/API、resolver、producer、資格issuer、状態機械、永続化を定義しない。",
+    "source_basis": [
+      {
+        "kind": "normative_requirement_identity_and_boundary",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "revision": "5466a3d9343b0a153e2a7af6a0f6466efe77b86f",
+        "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/0",
+            "canonical_sha256": "ebc2da3936a606c23ff1c2e08eefd549eb99d2cb51e45cc17e4cd003663cda35",
+            "object_id": "HELIXBRAIN-L3-032-F01"
+          }
+        ],
+        "authority_basis": {
+          "decision_record_id": "HDEC-BRAIN-TEMPLATE032-PREREQUISITE-L3L10-2026-10-12",
+          "approved_reviewed_content_head": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+          "approved_functional_requirements_sha256": "60c3b75be3b240112bf5e0dc616c2d8566b419122f32bb16a00df347f1012507",
+          "approved_selected_object_canonical_sha256": "ebc2da3936a606c23ff1c2e08eefd549eb99d2cb51e45cc17e4cd003663cda35",
+          "boundary": "汎用項目の候補提供とHARNESSが定める層/対/設計義務を混同しない。source bodyをSupplyAnalysisの返却義務として新設しない。"
+        }
+      },
+      {
+        "kind": "paired_oracle",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "revision": "5466a3d9343b0a153e2a7af6a0f6466efe77b86f",
+        "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+        "selected_objects": [
+          {
+            "pointer": "/cases/0",
+            "canonical_sha256": "ee86fd3f61e9252dbc07b2d92b6dbb571820e7cf3cf4fcfefe2941333cedffd2",
+            "object_id": "HELIXBRAIN-L10-032-F01"
+          }
+        ],
+        "authority_basis": {
+          "decision_record_id": "HDEC-BRAIN-TEMPLATE032-PREREQUISITE-L3L10-2026-10-12",
+          "approved_reviewed_content_head": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+          "approved_functional_verification_sha256": "bb8af60e15b7c6bc6069d4e89cd6e0dae7b3a18f27615c7964e5558627c2b437",
+          "boundary": "BRAINの15項目の識別/意味のoracle。COREへのsource配送自体をoracle化しない。"
+        }
+      },
+      {
+        "kind": "normative_requirement",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "5466a3d9343b0a153e2a7af6a0f6466efe77b86f",
+        "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/23",
+            "canonical_sha256": "0955af985adf56ca021309bfb52a65ea171a2f93d3d4c5aa575c837f8e3612c7",
+            "object_id": "HARNESS-L3-009-F01"
+          },
+          {
+            "pointer": "/requirements/27",
+            "canonical_sha256": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54",
+            "object_id": "HARNESS-L3-009-F05"
+          }
+        ],
+        "authority_basis": {
+          "decision_record_id": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
+          "approved_reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+          "approved_functional_requirements_sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1",
+          "approved_selected_object_canonical_sha256_by_pointer": {
+            "/requirements/23": "0955af985adf56ca021309bfb52a65ea171a2f93d3d4c5aa575c837f8e3612c7",
+            "/requirements/27": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54"
+          },
+          "boundary": "F01は選択時の要求/適用契約/source軸を照合し、F05はsource/revision/return先/未完義務を保持する。本文の転送方法/資格の意味はこの要求から追加しない。"
+        }
+      },
+      {
+        "kind": "paired_oracle",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "revision": "5466a3d9343b0a153e2a7af6a0f6466efe77b86f",
+        "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+        "selected_objects": [
+          {
+            "pointer": "/cases/23",
+            "canonical_sha256": "15a2f858c81c6bd7d592723e5c0670fdcb263e5f952e1e01955ba034b15b0fad",
+            "object_id": "HARNESS-L10-009-F01"
+          },
+          {
+            "pointer": "/cases/27",
+            "canonical_sha256": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d",
+            "object_id": "HARNESS-L10-009-F05"
+          }
+        ],
+        "authority_basis": {
+          "decision_record_id": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
+          "approved_reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+          "approved_functional_verification_sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c",
+          "approved_selected_object_canonical_sha256_by_pointer": {
+            "/cases/23": "15a2f858c81c6bd7d592723e5c0670fdcb263e5f952e1e01955ba034b15b0fad",
+            "/cases/27": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d"
+          },
+          "boundary": "固定されたF01/F05負例を参照する。実配送・実資格の合格証拠ではない。"
+        }
+      },
+      {
+        "kind": "observed_carrier",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "5466a3d9343b0a153e2a7af6a0f6466efe77b86f",
+        "sha256": "f8a953cc2348f4ef9e42fb14bb8b90b3303d3b020afc3e54bc1727e6d0e4d448",
+        "selected_objects": [
+          {
+            "pointer": "/type_contract/types/SupplyInput/fields/sources",
+            "canonical_sha256": "5ff36c7c6dfc69d67ce7847faaff33f968825b73194639824af0e62259cc104f",
+            "object_id": null
+          },
+          {
+            "pointer": "/type_contract/types/QualifiedSource",
+            "canonical_sha256": "76871c1aa3ba0113e70b284ff0a7fc43eeb95621fa97a13933f869df4bd98eec",
+            "object_id": null
+          },
+          {
+            "pointer": "/type_contract/types/SupplyAnalysis",
+            "canonical_sha256": "cdeba0483f1494a705fc51f1b956c8eca6ecf7336a73ec384f23f61edf0e9bf0",
+            "object_id": null
+          },
+          {
+            "pointer": "/type_contract/types/Qualification",
+            "canonical_sha256": "f03e824202a062d8da537aa57cf2162514dcdb1a23356173a6e2285fa25b4e92",
+            "object_id": null
+          }
+        ]
+      },
+      {
+        "kind": "observed_carrier",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "5466a3d9343b0a153e2a7af6a0f6466efe77b86f",
+        "sha256": "a367ca4e60a677a6729897e8810362a2601ce68168b66ad1ba26cfe9dbc92ac8",
+        "selected_objects": [
+          {
+            "pointer": "/type_contract/types/ApplicationInput/fields/sources",
+            "canonical_sha256": "7c521fde61ec8cd3a673c4226e010450936a27ba9613d878586720fd700dc4d2",
+            "object_id": null
+          },
+          {
+            "pointer": "/wire_codec_contract/schema/$defs/SourceEnvelope",
+            "canonical_sha256": "41144b81c5dfc5837e3bd920db5d9202d26ad55611795d74cc1c3e3f639e6e7f",
+            "object_id": null
+          },
+          {
+            "pointer": "/type_contract/types/Qualification",
+            "canonical_sha256": "3af5133ad80d1a198da3d935c26bf945cc33c987c56b7cfb643a65eea35fe80b",
+            "object_id": null
+          },
+          {
+            "pointer": "/functions/0",
+            "canonical_sha256": "9467c4850e539bc7cde44447d83a9aa1746f51ec389ff0e02b3eec3cc0ee2137",
+            "object_id": "HARNESS-L5-009-validate_application_input"
+          }
+        ]
+      }
+    ],
+    "origin_and_selection": {
+      "origin": "取得元は同一呼出しを形成する既存caller/providerが保持するimmutable SupplyInput snapshot。原sourceはSupplyInput.sources内の実occurrenceである。SupplyAnalysis.source_refs/candidate_refs、診断、比較結果からcontent/content_bytes/qualificationを再生成しない。",
+      "selection": "成立を記述するには、同一callのcaller/projection contextに、原SupplyInput snapshotのidentity+revisionとzero-based `/sources/i` occurrence、および受取ApplicationInput snapshotのidentity+revisionとzero-based `/sources/j` occurrenceを一組として明示する。既存schema/public field/type/APIには追加しない。この選択関係を作る既存producer/input bindingは未特定であり、本節は選択権限や取得処理を規定しない。どれかのsnapshotが変わったとき旧pair/Analysisを継続利用せず、新snapshotの明示pairがなければ未成立。",
+      "source_analysis_boundary": "SupplyAnalysisはcandidate_refs/diagnostics/materialを返す論理型として観測される。元source bodyまたは資格レコードを返すものとして扱わない。",
+      "lineage_validation_boundary": "caller/projection contextが原SupplyInput snapshot identity/revision/indexと受取ApplicationInput snapshot identity/revision/indexを同一callで結ぶ責務境界。ただしこの関係を現在形成するnamed owner/producerは特定されていない。CORE fn0はCORE入力内source integrity/qualificationを検証するだけで、このcross-snapshot由来を検証しない。よって明示pairの存在だけでも実delivery/lineage証拠にはならない。"
+    },
+    "projection": {
+      "from": "SupplyInput.sources[i] : QualifiedSource",
+      "to": "ApplicationInput.sources[j] : SourceEnvelope",
+      "occurrence_binding": "iとjは、同一callで指定された原snapshot identity/revision/indexと受取ApplicationInput snapshot identity/revision/indexの一対一pairである。元array全体をfilter/deduplicate/reorderせず、同一Refの重複もoccurrenceごとのindexを保持する。部分projectionでcompactなappendを行って元ordinalを失わない。既存CORE fn0は入力sourceを検証するが、このBRAIN-origin selection/pair/lineageを検証しない。",
+      "field_map": [
+        {
+          "source": "ref",
+          "destination": "ref",
+          "rule": "JSON値とpresenceをそのまま保持"
+        },
+        {
+          "source": "content",
+          "destination": "body",
+          "rule": "JSON値とpresenceをそのまま保持。文字列化、JSON再parse、canonicalize、数値型変換をしない"
+        },
+        {
+          "source": "content_bytes",
+          "destination": "content_bytes",
+          "rule": "string値を完全保持する。bodyの再encodeから作らない。"
+        },
+        {
+          "source": "qualification_ref",
+          "destination": "qualification_ref",
+          "rule": "参照値とpresence/nullをそのまま保持。参照先Qualification本文をこの写像で作らない"
+        },
+        {
+          "source": "role",
+          "destination": "role",
+          "rule": "semantic_jsonのみsemantic_sourceへ写す。derived_view/explanation/reference_onlyは同じ値を保つ。欠落/null/未知値は補完・改名せず原値のままCORE境界へ渡す"
+        }
+      ],
+      "presence_and_raw_values": "source arrayおよび各memberの欠落/null/空/値、RawValue内のnull・number・array順序・object値、各source occurrenceと重複を区別して保持する。欠落をnull/[]へ、nullを欠落へ変えない。",
+      "unmapped_or_invalid_members": "SourceEnvelopeの閉じたwire shapeにない余分memberやinvalid role/typeを捨てたり正常化しない。渡せるraw boundaryでは原memberを保ち、既存fn0がdecode issueを返すならそれを保持する。raw保持できず元値を表せない場合はこのprojectionを未成立とし、成功値を作らない。",
+      "no_inference": "Refの同一性、source_locator、file name、digest、候補一致だけでsource/bodyの対応や資格を推定しない。明示pairのないsourceは無関係な候補から結ばない。 source Ref.scopeをCORE ApplicationBinding.product_scope等へ読み替えたり、一致scopeをsource-to-template/query/requirement意味relationの根拠にしない。"
+    },
+    "qualification_boundary": {
+      "preserved_link": "QualifiedSource.qualification_refの値だけを同じRef fieldへ写す。これはQualification自体の転送・解決・成立ではない。",
+      "shape_difference": "BRAIN Qualificationのsubject_ref/subject_sha256/applicable_scope/qualification_body/root_refとCORE Qualificationのsubject_ref/subject_sha256/owner/scope/body/root_refはそのまま相互castできない。ownerをRef等から推定せず、field renameだけで資格を成立させない。",
+      "receiver": "既存HARNESS-L5-009-validate_application_input (functions/0) がApplicationInput.sourcesを読む。source bytes/digest/body consistencyと、CORE側qualification_rootsからowner/subject/revision/scopeを独立照合する。未提示/不一致は既存のissue/局所未資格として残す。CORE fn0はBRAIN origin lineage/選択pairを検証しないため、fn0への入力存在やbytes一致をBRAIN→CORE由来証拠へ昇格しない。"
+    },
+    "not_closed_here": [
+      "SupplyInput.sourcesからの実選択/取得関係のproducerとcaller binding",
+      "BRAIN QualificationからCORE資格資料への独立した意味対応とauthority",
+      "CORE ApplicationInputの他軸・template/query/knowledge relationの完全assembly",
+      "実codec・delivery・owner qualification・受信実行の成立"
+    ],
+    "legacy_comparison": {
+      "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+      "lines": "34–52",
+      "sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b",
+      "retained": "I/O・副作用・失敗・状態・consumer/oracle境界で責務を比較し、意味差を無視した共通化を避ける。",
+      "changed": "旧DomainGraph/registry/gate/runtimeを移植せず、既存BRAIN/COREの原型とfn0責務の間に限定occurrence projectionを記述する。",
+      "reason": "旧sourceは設計のinventory-firstと意味境界を示すが、現在の要求意味と接続型の正本は承認済みL3/L10と現行L5である。"
+    },
+    "failure_basis_ref": "/failure_basis",
+    "completion_boundary": "限定した設計具体化。source occurrenceの実配送、資格、CORE全入力閉包、runtime、L9実行、実装Readyは未成立。"
   }
 }
