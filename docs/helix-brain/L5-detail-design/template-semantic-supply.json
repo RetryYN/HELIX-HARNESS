@@ -8890,32 +8890,7 @@
           ],
           "private_types_candidate": {
             "DefinitionJudgmentOrigin": {
-              "closed_fields": {
-                "ordinal": "nonnegative integer",
-                "assessment_key": "DescriptorDefinitionKey",
-                "branch": "required_slot_absent | facts_missing | meaning_undefined | source_unresolved | existing_definition_result",
-                "state": "known | missing | unknown | conflict | not_applicable",
-                "cause": "string（下記branch表の技術原因名）",
-                "slot_locators": "string[]",
-                "fact_locators": "string[]",
-                "meaning_read_indices": "nonnegative integer[]",
-                "applicability_read_indices": "nonnegative integer[]",
-                "subject_ref": "PortPresenceRef",
-                "binding": "PortPresenceBinding",
-                "axis_name": "string",
-                "original_refs": "Ref[]",
-                "reason": "string",
-                "backflow_owner": "string|null",
-                "finding_rule_indices": "nonnegative integer[]",
-                "sort_source_refs": "PortPresenceRaw（supplied valueは実際に読んだsource Ref[]）",
-                "special_read_indices": "nonnegative integer[]",
-                "pair_origin_links": "PairOriginLink[]",
-                "applicability_judgment_links": "ApplicabilityJudgmentLink[]",
-                "meaning_support_links": "MeaningSupportLink[]",
-                "meaning_problem_links": "MeaningProblemLink[]",
-                "special_support_links": "SpecialSupportLink[]"
-              },
-              "meaning": "内部イベント原材料。code/stateをrawから読むための入力型ではない。同walkが原source/規範/既存predicateから計算する。返却identity/新source Refにはしない。"
+              "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionJudgmentOrigin"
             },
             "DefinitionNativeMaterial": {
               "closed_fields": {
@@ -8930,93 +8905,40 @@
               "meaning": "原解釈/原NA取得の全出現・原理由を同callに保存する材料。public SupplyAnalysisへ新top-level memberを追加しない。"
             },
             "DefinitionMeaningWalkResult": {
-              "closed_fields": {
-                "evaluation": "DescriptorDefinitionEvaluation",
-                "native_material": "DefinitionNativeMaterial",
-                "target_reads": "DescriptorTargetRead[]",
-                "intent_reads": "ClaimIntentRead[]（同target_readsの原Claim出現順）"
-              },
-              "meaning": "既存Comparison＋索引2fieldをevaluationにそのまま保ち、元読取全値を別に保持するprivate結果。"
+              "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult"
             },
             "MeaningPairAnnotatedRead": {
-              "closed_fields": {
-                "slot_locator": "string",
-                "result": "MeaningPairAnnotatedResult"
-              },
-              "meaning": "実際の単一annotated helper callの返却全値。axes=[]/nullも保持。"
+              "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/MeaningPairAnnotatedRead"
             },
             "PairOriginLink": {
-              "closed_fields": {
-                "pair_read_index": "nonnegative integer",
-                "origin_index": "nonnegative integer"
-              },
-              "meaning": "同read.result.origins[origin_index]からaxis_indexを得る。同じappend局所値でglobal handleへ対応。"
+              "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/PairOriginLink"
             },
             "DefinitionApplicabilityJudgmentBatch": {
-              "closed_fields": {
-                "applicability_read_index": "nonnegative integer",
-                "slot_locator": "string",
-                "judgments": "DefinitionApplicabilityJudgment[]"
-              },
-              "meaning": "実projection callの全11field judgment配列をそのまま保存。[]も返却。"
+              "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionApplicabilityJudgmentBatch"
             },
             "ApplicabilityJudgmentLink": {
-              "closed_fields": {
-                "batch_index": "nonnegative integer",
-                "judgment_index": "nonnegative integer"
-              },
-              "meaning": "同batchの原judgmentへ直接対応。値検索で復元しない。"
+              "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/ApplicabilityJudgmentLink"
             },
             "MeaningSupportLink": {
-              "closed_fields": {
-                "meaning_read_index": "nonnegative integer",
-                "support_index": "nonnegative integer"
-              },
-              "meaning": "当該eventの同原解釈support出現。"
+              "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/MeaningSupportLink"
             },
             "MeaningProblemLink": {
-              "closed_fields": {
-                "meaning_read_index": "nonnegative integer",
-                "problem_index": "nonnegative integer"
-              },
-              "meaning": "当該eventが読んだ問題の原出現。code又はreasonによる再検索なし。"
+              "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/MeaningProblemLink"
             },
             "SpecialSupportLink": {
-              "closed_fields": {
-                "special_read_index": "nonnegative integer",
-                "support_index": "nonnegative integer"
-              },
-              "meaning": "当該special predicateへ実際に用いた全support出現。"
+              "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/SpecialSupportLink"
             },
             "MeaningProblemScope": {
-              "closed_fields": {
-                "problem_index": "nonnegative integer",
-                "relevance": "target | source_unattributed"
-              },
-              "meaning": "targetは現在requestへの原cohort/所在が同walkで明示された問題だけ。未帰属をtargetへ昇格しない。"
+              "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/MeaningProblemScope"
             },
             "MeaningSupportOrigin": {
-              "closed_fields": {
-                "support_index": "nonnegative integer",
-                "problem_indices": "nonnegative integer[]"
-              },
-              "meaning": "当該supportに付随する原negative/undetermined trace problem。元decisionからeventを二重生成しない。"
+              "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/MeaningSupportOrigin"
             },
             "DefinitionMeaningReadBundle": {
-              "closed_fields": {
-                "read": "DefinitionMeaningRead",
-                "problem_scopes": "MeaningProblemScope[]",
-                "support_origins": "MeaningSupportOrigin[]"
-              },
-              "meaning": "原readerの一回の取得/照合でreadとscope/linkを同時形成。二回評価/qualification再裁定なし。"
+              "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningReadBundle"
             },
             "MeaningReadOriginObservation": {
-              "closed_fields": {
-                "meaning_read_index": "nonnegative integer",
-                "problem_scopes": "MeaningProblemScope[]",
-                "support_origins": "MeaningSupportOrigin[]"
-              },
-              "meaning": "同bundle.readをmeaning_readsへ保存した局所indexを付けるだけ。"
+              "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/MeaningReadOriginObservation"
             }
           },
           "signatures_and_callers": [
@@ -9166,7 +9088,31 @@
             "型/順序/branchは独立reviewの対象。固定32 caller以外の多fact/pair非空/special/target-intent/fn6/fn7の全返却期待と照合は未成立。",
             "旧84はhelper公開値とbuilder assemblyの有限保全であり、fn1全体や全9関数rawrunnerの証拠ではない。"
           ],
-          "why_not_opaque_success_stub": "既存predicateに必要な原comparandをtyped source/same-call requestから得て、NA軸/公開全field/順序を本coreで具体化。knownは固定規範に対応する原owner意味支持だけ。新入力/独立whole/actualは別段階であり未作成。"
+          "why_not_opaque_success_stub": "既存predicateに必要な原comparandをtyped source/same-call requestから得て、NA軸/公開全field/順序を本coreで具体化。knownは固定規範に対応する原owner意味支持だけ。新入力/独立whole/actualは別段階であり未作成。",
+          "local_private_type_reference_contract": {
+            "scope_ja": "event_and_field_contract.private_types_candidateのreference_namesに列挙した同名13型だけを、同walk索引のindex_typesにある同じ定義への局所参照とする。型名・意味・呼出し責務・候補状態を変更しない。DefinitionNativeMaterialは意味説明とmember順が異なるため元の独立定義を保つ。",
+            "reference_names": [
+              "DefinitionJudgmentOrigin",
+              "DefinitionMeaningWalkResult",
+              "MeaningPairAnnotatedRead",
+              "PairOriginLink",
+              "DefinitionApplicabilityJudgmentBatch",
+              "ApplicabilityJudgmentLink",
+              "MeaningSupportLink",
+              "MeaningProblemLink",
+              "SpecialSupportLink",
+              "MeaningProblemScope",
+              "MeaningSupportOrigin",
+              "DefinitionMeaningReadBundle",
+              "MeaningReadOriginObservation"
+            ],
+            "reference_ja": "列挙型の値がexact一memberのprivate_contract_pointer objectである場合だけ、その文字列を本L5文書rootのJSON Pointerとして解決し、対象object全体を元の型位置へ置換する。index_types/<同じ型名>以外、参照先欠落、連鎖又は循環は復元不成立とし、別型・空値・fallbackで補わない。既存type_contractのprivate_contract_pointer等はこの操作の対象にしない。",
+            "source_revision": "478f9bbd8e8d8d284f8d0b325c292094d5392299",
+            "original_private_types_ordered_sha256": "070e2fe9130e4e5e7a36d5bd23d1836fdceb0123561eb8d97c6563f474c14cab",
+            "preservation_ja": "13参照だけを展開し本local_private_type_reference_contractを除くと、変更前のL5文書全値がmember順・配列順も含め一致する。索引側定義、残るDefinitionNativeMaterial、関数・program・原返却・failure・未閉包は不変。物理file hashは新bytesへ追随し、歴史revision/hashは変更しない。",
+            "boundary_ja": "これは本設計文書内の記述上の参照であり、製品schema・runtime resolver・汎用include・新authority又はgateではない。native材料と公開SupplyAnalysisを統合せず、実資格・実接続・実装Readyを生成しない。",
+            "legacy_ja": "LEGACY-ASSET-603D0E8D8193914F4AC0 §0-1の意味署名・consumer/oracleを保つcommonizeとLEGACY-ASSET-4F5A1F0739EC1111D91D §1-2の意味正本保持を再導出。同一walkの同名型が二重定義され更新箇所が分裂している現物と#3139を起点にし、既存private_contract_pointer表現を局所的に使う。旧runtime/DB/gateを移植しない。"
+          }
         },
         "na_public_projection": {
           "signature": "project_definition_applicability(read:DefinitionApplicabilityRead, slot:DescriptorSlot, slot_locator:string) -> DefinitionApplicabilityJudgment[]",
