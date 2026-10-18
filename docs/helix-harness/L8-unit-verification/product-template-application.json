@@ -164089,12 +164089,12 @@
     ],
     "hash_encoding": {
       "text_encoding": "UTF-8",
-      "string_escaping": "ensure_ascii=false; non-ASCII characters are encoded directly in UTF-8",
-      "serialization": "compact JSON with separators comma/colon and no trailing newline",
-      "ordered_sha256": "JSON serialization with sort_keys=false; retain source object member order",
-      "sorted_canonical_sha256": "JSON serialization with sort_keys=true",
-      "number_domain": "non-finite numbers are not admitted",
-      "unicode": "no Unicode normalization is applied",
+      "string_escaping": "ensure_ascii=falseとし、非ASCII文字をUTF-8へ直接符号化する。",
+      "serialization": "区切りはcomma/colonのcompact JSONとし、末尾改行を含めない。",
+      "ordered_sha256": "sort_keys=falseでJSON直列化し、元objectのmember順を保持する。",
+      "sorted_canonical_sha256": "sort_keys=trueでJSON直列化する。",
+      "number_domain": "非有限数を許容しない。",
+      "unicode": "Unicode正規化を適用しない。",
       "limitation_ja": "この局所hash表現をRFC 8785/JCSとは称さない。"
     }
   }
