@@ -1252,7 +1252,14 @@
         "HELIXBRAIN-L8-032-ADD-11",
         "HELIXBRAIN-L8-032-ADD-12"
       ],
-      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability"
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
+      "private_detail_binding": {
+        "symbol": "evaluate_field_values_detail",
+        "input": "F03BasicContext{snapshot=context.validatedへのopaque alias,definitions=write_f03b_comparison_from_existing_comparison(context.definitions)}",
+        "output": "F03Evaluation",
+        "public_projection": "write_existing_comparison_from_f03(detail.comparison)",
+        "call_count": "一回。公開fn2はF03Evaluation全体を返さない。詳細内容とclosed typesは/field_value_applicability_detailを参照。"
+      }
     },
     {
       "id": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
@@ -3421,6 +3428,12 @@
       "symbol": "compare_values_and_applicability",
       "reads": [
         "compare_descriptor_definitions"
+      ],
+      "private_execution": "同callのv/e.comparisonからF03BasicContextを構成しevaluate_field_values_detailを一回呼ぶ。F03Evaluation.comparisonだけを既存Comparisonへwriter projectionし、raw runnerは全evaluationをprivate full resultへ保存する。",
+      "private_reads": [
+        "同ValidatedSupply vの元section_fieldsを元順/反復で保持",
+        "各field occurrenceのread_original_field_definition実return（1回）",
+        "同じvの独立value/applicability/parent reads"
       ]
     },
     {
@@ -3468,7 +3481,7 @@
     }
   ],
   "execution_contract": {
-    "entry": "validate_supply_input → evaluation_order → build_supply_analysis。descriptor target経路は/source_return_contract/descriptor_target_dataflow/raw_runnerに従い同walk e/原target reads/usesを一回構成しprivate fn6/fn7へ供給。public直呼出しは同contract/direct_wrappersに従う。",
+    "entry": "validate_supply_input → evaluation_order → build_supply_analysis。descriptor target経路は/source_return_contract/descriptor_target_dataflow/raw_runnerに従い同walk e/原target reads/usesを一回構成しprivate fn6/fn7へ供給する。public直呼出しは/source_return_contract/descriptor_target_dataflow/direct_wrappersに従う。descriptor-target raw entryはrun_descriptor_target_flow_with_field_value_detailがorder 4のF03 detailを一回取得し、既存run_descriptor_target_flowはSupplyAnalysis/DescriptorTargetCallObservation二memberだけを射影する。公開fn2直呼出しも同じF03 detail一回からComparisonを射影する。",
     "invalid_raw": "decode不能input=nullなら意味関数はempty Comparisonを返すが成功claimなし。InputIssueをbuildが必ず保存する。欠落required集合はdecode可能意味欠落としてnull入力にしない。",
     "qualification": "未資格sourceに依存する原意味はunknown。異bindingの有資格項目は比較できる。異版/異scopeのresult混入はinput_issueで保持し結果を使わない。",
     "normal_outcome": "各原axisを保持したcandidate material。原handoff=not_receivedと全definition=knownの併存を許す。案件採用/義務完成の出力なし。",
@@ -6743,7 +6756,7 @@
       },
       {
         "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
-        "effect": "既存descriptor.definition/applicability resultを読むだけ。attribute knownをdefinition known、value supplied、N/Aへ写さない。"
+        "effect": "同じValidatedSupply snapshotから原section_fields、field owner/source、descriptor target、meaning factsとqualification、value/applicability/parentをL4 F03規則で読むprivate evaluate_field_values_detailを一回実行する。公開fn2はF03Evaluation.comparisonを既存Comparisonへ射影して返す。帰属knownをdefinition known、value supplied、N/Aへ写さない。"
       },
       {
         "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
@@ -7643,14 +7656,16 @@
         "existing_prefix_order": "基本public_projection/orderのalways→CORE-return→selector→conditional→handoff→Claim原順を保持。他producerの軸/診断順や元同ruleの対象外claim語彙を変えない。"
       },
       "raw_runner": {
-        "private_signature": "run_descriptor_target_flow(raw:RawValue)->同callの既存SupplyAnalysisとDescriptorTargetCallObservation（論理caller内部返却。製品public APIを新設しない）",
+        "private_signature": "run_descriptor_target_flow(raw:RawValue)->既存SupplyAnalysisとDescriptorTargetCallObservation（二memberを保つprojection。製品public APIではない）",
         "steps": [
           "v=validate_supply_input(raw) を一回。raw入力へ後付けsource/qualification/Claimを挿入しない。",
           "w=evaluate_descriptor_definition_walk(DefinitionContext{validated:v})を一回、e=w.evaluationを射影。definitions=e.comparisonを全既存consumerへ。元read全値w.native_materialも同call観測へ保存する。",
           "target_reads=w.target_reads、intent_reads=w.intent_readsを再利用し、同e/reads/intentsからclaim_usesを一回計算する。frameの既存全fieldを同call値から構成し、target/intent portを再呼出ししない。",
-          "既存他producerは下記closed_context_constructorsの全memberを同call値から供給する。fn6_detailへDependencyContext全2fieldと同frame、fn7_detailへClaimContext全7field（validated＋6Comparison）と同frameを渡す。raw runnerはe/reads/usesを再計算しない。",
+          "closed_context_constructors order 2/3のidentity/promotionへ全memberを同vから供給する。既存frameは保持し、この時点で後続fn6/fn7を先行呼出ししない。order 4のF03 detailへ進む。",
+          "closed_context_constructors order 4でevaluate_field_values_detailへF03BasicContext全2memberを一度だけ供給する。snapshotは同じv、definitionsは同じe.comparisonをwrite_f03b_comparison_from_existing_comparisonで全値投影する。返却field_value_evaluation.comparisonをwrite_existing_comparison_from_f03でAnalysisContext.values_applicabilityへ接続し、private full resultにF03Evaluation全値を保存する。public fn2をrunner内で再呼出ししない。",
+          "F03 detailのcomparison投影を得た後、closed_context_constructors order 5のoracle、order 6のfn6_detail、order 7のfn7_detailへ順に全memberを供給する。fn6はDependencyContext全2field＋同frame、fn7はClaimContext全7field（validated＋6Comparison）＋同frame。fn7のvalues_applicabilityはorder 4の同投影。e/reads/usesは再計算しない。",
           "builderへ既存AnalysisContextを組み立てる。public7Comparison/producer/input_binding/Issue順だけを従来どおり検査し、frameやprivateindexを追加の必須入力にしない。",
-          "同callerの観測へframe、fn6/fn7 contexts/returns、definition_native_material=w.native_materialを全値保存。private型の全fieldを同call値から供給する。 NativeMaterial全7配列と全structured linksを保存し、raw runnerでproject/meaning/pairを再計算しない。"
+          "同callerの既存Observationへframe、fn6/fn7 contexts/returns、definition_native_material=w.native_materialを従来どおり全値保存する。F03Evaluationはprivate DescriptorTargetFlowFullResult.field_value_evaluationへ全値保存する。既存NativeMaterial/Observationの型やmemberは変えず、raw runnerでproject/meaning/pairを再計算しない。"
         ],
         "no_recompute": "raw runnerはpublic fn1/6/7 wrapperを順に呼び直さずprivate detailを使用。同eを全consumerへ渡し、Index/target readを後段で再walkしない。",
         "ownership": "frameはこのrunner自身が同v/eから構築するprivate値。public rawのstateラベル又は期待を受け取るtrusted入力ではない。新全field equality gate/source実稼働gateは設けない。",
@@ -7694,13 +7709,17 @@
           },
           {
             "order": 4,
-            "symbol": "compare_values_and_applicability",
-            "type": "ValueContext",
+            "symbol": "evaluate_field_values_detail",
+            "type": "F03BasicContext",
             "fields": {
-              "validated": "v",
-              "definitions": "e.comparison"
+              "snapshot": "v（fn0同call ValidatedSupplyのopaque alias）",
+              "definitions": "write_f03b_comparison_from_existing_comparison(e.comparison)の4 container member＋全axis 7 member＋全finding 9 member"
             },
-            "return": "values_applicability"
+            "return": "field_value_evaluation:F03Evaluation",
+            "projection": {
+              "values_applicability": "write_existing_comparison_from_f03(field_value_evaluation.comparison)"
+            },
+            "public_fn2_relationship": "公開compare_values_and_applicabilityも同detailを一回呼びComparison projectionする。runnerからpublic fn2を呼ばない。"
           },
           {
             "order": 5,
@@ -7756,14 +7775,26 @@
             },
             "return": "analysis"
           }
-        ]
+        ],
+        "full_private_signature": "run_descriptor_target_flow_with_field_value_detail(raw:RawValue)->DescriptorTargetFlowFullResult",
+        "full_private_result": {
+          "closed_members": {
+            "supply_analysis": "既存SupplyAnalysis",
+            "descriptor_target_call_observation": "既存DescriptorTargetCallObservation",
+            "field_value_evaluation": "F03Evaluation"
+          },
+          "additional_members": false,
+          "field_value_evaluation_storage": "private full resultのfield_value_evaluationがF03Evaluation全値の実格納先。既存Observation/SupplyAnalysisにはrequired fieldを追加しない。",
+          "legacy_projection": "run_descriptor_target_flow(raw)はこのfull resultのsupply_analysisとdescriptor_target_call_observationだけを従来の二member shapeで返す。"
+        }
       },
       "direct_wrappers": {
         "fn1": "旧DefinitionContextからwalk一回のevaluation.comparisonを返す。新公開引数なし。",
         "fn6": "旧DependencyContextから同validatedのwalkを一回計算し、w.evaluation/w.target_reads/w.intent_readsでuses/frameを構築しfn6_detailへ。raw runnerはこのwrapperを呼ばない。",
         "fn7": "旧ClaimContextから同validatedのwalkを一回計算し、w.evaluation/w.target_reads/w.intent_readsでuses/frameを構築しfn7_detailへ。既存dependencies_handoffは同snapshot正規fn6の結果という条件を保持。",
         "preconditions": "旧Context.meaning/既存comparison_compositionの同immutable/same producer/binding条件を保持する。異caller cacheを新indexとして信用しない。旧public APIへ新required field追加なし。",
-        "builder": "旧5builder testdouble呼出しは従来どおり。index/portsの実供給をbuilder保持wholeの前提に足さない。"
+        "builder": "旧5builder testdouble呼出しは従来どおり。index/portsの実供給をbuilder保持wholeの前提に足さない。",
+        "fn2": "既存ValueContextから同じValidatedSupply snapshotのF03 private detailを一回評価し、F03Evaluation.comparisonを既存Comparisonへfieldwise射影して返す。public signature/output shapeは維持し、F03Evaluation全体を返さない。raw runnerはこのpublic wrapperを再呼出しせず、同じdetailのcomparison projectionをAnalysisContextへ渡す。"
       },
       "codec_boundary": "公開SupplyInput/Claim/ValidatedSupplyのwire/schemaを変更しない。basicの5target view/Presence/intent型はprivate importしてRawValueから局所constructorで構成し、untrusted raw全体へ新closed-success schemaを一律適用しない。新index/transportは同call計算の内部recordでrawから受理するpublic口ではない。型定義だけで正式codec/実providerの実装を成立済みにしない。",
       "open_items": [
@@ -12391,6 +12422,460 @@
         "reason": "下記14memberを同じiteration内で上記subject/binding/original_refsと原Vから形成し、write_unselected_axis_reasonへ一回渡す。固定L4 prefix「未選択sourceは未観測。」＋LF＋TRACE=＋正規14member JSON text。placeholder/既存reason自然文解析/再wrapをしない。",
         "backflow_owner": "同axis_valuesのliteral null。通常未観測Axisのownerと、別predicateで形成するR89 Finding/knowledge_ownerを混同しない。"
       }
+    }
+  },
+  "field_value_applicability_detail": {
+    "id": "HELIXBRAIN-L5-032-F03-FIELD-VALUE-APPLICABILITY-DETAIL",
+    "status": "detail_design_candidate",
+    "purpose": "既存BRAIN032 F03のL4 field definition/value/applicability portを、同一ValidatedSupply alias上の一回の詳細walkとして具体化し、公開Comparison射影を保ったままF03Evaluation全値をprivate callerへ保持する。製品runtime/schema/資格・全入力組立の成立を宣言しない。",
+    "authority_basis": {
+      "approved_requirement": {
+        "decision_record": "docs/governance/decisions/helix-brain-template032-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+        "decision_record_sha256": "53f0c2d44b17133b8ad3b6eefab7fbf621203c3cc997131e81d341acb37a7467",
+        "approval_head": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+        "approval_record_scope": "HELIXBRAIN-L3-032-F03の承認済み要求本文。承認対象は当該L3/L10本文であり、ここで参照するL4/L5候補の技術設計承認へ拡張しない。",
+        "requirement_source": {
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "revision": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+          "file_sha256": "60c3b75be3b240112bf5e0dc616c2d8566b419122f32bb16a00df347f1012507",
+          "pointer": "/requirements/2",
+          "selected_id": "HELIXBRAIN-L3-032-F03",
+          "selected_object_canonical_sha256": "93b39b1ea026f5612778723b5d37f6ee527d8c40c463438f3ab7dbb68ffe23e5",
+          "current_at_fixed_base_canonical_sha256": "93b39b1ea026f5612778723b5d37f6ee527d8c40c463438f3ab7dbb68ffe23e5",
+          "current_matches_approved_selected_object": true
+        }
+      },
+      "approved_parent_meaning": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md（SHA-256 6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964）。BRAINの汎用意味契約とCORE/OS責務分離を参照する。schema/型/algorithm/L3再開等を採択した記録ではない。",
+      "current_basic_design_candidate": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "ecc5c161b14bf2abaf05365c3910d3b8a2b16b85",
+        "file_sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+        "pointer": "/field_value_applicability_contract",
+        "selected_id": "HELIXBRAIN-L4-032-F03-FIELD-MATERIAL",
+        "selected_object_canonical_sha256": "b936641956cb36e2ff7f9c66c09e1eaf7e61f0206c35e6dd8b0e7ed02148f0d4",
+        "meaning": "固定revisionのL4技術設計候補。PO承認済みL3要求そのものではない。"
+      },
+      "approved_oracle": {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "revision": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+        "file_sha256": "bb8af60e15b7c6bc6069d4e89cd6e0dae7b3a18f27615c7964e5558627c2b437",
+        "pointer": "/cases/2",
+        "selected_id": "HELIXBRAIN-L10-032-F03",
+        "selected_object_canonical_sha256": "30e2b6c86cb68df1a4ba4a9583c30af421ec84b5e5a7640b608956df27c945ae",
+        "current_at_fixed_base_canonical_sha256": "30e2b6c86cb68df1a4ba4a9583c30af421ec84b5e5a7640b608956df27c945ae"
+      }
+    },
+    "scope": {
+      "basic_port": "F03 L4 read_original_field_definition(snapshot:F03BValidatedSnapshot,request:F03FieldDefinitionRequest)->F03FieldDefinitionRead と evaluate_field_values(context:F03BasicContext)->F03Evaluation の既存closed contractを追随する。",
+      "reused_types": {
+        "kind": "fixed_source_aliases_no_redeclaration",
+        "source_revision": "ecc5c161b14bf2abaf05365c3910d3b8a2b16b85",
+        "source_path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "source_file_sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+        "pointer": "/field_value_applicability_contract/closed_types",
+        "count": 70,
+        "rule": "L5で70型を複製せず、固定sourceの同型をaliasとして再利用する。新しい公開schema、required member、wire型を定義しない。"
+      },
+      "same_call_context": {
+        "basic_context_type": "F03BasicContext",
+        "all_members": {
+          "snapshot": "fn0が返した同じValidatedSupply vそのものへのF03BValidatedSnapshot opaque alias。再decode/re-read/別snapshotを作らない。",
+          "definitions": "同callのdescriptor definition walk w.evaluation.comparisonをclosed memberごとにfieldwise writeしたF03BComparison。"
+        },
+        "no_new_context_member": true
+      },
+      "no_semantic_expansion": "F03が区別する欠落/null/型外/unknown/missing/conflict/NA、各cause、原順、重複、根拠を保持する。読取取得・帰属・qualificationだけで定義/案件値をknownへ補完せず、section N/Aからfield N/Aを生成しない。"
+    },
+    "comparison_writers": {
+      "purpose": "F03BComparisonと既存L5 Comparisonは別名のclosed typeであり、型名castで同一視しない。入力方向・出力方向の両方で全memberを明示的に写す。",
+      "from_existing_comparison_to_f03": {
+        "input": "同callの既存Comparison e.comparison（又は公開ValueContext.definitions）",
+        "output": "F03BComparison",
+        "container_members": [
+          {
+            "from": "axes",
+            "to": "axes",
+            "operation": "各要素を元順・全出現でaxis writerへ渡す"
+          },
+          {
+            "from": "findings",
+            "to": "findings",
+            "operation": "各要素を元順・全出現でfinding writerへ渡す"
+          },
+          {
+            "from": "producer_symbol",
+            "to": "producer_symbol",
+            "operation": "値をそのまま写す"
+          },
+          {
+            "from": "input_binding",
+            "to": "input_binding",
+            "operation": "値/nullをそのまま写す"
+          }
+        ],
+        "axis_writer_all_7_members": [
+          "subject_ref",
+          "binding",
+          "axis",
+          "state",
+          "original_refs",
+          "reason",
+          "backflow_owner"
+        ],
+        "finding_writer_all_9_members": [
+          "code",
+          "rule_ref",
+          "subject_ref",
+          "binding",
+          "axis",
+          "state",
+          "source_refs",
+          "reason",
+          "backflow_owner"
+        ]
+      },
+      "from_f03_to_existing_comparison": {
+        "input": "F03Evaluation.comparison:F03BComparison",
+        "output": "既存Comparison",
+        "container_members": [
+          {
+            "from": "axes",
+            "to": "axes",
+            "operation": "各要素を元順・全出現でaxis writerへ渡す"
+          },
+          {
+            "from": "findings",
+            "to": "findings",
+            "operation": "各要素を元順・全出現でfinding writerへ渡す"
+          },
+          {
+            "from": "producer_symbol",
+            "to": "producer_symbol",
+            "operation": "値をそのまま写す"
+          },
+          {
+            "from": "input_binding",
+            "to": "input_binding",
+            "operation": "値/nullをそのまま写す"
+          }
+        ],
+        "axis_writer_all_7_members": [
+          "subject_ref",
+          "binding",
+          "axis",
+          "state",
+          "original_refs",
+          "reason",
+          "backflow_owner"
+        ],
+        "finding_writer_all_9_members": [
+          "code",
+          "rule_ref",
+          "subject_ref",
+          "binding",
+          "axis",
+          "state",
+          "source_refs",
+          "reason",
+          "backflow_owner"
+        ]
+      },
+      "preservation": "全required memberを省略せず明示代入する。RawValue/Ref/Binding、numeric carrier、null、presence、配列順、反復をdecode・normalize・sort・deduplicate・defaultせず値のまま保存する。元型でwriterを形成できないときに新しい成功/known値を捏造しない。"
+    },
+    "private_detail_binding": {
+      "symbol": "evaluate_field_values_detail",
+      "signature": "(context:F03BasicContext)->F03Evaluation",
+      "visibility": "private_logic_only",
+      "basic_source_function": "L4 /field_value_applicability_contract/functions の symbol=evaluate_field_values",
+      "responsibility": "L4 evaluate_field_valuesを同一snapshotで実現し、既存read_original_field_definitionの実returnと独立value/applicability/parent readsを、F03Evaluation全値へ一度だけ結ぶ。",
+      "definition_read_call": "元section_fieldsの各field occurrenceを元順で処理し、そこからL4規則に従うF03FieldDefinitionRequestを構成してread_f03_original_field_definition(snapshot,request)（固定L4原portのL5実現）を一回呼ぶ。その実際の7-field F03FieldDefinitionReadを当該F03Row.definition_readに全値保存する。値・適用・親readを同definition readへ統合せず、同じValidatedSupply aliasからそれぞれ独立に読む。",
+      "row_and_comparison": "各原field occurrenceにつきL4 F03Row全9memberを作る。rowsは元field順・反復を保つ。eventsはL4 projection_orderの順、axes/findingsはpublic Comparison writerの全値順を保ち、axis_indices/finding_indicesを同じ配列へ対応させる。F03Evaluation.comparisonとproblemsも全値で返す。",
+      "f03_evaluation_closed_members": [
+        "comparison",
+        "rows",
+        "problems"
+      ],
+      "row_closed_members": [
+        "field_locator",
+        "field",
+        "definition_read",
+        "value_reads",
+        "applicability_read",
+        "parent_reads",
+        "events",
+        "axis_indices",
+        "finding_indices"
+      ],
+      "definition_read_closed_members": [
+        "request",
+        "owner_read",
+        "target_read",
+        "fact_reads",
+        "pair_reads",
+        "judgments",
+        "problems"
+      ],
+      "fact_read_closed_members": [
+        "request_locator",
+        "requested_ref",
+        "slot_locator",
+        "fact_locator",
+        "fact",
+        "attribution_read",
+        "meaning_read",
+        "problems"
+      ],
+      "reader_semantics": "F03 L4 read_decision_precedenceとfield_definition_precedenceをそのまま用いる。meaning_fact_refsの明示[]と未供給/ null/型外を同一扱いにしない。read resultのabsence/null/unknown/problem、未取得、否定、根拠不足、複数候補をまとめず各原occurrenceで残す。"
+    },
+    "public_and_private_callers": {
+      "public_function_2": {
+        "existing_symbol": "compare_values_and_applicability",
+        "existing_input": "ValueContext{validated:ValidatedSupply,definitions:Comparison}",
+        "existing_output": "Comparison",
+        "binding": "公開signatureとComparison出力shapeを維持する。返却値はF03 L4の現在の基本意味・元source読みの結果であり、旧L8 normal fixture/期待値の全値保持又は無条件等価を主張しない。",
+        "legacy_oracle_condition": "旧normalのknown/supplied/applicable期待は、同入力がL4 F03に必要な原field owner/source/descriptor資料を供給し、固定L4契約からその期待が導ける範囲だけで照合する。根拠sourceが未取得ならF03 L4のunknownを維持する。旧fixtureの期待と矛盾する可能性はL8対検証側で別途解消し、本L5は旧期待を優先しない。"
+      },
+      "private_full_runner": {
+        "symbol": "run_descriptor_target_flow_with_field_value_detail",
+        "input": "raw:RawValue",
+        "private_return": {
+          "kind": "closed_private_caller_result",
+          "members": {
+            "supply_analysis": "既存SupplyAnalysis",
+            "descriptor_target_call_observation": "既存DescriptorTargetCallObservation",
+            "field_value_evaluation": "F03Evaluation（全memberをこのfieldへ保持）"
+          },
+          "additional_members": false
+        },
+        "consumer": "同callのL8 F03詳細oracleはこのprivate返却field /field_value_evaluation を比較対象とする。既存ObservationやSupplyAnalysisへF03Evaluationを追加しない。"
+      },
+      "existing_full_runner_projection": {
+        "symbol": "run_descriptor_target_flow",
+        "input": "raw:RawValue",
+        "output": "既存SupplyAnalysisと既存DescriptorTargetCallObservationの二memberだけ",
+        "rule": "run_descriptor_target_flow_with_field_value_detail(raw)を一回呼び、その先行二memberを元の閉じた返却形で返すprojection。新必須memberや既存fixture変更を要求しない。"
+      },
+      "fn2_direct_and_runner_single_evaluation": "public fn2の直接呼出しはprivate detail一回からComparisonを射影する。private full runnerはprivate detailを一回呼び、同じfield_value_evaluation.comparisonのwriter出力だけをAnalysisContext.values_applicabilityへ渡す。full runner内部で公開fn2を再度呼ばない。"
+    },
+    "raw_runner_binding": {
+      "existing_entry_ref": "/source_return_contract/descriptor_target_dataflow/raw_runner",
+      "full_call_order": "既存validate_supply_inputを一回→同eのdescriptor definition walk→identity/promotion→F03 detail一回→oracle/dependency/claim→既存AnalysisContext builder。既存frame/target/intent/native materialを再読・再計算しない。",
+      "f03_order_4_context": {
+        "type": "F03BasicContext",
+        "fields": {
+          "snapshot": "v（同じValidatedSupply objectへのopaque alias）",
+          "definitions": "write_f03b_comparison_from_existing_comparison(e.comparison)の全member"
+        },
+        "return": "field_value_evaluation=F03Evaluation",
+        "analysis_projection": "values_applicability=write_existing_comparison_from_f03(field_value_evaluation.comparison)"
+      },
+      "analysis_context_all_existing_members": {
+        "validated": "v",
+        "claims": "既存fn7 return",
+        "definitions": "e.comparison",
+        "values_applicability": "上記F03 comparison projection",
+        "identity_trace": "既存identity return",
+        "oracle_view": "既存oracle return",
+        "promotion": "既存promotion return",
+        "dependencies_handoff": "既存fn6 return"
+      },
+      "not_recomputed": "fn0, descriptor walk, target/intent readers, fn1/public fn2, fn6/fn7, buildersは一度のfull pathで二重呼出ししない。existing frameとnative material全値は旧Observationへ従来通り保持し、F03Evaluationはprivate full resultへ保持する。"
+    },
+    "meaning_reader_boundary": {
+      "existing_bundle_owner": "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle は既存fn1/F01 descriptor意味reader（read_original_definition_meaning_bundle）の返却保存である。F03 field meaning readerと型/意味が同一とは仮定しない。",
+      "reuse_condition": "流用を行えるのは、同じimmutable ValidatedSupply、完全一致するDefinitionMeaningRequest全memberとpresence、同じoriginal fact occurrenceの同一性が当該call内で確認できる場合のみ。ref/slot/body/eだけの一致では使わない。条件を示せない場合はF03 L4規則の専用read_original_field_definition内で当該field factの元meaning readを行う。",
+      "no_conversion": "F01 descriptor meaning readをF03 FieldDefinitionReadへcast、補完、短縮、またはowner/qualificationの置換をしない。L4既存meaning readerの8返却memberの対応はL4 F03 source pointer /field_value_applicability_contract/existing_meaning_reader_return_member_mappingに従う。"
+    },
+    "finite_expected_distinctions": {
+      "paired_verification_source": {
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "ecc5c161b14bf2abaf05365c3910d3b8a2b16b85",
+        "file_sha256": "d9c85586bfde9f8dd580290857dc43825c5197d588b73ae90a264f154065f6ee",
+        "pointer": "/field_value_applicability_verification/cases",
+        "selected_cases": [
+          "F03-L9-OWNER-EMPTY-MISSING",
+          "F03-L9-OWNER-UNOBTAINED-UNKNOWN",
+          "F03-L9-DEFINED-VALUE-UNKNOWN",
+          "F03-L9-JUSTIFIED-FIELD-NA",
+          "F03-L9-PARENT-NA-NO-PROPAGATION",
+          "F03-L9-SUPPLIED-FALSE-APPLICABLE",
+          "F03-L9-EXPLICIT-APPLICABILITY-UNKNOWN"
+        ],
+        "selected_cases_canonical_sha256": "dfd37060f4e2c1bf8813e8e687e1ce98dda2b86923a16e80c3cb03f8f2b6e451"
+      },
+      "expected_contrasts": [
+        "OWNER-EMPTY-MISSINGはownerが成立した明示empty定義集合をmissingにする。OWNER-UNOBTAINED-UNKNOWNはowner/readが成立しない材料をunknownに保ち、emptyからmissingへ丸めない。",
+        "DEFINED-VALUE-UNKNOWNは定義knownと案件value unknownを独立に保持する。SUPPLIED-FALSE-APPLICABLEはsupplied false valueを保持し、applicable判定と値の真偽を混同しない。",
+        "FIELD-NAはそのfieldの根拠付きN/Aを保持する。PARENT-NA-NO-PROPAGATIONは親N/Aだけでchild field N/Aを生成しない。",
+        "EXPLICIT-APPLICABILITY-UNKNOWNはapplicability unknownを明示し、欠落/NULL/型外やN/Aへ変換しない。"
+      ],
+      "complete_value_expectation": "各caseのL8詳細比較はF03Evaluationのcomparison/rows/problems全memberを対象とし、各F03Rowの9member、definition_readの7member、fact_readsの8member、各配列原順/反復、reason/cause/support/negative sourceを保持する。期待値の根拠と評価対象が不一致なら成功期待を作らない。",
+      "independent_authoring_evidence": {
+        "path": "scaffold/review-handoff/local/field-attribution-ecc5c161/independent-f03-same-walk-expectations.json",
+        "sha256": "e8d59a14571c6500a2cf6d006a7fcfe472f8b460036088a9eb48d61fda0f4522",
+        "role": "候補L5/L8本文の作成前に固定されたauthoring evidence。tracked規範ではなく、ここに記した期待要点以上の要求・承認を作らない。ローカルartifactが存在すること自体を再現可能性/CI実行証拠としない。"
+      }
+    },
+    "legacy_basis_and_difference": {
+      "old_sources": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "lines": "16–60",
+          "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+          "reuse_mode": "semantic_rederivation"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "lines": "33–108",
+          "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+          "reuse_mode": "semantic_rederivation"
+        }
+      ],
+      "historical_failure_basis": "既存L5 /legacy_comparison[1].input_structure_rederivationが記録するUTW014（欠落配列を空集合へ既定）を再発させず、raw presenceと原由来を保持する。旧schema/key/整数版/TPL文法/runtimeは移植しない。",
+      "kept": "要求F03のfield identity・理由付き未決・元knowledge版、定義欠落/値未決/適用unknown/N/Aの分離と、原source traceを失わない比較。",
+      "changed": "L4の同一snapshot基本portをL5 private detailed returnへ一回結び、公開Comparisonはfieldwise projectionする。70型の新規複製、L4基本引数へのL5型要求、F03全返却を旧public Observationへ追加する構造は採らない。",
+      "reason": "閉型の重複を避け、同じsnapshotで得た実reader returnと公開結果の対応を追える形にしながら、承認済み要求の意味・既存公開返却形を保つ。"
+    },
+    "not_closed_here": [
+      "L4/L5 technical candidateの独立reviewと採択",
+      "正式wire/schema/codec/数値型および実cross-runtime対応",
+      "実資格・external source/provider・COREへの実mapping/受渡し/authority",
+      "L4/L9の全任意入力閉包、全L8 oracle入力のfreeze、L6/L7実装・新世代CI・実行済み検証",
+      "seed全体採用、運用promotion、PO実物L11受入、通常L3/release/deploy",
+      "L4 rule54..57 Claim値表現・排他選択のL5追補（今回のF03 seven-case same-walk scopeでは未閉包。公開全域のClaim適合性やClaim完了を主張しない）"
+    ],
+    "execution_status": {
+      "design_only": true,
+      "product_reader_or_runtime_run": false,
+      "test_or_ci_run": false,
+      "independent_review_complete": false,
+      "approval_of_this_candidate": false
+    },
+    "basic_contract_bindings": {
+      "source_revision": "ecc5c161b14bf2abaf05365c3910d3b8a2b16b85",
+      "source_path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "source_file_sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+      "selected_contract_pointer": "/field_value_applicability_contract",
+      "function_bindings": [
+        {
+          "basic_pointer": "/field_value_applicability_contract/functions/0",
+          "basic_symbol": "read_field_descriptor_target",
+          "detail_symbol": "read_f03_field_descriptor_target",
+          "input": "(same_snapshot, F03FieldTargetRequest, field_locator)",
+          "output": "F03FieldTargetRead"
+        },
+        {
+          "basic_pointer": "/field_value_applicability_contract/functions/1",
+          "basic_symbol": "read_field_owner_record",
+          "detail_symbol": "read_f03_field_owner_record",
+          "input": "(same_snapshot, F03RecordRequest)",
+          "output": "F03RecordRead"
+        },
+        {
+          "basic_pointer": "/field_value_applicability_contract/functions/2",
+          "basic_symbol": "read_original_field_definition",
+          "detail_symbol": "read_f03_original_field_definition",
+          "input": "(same_snapshot, F03FieldDefinitionRequest)",
+          "output": "F03FieldDefinitionRead"
+        },
+        {
+          "basic_pointer": "/field_value_applicability_contract/functions/3",
+          "basic_symbol": "evaluate_field_values",
+          "detail_symbol": "evaluate_field_values_detail",
+          "input": "F03BasicContext",
+          "output": "F03Evaluation"
+        }
+      ],
+      "carrier_contract_pointers": [
+        {
+          "pointer": "/field_value_applicability_contract/carrier_contracts/0",
+          "key": "section_field_records",
+          "lookup": "同じValidatedSupply.input.sourcesを原index順で走査し、usable semantic_json source.content.section_field_recordsの全raw出現を読む。source content.bindingと原root SectionField/entry.recordのwhole/ref/frame対応をL4規則で照合する。root recordだけからsource記録を作文しない。"
+        },
+        {
+          "pointer": "/field_value_applicability_contract/carrier_contracts/1",
+          "key": "value_facts",
+          "lookup": "原field.value_fact_refs→snapshot.input.values全出現→ValueFact.source_ref→同じsnapshot.sourcesのusable semantic_json source.content.value_facts。全source/record順・反復を保ち、source未取得/fixture/absence/null/typeを値にしない。"
+        },
+        {
+          "pointer": "/field_value_applicability_contract/carrier_contracts/2",
+          "key": "field_applicability_records",
+          "lookup": "原field/applicability_ref→snapshot.input.applicability_records全出現→record.source_ref→同じsnapshot.sourcesのusable semantic_json source.content.field_applicability_records。対象subject/full Binding/資格をL4規則で対応させ、判断者/reason/reentryを原値保持する。"
+        }
+      ],
+      "decision_and_projection_pointers": [
+        "/field_value_applicability_contract/same_call",
+        "/field_value_applicability_contract/read_decision_precedence",
+        "/field_value_applicability_contract/field_definition_precedence",
+        "/field_value_applicability_contract/field_definition_judgment_writer",
+        "/field_value_applicability_contract/projection_order",
+        "/field_value_applicability_contract/existing_meaning_reader_return_member_mapping"
+      ],
+      "same_snapshot_rule": "上記detail readersへ渡すsnapshotはfn0 ValidatedSupply vへのopaque alias。別のroot/source query adapter、fn0再実行、再decode、other snapshotを許さず、各readは同一v.inputと同じsource occurrencesへ解決する。"
+    },
+    "private_reader_bindings": {
+      "closure": "以下のnamed private bindingsはevaluate_field_values_detailから呼ぶ実際のL5論理reader境界であり、未実装のL4関数呼出しだけを完了とする記述ではない。source occurrenceの列挙・carrier取得・return格納先を固定sourceとL4規則に結び付ける。",
+      "read_f03_field_descriptor_target": {
+        "source_function_pointer": "/field_value_applicability_contract/functions/0",
+        "source_material": "同一F03BValidatedSnapshotのinput.section_fieldsで原field occurrence index fを保持する。field_locatorはL4で定義されたRFC6901 locator（例: /section_fields/0）であり、配列indexそのものとして解釈しない。fとlocatorの対応はL4の元snapshot/locator規則で解決し、同snapshot.input.sourcesの全原出現を順に走査する。qualified semantic_json sourceのcontent.bindingとcontent.descriptor_targets内の全raw targetを取得し、request Ref/Binding/target slot/kindをF03 L4のref_same/binding_same・branch規則で比較する。source/local target全出現、slot locator、原値、problemsを削らずF03FieldTargetRead全closed memberへ保存する。",
+        "result_storage": "F03FieldDefinitionRead.target_read。元source/target取得とF03BMeaningFactの意味判定を同一視しない。"
+      },
+      "read_f03_field_owner_record": {
+        "source_function_pointer": "/field_value_applicability_contract/functions/1",
+        "source_carrier_pointer": "/field_value_applicability_contract/carrier_contracts/0",
+        "source_material": "同一snapshot.input.section_fields[f]の原field occurrenceからF03RecordRequestのkind/Ref/presenceを構成する。kind=fieldのroot occurrenceはinput.section_fields[f]であり、source側のmirrorはQualifiedSource.content.section_field_recordsである。usable semantic_json sourcesの全原出現を走査し、root/source occurrenceをそれぞれの原index順で保持して照合する。whole root mirror、source Ref、source content.binding、root/record subject、full Binding、body、qualificationの成立/差異を別causeで保存する。kind=value/value_applicabilityはL4 carrier_contracts/1/2の明示source_ref経路で取得し、section_field_recordsから推測しない。",
+        "result_storage": "元requestごとのF03RecordRead全memberをowner_read/value_reads/applicability_read/parent_readsの該当場所へ置く。原requestを省略/統合しない。"
+      },
+      "read_f03_original_field_definition": {
+        "source_function_pointer": "/field_value_applicability_contract/functions/2",
+        "call_sequence": "requestを元field/presenceから作成→read_f03_field_owner_recordを一回→read_f03_field_descriptor_targetを一回→meaning_fact_refsの各原出現を原順でresolve→各selected fact occurrenceのattribution/meaning read→同subject/revision/scopeの実在qualified pair read→L4 field_definition_judgment_writerで全judgments。",
+        "fact_read_storage": "各F03FieldFactReadはrequest_locator/requested_ref/slot_locator/fact_locator/fact/attribution_read/meaning_read/problemsの全8memberを元Ref indexとともに一出現ずつ保持。meaning_fact_refsのabsent/null/typeと明示[]を区別する。",
+        "meaning_reader": "同じF03 source/fact/body/frame/requestに対するL4既存definition meaning readerを呼び、その実DefinitionMeaningRead全8memberをF03 meaning_read.valueへ全値写す。F01 descriptor bundleの存在だけでは代替しない。L4のmeaning boundaryとlimited full-request/fact occurrence再利用条件はmeaning_reader_boundaryに従う。",
+        "result_member_storage": {
+          "request": "構成した原F03FieldDefinitionRequestそのもの",
+          "owner_read": "read_f03_field_owner_recordの原field occurrence return",
+          "target_read": "read_f03_field_descriptor_targetの原field occurrence return",
+          "fact_reads": "各meaning_fact_refs出現から作成した8-member F03FieldFactReadの原順配列",
+          "pair_reads": "対応した実在比較のF03DefinitionPairRead全配列",
+          "judgments": "L4 judgment writer結果全出現/原順",
+          "problems": "原field/owner/target/fact/meaning/pair/judgment problem全出現/原順"
+        },
+        "result_storage": "当該原field occurrenceのF03Row.definition_readにF03FieldDefinitionRead全7memberを格納。別のaggregate summaryで置換しない。",
+        "basic_meaning_reader_pointer": "/field_value_applicability_contract/existing_meaning_reader_return_member_mapping/source_reader"
+      },
+      "record_read_roles": {
+        "value_read": "同一snapshotの元ValueFact/ValueFact.source_ref/QualifiedSource.content.value_factsをL4 carrier_contracts/1で引き、完全F03RecordReadをF03Row.value_readsへ原value_fact_refs/root/source順で格納する。各取得原ValueFactのapplicability_refが供給nonnullなら、その直後にkind=value_applicabilityの専用F03RecordReadを追加し同じvalue_readsへ原順格納する。applicability_ref absent/nullでは専用readを作らず原wholeを保持する。reference_fixtureは実値/knownにしない。",
+        "field_applicability_read": "同一snapshotの原ApplicabilityRecord.source_ref/QualifiedSource.content.field_applicability_recordsをcarrier_contracts/2で引き、完全F03RecordReadをF03Row.applicability_readへ格納。missing/null/type/unknown/NAを各L4分岐どおり保持。",
+        "parent_reads": "kind=parent_sectionの原parent support候補だけを同じread_f03_field_owner_record手順で読み、各F03RecordReadをF03Row.parent_readsへparent root原index順で格納する。field/value/value_applicabilityとはrequest kindと格納先を混同しない。親NAをfield NAへ伝播しない。",
+        "return_storage": "個々のF03RecordReadはF03Row内の専用memberに保持し、owner/target/fact readやF03Evaluation.problemsへ本文をまとめず、F03RecordRead.problemsは原return内に残す。"
+      },
+      "reader_return_storage_map": {
+        "closure": "各readerはL4 fixed closed returnの全memberを同名fieldへ写し、原配列順・presence・RawValue・problemを保持する。型名cast、default、正規化、原因統合をしない。",
+        "F03FieldTargetRead": "read_f03_field_descriptor_targetのfield_locator/request/state/occurrences/matches/problems全6 memberを、F03FieldDefinitionRead.target_readへそのまま保持する。",
+        "F03RecordRead": "read_f03_field_owner_recordのrequest/state/root_occurrences/source_occurrences/supports/problems全6 memberを、owner_read/value_reads/applicability_read/parent_readsの該当原request位置へ保持する。各F03RecordRead.problemsも内包したまま残す。",
+        "F03AttributionRead": "state/supports/problems全3 memberを当該F03FieldFactRead.attribution_readへ保持する。",
+        "F03MeaningReadPresence": "absent枝はpresenceのみ、supplied枝はpresenceとvalueを保持する。supplied valueのF03BDefinitionMeaningReadはslot_locator/fact_locator/binding/normative_frame/acquisition_state/occurrences/supports/problems全8 memberをF03FieldFactRead.meaning_read.valueへ写す。",
+        "F03DefinitionPairRead": "left_fact_read_index/right_fact_read_index/state/root_occurrences/source_occurrences/supports/problems全7 memberをF03FieldDefinitionRead.pair_readsの原順配列へ保持する。",
+        "F03FieldDefinitionJudgment": "branch/cause/state/request_ref_index/fact_read_indices/meaning_support_indices/pair_read_indices/original_refs/original_reason/original_semantic_basis/reason全11 memberをF03FieldDefinitionRead.judgmentsへL4 writerの原順で保持する。",
+        "F03Problem": "cause/locator/original_value/source_ref/source_index/relevance/reason全7 memberを元の各problems配列の原位置に保持し、Evaluation.problemsへ集約する場合も重複・順序・原配列を失わない。",
+        "F03Event": "branch/subject_ref/binding/axis/state/original_refs/reason_material/reason/backflow_owner/definition_judgment_indices全10 memberをF03Row.eventsへL4生成順で保持する。",
+        "F03FieldDefinitionRead": "request/owner_read/target_read/fact_reads/pair_reads/judgments/problems全7 memberを当該原field occurrenceのF03Row.definition_readへ保持する。",
+        "F03FieldFactRead": "request_locator/requested_ref/slot_locator/fact_locator/fact/attribution_read/meaning_read/problems全8 memberをF03FieldDefinitionRead.fact_readsへ原meaning_fact_refs/selected fact出現順に保持する。value_reads/applicability_read/parent_readsは別型F03RecordReadの格納先であり、このfact readを入れない。",
+        "F03Row": "field_locator/field/definition_read/value_reads/applicability_read/parent_reads/events/axis_indices/finding_indices全9 memberをF03Evaluation.rowsへinput.section_fieldsの原出現順で保持する。",
+        "F03Evaluation": "comparison/rows/problemsの全3 memberを同一readのF03Evaluationとしてprivate full runnerのfield_value_evaluationへ保持する。public fn2の返却は既存契約どおりcomparisonのみ。"
+      }
+    },
+    "planning_correction_ref": {
+      "path": "scaffold/review-handoff/local/field-attribution-ecc5c161/plan-corrections.json",
+      "sha256": "7142246fc34d497d9d7ef5ce29ef7c946b83e64f625c6683802c69da1930d54e",
+      "correction": "既存bundleはfn1/F01 descriptor meaning readerの返却保存であり、F03 field meaning readerとは型・意味が同一ではない。F03専用meaning readへの自動流用はしない。"
+    },
+    "legacy_oracle_boundary": {
+      "existing_l8_normal_pointer": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json#/function_oracles/2",
+      "boundary": "公開fn2の関数signature/Comparison返却型が変わらないことと、旧未実行normal oracleの全期待値がF03基本reader導入後も不変であることは別である。旧normal入力にF03原owner carriersが無い場合、known/supplied/applicableを期待値として継承せず、L4 F03の明示されたsource-unobtained/unknown挙動へ従う。",
+      "resolution_owner": "対応L8詳細設計で旧normal fixtureと新L4 F03 source contractを照合し、必要なら同じ基本意味を保つ範囲で oracle の入力/期待を更新する。実行証拠・全入力閉包はこの記述から生成しない。"
     }
   }
 }
