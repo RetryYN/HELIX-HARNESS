@@ -20443,7 +20443,7 @@
       "document_id": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
       "pointer": "/wire_codec_contract/schema",
       "canonical_sha256": "535d8f0b8f2e71c709e66418fa079cb4f757a7a6d0530b50267a452d74036640",
-      "candidate_current_file_sha256": "37c2e49b262a73ac59ac550bf540f2f8779a818c071add89f0a0cc7c26ce65be",
+      "candidate_current_file_sha256": "8bdfe4b804fca433bc6c2294ba7ba5735462973fa41664a5cd3157505d699893",
       "candidate_current_schema_canonical_sha256": "ace94a797cce9f3b0ead1f9a909eef564b08bbdcfc6ba6ef0d5ffbd60fe21f66",
       "candidate_note": "既存canonical pinは歴史的参照として保持。二つのnullable結果memberを含む現在candidate schemaの静的照合用。"
     },
@@ -56884,7 +56884,7 @@
     ],
     "candidate_design_bytes_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "file_bytes_sha256": "37c2e49b262a73ac59ac550bf540f2f8779a818c071add89f0a0cc7c26ce65be",
+      "file_bytes_sha256": "8bdfe4b804fca433bc6c2294ba7ba5735462973fa41664a5cd3157505d699893",
       "meaning": "同一candidate文書の現在bytesを照合するbinding。過去revisionにこの追補が存在したというsource pinではない。",
       "scope": "このfieldは同じPR候補のcurrent L5ファイル全bytesを指す。旧資産source引用hashはlegacy_comparison.source_assetsにあり変更しない。"
     },
@@ -66714,7 +66714,7 @@
         "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
         "pointer": "/functions/8",
         "sha256": "8b42b107322b595ed694280bd2d7a7c49974291526be0b0e2f05a0f08ee52fa9",
-        "candidate_file_bytes_sha256": "37c2e49b262a73ac59ac550bf540f2f8779a818c071add89f0a0cc7c26ce65be",
+        "candidate_file_bytes_sha256": "8bdfe4b804fca433bc6c2294ba7ba5735462973fa41664a5cd3157505d699893",
         "candidate_pointer_canonical_sha256": "bf868a14d00aae1498233d9137be6f1fbfc3dc90dc138cd0edeb5950a328727c",
         "candidate_note": "function本体の現在candidate bytes。歴史的revision/pinは上書きしない。"
       },
@@ -66733,21 +66733,21 @@
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary/producer_symbol_by_member",
-        "candidate_file_bytes_sha256": "37c2e49b262a73ac59ac550bf540f2f8779a818c071add89f0a0cc7c26ce65be",
+        "candidate_file_bytes_sha256": "8bdfe4b804fca433bc6c2294ba7ba5735462973fa41664a5cd3157505d699893",
         "candidate_pointer_canonical_sha256": "dc690dc5e77f88850db94330710d02ade0b9883a3c6a3480c5dbdb2604cc52e8",
         "note": "AnalysisContext memberから宣言済みproducer_symbolへの対応。axes/findingsのfixtureはtest doubleであり実producer出力でない。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/output_member_rules/1",
-        "candidate_file_bytes_sha256": "37c2e49b262a73ac59ac550bf540f2f8779a818c071add89f0a0cc7c26ce65be",
+        "candidate_file_bytes_sha256": "8bdfe4b804fca433bc6c2294ba7ba5735462973fa41664a5cd3157505d699893",
         "candidate_pointer_canonical_sha256": "1c6c240dee25be650e0db206ee755072fdfb497070696081b551f27314ad1e12",
         "note": "candidate欠落/空の区別を既存member_presence/construction_issuesへ結ぶ現在candidate値。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary",
-        "candidate_file_bytes_sha256": "37c2e49b262a73ac59ac550bf540f2f8779a818c071add89f0a0cc7c26ce65be",
+        "candidate_file_bytes_sha256": "8bdfe4b804fca433bc6c2294ba7ba5735462973fa41664a5cd3157505d699893",
         "candidate_pointer_canonical_sha256": "8a73e82f6d1538f8330a45fa36755f95e56c08abef6785395cd4df9bb9f12506",
         "note": "producer_symbol/input_bindingの適合条件と局所issue。"
       }
@@ -83508,7 +83508,7 @@
     "candidate_L5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
       "base_revision": "fabd7834720a6ddc3f02553034de25b51ac4fc5a",
-      "file_sha256": "37c2e49b262a73ac59ac550bf540f2f8779a818c071add89f0a0cc7c26ce65be",
+      "file_sha256": "8bdfe4b804fca433bc6c2294ba7ba5735462973fa41664a5cd3157505d699893",
       "binding_kind": "current_working_file_bytes",
       "scope": "base_revisionのgit blobと同bytesという主張ではない。正式候補L5全bytesへ照合。"
     },
@@ -691683,7 +691683,7 @@
           "scope": "同値source entryも二原出現保持。各originのsupport追加は当該一件だけ。"
         }
       ],
-      "unexercised": "本補足単体はX1/X2の既存固定例との対応を示す。X3の代替読みを識別する入力は隣接na_private_field_writer_verificationに分ける。全source取得域、foreign slot/kindの新探索規則、任意Ref欠落carrier、実資格取得の全域oracleではない。"
+      "unexercised": "本補足単体はX1/X2の既存固定例との対応を示す。X3の代替読みを識別する入力は隣接na_private_field_writer_verificationに分ける。全source取得域、foreign slot/kindの新探索規則、任意Ref欠落carrier、実資格取得の全域oracleではない。 同一read内の成立/不成立entry混在、複数source間の順序、異なるsubjectの複数supportの組合せは今回行使していない。"
     },
     "na_private_field_writer_verification": {
       "status": "今回の詳細技術選定候補に対応する有限期待。原入力/全返却literalであり実行証拠ではない。",
@@ -693190,7 +693190,7 @@
             }
           ],
           "selected_acquisition": "unknown",
-          "contrast": "原entry取得済み・資格scope不対応・supports0。選定A unknown、原entry取得だけresolvedの別読みと差を識別。fn0公開診断は既存literal保持。"
+          "contrast": "fn0でsource15が資格scope不対応によりunusable。既存NA_consumerに従い内部entryを取得せずoccurrence0/support0、acquisition unknown。source_unresolvedに原source全値を保持する。取得済entryのsupport不成立という別の枝と混同しない。fn0公開診断は既存literal保持。"
         },
         {
           "case_index": 27,
@@ -704040,37 +704040,60 @@
           {
             "input_pointer": "/raw_input/descriptors/5/facts/0/ref",
             "literal_role": "fact A=SYNTHETIC-MEANING-FACT-06。原slot facts列は全値不変。",
-            "consequence": "BをAとして扱わず、slot factのcopyだけならsubject_refs[A]となる別読みを排除できる。"
+            "consequence": "BをAとして扱わず、slot factのcopyだけならsubject_refs[A]となる別読みを排除できる。",
+            "rule_pointers": [
+              "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/applicability/constructor/subject_resolution"
+            ]
           },
           {
             "input_pointer": "/raw_input/sources/15/content/descriptor_targets/0",
             "literal_role": "原owner供給target B、slot MEANING-SLOT-06、kind required sectionの三member宣言。",
-            "consequence": "同source.content.bindingの原fullBindingがslot/record bindingへ対応。既存NA constructorの明示target経路でBを当該slotへ結ぶ。新Claimを作らない。"
+            "consequence": "同source.content.bindingの原fullBindingがslot/record bindingへ対応。既存NA constructorの明示target経路でBを当該slotへ結ぶ。新Claimを作らない。",
+            "rule_pointers": [
+              "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/applicability/constructor/subject_resolution"
+            ]
           },
           {
             "input_pointer": "/raw_input/applicability_records/0",
             "literal_role": "request Refに対応する原root判断。subject_refはB、decision not_applicable/reason/reentry_condition=falseを原値保持。",
-            "consequence": "原mirror /sources/15/content/definition_applicability_records/0/record と全型付き原値同値。"
+            "consequence": "原mirror /sources/15/content/definition_applicability_records/0/record と全型付き原値同値。",
+            "rule_pointers": [
+              "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/applicability/body/algorithm"
+            ]
           },
           {
             "input_pointer": "/raw_input/knowledge_records/0/provenance_refs/15",
             "literal_role": "同knowledge_refの原provenanceからsource15へ到達。",
-            "consequence": "Ref identity/revision/scope/owner対応、片側digestnullを独断の不一致又は資格成功にはしない。"
+            "consequence": "Ref identity/revision/scope/owner対応、片側digestnullを独断の不一致又は資格成功にはしない。",
+            "rule_pointers": [
+              "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/applicability/constructor"
+            ]
           },
           {
             "input_pointer": "/raw_input/qualifications/15",
             "literal_role": "source15の更新bytesをsubject digestとして持つ独立資格原資料。root_refは元root0。",
-            "consequence": "条件付き資格対応を前提にsupport一出現、selected acquisition resolved。"
+            "consequence": "条件付き資格対応を前提にsupport一出現、selected acquisition resolved。",
+            "rule_pointers": [
+              "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/applicability/body/private_field_writer",
+              "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/fn0_qualification_scope_issue_serialization"
+            ]
           },
           {
             "expected_pointer": "/expected/read/supports/0/subject_refs",
             "literal_role": "B一出現。",
-            "consequence": "fact A列[A]、全候補列[A,B]、全source target列の代用と区別。"
+            "consequence": "fact A列[A]、全候補列[A,B]、全source target列の代用と区別。",
+            "rule_pointers": [
+              "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/applicability/body/private_field_writer/support_subject_refs"
+            ]
           },
           {
             "expected_pointer": "/expected/judgments/0",
             "literal_role": "11member全値を既存NA branches5/field_constructorsから手著述。",
-            "consequence": "source_refsはrequest→support.source_ref→record.ref→B→record.source_refの五原出現。no first/dedup。NAは元definitionのknownを意味しない。"
+            "consequence": "source_refsはrequest→support.source_ref→record.ref→B→record.source_refの五原出現。no first/dedup。NAは元definitionのknownを意味しない。",
+            "rule_pointers": [
+              "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection/branches/5",
+              "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection/field_constructors"
+            ]
           }
         ],
         "remaining": "この新bodyは原ownerが独立供給した合成原資料というcase条件。既存target port/NA reader責務内で表現可能。全walkへの追加source body原値波及、sort/remap、全4root/publicfn1、原意味positive15slotの全返却はこの局所reader/projector oracleで完成としない。未解決資料を[]へ消していない。",
@@ -704085,11 +704108,11 @@
       "source_binding": {
         "binding_kind": "current_candidate_file_bytes",
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "file_bytes_sha256": "37c2e49b262a73ac59ac550bf540f2f8779a818c071add89f0a0cc7c26ce65be",
+        "file_bytes_sha256": "8bdfe4b804fca433bc6c2294ba7ba5735462973fa41664a5cd3157505d699893",
         "selected_objects": [
           {
             "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/applicability/body/source_occurrence_retention",
-            "canonical_sha256": "6dfd0743ba1f0d18d077069a77faf14f2a5e0837e07d94f9d7ec4d15e232aeca"
+            "canonical_sha256": "3991dc1b24fd1f977d26c80d8e3b5475bb45c4b8a1c23857004715522f5f42c4"
           },
           {
             "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/applicability/body/private_field_writer",
@@ -704110,6 +704133,10 @@
           {
             "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_common/fields",
             "canonical_sha256": "73882fdc326f36a1c82ecf383ab60ba66e693225d868cfce0057164a86bdc957"
+          },
+          {
+            "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/fn0_qualification_scope_issue_serialization/NA_consumer",
+            "canonical_sha256": "f8ddbda2947df34587ef5502e6e1f6e4ae776d59b9d7b92c3c7033ea68d096ff"
           }
         ],
         "revision_semantics": "同pair候補の現在L5 bytes。以下source_basisのrevision付き原資料/旧fixtureは固定historyであり現在bytesへ転記しない。"
@@ -705441,7 +705468,7 @@
     "operation_effect": "none",
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "sha256": "37c2e49b262a73ac59ac550bf540f2f8779a818c071add89f0a0cc7c26ce65be",
+      "sha256": "8bdfe4b804fca433bc6c2294ba7ba5735462973fa41664a5cd3157505d699893",
       "scope": "今回の現行L5全bytes。過去replay source pinとは別。"
     },
     "historical_replay_semantic_continuity": {
@@ -705466,16 +705493,24 @@
           "fixed_and_current_object_sha256": "1765e878482b5e8cb86e45bf3a6aec34f08bb4455ad784b8367fc238a290129f"
         },
         {
-          "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column/na",
-          "fixed_and_current_object_sha256": "2a0142dab3beddefe4df1abfe1b5512422f46ef1b02eda158243f4762e1ae843"
-        },
-        {
           "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract",
           "fixed_and_current_object_sha256": "0f7b4ad503281d8b6b28a1f9875f8f1d3b092a95156a161d8499a339d0a4be95"
         }
       ],
-      "method": "固定Git sourceと現candidate文書の指定6 JSON objectの値とhashのみを静的比較。helper/parser/reader/候補関数を実行していない。",
-      "limit": "object不変を既往whole期待の独立性、元旧21caseの採択authority、今回のreplay成功へ昇格しない。"
+      "method": "固定Git sourceと現candidate文書の指定5未変更objectをhash比較し、別記の1変更objectはfixed/current hashを分離する。helper/parser/reader/候補関数を実行していない。",
+      "limit": "object不変を既往whole期待の独立性、元旧21caseの採択authority、今回のreplay成功へ昇格しない。",
+      "changed_semantic_objects": [
+        {
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column/na",
+          "source_revision": "b3e12188dd85cd27d6186c7ac8e2ec8072d6c00e",
+          "fixed_object_sha256": "2a0142dab3beddefe4df1abfe1b5512422f46ef1b02eda158243f4762e1ae843",
+          "current_object_sha256": "09d2fcd7c488791e79a0ab509fd74cc6e6564081db186e182b0e3e62ab5aebf3",
+          "change": "本PRはNA sort source列の一judgment単位を明文化した。固定sourceの原値は履歴として保持し、現行objectとの不変を主張しない。旧case/materialを変更せず、その有限期待との対応を別節で照合する。",
+          "fixed_file_sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
+          "current_file_sha256": "8bdfe4b804fca433bc6c2294ba7ba5735462973fa41664a5cd3157505d699893"
+        }
+      ]
     }
   },
   "conditional_dependency_verification": {
@@ -705526,7 +705561,7 @@
       ],
       "candidate_l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "sha256": "37c2e49b262a73ac59ac550bf540f2f8779a818c071add89f0a0cc7c26ce65be",
+        "sha256": "8bdfe4b804fca433bc6c2294ba7ba5735462973fa41664a5cd3157505d699893",
         "pointer": "/conditional_dependency_detail",
         "canonical_sha256": "766ab74095750a631999fd76ed8c7ac9e8b74a7ab699a0dfc969f619463ffa75",
         "binding_kind": "current_candidate_bytes",

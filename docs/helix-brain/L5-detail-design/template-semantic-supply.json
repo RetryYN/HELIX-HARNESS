@@ -9288,8 +9288,8 @@
                 "supportsは同対象の原判断全値。acquisition resolvedは原decisionのNA又は定義成立を意味しない。案件/section/別field NAは当該slotへ転用しない。"
               ],
               "source_occurrence_retention": {
-                "population": "既存body.algorithm[1]の独立source解決で、供給request Refに対応する原NA判断候補のsource entryとして実際に取得した各出現を対象とする。この追補は探索元source/対象slot/kind/要求Refの選択条件を新設・拡張しない。未取得sourceや未訪問recordの出現を作らない。",
-                "append_before_support_filter": "対象の原source entryを取得した時点でsource_occurrencesへ保存し、その後のroot mirror全値対応、原subject対応又は既存資格の不成立を理由に削除しない。supportsは別列であり、source_occurrencesをsupportsの写像又は成功分だけの列にしない。",
+                "population": "既存body.algorithm[1]の独立source解決で、fn0の既存source利用可否処理を通ったsourceから、供給request Refに対応する原NA判断候補のsource entryとして実際に取得した各出現を対象とする。fn0でunusableのsource内部entryは既存NA_consumerに従いtyped再decodeせず、この母集団に含めない。探索元source/対象slot/kind/要求Refの選択条件を新設・拡張せず、未取得sourceや未訪問recordの出現を作らない。",
+                "append_before_support_filter": "上記母集団の対象entryを実際に取得した時点でsource_occurrencesへ保存し、その後のroot mirror全値対応又は原subject対応の不成立で削除しない。fn0既存資格処理により未取得となったentryを作る意味ではない。supportsは別列であり、source_occurrencesをsupportsの写像又は成功分だけの列にしない。",
                 "fields": {
                   "source_ref": "同原sources[source_index].ref全値。requestのrecord Ref又は診断fallbackへ置換しない。",
                   "source_index": "同immutable validated.input.sourcesの原array index。",
@@ -9298,9 +9298,10 @@
                   "original_value": "locatorが指す原source entry全値。entry.recordのみへ縮小しない。"
                 },
                 "order_and_multiplicity": "既存problem_common.orderのsource原index→carrier原record index順。同値出現も各原indexで一件ずつ保持し、support数又はjudgment数で複製・間引き・dedupしない。",
-                "non_support": "mirror/subject/資格の対応失敗は既存problem規則へ保持し、この保存だけでsupport、acquisition resolved、NA又はdefinition knownを成立させない。",
+                "non_support": "取得済entryのmirror/subject不成立は既存problem規則へ保持する。fn0でunusableのsourceはNA_consumerのsource_unresolvedと原source全値を保ち、source_occurrences/supports=[]のまま。source内部entryを再decodeしない。entry保存だけでsupport、resolved、NA又はdefinition knownを成立させない。",
                 "unobtained": "source entry未取得には架空Ref/index/locator/原値を供給しない。request absent/nullの非取得は既存分岐のまま。",
-                "separate_problem_value": "problem_emission_table/19のmirror不成立problem.original_valueは原entry.record本体、problem.locatorは原entry所在。source_occurrence.original_valueのentry全値とは別である。"
+                "separate_problem_value": "problem_emission_table/19のmirror不成立problem.original_valueは原entry.record本体、problem.locatorは原entry所在。source_occurrence.original_valueのentry全値とは別である。",
+                "fn0_boundary_rule_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/fn0_qualification_scope_issue_serialization/NA_consumer"
               },
               "private_field_writer": {
                 "status": "NA private返却を一意にする今回の詳細技術選定候補。要求意味の変更、唯一の歴史的解釈の回復又は実行成立を表さない。",
