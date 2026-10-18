@@ -3079,7 +3079,7 @@
             ]
           },
           {
-            "role": "現行L5の型とF02009 writer（後続追随対象）",
+            "role": "追随前の固定revisionにおけるL5の型とF02009 writer。現行の対応先はL5 logical_types/55・contracts/4とL8 source_bound_binding_parent_return_verification。",
             "revision": "6858d44b9243f68eff1317c7b63ecc44b72b57f8",
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
@@ -3326,7 +3326,7 @@
         "type_location": {
           "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
           "pointer": "/contracts/0/source_bound_binding_parent_contract/logical_return_type",
-          "meaning_ja": "この契約の専用論理型を一箇所で宣言する。既存private_closed_types配列の拡張や共通Bindingの変更ではない。L5/L8はこの基本型へ後続で対応させる。"
+          "meaning_ja": "この契約の専用論理型を一箇所で宣言する。既存private_closed_types配列の拡張や共通Bindingの変更ではない。L5 /logical_types/55・/contracts/4とL8 /source_bound_binding_parent_return_verificationに限定した対応を定義済み。全consumerの閉包は別に保持する。"
         }
       }
     },
