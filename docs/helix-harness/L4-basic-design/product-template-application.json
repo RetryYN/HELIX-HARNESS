@@ -7304,7 +7304,7 @@
       "not_proven": [
         "L9 oracleの独立実行",
         "実BRAIN-to-CORE transport/delivery",
-        "qualified cross-system admission",
+        "機構間で資格条件を満たした原sourceの受入成立",
         "全field/source chain/Claim protocol closure",
         "実装、受入、release"
       ]
@@ -7316,6 +7316,44 @@
       "任意Claim 54–57、BRAIN全要求・全支持の完了。既存原Claimsがあれば別観測として保全する。",
       "新public API/schema、追加owner/issuer/registry、approval/authority gate、実trust resolver。",
       "現行normal CORE SemanticRecord[9]及びBRAIN meaning factの本文は、位置関係だけでCORE product fieldへ実際に適用する意味/理由/独立basisを示すとはしない。現素材に実適用statementが無い対象は未形成として残り、成功goldenを合成しない。"
-    ]
+    ],
+    "authority_basis": [
+      {
+        "decision_record_id": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
+        "decision_record_path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+        "approved_reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "scope": "承認されたF01/F05の固定要求・対oracleだけ。各exact file/objectは本節source_basisを参照。全体承認や実資格を生成しない。"
+      },
+      {
+        "decision_record_id": "HDEC-BRAIN-TEMPLATE032-PREREQUISITE-L3L10-2026-10-12",
+        "decision_record_path": "docs/governance/decisions/helix-brain-template032-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+        "approved_reviewed_content_head": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+        "scope": "承認されたF03の固定要求・対oracleだけ。各exact file/objectは本節source_basisを参照。BRAINへの製品意味責務を追加しない。"
+      }
+    ],
+    "legacy_comparison": {
+      "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+      "revision": "491e9dcd7c6a03640b8e52dd079e98faff704817",
+      "lines": "34–58",
+      "sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b",
+      "additional_source_ref": "対L9のsource_basis/25に固定したJSON authority本文と、同/26の資産台帳。",
+      "retained": "I/O・失敗・state・consumer/oracleの意味境界、原sourceと型のidentityを分ける。定義知識と製品適用・案件値を混同しない。",
+      "changed": "旧DomainGraph/registry/gate/runtimeを移植せず、既存ApplicationInputBinding内に一fieldの原BRAIN支持とCORE製品適用を結ぶ私有接続を記述する。",
+      "reason": "旧inventory-firstと意味署名の比較を、現在の承認済みF01/F05/F03と両端閉型へ再導出する。同形JSONや同名だけで原支持・適用判断を統合しない。"
+    },
+    "failure_basis_ref": {
+      "local_document_pointer": "/failure_basis",
+      "paired_verification_source_pointers": [
+        "/selected_brain_field_definition_application_verification/source_basis/24"
+      ],
+      "failure_ids": [
+        "UTW-014",
+        "UTW-020",
+        "UTW-021"
+      ],
+      "retained": "欠損を空集合へ変えず、局所原因と全支持を残し、自己申告から完了を生成しない。",
+      "current_failure_example": "PR #3377で原source未取得の旧normal/ADD-11/12をknownや根拠付きN/Aとしていた期待を訂正した事例を保持する。参照・型の存在だけで新経路の実成功を宣言しない。"
+    }
   }
 }
