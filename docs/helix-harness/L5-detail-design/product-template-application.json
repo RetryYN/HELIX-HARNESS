@@ -14411,7 +14411,7 @@
         ],
         "current_l4_binding": {
           "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-          "file_sha256": "3f0abe52af5a7afb6c7b26c602886b5f770ee48004705d34e1c8608b125faa98",
+          "file_sha256": "ace8f0d1dc4c9ae824700df277c1c66b4c7ec3a26830fa292539934d505b7226",
           "selected_objects": [
             {
               "pointer": "/input_scope_knowledge_gap_contract/input_only_contract",
@@ -17768,7 +17768,7 @@
       },
       "current_basic_binding": {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "file_sha256": "3f0abe52af5a7afb6c7b26c602886b5f770ee48004705d34e1c8608b125faa98",
+        "file_sha256": "ace8f0d1dc4c9ae824700df277c1c66b4c7ec3a26830fa292539934d505b7226",
         "binding_scope": "same_candidate_basic_bytes",
         "selected_objects": [
           {

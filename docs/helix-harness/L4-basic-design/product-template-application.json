@@ -6400,9 +6400,9 @@
       "HARNESS-L10-009-F01",
       "HARNESS-L10-009-F05"
     ],
-    "scope": "元のSupplyInput.sourcesに存在する一つの明示occurrenceを、同一適用呼出しで明示されたApplicationInput.sourcesの一つのdestination occurrenceへ受け渡す際の基本設計。全BRAIN供給内容、template/query/source relation、資格記録の転送、ApplicationInput全体の組立ては対象外。",
+    "scope": "同一callの元SupplyInput.sourcesの一つの明示occurrenceを、callerが指定した受取位置へ写した新しいsources配列とafter snapshotへのpairを返す、ApplicationInputBinding内の純DTO組立て基本設計。全BRAIN供給内容、template/query/source relation、資格記録の転送、ApplicationInput全体の組立ては対象外。",
     "authority_effect": "既決L3/L10の意味を変更せず、新しい上流義務、採否、受領完了、資格、gateを作らない。BRAIN032のF01は汎用15項目を識別する契約であり、原source bodyをSupplyAnalysisへ返す義務を追加しない。CORE009 F01/F05の承認範囲に従い、ここでは既存入力間の選択source occurrenceを具体化する。",
-    "operation_effect": "設計上の一対一projection記述。新public field/API、resolver、producer、資格issuer、状態機械、永続化を定義しない。",
+    "operation_effect": "ApplicationInputBindingの一回の純DTO変換。originとdestination-beforeはimmutableとし、新配列を返す。新public field/API、snapshot ID issuer、resolver、producer、資格issuer、永続更新・状態機械を定義しない。",
     "source_basis": [
       {
         "kind": "normative_requirement_identity_and_boundary",
@@ -6565,7 +6565,7 @@
     "projection": {
       "from": "SupplyInput.sources[i] : QualifiedSource",
       "to": "ApplicationInput.sources[j] : SourceEnvelope",
-      "occurrence_binding": "iとjは、同一callで指定された原snapshot identity/revision/indexと受取ApplicationInput snapshot identity/revision/indexの一対一pairである。元array全体をfilter/deduplicate/reorderせず、同一Refの重複もoccurrenceごとのindexを保持する。部分projectionでcompactなappendを行って元ordinalを失わない。既存CORE fn0は入力sourceを検証するが、このBRAIN-origin selection/pair/lineageを検証しない。",
+      "occurrence_binding": "iはimmutable origin snapshot内の元index、jはcallerが指定したdestination-after snapshot内の格納位置である。source/destinationが同じindexであることは要求しない。明示pairはorigin identity/revision/iとdestination-after identity/revision/jを結ぶ。元sourceの重複とindexを失わず、CORE fn0による受信資料検証をBRAIN-origin selection/lineageの証明へ読み替えない。",
       "field_map": [
         {
           "source": "ref",
@@ -6595,7 +6595,19 @@
       ],
       "presence_and_raw_values": "source arrayおよび各memberの欠落/null/空/値、RawValue内のnull・number・array順序・object値、各source occurrenceと重複を区別して保持する。欠落をnull/[]へ、nullを欠落へ変えない。",
       "unmapped_or_invalid_members": "SourceEnvelopeの閉じたwire shapeにない余分memberやinvalid role/typeを捨てたり正常化しない。渡せるraw boundaryでは原memberを保ち、既存fn0がdecode issueを返すならそれを保持する。raw保持できず元値を表せない場合はこのprojectionを未成立とし、成功値を作らない。",
-      "no_inference": "Refの同一性、source_locator、file name、digest、候補一致だけでsource/bodyの対応や資格を推定しない。明示pairのないsourceは無関係な候補から結ばない。 source Ref.scopeをCORE ApplicationBinding.product_scope等へ読み替えたり、一致scopeをsource-to-template/query/requirement意味relationの根拠にしない。"
+      "no_inference": "Refの同一性、source_locator、file name、digest、候補一致だけでsource/bodyの対応や資格を推定しない。明示pairのないsourceは無関係な候補から結ばない。 source Ref.scopeをCORE ApplicationBinding.product_scope等へ読み替えたり、一致scopeをsource-to-template/query/requirement意味relationの根拠にしない。",
+      "destination_layout": {
+        "owner_ref": "/components/0",
+        "inputs": [
+          "immutable origin snapshot context and sources, source index i",
+          "immutable destination-before snapshot context and sources",
+          "caller-supplied destination-after snapshot context, destination index j"
+        ],
+        "index_rule": "iとjは既存数値profile上のinteger値として照合し、boolを整数扱いしない。iは0<=i<len(origin)の既存occurrenceを指す。jは0<=jとして、0<=j<len(destination-before)ならその一slotを置換し、j==len(destination-before)なら末尾へ一件追加する。bool、負値、非整数、範囲外、欠落、nullは局所不成立。途中挿入、穴埋め、他indexへのfallbackを行わない。数値字句へ新しい制限を加えない。",
+        "array_rule": "origin.sourcesとdestination-before.sourcesは配列の前提で照合する。raw/partial入力が欠落/null/配列外の場合は[]へ既定せず、当該組立てを未形成として原入力を保持する。field_mapで得る一つのSourceEnvelope値を、新配列のjへ置く。置換なら長さは不変、末尾追加なら一件だけ増える。origin/before配列と各memberを変更せず、j以外のdestination値・順序・重複はそのまま返す。同一Refで集約しない。原sourceの未知/型外を黙って補完・正常化しない。",
+        "snapshot_rule": "sources値又は長さが変わる場合、callerが与えるbefore/afterのidentity+revision組は異なるものとして照合する。同じstable identityでrevisionだけ更新してよい。両方の変更や処理内のID発行は要求しない。同じ組で異なる配列を返すことは不成立とし、beforeを上書きしない。全値が同じなら同じ組も保持できる。",
+        "return_boundary": "返すのは新しいsources配列と、caller供給のorigin/after context及びi/jを保持する明示pairだけ。これは本節の論理返却責務で、製品public output型/schema、全ApplicationInput生成、OS登録、snapshot採用、実配送又は資格成立ではない。"
+      }
     },
     "qualification_boundary": {
       "preserved_link": "QualifiedSource.qualification_refの値だけを同じRef fieldへ写す。これはQualification自体の転送・解決・成立ではない。",
@@ -6603,7 +6615,7 @@
       "receiver": "既存HARNESS-L5-009-validate_application_input (functions/0) がApplicationInput.sourcesを読む。source bytes/digest/body consistencyと、CORE側qualification_rootsからowner/subject/revision/scopeを独立照合する。未提示/不一致は既存のissue/局所未資格として残す。CORE fn0はBRAIN origin lineage/選択pairを検証しないため、fn0への入力存在やbytes一致をBRAIN→CORE由来証拠へ昇格しない。"
     },
     "not_closed_here": [
-      "SupplyInput.sourcesからの実選択/取得関係のproducerとcaller binding",
+      "この純DTO組立てに渡す選択source edge・origin occurrence・caller contextの実取得口と選択producer。layout自体はdestination_layoutへ限定定義済み。",
       "BRAIN QualificationからCORE資格資料への独立した意味対応とauthority",
       "CORE ApplicationInputの他軸・template/query/knowledge relationの完全assembly",
       "実codec・delivery・owner qualification・受信実行の成立"
@@ -6611,7 +6623,7 @@
     "legacy_comparison": {
       "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
-      "lines": "34–52",
+      "lines": "34–58",
       "sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b",
       "retained": "I/O・副作用・失敗・状態・consumer/oracle境界で責務を比較し、意味差を無視した共通化を避ける。",
       "changed": "旧DomainGraph/registry/gate/runtimeを移植せず、既存BRAIN/COREの原型とfn0責務の間に限定occurrence projectionを記述する。",

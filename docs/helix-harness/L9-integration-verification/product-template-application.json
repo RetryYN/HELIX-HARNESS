@@ -81262,7 +81262,7 @@
             "document_id": "HELIX-HARNESS-L4-009",
             "candidate_local_pointer": "/contracts/4/source_result_reference_projection",
             "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
-            "candidate_l4_bytes_sha256": "3f0abe52af5a7afb6c7b26c602886b5f770ee48004705d34e1c8608b125faa98",
+            "candidate_l4_bytes_sha256": "ace8f0d1dc4c9ae824700df277c1c66b4c7ec3a26830fa292539934d505b7226",
             "candidate_l4_path": "docs/helix-harness/L4-basic-design/product-template-application.json"
           },
           "expectation_basis": "L3/L10 F03にある根拠・適用範囲・不足の返却義務と、L4の必須軸、順序付きcondition pair、Presence<JsonValue>診断規則を用いる。各probeのrawと全返却期待はcase内に保持し、local先固定履歴はGit上の時系列証明とは区別する。",
@@ -131764,7 +131764,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "3f0abe52af5a7afb6c7b26c602886b5f770ee48004705d34e1c8608b125faa98",
+        "sha256": "ace8f0d1dc4c9ae824700df277c1c66b4c7ec3a26830fa292539934d505b7226",
         "pointer": "/field_source_materialization_contract",
         "canonical_sha256": "9affbb54ace3e5c6f22c92d004999e474be0a36d84b439aaf3d7b60aecd433bf",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
@@ -146532,7 +146532,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "3f0abe52af5a7afb6c7b26c602886b5f770ee48004705d34e1c8608b125faa98",
+        "sha256": "ace8f0d1dc4c9ae824700df277c1c66b4c7ec3a26830fa292539934d505b7226",
         "pointer": "/field_semantic_evidence_contract",
         "canonical_sha256": "739d8838896cbb169eafecfae38673e338fc8d82bc2c340195e96b89707dbc6e",
         "role": "現行L4基本候補のreturn/body契約。commit済み歴史revisionとは区別し、同PRの対象bytesと選択節を固定する。",
@@ -164412,7 +164412,7 @@
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
         "pointer": "/f05_validation_material_call_contract",
-        "file_sha256": "3f0abe52af5a7afb6c7b26c602886b5f770ee48004705d34e1c8608b125faa98",
+        "file_sha256": "ace8f0d1dc4c9ae824700df277c1c66b4c7ec3a26830fa292539934d505b7226",
         "canonical_sha256": "0bae5fc583b45d6c4631a7dd2a6574361cd299e22623e5f93e90431ef0be368d",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "status": "作業時のcurrent L4 candidate bytes。commit revisionとは主張しない。"
@@ -182245,7 +182245,7 @@
         "pointer": "/field_obligation_scope_contract",
         "canonical_sha256": "d0aada2de42168fef7e383c7ba423002dec423105fbeff3a07944b2a7ddffe31",
         "role": "本packet内候補objectへの固定binding。base5671 whole hashを新candidate currentとしない。",
-        "sha256": "3f0abe52af5a7afb6c7b26c602886b5f770ee48004705d34e1c8608b125faa98"
+        "sha256": "ace8f0d1dc4c9ae824700df277c1c66b4c7ec3a26830fa292539934d505b7226"
       },
       {
         "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
@@ -210235,7 +210235,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "3f0abe52af5a7afb6c7b26c602886b5f770ee48004705d34e1c8608b125faa98",
+      "sha256": "ace8f0d1dc4c9ae824700df277c1c66b4c7ec3a26830fa292539934d505b7226",
       "pointer": "/input_scope_knowledge_gap_contract"
     },
     "comparison_contract": {
@@ -297735,7 +297735,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "3f0abe52af5a7afb6c7b26c602886b5f770ee48004705d34e1c8608b125faa98",
+      "sha256": "ace8f0d1dc4c9ae824700df277c1c66b4c7ec3a26830fa292539934d505b7226",
       "pointer": "/input_scope_knowledge_gap_contract/post_return_projection",
       "canonical_sha256": "7a5d00f5c69b7ec0edbdc013e475d14cfed5ec362f5fa07cbc44e7a89c3c9618"
     },
@@ -301378,23 +301378,20 @@
     ],
     "design_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "sha256": "3f0abe52af5a7afb6c7b26c602886b5f770ee48004705d34e1c8608b125faa98",
+      "sha256": "ace8f0d1dc4c9ae824700df277c1c66b4c7ec3a26830fa292539934d505b7226",
       "pointer": "/selected_brain_source_occurrence_contract",
-      "canonical_sha256": "fa512a6e717d9f80877590db94c3f8aa3f04f624d01f664a2cf7bd359a980afc",
+      "canonical_sha256": "e22e9d0f6103cd2c3fd961a20b1a52fd4d8be3ef8341b40a9ec62b6f7980caaf",
       "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
     },
+    "destination_layout_ref": "/selected_brain_source_occurrence_contract/projection/destination_layout",
     "source_basis_ref": "/selected_brain_source_occurrence_contract/source_basis",
-    "expectation_derivation": "承認済みHARNESS-L3/L10-009-F01/F05のsource/revision/scopeと未完保持、BRAIN032-F01の原適用条件を具体化する。規範source、oracle、観測carrier、legacy failureは上記design_binding先のsource_basisで区分し、独立に導いた期待は下記に置く。ケース値はsynthetic logical valuesで、製品実行の観測ではない。 独立negative probeは、各input_deltaに対するexpected_verification_factsを固定する。これは検証用の期待記録であり製品output型ではない。",
+    "expectation_derivation": "承認済みHARNESS-L3/L10-009-F01/F05のsource/revision/scopeと未完保持、BRAIN032-F01の原適用条件を具体化する。規範source、oracle、観測carrier、legacy failureはdesign_binding先のsource_basisで区分し、独立期待は下記に置く。destinationの置換/append意味はcurrent L4のprojection/destination_layoutを参照する。ケース値はsynthetic logical valuesで、製品実行の観測ではない。",
     "cases": [
       {
-        "id": "HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-PRESERVE-ORDER",
+        "id": "HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-REPLACE-ONE-SLOT",
         "input": {
           "origin_snapshot": {
             "identity": "supply-A",
-            "revision": "r1"
-          },
-          "destination_snapshot": {
-            "identity": "application-A",
             "revision": "r1"
           },
           "origin_sources": [
@@ -301416,28 +301413,59 @@
                 "revision": "s1"
               },
               "content": {
-                "v": "second"
+                "v": "selected"
               },
-              "content_bytes": "{\"v\":\"second\"}",
+              "content_bytes": "{\"v\":\"selected\"}",
               "role": "derived_view"
             }
           ],
-          "explicit_pair": {
-            "origin_index": 1,
-            "destination_index": 1
+          "source_index": 1,
+          "destination_before_snapshot": {
+            "identity": "application-A",
+            "revision": "r1"
           },
-          "destination_sources": [
+          "destination_before_sources": [
             {
               "ref": {
-                "identity": "source-A",
-                "revision": "s1"
+                "identity": "control-A",
+                "revision": "c1"
               },
               "body": {
-                "v": "first"
+                "v": "control"
               },
-              "content_bytes": "{\"v\":\"first\"}",
-              "qualification_ref": null,
-              "role": "semantic_source"
+              "content_bytes": "{\"v\":\"control\"}",
+              "role": "reference_only"
+            },
+            {
+              "ref": {
+                "identity": "old-A",
+                "revision": "o1"
+              },
+              "body": {
+                "v": "before"
+              },
+              "content_bytes": "{\"v\":\"before\"}",
+              "role": "reference_only"
+            }
+          ],
+          "destination_after_snapshot": {
+            "identity": "application-A",
+            "revision": "r2"
+          },
+          "destination_index": 1
+        },
+        "expected_result": {
+          "new_sources": [
+            {
+              "ref": {
+                "identity": "control-A",
+                "revision": "c1"
+              },
+              "body": {
+                "v": "control"
+              },
+              "content_bytes": "{\"v\":\"control\"}",
+              "role": "reference_only"
             },
             {
               "ref": {
@@ -301445,25 +301473,33 @@
                 "revision": "s1"
               },
               "body": {
-                "v": "second"
+                "v": "selected"
               },
-              "content_bytes": "{\"v\":\"second\"}",
+              "content_bytes": "{\"v\":\"selected\"}",
               "role": "derived_view"
             }
-          ]
+          ],
+          "pair": {
+            "origin_snapshot": {
+              "identity": "supply-A",
+              "revision": "r1"
+            },
+            "source_index": 1,
+            "destination_snapshot": {
+              "identity": "application-A",
+              "revision": "r2"
+            },
+            "destination_index": 1
+          }
         },
-        "expected_observation": "同じRefの2 occurrenceは順序・index・別bodyを保持する。明示pairはorigin 1→destination 1だけを結ぶ。content→bodyとsemantic_json→semantic_source以外はraw値/presence/nullを保持し、欠落qualification_refをnullへ変えない。資格/意味relation/実配送は成立しない。 destination_sources[0]はcase内の既存対照であり、この単一pairから新たに生成されたsource/由来とは認定しない。",
-        "failure_observation": "Refによるfirst/last map、重複排除、index詰め、null/欠落の正規化、またはCORE fn0結果をBRAIN-origin証明に代用する。"
+        "expected_observation": "入力sourcesはimmutableのまま、before index 1だけを置換し、index 0は値・順序とも不変。選択元のcontentをbodyへ移し、非対象role derived_view、欠落/null/raw bytesを保持する。配列値が変わるためbefore/after snapshot tupleは異なる。stable identityの維持とrevision r1→r2は許される。pairのdestinationはafter snapshot。返却期待は新sources配列とこのpairだけで、caller/producer/issuer、永続write、全input assembly、実配送は認定しない。",
+        "failure_observation": "origin/beforeの破壊的更新、未選択slotを推測値で再生成すること、未選択slotの変化、roleの不要な正規化、before snapshotをdestination pairへ使う、またはpair以外の副作用/全assemblyを仮定する。"
       },
       {
-        "id": "HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-INDEX-TRANSLATION",
+        "id": "HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-APPEND-AT-END",
         "input": {
           "origin_snapshot": {
             "identity": "supply-B",
-            "revision": "r1"
-          },
-          "destination_snapshot": {
-            "identity": "application-B",
             "revision": "r1"
           },
           "origin_sources": [
@@ -301486,9 +301522,10 @@
               "role": "semantic_json"
             }
           ],
-          "explicit_pair": {
-            "origin_index": 0,
-            "destination_index": 1
+          "source_index": 0,
+          "destination_before_snapshot": {
+            "identity": "application-B",
+            "revision": "r1"
           },
           "destination_before_sources": [
             {
@@ -301503,7 +301540,14 @@
               "role": "reference_only"
             }
           ],
-          "expected_destination_sources_after_projection": [
+          "destination_after_snapshot": {
+            "identity": "application-B",
+            "revision": "r2"
+          },
+          "destination_index": 1
+        },
+        "expected_result": {
+          "new_sources": [
             {
               "ref": {
                 "identity": "control-source",
@@ -301533,88 +301577,145 @@
               "qualification_ref": null,
               "role": "semantic_source"
             }
-          ]
+          ],
+          "pair": {
+            "origin_snapshot": {
+              "identity": "supply-B",
+              "revision": "r1"
+            },
+            "source_index": 0,
+            "destination_snapshot": {
+              "identity": "application-B",
+              "revision": "r2"
+            },
+            "destination_index": 1
+          }
         },
-        "expected_observation": "このsynthetic oracleではorigin index 0だけがdestination index 1へ対応する。roleはsemantic_json→semantic_sourceに写し、selected qualification_refの明示nullを保持する。destination index 0のreference_only control objectは同じ値のまま無変更で、このpairのsource由来とは認定しない。index/role/nullは個別に識別し、資格・意味relation・実配送を証明しない。",
-        "failure_observation": "selected sourceをdestination 0へ誤配置、target 0を書換え、role変換を省略、qualification_ref:nullを省略または資格済みと解釈する。"
+        "expected_observation": "入力sourcesはimmutableのまま、destination index 1 (= before length)へappendし、index 0のcontrolは完全不変。roleはsemantic_json→semantic_sourceへ写し、selected qualification_refの明示nullとRefのraw値を保持する。配列長が変わるためbefore/after snapshot tupleは異なる。stable identityの維持とrevision r1→r2は許される。返却期待は新sources配列とafter context付きpairだけ。controlをこの単一pairのsource由来とは認定せず、実資格・意味relation・実配送を証明しない。",
+        "failure_observation": "index 0の上書き/再配置、null qualification_refの省略・資格済み解釈、append先の誤り、origin mutation、または全assembly/実配送を仮定する。"
       }
     ],
     "independent_negative_probes": [
       {
         "id": "SRC-OCC-NEG-01",
-        "input_change": "origin.sourcesを欠落 / null / [] とする。",
-        "expected": "三状態を区別し、選択成功やempty defaultを作らない。",
+        "base_case_id": "HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-REPLACE-ONE-SLOT",
+        "input_change": "同じcase-local origin_sourcesを欠落 / null / [] にする。",
         "input_delta": [
           {
-            "case": "sources_absent",
-            "path": "/supply_input/sources",
+            "variant": "sources_absent",
+            "path": "/input/origin_sources",
             "operation": "remove"
           },
           {
-            "case": "sources_null",
-            "path": "/supply_input/sources",
+            "variant": "sources_null",
+            "path": "/input/origin_sources",
+            "operation": "replace",
             "value": null
           },
           {
-            "case": "sources_empty",
-            "path": "/supply_input/sources",
+            "variant": "sources_empty",
+            "path": "/input/origin_sources",
+            "operation": "replace",
             "value": []
           }
         ],
         "expected_verification_facts": {
-          "origin_states_distinct": true,
-          "selected_occurrence_exists": false,
-          "empty_default_used": false,
+          "variants": {
+            "sources_absent": {
+              "source_collection_state": "absent",
+              "selected_occurrence_available": false,
+              "empty_default_used": false
+            },
+            "sources_null": {
+              "source_collection_state": "null",
+              "selected_occurrence_available": false,
+              "empty_default_used": false
+            },
+            "sources_empty": {
+              "source_collection_state": "empty_array",
+              "selected_occurrence_available": false,
+              "empty_default_used": false
+            }
+          },
           "projection_claim": "unestablished"
         }
       },
       {
         "id": "SRC-OCC-NEG-02",
-        "input_change": "選択index欠落/範囲外、または該当occurrenceがnull/型外。",
-        "expected": "他の同Ref occurrenceへ切替えず、元indexと不成立を保持する。",
+        "base_case_id": "HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-REPLACE-ONE-SLOT",
+        "input_change": "source_index欠落/範囲外と、選択occurrenceのnull/型外を区別する。",
         "input_delta": [
           {
-            "case": "index_absent",
-            "explicit_pair": {
-              "destination_index": 0
-            }
+            "variant": "source_index_absent",
+            "path": "/input/source_index",
+            "operation": "remove"
           },
           {
-            "case": "index_out_of_range",
-            "origin_sources": [
-              {
-                "ref": {
-                  "identity": "A"
-                }
-              }
-            ],
-            "explicit_pair": {
-              "origin_index": 4,
-              "destination_index": 0
-            }
+            "variant": "source_index_out_of_range",
+            "path": "/input/source_index",
+            "operation": "replace",
+            "value": 4
           },
           {
-            "case": "null_item",
-            "origin_sources": [
-              null
-            ],
-            "explicit_pair": {
-              "origin_index": 0,
-              "destination_index": 0
-            }
+            "variant": "selected_item_null",
+            "path": "/input/origin_sources/1",
+            "operation": "replace",
+            "value": null
+          },
+          {
+            "variant": "selected_item_wrong_type",
+            "path": "/input/origin_sources/1",
+            "operation": "replace",
+            "value": "not-an-object"
+          },
+          {
+            "variant": "source_index_null",
+            "path": "/input/source_index",
+            "operation": "replace",
+            "value": null
+          },
+          {
+            "variant": "source_index_wrong_type",
+            "path": "/input/source_index",
+            "operation": "replace",
+            "value": "1"
           }
         ],
         "expected_verification_facts": {
-          "selected_origin_occurrence": "unavailable_or_invalid",
+          "variants": {
+            "source_index_absent": {
+              "selection_index_state": "absent",
+              "selected_occurrence_available": false
+            },
+            "source_index_out_of_range": {
+              "selection_index_state": "outside_origin_sources",
+              "selected_occurrence_available": false
+            },
+            "selected_item_null": {
+              "selection_index_state": "resolves_to_null_occurrence",
+              "selected_occurrence_available": false
+            },
+            "selected_item_wrong_type": {
+              "selection_index_state": "resolves_to_non_object_occurrence",
+              "selected_occurrence_available": false
+            },
+            "source_index_null": {
+              "selection_index_state": "null",
+              "selected_occurrence_available": false
+            },
+            "source_index_wrong_type": {
+              "selection_index_state": "wrong_type",
+              "selected_occurrence_available": false
+            }
+          },
           "fallback_to_same_ref": false,
-          "source_and_destination_ordinals_preserved": true,
+          "origin_and_before_inputs_mutated": false,
           "projection_claim": "unestablished"
         }
       },
       {
         "id": "SRC-OCC-NEG-03",
         "input_change": "originまたはdestination snapshot identity/revisionを差し替え、旧Analysis/cacheを再利用。",
-        "expected": "旧pairはstale/unknown。新snapshotの明示pairなしにsourceを配送済みにしない。",
         "input_delta": {
           "prior_pair": {
             "origin_snapshot": {
@@ -301625,8 +301726,8 @@
               "identity": "application-A",
               "revision": "r1"
             },
-            "origin_index": 0,
-            "destination_index": 0
+            "source_index": 1,
+            "destination_index": 1
           },
           "current_origin_snapshot": {
             "identity": "supply-A",
@@ -301645,17 +301746,9 @@
               "identity": "application-A",
               "revision": "r2"
             },
-            "prior_pair": {
-              "origin_snapshot": {
-                "identity": "supply-A",
-                "revision": "r1"
-              },
-              "destination_snapshot": {
-                "identity": "application-A",
-                "revision": "r1"
-              },
-              "origin_index": 0,
-              "destination_index": 0
+            "prior_pair_destination_snapshot": {
+              "identity": "application-A",
+              "revision": "r1"
             }
           }
         },
@@ -301663,21 +301756,21 @@
           "prior_pair_matches_current_origin": false,
           "cached_analysis_current": false,
           "stale_material_reused": false,
-          "projection_claim": "unestablished",
-          "prior_pair_matches_changed_destination": false
-        }
+          "prior_pair_matches_changed_destination": false,
+          "projection_claim": "unestablished"
+        },
+        "base_case_id": "HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-REPLACE-ONE-SLOT"
       },
       {
         "id": "SRC-OCC-NEG-04",
+        "base_case_id": "HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-REPLACE-ONE-SLOT",
         "input_change": "contentとcontent_bytesの対応が異なる。",
-        "expected": "両方の原値を保持し、既存CORE fn0が持つbytes/body判定へ渡す。bytesを再生成して不一致を隠さない。",
         "input_delta": {
-          "origin_source": {
-            "content": {
-              "v": "new"
-            },
-            "content_bytes": "{\"v\":\"old\"}"
-          }
+          "path": "/input/origin_sources/1",
+          "content": {
+            "v": "new"
+          },
+          "content_bytes": "{\"v\":\"old\"}"
         },
         "expected_verification_facts": {
           "original_content_retained": true,
@@ -301689,7 +301782,6 @@
       {
         "id": "SRC-OCC-NEG-05",
         "input_change": "SupplyAnalysisのsource_refs/candidate_refsだけからCORE source bodyを組み立てる。",
-        "expected": "origin body/bytes/qualificationの証拠がないためsource relationを未成立とする。",
         "input_delta": {
           "supply_analysis": {
             "source_refs": [
@@ -301717,7 +301809,6 @@
       {
         "id": "SRC-OCC-NEG-06",
         "input_change": "BRAIN QualificationをCORE Qualificationへfield renameし、ownerをRef.owner等から補う。",
-        "expected": "cast/owner推定を拒み、CORE qualification/root照合を未成立のまま残す。",
         "input_delta": {
           "brain_qualification": {
             "applicable_scope": {
@@ -301738,7 +301829,9 @@
               "revision": "r1"
             }
           },
-          "core_qualification_roots": [],
+          "application_input": {
+            "qualification_roots": []
+          },
           "origin_source": {
             "ref": {
               "identity": "source-A",
@@ -301757,6 +301850,7 @@
           }
         },
         "expected_verification_facts": {
+          "qualification_roots_field_path": "ApplicationInput.qualification_roots",
           "qualification_ref_preserved_as_reference_only": true,
           "core_qualification_synthesized": false,
           "owner_inferred_from_ref": false,
@@ -301765,25 +301859,40 @@
       },
       {
         "id": "SRC-OCC-NEG-07",
-        "input_change": "invalid roleまたはCORE閉wire shape外のextra member。",
-        "expected": "raw境界で原障害を保ち、既存fn0のdecode/issueへ渡す。削除・semantic_source昇格で正常化しない。",
-        "input_delta": {
-          "origin_source": {
-            "role": "unexpected-role",
-            "unmapped_extra": "retain-me"
+        "base_case_id": "HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-APPEND-AT-END",
+        "input_change": "正常caseを基底に、invalid roleのみ、または閉shape外memberのみを一つずつ追加する。",
+        "input_delta": [
+          {
+            "variant": "invalid_role_only",
+            "path": "/input/origin_sources/0/role",
+            "operation": "replace",
+            "value": "unexpected-role"
+          },
+          {
+            "variant": "extra_member_only",
+            "path": "/input/origin_sources/0/unmapped_extra",
+            "operation": "add",
+            "value": "retain-me"
           }
-        },
+        ],
         "expected_verification_facts": {
-          "invalid_role_retained": true,
-          "extra_member_silently_dropped": false,
-          "normalized_to_semantic_source": false,
-          "existing_core_fn0_decode_boundary": "receives_raw_invalidity_or_projection_remains_unestablished"
+          "variants": {
+            "invalid_role_only": {
+              "invalid_role_raw_value_retained": true,
+              "normalized_to_semantic_source": false,
+              "existing_core_fn0_decode_boundary": "receives_raw_invalidity_or_projection_remains_unestablished"
+            },
+            "extra_member_only": {
+              "extra_member_raw_value_retained": true,
+              "extra_member_silently_dropped": false,
+              "existing_core_fn0_decode_boundary": "receives_raw_invalidity_or_projection_remains_unestablished"
+            }
+          }
         }
       },
       {
         "id": "SRC-OCC-NEG-08",
         "input_change": "source bytes/Refは一致するがsource→template/query/requirement relationが未供給。",
-        "expected": "source occurrence投影があっても意味relation/適用はunestablishedのまま。",
         "input_delta": {
           "origin_source": {
             "ref": {
@@ -301822,14 +301931,12 @@
       }
     ],
     "not_proven": [
-      "callerによるsource選択とsnapshot pair生成",
-      "BRAIN→CORE実配送と資格の相互変換",
-      "CORE全ApplicationInput assembly",
-      "owner資格・採用・義務完了",
-      "runtime/L9実行・実装/CI/PO L11受入"
+      "caller/projectionによる実source選択・実deliveryと資格の相互変換、CORE全ApplicationInput assembly、owner資格・採用・義務完了、runtime/L9実行・実装/CI/PO L11受入。",
+      "destination_indexが負数・非整数・boolean・範囲外の場合の局所不成立は未行使。index境界の意味はcurrent L4 projection/destination_layoutに従う。",
+      "contentがnumber/array/nullの場合、roleが欠落/nullの場合の具体oracleは未収載。原raw value/presenceを保持し、未行使から補完・拒否・資格を推定しない。"
     ],
     "negative_probe_contract": {
-      "input_delta": "各probeは原入力またはsnapshot bindingへ加える小さなcase-local差分として読む。",
+      "input_delta": "各probeは合成された小さな入力差分である。base_case_idがあるprobe/variantは指定正常caseへ差分を適用し、独立snapshot値を持つprobeはその値をcase-local inputとして読む。各variantは示した差分だけを適用する。",
       "expected_verification_facts": "以下はL9の固定oracle事実のみ。製品返却object/schema/state/APIを定義しない。"
     }
   }
