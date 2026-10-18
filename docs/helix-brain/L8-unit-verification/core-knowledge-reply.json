@@ -27659,7 +27659,7 @@
   ],
   "candidate_l5_pin": {
     "path": "docs/helix-brain/L5-detail-design/core-knowledge-reply.json",
-    "sha256": "94d7fe73d712e347bbb7e475139c3b98f8610d56ae42ef0362472d767283777c",
+    "sha256": "7d34cf201f30c92a443a341ab30a7e8b246a65434c78e18cc2eb63bd97c71667",
     "binding": "同一candidate文書のbytes。上流履歴pinや不存在のbase revisionとは区別。"
   },
   "r1_independent_probes": [
@@ -35655,5 +35655,32 @@
         "function_invoked": false
       }
     }
-  ]
+  ],
+  "local_named_type_preservation": {
+    "scope_ja": "B019 F02の局所named type共通化に対する静的な元型保全の照合。既存の全raw/expected/case/probe/未閉包は変更しない。製品型checker・reader・計算programの実行や新しい業務caseの追加ではない。",
+    "source_revision": "62ca3471b47ea8c6af0e4ddb12232cb5d75b0197",
+    "source_type_pointer": "/type_system/definitions",
+    "source_type_names": [
+      "JSONValue",
+      "RawF01",
+      "RawF02",
+      "RawF03",
+      "RawN01",
+      "RawB01",
+      "F01Return",
+      "F02Return",
+      "F03Return",
+      "N01Return",
+      "B01Return"
+    ],
+    "expanded_original_types_ordered_sha256": "088cac6bb41f957959f7949a741dc43d1408c7d1f76d96392d3cb731601a9476",
+    "procedure_ja": "L5 local_named_type_contractに従い追加三型への参照だけを展開する。三型以外の元11型を元順に取り出し、JSON member順・配列順を保持したUTF-8 compact JSON（ensure_ascii=false、sort_keys=false、末尾改行なし）のSHA-256を上記値と照合する。元required/additionalPropertiesを緩めて一致させない。既存JSONValueの自己参照は展開しない。",
+    "negative_controls_ja": [
+      "provided_replyのrequiredをoriginal_replyと同じ13項目へ変更すれば型全値比較が不一致になる。",
+      "TemplateItemをReplyItemへ向ければstate/value_stateの違いにより型全値比較が不一致になる。",
+      "KnowledgeRef.scopeをstringからCOREの任意RawValueへ広げれば型全値比較が不一致になる。",
+      "追加三型の参照先欠落又は循環は型復元不能として区別し、JSONValueの既存自己再帰は維持する。"
+    ],
+    "execution_state": "not_executed_product_oracle; structural_reference_expansion_only"
+  }
 }
