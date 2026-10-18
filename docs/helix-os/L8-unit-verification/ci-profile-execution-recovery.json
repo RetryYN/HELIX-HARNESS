@@ -171275,7 +171275,7 @@
     ],
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "140c6e83e52fb43fbb0064c908d71e98fbfed257454bad7b90a5f3dd7e6bdf6d",
+      "candidate_sha256": "2ccd7f020094c6fc907c8bcd19f365f5eb82da39e245d8d1ea6b83d8b2728a0f",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
     },
@@ -171299,7 +171299,7 @@
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "140c6e83e52fb43fbb0064c908d71e98fbfed257454bad7b90a5f3dd7e6bdf6d",
+      "candidate_sha256": "2ccd7f020094c6fc907c8bcd19f365f5eb82da39e245d8d1ea6b83d8b2728a0f",
       "pointer": "/owner_return_verification"
     },
     "unit_conditions": [
@@ -171382,7 +171382,7 @@
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/operation_call_verification",
-      "candidate_sha256": "140c6e83e52fb43fbb0064c908d71e98fbfed257454bad7b90a5f3dd7e6bdf6d",
+      "candidate_sha256": "2ccd7f020094c6fc907c8bcd19f365f5eb82da39e245d8d1ea6b83d8b2728a0f",
       "object_canonical_sha256": "8f68ff9f39aa88e2bdf95c35e5cb4a1062a5bc9efbfd572ff7f6a98500a2b8de"
     },
     "condition_correspondence": [
@@ -171542,7 +171542,7 @@
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/prior_projection_verification",
-      "candidate_sha256": "140c6e83e52fb43fbb0064c908d71e98fbfed257454bad7b90a5f3dd7e6bdf6d",
+      "candidate_sha256": "2ccd7f020094c6fc907c8bcd19f365f5eb82da39e245d8d1ea6b83d8b2728a0f",
       "object_canonical_sha256": "981737522c698c4327ac0ae351b04b97846ab6442049ff1175ba9eb2d4b1af55"
     },
     "unit_conditions": [
@@ -171632,7 +171632,7 @@
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/resume_call_verification",
-      "candidate_sha256": "140c6e83e52fb43fbb0064c908d71e98fbfed257454bad7b90a5f3dd7e6bdf6d",
+      "candidate_sha256": "2ccd7f020094c6fc907c8bcd19f365f5eb82da39e245d8d1ea6b83d8b2728a0f",
       "object_canonical_sha256": "3b6901b2529c5f642b03e862dd369016ca4a60c96e70d5d4b3d7703705b92edb"
     },
     "unit_conditions": [
@@ -171909,7 +171909,7 @@
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "140c6e83e52fb43fbb0064c908d71e98fbfed257454bad7b90a5f3dd7e6bdf6d",
+      "candidate_sha256": "2ccd7f020094c6fc907c8bcd19f365f5eb82da39e245d8d1ea6b83d8b2728a0f",
       "pointer": "/f01_owner_return_verification",
       "object_canonical_sha256": "8738d8a3290b9345215bc76f3a6f379d3d86c2fcac0f9d43e848d551686ea2b1"
     },
