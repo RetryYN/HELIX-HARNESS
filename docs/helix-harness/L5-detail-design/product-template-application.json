@@ -15449,6 +15449,7 @@
         {
           "branch": "InputScopeProfileScan.semantic_records_unresolved",
           "condition": "非null inputのsemantic_records Readが配列でない",
+          "limit": "有限whole oracleはsemantic_recordsのabsentだけを行使する。null、型外を含むpresent、unreachedは独立oracle未収載。",
           "material": "Read全3枝/原値と固定reason。native shape失敗をcodec bypassで非nullへしない。",
           "whole_oracles": [
             "NATIVE-SEMANTIC-RECORDS-ABSENT"
@@ -15521,6 +15522,7 @@
         {
           "branch": "InputScopeOccurrenceResolution.located / unestablished",
           "condition": "lookup_outcome_writer全6 outcome、source_observation index別空間",
+          "limit": "全6 outcomeを行使するのはfield roleのみ。source/proposal roleはlocatedとtarget_unestablishedだけを行使し、残るoutcomeは未行使。",
           "material": "元順/反復/0又は全候補、D全値",
           "whole_oracles": [
             "L9-0..4",
@@ -15868,7 +15870,7 @@
         "一般閉型/全declared branch writerを規定したが全入力domainの網羅的oracle又は到達可能性証明ではない。",
         "同decode成功のraw/detailed diagnosticsは型付きwhole保存を指定。全CoreNumber/token/codec失敗source/provider実資格の動的oracleは未行使。",
         "既存callerの保持先とopaque post-returnへの接続は同じ詳細差分で定義するが、実caller/recipient/BRAIN配送/OS受領・記録は未実証。",
-        "digest/witness/bodyの原値は旧16例と追加3例で保持し、公開の原版存在と私有のsource/digest条件を分離する。有限著述を全private helper/全数値域/実fn0/実資格/製品caller実行の成功へ昇格しない。"
+        "digest/witness/bodyの原値は固定import5例、今回独立著述した11例、追加3例で保持し、公開の原版存在と私有のsource/digest条件を分離する。有限著述を全private helper/全数値域/実fn0/実資格/製品caller実行の成功へ昇格しない。"
       ],
       "logical_native_mapping": {
         "core_json_numbers": "元native CoreJsonValueはstrict int(bool除外)又はCoreNumberをJSON numberとして許す既存profileをそのまま使う。profile_version=1は既存typed_core_json_equal/数学値条件で照合し、1.0/1e0等の同整数値を文字列やhost class差だけで別版にしない。generated indicesは既存Natural。",
