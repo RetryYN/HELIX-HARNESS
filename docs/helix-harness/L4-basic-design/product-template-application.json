@@ -5664,20 +5664,20 @@
     },
     "post_return_projection": {
       "separate_from_input_reader": true,
-      "request_signature": "project_actual_f05_return_link(profile_observation_index, actual_outer_f05: Formation<ActualF05ProducerReturn>)",
+      "request_signature": "project_actual_f05_return_link<TCause>(profile_observation_index: Natural, actual_outer_f05: PostReturnFormation<ActualF05ProducerReturn, TCause>) -> PostReturnProjection<TCause>",
       "formed_rule": "形成済actual_outer_f05.valueが存在する場合のみReturnLink{root:\"f05_return\",pointer:\"\"}を作り、参照先は実F05 detailed return全体。入力だけからReturnLinkを先行生成しない。",
       "unformed_rule": "実outer F05がunformedなら実Cause全値をそのまま保持し、ReturnLinkを作らない。Cause实例を合成しない。",
       "boundary": "L4 /f05_validation_material_call_contract/outer_return_boundary。F05DetailedReturn実在時はcontext/header/comparison内部未形成でもoriginal_request/raw evidence linkを禁止しない。recipient決定と配信はこのbasic pairの責務ではなくL5/OS境界に残す。",
       "finite_coverage": "S12/S13/S14とlookup2例はinput-only pair。別の/input_scope_post_return_projection_verificationが、固定S12のprofile観測配列位置と既存L5 return_unobserved規則に由来する条件付きouter-unformed Cause一件の全引数/全返却を収載する。実Cause履歴又は実caller成功ではなく、formed枝/他Cause列/全post-return閉包は未実証。 profile_observation_indexは配列位置0だけを行使し、0以外及び範囲外は未行使。この未行使の開示から新しい拒否・補修規則を導かない。",
       "closed_schema": {
-        "type": "PostReturnProjection",
+        "type": "PostReturnProjection<TCause>",
         "input_members": {
           "profile_observation_index": "Natural",
-          "actual_outer_f05": "Formation<ActualF05ProducerReturn>"
+          "actual_outer_f05": "PostReturnFormation<ActualF05ProducerReturn, TCause>"
         },
         "output_members": {
           "profile_observation_index": "Natural",
-          "actual_f05_link": "Formation<ReturnLink>"
+          "actual_f05_link": "PostReturnFormation<ReturnLink, TCause>"
         },
         "ReturnLink": {
           "kind": "closed_record",
@@ -5686,14 +5686,61 @@
             "pointer": "JSONPointer"
           }
         },
-        "formed_branch": "実際のouter F05がformedで、そのvalueが存在するときだけroot=f05_return、pointer=\"\"（root全体を指すJSON Pointer）のReturnLinkを作る。このlinkはproducerの実出力を指すもので、BRAINでの受領や配送を意味しない。",
-        "unformed_branch": "実際のouter F05がunformedなら、実Cause全値をそのまま保持する。linkもunformedのままとしReturnLink valueを作らない。合成Causeは追加しない。",
+        "formed_branch": "actual_outer_f05.tag=formedかつvalueが存在するとき、profile_observation_indexを原値で保持しactual_f05_link={tag:formed,value:ReturnLink{root:f05_return,pointer:\"\"}}を返す。元producerのpayload全体を指し、payloadの再解釈/実配送を行わない。",
+        "unformed_branch": "actual_outer_f05.tag=unformedなら、profile_observation_indexを原値で保持しactual_f05_link={tag:unformed,causes:入力の全TCause配列}を返す。全型付き原因値/原順/反復を無変換で保持し、ReturnLink/追加Causeを作らず、原因のfilter/dedup/flatten/型変換/JSONValue化を行わない。",
         "input_reader_independence": "InputScopeKnowledgeGapViewはpost-return呼出しに依存せず成立する。将来のreturn linkを入力前提にしない。",
         "ActualF05ProducerReturn": {
           "kind": "opaque_actual_producer_return_payload",
           "boundary": "COREの外側F05 producerが実際に返したformed payload。L4側では内部memberを再定義しない。",
           "mapping_note": "現在のL5 outer return型ではCoreApplicationDetailReturn.f05の単一FormationのvalueがF05DetailedReturn。ここではそのpayloadの外側名だけをActualF05ProducerReturnとして扱い、L5 private recordのmember構造やraw decode規則をL4契約へ取り込まない。"
+        },
+        "PostReturnFormation<TValue, TCause>": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "formed": {
+              "value": "TValue"
+            },
+            "unformed": {
+              "causes": "TCause[]"
+            }
+          },
+          "type_parameters": [
+            "TValue",
+            "TCause"
+          ]
+        },
+        "PostReturnProjectionArguments<TCause>": {
+          "kind": "closed_record",
+          "members": {
+            "profile_observation_index": "Natural",
+            "actual_outer_f05": "PostReturnFormation<ActualF05ProducerReturn, TCause>"
+          },
+          "type_parameters": [
+            "TCause"
+          ]
+        },
+        "PostReturnProjection<TCause>": {
+          "kind": "closed_record",
+          "members": {
+            "profile_observation_index": "Natural",
+            "actual_f05_link": "PostReturnFormation<ReturnLink, TCause>"
+          },
+          "type_parameters": [
+            "TCause"
+          ]
+        },
+        "argument_type": "PostReturnProjectionArguments<TCause>",
+        "type_parameter_contract": {
+          "TCause": "本post-return pairのopaque型引数。同一呼出しの引数・全返却・内側PostReturnFormationで同じ具体型へ束縛する。L4はCauseのmember/enum/root/数値atomを解釈せず、別のL4 Cause又はJSONValueへcast/再encodeしない。具体型と型の出典は接続を具体化する下流pairで束縛する。",
+          "TValue": "PostReturnFormation定義だけのpayload型引数。引数側は既存opaque ActualF05ProducerReturn、返却側は既存ReturnLinkへ束縛する。"
         }
+      },
+      "cause_type_boundary_ja": "このpairのPostReturnFormationは既存の他節Formation<T>/Causeを広げない局所型。形のformed/value・unformed/causesは保ち、実producerの未形成原因全値をそのまま保持するためTCauseを明示する。下流private Causeのenum/rootをL4規範へ取り込まず、未形成を空正常又は成功へ置換しない。要求意味/owner/返却先/資格gateは変更しない。",
+      "whole_member_correspondence": {
+        "profile_observation_index": "同名のNatural引数を同名返却memberへ無変換で保持。",
+        "actual_outer_f05": "2個目の引数。PostReturnProjectionArgumentsは2引数のmember集合を名付ける型であり、引数を追加するwire wrapperではない。",
+        "actual_f05_link": "全返却PostReturnProjectionの2個目member。tagは元formed/unformedのまま、形成時はReturnLink、未形成時は同じTCause列を保持。"
       }
     },
     "legacy_comparison": {
