@@ -1571,6 +1571,299 @@
           "sides_order_ja": "source_envelope、computed_rowの順に判定し、presentかつarray以外（nullを含む）のsideをdiagnostic_path順で記録する。Absentは既存required-member/required-slot判定へ委ねる。"
         },
         "source_result_ref_claim_rule_ja": "result_refは元sourceのclaimとしてpresence/valueを保持する。同時にreference_identity_requirementsで宣言されたRef軸を検査し、結果参照のidentity/revision/scope/ownerが不明な場合はsource relationを未解決へ戻す。claimの存在・軸充足はsource真正性、issuer資格、実recipient資格の証明ではない。"
+      },
+      "non_applicability_basis_read_contract": {
+        "id": "HARNESS-L4-009-F03-BASIS-READ",
+        "status": "HARNESS-L4-009-F03の候補契約。L3/L10への新しい義務やauthorityを追加しない。",
+        "purpose": "対象policy occurrenceについてownerが供給した非適用の意味を読み、source・binding・conditionの全witnessを返す。COREはowner outcomeを受け取るが、BRAINその他ownerのknowledgeを再解釈しない。",
+        "input_type": {
+          "name": "BasisReadInput",
+          "fields": {
+            "validated_application": "ValidatedApplication",
+            "policy_occurrence_index": "Natural",
+            "request": "BasisReadRequest"
+          },
+          "meaning": "validated_applicationはcompare_applicabilityで使った不変入力snapshotと同一である。外部/cache結果でsource/body/qualification観測を置き換えない。"
+        },
+        "request_type": {
+          "name": "BasisReadRequest",
+          "fields": {
+            "policy_occurrence_index": "Natural",
+            "policy_ref": "Ref",
+            "non_applicable_basis_ref": "Ref|null",
+            "template_ref": "Ref",
+            "binding": "ApplicationBinding",
+            "condition_observations": "ConditionObservation[]"
+          },
+          "meaning": "policy occurrenceとpolicy.condition_refs順のcondition recordを指定する。重複Ref、順序、欠落/null/raw値、比較結果を個別に保持する。"
+        },
+        "condition_observation_type": {
+          "name": "ConditionObservation",
+          "fields": {
+            "condition_occurrence_index": "Natural",
+            "condition_ref": "Ref",
+            "condition_binding_state": "unique | missing | ambiguous",
+            "condition_binding_attempts": "ConditionBinding[]",
+            "condition_binding_whole": "ConditionBinding|null (non-null iff state=unique)",
+            "condition_value_presence": "ConditionValuePresence",
+            "semantic_comparison_state": "unique | missing | ambiguous | not_requested",
+            "semantic_comparison_attempts": "SemanticComparison[]",
+            "semantic_comparison_whole": "SemanticComparison|null (non-null iff state=unique)",
+            "semantic_comparison_ref": "Ref|null",
+            "comparison_qualification_state": "qualified | unqualified | missing | ambiguous | not_requested",
+            "condition_source_ref": "Ref|null",
+            "comparison_source_ref": "Ref|null"
+          },
+          "meaning": "attempt配列は一致するbody occurrenceをsource順で全て保持する。ConditionBindingは完全Refの一意一致時だけwholeに入り、明示状態でmissing/ambiguousを区別する。condition_value_presenceは欠落と、nullを含むpresent RawValueを別に記録する。SemanticComparisonを真偽値へ縮約したりCOREで推論しない。semantic_comparison_refは比較結果の完全Refを独立に記録し、lookupの成否はstate・attempts・wholeと整合させる。各policy occurrenceのcondition_observations件数は元condition_refs長と一致し、位置iはi番目の元Refに対応する。重複Refも別位置として保持し、lookupの欠落・重複で列を短縮・重複排除しない。"
+        },
+        "condition_value_presence_type": {
+          "name": "ConditionValuePresence",
+          "variants": [
+            {
+              "state": "record_missing"
+            },
+            {
+              "state": "record_ambiguous"
+            },
+            {
+              "state": "value_absent"
+            },
+            {
+              "state": "value_present",
+              "value": "RawValue"
+            }
+          ],
+          "meaning": "一意なConditionBindingが見つからない状態、ConditionBindingは一意だが任意のcondition_valueがない状態、RawValueが存在する状態（明示nullを含む）を区別する。lookupが曖昧な場合は全ConditionBindingをattemptsへ保持し、一つのConditionBinding wholeは返さない。"
+        },
+        "source_record_read_type": {
+          "name": "BasisSourceRecordRead",
+          "fields": {
+            "source_envelope_whole": "SourceEnvelope",
+            "source_body_witness": "RawValue",
+            "record_occurrence_state": "unique | missing | ambiguous",
+            "record_occurrence_attempts": "BasisRecordOccurrence[]",
+            "record_occurrence_whole": "BasisRecordOccurrence|null (non-null iff state=unique)",
+            "semantic_record_state": "unique | missing | ambiguous | payload_mismatch",
+            "semantic_record_attempts": "SemanticRecord[]",
+            "semantic_record_whole": "SemanticRecord|null (non-null iff state=unique)",
+            "qualification_refs": "Ref[]",
+            "qualification_attempts": "Qualification[]",
+            "qualification_state": "unique | missing | ambiguous | ref_mismatch | body_mismatch | unqualified",
+            "qualification_root_attempts": "Ref[]"
+          },
+          "meaning": "SourceEnvelope全体とそのbody、SemanticRecord wrapper occurrence、decodeしたSemanticRecord、Qualification ref・Qualification record・independent rootの全attemptをsource順で返す。qualification_refsは元recordが参照するRef列を保持し、qualification_attemptsはそのref群に対する入力内の完全recordを保持する。payload/byte/digest/完全Ref比較は既存L5 reference_resolution_contractとfield_semantic_evidence_contractに従い、先頭一致を選ばない。envelope未供給はResolutionのbasis_source_reads=[]かつsource_lookup_state=missingで表す。envelopeがあるがbody recordが欠落する場合はenvelope/bodyを保持し、record_occurrence_attempts=[]、state=missing、whole=nullとする。qualification record/rootが欠落する場合は対応するattempts=[]、state=missingとする。qualification_state=uniqueはこの入力内でRef/body/content_bytes digest/Qualification subject・binding・owner・scope/independent rootの完全照合が一意に成立したことを示す局所読取結果だけであり、実資格・信頼・authorityは示さない。missingは必要なrecord/rootが入力にないこと、unqualifiedは存在する資格材料の照合が成立しないことを表す。"
+        },
+        "owner_outcome_type": {
+          "name": "OwnerBasisOutcomeRead",
+          "fields": {
+            "request_echo": "BasisReadRequest",
+            "basis_record_ref": "Ref",
+            "basis_meaning_locator": "JSONPointer",
+            "owner_result_ref": "Ref",
+            "owner_result_meaning_locator": "JSONPointer",
+            "outcome": "owner_declares_non_applicable | owner_does_not_declare_non_applicable | unresolved",
+            "owner_result_source_read": "BasisSourceRecordRead (separate SemanticRecord and separately qualified SourceEnvelope)"
+          },
+          "meaning": "owner outcomeは別にaddressされたowner-result SemanticRecordと専用SourceEnvelope/body/Qualification/rootから読む。basis SemanticRecordのqualificationはこれを認可しない。result record bindingとrequest echoは完全Ref/revision/scopeを照合する。欠落・複数・不一致・未資格・unknown outcomeはunresolved。Refやraw condition値からoutcomeを計算しない。"
+        },
+        "resolution_type": {
+          "name": "BasisResolution",
+          "fields": {
+            "request": "BasisReadRequest",
+            "condition_observations": "ConditionObservation[] (all condition_refs occurrences, in original order)",
+            "basis_source_reads": "BasisSourceRecordRead[] (basis SemanticRecord only)",
+            "owner_outcome_reads": "OwnerBasisOutcomeRead[] (each points to a separate owner-result source read)",
+            "source_lookup_state": "unique_exact | missing | ambiguous | conflict | unqualified",
+            "owner_outcome_state": "unique | missing | ambiguous | request_mismatch | unqualified",
+            "state": "owner_declares_non_applicable | owner_does_not_declare_non_applicable | unresolved",
+            "unresolved_causes": "unresolved_cause[]"
+          },
+          "unresolved_cause_values": [
+            "basis_ref_absent",
+            "basis_record_missing",
+            "basis_record_ambiguous",
+            "full_ref_mismatch",
+            "source_body_mismatch",
+            "qualification_unformed",
+            "binding_or_scope_mismatch",
+            "condition_observation_unformed",
+            "owner_outcome_missing",
+            "owner_outcome_ambiguous",
+            "owner_request_mismatch",
+            "owner_outcome_unknown"
+          ],
+          "meaning": "閉じたreader返却。全てのbasis/owner-result source・body・qualification/root attempt、condition Ref occurrence、request echo、owner応答を配列順で保持する。basisとowner-result資格は独立して照合し、first-matchを選ばない。basisが未供給でもそのpolicy occurrenceの結果はunresolvedとして確定し、他policyや無関係設計の全体停止にしない。"
+        },
+        "function_and_return": {
+          "caller": "TemplateApplicabilityComparison / HARNESS-L5-009-compare_applicability",
+          "call": "resolve_non_applicability_basis(BasisReadInput) -> BasisResolution。既存HARNESS-L5-009-compare_applicability algorithm[3]が明示basisによるN/A根拠を必要とする枝だけで呼ぶ。algorithm[2]で全必要条件が有資格一致したrequired/conditional枝は従来の判定を保ち、このreaderを呼ばずbasis_resolution memberを生成しない。元のpolicy occurrence indexで結合し、Refだけで結合しない。",
+          "return_pointer": "ApplicabilityMaterial.policy_decisions[policy_occurrence_index].basis_resolution（候補のoptional拡張。readerを呼ばないrequired/conditional枝では項目を追加せず、既存のpolicy decision・source_projection_rows・na_candidate_recordsを保持する）。",
+          "call_boundary": "各policy occurrenceは既存のbranch順序で先に処理する。qualified requiredはrequired、conditional obligationはconditionalとして具体条件と未充足を保持し、N/A readerのunknown/unresolved結果で上書きしない。BasisResolution readerは、既存N/A evidenceが必要なbranchでだけ呼ぶ。そのreader入力のbasis/source/condition qualificationが不足する場合は当該policy occurrenceをunresolvedにする。required/conditional branchではreaderを呼ばず、basis_resolutionを追加しない。optionalなConditionBinding.condition_valueの欠落/nullだけを理由に、別にqualifiedとなったSemanticComparisonを無効にしない。",
+          "owner_outcome_routes": {
+            "owner_declares_non_applicable": "既存のexact NARecord template/binding/revision/scope、reason/decider/target_revision/reentry条件の確認だけを続ける。全既存fieldが存在し一致する場合に限りNARecord全体を返す。",
+            "owner_does_not_declare_non_applicable": "既存HARNESS-L5-009-compare_applicability algorithm[2]のguardを満たす場合だけ、その既存required/conditional分岐を続け、元のcondition観測や未完obligationを一つも削除しない。guardを満たさない混合comparison等はalgorithm[1]のotherwise-unresolvedへ戻し、ownerがN/Aを宣言しないことだけからconditional dispositionを生成しない。raw condition値と有資格SemanticComparisonの結果は独立して保持し、COREはraw値から条件意味・充足を推論しない。",
+            "unresolved": "このoccurrenceに既存のunresolved dispositionを返し、元basis Ref、source/body/qualification/condition/comparison観測とobligationを全て保持する。public finding codeを追加しない。"
+          },
+          "preservation": "basis結果はcondition pair、欠落/null状態、未充足condition観測、NARecord field、unfinished_obligation_refsを削除・上書きしない。owner N/A結果はobligationを完了させず、OS usage/recordも作らない。"
+        },
+        "resolution_sequence": [
+          "occurrence indexでpolicyを選び、policy_ref、basis_ref、template_ref、ApplicationBindingをその入力recordに照合する。",
+          "既存の完全Ref一致でbasis_refをSemanticRecordへ解決し、一致/不一致候補を全て保持する。",
+          "各basis候補を既存source/body規則で同じSourceEnvelope body occurrenceとpayloadへ解決し、bytes/body/ref/index全体を保持する。",
+          "owner-result SemanticRecordを要求Refと完全bindingで別に解決し、そのSourceEnvelope、qualification、rootも独立に解決する。basis qualificationで代用しない。",
+          "policy occurrence内のcondition_refs各出現につき、同じ順序で一つのcondition observationを作る。重複Refを含め、全ConditionBindingとSemanticComparison attempt、lookup状態、unique時だけのnullable whole、record/value presenceを保持する。",
+          "owner-result record、request binding、source scope/ref、独立qualification/rootが一致した場合だけ明示owner outcomeを読む。0件/複数/不一致/未資格/unknownならunresolvedを返す。",
+          "unique owner outcomeを既存F03分岐へ渡す。COREは元owner意味を解釈しない。"
+        ],
+        "backflow": "basis意味/outcomeが欠落または曖昧なら、判明している正確なbasis Refのownerへ戻す。owner不明はunknownを保つ。condition/comparison不足は正確なsource Refのownerへ戻す。不完全NARecordは現行CORE経路に留める。pair-level oracle不足はHARNESS-L9-009-F03へ戻す。",
+        "unprovided_basis_is_normal": "owner source/result未供給は、そのpolicy occurrenceについての正常なunresolved結果であり、全体設計停止ではない。他policyと無関係なL4/L9設計は継続できる。",
+        "boundaries": [
+          "AND/OR/NOTその他のoperatorを追加しない。",
+          "汎用condition tupleやkey axisを追加しない。owner固有の意味が当該observationに答えを持つかを決める。",
+          "COREはBRAIN knowledgeを再解釈しない。",
+          "新gate、承認、authority、source trust root、public finding code、OS record、runtime実装を追加しない。",
+          "このL4候補は実sourceまたは実owner authorityの存在を成立させない。",
+          "Basis SemanticRecordとowner outcome SemanticRecordは別source recordであり、それぞれにexact Ref/bodyとqualification/rootのjoinを要する。"
+        ],
+        "source_record_occurrence_type": {
+          "name": "BasisRecordOccurrence",
+          "fields": {
+            "collection": "semantic_records",
+            "ref": "Ref",
+            "payload": "SemanticRecord"
+          },
+          "meaning": "既存SemanticRecord wrapper occurrence。wrapper Ref、decode済record Ref、payloadを別々に保持し、全attemptをsource順で返す。"
+        },
+        "preservation": "basis結果はcondition pair、condition lookup attempt、missing/ambiguous状態、raw value presence、未充足condition観測、NARecord field、unfinished_obligation_refsを削除・上書きしない。owner N/A結果はobligationを完了させず、OS usage/recordも作らない。",
+        "source_binding": {
+          "base_revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+          "meaning": "この候補契約の既存型・比較規則・承認済み要求・独立oracleの根拠。候補で新たに定義するowner outcome portは既存の資格付きSourceEnvelopeとSemanticRecordを接続する入出力境界であり、condition演算子やtuple axisを追加しない。",
+          "sources": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+              "role": "承認済み要求の意味を参照する。",
+              "objects": [
+                {
+                  "pointer": "/requirements/25",
+                  "canonical_sha256": "6c3eebfe5f9a38a9df0859bf17172d98cbac59e1dd8cb4767dabcbd0571e91ff"
+                }
+              ],
+              "revision": "9d84db508debde80df037cdf008d96a9534fc4b4"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+              "role": "承認済みの独立検証期待を参照する。",
+              "objects": [
+                {
+                  "pointer": "/cases/25",
+                  "canonical_sha256": "33e74b9d6adfc7365452feb2a1741cc4dc3db8ac51f510a761ecb81f22925308"
+                }
+              ],
+              "revision": "9d84db508debde80df037cdf008d96a9534fc4b4"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+              "file_sha256": "cadafdb789eb1b52d12b98b165e17a914ee77eb3818018a4b07ba2249da99b60",
+              "role": "既存wrapper/source解決、資格、body規則を参照する。",
+              "objects": [
+                {
+                  "pointer": "/field_semantic_evidence_contract/wrapper_and_source_contract",
+                  "canonical_sha256": "9d22f4d7f65070ea3f4e2248a4ddb69387a77df11b1473fdc48991f8f4b89cab"
+                }
+              ],
+              "revision": "9d84db508debde80df037cdf008d96a9534fc4b4"
+            },
+            {
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "file_sha256": "3f1d68f2035f5996d926989079bcd892732b552233576b80a86325ae5566c049",
+              "role": "既存の閉じた型、Ref/source解決規則、比較関数を参照する。",
+              "objects": [
+                {
+                  "pointer": "/type_contract/types/RawValue",
+                  "canonical_sha256": "2b8678d2ae36cd7aa656516d5c286d81bf01764ba12934fca77e7b0ba77da268"
+                },
+                {
+                  "pointer": "/type_contract/types/Ref",
+                  "canonical_sha256": "efed2e1170957f3e7d292636c4f965280873d28c120b51aa101f517472236b4b"
+                },
+                {
+                  "pointer": "/type_contract/types/ApplicationBinding",
+                  "canonical_sha256": "b8504acd7ab070731e05fb1e9553d44f101269d7cb267eeb49feadfb93ff8db2"
+                },
+                {
+                  "pointer": "/type_contract/types/SourceEnvelope",
+                  "canonical_sha256": "eec4f9ee3b2388919eac6b82c0a4649146612aa2ee7c5d88ccbf4a96600f2638"
+                },
+                {
+                  "pointer": "/type_contract/types/Qualification",
+                  "canonical_sha256": "3af5133ad80d1a198da3d935c26bf945cc33c987c56b7cfb643a65eea35fe80b"
+                },
+                {
+                  "pointer": "/type_contract/types/ConditionBinding",
+                  "canonical_sha256": "0da61761120cbe1671e09b8105e86db7b793cbd5e4baa09dc29b5918c6d94762"
+                },
+                {
+                  "pointer": "/type_contract/types/SemanticComparison",
+                  "canonical_sha256": "4537463e6f9b2ff14d8c082bd4a0bdb9d41960a4c9a60219c650241818059218"
+                },
+                {
+                  "pointer": "/type_contract/types/SemanticRecord",
+                  "canonical_sha256": "00697ecb4d7f73c8a53a294669e77eef002d73594f1f0943486b4dfcdf7cd216"
+                },
+                {
+                  "pointer": "/type_contract/types/Natural",
+                  "canonical_sha256": "1bf0a85f6bac07a88d2d21cbdc46bd05ff10d14064c2bd9795d6ea9094c1fc53"
+                },
+                {
+                  "pointer": "/type_contract/types/JSONPointer",
+                  "canonical_sha256": "629a5e0839ea5b8a85c73f3d1735eef99087873dbd7cf7ebbcb1db3fcce5066c"
+                },
+                {
+                  "pointer": "/reference_resolution_contract",
+                  "canonical_sha256": "15e4dbf2533c44dc5c1ebf4c6440f45710361760bfe3d893559b1c9d7c6078b5"
+                },
+                {
+                  "pointer": "/functions/3",
+                  "canonical_sha256": "58305fed8f7143ce6f46176d6bdd83513870b7208a525cc3ad7dbf5227b879f1"
+                },
+                {
+                  "pointer": "/functions/3/algorithm/2",
+                  "canonical_sha256": "000a5281693f37e24d7e83e9f0b09f02d868af41f8e954647bced180cc84389a"
+                },
+                {
+                  "pointer": "/functions/3/algorithm/3",
+                  "canonical_sha256": "582677d1b5dec93fac9df19790cea9a4d9cca1ba3dce0c00ed07b38f9488fadf"
+                }
+              ],
+              "revision": "9d84db508debde80df037cdf008d96a9534fc4b4"
+            },
+            {
+              "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+              "file_sha256": "af445b3958885f4f6a814e345d00a0445f854d6eb392583d7cb421029e2984ec",
+              "role": "既存required正常oracleをN/A reader非呼出し対照に使う。fixture/oracleは未実行で、L5の既存branch順序を変更しない。",
+              "objects": [
+                {
+                  "pointer": "/fixture_contract/normal_fixtures/0",
+                  "canonical_sha256": "51c430954778a0020f50fc5fb6ba9102d3b7ca146e90dde5c4bec33113989bc1"
+                },
+                {
+                  "pointer": "/normal_function_oracles/3",
+                  "canonical_sha256": "7edce3c4950bfecae223d5b3619ac91f8aab7c47a182664de71279a566a795d7"
+                }
+              ],
+              "revision": "9d84db508debde80df037cdf008d96a9534fc4b4"
+            }
+          ],
+          "owner_outcome_port": {
+            "status": "候補設計。元basisの意味を読むowner結果record/portをこの案で具体化する。これは既存source資格規則を適用する読取口で、新しい意味演算子の採択ではない。",
+            "qualification_independence": "basis SemanticRecordのqualificationでowner outcomeのqualificationを代替しない。basisとowner resultを別々のSourceEnvelope/body/digest/Qualification/independent rootとして完全Ref・subject・owner・scopeを照合し、同じrequest echoが一致した場合に限って局所state=uniqueにする。実owner資格・運用authorityは別でありsynthetic fixtureではnot_established。",
+            "unprovided": "owner basis/result未供給なら対象policy occurrenceのみunresolvedを返す。未供給を理由に他の設計・要求処理を停止しない。",
+            "required_evidence_ja": "owner-result SemanticRecord、同recordのSourceEnvelope/body、独立Qualification/root、完全Ref・revision・scope・owner binding、同一request echoを別々に照合する。"
+          },
+          "canonicalizer": "UTF-8 JSON: ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False"
+        }
       }
     },
     {
