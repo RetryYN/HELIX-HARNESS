@@ -6401,7 +6401,7 @@
       "HARNESS-L10-009-F05"
     ],
     "scope": "同一callの元SupplyInput.sourcesの一つの明示occurrenceを、callerが指定した受取位置へ写した新しいsources配列とafter snapshotへのpairを返す、ApplicationInputBinding内の純DTO組立て基本設計。全BRAIN供給内容、template/query/source relation、資格記録の転送、ApplicationInput全体の組立ては対象外。",
-    "authority_effect": "既決L3/L10の意味を変更せず、新しい上流義務、採否、受領完了、資格、gateを作らない。BRAIN032のF01は汎用15項目を識別する契約であり、原source bodyをSupplyAnalysisへ返す義務を追加しない。CORE009 F01/F05の承認範囲に従い、ここでは既存入力間の選択source occurrenceを具体化する。",
+    "authority_effect": "既決L3/L10の意味を変更せず、新しい上流義務、採否、受領完了、資格、gateを作らない。BRAIN032のF01は汎用15項目を識別する契約であり、原source bodyをSupplyAnalysisへ返す義務を追加しない。CORE009 F01/F05の承認範囲に従い、ここでは既存入力間の選択source occurrenceを具体化する。 新配列とpairの純DTO返却はF01/F05のsource保持義務をApplicationInputBinding内で局所的に具体化するもので、/components/0が所有する独立照合責務と上流義務を変更しない。",
     "operation_effect": "ApplicationInputBindingの一回の純DTO変換。originとdestination-beforeはimmutableとし、新配列を返す。新public field/API、snapshot ID issuer、resolver、producer、資格issuer、永続更新・状態機械を定義しない。",
     "source_basis": [
       {
@@ -6558,9 +6558,9 @@
     ],
     "origin_and_selection": {
       "origin": "取得元は同一呼出しを形成する既存caller/providerが保持するimmutable SupplyInput snapshot。原sourceはSupplyInput.sources内の実occurrenceである。SupplyAnalysis.source_refs/candidate_refs、診断、比較結果からcontent/content_bytes/qualificationを再生成しない。",
-      "selection": "成立を記述するには、同一callのcaller/projection contextに、原SupplyInput snapshotのidentity+revisionとzero-based `/sources/i` occurrence、および受取ApplicationInput snapshotのidentity+revisionとzero-based `/sources/j` occurrenceを一組として明示する。既存schema/public field/type/APIには追加しない。この選択関係を作る既存producer/input bindingは未特定であり、本節は選択権限や取得処理を規定しない。どれかのsnapshotが変わったとき旧pair/Analysisを継続利用せず、新snapshotの明示pairがなければ未成立。",
+      "selection": "成立を記述するには、同一callのcaller/projection contextに、原SupplyInput snapshotのidentity+revisionとzero-based `/sources/i` occurrence、destination-beforeのsnapshotとsources配列、及びdestination-after snapshotのidentity+revisionと格納先jを明示する。明示pairの受取側はafterを指し、before/afterの関係はprojection/destination_layoutに従う。既存schema/public field/type/APIには追加しない。選択関係の実producer/input bindingは未特定であり、選択権限や取得処理を規定しない。origin又はafterのsnapshotが変わったとき旧pair/Analysisを継続利用せず、新snapshotの明示pairがなければ未成立。",
       "source_analysis_boundary": "SupplyAnalysisはcandidate_refs/diagnostics/materialを返す論理型として観測される。元source bodyまたは資格レコードを返すものとして扱わない。",
-      "lineage_validation_boundary": "caller/projection contextが原SupplyInput snapshot identity/revision/indexと受取ApplicationInput snapshot identity/revision/indexを同一callで結ぶ責務境界。ただしこの関係を現在形成するnamed owner/producerは特定されていない。CORE fn0はCORE入力内source integrity/qualificationを検証するだけで、このcross-snapshot由来を検証しない。よって明示pairの存在だけでも実delivery/lineage証拠にはならない。"
+      "lineage_validation_boundary": "ApplicationInputBinding内のcaller/projection文脈が、原SupplyInput snapshotのidentity/revision/index、destination-beforeの文脈と配列、destination-after snapshotのidentity/revision/indexを同一callで結ぶ。pairはafterを指す。この保持責務のownerは既存ApplicationInputBindingであり、選択source edgeの実取得口・実producer/caller symbolは未特定である。CORE fn0は受信CORE入力内のsource integrity/qualificationを検証し、origin/after間の由来を証明しない。明示pairの返却から実delivery/lineage成立を生成しない。"
     },
     "projection": {
       "from": "SupplyInput.sources[i] : QualifiedSource",
@@ -6599,9 +6599,9 @@
       "destination_layout": {
         "owner_ref": "/components/0",
         "inputs": [
-          "immutable origin snapshot context and sources, source index i",
-          "immutable destination-before snapshot context and sources",
-          "caller-supplied destination-after snapshot context, destination index j"
+          "変更しないorigin snapshotの文脈とsources配列、元index i",
+          "変更しないdestination-before snapshotの文脈とsources配列",
+          "callerが供給するdestination-after snapshotの文脈、格納先index j"
         ],
         "index_rule": "iとjは既存数値profile上のinteger値として照合し、boolを整数扱いしない。iは0<=i<len(origin)の既存occurrenceを指す。jは0<=jとして、0<=j<len(destination-before)ならその一slotを置換し、j==len(destination-before)なら末尾へ一件追加する。bool、負値、非整数、範囲外、欠落、nullは局所不成立。途中挿入、穴埋め、他indexへのfallbackを行わない。数値字句へ新しい制限を加えない。",
         "array_rule": "origin.sourcesとdestination-before.sourcesは配列の前提で照合する。raw/partial入力が欠落/null/配列外の場合は[]へ既定せず、当該組立てを未形成として原入力を保持する。field_mapで得る一つのSourceEnvelope値を、新配列のjへ置く。置換なら長さは不変、末尾追加なら一件だけ増える。origin/before配列と各memberを変更せず、j以外のdestination値・順序・重複はそのまま返す。同一Refで集約しない。原sourceの未知/型外を黙って補完・正常化しない。",
