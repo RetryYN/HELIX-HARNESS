@@ -12682,7 +12682,7 @@
       "not_recomputed": "fn0, descriptor walk, target/intent readers, fn1/public fn2, fn6/fn7, buildersは一度のfull pathで二重呼出ししない。existing frameとnative material全値は旧Observationへ従来通り保持し、F03Evaluationはprivate full resultへ保持する。"
     },
     "meaning_reader_boundary": {
-      "existing_bundle_owner": "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle は既存fn1/F01 descriptor意味reader（read_original_definition_meaning_bundle）の返却保存である。『F02』とは扱わず、F03 field meaning readerと型/意味が同一とは仮定しない。",
+      "existing_bundle_owner": "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle は既存fn1/F01 descriptor意味reader（read_original_definition_meaning_bundle）の返却保存である。F03 field meaning readerと型/意味が同一とは仮定しない。",
       "reuse_condition": "流用を行えるのは、同じimmutable ValidatedSupply、完全一致するDefinitionMeaningRequest全memberとpresence、同じoriginal fact occurrenceの同一性が当該call内で確認できる場合のみ。ref/slot/body/eだけの一致では使わない。条件を示せない場合はF03 L4規則の専用read_original_field_definition内で当該field factの元meaning readを行う。",
       "no_conversion": "F01 descriptor meaning readをF03 FieldDefinitionReadへcast、補完、短縮、またはowner/qualificationの置換をしない。L4既存meaning readerの8返却memberの対応はL4 F03 source pointer /field_value_applicability_contract/existing_meaning_reader_return_member_mappingに従う。"
     },
