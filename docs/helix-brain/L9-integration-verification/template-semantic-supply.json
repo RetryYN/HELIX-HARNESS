@@ -8711,7 +8711,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "fd811c526cbe06f4babd288b413fb3af9f9a02b4dbcfae64e8282493096723ff",
+      "sha256": "f97274cbc73c7cde5f39f003d951efcee02fab711d3610f56bd5e138202a18d4",
       "meaning": "このL9と同候補のL4全UTF-8 bytesへのbinding。base source_pinsは原sourceの履歴根拠であり、このbindingを代替しない。commit revisionや上流承認をここから生成しない。"
     }
   },
@@ -22883,7 +22883,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "fd811c526cbe06f4babd288b413fb3af9f9a02b4dbcfae64e8282493096723ff"
+      "sha256": "f97274cbc73c7cde5f39f003d951efcee02fab711d3610f56bd5e138202a18d4"
     }
   },
   "descriptor_target_port_verification": {
@@ -22892,7 +22892,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "observed_source_revision": "64dc8a7032990e8f961f4e5e9601a1909d2e4f6d",
-      "sha256": "fd811c526cbe06f4babd288b413fb3af9f9a02b4dbcfae64e8282493096723ff",
+      "sha256": "f97274cbc73c7cde5f39f003d951efcee02fab711d3610f56bd5e138202a18d4",
       "binding_kind": "このscaffold候補L4 whole本文bytesへのbinding。前提source revision/正式採用とは区別。"
     },
     "scope": "9素材の同call原input/Claim引数/全私的target port返却。旧10port/10conditionalの期待scopeを変更しない。",
@@ -92571,7 +92571,7 @@
     ],
     "current_L4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "candidate_file_sha256": "fd811c526cbe06f4babd288b413fb3af9f9a02b4dbcfae64e8282493096723ff",
+      "candidate_file_sha256": "f97274cbc73c7cde5f39f003d951efcee02fab711d3610f56bd5e138202a18d4",
       "scope": "同じL4文書全bytesへの束縛。固定規範snapshotの歴史source pinとは別に、対象revisionはgit commitとreview対象HEADから確認する。"
     }
   },
@@ -120205,7 +120205,7 @@
     },
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "file_sha256": "fd811c526cbe06f4babd288b413fb3af9f9a02b4dbcfae64e8282493096723ff",
+      "file_sha256": "f97274cbc73c7cde5f39f003d951efcee02fab711d3610f56bd5e138202a18d4",
       "pointer": "/field_value_applicability_contract",
       "role": "現在の基本設計全bytesへの明示binding。固定履歴pinとは別。"
     },
@@ -180488,7 +180488,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "fd811c526cbe06f4babd288b413fb3af9f9a02b4dbcfae64e8282493096723ff",
+      "sha256": "f97274cbc73c7cde5f39f003d951efcee02fab711d3610f56bd5e138202a18d4",
       "current_vs_fixed": "当該提案L4全bytesへのbinding。fixed fixture gitseed及び歴史inventory/source pinを更新しない。"
     },
     "schema_resource_id": "urn:helix-brain:l4:032:identity-trace-logical",
@@ -231426,7 +231426,7 @@
       "paired_L4_addition": {
         "target_file": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
         "target_pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer",
-        "operation_value_canonical_sha256": "0e928094917b21f7c4ef2458ac7f7989676c53fdecd23f29a57b34003de5ab58",
+        "operation_value_canonical_sha256": "b86a8eb38c0df45fc77dae8d0e7e2b27d4028baec5a4fe76271bef502e06599e",
         "meaning": "このRFC追加でL4へ加える同じ二対象pairの基本port/writer。L5 private writerを規範sourceにしない。"
       },
       "actual_pr_base_note_ja": "authoring snapshotは199a3737のまま固定する。PR実base 105a8917ではこのBRAIN4文書のbytesは199aと同一。旧pinをcurrentへ書換えず、追加後writer objectのcurrent bindingと分離する。"
@@ -231603,7 +231603,7 @@
       },
       {
         "pointer": "/dependency_semantic_ports/canonical_ordered_branches/3",
-        "scope": "Ref frameのabsent/null又は既知相反"
+        "scope": "Ref frameのabsent/null又は既知相反。旧4caseでは未行使。/comparison_axis_reason_multi_problem_verification/exercised_l4_branches_ja でrevision/scope供給nullだけを別caseとして部分行使し、他は未行使のまま。"
       },
       {
         "pointer": "/dependency_semantic_ports/canonical_ordered_branches/4",
@@ -231834,10 +231834,10 @@
     ],
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "sha256": "fd811c526cbe06f4babd288b413fb3af9f9a02b4dbcfae64e8282493096723ff",
+      "sha256": "f97274cbc73c7cde5f39f003d951efcee02fab711d3610f56bd5e138202a18d4",
       "binding_scope": "same_candidate_file_bytes",
       "pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer",
-      "canonical_sha256": "0e928094917b21f7c4ef2458ac7f7989676c53fdecd23f29a57b34003de5ab58"
+      "canonical_sha256": "b86a8eb38c0df45fc77dae8d0e7e2b27d4028baec5a4fe76271bef502e06599e"
     },
     "case": {
       "id": "F09-C6-MULTI-BODY-READ-PROBLEM-01",
@@ -243153,7 +243153,8 @@
           "scope"
         ],
         "mapping_canonical_sha256": "c907d47cff578cd5a8b96eacac82b650e8db5b005c57d0b2686e365383c3e92f"
-      }
+      },
+      "public_comparison_patch_document_ja": "public_comparison_patch_rfc6902の適用文書は {\"input\": materialized_inputの全値複写, \"expected_comparison\": public_comparison_baseが指す固定git Comparisonの全値複写} の合成rootとする。列挙した全opを原順でこのrootへ標準RFC6902適用し、結果の /expected_comparison を本case.expected_comparisonと全値比較する。/inputは元入力を指すcopy sourceであり候補関数の実行値ではない。"
     },
     "limits": [
       "既存4C6の全Comparison/20 read、全22conditional rule、既存L8/private whole/公開期待は不変。",
@@ -243171,6 +243172,55 @@
       "change": "既存診断の生成元ごとのwriter適用域と複数原因の表現を具体化する。要求意味・規則・承認gate・新failureは追加しない。",
       "reason": "現在のport problems配列と単一cause表示の未閉包、Finding/conditional writerへの過剰適用及び新反例の原category追随漏れを解消するため。"
     },
-    "fixed_source_binding_rule_ja": "case内のpath/pointerはsource_basisに列挙した同pathの固定revisionとfile_sha256へ束縛する。input_baseとpublic_comparison_baseの標準JSON/RFC6902再構成からmaterialized_inputとexpected_comparisonを全値比較する。source_basisの変更前L4は比較元で、追加したcause/domain規則の現行正本はcandidate_L4_bindingが指す本文。local草案又はcandidate readerを再構成へ使わない。"
+    "fixed_source_binding_rule_ja": "case内のpath/pointerはsource_basisに列挙した同pathの固定revisionとfile_sha256へ束縛する。input_baseとpublic_comparison_baseの標準JSON/RFC6902再構成からmaterialized_inputとexpected_comparisonを全値比較する。source_basisの変更前L4は比較元で、追加したcause/domain規則の現行正本はcandidate_L4_bindingが指す本文。local草案又はcandidate readerを再構成へ使わない。",
+    "exercised_l4_branches_ja": [
+      {
+        "pointer": "/dependency_semantic_ports/canonical_ordered_branches/3",
+        "scope": "revision/scopeの供給nullだけ。対応diagnostic_return_contract/canonical_diagnostic_mapping/4の2problem、順はrevision→scope。identity/ownerのnullと既知conflictは未行使。"
+      },
+      {
+        "pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer/reason_serialization/cause_cardinality_contract",
+        "scope": "原problem数2のarray causeを1 Axisへ保持。その他4readは旧unknown一問題objectを保持し、元unselected_refs no-call Axisはcause=nullのまま。"
+      }
+    ],
+    "unexercised_l4_branches_ja": [
+      {
+        "pointer": "/dependency_semantic_ports/canonical_ordered_branches/1",
+        "scope": "4caseではfalse selectorによるunselected no-callのみ固定。selector未確定/unknown側は未行使。"
+      },
+      {
+        "pointer": "/dependency_semantic_ports/canonical_ordered_branches/0",
+        "scope": "validated.input null、binding absent/null"
+      },
+      {
+        "pointer": "/dependency_semantic_ports/canonical_ordered_branches/2",
+        "scope": "必要identityの不在"
+      },
+      {
+        "pointer": "/dependency_semantic_ports/canonical_ordered_branches/3",
+        "scope": "本新caseではrevision/scope供給nullだけを部分行使。identity/ownerのabsent/null、revision/scope absent、既知相反（diagnostic_return_contract/canonical_diagnostic_mapping/5）は未行使。"
+      },
+      {
+        "pointer": "/dependency_semantic_ports/canonical_ordered_branches/4",
+        "scope": "前半の対応sourceなしはunknown行で部分行使。後半の供給sourceのunusable_source_refs問題としての返却は未行使。/5はpositive caseで行使。"
+      },
+      {
+        "pointer": "/dependency_semantic_ports/canonical_ordered_branches/6",
+        "scope": "source.content明示null"
+      },
+      {
+        "pointer": "/dependency_semantic_ports/canonical_ordered_branches/7",
+        "scope": "同target/frameの複数source（同値又は異body）"
+      },
+      {
+        "pointer": "/dependency_semantic_ports/canonical_ordered_branches/9",
+        "scope": "MeaningFact/MeaningComparisonによる実pair意味比較"
+      }
+    ],
+    "unexercised_scope_ja": [
+      "3件以上のBodyReadProblem、異state混在problem、identity/owner null、全problem組合せは未行使。",
+      "このcase固有の部分行使以外の限界は /comparison_axis_reason_writer_verification/unexercised_l4_branches_ja と /unexercised_scope_ja を継続し、旧4caseの行使範囲は拡大しない。",
+      "selected conditional/selector Finding/既存classification原因、formed handoff等の全domainは未行使。L5新port/native型全域/実資格/実配送/製品CI/実装Readyを成立としない。"
+    ]
   }
 }
