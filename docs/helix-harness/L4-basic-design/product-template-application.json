@@ -6802,19 +6802,19 @@
     "explicit_request": {
       "carrier": "private wrapperへのcaller supplied request。BRAIN SupplyInputに選択producer/snapshot identityを追加しない。requestが実selector authorityという主張もしない。",
       "common_operands": [
-        "origin SupplyInput raw whole",
-        "caller supplied origin snapshot identity+revision context",
-        "destination-before snapshot context and sources",
-        "caller supplied destination-after snapshot identity+revision context",
-        "after ApplicationInput raw frame",
-        "explicit origin source occurrence index i",
+        "原SupplyInputのraw全体",
+        "callerが供給するorigin snapshotのidentity/revision context",
+        "destination-beforeのsnapshot contextとsources",
+        "callerが供給するdestination-after snapshotのidentity/revision context",
+        "after用ApplicationInputのraw frame",
+        "明示されたorigin source出現index i",
         "destination index j",
-        "after-only source_result_reference_projection Read"
+        "after専用source_result_reference_projection Read"
       ],
       "edge_variants": [
         {
           "kind": "template_source",
-          "edge_pointer": "after raw frame /templates[t]",
+          "edge_pointer": "after raw frameの/templates[t]",
           "source_ref_pointer": "/templates/t/source_ref",
           "meaning": "tは明示された準備対象template occurrence。root ApplicationBinding.template_refがnullでも新gateにしない。この指定だけでtemplate採択/適用を成立させず、既存CORE consumerがApplicationInput全体を評価する。"
         },
@@ -6898,6 +6898,26 @@
     "qualification_boundary": {
       "pointer_to_existing_contract": "/selected_brain_source_occurrence_contract/qualification_boundary",
       "rule": "qualification_refは既存fieldwise mappingどおりraw value/presenceで保つ。BRAIN QualificationをCORE Qualificationへcastせず、owner/root資格を作らない。資格/bytes/body/CORE root issueは既存fn0の実返却に残し、edge selection準備の拒否理由にしない。"
+    },
+    "authority_basis": {
+      "decision_record_id": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
+      "decision_record_path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approved_reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+      "approved_functional_requirements_sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1",
+      "approved_requirements_selected_object_canonical_sha256_by_pointer": {
+        "/requirements/23": "0955af985adf56ca021309bfb52a65ea171a2f93d3d4c5aa575c837f8e3612c7",
+        "/requirements/27": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54",
+        "/requirements/28": "c80dc10b5dd9a70f58283ab5b064dc59ffa77cc9e757706554f88c62b77bcabe",
+        "/requirements/30": "c8b9bf5efe236099dde657908974decf43edb0e20a59ed3af3f6b327f7bb7439"
+      },
+      "approved_functional_verification_sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c",
+      "approved_verification_selected_object_canonical_sha256_by_pointer": {
+        "/cases/23": "15a2f858c81c6bd7d592723e5c0670fdcb263e5f952e1e01955ba034b15b0fad",
+        "/cases/27": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d",
+        "/cases/28": "0bfe30ebc97c6d41bdd97a1dd1db63fa2dda0d5bd712bc5e0f22d2e6d05527f5",
+        "/cases/30": "7af91cc06b2754d6efc40e47040db83e6615d6bb92cacff157368610d1d370a0"
+      },
+      "boundary": "F01/F05/F06/F08の対象承認を参照する。現baseの同じ8 objectは承認対象と意味一致するが、本文全体の新revision承認・実資格・配送・実装Readyを生成しない。"
     }
   }
 }
