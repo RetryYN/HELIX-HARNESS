@@ -1,0 +1,691 @@
+{
+  "audit_id": "FIRST-CYCLE-REFACTOR-FRONTIER-2026-10-19",
+  "base_revision": "ef1feeb08177e061bf3fa03fce4a5cf793edf406",
+  "status": "選択接続境界の静的再照合snapshot",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "scope_ja": "旧7経路の選択anchorを現行revisionへ固定し、詳細設計の進展と保持未閉包・次責務を対照する。3親12文書又は92親430対の全量再監査ではなく、7経路を全て完了する新gateも作らない。",
+  "prior_snapshot": {
+    "path": "docs/governance/audits/first-cycle-owner-binding-gap-audit-2026-10-15.json",
+    "base_revision": "c00695600ab1fed30718d89880b92a6358422131",
+    "file_sha256": "bdbd20c8800513812c668ff0d5b8c62f7d5255273e07e7a6545024c0334e586b",
+    "preservation_ja": "旧snapshotとそのsource値は変更しない。本snapshotが選んでいない旧evidenceまで現行で検証済みとは扱わない。"
+  },
+  "reading_ja": "source_filesはbase_revisionのgit blob全bytesのSHA-256。anchorsのpointerはRFC6901でそのblobをJSON解釈した値を選び、canonical_sha256はensure_ascii=false/sort_keys=true/separators=(comma,colon)/allow_nan=false、末尾改行なしのUTF-8 JSONのSHA-256。型の意味や資格成立をhashから生成しない。本文内source_main/status/独立review待ち等の著述時metadataを現在の承認状態へ読み替えない。",
+  "source_files": {
+    "docs/helix-brain/L5-detail-design/template-semantic-supply.json": {
+      "file_sha256": "2f3dcbfc803e199a342862f4f687e7378a61ca6bbf9dd231d7a39c591e7c3bd6"
+    },
+    "docs/helix-harness/L5-detail-design/product-template-application.json": {
+      "file_sha256": "a367ca4e60a677a6729897e8810362a2601ce68168b66ad1ba26cfe9dbc92ac8"
+    },
+    "docs/helix-harness/L4-basic-design/product-template-application.json": {
+      "file_sha256": "d22ff91fb61a8aebf1e5e60855496ea22f750eefeeb0fd89877cf71470cce468"
+    },
+    "docs/helix-brain/L4-basic-design/core-knowledge-reply.json": {
+      "file_sha256": "d9e50e5e9759ba4fed4eb9273bb206ccccdf14eec871ed37877cf96d3808d219"
+    },
+    "docs/helix-brain/L5-detail-design/core-knowledge-reply.json": {
+      "file_sha256": "7d34cf201f30c92a443a341ab30a7e8b246a65434c78e18cc2eb63bd97c71667"
+    },
+    "docs/helix-brain/L5-detail-design/knowledge-query-receipt.json": {
+      "file_sha256": "1381d1ea0e05599a335dc25fc6dcc23879c61cd2bf924986cd71b090149cbe49"
+    },
+    "docs/helix-os/L4-basic-design/project-template-trace.json": {
+      "file_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376"
+    },
+    "docs/helix-os/L5-detail-design/project-template-trace.json": {
+      "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557"
+    },
+    "docs/helix-connect/L5-detail-design/connection-registration-descriptor.json": {
+      "file_sha256": "22a18f5bf7b0c3d573a238548d47d100025559f75501ca7d33384d8574c03b78"
+    },
+    "docs/helix-connect/L5-detail-design/compatibility-stale-send-eligibility.json": {
+      "file_sha256": "1a1c78b84e7d01fb725524f955cd165ba87f5991f2ee5965e7d104aa6faaee21"
+    },
+    "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json": {
+      "file_sha256": "c0ac44e7fb95a5f56b313f9ae22ebeadd6f38fee276f12d3682ab489660ae72b"
+    },
+    "docs/helix-os/L5-detail-design/atomic-canonicalization.json": {
+      "file_sha256": "b5c0a8927f417a33e325c8e43ed2d5651d9d537e8163b41162614187f8a41c01"
+    },
+    "docs/helix-os/L5-detail-design/event-episode-continuity.json": {
+      "file_sha256": "6b2eb2204b5b0b84ff6efb66e4886c5605df9ec7370d6dc3a6d2633ac5bbf290"
+    },
+    "docs/helix-brain/L3-requirements/functional-requirements.json": {
+      "file_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    "docs/helix-brain/L10-verification/functional-verification.json": {
+      "file_sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    "docs/helix-harness/L3-requirements/functional-requirements.json": {
+      "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    "docs/helix-harness/L10-verification/functional-verification.json": {
+      "file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    "docs/helix-os/L3-requirements/functional-requirements.json": {
+      "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    "docs/helix-os/L10-verification/functional-verification.json": {
+      "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    "docs/helix-connect/L3-requirements/functional-requirements.json": {
+      "file_sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    "docs/helix-connect/L10-verification/functional-verification.json": {
+      "file_sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    }
+  },
+  "anchors": {
+    "brain.meanings": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointer": "/descriptor_meanings",
+      "canonical_sha256": "224602413a177ad7f304bebfa9e0aea55293dc0a771b3e74d9c396c8d2f15651"
+    },
+    "brain.return": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointer": "/source_return_contract",
+      "canonical_sha256": "518f15eea0149a012cdf96b78c834bb0cff510dfaa8956f6c69ee1d26eabc2cf",
+      "id": "HELIXBRAIN-L5-032-SOURCE-RETURN"
+    },
+    "brain.remaining": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointer": "/remaining",
+      "canonical_sha256": "5680a81600413604a7dd63cfed1a6131f7ded21344875e168aaf63aa23ab47e7"
+    },
+    "brain.supply": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointer": "/type_contract/types/SupplyAnalysis",
+      "canonical_sha256": "cdeba0483f1494a705fc51f1b956c8eca6ecf7336a73ec384f23f61edf0e9bf0"
+    },
+    "core.input": {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/type_contract/types/ApplicationInput",
+      "canonical_sha256": "b35b6589c2b96f491f8ba02e48e239678efd020cf9eb7322d60bc55e043e214f"
+    },
+    "core.steps": {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/f05_validation_material_call_contract/actual_caller_trace",
+      "canonical_sha256": "b9dcb94316b00da9fc244897a49a1449abcc09efc3a3fdbaefcd7bd24176a36b"
+    },
+    "core.connection_frontier": {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/f05_detail_contract/caller_return_writer_contract/owner_connection_frontier",
+      "canonical_sha256": "02f82b9ad5d6f9069cfd0642f595162e870467968e68b32d980363ba94e52164"
+    },
+    "b019.port": {
+      "path": "docs/helix-brain/L4-basic-design/core-knowledge-reply.json",
+      "pointer": "/f02_responsibility_port",
+      "canonical_sha256": "7f12bf6be53cf3a143b285e6cad64f12ecbc5c07614b4637081450d2a3a85b59",
+      "id": "HELIXBRAIN-L4-019-F02-RESPONSIBILITY-PORT",
+      "requirement_ref": "HELIXBRAIN-L3-019-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-019-F02"
+    },
+    "b019.native_f02": {
+      "path": "docs/helix-brain/L5-detail-design/core-knowledge-reply.json",
+      "pointer": "/functions/1",
+      "canonical_sha256": "520f58c94dd017db4895079083a08f7aa425b71707fafbd2520e0418700b6cda",
+      "id": "BRAIN019-F02",
+      "requirement_ref": "HELIXBRAIN-L3-019-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-019-F02"
+    },
+    "b019.type_boundary": {
+      "path": "docs/helix-brain/L5-detail-design/core-knowledge-reply.json",
+      "pointer": "/type_system/local_named_type_contract/boundary_ja",
+      "canonical_sha256": "f639f9a8e5b030327dcd73388a872a6c5a0940c79e645530a7dadfb868bada67"
+    },
+    "b030.f02": {
+      "path": "docs/helix-brain/L5-detail-design/knowledge-query-receipt.json",
+      "pointer": "/functions/1",
+      "canonical_sha256": "820383ebb1e4ddae8b2c14892c1e93303a3e4caeb709587b50567f46b10a7054",
+      "id": "BRAIN030-F02",
+      "requirement_ref": "HELIXBRAIN-L3-030-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-030-F02"
+    },
+    "b030.f02_return": {
+      "path": "docs/helix-brain/L5-detail-design/knowledge-query-receipt.json",
+      "pointer": "/consumer_connections/1",
+      "canonical_sha256": "8ef93e6745bf6bf461ab44fe78956fb920063e615af2863561e957c802486968",
+      "function_ref": "BRAIN030-F02"
+    },
+    "core.projection": {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/functions/12",
+      "canonical_sha256": "e5897437019bcb81ffa2a6d4d122796f65a60e0e7d87f3c93f4a742f11125e2c",
+      "id": "HARNESS-L5-009-project_source_result_references"
+    },
+    "os.association": {
+      "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+      "pointer": "/contracts/5/source_output_association",
+      "canonical_sha256": "d3ffbc7aa8f05453eeac9e0d3db8fda9e82e577481afe4b5d7cc8be2b657ecc9",
+      "requirement_ref": "HELIXOS-L3-002-F04"
+    },
+    "os.original_contract": {
+      "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+      "pointer": "/contracts/5/source_original_correspondence",
+      "canonical_sha256": "bc0cc720f5bba68351a56112c9c892e1c38e9054a76427d9543cd78f68c506cc",
+      "id": "HELIXOS-L4-002-F04-SOURCE-ORIGINAL-CORRESPONDENCE",
+      "requirement_ref": "HELIXOS-L3-002-F04",
+      "system_oracle_ref": "HELIXOS-L10-002-F04"
+    },
+    "os.selector": {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "pointer": "/functions/14",
+      "canonical_sha256": "274cc567a116edcabac8d3348bbcdbbb00de7bd0d9b88826a79568bbba75055f",
+      "id": "HELIXOS-L5-002-decode_f04_source_projection_profile"
+    },
+    "os.resolver": {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "pointer": "/functions/20",
+      "canonical_sha256": "46760bfdceef45e8f652f07c8a4553303b6090b6d55e1ba7bb86bab6b1342cb2",
+      "id": "HELIXOS-L5-002-resolve_f04_projection_sources"
+    },
+    "core.ref": {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/type_contract/types/Ref",
+      "canonical_sha256": "efed2e1170957f3e7d292636c4f965280873d28c120b51aa101f517472236b4b"
+    },
+    "brain.ref": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointer": "/type_contract/types/Ref",
+      "canonical_sha256": "e64a18b69307196c71aa332911a891d7102fa0d10d8424fe2d1420011f03b045"
+    },
+    "os.ref": {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "pointer": "/type_contract/types/Ref",
+      "canonical_sha256": "5f0a1f37eca49818b7d24ec61c01072e344cade5ae675b4f991bef142f586d82"
+    },
+    "os.qualification": {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "pointer": "/reference_resolution_contract/qualification",
+      "canonical_sha256": "ee91e2602c12723fe04499c29a4a74d31640f60ee1e3e19a9aa08c296e39929f"
+    },
+    "connect1.seam": {
+      "path": "docs/helix-connect/L5-detail-design/connection-registration-descriptor.json",
+      "pointer": "/private_registration_receipt_seam",
+      "canonical_sha256": "b3a18984e552d45c772105f8f3093b210e018daf1cb8504c0ee0683150a8a62a"
+    },
+    "connect1.remaining": {
+      "path": "docs/helix-connect/L5-detail-design/connection-registration-descriptor.json",
+      "pointer": "/unclosed",
+      "canonical_sha256": "f4f3ab47a4a16e5b58a94365b542f51700a090fb8779446356bbb2c9ffbf0d15"
+    },
+    "connect2.qualification": {
+      "path": "docs/helix-connect/L5-detail-design/compatibility-stale-send-eligibility.json",
+      "pointer": "/qualification_boundary",
+      "canonical_sha256": "804ae86ce3de9360c6bf21bcba3f79a7c97fddd58d7ad9b52a31e5a5e416c8ef"
+    },
+    "connect3.boundaries": {
+      "path": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+      "pointer": "/responsibility_boundaries",
+      "canonical_sha256": "64be72dd0f40b2ec7d147efbf964bc1e5a11ad215448d84a440a9bfa6fb985eb"
+    },
+    "os.storage": {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "pointer": "/storage_boundary",
+      "canonical_sha256": "f9c27d61ed7de599b867c9221217029376ace18cea43078e41df0edc9fcf69e7"
+    },
+    "os.backflow": {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "pointer": "/contracts/6/behavior",
+      "canonical_sha256": "dedd9c55964238a9d8335a8693c44333c40fec6a9e65961f3f7565a2c9b28d3a"
+    },
+    "os053.remaining": {
+      "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+      "pointer": "/remaining",
+      "canonical_sha256": "1a9682d02a4e93281d021cd483a86e4a03fad9b8df65de6c26746276928f227e"
+    },
+    "os019.source": {
+      "path": "docs/helix-os/L5-detail-design/event-episode-continuity.json",
+      "pointer": "/unclosed_source_supply",
+      "canonical_sha256": "49e5e98e93cc8d8876179fad00d042ba443a8d12be3478d35d17a899fd388c03"
+    },
+    "os.labo_type": {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "pointer": "/type_contract/types/F08RecordInput",
+      "canonical_sha256": "ef79236bc674c5665e38ece6b3b55f8c016a0ca76f4770c1924ca139eeaee3f3"
+    },
+    "os.security_type": {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "pointer": "/type_contract/types/N01RecordInput",
+      "canonical_sha256": "0e2d5bacf647c799e7f4036cffcf6773e6c64721347ba423639701d89baef9fe"
+    },
+    "os.labo_function": {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "pointer": "/functions/10",
+      "canonical_sha256": "8629f359a181bbf9906b986e5b603d7faa397bc35ee4a35038e100e5f8836be1",
+      "id": "HELIXOS-L5-002-compare_labo_record_selection"
+    },
+    "os.security_function": {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "pointer": "/functions/12",
+      "canonical_sha256": "efdebbef29a02d8c7c12f37408fb55133c58001f11f1f01c1566466f041e9be7",
+      "id": "HELIXOS-L5-002-compare_security_use_binding"
+    },
+    "HELIXBRAIN-L3-032-F01": {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/0",
+      "canonical_sha256": "ebc2da3936a606c23ff1c2e08eefd549eb99d2cb51e45cc17e4cd003663cda35",
+      "id": "HELIXBRAIN-L3-032-F01"
+    },
+    "HELIXBRAIN-L10-032-F01": {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "pointer": "/cases/0",
+      "canonical_sha256": "ee86fd3f61e9252dbc07b2d92b6dbb571820e7cf3cf4fcfefe2941333cedffd2",
+      "id": "HELIXBRAIN-L10-032-F01",
+      "requirement_ref": "HELIXBRAIN-L3-032-F01"
+    },
+    "HELIXBRAIN-L3-032-F04": {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/3",
+      "canonical_sha256": "390ebf2ef95297e3e5a92953ced6e11bea20b67872df46bc16b8c4b4dacd0772",
+      "id": "HELIXBRAIN-L3-032-F04"
+    },
+    "HELIXBRAIN-L10-032-F04": {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "pointer": "/cases/3",
+      "canonical_sha256": "d4d7ffc68d7396d92d86e02a764de50dd8bfc0bbb0f269c3d32a268047fd3420",
+      "id": "HELIXBRAIN-L10-032-F04",
+      "requirement_ref": "HELIXBRAIN-L3-032-F04"
+    },
+    "HELIXBRAIN-L3-032-F09": {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/8",
+      "canonical_sha256": "c3e7d16735c6b3e5772fe61e7ba9c1c8d8607b3e4965b6329e166ca6c754ddf8",
+      "id": "HELIXBRAIN-L3-032-F09"
+    },
+    "HELIXBRAIN-L10-032-F09": {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "pointer": "/cases/8",
+      "canonical_sha256": "11ff16c86d9d780c4dccc1f781c4b83a682864e02c0f29100537f3688659fe33",
+      "id": "HELIXBRAIN-L10-032-F09",
+      "requirement_ref": "HELIXBRAIN-L3-032-F09"
+    },
+    "HELIXBRAIN-L3-019-F02": {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/37",
+      "canonical_sha256": "34444a42fb237e603e1721d2d49ef1151a6d139731a6bea0666dd7e898218ed3",
+      "id": "HELIXBRAIN-L3-019-F02"
+    },
+    "HELIXBRAIN-L10-019-F02": {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "pointer": "/cases/37",
+      "canonical_sha256": "ca97ff5e5789230e58b8a6a6a21a37ea2a1fba5655b11b61214d165f42ec83f7",
+      "id": "HELIXBRAIN-L10-019-F02",
+      "requirement_ref": "HELIXBRAIN-L3-019-F02"
+    },
+    "HARNESS-L3-009-F01": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/23",
+      "canonical_sha256": "0955af985adf56ca021309bfb52a65ea171a2f93d3d4c5aa575c837f8e3612c7",
+      "id": "HARNESS-L3-009-F01"
+    },
+    "HARNESS-L10-009-F01": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/23",
+      "canonical_sha256": "15a2f858c81c6bd7d592723e5c0670fdcb263e5f952e1e01955ba034b15b0fad",
+      "id": "HARNESS-L10-009-F01",
+      "requirement_ref": "HARNESS-L3-009-F01"
+    },
+    "HARNESS-L3-009-F03": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/25",
+      "canonical_sha256": "6c3eebfe5f9a38a9df0859bf17172d98cbac59e1dd8cb4767dabcbd0571e91ff",
+      "id": "HARNESS-L3-009-F03"
+    },
+    "HARNESS-L10-009-F03": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/25",
+      "canonical_sha256": "33e74b9d6adfc7365452feb2a1741cc4dc3db8ac51f510a761ecb81f22925308",
+      "id": "HARNESS-L10-009-F03",
+      "requirement_ref": "HARNESS-L3-009-F03"
+    },
+    "HARNESS-L3-009-F05": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27",
+      "canonical_sha256": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54",
+      "id": "HARNESS-L3-009-F05"
+    },
+    "HARNESS-L10-009-F05": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27",
+      "canonical_sha256": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d",
+      "id": "HARNESS-L10-009-F05",
+      "requirement_ref": "HARNESS-L3-009-F05"
+    },
+    "HELIXOS-L3-002-F03": {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/10",
+      "canonical_sha256": "0942d7298a5a1205e38ba1b961fee22f117fc4ce94494bedd2ef1e1f4ca92590",
+      "id": "HELIXOS-L3-002-F03"
+    },
+    "HELIXOS-L10-002-F03": {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "pointer": "/cases/10",
+      "canonical_sha256": "d620c9781dbe4848576d7625952154893da3e8895cb0cc92ff4b4e9fb88b575e",
+      "id": "HELIXOS-L10-002-F03",
+      "requirement_ref": "HELIXOS-L3-002-F03"
+    },
+    "HELIXOS-L3-002-F04": {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/11",
+      "canonical_sha256": "fba431d3cab99e6a0e2179955a5f6366ad7fa5ca41e94cefe920778d1ed53be9",
+      "id": "HELIXOS-L3-002-F04"
+    },
+    "HELIXOS-L10-002-F04": {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "pointer": "/cases/11",
+      "canonical_sha256": "8b52639ac2ecdd33eb22c3b8923180238dd89bd0cef81ad06744358b4dfcb061",
+      "id": "HELIXOS-L10-002-F04",
+      "requirement_ref": "HELIXOS-L3-002-F04"
+    },
+    "HELIXOS-L3-002-F05": {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/12",
+      "canonical_sha256": "e4cc925830b45eeeb9ffb58f5b13c508fd7836828dbe61f95a9d794af74513a2",
+      "id": "HELIXOS-L3-002-F05"
+    },
+    "HELIXOS-L10-002-F05": {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "pointer": "/cases/12",
+      "canonical_sha256": "20b68a759f950a30084978b8a869ae520d81efec0184423621b620fcf0d189a4",
+      "id": "HELIXOS-L10-002-F05",
+      "requirement_ref": "HELIXOS-L3-002-F05"
+    },
+    "HELIXOS-L3-002-F08": {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/15",
+      "canonical_sha256": "b23c4848ba6c862018149df6615b5b5c02b6e6c67cc94282b148cd621fb69859",
+      "id": "HELIXOS-L3-002-F08"
+    },
+    "HELIXOS-L10-002-F08": {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "pointer": "/cases/15",
+      "canonical_sha256": "ccdbe29094434698ab20ca99f2d0fd7f06469656561917bcfcdfa6f0f2d330cf",
+      "id": "HELIXOS-L10-002-F08",
+      "requirement_ref": "HELIXOS-L3-002-F08"
+    },
+    "HELIXOS-L3-002-F09": {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/16",
+      "canonical_sha256": "32f4c14ad33926ecef6c33c7bab29665d938e7e447456116e92848c35d4b36c3",
+      "id": "HELIXOS-L3-002-F09"
+    },
+    "HELIXOS-L10-002-F09": {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "pointer": "/cases/16",
+      "canonical_sha256": "da861271e7963bc57bed05fbd578f4c41e57e6a03f40b21d5290f48b4f3503e7",
+      "id": "HELIXOS-L10-002-F09",
+      "requirement_ref": "HELIXOS-L3-002-F09"
+    },
+    "HELIXCONNECT-L3-001-F01": {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/0",
+      "canonical_sha256": "492dc4782812f365ed77db8ad976db9e6008c5b414f1dc81e385a130a37c6aa4",
+      "id": "HELIXCONNECT-L3-001-F01"
+    },
+    "HELIXCONNECT-L10-001-F01": {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "pointer": "/cases/0",
+      "canonical_sha256": "ab65938f6583341d69dc90ec321326dbe6eefa82dddb0bd65b15d396099e6ef0",
+      "id": "HELIXCONNECT-L10-001-F01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01"
+    },
+    "HELIXCONNECT-L3-002-F01": {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/2",
+      "canonical_sha256": "60e2962bb559bdcfc7864906d591682a955cee76dbffc70f2553dc158b26c51b",
+      "id": "HELIXCONNECT-L3-002-F01"
+    },
+    "HELIXCONNECT-L10-002-F01": {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "pointer": "/cases/2",
+      "canonical_sha256": "7bcc7e048cae9cfa6883f162e3426592322a0adf6b6c3c018e5d8ab00e646a54",
+      "id": "HELIXCONNECT-L10-002-F01",
+      "requirement_ref": "HELIXCONNECT-L3-002-F01"
+    },
+    "HELIXCONNECT-L3-003-F01": {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/5",
+      "canonical_sha256": "39b0d9889e9dfac5242ce56442ba6efde3e040b05fe16d89f3fa7d4d5a107cce",
+      "id": "HELIXCONNECT-L3-003-F01"
+    },
+    "HELIXCONNECT-L10-003-F01": {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "pointer": "/cases/5",
+      "canonical_sha256": "6180815dc5065cd505f0fa1648ff229172f2278c5aa63988fc4c5d3772797808",
+      "id": "HELIXCONNECT-L10-003-F01",
+      "requirement_ref": "HELIXCONNECT-L3-003-F01"
+    }
+  },
+  "selected_requirement_oracle_pairs": [
+    {
+      "requirement": "HELIXBRAIN-L3-032-F01",
+      "oracle": "HELIXBRAIN-L10-032-F01"
+    },
+    {
+      "requirement": "HELIXBRAIN-L3-032-F04",
+      "oracle": "HELIXBRAIN-L10-032-F04"
+    },
+    {
+      "requirement": "HELIXBRAIN-L3-032-F09",
+      "oracle": "HELIXBRAIN-L10-032-F09"
+    },
+    {
+      "requirement": "HELIXBRAIN-L3-019-F02",
+      "oracle": "HELIXBRAIN-L10-019-F02"
+    },
+    {
+      "requirement": "HARNESS-L3-009-F01",
+      "oracle": "HARNESS-L10-009-F01"
+    },
+    {
+      "requirement": "HARNESS-L3-009-F03",
+      "oracle": "HARNESS-L10-009-F03"
+    },
+    {
+      "requirement": "HARNESS-L3-009-F05",
+      "oracle": "HARNESS-L10-009-F05"
+    },
+    {
+      "requirement": "HELIXOS-L3-002-F03",
+      "oracle": "HELIXOS-L10-002-F03"
+    },
+    {
+      "requirement": "HELIXOS-L3-002-F04",
+      "oracle": "HELIXOS-L10-002-F04"
+    },
+    {
+      "requirement": "HELIXOS-L3-002-F05",
+      "oracle": "HELIXOS-L10-002-F05"
+    },
+    {
+      "requirement": "HELIXOS-L3-002-F08",
+      "oracle": "HELIXOS-L10-002-F08"
+    },
+    {
+      "requirement": "HELIXOS-L3-002-F09",
+      "oracle": "HELIXOS-L10-002-F09"
+    },
+    {
+      "requirement": "HELIXCONNECT-L3-001-F01",
+      "oracle": "HELIXCONNECT-L10-001-F01"
+    },
+    {
+      "requirement": "HELIXCONNECT-L3-002-F01",
+      "oracle": "HELIXCONNECT-L10-002-F01"
+    },
+    {
+      "requirement": "HELIXCONNECT-L3-003-F01",
+      "oracle": "HELIXCONNECT-L10-003-F01"
+    }
+  ],
+  "traces": [
+    {
+      "trace_id": "TRACE-01",
+      "route": "BRAIN032の15意味→原semantic JSON/source・knowledge版・HARNESS義務",
+      "design_observation": "15項目の意味、source返却、条件別依存、原意味/N/Aの詳細と有限oracleが記述され、保存表現の分割・縮約も統合された。",
+      "remaining": "正式schema/codec、原知識の実producer/資格・custody、未照合fieldと任意入力の意味閉包を、固定fixtureの値保存や合成期待一致で代替しない。",
+      "next_responsibility": "BRAIN032と各原知識ownerが、原descriptor/field意味・source版・対oracleを保持して残務を扱う。",
+      "anchors": [
+        "brain.meanings",
+        "brain.return",
+        "brain.remaining"
+      ],
+      "closure_state": "unproven",
+      "not_rechecked": [
+        "全L8 fixture/readerの再実行、未確定な過去根拠の回収、全任意入力の意味閉包は今回の照合外。"
+      ]
+    },
+    {
+      "trace_id": "TRACE-02",
+      "route": "BRAIN SupplyAnalysis→CONNECT選択辺→CORE ApplicationInput",
+      "design_observation": "SupplyAnalysisとApplicationInputの別意味を保持する。CORE F05 callerはstep5までの全返却を詳細化し、step6/7はB019のF02別portと選択030 F01/F02/F03へ結ぶ。B019 F02の局所型共通化は既存11型へ展開同値。",
+      "remaining": "SupplyAnalysisとApplicationInputの原材料・受取意味を結ぶ明示mapping、同query/knowledge/独立field関係、COREの原値・理由から030 ProductValueへの明示projection、同call全返却/未接続格納先は未閉包。B019/B030 B01はこの接続の代替根拠ではない。",
+      "next_responsibility": "まずBRAIN提供owner、CORE入力owner、CONNECT選択辺ownerが、SupplyAnalysisとApplicationInputの原材料・受取意味を一責務単位として整理する。後段B019-F02別portと選択B030 readerの原対応・一呼出し往復は別単位に保持する。型名を増やすだけで接続完成にしない。",
+      "anchors": [
+        "brain.supply",
+        "core.input",
+        "core.steps",
+        "core.connection_frontier",
+        "b019.port",
+        "b019.native_f02",
+        "b019.type_boundary",
+        "b030.f02",
+        "b030.f02_return"
+      ],
+      "closure_state": "unproven",
+      "not_rechecked": [
+        "実provider、同call receipt、配送/受領/OS記録は未確認。原関係が未供給の範囲を同名fieldやstateから補完しない。"
+      ]
+    },
+    {
+      "trace_id": "TRACE-03",
+      "route": "CORE ApplicationAnalysis→OS002のF02/F03/F04/F05/F07 owner sections",
+      "design_observation": "COREのsource-result projectionとOS F04の明示association、原CORE/OS source比較・source occurrence解決が詳細化された。",
+      "remaining": "CORE結果と独立source-envelope providerを実callerへ結ぶbinding、OS OwnerRecordの正式section mapping、実配送/原source資格は未成立。CORE候補・比較結果をOS selected/usedや義務消込へ読み替えない。",
+      "next_responsibility": "CORE producer/providerとOS F04受領側が、元入力・native出力・選択source occurrenceを保存する対応を扱う。",
+      "anchors": [
+        "core.projection",
+        "os.association",
+        "os.original_contract",
+        "os.selector",
+        "os.resolver"
+      ],
+      "closure_state": "unproven",
+      "not_rechecked": [
+        "TRACE-03全section、全L8 fixture、実L10を再検証したものではない。今回の中心はF04。"
+      ]
+    },
+    {
+      "trace_id": "TRACE-04",
+      "route": "各owner原source資格→OS015/019/018 custodyとwrapper内Ref",
+      "design_observation": "Refの同一視、内容対応、原source資格を分離する契約を保持し、OSは元source occurrence/root/subject等を区別する。",
+      "remaining": "CORE/BRAINのRefとOS Ref、subject digestとsource digest、単体subjectと集合、欠落とnullは単純統合できない。wrapper資格や同owner名から内部Ref資格とcustodyを生成しない。",
+      "next_responsibility": "各原source ownerと既存authority ownerが資格・custodyを供給し、OSは原記録の資格と内容対応を別に保持する。",
+      "anchors": [
+        "core.ref",
+        "brain.ref",
+        "os.ref",
+        "os.qualification"
+      ],
+      "closure_state": "unproven",
+      "not_rechecked": [
+        "OS015/018/019を含む全ownerの資格・実trust root成立は今回未監査。"
+      ]
+    },
+    {
+      "trace_id": "TRACE-05",
+      "route": "CONNECT001/002/003の両端schema/codec/契約版→登録/互換/送信適格性/receipt",
+      "design_observation": "旧基準後にCONNECT001/002/003のL5詳細が配置され、001には登録owner呼出し・原応答・002 native receiptへの有限seamがある。L5未配置一般とは扱わない。",
+      "remaining": "実両端owner資格、正式schema/codecと選択scope別の必要集合、送信時の既存SEC条件、実送受信/receiptは未成立。互換参照をsend eligibleへ、技術ACKを業務受理へ変換しない。",
+      "next_responsibility": "CONNECT、選択両端の意味owner、既存SEC authorityが、必要な選択辺だけの契約版・scope・送信条件と原receiptを扱う。",
+      "anchors": [
+        "connect1.seam",
+        "connect1.remaining",
+        "connect2.qualification",
+        "connect3.boundaries"
+      ],
+      "closure_state": "unproven",
+      "not_rechecked": [
+        "各CONNECTの全branchと両端実schema/codec、003-B01のbusiness対全体を検証したものではない。"
+      ]
+    },
+    {
+      "trace_id": "TRACE-06",
+      "route": "OS002 RecordTraceAnalysis→OS053保存/OS019 continuity/OS023 Backflow受渡し",
+      "design_observation": "OS053のprivate failure/read設計とOS019のcontinuity詳細が存在する。OS002の比較材料とOS053のwriter/CAS/rollbackを別責務として保持する。",
+      "remaining": "RecordTraceAnalysis→実OwnerInput、実保存、event資格/custody、訂正lineage、受信側未完受理・意味解決・元義務消込は未成立。保存成功/ACKから意味解決や元義務完了を生成しない。",
+      "next_responsibility": "OS002の材料owner、OS053の保存owner、OS019/023と元義務の受信ownerが、元操作/scope/revisionと未完を失わず接続を扱う。",
+      "anchors": [
+        "os.storage",
+        "os.backflow",
+        "os053.remaining",
+        "os019.source"
+      ],
+      "closure_state": "unproven",
+      "not_rechecked": [
+        "全OS053/019/023の意味閉包・実保存耐久・実受理/解決/消込は未確認。"
+      ]
+    },
+    {
+      "trace_id": "TRACE-07",
+      "route": "選択LABO評価scope/必要原記録母集合とSECURITY既存操作/data-use条件",
+      "design_observation": "OS002はLABO用の原記録集合・独立必要母集合・SEC原許可tupleを分ける。今回の選択anchorについて旧監査が示す境界を維持する。",
+      "remaining": "LABO指定scope/period/必要原集合、包含/除外/重複/未観測、選択sourceの資格、SEC既存許可tupleの原event時成立は未証明。供給集合から必要母集合を生成せず、未観測を欠陥0へしない。",
+      "next_responsibility": "選択LABO評価owner、SEC既存authority/data-use owner、OS005/024と各原source ownerが、選択された操作と原記録の必要集合を扱う。評価方法と採否をOSへ移さない。",
+      "anchors": [
+        "os.labo_type",
+        "os.security_type",
+        "os.labo_function",
+        "os.security_function"
+      ],
+      "closure_state": "unproven",
+      "not_rechecked": [
+        "LABO/SEC全要求・各ownerの採用対象bytes・実許可tuple・全能力の完成を監査したものではない。"
+      ]
+    }
+  ],
+  "corrections_ja": [
+    "前回local監査はB019/B030のB01を対照したが、CORE step6/7がpinするのはB019 F02別portと選択B030 F01/F02/F03である。B01監査を接続の検収根拠へ使わない。",
+    "旧local CORE→OS監査のCORE L5 hash欄に、別L8のhashが入っていた。ここではpathごとに実git blobから再取得する。旧監査は当時の記録として保持する。"
+  ],
+  "selection_controls": {
+    "b019_same_file_b01_rejected": true,
+    "b030_same_file_b01_rejected": true,
+    "wrong_core_l8_hash_not_l5_hash": true
+  },
+  "refactor_progress_ja": "#3363-#3370の原値保存・同責務資料の抽出・fixture入力の集約・B019局所型共通化を保持する。これらの統合を各経路の原source資格・実接続・意味閉包の証拠へ転用しない。",
+  "next_work_ja": "refactorと上流還流はFT-DESIGN-REFACTOR-001の既決順序で続ける。次の接続整理はBRAIN032 SupplyAnalysis→CORE ApplicationInputの選択辺を一責務単位とし、供給候補・比較結果を有資格の原入力へcastせず、元source/descriptor/field対応と両端の受取意味を確かめる。後段CORE F05→B019-F02別port→選択B030 F01/F02/F03は別単位に保持し、そこで必要な一呼出し往復の全I/O・未接続原材料・元query/field関係と数値保存projectionを混載しない。未供給の原関係を新型・同名field・成功fixtureで補完しない。これは全7経路を先に完成させる開始条件ではない。",
+  "legacy_correspondence": {
+    "sources": [
+      {
+        "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+        "sections": "§0-1",
+        "file_sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "sections": "§1-2",
+        "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "sections": "§1-4",
+        "file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+      }
+    ],
+    "preserve_ja": "意味署名、I/O・failure・consumer・oracle、知識定義と案件値/traceの分離を保持する。",
+    "change_ja": "旧runtime/registry/DB/式木/gateは移植せず、現在の選択接続と原sourceへの静的anchorへ意味再導出する。",
+    "failure_basis_ja": "旧predecessor-harness-full-weakness-audit-2026-07-20.mdのUTW-014/020/021（欠損の空集合化、巨大aggregate、自己申告完了）と、今回のB01誤選択・path/hash誤対応を起点とする。新しい製品要求や承認手続きを生成しない。"
+  },
+  "verification_limits_ja": [
+    "source path/revision/全file hash/pointer/選択値hash/選択IDと対IDの静的照合。caseや期待値の意味計算、候補reader/evaluator、旧test/runtime/CI、製品testは実行しない。",
+    "実owner資格、正式schema/codec、配送・保存・受領・受理・意味解決・元義務消込、製品CI、PO実物L11受入と実装準備完了は未成立。",
+    "未選択source、全side機構の要求/全oracle、旧7経路の全evidence、全fixtureの識別力・一般域の意味閉包は今回未検証。"
+  ]
+}
