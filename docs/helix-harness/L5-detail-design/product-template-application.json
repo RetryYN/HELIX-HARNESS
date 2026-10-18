@@ -663,7 +663,7 @@
           "source_projection_rows": "ComputedApplicabilityRowJson[]",
           "policy_decisions": "PolicyApplicabilityDecision[]"
         },
-        "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。policy_decisionsとsource_projection_rowsはoptional raw JSON fieldsで、欠落はkey absent、空collectionは[]。source_projection_rowsのrow内Absent memberは省略、Present null/valueはそのまま保持する。",
+        "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。policy_decisionsとsource_projection_rowsはoptional raw JSON fieldsで、欠落はkey absent、空collectionは[]。source_projection_rowsのrow内Absent memberは省略、Present null/valueはそのまま保持する。 original_condition_valuesは同inputの原policy順→condition_refs出現順に、一意解決し既存資格条件を満たすSemanticComparison.same_meaningの原値(boolean|null)だけを保持するcompact列。未解決出現には値を補完せず、original_condition_refsとzipしない。raw condition_pairsは同一ConditionBindingのcondition_value presence/valueを別に保持する。Finding生成は本materialではなくfunctions/3のwriterが担う。",
         "optional_fields": [
           "policy_decisions",
           "source_projection_rows"
@@ -1632,7 +1632,8 @@
         "N/Aは当該template/要求revision/scopeに束縛する原判断と理由/判定者/revision/再評価4属性を全て照合。欠落は未成立、003/性能/security限定を他templateへ転用しない。",
         "application_policiesの各occurrenceを同一評価ループで判定し、policy固有dispositionをApplicabilityDispositionへ記録する。同じ枝の行値をsource_projection_rowsへ置き、aggregate dispositionを行へ複製しない。各policy.condition_refsをValidatedApplication.input.conditionsからfull Ref（identity/revision/scope/owner/source_locator/sha256）で一意照合し、同じConditionBinding recordに存在するref/valueだけをcondition_pairsへ投影。value欠落はcondition_refだけ、nullはnull。参照欠落/複数一致ならその行のcondition_pairs member全体をAbsentとする。",
         "source_projection_rowsはrow materialのPresenceをJSONへmaterializeする。row member Absentはobject keyを省略し、Presentはvalueを格納する（Present nullもnullとして保持）。collection Absentはmember省略、Present []は空配列。",
-        "application_policiesがabsent/null/非arrayならrow arraysを生成せずoptional output memberを省略する。present []なら空配列を返す。各object occurrenceについて同indexのdecision/rowを保持する。"
+        "application_policiesがabsent/null/非arrayならrow arraysを生成せずoptional output memberを省略する。present []なら空配列を返す。各object occurrenceについて同indexのdecision/rowを保持する。",
+        "original_condition_valuesの値・順序はtype_contract/types/ApplicabilityMaterialの意味に従う。私有Findingのguard/9member/順序/対象外は/functions/3/condition_meaning_lookup_miss_writerの単一writer定義に従う。materialとComparison.findingsの責務を混同しない。"
       ],
       "effect": "none",
       "failure_rules": [
@@ -1643,7 +1644,8 @@
         "HARNESS-L5-009-R-unknown_as_na",
         "HARNESS-L5-009-R-conditional_unfulfilled_closed",
         "HARNESS-L5-009-R-limited_na_cross_template",
-        "HARNESS-L5-009-R-na_scope_mismatch"
+        "HARNESS-L5-009-R-na_scope_mismatch",
+        "HARNESS-L5-009-R-condition_meaning_unresolved"
       ],
       "unit_case_refs": [
         "HARNESS-L8-009-F03-NEG-01",
@@ -1656,7 +1658,8 @@
         "HARNESS-L8-009-F03-NEG-08",
         "HARNESS-L8-009-ADD-11",
         "HARNESS-L8-009-ADD-12",
-        "HARNESS-L8-009-ADD-13"
+        "HARNESS-L8-009-ADD-13",
+        "HARNESS-L8-009-F03-SOURCE-UNRESOLVED-01"
       ],
       "oracle_ref": "HARNESS-L8-009-NORMAL-compare_applicability",
       "output_shape_additions": {
@@ -1677,7 +1680,38 @@
         "condition_pairsは同じfull Refに結ぶ同一ConditionBinding recordだけを使い、condition_valueを別field/semantic comparisonから補わない。",
         "raw-row JSON境界でAbsent memberを省略し、Present null/valueをそのまま保持する。",
         "source_projection_rowsとpolicy_decisionsのcollection presenceはValidatedApplication.input.application_policiesに対応し、present []と欠落/null/異型を同一視しない。"
-      ]
+      ],
+      "condition_meaning_lookup_miss_writer": {
+        "scope": "以下guardを満たす既存F03 otherwise-unresolved枝だけの私有writer。元意味判定・raw投影・N/A判断の規則を置換しない。",
+        "members": {
+          "code": "固定condition_meaning_unresolved",
+          "rule_ref": "固定HARNESS-L5-009-R-condition_meaning_unresolved",
+          "subject_ref": "当該policy.condition_refs出現が一意に指す元ConditionBinding.ref全値",
+          "binding": "同validated.input.bindingの原ApplicationBinding全値",
+          "axis": "固定condition",
+          "state": "固定unknown",
+          "source_refs": "当出現のpolicy Ref→requested condition Ref→同ConditionBinding.source_ref→requested semantic_comparison_ref→当該condition source取得で実際に観測したqualification/root Refの原順。未取得comparison側のRefは補作せず反復を保持。",
+          "reason": "当該requested comparison Refの同input lookup未取得を示す空でない説明を、原condition/要求Refへ結ぶ。自由文だけで出典を代替しない。",
+          "backflow_owner": "固定core_owner"
+        },
+        "order": "既存Finding群の後、原policy index→原condition_refs index。反復を保持し、同値別出現を除去しない。",
+        "legacy_boundary": "generic Finding.meaning、既存unknown_as_na/NEG05、N/A4属性、raw condition_pairsの規則は保持する。",
+        "guard": {
+          "all": [
+            "policy.condition_refsの当該出現がfull Refで一意のConditionBindingに対応する。",
+            "そのConditionBindingの元source/body/binding及び既存局所資格条件が成立している。",
+            "semantic_comparison_refがpresentかつ非nullで既存Ref型として形成されている。",
+            "同inputのsemantic_comparisonsに、そのfull Ref（identity/revision/scope/owner/source_locator/sha256）と一致するrecordが0件である。"
+          ],
+          "outside": "condition欠落/複数、Ref欠落/null/型未形成、comparison複数、source/body/endpoint/binding/qualification/root未成立は対象外。既存InputIssue/raw evidence/unresolved枝を保持し、新code又は値を補完しない。qualified false/nullも本lookup-miss対象外。"
+        }
+      },
+      "condition_value_semantics_preserve_change": {
+        "preserve": "L4 condition_pair_ruleの原値/presenceとfull Ref join、zip禁止、既存F03四判定/N/A4属性/未完、base normalのoriginal_condition_values=[true]という限定意図。",
+        "change": "型RawValue[]だけで意味未指定だったoriginal_condition_valuesをqualified same_meaning原値のcompact列として明文化し、既存otherwise-unresolvedに狭い私有Finding writerを選ぶ。既存の唯一記述済み一般則を発見したとは称しない。",
+        "reason": "base normalはraw condition_value未供給でもsame_meaning=trueを[true]へ返していた。raw値との混同・位置zipを避け、その限定意図を詳細writerへ具体化する。要求意味/authority/NA承認は変更しない。",
+        "legacy_sources": "LEGACY-ASSET-98372FEE8A3AC8F9C299 L5 design-template-json-authority.md81–99のunknown/N/A分離と旧弱点UTW014/020/021を起点に意味再導出。旧式木/registry/runtime/追加gateは移植しない。"
+      }
     },
     {
       "id": "HARNESS-L5-009-compare_kind_obligation_trace",
@@ -4434,6 +4468,25 @@
         "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
       },
       "backflow_owner": "respective_owner"
+    },
+    {
+      "id": "HARNESS-L5-009-R-condition_meaning_unresolved",
+      "code": "condition_meaning_unresolved",
+      "contract_ref": "HARNESS-L5-009-F03",
+      "function_ref": "HARNESS-L5-009-compare_applicability",
+      "oracle_ref": "HARNESS-L8-009-F03-SOURCE-UNRESOLVED-01",
+      "condition": "/functions/3/condition_meaning_lookup_miss_writer/guardのall全条件が成立した当該policy/condition出現。",
+      "predicate": "同一guardに限る私有診断。対象外の枝は/functions/3/condition_meaning_lookup_miss_writer/guard/outsideに従う。",
+      "predicate_status": "private_internal_writer_for_existing_F03_unresolved_branch",
+      "expected_axis": "condition",
+      "expected_state": "unknown",
+      "expected": "当該出現の原condition Refとinput中のrequested comparison Refを保持しlogical valueを追加しない。raw condition_pairsは同一ConditionBindingのraw値を保持する。N/A claimや他のfindingを生成しない。",
+      "expected_preserved": {
+        "original_binding": "同一ComparisonのApplicationBinding全値",
+        "observable": "原出現とrequested Refを保持しraw/semantic observationを分離",
+        "effects": "authority/gate/approval/義務消込/writeなし"
+      },
+      "backflow_owner": "core_owner"
     }
   ],
   "implementation_preparation": {
