@@ -1323,19 +1323,34 @@
               "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
               "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
               "section": "§0〜§1",
-              "保持する点": "意味署名、consumerおよびoracleとの対応を保ち、意味の異なる値を見た目だけで共通化しない。"
+              "保持する点": "意味署名、consumerおよびoracleとの対応を保ち、意味の異なる値を見た目だけで共通化しない。",
+              "sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b",
+              "heading_lines": [
+                34,
+                45
+              ]
             },
             {
               "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
               "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
               "section": "§1〜§2",
-              "保持する点": "JSONの意味正本と生成viewを分け、JSONの意味を保つ。"
+              "保持する点": "JSONの意味正本と生成viewを分け、JSONの意味を保つ。",
+              "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+              "heading_lines": [
+                16,
+                32
+              ]
             },
             {
               "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
               "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
               "section": "§1〜§2",
-              "保持する点": "値の型・意味と追跡を保全し、未知の内容を補完しない。"
+              "保持する点": "値の型・意味と追跡を保全し、未知の内容を補完しない。",
+              "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+              "heading_lines": [
+                16,
+                30
+              ]
             }
           ],
           "起点となった現行失敗": "Issue #3139の変更品質・意味保存の課題、およびPR #3362で観測されたmirror追随漏れを起点とする。",
