@@ -3992,20 +3992,20 @@
           "writers": {
             "subject_ref": "dependency subjectはL4 public_projection/dependency_subjectに従う原input binding Ref、handoffは同じinputの元HandoffRecord.subject_ref。形成不能ならAxisResultを作らない。",
             "binding": "同一inputの原Binding全値。別carrierから補完しない。",
-            "axis": "dependency axisは同L4 public_projection/axis_mappingの該当literal。通常unselected_sourceはconditional_source_dependency_contract/decision_table/reason_rules/2とprojection_material/axis_mapping/channel_falseのliteralであり、failure_classifications/89の発火を要しない。handoffは既存元record/classificationのaxisを保持する。",
-            "state": "L4 CanonicalBodyReadとaxis_mappingの対応literal。通常selector false/unselectedはconditional_source_dependency_contract/decision_table/reason_rules/2のunobservedを、canonical_ordered_branches/1のno-callと分けて保持する。failure_classifications/89は別に成立するFindingの根拠であり通常AxisResult生成条件ではない。明示handoff stateは原値。",
+            "axis": "dependency axisはL4 public_projection/axis_mappingの該当literal。original unselected_refs occurrenceから元false source-state passが形成するunselected_source Axisは原配列の出現ごとに保持する。conditional helperのchannel_not_selected private row自体から新Axisを作らない。handoff Axisは既存record/classificationのaxisを保つ。",
+            "state": "stateは原Axisのproducer/domainに対応する既存L4 mapping literal。original unselected_refs occurrenceのno-call Axisはunobservedを保持し、channel_not_selected private rowは評価されないselector channelのunobserved観測として別保持する。selector値だけでproducer/originを分類しない。",
             "original_refs": "L4 public_projection/refs_reasonとorderに従う、実category Ref出現だけを原順・重複込みで複写。欠落identityのRefは作らない。handoff source_refは供給済み非nullのときだけ保持。",
-            "reason": "reason_serializationに従い、BodyReadProblem.reason、L4 diagnostic mappingのliteral、または元handoff.reasonを損失なく記録する。任意raw文字列を補間しない。",
+            "reason": "canonical body port read/no-callに由来するAxisResult、元unselected_refs occurrenceのsource-state AxisResult、およびhandoff由来AxisResultは本TRACE serializerを使い原出現を保持する。selected conditional domainとselector findingは各既存writerへ委譲する。R89等の既存Finding.reasonは既存Finding writerの原値を保持し本TRACEで包まない。",
             "backflow_owner": "L4 axis_mappingまたはfailure_classificationsのrole literalのみ。未選択unobservedのAxisResultはこの有限caseではnull。classification/89のFindingが別predicateにより実際に成立した場合に限り、そのFindingはknowledge_owner。明示not_receivedのhandoffはclassification/84に従いos_owner。"
           }
         },
         "finding_root": {
           "source": "同L4節のpublic_return_shapes/findingと既存failure_classifications。",
-          "writer": "既存L4 predicateがfailure_rule_ref_mapping.entriesのどれかに一致するときだけFindingを形成する。code/rule_ref/axis/state/backflow_ownerは同一entryの固定値を使い、subject/binding/source_refs/reasonは当該predicateを支持する同一inputのL4原値から形成する。複数entryを混ぜず、新predicate/Findingを作らない。mapping外のpredicateについてこの有限追加は新しいrule_ref対応を主張しない。"
+          "writer": "Findingは既存L4 failure-classification predicateとfailure_rule_ref_mapping.entriesの対応がある場合だけ同一entry/同一input原値から一度形成する。code/rule_ref/axis/state/backflow_owner/source_refsを元対応で保持し、reasonは既存Finding domain writer/serializerが形成する。本TRACE AxisResult serializerはFindingを作らず、既存Finding.reasonを包まず、重複emit/置換もしない。mapping外predicateに新rule_refを作らない。"
         },
         "reason_serialization": {
-          "public_field": "AxisResult.reasonとFinding.reasonは既存string memberのままとし、Comparison/Axis/Findingにmemberを追加しない。",
-          "string_grammar": "`<prefix> + LF + \"TRACE=\" + compact UTF-8 JSON object`。末尾空白なし、ensure_ascii=false。trace member順はtrace_member_orderに固定する。Ref/Binding/RawValueの内側member順は原順のままとし、sort/dedupしない。byte列全体をL4 common_rules/reason_formatに従って比較する。",
+          "public_field": "canonical body port由来、元unselected_refs occurrence由来のpublic AxisResult.reason、及びhandoff由来AxisResult.reasonは本TRACE grammarで形成する。selected conditional domain AxisResultとselector Finding、その他全既存Finding.reasonは各既存domain writerのstring member/serializationを維持する。Comparison/Axis/Findingにmemberを追加しない。",
+          "string_grammar": "本節の適用域であるcanonical body port/no-call由来、元unselected_refs occurrence由来及びhandoff由来AxisResult.reasonは `<prefix> + LF + \"TRACE=\" + compact UTF-8 JSON object`。末尾空白なし、ensure_ascii=false、trace member順はtrace_member_order。selected conditional domainのAxisResult.reason、selector finding、その他Finding.reasonは本grammarの対象外で各既存domain writer/byte規則を維持する。Ref/Binding/RawValue内側member順は原順を保ちsort/dedupしない。",
           "trace_member_order": [
             "format",
             "producer_symbol",
@@ -4025,10 +4025,10 @@
           "trace_value_rules": {
             "format": "固定識別子 BRAIN032-F09-axis-reason-trace-v1",
             "producer_symbol": "固定識別子 compare_dependencies_and_handoff",
-            "axis_state_subject_binding_original_refs_backflow_owner": "該当AxisResultまたはFindingの対応memberを全値複写する。推測で置換しない。",
+            "axis_state_subject_binding_original_refs_backflow_owner": "TRACE対象のpublic AxisResultの対応memberだけを全値複写する。Findingのmemberを借用せず、推測で置換しない。",
             "request_locator": "実際のCanonicalReadRequest.request_ref_locator、明示されたHandoffRecord locator、またはreadが無ければnull。",
             "source_category_locator": "実在するcategory配列のpointerのみ。",
-            "cause": "resolvedかつsource問題なしならnull。それ以外は対応するL4 BodyReadProblemまたは実成立したL4 failure-classification観測を、state/member/presence/reason/source_locators込みで保持する。原因を新設しない。",
+            "cause": "canonical body portから実際に返ったCanonicalBodyRead.problemsの全原出現をstate/member/presence/reason/source_locators込みで保持する。当該canonical-read AxisResultでは0件ならcause=null、1件ならBodyReadProblem全値object、2件以上ならBodyReadProblem[]を元problems順で保持する。複数でもAxisResultを複製しない。既存failure-classificationに根拠づけられたAxis/Findingの原因観測をBodyReadProblem配列へ変換/混入しない。既存classification/Finding由来の原因は元domain writerの全値を保つ。原因を新設しない。",
             "canonical_body_support": {
               "closed_shape": "canonical_body_supportは同call CanonicalBodyRead.recordsを元にしたrow配列。各rowの許可memberはmember_orderの10名だけ。required_membersは原CanonicalBodyRecordから必ず得る4名で、それ以外は元source/body/Qualificationに実供給されたmemberだけを同順で追加する。未供給をnull/{}へ補完しない。現positive5rowは10member全てを持つ。",
               "member_order": [
@@ -4144,7 +4144,7 @@
             },
             {
               "branch": "source/body/frame不明",
-              "prefix": "対応するL4 BodyReadProblem.reasonをそのまま使用する。",
+              "prefix": "BodyReadProblemが1件ならそのreasonをprefixへ使う。複数件ならL4で定めた原問題順の先頭reasonをprefixへ使い、全問題はTRACE.cause配列で保持する。先頭prefixは後続problemを省略する意味を持たない。",
               "basis": "L4 diagnostic_return_contract/canonical_diagnostic_mappingの該当行。raw文字列を追加補間しない。"
             },
             {
@@ -4153,16 +4153,36 @@
               "basis": "既存L4 diagnostic mapping。欠落identityを合成せず、L4のreason literalだけを使う。"
             },
             {
-              "branch": "unselected_source unobserved",
+              "branch": "original dependencies.unselected_refs occurrenceから形成するunselected_source AxisResult",
               "prefix": "未選択sourceは未観測。",
-              "basis": "conditional_source_dependency_contract/decision_table/reason_rules/2及びprojection_material/axis_mapping/channel_falseの通常unselected_source/unobservedと、canonical_ordered_branches/1のno-callを保持する。別predicateが成立しない限りFindingを作らない。"
+              "basis": "L4 public_projection/refs_reasonとorderに従う原unselected_refs occurrenceのsource-state pass、conditional_source_dependency_contract/projection_material/axis_mapping/channel_falseのunobserved state、及びcanonical no-callのselection observation。厳密false selectorはhelperの非評価観測でありpublic Axisのorigin識別子ではない。別predicateのR89 Findingは既存Finding writerが別に扱う。"
             },
             {
               "branch": "明示HandoffRecord",
               "prefix": "受渡しstateを原recordから保持。",
               "basis": "元reasonをtraceに保持し、明示not_receivedはL4 failure_classifications/84に従う。欠落行からstateを推定しない。"
             }
-          ]
+          ],
+          "cause_cardinality_contract": {
+            "scope": "canonical body portの実read結果に由来するAxisResultのBodyReadProblem causeだけ。original dependencies.unselected_refs occurrenceを元false時source-state passが返すno-call Axisは、このC6 public TRACE対象に含む。private channel_not_selected row自体はpublic Axis/Findingを生成しない。conditional selected detail及び既存classification/Finding causeは別domainの既存writerへ残す。",
+            "encoding": [
+              {
+                "problem_count": 0,
+                "cause": "null（canonical read結果にproblemがない場合。no-call source-state/handoffはそれぞれの元cause規則）"
+              },
+              {
+                "problem_count": 1,
+                "cause": "BodyReadProblem object (all closed members copied)"
+              },
+              {
+                "problem_count": "2 or more",
+                "cause": "BodyReadProblem[] (all occurrences in CanonicalBodyRead.problems order)"
+              }
+            ],
+            "prefix": "BodyReadProblem由来のprefixは既存1件時はそのreason。複数時はproblem order先頭のreasonをprefixに置き、TRACE.cause arrayに全問題を保持する。prefixは原因集合の代替ではない。",
+            "classification_separation": "既存L4 failure-classification observationが発生する場合は既存classification/Finding writerのまま保持する。canonical BodyReadProblemの個数だけでclassificationを生成しない。",
+            "no_new_semantics": "axis, state, original_refs, reason code, FailureRule, owner, producer/no-call boundary, selector semanticsは不変。"
+          }
         },
         "trace_limits": "traceは公開fieldへ出した原資料を説明する。新authority、qualification gate、canonical adoption、実runtime evidenceを作らない。canonical bodyの取得は既存L4 body portだけを通し、そのstate/problemsを変えない。 この追加の有限範囲・未行使branchは対L9のunexercised_l4_branches_ja及びunexercised_scope_jaに明記する。既存ports節の有限観測の限界は継続し、全F09の完成を認定しない。",
         "normative_source_scope": {
@@ -4190,7 +4210,10 @@
             "/conditional_source_dependency_contract/decision_table/reason_rules/2",
             "/conditional_source_dependency_contract/projection_material/axis_mapping/channel_false",
             "/dependency_semantic_ports/schema/new_defs/CanonicalBodyRecord",
-            "/dependency_semantic_ports/canonical_trace_fields"
+            "/dependency_semantic_ports/canonical_trace_fields",
+            "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/4",
+            "/dependency_semantic_ports/diagnostic_return_contract/common_rules/problem_order",
+            "/dependency_semantic_ports/schema/new_defs/BodyReadProblem"
           ]
         },
         "public_return_shapes": {
@@ -4313,6 +4336,15 @@
           "axis_values": "axis=unselected_source,state=unobserved,backflow_owner=nullの通常AxisResult。source_category_locatorは/dependencies/unselected_refs、request_locatorはその実/{index}、original_refsは当該原Ref一件。subject/bindingは既存dependency_subject規則をそのまま使い、typed subject形成不能を架空Refで補完しない。",
           "failure_separation": "通常の非選択だけでclassification/89のFindingを作らない。unselected_source_successの原predicateが別に成立したときのFinding/knowledge_ownerは独立。operation/025/body portの呼出しを非選択Refへ足さない。",
           "source_vs_inventory": "L9の4例は各1原Ref出現だけを持つ有限照合。原Ref単位/原順の選択は既存port no-call/public projectionと、既存L5 fn6 algorithm/4が私有channel_not_selectedから公開を新設せず元unselected_refs/R89 false経路を保持することの技術具体化である。L9期待そのものを新しい意味authorityにしない。"
+        },
+        "domain_applicability": {
+          "canonical_body_port_axis": "canonical body portの実read結果から形成されるAxisResultでは、そのread由来のTRACEを形成する。BodyReadProblem causeは同readの原全出現と専用cardinality規則を使う。",
+          "original_unselected_ref_occurrence_axis": "同一inputの/dependencies/unselected_refs/{原index}出現を対象とする既存source-state passのunselected_source AxisResultは、既存source-state passの形成条件を満たして返された場合だけTRACE対象とする。selector値だけを由来の識別子にはしない。元Ref全値と原順/反復を保持し、canonical body portを呼ばない事実はselection_observation.port_callに記録する。ここで選択判定やsourceの成功/失敗を追加しない。",
+          "private_channel_not_selected_observation": "conditional_source_dependency_contractの厳密falseは当該channel operation/025を評価しないunobserved条件である。このprivate selector observation単独から公開Axis/Findingは生成せず、元unselected_refs occurrenceに由来する別public Axisを削除又は書換えない。selector=falseはorigin classifierに使わない。",
+          "selected_conditional_domain": "selected conditional dependency/operationのAxisResultとselector absent等のselector findingは、conditional_source_dependency_contractで定める元producer/domain writerと固定順に委譲する。本TRACE writerはこれらを再直列化しない。",
+          "existing_failure_classification": "R89等、既存failure-classificationに実原predicateで成立するFindingは既存Finding writerが一度だけ形成する。unselected-sourceの通常状態だけではFindingを作らず、Finding.reasonをTRACEで包まない。classificationに由来する既存Axis causeもBodyReadProblem arrayへ混ぜない。",
+          "handoff_axis": "同一inputの明示handoff record由来AxisResultは元handoff state/reason/recordを保持する。not_received caseはcause=null、handoff_recordに元record全値を保持する。",
+          "no_cross_domain_rewrite": "一つのComparison内のAxisResult/Findingは元origin/producerを保持する。prefix/stateだけで別originと判定せず、domain間の優先・置換・二重emitを行わない。"
         }
       }
     },
