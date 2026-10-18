@@ -8709,7 +8709,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "40008f79cf27b6c9974b2af29ede64ef3ffb55ba88ff96ceb429673094d51d6b",
+      "sha256": "981de8824758578e8a9d6a95bcc8f039e75251d84399a4f25b1d933552438342",
       "meaning": "このL9と同候補のL4全UTF-8 bytesへのbinding。base source_pinsは原sourceの履歴根拠であり、このbindingを代替しない。commit revisionや上流承認をここから生成しない。"
     }
   },
@@ -22881,7 +22881,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "40008f79cf27b6c9974b2af29ede64ef3ffb55ba88ff96ceb429673094d51d6b"
+      "sha256": "981de8824758578e8a9d6a95bcc8f039e75251d84399a4f25b1d933552438342"
     }
   },
   "descriptor_target_port_verification": {
@@ -22890,7 +22890,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "observed_source_revision": "64dc8a7032990e8f961f4e5e9601a1909d2e4f6d",
-      "sha256": "40008f79cf27b6c9974b2af29ede64ef3ffb55ba88ff96ceb429673094d51d6b",
+      "sha256": "981de8824758578e8a9d6a95bcc8f039e75251d84399a4f25b1d933552438342",
       "binding_kind": "このscaffold候補L4 whole本文bytesへのbinding。前提source revision/正式採用とは区別。"
     },
     "scope": "9素材の同call原input/Claim引数/全私的target port返却。旧10port/10conditionalの期待scopeを変更しない。",
@@ -92569,7 +92569,7 @@
     ],
     "current_L4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "candidate_file_sha256": "40008f79cf27b6c9974b2af29ede64ef3ffb55ba88ff96ceb429673094d51d6b",
+      "candidate_file_sha256": "981de8824758578e8a9d6a95bcc8f039e75251d84399a4f25b1d933552438342",
       "scope": "同じL4文書全bytesへの束縛。固定規範snapshotの歴史source pinとは別に、対象revisionはgit commitとreview対象HEADから確認する。"
     }
   },
@@ -92734,6 +92734,32 @@
         "C1_generic_two_axes_whole_equal": true,
         "input_canonical_sha256": "e46c89c5440a5072c6dd3de3b6ade643ade3e2449aa6f6440abebdacbebf064b",
         "expected_canonical_sha256": "13f06227794c36a3857bb6fc297686e2e4c4e506d4a799fa84d2f552990f082f"
+      },
+      {
+        "case_id": "F03-L9-SUPPLIED-FALSE-APPLICABLE",
+        "new_case_not_old5_identity_claim": true,
+        "old_15_sources_whole_equal": true,
+        "C1_comparison_whole_equal": true,
+        "C1_generic_two_axes_whole_equal": true,
+        "input_canonical_sha256": "32b14e3f74d2e8be2809a4298d3ce19f9c3a82eddbf69a022904ae423f6a88ae",
+        "expected_canonical_sha256": "88c9d3f385edfe2bbdb74397df6b197d6952008b4a9b5602c5ced619e9dded4f",
+        "fixture_canonical_sha256": "2460244807b048c0c7c3381113380aae647ef4f7bb837253ced2c1cc136d6d39",
+        "source_bytes_body_digest_qualification_subject_scope_equal": true,
+        "axis_reason_equals_corresponding_event_reason": true,
+        "basis": "root Wb AA1修正済みL9を標準JSON/gitseed/RFCだけで実再展開した静的記録。意味reader/validatorの実行結果ではない。"
+      },
+      {
+        "case_id": "F03-L9-EXPLICIT-APPLICABILITY-UNKNOWN",
+        "new_case_not_old5_identity_claim": true,
+        "old_15_sources_whole_equal": true,
+        "C1_comparison_whole_equal": true,
+        "C1_generic_two_axes_whole_equal": true,
+        "input_canonical_sha256": "79c8cbfa7617fa6bea6da88414062500a4b15694c34ee5561283a43573667b30",
+        "expected_canonical_sha256": "0826e92a0f5b50a75f0bb7e4a9cd837202ae710d298ee45790b71fe073bbe04a",
+        "fixture_canonical_sha256": "bb34f579fc4d4b93bb193fe1dbd47b8b8ebd62c5eca0ce7e727c551101fafb8f",
+        "source_bytes_body_digest_qualification_subject_scope_equal": true,
+        "axis_reason_equals_corresponding_event_reason": true,
+        "basis": "root Wb AA1修正済みL9を標準JSON/gitseed/RFCだけで実再展開した静的記録。意味reader/validatorの実行結果ではない。"
       }
     ],
     "static_type_name_checks": {
@@ -92765,9 +92791,25 @@
         "fact_ref_body_binding_slot_kind_and_normative_frame_deep_equal": true,
         "attribution_original_group_fact_deep_equal": true,
         "mapping_provenance_source_ref_whole_equal": true
+      },
+      {
+        "case_id": "F03-L9-SUPPLIED-FALSE-APPLICABLE",
+        "operation_whole_equals_original_source_body": true,
+        "fact_ref_body_binding_slot_kind_and_normative_frame_deep_equal": true,
+        "attribution_original_group_fact_deep_equal": true,
+        "mapping_provenance_source_ref_whole_equal": true,
+        "basis": "同じWb source snapshotの原node対応を実照合。"
+      },
+      {
+        "case_id": "F03-L9-EXPLICIT-APPLICABILITY-UNKNOWN",
+        "operation_whole_equals_original_source_body": true,
+        "fact_ref_body_binding_slot_kind_and_normative_frame_deep_equal": true,
+        "attribution_original_group_fact_deep_equal": true,
+        "mapping_provenance_source_ref_whole_equal": true,
+        "basis": "同じWb source snapshotの原node対応を実照合。"
       }
     ],
-    "static_limit": "全5caseの原JSON対応・閉型名・固定primitive・格納展開の静的確認である。候補reader/意味判断/資格/validator/test/CIを実行していないため、実装及び全branchの実行証拠ではない。",
+    "static_limit": "全7caseの原JSON対応・閉型名・固定primitive・格納展開の静的確認である。候補reader/意味判断/資格/validator/test/CIを実行していないため、実装及び全branchの実行証拠ではない。",
     "cases": [
       {
         "id": "F03-L9-OWNER-EMPTY-MISSING",
@@ -111317,7 +111359,7 @@
               },
               "owner": "synthetic-knowledge-owner",
               "source_locator": null,
-              "sha256": "68b59549ea53a3ba486632ac20a99332ad5d2578127a19a6544299ad67cb4747"
+              "sha256": "12b554f76fe945c81b721269efe688d3f67fe11f110ad6bc30c78a6c4beda27d"
             }
           },
           {
@@ -115672,12 +115714,12 @@
             }
           }
         ],
-        "input_canonical_sha256": "cc94ac9f637b19684bb8fdb11a881ad36e7673c03c52363a29161ffda77b698f",
+        "input_canonical_sha256": "32b14e3f74d2e8be2809a4298d3ce19f9c3a82eddbf69a022904ae423f6a88ae",
         "expected_canonical_sha256": "88c9d3f385edfe2bbdb74397df6b197d6952008b4a9b5602c5ced619e9dded4f",
-        "fixture_canonical_sha256": "e7aad0602abee33ed3d247fe4e18cdf74dd8e3205d43ce0ba8f6d220e4349125",
+        "fixture_canonical_sha256": "2460244807b048c0c7c3381113380aae647ef4f7bb837253ced2c1cc136d6d39",
         "expected_side_effect_count": 0,
         "execution_state": "not_executed",
-        "authorship": "先に独立著述された7de055資料の正式patch内whole literalをRFC格納差分へ変換。候補評価から期待を生成していない。"
+        "authorship": "独立先行著述された7de055資料の正式patch内whole literalをRFC格納差分へ変換した後、独立review AA1で入力provenanceの旧digestを訂正。期待全値は公開済み52994522と同一。候補評価から期待を生成していない。"
       },
       {
         "id": "F03-L9-EXPLICIT-APPLICABILITY-UNKNOWN",
@@ -120063,7 +120105,7 @@
       "pointer": "RFC6901 ~0/~1、array末尾add、replace/remove対象実在、重複pathは原順。無効pathは展開失敗であり空/無視へしない。",
       "value": "null/absence/原JSON型/配列順・長・反復/source content_bytesの原文字列bytesを保存。",
       "hash": "UTF-8 canonical object keys sort/ensure_ascii=false/compact/末尾LF無し。固定source物理bytes SHAとは別。",
-      "proof": "先行7wholeのinput/expected全memberへ固定git/RFC格納展開だけでdeep equality/canonical一致。reader/validator/evaluatorは未実行。"
+      "proof": "固定git/RFC格納展開で、先行公開済み5例のinput/expected全memberと、全7例のexpected全memberのdeep equality/canonicalを確認する。case_index=5のinputはAA1訂正を明記。reader/validator/evaluatorは未実行。"
     },
     "whole_literal_proof": {
       "path": "scaffold/review-handoff/local/root-byte-snapshot-7de055f0ce4e.json",
@@ -120102,9 +120144,10 @@
         },
         {
           "case_id": "F03-L9-SUPPLIED-FALSE-APPLICABLE",
-          "input_deep_equal_to_authored_whole_literal": true,
+          "input_deep_equal_to_authored_whole_literal": false,
           "expected_deep_equal_to_authored_whole_literal": true,
-          "fixture_canonical_sha256": "e7aad0602abee33ed3d247fe4e18cdf74dd8e3205d43ce0ba8f6d220e4349125"
+          "fixture_canonical_sha256": "2460244807b048c0c7c3381113380aae647ef4f7bb837253ced2c1cc136d6d39",
+          "input_correction_ref": "/field_value_applicability_verification/whole_literal_proof/AA1_input_correction"
         },
         {
           "case_id": "F03-L9-EXPLICIT-APPLICABILITY-UNKNOWN",
@@ -120113,7 +120156,36 @@
           "fixture_canonical_sha256": "bb34f579fc4d4b93bb193fe1dbd47b8b8ebd62c5eca0ce7e727c551101fafb8f"
         }
       ],
-      "boundary": "local資料は圧縮前著述の記録。正式fixtureは固定git importsとliteral RFC patchで自己完結しlocal fileを展開依存にしない。旧5wholeは30e4全値と同一、top-level new_materialsの訂正前重複は使わず上記正式patch payloadだけを比較した。"
+      "boundary": "local資料は圧縮前著述の記録。正式fixtureは固定git importsとliteral RFC patchで自己完結しlocal fileを展開依存にしない。旧5例の保全は下記prior_publication_basisのtrackedな全入力・全期待との比較で確認できる。旧ローカル著述資料の真正性/当時採用来歴は本記録から生成しない。 AA1訂正後のcase_index=5のinputは旧local wholeと同一ではない。訂正差分を本体へ明記し、全7expectedと旧5input/expectedの保全を公開済み固定revisionから照合する。",
+      "prepublication_authoring_record": {
+        "path": "scaffold/review-handoff/local/brain032-f03-l4-l9-self-contained-full-fc489481.json",
+        "file_sha256": "30e4c0e0e8c0fc54b00672aa5c43fb6d532e11877d154cbe382fee99e25c0fd1",
+        "role": "初期5wholeのlocal著述記録。短縮git revisionではなくfile bytes SHA-256。repositoryだけではこのlocalファイルを回収できないため、tracked保全比較を下記固定revisionへ別に束縛する。"
+      },
+      "prior_publication_basis": {
+        "revision": "52994522e8c7edae8e143745eb0df9b9ca941328",
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "file_sha256": "a85940ef124c39fbcb46417fc19f56a1e4cd9bad796fd40088b24077889e11ac",
+        "pointer": "/field_value_applicability_verification",
+        "case_indices": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "rule": "固定git imports+各case.fixture_patchを原順に保存展開しinput/expected全値を比較する。同じ生成器の意味期待やreader実行ではない。",
+        "claim": "当該公開済み5ケースを保持する。引用より古いlocal草案/採用authorityの真正性までは認定しない。"
+      },
+      "AA1_input_correction": {
+        "basis_ref": "/field_value_applicability_verification/whole_literal_proof/prior_publication_basis",
+        "case_index": 5,
+        "input_pointer": "/snapshot/input/knowledge_records/0/provenance_refs/15/sha256",
+        "old": "68b59549ea53a3ba486632ac20a99332ad5d2578127a19a6544299ad67cb4747",
+        "new": "12b554f76fe945c81b721269efe688d3f67fe11f110ad6bc30c78a6c4beda27d",
+        "reason": "供給source本体/refと資格subject_refに一致させる。訂正前の全入力一致の主張を保持せず、期待全値だけ保持する。",
+        "expected_whole_preserved": true
+      }
     },
     "P15_control_alignment": {
       "generic_two_axes_and_comparison_four_members_deep_equal": true,
@@ -120131,9 +120203,99 @@
     },
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "file_sha256": "40008f79cf27b6c9974b2af29ede64ef3ffb55ba88ff96ceb429673094d51d6b",
+      "file_sha256": "981de8824758578e8a9d6a95bcc8f039e75251d84399a4f25b1d933552438342",
       "pointer": "/field_value_applicability_contract",
       "role": "現在の基本設計全bytesへの明示binding。固定履歴pinとは別。"
+    },
+    "unexercised_observations": {
+      "basis": "現7caseの独立expected literalの出現調査。reader/意味関数の実行coverageではない。",
+      "observed_branches": [
+        "definition_empty",
+        "definition_unknown",
+        "definition_known",
+        "applicability_null",
+        "value_unknown",
+        "field_unknown",
+        "applicability_na",
+        "field_na",
+        "parent_na_no_transfer",
+        "applicability_applicable",
+        "value_supplied",
+        "field_applicable",
+        "applicability_unknown"
+      ],
+      "unexercised_branches": [
+        "definition_conflict",
+        "value_na"
+      ],
+      "observed_definition_causes": [
+        "meaning_refs_empty",
+        "field_owner_unresolved",
+        "meaning_positive"
+      ],
+      "unexercised_definition_causes": [
+        "request_field_absent",
+        "request_field_null",
+        "request_field_type",
+        "request_binding_absent",
+        "request_binding_null",
+        "request_binding_type",
+        "field_snapshot_differs",
+        "field_subject_differs",
+        "field_binding_differs",
+        "field_mirror_differs",
+        "meaning_refs_absent",
+        "meaning_refs_null",
+        "meaning_refs_type",
+        "target_unknown",
+        "target_conflict",
+        "selected_fact_unresolved",
+        "selected_fact_source_unresolved",
+        "selected_fact_body_null",
+        "selected_fact_body_absent",
+        "attribution_unknown",
+        "attribution_conflict",
+        "meaning_read_unresolved",
+        "meaning_negative",
+        "meaning_undetermined",
+        "meaning_basis_unresolved",
+        "qualified_pair_false",
+        "qualified_pair_unknown",
+        "snapshot_unavailable"
+      ],
+      "unexercised_pair_reads": {
+        "qualified_pair_false": true,
+        "qualified_pair_unknown": true,
+        "qualified_pair_true": true,
+        "basis": "全7 row.definition_read.pair_reads=[]。pairを新必須gateにしない。"
+      },
+      "unexercised_values": [
+        {
+          "value": 0,
+          "type": "number",
+          "basis": "falseとはJSON型を区別する。0のvalue供給literal無し。"
+        },
+        {
+          "value": "",
+          "type": "string",
+          "basis": "空文字供給literal無し。"
+        },
+        {
+          "value": [],
+          "type": "array",
+          "basis": "空配列供給literal無し。meaning_fact_refs=[]とは別の値観測。"
+        }
+      ],
+      "value_applicability_requests": {
+        "held": "実ValueFactを持つcase2/case5はapplicability_ref:nullをkind=value read原wholeへ保持し、専用read無し。",
+        "unexercised": [
+          "value.applicability_ref absent",
+          "supplied nonnull合法Ref",
+          "supplied nonnull型外",
+          "複数の値用適用record/別subjectframe/相反判断"
+        ]
+      },
+      "other_unexercised": "7case外のrequest absent/null/型外/複数/別subjectframe/claim/実資格/全producer/詳細実現は既存remainingに保持。"
     }
   }
 }

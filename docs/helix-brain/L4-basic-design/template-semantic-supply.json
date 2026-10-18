@@ -7787,35 +7787,35 @@
       },
       {
         "branch": "field_unknown",
-        "condition": "active案件fieldの固有適用判断無し",
+        "condition": "active案件fieldについて、同fieldの原適用decision=unknownが明示されている場合、又は当該fieldの固有適用判断を形成できない場合（Ref absent/null、lookup/source/body/NA根拠の不足等）をunknownとして保持する。明示unknownはreason_material.original_decision=supplied(\"unknown\")、原decision未取得はabsent、原decisionが明示null等ならsuppliedの元値のままとして区別する。原reason/owner/reentry/locatorも取得した当該原資料から保持する。親だけのNAを診断する場合はparent_na_no_transferの原資料区別に従い子NAを生成しない。",
         "axis": "field.applicability",
         "state": "unknown",
         "reason": "field固有の適用判断は未決である。"
       },
       {
         "branch": "definition_conflict",
-        "condition": "既存原判定又は原supported適用判断が当該selected field/valueへ対応した場合だけ。原値及び全出現は別に保持する。",
+        "condition": "当該fieldのdefinition_read.judgmentsの原branch=definition_conflict/state=conflictを同eventへ投影する。原因はfield_definition_cause_tableのtarget_conflict/attribution_conflict/qualified_pair_falseであり、原field whole/owner対応と当該target・selected fact・実pairのsource/subject/revision/scope/full Binding guardがそれぞれ成立した原判断だけを使う。source取得conflict、意味未決、別field/別frameの判断又は値/適用のNAをfield定義conflictへ転写しない。judgment/実source/原比較値はdefinition_readへ全値保持する。",
         "axis": "field.definition",
         "state": "conflict",
         "reason": "選択した原field意味factの元conflict判定を保持する。"
       },
       {
         "branch": "applicability_applicable",
-        "condition": "既存原判定又は原supported適用判断が当該selected field/valueへ対応した場合だけ。原値及び全出現は別に保持する。",
+        "condition": "field_applicability又は明示value_applicability readのsupportが解決し、その同field subject/full Binding/revision/scopeに対応するrootとqualified sourceの原ApplicabilityRecord全値が一致し、原decisionがapplicableであるとき、その判断をapplicability.evaluationへ投影する。not_applicable/unknown/未取得からapplicableを生成しない。NA用reason/reentryの追加充足をapplicableのgateにしない。",
         "axis": "applicability.evaluation",
         "state": "applicable",
         "reason": "同fieldの原owner判断applicableを保持する。"
       },
       {
         "branch": "field_applicable",
-        "condition": "既存原判定又は原supported適用判断が当該selected field/valueへ対応した場合だけ。原値及び全出現は別に保持する。",
+        "condition": "当該field subjectへ明示対応するfield_applicability又はvalue_applicability readに、同full Binding/revision/scopeでqualified source/bodyと一致する原decision=applicableの支持があるとき、その当該fieldの原判断だけをfield.applicabilityへ投影する。原request/source/subject/frameは各read別に保持し、value suppliedだけ、親sectionの判断又は別subject/frameの適用判断からfield固有applicableを推論しない。",
         "axis": "field.applicability",
         "state": "applicable",
         "reason": "同fieldの原適用判断applicableだけを保持する。"
       },
       {
         "branch": "value_na",
-        "condition": "既存原判定又は原supported適用判断が当該selected field/valueへ対応した場合だけ。原値及び全出現は別に保持する。",
+        "condition": "当該原ValueFact.applicability_refが明示するvalue_applicability readに、同field subject/full Binding/revision/scopeでqualified source/bodyと一致する原decision=not_applicable及び原owner/reason/reentry_conditionの供給nonnull支持があるときだけfield.valueの別観点として投影する。field側Refや親NAを借りず、ValueFactの原値とvalue_supplied/value_unknown観点を上書きしない。",
         "axis": "field.value",
         "state": "not_applicable",
         "reason": "当該原値が指す同fieldの根拠付き非適用を別観点として保持する。"
@@ -7847,12 +7847,12 @@
         "observation": "root原applicability_recordsのsubject_refが親Refへ既存ref_sameする各原recordを別parent requestとして読む。親recordをchild主体へ書換えずfieldのapplicability_refとして借りない。"
       },
       {
-        "condition": "value.applicability_ref supplied Ref",
-        "observation": "value_applicability requestを明示作成して同field subjectを照合。field側Ref又は他value側Refと同一と推定しない。原値とNAを別観点で保持する。"
+        "condition": "同snapshotで取得した原ValueFact.applicability_refが供給nonnull（合法Refに限らず型外の原値を含む）",
+        "observation": "callerは各kind=value readの原ValueFact全出現を読み、そのapplicability_refが供給nonnullのときだけkind=value_applicabilityのF03RecordRequestを作る。requested_refはF03BPresenceRawに元JSON全値、request_locatorは当該root ValueFact locator+/applicability_ref、subject_refは当該field.refのraw presence、bindingは同snapshotのraw presenceを渡す。Refへ先cast/合法Refだけをfilterせず、型外はread unknownとF03Problemへ原値/原因を保存する。field側Refや他value側Refへ代替しない。返却readは同じrow.value_reads内で対応kind=value readの直後へ追加し、値の原Ref/root出現順と専用read内の原root/source順を保つ。"
       },
       {
         "condition": "value.applicability_ref absent/null",
-        "observation": "その値用readはnot_requested又はunknownを原presenceで保持し値供給自体を新必須gateにしない。"
+        "observation": "applicability_refのabsentとsupplied nullはkind=value readのroot/source original_valueにある原ValueFact全値へそのまま保持する。この2状態だけを理由にkind=value_applicabilityの追加read（not_requested又はunknownのplaceholderを含む）を作らず、値供給自体の新必須gateにしない。現7caseで値recordを持つ2例はどちらもapplicability_ref:null、value_readsはkind=valueの1件のみであり全期待を維持する。absent/non-null/型外の値用適用requestは本7caseでは未行使。"
       },
       {
         "condition": "Ref/Binding形成不能",
@@ -7937,16 +7937,336 @@
       "input": "F03ReasonMaterial全12member。definition_causeで元field取得不足と意味未決を区別し、元meaning decision reason/basisはF03FieldDefinitionRead内でもwhole保持する。",
       "prefix": "event.branchに対応するproblem_reason_table[branch] literal",
       "serialization": "prefix + U+000A + diagnostic_json(reason_material)。diagnostic_jsonは既存exact JSON意味を用い、object keyはUnicode codepoint昇順、空白なし、stringはUTF-8文字を保持、数値は既存exact numberを保持。branch/state/causeをreason textから逆算しない。",
-      "public_reason": "Axis.reasonは同event.reason全値。NA元reason/owner/reentry/knowledge版を型付き素材からこの固定writerで保存。"
+      "public_reason": "Axis.reasonは同event.reason全値。NA元reason/owner/reentry/knowledge版を型付き素材からこの固定writerで保存。",
+      "material_source_bindings": {
+        "F": "同snapshot.input.section_fieldsをrow.field_locatorで得た原field全値。",
+        "D": "同row.definition_read。Jは当該event.definition_judgment_indicesで指定したD.judgmentsの原judgment。",
+        "VR": "当該kind=value readの原root ValueFact出現Vとその実source mirror。value_ref原index/root indexを保持する。",
+        "AR": "当該field_applicability/value_applicability readで実際に取得した原ApplicabilityRecord出現Aとその実source mirror。record未取得時はAを作らない。",
+        "PR": "同field.parent_section_refを原subjectとするparent readの原ApplicabilityRecord出現Pと実source。P.subject_refを子fieldへ書換えない。",
+        "presence": "宣言memberが原objectに無ければ{presence:absent}。あれば{presence:supplied,value:元JSON値}でnull/false/0/空文字/[]も無変換。必要な元object自体が未取得ならabsent。",
+        "locators": "当該eventで実際に使った原root/source出現のRFC6901 locator全値。別sourceの推定locatorや未取得recordのindexを作文しない。複数出現/反復を原順に保存する。",
+        "common": "branchは当該event.branch、field_locatorはrow.field_locator、knowledge_refは同snapshot.input.binding.knowledge_refの原値。これらを形成できない場合は既存F03Problem/private観測へ保持し代替Refを生成しない。"
+      },
+      "material_member_sources": [
+        {
+          "member": "branch",
+          "source": "実際に選んだfinite_branch_contractのbranch値。"
+        },
+        {
+          "member": "field_locator",
+          "source": "row.field_locator。"
+        },
+        {
+          "member": "request_locator",
+          "source": "下記branch_source_tableにある実request原nodeのRFC6901 locator。"
+        },
+        {
+          "member": "root_locators",
+          "source": "下記branch_source_tableの実root出現locator列。"
+        },
+        {
+          "member": "source_locators",
+          "source": "下記branch_source_tableの実source entry出現locator列。"
+        },
+        {
+          "member": "original_presence",
+          "source": "下記branch_source_tableの原nodeをpresenceで保持。"
+        },
+        {
+          "member": "original_reason",
+          "source": "当該原judgment又は原value/app/parent recordのreason presence。固定prefixや合成説明を原理由として補わない。"
+        },
+        {
+          "member": "original_owner",
+          "source": "原app/parent record.ownerのpresence。value/definitionでowner memberを持たない場合はabsentとしRef.ownerを借りない。"
+        },
+        {
+          "member": "original_decision",
+          "source": "原app/parent record.decisionのpresence。取得無しと明示unknown/null/型外を区別。値falseをdecisionへ転用しない。"
+        },
+        {
+          "member": "original_reentry",
+          "source": "原app/parent record.reentry_conditionのpresence。NAが未成立でも原値を保持し、未供給から生成しない。"
+        },
+        {
+          "member": "knowledge_ref",
+          "source": "同snapshot.input.binding.knowledge_refの原Ref全値。"
+        },
+        {
+          "member": "definition_cause",
+          "source": "definition系eventだけ原J.causeをsupplied stringで保持。他branchはabsent。"
+        }
+      ],
+      "branch_source_table": [
+        {
+          "branch": "definition_empty",
+          "sources": {
+            "branch": "definition_empty",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "row.field_locator + /meaning_fact_refs",
+            "root_locators": "D.owner_readの当該field原root_occurrences.locator列",
+            "source_locators": "D.owner_readの当該field原source_occurrences.locator列",
+            "original_presence": "presence(F.meaning_fact_refs)",
+            "original_reason": "J.original_reason全presence（元meaning理由等はD内にもwhole保持）",
+            "original_owner": "absent",
+            "original_decision": "absent（元meaning relation/原pair値はD内にwhole保持）",
+            "original_reentry": "absent",
+            "definition_cause": "supplied J.cause"
+          }
+        },
+        {
+          "branch": "definition_known",
+          "sources": {
+            "branch": "definition_known",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "row.field_locator + /meaning_fact_refs",
+            "root_locators": "D.owner_readの当該field原root_occurrences.locator列",
+            "source_locators": "D.owner_readの当該field原source_occurrences.locator列",
+            "original_presence": "presence(F.meaning_fact_refs)",
+            "original_reason": "J.original_reason全presence（元meaning理由等はD内にもwhole保持）",
+            "original_owner": "absent",
+            "original_decision": "absent（元meaning relation/原pair値はD内にwhole保持）",
+            "original_reentry": "absent",
+            "definition_cause": "supplied J.cause"
+          }
+        },
+        {
+          "branch": "definition_unknown",
+          "sources": {
+            "branch": "definition_unknown",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "row.field_locator + /meaning_fact_refs",
+            "root_locators": "D.owner_readの当該field原root_occurrences.locator列",
+            "source_locators": "D.owner_readの当該field原source_occurrences.locator列",
+            "original_presence": "presence(F.meaning_fact_refs)",
+            "original_reason": "J.original_reason全presence（元meaning理由等はD内にもwhole保持）",
+            "original_owner": "absent",
+            "original_decision": "absent（元meaning relation/原pair値はD内にwhole保持）",
+            "original_reentry": "absent",
+            "definition_cause": "supplied J.cause"
+          }
+        },
+        {
+          "branch": "value_unknown",
+          "sources": {
+            "branch": "value_unknown",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "F.value_fact_refsの当該原ref index locator",
+            "root_locators": "VRの当該V root_occurrences.locator列",
+            "source_locators": "VRの当該V source_occurrences.locator列",
+            "original_presence": "presence(V.value)、V未取得ならabsent",
+            "original_reason": "presence(V.reason)",
+            "original_owner": "absent",
+            "original_decision": "absent",
+            "original_reentry": "absent",
+            "definition_cause": "absent"
+          }
+        },
+        {
+          "branch": "value_supplied",
+          "sources": {
+            "branch": "value_supplied",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "F.value_fact_refsの当該原ref index locator",
+            "root_locators": "VRの当該V root_occurrences.locator列",
+            "source_locators": "VRの当該V source_occurrences.locator列",
+            "original_presence": "presence(V.value)、V未取得ならabsent",
+            "original_reason": "presence(V.reason)",
+            "original_owner": "absent",
+            "original_decision": "absent",
+            "original_reentry": "absent",
+            "definition_cause": "absent"
+          }
+        },
+        {
+          "branch": "applicability_null",
+          "sources": {
+            "branch": "applicability_null",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "ARの当該原request_locator。field系はF.applicability_ref、明示value_applicabilityならV.applicability_refの原locator",
+            "root_locators": "ARの実A root_occurrences.locator列。未取得なら[]",
+            "source_locators": "ARの実A source_occurrences.locator列。未取得なら[]",
+            "original_presence": "Aが実取得された場合presence(A.decision)、判断record未取得ならpresence(当該原applicability_ref)",
+            "original_reason": "presence(A.reason)、A未取得ならabsent",
+            "original_owner": "presence(A.owner)、A未取得ならabsent",
+            "original_decision": "presence(A.decision)、A未取得ならabsent",
+            "original_reentry": "presence(A.reentry_condition)、A未取得ならabsent",
+            "definition_cause": "absent"
+          },
+          "parent_diagnostic_override": "子applicability_refがnullかつ独立parent支持NAを診断する現caseでは、request_locator/original_presenceは子のまま、root_locators/source_locators/original_reason/owner/decision/reentryはPRの原Pから取る。event state=unknownを維持し子のNA根拠にしない。"
+        },
+        {
+          "branch": "applicability_unknown",
+          "sources": {
+            "branch": "applicability_unknown",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "ARの当該原request_locator。field系はF.applicability_ref、明示value_applicabilityならV.applicability_refの原locator",
+            "root_locators": "ARの実A root_occurrences.locator列。未取得なら[]",
+            "source_locators": "ARの実A source_occurrences.locator列。未取得なら[]",
+            "original_presence": "Aが実取得された場合presence(A.decision)、判断record未取得ならpresence(当該原applicability_ref)",
+            "original_reason": "presence(A.reason)、A未取得ならabsent",
+            "original_owner": "presence(A.owner)、A未取得ならabsent",
+            "original_decision": "presence(A.decision)、A未取得ならabsent",
+            "original_reentry": "presence(A.reentry_condition)、A未取得ならabsent",
+            "definition_cause": "absent"
+          }
+        },
+        {
+          "branch": "applicability_na",
+          "sources": {
+            "branch": "applicability_na",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "ARの当該原request_locator。field系はF.applicability_ref、明示value_applicabilityならV.applicability_refの原locator",
+            "root_locators": "ARの実A root_occurrences.locator列。未取得なら[]",
+            "source_locators": "ARの実A source_occurrences.locator列。未取得なら[]",
+            "original_presence": "Aが実取得された場合presence(A.decision)、判断record未取得ならpresence(当該原applicability_ref)",
+            "original_reason": "presence(A.reason)、A未取得ならabsent",
+            "original_owner": "presence(A.owner)、A未取得ならabsent",
+            "original_decision": "presence(A.decision)、A未取得ならabsent",
+            "original_reentry": "presence(A.reentry_condition)、A未取得ならabsent",
+            "definition_cause": "absent"
+          }
+        },
+        {
+          "branch": "field_na",
+          "sources": {
+            "branch": "field_na",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "ARの当該原request_locator。field系はF.applicability_ref、明示value_applicabilityならV.applicability_refの原locator",
+            "root_locators": "ARの実A root_occurrences.locator列。未取得なら[]",
+            "source_locators": "ARの実A source_occurrences.locator列。未取得なら[]",
+            "original_presence": "Aが実取得された場合presence(A.decision)、判断record未取得ならpresence(当該原applicability_ref)",
+            "original_reason": "presence(A.reason)、A未取得ならabsent",
+            "original_owner": "presence(A.owner)、A未取得ならabsent",
+            "original_decision": "presence(A.decision)、A未取得ならabsent",
+            "original_reentry": "presence(A.reentry_condition)、A未取得ならabsent",
+            "definition_cause": "absent"
+          }
+        },
+        {
+          "branch": "parent_na_no_transfer",
+          "sources": {
+            "branch": "parent_na_no_transfer",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "row.field_locator + /applicability_ref（子requestの原所在）",
+            "root_locators": "PRの原parent P root_occurrences.locator列",
+            "source_locators": "PRの原parent P source_occurrences.locator列",
+            "original_presence": "presence(F.applicability_ref)（子の原presence。親decisionで上書きしない）",
+            "original_reason": "presence(P.reason)",
+            "original_owner": "presence(P.owner)",
+            "original_decision": "presence(P.decision)",
+            "original_reentry": "presence(P.reentry_condition)",
+            "definition_cause": "absent"
+          }
+        },
+        {
+          "branch": "field_unknown",
+          "sources": {
+            "branch": "field_unknown",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "ARの当該原request_locator。field系はF.applicability_ref、明示value_applicabilityならV.applicability_refの原locator",
+            "root_locators": "ARの実A root_occurrences.locator列。未取得なら[]",
+            "source_locators": "ARの実A source_occurrences.locator列。未取得なら[]",
+            "original_presence": "Aが実取得された場合presence(A.decision)、判断record未取得ならpresence(当該原applicability_ref)",
+            "original_reason": "presence(A.reason)、A未取得ならabsent",
+            "original_owner": "presence(A.owner)、A未取得ならabsent",
+            "original_decision": "presence(A.decision)、A未取得ならabsent",
+            "original_reentry": "presence(A.reentry_condition)、A未取得ならabsent",
+            "definition_cause": "absent"
+          },
+          "unknown_modes": "A.decisionが明示unknownならoriginal_decision=supplied(\"unknown\")。A未取得はabsent。A.decision明示null/型外又は原NA根拠未成立はその原presence/値を残し、unknownからNA/applicableを推論しない。"
+        },
+        {
+          "branch": "definition_conflict",
+          "sources": {
+            "branch": "definition_conflict",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "row.field_locator + /meaning_fact_refs",
+            "root_locators": "D.owner_readの当該field原root_occurrences.locator列",
+            "source_locators": "D.owner_readの当該field原source_occurrences.locator列",
+            "original_presence": "presence(F.meaning_fact_refs)",
+            "original_reason": "J.original_reason全presence（元meaning理由等はD内にもwhole保持）",
+            "original_owner": "absent",
+            "original_decision": "absent（元meaning relation/原pair値はD内にwhole保持）",
+            "original_reentry": "absent",
+            "definition_cause": "supplied J.cause"
+          }
+        },
+        {
+          "branch": "applicability_applicable",
+          "sources": {
+            "branch": "applicability_applicable",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "ARの当該原request_locator。field系はF.applicability_ref、明示value_applicabilityならV.applicability_refの原locator",
+            "root_locators": "ARの実A root_occurrences.locator列。未取得なら[]",
+            "source_locators": "ARの実A source_occurrences.locator列。未取得なら[]",
+            "original_presence": "Aが実取得された場合presence(A.decision)、判断record未取得ならpresence(当該原applicability_ref)",
+            "original_reason": "presence(A.reason)、A未取得ならabsent",
+            "original_owner": "presence(A.owner)、A未取得ならabsent",
+            "original_decision": "presence(A.decision)、A未取得ならabsent",
+            "original_reentry": "presence(A.reentry_condition)、A未取得ならabsent",
+            "definition_cause": "absent"
+          }
+        },
+        {
+          "branch": "field_applicable",
+          "sources": {
+            "branch": "field_applicable",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "ARの当該原request_locator。field系はF.applicability_ref、明示value_applicabilityならV.applicability_refの原locator",
+            "root_locators": "ARの実A root_occurrences.locator列。未取得なら[]",
+            "source_locators": "ARの実A source_occurrences.locator列。未取得なら[]",
+            "original_presence": "Aが実取得された場合presence(A.decision)、判断record未取得ならpresence(当該原applicability_ref)",
+            "original_reason": "presence(A.reason)、A未取得ならabsent",
+            "original_owner": "presence(A.owner)、A未取得ならabsent",
+            "original_decision": "presence(A.decision)、A未取得ならabsent",
+            "original_reentry": "presence(A.reentry_condition)、A未取得ならabsent",
+            "definition_cause": "absent"
+          }
+        },
+        {
+          "branch": "value_na",
+          "sources": {
+            "branch": "value_na",
+            "field_locator": "row.field_locator",
+            "knowledge_ref": "snapshot.input.binding.knowledge_ref（原値）",
+            "request_locator": "当該原V root locator + /applicability_ref",
+            "root_locators": "実際に用いたVRのV root locator、続けてARのA root locator（各原順）",
+            "source_locators": "実際に用いたVRのV source entry locator、続けてARのA source entry locator（各原順）",
+            "original_presence": "presence(A.decision)",
+            "original_reason": "presence(A.reason)",
+            "original_owner": "presence(A.owner)",
+            "original_decision": "presence(A.decision)",
+            "original_reentry": "presence(A.reentry_condition)",
+            "definition_cause": "absent"
+          }
+        }
+      ],
+      "parent_diagnostic_boundary": "親PのNA原reason/owner/decision/reentryを診断素材へ保持しても、対象subjectはFとPで別々に保存する。applicability_null及びparent_na_no_transferの子stateはunknownのまま。reason_material.original_decision=not_applicable又は親reason文字列から子のNAを推論せず、原field判断を上書きしない。"
     },
     "projection_order": {
       "carry": "definitions.axesのrequired section.definition/required field.definition全出現を元順/全7memberで先頭copy。C1他axis/findingsをC2へ混載しない。",
       "population": "input.section_fields全原出現。root/applicability/values空かつ実field無しならrows=[]かつcarryのみ。",
-      "reads": "field原順→read_original_field_definition一回（owner→target→selected fact→帰属→意味read→実関連pair→judgment）→field適用→values原Ref順→parent root原index順。",
+      "reads": "field原順→read_original_field_definition一回（owner→target→selected fact→帰属→意味read→実関連pair→judgment）→field適用→valuesの原Ref/root出現順にkind=value read、各取得原ValueFactのapplicability_refが供給nonnullなら対応kind=value_applicability readをその直後にrow.value_readsへ追加→parent root原index順。値用適用Refのabsent/nullはvalue read原wholeへ保持し専用readを追加しない。",
       "case_activation": "実value refs非空/型外、実nonnull app Ref/型外、又は実root当該subject候補/親支持recordがあるときだけ案件axis active。明示null readはprivateに保持し、nullだけの非active fieldに案件axisを作らない。field.definitionは原field宣言/意味資料に対して独立。",
       "events": "field.definition→applicability.evaluation→field.value→field.applicability。全同軸出現は原request/root/source順で保持。",
       "public": "全7field AxisResult、全9field Finding、Comparison4fieldを維持。public original_refs/ownerは実読取原値だけ。input_binding=snapshot.input.binding。",
-      "claims": "本5case claims=[]。既存rule54..57のclaim検査は同subject/full Bindingの原kind/intended valueへ対応し元stateを更新しない。L5追補で既存Claim protocolのF03値表現/排他選択を閉じる。L4で新Claim要求を全fieldへ置かない。"
+      "claims": "本7case claims=[]。既存rule54..57のclaim検査は同subject/full Bindingの原kind/intended valueへ対応し元stateを更新しない。L5追補で既存Claim protocolのF03値表現/排他選択を閉じる。L4で新Claim要求を全fieldへ置かない。"
     },
     "legacy_rederivation": {
       "mode": "semantic_rederivation",
@@ -7957,7 +8277,8 @@
             16,
             92
           ],
-          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D"
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "file_bytes_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
@@ -7965,7 +8286,8 @@
             30,
             148
           ],
-          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299"
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "file_bytes_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
         },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
@@ -7977,15 +8299,17 @@
             "UTW-014",
             "UTW-020",
             "UTW-021"
-          ]
+          ],
+          "file_bytes_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
         }
       ],
       "retain": "原identity/owner/source/trace・template定義と製品値分離・unknown非NA・局所原資料保持。",
       "change": "原source/field/value/app型の必要boundaryだけL4 F03B型へ再導出。基本意味判断は原L4 meaningread→judgmentで閉じ、L5private whole-e/索引/ValueContext3を依存から除去する。",
-      "reason": "原field source/frame/対象対応と独立値/判断を明示し、未取得を明示emptyと誤認しないため。実source未観測は局所unknownとして設計に閉じ、成立を偽造しない。 基本→詳細の導出順とL4/L9自立性を守り、元source読取をL5private値注入で代替しないため。"
+      "reason": "原field source/frame/対象対応と独立値/判断を明示し、未取得を明示emptyと誤認しないため。実source未観測は局所unknownとして設計に閉じ、成立を偽造しない。 基本→詳細の導出順とL4/L9自立性を守り、元source読取をL5private値注入で代替しないため。",
+      "range_note": "本再導出で読んだ行範囲を記録する。別episodeの読取範囲を変更したり、旧資料の実行/合格証拠を継承したりしない。"
     },
     "limits": [
-      "L4/L9のpure論理境界と5caseの全期待。実trust/custody/稼働資格・全producer完成ではない。",
+      "L4/L9のpure論理境界と7caseの全期待。実trust/custody/稼働資格・全producer完成ではない。",
       "L5/L8のsame-e/索引/ValueContext3実現は後続。基本returnを任意caller値から注入する手段を設けない。",
       "全15定義・他案件・他sourceの全体成功gateを追加しない。"
     ],
@@ -8417,58 +8741,10 @@
         "reason": "同callの原snapshotを取得できない。"
       }
     ],
-    "field_definition_leaf_order": [
-      {
-        "order": 0,
-        "condition": "snapshot.inputがnull又はroot field locatorが解決できない",
-        "action": "snapshot_unavailable又はrequest_field_absent/null/typeを原presence別にjudgment unknownとして返す。原field/Ref/Bindingを生成しない。"
-      },
-      {
-        "order": 1,
-        "condition": "request.field/Bindingがabsent/null/型外又は同snapshot原値と異なる",
-        "action": "専用causeを全値/presence/locatorで保存しunknown。未資格元fieldの[]をmissingへしない。"
-      },
-      {
-        "order": 2,
-        "condition": "原field owner宣言のsubject/full Binding/body/資格が未解決又は既知差",
-        "action": "field_owner_unresolved/field_subject_differs/field_binding_differs/field_mirror_differsを原出現別にunknown。全owner source取得を新global gateにしない。"
-      },
-      {
-        "order": 3,
-        "condition": "原owner対応が成立したfieldのmeaning_fact_refs",
-        "action": "absent/null/typeを別cause unknown。明示[]だけmeaning_refs_empty/missing。[]からfact/slotを生成しない。"
-      },
-      {
-        "order": 4,
-        "condition": "非空meaning refsのfieldtarget/実slot/selected fact",
-        "action": "target unknown/conflict、selected fact absent/source/bodyの各causeを別保存。source未取得をmeaning missingへ変えない。"
-      },
-      {
-        "order": 5,
-        "condition": "各selected factの帰属source/content.binding/group slot/kind/ref/body",
-        "action": "F03AttributionReadに全原group/fact支持を保存。既知kind相反はattribution_conflict、未解決はattribution_unknown。knownは住所/分類対応だけで意味knownへしない。"
-      },
-      {
-        "order": 6,
-        "condition": "原fact/source/frame/帰属の対応が成立しmeaning bodyが供給nonnull",
-        "action": "既存L4意味readerへ原slot/fact locatorと固定規範entryを渡し全DefinitionMeaningReadを保存。各supportの全arguments/body/frame/decision/reason/raw_semantic_basisへ対応するdefines_descriptorだけmeaning_positive/known。取得resolved/record presence/decision文字列だけではknownにしない。"
-      },
-      {
-        "order": 7,
-        "condition": "原meaning body null/absent又は意味read支持無し/否定/未決/basis不足",
-        "action": "selected_fact_body_null/absent、meaning_read_unresolved/negative/undetermined/basis_unresolvedを原出現別unknownにする。別known supportで元原因を削らない。"
-      },
-      {
-        "order": 8,
-        "condition": "実在する同subject/revision/scopeのselected fact pair比較",
-        "action": "root原MeaningComparison→comparison_source_ref→usable semantic_json content.meaning_comparisons原whole bodyの支持を全保存。qualified equivalent=falseだけqualified_pair_false/conflict。trueはpair read knownでありfield definition knownの代替にしない。unknown/未資格/本文差はqualified_pair_unknown。全pair存在を新必須gateにしない。"
-      },
-      {
-        "order": 9,
-        "condition": "複数selected refs/slot/fact/source/意味support/pair",
-        "action": "各原出現のfact_read/judgmentを原順に保存。同Ref異body/別frameを先頭又は最新選択しない。同targetのknownとunknown/conflictを並べて保持。"
-      }
-    ],
+    "field_definition_leaf_order": {
+      "contract_ref": "/field_value_applicability_contract/field_definition_precedence",
+      "meaning": "field definitionの分岐順と原原因保持はこの参照先の原順/全規則に従う。同じ10規則を複製せず、今回の変更で順序/condition/actionの意味を変えない。"
+    },
     "field_definition_judgment_writer": {
       "request_ref_index": "meaning_fact_refsの原index。request/owner/empty等の全体原因はnull。",
       "fact_read_indices": "当該判断に実際に使った全fact_reads indexを原順保存。上書きや値検索による復元無し。",
@@ -8556,8 +8832,8 @@
         "F03BPresenceBinding",
         "F03BPresenceRef"
       ],
-      "raw_value_domain": "supplied F03BPresenceRaw.value preserves JSON null/object/scalar/array without casting; absent and supplied null remain distinct.",
-      "formed_guard": "Only after the existing local function guard has a typed, matching source may a typed F03BBinding/F03BRef be used downstream; no value is invented on absent/null/type-invalid input."
+      "raw_value_domain": "suppliedのF03BPresenceRaw.valueは、JSON null/object/scalar/arrayの原値をcastせずそのまま保持する。absentとsupplied nullを区別し、欠落keyを追加しない。",
+      "formed_guard": "既存の局所guardが原型と同じsource/subject/frameへの対応を確認した後にだけ、必要な型付きF03BBinding/F03BRef viewを下流で使う。元schemaで任意のkeyの不在をnullへ補完せず、absent/null/型外からRefやBindingを作文しない。型受理だけを資格又は意味knownへ昇格しない。"
     }
   }
 }
