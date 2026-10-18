@@ -81262,7 +81262,7 @@
             "document_id": "HELIX-HARNESS-L4-009",
             "candidate_local_pointer": "/contracts/4/source_result_reference_projection",
             "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
-            "candidate_l4_bytes_sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+            "candidate_l4_bytes_sha256": "4e025cad308e51ee5514d7c5383cb9de979ed8d801d055b0db6e372928930df8",
             "candidate_l4_path": "docs/helix-harness/L4-basic-design/product-template-application.json"
           },
           "expectation_basis": "L3/L10 F03にある根拠・適用範囲・不足の返却義務と、L4の必須軸、順序付きcondition pair、Presence<JsonValue>診断規則を用いる。各probeのrawと全返却期待はcase内に保持し、local先固定履歴はGit上の時系列証明とは区別する。",
@@ -131764,7 +131764,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+        "sha256": "4e025cad308e51ee5514d7c5383cb9de979ed8d801d055b0db6e372928930df8",
         "pointer": "/field_source_materialization_contract",
         "canonical_sha256": "9affbb54ace3e5c6f22c92d004999e474be0a36d84b439aaf3d7b60aecd433bf",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
@@ -146532,7 +146532,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+        "sha256": "4e025cad308e51ee5514d7c5383cb9de979ed8d801d055b0db6e372928930df8",
         "pointer": "/field_semantic_evidence_contract",
         "canonical_sha256": "739d8838896cbb169eafecfae38673e338fc8d82bc2c340195e96b89707dbc6e",
         "role": "現行L4基本候補のreturn/body契約。commit済み歴史revisionとは区別し、同PRの対象bytesと選択節を固定する。",
@@ -164412,7 +164412,7 @@
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
         "pointer": "/f05_validation_material_call_contract",
-        "file_sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+        "file_sha256": "4e025cad308e51ee5514d7c5383cb9de979ed8d801d055b0db6e372928930df8",
         "canonical_sha256": "0bae5fc583b45d6c4631a7dd2a6574361cd299e22623e5f93e90431ef0be368d",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "status": "作業時のcurrent L4 candidate bytes。commit revisionとは主張しない。"
@@ -182245,7 +182245,7 @@
         "pointer": "/field_obligation_scope_contract",
         "canonical_sha256": "d0aada2de42168fef7e383c7ba423002dec423105fbeff3a07944b2a7ddffe31",
         "role": "本packet内候補objectへの固定binding。base5671 whole hashを新candidate currentとしない。",
-        "sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937"
+        "sha256": "4e025cad308e51ee5514d7c5383cb9de979ed8d801d055b0db6e372928930df8"
       },
       {
         "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
@@ -210235,7 +210235,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+      "sha256": "4e025cad308e51ee5514d7c5383cb9de979ed8d801d055b0db6e372928930df8",
       "pointer": "/input_scope_knowledge_gap_contract"
     },
     "comparison_contract": {
@@ -297735,7 +297735,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+      "sha256": "4e025cad308e51ee5514d7c5383cb9de979ed8d801d055b0db6e372928930df8",
       "pointer": "/input_scope_knowledge_gap_contract/post_return_projection",
       "canonical_sha256": "7a5d00f5c69b7ec0edbdc013e475d14cfed5ec362f5fa07cbc44e7a89c3c9618"
     },
@@ -301378,7 +301378,7 @@
     ],
     "design_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+      "sha256": "4e025cad308e51ee5514d7c5383cb9de979ed8d801d055b0db6e372928930df8",
       "pointer": "/selected_brain_source_occurrence_contract",
       "canonical_sha256": "d0784dfe42a7b76cbb9372499eda9958a7fbeb72664dd70e398ac31287df3d5e",
       "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
@@ -301940,5 +301940,345 @@
       "input_delta": "各probeは合成された小さな入力差分である。base_case_idがあるprobe/variantは指定正常caseへ差分を適用し、独立snapshot値を持つprobeはその値をcase-local inputとして読む。各variantは示した差分だけを適用する。",
       "expected_verification_facts": "以下はL9の固定oracle事実のみ。製品返却object/schema/state/APIを定義しない。"
     }
+  },
+  "selected_source_caller_verification": {
+    "id": "HARNESS-L9-009-SELECTED-SOURCE-CALLER",
+    "status": "limited_static_oracle_candidate_not_executed",
+    "requirement_refs": [
+      "HARNESS-L3-009-F01",
+      "HARNESS-L3-009-F05",
+      "HARNESS-L3-009-F06",
+      "HARNESS-L3-009-F08",
+      "HELIXBRAIN-L3-032-F01"
+    ],
+    "system_oracle_refs": [
+      "HARNESS-L10-009-F01",
+      "HARNESS-L10-009-F05",
+      "HARNESS-L10-009-F06",
+      "HARNESS-L10-009-F08",
+      "HELIXBRAIN-L10-032-F01"
+    ],
+    "design_binding": {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/selected_source_caller_contract",
+      "binding_kind": "current_candidate_content_binding",
+      "sha256": "4e025cad308e51ee5514d7c5383cb9de979ed8d801d055b0db6e372928930df8",
+      "canonical_sha256": "a31d4ce63a8892a779bb67046b9fb78023b3340322efec98f857343b9efd8013"
+    },
+    "detail_binding": {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/selected_source_caller_detail",
+      "binding_kind": "current_candidate_content_binding",
+      "sha256": "b5b77fec5f4371ef25dccbb5bba183233232b8fadfddc204af97ebfc6999532c",
+      "canonical_sha256": "7e5150284c10809a99efa361062208e56fc2f5bc1310fda42c01279163582991"
+    },
+    "expectation_basis": {
+      "independent_oracle": "scaffold/review-handoff/local/core-source-selection-30dad57c/independent-oracle-basis.json",
+      "correction": "scaffold/review-handoff/local/core-source-selection-30dad57c/independent-oracle-basis-corrections.json",
+      "final_advice": "scaffold/review-handoff/local/core-source-selection-30dad57c/selection-caller-advice.json",
+      "base_commit": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+      "derivation": "承認済みF01/F05/F06/F08、既存BRAIN032 F01、L4のselected occurrence契約、L5の閉じたCallerInputs／ValidationInput／private caller C01-C05、旧失敗UTW-014/020/021から、明示依頼された取得路だけを限定する。これは実行結果ではない。"
+    },
+    "source_basis": [
+      {
+        "kind": "exact_existing_builder_oracle",
+        "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "pointer": "/selected_brain_source_occurrence_verification/cases/0",
+        "case_id": "HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-REPLACE-ONE-SLOT",
+        "canonical_sha256": "d6ad8276edb640edefbcb0b011674447c55e95e93089670c3e22268f072953ed",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "318ff52f260ce576df77ec4f2fcb9d976f5ac97896eacc8a9dc8fb3cdaa9221e"
+      },
+      {
+        "kind": "exact_existing_builder_oracle",
+        "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "pointer": "/selected_brain_source_occurrence_verification/cases/1",
+        "case_id": "HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-APPEND-AT-END",
+        "canonical_sha256": "65e7b29936912ea7092ddf6c3f63287d630b0f10ae82cf6ee506993f91825307",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "318ff52f260ce576df77ec4f2fcb9d976f5ac97896eacc8a9dc8fb3cdaa9221e"
+      },
+      {
+        "kind": "existing_edge_relation_fixture",
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/fixture_contract/normal_fixtures/0/input",
+        "fixture_id": "CORE-NORMAL-UNIT-REQUIRED",
+        "canonical_sha256": "5d545499e0399edb82892e28650e913a60e5767c3007ce3d214b983ba19b89f2",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "65c316e5e5065c2515d241362ab293b2dcc205e0597fc67539101dbad2ca4f65",
+        "selected_pointers": [
+          "/fixture_contract/normal_fixtures/0/input/binding/template_ref",
+          "/fixture_contract/normal_fixtures/0/input/operations/selected_knowledge_refs/0",
+          "/fixture_contract/normal_fixtures/0/input/templates/0/ref",
+          "/fixture_contract/normal_fixtures/0/input/templates/0/binding",
+          "/fixture_contract/normal_fixtures/0/input/templates/0/source_ref",
+          "/fixture_contract/normal_fixtures/0/input/knowledge_records/0/ref",
+          "/fixture_contract/normal_fixtures/0/input/knowledge_records/0/template_ref",
+          "/fixture_contract/normal_fixtures/0/input/knowledge_records/0/source_ref",
+          "/fixture_contract/normal_fixtures/0/input/sources/2/ref"
+        ]
+      },
+      {
+        "kind": "existing_caller_full_return_boundary",
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/f05_native_seven_member_caller_full_return_oracle",
+        "canonical_sha256": "84f47016f27ab99bee4cba3d3051302ae01a0630115692efb80a2e38cdf5b56c",
+        "use": "named callerの返却は既存のopaque actual returnとして保持する。このoracleが確認するのは呼出しと透過的な受渡しだけで、意味値全体ではない。",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "65c316e5e5065c2515d241362ab293b2dcc205e0597fc67539101dbad2ca4f65"
+      },
+      {
+        "kind": "existing_compact_builder_boundary_oracle",
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/selected_source_occurrence_array_builder_verification",
+        "canonical_sha256": "2da564e5dd9bf3bd085651a862313b56b6d6055f339e5335e7c766e10ec7b786",
+        "use": "builder自身の小さなraw／presence／index／snapshot期待を再利用し、複製しない。",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "65c316e5e5065c2515d241362ab293b2dcc205e0597fc67539101dbad2ca4f65"
+      }
+    ],
+    "private_wrapper_boundary": {
+      "symbol": "_build_application_analysis_for_selected_source",
+      "owner": "existing ApplicationInputBinding responsibility",
+      "scope": "明示された一つのedge-backed origin occurrence iをdestination slot jへ渡す。source自動選択、候補数gate、ApplicationInput全体の組立て、public API／schema変更は行わない。",
+      "edge_roles": [
+        {
+          "role": "template_source",
+          "read_from": "同じafter rawの/templates/tから、明示されたtのrecord ref／binding／source_refの完全値とpresenceを読む。",
+          "meaning": "template source準備の候補に限り、製品templateの採用を意味しない。"
+        },
+        {
+          "role": "knowledge_use_source",
+          "read_from": "同じafter rawの/knowledge_records/nと/operations/selected_knowledge_refs/hから、明示されたn/hを読む。",
+          "meaning": "選択refの出現が実際のknowledge_records[n].refに対応する必要がある。未選択refや同名template edgeで代用できない。"
+        }
+      ],
+      "edge_comparison": "既存Refの4端点比較（identity、revision、scope、owner）をすべて行い、既存nullable digest規則は別の候補facetとして扱う。一致／unknown／相違の全source出現を元の配列順で保持する。source_locatorはidentityではない。選択edgeのsha256が供給されていれば、既存CORE固有処理に従いorigin content_bytesのUTF-8 digestと比較する。operand欠落／未到達は未確立、既知の不一致はdifferentとする。BRAINの「両digest必須」規則を持ち込まない。",
+      "operation": "明示edge role／record occurrence、i、j、immutable origin snapshot、destination before配列／context、destination after context、別個のafter raw frame、別個のafter projection Readを既存builder／wrapper portへ渡す。after rawは/sourcesだけをbuilderが実際に返したnew_sourcesへ置換し、他のraw memberとinput_refを保持する。after frameの元の/sources presence／値はtraceに保持し、destination-before_sourcesとは区別する。after frameをfallback／default sourceにしない。",
+      "caller": "新たに形成したValidationInput.native(raw_after)と既存の閉じたCallerInputsを変更せず使う。after source_result_reference_projectionは独立供給する。build_application_analysis_detailを1回（C01 validation_detailも1回）呼ぶ。実際の完全なCoreApplicationDetailReturnと局所call traceを変換せず返す。beforeのsame_decode_success、schema／decode、projection、cache、input_refを引き継がない。",
+      "failure_split": "形成されていない明示relation／plan、形成不能なbuilder input／result、snapshot pair不一致、lossy projectionだけを局所not_calledとする。source body／content_bytes／digest自己整合性とCORE qualificationの所見は既存validator／callerが扱う。呼出し済みならinput／qualification issueを含む実際の返却値を保持する。raw extra memberや不正roleもlosslessなら渡し、そうでなければそのprojectionだけ未形成とする。global gateや無関係scopeのgateを追加しない。"
+    },
+    "cases": [
+      {
+        "id": "HARNESS-L9-009-SELECTED-SOURCE-TEMPLATE-REPLACE-CALLER",
+        "kind": "finite_positive_connection_oracle_not_executed",
+        "edge_role": "template_source",
+        "input": {
+          "template_record": "同じafter rawの/templates/0。record index 0を明示する。",
+          "template_source_ref": {
+            "identity": "source-A",
+            "revision": "s1",
+            "scope": {
+              "product": "P",
+              "tenant": "T",
+              "environment": "E"
+            },
+            "owner": "brain-owner",
+            "sha256": null
+          },
+          "root_binding_template_ref": {
+            "state": "null",
+            "gate": false
+          },
+          "origin_source_ref_occurrences": [
+            {
+              "index": 0,
+              "ref": {
+                "identity": "source-A",
+                "revision": "s1",
+                "scope": {
+                  "product": "P",
+                  "tenant": "T",
+                  "environment": "E"
+                },
+                "owner": "brain-owner"
+              }
+            },
+            {
+              "index": 1,
+              "ref": {
+                "identity": "source-A",
+                "revision": "s1",
+                "scope": {
+                  "product": "P",
+                  "tenant": "T",
+                  "environment": "E"
+                },
+                "owner": "brain-owner"
+              }
+            }
+          ],
+          "explicit_plan": {
+            "source_index_i": 1,
+            "destination_index_j": 1
+          },
+          "builder_case_ref": {
+            "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+            "pointer": "/selected_brain_source_occurrence_verification/cases/0",
+            "case_id": "HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-REPLACE-ONE-SLOT",
+            "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+            "sha256": "318ff52f260ce576df77ec4f2fcb9d976f5ac97896eacc8a9dc8fb3cdaa9221e",
+            "canonical_sha256": "d6ad8276edb640edefbcb0b011674447c55e95e93089670c3e22268f072953ed"
+          },
+          "builder_input_ref_delta": "参照先builder入力の/origin_sources/0/refと/origin_sources/1/refそれぞれに、RFC 6902形式のaddで/scope={\"product\":\"P\",\"tenant\":\"T\",\"environment\":\"E\"}と/owner=\"brain-owner\"を追加する。identity、revision、payload、content_bytes、presence、順序、indexは保持し、sha256 memberは追加しない。これによりedgeのsha256=null（未供給）を除く4端点が各origin Refと一致する。payload期待値は複製しない。",
+          "builder_expected_ref_delta": "参照先case 0の期待配列／pairをそのまま使い、選択出力Refは上記add後のidentity／revision／scope／ownerを持たせ、sha256は欠落のまま保つ。他の値と対応は参照先期待のままとする。",
+          "after_raw_frame": {
+            "input_ref": {
+              "identity": "application-A",
+              "revision": "r2"
+            },
+            "binding": {
+              "template_ref": null
+            },
+            "templates": [
+              {
+                "ref": {
+                  "identity": "template-A",
+                  "revision": "t1"
+                },
+                "binding": {
+                  "template_ref": {
+                    "identity": "template-A",
+                    "revision": "t1"
+                  }
+                },
+                "source_ref": {
+                  "identity": "source-A",
+                  "revision": "s1",
+                  "scope": {
+                    "product": "P",
+                    "tenant": "T",
+                    "environment": "E"
+                  },
+                  "owner": "brain-owner",
+                  "sha256": null
+                }
+              }
+            ]
+          },
+          "after_projection": "このafter call用に独立供給するRead値。before projectionではない。",
+          "after_raw_frame_source_presence": "元after raw frameにsources memberは存在しない。これはcase metadataであり、frame memberではない。"
+        },
+        "expected": {
+          "candidate_occurrence_indices_in_order": [
+            0,
+            1
+          ],
+          "selected_occurrence_index": 1,
+          "first_latest_unique_or_candidate_count_gate": false,
+          "builder_invocation_count": 1,
+          "builder_input_and_expected_output": "参照先L9 replace caseの配列／body／index処理をそのまま使い、明示したRef-only入力／期待差分を加える。payloadは複製しない。",
+          "after_raw": "input_refと全ての非sources frame値／presenceを変更しない。/sourcesは実際のbuilder new_sourcesと一致する。traceには元frameのsources member欠落を保持する。",
+          "validation_input": {
+            "tag": "native",
+            "raw": "新たに形成したraw_after全体"
+          },
+          "caller_invocation_count": 1,
+          "caller_inputs": "このnative inputと独立供給されたafter projection Readを持つ既存の閉じたCallerInputs。",
+          "C01_validation_detail_invocation_count": 1,
+          "caller_return": "一回の呼出しから得た実際のCoreApplicationDetailReturn。sentinelを作らず、意味／qualification成功を主張せず、返却全体と局所traceをそのまま保持する。"
+        },
+        "meaning_limit": "root binding.template_refがnullであること自体は準備のgateではない。candidate template source edgeは製品での採用もsourceの意味関係も確立しない。"
+      },
+      {
+        "id": "HARNESS-L9-009-SELECTED-SOURCE-KNOWLEDGE-APPEND-CALLER",
+        "kind": "finite_positive_connection_oracle_not_executed",
+        "edge_role": "knowledge_use_source",
+        "input": {
+          "knowledge_record": "同じafter rawの/knowledge_records/0。n=0を明示する。",
+          "selected_knowledge_ref": "同じafter rawの/operations/selected_knowledge_refs/0。h=0を明示する。",
+          "existing_relation": "knowledge_records[0].refとselected_knowledge_refs[0]の対応を確認する。source edgeはknowledge_records[0].source_refから別に得る。",
+          "origin_source_ref_occurrences": [
+            {
+              "index": 0,
+              "ref_source": "参照先append builder入力の/origin_sources/0/refにある完全なRef値そのもの。origin payloadはBRAIN SupplyInput出現のまま。"
+            }
+          ],
+          "after_raw_frame_pointer": "/fixture_contract/normal_fixtures/0/input",
+          "after_raw_frame_delta": "fixtureはshape参照としてだけ使う。実入力では/knowledge_records/0/source_refを参照先append builder入力の/origin_sources/0/refにある完全なRef値へ置換する。knowledge_records[0].refとoperations.selected_knowledge_refs[0]は変更せず既存の選択関係を保つ。",
+          "after_raw_frame_input_ref_presence": "このfixtureでは欠落。raw_afterでも欠落を保つ。",
+          "after_raw_frame_source_trace": "fixture frameの元sources値／presenceをtraceに保持する。destination_before_sourcesは参照先builder caseから別途取得し、このframeから推測しない。",
+          "template_source_edge_is_not_substitute": true,
+          "record_template_ref_and_record_binding": "record template_refとrecord bindingは独立した元endpointとして保持する。",
+          "builder_case_ref": {
+            "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+            "pointer": "/selected_brain_source_occurrence_verification/cases/1",
+            "case_id": "HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-APPEND-AT-END",
+            "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+            "sha256": "318ff52f260ce576df77ec4f2fcb9d976f5ac97896eacc8a9dc8fb3cdaa9221e",
+            "canonical_sha256": "65e7b29936912ea7092ddf6c3f63287d630b0f10ae82cf6ee506993f91825307"
+          },
+          "explicit_plan": {
+            "source_index_i": 0,
+            "destination_index_j": 1
+          },
+          "builder_input_ref_delta": "参照先append builder入力と期待をそのまま使う。元source_refはその入力/origin_sources/0/refの完全値と同一。",
+          "builder_expected_ref_delta": "参照先case 1の期待をそのまま使い、after raw recordのsource_refも同じ完全Ref値にする。payloadは複製しない。",
+          "baseline_source_ref_shape_note": "/fixture_contract/normal_fixtures/0/input/knowledge_records/0/source_ref（形の参照のみ。実入力値ではない）"
+        },
+        "expected": {
+          "candidate_occurrence_indices_in_order": [
+            0
+          ],
+          "selected_occurrence_index": 0,
+          "knowledge_record_ref_selection_relation_checked": true,
+          "knowledge_source_edge_used": true,
+          "template_source_edge_borrowed": false,
+          "builder_invocation_count": 1,
+          "builder_input_and_expected_output": "参照先L9 append caseの入力／期待をそのまま使う。after rawのrecord source_refは説明した通りorigin Refと同じ値にする。payloadは複製しない。",
+          "after_raw_sources": "実際のbuilder new_sourcesをj=1へappendし、他のsource配列値と順序を保持する。",
+          "after_projection": "独立したafter-call Readをそのまま渡す。",
+          "validation_input_tag": "native",
+          "caller_invocation_count": 1,
+          "C01_validation_detail_invocation_count": 1,
+          "caller_return": "実際の一回の返却値と局所traceを変換せず渡す。意味成功を主張しない。"
+        },
+        "meaning_limit": "既存fixture pointerはselected-refとrecord.refの対応、source_ref fieldの形を示すだけで、実BRAIN取得、qualification、deliveryを証明しない。"
+      }
+    ],
+    "negative_or_boundary_probes": [
+      {
+        "id": "SSC-NEG-01-ZERO-CANDIDATES",
+        "delta": "明示template／knowledge edgeとiはあるが、必要なRef／digest facetに一致するorigin source出現がない。",
+        "expected": "候補観測（0件を含む）と元edge operandsを保持する。planは未形成でbuilderとwrapper後段callerは呼ばない。空配列を成功扱いせず、別refへfallbackしない。"
+      },
+      {
+        "id": "SSC-NEG-02-ROLE-EDGE-NOT-INTERCHANGEABLE",
+        "delta": "同じsource_ref値がtemplates[0]とknowledge_records[0]にあるが、knowledge分岐ではselected_knowledge_refs[h]とknowledge_records[n].refの対応がない、または未選択refだけが対応する。",
+        "expected": "knowledge edgeは未確立のまま。template edgeや未選択refを借用しない。roleとpointer証拠を別々に保つ。"
+      },
+      {
+        "id": "SSC-NEG-03-OLD-DECODE-AND-PROJECTION-REUSE",
+        "delta": "before inputにはsame_decode_success、旧schema／decode、before source_result_reference_projection、過去のinput_refがある。after raw frameは独自のinput_refとafter projection Readを持つ。",
+        "expected": "afterには新しいValidationInput.native(raw_after)を渡す。after rawのinput_refと独立供給のafter projectionだけを使い、beforeのdecode／projection／cacheを再利用しない。"
+      },
+      {
+        "id": "SSC-NEG-04-BUILDER-LOCAL-FAILURE",
+        "delta": "選択i/jまたはbefore／after snapshot pairにより、既存の単一occurrence builderが局所的に未形成となる。",
+        "expected": "builderのraw failureとedge／candidate観測を保持する。new_sources、native raw、caller呼出しは作らず、この局所のみnot_calledとする。"
+      },
+      {
+        "id": "SSC-BOUNDARY-05-RAW-INTEGRITY-IS-EXISTING-VALIDATION",
+        "delta": "明示選択されたraw sourceでcontent/bodyとcontent_bytesが不一致、またはCORE qualificationが欠落／不一致。invalid role／extra memberはlosslessに表現可能。",
+        "expected": "wrapper独自のsemantic integrity／qualification gateを作らない。rawを保持したprojectionを既存callerへ渡し一度呼ぶ。所見を含む実際のcaller返却を保持する。raw値がlosslessに表現できない場合だけprojectionを未形成とする。"
+      },
+      {
+        "id": "SSC-BOUNDARY-06-EDGE-DIGEST-DIFFERENT",
+        "delta": "選択edge.source_ref.sha256が供給され、origin content_bytesのdigestと異なるか、必要なorigin bytes operandが欠落／未到達。",
+        "expected": "このedge-to-origin候補facetはそれぞれdifferentまたはunestablished。明示planに必要ならplanだけを局所not_calledとする。source content/body自己整合性とは混同せず、全candidate rowを保持する。"
+      },
+      {
+        "id": "SSC-BOUNDARY-07-KNOWLEDGE-DIGEST-DEFERRED",
+        "delta": "knowledge selected-refとrecord.refの四端は対応するが、供給shaに不同又は原source/bodyの未取得がある。source-edge側の対応は別途成立している。",
+        "expected": "wrapperはこのshaだけで操作上membershipを拒否せず全原Ref/shaを保持して既存callerへ一回渡す。knowledge digestの本評価と元validation D/source/body対応は既存calleeが所有し、その実返却を保持する。record全体の新hashやsha文字列等値で資格成功を生成しない。"
+      }
+    ],
+    "not_proven": [
+      "実際のsource-selection producer／input bindingとsource acquisition",
+      "実BRAIN qualification／CORE trust、実delivery、ApplicationInput全体の組立て、OS used-set登録",
+      "callee全体の意味的正しさまたはqualification成功",
+      "runtime、test／CI、L9実行証拠、実装準備、PO受入",
+      "この一つの明示planを超える複数occurrenceの逐次projection"
+    ]
   }
 }
