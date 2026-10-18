@@ -2771,6 +2771,120 @@
           "same_snapshot_ja": "生成したassembled_callerを既存F02009の入力へ渡し、その全Rを既存三接続先/親presence規則で同値接続してF02002へ渡す義務は維持する。actual/expected/sourceの既存比較を保持し、consumer出力から前段選択や原変更資料を逆生成しない。",
           "completion_ja": "本生成契約のProfileAssemblyInvocationだけでは後続全呼出し/全返却の成立を示さない。既存F02009一般入力の返却型境界と、全facetからF02008へ渡す7引数・全CIProposalの接続を、同一revisionの対設計で別途閉じる。未証明という監査状態を、製品の成功/失敗/not_calledや新gateへ置換しない。",
           "not_a_substitute_ja": "本追補の有限Profile期待を全OS020/7経路/430義務の完成へ読み替えない。元の全scopeは既存remainingと本義務に保全する。"
+        },
+        "trace_member_writers": {
+          "pointer_root": "assemble_os_profileの実引数ProfileAssemblyInput",
+          "pointer_representation_ja": "ここに記したpointerはFieldをJSONで表すenvelopeの/valueも含むRFC6901。既存consumerのlogical CIInput pointerとはrootを区別する。source_pointerとrequested_pointerは既存Field<string> envelopeで表す。",
+          "rows": [
+            {
+              "member": "binding",
+              "source_kind": "located_field",
+              "source_pointer": "Field.supplied(/producer_result/trace/input_snapshot/projected_ci_input/binding)",
+              "requested_pointer": "同source_pointer",
+              "source_value": "入力の当該Field envelope全値をRawValueとして一回保持",
+              "output_value": "同じ原Field envelope全値",
+              "issue_pointers": "原Field.tagがsuppliedなら[]、absent/null/emptyなら[/producer_result/trace/input_snapshot/projected_ci_input/binding]。supplied Binding内の13memberを本projectionで再検証/補修しない。"
+            },
+            {
+              "member": "source_ref",
+              "parent_pointer": "/producer_result/trace/input_snapshot/projected_ci_input/inputs",
+              "child_pointer": "/producer_result/trace/input_snapshot/projected_ci_input/inputs/value/plan_ref",
+              "parent_supplied": {
+                "source_kind": "located_field",
+                "source_pointer": "Field.supplied(child_pointer)",
+                "requested_pointer": "Field.supplied(child_pointer)",
+                "source_value": "実在する子Field envelope全値",
+                "output_value": "子Field envelopeの同値copy",
+                "issue_pointers": "子Field.tag=suppliedなら[]、absent/null/emptyなら[child_pointer]"
+              },
+              "parent_absent_null_empty": {
+                "source_kind": "unestablished_parent",
+                "source_pointer": "Field.supplied(parent_pointer)",
+                "requested_pointer": "Field.supplied(child_pointer)（候補所在であり読取済みとしない）",
+                "source_value": "実在する原親Field envelope全値",
+                "output_value": "生成Field.absent envelope一個",
+                "issue_pointers": "[parent_pointer]。不存在子のpointerをこの列へ出さない。"
+              }
+            },
+            {
+              "member": "changed_targets",
+              "all_origin_read_variants": {
+                "source_kind": "origin_read",
+                "source_pointer": "Field.supplied(/change_set_origin_return)",
+                "requested_pointer": "同source_pointer（読取口全体。単一勝者rowのpointerを選ばない）",
+                "source_value": "input.change_set_origin_returnのOriginRead全値、全variant payload/records/issue/原順を含む",
+                "output_value": "origin_read_branch_mappingが定めるField envelope全値",
+                "issue_pointers": "change_set_statusがcorrespondingかつ出力tagがsuppliedのとき[]。それ以外のNotRequested/NotObserved/Supplied/Unavailable/DecodeInvalidすべてで[/change_set_origin_return]。row別の比較原因・元Fieldはchange_set_row_dispositions/原read全値へ保持し、このlocatorへ統合消去しない。"
+              },
+              "multiple_rows": "source_valueには常に全OriginReadを保持し、change_set_selected_indicesが原records内のコピー根拠を全件示す。metadataのために先頭を正本にしない。"
+            },
+            {
+              "member": "obligations",
+              "parent_pointer": "/producer_result/selection",
+              "child_pointer": "/producer_result/selection/value/selected_obligation_refs",
+              "parent_supplied": {
+                "source_kind": "located_field",
+                "source_pointer": "Field.supplied(child_pointer)",
+                "requested_pointer": "Field.supplied(child_pointer)",
+                "source_value": "実在する子Field envelope全値",
+                "output_value": "子Field envelopeの同値copy",
+                "issue_pointers": "子Field.tag=suppliedなら[]、absent/null/emptyなら[child_pointer]"
+              },
+              "parent_absent_null_empty": {
+                "source_kind": "unestablished_parent",
+                "source_pointer": "Field.supplied(parent_pointer)",
+                "requested_pointer": "Field.supplied(child_pointer)（候補所在であり読取済みとしない）",
+                "source_value": "実在する原親Field envelope全値",
+                "output_value": "生成Field.absent envelope一個",
+                "issue_pointers": "[parent_pointer]。不存在子のpointerをこの列へ出さない。"
+              }
+            },
+            {
+              "member": "items",
+              "parent_pointer": "/producer_result/selection",
+              "child_pointer": "/producer_result/selection/value/items",
+              "parent_supplied": {
+                "source_kind": "located_field",
+                "source_pointer": "Field.supplied(child_pointer)",
+                "requested_pointer": "Field.supplied(child_pointer)",
+                "source_value": "実在する子Field envelope全値",
+                "output_value": "子Field envelopeの同値copy",
+                "issue_pointers": "子Field.tag=suppliedなら[]、absent/null/emptyなら[child_pointer]"
+              },
+              "parent_absent_null_empty": {
+                "source_kind": "unestablished_parent",
+                "source_pointer": "Field.supplied(parent_pointer)",
+                "requested_pointer": "Field.supplied(child_pointer)（候補所在であり読取済みとしない）",
+                "source_value": "実在する原親Field envelope全値",
+                "output_value": "生成Field.absent envelope一個",
+                "issue_pointers": "[parent_pointer]。不存在子のpointerをこの列へ出さない。"
+              }
+            },
+            {
+              "member": "source_bound",
+              "source_kind": "generated_constant",
+              "source_pointer": "Field.absent",
+              "requested_pointer": "Field.absent",
+              "source_value": "生成Field.absent envelope一個",
+              "output_value": "同じField.absent envelope一個",
+              "issue_pointers": "常に[]。初期化済みという生成の記録であり、後続F02009の取得済み・成功を示さない。"
+            }
+          ],
+          "field_envelope_ja": "source_value/output_valueはRawValue欄へField envelopeを一個だけ格納し、Field.supplied(Field...)へ二重化しない。origin_readだけsource_valueはOriginRead全値であり、生成target Fieldへ縮めない。",
+          "issue_scope_ja": "issue_pointersは原入力で必要な値を未形成と観測したsource locatorの列。OriginSourceIssue/Finding/code/quality gateを生成せず、元issuesを置換しない。各行で0又は1pointerの規則に閉じ、6行の順を変えない。supplier値がsuppliedというだけで意味・資格・全child妥当性を認定しない。 Field.emptyは元empty markerを保持するもので、Field.supplied([])という既知空listとは区別する。前者はcorresponding sourceでもsupplied値を持たないmemberの原所在locatorを残し、後者は[]にする。このlocatorだけから原source読取失敗/既知相反/充足/新Findingを認定せず、change_set_statusと元Fieldタグを変えない。",
+          "plan_observation_writers": [
+            {
+              "member": "direct_plan_ref",
+              "parent_pointer": "/producer_result/trace/input_snapshot/projected_ci_input/inputs",
+              "child_pointer": "/producer_result/trace/input_snapshot/projected_ci_input/inputs/value/plan_ref"
+            },
+            {
+              "member": "selection_plan_ref",
+              "parent_pointer": "/producer_result/selection",
+              "child_pointer": "/producer_result/selection/value/plan_ref"
+            }
+          ],
+          "plan_observation_branches_ja": "親Field.suppliedの場合だけLocated(parent_pointer,parent_value=原親envelope,source_pointer=child_pointer,source_field=実在子Field全値)。親absent/null/emptyの場合はUnestablished(parent_pointer,parent_value=原親envelope,requested_pointer=child_pointer,parent_status=原tag,computed_field=生成Field.absent)。これは上記direct_selection_plan_relation_jaの閉statusへ渡し、未形成の子を読んだとしない。"
         }
       }
     },
