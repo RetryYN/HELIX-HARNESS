@@ -81195,7 +81195,7 @@
             "document_id": "HELIX-HARNESS-L4-009",
             "candidate_local_pointer": "/contracts/4/source_result_reference_projection",
             "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
-            "candidate_l4_bytes_sha256": "b0b5abdeb7a7b644ac328ec44b2a631d64eb25b25bd9e620edbb3a18886492e5",
+            "candidate_l4_bytes_sha256": "8562902f968095932ca735eed7313776a3f7054f78aabeb698ffc7892fd479e6",
             "candidate_l4_path": "docs/helix-harness/L4-basic-design/product-template-application.json"
           },
           "expectation_basis": "L3/L10 F03にある根拠・適用範囲・不足の返却義務と、L4の必須軸、順序付きcondition pair、Presence<JsonValue>診断規則を用いる。各probeのrawと全返却期待はcase内に保持し、local先固定履歴はGit上の時系列証明とは区別する。",
@@ -131697,7 +131697,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "b0b5abdeb7a7b644ac328ec44b2a631d64eb25b25bd9e620edbb3a18886492e5",
+        "sha256": "8562902f968095932ca735eed7313776a3f7054f78aabeb698ffc7892fd479e6",
         "pointer": "/field_source_materialization_contract",
         "canonical_sha256": "9affbb54ace3e5c6f22c92d004999e474be0a36d84b439aaf3d7b60aecd433bf",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
@@ -146465,7 +146465,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "b0b5abdeb7a7b644ac328ec44b2a631d64eb25b25bd9e620edbb3a18886492e5",
+        "sha256": "8562902f968095932ca735eed7313776a3f7054f78aabeb698ffc7892fd479e6",
         "pointer": "/field_semantic_evidence_contract",
         "canonical_sha256": "739d8838896cbb169eafecfae38673e338fc8d82bc2c340195e96b89707dbc6e",
         "role": "現行L4基本候補のreturn/body契約。commit済み歴史revisionとは区別し、同PRの対象bytesと選択節を固定する。",
@@ -164345,7 +164345,7 @@
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
         "pointer": "/f05_validation_material_call_contract",
-        "file_sha256": "b0b5abdeb7a7b644ac328ec44b2a631d64eb25b25bd9e620edbb3a18886492e5",
+        "file_sha256": "8562902f968095932ca735eed7313776a3f7054f78aabeb698ffc7892fd479e6",
         "canonical_sha256": "0bae5fc583b45d6c4631a7dd2a6574361cd299e22623e5f93e90431ef0be368d",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "status": "作業時のcurrent L4 candidate bytes。commit revisionとは主張しない。"
@@ -182178,7 +182178,7 @@
         "pointer": "/field_obligation_scope_contract",
         "canonical_sha256": "d0aada2de42168fef7e383c7ba423002dec423105fbeff3a07944b2a7ddffe31",
         "role": "本packet内候補objectへの固定binding。base5671 whole hashを新candidate currentとしない。",
-        "sha256": "b0b5abdeb7a7b644ac328ec44b2a631d64eb25b25bd9e620edbb3a18886492e5"
+        "sha256": "8562902f968095932ca735eed7313776a3f7054f78aabeb698ffc7892fd479e6"
       },
       {
         "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
@@ -210168,7 +210168,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "b0b5abdeb7a7b644ac328ec44b2a631d64eb25b25bd9e620edbb3a18886492e5",
+      "sha256": "8562902f968095932ca735eed7313776a3f7054f78aabeb698ffc7892fd479e6",
       "pointer": "/input_scope_knowledge_gap_contract"
     },
     "comparison_contract": {
@@ -297583,7 +297583,7 @@
     "unexercised": [
       "固定入力はV4 local oracle由来であるため、その旧L5一般出力や本番authorityを正本へ昇格しない。",
       "L4 logical ValidationDetailPortReturnのinner source-observation wire type全域、shape-malformed branch、source qualification unestablished branchの新caseは未収載。",
-      "Post-returnのouter-unformed単一Causeについて条件付き合成oracleだけを収載。formed枝、複数/別Cause、実caller履歴、native全域及びrecipient/配送の全whole期待は未固定。",
+      "Post-returnのouter-unformed単一Causeについて条件付き合成oracleだけを収載。formed枝、複数/別Cause、実caller履歴、native全域及びrecipient/配送の全whole期待は未固定。 profile_observation_indexは配列位置0だけを行使し、0以外及び範囲外は未行使。この未行使の開示から新しい拒否・補修規則を導かない。",
       "L5 RecipientMaterial実返却、BRAIN delivery/receipt、B019/030 consumer接続は別未完。",
       "knowledge Refの供給digest差/未観測と原版存在の組合せ、source/body integrity不成立、識別可能profileの必要member欠落/null/型外/unsupported version/別subject-frameは旧3例と追加2例の全期待で未行使。元材料と既存局所未成立を保持し、版absence/integrity成功/global unavailable又は新gateへ補完しない。prose unionのinput_unavailable/semantic_records_unresolved reason枝も未行使。",
       "旧S12/S13のprofileはlocated/present、S14はsemantic_records=[]。追加2例はfield lookup no-match/multipleの局所未成立を収載した。input=null、semantic_records欠落/null/型外、未到達、profile未形成/別版、source資格未成立、scope差/unknown、供給digest差/未観測、field以外の複数候補及び残るlookup outcomeの全返却は未収載。",
@@ -297608,12 +297608,13 @@
     "status": "既存post-return APIの未形成枝を具体化する条件付き全値oracle。実行結果ではない。",
     "source_basis": [
       {
-        "role": "L4_post_return_projection",
+        "role": "L4_post_return_projection_before_addition",
         "revision": "94ed409c5bd4298b7772363c9b55c5d7527f2313",
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
         "file_sha256": "64145bfe3f5091e6136a58c0ccbe3389795c3da168a14063f9191762772b06fd",
         "pointer": "/input_scope_knowledge_gap_contract/post_return_projection",
-        "canonical_sha256": "53e05f8e13c0b0802244c76983dd9d44add2f80e189cfcb633a16a6705b0fc7e"
+        "canonical_sha256": "53e05f8e13c0b0802244c76983dd9d44add2f80e189cfcb633a16a6705b0fc7e",
+        "binding_scope": "変更前の比較用固定版。現行の有限開示はcandidate_L4_bindingを参照する。"
       },
       {
         "role": "L4_validation_detail_port",
@@ -297654,14 +297655,22 @@
         "file_sha256": "c39dbf5d3913022eb63d1702e563556050c8f274c3e2a070eb7b6d5249660b9b",
         "pointer": "/input_scope_knowledge_gap_verification/cases/0",
         "canonical_sha256": "441edb08bfeb3ad5637a35e6fd9d0ce5e73c6ef8a78e88a9ed373d75d6d7707b"
+      },
+      {
+        "role": "L5_own_call_or_return_unobserved",
+        "revision": "94ed409c5bd4298b7772363c9b55c5d7527f2313",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+        "pointer": "/f05_detail_contract/caller_return_writer_contract/f05_writer/own_call_or_return_unobserved",
+        "canonical_sha256": "b368cccadcaf881b161c36ead2baee877578a96827d293c61da4a7cb5d57eb07"
       }
     ],
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "b0b5abdeb7a7b644ac328ec44b2a631d64eb25b25bd9e620edbb3a18886492e5",
+      "sha256": "8562902f968095932ca735eed7313776a3f7054f78aabeb698ffc7892fd479e6",
       "pointer": "/input_scope_knowledge_gap_contract/post_return_projection",
-      "canonical_sha256": "c55b145c7d615b53b9b34536eaed620e18360fee11fc4cc6b2acf2dd1d0a40de"
+      "canonical_sha256": "ed3ed9d142be72b69abbec4d2567c6c71d6dc845598aaa7f164b7e8db6d42538"
     },
     "api_contract": {
       "L4_API": "project_actual_f05_return_link(profile_observation_index, actual_outer_f05: Formation<ActualF05ProducerReturn>)",
@@ -297674,7 +297683,14 @@
       "whole": "profile_observation_indexとactual_outer_f05の全引数、profile_observation_indexとactual_f05_linkの全返却を比較する。unformed Causeの全列・全leaf・原順・反復を省略しない。",
       "canonical": "UTF-8 JSON、ensure_ascii=false、sort_keys=true、compact separators、末尾LF無しのSHA-256。",
       "side_effects": "なし。ReturnLinkを作らず、原Causeへ新原因を足さない。",
-      "typed_fixture_limit": "L5既存Cause規則に由来する論理JSON fixtureであり、native hostのCoreJsonValue数値carrierや実caller/codecの成立を認定しない。"
+      "typed_fixture_limit": "L5既存Cause規則に由来する論理JSON fixtureであり、native hostのCoreJsonValue数値carrierや実caller/codecの成立を認定しない。",
+      "canonical_hash_targets": {
+        "pointer_base": "各cases要素をrootとする。",
+        "arguments_canonical_sha256": "/arguments",
+        "expected_return_canonical_sha256": "/expected_return",
+        "cause_canonical_sha256": "/arguments/actual_outer_f05/causes/0",
+        "equal_expected_cause": "/expected_return/actual_f05_link/causes/0"
+      }
     },
     "cases": [
       {
@@ -301202,7 +301218,8 @@
       "条件付き合成dispatch前提の単一未形成例。実Cause履歴/実caller全体/実same-call実行の証拠ではない。",
       "formed枝、複数Cause、call未観測、predecessor未観測、native数値/codec、recipient/配送は未行使。",
       "原S12から読んだprofile観測配列位置0をAPIへ渡す。semantic_record_index=0は別の原field値であり、同値であることを由来の同一性にしない。",
-      "post-return APIは原input-only readerの追加引数又は成功前提ではない。内部F05DetailedReturnの未形成部分から外側unformed Causeを合成しない。"
+      "post-return APIは原input-only readerの追加引数又は成功前提ではない。内部F05DetailedReturnの未形成部分から外側unformed Causeを合成しない。",
+      "profile_observation_indexは配列位置0だけを行使し、0以外及び範囲外は未行使。この未行使の開示から新しい拒否・補修規則を導かない。"
     ],
     "legacy_comparison": {
       "source_refs": [
@@ -301216,10 +301233,11 @@
     },
     "static_verification": {
       "method": "固定git/hash/RFC6901/標準RFC6902 copyと全値の静的照合のみ。候補関数は非実行。",
-      "source_file_pins": 6,
-      "source_selected_objects": 6,
+      "source_file_pins": 7,
+      "source_selected_objects": 7,
       "full_api_input_output": true,
-      "source_S12_whole_retained": true
+      "source_S12_whole_retained": true,
+      "source_unique_files": 3
     }
   }
 }

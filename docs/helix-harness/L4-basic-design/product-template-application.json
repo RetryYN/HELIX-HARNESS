@@ -5668,7 +5668,7 @@
       "formed_rule": "形成済actual_outer_f05.valueが存在する場合のみReturnLink{root:\"f05_return\",pointer:\"\"}を作り、参照先は実F05 detailed return全体。入力だけからReturnLinkを先行生成しない。",
       "unformed_rule": "実outer F05がunformedなら実Cause全値をそのまま保持し、ReturnLinkを作らない。Cause实例を合成しない。",
       "boundary": "L4 /f05_validation_material_call_contract/outer_return_boundary。F05DetailedReturn実在時はcontext/header/comparison内部未形成でもoriginal_request/raw evidence linkを禁止しない。recipient決定と配信はこのbasic pairの責務ではなくL5/OS境界に残す。",
-      "finite_coverage": "S12/S13/S14とlookup2例はinput-only pair。別の/input_scope_post_return_projection_verificationが、固定S12のprofile観測配列位置と既存L5 return_unobserved規則に由来する条件付きouter-unformed Cause一件の全引数/全返却を収載する。実Cause履歴又は実caller成功ではなく、formed枝/他Cause列/全post-return閉包は未実証。",
+      "finite_coverage": "S12/S13/S14とlookup2例はinput-only pair。別の/input_scope_post_return_projection_verificationが、固定S12のprofile観測配列位置と既存L5 return_unobserved規則に由来する条件付きouter-unformed Cause一件の全引数/全返却を収載する。実Cause履歴又は実caller成功ではなく、formed枝/他Cause列/全post-return閉包は未実証。 profile_observation_indexは配列位置0だけを行使し、0以外及び範囲外は未行使。この未行使の開示から新しい拒否・補修規則を導かない。",
       "closed_schema": {
         "type": "PostReturnProjection",
         "input_members": {
@@ -5723,7 +5723,7 @@
     "limits": [
       "固定入力はV4 local oracle由来であるため、その旧L5一般出力や本番authorityを正本へ昇格しない。",
       "L4 logical ValidationDetailPortReturnのinner source-observation wire type全域、shape-malformed branch、source qualification unestablished branchの新caseは未収載。",
-      "Post-returnのouter-unformed単一Causeについて条件付き合成oracleだけを収載。formed枝、複数/別Cause、実caller履歴、native全域及びrecipient/配送の全whole期待は未固定。",
+      "Post-returnのouter-unformed単一Causeについて条件付き合成oracleだけを収載。formed枝、複数/別Cause、実caller履歴、native全域及びrecipient/配送の全whole期待は未固定。 profile_observation_indexは配列位置0だけを行使し、0以外及び範囲外は未行使。この未行使の開示から新しい拒否・補修規則を導かない。",
       "L5 RecipientMaterial実返却、BRAIN delivery/receipt、B019/030 consumer接続は別未完。",
       "knowledge Refの供給digest差/未観測と原版存在の組合せ、source/body integrity不成立、識別可能profileの必要member欠落/null/型外/unsupported version/別subject-frameは旧3例と追加2例の全期待で未行使。元材料と既存局所未成立を保持し、版absence/integrity成功/global unavailable又は新gateへ補完しない。prose unionのinput_unavailable/semantic_records_unresolved reason枝も未行使。",
       "旧S12/S13のprofileはlocated/present、S14はsemantic_records=[]。追加2例はfield lookup no-match/multipleの局所未成立を収載した。input=null、semantic_records欠落/null/型外、未到達、profile未形成/別版、source資格未成立、scope差/unknown、供給digest差/未観測、field以外の複数候補及び残るlookup outcomeの全返却は未収載。",
