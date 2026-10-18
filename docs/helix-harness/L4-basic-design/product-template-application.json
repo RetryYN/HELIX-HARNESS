@@ -5214,56 +5214,67 @@
       "scope_unestablished": {
         "kind": "aggregation_unestablished",
         "right": {
-          "value": "original field-specific unfinished obligation scope"
+          "tag": "normative_literal",
+          "value": "original field-specific unfinished obligation scope",
+          "rule_pointer": "/field_obligation_scope_contract/cause_patterns/scope_unestablished"
         },
         "meaning": "原scope支持未供給。global配列をfieldへcastせず、元globalRef viewと局所対象を保持。"
       },
       "source_unusable": {
         "kind": "source_unusable",
         "right": {
-          "value": "local source qualification corresponding"
+          "tag": "original",
+          "read_origin_ja": "当該sourceの原owner Read。左辺は対応qualificationの原owner Read。"
         },
         "meaning": "Cの同fn0局所資格関係が不成立。原q.owner/source.owner左右を保持し、実trustと分ける。"
       },
       "owner_mismatch": {
         "kind": "owner_mismatch",
         "right": {
-          "value": "corresponding original scope relationship owner"
+          "tag": "normative_literal",
+          "value": "corresponding original scope relationship owner",
+          "rule_pointer": "/field_obligation_scope_contract/cause_patterns/owner_mismatch"
         },
         "meaning": "既存原関係owner候補とsourceOwnerが全既知差。BRAIN/定義owner/callerをfallbackにしない。"
       },
       "body_unformed": {
         "kind": "body_unformed",
         "right": {
-          "value": "Ref[]"
+          "tag": "normative_literal",
+          "value": "Ref[]",
+          "rule_pointer": "/field_obligation_scope_contract/cause_patterns/body_unformed"
         },
         "meaning": "必要原列null/欠落/型外。rawReadを保持して[]へdefaultしない。"
       },
       "content_unresolved": {
         "kind": "content_unresolved",
         "right": {
-          "value": "original obligation operand"
+          "tag": "original",
+          "read_origin_ja": "当該未取得Refを探索した原raw.obligations集合のRead。左辺は声明の当該unfinished Ref出現Read。"
         },
         "meaning": "原Refのraw義務取得不足。実探索列をCause右へ保存し架空index無し。"
       },
       "aggregation_unestablished": {
         "kind": "aggregation_unestablished",
         "right": {
-          "value": "same original scope columns"
+          "tag": "original",
+          "read_origin_ja": "相反する後続支持出現の原unfinished列Read。左辺は先行支持出現の原列Read。"
         },
         "meaning": "qualified有効列の原値相反を両Readで保持。"
       },
       "statement_source_conflict": {
         "kind": "statement_source_conflict",
         "right": {
-          "value": "same original statement source"
+          "tag": "original",
+          "read_origin_ja": "同じ声明Refに対応する後続の異本文unfinished列Read。左辺は先行の原列Read。"
         },
         "meaning": "sameRef異本文を全原source/Readと保持。"
       },
       "proposal_scope_mismatch": {
         "kind": "target_mismatch",
         "right": {
-          "value": "same original proposal scope"
+          "tag": "original",
+          "read_origin_ja": "対応する原field_gap_proposition bodyのunfinished列Read。左辺は元GapProposalの自己宣言列Read。"
         },
         "meaning": "元proposal自己宣言列と対応body列の差。両原列を保持し修復union無し。"
       }
@@ -5282,6 +5293,8 @@
       "preserve": "原field/obligation束縛、意味owner/trace/reentry、全source/版/scope、未取得/相反/部分原因。",
       "change": "現carrier上へ局所原scope bodyと基本finite viewを追加する。旧registry/runtime/自由文predicateを移植しない。",
       "reason": "globalRefだけではfield当該scopeを一意に保てずU0が残った実不足を解く。上流意味/新gateを失敗文言から生成しない。"
-    }
+    },
+    "cause_pattern_notation": "各rightはOperandのwriter指定であり、read_origin_jaは返却memberではない。original指定は説明した実input nodeのReadをreadへ格納する。normative_literal指定はvalueと当該patternのrule_pointerを返す。Cause左右の原値をラベル文字列に置換しない。",
+    "scope_column_equality": "unfinished_obligation_refsの列同値は長さ・出現順・反復数を含み、対応位置のRefの全型付き原memberを既存Ref/論理JSONの同値で比較する。object memberの記載順は意味差とせず、booleanとnumberを同一視しない。配列をsort/dedupして比較せず、数値の新codec又はcanonical化規則をここで導入しない。"
   }
 }
