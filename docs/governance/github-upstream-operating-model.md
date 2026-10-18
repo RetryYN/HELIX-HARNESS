@@ -389,6 +389,7 @@ Codex側にも同じ待受と指示の同期を置くことである。変更の
 | 継続更新する文書と固定記録 | [AGENTS.md「再構築の原則」](../../AGENTS.md#再構築の原則)、本書「IssueとFeature Ticket」 | 文書編集者、decision／audit記録者、Issue投影とreview | living本文は同じpath、固定記録は対象commit／hashへ戻る。将来版を別のliving文書へ分裂させない。過去auditは訂正で上書きせず新記録へ |
 | 仮組みと正式な成果 | [作業入口](new-generation-start-here.md#現在許可される作業)、[Scaffold Binding](../../scaffold/README.md) | scaffold作成者、独立review、置換・撤去担当 | Bindingと検査結果は要求採用・実装許可ではない。正式置換は対象の上流成立後。#1866の残作業を文書の整理から完了にしない |
 | 機構・層・種類の配置、pathとidentity | [配置の基本案](decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md)、[方針6](decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md)、[Conceptの責務](../concept/helix-concept.md) | 対象別文書の編集者、将来の宣言／登録／パック設計者 | docsの既存配置を保つ。宣言・登録・記録・実行物の具体形式はL4へ。カットした設計とディレクトリを復元せず、基本案を実装許可にしない |
+| 設計JSONの分割・重複排除 | 本書「[設計JSONの著述と分割](#設計jsonの著述と分割)」 | 設計文書の編集者、参照側の照合者、独立review | 局所の復元方式を全体schemaへ広げず、意味差と未証明を対象ownerへ戻す |
 | 要求ID・対検証・revision・状態 | [authority状態モデル](authority-state-model.md)、[L2入口](audits/source-rebaseline/l2-source-register.md)、本書「authority順序」 | L2／L11照合、判断記録、PR classと対象scopeのreview | 同じIDでも現行bytesへ旧承認を移さない。IDの所在だけで対oracleの意味被覆を証明しない。revision不一致は該当owner、意味変更は上流判断へ |
 | templateの意味・適用義務・案件記録 | [template分担](template-work-allocation.md)、[BRAIN032判断](decisions/brain-template-contract-032-po-decision-2026-10-10.md)、[CORE009判断](decisions/core-template-009-supplement-po-decision-2026-10-10.md)、[OS002判断](decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md) | BRAIN汎用知識、CORE製品適用、OS案件の版・義務・結果記録 | field定義の不足はBRAIN、製品値・適用義務の不足はCORE、案件記録の不足はOS。全体最小setと往復成立は#2846。限定[SEEDFIRST](decisions/seedfirst-knowledge-po-decision-2026-10-10.md)を全seed採用へ広げない |
 | PR作成・独立review・merge・配送 | 本書「作成側とレビュー対応側の責務」「governance／operation_change PRのmerge admission」「GUIレーンの運転と通知」 | AGENTS.md、CLAUDE.md、GUIローダ、両レーン、scaffold説明 | 上の移管表で未成立部分を保持。通知／ACKからreview・承認を生成しない。loader等の全consumerの移管は#1864／#1866と対象Bindingへ |
@@ -397,6 +398,20 @@ Codex側にも同じ待受と指示の同期を置くことである。変更の
 今回、CLAUDE.mdのinventory-first・更新履歴の複製はAGENTS.mdへ、AGENTS.md／CLAUDE.mdのGitHub運転と委任条件の複製は本書へ寄せた。Claude固有の旧sourceの所在とAI context生成器の未構築という現況はCLAUDE.mdに保持する（[review指摘の訂正記録](audits/document-rules-consolidation-2026-10-11-r2.json)）。authority状態モデルの遷移図に残っていた旧委任条件も本書への参照へ訂正した。これは既決の意味に追随する参照整理であり、運用の変更や新しい承認条件の追加ではない。利用者instruction・GUIローダ・scaffold内の個別consumerまで全件を移管した証拠ではない。
 
 後続の[consumer参照整理の記録](audits/document-rule-consumer-references-2026-10-11.json)では、GUIローダの運用本文とPRテンプレートのmerge直前stale手順を本書への参照へ寄せ、両runtimeの利用者instructionのHELIX管理区間を同じsourceへ同期した。review-handoffの説明には配送機構・command・ACK・撤去の利用方法を残し、レーンの割当と運転は本書への参照から読む。旧sourceの全consumer closureや、正式機構への移管完了はこの参照整理から生成しない。
+
+### 設計JSONの著述と分割
+
+開発repoで継続更新する設計JSONの分割・重複排除では、同じ責務の更新を一か所へ寄せ、参照側が意味を失わず辿れるようにする。[Concept](../concept/helix-concept.md)の責務分離と[七原則](../concept/helix-principles.md)の原子変更・最小変更・証拠保持に沿い、次の三点を照合する。
+
+- **更新単位**：責務、不変条件、実際の変更理由、consumerから境界を決める。同じ形だけを理由に別domainを共通化せず、caseごとのfile・PR分割を既定にしない。同じ責務の一つの変更はまとめて判断できる単位にする。原入力と独立した期待値の役割は、重複排除後も区別する。
+- **復元と来歴**：抽出・参照化する対象について、元の論理位置へ復元する方法と対象revisionを明示し、変更前の全論理値との対応を照合する。hashを使う場合は、物理file bytes、論理object、抽出元の歴史来歴のどれを指すかを区別する。対象が持つ原source bytes、欠落とnull、配列順、反復等の区別を保持し、同じ意味という理由で旧byte hashを新bytesへ流用しない。原期待を候補出力から再生成して一致させない。
+- **参照側の追随**：影響するconsumer・対検証と入口の参照を確認する。現行参照と歴史固定参照を分け、file名の一致だけで一律に最新revisionへ付け替えない。参照欠落や復元値の変化を識別する照合を行い、件数の一致だけで保全済みとしない。unknown等の影響は既存の対象契約へ戻す。補助資料の追加を設計親・義務の完成数やauthorityの成立に数えない。
+
+判断記録・監査証拠・source snapshot等の固定記録は、この分割の対象にしない。過去本文の保存は[AGENTS.md](../../AGENTS.md#再構築の原則)に従う。全JSONへの一律分割、容量・行数・case数の上限、共通include形式、新validatorや必須gateは定めない。
+
+起点は[#3139](https://github.com/RetryYN/HELIX-HARNESS/issues/3139)で保全した巨大fixtureと参照更新漏れ、および[PR #3363](https://github.com/RetryYN/HELIX-HARNESS/pull/3363)・[#3364](https://github.com/RetryYN/HELIX-HARNESS/pull/3364)・[#3365](https://github.com/RetryYN/HELIX-HARNESS/pull/3365)のHARNESS009である。同値resolutionとmirrorを整理し、同責務資料を抽出して元論理位置へ戻す比較を行った。#3365の一資料・一replace方式はその局所契約であり、他文書の必須形式ではない。容量比較は表現の差も含み、実行速度・review時間の改善や製品TDDの成立証拠にはしない。個別の復元契約と比較結果は対象設計と各PRに保持する。
+
+旧sourceはarchive root内の `docs/design/helix/L5-detail/design-refactoring-domain-model.md` §0〜§1（LEGACY-ASSET-603D0E8D8193914F4AC0、見出し34・45行、SHA-256 `6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b`）、`docs/design/helix/L4-basic-design/design-template-json-authority.md` §1〜§2（LEGACY-ASSET-4F5A1F0739EC1111D91D、見出し16・32行、SHA-256 `e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb`）、`docs/governance/coding-rules.md:19–31`（LEGACY-ASSET-4B835ADBEFBCCC13C1C0、SHA-256 `4652f8520c4db9069cbfee11e0cb318ee49ec0b6b574eb94a51994fb8dbc215e`）を起点とする。意味署名・consumer・oracleの保全、意味正本と所在索引の区別、既存責務の再利用と局所変更を保持し、今回の分割事例を開発repoの著述作業へ意味として再導出する。旧DB・runtime・固定role・gate・dual-green工程は移植せず、製品要求や承認手続きを追加しない。
 
 ### 現在の照合と、設計後の開発規律
 
@@ -430,6 +445,7 @@ Codex側にも同じ待受と指示の同期を置くことである。変更の
 
 | 運用規則（本書の節） | 今の守り方 | 移管先の要求（状態） | 移管時の差 |
 |---|---|---|---|
+| 設計JSONの著述と分割 | 対象の原値・参照側の静的照合と独立review | 移管先なし（開発repoの文書作業に限る。本規則から製品要求を生成しない） | 将来、同じ守りを担う機構への移管を判断するときは、その要求と検証証拠を別途確認する |
 | PRの原子性（「PRの原子性」） | 作成側の分割と、review側の範囲確認 | HELIXOS-L2-046（2026-09-29採択、Stage 4の旧L3承認は10/10巻き戻しで失効）、HARNESS-L2-045（2026-09-29保留、2026-10-03も保留を維持。L3は未承認） | HARNESS-L2-045は保留中であり、解除条件（値の決定責務、単位、未設定・参照不能・超過時の扱い）が確定するまで移管先にならない |
 | 作成とreviewの分離、明示merge、read-after（「作成側とレビュー対応側の責務」） | 両レーンの運用と、PR commentの記録 | HELIXOS-L2-046、HELIXOS-L2-035（2026-09-29採択、Stage 3の旧L3承認は10/10巻き戻しで失効） | なし |
 | merge直前の`scfctl stale`の確認と、後続PRの再照合 | review側の手作業 | HELIXOS-L2-052（2026-09-29採択、Stage 4の旧L3承認は10/10巻き戻しで失効）の「base driftの再照合」 | なし |
