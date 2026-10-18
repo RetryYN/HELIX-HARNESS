@@ -14372,38 +14372,27 @@
         "branch_matrix": [
           {
             "profile_scan_tag": "input_unavailable",
-            "projections": [],
             "caller_rule": "元tag/reason保持。F05 producer呼出しを変更しない。",
-            "profile_observations_note_ja": "この枝の閉型にはprofile_observations memberがない。説明欄であり返却memberを追加しない。"
+            "profile_observations_note_ja": "元scan枝にprofile_observations memberはない。",
+            "projection_rule_ja": "post_return_projectionsは空列を返す。"
           },
           {
             "profile_scan_tag": "semantic_records_unresolved",
-            "projections": [],
             "caller_rule": "元Read/reason保持。 absent/null/unreachedの区別を変更しない。",
-            "profile_observations_note_ja": "この枝の閉型にはprofile_observations memberがない。説明欄であり返却memberを追加しない。"
+            "profile_observations_note_ja": "元scan枝にprofile_observations memberはない。",
+            "projection_rule_ja": "post_return_projectionsは空列を返す。"
           },
           {
             "profile_scan_tag": "scanned",
-            "profile_observations": [],
-            "projections": [],
-            "caller_rule": "scanned-emptyとunavailable/unresolvedは別tagとして保持。"
+            "caller_rule": "scanned-emptyとunavailable/unresolvedは別tagとして保持。",
+            "profile_observations_note_ja": "scannedの元profile_observationsは空列である。",
+            "projection_rule_ja": "post_return_projectionsは空列を返す。"
           },
           {
             "profile_scan_tag": "scanned",
-            "profile_observations": [
-              {
-                "ordinal": "i",
-                "observation": "原profile observation"
-              }
-            ],
-            "projections": [
-              {
-                "profile_observation_index": "元観測の配列位置i",
-                "actual_f05_link": "同outer F05に対応する型付き全Formation"
-              }
-            ],
             "caller_rule": "input scanだけでreturn linkを先行生成しない。outer F05 Formation全値が確定した後（formed/unformedの双方）だけpost projectionを行う。",
-            "projection_rule_ja": "各元観測の配列位置ごとにInputScopePostReturnProjection全値を一つずつ、同じ原順で返す。この行は代表的な宣言図であり、空のprojections表示を実nonempty枝の期待値にはしない。"
+            "projection_rule_ja": "全ての元観測について、その配列位置iと同じouter F05全Formationから得たInputScopePostReturnProjectionを一つずつ原順で返す。",
+            "profile_observations_note_ja": "scannedの元profile_observationsは非空列であり、全観測の原順・反復を保持する。"
           }
         ],
         "preserve_ja": [
