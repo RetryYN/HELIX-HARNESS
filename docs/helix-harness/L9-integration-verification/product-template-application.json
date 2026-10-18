@@ -131696,7 +131696,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "d4398ecee3745cf297912699191bd8f0df5dd56194649a0eb40d7eda6d053d93",
+        "sha256": "5c49b46d3ad6627c218eb40026645eea491bbea0b7401d0b5da5fff403bdf00c",
         "pointer": "/field_source_materialization_contract",
         "canonical_sha256": "9affbb54ace3e5c6f22c92d004999e474be0a36d84b439aaf3d7b60aecd433bf",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
@@ -146464,7 +146464,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "d4398ecee3745cf297912699191bd8f0df5dd56194649a0eb40d7eda6d053d93",
+        "sha256": "5c49b46d3ad6627c218eb40026645eea491bbea0b7401d0b5da5fff403bdf00c",
         "pointer": "/field_semantic_evidence_contract",
         "canonical_sha256": "9e07d904164b1e3b595f5c8d64b0779d41599eea00c5d75968b07d9032273d79",
         "role": "現行L4基本候補のreturn/body契約。commit済み歴史revisionとは区別し、同PRの対象bytesと選択節を固定する。",
@@ -164344,7 +164344,7 @@
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
         "pointer": "/f05_validation_material_call_contract",
-        "file_sha256": "d4398ecee3745cf297912699191bd8f0df5dd56194649a0eb40d7eda6d053d93",
+        "file_sha256": "5c49b46d3ad6627c218eb40026645eea491bbea0b7401d0b5da5fff403bdf00c",
         "canonical_sha256": "0bae5fc583b45d6c4631a7dd2a6574361cd299e22623e5f93e90431ef0be368d",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "status": "作業時のcurrent L4 candidate bytes。commit revisionとは主張しない。"
@@ -182175,9 +182175,9 @@
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
         "pointer": "/field_obligation_scope_contract",
-        "canonical_sha256": "2ed51b26de6771944b3594a0b01f1f5226edb36462b6f71269d5f8ad0c61efd9",
+        "canonical_sha256": "555b61ea2a2aea720449da4382ad447efcead100e35d0c4d788dd39715404acd",
         "role": "本packet内候補objectへの固定binding。base5671 whole hashを新candidate currentとしない。",
-        "sha256": "d4398ecee3745cf297912699191bd8f0df5dd56194649a0eb40d7eda6d053d93"
+        "sha256": "5c49b46d3ad6627c218eb40026645eea491bbea0b7401d0b5da5fff403bdf00c"
       },
       {
         "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
