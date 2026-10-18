@@ -1792,11 +1792,16 @@
         "legacy_l8_pointer": "/normal_function_oracles/5",
         "legacy_context_type": "CompareRequirementGapsContext",
         "legacy_output_type": "Comparison",
-        "detail_full_oracle_status": "詳細署名の正常owner評価を含む全返却/全分岐oracleは未形成。旧L8 expected_output又は旧Contextを新署名の期待/入力へ無断castしない。",
+        "detail_full_oracle_status": "旧logical oracleは歴史的Comparison範囲のまま保持する。新L8 candidateのHARNESS-L8-009-F05-NINE-SOURCE-KNOWN-KNOWN-SCOPE-FULL-FIVE-RETURNは本候補L5 union下の一件positive finite全5member設計期待を束縛する。全F05全分岐/全owner結果のoracle、実同call/qualification/runtimeの証拠ではなく、旧logical expected_outputを新返却へcastしない。",
         "limited_detail_oracle": {
           "id": "HARNESS-L8-009-F05-EXPLICIT-SKIP-BINDING-ABSENT-FULL-RETURN",
           "l8_pointer": "/f05_explicit_skip_binding_absent_full_return_oracle",
           "scope": "case-authored二依存明示skipと親binding未供給を前提にした限定5member全返却の未実行候補。正常owner evaluated又は全F05全返却のoracle成立を意味しない。"
+        },
+        "finite_detail_oracle": {
+          "id": "HARNESS-L8-009-F05-NINE-SOURCE-KNOWN-KNOWN-SCOPE-FULL-FIVE-RETURN",
+          "l8_pointer": "/f05_native_nine_source_known_known_scope_full_five_return_oracle",
+          "scope": "一件のsource-authored known/known field scopeを含む固定5member設計期待。L5 candidate未採用、全F05 branch/実資格/実producerは未証明。"
         }
       }
     },
@@ -10314,7 +10319,8 @@
       "rule_pointer": "SourceCheck/Causeのrule_pointerは本L5 rootからの実規則pointer。原source根拠の別revision/path/pointerはsource_basis及び当該規則のsource_pointersに分けて辿る。",
       "identity_aliases": {
         "F05NativeContext": "CoreCompareRequirementGapsContextと同一carrierの別名。両types定義のvalidated:CoreValidatedApplication、compare_applicability:CoreComparison、compare_kind_obligation_trace:CoreComparisonは同じ原三引数wholeを指す。ContextFormationとnative_context_crosswalkで名前が異なるだけで、変換/再生成/私有viewへの置換をしない。"
-      }
+      },
+      "closed_shape_union": "branchesは宣言された有限closed_record名のみ。値はちょうど一つの枝の必須member/固定literal/閉形を満たす。新tag又はdefaultをlegacy値へ追加せず、shape不一致を別枝へ修復しない。このunionはnative出力型の有限和であり、意味/資格/ownerの判定器又はwire ApplicationInput schema gateではない。"
     },
     "types": {
       "CoreDecodeResult": {
@@ -11457,16 +11463,12 @@
         }
       },
       "ObligationOrigin": {
-        "kind": "closed_record",
-        "members": {
-          "proposal_index": "Natural|null",
-          "ref_index": "Natural",
-          "ref_read": "Read<CoreRef>",
-          "record_occurrences": "RecordOccurrence[]",
-          "record_details": "ObligationRecordDetails[]",
-          "kind_trace_links": "JSONPointer[]",
-          "causes": "Cause[]"
-        }
+        "kind": "closed_shape_union",
+        "branches": [
+          "LegacyObligationOrigin",
+          "FieldScopeSourceOrigin",
+          "FieldScopeAssessmentOrigin"
+        ]
       },
       "ObligationMaterial": {
         "kind": "closed_record",
@@ -11768,6 +11770,83 @@
             "value": "CoreJsonValue",
             "rule_pointer": "JSONPointer"
           }
+        }
+      },
+      "LegacyObligationOrigin": {
+        "kind": "closed_record",
+        "members": {
+          "proposal_index": "Natural|null",
+          "ref_index": "Natural",
+          "ref_read": "Read<CoreRef>",
+          "record_occurrences": "RecordOccurrence[]",
+          "record_details": "ObligationRecordDetails[]",
+          "kind_trace_links": "JSONPointer[]",
+          "causes": "Cause[]"
+        }
+      },
+      "FieldObligationScopeBody": {
+        "kind": "closed_record",
+        "members": {
+          "binding": "CoreApplicationBinding",
+          "field_ref": "CoreRef",
+          "template_ref": "CoreRef",
+          "unfinished_obligation_refs": "CoreRef[]",
+          "basis_refs": "CoreRef[]"
+        }
+      },
+      "ScopeSourceInterpretation": {
+        "kind": "closed_record",
+        "members": {
+          "body_occurrence_index": "Natural",
+          "owner_binding_links": "ReturnLink[]",
+          "judgment": "Formation<Read<CoreRef[]>>",
+          "causes": "Cause[]"
+        }
+      },
+      "ScopeObligationCorrespondence": {
+        "kind": "closed_record",
+        "members": {
+          "operand_index": "Natural",
+          "global_origin_links": "ReturnLink[]",
+          "applicability_ref_links": "ReturnLink[]",
+          "record_details": "ObligationRecordDetails[]"
+        }
+      },
+      "FieldScopeSourceOrigin": {
+        "kind": "closed_record",
+        "members": {
+          "origin_kind": "literal:scope_source",
+          "semantic_record_index": "Natural",
+          "scope_record": "RecordOccurrence",
+          "body_read": "Read<CoreJsonValue>",
+          "body": "Formation<FieldObligationScopeBody>",
+          "field_read": "Read<CoreJsonValue>",
+          "target_field_indices": "Natural[]",
+          "evaluated_field_indices": "Natural[]",
+          "target_relation": "Relation",
+          "refs_read": "Read<CoreJsonValue>",
+          "unfinished_operands": "RefOperand[]",
+          "basis_operands": "RefOperand[]",
+          "correspondences": "ScopeObligationCorrespondence[]",
+          "interpretations": "ScopeSourceInterpretation[]",
+          "reason_read": "Read<CoreJsonValue>",
+          "reentry_read": "Read<CoreJsonValue>",
+          "causes": "Cause[]"
+        }
+      },
+      "FieldScopeAssessmentOrigin": {
+        "kind": "closed_record",
+        "members": {
+          "origin_kind": "literal:scope_assessment",
+          "field_index": "Natural",
+          "field_read": "Read<CoreRef>",
+          "binding_read": "Read<CoreApplicationBinding>",
+          "source_origin_indices": "Natural[]",
+          "declared_refs_reads": "Read<CoreJsonValue>[]",
+          "interpretation_links": "ReturnLink[]",
+          "support_interpretation_links": "ReturnLink[]",
+          "judgment": "Formation<Read<CoreRef[]>>",
+          "causes": "Cause[]"
         }
       }
     },
@@ -12114,7 +12193,7 @@
     },
     "recipient_and_obligation_contract": {
       "recipients": "定義missingの形成済み明示absence根拠→BRAIN。定義/knowledge版不足→BRAINという原要求は両方維持するが、knowledge版不足の原根拠取得/typed形成/返却写像はknowledge_revision_gap_boundaryの未閉包であり、一般の資料不足としてunresolvedへ落とすことをこの要求の代替/完了にしない。定義knownかつvalue unknownの明示undecided根拠→HARNESS008。HARNESSへの質問/返却先候補は原適用contract不整合の独立根拠へ対応する範囲に限り、契約不整合の正解をconsumerが生成しない。原process contract資料を質問対象に含むという理由だけではHARNESSへ振り分けない。その他分類/資料不足又は混合はrecipient=unresolvedと各独立原材料を保持し、元proposal.backflow_owner文字列を結果へ転写しない。原source/field/版/scope/unfinishedRefsと原理由Readを全て結ぶ。",
-      "obligations": "元proposalのunfinished_obligation_refsをproposal順→Ref原順で全件保持し、同call compare_kind_obligation_trace.material.obligationsの元KindObligation Ref全順をその後に連結する現技術選定はglobal F05 materialの原Ref保全である。これだけで全Refが各field/proposalに属する当該未完義務だとは判定しない（範囲根拠はobligation_scope_boundaryの未閉包）。重複は消さずoriginを別々に持つ。各Refは原obligations型/意味/source/condition_refs/reentry_refとkind trace原whole/required_trace_refs/trace_edges/trace_requirementsへ対応させる。元ref未取得はcauseとして残しreturned_refsに取得成功だけを新必要集合として代入しない。原Ref自体が読めない必要生成leafはcomparison unformed。候補分類/NA/兄弟成功で義務消込しない。",
+      "obligations": "以下のglobal原Ref保全と旧originの説明はLegacyObligationOrigin枝に適用する。元proposalのunfinished_obligation_refsをproposal順→Ref原順で全件保持し、同call compare_kind_obligation_trace.material.obligationsの元KindObligation Ref全順をその後に連結する現技術選定はglobal F05 materialの原Ref保全である。これだけで全Refが各field/proposalに属する当該未完義務だとは判定しない（範囲根拠はobligation_scope_boundaryの未閉包）。重複は消さずoriginを別々に持つ。各Refは原obligations型/意味/source/condition_refs/reentry_refとkind trace原whole/required_trace_refs/trace_edges/trace_requirementsへ対応させる。元ref未取得はcauseとして残しreturned_refsに取得成功だけを新必要集合として代入しない。原Ref自体が読めない必要生成leafはcomparison unformed。候補分類/NA/兄弟成功で義務消込しない。FieldScopeSourceOrigin/FieldScopeAssessmentOriginはfield_obligation_scope_writer_contractの専用writerに従い、legacy returned_refs又はlegacy record_detailsへ連結しない。",
       "consumer": "CORE外側返却.f05はcomparisonと全owner材料wholeを保持。B019接続callerはこれを別typed実引数core_field_value_contextの素材として受ける。選択030 query/knowledge/field関係/typedinputは別原資料であり、CoreJsonValue/CoreNumberをB030 json型へ無断castしない。原030inputのabsence/null/value/reasonと全returnが別必要で、ReceiptFieldRowのstate/value/reasonだけから原inputを復元しない。具体typed projection/callの閉包は独立pairの残務。",
       "knowledge_revision_gap_boundary": {
         "source_pointers": [
@@ -12140,7 +12219,8 @@
         ],
         "global_preservation": "L4は同call原gap/原kind traceの当該未完Refの順序/反復/返却対応保持と消込禁止を求める。現全KindTrace Refの連結は失われないglobal保全案であり、field/proposal単位の選択又は未完確定の判定器ではない。各Refの原proposal由来/kindtrace由来を保持し、別field成功や候補kindだけでRefを消去しない。",
         "unclosed_scope_basis": "KindTraceMaterial.obligationsは原KindObligation列を持つが未完flagや各field/proposal所属を型として持たない。L4の当該未完とこの全列が同一範囲であると確定する原source/condition/obligation/subject/binding対応、及び元ApplicabilityMaterial.unfinished_obligation_refsとの関係は現writerで未閉包。原fn3 wholeもoriginal_requestへ保持し、未使用列を消去又は新selectorで逆配布しない。",
-        "nonclaim": "元sourceが示す当該scopeの対応が形成していないRefまで個々のfield/proposalの未完確定として割り当てず、global carrierの形成だけでL4の当該未完契約を充足したとしない。新しい未完判定/selector/必要集合/消込は追加しない。"
+        "nonclaim": "元sourceが示す当該scopeの対応が形成していないRefまで個々のfield/proposalの未完確定として割り当てず、global carrierの形成だけでL4の当該未完契約を充足したとしない。新しい未完判定/selector/必要集合/消込は追加しない。",
+        "profile_connection_candidate": "field_obligation_scope_writer_contractは本候補のfinite writer案であり、元ownerの局所scope profileが供給され既存対象/source/body/role-owner対応が成立した範囲だけを表現する。globalKindTraceの全Ref保全からfield scopeを逆生成しない。無profile/未形成経路とscope原basis解決/実取得全域は残務で、今回の一件positive fixture又はL5候補追加を全当該scope閉包としない。"
       },
       "application_contract_recipient_boundary": {
         "source_pointers": [
@@ -12408,7 +12488,8 @@
         "source_pointers": [
           "/reference_resolution_contract/body",
           "L4:/field_semantic_evidence_contract/basic_candidate_return/basis_occurrence_index_contract",
-          "/f05_detail_contract/source_material_leaf_writer_contract/record_and_body_occurrence_leaf"
+          "/f05_detail_contract/source_material_leaf_writer_contract/record_and_body_occurrence_leaf",
+          "/f05_detail_contract/positive_field_evidence_link_writer_contract"
         ]
       },
       {
@@ -12448,7 +12529,8 @@
         "rule_ja": "全対応宣言meaningを元順に読み型/適用member/実operand/source/body/owner/原basisを照合。body未形成でも原whole/member Readを保持。native_definition_wholeは元definition operand/content meaning/実content owner linkだけを定義内容の実基底として使い、明示field_definition_evidence宣言やpresent/known判断を生成せず、宣言をconsumerが発行しない。独立役割source枝はprojection_contract.independent_sourceの全memberの原所在が有る範囲だけ。",
         "source_pointers": [
           "L4:/field_source_materialization_contract/private_declaration_body_contract",
-          "L4:/field_source_materialization_contract/carrier_projection_table/1"
+          "L4:/field_source_materialization_contract/carrier_projection_table/1",
+          "/f05_detail_contract/positive_field_evidence_link_writer_contract"
         ]
       },
       {
@@ -12507,7 +12589,8 @@
         "rule_ja": "全定義evidence body/source/全content/basis/ownerを元順に読む。individual_definitionのpresent/absent/undecided guardで個別判断、field_definitionの相反/未形成条件でfield judgmentを作る。各basis indexは当該DefinitionAssessmentの実tableだけ。reason/reentryは元meaning memberのReadで追加gateなし。content owner linkはfield content側の実entry、evidence ownerは自前inlineを保つ。",
         "source_pointers": [
           "L4:/field_semantic_evidence_contract/field_definition_evidence_body",
-          "L4:/field_semantic_evidence_contract/basic_candidate_return/fields/definition_evidence_results"
+          "L4:/field_semantic_evidence_contract/basic_candidate_return/fields/definition_evidence_results",
+          "/f05_detail_contract/positive_field_evidence_link_writer_contract"
         ]
       },
       {
@@ -12622,7 +12705,8 @@
         "rule_ja": "recipient_leaf_writer_contractの七分岐へ既存原判断材料を渡す閉RecipientWriteContextから、同一producer walkの実形成済根拠だけを分類する。各原根拠のsubject/basis_linksは実原nodeへ、original_owner/original_reason/unfinished_refsはFormation<Read>で出典選定済みか未形成かを保つ。複数独立根拠は原順の別行で保持し、根拠未形成又は分類対象不明をunresolvedとして返す場合も既存unformed原因を全保持する。有効なknown/missing/unknown/conflict summaryを一律unformedにせず、元owner文字列だけで受信者を決めない。OS ticket/要求採用を生成しない。",
         "source_pointers": [
           "L4:/field_semantic_evidence_contract/basic_candidate_return/owners",
-          "/contracts/6/backflow"
+          "/contracts/6/backflow",
+          "/f05_detail_contract/field_obligation_scope_writer_contract"
         ]
       },
       {
@@ -12638,11 +12722,12 @@
           "occurrences全member",
           "ObligationRecordDetails全member"
         ],
-        "rule_ja": "元proposal unfinished各Readと同call原kind trace wholeを保持。proposal→kind trace順に全原Ref/反復をreturned_refsとoriginへ結び、原obligation/condition/reentry/requiredtrace/edge/trace requirementを別Read/RecordOccurrenceで追えるようにする。各ObligationOriginはrecord_occurrencesの実local index順に同数のrecord_detailsを必須で持ち、condition_refs_read/condition_operands/reentry_ref_readを原raw /obligations/uへ結ぶ。condition_refs欠落と[]、reentry nullと欠落、source/body不在を区別し、ConditionBindingの未宣言bindingはRead.absent及びbinding_relation=unestablishedの保管として保持する。意味roleが適用されない原義務/condition保管にはowner_bindings=[]を置き、資格/相反/再評価を意味しない。kind_trace_linksは原依存Comparison内pointerで新f05 ReturnLinkとは別。元Ref未取得原因は保持し成功部分から必要集合を生成しない。",
+        "rule_ja": "元proposal unfinished各Readと同call原kind trace wholeを保持。proposal→kind trace順に全原Ref/反復をreturned_refsとoriginへ結び、原obligation/condition/reentry/requiredtrace/edge/trace requirementを別Read/RecordOccurrenceで追えるようにする。各LegacyObligationOriginはrecord_occurrencesの実local index順に同数のrecord_detailsを必須で持ち、condition_refs_read/condition_operands/reentry_ref_readを原raw /obligations/uへ結ぶ。condition_refs欠落と[]、reentry nullと欠落、source/body不在を区別し、ConditionBindingの未宣言bindingはRead.absent及びbinding_relation=unestablishedの保管として保持する。意味roleが適用されない原義務/condition保管にはowner_bindings=[]を置き、資格/相反/再評価を意味しない。kind_trace_linksは原依存Comparison内pointerで新f05 ReturnLinkとは別。元Ref未取得原因は保持し成功部分から必要集合を生成しない。このF14のrecord_details規則はLegacy枝に限る。scope二枝はfield_obligation_scope_writer_contractで別に生成する。",
         "source_pointers": [
           "L4:/field_semantic_evidence_contract/basic_candidate_return/fields/unfinished_obligation_refs",
           "/functions/4",
-          "/type_contract/types/KindObligation"
+          "/type_contract/types/KindObligation",
+          "/f05_detail_contract/field_obligation_scope_writer_contract"
         ]
       },
       {
@@ -12668,7 +12753,8 @@
           "/type_contract/types/Comparison",
           "/type_contract/types/GapReturnMaterial",
           "/type_contract/types/FieldCheckMaterial",
-          "L4:/field_source_materialization_contract/preserved_native_boundary/output"
+          "L4:/field_source_materialization_contract/preserved_native_boundary/output",
+          "/f05_detail_contract/positive_field_evidence_link_writer_contract"
         ]
       },
       {
@@ -12685,7 +12771,9 @@
         "source_pointers": [
           "L4:/f05_validation_material_call_contract/actual_caller_trace/3",
           "L4:/field_semantic_evidence_contract/basic_candidate_return/basis_occurrence_index_contract",
-          "/f05_detail_contract/source_material_leaf_writer_contract/return_link_leaf"
+          "/f05_detail_contract/source_material_leaf_writer_contract/return_link_leaf",
+          "/f05_detail_contract/field_obligation_scope_writer_contract",
+          "/f05_detail_contract/positive_field_evidence_link_writer_contract"
         ]
       },
       {
@@ -12914,9 +13002,9 @@
       },
       {
         "pointer": "/f05_detail_contract/types/ObligationOrigin",
-        "preserve": "既存proposal/ref origin、raw obligation occurrences、kind trace links及びcauses。",
-        "change": "record_occurrencesと同長の必須record_detailsを追加し、condition参照とreentry_refのRead/operandを格納する。",
-        "reason": "F14が別Read/RecordOccurrenceで追う原condition/reentryの格納先を閉型にする。"
+        "preserve": "既存proposal/ref originの七member shape、raw obligation occurrences、kind trace links及びcausesはLegacyObligationOrigin枝で保持する。",
+        "change": "ObligationOriginをLegacyObligationOrigin | FieldScopeSourceOrigin | FieldScopeAssessmentOriginのclosed_shape_unionとし、Legacy枝にのみrecord_details/condition/reentry保管を保持する。二つのscope枝はfield_obligation_scope_writer_contract専用writerで構成し、legacy memberを追加・読み替えない。",
+        "reason": "F14 legacy原保管と基本設計へ統合済みのfield scope命題の原出現を型で分ける。本差分のnative型は詳細候補であり、既存7member whole/historyはLegacy枝で保持し、旧writer前提を他のunion枝へ漏らさない。"
       },
       {
         "pointer": "/f05_detail_contract/types/RecipientMaterial",
@@ -12993,7 +13081,7 @@
     "remaining_and_nonclaims": [
       "本節は詳細設計候補の著述であり、実reader/writer/codec/validator/算法/製品test/CIを実装実行していない。実装準備完了又は全F05閉包を認定しない。",
       "同fn0 root/qualificationの実供給元/custody/原owner根拠resolver、宣言/原命題profileの実producer/取得口と独立原source資格成立は未成立。未定義oracle boolへ委ねず未観測原端/条件を全返却へ保持する。",
-      "全native型/writerの対L8原入力/全返却oracle、独立意味review、数値/codec実成立、既存他producerの全leaf writerと全claim枝の実証は残務。本節のnative Context対応表だけで既存全9producerのpartial input挙動が完成したとはしない。",
+      "全native型/writer及び全枝の対L8 oracleは未閉包。本L5候補に対するL8追加は固定9-source known/known scope positive一件だけで、139/147型又は全writer/branchの閉包を証明しない。独立意味review、数値/codec実成立、既存他producerの全leaf writerと全claim枝の実証は残務。本節のnative Context対応表だけで既存全9producerのpartial input挙動が完成したとはしない。",
       "selected scope/対象操作と元適用結果が実対応しないfield/proposalは対象不成立を局所に返す。取得成功から対象必要集合を作らない。実必要field集合の上流owner資料を本節で発明しない。",
       "B019/030の同query/knowledge/独立field関係及び数値表現を含むtyped projection・選択call全入力/全返却・実配送/受領/OS記録・実受入、全92親430義務は別残務。",
       "現failure_rulesのF05 claim predicatesは原条件文章とClaim.kind:string/原proposed_valueを持つ既存契約で、全claim種類の新native式木/任意自然言語意味classifierは本差分で作らない。既存claim条件の原operand対応が元資料で一意に形成できない枝を実Finding成功へ補完しない。全claim入力語彙の詳細原producer契約と全branch oracleの閉包は独立検収が必要。",
@@ -13155,9 +13243,15 @@
           "FieldResult",
           "GapResult",
           "EvidenceRecordOccurrence",
-          "CheckOperand"
+          "CheckOperand",
+          "LegacyObligationOrigin",
+          "FieldObligationScopeBody",
+          "ScopeSourceInterpretation",
+          "ScopeObligationCorrespondence",
+          "FieldScopeSourceOrigin",
+          "FieldScopeAssessmentOrigin"
         ],
-        "rule": "members/variants/enum又は上記generic/optional構文だけで型を指す。guard/由来文章は型member定義の代替ではない。"
+        "rule": "members/variants/enum又はgeneric/optional構文だけで型を指す。guard/由来文章は型member定義の代替ではない。ObligationOriginは3枝の有限unionであり、Legacy枝とscope二枝及び関連body等の今回追加6named typeをtype_namesへ一度ずつ宣言する。"
       },
       "external_primitives": [
         {
@@ -14327,7 +14421,7 @@
         "field_index_i": "iは同じF05DetailedRequest.validation.validated.input.field_inputsを元順に歩いた実field indexであり、FieldOwnerResult.field_indexと一致する。validation_input rootはその同じvalidated.inputを指す。field結果/assessment/recipientの局所配列indexで置換しない。",
         "value_operand_j": "jは当該原fieldのvalue_fact_refs内の実operand_index。targetはそのRef取得契機の原Location /field_inputs/i/value_fact_refs/j を使い、record lookup位置へ移さない。",
         "content_record_k": "kはそのoperandへ既存F03が結んだ、該当carrierの実RecordOccurrence.origin.index。SemanticRecordならその原meaning wholeの /semantic_records/k/meaning、AxisFactなら原value wholeの /axis_facts/k/value をleft Read.locationにし、同Ref先頭検索や子値へのunwrapをしない。carrier/occurrence未形成ならV0を生成せず実原因を保持する。",
-        "raw_obligation_u_and_record_r": "uはvalidation_input.obligationsの同Walk実raw indexでRecordOccurrence.origin.indexとlocator /obligations/u に一致する。rは同じObligationOrigin.record_occurrences[]内のlocal indexで、record_details[r].record_occurrence_index=r。ObligationOrigin.ref_indexやreturned_refs indexをu/rへ流用しない。",
+        "raw_obligation_u_and_record_r": "uはvalidation_input.obligationsの同Walk実raw indexでRecordOccurrence.origin.indexとlocator /obligations/u に一致する。rは同じLegacyObligationOrigin.record_occurrences[]内のlocal indexで、record_details[r].record_occurrence_index=r。LegacyObligationOrigin.ref_indexやreturned_refs indexをu/rへ流用しない。scope operand/correspondenceのindexは専用writerの別namespaceである。",
         "condition_j_and_v": "jは原CoreKindObligation.condition_refs内のRefOperand.operand_index。vはそのcondition Refに既存F03が結んだvalidation_input.conditionsの実RecordOccurrence.origin.index。要求Ref位置と取得record位置を同一視しない。",
         "present_read_value": "Cause.left/right内の各Read.present.valueはそのRead.locationが指す同一rootの実原JSON node全体を無変換でcopyする必須値。Cause例中のlocationだけからvalueを省略したまま返さない。Absent.parent_valueとUnreached.reached_valueも同じく実親/実到達node全体をcopyし、実観測がない枝はRead形を発明しない。normative_literal.valueだけは本L5の固定規範値であり、入力Readへ偽装しない。",
         "source_body_checks": "source_observation_indicesは既存F03の全対応source occurrenceをその実local index順に結ぶ。body_occurrencesの実body-entry対応はF04から書き、BodyOccurrence.checksはsource_material_leaf_writer_contract/record_and_body_occurrence_leafで明示した[]を使う。source/qualification/rootの全checkは同じValidationSourceObservationへ保持し、OwnerBinding CheckLinkから辿る。BodyOccurrence.checks=[]はpayload対応又は資格成功の意味ではなく、bodyのref/payloadの原Read・Relation・Causesは独立して保存する。"
@@ -14346,7 +14440,7 @@
         "legacy_normal_boundary": "固定旧normal rawのsemantic_records[9]/[10]は、明示field_definition_evidence宣言又はproduct_value role declarationそのものではない。semantic_records[9]のmeaning wholeはL4 guardを通る場合のnative_definition_whole定義content基底として保持できるが、それだけでexplicit known evidenceを生成せず、旧logical FN5 knownを根拠へしない。原meaning全体、未形成Causes及び実前段材料は保存し、同入力の別formed fixtureを使って既存valid positive枝が残ることを確認する責務は後続oracleに残す。"
       },
       "condition_reentry_materialization": {
-        "record_details_shape": "ObligationOrigin.record_detailsは必須。record_occurrencesの各実local index rにつき同r順の一entry、record_occurrence_index=r。空record_occurrencesならrecord_details=[]。proposal/ref/global/source indexesとは別namespace。",
+        "record_details_shape": "LegacyObligationOrigin.record_detailsは必須。record_occurrencesの各実local index rにつき同r順の一entry、record_occurrence_index=r。空record_occurrencesならrecord_details=[]。proposal/ref/global/source indexesとは別namespace。FieldScopeSourceOrigin.correspondencesのscope writerが持つrecord_detailsは別のscope operand namespaceで、legacy列へ読み替えない。",
         "condition_refs_read": "Read正本は{root:validation_input,pointer:/obligations/u/condition_refs}。presentは原Ref配列全値と順序/反復をcopy。欠落時は当該実raw obligation parentのRead.absent。原[]、null、欠落及びunreachedを同値化/補完しない。",
         "condition_operands": "present refsの各index jにRefOperandを作る（original_refは同原Read、operand_index=j、role='obligation_condition'）。供給condition Refの実全一致出現をrecord_occurrencesへ元conditions index v順に保持し、各RecordOccurrence.origin={collection:'conditions',index:v,locator:{root:'validation_input',pointer:'/conditions/v'}}。lookup missは実conditions collection whole及び元refによる既存Causeで保持し、架空index/recordを作らない。",
         "condition_record": "original_record={tag:'condition',value:実CoreConditionBinding全値}。RecordOccurrence.originはcollection=conditions,index=v,locator={root:validation_input,pointer:/conditions/v}。ref/source_ref/binding各Readとrelationは実raw condition node/memberからF03 RecordOccurrence writerどおり作る。ConditionBindingがbindingを宣言しない場合binding_read=Read.absent（requested /conditions/v/binding、parentは/conditions/v、parent_valueは実condition whole）、binding_relation=unestablished。raw custodyのみならowner_bindings=[]で、意味roleが原資料上で適用される場合だけF05を使う。source_observation_indicesは当該record.source_refに対するF03の実全source occurrence index。body_occurrencesはF04の実source/body.records entry全対応をsource_index/body_indexで結び、original_body_entry、各原member Read、payload_relation、checks、causesを同writer/check_storage_planの全値で保持する。対応body/qualification/checkが未取得ならその実Cause/未形成を保ち、空配列やcorrespondingを既定値として作らない。SourceCheckKindを増やさず、condition truthは再評価しない。",
@@ -14368,7 +14462,7 @@
     },
     "source_material_leaf_writer_contract": {
       "id": "HARNESS-L5-009-F05-SOURCE-MATERIAL-LEAF-WRITER",
-      "scope_ja": "F03/F04/F05/F07/F16の既存閉型へ、実field content operandからRecordOccurrence・body・owner・projection・ReturnLinkを同一walkで書くleaf選択を追補する。既存Role/qualification/source/body/summary意味とF05 request shapeを保持する。本PR全体では既存2型を変更し内部2型を追加して139型から141型へ、leaf ledgerは28行を保持する。各差分はexisting_type_and_writer_changesへ記録する。",
+      "scope_ja": "F03/F04/F05/F07/F16の既存閉型へ、実field content operandからRecordOccurrence・body・owner・projection・ReturnLinkを同一walkで書くleaf選択を追補する。既存Role/qualification/source/body/summary意味とF05 request shapeを保持する。本source-material追補時点では既存2型を変更し内部2型を追加して139型から141型へ、leaf ledgerは28行を保持する。各差分はexisting_type_and_writer_changesへ記録する。",
       "source_basis": [
         {
           "l4_objects": [
@@ -14457,15 +14551,16 @@
         "normal_definition_path_ja": "固定normal fixtureのfield result 0・definition operand 0・semantic_records[9]の例に限る実格納pathは、RecordOccurrence=/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0、RefOperand=/owner_material/field_results/0/value/definition_material/operands/0/operand、OwnerBinding=/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/owner_bindings/0、formed ProjectedValue=/owner_material/field_results/0/value/definition_material/operands/0/projection_attempts/0/result/value。これらの数字はこの固定normalの格納位置であり全入力定数ではない。"
       },
       "preserve_change_reason_ja": {
-        "preserve": "L4の既存意味role、source/body/ref/owner/qualification条件、all raw presence/whole、既存Cause/determination、D0/V0/N0/U0、F05責務境界、type 141及びleaf ledger 28行。",
+        "preserve": "L4の既存意味role、source/body/ref/owner/qualification条件、all raw presence/whole、既存Cause/determination、D0/V0/N0/U0、F05責務境界、追補前type 141及びleaf ledger 28行。",
         "change": "F03/F04/F05/F07/F16の間で未固定だったrole label・body check格納先・OwnerBinding粒度/CheckLink列挙・no_reason Read・投影aggregate/ReturnLink終点のみを具体化する。",
         "reason": "同じ原資料の同じ意味関係から閉型wholeを一意に書くため。UTW-014/020/021を照合し、原未取得を成功へ寄せず、原因をflatten/dedupせず、normalのdefinition bodyをD0のために捨てない。新資格、gate、producer前提、実trust、実受入は生成しない。"
       },
       "remaining_and_nonclaims_ja": [
-        "本節は技術的leaf選定であり、実reader/writer/validator/test/CI実装・実行又は独立reviewではない。実normal input/producer returnの全member及び全F05 branch閉包を証明しない。",
+        "本節は技術的leaf選定であり、実reader/writer/validator/test/CI実装・実行又は独立reviewではない。実normal input/producer returnの全member及び全F05 branch閉包を証明しない。L8には別の一件positive finite full-five-return design oracleを追加したが、全native branch閉包とはしない。",
         "L4の原source/qualification/root取得、body全scope、外部trust/authentication、knowledge版不足→BRAIN、B019/030 typed接続は元の未閉包のまま。条件付きsynthetic/legacy正常値だけを実認証・caller deliveryに昇格しない。",
         "BodyOccurrence.checks=[]はこの返却型の明示格納選択であり、body source/ref/payload/causesの対応観測、ValidationSourceObservation全check又はOwnerBinding CheckLinkの全leafを閉じる実装・実行証拠ではない。"
-      ]
+      ],
+      "field_scope_supplement_ref": "/f05_detail_contract/field_obligation_scope_writer_contract"
     },
     "recipient_leaf_writer_contract": {
       "id": "HARNESS-L5-009-F05-RECIPIENT-LEAF-WRITER",
@@ -14578,7 +14673,8 @@
         "非nullreentry Ref先collection/body/正しい再評価consumerはL4から未指定であり、この節は調べない。",
         "knowledge版不足→BRAINの独立原命題/版/owner/source/body対応及びtyped返却、application-contract不整合の独立原命題/owner/source/body対応は既存remaining boundaryのまま。一般未形成のrecipient rowで代替又は完了扱いしない。",
         "当該field/proposal未完scope以外の要件、B019/030の同query/typed全入出力、実qualified recipient/review/Backflowの成立は別責務。"
-      ]
+      ],
+      "field_scope_supplement_ref": "/f05_detail_contract/field_obligation_scope_writer_contract"
     },
     "collection_and_obligation_origin_writer_contract": {
       "id": "HARNESS-L5-009-F05-COLLECTION-OBLIGATION-ORIGIN-WRITER",
@@ -14742,14 +14838,14 @@
           "/type_contract/types/KindObligation",
           "/type_contract/types/KindTraceMaterial"
         ],
-        "origin_order": "ObligationMaterial.occurrencesは元gap_proposalsのi順、そのunfinished_obligation_refsのj順のoriginを先に置き、次に同callのkind_trace_return.material.obligationsのt順のoriginを置く。全反復を別entryとして保持する。取得成功だけのsubset、Ref単一map、sort/dedup/priorityへ置換しない。この順序はglobal原Ref保全の現技術選定であり、各field/proposalの当該未完確定ではない。",
+        "origin_order": "次の旧origin順はObligationMaterial.occurrencesのLegacyObligationOrigin prefixだけに適用する。ObligationMaterial.occurrencesは元gap_proposalsのi順、そのunfinished_obligation_refsのj順のoriginを先に置き、次に同callのkind_trace_return.material.obligationsのt順のoriginを置く。全反復を別entryとして保持する。取得成功だけのsubset、Ref単一map、sort/dedup/priorityへ置換しない。この順序はglobal原Ref保全の現技術選定であり、各field/proposalの当該未完確定ではない。このprefixの後にfield_obligation_scope_writer_contract/entry_and_orderが定める全scope_source、全scope_assessmentを原順で追加する。",
         "member_writers": {
-          "proposal_index": "proposal由来は元gap_proposalsのi。kindtrace由来はnull。返却origin index又はraw義務indexを代入しない。",
-          "ref_index": "proposal由来はその原unfinished_obligation_refsのj、kindtrace由来は元material.obligationsのt。いずれも当該原配列の0-based index。global返却index/SourceObservation local indexへ変更しない。",
-          "ref_read": "proposal由来の正本Locationは{root:validation_input,pointer:/gap_proposals/i/unfinished_obligation_refs/j}。kindtrace由来は{root:f05_request,pointer:/compare_kind_obligation_trace/comparison/material/obligations/t/ref}。i/j/tは上記実原indexでpathを形成し、present.valueには取得契機の原Ref wholeをcopyする。raw lookupで同Ref recordを得てもref_read.locationをそのraw refへ移さない。未供給/未到達は既存Readの実parent/reached wholeで保持し、Refを補完しない。",
-          "record_occurrences": "既存reference_and_collection_rulesの原Ref/record照合で結ぶ実validation_input.obligations recordだけを、そのraw index u順で保持する。各RecordOriginはcollection=obligations,index=u,locator={root:validation_input,pointer:/obligations/u}。original_record={tag:obligation,value:その実CoreKindObligation原whole}。ref_read/binding_read/source_ref_readは同実raw所在の/ref,/binding,/source_refをそれぞれ正本Readとする。同値の依存KindObligationを別raw occurrenceとして追加しない。同Refの反復/相反/binding差を潰す新selectorではなく、既存照合が保持する全出現の所在を定める。",
-          "kind_trace_links": "このJSONPointer[]のrootはObligationMaterial.kind_trace_returnである実Comparison wholeだけ。kindtrace由来tについて実/ref nodeが有れば /material/obligations/t/ref を先に、その後実whole /material/obligations/t を置く。原ref未供給でも実whole linkは保存し、存在しない/ref linkは作らない。proposal由来に既存Ref対応が成立するkindtrace出現を結ぶ場合は原t順に各ref→whole順を保持する。対応未形成からlinkを生成せず、その原因と全原wholeを保持する。",
-          "causes": "既存の原Ref取得/record照合/source/owner各段階の原因保持責務を維持する。このcollection namespace選定だけでは[]、content_unresolved又は他のCauseを選定しない。summary Causeの選択はfield_summary_and_custody_writer_contract、scope未形成のCauseはrecipient_leaf_writer_contract/unfinished_scope_unformedのguardに限る。元kindtrace wholeはraw lookup結果とは別にkind_trace_returnへ無縮小で保持し、raw検索の成否で依存payload又は元Refを消さない。"
+          "proposal_index": "LegacyObligationOrigin枝の本memberだけに適用する。proposal由来は元gap_proposalsのi。kindtrace由来はnull。返却origin index又はraw義務indexを代入しない。scope二枝のmemberはfield_obligation_scope_writer_contractの専用規則に従う。",
+          "ref_index": "LegacyObligationOrigin枝の本memberだけに適用する。proposal由来はその原unfinished_obligation_refsのj、kindtrace由来は元material.obligationsのt。いずれも当該原配列の0-based index。global返却index/SourceObservation local indexへ変更しない。scope二枝のmemberはfield_obligation_scope_writer_contractの専用規則に従う。",
+          "ref_read": "LegacyObligationOrigin枝の本memberだけに適用する。proposal由来の正本Locationは{root:validation_input,pointer:/gap_proposals/i/unfinished_obligation_refs/j}。kindtrace由来は{root:f05_request,pointer:/compare_kind_obligation_trace/comparison/material/obligations/t/ref}。i/j/tは上記実原indexでpathを形成し、present.valueには取得契機の原Ref wholeをcopyする。raw lookupで同Ref recordを得てもref_read.locationをそのraw refへ移さない。未供給/未到達は既存Readの実parent/reached wholeで保持し、Refを補完しない。scope二枝のmemberはfield_obligation_scope_writer_contractの専用規則に従う。",
+          "record_occurrences": "LegacyObligationOrigin枝の本memberだけに適用する。既存reference_and_collection_rulesの原Ref/record照合で結ぶ実validation_input.obligations recordだけを、そのraw index u順で保持する。各RecordOriginはcollection=obligations,index=u,locator={root:validation_input,pointer:/obligations/u}。original_record={tag:obligation,value:その実CoreKindObligation原whole}。ref_read/binding_read/source_ref_readは同実raw所在の/ref,/binding,/source_refをそれぞれ正本Readとする。同値の依存KindObligationを別raw occurrenceとして追加しない。同Refの反復/相反/binding差を潰す新selectorではなく、既存照合が保持する全出現の所在を定める。scope二枝のmemberはfield_obligation_scope_writer_contractの専用規則に従う。",
+          "kind_trace_links": "LegacyObligationOrigin枝の本memberだけに適用する。このJSONPointer[]のrootはObligationMaterial.kind_trace_returnである実Comparison wholeだけ。kindtrace由来tについて実/ref nodeが有れば /material/obligations/t/ref を先に、その後実whole /material/obligations/t を置く。原ref未供給でも実whole linkは保存し、存在しない/ref linkは作らない。proposal由来に既存Ref対応が成立するkindtrace出現を結ぶ場合は原t順に各ref→whole順を保持する。対応未形成からlinkを生成せず、その原因と全原wholeを保持する。scope二枝のmemberはfield_obligation_scope_writer_contractの専用規則に従う。",
+          "causes": "LegacyObligationOrigin枝の本memberだけに適用する。既存の原Ref取得/record照合/source/owner各段階の原因保持責務を維持する。このcollection namespace選定だけでは[]、content_unresolved又は他のCauseを選定しない。summary Causeの選択はfield_summary_and_custody_writer_contract、scope未形成のCauseはrecipient_leaf_writer_contract/unfinished_scope_unformedのguardに限る。元kindtrace wholeはraw lookup結果とは別にkind_trace_returnへ無縮小で保持し、raw検索の成否で依存payload又は元Refを消さない。scope二枝のmemberはfield_obligation_scope_writer_contractの専用規則に従う。"
         },
         "body_and_source_namespace": "RecordOccurrence.source_observation_indices及びBodyOccurrence.source_observation_indexは同call ValidationDetailedReturn.source_observations.source_occurrences内の実local index。BodyOccurrence.source_index/body_indexは実validation_input.sourcesのs及びそのbody.recordsのbで、各Locationはvalidation_input /sources/s、/sources/s/body/records/b。両indexを同一と仮定しない。original_body_entry、collection_read/ref_read/payload_readはその実entry及び各原memberを保存する。payloadは元raw recordからsource_refだけをenvelopeへ外付けした対応であって、依存Comparison wholeをbodyとみなさない。SourceCheck/owner_bindings/causesは既存source/owner規則の原左右と実観測を結ぶ。",
         "reference_boundary": "元record.source_ref wholeとSourceEnvelope.ref wholeを別原値で保存する。既存reference_resolution_contractの供給digest条件を維持し、参照側sha256 nullとenvelope側実digestの差だけでlookup miss又はbody不一致を作らない。Ref値の対応、body対応、local semantic-use qualification及び実trust取得を混同しない。",
@@ -14805,10 +14901,299 @@
       },
       "remaining_and_nonclaims": [
         "本追補はsource/pointer/hash/固定原値照合とJSON著述のみ。実reader/writer/意味算法/validator/codec/製品test/CIを実装実行していない。全owner返却又は正常full-return oracleの成立を宣言しない。",
-        "ObligationOrigin.record_detailsにcondition_refs/reentry_refの原Read/operandを結ぶ保管先を定義し、condition_reentry_materialization/condition_recordは既存F03/F04規則へsource/body lookupと実source observation indexの返却local対応を結ぶ。今回の有限normal oracleもそのcondition RecordOccurrenceを行使する。実取得・資格・意味role別owner bindingの全入力領域、実same-call観測及び非null reentryの参照先/consumerは未閉包のまま。原source/bodyの存在又は静的期待からsource local usable又は実trust成功を生成しない。",
+        "LegacyObligationOrigin.record_detailsにcondition_refs/reentry_refの原Read/operandを結ぶ保管先を定義し、condition_reentry_materialization/condition_recordは既存F03/F04規則へsource/body lookupと実source observation indexの返却local対応を結ぶ。今回の有限normal oracleもそのcondition RecordOccurrenceを行使する。実取得・資格・意味role別owner bindingの全入力領域、実same-call観測及び非null reentryの参照先/consumerは未閉包のまま。原source/bodyの存在又は静的期待からsource local usable又は実trust成功を生成しない。",
         "旧normal rawは新field_definition_evidence又はproduct_value宣言を供給したものではない。旧known期待から新宣言を逆算しない。本collection namespace追補ではこのrawについてsummary Cause/stateを選定しない一方、field_summary_and_custody_writer_contractのD0/V0/N0/U0は各明示guardが成立する別の有限入力でのCause技術選定である。個別evidence/投影の全入力領域と正常field owner全期待は別残務。",
         "recipient_and_obligation_contract/obligation_scope_boundaryのfield/proposal当該未完scope、knowledge_revision_gap_boundaryのknowledge版不足→BRAIN根拠取得/typed返却、B019/030の具体typed接続及び既存caller投影frontierは維持する。全KindTrace Refのglobal保存だけでそれらを完成としない。"
-      ]
+      ],
+      "field_scope_supplement_ref": "/f05_detail_contract/field_obligation_scope_writer_contract",
+      "obligation_origin_variant_dispatch": {
+        "union_pointer": "/f05_detail_contract/types/ObligationOrigin",
+        "legacy_branch": "LegacyObligationOriginは元proposal/kind-traceのF14順・member writerに従う。legacy field/condition/reentry/read/cause記述はこのbranchに限る。",
+        "scope_branches": "FieldScopeSourceOrigin及びFieldScopeAssessmentOriginはfield_obligation_scope_writer_contract専用writerに従い、kind/order/meaningが合致する場合だけその枝へ入る。",
+        "consumer_boundary": "F14及び既存legacy consumerはLegacyObligationOriginのmemberだけを読む。unionを一律LegacyObligationOriginとしてcastせず、新scope枝のconsumerはfield scope writerが示すactual variant-specific pathだけを読む。枝不一致からfallback/default/member補完を作らない。",
+        "ordering": "Legacy枝全件の後にscope-source、次にscope-assessmentを、field_obligation_scope_writer_contract/entry_and_orderで定義した原順で追加する。"
+      }
+    },
+    "field_obligation_scope_writer_contract": {
+      "id": "HARNESS-L5-009-F05-FIELD-OBLIGATION-SCOPE-WRITER",
+      "status": "finite_candidate_local_not_adopted_independent_review_pending",
+      "source_basis": [
+        {
+          "revision": "3cd278741b52a5af937eeb786cfd163912093e8e",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "sha256": "2f2bac5fde21c0e4806bc3817a814dbf3073e0cffe9db12a0307fada4104345e",
+          "role": "本候補の固定L5 base source。候補writer/hashはL8のcurrent content bindingに別記する。"
+        },
+        {
+          "revision": "f00c2ae7770106c47a32cd708911496b36d0b9a1",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "sha256": "fe261105f9e235dce839a79292da268a9eb6d5391b3a59ae84cd85e610313d95",
+          "role": "歴史的L5 source_basis。859b著述時の旧根拠として保持し、current candidate bindingではない。"
+        },
+        {
+          "revision": "c924363c224ecdf2d60cdd0ed2c63511c31661d9",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "sha256": "5c49b46d3ad6627c218eb40026645eea491bbea0b7401d0b5da5fff403bdf00c",
+          "pointer": "/field_obligation_scope_contract",
+          "canonical_sha256": "555b61ea2a2aea720449da4382ad447efcead100e35d0c4d788dd39715404acd",
+          "role": "歴史的L4 scope proposal（c924/PR3338）。著述履歴として保持し、現在の意味根拠は後続のmain L4 source行を使う。"
+        },
+        {
+          "revision": "1c8865d879482f7088c5f1765fc63b60be0b72d5",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "sha256": "77c1e3e4f1f29d4ccabc9c8b47f5c311874c131153223fd0eb8de76c282eae5a",
+          "pointer": "/field_obligation_scope_contract",
+          "canonical_sha256": "d0aada2de42168fef7e383c7ba423002dec423105fbeff3a07944b2a7ddffe31",
+          "role": "現basic main source。current meaning sourceとして使用し、上流scopeを拡張しない。"
+        },
+        {
+          "revision": "f00c2ae7770106c47a32cd708911496b36d0b9a1",
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "sha256": "64cf04c51bb49f7f65837e484b2e037836883edd8add70d982d65fc7c1113fb3",
+          "role": "歴史的L8作業source（f00/c9 ancestry）。現行candidate oracleは新L8有限節が別に束縛する。"
+        },
+        {
+          "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "sha256": "00e5bba38cbf0fb9a67b2ebe8e6f2a32fcd5317731e2b6119dca5e946ab1f97d",
+          "pointer": "/fixture_contract/normal_fixtures/0/input",
+          "role": "固定原normal raw。旧F05 known期待は新期待sourceにしない。"
+        },
+        {
+          "source_basis_ref": "/f05_detail_contract/legacy_and_failure_binding/sources",
+          "role": "旧L4/L5 JSONauthority/UTW014020021の原identity/未取得/全個別原因/未完消込禁止を保持。新gate/裁定権を作らない。"
+        }
+      ],
+      "applies_to": [
+        "/f05_detail_contract/leaf_writer_ledger/19",
+        "/f05_detail_contract/leaf_writer_ledger/20",
+        "/f05_detail_contract/leaf_writer_ledger/22"
+      ],
+      "type_boundary": {
+        "ObligationOrigin": "LegacyObligationOrigin | FieldScopeSourceOrigin | FieldScopeAssessmentOriginのclosed_shape_union。legacy実値へtag/default追加無し。",
+        "new_named_types": [
+          "LegacyObligationOrigin",
+          "FieldObligationScopeBody",
+          "ScopeSourceInterpretation",
+          "ScopeObligationCorrespondence",
+          "FieldScopeSourceOrigin",
+          "FieldScopeAssessmentOrigin"
+        ],
+        "existing_unchanged_shapes": [
+          "FieldOwnerResult",
+          "GapOwnerResult",
+          "RecipientMaterial",
+          "RecipientWriteContext",
+          "OwnerMaterial",
+          "F05DetailedRequest",
+          "F05DetailedReturn",
+          "CoreComparison",
+          "RefOperand",
+          "RecordOccurrence",
+          "OwnerBinding",
+          "ObligationRecordDetails"
+        ],
+        "field_scope_role": "OwnerBinding.roleはstringなので固定field_obligation_scopeを本資料subjectだけに使う。MaterialRole enum又はdefinition/product意味を拡張しない。"
+      },
+      "entry_and_order": {
+        "entry": "F01 Context/header/inputが形成し、元Selection.targetedへ到達した同walkにだけこの意味評価を接ぐ。raw_onlyへscope評価を追加しない。元raw全whole保持は既存規則。",
+        "steps": [
+          "F14 legacy originとglobal returned_refsを元順に確定する。旧Legacy枝/member/条件/reentry/全原原因を無変更prefixに保持。",
+          "semantic_records原k順に実kind=field_unfinished_obligation_scope出現だけをscope_source rowへ保存する。source/body/qualification/owner/targetが未形成でも実原出現と局所原因を落とさない。資料無しに新source rowを作らない。",
+          "全source rowの後、evaluated_field_indicesに実iが現れたfield原i順にscope_assessmentを一行ずつ保存する。未供給profileのfieldにdefault row無し、既存U0を維持。",
+          "同walk RecipientWriteContext.field.obligation_materialから当該assessment実row/原列を受ける。ScopeAssessmentは完成RecipientMaterialを入力にせず循環しない。",
+          "F15/F16は既存global/material/Comparison形成と実nodeへの出力linkを保持。新scope支持列をglobal returned_refsへ連結せず逆配布/消込も行わない。"
+        ],
+        "origin_index": "全legacy prefix→全scope_source k順→全scope_assessment i順。occurrences最終local oはsemantic/source/body/field index、returned_refs r、Comparison出力kと異なる。"
+      },
+      "field_and_source_target": {
+        "body": "FieldObligationScopeBodyは原meaningの五memberだけの型付き投影。reason/reentry_condition/他追加原memberはbody_read/rawwholeに保持し、五member型外とせず自動意味operandにも使わない。",
+        "field": "body.field_ref/template_ref/fullbindingと元FieldInput.ref/template_ref/bindingが現Ref規則で対応するraw field全原indexをtarget_field_indicesへ。別scopeを当該field成功へ移植しない。evaluated_field_indicesはそのうち既存Selection.targetedの実iだけ。原policy決定をsourceにせず新selectorを作らない。",
+        "relations": "target_relation=correspondingは少なくとも一つの実target対応。全端取得済みだが全候補が異なる場合different。必要端が未供給/型外/未到達の場合unestablished。原whole/原因を残し、知らないfield/indexを0へ補わない。複数同値fieldは全indexを保持。",
+        "unknown_target": "field collection未到達/unknown targetでも実profile rowは保管、evaluated=[]、interpretations=[]、assessment無し。既知outsideも同じく意味評価せず元関係を保持。"
+      },
+      "scope_record_member_writers": {
+        "origin": "{collection:semantic_records,index:k,locator:{root:validation_input,pointer:/semantic_records/k}}。OriginalRecord={tag:semantic_record,value:実wrapperwhole}。",
+        "ref_read/binding_read/source_ref_read": "validation_input /semantic_records/k/ref,/binding,/source_refの既存Read全member。値の欠落/実nullを補わない。ref_relationはwrapper.refと当該source body entry.refの対応、binding_relationはwrapper.bindingとmeaning.bindingの原対応。両Readを比較せず型存在だけからcorrespondingにしない。参照対象が未取得ならunestablishedと実原因。",
+        "source_observation_indices": "同validation wholeのsource_ref対応全SourceObservation local indexを原source index順。原Ref/fullvalue/digest条件で対応し、sha256:nullをenvelope実digestと全値不一致として拒否しない。複数source/qual/root同Refの全出現を保持。",
+        "body_occurrences": "既存source_material_leaf_writer_contract/record_and_body_occurrence_leafへ従い同recordの全matching collection/ref/payload body entryをsource→body原順で保存する。source/body/index全member、original_body_entry、collection/ref/payload各Readとpayload_relation/原因をその実nodeへ。BodyOccurrence.checks=[]は既存格納選定、源/資格/root checkを消さずSourceObservationとCheckLinkへ保持。",
+        "owner_bindings": "意味評価対象iへの原targetがあるbody_occurrenceごと（同一bodyに複数iならi原順）にOwnerBinding。role=field_obligation_scope、subject_record=当該scope RecordOrigin、source_observation_index=当該実body。wrapper/source owner Read別保存、source_wrapper共通ANDは既存owner_binding_contract。role_operand_pairsは当該field.ref→対応するselected policy.ref各原index→field.binding.application_contract_refの順。operand_roleはその原path名、Ref/owner各実Read。対象外に架空row無し。異なるiのrowは同じ値でも別出現。",
+        "owner_qualification": "qualification_check_linksは同source checks→各qualification{checks→各root{checks}}の既存nested原順。成功bool/新provider無し。実局所条件未供給をusableへ補完せず、実trust未接続だけを全常時拒否gateにしない。",
+        "causes": "原record取得/source/body/owner/targetの既存生成原因を生成段階順で保持。子へcopy済み列を再flattenしない。同値の別原出現の原因は値dedupしない。"
+      },
+      "source_origin_member_writers": {
+        "origin_kind": "固定literal scope_source。入力nodeから偽装readせずnative variant marker。",
+        "semantic_record_index": "当該実profileのraw semantic_records原k。",
+        "scope_record": "既存RecordOccurrenceを再利用。RecordOrigin=semantic_records/k、OriginalRecord.semantic_record=元wrapper全値、ref/binding/source_refの実Readとsource/body全対応を保持。scopeを宣言したrecord自体がこのOriginの意味subjectであり、owner_bindingsにはfield_obligation_scope roleと全CheckLinksを格納する。既存DefinitionEvidence/GapInterpretationのown inline ownerをここへ置換しない。",
+        "body_read/body": "元semantic_records/k/meaning Read全whole。FieldObligationScopeBodyの5適用memberを読取り、型/target/sourceの段階を原規範どおり保持。kindだけで意味成立にしない。元null/欠落/未知追加memberはbody_readで保持。",
+        "field_read": "同meaning/field_refのRead<CoreJsonValue>。null/absent/型外でもrawとして保持し、存在しないfield Refへcastしない。",
+        "target_field_indices/evaluated_field_indices/target_relation": "前記target規則の実元index/Relation。raw全field保持とsemantic対象選択を分離。資料未取得はunestablished、知っている他scope/fieldはdifferentとして原値を保存する。",
+        "refs_read": "同meaning/unfinished_obligation_refs原Read<CoreJsonValue>。[]、null、absent、unreached、実配列全順を保持。",
+        "unfinished_operands": "原unfinishedRef配列の各実jをoperand_indexとし、original_refはvalidation_input /semantic_records/k/meaning/unfinished_obligation_refs/jのRead<CoreRef>、roleは固定field_scope_unfinished_obligation。record_occurrencesは既存custody規則の元obligations全対応原u順、causesは実lookup/source/body取得原因。condition/reentryは同jのcorrespondences.record_detailsへ既存ObligationRecordDetails全memberで保持する。raw custody義務/condition owner_bindings=[]を維持し、scope命題自身のOwnerBindingと混同しない。",
+        "basis_operands": "basis_reference_boundaryの実意味使用範囲のみ。原全basisRefsはbody/rawへ保持。未使用Ref又は非対応carrierへ架空record/source/資格を作らない。",
+        "correspondences": "各実unfinished operandごとにScopeObligationCorrespondenceの全memberをcorrespondence_member_writersで生成。record_detailsは当該operand内raw record local indexへ束縛する。",
+        "interpretations": "semantic評価domainに属する各実body_occurrence index原順。対象外/未選択は原body/rawを保管するがscope評価済みにしない。各interpretationはその実scope_record.owner_bindingsへのowner_binding_linksを保持し、元body/source/payload/role-owner条件が成立した範囲だけ原refs_readをtyped formedとして返す。",
+        "reason_read/reentry_read": "元meaningの/reason,/reentry_condition各RawRead。optional不在/null/false/0を保存し新gate無し。",
+        "causes": "その原profile/record/body/source/owner/target/形/Refの生成原因を取得→source/body→owner→body型→operandの順で保持。資格不足を全Scope既知false又はdomain定義missingへcastしない。"
+      },
+      "assessment_member_writers": {
+        "origin_kind": "固定literal scope_assessment。",
+        "field_index/field_read/binding_read": "当該raw field原iと実/ref、/binding各Read。親bindingを代用しない。",
+        "source_origin_indices": "当該iをevaluated_field_indicesに持つ全scope_source rowの最終occurrences local oを原順で保持。",
+        "declared_refs_reads": "上記各source.refs_readを全原順/全presenceでcopy。",
+        "interpretation_links": "上記source row/その実interpretationの全ReturnLinkをsource o→interpretation b順で保持。",
+        "support_interpretation_links": "既存guardで個別formedを支持した全実interpretation link。空/未取得へ架空link無し。",
+        "judgment": "formation_and_aggregation/all_values/incompatibleによる全元支持保存と代表Read選定のみ。未使用basis解決を新gateへしない。",
+        "causes": "各source原段階の実原因→sameRef source相反→異なる有効列の原組順Cause→必要なら単一U0。子のcopy済み原因を再flattenしない。"
+      },
+      "basis_reference_boundary": {
+        "raw": "body.basis_refsと全wrapper/rawを全値/全反復保持する。basis_operandsは全basisRefの採択済み一覧ではなく、実際にこのscope意味operandとして使用する原Refだけを原basis index順に格納する。未使用Refへのlookup/qualified成功を捏造しない。",
+        "used": "当該元Refに対応する既存OriginalRecord閉carrierがあり、実meaning operandとして使用する場合に、RefOperandの実original_ref/operand_index/role=field_scope_basis_reference、raw record/source/body/owner原対応と局所原因を既存規則で保持する。SourceEnvelope.Refから通常recordRefへ変換しない。未取得の実使用operandは原因を残すが他field/全案件へ新gateを加えない。",
+        "unsupported_carrier": "application_contract等のRefが原Binding/bodyに存在しても既存OriginalRecordの通常record carrierに無い場合、未取得recordをinventせず原Ref wholeとその使用箇所を保持する。basis解決又はauthority成立は認定しない。必要な新carrier接続は本契約外の具体frontier。",
+        "positive_case": "本正例ではbody.basis_refs[0]=元application_contract_refは原provenanceとして保存するだけで、scope判断の別の意味basisとして採択しないのでconstructed basis observationは0件でbasis_operands=[]。原typedbody.basis_refsは非空のまま全値保持し、原列empty/解決済みを意味しない。実意味使用する枝では全原基底RefのRead/取得対応/局所原因を必ず保存する。OwnerBindingのrole pairは同値のbasisRefから作らず、実field.binding.application_contract_refのReadから作る。"
+      },
+      "correspondence_member_writers": {
+        "operand_index": "当該source.unfinished_operands[j]の実local j。Ref型形成できないslotへ架空RefOperand無し、refs_read/原slot/Causeを保持。",
+        "record_details": "同unfinished_operands[j].record_occurrences内の各実raw義務record local u順に既存ObligationRecordDetailsを一つずつ保存。record_occurrence_index=u、condition_refs_readは元義務/condition_refs、condition_operandsはその原j順の全RefOperand/ConditionBinding元whole/source/body、reentry_ref_readは元義務/reentry_ref。元condition binding absenceはunestablished/Read.absentで新failure無し。実nullreentry保存、非null先consumerは現未閉包を維持。global originが無いscope-only Refでも材料を失わない。",
+        "global_origin_links": "同原Ref/fullbindingで結べた実Legacy origin全出現をprefix o順に{root:f05_return,pointer:/owner_material/obligation_material/occurrences/o}。架空対応/先頭一致無し。source/assessment rowをglobal originへcastしない。",
+        "applicability_ref_links": "同原Ref/fullbindingで結べた元FN3.material.unfinished_obligation_refs全出現のt順。ReturnLink.root=f05_return、pointer=/original_request/compare_applicability/comparison/material/unfinished_obligation_refs/t。FN3未形成/原node未取得ならlink無しで原whole/原因を保持。"
+      },
+      "formation_and_aggregation": {
+        "individual": "原profile自身のwrapper/source/body/qualification/role-owner、対象field/fullbinding/templateと原unfinishedRef列、実使用されたmeaning operandsの対応が形成した実bodyだけの個別judgmentをformed（原refs_readからRead<CoreRef[]>）へ。scope未供給・未取得を[]/missing/NAへ変換しない。未使用basisRef全解決を全体gateにしない。",
+        "all_values": "同fieldの全実適用解釈がformedで原配列の順/Ref全値/反復が現typed equalityで同値ならaggregate formed、原順先頭の実Readは表示代表だけ。全元Read/linkを保持する。同値反復をdedupしない。",
+        "incompatible": "同evidenceRef異本文はstatement_source_conflict、異なる有効原列はaggregation_unestablished。source/key/数値大小/分類labelでunion/priority/完了裁定をしない。未形成適用候補をpositive一件で相殺しない。",
+        "no_source": "新scope row/assessment無し。既存U0をそのまま維持する。profile無しを新fieldscope evidence無し正常[]へ変換しない。"
+      },
+      "cause_patterns": {
+        "body_ref_column_unformed": {
+          "kind": "body_unformed",
+          "target": {
+            "root": "validation_input",
+            "pointer": "/semantic_records/k/meaning/unfinished_obligation_refs"
+          },
+          "left": {
+            "tag": "original",
+            "read_location": {
+              "root": "validation_input",
+              "pointer": "/semantic_records/k/meaning/unfinished_obligation_refs"
+            }
+          },
+          "right": {
+            "tag": "normative_literal",
+            "value": "CoreRef[]",
+            "rule_pointer": "/f05_detail_contract/field_obligation_scope_writer_contract/cause_patterns/body_ref_column_unformed/right/value"
+          },
+          "rule_pointer": "/f05_detail_contract/field_obligation_scope_writer_contract/cause_patterns/body_ref_column_unformed"
+        },
+        "different_scope_columns": {
+          "kind": "aggregation_unestablished",
+          "target": {
+            "root": "validation_input",
+            "pointer": "/field_inputs/i"
+          },
+          "left": {
+            "tag": "original",
+            "read_location": "最初の実formed支持列Read"
+          },
+          "right": {
+            "tag": "original",
+            "read_location": "相反する次の実formed支持列Read"
+          },
+          "rule_pointer": "/f05_detail_contract/field_obligation_scope_writer_contract/cause_patterns/different_scope_columns"
+        },
+        "same_statement_conflict": {
+          "kind": "statement_source_conflict",
+          "target": {
+            "root": "validation_input",
+            "pointer": "/semantic_records/k"
+          },
+          "left": {
+            "tag": "original",
+            "read_location": "同声明Refに対する先の実meaning Read"
+          },
+          "right": {
+            "tag": "original",
+            "read_location": "同声明Refに対する次の実meaning Read"
+          },
+          "rule_pointer": "/f05_detail_contract/field_obligation_scope_writer_contract/cause_patterns/same_statement_conflict"
+        }
+      },
+      "cause_pattern_binding": "上記read_locationはwriterの原位置指定であってCause型のmemberではない。実返却はCheckOperand.original.readの既存Read全memberを原nodeから書く。k/iは実入力原indexのみ。相反は先原k→次原kの組順、同値組では新Cause無し。source/body/owner/target/lookupは既存同名guardの実Cause全leafをcopyし新kind又は自由なreasonを作らない。全形外条件をこの三patternだけで覆ったとはしない。",
+      "cause_storage_and_order": {
+        "source": "各scope_source.causesはrecord取得/source/body→owner→body型→原unfinished operand→実使用basis operandの生成原因群順。各interpretation/body/operandへ同Causeをcopyするが、それらcopy先から親へ再flattenしない。",
+        "assessment": "当該source_origin_indices原順の元生成原因群→同声明source相反の原組順→異なる有効列の原組順。既存局所原因が有ればunformed.causesへ全列copyし、理由のない補助U0は追加しない。支持未供給でassessmentを作れない既存fieldだけ既存U0一回。",
+        "recipient": "F13のunfinished_refsはこの同field assessment.judgmentを全値copyする（formedの場合原Readを、unformedの場合全Cause）。recipient.causesは既存assessment/domain原因→当該scope生成原因の順。FieldOwnerResult/OwnerMaterialへは生成元stage列だけをfield順で一回移送、子rowへcopy済み列を再flattenしない。別field/別scope occurrence同値Causeは保つ。",
+        "obligation_material": "legacy元原因prefix→新scope_source生成原因原k順→scope_assessment新集約原因原i順（子sourceからcopyした群を二重に加えない）。原Cause.rule_pointer/location/原値は変えない。"
+      },
+      "recipient_and_return_links": {
+        "field": "RecipientWriteContext.field.field_indexと同walk ObligationMaterial内の実scope_assessment.field_indexで結ぶ。assessment形成済みなら既存RecipientMaterial.unfinished_refsへ同judgmentをcopyする。未知fieldindexからrowを合成しない。scope支持だけでrecipient/owner/reasonを作らず既存F13の独立根拠を使う。known/known無不足fieldはrecipient_materials=[]のまま。",
+        "basis_links": "既存recipient基底ReturnLink列の後ろへ、実使用された当該scope_assessment whole linkを一つ追加する。個別scope判断根拠はassessment.interpretation_linksとsource rowから辿る。元recipient基底をscope根拠へ置換しない。assessment無しはlink無し。",
+        "scope_links": "ScopeSourceInterpretation.owner_binding_linksは当該bodyかつ対象fieldの実scope_record.owner_bindings全rowに向く。ScopeAssessment.interpretation_linksはsource_o→interpretation local b順、supportはその中の個別formed支持全row。judgment.value自身の不存在をlinkで隠さない。",
+        "comparison": "新scopeを理由にComparisonLink.memberを増やさない。既存Comparison output node形成時だけその実field_checks等を元ownerへ結ぶ。unfinished_obligation_refsの既存owner_links先頭returned_refs→legacyorigin順を維持し、新fieldscope profileをglobaloutput根拠へ混ぜない。Comparison unformed時の実出力配列indexを作らない。"
+      },
+      "legacy_preserve_change": {
+        "preserve": "旧ObligationOrigin七member/whole/順はLegacyObligationOrigin枝へ無変換copy。新profile未供給の旧rawについてoccurrences全whole/globalref/既存U0/全既存oracle値を変更しない。knowledge版不足、recipient実受理、B019/030、source実取得trustは既存frontier。",
+        "change": "新実profile供給時のみFieldScopeSourceOrigin/FieldScopeAssessmentOriginのscope rows、body五member投影/原source-owner・scopeRef/全link・条件/reentry保管先を追加。ObligationOrigin unionは内部出力の有限和。",
+        "reason": "承認F05の当該未完scopeをglobalKindTraceから逆生成せず、原ownerの同field命題と全元Refsを別に保持する。UTW014/020/021と今回U0の実不足を起点とし新要求/gate/人間裁定を足さない。"
+      },
+      "remaining": [
+        "基本scope要求はmainへ統合済みだが、本L5 native writerは候補であり未採用・独立review待ち。",
+        "本L8内の追加有限oracleは固定9-source positive case一件に限り、newtype/writer全domain又は全scope枝を証明しない。",
+        "basis全解決/全carrier/new meaning providerを本scope formedから推定しない。実使用operandの通常record接続未定は原参照/原因とともに残す。",
+        "全lookup missing/multiple、型外raw/未到達、実source/trust/owner取得、非nullreentry先、knowledge版不足、B019/030 typed接続及びnative consumer全域は未閉包。",
+        "実call/同call producer資格、source root/custody、runtime/CI動作はこの条件付き合成oracleで認定しない。"
+      ],
+      "source_interpretation_all_leaf_writers": {
+        "body_occurrence_index": "scope_record.body_occurrences内の実local b。原source body_records indexを代入しない。",
+        "owner_binding_links": "root=f05_return /owner_material/obligation_material/occurrences/o/scope_record/owner_bindings/binding_index の当該実全entry。source/qualification/root check local索引は既存19check flatten writerのまま。",
+        "judgment": "formation_and_aggregation/individualに従い局所原命題のFormationを保持。全basisRef解決又は実trust成立を判定条件/結果へ追加しない。",
+        "causes": "このbody/source/ownerに局所の実Cause。肯定する別bodyでも既知source相反は消さない。"
+      }
+    },
+    "positive_field_evidence_link_writer_contract": {
+      "id": "HARNESS-L5-009-F05-POSITIVE-EVIDENCE-LINK-WRITER",
+      "status": "未採用local技術差分候補",
+      "source_pointers": [
+        "/f05_detail_contract/reference_and_collection_rules/order",
+        "/f05_detail_contract/leaf_writer_ledger/10",
+        "/f05_detail_contract/leaf_writer_ledger/12",
+        "/f05_detail_contract/leaf_writer_ledger/14",
+        "/f05_detail_contract/leaf_writer_ledger/21",
+        "/f05_detail_contract/leaf_writer_ledger/22",
+        "/f05_detail_contract/types/BasisOccurrence",
+        "/f05_detail_contract/types/FieldOwnerResult"
+      ],
+      "basis_membership_labels": {
+        "field_evidence_body": "BasisOccurrence.role=field_definition_evidence。原statement自身のRef/record/source/bodyからそのresult tableの先頭群へ。役割labelのみでknownを生成しない。",
+        "content_refs": "BasisOccurrence.role=content_refs、RefOperand.role=definition。各原content_refs indexのRef/全対応record/source/bodyを原順に別entry。",
+        "basis_refs": "BasisOccurrence.role=RefOperand.role=basis_refs。原basis_refs各出現をcontent_refs同値でも別entryに保持。使用されるdefinition/product contentのOwnerBindingは既存意味roleを持つcontent側の実entryを使う。basis_refsを意味owner roleとして新設しない。",
+        "table_index": "当該DefinitionAssessmentの表だけを指す。body自身→content_refs原順→basis_refs原順。field_ref/template_ref/bindingのtarget guard Refはbody/ownerに全保存するが、それだけでbody operand tableへ重複追加しない。個別/集約judgmentは使用した全実support indexを原順に保持。",
+        "source_ref": "BasisOccurrence.source_refは当該raw record.source_refの実fullRef（sha256:null等を保持）。source_index/source_locatorは解決した実SourceEnvelope、body index/locatorはその実entry。envelope.ref実digestは原BodyOccurrence/SourceObservationから別に追え、requested Refへ上書きしない。",
+        "counterexample": "元同じDefinitionEvidence14のcontent_refs[0]とbasis_refs[0]は同Ref。role=definition一律とrole=content_refs/basis_refsは共に旧string型を満たすが原membership説明が異なった。本文で後者を選び反復を保持する。"
+      },
+      "evidence_and_declaration_record_relations": "EvidenceRecordOccurrence.ref_relationは元声明wrapper.refと当該source body entry.ref、binding_relationは元wrapper.binding→同meaning.binding→当該field.bindingの既存target対応。声明Refを異なるmaterial_ref/content_refへ一致させない。原source/body/owner/qualification未形成をpresenceやkindだけでcorrespondingへしない。",
+      "projection_return_links": "declaration basisのdeclaration_linkは実DeclarationOccurrence whole、ProjectionAttempt.record_linkは実content RecordOccurrence。attempt.owner_binding_linksは同content側実entry。声明自身inline owner_bindingsはDeclarationOccurrenceから辿りcontentへ置換しない。形成aggregateとValueJudgmentは実attempt.result.valueへの全linkを保持。",
+      "formed_comparison_links": {
+        "group_order": [
+          "field_checks",
+          "candidate_proposals",
+          "unfinished_obligation_refs",
+          "original_axes",
+          "findings"
+        ],
+        "scope": "この固定group順は内部表現の技術選定で既存唯一規則の発見でない。各group内は実output原index順。未行使candidate/findingのowner根拠writer自体は既存各枝/未閉包を維持。",
+        "field_checks": "実formed当該FieldOwnerResult.field_check.value→definition_assessment.judgment.value→value_assessment.judgment.valueの3link固定順。",
+        "definition_axis": "当該field_check.value→definition_assessment.judgment.valueの2link固定順。",
+        "value_axis": "当該field_check.value→value_assessment.judgment.valueの2link固定順。",
+        "original_reason_basis": "理由/全原evidence/projectionは当該summary配下の元Read/全material/原field wholeから辿る。仮想definition_summary member又はtag文字列pathを作らない。",
+        "unfinished": "既存G1/G2 returned_refs node→Legacy origin wholeの順は不変、新scope支持をglobal output根拠へ混ぜない。",
+        "formation": "実formed出力と上記実formed nodeだけへlink。Comparison.unformed又は存在しないnodeへ架空link無し。"
+      },
+      "preserve_change_reason": {
+        "preserve": "既存型shape、原source/Ref/presence/OwnerBinding主体、全反復、source/basis条件、Projection semantics、正当known/missing/unknown/conflict、原材料/理由/未完と既存globalリンク順。",
+        "change": "正の新body/evidenceを読む際に未固定だった文字列provenance label、source_ref正本、具体formed Comparison owner link先/本数/表内順を選ぶ。139/141等の型数維持を理由に意味を削らず、新型は必要ない範囲。",
+        "reason": "同9source入力でfull5全leafの固定値が二通り可能だった表現上の不足。実生成依存を追える固定linkと原membership別labelを選び、必要source条件を新gate/権限/上流意味へ拡張しない。"
+      }
     }
   }
 }
