@@ -2418,7 +2418,7 @@
     {
       "name": "assemble_os_profile",
       "signature": "assemble_os_profile(input: ProfileAssemblyInput) -> ProfileAssemblyResult",
-      "timing": "同producer.trace.input_snapshotを唯一のraw/projected取得口とし、同request/read全返却を一回受ける。元sourceの所有責務はOS変更owner、選択資料の所有責務は既存producer/HARNESSのままで、型名一致やlocator一致から資格を生成しない。"
+      "timing": "同producer.trace.input_snapshotを唯一のraw/projected取得口とし、同request/read全返却を一回受ける。変更sourceと選択資料を別供給口として保持し、選択資料の責務は既存producer/HARNESSに残す。sourceの所有者・実資格は型名一致やlocator一致から生成しない。"
     },
     {
       "name": "profile_assembly_call",
@@ -2478,13 +2478,13 @@
       "trace": "比較可能な既知相反をunknown contenderで隠さず、相反と未知の全row/index/原値をそれぞれ保持する。既知foreignだけを相反へ算入しない。以後のunknown/同値投影枝より優先する。"
     },
     {
-      "input": "Supplied; 上記既知相反なし、unknown contenderあり",
+      "input": "Supplied; 上記既知相反なし、unknown contenderあり又は原issuesが非空",
       "changed_targets": "Field.null",
       "status": "unknown",
-      "trace": "matchedがあっても未解決候補の可能性を捨てない。全matched/unknown/not_applicableを原順で保持する。"
+      "trace": "matchedがあっても未解決候補や原資料の不足診断を捨てない。全matched/unknown/not_applicableと原issuesを保持する。issuesには対象/row対応がないため対象外とは推定せず、架空rowや索引を作らない。"
     },
     {
-      "input": "Supplied; matched一件以上、unknown contenderなし、matchedのchange_ref/base/headおよびchanged_targets Field全値が同じ",
+      "input": "Supplied; matched一件以上、unknown contenderなし、原issuesが空、matchedのchange_ref/base/headおよびchanged_targets Field全値が同じ",
       "changed_targets": "matchedの共有changed_targets Field全値",
       "status": "corresponding",
       "trace": "locator/source_body全体の一致は不要。他body差・異locator・既知foreignを全保持し、同じtarget Fieldを一回投影する。target absent/null/emptyを充足判定しない。"
@@ -2505,8 +2505,8 @@
     "origin_read": "原variant、全body/locator/issues/row順、foreign/unknown/相反を保持する。"
   },
   "l9_oracle_followup_basis": {
-    "status": "same_input_pair_unclosed",
-    "meaning_ja": "本追補はL4だけの設計案で、同Vの新L9全引数/全期待は未著述。実行証拠や完成oracleと扱わない。",
+    "status": "finite_pair_authored_full_domain_unclosed",
+    "meaning_ja": "同VのL9 /profile_assembly_verificationへ全引数・全返却の有限期待を著述済み。対象HEADの独立reviewと有限期待の照合を全域の意味完了や実行証拠と同一視しない。",
     "fixed_positive_seed": "既存 /producer_selection_integration_verification/cases/0 のNORMAL-MINIMUM-U1は固定条件例の材料であり、preloaded actual Profileを新構築sourceにしない。",
     "consumer_only_controls_preserved": [
       "/profile_selection_probes/0",
@@ -2526,7 +2526,7 @@
       "foreignとmatched併存はmatchedを抑止せず、unknown contender併存は局所unknown",
       "direct/selection planの相反、両非供給、片側未形成を分ける"
     ],
-    "scope_limit": "現時点では新L9全返却期待は起草中である。上の列挙を検証成功や全域閉包に変換しない。"
+    "scope_limit": "新L9の有限全返却期待は起草済みである。未行使枝はL9 oracle_scope_ja/unexercised_jaへ明示し、列挙を全域検証成功へ変換しない。"
   },
   "legacy_and_scope": {
     "legacy_sources": [
@@ -2541,7 +2541,7 @@
     ],
     "current_requirement": "L2 OS020とL3 F01のProfile構築責務を具体化する。異なる変更が異なる義務/選択を必ず生むとは要求しない。",
     "preserved_ja": "旧selection caller/six whole、HARNESS義務owner、独立context比較、source資格と実execution未成立を保持する。",
-    "difference_ja": "選択だけで全Profileとしないため、同投影のbinding/direct planと独立変更ownerを用いたsibling構築口を追加する。既存finding後source lookupを前段成功と扱わず専用read境界を明示する。これは既存要求の技術再導出であり要求意味や承認手続きを増やさない。"
+    "difference_ja": "選択だけで全Profileとしないため、同投影のbinding/direct planと独立した変更sourceを用いたsibling構築口を追加する。既存finding後source lookupを前段成功と扱わず専用read境界を明示する。これは既存要求の技術再導出であり要求意味や承認手続きを増やさない。"
   },
   "limits_ja": [
     "未承認の正式L4/L9契約であり、候補アルゴリズム・reader・validator・runtime・CI・testは実行していない。",
@@ -2745,12 +2745,12 @@
   "source_binding_ja": "source_basisは固定08563の本文根拠であり、追補後ファイル自身のhashを参照しない。型名は選択した元record名に結び、RawPacket=/logical_types/17、InputProjection=/logical_types/18、PlanSelectionDerivationResult=既存L4 private_closed_types/11とする。これらの文字列から新しいcodec、owner資格、実配送の成功を生成しない。",
   "closed_type_interpretation_ja": "新しいrecordはfieldsに列挙した全memberを必須とし余剰memberを持たない。閉sumは列挙variantだけで各variantの宣言memberをすべて保持する。integer索引は対象原配列の0始まり非負整数であり、raw JSON number一般や既存RawValueを整数へ狭めない。既存Field<T>等の許容域/optional属性は改変しない。",
   "preassembly_source_writer_ja": [
-    "readは当該requestのOS変更owner資料を対象とし、source_locatorは同時点の元revision/path/pointer/object hash、source_bodyはその元object全値を保持する。locatorのhashだけで実owner資格やcustody成立を認定しない。取得adapterと実資格は未成立のまま明示する。",
+    "readは当該requestの変更sourceの原資料を対象とし、source_locatorは同時点の元revision/path/pointer/object hash、source_bodyはその元object全値を保持する。locatorのhashだけで実owner資格やcustody成立を認定しない。取得adapterと実資格は未成立のまま明示する。",
     "source_bodyの同名change_ref/base/head/changed_targetsの各原memberを既存Field投影規則でtyped同名fieldへ対応させる。presence/tag/value/list原順を一つずつ照合し、unknown memberもsource_body全体へ保持する。bodyの不存在子、型外値をsupplied正常値へcastしない。必要投影対応未形成ならraw_typed_status=unestablished、既知食違いならconflictとする。後者は局所applicability=unknownに保ち、集約change_set_status=conflictとconflict_indicesへ残す。局所unknownを理由に既知相反を消さず、新しい全体gateにはしない。",
     "同requestのinputs.change_ref、binding.base/headを左右別に原親/子presenceごとに保つ。親未成立は子operandを捏造せず当該比較unknown。両側supplied文字列一致はcorresponding、既知差はconflict、両側absentはnot_supplied、それ以外はunknown。empty/null/未形成をknown一致にしない。",
     "raw_typed_status=correspondingかつ三operand対応はmatched。既知operand差が一つでもあり対象外を確定できるrowはnot_applicableとして全raw保持する。対象外確定前に必要対応が未形成のrowはunknown contender。raw/typed相反をknown foreignの証拠に使わない。適用性はこの変更集合の局所判定であり全体資格を生成しない。",
     "原readがSuppliedのとき全recordsを原indexでdispositionへ一対一保持する。Unavailable/DecodeInvalid等は原variantと全issues/raw_valueをtraceへ保持し架空rowを作らない。取得sourceが当該requestに属すること、原body→typed対応、後のfacet判断は異なる責務であり、consumer判断から前段owner資料を逆生成しない。",
-    "change_set_conflict_indicesはraw_typed_status=conflictの元row index、およびmatched群のchanged_targets Field全値の既知相反に参加した元indexを原records順で保持する。change_set_unresolved_indicesはapplicability=unknownの元indexを原順に保持する。raw_typed相反から対象外を確定できないrowは両列へ同時に残してよい。和を取る際は同一原出現の二理由による二重追加だけを避け、異なる元indexの反復rowを削除しない。statusは既知相反を優先し、unknown/known共存を全traceへ残す。",
+    "change_set_conflict_indicesはraw_typed_status=conflictの元row index、およびmatched群のchanged_targets Field全値の既知相反に参加した元indexを原records順で保持する。change_set_unresolved_indicesはapplicability=unknownの元indexを原順に保持する。raw_typed相反から対象外を確定できないrowは両列へ同時に残す。和を取る際は同一原出現の二理由による二重追加だけを避け、異なる元indexの反復rowを削除しない。statusは既知相反を優先し、unknown/known共存を全traceへ残す。",
     "change_set_selected_indicesは実際にchanged_targets Fieldをコピーしたmatched全rowの元indexを原records順に保持する。値をコピーしていない枝では[]である。source_binding/target Fieldの不明と原matched候補の存在はrow dispositionsへ保ち、この索引を候補全集合と取り違えない。"
   ],
   "direct_selection_plan_relation_ja": [
@@ -2924,7 +2924,7 @@
       },
       {
         "member": "change_set_status",
-        "writer_ja": "NotRequested/NotObservedはnot_supplied、Unavailable/DecodeInvalidはunknown。Suppliedは既知raw_typed相反又はmatched対象Field相反があればconflictを先行する。相反なしでunknown候補があればunknown、matchedなしもunknown。それ以外のmatched一件以上で対象Field全値同じの場合だけcorresponding。元readと各rowを保持し、新しい全体gateへ転用しない。"
+        "writer_ja": "NotRequested/NotObservedはnot_supplied、Unavailable/DecodeInvalidはunknown。Suppliedは既知raw_typed相反又はmatched対象Field相反があればconflictを先行する。相反なしでunknown候補又は非空の原issuesがあればunknown、matchedなしもunknown。それ以外のmatched一件以上で対象Field全値同じの場合だけcorresponding。非空issuesは対象/rowを特定する型情報がないため対象外と推定せず、原read全値を保持する。これはchanged_targetsの局所判定であり、新しい全体gateを追加しない。"
       },
       {
         "member": "change_set_selected_indices",
@@ -3006,7 +3006,8 @@
       "not_claimed_ja": "この論理表示だけで全外側不正shapeのcodec、元bytes/重複object member/実資格、製品通信上のdecode成立を認定しない。",
       "source_body_operand_ja": "本pairの有限fixtureでは、source_bodyのchange_ref/base/head/changed_targetsに明示されたField envelopeはその論理Fieldとして対応させ、さらにFieldへ包まない。裸のnullはField.null、子の不在はField.absentへ対応する。これは固定L5 /functions/0/algorithm/0の不在/null/空/値の分離を用いた有限論理対応であり、raw JSON objectそのものとtyped Fieldとの等値を意味しない。元source_bodyは変換せず保持する。その他の原表現の必要対応が未形成ならraw_typed_status=unestablishedに保ち、正式wire schema/codec、実provider、資格の成立を生成しない。"
     }
-  }
+  },
+  "global_origin_issues_ja": "原OriginRead.Supplied.issuesは不足情報の診断であり、そのkind/位置/元値だけから無関係なsourceと確定しない。既知の行相反は優先し、それがなく非空issuesの場合はchanged_targetsをField.null、change_set_statusをunknownに保つ。他の既知Profile member、全rowの局所status、全issuesの原順は変えない。値をコピーしないためselected_indicesは[]。issuesだけを原因とする場合にunresolved_indicesへ架空indexを追加しない。これは元の行条件だけでissuesを集約へ反映しなかった設計からの技術修正であり、必須入力・資格・全体停止条件を増やさない。"
 }
     },
     {
