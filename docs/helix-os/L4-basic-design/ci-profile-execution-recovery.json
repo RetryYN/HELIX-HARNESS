@@ -3328,6 +3328,423 @@
           "pointer": "/contracts/0/source_bound_binding_parent_contract/logical_return_type",
           "meaning_ja": "この契約の専用論理型を一箇所で宣言する。既存private_closed_types配列の拡張や共通Bindingの変更ではない。L5 /logical_types/55・/contracts/4とL8 /source_bound_binding_parent_return_verificationに限定した対応を定義済み。全consumerの閉包は別に保持する。"
         }
+      },
+      "ci_material_same_call_contract": {
+        "id": "OS020-CI-MATERIAL-SAME-CALL-L4",
+        "status": "basic_contract_defined_detail_followthrough_unclosed",
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "purpose_ja": "assembled_callerからF02009→F02002→F02003〜07→F02008の8呼出しを同じ入力snapshotへ結び、F02008の7引数と全15返却、6member Profile原値と5member材料を別々に保全する。個別public関数の単独利用は禁止しない。",
+        "source_basis": [
+          {
+            "role": "承認済み義務",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "objects": [
+              {
+                "pointer": "/requirements/37",
+                "canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3"
+              },
+              {
+                "pointer": "/requirements/38",
+                "canonical_sha256": "5656d8fcc6e635269406d3c91e3d2eaac6bc6b0d22bf38d3c75fce259c08a2d7"
+              },
+              {
+                "pointer": "/requirements/39",
+                "canonical_sha256": "6afea8cd6d91c2ac23d0b55f1f778c917c1a1aa5245fa1349fe0be905024f856"
+              }
+            ]
+          },
+          {
+            "role": "対L10",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "objects": [
+              {
+                "pointer": "/cases/37",
+                "canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c"
+              },
+              {
+                "pointer": "/cases/38",
+                "canonical_sha256": "1ad771ecf2d7cbc9cd5224835c4ecdd81512cea746072ce2fb5ff157714613ff"
+              },
+              {
+                "pointer": "/cases/39",
+                "canonical_sha256": "93874ef255250c36da29314a58c6c3f09dc8d4630cf92741c3a3e9be1147c0d7"
+              }
+            ]
+          },
+          {
+            "role": "変更前基本設計の原境界",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "3da37b04bbaad31aac8185adc9dbbd160b42d5a4b70ee381d8ac682075e2c808",
+            "objects": [
+              {
+                "pointer": "/diagnostic_contract/comparison_table/revalidation",
+                "canonical_sha256": "afeb67d36a7e2c9e5bb4b33a4f15abd0de589155bd6635c3803a2c5338224e9a"
+              },
+              {
+                "pointer": "/contracts/0/profile_assembly_contract/closed_private_types/5",
+                "canonical_sha256": "a2093f9bf81f12579178a63878018c5b1ee8e94d4838b1e2b54a549ed4b89b24"
+              },
+              {
+                "pointer": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/12",
+                "canonical_sha256": "98da5232ef933827a8d4888efbc7843b1315ae56e6ba8896e4a15b501ab7a916"
+              },
+              {
+                "pointer": "/contracts/0/selection_producer_contract/private_call_contract/producer_consumer_boundary/existing_consumer/same_call_assembly",
+                "canonical_sha256": "b7ab51b3538f2725e6044adfd23cab018b98b553978a085d99c8644ae0679cf0"
+              }
+            ]
+          },
+          {
+            "role": "変更前詳細設計の型と各関数、過去revision固定、現行hashへの追随対象ではない",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "42c59477724103b33a975ed18da788274a2c68e61217adfd75f8262abd59f070",
+            "objects": [
+              {
+                "pointer": "/logical_types/1",
+                "canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3"
+              },
+              {
+                "pointer": "/logical_types/6",
+                "canonical_sha256": "40955bb830410b3a52ea93388f6f832fbc1df282ef6d2951752b0017120255a1"
+              },
+              {
+                "pointer": "/logical_types/16",
+                "canonical_sha256": "f7f7d57e9d5f0786aad5e67ce07c06275826b8df2d4307b99ae13f09f21aa944"
+              },
+              {
+                "pointer": "/logical_types/37",
+                "canonical_sha256": "099ad3afc02e289652004267d909b3a9edc9703aa11f6ac1253f68c4e8cfa5d4"
+              },
+              {
+                "pointer": "/logical_types/40",
+                "canonical_sha256": "36aa387e51fa6170d8a464d8ec7c9a16ce8ab668c361cce515b891875cdb63c3"
+              },
+              {
+                "pointer": "/functions/1",
+                "canonical_sha256": "6dbe1c4672e9a915417da50bb3f41bf777d24d689f709eb3570a8d88c58752d3"
+              },
+              {
+                "pointer": "/functions/2",
+                "canonical_sha256": "16b6fe41d638032b87934861ec9289d8ecbf95fea1adfd60deeafce7d648832d"
+              },
+              {
+                "pointer": "/functions/3",
+                "canonical_sha256": "69356ec145279e8b1b904ae2cf984787e731a717067d6662f3a10af1397be499"
+              },
+              {
+                "pointer": "/functions/4",
+                "canonical_sha256": "3b5ead84a00a69dd504bc6a0e2cd20110df79fb16ba20fbd9eae71a877f3c04a"
+              },
+              {
+                "pointer": "/functions/5",
+                "canonical_sha256": "2159e957c37486f3db6e8c1906611bc898a16efee2375f178ade306e475f7791"
+              },
+              {
+                "pointer": "/functions/6",
+                "canonical_sha256": "0957c7ea3a5c1fde9266ef85e2d94ee5a2f1ce280644f98ddb2faf47a4d596a0"
+              },
+              {
+                "pointer": "/functions/7",
+                "canonical_sha256": "97292d7858fcec408b2b946b24c49e79beb1e5f02cf35cebe28faad274e126ee"
+              },
+              {
+                "pointer": "/functions/8",
+                "canonical_sha256": "b495a201c1b34471e468774ed308f815d54dbdd2189bf9a690498dee5aefbece"
+              }
+            ]
+          }
+        ],
+        "legacy_comparison": {
+          "asset_id": "LEGACY-ASSET-DA012A9B04D5BE9419CE",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+          "sections": [
+            "§0",
+            "CIS-R-01",
+            "CIS-R-04",
+            "CIS-R-07",
+            "CIS-R-10"
+          ],
+          "retained_ja": "義務・source/HEAD/base・環境/runの根拠を失わず、計画/観測と意味authorityを区別する。",
+          "changed_ja": "旧固定stage/runtime/telemetry形式を移植せず、現行8関数のtyped引数/全返却と原Fieldを同一snapshotで結ぶ。",
+          "reason_ja": "現profile assemblyはF02008の他5facet返却を生成せず、MetadataだけでCIProposalへ飛ぶ接続を成立とできないため。",
+          "sha256": "65400847881f1a72b273f0bdeff503a5ea302705cd0e71d7913fc7d0f8dd18fb",
+          "locations": [
+            "27行: ## §0 authority境界",
+            "39行: #### CIS-R-01 実行identity",
+            "60行: #### CIS-R-04 証明責務identity",
+            "77行: #### CIS-R-07 planの完全分割",
+            "94行: #### CIS-R-10 obligation不変"
+          ]
+        },
+        "entry": {
+          "name": "assembled_caller",
+          "type": "CIInput",
+          "meaning_ja": "既存PlanSelectionInvocationのassembled_caller。上流ProfileAssemblyInvocation/PlanSelectionInvocationは各原wholeで保持し、この契約は存在しない上流返却を合成しない。F02001.fieldsとassembled_callerの普遍同値を要求しない。"
+        },
+        "reused_types": {
+          "CIInput": {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "pointer": "/logical_types/16",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "canonical_sha256": "f7f7d57e9d5f0786aad5e67ce07c06275826b8df2d4307b99ae13f09f21aa944"
+          },
+          "SourceBoundProfile": {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "pointer": "/logical_types/47",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "canonical_sha256": "97b4e412651181739a419af13513314c7d7c9ec0c373c2c13a26680290e5f520"
+          },
+          "MetadataAssessment": {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "pointer": "/logical_types/30",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "canonical_sha256": "82ba86a58f714cb7b69042d3206d6713517bc429cf226bceaf445a8cf3be72d8"
+          },
+          "FacetAssessment": {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "pointer": "/logical_types/31",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "canonical_sha256": "efb6db064e1288cb6d4e1ebea1c95a267bbded168ea1c66ea638b53d2246d3dc"
+          },
+          "CollectionAssessment": {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "pointer": "/logical_types/32",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "canonical_sha256": "ae4f33264ddb5bc820627674e4bbad707573912ce82c3de079769a7ade4c358c"
+          },
+          "RevalidationAssessment": {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "pointer": "/logical_types/33",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "canonical_sha256": "aab49acad83dcab59e2fbe2c13f570fb49a878a5d63c20a63e6e733531d1abcc"
+          },
+          "MaybePhase": {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "pointer": "/logical_types/20",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "canonical_sha256": "e18ec127070d44707a44f1a3725576911f581296dfadb4fc1ae2b63b7809b2fa"
+          },
+          "CIProposal": {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "pointer": "/logical_types/40",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "canonical_sha256": "36aa387e51fa6170d8a464d8ec7c9a16ce8ab668c361cce515b891875cdb63c3"
+          },
+          "Profile": {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "pointer": "/logical_types/6",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "canonical_sha256": "40955bb830410b3a52ea93388f6f832fbc1df282ef6d2951752b0017120255a1"
+          },
+          "Field<T>": {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "pointer": "/logical_types/1",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3"
+          },
+          "MaybeProfile": {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "pointer": "/logical_types/38",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "canonical_sha256": "29e8422680ba75e59ea0e4b5d5e34eac93b9eeed61149308477596cb4f798a68"
+          },
+          "MaybeString": {
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "pointer": "/logical_types/39",
+            "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+            "canonical_sha256": "e704094c5006b0e91c4417180fc995321d68cdb112fbe563295b3e53530eb9e5"
+          }
+        },
+        "closed_private_types": [
+          {
+            "name": "F02009SameCall",
+            "kind": "record",
+            "fields": {
+              "arguments": "F02009Arguments",
+              "returned": "SourceBoundProfile"
+            }
+          },
+          {
+            "name": "F02009Arguments",
+            "kind": "record",
+            "fields": {
+              "caller": "CIInput"
+            }
+          },
+          {
+            "name": "F02002SameCall",
+            "kind": "record",
+            "fields": {
+              "arguments": "F02002Arguments",
+              "returned": "MetadataAssessment"
+            }
+          },
+          {
+            "name": "F02002Arguments",
+            "kind": "record",
+            "fields": {
+              "input": "CIInput"
+            }
+          },
+          {
+            "name": "F02003SameCall",
+            "kind": "record",
+            "fields": {
+              "arguments": "F02003Arguments",
+              "returned": "FacetAssessment"
+            }
+          },
+          {
+            "name": "F02003Arguments",
+            "kind": "record",
+            "fields": {
+              "input": "CIInput",
+              "phase": "MaybePhase"
+            }
+          },
+          {
+            "name": "F02004SameCall",
+            "kind": "record",
+            "fields": {
+              "arguments": "F02004Arguments",
+              "returned": "CollectionAssessment"
+            }
+          },
+          {
+            "name": "F02004Arguments",
+            "kind": "record",
+            "fields": {
+              "input": "CIInput",
+              "phase": "MaybePhase"
+            }
+          },
+          {
+            "name": "F02005SameCall",
+            "kind": "record",
+            "fields": {
+              "arguments": "F02005Arguments",
+              "returned": "FacetAssessment"
+            }
+          },
+          {
+            "name": "F02005Arguments",
+            "kind": "record",
+            "fields": {
+              "input": "CIInput",
+              "phase": "MaybePhase"
+            }
+          },
+          {
+            "name": "F02006SameCall",
+            "kind": "record",
+            "fields": {
+              "arguments": "F02006Arguments",
+              "returned": "RevalidationAssessment"
+            }
+          },
+          {
+            "name": "F02006Arguments",
+            "kind": "record",
+            "fields": {
+              "input": "CIInput",
+              "phase": "MaybePhase"
+            }
+          },
+          {
+            "name": "F02007SameCall",
+            "kind": "record",
+            "fields": {
+              "arguments": "F02007Arguments",
+              "returned": "FacetAssessment"
+            }
+          },
+          {
+            "name": "F02007Arguments",
+            "kind": "record",
+            "fields": {
+              "input": "CIInput"
+            }
+          },
+          {
+            "name": "F02008SameCall",
+            "kind": "record",
+            "fields": {
+              "arguments": "F02008Arguments",
+              "returned": "CIProposal"
+            }
+          },
+          {
+            "name": "F02008Arguments",
+            "kind": "record",
+            "fields": {
+              "input": "CIInput",
+              "metadata": "MetadataAssessment",
+              "operation": "FacetAssessment",
+              "collection": "CollectionAssessment",
+              "continuity": "FacetAssessment",
+              "revalidation": "RevalidationAssessment",
+              "decision": "FacetAssessment"
+            }
+          },
+          {
+            "name": "ProfileMaterialCapture",
+            "kind": "record",
+            "fields": {
+              "source_profile": "Field<Profile>",
+              "body": "MaybeProfile",
+              "digest": "MaybeString"
+            }
+          },
+          {
+            "name": "CIMaterialCalls",
+            "kind": "record",
+            "fields": {
+              "binding": "F02009SameCall",
+              "metadata": "F02002SameCall",
+              "operation": "F02003SameCall",
+              "collection": "F02004SameCall",
+              "continuity": "F02005SameCall",
+              "revalidation": "F02006SameCall",
+              "decision": "F02007SameCall",
+              "material": "F02008SameCall"
+            }
+          },
+          {
+            "name": "CIMaterialInvocation",
+            "kind": "record",
+            "fields": {
+              "assembled_caller": "CIInput",
+              "bound_input": "CIInput",
+              "calls": "CIMaterialCalls",
+              "projection": "ProfileMaterialCapture"
+            }
+          }
+        ],
+        "call_rules_ja": [
+          "F02009をassembled_callerで一度呼び全SourceBoundProfile Rを保存する。statusだけで代替しない。",
+          "既存same_call_assembly.source_bound_assemblyに従いassembled_callerをcloneし、供給recordの親が存在する3接続先だけにField.supplied(R)を設定した値をbound_inputとする。absent/null/empty親はそのまま、他memberは一切補完・相互コピーしない。",
+          "F02002.inputとF02003〜F02008.inputはこのbound_inputの全値に一致する。同値規則はこの8call wrapper内に限り、public関数の独立利用を制限しない。途中でsource/revision/contextを交換した記録はこの同snapshot契約を満たさない。",
+          "F02006の適用phaseは既存L4 diagnostic_contract.comparison_table.revalidation.phases=[resume]に従う。resume以外はselected=false/findings=[]。L5算法本文のphase限定追随は未閉包として残す。",
+          "F02003〜F02006.phaseは同F02002全返却metadata.selected_phaseそのもの。F02007にphase引数を追加しない。全5facetはそれぞれ固有関数へ渡し、MetadataAssessmentや期待値で返却を補わない。",
+          "F02008.metadata/operation/collection/continuity/revalidation/decisionにはそれぞれ同じF02002〜07呼出しの全返却を渡す。7引数と全CIProposal返却を保存する。",
+          "source_profileはbound_input.profileという元6member ProfileのField全体であり、SourceBoundProfile R/親presence/子presence/配列順・反復を含めて保存する。bodyとdigestは同F02008返却profile_material/profile_material_digestをそのまま保存し、source_profileへ上書きしない。",
+          "bodyは既存ProfileBodyの5member(binding/source_ref/changed_targets/obligations/items)。第6member source_boundとstatus summaryはbody/digestへ混ぜない。source_profileと8call記録はdigestが等しくても別の原根拠として保持する。",
+          "profile_material/digestの形成は既存F02008のownership/profile条件と型を保持する。本契約は元Fieldからの一般serialization/正式codecを採択せず、Field.empty→supplied([])等の意味変換を許さない。一般formationと非assemble全域の詳細は下記未閉包へ明示する。"
+        ],
+        "evidence_boundary_ja": "呼出し記録の型と接続条件の設計であり、実call・実資格・実CI・実成功・受入を宣言しない。既存のactual flags=false/whole_ci_verified=false/operation_effect=noneを維持し、新finding/state/gateを作らない。",
+        "unclosed_ja": [
+          "L5にこのwrapperのtype/writer/一般呼出し順と、F02008の6→5member formationを詳細化し、L8へ全返却の独立期待を追随する。今回L9は既存4 assemble入力とその5facet返却だけを有限照合する。",
+          "Field.empty/absent/nullとsupplied([])、nested Binding/CheckItemの非供給値をplain ProfileBodyへ写せる条件、一般typed domainの既存consumer接続、非assemble各phaseは未閉包。原比較のunknown/violationを成功へ変更しない。",
+          "本契約によって実owner資格、正式schema/codec、実配送・CI・L11受入を設計完了の前提へ循環導入しない。これらの実証は実装後工程で別に追跡し、必要な型/資格/接続設計自体の不足とは区別する。",
+          "F02006のL5算法本文へ、既存L4比較表phases=[resume]に基づくphase限定を明示追随し、L8で非resumeの未選択とresumeの再検証を区別する。今回L5/L8の差分は参照hashのみで、この詳細化は未完。"
+        ]
       }
     },
     {
