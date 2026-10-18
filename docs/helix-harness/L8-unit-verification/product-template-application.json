@@ -95224,7 +95224,7 @@
             "profile_candidate_binding": {
                 "revision": "current-unpinned-worktree-candidate",
                 "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-                "file_sha256": "5b80ea08ba5f7060db60d4f9d3831fc94ea9393e5ddeb20356aadcbc3cff01bc",
+                "file_sha256": "2494872699ba40a07c6f649c32944fc77a3b6ced43a4c9f890b2f85a935c7174",
                 "pointer": "/wire_codec_contract/numeric_encode_profile"
             },
             "upstream_decision": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
@@ -142233,7 +142233,7 @@
     "candidate_l5_content_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "source_main": "1b50e0e105f0d51b902b26ba0e48d66381705360",
-      "candidate_file_bytes_sha256": "5b80ea08ba5f7060db60d4f9d3831fc94ea9393e5ddeb20356aadcbc3cff01bc",
+      "candidate_file_bytes_sha256": "2494872699ba40a07c6f649c32944fc77a3b6ced43a4c9f890b2f85a935c7174",
       "revision_semantics": "candidate_file_bytes_sha256はこのL8と同じ保存状態のL5 file bytesを固定する。Git revision/承認を示さない。"
     },
     "producer_condition_presence_probes": [
@@ -143318,7 +143318,7 @@
         "role": "L5詳細設計候補の型・writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "5b80ea08ba5f7060db60d4f9d3831fc94ea9393e5ddeb20356aadcbc3cff01bc",
+        "file_sha256": "2494872699ba40a07c6f649c32944fc77a3b6ced43a4c9f890b2f85a935c7174",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -143334,7 +143334,7 @@
         "role": "既存入力carrierのwire member",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "5b80ea08ba5f7060db60d4f9d3831fc94ea9393e5ddeb20356aadcbc3cff01bc",
+        "file_sha256": "2494872699ba40a07c6f649c32944fc77a3b6ced43a4c9f890b2f85a935c7174",
         "pointers": [
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/sources",
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/qualifications",
@@ -143433,7 +143433,7 @@
         "role": "L5 native ValidationDetailedReturn型・全leaf writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "5b80ea08ba5f7060db60d4f9d3831fc94ea9393e5ddeb20356aadcbc3cff01bc",
+        "file_sha256": "2494872699ba40a07c6f649c32944fc77a3b6ced43a4c9f890b2f85a935c7174",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -145289,7 +145289,7 @@
         "role": "L5のsource照合・原因診断・利用可能性の集約",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "5b80ea08ba5f7060db60d4f9d3831fc94ea9393e5ddeb20356aadcbc3cff01bc",
+        "file_sha256": "2494872699ba40a07c6f649c32944fc77a3b6ced43a4c9f890b2f85a935c7174",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/check_storage_plan",
           "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table",
@@ -147084,7 +147084,7 @@
         "role": "L5 F05 types・Context/header・Cause propagation writers",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "5b80ea08ba5f7060db60d4f9d3831fc94ea9393e5ddeb20356aadcbc3cff01bc",
+        "file_sha256": "2494872699ba40a07c6f649c32944fc77a3b6ced43a4c9f890b2f85a935c7174",
         "pointers": [
           "/f05_detail_contract/types/F05DetailedRequest",
           "/f05_detail_contract/types/ActualPredecessor",
@@ -147692,7 +147692,7 @@
     "source_basis": [
       {
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "5b80ea08ba5f7060db60d4f9d3831fc94ea9393e5ddeb20356aadcbc3cff01bc",
+        "file_sha256": "2494872699ba40a07c6f649c32944fc77a3b6ced43a4c9f890b2f85a935c7174",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/checks/2",
           "/f05_detail_contract/validation_cause_diagnostic_contract/public_validation_projection",
@@ -147827,7 +147827,7 @@
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "base_revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
         "base_file_sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
-        "current_file_sha256": "5b80ea08ba5f7060db60d4f9d3831fc94ea9393e5ddeb20356aadcbc3cff01bc",
+        "current_file_sha256": "2494872699ba40a07c6f649c32944fc77a3b6ced43a4c9f890b2f85a935c7174",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/types/ValidationDetailedReturn",
@@ -153695,7 +153695,7 @@
     ],
     "not_asserted_ja": [
       "F05 callerの全return、Comparison、owner_material、field/gap judgement、G1/G2 origin、実fn0/FN3/FN4 call/return、実資格や実trust取得。",
-      "L5の139型、全writer、全分岐又は製品動作の閉包。",
+      "追補前139型／追補後141型を通じた全型・全writer・全分岐の閉包、又は製品動作。",
       "本有限入力の114 checkは全てcorresponding、6 sourceは全てusableである。different/unestablished/not_applicableのcheck、unusable/unestablishedのusability、qualification_ref wholeのnull、Read.absent/unreached、shape/decode失敗はこの節で行使していない。他の有限節の対照と本節の被覆を混同しない。"
     ],
     "legacy_preserve_change_ja": "既存L8 raw、既存FN3/FN4 whole、従来finite case群は変更しない。既存FN0 input_issues=[]及びunusable_source_refs=[]はc9の歴史literalから保持し、114 source checksの期待を旧正常結果から作らない。",
@@ -153711,7 +153711,7 @@
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "base_revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
         "base_file_sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
-        "current_file_sha256": "5b80ea08ba5f7060db60d4f9d3831fc94ea9393e5ddeb20356aadcbc3cff01bc",
+        "current_file_sha256": "2494872699ba40a07c6f649c32944fc77a3b6ced43a4c9f890b2f85a935c7174",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/collection_reads/canonical_locations",
@@ -153935,5 +153935,3007 @@
       "absent/null/shape failure/unreached collection Readの分岐、F05全native return、実same-call/資格/producer。"
     ],
     "execution_state": "candidate_reader_owner_material_classifier_and_product_tests_not_run"
+  }
+,
+  "f05_native_normal_full_return_oracle": {
+    "id": "HELIXHARNESS-L8-CORE009-F05-NORMAL-FIVE-MEMBER-FULL-RETURN",
+    "status": "finite_conditional_design_oracle_not_executed",
+    "purpose_ja": "固定c9 normal rawとFN3/FN4の固定wholeから始め、現L5のF05DetailedReturn writerに対する5-member全返却の有限条件付き期待を、入力・前段・ValidationDetailedReturn・返却の固定RFC6902 recipeで再構成する。",
+    "source_basis": [
+      {
+        "role": "fixed_historical_raw_and_two_predecessor_wholes",
+        "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "file_sha256": "00e5bba38cbf0fb9a67b2ebe8e6f2a32fcd5317731e2b6119dca5e946ab1f97d",
+        "selected_objects": [
+          {
+            "pointer": "/fixture_contract/normal_fixtures/0/input",
+            "canonical_sha256": "5d545499e0399edb82892e28650e913a60e5767c3007ce3d214b983ba19b89f2"
+          },
+          {
+            "pointer": "/normal_function_oracles/3/expected_output",
+            "canonical_sha256": "ca2c2520f954f42b7ae0c8deb95b371f4d298af479780e5915053b637e2ef6d7"
+          },
+          {
+            "pointer": "/normal_function_oracles/4/expected_output",
+            "canonical_sha256": "18ab90637451144e3623c40e79d395001f5819079b71705ba170b4b4b66f5eb1"
+          }
+        ]
+      },
+      {
+        "role": "current_l5_candidate_content_binding_no_git_revision",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "file_sha256": "2494872699ba40a07c6f649c32944fc77a3b6ced43a4c9f890b2f85a935c7174",
+        "selected_objects": [
+          {
+            "pointer": "/f05_detail_contract/types/F05DetailedReturn",
+            "canonical_sha256": "89c2d3377cc6e446eacd2b8c761be31f0760d0cb42fe1f35a5b9cdea8a47467e"
+          },
+          {
+            "pointer": "/f05_detail_contract/context_header_cause_contract",
+            "canonical_sha256": "39cc18879431d4330d2b697cd29420590ea1f330725709e7715ea051d1a6c8f2"
+          },
+          {
+            "pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract",
+            "canonical_sha256": "192d8bc135e176e8a6f10f5dbd9df2a64f34564b955f12f908b6322dff6a739b"
+          },
+          {
+            "pointer": "/f05_detail_contract/source_material_leaf_writer_contract",
+            "canonical_sha256": "5f9f7eeca2d62d7e7fb6e5cae8effcfeedb52a44c3f0d22809e3b5396d9de95b"
+          },
+          {
+            "pointer": "/f05_detail_contract/recipient_leaf_writer_contract",
+            "canonical_sha256": "0e93615139acfef66708df6deba6fc960b081104193579dae2c12efd6722a977"
+          },
+          {
+            "pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/condition_reentry_materialization/condition_operands",
+            "canonical_sha256": "471eeab90394325ea9dc9b7521df6a8b75b2839f58f75a86b4aa4eeb0f9862ed"
+          },
+          {
+            "pointer": "/f05_detail_contract/collection_and_obligation_origin_writer_contract",
+            "canonical_sha256": "349ecec27b969635936dbb22267ed0c9ee52782aada8b1f80719b695d4f21eda"
+          }
+        ]
+      },
+      {
+        "role": "fixed_historical_validation_recipe_source",
+        "revision": "bd5700e62b7b953b2436b8f50dad0081e557c6be",
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "file_sha256": "564b43f2b3c182d937636cd0a7b344a002a6cd6abb29440de99e1882a5374e3f",
+        "selected_objects": [
+          {
+            "pointer": "/validation_detail_native_six_source_full_return_oracle/expected_native_return_patch",
+            "canonical_sha256": "3bbc6fc3da9f0ffb1b37d14094818532c0c5cba46bd33990c9226cf335d6b221"
+          },
+          {
+            "pointer": "/validation_detail_native_six_source_full_return_oracle/expected_native_return_type",
+            "canonical_sha256": "ec25d3e4eb1b3e956a6ca639a3ad189e9131b166549fe9ee39b7e4f563697b8f"
+          },
+          {
+            "pointer": "/validation_detail_native_six_source_full_return_oracle/input_recipe",
+            "canonical_sha256": "4b7178009de390509f784e5dc0e72b0989ced0612fabc3b2ad5ad22bb1cebbb3"
+          }
+        ],
+        "operation_count": 261
+      }
+    ],
+    "input_recipe": {
+      "evaluation_root": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+        "file_sha256": "00e5bba38cbf0fb9a67b2ebe8e6f2a32fcd5317731e2b6119dca5e946ab1f97d",
+        "meaning_ja": "固定rawとFN3/FN4原wholeを持つtracked c9文書。"
+      },
+      "validation_recipe_source": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "revision": "bd5700e62b7b953b2436b8f50dad0081e557c6be",
+        "file_sha256": "564b43f2b3c182d937636cd0a7b344a002a6cd6abb29440de99e1882a5374e3f",
+        "pointer": "/validation_detail_native_six_source_full_return_oracle/expected_native_return_patch",
+        "canonical_sha256": "3bbc6fc3da9f0ffb1b37d14094818532c0c5cba46bd33990c9226cf335d6b221",
+        "operation_count": 261,
+        "meaning_ja": "c9文書に無いValidationDetailedReturnの固定recipeを、指定した歴史L8 revisionから得る。現行source pinではない。"
+      },
+      "construction_order_ja": [
+        "c9のtracked L8全文をJSON value rootとして読む。",
+        "上記歴史revisionの固定261-op ValidationDetailedReturn recipeをc9 rootへ適用し、/__oracle_case/expected_return相当のValidation入力材料を作る。recipe実体はvalidation_recipe_sourceのpointerから読む。",
+        "input_recipe_patchを適用し、/f05_fixed_case/request/validationへValidationDetailedReturn whole、FN3/FN4 expected_output wholeをそれぞれrequest引数へcopyする。",
+        "expected_native_return_patchを適用し、/f05_fixed_case/expected_returnに5-member F05DetailedReturn全体を再構成する。"
+      ],
+      "input_recipe_patch": [
+        {
+          "op": "add",
+          "path": "/f05_fixed_case",
+          "value": {
+            "request": {
+              "validation": null,
+              "compare_applicability": {
+                "tag": "returned",
+                "producer": "compare_applicability",
+                "comparison": null
+              },
+              "compare_kind_obligation_trace": {
+                "tag": "returned",
+                "producer": "compare_kind_obligation_trace",
+                "comparison": null
+              }
+            }
+          }
+        },
+        {
+          "op": "copy",
+          "from": "/__oracle_case/expected_return",
+          "path": "/f05_fixed_case/request/validation"
+        },
+        {
+          "op": "copy",
+          "from": "/normal_function_oracles/3/expected_output",
+          "path": "/f05_fixed_case/request/compare_applicability/comparison"
+        },
+        {
+          "op": "copy",
+          "from": "/normal_function_oracles/4/expected_output",
+          "path": "/f05_fixed_case/request/compare_kind_obligation_trace/comparison"
+        }
+      ],
+      "typed_request_scope_ja": "これはsource-firstに固定した設計用条件付きrequest literalであり、実fn0/fn3/fn4の同一実行・資格成立・caller実返却を観測した証拠ではない。前段返却を現実のcached resultとして扱わない。"
+    },
+    "expected_native_return_type": {
+      "type": "F05DetailedReturn",
+      "type_pointer": "/f05_detail_contract/types/F05DetailedReturn",
+      "members_in_writer_order": [
+        "original_request",
+        "context_formation",
+        "header_formation",
+        "comparison",
+        "owner_material"
+      ],
+      "member_count": 5,
+      "member_order_is_case_oracle_not_general_writer_order_ja": "このliteralのwriter順の主張はL5の型/return writerに従う。新たなruntime順序要件を加えない。"
+    },
+    "expected_return_path_in_reconstruction": "/f05_fixed_case/expected_return",
+    "expected_native_return_patch": [
+      {
+        "op": "add",
+        "path": "/f05_fixed_case/expected_return",
+        "value": {
+          "original_request": null,
+          "context_formation": {
+            "original_operands": [
+              {
+                "name": "validated",
+                "read": {
+                  "tag": "present",
+                  "location": {
+                    "root": "f05_request",
+                    "pointer": "/validation/validated"
+                  },
+                  "value": null
+                }
+              },
+              {
+                "name": "compare_applicability",
+                "read": {
+                  "tag": "present",
+                  "location": {
+                    "root": "f05_request",
+                    "pointer": "/compare_applicability"
+                  },
+                  "value": null
+                }
+              },
+              {
+                "name": "compare_kind_obligation_trace",
+                "read": {
+                  "tag": "present",
+                  "location": {
+                    "root": "f05_request",
+                    "pointer": "/compare_kind_obligation_trace"
+                  },
+                  "value": null
+                }
+              }
+            ],
+            "result": {
+              "tag": "formed",
+              "value": {
+                "validated": null,
+                "compare_applicability": null,
+                "compare_kind_obligation_trace": null
+              }
+            }
+          },
+          "header_formation": {
+            "binding_read": {
+              "tag": "present",
+              "location": {
+                "root": "validation_input",
+                "pointer": "/binding"
+              },
+              "value": null
+            },
+            "result": {
+              "tag": "formed",
+              "value": null
+            }
+          },
+          "comparison": {
+            "tag": "unformed",
+            "causes": []
+          },
+          "owner_material": {
+            "tag": "evaluated",
+            "original_request": null,
+            "field_inputs_read": {
+              "tag": "present",
+              "location": {
+                "root": "validation_input",
+                "pointer": "/field_inputs"
+              },
+              "value": null
+            },
+            "gap_proposals_read": {
+              "tag": "present",
+              "location": {
+                "root": "validation_input",
+                "pointer": "/gap_proposals"
+              },
+              "value": null
+            },
+            "field_results": [
+              {
+                "tag": "evaluated",
+                "value": {
+                  "field_index": 0,
+                  "field_locator": {
+                    "root": "validation_input",
+                    "pointer": "/field_inputs/0"
+                  },
+                  "original_field": null,
+                  "parent_binding": {
+                    "tag": "present",
+                    "location": {
+                      "root": "validation_input",
+                      "pointer": "/binding"
+                    },
+                    "value": null
+                  },
+                  "field_binding": {
+                    "tag": "present",
+                    "location": {
+                      "root": "validation_input",
+                      "pointer": "/field_inputs/0/binding"
+                    },
+                    "value": null
+                  },
+                  "binding_relation": "corresponding",
+                  "definition_material": {
+                    "role": "definition",
+                    "refs_read": {
+                      "tag": "present",
+                      "location": {
+                        "root": "validation_input",
+                        "pointer": "/field_inputs/0/definition_refs"
+                      },
+                      "value": null
+                    },
+                    "operands": [
+                      {
+                        "operand": {
+                          "original_ref": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/field_inputs/0/definition_refs/0"
+                            },
+                            "value": null
+                          },
+                          "operand_index": 0,
+                          "role": "definition",
+                          "record_occurrences": [
+                            {
+                              "origin": {
+                                "collection": "semantic_records",
+                                "index": 9,
+                                "locator": {
+                                  "root": "validation_input",
+                                  "pointer": "/semantic_records/9"
+                                }
+                              },
+                              "original_record": {
+                                "tag": "semantic_record",
+                                "value": null
+                              },
+                              "ref_read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/semantic_records/9/ref"
+                                },
+                                "value": null
+                              },
+                              "binding_read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/semantic_records/9/binding"
+                                },
+                                "value": null
+                              },
+                              "source_ref_read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/semantic_records/9/source_ref"
+                                },
+                                "value": null
+                              },
+                              "ref_relation": "corresponding",
+                              "binding_relation": "corresponding",
+                              "source_observation_indices": [
+                                2
+                              ],
+                              "body_occurrences": [
+                                {
+                                  "source_observation_index": 2,
+                                  "source_index": 2,
+                                  "source_locator": {
+                                    "root": "validation_input",
+                                    "pointer": "/sources/2"
+                                  },
+                                  "source_ref": null,
+                                  "body_index": 5,
+                                  "body_locator": {
+                                    "root": "validation_input",
+                                    "pointer": "/sources/2/body/records/5"
+                                  },
+                                  "original_body_entry": null,
+                                  "collection_read": {
+                                    "tag": "present",
+                                    "location": {
+                                      "root": "validation_input",
+                                      "pointer": "/sources/2/body/records/5/collection"
+                                    },
+                                    "value": null
+                                  },
+                                  "ref_read": {
+                                    "tag": "present",
+                                    "location": {
+                                      "root": "validation_input",
+                                      "pointer": "/sources/2/body/records/5/ref"
+                                    },
+                                    "value": null
+                                  },
+                                  "payload_read": {
+                                    "tag": "present",
+                                    "location": {
+                                      "root": "validation_input",
+                                      "pointer": "/sources/2/body/records/5/payload"
+                                    },
+                                    "value": null
+                                  },
+                                  "payload_relation": "corresponding",
+                                  "checks": [],
+                                  "causes": []
+                                }
+                              ],
+                              "owner_bindings": [
+                                {
+                                  "role": "definition",
+                                  "subject_record": {
+                                    "collection": "semantic_records",
+                                    "index": 9,
+                                    "locator": {
+                                      "root": "validation_input",
+                                      "pointer": "/semantic_records/9"
+                                    }
+                                  },
+                                  "source_observation_index": 2,
+                                  "wrapper_owner": {
+                                    "tag": "present",
+                                    "location": {
+                                      "root": "validation_input",
+                                      "pointer": "/semantic_records/9/ref/owner"
+                                    },
+                                    "value": null
+                                  },
+                                  "source_owner": {
+                                    "tag": "present",
+                                    "location": {
+                                      "root": "validation_input",
+                                      "pointer": "/sources/2/ref/owner"
+                                    },
+                                    "value": null
+                                  },
+                                  "qualification_check_links": [
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": null,
+                                      "root_occurrence_index": null,
+                                      "check_index": 0
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": null,
+                                      "root_occurrence_index": null,
+                                      "check_index": 1
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": null,
+                                      "root_occurrence_index": null,
+                                      "check_index": 2
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 0
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 1
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 2
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 3
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 4
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 5
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 6
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 7
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 0
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 1
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 2
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 3
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 4
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 5
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 6
+                                    },
+                                    {
+                                      "source_observation_index": 2,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 7
+                                    }
+                                  ],
+                                  "source_wrapper_relation": "corresponding",
+                                  "role_operand_pairs": [
+                                    {
+                                      "operand_role": "field.template_ref",
+                                      "operand_ref": {
+                                        "tag": "present",
+                                        "location": {
+                                          "root": "validation_input",
+                                          "pointer": "/field_inputs/0/template_ref"
+                                        },
+                                        "value": null
+                                      },
+                                      "operand_owner": {
+                                        "tag": "present",
+                                        "location": {
+                                          "root": "validation_input",
+                                          "pointer": "/field_inputs/0/template_ref/owner"
+                                        },
+                                        "value": null
+                                      },
+                                      "relation": "corresponding",
+                                      "causes": []
+                                    },
+                                    {
+                                      "operand_role": "field.binding.knowledge_ref",
+                                      "operand_ref": {
+                                        "tag": "present",
+                                        "location": {
+                                          "root": "validation_input",
+                                          "pointer": "/field_inputs/0/binding/knowledge_ref"
+                                        },
+                                        "value": null
+                                      },
+                                      "operand_owner": {
+                                        "tag": "present",
+                                        "location": {
+                                          "root": "validation_input",
+                                          "pointer": "/field_inputs/0/binding/knowledge_ref/owner"
+                                        },
+                                        "value": null
+                                      },
+                                      "relation": "corresponding",
+                                      "causes": []
+                                    },
+                                    {
+                                      "operand_role": "field.definition_refs",
+                                      "operand_ref": {
+                                        "tag": "present",
+                                        "location": {
+                                          "root": "validation_input",
+                                          "pointer": "/field_inputs/0/definition_refs/0"
+                                        },
+                                        "value": null
+                                      },
+                                      "operand_owner": {
+                                        "tag": "present",
+                                        "location": {
+                                          "root": "validation_input",
+                                          "pointer": "/field_inputs/0/definition_refs/0/owner"
+                                        },
+                                        "value": null
+                                      },
+                                      "relation": "corresponding",
+                                      "causes": []
+                                    }
+                                  ],
+                                  "result": "corresponding",
+                                  "causes": []
+                                }
+                              ],
+                              "causes": []
+                            }
+                          ],
+                          "causes": []
+                        },
+                        "declarations": [],
+                        "projection_attempts": [
+                          {
+                            "record_link": {
+                              "root": "f05_return",
+                              "pointer": "/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0"
+                            },
+                            "basis": {
+                              "tag": "native_definition_whole",
+                              "operand_link": {
+                                "root": "f05_return",
+                                "pointer": "/owner_material/field_results/0/value/definition_material/operands/0/operand"
+                              },
+                              "meaning_read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/semantic_records/9/meaning"
+                                },
+                                "value": null
+                              },
+                              "owner_binding_links": [
+                                {
+                                  "root": "f05_return",
+                                  "pointer": "/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/owner_bindings/0"
+                                }
+                              ]
+                            },
+                            "owner_binding_links": [
+                              {
+                                "root": "f05_return",
+                                "pointer": "/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/owner_bindings/0"
+                              }
+                            ],
+                            "result": {
+                              "tag": "formed",
+                              "value": {
+                                "payload": {
+                                  "tag": "present",
+                                  "location": {
+                                    "root": "validation_input",
+                                    "pointer": "/semantic_records/9/meaning"
+                                  },
+                                  "value": null
+                                },
+                                "reason": {
+                                  "tag": "absent",
+                                  "requested": {
+                                    "root": "validation_input",
+                                    "pointer": "/semantic_records/9/meaning/reason"
+                                  },
+                                  "parent": {
+                                    "root": "validation_input",
+                                    "pointer": "/semantic_records/9/meaning"
+                                  },
+                                  "parent_value": {
+                                    "meaning": "合成operation結果を識別する欄"
+                                  }
+                                },
+                                "original_whole": {
+                                  "tag": "present",
+                                  "location": {
+                                    "root": "validation_input",
+                                    "pointer": "/semantic_records/9/meaning"
+                                  },
+                                  "value": null
+                                },
+                                "form": "semantic_whole",
+                                "value_role": null,
+                                "reason_role": "no_reason"
+                              }
+                            },
+                            "causes": []
+                          }
+                        ],
+                        "causes": []
+                      }
+                    ],
+                    "aggregate": {
+                      "tag": "formed",
+                      "value": {
+                        "projection_links": [
+                          {
+                            "root": "f05_return",
+                            "pointer": "/owner_material/field_results/0/value/definition_material/operands/0/projection_attempts/0/result/value"
+                          }
+                        ]
+                      }
+                    },
+                    "causes": []
+                  },
+                  "value_material": {
+                    "role": "product_value",
+                    "refs_read": {
+                      "tag": "present",
+                      "location": {
+                        "root": "validation_input",
+                        "pointer": "/field_inputs/0/value_fact_refs"
+                      },
+                      "value": null
+                    },
+                    "operands": [
+                      {
+                        "operand": {
+                          "original_ref": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/field_inputs/0/value_fact_refs/0"
+                            },
+                            "value": null
+                          },
+                          "operand_index": 0,
+                          "role": "product_value",
+                          "record_occurrences": [
+                            {
+                              "origin": {
+                                "collection": "semantic_records",
+                                "index": 10,
+                                "locator": {
+                                  "root": "validation_input",
+                                  "pointer": "/semantic_records/10"
+                                }
+                              },
+                              "original_record": {
+                                "tag": "semantic_record",
+                                "value": null
+                              },
+                              "ref_read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/semantic_records/10/ref"
+                                },
+                                "value": null
+                              },
+                              "binding_read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/semantic_records/10/binding"
+                                },
+                                "value": null
+                              },
+                              "source_ref_read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/semantic_records/10/source_ref"
+                                },
+                                "value": null
+                              },
+                              "ref_relation": "corresponding",
+                              "binding_relation": "corresponding",
+                              "source_observation_indices": [
+                                0
+                              ],
+                              "body_occurrences": [
+                                {
+                                  "source_observation_index": 0,
+                                  "source_index": 0,
+                                  "source_locator": {
+                                    "root": "validation_input",
+                                    "pointer": "/sources/0"
+                                  },
+                                  "source_ref": null,
+                                  "body_index": 21,
+                                  "body_locator": {
+                                    "root": "validation_input",
+                                    "pointer": "/sources/0/body/records/21"
+                                  },
+                                  "original_body_entry": null,
+                                  "collection_read": {
+                                    "tag": "present",
+                                    "location": {
+                                      "root": "validation_input",
+                                      "pointer": "/sources/0/body/records/21/collection"
+                                    },
+                                    "value": null
+                                  },
+                                  "ref_read": {
+                                    "tag": "present",
+                                    "location": {
+                                      "root": "validation_input",
+                                      "pointer": "/sources/0/body/records/21/ref"
+                                    },
+                                    "value": null
+                                  },
+                                  "payload_read": {
+                                    "tag": "present",
+                                    "location": {
+                                      "root": "validation_input",
+                                      "pointer": "/sources/0/body/records/21/payload"
+                                    },
+                                    "value": null
+                                  },
+                                  "payload_relation": "corresponding",
+                                  "checks": [],
+                                  "causes": []
+                                }
+                              ],
+                              "owner_bindings": [
+                                {
+                                  "role": "product_value",
+                                  "subject_record": {
+                                    "collection": "semantic_records",
+                                    "index": 10,
+                                    "locator": {
+                                      "root": "validation_input",
+                                      "pointer": "/semantic_records/10"
+                                    }
+                                  },
+                                  "source_observation_index": 0,
+                                  "wrapper_owner": {
+                                    "tag": "present",
+                                    "location": {
+                                      "root": "validation_input",
+                                      "pointer": "/semantic_records/10/ref/owner"
+                                    },
+                                    "value": null
+                                  },
+                                  "source_owner": {
+                                    "tag": "present",
+                                    "location": {
+                                      "root": "validation_input",
+                                      "pointer": "/sources/0/ref/owner"
+                                    },
+                                    "value": null
+                                  },
+                                  "qualification_check_links": [
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": null,
+                                      "root_occurrence_index": null,
+                                      "check_index": 0
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": null,
+                                      "root_occurrence_index": null,
+                                      "check_index": 1
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": null,
+                                      "root_occurrence_index": null,
+                                      "check_index": 2
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 0
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 1
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 2
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 3
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 4
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 5
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 6
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": null,
+                                      "check_index": 7
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 0
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 1
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 2
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 3
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 4
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 5
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 6
+                                    },
+                                    {
+                                      "source_observation_index": 0,
+                                      "qualification_occurrence_index": 0,
+                                      "root_occurrence_index": 0,
+                                      "check_index": 7
+                                    }
+                                  ],
+                                  "source_wrapper_relation": "corresponding",
+                                  "role_operand_pairs": [
+                                    {
+                                      "operand_role": "field.value_fact_refs",
+                                      "operand_ref": {
+                                        "tag": "present",
+                                        "location": {
+                                          "root": "validation_input",
+                                          "pointer": "/field_inputs/0/value_fact_refs/0"
+                                        },
+                                        "value": null
+                                      },
+                                      "operand_owner": {
+                                        "tag": "present",
+                                        "location": {
+                                          "root": "validation_input",
+                                          "pointer": "/field_inputs/0/value_fact_refs/0/owner"
+                                        },
+                                        "value": null
+                                      },
+                                      "relation": "corresponding",
+                                      "causes": []
+                                    },
+                                    {
+                                      "operand_role": "field.binding.requirement_ref",
+                                      "operand_ref": {
+                                        "tag": "present",
+                                        "location": {
+                                          "root": "validation_input",
+                                          "pointer": "/field_inputs/0/binding/requirement_ref"
+                                        },
+                                        "value": null
+                                      },
+                                      "operand_owner": {
+                                        "tag": "present",
+                                        "location": {
+                                          "root": "validation_input",
+                                          "pointer": "/field_inputs/0/binding/requirement_ref/owner"
+                                        },
+                                        "value": null
+                                      },
+                                      "relation": "corresponding",
+                                      "causes": []
+                                    }
+                                  ],
+                                  "result": "corresponding",
+                                  "causes": []
+                                }
+                              ],
+                              "causes": []
+                            }
+                          ],
+                          "causes": []
+                        },
+                        "declarations": [],
+                        "projection_attempts": [],
+                        "causes": []
+                      }
+                    ],
+                    "aggregate": {
+                      "tag": "unformed",
+                      "causes": []
+                    },
+                    "causes": []
+                  },
+                  "definition_assessment": {
+                    "evidence_interpretations": [],
+                    "basis_occurrences": [],
+                    "judgment": {
+                      "tag": "unformed",
+                      "causes": []
+                    },
+                    "causes": []
+                  },
+                  "value_assessment": {
+                    "judgment": {
+                      "tag": "unformed",
+                      "causes": []
+                    },
+                    "causes": []
+                  },
+                  "field_check": {
+                    "tag": "unformed",
+                    "causes": []
+                  },
+                  "recipient_materials": [
+                    {
+                      "recipient": "unresolved",
+                      "subject": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/field_inputs/0/ref"
+                        },
+                        "value": null
+                      },
+                      "basis_links": [
+                        {
+                          "root": "f05_return",
+                          "pointer": "/owner_material/field_results/0/value/definition_assessment/judgment"
+                        },
+                        {
+                          "root": "f05_return",
+                          "pointer": "/owner_material/field_results/0/value/definition_material"
+                        }
+                      ],
+                      "original_owner": {
+                        "tag": "unformed",
+                        "causes": []
+                      },
+                      "original_reason": {
+                        "tag": "unformed",
+                        "causes": []
+                      },
+                      "unfinished_refs": {
+                        "tag": "unformed",
+                        "causes": []
+                      },
+                      "causes": []
+                    },
+                    {
+                      "recipient": "unresolved",
+                      "subject": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/field_inputs/0/ref"
+                        },
+                        "value": null
+                      },
+                      "basis_links": [
+                        {
+                          "root": "f05_return",
+                          "pointer": "/owner_material/field_results/0/value/value_assessment/judgment"
+                        },
+                        {
+                          "root": "f05_return",
+                          "pointer": "/owner_material/field_results/0/value/value_material"
+                        }
+                      ],
+                      "original_owner": {
+                        "tag": "unformed",
+                        "causes": []
+                      },
+                      "original_reason": {
+                        "tag": "unformed",
+                        "causes": []
+                      },
+                      "unfinished_refs": {
+                        "tag": "unformed",
+                        "causes": []
+                      },
+                      "causes": []
+                    }
+                  ],
+                  "causes": [],
+                  "selection": {
+                    "tag": "targeted",
+                    "policy_occurrences": [
+                      {
+                        "policy_index": 0,
+                        "policy_read": {
+                          "tag": "present",
+                          "location": {
+                            "root": "validation_input",
+                            "pointer": "/application_policies/0"
+                          },
+                          "value": null
+                        },
+                        "decision_index": 0,
+                        "decision_read": {
+                          "tag": "present",
+                          "location": {
+                            "root": "f05_request",
+                            "pointer": "/compare_applicability/comparison/material/policy_decisions/0"
+                          },
+                          "value": null
+                        },
+                        "policy_ref_relation": "corresponding",
+                        "template_relation": "corresponding",
+                        "binding_relation": "corresponding",
+                        "disposition_read": {
+                          "tag": "present",
+                          "location": {
+                            "root": "f05_request",
+                            "pointer": "/compare_applicability/comparison/material/policy_decisions/0/disposition"
+                          },
+                          "value": null
+                        },
+                        "causes": []
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "gap_results": [],
+            "obligation_material": {
+              "proposal_refs": [],
+              "kind_trace_return": {
+                "producer_symbol": "compare_kind_obligation_trace",
+                "input_binding": {
+                  "requirement_ref": {
+                    "identity": "synthetic-requirement",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-requirement-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "product_scope": {
+                    "product": "SYNTHETIC-P",
+                    "tenant": "SYNTHETIC-T",
+                    "environment": "SYNTHETIC-E"
+                  },
+                  "process_contract_ref": {
+                    "identity": "synthetic-process-contract",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-harness-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "application_contract_ref": {
+                    "identity": "synthetic-application-contract",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-harness-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "template_ref": {
+                    "identity": "SYNTHETIC-T-unit",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-brain-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "knowledge_ref": {
+                    "identity": "SYNTHETIC-K-unit",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-brain-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "oracle_ref": {
+                    "identity": "synthetic-pair-unit",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-oracle-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  }
+                },
+                "original_axes": [],
+                "findings": [],
+                "material": {
+                  "obligations": [
+                    {
+                      "ref": {
+                        "identity": "synthetic-obligation-unit",
+                        "revision": "synthetic-A",
+                        "scope": {
+                          "product": "SYNTHETIC-P",
+                          "tenant": "SYNTHETIC-T",
+                          "environment": "SYNTHETIC-E"
+                        },
+                        "owner": "synthetic-core-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "template_ref": {
+                        "identity": "SYNTHETIC-T-unit",
+                        "revision": "synthetic-A",
+                        "scope": {
+                          "product": "SYNTHETIC-P",
+                          "tenant": "SYNTHETIC-T",
+                          "environment": "SYNTHETIC-E"
+                        },
+                        "owner": "synthetic-brain-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "binding": {
+                        "requirement_ref": {
+                          "identity": "synthetic-requirement",
+                          "revision": "synthetic-A",
+                          "scope": {
+                            "product": "SYNTHETIC-P",
+                            "tenant": "SYNTHETIC-T",
+                            "environment": "SYNTHETIC-E"
+                          },
+                          "owner": "synthetic-requirement-owner",
+                          "source_locator": null,
+                          "sha256": null
+                        },
+                        "product_scope": {
+                          "product": "SYNTHETIC-P",
+                          "tenant": "SYNTHETIC-T",
+                          "environment": "SYNTHETIC-E"
+                        },
+                        "process_contract_ref": {
+                          "identity": "synthetic-process-contract",
+                          "revision": "synthetic-A",
+                          "scope": {
+                            "product": "SYNTHETIC-P",
+                            "tenant": "SYNTHETIC-T",
+                            "environment": "SYNTHETIC-E"
+                          },
+                          "owner": "synthetic-harness-owner",
+                          "source_locator": null,
+                          "sha256": null
+                        },
+                        "application_contract_ref": {
+                          "identity": "synthetic-application-contract",
+                          "revision": "synthetic-A",
+                          "scope": {
+                            "product": "SYNTHETIC-P",
+                            "tenant": "SYNTHETIC-T",
+                            "environment": "SYNTHETIC-E"
+                          },
+                          "owner": "synthetic-harness-owner",
+                          "source_locator": null,
+                          "sha256": null
+                        },
+                        "template_ref": {
+                          "identity": "SYNTHETIC-T-unit",
+                          "revision": "synthetic-A",
+                          "scope": {
+                            "product": "SYNTHETIC-P",
+                            "tenant": "SYNTHETIC-T",
+                            "environment": "SYNTHETIC-E"
+                          },
+                          "owner": "synthetic-brain-owner",
+                          "source_locator": null,
+                          "sha256": null
+                        },
+                        "knowledge_ref": {
+                          "identity": "SYNTHETIC-K-unit",
+                          "revision": "synthetic-A",
+                          "scope": {
+                            "product": "SYNTHETIC-P",
+                            "tenant": "SYNTHETIC-T",
+                            "environment": "SYNTHETIC-E"
+                          },
+                          "owner": "synthetic-brain-owner",
+                          "source_locator": null,
+                          "sha256": null
+                        },
+                        "oracle_ref": {
+                          "identity": "synthetic-pair-unit",
+                          "revision": "synthetic-A",
+                          "scope": {
+                            "product": "SYNTHETIC-P",
+                            "tenant": "SYNTHETIC-T",
+                            "environment": "SYNTHETIC-E"
+                          },
+                          "owner": "synthetic-oracle-owner",
+                          "source_locator": null,
+                          "sha256": null
+                        }
+                      },
+                      "kind": "unit",
+                      "meaning": {
+                        "obligation": "内部のstate遷移/失敗時振る舞い",
+                        "fixture_only": true
+                      },
+                      "condition_refs": [
+                        {
+                          "identity": "condition",
+                          "revision": "synthetic-A",
+                          "scope": {
+                            "product": "SYNTHETIC-P",
+                            "tenant": "SYNTHETIC-T",
+                            "environment": "SYNTHETIC-E"
+                          },
+                          "owner": "synthetic-core-owner",
+                          "source_locator": null,
+                          "sha256": null
+                        }
+                      ],
+                      "reentry_ref": null,
+                      "source_ref": {
+                        "identity": "source-synthetic-harness-owner",
+                        "revision": "synthetic-A",
+                        "scope": {
+                          "product": "SYNTHETIC-P",
+                          "tenant": "SYNTHETIC-T",
+                          "environment": "SYNTHETIC-E"
+                        },
+                        "owner": "synthetic-harness-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      }
+                    }
+                  ],
+                  "required_trace_refs": [
+                    {
+                      "identity": "trace-required-1-forward",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    {
+                      "identity": "trace-required-1-reverse",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    {
+                      "identity": "trace-required-2-forward",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    {
+                      "identity": "trace-required-2-reverse",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    {
+                      "identity": "trace-required-3-forward",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    {
+                      "identity": "trace-required-3-reverse",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    }
+                  ],
+                  "matched_edge_refs": [
+                    {
+                      "identity": "trace-1-forward",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    {
+                      "identity": "trace-1-reverse",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    {
+                      "identity": "trace-2-forward",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    {
+                      "identity": "trace-2-reverse",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    {
+                      "identity": "trace-3-forward",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    {
+                      "identity": "trace-3-reverse",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    }
+                  ],
+                  "missing_trace_refs": []
+                }
+              },
+              "original_obligations": {
+                "tag": "present",
+                "location": {
+                  "root": "validation_input",
+                  "pointer": "/obligations"
+                },
+                "value": null
+              },
+              "required_trace_refs": {
+                "tag": "present",
+                "location": {
+                  "root": "validation_input",
+                  "pointer": "/required_trace_refs"
+                },
+                "value": null
+              },
+              "trace_edges": {
+                "tag": "present",
+                "location": {
+                  "root": "validation_input",
+                  "pointer": "/trace_edges"
+                },
+                "value": null
+              },
+              "trace_requirements": {
+                "tag": "present",
+                "location": {
+                  "root": "validation_input",
+                  "pointer": "/trace_requirements"
+                },
+                "value": null
+              },
+              "occurrences": [
+                {
+                  "proposal_index": null,
+                  "ref_index": 0,
+                  "ref_read": {
+                    "tag": "present",
+                    "location": {
+                      "root": "f05_request",
+                      "pointer": "/compare_kind_obligation_trace/comparison/material/obligations/0/ref"
+                    },
+                    "value": null
+                  },
+                  "record_occurrences": [
+                    {
+                      "origin": {
+                        "collection": "obligations",
+                        "index": 0,
+                        "locator": {
+                          "root": "validation_input",
+                          "pointer": "/obligations/0"
+                        }
+                      },
+                      "original_record": {
+                        "tag": "obligation",
+                        "value": null
+                      },
+                      "ref_read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/obligations/0/ref"
+                        },
+                        "value": null
+                      },
+                      "binding_read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/obligations/0/binding"
+                        },
+                        "value": null
+                      },
+                      "source_ref_read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/obligations/0/source_ref"
+                        },
+                        "value": null
+                      },
+                      "ref_relation": "corresponding",
+                      "binding_relation": "corresponding",
+                      "source_observation_indices": [
+                        1
+                      ],
+                      "body_occurrences": [
+                        {
+                          "source_observation_index": 1,
+                          "source_index": 1,
+                          "source_locator": {
+                            "root": "validation_input",
+                            "pointer": "/sources/1"
+                          },
+                          "source_ref": null,
+                          "body_index": 23,
+                          "body_locator": {
+                            "root": "validation_input",
+                            "pointer": "/sources/1/body/records/23"
+                          },
+                          "original_body_entry": null,
+                          "collection_read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/1/body/records/23/collection"
+                            },
+                            "value": null
+                          },
+                          "ref_read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/1/body/records/23/ref"
+                            },
+                            "value": null
+                          },
+                          "payload_read": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/sources/1/body/records/23/payload"
+                            },
+                            "value": null
+                          },
+                          "payload_relation": "corresponding",
+                          "checks": [],
+                          "causes": []
+                        }
+                      ],
+                      "owner_bindings": [],
+                      "causes": []
+                    }
+                  ],
+                  "record_details": [
+                    {
+                      "record_occurrence_index": 0,
+                      "condition_refs_read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/obligations/0/condition_refs"
+                        },
+                        "value": null
+                      },
+                      "condition_operands": [
+                        {
+                          "original_ref": {
+                            "tag": "present",
+                            "location": {
+                              "root": "validation_input",
+                              "pointer": "/obligations/0/condition_refs/0"
+                            },
+                            "value": null
+                          },
+                          "operand_index": 0,
+                          "role": "obligation_condition",
+                          "record_occurrences": [
+                            {
+                              "origin": {
+                                "collection": "conditions",
+                                "index": 0,
+                                "locator": {
+                                  "root": "validation_input",
+                                  "pointer": "/conditions/0"
+                                }
+                              },
+                              "original_record": {
+                                "tag": "condition",
+                                "value": null
+                              },
+                              "ref_read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/conditions/0/ref"
+                                },
+                                "value": null
+                              },
+                              "binding_read": {
+                                "tag": "absent",
+                                "requested": {
+                                  "root": "validation_input",
+                                  "pointer": "/conditions/0/binding"
+                                },
+                                "parent": {
+                                  "root": "validation_input",
+                                  "pointer": "/conditions/0"
+                                },
+                                "parent_value": {
+                                  "ref": {
+                                    "identity": "condition",
+                                    "revision": "synthetic-A",
+                                    "scope": {
+                                      "product": "SYNTHETIC-P",
+                                      "tenant": "SYNTHETIC-T",
+                                      "environment": "SYNTHETIC-E"
+                                    },
+                                    "owner": "synthetic-core-owner",
+                                    "source_locator": null,
+                                    "sha256": null
+                                  },
+                                  "template_ref": {
+                                    "identity": "SYNTHETIC-T-unit",
+                                    "revision": "synthetic-A",
+                                    "scope": {
+                                      "product": "SYNTHETIC-P",
+                                      "tenant": "SYNTHETIC-T",
+                                      "environment": "SYNTHETIC-E"
+                                    },
+                                    "owner": "synthetic-brain-owner",
+                                    "source_locator": null,
+                                    "sha256": null
+                                  },
+                                  "axis_fact_ref": {
+                                    "identity": "axis-fact-3",
+                                    "revision": "synthetic-A",
+                                    "scope": {
+                                      "product": "SYNTHETIC-P",
+                                      "tenant": "SYNTHETIC-T",
+                                      "environment": "SYNTHETIC-E"
+                                    },
+                                    "owner": "synthetic-core-owner",
+                                    "source_locator": null,
+                                    "sha256": null
+                                  },
+                                  "declared_meaning_ref": {
+                                    "identity": "declared-kind",
+                                    "revision": "synthetic-A",
+                                    "scope": {
+                                      "product": "SYNTHETIC-P",
+                                      "tenant": "SYNTHETIC-T",
+                                      "environment": "SYNTHETIC-E"
+                                    },
+                                    "owner": "synthetic-brain-owner",
+                                    "source_locator": null,
+                                    "sha256": null
+                                  },
+                                  "semantic_comparison_ref": {
+                                    "identity": "kind-comparison",
+                                    "revision": "synthetic-A",
+                                    "scope": {
+                                      "product": "SYNTHETIC-P",
+                                      "tenant": "SYNTHETIC-T",
+                                      "environment": "SYNTHETIC-E"
+                                    },
+                                    "owner": "synthetic-core-owner",
+                                    "source_locator": null,
+                                    "sha256": null
+                                  },
+                                  "source_ref": {
+                                    "identity": "source-synthetic-harness-owner",
+                                    "revision": "synthetic-A",
+                                    "scope": {
+                                      "product": "SYNTHETIC-P",
+                                      "tenant": "SYNTHETIC-T",
+                                      "environment": "SYNTHETIC-E"
+                                    },
+                                    "owner": "synthetic-harness-owner",
+                                    "source_locator": null,
+                                    "sha256": null
+                                  }
+                                }
+                              },
+                              "source_ref_read": {
+                                "tag": "present",
+                                "location": {
+                                  "root": "validation_input",
+                                  "pointer": "/conditions/0/source_ref"
+                                },
+                                "value": null
+                              },
+                              "ref_relation": "corresponding",
+                              "binding_relation": "unestablished",
+                              "source_observation_indices": [
+                                1
+                              ],
+                              "body_occurrences": [
+                                {
+                                  "source_observation_index": 1,
+                                  "source_index": 1,
+                                  "source_locator": {
+                                    "root": "validation_input",
+                                    "pointer": "/sources/1"
+                                  },
+                                  "source_ref": null,
+                                  "body_index": 20,
+                                  "body_locator": {
+                                    "root": "validation_input",
+                                    "pointer": "/sources/1/body/records/20"
+                                  },
+                                  "original_body_entry": null,
+                                  "collection_read": {
+                                    "tag": "present",
+                                    "location": {
+                                      "root": "validation_input",
+                                      "pointer": "/sources/1/body/records/20/collection"
+                                    },
+                                    "value": null
+                                  },
+                                  "ref_read": {
+                                    "tag": "present",
+                                    "location": {
+                                      "root": "validation_input",
+                                      "pointer": "/sources/1/body/records/20/ref"
+                                    },
+                                    "value": null
+                                  },
+                                  "payload_read": {
+                                    "tag": "present",
+                                    "location": {
+                                      "root": "validation_input",
+                                      "pointer": "/sources/1/body/records/20/payload"
+                                    },
+                                    "value": null
+                                  },
+                                  "payload_relation": "corresponding",
+                                  "checks": [],
+                                  "causes": []
+                                }
+                              ],
+                              "owner_bindings": [],
+                              "causes": []
+                            }
+                          ],
+                          "causes": []
+                        }
+                      ],
+                      "reentry_ref_read": {
+                        "tag": "present",
+                        "location": {
+                          "root": "validation_input",
+                          "pointer": "/obligations/0/reentry_ref"
+                        },
+                        "value": null
+                      }
+                    }
+                  ],
+                  "kind_trace_links": [
+                    "/material/obligations/0/ref",
+                    "/material/obligations/0"
+                  ],
+                  "causes": []
+                }
+              ],
+              "returned_refs": [
+                {
+                  "identity": "synthetic-obligation-unit",
+                  "revision": "synthetic-A",
+                  "scope": {
+                    "product": "SYNTHETIC-P",
+                    "tenant": "SYNTHETIC-T",
+                    "environment": "SYNTHETIC-E"
+                  },
+                  "owner": "synthetic-core-owner",
+                  "source_locator": null,
+                  "sha256": null
+                }
+              ],
+              "causes": []
+            },
+            "comparison_links": [],
+            "causes": []
+          }
+        }
+      },
+      {
+        "op": "add",
+        "path": "/f05_fixed_case/cause_literals",
+        "value": {
+          "D0": {
+            "kind": "aggregation_unestablished",
+            "target": {
+              "root": "validation_input",
+              "pointer": "/field_inputs/0/definition_refs"
+            },
+            "left": {
+              "tag": "original",
+              "read": {
+                "tag": "present",
+                "location": {
+                  "root": "validation_input",
+                  "pointer": "/field_inputs/0"
+                },
+                "value": {
+                  "ref": {
+                    "identity": "field-A",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-core-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "template_ref": {
+                    "identity": "SYNTHETIC-T-unit",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-brain-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "binding": {
+                    "requirement_ref": {
+                      "identity": "synthetic-requirement",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-requirement-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "product_scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "process_contract_ref": {
+                      "identity": "synthetic-process-contract",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-harness-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "application_contract_ref": {
+                      "identity": "synthetic-application-contract",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-harness-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "template_ref": {
+                      "identity": "SYNTHETIC-T-unit",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-brain-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "knowledge_ref": {
+                      "identity": "SYNTHETIC-K-unit",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-brain-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "oracle_ref": {
+                      "identity": "synthetic-pair-unit",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-oracle-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    }
+                  },
+                  "definition_refs": [
+                    {
+                      "identity": "field-definition",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-brain-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    }
+                  ],
+                  "value_fact_refs": [
+                    {
+                      "identity": "field-value",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-requirement-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    }
+                  ],
+                  "source_ref": {
+                    "identity": "source-synthetic-requirement-owner",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-requirement-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  }
+                }
+              }
+            },
+            "right": {
+              "tag": "normative_literal",
+              "value": "formed local field_definition_evidence judgment",
+              "rule_pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/0/cause/right/value"
+            },
+            "rule_pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/0"
+          },
+          "V0": {
+            "kind": "declaration_unresolved",
+            "target": {
+              "root": "validation_input",
+              "pointer": "/field_inputs/0/value_fact_refs/0"
+            },
+            "left": {
+              "tag": "original",
+              "read": {
+                "tag": "present",
+                "location": {
+                  "root": "validation_input",
+                  "pointer": "/semantic_records/10/meaning"
+                },
+                "value": {
+                  "value": "synthetic-result"
+                }
+              }
+            },
+            "right": {
+              "tag": "normative_literal",
+              "value": "original product_value role/form/value_role basis",
+              "rule_pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/1/cause/right/value"
+            },
+            "rule_pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/1"
+          },
+          "N0": {
+            "kind": "native_leaf_unformed",
+            "target": {
+              "root": "validation_input",
+              "pointer": "/field_inputs/0"
+            },
+            "left": {
+              "tag": "original",
+              "read": {
+                "tag": "present",
+                "location": {
+                  "root": "validation_input",
+                  "pointer": "/field_inputs/0"
+                },
+                "value": {
+                  "ref": {
+                    "identity": "field-A",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-core-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "template_ref": {
+                    "identity": "SYNTHETIC-T-unit",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-brain-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "binding": {
+                    "requirement_ref": {
+                      "identity": "synthetic-requirement",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-requirement-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "product_scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "process_contract_ref": {
+                      "identity": "synthetic-process-contract",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-harness-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "application_contract_ref": {
+                      "identity": "synthetic-application-contract",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-harness-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "template_ref": {
+                      "identity": "SYNTHETIC-T-unit",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-brain-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "knowledge_ref": {
+                      "identity": "SYNTHETIC-K-unit",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-brain-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "oracle_ref": {
+                      "identity": "synthetic-pair-unit",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-oracle-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    }
+                  },
+                  "definition_refs": [
+                    {
+                      "identity": "field-definition",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-brain-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    }
+                  ],
+                  "value_fact_refs": [
+                    {
+                      "identity": "field-value",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-requirement-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    }
+                  ],
+                  "source_ref": {
+                    "identity": "source-synthetic-requirement-owner",
+                    "revision": "synthetic-A",
+                    "scope": {
+                      "product": "SYNTHETIC-P",
+                      "tenant": "SYNTHETIC-T",
+                      "environment": "SYNTHETIC-E"
+                    },
+                    "owner": "synthetic-requirement-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  }
+                }
+              }
+            },
+            "right": {
+              "tag": "normative_literal",
+              "value": "formed FieldCheckProjection",
+              "rule_pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/2/cause/right/value"
+            },
+            "rule_pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/2"
+          },
+          "U0": {
+            "kind": "aggregation_unestablished",
+            "target": {
+              "root": "validation_input",
+              "pointer": "/field_inputs/0"
+            },
+            "left": {
+              "tag": "original",
+              "read": {
+                "tag": "present",
+                "location": {
+                  "root": "f05_request",
+                  "pointer": "/compare_kind_obligation_trace/comparison/material/obligations"
+                },
+                "value": [
+                  {
+                    "ref": {
+                      "identity": "synthetic-obligation-unit",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "template_ref": {
+                      "identity": "SYNTHETIC-T-unit",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-brain-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "binding": {
+                      "requirement_ref": {
+                        "identity": "synthetic-requirement",
+                        "revision": "synthetic-A",
+                        "scope": {
+                          "product": "SYNTHETIC-P",
+                          "tenant": "SYNTHETIC-T",
+                          "environment": "SYNTHETIC-E"
+                        },
+                        "owner": "synthetic-requirement-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "product_scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "process_contract_ref": {
+                        "identity": "synthetic-process-contract",
+                        "revision": "synthetic-A",
+                        "scope": {
+                          "product": "SYNTHETIC-P",
+                          "tenant": "SYNTHETIC-T",
+                          "environment": "SYNTHETIC-E"
+                        },
+                        "owner": "synthetic-harness-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "application_contract_ref": {
+                        "identity": "synthetic-application-contract",
+                        "revision": "synthetic-A",
+                        "scope": {
+                          "product": "SYNTHETIC-P",
+                          "tenant": "SYNTHETIC-T",
+                          "environment": "SYNTHETIC-E"
+                        },
+                        "owner": "synthetic-harness-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "template_ref": {
+                        "identity": "SYNTHETIC-T-unit",
+                        "revision": "synthetic-A",
+                        "scope": {
+                          "product": "SYNTHETIC-P",
+                          "tenant": "SYNTHETIC-T",
+                          "environment": "SYNTHETIC-E"
+                        },
+                        "owner": "synthetic-brain-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "knowledge_ref": {
+                        "identity": "SYNTHETIC-K-unit",
+                        "revision": "synthetic-A",
+                        "scope": {
+                          "product": "SYNTHETIC-P",
+                          "tenant": "SYNTHETIC-T",
+                          "environment": "SYNTHETIC-E"
+                        },
+                        "owner": "synthetic-brain-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "oracle_ref": {
+                        "identity": "synthetic-pair-unit",
+                        "revision": "synthetic-A",
+                        "scope": {
+                          "product": "SYNTHETIC-P",
+                          "tenant": "SYNTHETIC-T",
+                          "environment": "SYNTHETIC-E"
+                        },
+                        "owner": "synthetic-oracle-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      }
+                    },
+                    "kind": "unit",
+                    "meaning": {
+                      "obligation": "内部のstate遷移/失敗時振る舞い",
+                      "fixture_only": true
+                    },
+                    "condition_refs": [
+                      {
+                        "identity": "condition",
+                        "revision": "synthetic-A",
+                        "scope": {
+                          "product": "SYNTHETIC-P",
+                          "tenant": "SYNTHETIC-T",
+                          "environment": "SYNTHETIC-E"
+                        },
+                        "owner": "synthetic-core-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      }
+                    ],
+                    "reentry_ref": null,
+                    "source_ref": {
+                      "identity": "source-synthetic-harness-owner",
+                      "revision": "synthetic-A",
+                      "scope": {
+                        "product": "SYNTHETIC-P",
+                        "tenant": "SYNTHETIC-T",
+                        "environment": "SYNTHETIC-E"
+                      },
+                      "owner": "synthetic-harness-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    }
+                  }
+                ]
+              }
+            },
+            "right": {
+              "tag": "normative_literal",
+              "value": "original field-specific unfinished obligation scope",
+              "rule_pointer": "/f05_detail_contract/recipient_leaf_writer_contract/unfinished_scope_unformed/cause/right/value"
+            },
+            "rule_pointer": "/f05_detail_contract/recipient_leaf_writer_contract/unfinished_scope_unformed"
+          }
+        }
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request",
+        "path": "/f05_fixed_case/expected_return/original_request"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request",
+        "path": "/f05_fixed_case/expected_return/owner_material/original_request"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated",
+        "path": "/f05_fixed_case/expected_return/context_formation/original_operands/0/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/compare_applicability",
+        "path": "/f05_fixed_case/expected_return/context_formation/original_operands/1/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/compare_kind_obligation_trace",
+        "path": "/f05_fixed_case/expected_return/context_formation/original_operands/2/read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated",
+        "path": "/f05_fixed_case/expected_return/context_formation/result/value/validated"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/compare_applicability/comparison",
+        "path": "/f05_fixed_case/expected_return/context_formation/result/value/compare_applicability"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/compare_kind_obligation_trace/comparison",
+        "path": "/f05_fixed_case/expected_return/context_formation/result/value/compare_kind_obligation_trace"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/binding",
+        "path": "/f05_fixed_case/expected_return/header_formation/binding_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/binding",
+        "path": "/f05_fixed_case/expected_return/header_formation/result/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_inputs_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/gap_proposals",
+        "path": "/f05_fixed_case/expected_return/owner_material/gap_proposals_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/original_field"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/binding",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/parent_binding/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/binding",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/field_binding/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/definition_refs",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/refs_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/value_fact_refs",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/refs_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/semantic_records/9",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/original_record/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/semantic_records/9/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/ref_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/semantic_records/9/source_ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/source_ref_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/2/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/body_occurrences/0/source_ref"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/2/body/records/5",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/body_occurrences/0/original_body_entry"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/2/body/records/5/collection",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/body_occurrences/0/collection_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/2/body/records/5/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/body_occurrences/0/ref_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/2/body/records/5/payload",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/body_occurrences/0/payload_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/semantic_records/9/binding",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/binding_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/semantic_records/9/ref/owner",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/owner_bindings/0/wrapper_owner/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/2/ref/owner",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/owner_bindings/0/source_owner/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/semantic_records/10",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/original_record/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/semantic_records/10/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/ref_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/semantic_records/10/source_ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/source_ref_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/0/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/body_occurrences/0/source_ref"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/0/body/records/21",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/body_occurrences/0/original_body_entry"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/0/body/records/21/collection",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/body_occurrences/0/collection_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/0/body/records/21/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/body_occurrences/0/ref_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/0/body/records/21/payload",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/body_occurrences/0/payload_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/semantic_records/10/binding",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/binding_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/semantic_records/10/ref/owner",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/owner_bindings/0/wrapper_owner/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/0/ref/owner",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/owner_bindings/0/source_owner/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/obligations/0",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_occurrences/0/original_record/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/obligations/0/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_occurrences/0/ref_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/obligations/0/source_ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_occurrences/0/source_ref_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/1/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_occurrences/0/body_occurrences/0/source_ref"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/1/body/records/23",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_occurrences/0/body_occurrences/0/original_body_entry"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/1/body/records/23/collection",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_occurrences/0/body_occurrences/0/collection_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/1/body/records/23/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_occurrences/0/body_occurrences/0/ref_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/1/body/records/23/payload",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_occurrences/0/body_occurrences/0/payload_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/conditions/0",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_details/0/condition_operands/0/record_occurrences/0/original_record/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/conditions/0/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_details/0/condition_operands/0/record_occurrences/0/ref_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/conditions/0/source_ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_details/0/condition_operands/0/record_occurrences/0/source_ref_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/1/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_details/0/condition_operands/0/record_occurrences/0/body_occurrences/0/source_ref"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/1/body/records/20",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_details/0/condition_operands/0/record_occurrences/0/body_occurrences/0/original_body_entry"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/1/body/records/20/collection",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_details/0/condition_operands/0/record_occurrences/0/body_occurrences/0/collection_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/1/body/records/20/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_details/0/condition_operands/0/record_occurrences/0/body_occurrences/0/ref_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/sources/1/body/records/20/payload",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_details/0/condition_operands/0/record_occurrences/0/body_occurrences/0/payload_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/definition_refs/0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/original_ref/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/value_fact_refs/0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/original_ref/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/obligations/0/condition_refs/0",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_details/0/condition_operands/0/original_ref/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/semantic_records/9/meaning",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/projection_attempts/0/basis/meaning_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/semantic_records/9/meaning",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/projection_attempts/0/result/value/payload/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/semantic_records/9/meaning",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/projection_attempts/0/result/value/original_whole/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/obligations/0/condition_refs",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_details/0/condition_refs_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/obligations",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/original_obligations/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/required_trace_refs",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/required_trace_refs/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/trace_edges",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/trace_edges/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/trace_requirements",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/trace_requirements/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/compare_kind_obligation_trace/comparison/material/obligations/0/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/ref_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/obligations/0/binding",
+        "path": "/f05_fixed_case/expected_return/owner_material/obligation_material/occurrences/0/record_occurrences/0/binding_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/template_ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/owner_bindings/0/role_operand_pairs/0/operand_ref/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/template_ref/owner",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/owner_bindings/0/role_operand_pairs/0/operand_owner/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/binding/knowledge_ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/owner_bindings/0/role_operand_pairs/1/operand_ref/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/binding/knowledge_ref/owner",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/owner_bindings/0/role_operand_pairs/1/operand_owner/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/definition_refs/0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/owner_bindings/0/role_operand_pairs/2/operand_ref/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/definition_refs/0/owner",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_material/operands/0/operand/record_occurrences/0/owner_bindings/0/role_operand_pairs/2/operand_owner/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/value_fact_refs/0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/owner_bindings/0/role_operand_pairs/0/operand_ref/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/value_fact_refs/0/owner",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/owner_bindings/0/role_operand_pairs/0/operand_owner/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/binding/requirement_ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/owner_bindings/0/role_operand_pairs/1/operand_ref/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/binding/requirement_ref/owner",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/operand/record_occurrences/0/owner_bindings/0/role_operand_pairs/1/operand_owner/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/application_policies/0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/selection/policy_occurrences/0/policy_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/compare_applicability/comparison/material/policy_decisions/0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/selection/policy_occurrences/0/decision_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/compare_applicability/comparison/material/policy_decisions/0/disposition",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/selection/policy_occurrences/0/disposition_read/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/recipient_materials/0/subject/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/request/validation/validated/input/field_inputs/0/ref",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/recipient_materials/1/subject/value"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/D0",
+        "path": "/f05_fixed_case/expected_return/comparison/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/V0",
+        "path": "/f05_fixed_case/expected_return/comparison/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/N0",
+        "path": "/f05_fixed_case/expected_return/comparison/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/D0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_assessment/judgment/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/D0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/definition_assessment/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/D0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/field_check/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/V0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/field_check/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/D0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/recipient_materials/0/original_owner/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/D0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/recipient_materials/0/original_reason/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/U0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/recipient_materials/0/unfinished_refs/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/D0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/recipient_materials/0/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/U0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/recipient_materials/0/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/V0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/recipient_materials/1/original_owner/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/V0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/recipient_materials/1/original_reason/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/U0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/recipient_materials/1/unfinished_refs/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/V0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/recipient_materials/1/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/U0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/recipient_materials/1/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/V0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/operands/0/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/V0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_material/aggregate/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/V0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_assessment/judgment/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/V0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/value_assessment/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/V0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/D0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/U0",
+        "path": "/f05_fixed_case/expected_return/owner_material/field_results/0/value/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/V0",
+        "path": "/f05_fixed_case/expected_return/owner_material/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/D0",
+        "path": "/f05_fixed_case/expected_return/owner_material/causes/-"
+      },
+      {
+        "op": "copy",
+        "from": "/f05_fixed_case/cause_literals/U0",
+        "path": "/f05_fixed_case/expected_return/owner_material/causes/-"
+      },
+      {
+        "op": "remove",
+        "path": "/f05_fixed_case/cause_literals"
+      }
+    ],
+    "expected_native_return_canonical_sha256": "ec5c3da8ab2cd13e9eb88cf78f21aba6e9e54b185c934b708d320f6ee821d865",
+    "fixed_row_summary_ja": [
+      "rawは26-member whole。sources/qualifications/qualification_rootsは各6要素であり、全値はc9 rawからcopyされる。",
+      "definition field refはsemantic_records/9、source observation 2、source/body record index 2/5。",
+      "product-value field refはsemantic_records/10、source observation 0、source/body record index 0/21。",
+      "obligation record 0はsource observation 1、source/body record index 1/23。",
+      "condition record 0はsource observation 1、source/body record index 1/20。condition operand roleはL5 condition_operandsの固定表記 obligation_condition。",
+      "全fixed Read、原Ref、原body、source/qualification/root occurrence、定義/valueの各OwnerBindingに19件ずつ計38件のCheckLink、Cause、ReturnLink、recipient/obligation leafはexpected_native_return_patchの明示literal/copy sourceに含まれる。",
+      "この原normalのgeneric synthetic-original-meaningはdefinition/value宣言ではない。whole materialは保持するが、known/known positive、形成済みComparison、実trust成立へ読み替えない。"
+    ],
+    "coverage_and_nonclaims_ja": {
+      "covered": [
+        "この固定normal inputに対する5 member F05DetailedReturn wholeの全literal。",
+        "c9 raw / FN3 / FN4 input whole、歴史261-op validation recipe、113-op return recipeのsource役割と固定再構成。",
+        "当該rawの既存汎用meaningと今回の宣言根拠/field summary判定を分離し、返却原因と原資料を維持すること。"
+      ],
+      "not_claimed": [
+        "実fn0/fn3/fn4同call、資格又はproducer実行の証明。",
+        "known/known positive、他normal/negative/absence/undecided/owner mismatchケース、F05全入力domain・全枝の網羅。",
+        "139型から141型への追補を通じた全型・全writer・全分岐の閉包、全comparisonの意味解決、実製品の正しさ。",
+        "製品test、新世代CI、旧runtime又は候補reader/evaluator/validatorの実行。"
+      ]
+    },
+    "legacy_preserve_change_reason_ja": {
+      "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md, lines 33–108; asset LEGACY-ASSET-98372FEE8A3AC8F9C299.",
+      "preserve": "field意味・要否・trace、版と適用unknown、理由・再評価付きN/Aを個別保持する点。",
+      "change": "旧TPL文法、整数版/lifecycle、式木/operator/registry/schema/instance digestを移植せず、CORE/BRAIN/OSの責務を分ける。",
+      "reason": "採択済み要求と対象L4/L5の責務境界から意味を再導出する。"
+    },
+    "execution_state": "fixed_static_json_literal_and_rfc6902_recipe_only_candidate_runtime_tests_and_ci_not_run"
   }
 }
