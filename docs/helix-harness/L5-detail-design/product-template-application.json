@@ -14411,7 +14411,7 @@
         ],
         "current_l4_binding": {
           "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-          "file_sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+          "file_sha256": "88e0cef2a210a43965a841d929712af9bb52ec7141d2bbb32f2cbc405a1508e2",
           "selected_objects": [
             {
               "pointer": "/input_scope_knowledge_gap_contract/input_only_contract",
@@ -17768,7 +17768,7 @@
       },
       "current_basic_binding": {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "file_sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+        "file_sha256": "88e0cef2a210a43965a841d929712af9bb52ec7141d2bbb32f2cbc405a1508e2",
         "binding_scope": "same_candidate_basic_bytes",
         "selected_objects": [
           {
@@ -18036,6 +18036,439 @@
         "UTW-021"
       ],
       "meaning": "source欠損を空集合化しない。部分事実をaggregateで隠さずoccurrence単位で保ち、作業自身の成功申告から完了を作らない。ここではsourcesの欠落/null/空、選択index、配列1slotの反例を個別に識別し、実成立は主張しない。"
+    }
+  },
+  "selected_source_caller_detail": {
+    "id": "HARNESS-L5-009-SELECTED-SOURCE-CALLER",
+    "status": "限定private caller詳細設計候補。実装・実行・受入ではない。",
+    "requirement_refs": [
+      "HARNESS-L3-009-F01",
+      "HARNESS-L3-009-F05",
+      "HARNESS-L3-009-F06",
+      "HARNESS-L3-009-F08"
+    ],
+    "system_oracle_refs": [
+      "HARNESS-L10-009-F01",
+      "HARNESS-L10-009-F05",
+      "HARNESS-L10-009-F06",
+      "HARNESS-L10-009-F08"
+    ],
+    "design_binding": {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "sha256": "88e0cef2a210a43965a841d929712af9bb52ec7141d2bbb32f2cbc405a1508e2",
+      "pointer": "/selected_source_caller_contract",
+      "canonical_sha256": "f75a907ecb152a4cd46d075ef23b1886279c9cea7959fe1c4da1852ad0cab60d",
+      "binding_kind": "current_candidate_content_binding"
+    },
+    "source_basis": [
+      {
+        "kind": "fixed_approved_requirements",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+        "pointers": [
+          "/requirements/23",
+          "/requirements/27",
+          "/requirements/28",
+          "/requirements/30"
+        ]
+      },
+      {
+        "kind": "fixed_existing_builder_detail",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "f69d769b9c3a44a25f6531ab02f7c9852b414765fc954d2a6054405928938868",
+        "pointer": "/selected_source_occurrence_array_builder_detail"
+      },
+      {
+        "kind": "fixed_existing_caller_types",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "f69d769b9c3a44a25f6531ab02f7c9852b414765fc954d2a6054405928938868",
+        "pointers": [
+          "/f05_detail_contract/entry_points/private_caller",
+          "/f05_detail_contract/types/CallerInputs",
+          "/f05_detail_contract/types/ValidationInput",
+          "/f05_detail_contract/leaf_writer_ledger/23"
+        ]
+      },
+      {
+        "kind": "existing_core_validation",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "f69d769b9c3a44a25f6531ab02f7c9852b414765fc954d2a6054405928938868",
+        "pointers": [
+          "/functions/0",
+          "/f05_detail_contract/source_observation_contract/checks/0",
+          "/f05_detail_contract/source_observation_contract/checks/1"
+        ]
+      },
+      {
+        "kind": "existing_origin_carrier",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "f8a953cc2348f4ef9e42fb14bb8b90b3303d3b020afc3e54bc1727e6d0e4d448",
+        "pointers": [
+          "/type_contract/types/SupplyInput",
+          "/type_contract/types/QualifiedSource",
+          "/type_contract/types/SupplyAnalysis"
+        ]
+      },
+      {
+        "kind": "fixed_existing_unit_oracle",
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "65c316e5e5065c2515d241362ab293b2dcc205e0597fc67539101dbad2ca4f65",
+        "pointer": "/selected_source_occurrence_array_builder_verification",
+        "canonical_sha256": "2da564e5dd9bf3bd085651a862313b56b6d6055f339e5335e7c766e10ec7b786"
+      },
+      {
+        "kind": "fixed_existing_integration_oracle",
+        "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "318ff52f260ce576df77ec4f2fcb9d976f5ac97896eacc8a9dc8fb3cdaa9221e",
+        "pointers": [
+          "/selected_brain_source_occurrence_verification/cases/0",
+          "/selected_brain_source_occurrence_verification/cases/1"
+        ]
+      }
+    ],
+    "owner_and_signature": {
+      "owner_component": "L4 /components/0にあるHARNESS-L4-009 ApplicationInputBinding",
+      "symbol": "_build_application_analysis_for_selected_source",
+      "visibility": "private。新しい公開function/schema/APIは追加しない。",
+      "effect": "副作用なし。入力変更、filesystem/network/DB操作、authority発行はしない。",
+      "signature": "_build_application_analysis_for_selected_source(input: SelectedSourceCallerInput) -> SelectedSourceCallerReturn",
+      "existing_dependencies": [
+        "edge/i対応が形成された場合に限り、既存_build_source_occurrence_arrayを一回呼ぶ。",
+        "builderとafter rawが形成された場合に限り、既存build_application_analysis_detail(CallerInputs)を一回呼ぶ。",
+        "既存C01が同じvalidation_detailを一回呼ぶ。"
+      ],
+      "no_reentry": "fn0へは既存private callerのC01経由だけで到達する。別のvalidation/analysis passは作らない。"
+    },
+    "closed_types": {
+      "SelectedSourceCallerInput": {
+        "kind": "closed_record",
+        "members": {
+          "origin_supply_input": "PresenceJsonValue",
+          "origin_snapshot_context": "PresenceJsonValue",
+          "selection_request": "SelectedSourceRequest",
+          "destination_before_snapshot_context": "PresenceJsonValue",
+          "destination_before_sources": "PresenceJsonValue",
+          "destination_after_snapshot_context": "PresenceJsonValue",
+          "after_application_raw_frame": "PresenceJsonValue",
+          "after_source_result_reference_projection": "Read<CoreJsonValue>"
+        }
+      },
+      "SelectedSourceRequest": {
+        "kind": "closed_record",
+        "members": {
+          "edge": "SelectedSourceEdge",
+          "source_index_i": "PresenceJsonValue",
+          "destination_index_j": "PresenceJsonValue"
+        }
+      },
+      "SelectedSourceEdge": {
+        "kind": "tagged_union",
+        "tag": "kind",
+        "variants": {
+          "template_source": {
+            "template_index_t": "PresenceJsonValue"
+          },
+          "knowledge_use_source": {
+            "knowledge_record_index_n": "PresenceJsonValue",
+            "selected_knowledge_ref_index_h": "PresenceJsonValue"
+          }
+        }
+      },
+      "CandidateObservation": {
+        "kind": "closed_record",
+        "members": {
+          "source_index": "Natural",
+          "source_occurrence": "SourcePreparationReadCoreJsonValue",
+          "source_ref": "SourcePreparationReadCoreJsonValue",
+          "reference_relation": "Correspondence",
+          "edge_digest_relation": "DigestRelation",
+          "role_read": "SourcePreparationReadCoreJsonValue",
+          "qualification_ref_read": "SourcePreparationReadCoreJsonValue"
+        }
+      },
+      "BuilderObservation": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "not_called": {
+            "reason": "SourcePreparationIssue[]"
+          },
+          "returned": {
+            "result": "PrivateSourceOccurrenceBuildResult"
+          }
+        }
+      },
+      "Correspondence": {
+        "kind": "enum",
+        "values": [
+          "corresponding",
+          "different",
+          "unestablished"
+        ]
+      },
+      "DigestRelation": {
+        "kind": "enum",
+        "values": [
+          "not_applicable",
+          "corresponding",
+          "different",
+          "unestablished"
+        ]
+      },
+      "SelectedSourcePreparation": {
+        "kind": "closed_record",
+        "members": {
+          "origin_supply_input": "SourcePreparationReadCoreJsonValue",
+          "origin_snapshot_context": "PresenceJsonValue",
+          "edge_read": "SourcePreparationReadCoreJsonValue",
+          "edge_ref": "SourcePreparationReadCoreJsonValue",
+          "candidate_collection": "SourcePreparationReadCoreJsonValue",
+          "candidate_observations": "CandidateObservation[]",
+          "request": "SelectedSourceRequest",
+          "before_snapshot_context": "PresenceJsonValue",
+          "before_sources": "PresenceJsonValue",
+          "after_snapshot_context": "PresenceJsonValue",
+          "after_raw_frame": "SourcePreparationReadCoreJsonValue",
+          "after_frame_original_sources": "SourcePreparationReadCoreJsonValue",
+          "after_projection_read": "Read<CoreJsonValue>",
+          "builder_observation": "BuilderObservation",
+          "issues": "SourcePreparationIssue[]",
+          "selected_occurrence_observation": "SelectedSourceObservationLink",
+          "selected_plan": "SelectedSourcePlanObservation"
+        }
+      },
+      "SelectedSourceCallerReturn": {
+        "kind": "closed_record",
+        "members": {
+          "preparation": "SelectedSourcePreparation",
+          "caller_outcome": "SelectedSourceCallerOutcome"
+        }
+      },
+      "SelectedSourceCallerOutcome": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "not_called": {
+            "stage": "SelectedSourceNotCalledStage",
+            "issues": "SourcePreparationIssue[]"
+          },
+          "returned": {
+            "caller_inputs": "CallerInputs",
+            "core_application_detail_return": "CoreApplicationDetailReturn"
+          }
+        }
+      },
+      "note": "これらは当節のprivate論理recordで、外部wire型/public DTOではない。既存Presence/Read/InputIssue/RawValue/CoreJsonValue/CallerInputs/ValidationInput/PrivateSourceOccurrenceBuildResult/return型を再利用し、一般DSL・新public status/codeを作らない。",
+      "SelectedSourceSnapshotContext": {
+        "kind": "closed_record",
+        "members": {
+          "identity": "PresenceJsonValue",
+          "revision": "PresenceJsonValue"
+        },
+        "meaning": "callerが供給するsource/destination snapshotのidentity+revisionの組。presence/null/raw valueを保持する。member欠落またはnonobject contextではbuilder用snapshotを形成できない。認証済みidentity/custodyの意味はない。"
+      },
+      "SelectedSourceOccurrencePlan": {
+        "kind": "closed_record",
+        "members": {
+          "edge_kind": "SelectedSourceEdgeKind",
+          "edge_record_index": "Natural",
+          "selected_knowledge_ref_index": "Natural|null",
+          "edge_source_ref": "SourcePreparationReadCoreJsonValue",
+          "origin_snapshot_context": "SelectedSourceSnapshotContext",
+          "origin_source_index": "Natural",
+          "destination_before_snapshot_context": "SelectedSourceSnapshotContext",
+          "destination_after_snapshot_context": "SelectedSourceSnapshotContext",
+          "destination_index_raw": "PresenceJsonValue"
+        },
+        "meaning": "明示要求edge→origin occurrence i→destination jのplan。jはrawのまま保持し、既存builderが数値・範囲分岐を担う。source policy/adoption/qualification成立を主張しない。 selected_knowledge_ref_indexのnullはtemplate_source枝の生成済み非適用印であり、原入力のnull/absenceの代用品ではない。knowledge枝では明示hの確認済みstrict indexを保持する。原hのpresence/tokenはrequestに保存する。"
+      },
+      "SelectedSourceEdgeKind": {
+        "kind": "enum",
+        "values": [
+          "template_source",
+          "knowledge_use_source"
+        ]
+      },
+      "SelectedSourcePlanObservation": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "not_formed": {
+            "reason": "SourcePreparationIssue[]"
+          },
+          "formed": {
+            "plan": "SelectedSourceOccurrencePlan"
+          }
+        }
+      },
+      "SelectedSourceNotCalledStage": {
+        "kind": "enum",
+        "values": [
+          "origin_unavailable",
+          "edge_unavailable",
+          "knowledge_selection_unestablished",
+          "source_occurrence_not_selected",
+          "builder_not_called",
+          "builder_unformed",
+          "after_raw_splice_unformed"
+        ]
+      },
+      "SourcePreparationLocation": {
+        "kind": "closed_record",
+        "members": {
+          "root": "literal:source_preparation_input",
+          "pointer": "JSONPointer"
+        },
+        "meaning": "このprivate wrapperの実入力内にある位置。既存OriginRoot/Locationへ新rootを偽装追加しない。"
+      },
+      "SourcePreparationIssue": {
+        "kind": "closed_record",
+        "members": {
+          "location": "SourcePreparationLocation",
+          "reason": "SourcePreparationReason"
+        }
+      },
+      "SourcePreparationReason": {
+        "kind": "enum",
+        "values": [
+          "input_unavailable",
+          "edge_unavailable",
+          "edge_mismatch",
+          "index_unselected",
+          "builder_not_formed",
+          "after_splice_unformed"
+        ]
+      },
+      "SourcePreparationReadCoreJsonValue": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "present": {
+            "location": "SourcePreparationLocation",
+            "value": "CoreJsonValue"
+          },
+          "absent": {
+            "requested": "SourcePreparationLocation",
+            "parent": "SourcePreparationLocation",
+            "parent_value": "CoreJsonValue"
+          },
+          "unreached": {
+            "requested": "SourcePreparationLocation",
+            "reached": "SourcePreparationLocation",
+            "reached_value": "CoreJsonValue"
+          }
+        },
+        "meaning": "既存Readと同じpresence/unreachedの区別を、このprivate wrapperの入力位置で保持する。既存Read/Location/OriginRootは拡張しない。"
+      },
+      "SelectedSourceObservationLink": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "not_selected": {
+            "issues": "SourcePreparationIssue[]"
+          },
+          "selected": {
+            "candidate_observation_index": "Natural"
+          }
+        },
+        "meaning": "selectedはこの返却のcandidate_observations内の実indexへの生成link。導出されたCandidateObservationを原入力のReadと偽装せず、同wholeも重複しない。"
+      }
+    },
+    "reader_and_edge_rules": {
+      "after_raw_reader": "after_application_raw_frameは今回のcall専用にcallerが独立供給したraw wholeとし、前callのraw/decoded frameを流用しない。既存Readの枝名と同じpresent/absent/unreachedを、wrapper入力位置用のSourcePreparationReadで保持する。formed objectなら/templates、/knowledge_records、/operationsを原位置・presence付きで読む。record object/body/refの欠落・null・型外は局所unestablishedとする。別clone、source_refs、expectedから補完しない。",
+      "template_source": "edge kind template_sourceは指定/templates[t] occurrenceのsource_refを使う。template_refはnullableのまま保持し、nonnull一致や採択を追加条件にしない。既存のproduct-application/obligation consumerが入力全体を評価する。",
+      "knowledge_use_source": "knowledge_use_sourceは同after rawの/knowledge_records[n]と/operations/selected_knowledge_refs[h]を明示indexで読み、identity/revision/scope/ownerの既存typed nullable規則で操作上のmembershipだけを確認する。既知差/必要端未取得はこの依頼のnot_called。全Refとshaの原値は保持するが、この前段で供給digestの完全解決又は有資格Ref対応を済ませたとはしない。knowledge digestの原source/body/同validation Dを必要とする本評価は既存calleeへ残し、record.ref.sha同士又はrecord全体の新hashをその代用にしない。template_ref/binding/source_refも別端として保存する。unselected-only参照やtemplate側edgeで補完せず、root knowledge_refのnonnull gateも作らない。",
+      "candidate_enumeration": "origin_supply_inputは、このprivate callへ供給するCORE-native raw JSON表現であり、BRAIN host objectのcastではない。sources collectionを一度読み、存在する全出現を元のindex順で観測する。edge refが未取得ならcandidateを落とさず、全source rowのreference_relationをunestablishedとして保持する。非object/ref欠落・型外rowもindex/raw Readを保持し、relationをunestablishedとする。role/qualification/source usabilityで観測前に候補を絞らない。source roleとqualification refは別々のrow readにする。",
+      "ref_rule": "edge.source_refとcandidate source.refは、既存CORE /f05_detail_contract/reference_and_collection_rules/matching および /reference_resolution_contract/identityに従い、identity/revision/scope/ownerの各端、既存typed comparison、nullable operand ruleで結果を保持する。供給不足はunestablished、比較済みの差はdifferentとする。source_locatorはidentityではない。null/nullの局所対応はidentity/authority/trust/qualification成立を意味しない。optional sha/source_locatorを新たに必須化しない。",
+      "digest_rule": "edge.source_ref.sha256のreadがsupplied non-nullなら、candidate origin sources[i].content_bytesの原stringをUTF-8 bytes化してSHA-256し、edge側digestと既存CORE source_digest規範で比較する。digest absent/nullはedge-digest facetだけnot_applicable。bytes未取得/型外はunestablished、計算済み既知差はdifferentとする。candidate source.ref.sha256との双方供給比較というBRAIN規則は使わない。candidateのsource.ref.sha256と自身のcontent_bytes/bodyの関係は別々にfn0へ渡す。",
+      "explicit_i": "既存CORE exact numeric integer predicateと有限配列長に対する範囲比較でiを判定し、boolを除外する。有効範囲と確認した後でだけhost indexへ変換する。要求のraw値を保持し、request.source_index_iだけを選ぶ。同じpredicateを既存builderでも使い、新しい数値上限/token制約を追加しない。missing/null/bool/noninteger/out-of-rangeのiでは出現を特定できない。",
+      "explicit_j": "destination_index_jは原presenceのまま既存builderへ渡す。置換・末尾append・invalidの確定は既存builderに委譲し、その実返却をbuilder_resultへ保持する。i=jを要求しない。",
+      "snapshot_context": "origin/before/afterは各々、既存builderのsnapshot carrier形であるcaller供給のobjectとidentity/revision raw memberを使う。各Read/nullを保持する。origin contextをSupplyInput.bindingやsource Refから導出しない。BRAIN SupplyInput自体にtop-level snapshot identity/revisionはない。cross-domain serialization/parser adapterは未閉包であり、wrapperはCORE-native raw JSON valueを受け取り、BRAIN host number carrierをcastしない。",
+      "plan_formation": "明示edgeと選択出現のcorrespondence/digest facetを解決した後、実edge位置、実origin context、選択source index i、明示destination before/after context、raw jからSelectedSourceOccurrencePlanを形成する。planは要求されたiだけを指す。unknown/different/absent endpointを黙って補修しない。jの検証・replace・appendは既存builderへ委譲し、その正確な返却を記録する。",
+      "qualification_and_integrity": "candidate edge matching/plan、source self-integrity、source qualificationは別facet。builder projectionはfieldwise raw mappingのみを行う。source.bytes/body整合、source.ref.sha256とcontent_bytesの対応、roleの意味的適格性、CORE qualification/rootは既存fn0/private callerの責務とする。losslessに表現できるinvalid/missing/null/extra raw memberはそのまま渡す。BRAIN qualification_shapeを改名/castしない。lossy projectionだけがbuilder unformedとなる。",
+      "local_read_locations": "origin_supply_inputとafter_application_raw_frameはcaller供給のPresenceJsonValueで受ける。SourcePreparationReadはwrapperが実入力から生成し、root=source_preparation_inputだけを使う。present値の原供給位置はそれぞれ/origin_supply_input/value及び/after_application_raw_frame/value、子はその位置へ実key/indexを連結する。absenceは実在するPresence wrapperにvalueがない位置、unreachedは到達できた実親位置/値を残す。callerが自己申告したRead.locationを原位置へ採用しない。導出candidate行・plan・新rawは原入力Readへ偽装しない。生成new rawはcaller_outcome.returned.caller_inputs.validation_input.rawを唯一の返却所在とし、元frame Readと区別する。",
+      "edge_index_semantics": "t/n/hも既存COREのexact numeric integer述語を使い、boolを除き、実配列長とのexact範囲比較を済ませてからhost indexへ変換する。欠落/null/非整数/負値/範囲外はedge取得未形成として原値を保持する。iと同じ規範で、新しい字句・桁数制限を設けない。",
+      "reference_shape_boundary": "source_ref wholeが欠落/null/非objectならmemberの比較へ補完しない。参照identity/revision/ownerは既存Ref schemaのstring|null、scopeは既存CoreJsonValueという型の条件で局所比較する。両端が同じ型外値でもRef対応成功にしない。nullable memberのnull/null対応とwhole Ref未形成は区別し、source_locatorを必須化しない。",
+      "knowledge_membership_technical_choice": "F01/F06の選択根拠を実record occurrenceへ結ぶ前段を四端membershipに限定する技術選定。供給digest/版/意味/資格/全required fieldsは既存compare_selected_knowledge等の呼出し後評価に残し、要求の保証を削除しない。source edge側のsha→原content_bytes SHA-256比較とは別facetである。"
+    },
+    "algorithm_and_call_boundary": [
+      "1. input全memberのraw Read/presenceを保持し、callerが今回のinvocation用に独立供給したafter raw frameとsource originを別snapshotとして読む。after frameのinput_refはそのframeの原値/presenceのままにする。前callのinput_ref、same_decode_success、decode revision、validation result、source-result projectionを持ち越さない。origin identity/revisionはcaller供給contextであり、SupplyInputから捏造しない。",
+      "2. selection_request.edgeの実occurrenceをafter raw frameから読む。knowledge branchはh-selected-refとn-record.refの四端membershipだけを前段で確認し、供給shaの本評価はcalleeへ残す。edge.source_refから全origin candidateを原順で観測する。",
+      "3. request.source_index_iがedge source_refに対してcorrespondingであり、edge digest facetがnot_applicable/correspondingの場合だけ、既存builderを一回呼ぶ。source body/role/qualificationの問題は事前に修正・排除しない。",
+      "4. builder formed時、after raw frame全体をcloneではなくlossless new raw valueへ写し、sources memberだけをbuilder.new_sourcesで置換/設定する。元after sourcesはReadとして記録し、before_sourcesとは独立に扱う。input_refを含む他memberは原presence/valueを維持する。",
+      "5. 新rawをValidationInput.nativeへ包み、CallerInputs.validation_inputへ設定する。after_source_result_reference_projectionは別供給として同CallerInputs.source_result_reference_projectionへ渡す。prior same_decode_success/source_result_projectionは再利用しない。",
+      "6. 既存build_application_analysis_detailを一回呼び、実CallerInputsと実CoreApplicationDetailReturnの全値を保持する。C01が同一Dで既存validation_detailを一回呼び、producer/F05/claim/analysisの通常traceを返す。",
+      "7. wrapper resultを一つのprivate consumerへ返す。not_calledでは原依頼/candidate/Read/Issueを返し、caller result memberを作らない。returnedではpreparation traceと既存callerの全返却を一緒に返し、CORE/F05の実所見を置換しない。 選択candidateはselected_occurrence_observationの生成index linkでcandidate_observationsへ結ぶ。新rawはreturned枝の実CallerInputs内だけに保持し、原入力rootを付けたReadを生成しない。"
+    ],
+    "stage_and_failure_rules": {
+      "local_not_called": [
+        "origin SupplyInputまたはsources collectionが取得不能・absent・null・非配列。",
+        "要求したafter-frame edge record/indexまたはedge source_refが取得不能。",
+        "knowledge selected-ref occurrence hとrecord.ref nの四端membershipがdifferent又は必要端不足。shaだけの不同はこの前段membershipの拒否条件にせず、原値を既存calleeへ渡す。",
+        "明示iがabsent/null/invalid/out-of-range、または選択candidateとedge reference/digestの関係がdifferent/unestablished。",
+        "plan不成立のため既存builderを呼ばない、または既存builderがunformedを返す。",
+        "after raw frameがabsent/nonobject、またはsourcesだけの置換をlosslessに表現できない。"
+      ],
+      "issue_representation": "未呼出しの局所理由はSourcePreparationIssueとして、実wrapper入力内のSourcePreparationLocationとreasonを保持し、SelectedSourceNotCalledStageへ分類する。新public code/enumを既存application vocabularyへ追加しない。",
+      "caller_returned_failure": "builderがformedし、after raw spliceがlosslessなら既存callerを一回呼ぶ。CORE fn0のsource bytes/body/self-ref-digest/qualification/input-shape所見はcaller return内に保持し、wrapper not_calledへ変換しない。edge.source_ref.sha256と元content_bytes SHA-256のdifferentはedge relationの不同としてnot_calledにできるが、source自身のcontent_bytes/body/ref.sha256不整合はfn0の責務である。",
+      "invalid_raw_source": "invalid/missing/null/extra role memberは、既存builderがlossless raw projectionできる場合、そのままafter rawへ投影してCORE callerへ渡す。content→body collisionまたはraw valueを損失なく表現できない場合だけ、既存builderのunformed resultとする。"
+    },
+    "counterfactual_scope": {
+      "reuse": "L9 /selected_brain_source_occurrence_verification/cases/0,1およびL8 /selected_source_occurrence_array_builder_verificationをsource-array部分の固定期待として参照し、新たな巨大ApplicationInput fixtureを複製しない。",
+      "wrapper_additional_expected": "独立L8/L9 counterpartで、template_sourceとknowledge_use_sourceの各explicit edgeからafter native callerへの一回経路を小規模に固定する。新oracleはcaller signature、builder一回呼出し、after raw.sources置換、after Readの別供給、C01の実返却全値、local not_called casesを識別する。",
+      "not_closed_here": [
+        "複数edge/複数source sequential chain",
+        "実source provider/custody/authority",
+        "ApplicationInput全体の組立て",
+        "外部codec/runtimeと実配送",
+        "実際のvalidation又はSECURITY資格の成立"
+      ]
+    },
+    "legacy_comparison": {
+      "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+      "lines": "34–58",
+      "sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b",
+      "failure_asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "failure_path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "failure_lines": "65–101",
+      "failure_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "failure_ids": [
+        "UTW-014",
+        "UTW-020",
+        "UTW-021"
+      ],
+      "retained": "I/O/失敗/state/consumer境界と全候補・局所未完を保持。",
+      "changed": "現行ownerのclosed CallerInputs/ValidationInput/C01へ、新しいprivate wrapperからraw接続する一責務。既存型や公開APIを拡張しない。",
+      "reason": "missingをemptyにしない、部分原因をaggregateで隠さない、hash/candidate count/self-reportで完了を作らない。"
+    },
+    "completion_boundary": "詳細設計候補として入力・分岐・既存consumerを具体化する。実装/実行・L8/L9 proof・実source custody/delivery/qualification/OS記録・L11 acceptanceは主張しない。",
+    "authority_basis": {
+      "decision_record_id": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
+      "decision_record_path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approved_reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+      "approved_functional_requirements_sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1",
+      "approved_requirements_selected_object_canonical_sha256_by_pointer": {
+        "/requirements/23": "0955af985adf56ca021309bfb52a65ea171a2f93d3d4c5aa575c837f8e3612c7",
+        "/requirements/27": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54",
+        "/requirements/28": "c80dc10b5dd9a70f58283ab5b064dc59ffa77cc9e757706554f88c62b77bcabe",
+        "/requirements/30": "c8b9bf5efe236099dde657908974decf43edb0e20a59ed3af3f6b327f7bb7439"
+      },
+      "approved_functional_verification_sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c",
+      "approved_verification_selected_object_canonical_sha256_by_pointer": {
+        "/cases/23": "15a2f858c81c6bd7d592723e5c0670fdcb263e5f952e1e01955ba034b15b0fad",
+        "/cases/27": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d",
+        "/cases/28": "0bfe30ebc97c6d41bdd97a1dd1db63fa2dda0d5bd712bc5e0f22d2e6d05527f5",
+        "/cases/30": "7af91cc06b2754d6efc40e47040db83e6615d6bb92cacff157368610d1d370a0"
+      },
+      "boundary": "F01/F05/F06/F08の対象承認を参照する。現baseの同じ8 objectは承認対象と意味一致するが、本文全体の新revision承認・実資格・配送・実装Readyを生成しない。"
     }
   }
 }

@@ -6631,5 +6631,293 @@
     },
     "failure_basis_ref": "/failure_basis",
     "completion_boundary": "限定した設計具体化。source occurrenceの実配送、資格、CORE全入力閉包、runtime、L9実行、実装Readyは未成立。"
+  },
+  "selected_source_caller_contract": {
+    "id": "HARNESS-L4-009-SELECTED-SOURCE-CALLER",
+    "status": "限定された基本設計候補。実装・実呼出し・受入ではない。",
+    "requirement_refs": [
+      "HARNESS-L3-009-F01",
+      "HARNESS-L3-009-F05",
+      "HARNESS-L3-009-F06",
+      "HARNESS-L3-009-F08"
+    ],
+    "system_oracle_refs": [
+      "HARNESS-L10-009-F01",
+      "HARNESS-L10-009-F05",
+      "HARNESS-L10-009-F06",
+      "HARNESS-L10-009-F08"
+    ],
+    "scope": "ApplicationInputBinding内の一つの明示source-edge依頼について、既存CORE/BRAIN raw carrierのedgeを原順source occurrenceへ結び、既存一出現builderを通し、after native rawと既存private caller C01を一回呼ぶまでの局所取得路。複数occurrenceの連鎖、全ApplicationInput組立て、BRAIN source生成、実配送・資格・authority成立は対象外。",
+    "authority_effect": "L3/L10の意味を変えない。template_sourceは当該template source準備の対象指定であり採択・適用判定ではない。knowledge_use_sourceは既存selected knowledge参照の使用文脈を保持する。自動選択、全candidate強制配送、新しい承認・資格・gate・公開APIを作らない。",
+    "operation_effect": "pureなprivate準備と既存caller一回の呼出しを具体化する。BRAIN SupplyAnalysisからsource body/資格を復元せず、OS記録・実送信・永続化・実trust resolverを実行しない。",
+    "source_basis": [
+      {
+        "kind": "approved_requirement",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/23",
+            "id": "HARNESS-L3-009-F01",
+            "canonical_sha256": "0955af985adf56ca021309bfb52a65ea171a2f93d3d4c5aa575c837f8e3612c7"
+          },
+          {
+            "pointer": "/requirements/27",
+            "id": "HARNESS-L3-009-F05",
+            "canonical_sha256": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54"
+          },
+          {
+            "pointer": "/requirements/28",
+            "id": "HARNESS-L3-009-F06",
+            "canonical_sha256": "c80dc10b5dd9a70f58283ab5b064dc59ffa77cc9e757706554f88c62b77bcabe"
+          },
+          {
+            "pointer": "/requirements/30",
+            "id": "HARNESS-L3-009-F08",
+            "canonical_sha256": "c8b9bf5efe236099dde657908974decf43edb0e20a59ed3af3f6b327f7bb7439"
+          }
+        ]
+      },
+      {
+        "kind": "approved_oracle",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+        "selected_objects": [
+          {
+            "pointer": "/cases/23",
+            "id": "HARNESS-L10-009-F01",
+            "canonical_sha256": "15a2f858c81c6bd7d592723e5c0670fdcb263e5f952e1e01955ba034b15b0fad"
+          },
+          {
+            "pointer": "/cases/27",
+            "id": "HARNESS-L10-009-F05",
+            "canonical_sha256": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d"
+          },
+          {
+            "pointer": "/cases/28",
+            "id": "HARNESS-L10-009-F06",
+            "canonical_sha256": "0bfe30ebc97c6d41bdd97a1dd1db63fa2dda0d5bd712bc5e0f22d2e6d05527f5"
+          },
+          {
+            "pointer": "/cases/30",
+            "id": "HARNESS-L10-009-F08",
+            "canonical_sha256": "7af91cc06b2754d6efc40e47040db83e6615d6bb92cacff157368610d1d370a0"
+          }
+        ]
+      },
+      {
+        "kind": "fixed_existing_basic_design",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+        "pointer": "/selected_brain_source_occurrence_contract",
+        "selected_pointer": "/selected_brain_source_occurrence_contract/projection/destination_layout",
+        "role": "既存一出現pure projection。新sectionのsource basisは変更前のbase内容へ固定し、L4↔L5 current循環を作らない。",
+        "selected_canonical_sha256": "be44eacda7595e478d7baf6e7f2ca39d385b2ee7f07af5bb762d823b11bcb76e"
+      },
+      {
+        "kind": "fixed_existing_detail_and_consumer",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "f69d769b9c3a44a25f6531ab02f7c9852b414765fc954d2a6054405928938868",
+        "selected_pointers": [
+          "/selected_source_occurrence_array_builder_detail",
+          "/f05_detail_contract/entry_points/private_caller",
+          "/f05_detail_contract/types/CallerInputs",
+          "/f05_detail_contract/types/ValidationInput",
+          "/f05_detail_contract/leaf_writer_ledger/23"
+        ],
+        "role": "既存builder、closed CallerInputs/ValidationInput、C01を再利用。"
+      },
+      {
+        "kind": "observed_origin_carrier",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "f8a953cc2348f4ef9e42fb14bb8b90b3303d3b020afc3e54bc1727e6d0e4d448",
+        "selected_pointers": [
+          "/type_contract/types/SupplyInput/fields/sources",
+          "/type_contract/types/QualifiedSource",
+          "/type_contract/types/SupplyAnalysis"
+        ],
+        "role": "SupplyInput.sourcesが原source occurrence。SupplyAnalysisはbody/qualification配送物ではない。"
+      },
+      {
+        "kind": "paired_existing_source_occurrence_oracle",
+        "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "318ff52f260ce576df77ec4f2fcb9d976f5ac97896eacc8a9dc8fb3cdaa9221e",
+        "selected_pointers": [
+          "/selected_brain_source_occurrence_verification/cases/0",
+          "/selected_brain_source_occurrence_verification/cases/1"
+        ],
+        "role": "既存replace/append正例はsource array部分の期待を再利用し、caller接続のoracleで重複収載しない。"
+      },
+      {
+        "kind": "legacy_failure_and_consumer_basis",
+        "current_document_pointer": "/failure_basis",
+        "legacy_failure_path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "legacy_failure_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+        "legacy_failure_lines": "65–101",
+        "failure_ids": [
+          "UTW-014",
+          "UTW-020",
+          "UTW-021"
+        ],
+        "legacy_domain_asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0"
+      }
+    ],
+    "owner_and_consumer": {
+      "owner_ref": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+        "pointer": "/components/0",
+        "id": "ApplicationInputBinding"
+      },
+      "builder_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "f69d769b9c3a44a25f6531ab02f7c9852b414765fc954d2a6054405928938868",
+        "pointer": "/selected_source_occurrence_array_builder_detail",
+        "symbol": "_build_source_occurrence_array"
+      },
+      "consumer_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "f69d769b9c3a44a25f6531ab02f7c9852b414765fc954d2a6054405928938868",
+        "pointer": "/f05_detail_contract/entry_points/private_caller",
+        "symbol": "build_application_analysis_detail"
+      },
+      "first_callsite_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "f69d769b9c3a44a25f6531ab02f7c9852b414765fc954d2a6054405928938868",
+        "pointer": "/f05_detail_contract/leaf_writer_ledger/23",
+        "id": "C01"
+      },
+      "boundary": "C01が既存validation_detailを同callで一回呼ぶ。fn0やfn12を別に再実行しない。"
+    },
+    "explicit_request": {
+      "carrier": "private wrapperへのcaller supplied request。BRAIN SupplyInputに選択producer/snapshot identityを追加しない。requestが実selector authorityという主張もしない。",
+      "common_operands": [
+        "原SupplyInputのraw全体",
+        "callerが供給するorigin snapshotのidentity/revision context",
+        "destination-beforeのsnapshot contextとsources",
+        "callerが供給するdestination-after snapshotのidentity/revision context",
+        "after用ApplicationInputのraw frame",
+        "明示されたorigin source出現index i",
+        "destination index j",
+        "after専用source_result_reference_projection Read"
+      ],
+      "edge_variants": [
+        {
+          "kind": "template_source",
+          "edge_pointer": "after raw frameの/templates[t]",
+          "source_ref_pointer": "/templates/t/source_ref",
+          "meaning": "tは明示された準備対象template occurrence。root ApplicationBinding.template_refがnullでも新gateにしない。この指定だけでtemplate採択/適用を成立させず、既存CORE consumerがApplicationInput全体を評価する。"
+        },
+        {
+          "kind": "knowledge_use_source",
+          "edge_pointer": "after raw frame /knowledge_records[n] と /operations/selected_knowledge_refs[h]",
+          "source_ref_pointer": "/knowledge_records/n/source_ref",
+          "meaning": "knowledge_use_sourceは同after rawの/knowledge_records[n]と/operations/selected_knowledge_refs[h]を明示indexで読み、identity/revision/scope/ownerの既存typed nullable規則で操作上のmembershipだけを確認する。既知差/必要端未取得はこの依頼のnot_called。全Refとshaの原値は保持するが、この前段で供給digestの完全解決又は有資格Ref対応を済ませたとはしない。knowledge digestの原source/body/同validation Dを必要とする本評価は既存calleeへ残し、record.ref.sha同士又はrecord全体の新hashをその代用にしない。template_ref/binding/source_refも別端として保存する。unselected-only参照やtemplate側edgeで補完せず、root knowledge_refのnonnull gateも作らない。"
+        }
+      ],
+      "request_is_not_selection_policy": "role・record occurrence・selected knowledge occurrence・i/jは明示入力。先頭/latest/unique/qualification順によるsource自律選択はしない。複数同値候補でも明示iが既存対応規則に合えば進め、他candidateを落とさない。"
+    },
+    "candidate_binding": {
+      "scan": "origin raw SupplyInput.sourcesの全出現を0-based原index順に観測する。source arrayに実在する各出現のraw whole/ref/presenceを保存し、edge.source_refとのrelationを既存CORE reference-resolution規則へ結ぶ。invalid/nonobject/未観測itemもcandidate列の順序・原値内でunestablishedとして残す。role/qualification/statusで列挙前にfilterしない。 候補全体を比べる前にfirst/latest/uniqueで縮退しない。",
+      "reference_rule": "既存CORE F05 reference_and_collection_rules/matchingと/reference_resolution_contract/identityを使う。identity/revision/scope/ownerの原typed端を比較し、供給不足はunestablished、既知差はdifferent。source_locatorをidentityにしない。nullable値の局所equalはidentity authority/資格を意味しない。",
+      "digest_rule": "edge.source_ref.sha256がsupplied non-nullの場合だけ、origin source occurrenceのcontent_bytes原stringをUTF-8 bytesとしてSHA-256しedge digestへ照合する。edge digest absent/nullはこのfacetだけnot_applicable。content_bytesが未到達/非stringならunestablished。source.ref.sha256と自身のcontent_bytes/body整合は別facetで、既存CORE fn0へ渡す。BRAIN両Ref digest供給時比較は移植しない。",
+      "selection": "明示iだけを選択planへ使う。iが存在し、edgeとexisting Ref/digest rulesで対応する場合だけbuilderへ進む。全candidate observationsは出力に残す。multiple candidate/duplicateだけで拒否しない。unknown/different/missing explicit relationでiが対応しない場合、当該private callerだけnot_called。"
+    },
+    "after_call_flow": [
+      "1. after raw frameの実配列index/roleからedgeを読む。template source準備はroot template_refのnonnull一致gateを作らない。knowledge-useはselected_knowledge_refs[h]とknowledge_records[n].refの四端membershipを確認し、sha原値と完全解決/資格評価は既存calleeへ残す。",
+      "2. origin SupplyInput.sources全体のcandidate observationを作り、明示iのedge relationと必要digest facetを評価する。候補全列を保持し、一件へ自動縮退しない。",
+      "3. explicit i/j、immutable origin snapshot context、独立したdestination-before context/sources、caller supplied after contextを既存_build_source_occurrence_arrayへ一回渡す。builderの実返却だけを後続へ使う。before_sourcesをafter frame.sourcesから生成しない。",
+      "4. builder formed時だけ、after raw frameのsources memberを新配列に置換/設定した新raw wholeを構成する。元frame.sourcesのpresence/valueは別Readとして保持し、before_sourcesとの同一/一致gateを作らない。他memberとinput_refは原value/presenceを保つ。source_result_reference_projectionはafter専用の独立Readで、before Read/cacheを再利用しない。",
+      "5. 新raw wholeを既存ValidationInput{tag:native,raw:after whole}へ包み、既存CallerInputsのvalidation_inputへ入れる。closed CallerInputsの新member/API/schemaは作らない。",
+      "6. after-only projection Readを既存CallerInputs.source_result_reference_projectionへ別途入れ、既存build_application_analysis_detailを一回呼ぶ。C01の同一validation detail一回呼出と全既存返却を保持する。"
+    ],
+    "local_failure_boundary": {
+      "not_called_conditions": [
+        "edge request/after raw pointerが未形成でedge.source_refを得られない",
+        "knowledge-use record.refとselected_knowledge_refs[h]の四端membershipがdifferent又は必要端不足。供給sha評価は既存calleeへ残す。",
+        "origin sources欠落/null/非配列又は明示iが不存在/invalid/out of range",
+        "明示iのedge Ref correspondenceがdifferent/unestablished又はedge digest supplied non-nullの比較がdifferent/unestablished",
+        "builderがunformed",
+        "after raw frameへsourcesだけをlosslessにspliceできない"
+      ],
+      "result": "該当選択準備だけをlocal not_calledとして原Read/全candidate/builder由来の既存InputIssueとwrapperの局所issueを区別して保持し、空配列、fallback、stale before callを生成しない。無関係scope・既存通常callerを止めない。",
+      "not_preparation_failure": "source content_bytes/body/self-ref-digest不整合、CORE qualification不足、合法なderived_view/explanation/reference_only role、またはlosslessly表せるinvalid role/extra memberはbuilderの選択準備gateにしない。fieldwise raw mapping後に既存CORE fn0/callerへ渡し、その実InputIssue/Qualification/source observation/全返却をpreserveする。元値を正確に表せないlossy projectionだけはunformed。",
+      "no_false_success": "returned CORE analysis/C01/FN0はBRAIN origin selection、実owner資格、実delivery、OS登録、template adoptionの証拠ではない。private wrapperはactual caller inputとactual full return又はnot_calledを記録する。"
+    },
+    "not_closed_here": [
+      "明示planを生成する上流producer/実外部取得・source custody/identity authority",
+      "複数selected source occurrenceを一連のbefore/afterへ合成する政策・chain",
+      "全ApplicationInputの他member生成と正式wire codec cross-runtime adapter",
+      "BRAIN QualificationからCORE Qualificationへの意味/authority mapping",
+      "実trust、delivery、OS registration、runtime実行、受入"
+    ],
+    "legacy_comparison": {
+      "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+      "lines": "34–58",
+      "sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b",
+      "failure_asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "failure_path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "failure_lines": "65–101",
+      "failure_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "failure_ids": [
+        "UTW-014",
+        "UTW-020",
+        "UTW-021"
+      ],
+      "retained": "I/O・失敗・state・consumer/oracleの責務境界、missing/nullと局所原因を保つ。",
+      "changed": "旧registry/DomainGraph/runtime/gateは移植せず、既存CORE owner内で一つの明示edge取得路をbuilder/C01へ接ぐ。",
+      "reason": "旧inventory-firstと失敗根拠を現行承認要求・既存typed carriersへ再導出し、候補列やhash/自己申告で一意選択や完了を作らない。"
+    },
+    "failure_basis_ref": "/failure_basis",
+    "completion_boundary": "一つの明示source-edge依頼の設計上のprivate取得路のみ。実source provider、実信頼、完全assembly、実delivery、runtime/受入の成立ではない。",
+    "private_entry_point": {
+      "symbol": "_build_application_analysis_for_selected_source",
+      "owner_component_ref": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "revision": "30dad57cb014305f3ccdb89b60a4f87c2000ea92",
+        "sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+        "pointer": "/components/0",
+        "component_id": "ApplicationInputBinding"
+      },
+      "role": "一つの明示edge-backed source occurrence準備を既存一出現builderからafter raw callerへつなぐprivate wrapper。独立service/resolver/APIではない。",
+      "consumer": "既存build_application_analysis_detail(CallerInputs)->CoreApplicationDetailReturnを一回呼ぶ。そこからC01が同一validation_detailを一回呼ぶ。",
+      "caller_input_boundary": "wrapperへexplicit request、origin SupplyInput raw/context、destination-before/after context、after raw frame、after-only source_result_reference_projection Readを別portとして渡す。これらは私有caller引数で、新しいBRAIN public fieldやCORE CallerInputs memberではない。",
+      "nonclaim": "source選択requestを誰が生成するか、実origin identity/custody、BRAIN↔CORE codec/配送の実成立は未閉包。"
+    },
+    "qualification_boundary": {
+      "pointer_to_existing_contract": "/selected_brain_source_occurrence_contract/qualification_boundary",
+      "rule": "qualification_refは既存fieldwise mappingどおりraw value/presenceで保つ。BRAIN QualificationをCORE Qualificationへcastせず、owner/root資格を作らない。資格/bytes/body/CORE root issueは既存fn0の実返却に残し、edge selection準備の拒否理由にしない。"
+    },
+    "authority_basis": {
+      "decision_record_id": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
+      "decision_record_path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approved_reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+      "approved_functional_requirements_sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1",
+      "approved_requirements_selected_object_canonical_sha256_by_pointer": {
+        "/requirements/23": "0955af985adf56ca021309bfb52a65ea171a2f93d3d4c5aa575c837f8e3612c7",
+        "/requirements/27": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54",
+        "/requirements/28": "c80dc10b5dd9a70f58283ab5b064dc59ffa77cc9e757706554f88c62b77bcabe",
+        "/requirements/30": "c8b9bf5efe236099dde657908974decf43edb0e20a59ed3af3f6b327f7bb7439"
+      },
+      "approved_functional_verification_sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c",
+      "approved_verification_selected_object_canonical_sha256_by_pointer": {
+        "/cases/23": "15a2f858c81c6bd7d592723e5c0670fdcb263e5f952e1e01955ba034b15b0fad",
+        "/cases/27": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d",
+        "/cases/28": "0bfe30ebc97c6d41bdd97a1dd1db63fa2dda0d5bd712bc5e0f22d2e6d05527f5",
+        "/cases/30": "7af91cc06b2754d6efc40e47040db83e6615d6bb92cacff157368610d1d370a0"
+      },
+      "boundary": "F01/F05/F06/F08の対象承認を参照する。現baseの同じ8 objectは承認対象と意味一致するが、本文全体の新revision承認・実資格・配送・実装Readyを生成しない。"
+    }
   }
 }
