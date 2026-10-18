@@ -5216,7 +5216,7 @@
         "right": {
           "tag": "normative_literal",
           "value": "original field-specific unfinished obligation scope",
-          "rule_pointer": "/field_obligation_scope_contract/cause_patterns/scope_unestablished"
+          "rule_pointer": "/field_obligation_scope_contract/cause_patterns/scope_unestablished/right/value"
         },
         "meaning": "原scope支持未供給。global配列をfieldへcastせず、元globalRef viewと局所対象を保持。"
       },
@@ -5233,7 +5233,7 @@
         "right": {
           "tag": "normative_literal",
           "value": "corresponding original scope relationship owner",
-          "rule_pointer": "/field_obligation_scope_contract/cause_patterns/owner_mismatch"
+          "rule_pointer": "/field_obligation_scope_contract/cause_patterns/owner_mismatch/right/value"
         },
         "meaning": "既存原関係owner候補とsourceOwnerが全既知差。BRAIN/定義owner/callerをfallbackにしない。"
       },
@@ -5242,7 +5242,7 @@
         "right": {
           "tag": "normative_literal",
           "value": "Ref[]",
-          "rule_pointer": "/field_obligation_scope_contract/cause_patterns/body_unformed"
+          "rule_pointer": "/field_obligation_scope_contract/cause_patterns/body_unformed/right/value"
         },
         "meaning": "必要原列null/欠落/型外。rawReadを保持して[]へdefaultしない。"
       },
@@ -5294,7 +5294,7 @@
       "change": "現carrier上へ局所原scope bodyと基本finite viewを追加する。旧registry/runtime/自由文predicateを移植しない。",
       "reason": "globalRefだけではfield当該scopeを一意に保てずU0が残った実不足を解く。上流意味/新gateを失敗文言から生成しない。"
     },
-    "cause_pattern_notation": "各rightはOperandのwriter指定であり、read_origin_jaは返却memberではない。original指定は説明した実input nodeのReadをreadへ格納する。normative_literal指定はvalueと当該patternのrule_pointerを返す。Cause左右の原値をラベル文字列に置換しない。",
+    "cause_pattern_notation": "各rightはOperandのwriter指定であり、read_origin_jaは返却memberではない。original指定は説明した実input nodeのReadをreadへ格納する。normative_literal指定は記載したvalueとright.rule_pointer（当該patternの/right/valueを指す）をそのまま返す。Cause自体のrule_pointerはpattern本体を指し、規範値の所在と区別する。Cause左右の原値をラベル文字列に置換しない。",
     "scope_column_equality": "unfinished_obligation_refsの列同値は長さ・出現順・反復数を含み、対応位置のRefの全型付き原memberを既存Ref/論理JSONの同値で比較する。object memberの記載順は意味差とせず、booleanとnumberを同一視しない。配列をsort/dedupして比較せず、数値の新codec又はcanonical化規則をここで導入しない。"
   }
 }
