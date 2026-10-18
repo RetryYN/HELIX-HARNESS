@@ -543,7 +543,7 @@
       "route": "BRAIN SupplyAnalysis→CONNECT選択辺→CORE ApplicationInput",
       "design_observation": "SupplyAnalysisとApplicationInputの別意味を保持する。CORE F05 callerはstep5までの全返却を詳細化し、step6/7はB019のF02別portと選択030 F01/F02/F03へ結ぶ。B019 F02の局所型共通化は既存11型へ展開同値。",
       "remaining": "SupplyAnalysisとApplicationInputの原材料・受取意味を結ぶ明示mapping、同query/knowledge/独立field関係、COREの原値・理由から030 ProductValueへの明示projection、同call全返却/未接続格納先は未閉包。B019/B030 B01はこの接続の代替根拠ではない。",
-      "next_responsibility": "BRAIN提供ownerとCORE入力owner、B019-F02別portの接続owner、選択B030 readerのownerが、原対応を固定して一呼出し往復の対設計へ戻す。型名を増やすだけで接続完成にしない。",
+      "next_responsibility": "まずBRAIN提供owner、CORE入力owner、CONNECT選択辺ownerが、SupplyAnalysisとApplicationInputの原材料・受取意味を一責務単位として整理する。後段B019-F02別portと選択B030 readerの原対応・一呼出し往復は別単位に保持する。型名を増やすだけで接続完成にしない。",
       "anchors": [
         "brain.supply",
         "core.input",
