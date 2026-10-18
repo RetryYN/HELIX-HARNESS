@@ -6919,5 +6919,403 @@
       },
       "boundary": "F01/F05/F06/F08の対象承認を参照する。現baseの同じ8 objectは承認対象と意味一致するが、本文全体の新revision承認・実資格・配送・実装Readyを生成しない。"
     }
+  },
+  "selected_brain_field_definition_application_contract": {
+    "id": "HARNESS-L4-009-F05-BRAIN-FIELD-DEFINITION-APPLICATION",
+    "status": "限定された基本設計候補。実装・実呼出し・実配送・実資格・受入ではない。",
+    "requirement_refs": [
+      "HARNESS-L3-009-F01",
+      "HARNESS-L3-009-F05",
+      "HELIXBRAIN-L3-032-F03"
+    ],
+    "system_oracle_refs": [
+      "HARNESS-L10-009-F01",
+      "HARNESS-L10-009-F05",
+      "HELIXBRAIN-L10-032-F03"
+    ],
+    "paired_verification_ref": "HARNESS-L9-009-F05-BRAIN-FIELD-DEFINITION-APPLICATION",
+    "scope": "既存ApplicationInputBindingが一つの同call selected/targeted CORE FieldInputと一つの原BRAIN SectionField/F03 field-definition readの間に明示された適用関係を受け、その全支持をCOREのF05定義評価へ私有枝で結ぶ。製品定義operandごとの対応、双方の原identity/Binding/source/read、F05 native返却とforeign適用結果を並行保持し、fn9/fn10の専用私有consumer入口まで定義する。全field・全source chain・全ApplicationInput assemblyの閉包ではない。",
+    "authority_effect": "承認済みF01/F05/F03の意味を変更しない。CORE ApplicationInputBindingが当該操作の明示適用requestを供給する。別の承認者、issuer、registry、BRAINへの製品意味責務、新しいauthority/gateを作らない。BRAINはgeneric field meaningを保有し、COREは製品FieldInputへの適用と製品値を保有し、OSは案件記録を保有する。",
+    "operation_effect": "BRAIN既存private full-runner portとCORE既存C01/native producerの各一回のlogical callを同一操作contextへ束ね、F05の新private variantとfn9/fn10の新private consumer variantへ渡す設計を定める。local/remote配置、transport、runtime、実接続は固定しない。未実装portを実在のdispatch/deliveryとして扱わない。",
+    "source_basis": [
+      {
+        "kind": "approved_requirement",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/23",
+            "id": "HARNESS-L3-009-F01",
+            "canonical_sha256": "0955af985adf56ca021309bfb52a65ea171a2f93d3d4c5aa575c837f8e3612c7"
+          },
+          {
+            "pointer": "/requirements/27",
+            "id": "HARNESS-L3-009-F05",
+            "canonical_sha256": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54"
+          }
+        ],
+        "authority_scope": "委任承認済みの選択objectのみ。"
+      },
+      {
+        "kind": "approved_oracle",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c",
+        "selected_objects": [
+          {
+            "pointer": "/cases/23",
+            "id": "HARNESS-L10-009-F01",
+            "canonical_sha256": "15a2f858c81c6bd7d592723e5c0670fdcb263e5f952e1e01955ba034b15b0fad"
+          },
+          {
+            "pointer": "/cases/27",
+            "id": "HARNESS-L10-009-F05",
+            "canonical_sha256": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d"
+          }
+        ],
+        "authority_scope": "委任承認済みの選択objectのみ。"
+      },
+      {
+        "kind": "approved_requirement",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "revision": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+        "sha256": "60c3b75be3b240112bf5e0dc616c2d8566b419122f32bb16a00df347f1012507",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/2",
+            "id": "HELIXBRAIN-L3-032-F03",
+            "canonical_sha256": "93b39b1ea026f5612778723b5d37f6ee527d8c40c463438f3ab7dbb68ffe23e5"
+          }
+        ],
+        "authority_scope": "承認時の原L3 whole。selected requirementの意味根拠として使い、現在版のSHA/内容に承認を継承しない。"
+      },
+      {
+        "kind": "approved_oracle",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "revision": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+        "sha256": "bb8af60e15b7c6bc6069d4e89cd6e0dae7b3a18f27615c7964e5558627c2b437",
+        "selected_objects": [
+          {
+            "pointer": "/cases/2",
+            "id": "HELIXBRAIN-L10-032-F03",
+            "canonical_sha256": "30e2b6c86cb68df1a4ba4a9583c30af421ec84b5e5a7640b608956df27c945ae"
+          }
+        ],
+        "authority_scope": "承認時の原L10 whole。selected caseの意味根拠として使い、現在版のSHA/内容に承認を継承しない。"
+      },
+      {
+        "kind": "current_read_of_approved_BRAIN_objects",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "revision": "491e9dcd7c6a03640b8e52dd079e98faff704817",
+        "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "selected_objects": [
+          {
+            "pointer": "/requirements/2",
+            "id": "HELIXBRAIN-L3-032-F03"
+          }
+        ],
+        "role": "現在の表示と承認時objectを区別する読取。承認根拠ではない。"
+      },
+      {
+        "kind": "current_read_of_approved_BRAIN_objects",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "revision": "491e9dcd7c6a03640b8e52dd079e98faff704817",
+        "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+        "selected_objects": [
+          {
+            "pointer": "/cases/2",
+            "id": "HELIXBRAIN-L10-032-F03"
+          }
+        ],
+        "role": "現在の表示と承認時objectを区別する読取。承認根拠ではない。"
+      },
+      {
+        "kind": "fixed_existing_BRAIN_basic_design",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "491e9dcd7c6a03640b8e52dd079e98faff704817",
+        "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+        "pointers": [
+          "/field_value_applicability_contract/functions/2",
+          "/field_value_applicability_contract/closed_types/F03FieldDefinitionRead",
+          "/field_value_applicability_contract/closed_types/F03Evaluation",
+          "/field_value_applicability_contract/field_definition_cause_table",
+          "/field_value_applicability_contract/field_definition_judgment_writer",
+          "/field_value_applicability_contract/projection_order/reads",
+          "/field_value_applicability_contract/projection_order/claims"
+        ],
+        "role": "原BRAIN producer/meaning/causeの固定技術source。新設要求や実装証拠ではない。"
+      },
+      {
+        "kind": "fixed_existing_BRAIN_detail_design",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "491e9dcd7c6a03640b8e52dd079e98faff704817",
+        "sha256": "3d97d1333333f99a064a88a0b559365dac4207110c1a980a9e94bedfb8dd3142",
+        "pointers": [
+          "/field_value_applicability_detail/public_and_private_callers/private_full_runner",
+          "/field_value_applicability_detail/not_closed_here",
+          "/type_contract/types/Binding",
+          "/type_contract/types/SupplyInput",
+          "/type_contract/types/QualifiedSource",
+          "/type_contract/types/SupplyAnalysis"
+        ],
+        "role": "実同call F03Evaluationを返す既存private full-runner portの契約。SupplyAnalysisはその全原source/read/supportを代替しない。"
+      },
+      {
+        "kind": "fixed_existing_CORE_basic_design",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "revision": "491e9dcd7c6a03640b8e52dd079e98faff704817",
+        "sha256": "88e0cef2a210a43965a841d929712af9bb52ec7141d2bbb32f2cbc405a1508e2",
+        "pointers": [
+          "/components/0",
+          "/field_source_materialization_contract",
+          "/field_semantic_evidence_contract",
+          "/f05_validation_material_call_contract",
+          "/selected_source_caller_contract"
+        ],
+        "role": "既存ApplicationInputBinding、native semantic evidence、同call materialization及びsource一出現準備を基礎として読む。source callerの一edgeはF03全support配送ではない。"
+      },
+      {
+        "kind": "fixed_existing_CORE_detail_design",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "491e9dcd7c6a03640b8e52dd079e98faff704817",
+        "sha256": "0feb211a8b3658909b9424db3d269105fd50885247d3299cf33f73532cf569ce",
+        "pointers": [
+          "/f05_detail_contract/types/CallerInputs",
+          "/f05_detail_contract/types/F05DetailedRequest",
+          "/f05_detail_contract/types/F05DetailedReturn",
+          "/f05_detail_contract/types/OwnerMaterial",
+          "/f05_detail_contract/types/FieldOwnerResult",
+          "/f05_detail_contract/types/DefinitionAssessment",
+          "/f05_detail_contract/types/DefinitionJudgment",
+          "/f05_detail_contract/types/DefinitionEvidenceInterpretation",
+          "/f05_detail_contract/types/BasisOccurrence",
+          "/f05_detail_contract/entry_points/private_caller",
+          "/f05_detail_contract/consumer_interpretation_binding",
+          "/f05_detail_contract/definition_and_value_summary",
+          "/f05_detail_contract/types/ValidationSourceObservation"
+        ],
+        "role": "native closed records/writer/consumer baseline。foreign supportを既存native typeへ格納しない。 ValidationSourceObservationの実閉型と同一sourceの現L4意味対応はこの詳細設計pointerで照合し、CORE source observationをBRAIN support型へcastしない。"
+      }
+    ],
+    "source_and_identity_contract": {
+      "CORE_field": "同一CORE operationの実Selectionがtargetedとした、validated.input.field_inputs[i]の一出現。field index、全FieldInput、full field Ref、template_ref、ApplicationBinding、definition_refsの原whole/presence/orderを結ぶ。Selectionが未形成/outside/raw_onlyならこの適用枝は未呼出し。",
+      "BRAIN_field": "同一BRAIN immutable snapshotのinput.section_fields[f]原一出現と、その原full Ref/BindingをF03 field owner/target/fact/meaning readへつなぐ。BRAIN full-runnerが返すF03Evaluationを実際のsupport正本とする。CORE FieldInput.refとBRAIN SectionField.refは異なってよい。",
+      "binding_separation": "BRAIN BindingとCORE ApplicationBindingは別の閉型・identity空間として保持する。owner名、field名、Ref文字列、revision/scope類似、配列位置、source_locatorから相互同一性/資格/適用を推論しない。",
+      "operand_link": "CORE ApplicationInputBindingがoperation requestで、CORE definition_refs[k]の実occurrence/full Refごとに対応を明示する。通常はBRAIN meaning_fact_refs[m]の実occurrence/full RefとF03 meaning-read/support occurrenceをlinkする。BRAIN meaning_refs_emptyの場合は存在しないmを作らず、当該F03FieldDefinitionReadのowner対応済みempty判断を明示的なfield-level support端としてlinkする。CORE field-level関係も同じrequestに明示し、いずれかの原Refを別Refへrename/castしない。既存CORE native Ref lookupのdifferent/unresolved結果はそのまま別に残す。これらoccurrence linksは所在対応であって意味適用の宣言ではない。",
+      "coverage": "relationは同operationのCORE input/application snapshot identity+revisionとBRAIN validated snapshot identity+revisionへそれぞれ束縛する。入力にある全CORE definition_refs occurrenceを列挙し、対応したもの/未対応のものを原順で保持する。未対応operand、duplicate occurrence、unknown raw値は消さず、選択BRAIN fieldの一つのknown支持だけからfield全体をknownにしない。対応端は実BRAIN meaning support occurrence、又はmeaning_refs_emptyのときに限りowner対応済みF03FieldDefinitionRead empty judgmentである。すべてのCORE operandと当該fieldに関係するBRAIN support occurrenceをrelationへ接続し、さらにCORE actual application statement/reason/basisが形成した範囲だけsummary候補を作る。対応やstatementの一つでも未形成ならsummary未形成。",
+      "mapping_origin": "関係と実適用statementは既存ApplicationInputBindingが当該operationに渡す原request/materialとして扱う。別の承認・issuer・registryを要求しない。関係/statementが無い又は曖昧なら当該fieldのadapter resultを未形成で返し、AIが自動対応/適用意味を作らない。これは新しいBRAIN供給義務や全field mapping要求ではない。",
+      "application_meaning_vs_index": "occurrence linksは位置対応だけを表し、適用意味を主張しない。CORE ApplicationInputBindingの同operation requestには、別のtyped definition_application bodyを含める。bodyはCORE operation/application scope+revision、CORE field/full ApplicationBinding、対象CORE definition operand occurrence全件、BRAIN field/support occurrence全件、CORE ownerが実際に宣言した適用意味の原body、理由、独立した原basis occurrence/source/presenceを保持する。typed bodyは単独boolやcallerラベルではなく、ownerがこの操作で何をどの根拠で適用したかを表す原recordである。単なるindex pair、BRAIN meaning文字列の反復、synthetic SemanticRecordはこれに当たらない。実source/readがない、参照端がunresolved、bodyの必須原memberが未供給、対象scope/operand/supportが同operationへ結べない場合、statementだけをlocal unformedにし、原mapping/F03全support/native resultは保持する。現行normal fixture/meaning factをこの実operation materialとして扱わない。将来、別の実sourceがこの形を満たす可能性は排除しない。"
+    },
+    "statement_reader_contract": {
+      "symbol": "_read_core_field_definition_application_statement",
+      "placement": "既存ApplicationInputBinding内のprivate reader。新public API/schema、別issuer、恒常追加gateではない。呼出し元は同operationの元requestを保全し、readerはその原sourceをlosslessに読む。",
+      "input": "CoreFieldDefinitionApplicationStatementInput = {operation_request_raw: callerが同じApplicationInputBinding operationから明示供給する原request wholeとpresence、core_detail_return: 同call CoreApplicationDetailReturn whole、selected_core_field_index: 実targeted field index、application_relation: operand occurrence links全件、brain_f03_return: 同operation BRAIN full-runnerが実際に返したF03Evaluation whole}。operation_request_rawはprivate wrapperへの実引数であり、公開wire schema/APIの新設や既定値ではない。含まれるindex-only relationとtyped definition_application bodyを別memberとして保存し、body/sourceをRelationから生成しない。",
+      "minimum_original_body": "definition_applicationはtyped owner-operation body。必須原項目はkind literal=definition_application、同operationのoperation/application scopeとrevisionへの原Ref、CORE product FieldInput occurrence/full Ref/full ApplicationBinding、全definition_refs operand occurrence/full Ref、BRAIN SectionField occurrence/full Ref/full Binding、対応するF03 support occurrence参照全件、owner_assertion、application_reason、independent_basis_refsである。owner_assertionの最小形は{target_core_operand_occurrence, supporting_brain_occurrence_refs[], proposition: RawValue}。propositionはownerがこのoperationで宣言したgeneric meaningを当該製品定義へ適用する内容の原値であり、単なる対応/indexではない。application_reasonは当該主張の理由を表す別原値、independent_basis_refsは主張を支える原occurrence/sourceを指す。これらは判定結果のknown/missing/unknown/conflict stateを格納する欄ではなく、識別子・state文字列だけでも代替できない。追加原memberもwholeに残す。これは局所private readerの技術carrierであり、外部wire/public schemaを定義しない。",
+      "read_result": "CoreFieldApplicationStatementRead = {tag=present, original_operation_request: PresenceJsonValue, statement_source_observation: ValidationSourceObservation (既存CORE source観測domainの閉型), body_pointer: JSONPointer, body_presence_and_raw: PresenceJsonValue, operation_scope_read: original ref/read, core_field_and_binding_reads: original occurrences, operand_reads: original ordered occurrences, brain_field_and_support_reads: original ordered occurrences, application_meaning_raw: PresenceJsonValue, reason_raw: PresenceJsonValue, basis_reads: original ordered ValidationSourceObservation/Ref occurrences, extra_members_raw: original whole}|{tag=unformed, original_operation_request: PresenceJsonValue, original_core_detail_return: CoreApplicationDetailReturn, original_brain_f03_return: F03Evaluation, original_relation: all supplied links, source_observations: all reached ValidationSourceObservation values, causes: local missing/unresolved/mismatch causes}. CORE側のsource observationはL5 /f05_detail_contract/types/ValidationSourceObservationをそのまま保持する。BRAIN側F03 source observationとは別domain・別閉型として原wholeを保持し、相互castせずsource資格を生成しない。",
+      "formation": "presentは同operation requestから実sourceを読み、対象ValidationSourceObservationを既存ref/owner/scope/revision/locator/bytes規則で辿り、typed bodyの全必須memberとCORE field/operand・BRAIN field/support端をそれぞれ元index/full Refへ対応できた場合だけ形成する。source自体の欠落/null/type外、参照未解決、operation/snapshot不一致、required raw member欠落、support端未対応、意味本文/理由/basisの所在不明はunformed。読めた原raw値・presence・ValidationSourceObservationは失敗枝にも残し、修復・既定・他sourceへの置換をしない。意味適用として形成できる条件を満たさないindex-only relationはrelationとして保持するが、application statement/resultはunformed。",
+      "provenance_boundary": "原source/readがある場合はその既存ValidationSourceObservationと全raw correspondenceを用いる。source_locator又は意味bodyだけを資格済みとしない。適用宣言はCORE ownerのこのoperationの実内容として読み、AIが意味を捏造しない。typed bodyを設計すること自体は新authorityではなく、独立basisを伴うowner原recordがない現素材ではunformedのままにする。"
+    },
+    "logical_private_ports_and_types": {
+      "placement": "既存ApplicationInputBindingの私有operation call境界。local/remote deployment、transport protocol、process topologyを決めず、実call/serialization/delivery未成立を明記する。",
+      "request_type": {
+        "name": "BrainFieldDefinitionApplicationRequest",
+        "visibility": "CORE private only; public schema/APIではない",
+        "members": [
+          "core_caller_inputs: 既存のclosed CallerInputsを原値のまま一回呼出し用に保持",
+          "brain_same_call_request: BRAIN existing private_full_runnerが必要とする原snapshot/request context。既存SupplyInput/Bindingを新変換せずその原wholeとimmutable revisionを保持",
+          "operation_request_raw: callerが同一ApplicationInputBinding operationについて明示供給する原request whole/presence。explicit_application_relationとownerのtyped definition_application body/source occurrenceを原値で保持し、公開wire schema/APIの新設や既定値にしない",
+          "explicit_application_relation: source_and_identity_contract/operand_linkの両端mappingとoccurrence links。位置関係だけで意味適用を主張しない",
+          "core_application_statement: _read_core_field_definition_application_statementが読む同operation typed definition_application原source/read。index-only relationと分離し、欠落時はapplication未形成。単独boolでowner意味を発行しない",
+          "source_preparation_observation: 該当する場合のみ既存selected_source_callerの実i→j結果/原前後rawを保持。一source edgeをF03全supportのcustodyへ昇格しない"
+        ]
+      },
+      "call_order": [
+        "1. ApplicationInputBindingのprivate wrapperは、まず既存build_application_analysis_detail(CallerInputs) / C01を同一CallerInputsで一回呼び、実CoreApplicationDetailReturn wholeを取得する。二回目のC01や入力再decode/合成はしない。",
+        "2. wrapperはCoreApplicationDetailReturn.validation.validatedとvalidation.source_observations、f05、producer_observations、claims、analysis、causes、input_scope_knowledge_gapをwholeのまま保持する。targeted Selection/FieldInput occurrenceはこの実C01返却のf05.formed.value.owner_material.evaluated.field_results内で元field_index=iのFieldResultを探し、evaluated枝ならvalue.selection、raw_only枝ならselectionを読む。targetedはevaluated.value.selectionとvalidation.validated.input.field_inputs[i]を対応させ、raw_only/outside/unestablished、owner_material/F05/field result未形成、unobservedならnative wholeを返しforeign枝をforeign_not_calledとして局所未形成にする。",
+        "3. Selectionが同callで一つのtargeted fieldと対応operandを形成し、明示request relationがある場合に限り、wrapperはBRAIN既存private_full_runnerを一回呼び実F03Evaluation wholeとBRAIN snapshot/source originを保持する。SupplyAnalysis、公開Comparison/Event、case fixtureから再構成しない。BRAIN呼出し不能/原条件未成立はlocal not_calledとしCORE native wholeを変更しない。",
+        "4. _read_core_field_definition_application_statementは同operation raw request、CoreApplicationDetailReturn、relation、実BRAIN F03Evaluationを受けてtyped owner operation statementを読む。mapping/request欠落、statement source不在、参照/meaning/reason/basis未形成はprivate application resultだけunformedにし、CORE native F05/producer結果、BRAIN全support、原linksを保持する。",
+        "5. build_f05_brain_definition_application_variantは実CoreApplicationDetailReturn whole、BRAIN F03 whole、relation、statement readを保持し、native F05DetailedReturnを変更せずforeign support/applied definition viewを形成する。続いてcompare_requirement_gaps_with_brain_definition_applicationが同じF05責務を明示mappingで拡張実行し、既存closed public shapeのCoreComparisonを別のapplied_f05_comparisonとして返す。native F05 comparisonがunformedなら、それを上書きせず、完全なF05 materialを再構成できる条件を満たすときだけ別出力を形成する。",
+        "6. fn9 private variantはapplied_f05_comparisonをcompare_requirement_gapsへ持つ新private enriched contextと、同callの他native producer observationsを受け、既存fn9のwriter責務で新しいpublic-shape CoreComparisonを計算する。これはC01が返したclaims/producer_observationではなく、別操作の適用mode結果である。",
+        "7. fn10 private variantはfn9が今回実際に計算したCoreComparisonをcheck_application_claimsへ持つ新private enriched contextで既存fn10 writer責務を実行し、public-shape CoreApplicationAnalysisを計算する。native C01 claims/analysis/observationsは別memberのまま保持する。必要producer未観測ならconsumerをnot_calledにし、欠落を補わない。",
+        "8. 最終wrapperはnative C01 whole、F05適用variant、fn9結果、fn10結果を非循環に束ねる。native-only entrypoints/signatures/returnsは変更しない。"
+      ],
+      "native_context_reconstruction": {
+        "source_whole": "新private wrapperは元CallerInputsと実CoreApplicationDetailReturn全体を保存する。CoreApplicationDetailReturn.producer_observationsは閉じた7 producerだけの目録であり、F05/compare_requirement_gapsとfn9/check_application_claimsはそこから回収しない。F05 native baselineはouter.f05のFormation内のF05DetailedReturn.comparison、fn9 native baselineはouter.claims、fn10 native baselineはouter.analysisから各wholeで読む。",
+        "fn9_context": "fn9適用variantは既存CoreCheckApplicationClaimsContextをnativeとして要求せず、新private EnrichedBrainDefinitionClaimsContextを使う。validatedはouter.validation.validated。candidate_universe/applicability/kind_obligation_trace/selected_knowledge/meaning_impacts/semantic_equivalenceはproducer_observationsの6 returned枝から各wholeで取得する。compare_requirement_gapsはF05適用variantが実計算したapplied_f05_comparison。native_f05_comparisonはouter.f05 Formationの形成値内comparison Formation、f05_detailはouter.f05 Formation全体を別々に保持する。producer_observationsにはF05やfn9の行がない。outer.f05がformedでnested comparisonがunformedでも、F05適用variantのcalled+formed枝と6 producer全returnedがあれば新contextを形成できる。いずれかの必須producerが未観測、skip、unformed、又はF05適用variantがnot_called/unformedならfn9 variantはnot_calledとし、native wholeを保持する。",
+        "fn10_context": "fn10適用variantは既存CoreBuildApplicationAnalysisContext又はnative fn9 outputを要求せず、新private EnrichedBrainDefinitionAnalysisContextを使う。validatedはouter.validation.validated。required_axes/candidate_universe/applicability/kind_obligation_trace/selected_knowledge/meaning_impacts/semantic_equivalenceはproducer_observationsの7 returned枝から各wholeで取得する。compare_requirement_gapsはF05適用variantのapplied_f05_comparison、check_application_claimsは同call fn9適用variantが実計算したapplied_claims: CoreComparison。native_f05_comparisonはouter.f05内comparison Formation、native_claimsはouter.claims、native_analysisはouter.analysisの全Formationを別々に保持し、f05_detailはouter.f05全体を保持する。producer_observationsにはF05/fn9の行がない。F05適用variantがcalled+formed、fn9適用variantがreturned+formed、7 producer全returnedなら、outer.f05がformedでnested native comparisonがunformedでも、又はnative claims/analysisがunformedでも、新contextを形成できる。必須producerが未観測、又は前段適用variantがnot_called/unformedならfn10 variantはnot_called。既存native型を捏造せず、C01結果は原Formationのまま保全する。 source_result_reference_projectionはRead<CoreJsonValue>をCoreSourceResultProjectionResultへcastしない。L5 caller_return_writer_contract/projection_boundaryのabsent省略・present null・同snapshot対応済み非nullのみ既存projector型として保持し、unreached/対応不能は未形成としてprojection_native_correspondence_frontierを閉じない。",
+        "producer_rule": "CoreApplicationDetailReturn.producer_observationsはcaller_return_writer_contract/producer_observations_catalogueの次の7項目だけである: compare_required_axes, compare_candidate_universe, compare_applicability, compare_kind_obligation_trace, compare_selected_knowledge, compare_meaning_impacts, compare_semantic_equivalence。各returned枝とproducer literalを照合してcomparison wholeを読む。F05はouter.f05: Formation<F05DetailedReturn>の形成値内comparison: Formation<CoreComparison>から、fn9はouter.claims: Formation<CoreComparison>から、fn10はouter.analysis: Formation<CoreApplicationAnalysis>から取得する。これらをcatalogueで検索せず、summaryで不足producerを補わない。outer whole、元CallerInputs、原順・causesを保全する。",
+        "producer_member_sources": {
+          "CoreApplicationDetailReturn.producer_observations (catalogue exact 7)": {
+            "compare_required_axes": "producer_observations producer=compare_required_axes",
+            "compare_candidate_universe": "producer_observations producer=compare_candidate_universe",
+            "compare_applicability": "producer_observations producer=compare_applicability",
+            "compare_kind_obligation_trace": "producer_observations producer=compare_kind_obligation_trace",
+            "compare_selected_knowledge": "producer_observations producer=compare_selected_knowledge",
+            "compare_meaning_impacts": "producer_observations producer=compare_meaning_impacts",
+            "compare_semantic_equivalence": "producer_observations producer=compare_semantic_equivalence"
+          },
+          "dedicated_outer_fields_not_catalogue_entries": {
+            "native_f05_comparison": "outer.f05: Formation<F05DetailedReturn>。formed.value.comparison: Formation<CoreComparison>",
+            "native_fn9_claims": "outer.claims: Formation<CoreComparison>",
+            "native_fn10_analysis": "outer.analysis: Formation<CoreApplicationAnalysis>"
+          }
+        },
+        "native_baseline_sources": {
+          "f05": "CoreApplicationDetailReturn.f05: Formation<F05DetailedReturn> whole。formed.value.comparison: Formation<CoreComparison>がnative F05 baseline。外側f05不形成と、F05DetailedReturn.comparison不形成を区別し、どちらも適用variantの結果で上書きしない。",
+          "fn9": "CoreApplicationDetailReturn.claims: Formation<CoreComparison> wholeが唯一のC01 native fn9 baseline。producer_observationsへ探しに行かない。",
+          "fn10": "CoreApplicationDetailReturn.analysis: Formation<CoreApplicationAnalysis> wholeが唯一のC01 native fn10 baseline。",
+          "separation": "baseline unformedを新適用modeの結果で上書きしない。新結果はprivate enriched invocationから新規に計算し、native baselineと並列保存する。"
+        }
+      },
+      "f05_variant": {
+        "symbol": "compare_requirement_gaps_with_brain_definition_application",
+        "request_type": "F05BrainDefinitionApplicationRequest (called枝専用) = {original_caller_inputs: CallerInputs, core_application_detail_return: CoreApplicationDetailReturn whole, native_f05_return: F05DetailedReturn (outer.f05 formed valueのみ), brain_f03_return: F03Evaluation (private_full_runner実returnのみ), explicit_application_relation, core_application_statement, source_preparation_observation?}。呼出し前提が成立しない場合、この型を作らず外側invocationをnot_calledにする。",
+        "return_type": "F05BrainDefinitionApplicationReturn (called枝専用) = {original_caller_inputs: CallerInputs whole, core_application_detail_return: CoreApplicationDetailReturn whole, native_f05_return: 実取得F05DetailedReturn, brain_f03_return: 実取得F03Evaluation whole, foreign_definition_support, application_relation, core_application_statement, applied_definition_view, applied_f05_comparison: F05AppliedComparisonOutcome(formed|unformed), causes}。",
+        "immutability": "既存OwnerMaterial/FieldOwnerResult/DefinitionAssessment/DefinitionJudgment/DefinitionEvidenceInterpretation/BasisOccurrence/OriginRoot/CallerInputs/F05DetailedReturnのclosed shapeを変更しない。BRAIN resultは別private memberのまま保持し、CORE native bytes/body/qualificationを再構築しない。"
+      },
+      "consumer_variants": {
+        "symbols": [
+          "check_application_claims_detail_with_brain_definition_application (fn9 private variant)",
+          "build_application_analysis_from_detail_with_brain_definition_application (fn10 private variant)"
+        ],
+        "inputs": "fn9 private variantはEnrichedBrainDefinitionClaimsContext、fn10 private variantはEnrichedBrainDefinitionAnalysisContextという別のclosed private recordを受ける。各recordは必要な全producer memberを明示して持ち、既存native Contextの形成を仮定しない。元CallerInputsとCoreApplicationDetailReturn whole、native Formation値はFlowReturn側で保全する。",
+        "private_result_types": {
+          "F05AppliedComparisonOutcome": "tagged union: formed{value: CoreComparison} | unformed{causes: Cause[]}。これは呼出済みF05適用variantの結果のみを表す。未呼出し状態は外側F05BrainDefinitionApplicationInvocation.not_called枝で表す。",
+          "AppliedFieldCheckView": "別roleのprivate summary。CORE field index/full raw FieldInput、全definition operand occurrence、BRAIN support occurrence/read、typed application statement/reason/basis、foreign applied_definition_resultを保持する。value側は同call native FieldOwnerResultのproduct-value assessmentが取得できた場合だけその原結果を別memberへ保持する。native FieldCheckProjectionとは別型。",
+          "EnrichedBrainDefinitionClaimsContext": "closed private record {validated: CoreValidatedApplication, compare_candidate_universe: CoreComparison, compare_applicability: CoreComparison, compare_kind_obligation_trace: CoreComparison, compare_requirement_gaps: CoreComparison from applied_f05_comparison, compare_selected_knowledge: CoreComparison, compare_meaning_impacts: CoreComparison, compare_semantic_equivalence: CoreComparison, native_f05_comparison: Formation<CoreComparison> from outer.f05.value.comparison, f05_detail: Formation<F05DetailedReturn> whole from outer.f05, applied_field_checks: AppliedFieldCheckView[]}。既存CoreCheckApplicationClaimsContext全体を前提にせず、native baseline unformedはそのFormationで保存。",
+          "EnrichedBrainDefinitionAnalysisContext": "closed private record {validated: CoreValidatedApplication, compare_required_axes: CoreComparison, compare_candidate_universe: CoreComparison, compare_applicability: CoreComparison, compare_kind_obligation_trace: CoreComparison, compare_requirement_gaps: CoreComparison from applied_f05_comparison, compare_selected_knowledge: CoreComparison, compare_meaning_impacts: CoreComparison, compare_semantic_equivalence: CoreComparison, check_application_claims: CoreComparison from this operation fn9 applied_claims, native_f05_comparison: Formation<CoreComparison> from outer.f05.value.comparison, native_claims: Formation<CoreComparison> from outer.claims, native_analysis: Formation<CoreApplicationAnalysis> from outer.analysis, f05_detail: Formation<F05DetailedReturn> whole, applied_field_checks: AppliedFieldCheckView[], source_result_reference_projection: original optional Read<CoreJsonValue>}。既存CoreBuildApplicationAnalysisContextを前提にせず、native baseline unformedはそのFormationで保存。 source_result_reference_projectionのpresence/valueから既存CoreSourceResultProjectionResultを直接推定・castしない。",
+          "F05BrainDefinitionApplicationClaimsReturn": "{native_claims: CoreApplicationDetailReturn.claimsの原Formation<CoreComparison> whole, applied_field_checks: ordered AppliedFieldCheckView[]|unformed with causes, applied_claims: Formation<CoreComparison>};applied_claimsは新private fn9 variantが既存CoreComparison closed shape/writerで実計算した返却。C01 native claimsではない。",
+          "F05BrainDefinitionApplicationAnalysisReturn": "{native_analysis: CoreApplicationDetailReturn.analysisの原Formation<CoreApplicationAnalysis> whole, applied_analysis: Formation<CoreApplicationAnalysis>, causes: Cause[]};applied_analysisは新private fn10 variantが既存CoreApplicationAnalysis closed shape/writerで実計算した返却。C01 native analysisではない。",
+          "SelectedBrainFieldApplicationFlowReturn": "{original_request: BrainFieldDefinitionApplicationRequest whole, original_caller_inputs: CallerInputs whole, native_core_return: CoreApplicationDetailReturn whole, f05_application: F05BrainDefinitionApplicationInvocation, claims_variant: not_called{causes}|returned{value: F05BrainDefinitionApplicationClaimsReturn}, analysis_variant: not_called{causes}|returned{value: F05BrainDefinitionApplicationAnalysisReturn}}。wrapper入力のoperation_request_raw、explicit_application_relation、brain_same_call_requestを開始時から保持し、reader/Selection/BRAIN呼出し前のnot_calledでも落とさない。native CallerInputsへ注入せず、native全返却と各適用variantの実在・未呼出し状態を有向に束ね、循環参照や架空実返却を作らない。",
+          "F05BrainDefinitionApplicationInvocation": "tagged union: not_called{original_caller_inputs: CallerInputs, native_core_return: CoreApplicationDetailReturn whole, native_f05: Formation<F05DetailedReturn> from outer.f05, brain_call_causes: Cause[], causes: Cause[]} | called{value: F05BrainDefinitionApplicationReturn}。not_called枝に実在しないF05DetailedReturn/F03Evaluationや適用variant結果を置かない。called枝の実F05DetailedReturnとF03Evaluationは、その呼出しが成立した根拠となる同一callの実返却である。"
+        },
+        "writer": "CORE専用writerはtyped definition_application statementの意味/理由/独立basis、対応済みF03全support、全CORE operand、元F05 owner_materialの当該field結果を合わせprivate AppliedFieldCheckViewを形成する。適用stateはnative FieldCheckProjection/Comparisonへ上書きしない。さらにcompare_requirement_gaps_with_brain_definition_applicationは同じF05 writer契約で、対象fieldの既存FieldCheckProjection closed 5-member形(field_ref/definition_refs/value_refs/definition_state/value_state)を生成し、definition_stateには形成済みCORE applied result、value_stateには同call native ValueAssessmentを用いる。definition known + value unknownは有効な組合せとしてCoreComparison.material.field_checksへ出力できる。native F05 comparisonがunformedでも、実FieldInput/全operand/F03全support/statementから全必要materialを形成できる場合は別のCoreComparisonを形成し、旧unformedを修正済みnative返却として扱わない。全CoreComparison必須member(producer_symbol/input_binding/original_axes/findings/material)は既存fn5 writer規則で生成し、field/gap/proposal/obligationの一部を落とさない。値側又は他selected field/proposalが未形成ならapplied_f05_comparisonをunformedにする。",
+        "consumer_result_route": "fn9適用variantはEnrichedBrainDefinitionClaimsContextの必須実入力全値とapplied F05 CoreComparisonを使い、fn9 writer責務で新しいCoreComparisonを計算してClaimsReturn.applied_claimsへ置く。fn10適用variantは7 producerの実returned値、applied F05 CoreComparison及びfn9が今回計算したCoreComparisonを使い、fn10 writer責務で新しいCoreApplicationAnalysisを計算してAnalysisReturn.applied_analysisへ置く。これらはC01 native claims/analysis/observationsとは別の実返却である。native F05/claims/analysisがunformedでも私有contextに必要な実入力があれば計算可能だが、未観測producer又は先行variantのnot_called/unformedがあれば後続consumerはnot_called。native resultを埋めたり改変しない。",
+        "outputs": "F05 variantは既存public CoreComparison shapeでapplied F05 outputを返す。fn9 variantは既存public CoreComparison shape、fn10 variantは既存public CoreApplicationAnalysis shapeで新適用modeの結果を返し、native C01返却は別memberとしてそのまま保持する。public型のclosed shapeは変更せず、新しい意味をC01の旧返却に帰属させない。",
+        "local_formation_boundary": "CoreFieldApplicationStatementReadはこの任意private adapter branchのdomain summaryを形成するための原入力であり、全F05 operationやnative-only経路へ追加する普遍gateではない。現素材でstatement/basisの原sourceが見つからないfieldはこのadapter summaryを未形成にするだけで、通常のnative F05 resultや無関係な操作を停止しない。"
+      },
+      "logical_not_runtime": "論理portのproducer/consumer名とデータ結合を宣言する。現在の同一process call、RPC、wire codec、security qualification bridge、retry/transport、配送実績を事実として主張しない。これらの成立は下流detail/実装/検証で別に閉じる。"
+    },
+    "cause_aware_f03_writer": {
+      "rule": "F03 state/branch文字列をCORE DefinitionJudgmentへ直接castしない。original F03FieldDefinitionRead/F03Evaluation branch、cause、全read、原occurrenceを新private supportに保存する。下記cause意味に加え、CORE ownerの実operation statement/理由/独立basisと全operand/support linkが形成していることを候補生成の前提とする。これらが未形成ならF03原判断は保持しCORE applied summaryは未形成。",
+      "cause_mapping": [
+        {
+          "causes": [
+            "request_field_absent",
+            "request_field_null",
+            "request_field_type",
+            "request_binding_absent",
+            "request_binding_null",
+            "request_binding_type",
+            "field_snapshot_differs",
+            "field_owner_unresolved",
+            "target_unknown",
+            "selected_fact_unresolved",
+            "selected_fact_source_unresolved",
+            "selected_fact_body_null",
+            "selected_fact_body_absent",
+            "attribution_unknown",
+            "meaning_read_unresolved",
+            "meaning_basis_unresolved",
+            "qualified_pair_unknown",
+            "snapshot_unavailable"
+          ],
+          "classification": "取得・資格・field/target/fact/owner/meaning/pair対応が未形成",
+          "core_effect": "CORE適用候補未形成。CORE実適用statement/reason/独立basisも必要。F03原definition_unknown/unknownと原因は保持するが、CORE domain unknownへはしない。"
+        },
+        {
+          "causes": [
+            "field_subject_differs",
+            "field_binding_differs",
+            "field_mirror_differs"
+          ],
+          "classification": "BRAINの原field/Binding/同snapshot mirror不一致",
+          "core_effect": "適用対象の対応未形成。入力修復/Ref改名/CORE domain conflictにしない。両原値を保持。"
+        },
+        {
+          "causes": [
+            "meaning_refs_absent",
+            "meaning_refs_null",
+            "meaning_refs_type"
+          ],
+          "classification": "BRAIN owner field recordは取得したがmeaning operand列を有効に取得できない",
+          "core_effect": "適用候補未形成。明示empty/missing判断へ転写せず、presenceとraw wholeを保持。"
+        },
+        {
+          "causes": [
+            "meaning_refs_empty"
+          ],
+          "classification": "owner対応/field/frameが形成された上での明示的空meaning_refs",
+          "core_effect": "operand mappingが当該fieldへ明示対応する場合のみCORE definition missing候補。CORE実適用statement/reason/独立basisが当該field/operandへの適用を示す場合に限る。source欠落やCORE definition_refs emptyとは別。"
+        },
+        {
+          "causes": [
+            "target_conflict",
+            "attribution_conflict"
+          ],
+          "classification": "BRAIN target locator又はmeaning owner attribution間の対応相反",
+          "core_effect": "support/association conflictとしてprivate result未形成。CORE definition conflict候補へ単語copyしない。原target/owner/support両方を残す。"
+        },
+        {
+          "causes": [
+            "meaning_negative",
+            "meaning_undetermined"
+          ],
+          "classification": "取得済みownerの明示meaning判断。negativeとundeterminedは別causeとして保持",
+          "core_effect": "CORE definition unknown候補。CORE実適用statement/reason/独立basisが当該field/operandへの適用を示す場合に限る。negativeをmissingへ変換せず、undeterminedと同一causeへ畳まない。"
+        },
+        {
+          "causes": [
+            "qualified_pair_false"
+          ],
+          "classification": "同subject/revision/scopeの実qualified meaning pairが非同値を示す原semantic conflict",
+          "core_effect": "field mappingと対象support全体の対応が形成している場合に限りCORE definition conflict候補。CORE実適用statement/reason/独立basisが当該field/operandへの適用を示す場合に限る。source mismatch/qualification unresolved/異なるframeとは混同しない。"
+        },
+        {
+          "causes": [
+            "meaning_positive"
+          ],
+          "classification": "固定frame/原fact/body/reason/basisへ対応するownerの肯定meaning判断",
+          "core_effect": "関連全supportとCORE operand mappingが形成している範囲だけCORE definition known候補。CORE実適用statement/reason/独立basisと全operand/support linkが形成した場合に限る。単一positive factや未対応operandでfield全体をknownにしない。"
+        }
+      ],
+      "mixed_or_unknown": "上記以外の未知cause、異なるcause混在、同一fieldの反対判断、原因/全readの一部欠落は原F03全値を順序付きで保持し、CORE summaryをunformedとする。CORE actual application statement/reason/basisが無い場合も同様にsummaryをunformedとする。cause名/state文字列の一致だけで判断を統合しない。",
+      "complete_support": "F03 evaluationのselected field readから、target/owner/fact/source/body/qualification/attribution/meaning/pair supportをすべて辿り、explicit CORE operand linkへ結びつく範囲を保持する。部分source edgeの運搬だけでこの条件を満たしたとしない。"
+    },
+    "native_and_foreign_support": {
+      "coexistence": "CORE native DefinitionAssessment/evidenceとforeign BRAIN F03 supportは別の原support branchで全出現を保持する。どちらかが他方をoverwriteせず、first/latest/uniqueで選ばない。",
+      "combination": "同fieldにnative/foreign双方がある場合、明示CORE application relationだけでなく、actual CoreFieldApplicationStatementReadの意味/理由/独立basisと既存CORE owner/operand規則で全対象Ref occurrenceの関係が形成した範囲だけprivate applied summaryで併用する。native/foreign state labelが同じことは同値根拠でない。意味/Binding/version/scope差、重複、相反、未対応operand、statement不在は個別に残しsummaryを必要に応じ未形成とする。",
+      "native_only": "foreign branchがない既存native-only経路、既存CallerInputs/F05 public/private entryの入力・返却・consumer semanticsは維持する。",
+      "no_partial_promotion": "対応済みforeign definition operandだけでは、残るCORE definition_refs、別BRAIN meaning support又は既存native materialが未対応でもfield全体をknown/missing/unknown/conflictの成功summaryへしない。実CORE application statement/reason/independent basisも要求し、欠ける場合は全原値を返してlocal unformedにする。"
+    },
+    "verification_basis": {
+      "independent_expectations": "paired_verification_refに対応するCORE L9のtracked反例・期待・全返却oracleが独立期待の正本であり、L4の新private F05/consumer出力と型・参照・native保持・不形成条件を照合する。独立に凍結したローカルmemoは作業/audit証拠であり、製品設計の必須sourceではない。",
+      "minimum_cases": [
+        "同名だけでmappingなし: local unformed。",
+        "明示mapping + source/read causeのF03 unknown: relationは維持しF03原unknown/cause/全supportを保持。",
+        "F03 known + CORE product value null/unknown:両軸を分離。",
+        "duplicate Ref at distinct occurrence / contradictory support:全index/判断を保持しfirst/latest/dedupしない。",
+        "source bytes/body/qualification absent/null/type/mismatch:既存validatorの原結果を保持し修復しない。",
+        "stale/different CORE/BRAIN snapshot/revision/scope:古いmapping/supportを再利用しない。",
+        "CORE definition_refsに複数operandがあり一部だけがBRAIN supportへ対応:対応済みoperandを保持し、field全体knownにしない。",
+        "native CORE supportとforeign BRAIN supportが同fieldに共存/相反:双方の全原値を残し勝手に一方を選ばない。"
+      ],
+      "not_proven": [
+        "L9 oracleの独立実行",
+        "実BRAIN-to-CORE transport/delivery",
+        "qualified cross-system admission",
+        "全field/source chain/Claim protocol closure",
+        "実装、受入、release"
+      ]
+    },
+    "not_closed_here": [
+      "全ApplicationInputの組立て、全field mapping、複数source occurrence chain及び全F03入力提供元のprojection。",
+      "CORE/BRAIN間の実process/RPC/wire codec、transport、認証/資格変換、外部配送。論理portだけを定義し実接続を認定しない。",
+      "製品value/value_fact_refs、applicability/NA、OS案件記録、template採用判断への自動転写。",
+      "任意Claim 54–57、BRAIN全要求・全支持の完了。既存原Claimsがあれば別観測として保全する。",
+      "新public API/schema、追加owner/issuer/registry、approval/authority gate、実trust resolver。",
+      "現行normal CORE SemanticRecord[9]及びBRAIN meaning factの本文は、位置関係だけでCORE product fieldへ実際に適用する意味/理由/独立basisを示すとはしない。現素材に実適用statementが無い対象は未形成として残り、成功goldenを合成しない。"
+    ]
   }
 }

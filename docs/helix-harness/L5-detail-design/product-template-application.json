@@ -14411,7 +14411,7 @@
         ],
         "current_l4_binding": {
           "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-          "file_sha256": "88e0cef2a210a43965a841d929712af9bb52ec7141d2bbb32f2cbc405a1508e2",
+          "file_sha256": "bbe7f0c90e2901e702472e0873e67bd782d8b34591dc0562fb941e4bb6a3ec19",
           "selected_objects": [
             {
               "pointer": "/input_scope_knowledge_gap_contract/input_only_contract",
@@ -17768,7 +17768,7 @@
       },
       "current_basic_binding": {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "file_sha256": "88e0cef2a210a43965a841d929712af9bb52ec7141d2bbb32f2cbc405a1508e2",
+        "file_sha256": "bbe7f0c90e2901e702472e0873e67bd782d8b34591dc0562fb941e4bb6a3ec19",
         "binding_scope": "same_candidate_basic_bytes",
         "selected_objects": [
           {
@@ -18055,7 +18055,7 @@
     ],
     "design_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "sha256": "88e0cef2a210a43965a841d929712af9bb52ec7141d2bbb32f2cbc405a1508e2",
+      "sha256": "bbe7f0c90e2901e702472e0873e67bd782d8b34591dc0562fb941e4bb6a3ec19",
       "pointer": "/selected_source_caller_contract",
       "canonical_sha256": "f75a907ecb152a4cd46d075ef23b1886279c9cea7959fe1c4da1852ad0cab60d",
       "binding_kind": "current_candidate_content_binding"
