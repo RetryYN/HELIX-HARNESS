@@ -239,6 +239,18 @@
       "path": "docs/helix-harness/L9-integration-verification/verification-discipline.json",
       "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
       "whole_sha256": "19498cf4c9cc07d7335592cda45bfdfbaea51cba08ec39c5118ac83b4e8e0221"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "revision": "9b2e3c9ae109425843be21e3ed1587dd6a88aa07",
+      "whole_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
+      "sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+      "revision": "9b2e3c9ae109425843be21e3ed1587dd6a88aa07",
+      "whole_sha256": "ba58b9075e62ed3bc22e101cffc4610dd57f189e4d939f1de9eb42b5f0d7b7fb",
+      "sha256": "ba58b9075e62ed3bc22e101cffc4610dd57f189e4d939f1de9eb42b5f0d7b7fb"
     }
   ],
   "parent_basic_source_pins": [
@@ -170755,7 +170767,7 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-    "sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+    "sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
     "pointer": "/private_producer_bindings/0",
     "object_canonical_sha256": "04dbe1216473f462663232a11c3a3bb007bad20f67fd09ae2b0e631d47724d22",
     "binding_kind": "exact_candidate_file_bytes",
@@ -171268,7 +171280,7 @@
     ],
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "ba58b9075e62ed3bc22e101cffc4610dd57f189e4d939f1de9eb42b5f0d7b7fb",
+      "candidate_sha256": "68de9202fc56e9b8ed5f8a503d10810eb8ebc585d0c64f578d780594b7b39268",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
     },
@@ -171286,13 +171298,13 @@
     "requirement_ref": "HELIXOS-L3-020-B01",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+      "sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
       "pointer": "/private_producer_bindings/1",
       "object_canonical_sha256": "63f762bfe8201153c855aa2aec5be391589101c0b61d4278b4d4252302f46d5c"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "ba58b9075e62ed3bc22e101cffc4610dd57f189e4d939f1de9eb42b5f0d7b7fb",
+      "candidate_sha256": "68de9202fc56e9b8ed5f8a503d10810eb8ebc585d0c64f578d780594b7b39268",
       "pointer": "/owner_return_verification"
     },
     "unit_conditions": [
@@ -171369,13 +171381,13 @@
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/2",
-      "sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+      "sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
       "object_canonical_sha256": "e73285ce1636a0a84018656dcb4f70a14e32189215a7612736612d0799e9ad20"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/operation_call_verification",
-      "candidate_sha256": "ba58b9075e62ed3bc22e101cffc4610dd57f189e4d939f1de9eb42b5f0d7b7fb",
+      "candidate_sha256": "68de9202fc56e9b8ed5f8a503d10810eb8ebc585d0c64f578d780594b7b39268",
       "object_canonical_sha256": "9f2acd849068f49d7113e7d9fc02089de7531667804083219bae5c29eb89583c"
     },
     "condition_correspondence": [
@@ -171529,14 +171541,14 @@
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/3",
-      "sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+      "sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
       "object_canonical_sha256": "2484d1aefeb5070ad9eac35f6e523ad40f3e31b2581b88854e9b30dc94c79342"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/prior_projection_verification",
-      "candidate_sha256": "ba58b9075e62ed3bc22e101cffc4610dd57f189e4d939f1de9eb42b5f0d7b7fb",
-      "object_canonical_sha256": "da39d45ce3592a37f7839af7f15fb203f53b9254ed6906ffb901155ce934adbd"
+      "candidate_sha256": "68de9202fc56e9b8ed5f8a503d10810eb8ebc585d0c64f578d780594b7b39268",
+      "object_canonical_sha256": "3d573219ffc0e67698c0446f5a74e3d2b225553818e546cbd2916795d0a48ca8"
     },
     "unit_conditions": [
       {
@@ -171619,14 +171631,14 @@
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/4",
-      "sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+      "sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
       "object_canonical_sha256": "2f11f11a5fe36fcb1ce5cfe2709576289c60f06d44cdee962b3736b2774b6a1e"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/resume_call_verification",
-      "candidate_sha256": "ba58b9075e62ed3bc22e101cffc4610dd57f189e4d939f1de9eb42b5f0d7b7fb",
-      "object_canonical_sha256": "30184c179bafb35cb83bb9f13e318c636ae4a793f85d3c677cece29c0db46538"
+      "candidate_sha256": "68de9202fc56e9b8ed5f8a503d10810eb8ebc585d0c64f578d780594b7b39268",
+      "object_canonical_sha256": "f77ba232a13a4ce0cf67d8d5e0fa82a9b7f9b6414d869f52169aec52a49c6667"
     },
     "unit_conditions": [
       {
@@ -171889,7 +171901,7 @@
     "system_oracle_ref": "HELIXOS-L10-020-F01",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+      "sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
       "pointer": "/private_producer_bindings/5",
       "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
       "binding_kind": "exact_candidate_file_bytes"
@@ -171902,9 +171914,9 @@
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "ba58b9075e62ed3bc22e101cffc4610dd57f189e4d939f1de9eb42b5f0d7b7fb",
+      "candidate_sha256": "68de9202fc56e9b8ed5f8a503d10810eb8ebc585d0c64f578d780594b7b39268",
       "pointer": "/f01_owner_return_verification",
-      "object_canonical_sha256": "9c61445a1413b036755d4d4262474949e8e1ed33d67a686351a545b05f777bea"
+      "object_canonical_sha256": "183cbc57119179b692b39eb07b2bf7eef9e37013f032c03df3ed257556491747"
     },
     "unit_conditions": [
       {
@@ -171956,7 +171968,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172058,7 +172070,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172160,7 +172172,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172262,7 +172274,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172364,7 +172376,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172466,7 +172478,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172568,7 +172580,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172670,7 +172682,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172772,7 +172784,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172874,7 +172886,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "今回のL5 F01 binding"
@@ -172967,7 +172979,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "F01 producer binding"
@@ -173168,7 +173180,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "同callerのL5 import"
           }
@@ -173228,7 +173240,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "同callerのL5 import"
           }
@@ -173288,7 +173300,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "同callerのL5 import"
           }
@@ -173348,7 +173360,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "同callerのL5 import"
           }
@@ -173401,7 +173413,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "同callerのL5 import"
           }
@@ -173461,7 +173473,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+            "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
             "object_canonical_sha256": "b22d3750d38e700d995d6f96a299c1fff15b462da9090cd9032111e3613e6268",
             "label_ja": "同callerのL5 import"
           }
@@ -173480,7 +173492,7 @@
     "independent_expected_basis_ja": "期待は採用L4のf02009_return_mappingとchild_field_preservationから導く。L9は固定seedからraw/caller/全返却14memberを再構成する有限input・paired oracleとして参照する。L5 /functions/8 の既存期待本文を期待生成元として使わない。",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "df871452117a90aea1b13ce6a5ee56c8f878a9be1f5384bc0b39342b02e86641",
+      "sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
       "objects": [
         {
           "pointer": "/contracts/4",
@@ -173622,5 +173634,881 @@
       "実resolver、実資格、実認可、CI実行。"
     ],
     "known_existing_discrepancy_ja": "既存source_bound_selection_pipelineの4caseでは、24attachment literal差と同call plan sourceの32値を原callerへ合わせ、case3の余分な原因pointerも是正済み。F02008 material投影と全consumer連鎖・全cause domainは未完として保持する。binding親5 unitの入力/全期待は保持し、過去証拠は固定revisionで辿る。"
+  },
+  "ci_material_same_call_unit_verification": {
+    "id": "OS020-CI-MATERIAL-SAME-CALL-L8",
+    "parent": "HELIXOS-L3-020-F01",
+    "status": "fixed_finite_oracle_not_executed",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "fixed_l9_source": {
+      "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+      "revision": "9b2e3c9ae109425843be21e3ed1587dd6a88aa07",
+      "file_sha256": "ba58b9075e62ed3bc22e101cffc4610dd57f189e4d939f1de9eb42b5f0d7b7fb",
+      "pointer": "/ci_material_same_call_verification",
+      "object_canonical_sha256": "f2a82bf5e9dcf58517ed6ed5c185b25c0617c767076960167a6cd02a7ae16494"
+    },
+    "fixed_git_seed": {
+      "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+      "path": "docs/helix-os/L8-unit-verification/ci-profile-execution-recovery.json",
+      "file_sha256": "a20c85530f1e5d4cd1129decd593da659e877a4b9f18f640ef5dde83c13617d6",
+      "objects": [
+        {
+          "pointer": "/source_bound_selection_pipeline/cases/0",
+          "canonical_sha256": "4a5e1e4ea633c695af3c75afe571ecb7ffea717affbe20ba38ad51c018adad1d"
+        },
+        {
+          "pointer": "/source_bound_selection_pipeline/cases/1",
+          "canonical_sha256": "b15803dfdd54ba131b26a8fb45a3c9e256cdcf886db08509967ea8d084f9aa6b"
+        },
+        {
+          "pointer": "/source_bound_selection_pipeline/cases/2",
+          "canonical_sha256": "4790592a89a7adc721a4a2b31fbb261f829de653ef1b19930e08fedcf663c200"
+        },
+        {
+          "pointer": "/source_bound_selection_pipeline/cases/3",
+          "canonical_sha256": "ba5b0944b2e795e09460dfb8c1d8984c9c27ef9dfbdd7232de608c3c54e9db2a"
+        }
+      ]
+    },
+    "current_l5_detail_binding": {
+      "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+      "revision_relation": "同じ候補treeの正確なL5全file/object hashへ束縛する。自己包含するcommit SHAは主張しない。",
+      "file_sha256": "b71cd521f5ef9301f72bcf0332c6afab40170235076e13a304dcbcbd1afe2d87",
+      "pointer": "/contracts/5",
+      "object_canonical_sha256": "6dd67d99f6b18bd2ad790ae36e2bb9dba2f4c41ef044533514b55d542706ce78",
+      "source_role_ja": "同じ候補treeにあるL5 detail。自己包含するcommit SHAは主張せず、whole-file/object hashで候補内容を結ぶ。rootのcommit後に正式revisionへ追随する。"
+    },
+    "workspace_materialization_ja": "fixed_sourceは固定Git seed全JSONをpath/revision/file_sha256で取得し、casesは4件の初期arguments objectから始める。各caseのRFC6902 copy/add recipeをcandidate outputとは独立に適用してexpected_observation全体を組み立てる。RFC source recipeはfixed_l9_sourceが固定するrevision 9b2e3c9ae109425843be21e3ed1587dd6a88aa07のL9から内容一致で転記され、4 case whole hashで束縛する。",
+    "oracle_separation_ja": "L9の固定GitはF02009/F02002/F02008旧全入力・全返却を供給する。元seedはF02003..07を呼び出していない。5 facetの全返却literalはL4適用表と固定L5 derivationから手起草された期待で、過去に観測済みとは記さない。expected値作成へcandidate関数を使わず、将来のactual writer return全体と独立に比較する。",
+    "cases": [
+      {
+        "id": "UNIT-OS020-SAME-SNAPSHOT-1",
+        "l9_case_pointer": "/ci_material_same_call_verification/cases/0",
+        "seed_case_id": "OS020-SOURCE-BOUND-VALID-SELECTED-EXTRA",
+        "rfc6902_recipe": [
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/0/calls/1/typed_arguments/caller",
+            "path": "/cases/0/arguments/assembled_caller"
+          },
+          {
+            "op": "add",
+            "path": "/cases/0/expected_observation",
+            "value": {
+              "assembled_caller": {},
+              "bound_input": {},
+              "calls": {},
+              "projection": {}
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/0/arguments/assembled_caller",
+            "path": "/cases/0/expected_observation/assembled_caller"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/0/calls/2/typed_arguments/input",
+            "path": "/cases/0/expected_observation/bound_input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/0/expected_observation/calls/binding",
+            "value": {}
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/0/calls/1/typed_arguments",
+            "path": "/cases/0/expected_observation/calls/binding/arguments"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/0/calls/1/expected_return",
+            "path": "/cases/0/expected_observation/calls/binding/returned"
+          },
+          {
+            "op": "add",
+            "path": "/cases/0/expected_observation/calls/metadata",
+            "value": {}
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/0/calls/2/typed_arguments",
+            "path": "/cases/0/expected_observation/calls/metadata/arguments"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/0/calls/2/expected_return",
+            "path": "/cases/0/expected_observation/calls/metadata/returned"
+          },
+          {
+            "op": "add",
+            "path": "/cases/0/expected_observation/calls/material",
+            "value": {}
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/0/calls/3/typed_arguments",
+            "path": "/cases/0/expected_observation/calls/material/arguments"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/0/calls/3/expected_return",
+            "path": "/cases/0/expected_observation/calls/material/returned"
+          },
+          {
+            "op": "add",
+            "path": "/cases/0/expected_observation/calls/operation",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/0/expected_observation/bound_input",
+            "path": "/cases/0/expected_observation/calls/operation/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/0/expected_observation/calls/collection",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "original_result_outcome": null,
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/0/expected_observation/bound_input",
+            "path": "/cases/0/expected_observation/calls/collection/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/0/expected_observation/calls/continuity",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/0/expected_observation/bound_input",
+            "path": "/cases/0/expected_observation/calls/continuity/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/0/expected_observation/calls/revalidation",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "selected": false,
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/0/expected_observation/bound_input",
+            "path": "/cases/0/expected_observation/calls/revalidation/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/0/expected_observation/calls/decision",
+            "value": {
+              "arguments": {},
+              "returned": {
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/0/expected_observation/bound_input",
+            "path": "/cases/0/expected_observation/calls/decision/arguments/input"
+          },
+          {
+            "op": "copy",
+            "from": "/cases/0/expected_observation/bound_input/profile",
+            "path": "/cases/0/expected_observation/projection/source_profile"
+          },
+          {
+            "op": "copy",
+            "from": "/cases/0/expected_observation/calls/material/returned/profile_material",
+            "path": "/cases/0/expected_observation/projection/body"
+          },
+          {
+            "op": "copy",
+            "from": "/cases/0/expected_observation/calls/material/returned/profile_material_digest",
+            "path": "/cases/0/expected_observation/projection/digest"
+          }
+        ],
+        "assembled_caller_canonical_sha256": "52e69ec55e381c2bd5f54ee8e85e960109bad7318729571eae6032167ff10e76",
+        "expected_full_invocation_canonical_sha256": "af7ff9e60873525f1102ddba765d44e6738e9c750340c846c8948dbb35b0fdc7",
+        "expected_projection_canonical_sha256": "4d335684dc2523e4d7fa8fc70f46accdcd2c523eec3c2b946e3bb98369a23206",
+        "oracle_provenance_ja": "F02009/F02002/F02008の既存全返却は固定Gitの訂正済み期待を再利用。5facetはF02003/04/05のphase規則、F02006はL4適用表のresume限定、F02007の4claim=falseから手起草した全返却。phase限定の意味源は既存L4適用表であり、この詳細pairのL5 F02006算法にも同じresume限定を明文化している。これはcandidate実行ではなく有限設計接続oracle。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "UNIT-OS020-SAME-SNAPSHOT-2",
+        "l9_case_pointer": "/ci_material_same_call_verification/cases/1",
+        "seed_case_id": "OS020-SOURCE-BOUND-HARNESS-NOT-SUPPLIED",
+        "rfc6902_recipe": [
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/1/calls/1/typed_arguments/caller",
+            "path": "/cases/1/arguments/assembled_caller"
+          },
+          {
+            "op": "add",
+            "path": "/cases/1/expected_observation",
+            "value": {
+              "assembled_caller": {},
+              "bound_input": {},
+              "calls": {},
+              "projection": {}
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/1/arguments/assembled_caller",
+            "path": "/cases/1/expected_observation/assembled_caller"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/1/calls/2/typed_arguments/input",
+            "path": "/cases/1/expected_observation/bound_input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/1/expected_observation/calls/binding",
+            "value": {}
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/1/calls/1/typed_arguments",
+            "path": "/cases/1/expected_observation/calls/binding/arguments"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/1/calls/1/expected_return",
+            "path": "/cases/1/expected_observation/calls/binding/returned"
+          },
+          {
+            "op": "add",
+            "path": "/cases/1/expected_observation/calls/metadata",
+            "value": {}
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/1/calls/2/typed_arguments",
+            "path": "/cases/1/expected_observation/calls/metadata/arguments"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/1/calls/2/expected_return",
+            "path": "/cases/1/expected_observation/calls/metadata/returned"
+          },
+          {
+            "op": "add",
+            "path": "/cases/1/expected_observation/calls/material",
+            "value": {}
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/1/calls/3/typed_arguments",
+            "path": "/cases/1/expected_observation/calls/material/arguments"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/1/calls/3/expected_return",
+            "path": "/cases/1/expected_observation/calls/material/returned"
+          },
+          {
+            "op": "add",
+            "path": "/cases/1/expected_observation/calls/operation",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/1/expected_observation/bound_input",
+            "path": "/cases/1/expected_observation/calls/operation/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/1/expected_observation/calls/collection",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "original_result_outcome": null,
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/1/expected_observation/bound_input",
+            "path": "/cases/1/expected_observation/calls/collection/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/1/expected_observation/calls/continuity",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/1/expected_observation/bound_input",
+            "path": "/cases/1/expected_observation/calls/continuity/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/1/expected_observation/calls/revalidation",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "selected": false,
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/1/expected_observation/bound_input",
+            "path": "/cases/1/expected_observation/calls/revalidation/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/1/expected_observation/calls/decision",
+            "value": {
+              "arguments": {},
+              "returned": {
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/1/expected_observation/bound_input",
+            "path": "/cases/1/expected_observation/calls/decision/arguments/input"
+          },
+          {
+            "op": "copy",
+            "from": "/cases/1/expected_observation/bound_input/profile",
+            "path": "/cases/1/expected_observation/projection/source_profile"
+          },
+          {
+            "op": "copy",
+            "from": "/cases/1/expected_observation/calls/material/returned/profile_material",
+            "path": "/cases/1/expected_observation/projection/body"
+          },
+          {
+            "op": "copy",
+            "from": "/cases/1/expected_observation/calls/material/returned/profile_material_digest",
+            "path": "/cases/1/expected_observation/projection/digest"
+          }
+        ],
+        "assembled_caller_canonical_sha256": "2ec5aef7393973fa082590add195dd3c1836195cb065a480716f7867ec798480",
+        "expected_full_invocation_canonical_sha256": "75a2a9a81063bdb597432220bdb399e3cbcaf22c83c2685c557589d680d335db",
+        "expected_projection_canonical_sha256": "43d36e9527ae809a4a5b39a569fbdd91dcf03f38a7e42bddea26ce4ac1f1e2ea",
+        "oracle_provenance_ja": "F02009/F02002/F02008の既存全返却は固定Gitの訂正済み期待を再利用。5facetはF02003/04/05のphase規則、F02006はL4適用表のresume限定、F02007の4claim=falseから手起草した全返却。phase限定の意味源は既存L4適用表であり、この詳細pairのL5 F02006算法にも同じresume限定を明文化している。これはcandidate実行ではなく有限設計接続oracle。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "UNIT-OS020-SAME-SNAPSHOT-3",
+        "l9_case_pointer": "/ci_material_same_call_verification/cases/2",
+        "seed_case_id": "OS020-SOURCE-BOUND-INVENTORY-NULL",
+        "rfc6902_recipe": [
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/2/calls/1/typed_arguments/caller",
+            "path": "/cases/2/arguments/assembled_caller"
+          },
+          {
+            "op": "add",
+            "path": "/cases/2/expected_observation",
+            "value": {
+              "assembled_caller": {},
+              "bound_input": {},
+              "calls": {},
+              "projection": {}
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/2/arguments/assembled_caller",
+            "path": "/cases/2/expected_observation/assembled_caller"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/2/calls/2/typed_arguments/input",
+            "path": "/cases/2/expected_observation/bound_input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/2/expected_observation/calls/binding",
+            "value": {}
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/2/calls/1/typed_arguments",
+            "path": "/cases/2/expected_observation/calls/binding/arguments"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/2/calls/1/expected_return",
+            "path": "/cases/2/expected_observation/calls/binding/returned"
+          },
+          {
+            "op": "add",
+            "path": "/cases/2/expected_observation/calls/metadata",
+            "value": {}
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/2/calls/2/typed_arguments",
+            "path": "/cases/2/expected_observation/calls/metadata/arguments"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/2/calls/2/expected_return",
+            "path": "/cases/2/expected_observation/calls/metadata/returned"
+          },
+          {
+            "op": "add",
+            "path": "/cases/2/expected_observation/calls/material",
+            "value": {}
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/2/calls/3/typed_arguments",
+            "path": "/cases/2/expected_observation/calls/material/arguments"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/2/calls/3/expected_return",
+            "path": "/cases/2/expected_observation/calls/material/returned"
+          },
+          {
+            "op": "add",
+            "path": "/cases/2/expected_observation/calls/operation",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/2/expected_observation/bound_input",
+            "path": "/cases/2/expected_observation/calls/operation/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/2/expected_observation/calls/collection",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "original_result_outcome": null,
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/2/expected_observation/bound_input",
+            "path": "/cases/2/expected_observation/calls/collection/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/2/expected_observation/calls/continuity",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/2/expected_observation/bound_input",
+            "path": "/cases/2/expected_observation/calls/continuity/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/2/expected_observation/calls/revalidation",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "selected": false,
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/2/expected_observation/bound_input",
+            "path": "/cases/2/expected_observation/calls/revalidation/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/2/expected_observation/calls/decision",
+            "value": {
+              "arguments": {},
+              "returned": {
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/2/expected_observation/bound_input",
+            "path": "/cases/2/expected_observation/calls/decision/arguments/input"
+          },
+          {
+            "op": "copy",
+            "from": "/cases/2/expected_observation/bound_input/profile",
+            "path": "/cases/2/expected_observation/projection/source_profile"
+          },
+          {
+            "op": "copy",
+            "from": "/cases/2/expected_observation/calls/material/returned/profile_material",
+            "path": "/cases/2/expected_observation/projection/body"
+          },
+          {
+            "op": "copy",
+            "from": "/cases/2/expected_observation/calls/material/returned/profile_material_digest",
+            "path": "/cases/2/expected_observation/projection/digest"
+          }
+        ],
+        "assembled_caller_canonical_sha256": "473a4395f4c6b14b2dfa30c15ce36aa19cf6f4fcf5b0440b8da7aeb3b7dadccc",
+        "expected_full_invocation_canonical_sha256": "73ca791581e12385d135d03dd407c3a4df07e49f8f63f7c370956b3eaad3328b",
+        "expected_projection_canonical_sha256": "2b5089d98bcb8c020c4dc1a5f7d30105d3f6c8acd19a497bfa6f232c852134a2",
+        "oracle_provenance_ja": "F02009/F02002/F02008の既存全返却は固定Gitの訂正済み期待を再利用。5facetはF02003/04/05のphase規則、F02006はL4適用表のresume限定、F02007の4claim=falseから手起草した全返却。phase限定の意味源は既存L4適用表であり、この詳細pairのL5 F02006算法にも同じresume限定を明文化している。これはcandidate実行ではなく有限設計接続oracle。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "UNIT-OS020-SAME-SNAPSHOT-4",
+        "l9_case_pointer": "/ci_material_same_call_verification/cases/3",
+        "seed_case_id": "OS020-SOURCE-BOUND-SELECTED-OUTSIDE-INVENTORY",
+        "rfc6902_recipe": [
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/3/calls/1/typed_arguments/caller",
+            "path": "/cases/3/arguments/assembled_caller"
+          },
+          {
+            "op": "add",
+            "path": "/cases/3/expected_observation",
+            "value": {
+              "assembled_caller": {},
+              "bound_input": {},
+              "calls": {},
+              "projection": {}
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/3/arguments/assembled_caller",
+            "path": "/cases/3/expected_observation/assembled_caller"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/3/calls/2/typed_arguments/input",
+            "path": "/cases/3/expected_observation/bound_input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/3/expected_observation/calls/binding",
+            "value": {}
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/3/calls/1/typed_arguments",
+            "path": "/cases/3/expected_observation/calls/binding/arguments"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/3/calls/1/expected_return",
+            "path": "/cases/3/expected_observation/calls/binding/returned"
+          },
+          {
+            "op": "add",
+            "path": "/cases/3/expected_observation/calls/metadata",
+            "value": {}
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/3/calls/2/typed_arguments",
+            "path": "/cases/3/expected_observation/calls/metadata/arguments"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/3/calls/2/expected_return",
+            "path": "/cases/3/expected_observation/calls/metadata/returned"
+          },
+          {
+            "op": "add",
+            "path": "/cases/3/expected_observation/calls/material",
+            "value": {}
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/3/calls/3/typed_arguments",
+            "path": "/cases/3/expected_observation/calls/material/arguments"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/source_bound_selection_pipeline/cases/3/calls/3/expected_return",
+            "path": "/cases/3/expected_observation/calls/material/returned"
+          },
+          {
+            "op": "add",
+            "path": "/cases/3/expected_observation/calls/operation",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/3/expected_observation/bound_input",
+            "path": "/cases/3/expected_observation/calls/operation/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/3/expected_observation/calls/collection",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "original_result_outcome": null,
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/3/expected_observation/bound_input",
+            "path": "/cases/3/expected_observation/calls/collection/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/3/expected_observation/calls/continuity",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/3/expected_observation/bound_input",
+            "path": "/cases/3/expected_observation/calls/continuity/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/3/expected_observation/calls/revalidation",
+            "value": {
+              "arguments": {
+                "phase": "assemble"
+              },
+              "returned": {
+                "selected": false,
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/3/expected_observation/bound_input",
+            "path": "/cases/3/expected_observation/calls/revalidation/arguments/input"
+          },
+          {
+            "op": "add",
+            "path": "/cases/3/expected_observation/calls/decision",
+            "value": {
+              "arguments": {},
+              "returned": {
+                "findings": []
+              }
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/3/expected_observation/bound_input",
+            "path": "/cases/3/expected_observation/calls/decision/arguments/input"
+          },
+          {
+            "op": "copy",
+            "from": "/cases/3/expected_observation/bound_input/profile",
+            "path": "/cases/3/expected_observation/projection/source_profile"
+          },
+          {
+            "op": "copy",
+            "from": "/cases/3/expected_observation/calls/material/returned/profile_material",
+            "path": "/cases/3/expected_observation/projection/body"
+          },
+          {
+            "op": "copy",
+            "from": "/cases/3/expected_observation/calls/material/returned/profile_material_digest",
+            "path": "/cases/3/expected_observation/projection/digest"
+          }
+        ],
+        "assembled_caller_canonical_sha256": "d229809f052b05c3ecea88f9ade884ffca2aee25d830114f6d5b3b5c03859594",
+        "expected_full_invocation_canonical_sha256": "d4cdc23a671ffb49dfa0d3a90c0bb9c6da46b29df6632c456ac7b10c038778f5",
+        "expected_projection_canonical_sha256": "c2f89c14c757b2af153f7661afcd9d0ddefb136ffdfb6194416924eebf5bffa3",
+        "oracle_provenance_ja": "F02009/F02002/F02008の既存全返却は固定Gitの訂正済み期待を再利用。5facetはF02003/04/05のphase規則、F02006はL4適用表のresume限定、F02007の4claim=falseから手起草した全返却。phase限定の意味源は既存L4適用表であり、この詳細pairのL5 F02006算法にも同じresume限定を明文化している。これはcandidate実行ではなく有限設計接続oracle。",
+        "execution_state": "not_executed"
+      }
+    ],
+    "expected_facet_full_returns": {
+      "operation": {
+        "findings": []
+      },
+      "collection": {
+        "original_result_outcome": null,
+        "findings": []
+      },
+      "continuity": {
+        "findings": []
+      },
+      "revalidation": {
+        "selected": false,
+        "findings": []
+      },
+      "decision": {
+        "findings": []
+      }
+    },
+    "full_value_comparison_ja": [
+      "assembled_caller全CIInput",
+      "bound_input全Fieldと3 attachment targetの親presence/R同値",
+      "8 callの全typed argumentsと全returned member",
+      "F02008の6facet argumentsが同ケースF02002..07全returnと一致",
+      "projection.source_profileがbound_input.profileの原6member Field全値",
+      "projection.body/digestがF02008 returnと同値",
+      "CIProposal全15member、flags=false/effect=none/source_selection_statuses optional Field"
+    ],
+    "f02006_source_correction_ja": "4ケースすべてphase=assemble、context.prior.binding/current bindingは13軸knownかつenvironment_refとoracle_refの2軸相違、outer revalidationはField.null。revalidation facetがresume限定のため本finite wrapper期待はselected=false/findings=[]。同値又はabsentを根拠としない。",
+    "anti_oracles_ja": [
+      "case 0..3のexpectedをcandidate functionやactual observationから生成する。",
+      "status/summary/hashだけを比較し、原R14値、Field tag、全return member、配列順を落とす。",
+      "unknown/conflict/nullをcorresponding/supplied/emptyへcastする。",
+      "new five-facet literal returnsをhistorical seed observationと称する。",
+      "有限4件から一般typed domain/partial parent/全OS020 readinessを推論する。"
+    ],
+    "limits_ja": [
+      "固定4ケースの有限単体oracleだけ。すべてのField tag・partial parent・phase/domainの全域は未証明。",
+      "L5 exact file/object hashは候補treeへ束縛。root commit時にrevision/manifestsをrebind/read-afterする必要がある。",
+      "raw JSON/schema/codec、一般Field→ProfileBody formation、actual qualification/delivery/CI/acceptanceは未成立。"
+    ],
+    "actual_execution": "not_executed",
+    "reconstruction_workspace": {
+      "fixed_source": {
+        "revision": "9d84db508debde80df037cdf008d96a9534fc4b4",
+        "path": "docs/helix-os/L8-unit-verification/ci-profile-execution-recovery.json",
+        "file_sha256": "a20c85530f1e5d4cd1129decd593da659e877a4b9f18f640ef5dde83c13617d6",
+        "meaning_ja": "RFC /fixed_source pointerはこの固定Git全文へ解決する。"
+      },
+      "initial_cases": [
+        {
+          "arguments": {}
+        },
+        {
+          "arguments": {}
+        },
+        {
+          "arguments": {}
+        },
+        {
+          "arguments": {}
+        }
+      ],
+      "recipe_source": "fixed_l9_source.pointer + each cases[i].rfc6902_recipe",
+      "recipe_language": "RFC 6902 copy/add; RFC 6901 pointers",
+      "expected_isolation_ja": "各expected_observationは上記固定Git全文と固定recipeだけで構成し、candidate function return/inputをrecipe sourceへ混入しない。"
+    },
+    "parent_presence_observation": {
+      "source_bound_attachment_parents": [
+        "/profile",
+        "/context",
+        "/context/profile"
+      ],
+      "observed_tags_in_all_four_cases": {
+        "/profile": "supplied",
+        "/context": "supplied",
+        "/context/profile": "supplied"
+      },
+      "unexercised_tags": [
+        "absent",
+        "null",
+        "empty"
+      ],
+      "meaning_ja": "固定4 oracleは3親がすべてsuppliedである場合だけを含む。L4に定める各宛先の親presence規則は引き続き適用される。この有限case群からpartial parent組合せに対する全域性は主張しない。"
+    },
+    "unexercised_ja": [
+      "4件すべてのsource_bound attachment parentはsupplied。absent/null/empty/partialの親組合せはこのfinite case群で扱わない。",
+      "不正な外部wire JSONとtyped domain全域の挙動は未閉包である。",
+      "resume以外の全F02006 phase domainは、固定assemble例から一般化しない。L4のresume適用表が定める範囲を超える挙動は未評価である。",
+      "実source資格、配送、CI runtime、結果回収、resume、L11受入の成立はこのoracleから主張しない。"
+    ],
+    "fixed_l4_contract_source": {
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "revision": "9b2e3c9ae109425843be21e3ed1587dd6a88aa07",
+      "file_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
+      "pointer": "/contracts/0/ci_material_same_call_contract",
+      "object_canonical_sha256": "a75eb338f132f1966146a343975e0fe11f13c21309169ed6142304c353381d2d",
+      "source_role_ja": "このL8 oracleで固定したL4 baseline。revision・whole-file hash・object hashの三者で対象を固定し、L5の起草時点current-source pinとは役割を分ける。"
+    }
   }
 }
