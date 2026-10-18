@@ -4420,7 +4420,15 @@
         "problem_order": "枝1→3→4→5→7→8、同branchは明記member順、sourceは原index順。問題stateのconflict→unknown→missingをaggregateで不足の補償に使わない。先行required missingは後続へ進めない。",
         "reason_format": "reason/reason_templateだけを規範とし全byte比較。{member}は指定されたliteral member名のみ補間。任意raw値/自然文を補間しない。no_problem枝ではreason fieldを新設しない。",
         "origin_fields": "ClaimProjectionRead.source_locators=[carrier_locator]（所在が未解決でも指定literalを保持）。origin_ref=P(carrier.origin,origin_ref)、不能ならabsent。unknown/conflictのclaimはabsent、resolvedのClaim6memberは既存branch4の元値全copy。",
-        "intent_fields": "ClaimIntentRead.claim/claim_locatorは直接引数とtrace原値。kind=P(claim,kind)、proposed_value=P(claim,proposed_value)。intent/reasonはkind別閉表。kind欠落/null/未認識はunresolved、reasonは「Claim kindを認識できない。原Claim/RawValueを保持し意図を補完しない。」。"
+        "intent_fields": "ClaimIntentRead.claim/claim_locatorは直接引数とtrace原値。kind=P(claim,kind)、proposed_value=P(claim,proposed_value)。intent/reasonはkind別閉表。kind欠落/null/未認識はunresolved、reasonは「Claim kindを認識できない。原Claim/RawValueを保持し意図を補完しない。」。",
+        "caller_frame_evidence_boundary": {
+          "generic_caller_domain_ja": "現generic callerの対象は常時003/005/007/008/028とCORE返却true時019/022/030。core_source/labo_evaluationの選択条件に属する参照・資格・原operation比較は既存conditional経路の責務であり、canonical portを重ねて呼び出して二重診断しない。",
+          "typed_route_limit_ja": "現generic経路では、要求Refと同じframeであるべき独立の原fullRefを結ぶtyped比較入力が未成立である。要求Refとsource一覧の別版、root binding内の異identity Ref、任意のqualified boolean又はInputIssue.reasonの自然文から既知相反を生成しない。",
+          "not_observed_ja": "この独立frame比較の観測範囲をnot_observedと明示する。これはcaller境界の説明であり、新しいrequest/return member又はBodyRead.stateではない。比較成功にも既知相反にも補完せず、これだけを原因とするProblem又は全体gateを追加しない。原frameのabsent/null分岐を保ち、frameが供給されている場合は既存source対応分岐へ進む。",
+          "conditional_relation_ja": "原operation.contract_bindingsと同channelの提出Refを照合する関係は/conditional_source_dependency_contract/original_projection_algorithm/6及び/7にある。この同knowledge/provenance・同binding/channelの原operationに属する関係をgeneric全体へ一般化しない。018/020のhintは供給時だけの追加原根拠であり、未供給で既存解決を失効させない。025は原kind/fieldsから必要性が確定した当該operationの原hintへ結ぶ。",
+          "known_conflict_guarantee_ja": "canonical_diagnostic_mapping/5の、caller既存比較で要求frameの既知相反が確定した場合にconflictを保持する条件付き保証は維持する。ただし現generic経路がその前提を形成できたとは主張せず、正の既知相反返却と一般domainの比較実現は未行使として残す。CanonicalReadRequestの2locator及び既存全返却型を変更しない。",
+          "terminal_order_ja": "既存branch_orderに従いframe不明/相反は先行確定し、その同一CanonicalBodyReadへ後続source段5..8の不足Problemを重ねない。conditional経路の複数候補の代表state選定を、このportの新しい集約規則として輸入しない。"
+        }
       },
       "canonical_diagnostic_mapping": [
         {

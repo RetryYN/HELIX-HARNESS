@@ -8711,7 +8711,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "24a14310ef6a69e10648b52aeb68a251dd169dea78487cae7005acf4639335ac",
+      "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
       "meaning": "このL9と同候補のL4全UTF-8 bytesへのbinding。base source_pinsは原sourceの履歴根拠であり、このbindingを代替しない。commit revisionや上流承認をここから生成しない。"
     }
   },
@@ -22883,7 +22883,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "24a14310ef6a69e10648b52aeb68a251dd169dea78487cae7005acf4639335ac"
+      "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80"
     }
   },
   "descriptor_target_port_verification": {
@@ -22892,7 +22892,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "observed_source_revision": "64dc8a7032990e8f961f4e5e9601a1909d2e4f6d",
-      "sha256": "24a14310ef6a69e10648b52aeb68a251dd169dea78487cae7005acf4639335ac",
+      "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
       "binding_kind": "このscaffold候補L4 whole本文bytesへのbinding。前提source revision/正式採用とは区別。"
     },
     "scope": "9素材の同call原input/Claim引数/全私的target port返却。旧10port/10conditionalの期待scopeを変更しない。",
@@ -92571,7 +92571,7 @@
     ],
     "current_L4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "candidate_file_sha256": "24a14310ef6a69e10648b52aeb68a251dd169dea78487cae7005acf4639335ac",
+      "candidate_file_sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
       "scope": "同じL4文書全bytesへの束縛。固定規範snapshotの歴史source pinとは別に、対象revisionはgit commitとreview対象HEADから確認する。"
     }
   },
@@ -120205,7 +120205,7 @@
     },
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "file_sha256": "24a14310ef6a69e10648b52aeb68a251dd169dea78487cae7005acf4639335ac",
+      "file_sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
       "pointer": "/field_value_applicability_contract",
       "role": "現在の基本設計全bytesへの明示binding。固定履歴pinとは別。"
     },
@@ -180488,7 +180488,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "24a14310ef6a69e10648b52aeb68a251dd169dea78487cae7005acf4639335ac",
+      "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
       "current_vs_fixed": "当該提案L4全bytesへのbinding。fixed fixture gitseed及び歴史inventory/source pinを更新しない。"
     },
     "schema_resource_id": "urn:helix-brain:l4:032:identity-trace-logical",
@@ -231208,7 +231208,8 @@
       "non_call_scope": "各入力にunselected_refs1件とfalse selectorがある。対応する固定traceはnot_calledであり、port返却の欠損ではない。",
       "handoff_scope": "明示not_received例だけが別の/handoff_records/0観測を持つ。handoffをCanonicalBodyReadのcallへ混ぜない。",
       "completeness_limit": "20件の本文返却と4件の明示no-callは固定4入力だけを覆う。全F09 request/branch/source state又は全C6を閉じない。",
-      "unknown_source_basis": "3 non-positive casesのunknown returnは、各target identityと全供給source identitiesを固定literalで照合したno-correspondence例。sha256/source_locatorの違いを根拠にせず、positive caseの条件付きRef/qualification crosswalkは既存source_support_crosswalkに保持する。"
+      "unknown_source_basis": "3 non-positive casesのunknown returnは、各target identityと全供給source identitiesを固定literalで照合したno-correspondence例。sha256/source_locatorの違いを根拠にせず、positive caseの条件付きRef/qualification crosswalkは既存source_support_crosswalkに保持する。",
+      "caller_frame_observation_ja": "固定4入力20readの対象はalways_refsだけである。要求Refと同じframeであるべき独立の原fullRefを結ぶtyped比較は現generic callerで未成立のため、その比較観測はnot_observedと明示する。これは到達範囲の説明であり、CanonicalBodyRead.state=unobservedや追加Problemへ投影しない。既存20件のCanonicalBodyRead全値と4件のComparison全値を保持し、canonical_diagnostic_mapping/5の正の既知相反oracleを主張しない。conditional原hint/actual比較は既存conditional経路の別domainであり、ここへcanonical呼出しを追加して二重診断しない。frame不明/相反の先行確定後にsource段5..8の不足を加える混在返却も、この20readの期待として新設しない。"
     },
     "expected_comparison_authority": {
       "description_ja": "各caseの完全な期待Comparisonはexpected_comparison_literalを正本とし、expected_comparison_sha256_sorted_keysで固定する。",
@@ -231834,7 +231835,7 @@
     ],
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "sha256": "24a14310ef6a69e10648b52aeb68a251dd169dea78487cae7005acf4639335ac",
+      "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
       "binding_scope": "same_candidate_file_bytes",
       "pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer",
       "canonical_sha256": "b416283c87b17eaa7f058170376f01644900335a9f2f6709409e2c6ee34613b2"
