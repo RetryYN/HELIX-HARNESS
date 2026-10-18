@@ -83506,9 +83506,9 @@
       "artifact_ref": {
         "identity": "HELIXBRAIN-L8-032-DEFINITION-MEANING-WALK",
         "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json",
-        "file_sha256": "c9cc96c0b73cd9e36cc77f75bfb0a314bcbf02684fec6a711c29c5ddf5434d59",
+        "file_sha256": "c91ed585201b65c6e690d0ae49bf40393541cdfaf53f555ba6773c4afbaee89a",
         "pointer": "",
-        "canonical_sha256": "30c1796ebc075e2f79807172cb94f78f2089613bf07241fd9ee3aa8598de11c9"
+        "canonical_sha256": "b83596e748a3c88712aea5849611b2b1ed8a9deb9e2b19b2a69d667159cdd446"
       },
       "logical_binding": {
         "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
@@ -83521,11 +83521,11 @@
         "適用単位": "このartifactは1ファイル・1ルート値であり、元の論理文書の指定pointerに対するRFC 6902 replaceを一度だけ表す。",
         "照合条件": "artifactの現在raw file SHA-256、ルート値のcanonical JSON SHA-256、identity、path、空のartifact root pointer、論理文書IDおよび対象pointerを照合する。raw file hashはartifact bytes、canonical hashは全node JSON値を識別する。",
         "論理復元と参照解決": "artifact rootの全JSON値を元の論理文書の指定pointerへ置換復元する。復元後、各既存契約が指定する親文書root、展開fixture root、fixed seed root、または別L5文書rootを維持してpointerを解決する。これらのrootを混同せず、artifact内の相対位置を製品参照として扱わない。",
-        "値の保全": "元nodeの全JSON値、元node id、field presence、欠落とnullの区別、文字列、配列順、反復要素、32 cases、3 materials、全返却期待とoracle値を保持する。JSON空白と改行は論理値に含めない。",
+        "値の保全": "各caseを元のliteral baseから既存RFC 6902 add/remove/replaceだけで順次展開したfixture全値を保持する。raw_input、独立した期待値、原source文字列bytes、型、欠落とnull、配列順と反復、32 casesと3 materialsの対応は変えない。recipeの構文は縮約するが、case ID/base pointer/凍結fixture・field hash/basis/unknown/履歴記録は保持する。元のrecipe bytesは変更前のGit revisionで辿る。",
         "探索とfallback": "再帰include、自動探索、cache、fallback、期待値の再生成を設けない。artifact rootと復元先はこのbindingの明示値のみで決める。",
         "hashと来歴": "artifact raw hashは現在のartifact file bytes、artifact canonical hashは現在fixture nodeの全JSON値、source_revisionとsource_logical_document_canonical_sha256は抽出前の親文書snapshot来歴を表す。source_revisionとhistorical whole-file hashesは過去のsource照合に限り、将来のcurrent文書全体を当該historical whole hashへ固定する条件ではない。現在の復元入力やartifact raw hashとして流用しない。親内の個別hash/pointerの意味も変更せず維持する。",
         "未解決provenance": "case 8〜28の21件に記録された仕様provenance unknownをそのまま保つ。物理抽出はそれらの根拠や期待値の独立性を新たに証明しない。",
-        "実装境界": "この変更は同一論理nodeの純粋JSON資料への物理分割だけである。製品schema、reader、runtime、一般include機構、新case、oracle変更、要求authority変更を追加しない。"
+        "実装境界": "この変更は同じ責務の資料分割と既存case recipeの表現縮約である。製品schema、reader、runtime、一般include機構、新op、新case、oracle値、要求authorityを追加・変更しない。固定履歴のreplayを現HEADの実行成功へ読み替えない。"
       },
       "legacy_comparison": {
         "旧source": [
@@ -83586,8 +83586,8 @@
           }
         ],
         "起点となった現行失敗": "設計リファクタリングIssue #3139の変更耐性・意味保存課題と、PR #3362で観測されたmirror追随漏れを起点とする。case provenance unknownは本変更で解消しない。",
-        "今回の変更理由": "大きなL8の一責務fixture nodeを明示bindingでsidecarへ分離し、意味値、独立oracle、consumer pointerを保ったまま元の論理位置へ復元可能にする。",
-        "変更する点": "fixture値の物理配置を親文書内から同じ責務のJSON sidecarへ移し、親の同じlogical pointerを4-member binding wrapperへ一度だけ置換する。",
+        "今回の変更理由": "大きなL8の一責務fixture nodeを明示bindingでsidecarへ分離し、既存literal baseを再収載する冗長recipeを縮約する。展開fixtureと独立oracle、consumerの観測を保ち、更新時の再収載範囲を小さくする。",
+        "変更する点": "同じ責務のJSON sidecarと親の同じlogical pointerへの4-member bindingを保持し、既存recipeの大きなreplaceを、元値を保持した既存add/remove/replaceの差分へ縮約する。",
         "保持する点": "意味・型・全期待・独立oracle・consumerとV-pairの識別、unknown、歴史参照の用途を変えず、参照解決はnode全体を元位置に復元した後に行う。",
         "移植しないもの": "旧schema、runtime、DB、tool、CI、gate、旧実行経路は移植しない。"
       }
