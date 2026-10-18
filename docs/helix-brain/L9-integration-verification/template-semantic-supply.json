@@ -8711,7 +8711,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "f97274cbc73c7cde5f39f003d951efcee02fab711d3610f56bd5e138202a18d4",
+      "sha256": "24a14310ef6a69e10648b52aeb68a251dd169dea78487cae7005acf4639335ac",
       "meaning": "このL9と同候補のL4全UTF-8 bytesへのbinding。base source_pinsは原sourceの履歴根拠であり、このbindingを代替しない。commit revisionや上流承認をここから生成しない。"
     }
   },
@@ -22883,7 +22883,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "f97274cbc73c7cde5f39f003d951efcee02fab711d3610f56bd5e138202a18d4"
+      "sha256": "24a14310ef6a69e10648b52aeb68a251dd169dea78487cae7005acf4639335ac"
     }
   },
   "descriptor_target_port_verification": {
@@ -22892,7 +22892,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "observed_source_revision": "64dc8a7032990e8f961f4e5e9601a1909d2e4f6d",
-      "sha256": "f97274cbc73c7cde5f39f003d951efcee02fab711d3610f56bd5e138202a18d4",
+      "sha256": "24a14310ef6a69e10648b52aeb68a251dd169dea78487cae7005acf4639335ac",
       "binding_kind": "このscaffold候補L4 whole本文bytesへのbinding。前提source revision/正式採用とは区別。"
     },
     "scope": "9素材の同call原input/Claim引数/全私的target port返却。旧10port/10conditionalの期待scopeを変更しない。",
@@ -92571,7 +92571,7 @@
     ],
     "current_L4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "candidate_file_sha256": "f97274cbc73c7cde5f39f003d951efcee02fab711d3610f56bd5e138202a18d4",
+      "candidate_file_sha256": "24a14310ef6a69e10648b52aeb68a251dd169dea78487cae7005acf4639335ac",
       "scope": "同じL4文書全bytesへの束縛。固定規範snapshotの歴史source pinとは別に、対象revisionはgit commitとreview対象HEADから確認する。"
     }
   },
@@ -120205,7 +120205,7 @@
     },
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "file_sha256": "f97274cbc73c7cde5f39f003d951efcee02fab711d3610f56bd5e138202a18d4",
+      "file_sha256": "24a14310ef6a69e10648b52aeb68a251dd169dea78487cae7005acf4639335ac",
       "pointer": "/field_value_applicability_contract",
       "role": "現在の基本設計全bytesへの明示binding。固定履歴pinとは別。"
     },
@@ -180488,7 +180488,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "f97274cbc73c7cde5f39f003d951efcee02fab711d3610f56bd5e138202a18d4",
+      "sha256": "24a14310ef6a69e10648b52aeb68a251dd169dea78487cae7005acf4639335ac",
       "current_vs_fixed": "当該提案L4全bytesへのbinding。fixed fixture gitseed及び歴史inventory/source pinを更新しない。"
     },
     "schema_resource_id": "urn:helix-brain:l4:032:identity-trace-logical",
@@ -231426,7 +231426,7 @@
       "paired_L4_addition": {
         "target_file": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
         "target_pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer",
-        "operation_value_canonical_sha256": "b86a8eb38c0df45fc77dae8d0e7e2b27d4028baec5a4fe76271bef502e06599e",
+        "operation_value_canonical_sha256": "b416283c87b17eaa7f058170376f01644900335a9f2f6709409e2c6ee34613b2",
         "meaning": "このRFC追加でL4へ加える同じ二対象pairの基本port/writer。L5 private writerを規範sourceにしない。"
       },
       "actual_pr_base_note_ja": "authoring snapshotは199a3737のまま固定する。PR実base 105a8917ではこのBRAIN4文書のbytesは199aと同一。旧pinをcurrentへ書換えず、追加後writer objectのcurrent bindingと分離する。"
@@ -231834,10 +231834,10 @@
     ],
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "sha256": "f97274cbc73c7cde5f39f003d951efcee02fab711d3610f56bd5e138202a18d4",
+      "sha256": "24a14310ef6a69e10648b52aeb68a251dd169dea78487cae7005acf4639335ac",
       "binding_scope": "same_candidate_file_bytes",
       "pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer",
-      "canonical_sha256": "b86a8eb38c0df45fc77dae8d0e7e2b27d4028baec5a4fe76271bef502e06599e"
+      "canonical_sha256": "b416283c87b17eaa7f058170376f01644900335a9f2f6709409e2c6ee34613b2"
     },
     "case": {
       "id": "F09-C6-MULTI-BODY-READ-PROBLEM-01",
@@ -243219,7 +243219,7 @@
     ],
     "unexercised_scope_ja": [
       "3件以上のBodyReadProblem、異state混在problem、identity/owner null、全problem組合せは未行使。",
-      "このcase固有の部分行使以外の限界は /comparison_axis_reason_writer_verification/unexercised_l4_branches_ja と /unexercised_scope_ja を継続し、旧4caseの行使範囲は拡大しない。",
+      "このcase固有の部分行使以外の限界は /comparison_axis_reason_writer_verification/unexercised_l4_branches_ja と /comparison_axis_reason_writer_verification/unexercised_scope_ja を継続し、旧4caseの行使範囲は拡大しない。",
       "selected conditional/selector Finding/既存classification原因、formed handoff等の全domainは未行使。L5新port/native型全域/実資格/実配送/製品CI/実装Readyを成立としない。"
     ]
   }

@@ -4168,7 +4168,7 @@
             "encoding": [
               {
                 "problem_count": "0件",
-                "cause": "null。canonical readにproblemがない場合。no-call source-stateは /dependency_semantic_ports/public_projection/axis_reason_writer/unselected_reference_rule、handoffは /dependency_semantic_ports/public_projection/axis_reason_writer/domain_applicability/handoff_axis の元cause規則を保持。"
+                "cause": "null。canonical readにproblemがない場合。no-call source-stateは /dependency_semantic_ports/public_projection/axis_reason_writer/unselected_axis_occurrence_order、handoffは /dependency_semantic_ports/public_projection/axis_reason_writer/domain_applicability/handoff_axis の元cause規則を保持。"
               },
               {
                 "problem_count": "1件",
@@ -4182,7 +4182,7 @@
             "prefix": "BodyReadProblem由来のprefixは既存1件時はそのreason。複数時はproblem order先頭のreasonをprefixに置き、TRACE.cause arrayに全問題を保持する。prefixは原因集合の代替ではない。",
             "classification_separation": "既存L4 failure-classification observationが発生する場合は既存classification/Finding writerのまま保持する。canonical BodyReadProblemの個数だけでclassificationを生成しない。",
             "no_new_semantics": "axis, state, original_refs, reason code, FailureRule, owner, producer/no-call boundary, selector semanticsは不変。",
-            "axis_state_preservation": "AxisResult.stateは同一CanonicalBodyRead.stateを既存 /dependency_semantic_ports/public_projection/axis_mapping に従って保持する。cause配列のproblem.stateから新しい優先順位や集約stateを作らない。診断の枝順・原問題順は /dependency_semantic_ports/diagnostic_return_contract/common_rules/branch_order と /problem_order のまま保持する。異なるproblem stateの組合せは今回の有限例では未行使。"
+            "axis_state_preservation": "AxisResult.stateは同一CanonicalBodyRead.stateを既存 /dependency_semantic_ports/public_projection/axis_mapping に従って保持する。cause配列のproblem.stateから新しい優先順位や集約stateを作らない。診断の枝順・原問題順は /dependency_semantic_ports/diagnostic_return_contract/common_rules/branch_order と /dependency_semantic_ports/diagnostic_return_contract/common_rules/problem_order のまま保持する。異なるproblem stateの組合せは今回の有限例では未行使。"
           }
         },
         "trace_limits": "traceは公開fieldへ出した原資料を説明する。新authority、qualification gate、canonical adoption、実runtime evidenceを作らない。canonical bodyの取得は既存L4 body portだけを通し、そのstate/problemsを変えない。 この追加の有限範囲・未行使branchは対L9のunexercised_l4_branches_ja及びunexercised_scope_jaに明記する。既存ports節の有限観測の限界は継続し、全F09の完成を認定しない。",
