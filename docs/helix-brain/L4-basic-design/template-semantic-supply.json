@@ -10961,7 +10961,7 @@
       "entry_request": "IdentitySourceRequest",
       "entry_snapshot": "IdentitySnapshot",
       "entry_return": "IdentityTraceReturn",
-      "meaning": "既存public raw型19defは下記inventoryの意味をL4に再導出したliteral。required欠落/null/空配列の元区別を保持する。新success recordのみclosed、raw source.bodyはRawValueのまま。private C3Evaluation型のimportも必須引数も無い。",
+      "meaning": "既存public raw型19defは下記inventoryの意味をL4に再導出したliteral。required欠落/null/空配列の元区別を保持する。新生成read recordのみclosed、raw QualifiedSource.contentはRawValueのまま。LeftOwnerSourceBody/RangeDeclarationはraw_carriers.projection_guardが示す消費位置で形成を確認する局所projection型であり、raw入力の許容値を狭めない。private C3Evaluation型のimportも必須引数も無い。",
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "$id": "urn:helix-brain:l4:032:identity-trace-logical",
       "resource_root": "このschema object自体を独立JSON Schema resourceとして読む。#/$defsはこのobject内$defsへ解決する。外側L4文書root又はL5へのrefではない。"
@@ -11024,14 +11024,19 @@
       "no_ambient": "cache/clock/fs/network/DB/別call private材料/任意owner判断の注入無し。未知は当該axis/recordへ保持し無関係な有資格項目を維持。",
       "partial_and_null": "validated.input=nullならComparison.axes/findings=[]/input_binding=null、全read集合[]、原InputIssueとrawは入口で保持。decode可能partial inputでは各必要member presenceを個別に読み、形成できないsubjectを捏造せず該当private logical readをunknownへ保持し他原軸を消さない。",
       "closed_port_calls": "source portの返却snapshot全値を{snapshot,request}の各named Call recordへ明示する。全Callのsnapshot.validatedは同v whole値。L9のrequests列は同snapshotとの組合せを明示してEndpointMembershipCallを構成する。",
-      "source_qualification_writer": "SourceQualificationReadはsame snapshotの原source/Q/root全出現・index・fn0局所usable/unusableを保つ。fn0資格義務を満たす原chainを後続readerが同subject/frameへ結ぶ。単なるunusable_source_refs=[]やowner文字列一致から資格又はactual/bilateral成功を生成しない。fn0/source根拠未成立は当該read unknown。"
+      "source_qualification_writer": "SourceQualificationReadは、同snapshotのactual/trace/bilateral portが当該局所読取で対象sourceとして実際に束縛又は検査した原source index群だけを、元sources配列のindex順に返す。同じsource indexを複数portが用いてもsource行は一つとし、同Refであっても別原indexのsource行をRef値でdedupしない。各対象source行では、実際に対応させて得たsource/Q/rootの全原出現・順・原値・fn0局所usable/unusable/unobservedを保持する。未使用のsourceを成功行として生成しない。未使用を含むraw sources/qualifications/qualification_roots全原値はIdentitySnapshot.validated whole内に保持する。fn0資格義務を満たす原chainを後続readerが同subject/frameへ別に結び、unusable_source_refs=[]又はowner文字列だけから資格/actual/bilateral成功を生成しない。資格未成立の対象sourceも原観測を消さず当該readへunknownを残す。"
     },
     "raw_carriers": {
       "existing": "SupplyInput構造member及びQualifiedSource型は不変、content:RawValueの元owner本文に局所projectionを追加。",
-      "left_owner": "source.contentはLeftOwnerSourceBody。独立template-owner source/Q/rootから元left subject/fullframe・record_ref・counterpart_source_refへ結ぶ。endpoint roleはendpoint_owner_declaration.endpointで明示し、compatible_refsの位置から生成しない。",
-      "pack_range": "source.content.compatibility_range_declarationはRangeDeclaration。source5 owner_declarations中の他owner文字列を独立他owner資格にしない。actual_pack_ref/contract/artifactはqualified実pack owner本文の独立右operand。",
+      "left_owner": "source.content（原所在 /sources/{source_index}/content）を独立left-owner本文として読む場合の、形成済みlogical projectionの閉型がLeftOwnerSourceBodyである。QualifiedSource.content自体のRawValue型をこの閉型へ置換しない。独立template-owner source/Q/rootから元left subject/fullframe・compatibility_record_ref・counterpart_source_refへ別に結ぶ。endpoint roleはendpoint_owner_declaration.endpointで明示し、compatible_refsの位置から生成しない。",
+      "pack_range": "source.content.compatibility_range_declaration（原所在 /sources/{source_index}/content/compatibility_range_declaration）を実pack ownerの範囲宣言として読む場合の、形成済みlogical projectionの閉型がRangeDeclarationである。source.content全体はRawValueのまま保持し、source5 owner_declarations中の他owner文字列を独立他owner資格にしない。actual_pack_ref/contract/artifactは当該qualified実pack owner本文の独立右operandとして、同subject/fullframeのguardを別に満たす範囲だけで使う。",
       "compatible_refs": "既存L4/L5には位置role宣言無し。Ref[]原collectionとして元順/全重複/別subject/未決を保持。両端Refに対して別々に同じ全列を読む。",
-      "provenance": "body/content_bytes/source.ref.sha256/qualification.subject_ref+subject_sha256を同snapshotで同期。変更した右sourceへのrecord/source_refと左counterpart_source_refも同期する。旧7原sourceは変更しない。"
+      "provenance": "body/content_bytes/source.ref.sha256/qualification.subject_ref+subject_sha256を同snapshotで同期。変更した右sourceへのrecord/source_refと左counterpart_source_refも同期する。旧7原sourceは変更しない。",
+      "projection_guard": {
+        "type_application": "read_bilateral_compatibilityがleft本文を読む位置でLeftOwnerSourceBodyを、同port及びread_actual_identity_operandがpack範囲/実operandを読む位置でRangeDeclarationを局所projection型として用いる。これらはraw入力schemaの必須Ref closureへ接続する型ではないため、QualifiedSource.contentの$refを変更しない。",
+        "formation_guard": "該当原nodeのpresence、JSON型、当該閉型のmember集合・member型が形成できた範囲でのみ、その型として消費する。source/Q/root/body digest/record link/endpoint membership/subject/fullframe/原判断の意味guardは別に適用し、型成立をqualified owner又は互換成立に昇格しない。",
+        "unformed": "absence/null/型外/閉型未形成は原PresenceRaw及びsnapshot wholeへそのまま保存する。memberを落として型に合わせたり、null/{}へ補完/castしたりせず、該当readの既存unknown原因へ残す。独立兄弟/sourceを止める新gateにはしない。"
+      }
     },
     "read_branch_contracts": {
       "actual": {
@@ -11166,7 +11171,50 @@
         ],
         "pair_aggregation": "片側未供給はleft_owner_unprovided/right_owner_unprovided unknown。資格/対応未成立はbilateral_owner_unresolved unknown。同pair原scope既知差/conflicting bodyはconflict。左右原判断相反はbilateral_decisions_opposing conflict。左右ともtrueのみpositive resolved。左右とも原実版outsideはoutside conflict(rule62)。全原読みを保持する。",
         "rule61": "独立片側owner未供給で既存両端owner根拠の解決不能predicateが成立するときcompatibility_unknown。source-null同様、rule58への転用無し。",
-        "logical_limits": "原qual/rootの意味に従った条件付きlogical oracle。JSON/hash/source名から実運用trustを発行しない。新owner承認gateを加えない。"
+        "logical_limits": "原qual/rootの意味に従った条件付きlogical oracle。JSON/hash/source名から実運用trustを発行しない。新owner承認gateを加えない。",
+        "finite_cause_precedence": {
+          "selection_status": "既存F04の根拠null→unknown・qualified範囲外→conflictと本7著述期待を保持するAIの有限writer選定。全未行使causeの競合順を上流指定又は検証済みと主張しない。",
+          "ordered_cases": [
+            {
+              "priority": 1,
+              "condition": "原record.source_refが明示nullである本source-null例。依存ownerの取得先を形成できない。",
+              "cause": "null",
+              "state": "unknown",
+              "reason": "left_owner_unprovided/right_owner_unprovidedを後から代表causeへ代入せず、原nullという先行原因を保持する。"
+            },
+            {
+              "priority": 2,
+              "condition": "右owner本文の原sourceと資格/subject/frame対応が成立するが、独立左owner本文が未供給である本旧片owner例。",
+              "cause": "left_owner_unprovided",
+              "state": "unknown",
+              "reason": "compatible_refsの両端掲載及びfixtureの両owner宣言というproseを左owner資格にしない。"
+            },
+            {
+              "priority": 3,
+              "condition": "source自身の資格scopeが成立した対象subject候補で、対象pair frameへの既知scope差がある本scope例。",
+              "cause": "scope",
+              "state": "conflict",
+              "reason": "owner/compatibilityの成功へ進めず、左の原成功readと右の既知差readをともに保持する。"
+            },
+            {
+              "priority": 4,
+              "condition": "同frameの独立両owner本文が当該実版のoutsideを原宣言する本range-false例及びcase7の後続record。",
+              "cause": "outside",
+              "state": "conflict",
+              "reason": "qualified原outsideをbool false又は版文字列だけから生成しない。"
+            },
+            {
+              "priority": 5,
+              "condition": "同frameの独立両owner本文と当該recordの原判断がtrueで対応する本positive例及びcase7の先行record。",
+              "cause": "positive",
+              "state": "resolved",
+              "reason": "必要根拠未成立をこの枝へ補完しない。"
+            }
+          ],
+          "observation_preservation": "これは当該有限例の代表cause選定順であり、原source/owner/Read材料の取得・保存を代表cause一語へ畳む指示ではない。各元branchの全原観測を保持する。",
+          "unexercised": "19causeのうち上記5以外の競合順はL9 finite_branch_coverageへ未行使として明示する。未観測causeをnull/positive/owner不足へ正規化しない。"
+        },
+        "finite_multiple_record_boundary": "本7期待の最終case（C3-TWO-INDEPENDENT-BILATERAL-OPPOSING-SOURCES-WHOLE）では、同じ対象subject/fullframe及び同向き明示pairに対応する原record index0/1を個別に保持する。BilateralCompatibilityReadは原順でpositive/resolvedとoutside/conflictの二wholeを返し、両原source/owner/Q/rootと各reasonを残す。この有限入力の既存compatibility一軸はconflictで、原record_indices=[0,1]/record_states=[resolved,conflict]をreasonに保持する。Findingはqualified outsideの既存compatibility_mismatch predicateに対応する一件だけで、新aggregate codeを作らない。この観測から別record/別subject/別frameを無条件に一軸へ併合する一般規則を導出せず、一般multiple-recordの形成・順序・集約は未行使/未閉包へ残す。"
       },
       "trace": "既存原trace比較及びsource_statesを維持。元source/Q/root/provenance不足は該当trace unknown、版/対象frame既知差・原相反はconflict。現7 fixtureのtrace15は全原対応であり他14を停止しない。",
       "membership": [
@@ -11428,7 +11476,8 @@
             "UTW-020",
             "UTW-021"
           ],
-          "file_bytes_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+          "file_bytes_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+          "asset": "LEGACY-ASSET-A127DEC3EEE6ED63CF17"
         }
       ],
       "preserve": "JSON意味/owner/source原trace、計画印と実版分離、unknown非成功、局所原失敗/相反の保持。",
@@ -11437,7 +11486,8 @@
     },
     "limits": [
       "基本logical port候補のみ。実資格provider/trustresolver/codec/候補実装の実行成立を認定しない。",
-      "旧7全literalは不変。typed index補足は別L9論理期待であり旧private型を基本必須引数にしない。"
+      "本PR初回公開revisionに固定した7例のraw/validated/public Comparison/基本返却を保全する（対L9 prior_publication_basis）。それより古いlocal著述の真正性は未証明。typed index期待は本基本portの対検証であり、L5private型を基本必須引数にしない。",
+      "本7wholeと3membership全返却で行使しないcause及びvalidated.input=nullは対L9 finite_branch_coverageへ個別列挙する。未行使causeの競合優先・一般multiple-record集約の未閉包を全域成立又は成功へ補完せず、runtime/実装coverageと混同しない。"
     ],
     "public_source_inventory": {
       "revision": "e45c49727263f2bceb3c8b7d832eff1510cdb9f8",

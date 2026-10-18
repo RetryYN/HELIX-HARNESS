@@ -8711,7 +8711,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "77bd38e1986ec8fe792897fe4a8fe785eb2e69c5182b85e275ae7974dff4eaa5",
+      "sha256": "39ffc9632d1d23f589bade74eed25b39a7a1118bd57e7ed801dabb2815e0785b",
       "meaning": "このL9と同候補のL4全UTF-8 bytesへのbinding。base source_pinsは原sourceの履歴根拠であり、このbindingを代替しない。commit revisionや上流承認をここから生成しない。"
     }
   },
@@ -22883,7 +22883,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "77bd38e1986ec8fe792897fe4a8fe785eb2e69c5182b85e275ae7974dff4eaa5"
+      "sha256": "39ffc9632d1d23f589bade74eed25b39a7a1118bd57e7ed801dabb2815e0785b"
     }
   },
   "descriptor_target_port_verification": {
@@ -22892,7 +22892,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "observed_source_revision": "64dc8a7032990e8f961f4e5e9601a1909d2e4f6d",
-      "sha256": "77bd38e1986ec8fe792897fe4a8fe785eb2e69c5182b85e275ae7974dff4eaa5",
+      "sha256": "39ffc9632d1d23f589bade74eed25b39a7a1118bd57e7ed801dabb2815e0785b",
       "binding_kind": "このscaffold候補L4 whole本文bytesへのbinding。前提source revision/正式採用とは区別。"
     },
     "scope": "9素材の同call原input/Claim引数/全私的target port返却。旧10port/10conditionalの期待scopeを変更しない。",
@@ -92571,7 +92571,7 @@
     ],
     "current_L4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "candidate_file_sha256": "77bd38e1986ec8fe792897fe4a8fe785eb2e69c5182b85e275ae7974dff4eaa5",
+      "candidate_file_sha256": "39ffc9632d1d23f589bade74eed25b39a7a1118bd57e7ed801dabb2815e0785b",
       "scope": "同じL4文書全bytesへの束縛。固定規範snapshotの歴史source pinとは別に、対象revisionはgit commitとreview対象HEADから確認する。"
     }
   },
@@ -120205,7 +120205,7 @@
     },
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "file_sha256": "77bd38e1986ec8fe792897fe4a8fe785eb2e69c5182b85e275ae7974dff4eaa5",
+      "file_sha256": "39ffc9632d1d23f589bade74eed25b39a7a1118bd57e7ed801dabb2815e0785b",
       "pointer": "/field_value_applicability_contract",
       "role": "現在の基本設計全bytesへの明示binding。固定履歴pinとは別。"
     },
@@ -138129,19 +138129,40 @@
       {
         "finding": "right compatible_refs[1]一般化",
         "classification": "設計不整合",
-        "old_source": "旧full/technical_contract/bilateral_reader_contract/right",
+        "old_source": {
+          "path": "scaffold/review-handoff/local/root-byte-snapshot-1a173688b173.json",
+          "file_sha256": "1a173688b1731575ad2411314e9b1f1297b142ac5bf48e976f59514548394177",
+          "git_revision": null,
+          "pointer": "/technical_contract/bilateral_reader_contract/right",
+          "excerpt": "右owner原subject/fullRefをsource.content.compatible_refs[1]へ対応し、record.source_ref→source.ref/Q/root/owner、bodycompatibleを別照合。compatible_refs[0]掲載から左owner資格を推定しない。",
+          "role": "未公開local著述草案にあった仮定を原文で記録。git commitは存在しない。この引用は著述inventoryであり歴史的authority/正式展開依存を生成しない。"
+        },
         "correction": "全原Ref出現をendpoint fullRefへ比較しmatching index全件保持。",
-        "old_seven_impact": "全配列は[template,pack]で各endpoint一致1件のため旧全値期待はそのまま。新L4 logical typed index返却を別補足し、後続詳細へ接続。"
+        "old_seven_impact": "初回公開固定revisionの7入力/基本返却期待を保全する（prior_publication_basis）。現在のRef[]表現で同じ原配列/順序を保持し、旧local tuple/位置role仮定から成功意味を引き継がない。"
       },
       {
         "finding": "C3OrderedRefPair tuple制約",
         "classification": "設計不整合",
-        "old_source": "旧full/technical_contract/closed_private_types/C3OrderedRefPair",
+        "old_source": {
+          "path": "scaffold/review-handoff/local/root-byte-snapshot-1a173688b173.json",
+          "file_sha256": "1a173688b1731575ad2411314e9b1f1297b142ac5bf48e976f59514548394177",
+          "git_revision": null,
+          "pointer": "/technical_contract/closed_private_types/C3OrderedRefPair",
+          "excerpt": {
+            "kind": "tuple",
+            "items": [
+              "Ref",
+              "Ref"
+            ],
+            "additional_items": false
+          },
+          "role": "未公開local著述草案にあった仮定を原文で記録。git commitは存在しない。この引用は著述inventoryであり歴史的authority/正式展開依存を生成しない。"
+        },
         "correction": "基本LeftOwnerSourceBody.compatible_refsはRef[]であり役割位置列ではない。",
-        "old_seven_impact": "元配列2件はRef[]の特殊例なので旧raw/body/hash/期待不変。"
+        "old_seven_impact": "初回公開固定revisionの7入力/基本返却期待を保全する（prior_publication_basis）。現在のRef[]表現で同じ原配列/順序を保持し、旧local tuple/位置role仮定から成功意味を引き継がない。"
       }
     ],
-    "comparison_contract": "既存7全public expectedと基本IdentityTraceReturn.comparisonがwhole一致。新3反例はmembership port全returnだけを期待し、C3関数全結果の新oracleを生成したと称しない。",
+    "comparison_contract": "初回公開固定revision（prior_publication_basis）の7全public expectedと基本IdentityTraceReturn.comparisonを保持しwhole一致を照合する。新3反例はmembership port全returnだけを期待し、C3関数全結果の新oracleを生成したと称しない。初回公開より古いlocal草案との歴史的一致はtracked資料だけでは認定しない。",
     "execution": "候補関数/意味reader/sort/validator/test/CIは未実行。",
     "seven_expected_results_storage": {
       "materialization": "common_results[common_material_index]をdeepcopyしcase.patchをRFC6902 add/remove/replaceで適用する。case間参照無し。先行独立著述literalの圧縮だけ。",
@@ -180467,10 +180488,150 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "77bd38e1986ec8fe792897fe4a8fe785eb2e69c5182b85e275ae7974dff4eaa5",
+      "sha256": "39ffc9632d1d23f589bade74eed25b39a7a1118bd57e7ed801dabb2815e0785b",
       "current_vs_fixed": "当該提案L4全bytesへのbinding。fixed fixture gitseed及び歴史inventory/source pinを更新しない。"
     },
     "schema_resource_id": "urn:helix-brain:l4:032:identity-trace-logical",
-    "authoring_inventory_boundary": "full_literal_source及びcounterexample_full_literal_sourceが指すlocalファイルは著述時の照合記録であり、repositoryだけでは回収できない。正式な全入力/期待値はfixed git seed・ここに保存したliteral・RFC patchから展開し、localファイルを展開依存又は採用authorityとしない。local草案の歴史的な真正性をtracked資料だけで立証したとは主張しない。"
+    "authoring_inventory_boundary": "full_literal_source及びcounterexample_full_literal_sourceが指すlocalファイルは著述時の照合記録であり、repositoryだけでは回収できない。正式な全入力/期待値はfixed git seed・ここに保存したliteral・RFC patchから展開し、localファイルを展開依存又は採用authorityとしない。local草案の歴史的な真正性をtracked資料だけで立証したとは主張しない。",
+    "prior_publication_basis": {
+      "revision": "3e6f25f595835251788c5bdcebaac4ead865a7c3",
+      "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+      "file_sha256": "01bfc51c08402518cc7550edce9447e4dcb43c4caf988a9d99a3a2cd1799887e",
+      "pointer": "/identity_version_trace_verification",
+      "frozen_case_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "rule": "固定git seed/imports、common literal、各case.patchを原順に展開しraw/validated/public Comparisonと基本返却の全member/canonicalを比較する。localファイルを読み込む必要はない。",
+      "claim": "初回公開済み7例と今回修正後7例の保全。初回公開前のlocal著述の来歴・真正性・採用authorityは認定しない。"
+    },
+    "endpoint_membership_whole_hash_contract": {
+      "target": "下記9memberを持つ保存展開後の全object。seed/raw_patch/hashes自体は含まない。",
+      "members": {
+        "id": "当該counterexample.id",
+        "raw_input": "seed固定gitbytesのpointer値をdeepcopyしraw_patchを原順適用した全値",
+        "expected_validation": "{input:raw_inputのdeepcopy,input_issues:当該expected_validation.input_issues,unusable_source_refs:当該expected_validation.unusable_source_refs}",
+        "snapshot": "{validated:expected_validationのdeepcopy}",
+        "requests": "当該requests全値",
+        "expected_memberships": "当該expected_memberships全値",
+        "expected_scope": "当該expected_scope文字列",
+        "expected_side_effect_count": "当該expected_side_effect_count",
+        "execution_state": "当該execution_state"
+      },
+      "canonical": "UTF8/objectkey Unicode昇順/ensure_ascii=false/compact/末尾LF無し。array原順・JSON型を保存する。",
+      "purpose": "hashes.wholeの検算対象を明示。原validation/readerの算法を実行又は生成しない。"
+    },
+    "finite_branch_coverage": {
+      "scope": "seven_expected_results_storageの7全IdentityTraceReturn及び追加3membership port全返却の著述済みcause literalを列挙したもの。candidate reader/validatorの実行coverageではない。",
+      "cause_inventory": [
+        {
+          "type": "ActualOperandRead",
+          "cause_schema_pointer": "/identity_version_trace_contract/schema/$defs/ActualOperandRead/properties/cause/enum",
+          "enum_count": 12,
+          "exercised": [
+            "actual_owner_body_unprovided",
+            "actual_owner_body_corresponding"
+          ],
+          "unexercised": [
+            "actual_owner_body_differs",
+            "actual_owner_body_unresolved",
+            "actual_owner_body_multiple_opposing",
+            "input_member_absent",
+            "input_member_null",
+            "input_member_out_of_type",
+            "subject_unformed",
+            "actual_scope_unresolved",
+            "actual_scope_differs",
+            "actual_qualification_unresolved"
+          ]
+        },
+        {
+          "type": "DescriptorTraceRead",
+          "cause_schema_pointer": "/identity_version_trace_contract/schema/$defs/DescriptorTraceRead/properties/cause/enum",
+          "enum_count": 8,
+          "exercised": [
+            "original_trace_corresponding"
+          ],
+          "unexercised": [
+            "source_unresolved",
+            "qualification_unresolved",
+            "body_unresolved",
+            "knowledge_unresolved",
+            "mixed_knowledge_revision",
+            "scope_unresolved",
+            "scope_differs"
+          ]
+        },
+        {
+          "type": "BilateralCompatibilityRead",
+          "cause_schema_pointer": "/identity_version_trace_contract/schema/$defs/BilateralCompatibilityRead/properties/cause/enum",
+          "enum_count": 19,
+          "exercised": [
+            "positive",
+            "null",
+            "scope",
+            "outside",
+            "left_owner_unprovided"
+          ],
+          "unexercised": [
+            "opposing",
+            "source_ref_absent",
+            "source_unresolved",
+            "source_unusable",
+            "qualification_unresolved",
+            "endpoint_unresolved",
+            "endpoint_differs",
+            "scope_unresolved",
+            "body_record_differs",
+            "compatible_null",
+            "range_unresolved",
+            "right_owner_unprovided",
+            "bilateral_owner_unresolved",
+            "bilateral_decisions_opposing"
+          ]
+        },
+        {
+          "type": "EndpointOwnerRead",
+          "cause_schema_pointer": "/identity_version_trace_contract/schema/$defs/EndpointOwnerRead/properties/cause/enum",
+          "enum_count": 7,
+          "exercised": [
+            "owner_body_corresponding",
+            "owner_scope_differs"
+          ],
+          "unexercised": [
+            "owner_qualification_unresolved",
+            "owner_subject_unresolved",
+            "owner_decision_unresolved",
+            "owner_decision_differs",
+            "owner_counterpart_unresolved"
+          ]
+        },
+        {
+          "type": "EndpointMembershipRead",
+          "cause_schema_pointer": "/identity_version_trace_contract/schema/$defs/EndpointMembershipRead/properties/cause/enum",
+          "enum_count": 7,
+          "exercised": [
+            "matching_refs",
+            "member_no_match"
+          ],
+          "unexercised": [
+            "container_absent",
+            "container_null",
+            "container_type",
+            "endpoint_unresolved",
+            "member_unresolved"
+          ]
+        }
+      ],
+      "unexercised_input_null": "validated.input=nullのsame_call.partial_and_null経路は当該10例で行使しない。",
+      "unexercised_raw_presence": "source_ref/member/compatible_refs collectionのabsence・null・型外、未形成endpoint、actual/trace/ownerの未観測・相反等は上記未行使causeのまま。型とguardの記載だけから全leafの実行成立又は期待網羅を認定しない。",
+      "pair_cause_precedence_scope": "L4 read_branch_contracts.bilateral.finite_cause_precedenceは本7例のcause選定だけを閉じる。未行使cause同士が競合する全域の優先及び未収載の一般multiple-record形成/順序/集約は未閉包で、後続の技術導出へ残す。未知をpositive又は新axisへ補完しない。",
+      "membership_counterexample_name": "…RIGHT-ENDPOINT-ABSENTはcounterexample名であり、endpoint自体は供給されている。期待cause=member_no_matchは当該compatible_refs列に右endpoint fullRefの対応出現が無いことを表し、endpoint_unresolvedとは区別する。"
+    }
   }
 }
