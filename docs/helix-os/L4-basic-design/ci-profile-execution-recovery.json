@@ -3473,7 +3473,15 @@
           ],
           "retained_ja": "義務・source/HEAD/base・環境/runの根拠を失わず、計画/観測と意味authorityを区別する。",
           "changed_ja": "旧固定stage/runtime/telemetry形式を移植せず、現行8関数のtyped引数/全返却と原Fieldを同一snapshotで結ぶ。",
-          "reason_ja": "現profile assemblyはF02008の他5facet返却を生成せず、MetadataだけでCIProposalへ飛ぶ接続を成立とできないため。"
+          "reason_ja": "現profile assemblyはF02008の他5facet返却を生成せず、MetadataだけでCIProposalへ飛ぶ接続を成立とできないため。",
+          "sha256": "65400847881f1a72b273f0bdeff503a5ea302705cd0e71d7913fc7d0f8dd18fb",
+          "locations": [
+            "27行: ## §0 authority境界",
+            "39行: #### CIS-R-01 実行identity",
+            "60行: #### CIS-R-04 証明責務identity",
+            "77行: #### CIS-R-07 planの完全分割",
+            "94行: #### CIS-R-10 obligation不変"
+          ]
         },
         "entry": {
           "name": "assembled_caller",
@@ -3734,7 +3742,8 @@
         "unclosed_ja": [
           "L5にこのwrapperのtype/writer/一般呼出し順と、F02008の6→5member formationを詳細化し、L8へ全返却の独立期待を追随する。今回L9は既存4 assemble入力とその5facet返却だけを有限照合する。",
           "Field.empty/absent/nullとsupplied([])、nested Binding/CheckItemの非供給値をplain ProfileBodyへ写せる条件、一般typed domainの既存consumer接続、非assemble各phaseは未閉包。原比較のunknown/violationを成功へ変更しない。",
-          "本契約によって実owner資格、正式schema/codec、実配送・CI・L11受入を設計完了の前提へ循環導入しない。これらの実証は実装後工程で別に追跡し、必要な型/資格/接続設計自体の不足とは区別する。"
+          "本契約によって実owner資格、正式schema/codec、実配送・CI・L11受入を設計完了の前提へ循環導入しない。これらの実証は実装後工程で別に追跡し、必要な型/資格/接続設計自体の不足とは区別する。",
+          "F02006のL5算法本文へ、既存L4比較表phases=[resume]に基づくphase限定を明示追随し、L8で非resumeの未選択とresumeの再検証を区別する。今回L5/L8の差分は参照hashのみで、この詳細化は未完。"
         ]
       }
     },
