@@ -2765,7 +2765,9 @@
       "L5 /logical_types/16/fields/binding",
       "L5 /functions/8/return_derivation/os_binding"
     ],
-    "meaning_ja": "SourceBoundProfile.os_bindingはplain BindingだがF02009返却記述はcaller.bindingの原値/13memberで、その入力親はField<Binding>である。一般absent/null/empty枝について原返却型の形成規則を追加照合する必要があるという未証明事項であり、実欠陥・新必須binding・新not_called条件を確定しない。生成の全member保持を継続し、既存F02009詳細/対oracleへ根拠付きで追跡する。"
+    "meaning_ja": "binding親4状態の基本形成規則はbasic_contract_pointer、専用論理型はbasic_type_pointerに定義した。現行L5のSourceBoundProfile.os_bindingはplain Bindingのままであり、非supplied親と子状態を保持する詳細writer・対L8・F02002等のconsumer追随が未成立なので、このfrontierはunclosedを保持する。新必須binding・新not_called条件を作らず、生成の全memberと既存比較規則を保持して後続pairへ追跡する。",
+    "basic_contract_pointer": "/contracts/0/source_bound_binding_parent_contract",
+    "basic_type_pointer": "/contracts/0/source_bound_binding_parent_contract/logical_return_type"
   },
   "downstream_connection_obligation": {
     "same_snapshot_ja": "生成したassembled_callerを既存F02009の入力へ渡し、その全Rを既存三接続先/親presence規則で同値接続してF02002へ渡す義務は維持する。actual/expected/sourceの既存比較を保持し、consumer出力から前段選択や原変更資料を逆生成しない。",
@@ -3224,16 +3226,16 @@
               "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
               "sha256": "65400847881f1a72b273f0bdeff503a5ea302705cd0e71d7913fc7d0f8dd18fb",
               "locations": [
-                "CIS-R-01 execution identity",
-                "CIS-R-08 full fallback"
+                "39行: #### CIS-R-01 実行identity",
+                "82行: #### CIS-R-08 全量fallback"
               ]
             },
             {
               "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/impact-ci-recovery.md",
               "sha256": "04e44d8382a5029a1dbe6e8bc69d6882ea15ee1410c3fc781136aad7db6b2391",
               "locations": [
-                "§2 component boundaries",
-                "§3 typed projection"
+                "23行: ## 2. component境界",
+                "36行: ## 3. 型付きprojection"
               ]
             }
           ],
@@ -3292,6 +3294,11 @@
           ],
           "disjointness": "supplied Bindingは13の宣言memberを全て持ちtagを持たず、他の3枝はtag-onlyのため、本論理型内の枝は互いに交差しない。未知key・不足member・型外値のJSON wire判定/保持codecはこのL4案の対象外。",
           "why_no_supplied_wrapper": "suppliedの場合は従来のplain Bindingを保持する。非supplied親をtag-only値で保持し、全14member返却の外側や正常値を包み直さない。"
+        },
+        "type_location": {
+          "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+          "pointer": "/contracts/0/source_bound_binding_parent_contract/logical_return_type",
+          "meaning_ja": "この契約の専用論理型を一箇所で宣言する。既存private_closed_types配列の拡張や共通Bindingの変更ではない。L5/L8はこの基本型へ後続で対応させる。"
         }
       }
     },
