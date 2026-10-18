@@ -81195,7 +81195,7 @@
             "document_id": "HELIX-HARNESS-L4-009",
             "candidate_local_pointer": "/contracts/4/source_result_reference_projection",
             "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
-            "candidate_l4_bytes_sha256": "f8a030b2645323c9e685cc7411c7436d4f51f854e14af7a9a14d02f80eec5b5c",
+            "candidate_l4_bytes_sha256": "7e644295f051a96915ee625ff2e2d29833c7ab6e1d65bea1fb6ebfa863bba89e",
             "candidate_l4_path": "docs/helix-harness/L4-basic-design/product-template-application.json"
           },
           "expectation_basis": "L3/L10 F03にある根拠・適用範囲・不足の返却義務と、L4の必須軸、順序付きcondition pair、Presence<JsonValue>診断規則を用いる。各probeのrawと全返却期待はcase内に保持し、local先固定履歴はGit上の時系列証明とは区別する。",
@@ -131697,7 +131697,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "f8a030b2645323c9e685cc7411c7436d4f51f854e14af7a9a14d02f80eec5b5c",
+        "sha256": "7e644295f051a96915ee625ff2e2d29833c7ab6e1d65bea1fb6ebfa863bba89e",
         "pointer": "/field_source_materialization_contract",
         "canonical_sha256": "9affbb54ace3e5c6f22c92d004999e474be0a36d84b439aaf3d7b60aecd433bf",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
@@ -146465,7 +146465,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "f8a030b2645323c9e685cc7411c7436d4f51f854e14af7a9a14d02f80eec5b5c",
+        "sha256": "7e644295f051a96915ee625ff2e2d29833c7ab6e1d65bea1fb6ebfa863bba89e",
         "pointer": "/field_semantic_evidence_contract",
         "canonical_sha256": "739d8838896cbb169eafecfae38673e338fc8d82bc2c340195e96b89707dbc6e",
         "role": "現行L4基本候補のreturn/body契約。commit済み歴史revisionとは区別し、同PRの対象bytesと選択節を固定する。",
@@ -164345,7 +164345,7 @@
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
         "pointer": "/f05_validation_material_call_contract",
-        "file_sha256": "f8a030b2645323c9e685cc7411c7436d4f51f854e14af7a9a14d02f80eec5b5c",
+        "file_sha256": "7e644295f051a96915ee625ff2e2d29833c7ab6e1d65bea1fb6ebfa863bba89e",
         "canonical_sha256": "0bae5fc583b45d6c4631a7dd2a6574361cd299e22623e5f93e90431ef0be368d",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "status": "作業時のcurrent L4 candidate bytes。commit revisionとは主張しない。"
@@ -182178,7 +182178,7 @@
         "pointer": "/field_obligation_scope_contract",
         "canonical_sha256": "d0aada2de42168fef7e383c7ba423002dec423105fbeff3a07944b2a7ddffe31",
         "role": "本packet内候補objectへの固定binding。base5671 whole hashを新candidate currentとしない。",
-        "sha256": "f8a030b2645323c9e685cc7411c7436d4f51f854e14af7a9a14d02f80eec5b5c"
+        "sha256": "7e644295f051a96915ee625ff2e2d29833c7ab6e1d65bea1fb6ebfa863bba89e"
       },
       {
         "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
@@ -210168,7 +210168,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "f8a030b2645323c9e685cc7411c7436d4f51f854e14af7a9a14d02f80eec5b5c",
+      "sha256": "7e644295f051a96915ee625ff2e2d29833c7ab6e1d65bea1fb6ebfa863bba89e",
       "pointer": "/input_scope_knowledge_gap_contract"
     },
     "comparison_contract": {
@@ -210235,7 +210235,9 @@
       "S12": "明示owner profileのrequired knowledge Ref k2が原input scope内に不在。実際に同identity/scope/fieldのk1を記録し、結論は当該input scope限定。recipientはinput-only readerでは投影しない。",
       "S13": "同じprofile claimに対し当該input scope内のexact k2 occurrenceをindex 1に保持。claimを削除せず存在を並記。global authority/availability判定にしない。",
       "S14": "gap proposal/unfinished義務と、raw sources[1].body.records[0]のprofile相当payload（required_knowledge_ref=k2/owner_statementを含む）は全値保持する。一方、同validated inputのsemantic_recordsとknowledge_recordsは[]。readerは原SemanticRecord→source/bodyの方向で照合するため、source bodyだけからprofile宣言を逆生成せずprofile_observations=[]を返す。これはraw全体にprofile本文が無いという主張ではない。空knowledge列やproposal.backflow_ownerから版不足/全域unavailableを生成しない。",
-      "outer_unformed": "実Cause固定instanceなしにつき未行使。"
+      "outer_unformed": "実Cause固定instanceなしにつき未行使。",
+      "FIELD-LOOKUP-NO-MATCH": "case3。元S12のfield_inputsだけを[]へ変更。原profile targetは保持し、実field memberの所在を合成せず、原collection/lookup条件を保存。input_ref軸の対応は保持しfield依存5軸はunestablished。",
+      "FIELD-LOOKUP-MULTIPLE": "case4。元S12のfull FieldInputを2原出現にした有限対照。2候補は全値同一でsource_locatorも元値のまま、実出現Location/index0,1と原順を保持。異値候補の全組合せ又はsource_locatorの書換えを検証したものではない。"
     },
     "cases": [
       {
@@ -277834,7 +277836,8 @@
           "revision": "105a8917e4f8fb938fd524b89f7163af334f2b65",
           "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
           "file_sha256": "c39dbf5d3913022eb63d1702e563556050c8f274c3e2a070eb7b6d5249660b9b",
-          "pointer": "/input_scope_knowledge_gap_verification/cases/0"
+          "pointer": "/input_scope_knowledge_gap_verification/cases/0",
+          "canonical_sha256": "441edb08bfeb3ad5637a35e6fd9d0ce5e73c6ef8a78e88a9ed373d75d6d7707b"
         },
         "input_delta": [
           {
@@ -297208,7 +297211,8 @@
           "revision": "105a8917e4f8fb938fd524b89f7163af334f2b65",
           "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
           "file_sha256": "c39dbf5d3913022eb63d1702e563556050c8f274c3e2a070eb7b6d5249660b9b",
-          "pointer": "/input_scope_knowledge_gap_verification/cases/0"
+          "pointer": "/input_scope_knowledge_gap_verification/cases/0",
+          "canonical_sha256": "441edb08bfeb3ad5637a35e6fd9d0ce5e73c6ef8a78e88a9ed373d75d6d7707b"
         },
         "input_delta": [
           {
@@ -297581,8 +297585,8 @@
       "L4 logical ValidationDetailPortReturnのinner source-observation wire type全域、shape-malformed branch、source qualification unestablished branchの新caseは未収載。",
       "Post-return formed/unformedの全whole期待は未固定。形成済actual F05DetailedReturn全値がfixtureに無く、outer unformed Cause例も無い。",
       "L5 RecipientMaterial実返却、BRAIN delivery/receipt、B019/030 consumer接続は別未完。",
-      "knowledge Refの供給digest差/未観測と原版存在の組合せ、source/body integrity不成立、識別可能profileの必要member欠落/null/型外/unsupported version/別subject-frameは本3全期待で未行使。元材料と既存局所未成立を保持し、版absence/integrity成功/global unavailable又は新gateへ補完しない。prose unionのinput_unavailable/semantic_records_unresolved reason枝も未行使。",
-      "3例はscannedかつlocated/presentの有限前提。input=null、semantic_records欠落/null/型外、未到達、profile未形成/別版、source資格未成立、scope差/unknown、供給digestの差/未観測、複数候補の全返却は未収載。",
+      "knowledge Refの供給digest差/未観測と原版存在の組合せ、source/body integrity不成立、識別可能profileの必要member欠落/null/型外/unsupported version/別subject-frameは旧3例と追加2例の全期待で未行使。元材料と既存局所未成立を保持し、版absence/integrity成功/global unavailable又は新gateへ補完しない。prose unionのinput_unavailable/semantic_records_unresolved reason枝も未行使。",
+      "旧S12/S13のprofileはlocated/present、S14はsemantic_records=[]。追加2例はfield lookup no-match/multipleの局所未成立を収載した。input=null、semantic_records欠落/null/型外、未到達、profile未形成/別版、source資格未成立、scope差/unknown、供給digest差/未観測、field以外の複数候補及び残るlookup outcomeの全返却は未収載。",
       "入力版出現の判断を利用認可/全域availability/本文integrity成功に昇格しない。実source起源・fn0/producer実行・配送・実受入は未成立。",
       "S14は結ばれないsource-only payloadを有限入力として保持するが、一般のsource-only宣言取込/逆投影規則は本readerの責務外で未閉包。空profile列から全profile不存在を導かない。"
     ],

@@ -5419,7 +5419,7 @@
         "4. 各profile候補宣言のsource_ref/SourceEnvelope/source_observation、原body.recordsのcollection/ref/payload対応を既存L4 wrapper_and_source_contractへ結ぶ。ProfileOccurrenceResolutionのlocated枝だけが対応する実在indexと実Readを持ち、unestablished枝はcollection Readと実際に観測した候補occurrenceだけを保持する。locatedは原nodeの取得所在が対応したという意味であり、source資格/body integrity又はprofile意味判断の成功を表さない。欠落/曖昧/未到達へ架空indexやLocationを作らない。",
         "5. field_input/gap_proposalとprofile supply_scopeの対応も同じoccurrence resolution・Read形で保持し、欠落/型外/別scopeはunestablishedのまま原scope/材料を保持する。scope_relationの全operandと軸結果を省略しない。 field実indexが未特定の3operandはfield_operand_writerとFieldOperandReadの専用枝へ保存し、実memberへのReadを捏造しない。",
         "5a. 上記scope operands全体と既存L4 /field_semantic_evidence_contract/common_target_guards に従う各axis結果を保存する。いずれかの必要memberが未観測/異なる場合はその原presenceと局所結果を保ち、profile claimをscope適合と裁定しない。",
-        "6. knowledge_recordsの原全列と各full Refを保持し、当該fieldに対応する同identity/scope/ownerの各原indexをactual_scope_knowledge_indicesへ、その中の同revisionの原indexをsame_required_version_identity_scope_owner_indicesへ原順で記録する。版存在はcomparison_axes_ja.knowledge_membershipにいう当該input scope内の原版出現の観測であり、source_locator又はdigestをRef identityへ加えたwhole同値判定ではない。本3caseの原条件の下で同版あり→present、同版なし→対象/profile対応とcollectionが全て観測できた範囲だけで当該入力内不在、それ以外はunestablished。供給digest条件の差/未観測又は本文integrityの不成立を版不在へ変換せず、版出現の観測からintegrity成功を生成しない。未行使の条件組合せの判断は本3caseから補完しない。",
+        "6. knowledge_recordsの原全列と各full Refを保持し、当該fieldに対応する同identity/scope/ownerの各原indexをactual_scope_knowledge_indicesへ、その中の同revisionの原indexをsame_required_version_identity_scope_owner_indicesへ原順で記録する。版存在はcomparison_axes_ja.knowledge_membershipにいう当該input scope内の原版出現の観測であり、source_locator又はdigestをRef identityへ加えたwhole同値判定ではない。元S12/S13の対象/profile対応成立条件の下で（追加2例のfield未特定時はunestablished）同版あり→present、同版なし→対象/profile対応とcollectionが全て観測できた範囲だけで当該入力内不在、それ以外はunestablished。供給digest条件の差/未観測又は本文integrityの不成立を版不在へ変換せず、版出現の観測からintegrity成功を生成しない。未行使の条件組合せの判断は本3caseから補完しない。",
         "7. input-only readerはrecipient/ticket/ReturnLinkを生成しない。必要な返却先の意味はF05 owner contractへ渡す候補情報として、原owner statementをprofile_body_read内に保存する。"
       ],
       "nonclaims_ja": [
@@ -5440,9 +5440,14 @@
           "Location": {
             "kind": "closed_record",
             "members": {
-              "root": "literal:validation_return",
+              "root": "enum:validation_return|validation_input",
               "pointer": "JSONPointer"
-            }
+            },
+            "root_mapping": {
+              "validation_return": "同request.validation_detail_return全体。pointerはこのwholeをrootとして解決する。",
+              "validation_input": "同request.validation_detail_return.original_raw_input.raw全体。pointerはこの原raw wholeをrootとして解決する。別snapshot/別decodeから補完しない。"
+            },
+            "root_boundary_ja": "この局所Locationの2 rootは同callの全validation返却とその中に保持された原raw入力を区別する所在名である。L9期待が既に使う原nodeを明記し、原Read/Ref/source_locatorを正規化せず、public producer rootやauthorityを追加しない。"
           },
           "Read<T>": {
             "kind": "tagged_union",
@@ -5617,7 +5622,7 @@
           "semantic_record_kind": "f05_knowledge_revision_gap_evidence",
           "meaning_profile_id": "f05_knowledge_revision_gap_evidence",
           "meaning_profile_version": 1,
-          "source": "本3caseのS12/S13原semantic_records[0]のkind、meaning.profile_id、meaning.profile_versionから固定する局所reader識別子。新collection/owner/authorityではない。"
+          "source": "元S12/S13原semantic_records[0]のkind、meaning.profile_id、meaning.profile_versionから固定する局所reader識別子。新collection/owner/authorityではない。"
         },
         "candidate_and_formation": "原kind又はmeaning.profile_idで本profile候補と識別できる出現を原index順で保持する。意味を読む範囲では上記kind/profile_id/profile_versionの原対応を別に確認し、識別可能だが必要member未観測/null/型外/unsupported version/既知差なら候補raw wholeを落とさず当該judgmentをunestablishedへ残す。kindという文字列だけからprofileの裁定又は不足を生成しない。無関係/識別不能の元recordも全semantic_records_readに保持し、任意の新profileへ変換しない。",
         "source_and_body": "元SemanticRecord.source_ref→SourceEnvelope.ref→同validation_detail_return.source_observationsの実source occurrenceを結び、既存 /field_semantic_evidence_contract/wrapper_and_source_contract に従ってbody.recordsのcollection=semantic_records、ref及びpayloadの原対応を読む。payloadは元recordからsource_refだけをenvelope側へ外付けしたref/binding/kind/meaningの原member全値/presenceであり、source_refをpayloadへ再帰埋込みしない。元source/Qualification/root/owner/subject/bytes/body/digest観測の不成立は当該解釈へ残し、located又は空unusable_source_refsから成功を補わない。source/wrapper ownerと元knowledge/template側の意味owner関係は既存common_target_guards/role_owner_bindingの範囲を保持し、field.ref.ownerとの一律一致やBRAIN文字列だけの資格を足さない。",
@@ -5653,7 +5658,7 @@
         ],
         "occurrence_boundary": "observed_occurrencesは実在する対応又は対応可能性未確定の候補だけ。collection_readには元配列wholeを保持し、既知別fieldの原出現も失わない。候補indexはfield_inputsの原indexでありsource/body/semantic indexと交換しない。lookup_conditionは同原Readから著述する局所writer結果で、任意bool/provider入力ではない。",
         "axis_projection": "field_lookup_unestablished枝を持つ3operandからRef/Bindingをcastせず、field依存5axis（field_ref_vs_supply_scope.field_ref、template_ref_vs_supply_scope.template_ref、field_binding_vs_semantic_record.binding、field_binding_vs_profile.binding、field_binding_vs_supply_scope.binding）をunestablishedとする。独立input_ref_vs_supply_scope.input_refはその実原Readから元規則で別に記録し、当該field未特定だけで消さない。aggregateは既知differentがあればdifferent、それが無くunestablishedがあればunestablished、全対応ならcorresponding。",
-        "judgment_and_retention": "field_lookup_unestablishedがある当該profile.judgmentはunestablished。原SemanticRecord/source/body/field collection/候補/必要版Ref/knowledge_records全値を保持する。actual_scope_knowledge_indices及びsame_required_version_identity_scope_owner_indicesには未確定のfieldを確定扱いしたindexを作らない。版absence、本文integrity成功、定義missing、recipient又は全体失敗へ変換せず、独立profileを継続する。",
+        "judgment_and_retention": "field_lookup_unestablishedがある当該profile.judgmentはunestablished。原SemanticRecord/source/body/field collection/候補/必要版Ref/knowledge_records全値を保持する。actual_scope_knowledge_indices及びsame_required_version_identity_scope_owner_indicesには未確定のfieldを確定扱いしたindexを作らない。版absence、本文integrity成功、定義missing、recipient又は全体失敗へ変換せず、独立profileを継続する。 field未特定の当該profileではactual_scope_knowledge_indicesとsame_required_version_identity_scope_owner_indicesを[]として返す。これは当該fieldへの確定対応indexが未形成という局所観測であり、元knowledge_recordsの不存在又は版absenceではない。全knowledge原列はvalidation_detail_returnとactual_knowledge_collection_readへ保持する。",
         "absent_vs_lookup_failure": "FieldOperandRead.absentはlocatedした実field objectに当該member keyが無いときだけ。unreachedも実indexが定まった原経路で最後に到達したnodeを保存できる場合だけ。lookup miss/複数の未特定fieldにこれらの枝を転用しない。"
       }
     },
@@ -5720,8 +5725,8 @@
       "L4 logical ValidationDetailPortReturnのinner source-observation wire type全域、shape-malformed branch、source qualification unestablished branchの新caseは未収載。",
       "Post-return formed/unformedの全whole期待は未固定。形成済actual F05DetailedReturn全値がfixtureに無く、outer unformed Cause例も無い。",
       "L5 RecipientMaterial実返却、BRAIN delivery/receipt、B019/030 consumer接続は別未完。",
-      "knowledge Refの供給digest差/未観測と原版存在の組合せ、source/body integrity不成立、識別可能profileの必要member欠落/null/型外/unsupported version/別subject-frameは本3全期待で未行使。元材料と既存局所未成立を保持し、版absence/integrity成功/global unavailable又は新gateへ補完しない。prose unionのinput_unavailable/semantic_records_unresolved reason枝も未行使。",
-      "3例はscannedかつlocated/presentの有限前提。input=null、semantic_records欠落/null/型外、未到達、profile未形成/別版、source資格未成立、scope差/unknown、供給digestの差/未観測、複数候補の全返却は未収載。",
+      "knowledge Refの供給digest差/未観測と原版存在の組合せ、source/body integrity不成立、識別可能profileの必要member欠落/null/型外/unsupported version/別subject-frameは旧3例と追加2例の全期待で未行使。元材料と既存局所未成立を保持し、版absence/integrity成功/global unavailable又は新gateへ補完しない。prose unionのinput_unavailable/semantic_records_unresolved reason枝も未行使。",
+      "旧S12/S13のprofileはlocated/present、S14はsemantic_records=[]。追加2例はfield lookup no-match/multipleの局所未成立を収載した。input=null、semantic_records欠落/null/型外、未到達、profile未形成/別版、source資格未成立、scope差/unknown、供給digest差/未観測、field以外の複数候補及び残るlookup outcomeの全返却は未収載。",
       "入力版出現の判断を利用認可/全域availability/本文integrity成功に昇格しない。実source起源・fn0/producer実行・配送・実受入は未成立。",
       "field実index未特定時の3operandはFieldOperandRead.field_lookup_unestablishedで原collection/全候補/lookup条件を保持する。既存Readのrequested leafを捏造しない。今回のlookup no-match/multiple全期待以外の原target/collection未形成・同時相反・native到達可能性全域は未行使のまま。"
     ]
