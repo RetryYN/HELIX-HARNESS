@@ -791,7 +791,7 @@
       },
       "unclosed_ja": [
         "未知・型外rawのcodec、全child組合せ、F02001実投影、実owner資格・受領・CIは未成立。",
-        "既存L8の同R三接続先に24箇所のliteral差があり、F02008 profile_material投影も未閉包。今回の5 unit（F02009 binding親4状態と子混在1例）の期待では修正又は完了としない。",
+        "このL5契約に対応する既存L8のsource_bound_selection_pipeline 4ケースについては、別のsame-R補正でproducer RとF02002/F02008各3 attachmentの24箇所のliteral差を是正する。これはF02008 profile_material投影又は全consumer連鎖を閉じない。F02009 binding-parentの5 unit（親4状態とpartial child 1例）は別case範囲であり、same-R attachment修正を代替しない。",
         "F01RunnerResourceOwnerProjection.os_bindingは別のField<Binding>。この専用返却型へ統合しない。"
       ],
       "legacy_basis_ja": "L4同契約のlegacy_comparisonとsource_basisに戻る。原identity・不明の保持を維持し、旧CI/runtime/fallbackの実行規則を移植しない。"
@@ -2640,7 +2640,7 @@
         "selection_sources": "5つの関係を別々に計算する。plan statusはplan sourceとcontext.profileのplan_ref/binding軸、profile statusはplan選択集合とcontext.profile.obligations、items statusはplan itemsとcontext.profile.items（このrelationはstatus-only）、minimumはHARNESS F03 minimumとcontext.required_obligationsおよびL4のminimum⊆actual profile.obligations、inventoryはactual profile.obligations⊆HARNESS inventory。actual対contextの通常profile/item比較はF02002がL4どおり行い、このstatusで置き換えない。",
         "source_refs": "nested context.harness_selection_source.f03.inventory_refsがsupplied listの場合に限り、文字列IDを配列順で返す。Duty recordへの変換やrecord memberの合成は行わない。",
         "unresolved_pointers": "供給済みsourceのunknown member原因pointerだけを比較順・Field宣言順で返す。source port全体がAbsentならnot_supplied statusで示し、unknown pointerを追加しない。明示null/不正memberはunknownで原pointerを保持する。",
-        "conflict_pointers": "既知相反の入力側pointerを該当比較規則が指定する順で保持する。",
+        "conflict_pointers": "既知相反の入力側pointerを該当比較規則が指定する順で保持する。このうちF02009のinventory_subset_comparisonが既知相反と判定した場合は、L4が指定するconflict_path /profile/obligationsをconflict_pointersへ出力し、右operandの/context/harness_selection_source/f03/inventory_refs所在を追加しない。原HARNESS source値はharness_source_snapshotで保持する。",
         "missing_minimum_refs": "HARNESS minimumとactual input profile.obligationsがknownなら、minimumからprofile.obligationsを差し引きUnicode codepoint昇順listを返す。不明なら空listでなくstatus/unresolved pointerに不明を保持し、差分は生成しない。",
         "selected_outside_inventory_refs": "actual profile.obligationsとHARNESS F03 inventory_refsが比較可能な場合、actual profile.obligationsからinventoryを差し引いたUnicode codepoint昇順listを返す。不明なら空listを返しstatusとunresolved_pointersで不明を保持する。",
         "qualification_state": "not_established固定。",

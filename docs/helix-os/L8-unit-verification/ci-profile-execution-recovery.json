@@ -137002,11 +137002,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -137020,11 +137020,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-C1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -137814,11 +137814,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-U1"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 },
                                 {
@@ -137832,11 +137832,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-C1"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 }
                               ]
@@ -138475,11 +138475,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -138493,11 +138493,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-C1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -138992,11 +138992,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -139010,11 +139010,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-C1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -139804,11 +139804,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-U1"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 },
                                 {
@@ -139822,11 +139822,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-C1"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 }
                               ]
@@ -140465,11 +140465,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -140483,11 +140483,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-C1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -145469,11 +145469,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -145487,11 +145487,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-C1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -145505,7 +145505,7 @@
                         },
                         "source_refs": [],
                         "unresolved_pointers": [
-                          "/context/harness_selection_source"
+
                         ],
                         "conflict_pointers": [],
                         "missing_minimum_refs": [],
@@ -146155,11 +146155,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-U1"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 },
                                 {
@@ -146173,11 +146173,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-C1"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 }
                               ]
@@ -146191,7 +146191,7 @@
                             },
                             "source_refs": [],
                             "unresolved_pointers": [
-                              "/context/harness_selection_source"
+
                             ],
                             "conflict_pointers": [],
                             "missing_minimum_refs": [],
@@ -146566,11 +146566,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -146584,11 +146584,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-C1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -146602,7 +146602,7 @@
                         },
                         "source_refs": [],
                         "unresolved_pointers": [
-                          "/context/harness_selection_source"
+
                         ],
                         "conflict_pointers": [],
                         "missing_minimum_refs": [],
@@ -146957,11 +146957,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -146975,11 +146975,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-C1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -146993,7 +146993,7 @@
                         },
                         "source_refs": [],
                         "unresolved_pointers": [
-                          "/context/harness_selection_source"
+
                         ],
                         "conflict_pointers": [],
                         "missing_minimum_refs": [],
@@ -147643,11 +147643,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-U1"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 },
                                 {
@@ -147661,11 +147661,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-C1"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 }
                               ]
@@ -147679,7 +147679,7 @@
                             },
                             "source_refs": [],
                             "unresolved_pointers": [
-                              "/context/harness_selection_source"
+
                             ],
                             "conflict_pointers": [],
                             "missing_minimum_refs": [],
@@ -148054,11 +148054,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -148072,11 +148072,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-C1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -148090,7 +148090,7 @@
                         },
                         "source_refs": [],
                         "unresolved_pointers": [
-                          "/context/harness_selection_source"
+
                         ],
                         "conflict_pointers": [],
                         "missing_minimum_refs": [],
@@ -153831,11 +153831,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -153849,11 +153849,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-C1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -154636,11 +154636,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-U1"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 },
                                 {
@@ -154654,11 +154654,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-C1"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 }
                               ]
@@ -155285,11 +155285,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -155303,11 +155303,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-C1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -155805,11 +155805,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -155823,11 +155823,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-C1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -156610,11 +156610,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-U1"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 },
                                 {
@@ -156628,11 +156628,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-C1"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 }
                               ]
@@ -157259,11 +157259,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -157277,11 +157277,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-C1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -162593,8 +162593,7 @@
               ],
               "unresolved_pointers": [],
               "conflict_pointers": [
-                "/profile/obligations",
-                "/context/harness_selection_source/f03/inventory_refs"
+                "/profile/obligations"
               ],
               "missing_minimum_refs": [],
               "selected_outside_inventory_refs": [
@@ -163055,11 +163054,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -163073,11 +163072,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-X9"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -163096,8 +163095,7 @@
                         ],
                         "unresolved_pointers": [],
                         "conflict_pointers": [
-                          "/context/plan_selection_source/selected_obligation_refs",
-                          "/context/harness_selection_source/f03/inventory_refs"
+                          "/profile/obligations"
                         ],
                         "missing_minimum_refs": [],
                         "selected_outside_inventory_refs": [
@@ -163872,11 +163870,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-U1"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 },
                                 {
@@ -163890,11 +163888,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-X9"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 }
                               ]
@@ -163913,8 +163911,7 @@
                             ],
                             "unresolved_pointers": [],
                             "conflict_pointers": [
-                              "/context/plan_selection_source/selected_obligation_refs",
-                              "/context/harness_selection_source/f03/inventory_refs"
+                              "/profile/obligations"
                             ],
                             "missing_minimum_refs": [],
                             "selected_outside_inventory_refs": [
@@ -164538,11 +164535,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -164556,11 +164553,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-X9"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -164579,8 +164576,7 @@
                         ],
                         "unresolved_pointers": [],
                         "conflict_pointers": [
-                          "/context/plan_selection_source/selected_obligation_refs",
-                          "/context/harness_selection_source/f03/inventory_refs"
+                          "/profile/obligations"
                         ],
                         "missing_minimum_refs": [],
                         "selected_outside_inventory_refs": [
@@ -165070,11 +165066,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -165088,11 +165084,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-X9"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -165111,8 +165107,7 @@
                         ],
                         "unresolved_pointers": [],
                         "conflict_pointers": [
-                          "/context/plan_selection_source/selected_obligation_refs",
-                          "/context/harness_selection_source/f03/inventory_refs"
+                          "/profile/obligations"
                         ],
                         "missing_minimum_refs": [],
                         "selected_outside_inventory_refs": [
@@ -165887,11 +165882,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-U1"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 },
                                 {
@@ -165905,11 +165900,11 @@
                                   },
                                   "oracle_ref": {
                                     "tag": "supplied",
-                                    "value": "ORACLE-X9"
+                                    "value": "ORACLE-020"
                                   },
                                   "environment_ref": {
                                     "tag": "supplied",
-                                    "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                    "value": "ENV-1"
                                   }
                                 }
                               ]
@@ -165928,8 +165923,7 @@
                             ],
                             "unresolved_pointers": [],
                             "conflict_pointers": [
-                              "/context/plan_selection_source/selected_obligation_refs",
-                              "/context/harness_selection_source/f03/inventory_refs"
+                              "/profile/obligations"
                             ],
                             "missing_minimum_refs": [],
                             "selected_outside_inventory_refs": [
@@ -166553,11 +166547,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-U1"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             },
                             {
@@ -166571,11 +166565,11 @@
                               },
                               "oracle_ref": {
                                 "tag": "supplied",
-                                "value": "ORACLE-X9"
+                                "value": "ORACLE-020"
                               },
                               "environment_ref": {
                                 "tag": "supplied",
-                                "value": "SYNTHETIC-ENVIRONMENT_REF"
+                                "value": "ENV-1"
                               }
                             }
                           ]
@@ -166594,8 +166588,7 @@
                         ],
                         "unresolved_pointers": [],
                         "conflict_pointers": [
-                          "/context/plan_selection_source/selected_obligation_refs",
-                          "/context/harness_selection_source/f03/inventory_refs"
+                          "/profile/obligations"
                         ],
                         "missing_minimum_refs": [],
                         "selected_outside_inventory_refs": [
@@ -170762,7 +170755,7 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-    "sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+    "sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
     "pointer": "/private_producer_bindings/0",
     "object_canonical_sha256": "e1dcfea605244ab04514556c90a10d74f2889ae1535cddac774138279aac2307",
     "binding_kind": "exact_candidate_file_bytes",
@@ -171275,7 +171268,7 @@
     ],
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "e4eae97ebe011bdcc010973a5f195c2a9d2afc6748912645fc50c4183055588b",
+      "candidate_sha256": "25093e42f58291d2075590dc28e3629f91c4c79719f4f31f56940fc7b2ae06be",
       "pointer": "/producer_selection_integration_verification/cases",
       "meaning_ja": "6条件で参照するraw入力の所在を現在L9 bytesへ束縛する。L9のexpectedを単体期待の根拠にはしない。"
     },
@@ -171293,13 +171286,13 @@
     "requirement_ref": "HELIXOS-L3-020-B01",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+      "sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
       "pointer": "/private_producer_bindings/1",
       "object_canonical_sha256": "118405bcb1e837be5ac99a0b1c9a8eb23279c7d1fa226605dc2f43a1a32c2eeb"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "e4eae97ebe011bdcc010973a5f195c2a9d2afc6748912645fc50c4183055588b",
+      "candidate_sha256": "25093e42f58291d2075590dc28e3629f91c4c79719f4f31f56940fc7b2ae06be",
       "pointer": "/owner_return_verification"
     },
     "unit_conditions": [
@@ -171376,13 +171369,13 @@
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/2",
-      "sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+      "sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
       "object_canonical_sha256": "aecf5abb3660bba9c9db71b97744336f6843cbe6caa91aab60377be0efa70ee4"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/operation_call_verification",
-      "candidate_sha256": "e4eae97ebe011bdcc010973a5f195c2a9d2afc6748912645fc50c4183055588b",
+      "candidate_sha256": "25093e42f58291d2075590dc28e3629f91c4c79719f4f31f56940fc7b2ae06be",
       "object_canonical_sha256": "13b3d5f598d950a3da3b8935c8de75b7754d8bc0b259e80682649be8d05d5bd6"
     },
     "condition_correspondence": [
@@ -171536,14 +171529,14 @@
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/3",
-      "sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+      "sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
       "object_canonical_sha256": "87826d9d38d2af5493dbc3bc8be1d6d97474c5ce1a77d60611e00b714c6d3e03"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/prior_projection_verification",
-      "candidate_sha256": "e4eae97ebe011bdcc010973a5f195c2a9d2afc6748912645fc50c4183055588b",
-      "object_canonical_sha256": "0085516d4fdee7b43d7f7868ed7578ddfdecb952fd2eed8f8588f5a0181cbf7c"
+      "candidate_sha256": "25093e42f58291d2075590dc28e3629f91c4c79719f4f31f56940fc7b2ae06be",
+      "object_canonical_sha256": "39b79a38d2cd349331bb498da53fba82b01cd38513026533a195331dc2723789"
     },
     "unit_conditions": [
       {
@@ -171626,14 +171619,14 @@
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/4",
-      "sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+      "sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
       "object_canonical_sha256": "2f2a752de93ade3c5a09dfbd3f9f05bd6aaa7f3d9962287a7de8f9f1c37d2fe3"
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
       "pointer": "/resume_call_verification",
-      "candidate_sha256": "e4eae97ebe011bdcc010973a5f195c2a9d2afc6748912645fc50c4183055588b",
-      "object_canonical_sha256": "eb9ec43ee40f4681f3cd7ee29ed7d4e901c5769b8d73a1f8b4f246d8a4f4cfb6"
+      "candidate_sha256": "25093e42f58291d2075590dc28e3629f91c4c79719f4f31f56940fc7b2ae06be",
+      "object_canonical_sha256": "757aa5ab6dcc08eae1e90aeda25de9b315e40ffa8ab9d512aff2eb76c6ba5eaf"
     },
     "unit_conditions": [
       {
@@ -171896,7 +171889,7 @@
     "system_oracle_ref": "HELIXOS-L10-020-F01",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+      "sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
       "pointer": "/private_producer_bindings/5",
       "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
       "binding_kind": "exact_candidate_file_bytes"
@@ -171909,9 +171902,9 @@
     },
     "current_l9_candidate_binding": {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "candidate_sha256": "e4eae97ebe011bdcc010973a5f195c2a9d2afc6748912645fc50c4183055588b",
+      "candidate_sha256": "25093e42f58291d2075590dc28e3629f91c4c79719f4f31f56940fc7b2ae06be",
       "pointer": "/f01_owner_return_verification",
-      "object_canonical_sha256": "a59cad398f0c7f1db9addd1bb58c025cdb8e450271a8372a6f883f56b0d97c4b"
+      "object_canonical_sha256": "246b024cb56fa82f8c9e77032bde357066ae3fc154dd5d4f6bc3156e1e985289"
     },
     "unit_conditions": [
       {
@@ -171963,7 +171956,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "今回のL5 F01 binding"
@@ -172065,7 +172058,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "今回のL5 F01 binding"
@@ -172167,7 +172160,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "今回のL5 F01 binding"
@@ -172269,7 +172262,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "今回のL5 F01 binding"
@@ -172371,7 +172364,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "今回のL5 F01 binding"
@@ -172473,7 +172466,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "今回のL5 F01 binding"
@@ -172575,7 +172568,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "今回のL5 F01 binding"
@@ -172677,7 +172670,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "今回のL5 F01 binding"
@@ -172779,7 +172772,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "今回のL5 F01 binding"
@@ -172881,7 +172874,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "今回のL5 F01 binding"
@@ -172974,7 +172967,7 @@
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "pointer": "/private_producer_bindings/5",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "F01 producer binding"
@@ -173175,7 +173168,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "同callerのL5 import"
           }
@@ -173235,7 +173228,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "同callerのL5 import"
           }
@@ -173295,7 +173288,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "同callerのL5 import"
           }
@@ -173355,7 +173348,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "同callerのL5 import"
           }
@@ -173408,7 +173401,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "同callerのL5 import"
           }
@@ -173468,7 +173461,7 @@
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+            "file_sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
             "object_canonical_sha256": "85638f6af38fe1b8d9b68c82e24dceda9726b466abc6ccae91045eeb02075f95",
             "label_ja": "同callerのL5 import"
           }
@@ -173487,11 +173480,11 @@
     "independent_expected_basis_ja": "期待は採用L4のf02009_return_mappingとchild_field_preservationから導く。L9は固定seedからraw/caller/全返却14memberを再構成する有限input・paired oracleとして参照する。L5 /functions/8 の既存期待本文を期待生成元として使わない。",
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-      "sha256": "9eb4a530e326f7278ecfce9112e927be1c520a3c367c763bc1b5c4788d306f24",
+      "sha256": "87b9fb66845bae25330e4e72cb271072df36c1e75d1d1956e610b32ef72f8791",
       "objects": [
         {
           "pointer": "/contracts/4",
-          "canonical_sha256": "4ac3774ecdd9c5c87885f541f98f8a7b5de0caae30b591f333d39587d5dbe894"
+          "canonical_sha256": "b0f05e1340c4854c4863325d9e4066b6b1db14bded10737f272771369e1677bc"
         },
         {
           "pointer": "/logical_types/47",
@@ -173503,7 +173496,7 @@
         },
         {
           "pointer": "/functions/8",
-          "canonical_sha256": "8e9ac7e96d703f13889b186e7bde9db73b88978e39cd28df4069f6d498778afb"
+          "canonical_sha256": "b495a201c1b34471e468774ed308f815d54dbdd2189bf9a690498dee5aefbece"
         }
       ]
     },
