@@ -800,6 +800,132 @@
         },
         "meaning": "公開Comparison4は元fn1全値。全assessmentは同walkに由来し元definition判定順で反復保存。",
         "private_contract_pointer": "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionEvaluation"
+      },
+      "CanonicalReadInvocation": {
+        "kind": "closed_record",
+        "fields": {
+          "request": "CanonicalReadRequest",
+          "result": "CanonicalBodyRead"
+        },
+        "required_fields": [
+          "request",
+          "result"
+        ],
+        "field_order": [
+          "request",
+          "result"
+        ],
+        "meaning": "同call同ValidatedSupplyに対する実呼出しのrequestと実returned whole6memberの対。helper引数袋ではない。no-callを架空Invocationへしない。"
+      },
+      "CanonicalReadFrame": {
+        "kind": "closed_record",
+        "fields": {
+          "input": "ValidatedSupply",
+          "invocations": "CanonicalReadInvocation[]"
+        },
+        "required_fields": [
+          "input",
+          "invocations"
+        ],
+        "field_order": [
+          "input",
+          "invocations"
+        ],
+        "meaning": "fn6が一度借用する元ValidatedSupply全値と実read列。input_issues/unusable_source_refs/原category presence/未評価rawを全保持。fn6同callの私有localでありComparison/SupplyAnalysisへ追加せず、別call cache/第二製品entrypointにしない。"
+      },
+      "CanonicalBodySupportRow": {
+        "kind": "closed_record",
+        "fields": {
+          "target_ref": "Ref",
+          "source_ref": "Ref",
+          "canonical_body_locator": "string",
+          "canonical_body_inner_locator": "RawValue",
+          "basis_refs": "Ref[]",
+          "qualification_ref": "Ref",
+          "qualification_subject_ref": "Ref",
+          "qualification_subject_sha256": "RawValue",
+          "qualification_scope": "RawValue",
+          "qualification_root_ref": "Ref"
+        },
+        "required_fields": [
+          "target_ref",
+          "source_ref",
+          "canonical_body_locator",
+          "basis_refs"
+        ],
+        "field_order": [
+          "target_ref",
+          "source_ref",
+          "canonical_body_locator",
+          "canonical_body_inner_locator",
+          "basis_refs",
+          "qualification_ref",
+          "qualification_subject_ref",
+          "qualification_subject_sha256",
+          "qualification_scope",
+          "qualification_root_ref"
+        ],
+        "meaning": "既存L4 traceの10許可member/4必須member。そのほか6memberは原供給時だけ。元source/Qualificationの欠落をnull補完せず、明示nullが許されるRawValueはそのまま保持。"
+      },
+      "CanonicalAxisCause": {
+        "union": [
+          "null",
+          "BodyReadProblem",
+          "BodyReadProblem[]"
+        ],
+        "meaning": "problems 0件→null、1件→当該whole、2件以上→全whole配列原順。配列variantは最低2件というformed材料不変条件。tag/memberを追加しない。"
+      },
+      "CanonicalAxisTraceMaterial": {
+        "kind": "closed_record",
+        "fields": {
+          "format": "literal BRAIN032-F09-axis-reason-trace-v1",
+          "producer_symbol": "literal compare_dependencies_and_handoff",
+          "axis": "literal dependency_reference",
+          "state": "literal resolved | unknown | conflict",
+          "subject_ref": "Ref",
+          "binding": "Binding",
+          "original_refs": "Ref[]",
+          "backflow_owner": "literal knowledge_owner | null",
+          "request_locator": "string",
+          "source_category_locator": "string",
+          "cause": "CanonicalAxisCause",
+          "canonical_body_support": "CanonicalBodySupportRow[]",
+          "handoff_record": "null",
+          "selection_observation": "null"
+        },
+        "required_fields": [
+          "format",
+          "producer_symbol",
+          "axis",
+          "state",
+          "subject_ref",
+          "binding",
+          "original_refs",
+          "backflow_owner",
+          "request_locator",
+          "source_category_locator",
+          "cause",
+          "canonical_body_support",
+          "handoff_record",
+          "selection_observation"
+        ],
+        "field_order": [
+          "format",
+          "producer_symbol",
+          "axis",
+          "state",
+          "subject_ref",
+          "binding",
+          "original_refs",
+          "backflow_owner",
+          "request_locator",
+          "source_category_locator",
+          "cause",
+          "canonical_body_support",
+          "handoff_record",
+          "selection_observation"
+        ],
+        "meaning": "canonical実read由来Axis専用14member。conditional/selector/unselected/handoffの別writer材料を混入しない。reasonはこの材料から形成し、材料内に循環参照しない。"
       }
     },
     "invariants": [
@@ -809,7 +935,44 @@
       "decode可能semantic null/欠落/相反は比較へ渡す。",
       "MSG3候補のfield最終照合・relation先未完を保持。合成正常モデルは採択ではない。"
     ],
-    "reference_comparison": "Ref.identity/revision/scope/ownerを比較。sha256が両方供給された場合はdigestも比較。参照側digest未供給はsource bytes不在を補わず、source本体のdigest/bytes検証を独立必須とする。Ref.source_locatorは所在であってidentityではない。"
+    "reference_comparison": "Ref.identity/revision/scope/ownerを比較。sha256が両方供給された場合はdigestも比較。参照側digest未供給はsource bytes不在を補わず、source本体のdigest/bytes検証を独立必須とする。Ref.source_locatorは所在であってidentityではない。",
+    "imports": {
+      "CanonicalReadRequest": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
+        "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+        "pointer": "/dependency_semantic_ports/schema/new_defs/CanonicalReadRequest",
+        "canonical_sha256": "a7b7b5c5f989175017d09c30b00b6a38b0283b46af413c559a7215124d8003d1"
+      },
+      "CanonicalBodyRead": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
+        "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+        "pointer": "/dependency_semantic_ports/schema/new_defs/CanonicalBodyRead",
+        "canonical_sha256": "145fc62e58b985c4e9f7d364f45f55f8be90959c6c311bab67b313fef3469154"
+      },
+      "CanonicalBodyRecord": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
+        "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+        "pointer": "/dependency_semantic_ports/schema/new_defs/CanonicalBodyRecord",
+        "canonical_sha256": "5202fc4760398684ba651ee313d7064a03e0343fa056b96578149469dd75f578"
+      },
+      "BodyReadProblem": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
+        "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+        "pointer": "/dependency_semantic_ports/schema/new_defs/BodyReadProblem",
+        "canonical_sha256": "421e5a691157eeab364e1cd58f230a1f211803b5605db539390a53b21e04c911"
+      }
+    },
+    "canonical_read_schema_source_binding": {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
+      "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+      "pointer": "/dependency_semantic_ports/schema",
+      "canonical_sha256": "8de4532eb39ebccde34d9dd58f66e0ed411afafe50bfe47a6e2103af1a6b7ddd"
+    }
   },
   "functions": [
     {
@@ -1137,7 +1300,7 @@
       "effect": "none",
       "algorithm": [
         "照合前にcore_return_requestedの存在/厳密booleanを既存規則で読み、欠落をfalseへ既定しない。core_source_selected/labo_evaluation_selectedのselector所見は同context.validatedを一回借用する/conditional_dependency_detailへ委ね、旧selector passと二重に生成しない。各条件の不足は当該集合だけに局所化し、常時集合/別条件を止めない。 core_return_requestedが欠落した場合は既存R-dependency_selector_unknown（failure_rules/106）に従い、axis=dependency_selection,state=unknownと同R106の旧reason_templateによる所見を一回だけ返す。そのCORE返却条件集合だけを評価せず、常時集合/他明示selector/handoffを停止しない。新private二channelのselector所見へ重ねてemitしない。",
-        "HELIXBRAIN-L3-032-F09で常時必須とされた完全identityは、HELIXBRAIN-L2-003、HELIXBRAIN-L2-005、HELIXBRAIN-L2-007、HELIXBRAIN-L2-008、HELIXBRAIN-L2-028である。core_return_requested=trueの場合に追加で必要な完全identityは、HELIXBRAIN-L2-019、HELIXBRAIN-L2-022、HELIXBRAIN-L2-030である。Ref.identityはopaque値として完全一致で照合し、短縮表示から意味IDを推測しない。必要Ref[]またはmemberが欠けた場合、欠けた各identityについてaxis=dependency_reference,state=missingを返す。空配列・欠落を充足としない。欠落Refのrevision/scope/owner/source_locator/sha256を生成しない。subject_refは入力binding.knowledge_refがobjectとして供給されていればその原Ref、欠落していてbinding.template_refがobjectなら当該template_refを診断subjectとして用いる。後者はcandidate/template Refをknowledge_refへ代入・aliasするものではなく、bindingおよびComparison.input_binding内のknowledge_ref欠落をそのまま保つ。template_refもobjectでない場合はsubject_refを捏造しない。subject_ref:Refを必須とする依存AxisResult/Findingは形成できないため、入力のRef欠落を保持し、その依存所見を成功扱いにもmissingのtyped所見にも変換しない。既存validation/construction issueは各既存関数の入力条件が満たされる場合に限る別出力である。具体的に、入力root bindingがobjectでknowledge_ref/template_refのどちらもobject Refでないとき、既存construction_issuesはlocator=/binding、source_ref=nullのInputIssueを返し、build_supply_analysisのinput_issuesへ保持する。その他のissue発生は各既存条件に従い、subject候補Ref欠落だけから追加所見を仮定しない。AxisResult.binding/Finding.binding/Comparison.input_bindingは同じ入力bindingの原memberを保ち、欠落knowledge_refを補わない。別の既存builder/constructor経路のconstruction_issues(context.validated)は、候補と同template/knowledge bindingが結べない条件で、候補locatorのInputIssueをsource_return_verificationの既存別入力から返す。NEG-13ではその候補locator=/candidates/0のIssueを併せて観測しない。candidate Issueの根拠はsource_return_verification/cases/18（HELIXBRAIN-L8-032-LOCAL-CANDIDATE-KNOWLEDGE-REF-ABSENT）の独立した入力・期待であり、本関数Comparisonへ混ぜない。ADD-28は別条件のroot binding locator=/binding InputIssueを既存builder経路で投影し、Comparisonのdependency AxisResult/Findingとは別出力・別観測として保持する。AxisResult.original_refsとFinding.source_refsには該当categoryに実際に供給されたRefだけを入れ、欠落identityのRefは追加しない。categoryがalways_refs/core_return_refsのどちらかを診断対象sourceから追跡する。identityが供給されてもqualification/current revision/scope/owner/digestは既存full-Ref比較で別途検査する。別sourceの成功はこの不足を補償しない（HELIXBRAIN-L5-032-R-selected_source_substitution）。core_source_selected/labo_evaluation_selectedのstrict true参照・qualification/原operation/025条件と対応selector診断は/conditional_dependency_detailの同call private readと公開投影が担当し、旧generic selected-source/evaluation参照passは重ねて実行しない。元false時unselected_refs source-state pass及び別の既存rule85/89等の選択source/claim責務は置換せず元predicate/対象/理由/全返却のまま保持する。返却決定順は常時identityのL3-F09列挙順003/005/007/008/028、選択済みCORE返却identityの列挙順019/022/030、selector所見順core_return_requested、core_source_selected、labo_evaluation_selectedとする。同一axisに複数所見があってもaggregateで統合・上書きせず、各所見のreasonとidentityを保持する。",
+        "HELIXBRAIN-L3-032-F09で常時必須とされた完全identityは、HELIXBRAIN-L2-003、HELIXBRAIN-L2-005、HELIXBRAIN-L2-007、HELIXBRAIN-L2-008、HELIXBRAIN-L2-028である。core_return_requested=trueの場合に追加で必要な完全identityは、HELIXBRAIN-L2-019、HELIXBRAIN-L2-022、HELIXBRAIN-L2-030である。Ref.identityはopaque値として完全一致で照合し、短縮表示から意味IDを推測しない。必要Ref[]またはmemberが欠けた場合、欠けた各identityについてaxis=dependency_reference,state=missingを返す。空配列・欠落を充足としない。欠落Refのrevision/scope/owner/source_locator/sha256を生成しない。subject_refは入力binding.knowledge_refがobjectとして供給されていればその原Ref、欠落していてbinding.template_refがobjectなら当該template_refを診断subjectとして用いる。後者はcandidate/template Refをknowledge_refへ代入・aliasするものではなく、bindingおよびComparison.input_binding内のknowledge_ref欠落をそのまま保つ。template_refもobjectでない場合はsubject_refを捏造しない。subject_ref:Refを必須とする依存AxisResult/Findingは形成できないため、入力のRef欠落を保持し、その依存所見を成功扱いにもmissingのtyped所見にも変換しない。既存validation/construction issueは各既存関数の入力条件が満たされる場合に限る別出力である。具体的に、入力root bindingがobjectでknowledge_ref/template_refのどちらもobject Refでないとき、既存construction_issuesはlocator=/binding、source_ref=nullのInputIssueを返し、build_supply_analysisのinput_issuesへ保持する。その他のissue発生は各既存条件に従い、subject候補Ref欠落だけから追加所見を仮定しない。AxisResult.binding/Finding.binding/Comparison.input_bindingは同じ入力bindingの原memberを保ち、欠落knowledge_refを補わない。別の既存builder/constructor経路のconstruction_issues(context.validated)は、候補と同template/knowledge bindingが結べない条件で、候補locatorのInputIssueをsource_return_verificationの既存別入力から返す。NEG-13ではその候補locator=/candidates/0のIssueを併せて観測しない。candidate Issueの根拠はsource_return_verification/cases/18（HELIXBRAIN-L8-032-LOCAL-CANDIDATE-KNOWLEDGE-REF-ABSENT）の独立した入力・期待であり、本関数Comparisonへ混ぜない。ADD-28は別条件のroot binding locator=/binding InputIssueを既存builder経路で投影し、Comparisonのdependency AxisResult/Findingとは別出力・別観測として保持する。AxisResult.original_refsとFinding.source_refsには該当categoryに実際に供給されたRefだけを入れ、欠落identityのRefは追加しない。categoryがalways_refs/core_return_refsのどちらかを診断対象sourceから追跡する。identityが供給されてもqualification/current revision/scope/owner/digestは既存full-Ref比較で別途検査する。別sourceの成功はこの不足を補償しない（HELIXBRAIN-L5-032-R-selected_source_substitution）。core_source_selected/labo_evaluation_selectedのstrict true参照・qualification/原operation/025条件と対応selector診断は/conditional_dependency_detailの同call private readと公開投影が担当し、旧generic selected-source/evaluation参照passは重ねて実行しない。元false時unselected_refs source-state pass及び別の既存rule85/89等の選択source/claim責務は置換せず元predicate/対象/理由/全返却のまま保持する。返却決定順は常時identityのL3-F09列挙順003/005/007/008/028、選択済みCORE返却identityの列挙順019/022/030、selector所見順core_return_requested、core_source_selected、labo_evaluation_selectedとする。同一axisに複数所見があってもaggregateで統合・上書きせず、各所見のreasonとidentityを保持する。 常時/CORE返却の原Ref body読取と公開reasonは/canonical_dependency_detailの同V→request→全CanonicalBodyRead→CanonicalReadInvocation→元Axis writer結線に従う。category欠落/emptyのrequired missing先行no-callを保持し、conditional私有経路を重ねて実行しない。generic frame比較は独立operand未形成のnot_observed境界を保つ。",
         "受渡しstateをdefinitionから分離しnot_receivedを保存する。候補供給前の相手完了receipt要求claimは既存順序とconflict。receipt単独の製品N/A/義務消込claimはunknown。",
         "参照資料roleをsemantic authorityに変換しない。reference_as_authorityの既存責務を保持し、必須定義代替の既存rule87だけは/source_return_contract/descriptor_target_dataflow/consumerとpublic_outputの同call原target/全assessment/実basis predicateで担当Claim出現につき一件返す。旧rule87を別generic passで二重実行しない。",
         "同immutable DependencyContext.validatedをread_conditional_dependenciesへ一回渡し、正規private input/results/origins/input_boundaries全値を同callへ保持する。同返却をprepare_conditional_dependency_projectionへ渡し、元source/operation/Refの全traceをlossless reasonwriterで既存AxisResult/Findingへ結ぶ。二channelの旧generic passを置換し、公開所見をreason_pendingへ落とさない。既存subject形成不能の限界、元Comparison4/Axis7/Finding9とpublic返却順は/conditional_dependency_detail/fn6_integrationに従う。 helperのbinding欠落境界でfn6全体を早期returnしない。旧独立selector/Claim/他診断と既存InputIssueは元形成条件のまま保持する。 channel_not_selected私有rowから新公開Axis/Findingは生成せず、元unselected_refs/R89のfalse経路を残す。"
@@ -1207,7 +1370,8 @@
           }
         ]
       },
-      "conditional_dependency_detail_ref": "/conditional_dependency_detail"
+      "conditional_dependency_detail_ref": "/conditional_dependency_detail",
+      "canonical_dependency_detail_ref": "/canonical_dependency_detail"
     },
     {
       "id": "HELIXBRAIN-L5-032-compare_claim_boundaries",
@@ -11739,5 +11903,346 @@
         "source_literal_example": "L9原case03のactual0.scope=other-E、固定対象binding.knowledge_ref.scope=E、対応source5.content.condition_scope=other-E、原hint0.scope=Eでは、scope mismatchのindicesはactual0/hints[]/sources[]、body mismatchはactual0/hints[]/sources[5]、hint conflictはactual0/hints[0]/sources[]。これは元operand所属の説明であり入力の修復/新しい期待評価をしない。"
       }
     }
+  },
+  "canonical_dependency_detail": {
+    "id": "HELIXBRAIN-L5-032-CANONICAL-DEPENDENCY-DETAIL",
+    "status": "local design candidate, unadopted",
+    "basic_source": {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
+      "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+      "pointer": "/dependency_semantic_ports",
+      "canonical_sha256": "862f666419d4c1f7f8bb13d0cbf7298b296ed9b6291815e1060560f00037a441"
+    },
+    "requirement_ref": "HELIXBRAIN-L3-032-F09",
+    "system_oracle_ref": "HELIXBRAIN-L10-032-F09",
+    "type_names": [
+      "CanonicalReadInvocation",
+      "CanonicalReadFrame",
+      "CanonicalBodySupportRow",
+      "CanonicalAxisCause",
+      "CanonicalAxisTraceMaterial"
+    ],
+    "type_binding_ja": "型は/type_contract/types及び/type_contract/imports。2locator request/whole returnはL4型をimportし、依存defsは原schema assemblyで解決する。",
+    "private_functions": [
+      {
+        "symbol": "read_canonical_dependency_body",
+        "signature": {
+          "arguments": [
+            {
+              "name": "validated",
+              "type": "ValidatedSupply"
+            },
+            {
+              "name": "request",
+              "type": "CanonicalReadRequest"
+            }
+          ],
+          "returns": "CanonicalBodyRead"
+        },
+        "effect": "none",
+        "entry_domain_ja": "fn6が実在する必要Ref occurrenceから作る2locator requestを、同fn0返却validatedへ適用する。既存lower portのinput/binding不成立branchは別論理境界として保つ。CanonicalReadRequestのstring型だけから任意RFC6901/型外slotの受理を保証しない。",
+        "writer_ref": "/canonical_dependency_detail/body_read_writer"
+      },
+      {
+        "symbol": "project_canonical_read_axis",
+        "signature": {
+          "arguments": [
+            {
+              "name": "frame",
+              "type": "CanonicalReadFrame"
+            },
+            {
+              "name": "invocation_index",
+              "type": "nonboolean integer >=0（frame.invocationsの実在index）"
+            }
+          ],
+          "returns": "AxisResult[]"
+        },
+        "effect": "none",
+        "entry_domain_ja": "fn6の同callでreadをappendした直後だけ呼ぶ。frame/input/request/resultの原対応を保ち、caller supplied cached比較を注入しない。",
+        "writer_ref": "/canonical_dependency_detail/public_axis_writer"
+      },
+      {
+        "symbol": "write_canonical_axis_reason",
+        "signature": {
+          "arguments": [
+            {
+              "name": "material",
+              "type": "CanonicalAxisTraceMaterial"
+            }
+          ],
+          "returns": "string"
+        },
+        "effect": "none",
+        "writer_ref": "/canonical_dependency_detail/reason_writer"
+      }
+    ],
+    "body_read_writer": {
+      "origin_and_type_application_ja": "L4 importsは原schema.assembly imports＋new_defsの文脈で解決する。#/$defs/Ref/Binding/RawValueをL5の同名型へ書換えない。既存nativeの同原nodeからL4 logical importに対応する値をpresence/各原key/配列/数値nodeごとに値保存で供給する局所bridgeであり、dictcast/共通型統合/再decodeではない。公AxisのRef/Bindingは同じ元ValidatedSupply側のnative nodeを保持する。",
+      "primitive_bindings": {
+        "ref_same": {
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
+          "sha256": "c48fa539406343e6d3b877ee083ba8ba1ea09fadbed8b3f0d0d6a4ee3fc3d0ae",
+          "pointer": "/source_return_contract/constructor_meaning/reference_equality",
+          "canonical_sha256": "c284d182998526097cc6570426b471ac9292a245f95e122192e167ede8609233"
+        },
+        "source_usable": {
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
+          "sha256": "c48fa539406343e6d3b877ee083ba8ba1ea09fadbed8b3f0d0d6a4ee3fc3d0ae",
+          "pointer": "/source_return_contract/pure_reference_notation/definitions",
+          "canonical_sha256": "8dddd2d5219f8396a15c64e50cd848058a97db3ecbf9138e9ae1127dc674e52b"
+        },
+        "json_equal": {
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
+          "sha256": "c48fa539406343e6d3b877ee083ba8ba1ea09fadbed8b3f0d0d6a4ee3fc3d0ae",
+          "pointer": "/source_return_contract/pure_reference_notation/primitive_operators/json_equal",
+          "canonical_sha256": "de622d28611f226861643ce53862ba6a31f3029d00a40f3cfcc8eca8bda68473"
+        },
+        "fn0_source_integrity_order": {
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
+          "sha256": "c48fa539406343e6d3b877ee083ba8ba1ea09fadbed8b3f0d0d6a4ee3fc3d0ae",
+          "pointer": "/wire_codec_contract/source_byte_and_qualification_order",
+          "canonical_sha256": "8233bbc1f57b85604bcacbc0010e3d11385d9e98469506d742720df6c906e0eb"
+        }
+      },
+      "primitive_application_ja": "source対応は既存ref_sameのidentity/revision/scope/owner、両sha供給時だけdigest条件。source_locatorをidentityにしない。候補は同input.sourcesのrole=semantic_jsonかつ原refがtargetとref_sameの全出現。各候補の使用可否は同validatedとそのsource.refへ既存source_usableを適用する既存述語意味を再利用する。fn0を呼び直さず、bytes/body/digest/owner/root資格を再発行しない。文字列本文から意味相反を生成しない。",
+      "return_member_writers": {
+        "target_ref": "request.request_ref_locatorが指す原slotが供給なら{presence:supplied,value:元Ref又は明示null}、不在/入力nullで到達不能なら{presence:absent}。原valueを別source.refへ置換しない。型外slotをRefへcastする一般入口はない。",
+        "binding": "同validated.input.bindingのP(object,key)。absentはabsence variant、明示nullはsupplied(null)、元Binding objectは原member全値。{}へ補完しない。",
+        "state": "frame先行終端はunknown。後続source段はproblemsが一件以上ならunknown、recordsが一件以上でproblems=[]ならresolved。missing/unobservedはcaller no-call、generic frame conflictはnot_observedのため本callerでは未形成。新reducerを設けない。",
+        "records": "使用可能な全対応source occurrenceにつきrecord_writerで一件。原sources index順、同値反復をdedupしない。未使用source wholeはframe.inputに残す。",
+        "problems": "branch順1/4/5/7/8、frame member順identity/revision/scope/owner、source原index順でproblem_writer全6memberを保持。frame終端後source不足を追加しない。source段の独立unknownは捨てない。",
+        "category_refs": "当該原categoryのRef[]全値を原配列順/反復で保持し、対象identityだけへfilterしない。製品callerはcategory不在/null/[]なら必要identity missingを先に返しportを呼ばない。lower input=null境界で参照可能なcategoryが無い場合の[]は非観測表現であり、原absence/nullはframe.input wholeに残り、供給[]と同一化しない。"
+      },
+      "record_member_writers": {
+        "target_ref": "requestが指す同inputの原Ref whole。",
+        "source_ref": "当該/sources/S/ref whole。",
+        "binding": "同input/binding whole。source側bindingへ置換しない。",
+        "canonical_body": "当該/sources/S/content whole RawValue。null/false/0/空文字/[]/{}を型値通り保持し再作文/部分抽出しない。",
+        "body_locator": "原index SによるRFC6901 /sources/S/content。",
+        "basis_refs": "[当該原source.ref]。別source/category/qualification_refを混入しない。"
+      },
+      "problem_member_writers": {
+        "state": "該当L4 mapping行のliteral。現generic readで実形成する行はunknown。",
+        "request_locator": "原request.request_ref_locator literal。",
+        "source_locators": "該当mappingが指定する原source/body pointer列だけ。別frame sourceを支持sourceとして加えない。",
+        "member": "該当L4 mapping行のliteral又はframeで不足した当該member名。",
+        "original_presence": "該当mappingのpresence_fromを同V原nodeからPで保持。null/false/0/空文字/[]とabsentを分ける。",
+        "reason": "該当L4 reason又はreason_templateの{member}だけを固定名で補間。raw値/自然文InputIssueを補間しない。"
+      },
+      "branch_ledger": [
+        {
+          "mapping_indices": [
+            0
+          ],
+          "guard": "validated.input=null",
+          "state": "unknown",
+          "records": "[]",
+          "problems": "mapping0 whole一件。binding問題を重ねない。",
+          "terminal": true,
+          "product_reachability": "通常fn6は実Refが無いので呼ばない。lower portの論理境界。"
+        },
+        {
+          "mapping_indices": [
+            1
+          ],
+          "guard": "input objectでbinding absent/null",
+          "state": "unknown",
+          "records": "[]",
+          "problems": "mapping1 whole一件",
+          "terminal": true,
+          "product_reachability": "原category実Refを保持できる入力ならlower readを保持可能。typed public subject/binding形成とは別。"
+        },
+        {
+          "mapping_indices": [
+            2
+          ],
+          "guard": "条件selector false/未確定",
+          "state": "no_call",
+          "records": "not_created",
+          "problems": "not_created",
+          "terminal": true,
+          "product_reachability": "当該条件の既存selector診断だけ。alwaysを止めない。"
+        },
+        {
+          "mapping_indices": [
+            3
+          ],
+          "guard": "必要identityがcategory内ゼロ。category absent/null/emptyを含む",
+          "state": "caller existing missing",
+          "records": "not_created",
+          "problems": "not_created",
+          "terminal": true,
+          "product_reachability": "必要identityごとの元missing Axis/Finding writerへ。架空Ref/Invocationなし。"
+        },
+        {
+          "mapping_indices": [
+            4
+          ],
+          "guard": "実Refのidentity/revision/scope/owner absent/null",
+          "state": "unknown",
+          "records": "[]",
+          "problems": "該当member全件をidentity/revision/scope/owner順でmapping4 wholeへ",
+          "terminal": true,
+          "product_reachability": "完全identityを選んだfn6ではidentity欠落Ref自体はcall対象外。他frame member未供給は実Ref call可能。"
+        },
+        {
+          "mapping_indices": [
+            5
+          ],
+          "guard": "caller既存比較でknown frame conflict",
+          "state": "conflict保持の条件付き保証",
+          "records": "前提形成された原port返却を保持",
+          "problems": "原known比較operandがある場合だけmapping5",
+          "terminal": true,
+          "product_reachability": "現generic typed経路ではnot_observed。新evidence引数/qualified bool/別版一覧/rootbinding異identityによる形成はしない。conditional比較へ重ねてportを呼ばない。"
+        },
+        {
+          "mapping_indices": [
+            6
+          ],
+          "guard": "同fullRef/role対応集合が0",
+          "state": "unknown",
+          "records": "[]",
+          "problems": "mapping6 whole一件",
+          "terminal": true,
+          "product_reachability": "現20readのうち15件が有限期待。"
+        },
+        {
+          "mapping_indices": [
+            7,
+            8
+          ],
+          "guard": "対応集合あり。各source occurrenceを既存source_usableで使用可能/不能に分類",
+          "state": "後続判定",
+          "records": "usable全出現を原順でrecord化。unusableはrecordへ成功昇格しない。",
+          "problems": "unusable出現ごとmapping7 whole、source原順。usableにはProblemを追加しない。",
+          "terminal": false,
+          "product_reachability": "一つの別sourceの成功でunusable原source/問題を消さない。"
+        },
+        {
+          "mapping_indices": [
+            9
+          ],
+          "guard": "usable対応record.canonical_bodyが明示null",
+          "state": "unknown",
+          "records": "null原値recordも保持",
+          "problems": "対応source順でmapping9 whole",
+          "terminal": false,
+          "product_reachability": "nullをabsenceへ変えない。"
+        },
+        {
+          "mapping_indices": [
+            10,
+            11
+          ],
+          "guard": "usable同target/frameの全recordsのbodyを既存json_equalで照合",
+          "state": "完全同値なら追加問題なし、異body集合ならunknown",
+          "records": "全records原順/反復保持",
+          "problems": "異bodyならmapping11 whole一件、presence supplied(全record原順body配列)、source_locators全record原body pointer列。完全同値なら[]。",
+          "terminal": false,
+          "product_reachability": "source/body/digest違いを意味conflictへ変換しない。nullの個別問題も保持。"
+        },
+        {
+          "mapping_indices": [
+            12
+          ],
+          "guard": "problems=[]かつusable records nonempty",
+          "state": "resolved",
+          "records": "全原records",
+          "problems": "[]",
+          "terminal": true,
+          "product_reachability": "本文全値提供だけ。適用/採択/実trust/義務完成を意味しない。"
+        },
+        {
+          "mapping_indices": [
+            13
+          ],
+          "guard": "実MeaningFact pairの意味比較が別途必要",
+          "state": "別既存比較",
+          "records": "本readを変更しない",
+          "problems": "追加しない",
+          "terminal": true,
+          "product_reachability": "通常canonical本文提供からpairを発明しない。"
+        }
+      ],
+      "helper_arbitrary_locator_limit_ja": "2string request型は任意pointer先がRefである保証ではない。本L5製品callerは既存decoded categoryの実Ref出現だけからrequestを形成する。一般低位helperへRef以外/parent不一致/非RFC pointerを渡す入口は今回追加しない。その型外任意呼出しを成功/unknownへcastして全関数成立と称さず、製品caller到達範囲と明確に分ける。",
+      "mixed_state_resolution_ja": "G4のframe conflict＋後続source unknownは既存frame先行終端で到達しない。現source段のProblemはunknownのみなので新しいstate優先順位は不要。既存port返却を受けた公Axisはそのstateを保持し、problems配列から再集約しない。",
+      "source_occurrence_and_boolean_boundary_ja": "source_usable(V,Ref)は既存Ref単位のboolean述語であり、個々source indexの資格・digest/body照合を再計算した結果ではない。全原sources indexを独立に保持し、role=semantic_json・既存fullRef対応と同V.unusable_source_refs exclusionの元意味を再利用する。Ref同値の別出現をdedupせず、booleanだけからsource index別の資格証明/採択されたQualification indexを創作しない。bytes/body/digest/root/ownerの既存fn0入力と全rawはframe.inputへ保持する。",
+      "rawvalue_numeric_interpretation_boundary_ja": "L4 imported schema RawValueはJSON論理値domain、L5 RawValueのhost実現は既存PrivateJsonValue（ExactJsonNumber又は厳密native intを含む）。前者のJSON numberをhost floatへcastしたり、後者の数値wrapperをJSON objectへdict化したりしない。CanonicalBodyReadへのcontent全値コピーは同immutable原nodeを値保存で借用し、token/value両方を保持する。JSON Schemaの論理型importはnew runtime validator/new codecの実行ではない。新input bag/codec/共通型統合を加えず、L6で必要な実host/schema adapterの成立は別の実装条件として残す。"
+    },
+    "public_axis_writer": {
+      "signature": "project_canonical_read_axis(frame:CanonicalReadFrame,invocation_index:実在integer)->AxisResult[]",
+      "formation_ja": "同frame.input.inputのroot Bindingがobjectで、元knowledge_refがobject Refならそれをsubject、無ければ元template_refがobject Refなら診断subjectへ使う。双方不能又はBinding形成不能なら[]、Invocation/inputは全保持。template Refをknowledge_refへ補完しない。原fn6 construction_issues/他責務を停止しない。",
+      "one_axis_per_read_ja": "subject/bindingが形成できる実read一件につきdependency_reference Axis一件。problemsの件数では複製しない。stateはresult.stateをL4 axis_mappingどおりコピー。resolvedはowner null、unknown/conflictはliteral knowledge_owner。Findingはこのhelperから追加しない。",
+      "trace_member_writers": {
+        "format": "literal BRAIN032-F09-axis-reason-trace-v1",
+        "producer_symbol": "literal compare_dependencies_and_handoff",
+        "axis": "literal dependency_reference",
+        "state": "同invocation.result.stateを保持。knownへ変換しない。",
+        "subject_ref": "上記元root Bindingの形成済み原Ref。",
+        "binding": "同Vの原root Binding whole。",
+        "original_refs": "result.category_refs whole、原順/反復。欠落identityのRefを加えない。",
+        "backflow_owner": "resolved:null、unknown/conflict:literal knowledge_owner。個別Ref.ownerを代用しない。",
+        "request_locator": "invocation.request.request_ref_locator原literal。",
+        "source_category_locator": "invocation.request.category_locator原literal。",
+        "cause": "result.problemsが0件:null、1件:同whole、複数:原whole配列。元member/source/presence/reasonを全保持。",
+        "canonical_body_support": "下記support writerでresult.recordsごとに原順形成。",
+        "handoff_record": "null（canonical read専用。別handoff writerは変更しない）。",
+        "selection_observation": "null（canonical read専用。unselected元source-state/conditional writerは変更しない）。"
+      },
+      "support_writer": {
+        "required4": "target_ref/source_ref/basis_refsは原record whole値、canonical_body_locatorは原record.body_locator。4memberを必ず保持。recordに無いsource/qualificationを補完しない。",
+        "inner_pointer": "record.canonical_bodyがobjectでcanonical_body_pointer member供給時だけcanonical_body_inner_locatorへ原RawValueコピー。null/型外も原値、absentはomit。pointerを解決済み意味所在へ昇格しない。",
+        "qualification_original_join": "body_locatorの実source occurrence Sを同frame.input.inputから取り、元source.qualification_refに既存ref_sameで対応し、元Qualification.subject_refも同source.refへ既存ref_sameで対応する原Qualification出現を原qualifications index順に保持する。この原対応の範囲で、既存fn0が当該sourceに結んだ資格入力を掲載するだけで資格resolver/root/bytesを再実行・再分類しない。sourceがusableとの元観測を、このmetadata joinで新しく成立させない。",
+        "qualification_members": "上記同原Qualificationのref/subject_ref/subject_sha256/applicable_scope/root_refが供給されていれば各qualification_ref/qualification_subject_ref/qualification_subject_sha256/qualification_scope/qualification_root_refへコピー。欠落はomit、RawValue明示nullは原値。別Q/source成功を代用しない。",
+        "unknown_or_multiple_route": "元資格routeをこの原対応から特定できない範囲ではoptional Q metadataを形成せず、必須4memberとinner原値だけを保持する。route欠落を新source失敗/state変更/gateにしない。同じsourceに既存対応する複数Q occurrenceは元順で各rowを保持し、Ref dedupしない。元全Q/source/rawはframe.inputへ保全。",
+        "order": "record順、各record内でQ原index順。Q補足がないrecordも必須4memberのrow一件を保持。member emit順はCanonicalBodySupportRow.field_order。"
+      },
+      "prefix": "result.problems=[]なら既存prefix canonical owner本文を同scope/target/versionで全値提供。を使う。問題1件以上なら原順先頭problem.reasonだけをprefix、全問題はcauseへ残す。missing/no-callは元callerの別prefix規則であり本実read writerへ架空Problemを渡さない。",
+      "axis_closed7": "subject_ref,binding,axis,state,original_refs,reason,backflow_ownerの既存7memberだけ。reason=write_canonical_axis_reason(上記14member全値)。materialにreasonは無く循環しない。"
+    },
+    "reason_writer": {
+      "source": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "2d2ff0293f2525cf20ae33b22e58878467cd946e",
+        "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+        "pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer/reason_serialization",
+        "canonical_sha256": "e377914afa6e72fae72973b6308be30421dde8a7dfcd8dbdf9816a2a47ded19c"
+      },
+      "closed_grammar": "上記material.cause由来prefix + LF + TRACE= + compact UTF-8 JSON object。materialの14member宣言順。末尾空白なし。元Ref/Binding/RawValueのkey順、配列順/反復を保ちsort/dedupしない。generated support/problem recordは宣言順。",
+      "value_bridge": "元ValidatedSupplyのRawValue leafは既存PrivateJsonValue/ExactJsonNumberを値保存で借用する。通常objectのtoken/valueキーを数値wrapperへcastせず、ExactJsonNumberは既存不変条件を持つ元tokenをquoteせずemit、厳密native intは丸めない10進emit。boolはnumberと別。float/Decimal単体/dict化/json.dumps/defaultstrで丸めない。",
+      "string_leaf": "引用符とbackslash/controlを既存JSON escapeでemitし、表現可能な非ASCII文字はensure_ascii=falseのUTF-8原文字。必要なsurrogate escapeは既存値保存string writerの境界を保つ。prefixはL4原literal以外を生成しない。",
+      "reuse_boundary": "conditionalの13field grammar/全Unicode escape/RawValue key sortを流用せず、数値leafの既存strict carrier境界だけ再利用する。新wire entry/canonical数値law/source digest計算を追加しない。codec失敗を丸め/空reason/成功fallbackへ変換しない。実host/全Unicode/資源挙動は実行未検証。",
+      "prefix_from_material_only_ja": "write_canonical_axis_reasonの唯一引数materialだけからprefixを決める。material.cause=nullなら固定literal「canonical owner本文を同scope/target/versionで全値提供。」、BodyReadProblem単一objectならその.reason原文字列、BodyReadProblem[]なら原先頭[0].reason原文字列。配列variantはmaterial writerが元problemsの2件以上の場合だけ形成するため空配列/1件配列は本formed材料domain外。prefixという追加field/外部ambient引数を作らず、全原因は同causeをTRACEへ保持する。"
+    },
+    "fn6_integration": {
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "original_input": "DependencyContext",
+      "original_return": "Comparison",
+      "locals": "fn6開始時にcanonical_frame:CanonicalReadFrame={input:context.validated全値,invocations:[]}。元fn0を再呼出ししない。definitionsは既存descriptor/Claim責務へ無変更で残し、frame比較evidenceに流用しない。",
+      "ordered_steps": [
+        "既存generic必要identity列をalways003/005/007/008/028→core_return_requested strict true時019/022/030の元順で辿る。core_return selector欠落/null/falseは既存判定/元所見を保持。当該条件未確定で他条件/alwaysを止めない。",
+        "各identityについて該当categoryの全元Refを元index順で照合。category absent/null/[]又は当該identityゼロなら元required_dependency_missing writerを同位置で実行し、port/Invocationなし。元category presence/全値はcanonical_frame.inputへ保持し、Ref/空成功を作らない。",
+        "完全identity一致する実Ref occurrenceごとrequest={request_ref_locator:/dependencies/{元category}/{元index},category_locator:/dependencies/{元category}}を生成する。固定identity列からRefのrevision/scope/owner/digestを生成せず、同値Ref反復も別callにする。型外rawはfn0のdecode失敗/原InputIssue境界を保持しRefへcastしない。",
+        "result=read_canonical_dependency_body(canonical_frame.input,request)を同Vへ一回だけ適用し、invocation={request:原request,result:全6member result}をcanonical_frame.invocations末尾へappend。no-callはappendしない。",
+        "直後の実invocation_indexでproject_canonical_read_axis(canonical_frame,index)のAxisResult列を元generic dependency所見の位置へ保持する。既存generic canonical body由来Axisをこの実returned materialで具体化し、旧body由来passを重ねてemitしない。必要identity missingは既存writerのまま、その他既存Failure predicate/Finding/Claim所見を本writerで上書きしない。",
+        "元selector core_return/core_source/labo順、既決conditional同V一回read/元投影、元unselected occurrenceのsource-state pass、元handoff/Claim/全既存Finding責務を元順/元predicateのまま続ける。conditionalへcanonical portを追加しない。",
+        "Comparison.axes/findingsは上記既存順で保持し、producer_symbolは元literal compare_dependencies_and_handoff、input_bindingは同V原Binding又は元null。canonical_frameは同callのprivate全値としてreason writer完了まで保持し、public返却/member/cache/第二entrypointへしない。"
+      ],
+      "frame_observation": "現generic独立frame比較not_observed。新evidence引数を足さず、既知比較成功/相反を捏造しない。条件付きknown conflict保証を消さず未形成と明示する。",
+      "consumer_members": "fn6公Comparison4/Axis7/Finding9、InputIssue、whole conditional detail/元全公predicateは不変。新canonical body unknownを既存Finding codeのpredicate外へ流用しない。"
+    },
+    "remaining_general_domain_ja": [
+      "任意string locatorを製品callerの到達domainと同一視せず、型外先へのtotal APIや新returnを捏造しない。",
+      "generic known-frame conflictの比較先/typed前提は未形成。conditional実H/A根拠は既存専担経路のまま。",
+      "実owner/trust resolver/parser/資源/数値adapter/runtimeの成立はこの論理詳細案から認定しない。",
+      "全F09旧Finding predicate/その他原domain writerの実装をこのcanonical実read sliceで置換しない。"
+    ]
   }
 }
