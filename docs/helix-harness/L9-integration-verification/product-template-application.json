@@ -301635,13 +301635,36 @@
           "cached_analysis_snapshot": {
             "identity": "supply-A",
             "revision": "r1"
+          },
+          "destination_change_variant": {
+            "current_origin_snapshot": {
+              "identity": "supply-A",
+              "revision": "r1"
+            },
+            "current_destination_snapshot": {
+              "identity": "application-A",
+              "revision": "r2"
+            },
+            "prior_pair": {
+              "origin_snapshot": {
+                "identity": "supply-A",
+                "revision": "r1"
+              },
+              "destination_snapshot": {
+                "identity": "application-A",
+                "revision": "r1"
+              },
+              "origin_index": 0,
+              "destination_index": 0
+            }
           }
         },
         "expected_verification_facts": {
           "prior_pair_matches_current_origin": false,
           "cached_analysis_current": false,
           "stale_material_reused": false,
-          "projection_claim": "unestablished"
+          "projection_claim": "unestablished",
+          "prior_pair_matches_changed_destination": false
         }
       },
       {
@@ -301705,9 +301728,33 @@
             },
             "root_ref": {
               "identity": "root-A"
+            },
+            "ref": {
+              "identity": "qualification-A",
+              "revision": "q1"
+            },
+            "subject_ref": {
+              "identity": "source-A",
+              "revision": "r1"
             }
           },
-          "core_qualification_roots": []
+          "core_qualification_roots": [],
+          "origin_source": {
+            "ref": {
+              "identity": "source-A",
+              "revision": "r1",
+              "owner": "untrusted-owner-label"
+            },
+            "content": {
+              "v": "x"
+            },
+            "content_bytes": "{\"v\":\"x\"}",
+            "qualification_ref": {
+              "identity": "qualification-A",
+              "revision": "q1"
+            },
+            "role": "semantic_json"
+          }
         },
         "expected_verification_facts": {
           "qualification_ref_preserved_as_reference_only": true,
@@ -301738,8 +301785,33 @@
         "input_change": "source bytes/Refは一致するがsource→template/query/requirement relationが未供給。",
         "expected": "source occurrence投影があっても意味relation/適用はunestablishedのまま。",
         "input_delta": {
-          "source_ref_and_bytes": "same_as_candidate",
-          "template_or_query_relation": "absent"
+          "origin_source": {
+            "ref": {
+              "identity": "source-A",
+              "revision": "r1"
+            },
+            "content": {
+              "v": "x"
+            },
+            "content_bytes": "{\"v\":\"x\"}",
+            "role": "semantic_json"
+          },
+          "destination_source": {
+            "ref": {
+              "identity": "source-A",
+              "revision": "r1"
+            },
+            "body": {
+              "v": "x"
+            },
+            "content_bytes": "{\"v\":\"x\"}",
+            "role": "semantic_source"
+          },
+          "absent_relation_fields": [
+            "template_relation",
+            "query_relation",
+            "requirement_relation"
+          ]
         },
         "expected_verification_facts": {
           "source_occurrence_projection_may_be_independently_recorded": true,
