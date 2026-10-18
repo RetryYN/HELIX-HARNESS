@@ -836,485 +836,43 @@
             "type": "object",
             "properties": {
               "Design Unit": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "Part": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "Pattern": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "alternative": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "applicability": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "constraint": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "evidence": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "exact_version": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "maturity": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "negative_example": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "relation": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "required_input": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "trade_off": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               }
             },
             "required": [
@@ -1338,559 +896,49 @@
             "type": "object",
             "properties": {
               "applicability": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "completion": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "downstream kind": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "layer/pair": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "measurement": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "negative oracle": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "relation": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "required field": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "required input": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "required section": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "supersession": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "template identity": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "trace": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "version": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "意味owner": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               }
             },
             "required": [
@@ -1919,485 +967,43 @@
             "type": "object",
             "properties": {
               "Design Unit": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "Part": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "Pattern": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "alternative": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "applicability": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "constraint": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "evidence": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "exact_version": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "maturity": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "negative_example": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "relation": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "required_input": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               },
               "trade_off": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02ReplyItem"
               }
             },
             "required": [],
@@ -2407,559 +1013,49 @@
             "type": "object",
             "properties": {
               "applicability": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "completion": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "downstream kind": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "layer/pair": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "measurement": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "negative oracle": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "relation": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "required field": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "required input": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "required section": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "supersession": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "template identity": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "trace": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "version": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               },
               "意味owner": {
-                "type": "object",
-                "properties": {
-                  "knowledge_ref": {
-                    "type": "object",
-                    "properties": {
-                      "identity": {
-                        "type": "string"
-                      },
-                      "revision": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "identity",
-                      "revision",
-                      "scope"
-                    ],
-                    "additionalProperties": false
-                  },
-                  "meaning": {
-                    "type": "string"
-                  },
-                  "value_state": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "knowledge_ref",
-                  "meaning",
-                  "value_state"
-                ],
-                "additionalProperties": false
+                "$ref": "#/type_system/definitions/B019F02TemplateItem"
               }
             },
             "required": [],
@@ -4600,10 +2696,77 @@
           "unaffected_Q"
         ],
         "additionalProperties": false
+      },
+      "B019F02KnowledgeRef": {
+        "type": "object",
+        "properties": {
+          "identity": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "identity",
+          "revision",
+          "scope"
+        ],
+        "additionalProperties": false
+      },
+      "B019F02ReplyItem": {
+        "type": "object",
+        "properties": {
+          "knowledge_ref": {
+            "$ref": "#/type_system/definitions/B019F02KnowledgeRef"
+          },
+          "meaning": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "knowledge_ref",
+          "meaning",
+          "state"
+        ],
+        "additionalProperties": false
+      },
+      "B019F02TemplateItem": {
+        "type": "object",
+        "properties": {
+          "knowledge_ref": {
+            "$ref": "#/type_system/definitions/B019F02KnowledgeRef"
+          },
+          "meaning": {
+            "type": "string"
+          },
+          "value_state": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "knowledge_ref",
+          "meaning",
+          "value_state"
+        ],
+        "additionalProperties": false
       }
     },
     "field_presence": "schema requiredは全L9 rawで常時供給されるfieldだけ。optional fieldはAbsent可能。explicit JSON null is present.",
-    "return_domain_derivation": "Raw型の自由string/record/listをreadする返却はその入力型を保つ。比較演算はAST記載token、候補membershipは任意元string keyのmap、選択mapは設定keys/alwaysを型へ反映する。原expectedの観測値だけへ閉じない。これはwire schema採用/実source資格ではない。"
+    "return_domain_derivation": "Raw型の自由string/record/listをreadする返却はその入力型を保つ。比較演算はAST記載token、候補membershipは任意元string keyのmap、選択mapは設定keys/alwaysを型へ反映する。原expectedの観測値だけへ閉じない。これはwire schema採用/実source資格ではない。",
+    "local_named_type_contract": {
+      "scope_ja": "RawF02内の元13reply項目と15template項目のoriginal/provided側だけを、B019F02KnowledgeRef、B019F02ReplyItem、B019F02TemplateItemへ共通化する。同じ知識返却項目のrecord契約を一か所へ寄せ、項目名と各knowledge_refの値が持つ別の意味は保持する。",
+      "reference_ja": "この三つのnamed typeを読むときは、exact一memberの$ref objectが示す同じ文書のtype_system/definitions内JSON Pointerへ解決し、その型定義全体を参照する。参照名は業務値でなく型の所在である。参照先が解決できない場合に別型や空objectで補完しない。新三型の参照は有限で循環しない。既存JSONValueの再帰参照はそのまま保持する。",
+      "preservation_ja": "旧11型のうちRawF02で追加した三型への参照だけを展開すると、元revisionの全型定義とmember順・required配列順・additionalProperties・各型値が一致する。original側の全項目requiredとprovided側の空requiredを保持し、replyのstateとtemplateのvalue_stateを統合しない。計算program・関数I/O・凍結raw/期待は変更しない。",
+      "boundary_ja": "このKnowledgeRefはidentity/revision/scopeが各stringであるB019 F02の局所知識参照。COREのowner/source_locator/sha256を持つRefやRawValue scope、OSのRef、B030 Definition.knowledge:stringとは共通化もcastもしない。F02の案件値用別port、query/field関係、同call projectionは未閉包のまま。型の重複排除から資格・実接続・受領・実装Readyを生成しない。",
+      "source_ja": "変更前main 62ca3471b47ea8c6af0e4ddb12232cb5d75b0197の/type_system/definitions/RawF02内、original_replyとprovided_reply、original_template_contractとprovided_template_contractを比較起点とする。#3139のF03先行整理後の局所型共通化。旧LEGACY-ASSET-603D0E8D8193914F4AC0 §0-1のcommonize/意味署名/consumer保持と、LEGACY-ASSET-4F5A1F0739EC1111D91D §1-2の定義と製品instance分離を意味として再導出する。旧runtime・gate・一律のschema書式は移植しない。"
+    }
   },
   "functions": [
     {
