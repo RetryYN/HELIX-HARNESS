@@ -11562,7 +11562,8 @@
           "producer_observations": "DispatchObservation[]",
           "claims": "Formation<CoreComparison>",
           "analysis": "Formation<CoreApplicationAnalysis>",
-          "causes": "Cause[]"
+          "causes": "Cause[]",
+          "input_scope_knowledge_gap": "InputScopeKnowledgeGapCallerDetail"
         }
       },
       "CoreApplicationAnalysis": {
@@ -11848,6 +11849,43 @@
           "judgment": "Formation<Read<CoreRef[]>>",
           "causes": "Cause[]"
         }
+      },
+      "InputScopeKnowledgeGapCallerDetail": {
+        "kind": "closed_record",
+        "members": {
+          "profile_scan": "InputScopeProfileScan",
+          "post_return_projections": "InputScopePostReturnProjection[]"
+        }
+      },
+      "InputScopePostReturnLink": {
+        "kind": "closed_record",
+        "members": {
+          "root": "literal:f05_return",
+          "pointer": "JSONPointer"
+        }
+      },
+      "InputScopePostReturnLinkFormation": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "formed": {
+            "value": "InputScopePostReturnLink"
+          },
+          "unformed": {
+            "causes": "Cause[]"
+          }
+        }
+      },
+      "InputScopePostReturnProjection": {
+        "kind": "closed_record",
+        "members": {
+          "profile_observation_index": "Natural",
+          "actual_f05_link": "InputScopePostReturnLinkFormation"
+        }
+      },
+      "InputScopeProfileScan": {
+        "kind": "existing_type",
+        "pointer": "/f05_detail_contract/input_scope_knowledge_gap_realization/types/InputScopeProfileScan"
       }
     },
     "entry_points": {
@@ -11881,6 +11919,14 @@
         "input": "BuildApplicationAnalysisDetailedContext",
         "output": "CoreApplicationAnalysis",
         "writer_ref": "C04; consumer_interpretation_binding"
+      },
+      "input_scope_post_return": {
+        "symbol": "project_actual_f05_return_link_native",
+        "input": "(profile_observation_index: Natural, actual_outer_f05: Formation<F05DetailedReturn>)",
+        "output": "InputScopePostReturnProjection",
+        "writer_ref": "C02; caller_return_writer_contract/input_scope_knowledge_gap_integration",
+        "effect": "none",
+        "meaning": "基本post-returnの同index/同actual_outer_f05全値の具体型対応。formedはReturnLinkを返し、unformedは既存Cause[]全値/原順を保持する。reader/validation/F05を再実行しない。"
       }
     },
     "presence_and_decode_rules": [
@@ -12784,12 +12830,16 @@
         ],
         "targets": [
           "validation_input",
-          "producer_observations"
+          "producer_observations",
+          "input_scope_knowledge_gap.profile_scan"
         ],
-        "rule_ja": "同validation_detailを一回呼びwholeを保持。caller_return_writer_contractの固定7producer目録/原argument所在/準備順/明示skip/未観測/実返却writerでproducer_observations全leafを返す。validation/F05/claims/analysisは各専用正本へ返しComparison-only配列へ複製しない。domain missing/unknown/conflictの実Comparisonはreturned。",
+        "rule_ja": "同validation_detailを一回呼びwholeを保持。caller_return_writer_contractの固定7producer目録/原argument所在/準備順/明示skip/未観測/実返却writerでproducer_observations全leafを返す。validation/F05/claims/analysisは各専用正本へ返しComparison-only配列へ複製しない。domain missing/unknown/conflictの実Comparisonはreturned。 入力scope接続の追補：同validation_detailを一回呼びwholeを保持する。既存7 producer目録/準備順/skip/未観測/実返却は不変。得た同一ValidationDetailedReturn DをL4 input-only readerへ一回渡し、返るInputScopeKnowledgeGapViewのprofile_scanを新caller memberへ保持する。view.validation_detail_returnはDそのものと照合するが、CoreApplicationDetailReturnへDを重複複写しない。二度目のfn0/独立入力graphは呼ばない。 native呼出しの実引数はInputScopeKnowledgeGapRequest{validation_detail_return:D}であり、Dをbare引数にせず型付きrecordへそのまま束縛する。",
         "source_pointers": [
           "L4:/f05_validation_material_call_contract/actual_caller_trace/0",
-          "L4:/f05_validation_material_call_contract/actual_caller_trace/1"
+          "L4:/f05_validation_material_call_contract/actual_caller_trace/1",
+          "L4:/input_scope_knowledge_gap_contract/input_only_contract/request_signature",
+          "L4:/input_scope_knowledge_gap_contract/input_only_contract/validation_detail_port_pointer",
+          "/f05_detail_contract/input_scope_knowledge_gap_realization/entry_points/reader"
         ],
         "detail_writer_pointer": "/f05_detail_contract/caller_return_writer_contract"
       },
@@ -12803,11 +12853,15 @@
         "targets": [
           "compare_applicability",
           "compare_kind_obligation_trace",
-          "f05"
+          "f05",
+          "input_scope_knowledge_gap.post_return_projections"
         ],
-        "rule_ja": "caller_return_writer_contract/f05_writerの二依存実returned/明示skipを同callで束縛しF05 request全値へ。未観測依存又はF05自身のcall/return未観測は同表の原node/Cause全leaf/固定順でouter.f05.unformedへ。input=null/親bindingAbsentでも二依存実材料が有ればF05を呼び、その実DetailedReturnは内側comparison未形成でもouter.f05.formedへ保持。",
+        "rule_ja": "caller_return_writer_contract/f05_writerの二依存実returned/明示skipを同callで束縛しF05 request全値へ。未観測依存又はF05自身のcall/return未観測は同表の原node/Cause全leaf/固定順でouter.f05.unformedへ。input=null/親bindingAbsentでも二依存実材料が有ればF05を呼び、その実DetailedReturnは内側comparison未形成でもouter.f05.formedへ保持。 入力scope接続の追補：既存F05 request/outer formationを変えず、F05 outer Formationが得られた後に限り、profile_scan= scanned のprofile_observationsを原配列順で走査する。各実配列index iと同じouter F05 FormationをL4 project_actual_f05_return_linkへ渡し、返却PostReturnProjection<Cause>全値を原順で保持する。input_unavailable/semantic_records_unresolvedではprofile_observations memberを追加せずpost_return_projections=[]、scanned-emptyでは元profile_observations=[]とpost_return_projections=[]を保持し、各scan branchを保つ。outer unformed Causeはtyped全値/原順で保持し、ReturnLinkや原因を生成/flattenしない。",
         "source_pointers": [
-          "L4:/f05_validation_material_call_contract/logical_ports/f05_detail/predecessor_boundary"
+          "L4:/f05_validation_material_call_contract/logical_ports/f05_detail/predecessor_boundary",
+          "L4:/input_scope_knowledge_gap_contract/post_return_projection/request_signature",
+          "L4:/input_scope_knowledge_gap_contract/post_return_projection/closed_schema",
+          "/f05_detail_contract/types/CoreApplicationDetailReturn/members/f05"
         ],
         "detail_writer_pointer": "/f05_detail_contract/caller_return_writer_contract/f05_writer"
       },
@@ -12822,13 +12876,17 @@
           "producer_observations",
           "claims",
           "analysis",
-          "causes"
+          "causes",
+          "input_scope_knowledge_gap"
         ],
-        "rule_ja": "全専用返却/原Comparison wholeは同callから無変換保持。fn9/10はcaller_return_writer_contractの原Context/header準備、Cause全leaf、明示未呼出し/未観測/実返却分岐に従う。F05内側Comparison未形成をF05自体のskipへcastしない。outer.causesは同表の固定移送順。ApplicationAnalysis.bindingは実親objectのみで{}補完しない。",
+        "rule_ja": "全専用返却/原Comparison wholeは同callから無変換保持。fn9/10はcaller_return_writer_contractの原Context/header準備、Cause全leaf、明示未呼出し/未観測/実返却分岐に従う。F05内側Comparison未形成をF05自体のskipへcastしない。outer.causesは同表の固定移送順。ApplicationAnalysis.bindingは実親objectのみで{}補完しない。 入力scope接続の追補：既存6memberを同callから無変換で保ち、末尾にInputScopeKnowledgeGapCallerDetailを必須返却する。新memberはprofile_scanと同じF05 outerに結ばれたpost_return_projectionsだけを持ち、validation Dを重複しない。outer.causesとproducer_observationsの既存順/集約規則は不変。",
         "source_pointers": [
           "L4:/f05_validation_material_call_contract/actual_caller_trace/4",
           "/type_contract/types/CheckApplicationClaimsContext",
-          "/type_contract/types/BuildApplicationAnalysisContext"
+          "/type_contract/types/BuildApplicationAnalysisContext",
+          "L4:/input_scope_knowledge_gap_contract/input_only_contract",
+          "L4:/input_scope_knowledge_gap_contract/post_return_projection",
+          "/f05_detail_contract/types/CoreApplicationDetailReturn"
         ],
         "detail_writer_pointer": "/f05_detail_contract/caller_return_writer_contract"
       },
@@ -13691,7 +13749,9 @@
         "L4:/f05_validation_material_call_contract/outer_return_boundary",
         "/evaluation_dependencies",
         "/f05_detail_contract/native_context_crosswalk",
-        "/f05_detail_contract/context_header_cause_contract"
+        "/f05_detail_contract/context_header_cause_contract",
+        "L4:/input_scope_knowledge_gap_contract/input_only_contract",
+        "L4:/input_scope_knowledge_gap_contract/post_return_projection"
       ],
       "producer_observations_catalogue": [
         "compare_required_axes",
@@ -14238,6 +14298,125 @@
         "existing_correspondence": "既存SourceResultProjectionResultはrows:ProjectionResultRow[]とinput_findings:ProjectionInputFinding[]のlogical生成返却。CoreSourceResultProjectionResultは同原member/enum/原順を保持し、RawValue数値leafを既存CoreJsonValueへ対応させる既存logical-native対応型である。source_result_reference_projection/pipeline_bindingの同snapshot実projector返却を保持する責務は変えない。",
         "unclosed": "CallerInputsのRead<CoreJsonValue>にある任意nonnull値について、rowsの各SourceResultProjectionRow/InvalidComputedRowObservation、input_findingsの各member/presence、既存numeric node、logical/native名目型と原同call返却由来を全て束縛するtyped formation/判定基準は本callerで未閉包。名前/shapeラベル/任意caller boolだけで既存型成功又は型不正を確定しない。",
         "consumer_boundary": "absent省略とpresent null保存は既存optional規則のまま。実nonnull projectionの型付き全引数が未形成の枝についてfn10呼出し/全caller閉包を成立したとはしない。context_patterns/5は型対応不能が確定した場合の診断形であり、判定未実装を全入力拒否又は成功castへ変換しない。新provider/全axis gate/新wire/APIは追加しない。"
+      },
+      "input_scope_knowledge_gap_integration": {
+        "purpose_ja": "既存private callerが同一fn0 ValidationDetailedReturnを入力scope readerへ一度渡し、既存F05外側Formationへprofile別post-return projectionを結ぶ技術接続。native 36型の再定義、別fn0 graph、F05/owner/domain意味変更を行わない。",
+        "native_type_namespace": "/f05_detail_contract/input_scope_knowledge_gap_realization/types",
+        "input_reader": {
+          "entry_point": "/f05_detail_contract/input_scope_knowledge_gap_realization/entry_points/reader",
+          "symbol": "read_input_scope_knowledge_version_gap_native",
+          "argument": "InputScopeKnowledgeGapRequest{validation_detail_return: 同C01が一度得たValidationDetailedReturn D}。request型は同native名前空間の既存閉型。",
+          "output": "同native名前空間のInputScopeKnowledgeGapView全値。validation_detail_returnは同request.validation_detail_returnのD全値、profile_scanはglobal existing_type aliasが指す同InputScopeProfileScan。",
+          "stored_member": "profile_scanだけ。validation_detail_returnは既存CoreApplicationDetailReturn.validationと同一全値で重複格納しない。"
+        },
+        "post_return": {
+          "l4_api": "/input_scope_knowledge_gap_contract/post_return_projection/request_signature",
+          "symbol": "project_actual_f05_return_link<TCause> (L4 logical name)",
+          "binding": {
+            "TCause": "同document /f05_detail_contract/types/Cause。下記current_l4_bindingのTCauseへ無変換で束縛。",
+            "TValue": "既存L5 CoreApplicationDetailReturn.f05のsingle Formation value (F05DetailedReturn) をopaque ActualF05ProducerReturnへwhole対応。Formationを二重wrapしない。"
+          },
+          "dispatch": "profile_scan.scanned.profile_observations配列の実index順で各iと同じouter.f05全Formationを渡し、PostReturnProjection<Cause>全値を同順で保持。 outer Formation全値が確定した後（formedとunformedの双方を含む）に行い、unformedを投影対象外へ除外しない。",
+          "output_type": "InputScopePostReturnProjection",
+          "local_entry_point": "/f05_detail_contract/entry_points/input_scope_post_return",
+          "local_symbol": "project_actual_f05_return_link_native"
+        },
+        "branch_matrix": [
+          {
+            "profile_scan_tag": "input_unavailable",
+            "profile_observations": "not a member for this variant",
+            "projections": [],
+            "caller_rule": "元tag/reason保持。F05 producer呼出しを変更しない。"
+          },
+          {
+            "profile_scan_tag": "semantic_records_unresolved",
+            "profile_observations": "not a member for this variant",
+            "projections": [],
+            "caller_rule": "元Read/reason保持。 absent/null/unreachedの区別を変更しない。"
+          },
+          {
+            "profile_scan_tag": "scanned",
+            "profile_observations": [],
+            "projections": [],
+            "caller_rule": "scanned-emptyとunavailable/unresolvedは別tagとして保持。"
+          },
+          {
+            "profile_scan_tag": "scanned",
+            "profile_observations": [
+              {
+                "ordinal": "i",
+                "observation": "原profile observation"
+              }
+            ],
+            "projections": [
+              "InputScopePostReturnProjection for each same ordinal"
+            ],
+            "caller_rule": "input scanだけでreturn linkを先行生成しない。outer F05 Formation全値が確定した後（formed/unformedの双方）だけpost projectionを行う。"
+          }
+        ],
+        "preserve_ja": [
+          "C01-C05の旧rule本文全体、既存writerの範囲と6返却memberの全値/順序。既存C01-C03へ入力scopeの担当を追補する。",
+          "C01の一回だけのfn0 ValidationDetailedReturn",
+          "C02のF05呼出し/outer FormationとCause順",
+          "producer_observationsの7entryとouter.causes集約順",
+          "native profile types全36型とそのmember writer",
+          "L4 PostReturnProjectionのformed/unformed tag、Cause配列全値"
+        ],
+        "nonclaims_ja": [
+          "profile_scanのcase outputを実readerが生成した証拠",
+          "producer qualification/real source/runtime/Cause履歴",
+          "同じinputの個別caller全domain意味",
+          "L8全19oracleの独立review/全域caller closure"
+        ],
+        "current_l4_binding": {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "file_sha256": "cadafdb789eb1b52d12b98b165e17a914ee77eb3818018a4b07ba2249da99b60",
+          "selected_objects": [
+            {
+              "pointer": "/input_scope_knowledge_gap_contract/input_only_contract",
+              "canonical_sha256": "9ece4357bde24341b1ae6c144f80be13a4e6a582aeeaa4838a6313bb616389a7"
+            },
+            {
+              "pointer": "/input_scope_knowledge_gap_contract/post_return_projection",
+              "canonical_sha256": "7a5d00f5c69b7ec0edbdc013e475d14cfed5ec362f5fa07cbc44e7a89c3c9618"
+            }
+          ],
+          "scope_ja": "現行の同pair基本型と規則。固定sourceの履歴を上書きせず、実producer/実配送の成功証拠とも扱わない。"
+        },
+        "closed_type_correspondence": {
+          "InputScopePostReturnLink": "L4 closed_schema.ReturnLinkの必須root/pointerを同じliteral/JSONPointerで保持。root=f05_return、pointer=空文字をformed writerが返す。",
+          "InputScopePostReturnLinkFormation": "L4 PostReturnFormation<ReturnLink, TCause>の具体化。TCause=L5 Cause、formed.value=InputScopePostReturnLink、unformed.causes=同Cause[]。",
+          "InputScopePostReturnProjection": "L4 PostReturnProjection<Cause>の2member全返却。InputScopeKnowledgeGapCallerDetailの配列要素型をこの閉型へ束縛。",
+          "actual_outer_f05": "引数は既存Formation<F05DetailedReturn>の単一whole。L4 opaque ActualF05ProducerReturnは同formed.valueのpayloadであり、Formationを二重wrapしない。unformed.causesは既存Cause[]そのもの。",
+          "profile_scan": "同D入力native readerのInputScopeProfileScan。L4の論理Read/Locationへ逆castしない。Dとlocal2rootの対応はinput_scope_knowledge_gap_realizationの宣言を使う。"
+        },
+        "old_asset_correspondence": {
+          "legacy_sources": [
+            {
+              "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+              "lines": "16-92"
+            },
+            {
+              "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+              "lines": "33-77"
+            }
+          ],
+          "failure_source": {
+            "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "lines": "65-101",
+            "failures": [
+              "UTW-014",
+              "UTW-020",
+              "UTW-021"
+            ]
+          },
+          "preserve": "正本と投影・型/pair/source revisionを結び、未知/欠落を空正常へ補完せず、全値と原未完を保持する。",
+          "change": "現行COREの既存callerに入力scope観測と実outer後投影を追加する。旧層番号、旧registry/runtime/CIを移植しない。",
+          "reason": "既決L4のinput-only/post-returnが既存L5 callerの全返却に接続されていなかったため。要求意味/owner/資格条件を追加しない。"
+        }
       }
     },
     "caller_writer_technical_difference": {
@@ -15194,6 +15373,2466 @@
         "change": "正の新body/evidenceを読む際に未固定だった文字列provenance label、source_ref正本、具体formed Comparison owner link先/本数/表内順を選ぶ。139/141等の型数維持を理由に意味を削らず、新型は必要ない範囲。",
         "reason": "同9source入力でfull5全leafの固定値が二通り可能だった表現上の不足。実生成依存を追える固定linkと原membership別labelを選び、必要source条件を新gate/権限/上流意味へ拡張しない。"
       }
+    },
+    "input_scope_knowledge_gap_realization": {
+      "atomic_purpose": "既存C01の同一validation detail D一回を用いる原scope版観測と、その型付き全値を保持するcaller接続の詳細具体化。私有graph単独を製品経路へ重ねない。",
+      "basic_contract_ref": "/input_scope_knowledge_gap_contract",
+      "body_constants": {
+        "knowledge_record_collection": "knowledge_records",
+        "semantic_record_collection": "semantic_records"
+      },
+      "body_constants_source": {
+        "file_sha256": "37fef8fbebab5af5bffe5b3b4294470fd75c055b128848c933aec6e9798deb32",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload",
+        "revision": "83ad243ae78bc326292c247eb193c3512f29ed1a"
+      },
+      "body_member_writer": {
+        "collection_guard": "ProfileEvaluation body: left=実body record.collectionの原Read、right={tag:normative,value:body_constants.semantic_record_collection,rule_pointer:本block/body_constants/semantic_record_collection}、result=既存typed値比較、guard.rule_pointer=本block/body_member_writer/collection_guard。DigestSourceMaterial body:同形でvalue/pointerをbody_constants.knowledge_record_collectionとし、guard.rule_pointer=本block/knowledge_digest_writer/body_record_guards/collection_guard。原Read/value/rootは再生成しない。",
+        "empty_or_unavailable": "実source indexがあるなら実body/recordsへのReadだけを持ち、原配列0候補又は観測不能ならoccurrences=[]。source未特定時はsource_unestablished枝だけで架空bodyindex/Readを作らない。",
+        "payload_guard": "left=実body record.payload Read、right={tag:original,read:同原SemanticRecord whole Read}、resultは既存wrapper/source_payloadに従い右source_refのみ除いた元供給member/presenceへ照合する。右Read.valueはwholeのままで除外後の架空nodeを作らない。guard.rule_pointer=本block/body_member_writer/payload_guard。DigestSourceMaterialでは右KnowledgeRecord whole Read、pointer=本block/knowledge_digest_writer/body_record_guards/payload_guard。",
+        "record_index": "実source.body.recordsの元出現index。",
+        "record_read": "当該元body record wholeのRead。",
+        "ref_guard": "left=実body record.ref Read、right={tag:original,read:同原SemanticRecord.ref Read}、result=既存Ref条件、guard.rule_pointer=本block/body_member_writer/ref_guard。DigestSourceMaterialでは右を当該KnowledgeRecord.ref Read、pointerを本block/knowledge_digest_writer/body_record_guards/ref_guardへ固定する。"
+      },
+      "branch_ledger": [
+        {
+          "branch": "InputScopeProfileScan.input_unavailable",
+          "condition": "同D.validated.input=null",
+          "material": "D wholeと固定reason。rawからSemanticRecordを復元しない。",
+          "whole_oracles": [
+            "NATIVE-INPUT-UNAVAILABLE",
+            "GRAPH-INPUT-UNAVAILABLE"
+          ]
+        },
+        {
+          "branch": "InputScopeProfileScan.semantic_records_unresolved",
+          "condition": "非null inputのsemantic_records Readが配列でない",
+          "material": "Read全3枝/原値と固定reason。native shape失敗をcodec bypassで非nullへしない。",
+          "whole_oracles": [
+            "NATIVE-SEMANTIC-RECORDS-ABSENT"
+          ]
+        },
+        {
+          "branch": "InputScopeProfileScan.scanned",
+          "condition": "semantic_records Readがpresent array",
+          "material": "全元index/配列whole、識別可能profile全15member。無関係原recordもwholeに残す。",
+          "whole_oracles": [
+            "L9-0..4",
+            "minimal-field-7"
+          ]
+        },
+        {
+          "branch": "InputScopeFieldOperandRead.field_lookup_unestablished",
+          "condition": "field LookupResult outcomeがlocated以外",
+          "material": "全候補/collection Read/target Read/有限outcome。field requested leafなし。",
+          "whole_oracles": [
+            "minimal-field-target-null",
+            "minimal-field-collection-absent",
+            "minimal-field-no-match",
+            "minimal-field-multiple",
+            "minimal-field-partial-ref",
+            "minimal-meaning-null"
+          ]
+        },
+        {
+          "branch": "InputScopeFieldOperandRead.present",
+          "condition": "field locatedかつ実memberあり（nullも元schema許容時だけpresent）",
+          "material": "元実f/member Read whole",
+          "whole_oracles": [
+            "L9-0..2",
+            "minimal-field-located-member-absent/ref"
+          ]
+        },
+        {
+          "branch": "InputScopeFieldOperandRead.absent",
+          "condition": "field locatedした実objectでmember keyなし",
+          "material": "実parentとrequested whole",
+          "whole_oracles": [
+            "minimal-field-located-member-absent/template_ref,binding"
+          ]
+        },
+        {
+          "branch": "InputScopeFieldOperandRead.unreached",
+          "condition": "実index確定済みの経路で最後の原nodeを特定できるが要求node未到達",
+          "limit": "現native CoreFieldInputはschema適合objectで直接3member Readのため本枝の非object field到達を造らない。logical互換型の枝保持とnative到達可能性は別。",
+          "material": "requested/reached/reached_value",
+          "whole_oracles": []
+        },
+        {
+          "branch": "InputScopeRead.present(null/false/0/empty string/empty array/empty object)",
+          "condition": "実RawValue node",
+          "limit": "false/0/空文字/空objectの独立全View oracleは未収載。raw一般domainは不変。",
+          "material": "元native値のまま、absenceと別",
+          "whole_oracles": [
+            "minimal-field-target-null",
+            "minimal-meaning-null"
+          ]
+        },
+        {
+          "branch": "InputScopeRead.unreached",
+          "condition": "実meaning=null等で子nodeへ未到達",
+          "material": "要求pointerと実meaning原node",
+          "whole_oracles": [
+            "minimal-meaning-null"
+          ]
+        },
+        {
+          "branch": "InputScopeOccurrenceResolution.located / unestablished",
+          "condition": "lookup_outcome_writer全6 outcome、source_observation index別空間",
+          "material": "元順/反復/0又は全候補、D全値",
+          "whole_oracles": [
+            "L9-0..4",
+            "minimal-field-7"
+          ]
+        },
+        {
+          "branch": "Profile header/source/body/owner/subject/full binding known difference or unestablished",
+          "condition": "profile_interpretation_boundary/common_target_guardsの局所未成立",
+          "limit": "追加3例でpartial知識row/供給digest差/宣言source_ref未供給を行使。その他の未知Ref/反復/元source check失敗/多重異常は未行使。",
+          "material": "候補wholeを残しjudgment=unestablished、独立profile継続",
+          "whole_oracles": [
+            "minimal-field-7"
+          ]
+        },
+        {
+          "branch": "Knowledge present / absent / unestablished",
+          "condition": "judgment_writer有限順序",
+          "limit": "追加3例でpartial knowledge row、供給digest差、宣言source_ref未供給の全View/全ProfileEvaluationを固定。後2例の公開presentと私有digest different/unestablishedを分離。その他の全組合せ・元source check失敗等は未行使。",
+          "material": "原版indexとdigest条件/全raw別保持",
+          "whole_oracles": [
+            "L9-0",
+            "L9-1",
+            "L9-3",
+            "L9-4",
+            "minimal-field-7"
+          ]
+        },
+        {
+          "branch": "ValidationInput.native / same_decode_success",
+          "condition": "既存ValidationInputの型だけ",
+          "limit": "same_decode_success専用全GraphReturn oracleは未収載、ordinary logical JSONからdecode/AST/数値tokenを捏造しない。",
+          "material": "同fn0全返却通過。same_decode.valueの原rawと全decode診断は別に保持",
+          "whole_oracles": [
+            "NATIVE-SEMANTIC-RECORDS-ABSENT",
+            "GRAPH-EMPTY-SOURCES",
+            "NATIVE-INPUT-UNAVAILABLE",
+            "GRAPH-INPUT-UNAVAILABLE"
+          ]
+        },
+        {
+          "branch": "known witness / required digest / independent partial record",
+          "condition": "judgment_writer/knowledge_digest_writerの有限閉branch",
+          "limit": "全enum原因/多重異常/未知peer/sourcecheck未行使一般域は未検証。",
+          "material": "全ProfileEvaluation/KnowledgeMembership/DigestEvaluationを追加3全期待へ保持。元raw版indices/他row未知/既知差/元source.checkを削除しない。",
+          "whole_oracles": [
+            "S13-KNOWN-WITNESS-WITH-INDEPENDENT-PARTIAL",
+            "S13-SUPPLIED-REQUIRED-DIGEST-DIFFERENT",
+            "S13-SUPPLIED-REQUIRED-DIGEST-SOURCE-UNOBSERVED"
+          ]
+        }
+      ],
+      "entry_points": {
+        "evaluate_profile": {
+          "effect": "none",
+          "input": "InputScopeProfileRequest",
+          "output": "InputScopeProfileEvaluation",
+          "precondition": "同D.semantic_recordsの実在indexでkind又はmeaning.profile_idが有限profile候補。任意外部indexを読取成功へ修復しない。",
+          "symbol": "evaluate_input_scope_profile"
+        },
+        "knowledge_reference_digest": {
+          "effect": "none",
+          "input": "InputScopeKnowledgeDigestRequest",
+          "output": "InputScopeKnowledgeDigestEvaluation",
+          "precondition": "同Dの実semantic/knowledge原index。required Refは当該semantic.meaning.required_knowledge_ref。既存SourceCheckは同Dから取得し期待/provider/check値を外部注入しない。",
+          "symbol": "compare_input_scope_knowledge_reference_digest",
+          "writer_ref": "knowledge_digest_writer"
+        },
+        "lookup_occurrences": {
+          "effect": "none",
+          "input": "InputScopeLookupRequest",
+          "output": "InputScopeLookupResult",
+          "symbol": "locate_input_scope_occurrences"
+        },
+        "private_input_graph": {
+          "effect": "none",
+          "input": "InputScopeGraphRequest",
+          "meaning": "同raw取得口からfn0 detail一回→private reader→全View返却→caller保持を行う独立input-only graph。F05/recipient/外部配送の呼出しを含まない。",
+          "output": "InputScopeGraphReturn",
+          "symbol": "observe_application_input_scope_native",
+          "usage_boundary_ja": "GRAPH-EMPTY-SOURCES/GRAPH-INPUT-UNAVAILABLEを保持する独立私有検証graph。製品の既存private callerからこの取得graphを呼ばず、同D入力のreaderだけを利用する。"
+        },
+        "read_original_node": {
+          "boundary": "reader内だけの所在操作。pathは以下ledgerの元semantic/raw node経路だけ。CoreDecodeOrigin/presence diagnostics/Causeを任意CoreJsonValueとして走査する汎用tree APIではない。",
+          "effect": "none",
+          "input": "InputScopeReadRequest",
+          "output": "InputScopeRead<CoreJsonValue>",
+          "symbol": "read_input_scope_original_node"
+        },
+        "reader": {
+          "effect": "none",
+          "input": "InputScopeKnowledgeGapRequest",
+          "meaning": "同request.validation_detail_returnだけを読んでL4 Viewの2member全値を返す。fn0を再実行せず、F05前段Comparison/期待/任意qualified boolを引数にしない。",
+          "output": "InputScopeKnowledgeGapView",
+          "symbol": "read_input_scope_knowledge_version_gap_native"
+        },
+        "source_observations_view": {
+          "effect": "none",
+          "input": "InputScopeSourceViewRequest",
+          "meaning": "request.observationsは同d.source_observationsそのもの。型宣言全memberをread-only構造viewへ一方向対応する。期待/資格bool/providerは受けずSourceCheck/Cause/SourceUsabilityを再評価しない。",
+          "output": "CoreJsonValue",
+          "symbol": "view_input_scope_source_observations",
+          "writer_ref": "native_structural_view_contract/type_member_closure"
+        }
+      },
+      "existing_type_dependencies": {
+        "CoreJsonValue": "/f05_detail_contract/types/CoreJsonValue",
+        "JSONPointer": "/f05_detail_contract/types/JSONPointer",
+        "Natural": "/f05_detail_contract/types/Natural",
+        "Relation": "/f05_detail_contract/types/Relation",
+        "SourceCheck": "/f05_detail_contract/types/SourceCheck",
+        "ValidationDetailedReturn": "/f05_detail_contract/types/ValidationDetailedReturn",
+        "ValidationInput": "/f05_detail_contract/types/ValidationInput",
+        "ValidationSourceObservation": "/f05_detail_contract/types/ValidationSourceObservation",
+        "ValidationSourceObservations": "/f05_detail_contract/types/ValidationSourceObservations"
+      },
+      "field_operand_writer": {
+        "absent_vs_lookup_failure": "FieldOperandRead.absentはlocatedした実field objectに当該member keyが無いときだけ。unreachedも実indexが定まった原経路で最後に到達したnodeを保存できる場合だけ。lookup miss/複数の未特定fieldにこれらの枝を転用しない。",
+        "axis_projection": "field_lookup_unestablished枝を持つ3operandからRef/Bindingをcastせず、field依存5axis（field_ref_vs_supply_scope.field_ref、template_ref_vs_supply_scope.template_ref、field_binding_vs_semantic_record.binding、field_binding_vs_profile.binding、field_binding_vs_supply_scope.binding）をunestablishedとする。独立input_ref_vs_supply_scope.input_refはその実原Readから元規則で別に記録し、当該field未特定だけで消さない。aggregateは既知differentがあればdifferent、それが無くunestablishedがあればunestablished、全対応ならcorresponding。",
+        "judgment_and_retention": "field_lookup_unestablishedがある当該profile.judgmentはunestablished。原SemanticRecord/source/body/field collection/候補/必要版Ref/knowledge_records全値を保持する。actual_scope_knowledge_indices及びsame_required_version_identity_scope_owner_indicesには未確定のfieldを確定扱いしたindexを作らない。版absence、本文integrity成功、定義missing、recipient又は全体失敗へ変換せず、独立profileを継続する。 field未特定の当該profileではactual_scope_knowledge_indicesとsame_required_version_identity_scope_owner_indicesを[]として返す。これは当該fieldへの確定対応indexが未形成という局所観測であり、元knowledge_recordsの不存在又は版absenceではない。全knowledge原列はvalidation_detail_returnとactual_knowledge_collection_readへ保持する。",
+        "lookup_outcomes": [
+          {
+            "condition": "原profile.field_refを元Ref条件へ形成できない。原Read/presenceを保持。",
+            "outcome": "target_unestablished"
+          },
+          {
+            "condition": "target原Refは形成可能だが元field_inputs collectionを配列として走査できない。欠落/null/型外/未到達の原Readを保持。",
+            "outcome": "collection_unavailable"
+          },
+          {
+            "condition": "targetへ対応する実field原出現が複数で、一つのindexを特定できない。全対応原出現/反復を原順で保持し先頭/latest/dedupをしない。",
+            "outcome": "multiple_corresponding_occurrences"
+          },
+          {
+            "condition": "上記以外で原出現との対応可否が未形成で、一つの実fieldを確定できない。対応可能性未確定の実候補も原順で保持。",
+            "outcome": "correspondence_unestablished"
+          },
+          {
+            "condition": "元配列を観測でき、target対応出現が無く、対応可能性未確定の候補も無い。空配列はこの有限条件の一例。field不存在/定義missing/版不在のdomain判断へ転用しない。",
+            "outcome": "no_corresponding_occurrence"
+          }
+        ],
+        "native_type_mapping": "基本FieldOperandRead/FieldLookupCondition/ProfileOccurrenceCandidateはInputScope接頭の閉型へ形を保持して対応。located三Readへ新tag/wrapperを重ねず、lookup_unestablished時は同原collection/候補/target wholeを3operandへ保持する。",
+        "occurrence_boundary": "observed_occurrencesは実在する対応又は対応可能性未確定の候補だけ。collection_readには元配列wholeを保持し、既知別fieldの原出現も失わない。候補indexはfield_inputsの原indexでありsource/body/semantic indexと交換しない。lookup_conditionは同原Readから著述する局所writer結果で、任意bool/provider入力ではない。",
+        "source_and_type": "ProfileObservation.field_input_resolutionがlocatedなら、その実FieldInput indexを使った3memberの原Readを従来shapeのままFieldOperandRead.present/absent/unreachedへ保存する。既存3枝の所在・原Value・parent/reached条件はRead<CoreJsonValue>と同じで、新wrapper/tagを既存present値へ追加しない。",
+        "unestablished_field": "field_input_resolutionがunestablishedなら、3memberのtagをfield_lookup_unestablishedとし、各operand_roleをfield.ref/field.template_ref/field.bindingとする。collection_read及びobserved_occurrencesは同field_input_resolutionの原全値を保持し、lookup_condition.target_field_ref_readは原profile.meaning.field_refのReadを保持する。field実indexもmember requested leafも作らない。"
+      },
+      "future_consumer_boundary": "製品側の保持先は既存build_application_analysis_detailの第7member接続で具体化する。同callerの既存fn0取得点の同Dをreaderへ渡し、observe_application_input_scope_nativeを前後に重ねて二度fn0を呼ばない。reader自身はF05前段比較/recipientを引数にせず、post-returnは別のcaller処理から既存実outer値を受ける。",
+      "guard_member_writer": {
+        "left": "指定元operandの実Read全値。",
+        "result": "既存Ref/Binding/typed value条件のcorresponding/different/unestablished。必要元member未観測なら未形成、known差は別保持。",
+        "right": "原operandなら{tag:original,read:当該原Read whole}。固定profile識別値はprofile_constants各実node、body collection固定値はbody_constants各実nodeを用い、{tag:normative,value:当該literal,rule_pointer:そのliteralの本block実pointer}。source宣言ラベルを成功へしない。",
+        "rule_pointer": "当該SourceCheckの既存pointerをcopyする場合は元全pointerを保持。それ以外の新guardは本blockの該当writer又はprofile_constants実node pointer。固定source本文のrevision/path/pointerはsource_basisに別記する。"
+      },
+      "id": "HARNESS-L5-009-F05-INPUT-SCOPE-KNOWLEDGE-GAP-REALIZATION",
+      "judgment_writer": {
+        "basic_meaning_authority": {
+          "file_sha256": "37fef8fbebab5af5bffe5b3b4294470fd75c055b128848c933aec6e9798deb32",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointers": [
+            "/input_scope_knowledge_gap_contract/input_only_contract/ordered_writer/6",
+            "/input_scope_knowledge_gap_contract/input_only_contract/comparison_axes_ja/knowledge_membership",
+            "/input_scope_knowledge_gap_contract/input_only_contract/comparison_axes_ja/absence_boundary"
+          ],
+          "revision": "83ad243ae78bc326292c247eb193c3512f29ed1a"
+        },
+        "continuation": "独立profileは原順で全て継続する。新全source/全knowledge完全inventory gate、全体失敗、recipientを生成しない。",
+        "digest_vs_witness": "公開judgmentは基本ordered_writer/6及びcomparison_axes_ja/knowledge_membershipの原版出現3enum。knowledge witnessの供給digest/source条件はdigest_evaluation・supplied_digest_relation・known_eligible_same_version_indicesの私有列へ保持し、そのdifferent/unestablishedから公開presentを取り消さない。profile自身のsource/body/資格・field/subject/fullBinding/scope対応未形成は別の局所unestablished境界を維持する。独立partial rowで既知原同版出現を消す全inventory gateを作らず、未知sourceを他sourceから補わない。",
+        "ordered_conditions": [
+          {
+            "retention": "当該profile/対象の既知差・未形成を保持。knowledge occurrenceの追加digest/source条件又は独立partial rowをこの必要profile対応へ混ぜない。",
+            "return": "unestablished",
+            "when": "profile header又は当該profile自身のsource観測/usability/body/owner/field/subject/fullBinding/scope必要対応のいずれかがcorrespondingでない。"
+          },
+          {
+            "retention": "同版原出現の存在観測。known_eligible_same_version_indices又はdigest条件の要約をpresentの必要条件にしない。元indices/各rowのknown差/unknown/原check全値を保持し、利用可否/資格/integrity/availability成立へ昇格しない。",
+            "return": "required_version_present_in_declared_input_scope",
+            "when": "上記当該profile/対象対応が成立し、原field/identity/scope/owner/revision対応で記録したsame_version_indicesが一件以上。"
+          },
+          {
+            "retention": "対象/profile対応とcollectionの全観測が成立した当該input/field/scope内だけの原版不在。global unavailable/定義missing又はintegrity不成立へ置換しない。",
+            "return": "required_version_absent_from_declared_input_scope",
+            "when": "上記当該profile/対象対応が成立し、raw same_version_indicesが空で、absence_establishment=corresponding。"
+          },
+          {
+            "retention": "原Read/全実候補/known差/unknownを保持し、空列又は成功へdefaultしない。",
+            "return": "unestablished",
+            "when": "その他。raw同版0で潜在同版の対応未形成/collection未観測又はabsence_establishmentがcorrespondingでない場合を含む。"
+          }
+        ],
+        "return_material": "Viewの15member/全Dを保持し内部evaluationを新API引数にせず同call生成する。新Cause又はFormationなし。"
+      },
+      "knowledge_digest_writer": {
+        "body_record_guards": {
+          "collection_guard": "left=同record.collection Read。right={tag:normative,value:本block/body_constants/knowledge_record_collectionのliteral,rule_pointer:同literal pointer}。result=既存typed比較、guard.rule_pointer=本block/knowledge_digest_writer/body_record_guards/collection_guard。",
+          "payload_guard": "left=同record.payload Read、right={tag:original,read:当該KnowledgeRecord whole Read}。既存source_payload対応で右source_refのみ除く比較を行い、右Read.valueはwhole保持。guard.rule_pointer=本block/knowledge_digest_writer/body_record_guards/payload_guard。",
+          "record_index": "実source.body.records原index。",
+          "record_read": "同元body record whole Read。",
+          "ref_guard": "left=同record.ref Read、right={tag:original,read:当該KnowledgeRecord.ref Read}。result=既存Ref条件、guard.rule_pointer=本block/knowledge_digest_writer/body_record_guards/ref_guard。"
+        },
+        "evaluation_members": {
+          "cause": "同条件の固定一原因。複数の原差/未形成は各Read/source/check列へ全保持し、この局所causeで原原因を置換しない。",
+          "condition": "下記ordered_conditionsの閉enum。元版raw indicesは変更しない。",
+          "declared_digest_relation": "供給required_digest_readと対応元SourceEnvelope.ref.sha256 Readの既存typed値比較。既知差=different、既知差なしで必要端未形成=unestablished、全既知同値=corresponding。これは宣言値の比較でありbytes hash算出ではない。",
+          "knowledge_ref_read": "同D/validated/input/knowledge_records/{k}/refの原Read。",
+          "knowledge_source_ref_read": "同実knowledge record/source_refの原Read。",
+          "required_digest_read": "同D/validated/input/semantic_records/{s}/meaning/required_knowledge_ref/sha256の原Read。absent/明示null/型外/親未到達を別に保持。",
+          "source_check_material": "下記source_check_material_writer。source/body/資格を再評価せず元同callのsource_digest checkを保持。",
+          "source_integrity_relation": "元source_digest check.result corresponding/different/unestablishedを同名Relationへ写す。check.not_applicable/必要check未取得はrequired digest供給枝ではunestablished。未要求枝のcorrespondingは追加必要条件なしという中立値でありhash観測成功ではない。",
+          "source_material": "下記source_material_writer。未供給digest/既知非witnessではnot_requested、それ以外は元knowledge.source_refから実SourceEnvelopeを一意対応させる。"
+        },
+        "native_numeric_boundary": "RawValue/Ref.scope/Binding等のCoreNumberは元numeric atomとexact値/tokenを保持し、普通objectへ展開/整数限定/default/castしない。digestは元Ref型の文字列値として既存typed比較するだけ。",
+        "ordered_conditions": [
+          {
+            "cause": "not_supplied",
+            "condition": "not_required",
+            "material": "source/check not_requested。declared/source integrity Relationはcorrespondingという追加必要条件なしの中立値だけ。",
+            "when": "required_digest_readがabsent又はpresent(null)。親Ref全体未到達/型外はこの枝でなく次枝。"
+          },
+          {
+            "cause": "required_digest_unformed",
+            "condition": "required_unestablished",
+            "when": "required digestが親未到達又は供給されたnon-null値が既存Ref.sha256型を形成しない。新hex grammar/長さgateを加えない。"
+          },
+          {
+            "cause": "known_not_witness",
+            "condition": "not_required",
+            "material": "source/check not_requested。rawKnowledgeOccurrenceの既知差を保持し、別版sourceを当該digestへ使わない。",
+            "when": "当該元knowledge recordのfield/identity/scope/owner/revisionについて既知非対応があり、このrecordは当該同版witnessではない。元差/unknown列はそのまま。"
+          },
+          {
+            "cause": "knowledge_source_ref_unformed",
+            "condition": "required_unestablished",
+            "when": "knowledge.source_refが未形成"
+          },
+          {
+            "cause": "source_resolution_unestablished",
+            "condition": "required_unestablished",
+            "when": "元sources対応が0/複数/未確定"
+          },
+          {
+            "cause": "record_source_relation_different",
+            "condition": "required_unestablished",
+            "when": "当該KnowledgeRecordと元source宣言の対応がdifferent"
+          },
+          {
+            "cause": "record_source_relation_unestablished",
+            "condition": "required_unestablished",
+            "when": "当該原record/source対応が未形成"
+          },
+          {
+            "cause": "source_digest_unobserved",
+            "condition": "required_unestablished",
+            "when": "元source.ref.sha256がabsent又はnull"
+          },
+          {
+            "cause": "source_digest_unformed",
+            "condition": "required_unestablished",
+            "when": "元source digestが必要型を形成しない（元fn0.input=nullなら外側input_unavailableへ保持し修復しない）"
+          },
+          {
+            "cause": "source_check_unobserved",
+            "condition": "required_unestablished",
+            "when": "対応元source_digest checkが未取得/未一意"
+          },
+          {
+            "cause": "source_integrity_unestablished",
+            "condition": "required_unestablished",
+            "when": "元check.resultがunestablished又はnot_applicable"
+          },
+          {
+            "cause": "source_integrity_different",
+            "condition": "required_unestablished",
+            "material": "宣言値のknown差/同値も別列へ保存。hashを再計算してrequired digestとのbytes一致を補完しない。",
+            "when": "元check.result=different"
+          },
+          {
+            "cause": "source_semantic_use_unusable",
+            "condition": "required_unestablished",
+            "material": "宣言digest値のknown差/同値と元integrity観測は別列保持。前段の必要source分類をraw body一致で補完しない。",
+            "when": "元source_digest check correspondingだが、同source元usability.tag=unusable。"
+          },
+          {
+            "cause": "source_semantic_use_unestablished",
+            "condition": "required_unestablished",
+            "material": "元全source行/資格/check/原因を保持。実trust未実装だけを新失敗条件へしない。",
+            "when": "元source_digest check correspondingだが、同source元usability.tag=unestablished。"
+          },
+          {
+            "cause": "digest_different",
+            "condition": "required_different",
+            "when": "元record/source対応、元source_digest check corresponding、同source元usability.tag=usable、宣言digest値different。"
+          },
+          {
+            "cause": "digest_corresponding",
+            "condition": "required_corresponding",
+            "when": "元record/source対応、元source_digest check corresponding、同source元usability.tag=usable、宣言digest値corresponding。"
+          }
+        ],
+        "projection_to_existing_occurrence_relation": "condition not_required/required_corresponding→supplied_digest_relation=corresponding、required_different→different、required_unestablished→unestablished。新condition/cause/raw資料はdigest_evaluationへ併存させる。",
+        "request_members": {
+          "knowledge_record_index": "同knowledge_recordsの実原index。外部Ref値や期待からsource indexを注入しない。",
+          "semantic_record_index": "同候補SemanticRecordの実原index。",
+          "validation_detail_return": "同profile readerのD whole。"
+        },
+        "scope": "原Ref側にdigestが供給された条件だけを私有局所比較する。fn0のbytes/body parse/hash/qualification/root/trustを再実行せず、元SourceCheck観測を別材料として保持。元knowledge.ref.sha256同士だけの一致、source check.result copy又はdigest文字列一致だけで当該Ref/source対応を補わない。",
+        "source_check_material_writer": {
+          "located": "source_observation_index=同D.source_observations.source_occurrencesの実行index、check_index=そのchecks実index、source_observation/check=両全原値。source_indexとは別空間であり1/2等の固定位置を一般規則へ持ち込まない。check.kind=source_digestを元kindから識別し、leftは元content_bytes、rightは元source.ref.sha256。 同原source_observation.usability/checks/qualification_occurrences/causesは全値保持し、source digest checkのcorrespondingをsemantic-use又は実trustの成立へ転写しない。",
+          "not_requested": "同上の未要求枝。tag以外memberなし。",
+          "unestablished": "同実sourceに対応するSourceObservationを得られない/未一意、又はそのchecksのsource_digest実checkを得られない/未一意なら、observations=既存InputScopeSourceObservationResolution（同D原行全値）、candidates=実観測した対応可能な全checkを原順に保持。各candidateは実source_observation_index/check_indexとその原source_observation/check wholeを持つ。Ref同値dedupで別行を捨てない。"
+        },
+        "source_material_writer": {
+          "body_relation": "既存reference_resolution_contract.bodyに従う原KnowledgeRecordとsource内宣言の対応だけを比較する。全対応/対応未確定の実body occurrenceを原順で保持し、同一対応payloadの反復だけで未一意失敗にしない。既知対象payload差があればdifferent、既知差無しで対応未形成/潜在未知があればunestablished、必要対象対応が形成され全対応ならcorresponding。content_bytesの再parse/hash/資格検査は行わない。前段資格/semantic-useの必要条件は別途同source原SourceObservation.usabilityのまま保持し、record内容対応だけからqualifiedを生成しない。",
+          "not_requested": "required digest未供給又は既知非witness。tag以外memberなし。knowledge/source_ref原Read自体はEvaluationへ保持する。",
+          "source_located": "source_index=実sources原index、source_read=実source whole Read、source_ref_read=実source.ref Read、source_digest_read=実source.ref.sha256 Read、body_records_read=実source/body/records Read、body_occurrences=下記body_record_guardsで対象KnowledgeRecordに対応又は対応未確定の全実出現を原順で保持、record_source_relation=下記body relation。",
+          "source_unestablished": "knowledge.source_ref未形成又は元input.sourcesで対応が0/複数/未確定。source_resolutionは既存InputScopeOccurrenceResolutionで原collection/全実候補を保存。source_ref未形成時に名前/値/既存index2からsourceを選ばず原sources Read＋実候補だけを持つ。 knowledge.source_refがabsent/null/未到達で対象Ref未形成なら対応lookupを実施せず、元sources collection Readとobserved_occurrences=[]を返す。これはsource collection不在ではなく当該対象未形成の局所非観測であり、全sourcesは原Read/D wholeに残す。"
+        },
+        "source_semantic_use_boundary": "required digestを意味根拠sourceへ結ぶ既存common_target_guards/3の当該局所条件だけ、同SourceCheckMaterial.source_observation.usability.tagを参照する。元usableは合成同call assessment scopeのまま使い、実trust/provider未実装を新失敗条件にしない。unusable/unestablishedは当該witness条件をrequired_unestablishedへ保持し、他row/未供給digest/既知別版へ全体gateとして伝播しない。",
+        "unobserved_relation_defaults": "source取得前はdeclared_digest_relation/source_integrity_relationをunestablishedとし、既知の宣言値比較まで到達すれば元known差/同値を保持する。not_requiredだけが上の中立corresponding。unknown原因やemptyを成功へ変換しない。"
+      },
+      "knowledge_member_writer": {
+        "absence_establishment": "原same_version_indicesが非emptyならdifferent（当該raw版不在という命題の既知否定）。raw同版0で、原field/必要Ref/collectionが全観測され、版有無に関する潜在未知出現0ならcorresponding。それ以外はunestablished。供給digestの差/未観測をraw版不在へしない。",
+        "actual_scope_indices": "field located、必要required_refのidentity/scope/owner及び当該fieldの元対応が形成された各原出現のみの実index全列。未形成はindexへcastしない。反復全保持。",
+        "collection_and_correspondence": "原field/必要identity/scope/ownerとcollection全観測及び潜在候補の未形成を示す局所列を保持。独立partial rowがあればunestablishedでも、形成済み別rowの原same_version_indicesを消すpresence gateに使わない。absence可否は別列へ。",
+        "collection_read": "同/validated/input/knowledge_records原Read。",
+        "field_ref_read": "同scope operands.field_input_ref_read whole。",
+        "known_eligible_same_version_indices": "same_version_indicesに原存在として保持した各実rowのうち、当該field/identity/scope/owner/revisionの元対応が既知correspondingで、そのrow.digest_evaluation.conditionがnot_required又はrequired_correspondingの実indexを全原順で保持。not_required(known_not_witness)はsame_version_indicesに入らない元rowの結果なので誤ってwitnessへ加えない。未知他rowを全inventory gateへしない。 この列は私有の追加digest/source条件適合indexであり、公開原版存在の判定列ではない。実trust/利用可否/全integrity成立を表さない。",
+        "occurrences": "原knowledge_records配列の全実indexを原順で一行ずつ保存。元field_membership/identity_scope_owner/revision各Relationと原wholeを維持し、同D/semantic実index/knowledge実indexからknowledge_reference_digestの全Evaluationをdigest_evaluationへ保存する。supplied_digest_relationは上記明示projection。既知版差/partial unknown/反復/未受領を消さない。",
+        "required_ref_read": "同SemanticRecord.meaning.required_knowledge_ref原Read。",
+        "same_version_indices": "actual_scope_indicesのうちrevision_relation=correspondingの全原index。source_locator/digestをidentityへ加えず版存在の原観測を保持。",
+        "supplied_digest_relation": "各raw同版又は潜在同版rowのdigest_evaluationを保持した局所要約。known eligible witnessありならcorresponding、なしで必要digest/source未知又は潜在同版未知ありならunestablished、それら無しで既知同版rowの必要digest差だけがあるならdifferent、それ以外の追加digest条件無しはcorresponding。元全rowのknown差/未知はdigest_evaluationへ保持する。この一列だけでjudgmentを裁定しない。",
+        "unlocated_field": "occurrencesの原wholeは保持可能だがactual_scope_indices/same_version_indicesは[]、collection_and_correspondence=unestablished。これは未確定field対応の局所index不成立であり原knowledge列の不存在ではない。"
+      },
+      "knowledge_relation_leaf_rules": {
+        "field_membership_relation": "required_field_refs Readが未到達/欠落/配列外、又は対象field未特定ならunestablished。原全配列に既存fullRef条件で対応一件以上ならcorresponding。対応0で未確定候補があればunestablished、対応0かつ全観測で未確定0ならdifferent。同Ref反復を全保存し、known非対応は元record wholeに残す。",
+        "identity_scope_owner_relation": "required_refと元record.refのidentity/scope/ownerの必要原memberを形成でき既知差があればdifferent、既知差なしで必要未形成ならunestablished、全対応ならcorresponding。revisionはこの列へ混ぜない。",
+        "membership_or_unknown": "当該profile/対象の必要対応成立下では原same_version_indices非emptyなら公開present。同版raw0のabsenceにはabsence_establishment=correspondingを要求し、それ以外はunestablished。独立partial rowはその原Read/全候補/unknownへ保持して既知原版出現を消さない。供給digest/source条件は私有digest_evaluation/known_eligible_same_version_indicesへ別保持し、原indices又は公開版存在を変更しない。",
+        "revision_relation": "元双方revisionが観測済みで同値ならcorresponding、既知差ならdifferent、片方未形成ならunestablished。identity/scope/owner差を同版候補へ移送しない。",
+        "supplied_digest_relation": "knowledge_digest_writerでrequired Ref→当該KnowledgeRecord.source_ref→対応SourceEnvelope.ref.sha256の宣言値比較を行い、同sourceの元source_digest check観測を別に保持する。source checkからrequired Ref比較済みとみなさない。未供給digestは追加必要条件にせず、当該witnessの必要source/digest未形成だけを局所unknownへ。",
+        "version_vs_body_integrity": "版indexと公開judgmentは当該field/identity/scope/owner/revisionの原Ref入力内出現観測。knowledge witnessのsource_ref未供給、必要digest差/未観測又は元source integrity/資格未成立は私有条件へ保持し、原版存在をabsence/unestablishedへ変換しない。一方profile自身の意味資料source/body/資格・owner/field/subject/frame未成立は公開判断に必要な局所profile対応未成立として保持する。"
+      },
+      "limits": [
+        "設計候補であり候補reader/lookup/codec/validator/CIは実行していない。",
+        "基本sourceの固定履歴と現行bindingを分ける。本詳細候補の実装/動的検証/全義務の意味完了は未成立。",
+        "一般閉型/全declared branch writerを規定したが全入力domainの網羅的oracle又は到達可能性証明ではない。",
+        "同decode成功のraw/detailed diagnosticsは型付きwhole保存を指定。全CoreNumber/token/codec失敗source/provider実資格の動的oracleは未行使。",
+        "既存callerの保持先とopaque post-returnへの接続は同じ詳細差分で定義するが、実caller/recipient/BRAIN配送/OS受領・記録は未実証。",
+        "digest/witness/bodyの原値は旧16例と追加3例で保持し、公開の原版存在と私有のsource/digest条件を分離する。有限著述を全private helper/全数値域/実fn0/実資格/製品caller実行の成功へ昇格しない。"
+      ],
+      "logical_native_mapping": {
+        "core_json_numbers": "元native CoreJsonValueはstrict int(bool除外)又はCoreNumberをJSON numberとして許す既存profileをそのまま使う。profile_version=1は既存typed_core_json_equal/数学値条件で照合し、1.0/1e0等の同整数値を文字列やhost class差だけで別版にしない。generated indicesは既存Natural。",
+        "dedicated_view_roots": "局所2 rootはInputScopeLocationへ対応。validation_returnは同D全体、validation_inputはnative原raw又はsame_decodeのdecode.value。既存ValidationDetailedReturn内のvalidation_raw等7rootはその既存Read型のままwhole保存し、局所Readへcastしない。L4 logical原rawへの対応をNative OriginalRawInput二枝で明示する。",
+        "fixture_numbers": "対L9の旧3＋新2固定fixtureの論理数値/整数literalは本5例の格納/canonical境界だけでstrict int native表現を許す。一般CoreJsonValue/CoreNumber/token traceを狭めない。L9 literalをnative host値へcast済み又はcodec成功とは認定しない。",
+        "logical_validation_return": "L4 ValidationDetailPortReturnを現ValidationDetailedReturnが実現する。同fn0で得たnative wholeを無変換保持し、logical JSON treeをnative CoreDecodeOrigin/CoreNumberへcastしない。",
+        "source_pins": "固定sourceはmain10f925e5のexact file bytes/pointer。99e94483の4同fileから全bytes不変を静的確認。将来formal target treeのcurrent binding又は次revisionとは分離。"
+      },
+      "lookup_internal_member_writer": {
+        "collection_read": "同LookupRequest.collection_read全値。",
+        "corresponding_indices": "既存Ref対応でcorrespondingになった実元index全列。",
+        "outcome": "上記有限優先列の一値。任意caller bool入力ではない。",
+        "resolution": "上記lookup_outcome_writerの閉shape。unestablished.observed_occurrencesは二index群の元順和（同出現を一度だけ、別原反復は全保持）。",
+        "target_ref_read": "同LookupRequest.target_ref_read全値。",
+        "unestablished_indices": "対応可否未形成の実元index全列。既知別Refは含めないが元collection全値に残す。"
+      },
+      "lookup_outcome_writer": [
+        {
+          "condition": "target_ref_readの必要Ref値が未形成。",
+          "outcome": "target_unestablished",
+          "priority": 0,
+          "resolution": "unestablished。collection whole及び観測済みの対応可能性未確定候補を元順で保持。"
+        },
+        {
+          "condition": "targetは形成可能だがcollection Readがpresent arrayでない。",
+          "outcome": "collection_unavailable",
+          "priority": 1,
+          "resolution": "unestablished。collection原Readとobserved_occurrences=[]を保持。[]はcollection空の判定ではない。"
+        },
+        {
+          "condition": "原全列の既知対応出現が2件以上。",
+          "outcome": "multiple_corresponding_occurrences",
+          "priority": 2,
+          "resolution": "unestablished。既知対応及び対応可能性未確定の全候補を原順で保持。"
+        },
+        {
+          "condition": "上記以外で対応可能性が未確定の原出現が一件以上。",
+          "outcome": "correspondence_unestablished",
+          "priority": 3,
+          "resolution": "unestablished。既知対応及び未確定全候補を元順で保持。"
+        },
+        {
+          "condition": "既知対応一件、未確定候補0件。",
+          "outcome": "located",
+          "priority": 4,
+          "resolution": "located.index=当該実原index、read=そのwholeの実Read。"
+        },
+        {
+          "condition": "形成targetと原配列全観測の下で既知対応0、未確定候補0。",
+          "outcome": "no_corresponding_occurrence",
+          "priority": 5,
+          "resolution": "unestablished。元collection wholeと空候補を保持。不存在/definition missingへ昇格しない。"
+        }
+      ],
+      "native_source_observation_projection": {
+        "native_projection_gap": "論理とnativeの表現差を本closureの一方向read-only viewで具体化する技術選定。通常dict逆castを避け、実現済み/実実行済みとは認定しない。",
+        "typed_internal": "InputScopeSourceObservationResolutionは既存ValidationSourceObservationそのものをwhole保持する。新Viewのsource_observation_resolutionは基本logical形を満たすため既存native source行の全memberをlogical JSON nodeとして観測したReadを表す。",
+        "writer": "下記native_structural_view_contractで既存型を全memberごとに対応し、CoreNumberをopaque numeric atomのまま保つ。同元行を通常objectに発行し直したsourceではなくread-onlyな全値viewとして扱う。"
+      },
+      "native_structural_view_contract": {
+        "alias_boundary": "read-only構造viewはnative typed recordを普通dictとして受理するcastではない。元型から各宣言memberを明示出力する方向の私有表現対応であり、原ValidationDetailedReturnそのものは無変換保持する。view上node所在は同Dの対応structural memberを指し、host class同一性又は新source/body発行を主張しない。",
+        "all_members": "上記20元型のexact definitionと各closed member/union branch writerが本viewの全域。partial carrierは固定schema供給presenceだけ、CoreJsonValueは無変換の停止leaf。既存declared root enum7、CauseKind、CheckResultのliteral全列をそのまま保持する。",
+        "closure": "既存依存型closureの生成memberは当該exact L5定義をそのままimportする。一般object dump/json.loads/float化を使わない。JSON numberの法則はnumeric_predicatesのみ。",
+        "consumer": "source_observation_resolution.read/collection_readの基本Read<CoreJsonValue>へのnative具体化だけ。元native行wholeはDとinternal native_source_observation_resolutionへ保持。",
+        "direction": "native型からのread-only構造viewだけ。任意dictからnative closed-record又はCoreNumberへの逆castは許さず、fn0/providerの再実行又は資格成功を生成しない。",
+        "input_types": [
+          "ValidationSourceObservation",
+          "ValidationSourceObservations",
+          "SourceCheck",
+          "SourceUsability",
+          "QualificationObservation",
+          "RootObservation",
+          "Cause",
+          "CheckOperand",
+          "Location",
+          "Read<CoreJsonValue>"
+        ],
+        "limit": "このexplicit total viewは今回選ぶ詳細技術表現であり、既存runtimeに実装済みとはしない。native構造viewの実現/動的照合は未実行。",
+        "mapping": "各既存closed_recordは宣言memberを全保存するobject view、tagged_unionは実tagとその枝の全member、元配列は全原順/反復、原CoreJsonValueは無変換。CoreRef/SourceEnvelope等partial carrierは元供給key集合だけ保持する。Location.root/pointerは原literal/stringのまま。追加wrapper/型名/tag/省略/null補完なし。CoreNumberは既存CoreJsonValueのnumber atomであり構造objectへ展開しない。",
+        "root": "validation_return/source_observations/source_occurrences以下のstructural nodeは同typed Dの対応memberのviewを意味する。原D全値とprojectionの型対応を保持し、別snapshotを作らない。",
+        "root_mapping": "既存Dの7rootを保持したRead全値をobject view内へ載せても、その既存rootを局所2rootへ正規化しない。新readerが行wholeを読む外側locationだけvalidation_return:/source_observations/source_occurrences/{k}になる。",
+        "type_member_closure": [
+          {
+            "exact_source_definition": {
+              "kind": "closed_record",
+              "members": {
+                "causes": "Cause[]",
+                "qualifications_read": "Read<CoreQualification[]>",
+                "roots_read": "Read<CoreRef[]>",
+                "source_occurrences": "ValidationSourceObservation[]",
+                "sources_read": "Read<CoreSourceEnvelope[]>"
+              }
+            },
+            "member_writers": [
+              {
+                "input_type": "Read<CoreSourceEnvelope[]>",
+                "output_member": "sources_read",
+                "source_member": "sources_read",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "Read<CoreQualification[]>",
+                "output_member": "qualifications_read",
+                "source_member": "qualifications_read",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "Read<CoreRef[]>",
+                "output_member": "roots_read",
+                "source_member": "roots_read",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "ValidationSourceObservation[]",
+                "output_member": "source_occurrences",
+                "source_member": "source_occurrences",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "Cause[]",
+                "output_member": "causes",
+                "source_member": "causes",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              }
+            ],
+            "native_type": "ValidationSourceObservations",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/ValidationSourceObservations",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "2415517f93248c95ee8943409bf28b46d729f05d07294993e5a028cc2cc34e48"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "closed_record",
+              "members": {
+                "causes": "Cause[]",
+                "checks": "SourceCheck[]",
+                "locator": "Location",
+                "original_source": "CoreSourceEnvelope",
+                "qualification_occurrences": "QualificationObservation[]",
+                "qualification_ref": "Read<CoreRef|null>",
+                "source_index": "Natural",
+                "usability": "SourceUsability"
+              }
+            },
+            "member_writers": [
+              {
+                "input_type": "Natural",
+                "output_member": "source_index",
+                "source_member": "source_index",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "Location",
+                "output_member": "locator",
+                "source_member": "locator",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "CoreSourceEnvelope",
+                "output_member": "original_source",
+                "source_member": "original_source",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "Read<CoreRef|null>",
+                "output_member": "qualification_ref",
+                "source_member": "qualification_ref",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "QualificationObservation[]",
+                "output_member": "qualification_occurrences",
+                "source_member": "qualification_occurrences",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "SourceCheck[]",
+                "output_member": "checks",
+                "source_member": "checks",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "SourceUsability",
+                "output_member": "usability",
+                "source_member": "usability",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "Cause[]",
+                "output_member": "causes",
+                "source_member": "causes",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              }
+            ],
+            "native_type": "ValidationSourceObservation",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/ValidationSourceObservation",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "5ce660179bbe606ea5c7d3f379e4718e46e5372ad1330bedac918ef6446032c8"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "closed_record",
+              "members": {
+                "causes": "Cause[]",
+                "checks": "SourceCheck[]",
+                "locator": "Location",
+                "original_qualification": "CoreQualification",
+                "qualification_index": "Natural",
+                "root_occurrences": "RootObservation[]",
+                "root_ref": "Read<CoreRef>"
+              }
+            },
+            "member_writers": [
+              {
+                "input_type": "Natural",
+                "output_member": "qualification_index",
+                "source_member": "qualification_index",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "CoreQualification",
+                "output_member": "original_qualification",
+                "source_member": "original_qualification",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "Location",
+                "output_member": "locator",
+                "source_member": "locator",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "Read<CoreRef>",
+                "output_member": "root_ref",
+                "source_member": "root_ref",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "RootObservation[]",
+                "output_member": "root_occurrences",
+                "source_member": "root_occurrences",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "SourceCheck[]",
+                "output_member": "checks",
+                "source_member": "checks",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "Cause[]",
+                "output_member": "causes",
+                "source_member": "causes",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              }
+            ],
+            "native_type": "QualificationObservation",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/QualificationObservation",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "ca8fa88a84c331dae2513a5d0e43a299b2b6597ae5c0b203000023acfb65b6ee"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "closed_record",
+              "members": {
+                "causes": "Cause[]",
+                "checks": "SourceCheck[]",
+                "locator": "Location",
+                "original_root": "CoreRef",
+                "root_index": "Natural"
+              }
+            },
+            "member_writers": [
+              {
+                "input_type": "Natural",
+                "output_member": "root_index",
+                "source_member": "root_index",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "CoreRef",
+                "output_member": "original_root",
+                "source_member": "original_root",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "Location",
+                "output_member": "locator",
+                "source_member": "locator",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "SourceCheck[]",
+                "output_member": "checks",
+                "source_member": "checks",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "Cause[]",
+                "output_member": "causes",
+                "source_member": "causes",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              }
+            ],
+            "native_type": "RootObservation",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/RootObservation",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "192f902066669399435fd16f44d1a9b42f464749375672a1fbd7933645027f62"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "closed_record",
+              "members": {
+                "causes": "Cause[]",
+                "kind": "SourceCheckKind",
+                "left": "CheckOperand",
+                "result": "CheckResult",
+                "right": "CheckOperand",
+                "rule_pointer": "JSONPointer"
+              }
+            },
+            "member_writers": [
+              {
+                "input_type": "SourceCheckKind",
+                "output_member": "kind",
+                "source_member": "kind",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "CheckResult",
+                "output_member": "result",
+                "source_member": "result",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "CheckOperand",
+                "output_member": "left",
+                "source_member": "left",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "CheckOperand",
+                "output_member": "right",
+                "source_member": "right",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "JSONPointer",
+                "output_member": "rule_pointer",
+                "source_member": "rule_pointer",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "Cause[]",
+                "output_member": "causes",
+                "source_member": "causes",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              }
+            ],
+            "native_type": "SourceCheck",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/SourceCheck",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "da6a97dd934b6eecea8eeafbaab9a068aa27c2a67b52b14e967048f3bcf49e8d"
+          },
+          {
+            "branch_writers": [
+              {
+                "branch": "usable",
+                "member_writers": [
+                  {
+                    "input_type": "Natural[]",
+                    "output_member": "check_indices",
+                    "source_member": "check_indices",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  },
+                  {
+                    "input_type": "Natural[]",
+                    "output_member": "qualification_indices",
+                    "source_member": "qualification_indices",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  }
+                ],
+                "tag_writer": "元tagを同literalで保持。"
+              },
+              {
+                "branch": "unusable",
+                "member_writers": [
+                  {
+                    "input_type": "Cause[]",
+                    "output_member": "causes",
+                    "source_member": "causes",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  }
+                ],
+                "tag_writer": "元tagを同literalで保持。"
+              },
+              {
+                "branch": "unestablished",
+                "member_writers": [
+                  {
+                    "input_type": "Cause[]",
+                    "output_member": "causes",
+                    "source_member": "causes",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  }
+                ],
+                "tag_writer": "元tagを同literalで保持。"
+              }
+            ],
+            "exact_source_definition": {
+              "kind": "tagged_union",
+              "meaning_boundary": "全枝の評価scopeは/f05_detail_contract/source_observation_contract/assessment_scopeに限定する。usableは供給独立root責務を前提とする局所原資料照合成立であり実origin authenticationではない。必要原operand未取得のunestablishedと外部実trust取得口未閉包は別境界。 roleを含むlocal semantic-use分類であり、公開ValidatedApplication.unusable_source_refsはvalidation_cause_diagnostic_contract/public_validation_projectionによる同原材料の別投影である。",
+              "tag": "tag",
+              "variants": {
+                "unestablished": {
+                  "causes": "Cause[]"
+                },
+                "unusable": {
+                  "causes": "Cause[]"
+                },
+                "usable": {
+                  "check_indices": "Natural[]",
+                  "qualification_indices": "Natural[]"
+                }
+              }
+            },
+            "native_type": "SourceUsability",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/SourceUsability",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "06eed20c7b4a773b1b7b1fa51b7ff12082609dff6a2a6eb67bb357dd7ef29e75"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "closed_record",
+              "members": {
+                "kind": "CauseKind",
+                "left": "CheckOperand",
+                "right": "CheckOperand",
+                "rule_pointer": "JSONPointer",
+                "target": "Location"
+              }
+            },
+            "member_writers": [
+              {
+                "input_type": "CauseKind",
+                "output_member": "kind",
+                "source_member": "kind",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "Location",
+                "output_member": "target",
+                "source_member": "target",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "CheckOperand",
+                "output_member": "left",
+                "source_member": "left",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "CheckOperand",
+                "output_member": "right",
+                "source_member": "right",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "JSONPointer",
+                "output_member": "rule_pointer",
+                "source_member": "rule_pointer",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              }
+            ],
+            "native_type": "Cause",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/Cause",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "3be43e03de6360c1067a7b7bdc0d8c631ab8ef04d847c99d1cb09166fd9451d0"
+          },
+          {
+            "branch_writers": [
+              {
+                "branch": "original",
+                "member_writers": [
+                  {
+                    "input_type": "Read<CoreJsonValue>",
+                    "output_member": "read",
+                    "source_member": "read",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  }
+                ],
+                "tag_writer": "元tagを同literalで保持。"
+              },
+              {
+                "branch": "normative_literal",
+                "member_writers": [
+                  {
+                    "input_type": "CoreJsonValue",
+                    "output_member": "value",
+                    "source_member": "value",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  },
+                  {
+                    "input_type": "JSONPointer",
+                    "output_member": "rule_pointer",
+                    "source_member": "rule_pointer",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  }
+                ],
+                "tag_writer": "元tagを同literalで保持。"
+              }
+            ],
+            "exact_source_definition": {
+              "kind": "tagged_union",
+              "tag": "tag",
+              "variants": {
+                "normative_literal": {
+                  "rule_pointer": "JSONPointer",
+                  "value": "CoreJsonValue"
+                },
+                "original": {
+                  "read": "Read<CoreJsonValue>"
+                }
+              }
+            },
+            "native_type": "CheckOperand",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/CheckOperand",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "7186ec691880940123622f6370e1073ff294d776640020576dfccc6cf656c53a"
+          },
+          {
+            "branch_writers": [
+              {
+                "branch": "present",
+                "member_writers": [
+                  {
+                    "input_type": "Location",
+                    "output_member": "location",
+                    "source_member": "location",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  },
+                  {
+                    "input_type": "$T",
+                    "output_member": "value",
+                    "source_member": "value",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  }
+                ],
+                "tag_writer": "元tagを同literalで保持。"
+              },
+              {
+                "branch": "absent",
+                "member_writers": [
+                  {
+                    "input_type": "Location",
+                    "output_member": "requested",
+                    "source_member": "requested",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  },
+                  {
+                    "input_type": "Location",
+                    "output_member": "parent",
+                    "source_member": "parent",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  },
+                  {
+                    "input_type": "CoreJsonValue",
+                    "output_member": "parent_value",
+                    "source_member": "parent_value",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  }
+                ],
+                "tag_writer": "元tagを同literalで保持。"
+              },
+              {
+                "branch": "unreached",
+                "member_writers": [
+                  {
+                    "input_type": "Location",
+                    "output_member": "requested",
+                    "source_member": "requested",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  },
+                  {
+                    "input_type": "Location",
+                    "output_member": "reached",
+                    "source_member": "reached",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  },
+                  {
+                    "input_type": "CoreJsonValue",
+                    "output_member": "reached_value",
+                    "source_member": "reached_value",
+                    "writer": "同実枝のこのmember wholeを対応viewへ保持。別枝member/default/nullを追加しない。"
+                  }
+                ],
+                "tag_writer": "元tagを同literalで保持。"
+              }
+            ],
+            "exact_source_definition": {
+              "kind": "tagged_union",
+              "tag": "tag",
+              "variants": {
+                "absent": {
+                  "parent": "Location",
+                  "parent_value": "CoreJsonValue",
+                  "requested": "Location"
+                },
+                "present": {
+                  "location": "Location",
+                  "value": "$T"
+                },
+                "unreached": {
+                  "reached": "Location",
+                  "reached_value": "CoreJsonValue",
+                  "requested": "Location"
+                }
+              }
+            },
+            "native_type": "Read",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/Read",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "9bf82653b27dc972e1bc0a111b90537fbfc5067e37eed1207da0c67e551c62ef"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "closed_record",
+              "members": {
+                "pointer": "JSONPointer",
+                "root": "OriginRoot"
+              }
+            },
+            "member_writers": [
+              {
+                "input_type": "OriginRoot",
+                "output_member": "root",
+                "source_member": "root",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              },
+              {
+                "input_type": "JSONPointer",
+                "output_member": "pointer",
+                "source_member": "pointer",
+                "writer": "同実native recordのこのmemberを型対応どおり全値viewへ保持。順/原literal/partial presence/numeric atomは変えない。"
+              }
+            ],
+            "native_type": "Location",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/Location",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "98848b1fccd46f3eee52cc2b65ebb3d9b83cd9884b8718e2a5a436b6192106a6"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "enum",
+              "values": [
+                "validation_raw",
+                "validation_input",
+                "validation_source_observations",
+                "f05_request",
+                "f05_return",
+                "caller_inputs",
+                "caller_return"
+              ]
+            },
+            "native_type": "OriginRoot",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/OriginRoot",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "55355c269716f9577ca1bb0bdd6ed117dfa32cbaaa818e0d7a91a8acda1175af",
+            "writer": "元literal全値を保持。新enum値/別tag/成功分類を生成しない。"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "enum",
+              "values": [
+                "content_bytes_body",
+                "source_digest",
+                "source_role",
+                "qualification_ref",
+                "qualification_subject",
+                "qualification_digest",
+                "qualification_owner",
+                "qualification_scope",
+                "qualification_root_ref",
+                "root_owner",
+                "root_subject_revision_scope"
+              ]
+            },
+            "native_type": "SourceCheckKind",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/SourceCheckKind",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "d2fc910d3e0aef13d09c4d211d28d364f24eb380ff2335522ec5ac8e2f54bcb3",
+            "writer": "元literal全値を保持。新enum値/別tag/成功分類を生成しない。"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "enum",
+              "values": [
+                "corresponding",
+                "different",
+                "unestablished",
+                "not_applicable"
+              ]
+            },
+            "native_type": "CheckResult",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/CheckResult",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "bd916414fee3776c3365560eb49f5fb52a3a8d320b7260dc3179523781a5b1a6",
+            "writer": "元literal全値を保持。新enum値/別tag/成功分類を生成しない。"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "enum",
+              "values": [
+                "input_unobserved",
+                "target_unformed",
+                "source_unresolved",
+                "source_unusable",
+                "source_body_mismatch",
+                "body_unformed",
+                "target_mismatch",
+                "owner_binding_unestablished",
+                "owner_mismatch",
+                "statement_source_conflict",
+                "content_unresolved",
+                "proposition_operand_unresolved",
+                "constraint_mismatch",
+                "aggregation_unestablished",
+                "declaration_unresolved",
+                "projection_unformed",
+                "context_unformed",
+                "header_unformed",
+                "return_unobserved",
+                "call_unobserved",
+                "native_leaf_unformed",
+                "selection_unestablished"
+              ]
+            },
+            "native_type": "CauseKind",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/CauseKind",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "ee5d0f2394174471031d92e3c81a8ac4b5ee796829acff05b570a7849489ff09",
+            "writer": "元literal全値を保持。新enum値/別tag/成功分類を生成しない。"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "existing_type",
+              "pointer": "/type_contract/types/Natural"
+            },
+            "native_type": "Natural",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/Natural",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c",
+            "writer": "既存宣言のleafを全値保持。Naturalは元strict int>=0、JSONPointerは元string、CoreJsonValueは無変換の原JSON値。CoreNumberはnumber atomのまま。"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "existing_type",
+              "pointer": "/type_contract/types/JSONPointer"
+            },
+            "native_type": "JSONPointer",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/JSONPointer",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "c3f640125287565611f42a3ce0f4fe26b8ff4167de9c7fc7e91082998651eaac",
+            "writer": "既存宣言のleafを全値保持。Naturalは元strict int>=0、JSONPointerは元string、CoreJsonValueは無変換の原JSON値。CoreNumberはnumber atomのまま。"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "partial_carrier",
+              "native_leaf_type": "CoreJsonValue",
+              "schema_pointer": "/wire_codec_contract/schema/$defs/Ref",
+              "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+            },
+            "native_type": "CoreRef",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/CoreRef",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "56913bce08ec0d8ce7765564c7c358b275e3a5796e20be785ccacf458a7e6998",
+            "wire_schema_source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/wire_codec_contract/schema/$defs/Ref",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "writer": "既存schemaで供給されたmember集合をそのまま保持。CoreJsonValue/Ref等の既存native対応だけ。未供給をnull/defaultへしない。"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "partial_carrier",
+              "native_leaf_type": "CoreJsonValue",
+              "schema_pointer": "/wire_codec_contract/schema/$defs/SourceEnvelope",
+              "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+            },
+            "native_type": "CoreSourceEnvelope",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/CoreSourceEnvelope",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "e003022cbf869229b315bbc3c902d73e7977d7160c2f6ab36a019f8d45b2ecfc",
+            "wire_schema_source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/wire_codec_contract/schema/$defs/SourceEnvelope",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "writer": "既存schemaで供給されたmember集合をそのまま保持。CoreJsonValue/Ref等の既存native対応だけ。未供給をnull/defaultへしない。"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "partial_carrier",
+              "native_leaf_type": "CoreJsonValue",
+              "schema_pointer": "/wire_codec_contract/schema/$defs/Qualification",
+              "supply_rule": "既存schemaの供給されたmemberだけ。同schemaのRef/Binding等への参照はCore接頭型へ対応し、RawValueだけCoreJsonValueへ対応する。全未供給memberは省略。required集合は追加しない。"
+            },
+            "native_type": "CoreQualification",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/CoreQualification",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "db92b2c8b14f222eec6f1889d33dfb1b33e229e515a020f7c25c95b3f425ad5c",
+            "wire_schema_source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/wire_codec_contract/schema/$defs/Qualification",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "writer": "既存schemaで供給されたmember集合をそのまま保持。CoreJsonValue/Ref等の既存native対応だけ。未供給をnull/defaultへしない。"
+          },
+          {
+            "exact_source_definition": {
+              "kind": "existing_type",
+              "pointer": "/wire_codec_contract/numeric_encode_profile/private_host_types/CoreJsonValue"
+            },
+            "native_type": "CoreJsonValue",
+            "source": {
+              "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/types/CoreJsonValue",
+              "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+            },
+            "whole_definition_canonical_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2",
+            "writer": "既存宣言のleafを全値保持。Naturalは元strict int>=0、JSONPointerは元string、CoreJsonValueは無変換の原JSON値。CoreNumberはnumber atomのまま。"
+          }
+        ]
+      },
+      "occurrence_writer": {
+        "common": "同roleのtarget_ref_read/collection_read wholeを取得し、対応候補と対応未確定候補の実index/実Readだけを原順で保持する。Ref対応は既存identity/revision/scope/owner及び供給digest条件、source_locator非identity、既存native typed equality。必要identity/revision/scope/owner未形成は対応未確定で、partial同値だけでlocatedにしない。原known別subjectもcollection_read/D wholeに保持。",
+        "field_input_resolution": "同profile.meaning.field_refと/validated/input/field_inputs各原refを対応させる。下記lookup_outcome_writerを適用し、located時だけ同indexのfield whole/子member Readを取得する。field/template/full bindingは取得所在と別guardで保存する。",
+        "gap_proposal_resolution": "profile.meaning.proposal_refと/validated/input/gap_proposalsの原refを対応させる。subject_ref/原binding/当該field関係を後段guardへ保持し、proposal.kind/backflow_owner/source_refsを判定oracle又は全体gateにしない。",
+        "source_envelope_resolution": "profile候補SemanticRecord.source_refを元/validated/input/sources各refへ対応させる。located.indexはsources原配列の実indexでreadは当該whole。",
+        "source_observation_resolution": "source_envelope_resolution.locatedの実sources index sと同source wholeに対応するD.source_observations.source_occurrencesの実rowを全出現から保持。row.source_index=sかつrow.original_sourceが原source wholeに対応した一件だけlocatedとし、indexはsource_occurrences配列の実index k。s=kを仮定しない。0/複数/部分対応はunestablishedで元row候補を全保持。source未特定時も同collection wholeを保持し架空s/kを作らない。"
+      },
+      "paired_verification_ref": "HARNESS-L8-009-F05-INPUT-SCOPE-KNOWLEDGE-GAP-NATIVE",
+      "post_return_boundary": "本D入力reader及び独立検証graphは実F05ProducerReturn/Formation/ReturnLinkを引数・返却へ導入しない。現L4の別post-returnは有限outer-unformed oracleを持ち、製品callerから同実outer値を渡す型接続を別writerへ結ぶ。全formed枝/全原因/実RecipientMaterial/BRAIN配送/受領は未実証。",
+      "profile_constants": {
+        "kind": "f05_knowledge_revision_gap_evidence",
+        "profile_id": "f05_knowledge_revision_gap_evidence",
+        "profile_version": 1
+      },
+      "profile_constants_source": {
+        "file_sha256": "7e644295f051a96915ee625ff2e2d29833c7ab6e1d65bea1fb6ebfa863bba89e",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/input_scope_knowledge_gap_contract/input_only_contract/profile_interpretation_boundary/finite_profile_identifier",
+        "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+      },
+      "profile_evaluation_member_writer": {
+        "body_relation": "同原sourceのbody.recordsを観測し対象の原collection/ref/payload対応が形成された場合だけcorresponding。対象候補に既知差があればdifferent、既知差無しで不足/曖昧/未形成があればunestablished。異本文/反復/未知追加payloadを勝手に捨てず全rawを保持。payload対応の既存presence規則だけを使う。",
+        "body_resolution": "source未特定ならsource_unestablished{source_resolution:同原source resolution全値}だけ。実source locatedならsource_located.source_index=実sources index、records_read=同実source/body/recordsのRead、occurrences=実body.records中の対応又は対応未確定原候補。全rawはD wholeへ保存。各実occurrenceの三guardは下記body_member_writer。",
+        "field_lookup": "同meaning.field_ref Read及びinput.field_inputs Readを渡した局所LookupResult whole。",
+        "judgment": "judgment_writerの原版出現3enumを全値保持。profile自身の必要元対応未形成はunestablished。knowledge witnessのdigest/source私有条件とは別列であり、presentから資格/integrity成功を生成しない。",
+        "kind_guard": "leftは実SemanticRecord.kind Read、rightはnormative.value=profile_constants.kind、right.rule_pointer及びguard.rule_pointerは本block/profile_constants/kindの実node。",
+        "knowledge_membership": "全原occurrence/原indices/各digest全Evaluation/known_eligible_same_version_indices/absence_establishmentを含むKnowledgeMembership whole。独立unknownを消さず当該profile必須対応とwitness局所条件を別に保持する。",
+        "native_source_observation_resolution": "対応原source indexと同fn0実source-occurrence rowを使い、typed Internal専用resolutionへ原wholeを保持。実row配列indexとsource_indexを区別し0/複数はunestablishedで全候補を保存。",
+        "owner_relation": "既存L4 role_owner_binding.common/definitionの元wrapper/source/資格及び当該field.template_ref、非null binding.knowledge_ref又は供給され対応する局所definition Refの意味owner関係。新owner/registry/delegationを作らず、field.ref.owner一律一致やBRAIN文字列のみで裁定しない。必要な元owner対応未形成→unestablished、全供給当該roleと既知差→different。",
+        "profile_field_relation": "profile.field_ref/template_refと実field.ref/template_refを既存Ref条件で照合。field未特定又は必要member未形成はunestablished。scope6軸と別元profile直接対応を落とさない。",
+        "profile_id_guard": "leftは同meaning/profile_id Read、rightはnormative.value=profile_constants.profile_id及び本block/profile_constants/profile_id pointer。",
+        "profile_version_guard": "leftは同meaning/profile_version Read、rightはnormative.value=profile_constants.profile_version及び同実pointer。既存typed equalityでJSON number1を比較し、boolをnumberへcastしない。",
+        "proposal_lookup": "同meaning.proposal_ref Read及びinput.gap_proposals Readを渡した局所LookupResult whole。",
+        "proposal_subject_binding_relation": "実GapProposal.ref対profile.proposal_ref、subject_ref対実field.ref、binding対同field.bindingをcommon_target_guardsで照合。実proposal未取得又は必要元member未形成→unestablished、既知差→different。proposal.source_refs/kind/reason/recipient文字列を新gateにしない。",
+        "scope_relation": "scope_writerの7operand/6tuple/aggregate whole。",
+        "semantic_record_index": "同ProfileRequestの実原index。",
+        "source_lookup": "同source_ref Read及びinput.sources Readを渡した局所LookupResult whole。",
+        "source_observation_relation": "source_observation_resolutionの対応一意ならcorresponding、実rowのsource_index又はoriginal_source既知差ならdifferent、未観測/未一意ならunestablished。",
+        "source_observation_resolution": "同typed native_source_observation_resolutionの行/配列の全memberをnative_structural_view_contractでread-only構造viewへ対応し、基本InputScopeOccurrenceResolutionの形にする。located.readは実row indexのRead、unestablished.collection_readは同source_occurrences原列のRead。未特定row indexを作らない。",
+        "source_semantic_usability": "対応する同fn0 SourceObservation.usability.tagがusableならcorresponding、unusableならdifferent、unestablished又は対応未形成ならunestablished。全checks/原因はD wholeへ保持。public unusable_source_refs=[]から補わず資格を再実行しない。"
+      },
+      "profile_observation_leaf_writer": [
+        {
+          "member": "semantic_record_index",
+          "writer": "同semantic_records配列の実出現index。strict generated Natural。"
+        },
+        {
+          "member": "semantic_record_read",
+          "writer": "/validated/input/semantic_records/{s}の原whole。"
+        },
+        {
+          "member": "profile_body_read",
+          "writer": "同record/meaningの原Read。型外/欠落も保持する。"
+        },
+        {
+          "member": "source_ref_read",
+          "writer": "同record/source_refの原Read。Ref型へ無断castしない。"
+        },
+        {
+          "member": "source_envelope_resolution",
+          "writer": "occurrence_writer.source_envelope_resolutionの全返却。"
+        },
+        {
+          "member": "source_observation_resolution",
+          "writer": "occurrence_writer.source_observation_resolutionの全返却。"
+        },
+        {
+          "member": "field_input_resolution",
+          "writer": "occurrence_writer.field_input_resolutionの全返却。"
+        },
+        {
+          "member": "gap_proposal_resolution",
+          "writer": "occurrence_writer.gap_proposal_resolutionの全返却。"
+        },
+        {
+          "member": "required_knowledge_ref_read",
+          "writer": "同record/meaning/required_knowledge_refの原Read。field.binding又は隣接Refから補完しない。"
+        },
+        {
+          "member": "actual_knowledge_collection_read",
+          "writer": "/validated/input/knowledge_recordsの原Read whole。[]/absence/null/未到達を別保持。"
+        },
+        {
+          "member": "actual_scope_knowledge_indices",
+          "writer": "knowledge_membership.actual_scope_indicesの全値。field未特定なら[]と原collection/専用failure枝を併記。"
+        },
+        {
+          "member": "same_required_version_identity_scope_owner_indices",
+          "writer": "knowledge_membership.same_version_indicesの全値。identity/versionとdigest/source_locatorの役割を分離し反復保持。"
+        },
+        {
+          "member": "scope_relation",
+          "writer": "scope_writerの4 InputScopeRead＋3 InputScopeFieldOperandRead/6tuple/aggregate全値。"
+        },
+        {
+          "member": "judgment",
+          "writer": "judgment_writerの3enumのいずれか。"
+        },
+        {
+          "member": "recipient_projection",
+          "writer": "固定not_performed_by_input_reader。recipient又はReturnLinkを生成しない。"
+        }
+      ],
+      "read_writer": {
+        "absent": "requested、実object parent所在、parent wholeを全保持。array lookup miss又は未特定fieldにchild absentを作らない。",
+        "collection": "配列の全原index/順/反復を保持する。absentとpresent(null/type外)とunreachedを別保存し、観測不能を[]へ変換しない。0候補は原配列wholeを伴う局所lookup結果である。",
+        "path": "memberは元object key、indexは原配列の実出現index。objectでkey欠落だけabsent、object以外/null/数値/配列外index/途中未到達では最後の実nodeをreachedとしてunreached。全requested pathを保持する。CoreNumberはJSON numberの原子であり普通object memberを持つ値として探索しない。",
+        "present": "実nodeの全native原値/presenceを保持する。null/false/0/空文字/[]/{}もpresent。private numeric token/exact-valueを普通JSON objectへ変換しない。",
+        "root": "生成semantic Readsはvalidation_return、/validated/input又は/source_observations/source_occurrencesの実nodeへ相対する。原D内既存Readは旧rootを変更せずwhole保持。validation_input局所rootは同原raw wholeだけでありinput=nullからsemantic inputを復元しない。",
+        "unreached": "requested、最後に実在したreached、reached wholeを保持。欠落した中間memberそのものへ架空nodeを作らず最後の実parentを用いる。"
+      },
+      "reader_internal_dataflow": [
+        {
+          "input": "InputScopeKnowledgeGapRequest.validation_detail_return=d whole",
+          "output": "View.validation_detail_return=d whole",
+          "retention": "input_issues/unusable_source_refs/原raw/same_decode全診断を無変換保持。",
+          "step": 1,
+          "when": "全枝"
+        },
+        {
+          "input": "d.validated.input",
+          "output": "input_unavailable 又は semantic_records Read",
+          "retention": "input=nullでrawからsemantic_recordsを逆生成しない。",
+          "step": 2,
+          "when": "input=nullなら固定reasonで返却、非nullなら実semantic_records原Read"
+        },
+        {
+          "argument": "{observations:d.source_observationsそのもの}",
+          "callee": "view_input_scope_source_observations",
+          "input": "d.source_observations",
+          "output": "原source観測型closureの全値view",
+          "retention": "元typed rowsもdとnative_source_observation_resolutionに保持。viewの内容からUsabilityを再裁定しない。",
+          "step": 3,
+          "when": "profile候補観測が必要な非null入力"
+        },
+        {
+          "argument": "{validation_detail_return:d,semantic_record_index:識別候補の実原index}",
+          "callee": "evaluate_input_scope_profile",
+          "input": "semantic_records実配列全列",
+          "output": "InputScopeProfileEvaluation whole",
+          "retention": "候補全順/反復を保持。未知原recordもsemantic_records_read wholeに保存。",
+          "step": 4,
+          "when": "実kind又はmeaning.profile_idが基本有限identifierに対応した元候補だけ"
+        },
+        {
+          "argument": "InputScopeKnowledgeDigestRequestの3member全値。外部check/expected/provider引数なし。",
+          "callee": "compare_input_scope_knowledge_reference_digest",
+          "input": "各profile局所knowledge occurrenceの同D/semantic実index/knowledge実index",
+          "output": "InputScopeKnowledgeDigestEvaluation wholeを同occurrence.digest_evaluationへ保持。",
+          "retention": "原raw版indices/known差/partial unknown/元SourceCheckを消さず、witness局所条件とabsenceを分離する。",
+          "step": "4a"
+        },
+        {
+          "input": "同d及び局所evaluation全値",
+          "output": "全15member ProfileObservation",
+          "retention": "raw/field/source/owner/subject/版の未成立を成功へ昇格せず、受取先又はReturnLinkを生成しない。",
+          "step": 5,
+          "when": "候補ごと、解釈不成立も含む"
+        },
+        {
+          "input": "全原semantic index/全候補観測列/元semantic_records Read",
+          "output": "scannedの全4member又は固定unresolved枝",
+          "retention": "reader View全値は独立graphでは既存return.viewへ、製品caller接続では同Dを既存validation、profile_scanを第7memberへ保持する。Dを再取得せず、F05公的APIを呼び替えない。",
+          "step": 6,
+          "when": "同reader invocation"
+        }
+      ],
+      "repair_source_basis": [
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/reference_resolution_contract/identity",
+          "revision": "83ad243ae78bc326292c247eb193c3512f29ed1a"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/reference_resolution_contract/body",
+          "revision": "83ad243ae78bc326292c247eb193c3512f29ed1a"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/source_observation_contract/checks/1",
+          "revision": "83ad243ae78bc326292c247eb193c3512f29ed1a"
+        },
+        {
+          "file_sha256": "37fef8fbebab5af5bffe5b3b4294470fd75c055b128848c933aec6e9798deb32",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/field_semantic_evidence_contract/common_target_guards/2",
+          "revision": "83ad243ae78bc326292c247eb193c3512f29ed1a"
+        },
+        {
+          "file_sha256": "37fef8fbebab5af5bffe5b3b4294470fd75c055b128848c933aec6e9798deb32",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/field_semantic_evidence_contract/common_target_guards/3",
+          "revision": "83ad243ae78bc326292c247eb193c3512f29ed1a"
+        },
+        {
+          "file_sha256": "37fef8fbebab5af5bffe5b3b4294470fd75c055b128848c933aec6e9798deb32",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/input_scope_knowledge_gap_contract/input_only_contract/ordered_writer/6",
+          "revision": "83ad243ae78bc326292c247eb193c3512f29ed1a"
+        },
+        {
+          "file_sha256": "37fef8fbebab5af5bffe5b3b4294470fd75c055b128848c933aec6e9798deb32",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/input_scope_knowledge_gap_contract/input_only_contract/comparison_axes_ja/knowledge_membership",
+          "revision": "83ad243ae78bc326292c247eb193c3512f29ed1a"
+        }
+      ],
+      "same_call_graph": [
+        {
+          "argument": "request.validation_inputそのもの",
+          "callee": "validate_application_input_detail",
+          "caller": "observe_application_input_scope_native",
+          "input": "request:InputScopeGraphRequest",
+          "return": "d:ValidationDetailedReturn全値を一回取得し保持。公開validate_application_input wrapperを重ねて呼ばない。",
+          "step": 1
+        },
+        {
+          "argument": "r:InputScopeKnowledgeGapRequest={validation_detail_return:d}。dの任意再構築/別call/cacheなし。",
+          "callee": "read_input_scope_knowledge_version_gap_native",
+          "caller": "同graph invocation",
+          "return": "view:InputScopeKnowledgeGapView whole。readerはd以外の期待/任意bool/provider/cacheを受けず、候補ごと局所ProfileEvaluationを同dから生成し15memberへ射影する。view.validation_detail_returnはd wholeを保持。",
+          "step": 2
+        },
+        {
+          "caller": "同graph invocation",
+          "output": "InputScopeGraphReturn={original_request:request whole,view:view whole}",
+          "retention": "consumerは返却.viewを取得でき、返却.view.validation_detail_returnはstep1の全返却、返却.original_request.validation_inputは実取得口の引数。Formationで包まず、input unavailable又はunestablished profileでもView wholeを保持する。",
+          "step": 3
+        }
+      ],
+      "scope_boundary": "既存F05DetailedRequest/Return、CallerInputs、OriginRoot、Formation、公開Comparison/Analysisと既存caller6memberの原値・生成責務は保持する。CoreApplicationDetailReturn第7memberとそのwriterは同じf05_detail_contract内のcaller接続差分が担当。本blockはD入力readerを提供し、独立input-only graphは既存2oracleの私有検証取得口として保持する。別の製品caller/公開L2 API/実装経路として重ねない。",
+      "scope_writer": {
+        "aggregate": "6結果にdifferentがあればdifferent、known差が無くunestablishedがあればunestablished、全対応ならcorresponding。これはprofileの対象scope対応であり本文integrity成功ではない。",
+        "axis_order": [
+          "input_ref_vs_supply_scope.input_ref",
+          "field_ref_vs_supply_scope.field_ref",
+          "template_ref_vs_supply_scope.template_ref",
+          "field_binding_vs_semantic_record.binding",
+          "field_binding_vs_profile.binding",
+          "field_binding_vs_supply_scope.binding"
+        ],
+        "axis_result": "基本common_target_guardsの各実左右Ref/Binding対応。第1軸は実input_ref対supply_scope.input_ref、第2/3軸は実field.ref/template_ref対scope.field_ref/template_ref、第4/5/6軸は実field.binding対SemanticRecord.binding/profile.binding/supply_scope.binding。必要requirement/product/process/application枠及びtemplate/knowledge/oracle元presence/供給版を照合し、双方partial{}の構文同値を意味形成へしない。欠落/null/未形成はunestablished、既知差はdifferent。新補完/必須digest gateはない。",
+        "field_failure": "新専用枝があるとfield依存5軸はunestablished。第1軸はその原operandから独立評価し、differentもcorrespondingも保持する。6tuple全値とaggregateを返す。",
+        "operands": {
+          "application_input_ref_read": "/validated/input/input_refの原Read",
+          "field_input_binding_read": "同実f/binding又は専用枝(field.binding)",
+          "field_input_ref_read": "field locatedなら/validated/input/field_inputs/{f}/refの原Read、未特定なら専用field_lookup_unestablished(field.ref)",
+          "field_input_template_ref_read": "同実f/template_ref又は専用枝(field.template_ref)",
+          "profile_binding_read": "同s/meaning/binding",
+          "profile_supply_scope_read": "同s/meaning/supply_scope",
+          "semantic_record_binding_read": "/validated/input/semantic_records/{s}/binding"
+        }
+      },
+      "source_basis": [
+        {
+          "file_sha256": "7e644295f051a96915ee625ff2e2d29833c7ab6e1d65bea1fb6ebfa863bba89e",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/input_scope_knowledge_gap_contract",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "7e644295f051a96915ee625ff2e2d29833c7ab6e1d65bea1fb6ebfa863bba89e",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/f05_validation_material_call_contract/logical_ports/validation_detail",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "7e644295f051a96915ee625ff2e2d29833c7ab6e1d65bea1fb6ebfa863bba89e",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/field_semantic_evidence_contract/common_target_guards",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "7e644295f051a96915ee625ff2e2d29833c7ab6e1d65bea1fb6ebfa863bba89e",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/field_semantic_evidence_contract/wrapper_and_source_contract",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "7e644295f051a96915ee625ff2e2d29833c7ab6e1d65bea1fb6ebfa863bba89e",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/field_semantic_evidence_contract/role_owner_binding",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/leaf_writer_ledger",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/reference_resolution_contract",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/wire_codec_contract/numeric_encode_profile/numeric_predicates",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "c3b7984aa284bb0b63b3a6eb5a7364b0e2a8f2abb5dea6fa6271e97a84394ae4",
+          "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+          "pointer": "/input_scope_knowledge_gap_verification",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/ValidationSourceObservation",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/ValidationSourceObservations",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/SourceCheck",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/SourceUsability",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/QualificationObservation",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/RootObservation",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/Cause",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/CheckOperand",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/Location",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/Read",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/ValidationSourceObservations",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/ValidationSourceObservation",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/QualificationObservation",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/RootObservation",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/SourceCheck",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/SourceUsability",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/Cause",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/CheckOperand",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/Read",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/Location",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/OriginRoot",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/SourceCheckKind",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/CheckResult",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/CauseKind",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/Natural",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/JSONPointer",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/CoreRef",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/CoreSourceEnvelope",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/CoreQualification",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        },
+        {
+          "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/CoreJsonValue",
+          "revision": "10f925e5d60acfffb382010f712a217534262bb5"
+        }
+      ],
+      "status": "detail_design_candidate_unexecuted",
+      "type_language": "既存f05_detail_contract/type_languageを使う。InputScopeRead<T>の$Tは既存Readと同じgeneric型引数。生成closed_recordのみ全member必須。元partial carrierのrequiredを増やさず、native numeric domainも狭めない。",
+      "type_language_extension": {
+        "no_raw_cast": "CoreJsonValueは既存native名目型を前提にする。通常dictからCoreNumber/CoreRef/CoreBinding/Locationをcastしない。schema適合partialcarrierは必要意味member成立と別。",
+        "ordered_array": "length/itemsは生成有限tupleの全形。items[n]がその位置の閉型。他の型式は既存type_languageのまま。",
+        "private_evaluation": "InputScopeProfileEvaluation等は同reader内で実原Readから生成する局所中間型。新入力port、authority/provider、public/member追加ではない。Viewには基本の15memberのみを射影する。"
+      },
+      "typed_node_boundary": "DはCoreJsonValue objectへcastしない。Dの宣言memberを型付きで辿り、通常semantic/raw領域は元CoreJsonValueとして読む。source_observations以下のtyped rowだけは上記全20元型closureの一方向read-only viewを用いる。OriginalRawInput.same_decode.decode/presence/CoreDecodeOriginはopaque whole保存し本viewの入力にしない。",
+      "types": {
+        "InputScopeAxis": {
+          "kind": "closed_record",
+          "members": {
+            "axis": "enum:input_ref_vs_supply_scope.input_ref|field_ref_vs_supply_scope.field_ref|template_ref_vs_supply_scope.template_ref|field_binding_vs_semantic_record.binding|field_binding_vs_profile.binding|field_binding_vs_supply_scope.binding",
+            "result": "Relation"
+          }
+        },
+        "InputScopeBodyOccurrence": {
+          "kind": "closed_record",
+          "members": {
+            "collection_guard": "InputScopeGuardObservation",
+            "payload_guard": "InputScopeGuardObservation",
+            "record_index": "Natural",
+            "record_read": "InputScopeRead<CoreJsonValue>",
+            "ref_guard": "InputScopeGuardObservation"
+          }
+        },
+        "InputScopeBodyResolution": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "source_located": {
+              "occurrences": "InputScopeBodyOccurrence[]",
+              "records_read": "InputScopeRead<CoreJsonValue>",
+              "source_index": "Natural"
+            },
+            "source_unestablished": {
+              "source_resolution": "InputScopeOccurrenceResolution"
+            }
+          }
+        },
+        "InputScopeDigestCheckMaterial": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "located": {
+              "check": "SourceCheck",
+              "check_index": "Natural",
+              "source_observation": "ValidationSourceObservation",
+              "source_observation_index": "Natural"
+            },
+            "not_requested": {},
+            "unestablished": {
+              "candidates": "InputScopeSourceCheckCandidate[]",
+              "observations": "InputScopeSourceObservationResolution"
+            }
+          }
+        },
+        "InputScopeDigestSourceMaterial": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "not_requested": {},
+            "source_located": {
+              "body_occurrences": "InputScopeBodyOccurrence[]",
+              "body_records_read": "InputScopeRead<CoreJsonValue>",
+              "record_source_relation": "Relation",
+              "source_digest_read": "InputScopeRead<CoreJsonValue>",
+              "source_index": "Natural",
+              "source_read": "InputScopeRead<CoreJsonValue>",
+              "source_ref_read": "InputScopeRead<CoreJsonValue>"
+            },
+            "source_unestablished": {
+              "source_resolution": "InputScopeOccurrenceResolution"
+            }
+          }
+        },
+        "InputScopeFieldLookupCondition": {
+          "kind": "closed_record",
+          "members": {
+            "outcome": "enum:target_unestablished|collection_unavailable|no_corresponding_occurrence|multiple_corresponding_occurrences|correspondence_unestablished",
+            "target_field_ref_read": "InputScopeRead<CoreJsonValue>"
+          }
+        },
+        "InputScopeFieldOperandRead": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "absent": {
+              "parent": "InputScopeLocation",
+              "parent_value": "CoreJsonValue",
+              "requested": "InputScopeLocation"
+            },
+            "field_lookup_unestablished": {
+              "collection_read": "InputScopeRead<CoreJsonValue>",
+              "lookup_condition": "InputScopeFieldLookupCondition",
+              "observed_occurrences": "InputScopeOccurrenceCandidate[]",
+              "operand_role": "enum:field.ref|field.template_ref|field.binding"
+            },
+            "present": {
+              "location": "InputScopeLocation",
+              "value": "CoreJsonValue"
+            },
+            "unreached": {
+              "reached": "InputScopeLocation",
+              "reached_value": "CoreJsonValue",
+              "requested": "InputScopeLocation"
+            }
+          }
+        },
+        "InputScopeGraphRequest": {
+          "kind": "closed_record",
+          "members": {
+            "validation_input": "ValidationInput"
+          }
+        },
+        "InputScopeGraphReturn": {
+          "kind": "closed_record",
+          "members": {
+            "original_request": "InputScopeGraphRequest",
+            "view": "InputScopeKnowledgeGapView"
+          }
+        },
+        "InputScopeGuardObservation": {
+          "kind": "closed_record",
+          "members": {
+            "left": "InputScopeRead<CoreJsonValue>",
+            "result": "Relation",
+            "right": "InputScopeGuardOperand",
+            "rule_pointer": "JSONPointer"
+          }
+        },
+        "InputScopeGuardOperand": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "normative": {
+              "rule_pointer": "JSONPointer",
+              "value": "CoreJsonValue"
+            },
+            "original": {
+              "read": "InputScopeRead<CoreJsonValue>"
+            }
+          }
+        },
+        "InputScopeKnowledgeDigestEvaluation": {
+          "kind": "closed_record",
+          "members": {
+            "cause": "enum:not_supplied|known_not_witness|required_digest_unformed|knowledge_source_ref_unformed|source_resolution_unestablished|record_source_relation_different|record_source_relation_unestablished|source_digest_unobserved|source_digest_unformed|source_check_unobserved|source_integrity_unestablished|source_integrity_different|source_semantic_use_unusable|source_semantic_use_unestablished|digest_different|digest_corresponding",
+            "condition": "enum:not_required|required_corresponding|required_different|required_unestablished",
+            "declared_digest_relation": "Relation",
+            "knowledge_ref_read": "InputScopeRead<CoreJsonValue>",
+            "knowledge_source_ref_read": "InputScopeRead<CoreJsonValue>",
+            "required_digest_read": "InputScopeRead<CoreJsonValue>",
+            "source_check_material": "InputScopeDigestCheckMaterial",
+            "source_integrity_relation": "Relation",
+            "source_material": "InputScopeDigestSourceMaterial"
+          }
+        },
+        "InputScopeKnowledgeDigestRequest": {
+          "kind": "closed_record",
+          "members": {
+            "knowledge_record_index": "Natural",
+            "semantic_record_index": "Natural",
+            "validation_detail_return": "ValidationDetailedReturn"
+          }
+        },
+        "InputScopeKnowledgeGapRequest": {
+          "kind": "closed_record",
+          "members": {
+            "validation_detail_return": "ValidationDetailedReturn"
+          }
+        },
+        "InputScopeKnowledgeGapView": {
+          "kind": "closed_record",
+          "members": {
+            "profile_scan": "InputScopeProfileScan",
+            "validation_detail_return": "ValidationDetailedReturn"
+          }
+        },
+        "InputScopeKnowledgeMembership": {
+          "kind": "closed_record",
+          "members": {
+            "absence_establishment": "Relation",
+            "actual_scope_indices": "Natural[]",
+            "collection_and_correspondence": "Relation",
+            "collection_read": "InputScopeRead<CoreJsonValue>",
+            "field_ref_read": "InputScopeFieldOperandRead",
+            "known_eligible_same_version_indices": "Natural[]",
+            "occurrences": "InputScopeKnowledgeOccurrence[]",
+            "required_ref_read": "InputScopeRead<CoreJsonValue>",
+            "same_version_indices": "Natural[]",
+            "supplied_digest_relation": "Relation"
+          }
+        },
+        "InputScopeKnowledgeOccurrence": {
+          "kind": "closed_record",
+          "members": {
+            "digest_evaluation": "InputScopeKnowledgeDigestEvaluation",
+            "field_membership_relation": "Relation",
+            "identity_scope_owner_relation": "Relation",
+            "index": "Natural",
+            "record_read": "InputScopeRead<CoreJsonValue>",
+            "revision_relation": "Relation",
+            "supplied_digest_relation": "Relation"
+          }
+        },
+        "InputScopeLocation": {
+          "kind": "closed_record",
+          "members": {
+            "pointer": "JSONPointer",
+            "root": "enum:validation_return|validation_input"
+          },
+          "root_mapping": {
+            "validation_input": "同Dの原raw whole。OriginalRawInput.nativeなら.raw、same_decodeなら同.decode.value。decode.valueの原CoreJsonValueを用い、decode全診断からtreeを再構成しない。",
+            "validation_return": "同request.validation_detail_return whole。生成Readはこのrootの宣言された実nodeを指す。"
+          }
+        },
+        "InputScopeLookupRequest": {
+          "kind": "closed_record",
+          "members": {
+            "collection_read": "InputScopeRead<CoreJsonValue>",
+            "role": "enum:source|field|proposal",
+            "target_ref_read": "InputScopeRead<CoreJsonValue>",
+            "validation_detail_return": "ValidationDetailedReturn"
+          }
+        },
+        "InputScopeLookupResult": {
+          "kind": "closed_record",
+          "members": {
+            "collection_read": "InputScopeRead<CoreJsonValue>",
+            "corresponding_indices": "Natural[]",
+            "outcome": "enum:located|target_unestablished|collection_unavailable|multiple_corresponding_occurrences|correspondence_unestablished|no_corresponding_occurrence",
+            "resolution": "InputScopeOccurrenceResolution",
+            "target_ref_read": "InputScopeRead<CoreJsonValue>",
+            "unestablished_indices": "Natural[]"
+          }
+        },
+        "InputScopeOccurrenceCandidate": {
+          "kind": "closed_record",
+          "members": {
+            "index": "Natural",
+            "read": "InputScopeRead<CoreJsonValue>"
+          }
+        },
+        "InputScopeOccurrenceResolution": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "located": {
+              "index": "Natural",
+              "read": "InputScopeRead<CoreJsonValue>"
+            },
+            "unestablished": {
+              "collection_read": "InputScopeRead<CoreJsonValue>",
+              "observed_occurrences": "InputScopeOccurrenceCandidate[]"
+            }
+          }
+        },
+        "InputScopeOperands": {
+          "kind": "closed_record",
+          "members": {
+            "application_input_ref_read": "InputScopeRead<CoreJsonValue>",
+            "field_input_binding_read": "InputScopeFieldOperandRead",
+            "field_input_ref_read": "InputScopeFieldOperandRead",
+            "field_input_template_ref_read": "InputScopeFieldOperandRead",
+            "profile_binding_read": "InputScopeRead<CoreJsonValue>",
+            "profile_supply_scope_read": "InputScopeRead<CoreJsonValue>",
+            "semantic_record_binding_read": "InputScopeRead<CoreJsonValue>"
+          }
+        },
+        "InputScopePathSegment": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "index": {
+              "index": "Natural"
+            },
+            "member": {
+              "name": "string"
+            }
+          }
+        },
+        "InputScopeProfileEvaluation": {
+          "kind": "closed_record",
+          "members": {
+            "body_relation": "Relation",
+            "body_resolution": "InputScopeBodyResolution",
+            "field_lookup": "InputScopeLookupResult",
+            "judgment": "enum:required_version_absent_from_declared_input_scope|required_version_present_in_declared_input_scope|unestablished",
+            "kind_guard": "InputScopeGuardObservation",
+            "knowledge_membership": "InputScopeKnowledgeMembership",
+            "native_source_observation_resolution": "InputScopeSourceObservationResolution",
+            "owner_relation": "Relation",
+            "profile_field_relation": "Relation",
+            "profile_id_guard": "InputScopeGuardObservation",
+            "profile_version_guard": "InputScopeGuardObservation",
+            "proposal_lookup": "InputScopeLookupResult",
+            "proposal_subject_binding_relation": "Relation",
+            "scope_relation": "InputScopeRelation",
+            "semantic_record_index": "Natural",
+            "source_lookup": "InputScopeLookupResult",
+            "source_observation_relation": "Relation",
+            "source_observation_resolution": "InputScopeOccurrenceResolution",
+            "source_semantic_usability": "Relation"
+          }
+        },
+        "InputScopeProfileObservation": {
+          "kind": "closed_record",
+          "members": {
+            "actual_knowledge_collection_read": "InputScopeRead<CoreJsonValue>",
+            "actual_scope_knowledge_indices": "Natural[]",
+            "field_input_resolution": "InputScopeOccurrenceResolution",
+            "gap_proposal_resolution": "InputScopeOccurrenceResolution",
+            "judgment": "enum:required_version_absent_from_declared_input_scope|required_version_present_in_declared_input_scope|unestablished",
+            "profile_body_read": "InputScopeRead<CoreJsonValue>",
+            "recipient_projection": "literal:not_performed_by_input_reader",
+            "required_knowledge_ref_read": "InputScopeRead<CoreJsonValue>",
+            "same_required_version_identity_scope_owner_indices": "Natural[]",
+            "scope_relation": "InputScopeRelation",
+            "semantic_record_index": "Natural",
+            "semantic_record_read": "InputScopeRead<CoreJsonValue>",
+            "source_envelope_resolution": "InputScopeOccurrenceResolution",
+            "source_observation_resolution": "InputScopeOccurrenceResolution",
+            "source_ref_read": "InputScopeRead<CoreJsonValue>"
+          }
+        },
+        "InputScopeProfileRequest": {
+          "kind": "closed_record",
+          "members": {
+            "semantic_record_index": "Natural",
+            "validation_detail_return": "ValidationDetailedReturn"
+          }
+        },
+        "InputScopeProfileScan": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "input_unavailable": {
+              "reason": "literal:validated.input_is_null"
+            },
+            "scanned": {
+              "profile_observations": "InputScopeProfileObservation[]",
+              "semantic_record_indices": "Natural[]",
+              "semantic_records_read": "InputScopeRead<CoreJsonValue[]>"
+            },
+            "semantic_records_unresolved": {
+              "reason": "literal:semantic_records_not_array",
+              "semantic_records_read": "InputScopeRead<CoreJsonValue>"
+            }
+          }
+        },
+        "InputScopeRead": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "absent": {
+              "parent": "InputScopeLocation",
+              "parent_value": "CoreJsonValue",
+              "requested": "InputScopeLocation"
+            },
+            "present": {
+              "location": "InputScopeLocation",
+              "value": "$T"
+            },
+            "unreached": {
+              "reached": "InputScopeLocation",
+              "reached_value": "CoreJsonValue",
+              "requested": "InputScopeLocation"
+            }
+          }
+        },
+        "InputScopeReadRequest": {
+          "kind": "closed_record",
+          "members": {
+            "path": "InputScopePathSegment[]",
+            "root": "enum:validation_return|validation_input",
+            "validation_detail_return": "ValidationDetailedReturn"
+          }
+        },
+        "InputScopeRelation": {
+          "kind": "closed_record",
+          "members": {
+            "aggregate_result": "Relation",
+            "axis_results": "InputScopeSixAxes",
+            "operands": "InputScopeOperands"
+          }
+        },
+        "InputScopeSixAxes": {
+          "items": [
+            {
+              "kind": "closed_record",
+              "members": {
+                "axis": "literal:input_ref_vs_supply_scope.input_ref",
+                "result": "Relation"
+              }
+            },
+            {
+              "kind": "closed_record",
+              "members": {
+                "axis": "literal:field_ref_vs_supply_scope.field_ref",
+                "result": "Relation"
+              }
+            },
+            {
+              "kind": "closed_record",
+              "members": {
+                "axis": "literal:template_ref_vs_supply_scope.template_ref",
+                "result": "Relation"
+              }
+            },
+            {
+              "kind": "closed_record",
+              "members": {
+                "axis": "literal:field_binding_vs_semantic_record.binding",
+                "result": "Relation"
+              }
+            },
+            {
+              "kind": "closed_record",
+              "members": {
+                "axis": "literal:field_binding_vs_profile.binding",
+                "result": "Relation"
+              }
+            },
+            {
+              "kind": "closed_record",
+              "members": {
+                "axis": "literal:field_binding_vs_supply_scope.binding",
+                "result": "Relation"
+              }
+            }
+          ],
+          "kind": "ordered_array",
+          "length": 6,
+          "meaning": "各indexの固定axisを原順で一件ずつ生成。欠落/並替/重複なし。これは出力列だけの型で元collectionを狭めない。"
+        },
+        "InputScopeSourceCheckCandidate": {
+          "kind": "closed_record",
+          "members": {
+            "check": "SourceCheck",
+            "check_index": "Natural",
+            "source_observation": "ValidationSourceObservation",
+            "source_observation_index": "Natural"
+          }
+        },
+        "InputScopeSourceObservationCandidate": {
+          "kind": "closed_record",
+          "members": {
+            "index": "Natural",
+            "observation": "ValidationSourceObservation"
+          }
+        },
+        "InputScopeSourceObservationResolution": {
+          "kind": "tagged_union",
+          "tag": "tag",
+          "variants": {
+            "located": {
+              "index": "Natural",
+              "observation": "ValidationSourceObservation"
+            },
+            "unestablished": {
+              "observations": "ValidationSourceObservation[]",
+              "observed_occurrences": "InputScopeSourceObservationCandidate[]"
+            }
+          }
+        },
+        "InputScopeSourceViewRequest": {
+          "kind": "closed_record",
+          "members": {
+            "observations": "ValidationSourceObservations"
+          }
+        }
+      },
+      "view_writer": {
+        "all_members": "ProfileScan各枝の閉memberだけを返す。scannedにreasonを追加せず、input_unavailable/semantic_records_unresolvedには固定reasonを必須で返す。ProfileObservation全15memberの原leaf writerを毎候補に適用する。",
+        "input_unavailable": "d.validated.input=nullならprofile_scan={tag:input_unavailable,reason:validated.input_is_null}。raw保存からinput相対SemanticRecordを再生成しない。",
+        "native_shape_limit": "有効native CoreApplicationInputでは既存wire schemaが許さない供給型をnew partial carrierで受理しない。raw shape不適合が元fn0でinput=nullならinput_unavailableの全返却となる。L4一般logical枝の全native到達可能性又は全decoder挙動を本有限oracleで認定しない。",
+        "passthrough": "output.validation_detail_return=request.validation_detail_return whole。input_issues/unusable_source_refs/source_observations/原rawの全member/順/原因/数値を保持。",
+        "scanned": "原semantic_records配列なら全実index/全wholeを保存。kind又はmeaning.profile_idが基本finite identifierに既存typed equalityで一致する候補だけ原順で観測する。識別候補のmember未形成/unsupported版/元source不足でも候補を落とさず局所judgment unestablished。異kind/識別不能原recordはwhole配列へ残し新profileに変換しない。",
+        "semantic_records_read": "非null inputの/validated/input/semantic_recordsをInputScopeReadで読む。配列でなければtag=semantic_records_unresolvedと当該Read whole及びreason=semantic_records_not_array。native正規入力の不正shapeを通すcodec bypassは作らない。"
+      },
+      "current_basic_binding": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "file_sha256": "cadafdb789eb1b52d12b98b165e17a914ee77eb3818018a4b07ba2249da99b60",
+        "binding_scope": "same_candidate_basic_bytes",
+        "selected_objects": [
+          {
+            "pointer": "/input_scope_knowledge_gap_contract/input_only_contract",
+            "canonical_sha256": "9ece4357bde24341b1ae6c144f80be13a4e6a582aeeaa4838a6313bb616389a7"
+          },
+          {
+            "pointer": "/f05_validation_material_call_contract/logical_ports/validation_detail",
+            "canonical_sha256": "adefb3db1439ad5a3faa4d27cb5ad3fa58b5eaea9e79672fdb2729227b239826"
+          },
+          {
+            "pointer": "/field_semantic_evidence_contract/common_target_guards",
+            "canonical_sha256": "21c0bdc40ba1fad0c2dbb0322c479650204de68e1c3b7b12cc8a09e193a89fe4"
+          },
+          {
+            "pointer": "/field_semantic_evidence_contract/wrapper_and_source_contract",
+            "canonical_sha256": "9d22f4d7f65070ea3f4e2248a4ddb69387a77df11b1473fdc48991f8f4b89cab"
+          },
+          {
+            "pointer": "/field_semantic_evidence_contract/role_owner_binding",
+            "canonical_sha256": "5f4ceee7d6415ebaeb72de682133330618794ede94ea6cc550f472eec87c9934"
+          }
+        ],
+        "scope_ja": "readerが消費する現行基本の選択node。固定履歴source_basisを現行正本へ読み替えない。post-returnの型は既存callerの接続側が別に束縛する。"
+      },
+      "current_local_native_type_bindings": [
+        {
+          "pointer": "/f05_detail_contract/types/ValidationSourceObservations",
+          "canonical_sha256": "2415517f93248c95ee8943409bf28b46d729f05d07294993e5a028cc2cc34e48"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/ValidationSourceObservation",
+          "canonical_sha256": "5ce660179bbe606ea5c7d3f379e4718e46e5372ad1330bedac918ef6446032c8"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/QualificationObservation",
+          "canonical_sha256": "ca8fa88a84c331dae2513a5d0e43a299b2b6597ae5c0b203000023acfb65b6ee"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/RootObservation",
+          "canonical_sha256": "192f902066669399435fd16f44d1a9b42f464749375672a1fbd7933645027f62"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/SourceCheck",
+          "canonical_sha256": "da6a97dd934b6eecea8eeafbaab9a068aa27c2a67b52b14e967048f3bcf49e8d"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/SourceUsability",
+          "canonical_sha256": "06eed20c7b4a773b1b7b1fa51b7ff12082609dff6a2a6eb67bb357dd7ef29e75"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/Cause",
+          "canonical_sha256": "3be43e03de6360c1067a7b7bdc0d8c631ab8ef04d847c99d1cb09166fd9451d0"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/CheckOperand",
+          "canonical_sha256": "7186ec691880940123622f6370e1073ff294d776640020576dfccc6cf656c53a"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/Read",
+          "canonical_sha256": "9bf82653b27dc972e1bc0a111b90537fbfc5067e37eed1207da0c67e551c62ef"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/Location",
+          "canonical_sha256": "98848b1fccd46f3eee52cc2b65ebb3d9b83cd9884b8718e2a5a436b6192106a6"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/OriginRoot",
+          "canonical_sha256": "55355c269716f9577ca1bb0bdd6ed117dfa32cbaaa818e0d7a91a8acda1175af"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/SourceCheckKind",
+          "canonical_sha256": "d2fc910d3e0aef13d09c4d211d28d364f24eb380ff2335522ec5ac8e2f54bcb3"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/CheckResult",
+          "canonical_sha256": "bd916414fee3776c3365560eb49f5fb52a3a8d320b7260dc3179523781a5b1a6"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/CauseKind",
+          "canonical_sha256": "ee5d0f2394174471031d92e3c81a8ac4b5ee796829acff05b570a7849489ff09"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/Natural",
+          "canonical_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/JSONPointer",
+          "canonical_sha256": "c3f640125287565611f42a3ce0f4fe26b8ff4167de9c7fc7e91082998651eaac"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/CoreRef",
+          "canonical_sha256": "56913bce08ec0d8ce7765564c7c358b275e3a5796e20be785ccacf458a7e6998"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/CoreSourceEnvelope",
+          "canonical_sha256": "e003022cbf869229b315bbc3c902d73e7977d7160c2f6ab36a019f8d45b2ecfc"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/CoreQualification",
+          "canonical_sha256": "db92b2c8b14f222eec6f1889d33dfb1b33e229e515a020f7c25c95b3f425ad5c"
+        },
+        {
+          "pointer": "/f05_detail_contract/types/CoreJsonValue",
+          "canonical_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2"
+        }
+      ]
     }
   }
 }
