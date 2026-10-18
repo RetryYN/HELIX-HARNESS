@@ -13004,7 +13004,7 @@
         "pointer": "/f05_detail_contract/types/ObligationOrigin",
         "preserve": "既存proposal/ref originの七member shape、raw obligation occurrences、kind trace links及びcausesはLegacyObligationOrigin枝で保持する。",
         "change": "ObligationOriginをLegacyObligationOrigin | FieldScopeSourceOrigin | FieldScopeAssessmentOriginのclosed_shape_unionとし、Legacy枝にのみrecord_details/condition/reentry保管を保持する。二つのscope枝はfield_obligation_scope_writer_contract専用writerで構成し、legacy memberを追加・読み替えない。",
-        "reason": "F14 legacy原保管と採択field scope原出現を型で分ける。既存7member whole/historyはLegacy枝で保持し、旧writer前提を他のunion枝へ漏らさない。"
+        "reason": "F14 legacy原保管と基本設計へ統合済みのfield scope命題の原出現を型で分ける。本差分のnative型は詳細候補であり、既存7member whole/historyはLegacy枝で保持し、旧writer前提を他のunion枝へ漏らさない。"
       },
       {
         "pointer": "/f05_detail_contract/types/RecipientMaterial",
@@ -13081,7 +13081,7 @@
     "remaining_and_nonclaims": [
       "本節は詳細設計候補の著述であり、実reader/writer/codec/validator/算法/製品test/CIを実装実行していない。実装準備完了又は全F05閉包を認定しない。",
       "同fn0 root/qualificationの実供給元/custody/原owner根拠resolver、宣言/原命題profileの実producer/取得口と独立原source資格成立は未成立。未定義oracle boolへ委ねず未観測原端/条件を全返却へ保持する。",
-      "全native型/writer及び全枝の対L8 oracleは未閉包。本L5候補に対するL8追加は固定9-source known/known scope positive一件だけで、139/147型又は全writer/branchの閉包を証明しない。独立意味review、数値/codec実成立、既存他producerの全leaf writerと全claim枝の実証は残務。",
+      "全native型/writer及び全枝の対L8 oracleは未閉包。本L5候補に対するL8追加は固定9-source known/known scope positive一件だけで、139/147型又は全writer/branchの閉包を証明しない。独立意味review、数値/codec実成立、既存他producerの全leaf writerと全claim枝の実証は残務。本節のnative Context対応表だけで既存全9producerのpartial input挙動が完成したとはしない。",
       "selected scope/対象操作と元適用結果が実対応しないfield/proposalは対象不成立を局所に返す。取得成功から対象必要集合を作らない。実必要field集合の上流owner資料を本節で発明しない。",
       "B019/030の同query/knowledge/独立field関係及び数値表現を含むtyped projection・選択call全入力/全返却・実配送/受領/OS記録・実受入、全92親430義務は別残務。",
       "現failure_rulesのF05 claim predicatesは原条件文章とClaim.kind:string/原proposed_valueを持つ既存契約で、全claim種類の新native式木/任意自然言語意味classifierは本差分で作らない。既存claim条件の原operand対応が元資料で一意に形成できない枝を実Finding成功へ補完しない。全claim入力語彙の詳細原producer契約と全branch oracleの閉包は独立検収が必要。",
@@ -13251,7 +13251,7 @@
           "FieldScopeSourceOrigin",
           "FieldScopeAssessmentOrigin"
         ],
-        "rule": "members/variants/enum又はgeneric/optional構文だけで型を指す。guard/由来文章は型member定義の代替ではない。ObligationOrigin unionの6 named branches/associated body typesはtype_namesに一度ずつ宣言する。"
+        "rule": "members/variants/enum又はgeneric/optional構文だけで型を指す。guard/由来文章は型member定義の代替ではない。ObligationOriginは3枝の有限unionであり、Legacy枝とscope二枝及び関連body等の今回追加6named typeをtype_namesへ一度ずつ宣言する。"
       },
       "external_primitives": [
         {

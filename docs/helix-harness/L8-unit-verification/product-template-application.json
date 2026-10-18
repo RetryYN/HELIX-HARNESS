@@ -95224,7 +95224,7 @@
             "profile_candidate_binding": {
                 "revision": "current-unpinned-worktree-candidate",
                 "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-                "file_sha256": "be9cef32259af49e5a5020196f12514d26319943bc1e316208fbd4494980f59e",
+                "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
                 "pointer": "/wire_codec_contract/numeric_encode_profile"
             },
             "upstream_decision": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
@@ -142233,7 +142233,7 @@
     "candidate_l5_content_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "source_main": "1b50e0e105f0d51b902b26ba0e48d66381705360",
-      "candidate_file_bytes_sha256": "be9cef32259af49e5a5020196f12514d26319943bc1e316208fbd4494980f59e",
+      "candidate_file_bytes_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
       "revision_semantics": "candidate_file_bytes_sha256はこのL8と同じ保存状態のL5 file bytesを固定する。Git revision/承認を示さない。"
     },
     "producer_condition_presence_probes": [
@@ -143318,7 +143318,7 @@
         "role": "L5詳細設計候補の型・writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "be9cef32259af49e5a5020196f12514d26319943bc1e316208fbd4494980f59e",
+        "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -143334,7 +143334,7 @@
         "role": "既存入力carrierのwire member",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "be9cef32259af49e5a5020196f12514d26319943bc1e316208fbd4494980f59e",
+        "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
         "pointers": [
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/sources",
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/qualifications",
@@ -143433,7 +143433,7 @@
         "role": "L5 native ValidationDetailedReturn型・全leaf writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "be9cef32259af49e5a5020196f12514d26319943bc1e316208fbd4494980f59e",
+        "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -145289,7 +145289,7 @@
         "role": "L5のsource照合・原因診断・利用可能性の集約",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "be9cef32259af49e5a5020196f12514d26319943bc1e316208fbd4494980f59e",
+        "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/check_storage_plan",
           "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table",
@@ -147084,7 +147084,7 @@
         "role": "L5 F05 types・Context/header・Cause propagation writers",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "be9cef32259af49e5a5020196f12514d26319943bc1e316208fbd4494980f59e",
+        "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
         "pointers": [
           "/f05_detail_contract/types/F05DetailedRequest",
           "/f05_detail_contract/types/ActualPredecessor",
@@ -147692,7 +147692,7 @@
     "source_basis": [
       {
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "be9cef32259af49e5a5020196f12514d26319943bc1e316208fbd4494980f59e",
+        "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/checks/2",
           "/f05_detail_contract/validation_cause_diagnostic_contract/public_validation_projection",
@@ -147827,7 +147827,7 @@
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "base_revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
         "base_file_sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
-        "current_file_sha256": "be9cef32259af49e5a5020196f12514d26319943bc1e316208fbd4494980f59e",
+        "current_file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/types/ValidationDetailedReturn",
@@ -153711,7 +153711,7 @@
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "base_revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
         "base_file_sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
-        "current_file_sha256": "be9cef32259af49e5a5020196f12514d26319943bc1e316208fbd4494980f59e",
+        "current_file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/collection_reads/canonical_locations",
@@ -153965,7 +153965,7 @@
       {
         "role": "current_l5_candidate_content_binding_no_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "be9cef32259af49e5a5020196f12514d26319943bc1e316208fbd4494980f59e",
+        "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/types/F05DetailedReturn",
@@ -156968,7 +156968,7 @@
         "role": "current_L5_detail_contract",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "be9cef32259af49e5a5020196f12514d26319943bc1e316208fbd4494980f59e",
+        "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
         "selected_object_count": 17,
         "selected_objects": [
           {
@@ -160932,7 +160932,7 @@
       },
       {
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "be9cef32259af49e5a5020196f12514d26319943bc1e316208fbd4494980f59e",
+        "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "selected_objects": [
           {
@@ -161045,7 +161045,7 @@
       {
         "role": "current_candidate_L5_native_scope_writer_binding",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "be9cef32259af49e5a5020196f12514d26319943bc1e316208fbd4494980f59e",
+        "file_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
         "binding_kind": "candidate_current_content_no_git_revision",
         "selected_objects": [
           {
@@ -161086,7 +161086,7 @@
           },
           {
             "pointer": "/f05_detail_contract/type_dependencies/new_derived_types",
-            "canonical_sha256": "21fd2efc4ed32fb83a1e9e9fc92efe73879349ffac006a40558499d2ec35afeb"
+            "canonical_sha256": "8b20726228acc23bf32a32b1dda9eaeae239c289b70f32d4e57605a2222a8047"
           },
           {
             "pointer": "/f05_detail_contract/field_obligation_scope_writer_contract",
@@ -161118,7 +161118,7 @@
           },
           {
             "pointer": "/f05_detail_contract/existing_type_and_writer_changes/5",
-            "canonical_sha256": "e978691e5ee218b368df204779632b86dc5f25d8c854975635a080e811a1a2e0"
+            "canonical_sha256": "40b004477d5c654798c0360c0e2dca3b1ba7b34c593860436c279c0ef39cce2c"
           },
           {
             "pointer": "/functions/5/oracle_binding_boundary",
@@ -161173,7 +161173,7 @@
         "FieldScopeSourceOrigin",
         "FieldScopeAssessmentOrigin"
       ],
-      "legacy_branch_boundary_ja": "旧F14 raw-custody expectation only LegacyObligationOrigin. Scope source/assessment are distinct new union branches, written by field_obligation_scope_writer_contract.",
+      "legacy_branch_boundary_ja": "旧F14の原保管期待はLegacyObligationOrigin枝だけに適用する。scopeの原資料とassessmentは別の二つのunion枝であり、field_obligation_scope_writer_contractの専用writerで生成する。",
       "l5_patch_authoring_provenance": {
         "base_sha256": "2f2bac5fde21c0e4806bc3817a814dbf3073e0cffe9db12a0307fada4104345e",
         "patch_payload_sha256": "859b8e517b84ea7235c98bedb1cdaf1b4d75845d0be32e3a18f3421e3d26860e",
@@ -173134,9 +173134,7 @@
                     },
                     "operand_index": 0,
                     "role": "definition",
-                    "record_occurrences": [
-                      {}
-                    ],
+                    "record_occurrences": [],
                     "causes": []
                   }
                 ],
@@ -173151,9 +173149,7 @@
                     },
                     "operand_index": 0,
                     "role": "basis_refs",
-                    "record_occurrences": [
-                      {}
-                    ],
+                    "record_occurrences": [],
                     "causes": []
                   }
                 ],
@@ -173407,9 +173403,7 @@
                   },
                   "operand_index": 0,
                   "role": "basis_refs",
-                  "record_occurrences": [
-                    {}
-                  ],
+                  "record_occurrences": [],
                   "causes": []
                 }
               ],
@@ -173756,9 +173750,7 @@
               ],
               "findings": [],
               "material": {
-                "field_checks": [
-                  {}
-                ],
+                "field_checks": [],
                 "candidate_proposals": [],
                 "unfinished_obligation_refs": []
               }
@@ -175190,13 +175182,13 @@
       "request_canonical_sha256": "0cc68516502687e8afdb95c0d8430b2f286925009e67198396ab8ba4f42e18c6",
       "expected_full_return_pointer": "/f05_fixed_case/expected_return",
       "expected_type": "F05DetailedReturn with unadopted ObligationOrigin union branches",
-      "expected_full_return_canonical_sha256": "74b403a2e12e527f46ba9aa772f9077e511507c218acd9451b5fb8aa84e14838",
+      "expected_full_return_canonical_sha256": "3c1cdab3efc6cc75d7f68e63c277075776decc4942f941ffa67d7db3d7d65b85",
       "snapshot": {
         "path": "scaffold/review-handoff/local/core009-f05-nine-source-known-known-scope-full-five-return-snapshot-4f163b435f44cf1d.json",
         "file_sha256": "4f163b435f44cf1d74fcc872e161dc38468f4808f82f0eacfcae9d5516ed2038",
         "bytes": 11281540
       },
-      "operations_canonical_sha256": "d4fdcf0164bfbc4e3e8fa4a5f0d5bbd70e4e122e54c7506ef566fba93a307210",
+      "operations_canonical_sha256": "144d7559b7986d307a2602c3f8f741f1d109f2f2d10c4d7d50167be1ddf34ba7",
       "no_local_retrieval_dependency": "上記full patchはcurrent tracked L8 rootだけで全5member全値を復元できる。history/advice/snapshotは識別/検収用で、再構成時の外部copysourceではない。"
     },
     "five_member_expectation": {
@@ -175210,7 +175202,7 @@
         "owner_material"
       ],
       "expected_pointer": "/f05_fixed_case/expected_return",
-      "expected_full_return_canonical_sha256": "74b403a2e12e527f46ba9aa772f9077e511507c218acd9451b5fb8aa84e14838",
+      "expected_full_return_canonical_sha256": "3c1cdab3efc6cc75d7f68e63c277075776decc4942f941ffa67d7db3d7d65b85",
       "scope_union_branches": [
         "LegacyObligationOrigin",
         "FieldScopeSourceOrigin",
@@ -175233,6 +175225,34 @@
       "proof_path": "/home/tenni/HELIX-HARNESS/scaffold/review-handoff/local/core009-f05-nine-source-root-all152-checklink-resolution-1c8865d8.json",
       "proof_sha256": "ce817ff847a673f21bb8ca1f58f51629055aebfe7f569ef459147d734a83f75d",
       "scope_ja": "rootによる固定原node解決の補助証拠。新節の規範再構成は埋込recipeのみで行い、このignored local artifactを必要条件にしない。"
+    },
+    "fixed_recipe_correction": {
+      "review_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/3340#issuecomment-6244701458",
+      "previous_content_revision": "58f270d19bb429e6e8d45c9a966b6e6cd7adec48",
+      "previous_expected_canonical_sha256": "74b403a2e12e527f46ba9aa772f9077e511507c218acd9451b5fb8aa84e14838",
+      "previous_operations_canonical_sha256": "d4fdcf0164bfbc4e3e8fa4a5f0d5bbd70e4e122e54c7506ef566fba93a307210",
+      "failure": "従前の固定期待にも空object4件が残り、うち3件はRecordOccurrence閉型を満たさなかった。canonical一致やlink解決だけではこの欠陥を識別できず、有効な全返却oracleではなかった。",
+      "repair": "op539/540/548の4起点配列を空配列へ訂正し、後続copyの挿入で実一出現だけを構築する。op数と元input/実材料/全linkは保持する。",
+      "changed_initial_literal_paths": [
+        {
+          "op_index": 539,
+          "value_pointer": "/evidence_interpretations/0/content_operands/0/record_occurrences"
+        },
+        {
+          "op_index": 539,
+          "value_pointer": "/evidence_interpretations/0/basis_operands/0/record_occurrences"
+        },
+        {
+          "op_index": 540,
+          "value_pointer": "/0/basis_operands/0/record_occurrences"
+        },
+        {
+          "op_index": 548,
+          "value_pointer": "/value/material/field_checks"
+        }
+      ],
+      "expected_delta": "従前の再構成全返却から明示4箇所のindex1の空objectだけを除いた全値と一致する。必要な原出現を削除したり、型を緩めたりしない。",
+      "verification": "対象3列の各RecordOccurrence全11member集合、field_checks一件、ComparisonLink対応と固定原値を静的に照合する。型・意味算法の実装/実行又は全入力領域の証明ではない。"
     }
   }
 }
