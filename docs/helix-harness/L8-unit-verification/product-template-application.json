@@ -156940,6 +156940,7 @@
   }
 ,
   "validation_detail_native_eight_source_full_return_oracle": {
+    "id": "HELIXHARNESS-L8-CORE009-F05-EIGHT-SOURCE-VALIDATION-DETAIL-FULL-RETURN",
     "status": "finite_conditional_fixed_literal_oracle_not_executed",
     "purpose_ja": "F05の固定8 source入力について、native ValidationDetailedReturnの三rootを、原raw入力・全source/qualification/root観測と結んだ有限の対検証期待として記録する。これは固定JSON値の組立・比較範囲であり、候補実装の実行記録ではない。",
     "scope_ja": "本節は既存6 source fixtureへ、条件付きの新規source 2件を追加した8件の固定正常材料だけを扱う。入力は合成された資格・root前提を含む。実際のproducer実行、実source認証、全F05 caller、全field owner、known/known完了を示さない。",
@@ -160248,6 +160249,7 @@
       "source/qualification/rootのsynthetic qualification前提から、実owner資格・実custody・外部sourceの信頼成立を導かない。",
       "全F05入力域、他caller、field ownerのknown/known、全scope、実配送または実運用成立を主張しない。",
       "F05全返却・producer実call、P1/P2、FN1/FN2/FN3/FN4、knowledge版不足、未完scope、non-null reentry、BRAIN019/030への接続閉包を本caseの範囲へ含めない。",
+      "本caseの152 checkはすべてcorresponding、8 sourceのusabilityはすべてusable、Readはすべてpresentで、checkとsource_observationsのcausesは空配列である。checkのdifferent・unestablished・not_applicable、usabilityのunusable・unestablished、Readのabsent・unreached、Cause生成は行使していない。",
       "固定literalの存在やhash一致を、独立した意味採否、PO受入、製品完了として扱わない。"
     ]
   }
