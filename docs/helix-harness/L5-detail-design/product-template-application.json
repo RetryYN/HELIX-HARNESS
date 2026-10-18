@@ -18673,7 +18673,7 @@
       },
       "statement_read": {
         "name": "CoreFieldApplicationStatementRead",
-        "shape": "tagged union。tag memberでpresent|unformedを識別する。present{original_request:ApplicationRawRead<CoreJsonValue>,core_detail_return:CoreApplicationDetailReturn whole,selected_core_field_index:Natural,relation:ApplicationRawRead<CoreJsonValue>原whole,typed_relation:ApplicationRelation,brain_f03_return:F03Evaluation whole,source_preparation_reads:ApplicationRawRead<ValidationSourceObservation>[],selector_read:ApplicationRawRead<CoreJsonValue>,statement_locator:ApplicationStatementLocator,source_observation:ValidationSourceObservation,source_usability:既存SourceUsability whole,source_record_read,body_read,typed_statement:ApplicationStatementProfile,extra_members_raw,location_trace}|unformed{original_request:ApplicationRawRead<CoreJsonValue>,core_detail_return:CoreApplicationDetailReturn whole,selected_core_field_index:Natural,relation:ApplicationRawRead<CoreJsonValue>原whole,typed_relation:ApplicationRelation|null,brain_f03_return:F03Evaluation whole,source_preparation_reads:ApplicationRawRead<ValidationSourceObservation>[],selector_read:ApplicationRawRead<CoreJsonValue>,statement_locator:ApplicationStatementLocator|null,source_reads:ApplicationStatementSourceRead[],local_causes:ApplicationLocalCause[]}。tagで枝を識別する。present/unformed双方でL4実入力を保持し、relation rawはtyped projectionで置換しない。",
+        "shape": "tagged union。tag memberでpresent|unformedを識別する。present{original_request:ApplicationRawRead<CoreJsonValue>,core_detail_return:CoreApplicationDetailReturn whole,selected_core_field_index:Natural,relation:ApplicationRawRead<CoreJsonValue>原whole,typed_relation:ApplicationRelation,brain_f03_return:F03Evaluation whole,source_preparation_reads:ApplicationRawRead<ValidationSourceObservation>[],selector_read:ApplicationRawRead<CoreJsonValue>,statement_locator:ApplicationStatementLocator,source_observation:ValidationSourceObservation,source_usability:既存SourceUsability whole,source_record_read,body_read,owner_assertion_read:ApplicationRawRead<CoreJsonValue>,typed_statement:ApplicationStatementProfile,extra_members_raw,location_trace}|unformed{original_request:ApplicationRawRead<CoreJsonValue>,core_detail_return:CoreApplicationDetailReturn whole,selected_core_field_index:Natural,relation:ApplicationRawRead<CoreJsonValue>原whole,typed_relation:ApplicationRelation|null,brain_f03_return:F03Evaluation whole,source_preparation_reads:ApplicationRawRead<ValidationSourceObservation>[],selector_read:ApplicationRawRead<CoreJsonValue>,statement_locator:ApplicationStatementLocator|null,source_reads:ApplicationStatementSourceRead[],local_causes:ApplicationLocalCause[]}。tagで枝を識別する。present/unformed双方でL4実入力を保持し、relation rawはtyped projectionで置換しない。",
         "carrier_rule": "CoreSemanticRecord、CoreRef、CoreApplicationBinding、CoreSourceEnvelopeは既存partial_carrierとして扱う。schemaの全propertyを一律要求しない。各用途で使うmemberだけをpresence/null/absent付きで読み、未使用memberは存在しなくても不成立にしない。private profileの必須leafが欠落/null/型外なら局所unformedに原値を残す。",
         "source_rule": "CORE source-preparationは候補の原index/presenceと既存ValidationSourceObservationを結ぶだけでbodyを読まない。BRAIN private_full_runnerの実F03Evaluation後、statement readerがSemanticRecord occurrence/bodyを読む。source_usabilityは既存CORE SourceUsabilityの三枝(usable|unusable|unestablished)をwholeで保持し、source observation有無、body構造読取、適用summary成立と別軸にする。unusable/unestablishedでも読めたrawはpresentとして保持できるがapplied summaryはunformed。既存checkを再判定しない。usableも真正性の主張ではない。 operation_request_raw.raw.definition_application_locatorは同raw全体に対する単一locating profileとして読む。selector読取/到達source observationの保持と、readerでのrecord/body参照解決を分ける。",
         "member_shapes": {
@@ -18686,7 +18686,8 @@
           "selector_read": "ApplicationRawRead<CoreJsonValue>。operation_request_raw.rawを原JSON rootとしてdefinition_application_locator pointerを解決するRead。presentは`.location`/`.raw`、absentは`.parent_location`/`.member_name`、unreachedは`.cause`で位置と原値/失敗を保持する。",
           "typed_relation": "ApplicationRelation。供給されたapplication_relation raw wholeからの局所projection。原wholeはrelation memberで別保持し、未知member/余分member/未対応端を消さない。",
           "relation": "ApplicationRawRead<CoreJsonValue> whole。raw relationをそのApplicationRawRead tag/layoutで保持する。typed_relationは別projectionであり代替しない。",
-          "operation_request_raw": "ApplicationRawRead<CoreJsonValue>。present枝では `.raw` が元operation request whole、`.location={root,pointer}` がそのread位置。locatorは当該raw wholeに対するJSONPointerで参照し、`.raw`と`.location`を新memberへflattenしない。"
+          "operation_request_raw": "ApplicationRawRead<CoreJsonValue>。present枝では `.raw` が元operation request whole、`.location={root,pointer}` がそのread位置。locatorは当該raw wholeに対するJSONPointerで参照し、`.raw`と`.location`を新memberへflattenしない。",
+          "owner_assertion_read": "ApplicationRawRead<CoreJsonValue>。selected SemanticRecord /meaning/owner_assertionの原object wholeとlocation/tag/rawを保持する。typed_statement.meaning.owner_assertionは同原三項目の型付きprojectionであり、原propositionをowner_application_textから生成しない。unformed枝では到達した原owner_assertion/member readをsource_readsへ保持し、未読時の値を合成しない。"
         },
         "reader_output_refinement": {
           "kind": "既存L4 CoreFieldApplicationStatementReadの技術的refinement。別reader結果や新意味責務ではない。L4のnamed memberをL5 closed outputへ対応させ、元location/tag/raw/whole/orderを保存する。",
@@ -18733,8 +18734,8 @@
             },
             {
               "l4_member": "application_meaning_raw",
-              "l5_location": "body_read.presence_and_raw at /meaning and typed_statement.meaning.operand_assertions[].support_interpretation.owner_application_text",
-              "preservation": "意味body全体のraw/presenceと各owner assertionの原text readを保持し、typed profileからraw bodyを再生成しない。"
+              "l5_location": "owner_assertion_read; typed_statement.meaning.owner_assertion.proposition; body_read.presence_and_raw; operand_assertionsの詳細recordは別保存",
+              "preservation": "原owner_assertion object全値と元proposition RawValue/presenceを原pointerで保存する。詳細owner_application_textは別原値であり命題の代替/自動意味同値ではない。target/support出現をowner_assertion_correspondenceで合わせ、原bodyをtyped値から再生成しない。"
             },
             {
               "l4_member": "reason_raw",
@@ -18750,6 +18751,11 @@
               "l4_member": "extra_members_raw",
               "l5_location": "extra_members_raw:ApplicationExtraMemberOccurrence[] plus source_record_read/body_read raw whole",
               "preservation": "member name、container、原member順、pointer、presence/rawを具体recordで保持し、原wholeも重複排除せず保持する。"
+            },
+            {
+              "l4_member": "minimum_original_body.owner_assertion",
+              "l5_location": "owner_assertion_read and typed_statement.meaning.owner_assertion",
+              "preservation": "target/full Ref、support occurrence refs原列、proposition原値を元object whole/presenceと併せ保存。詳細operand_assertionsとのtarget/support出現対応を維持し原命題を失わない。"
             }
           ],
           "unformed_member_mapping": [
@@ -18862,6 +18868,11 @@
               "type": "ApplicationOutcomeBinding",
               "required": true
             },
+            "owner_assertion": {
+              "type": "ApplicationOwnerAssertion",
+              "required": true,
+              "source_ja": "L4 minimum_original_bodyの原owner_assertion。三項目を元object/rawのまま保持し、詳細operand_assertionsから再生成又は置換しない。"
+            },
             "operand_assertions": {
               "type": "ApplicationOperandAssertion[]",
               "required": true,
@@ -18922,13 +18933,14 @@
             "type_ref": "/selected_brain_field_definition_application_detail/private_types/statement_profile/typed_private_records/GenericConditionOccurrence"
           }
         },
-        "owner_meaning_boundary": "CORE ownerの同operation原SemanticRecordからrole/action/reason/basisを読む。positive content、明示empty、取得済negative/undetermined judgment、qualified_pair_falseを異なるF03出現へ結ぶ。構造/presence/scope/raw値を照合するが、ownerの意味判断の真偽を構文から推論しない。",
+        "owner_meaning_boundary": "CORE ownerの同operation原SemanticRecordからrole/action/reason/basisを読む。positive content、明示empty、取得済negative/undetermined judgment、qualified_pair_falseを異なるF03出現へ結ぶ。構造/presence/scope/raw値を照合するが、ownerの意味判断の真偽を構文から推論しない。 L4 owner_assertion原三項目とproposition RawValueを別保持し、owner_assertion_correspondenceに従って詳細recordへ出現対応する。owner_application_textを原命題へ改名しない。",
         "partial_carrier_rule": "CoreSemanticRecord、CoreRef、CoreApplicationBinding、CoreSourceEnvelopeのschemaにrequiredを追加しない。kind/meaning/source_ref等のprofile消費leafだけをmember単位でpresent/null/absentとして読む。source_refやRef/Bindingが用途上不要なcarrier全体に一律要求しない。",
         "required_leaves": [
           "同operation scope/revision、対象CORE field occurrence/full supplied Ref/Binding、原順の全definition_refs occurrence。未使用partial-carrier memberは要求しない。",
           "各CORE operandのtyped product role、実C01 requirement/selection/contract locator、owner action/application text、reason、実観測independent basis。",
           "同一F03 frameのselected field/full supplied Ref/Bindingと実F03Evaluation row/judgment/cause/read locator。positive_contentなら実content、explicit_emptyならowner/field/frameとmeaning_refs present([])、negative/undeterminedなら取得済原judgment/state/reason、qualified_pair_falseなら実pair whole。明示emptyでfact indexを作らない。",
-          "outcomeに関係する実取得conditionだけを元roleで結ぶ。condition不在のcauseとmember欠落/nullを混同しない。"
+          "outcomeに関係する実取得conditionだけを元roleで結ぶ。condition不在のcauseとmember欠落/nullを混同しない。",
+          "L4 owner_assertion原whole、target_core_operand_occurrence、supporting_brain_occurrence_refsの原順、proposition原RawValueとpresence。詳細operand_assertionsに置換せず、同target/supportへの元record対応を保持する。"
         ],
         "product_role_sources": "CORE field/operandはCoreApplicationDetailReturn.validation.validated.input.field_inputs[i]と同call FieldResult.value.original_fieldから読む。Selectionは実C01返却owner_material.evaluated.field_resultsの同field_indexについてevaluated.value.selectionまたはraw_only.selectionから読む。requirement/contract leafはproducer_observationsの同symbol/tag=returned CoreComparison whole内materialをowner locatorで解決し、producer symbol、comparison pointer、material pointer、raw値を保存する。未観測/未解決なら当該operand未形成。",
         "brain_content_sources": "F03Evaluation.rows[row].definition_read.fact_reads[f]、meaning_read、pair_reads、judgmentsと各source readを原順で使う。positive contentは実fact/meaning readのみ。explicit_emptyはmeaning_refsの実present空配列とfield owner/judgment pointerを保持しfact indexを要求/生成しない。negative/undeterminedは取得済み原judgment/cause/state/reasonを保持しpositive factを捏造しない。qualified_pair_falseは実pair wholeを保持する。requiredness_fact_refs/normative_rule_refsは選択fieldで実取得した時だけ元roleで保存する。 F03の意味/条件の原値はCORE CoreJsonValueへ変換せず、BRAIN F03BRawValue/F03BPresenceRawと実F03BMeaningFactとして保持する。",
@@ -18964,7 +18976,32 @@
               "pointer": "/type_contract/types/MeaningFact"
             }
           },
-          "domain_type_imports_rule": "上記は既存BRAIN domain型の直接参照。GenericContentOccurrence/GenericConditionOccurrenceのraw_valueはF03BRawValue、明示emptyの元meaning_refs nodeはApplicationRawRead<F03BRawValue>={tag:present,location:実meaning_refs nodeのApplicationLocation,raw:[]}で保存する。F03BPresenceRawは別domainの既存wrapperであり、そのpresence/value全体をApplicationRawRead.rawの値として保持する。新しいpresence wrapperへ変換せず、CoreJsonValueへcastしない。"
+          "domain_type_imports_rule": "上記は既存BRAIN domain型の直接参照。GenericContentOccurrence/GenericConditionOccurrenceのraw_valueはF03BRawValue、明示emptyの元meaning_refs nodeはApplicationRawRead<F03BRawValue>={tag:present,location:実meaning_refs nodeのApplicationLocation,raw:[]}で保存する。F03BPresenceRawは別domainの既存wrapperであり、そのpresence/value全体をApplicationRawRead.rawの値として保持する。新しいpresence wrapperへ変換せず、CoreJsonValueへcastしない。",
+          "ApplicationOwnerAssertion": {
+            "name": "ApplicationOwnerAssertion",
+            "kind": "closed_record",
+            "members": {
+              "target_core_operand_occurrence": "{index:Natural,original_ref:CoreRef}",
+              "supporting_brain_occurrence_refs": "JSONPointer[]",
+              "proposition": "CoreJsonValue"
+            },
+            "source_ja": "L4原形{target_core_operand_occurrence,supporting_brain_occurrence_refs[],proposition:RawValue}の局所型対応。targetは元CORE definition_refsのindex/full Ref。support refsは同F03Evaluationに対する実occurrence JSONPointerを原順/反復で保持し、F03BRef/CORE Refへcastしない。propositionは元RawValueそのもの（nullを含む）でありApplicationRawReadやstate欄に置換しない。",
+            "read_preservation_ja": "owner_assertion原object wholeはstatement_read.owner_assertion_readのApplicationRawReadにlocation/tag/rawで保持し、proposition原presence/valueはそのraw objectの実memberとbody/source wholeで保持する。必須memberの欠落/null/typeは既存profile/statement形成規則で局所に扱い、欠落propositionをowner_application_text等から補わない。RawValueとして供給されたnullも原presenceのまま保全し、原命題/理由/basisが適用意味を形成するかは既存writer責務と分離する。",
+            "raw_extra_members_ja": "本閉型は三項目のtyped projectionであり、元owner_assertion objectの追加memberを禁止するwire制約ではない。未消費memberと元列挙順はowner_assertion_read.raw及びbody_read/source_record_readの原wholeに保持し、typed三項目だけから原objectを再生成しない。追加memberだけを理由にnative操作又は任意adapter全体を停止しない。"
+          }
+        },
+        "owner_assertion_correspondence": {
+          "l4_source_pointer": "/selected_brain_field_definition_application_contract/statement_reader_contract/minimum_original_body",
+          "original_owner_assertion_pointer": "/meaning/owner_assertion",
+          "read_order": [
+            "target_core_operand_occurrence",
+            "supporting_brain_occurrence_refs",
+            "proposition"
+          ],
+          "target_mapping_ja": "owner_assertion.target_core_operand_occurrenceのindex/full Refを元FieldInput.definition_refs[k]と、同じk/full Refを保持するoperand_assertions[k].core_operand及びowner_action.target_core_operand_occurrenceへ照合する。Ref同値だけで別kへ移さない。原owner_assertionの単一targetが指す出現への対応を明示し、それだけで全operandのcoverageを満たしたことにしない。",
+          "support_mapping_ja": "supporting_brain_occurrence_refsの各原pointerを同F03Evaluationの選択field/read/judgment/support出現に解決し、typed_relation.brain_supports/operand_links及び対象のoutcome_binding/owner_action.selected_outcome_pointerと実出現で結ぶ。explicit_emptyはowner対応済み判断出現を端とし、存在しないfact indexを作らない。原順・反復を保持し、未対応は既存local causeに保全する。",
+          "proposition_mapping_ja": "原propositionはtyped_statement.meaning.owner_assertion.propositionへ値を変えず写し、owner_assertion_read.raw.proposition及びbody_readの原nodeに戻れる。operand_assertionsは製品role、action、support解釈、理由/basisの詳細な別原recordであり、support_interpretation.owner_application_textを原propositionの名前alias、生成物又は自動的に意味同値な言い換えとしない。writerは原命題を主要なowner宣言として保持し、同target/supportへ対応した詳細原recordと合わせる。構造対応は命題の真偽/文本間の意味同値を認証しない。",
+          "scope_ja": "これはL4原必須memberの復元と既存private projectionのsource対応。新authority/issuer/gateやBRAIN製品意味責務を追加せず、native-onlyを停止しない。"
         }
       },
       "assertion_and_support": {
@@ -19242,7 +19279,7 @@
       }
     },
     "definition_writer_rules": {
-      "formed_profile": "ApplicationInterpretationResultには既存usable CORE source result（判定は再評価しない）、typed owner statement、同scope/field/全CORE operand、実C01 product-role leaves、F03 selected outcome branch、当該枝で必要なsupport、reason/basisの対応が必要。positive contentのみを共通必須条件にしない。構造対応はowner意味の真偽を自動証明しない。",
+      "formed_profile": "ApplicationInterpretationResultには既存usable CORE source result（判定は再評価しない）、typed owner statement、同scope/field/全CORE operand、実C01 product-role leaves、F03 selected outcome branch、当該枝で必要なsupport、reason/basisの対応が必要。positive contentのみを共通必須条件にしない。構造対応はowner意味の真偽を自動証明しない。 原owner_assertion/propositionと詳細operand_assertionsの対応はstatement_profile.owner_assertion_correspondenceを正とし、原命題を詳細text又はstateから作らない。",
       "source_role_scope": "meaning_fact_refs、requiredness_fact_refs、normative_rule_refsを実F03 selected reads内の元roleと順序で保つ。requiredness/normative条件は当該選択fieldの実取得supportがある場合だけ参照する。未選択descriptorを走査せず、新規F03 readを全体gateにしない。owner statementが指すconditionだけ未取得ならそのassertionは未形成。",
       "f03_cause_mapping": {
         "source_pointer": "/selected_brain_field_definition_application_contract/cause_aware_f03_writer/cause_mapping",
@@ -19310,10 +19347,10 @@
         {
           "leaf": "owner application action/proposition",
           "actual_root": "CORE operation ownerの原SemanticRecord.meaning RawValue",
-          "actual_pointer": "selected SemanticRecord occurrence /meaning/operand_assertions[k]/owner_action、/support_interpretation/owner_application_text、/reason、/basis_refs。meaningはApplicationStatementBody自身であり、中間body memberはない。",
-          "expected_source": "ApplicationOperandAssertion.owner_action、product_role、support_interpretationと別memberのreason/basis_refs。",
-          "comparison": "owner_action.target_core_operand_occurrenceは元CORE definition_refs[k]のindex/full Ref、selected_brain_field_occurrence/outcome pointerは同じ実F03 field/outcomeに一致する。product_roleとcontent/condition occurrence refsは各実CORE/F03 source leafへ解決し、presence/rawを一致比較。owner_application_textはCORE ownerの原宣言として保持し、文の真偽は判定しない。state/Ref/name/booleanだけでは形成しない。",
-          "branch_and_store": "ApplicationOperandAssertionのtyped action/role/support、原raw statement、全linkをAppliedFieldCheckViewへ保持。意味的適用判断は同operation CORE owner。"
+          "actual_pointer": "selected SemanticRecord occurrence /meaning/owner_assertion/{target_core_operand_occurrence,supporting_brain_occurrence_refs,proposition} と /meaning/operand_assertions[k]の詳細record。meaningはApplicationStatementBody自身であり中間body memberはない。",
+          "expected_source": "L4原ApplicationOwnerAssertionと原proposition RawValue、同target/supportへ出現対応するApplicationOperandAssertion.owner_action/product_role/support_interpretation、別memberのreason/basis_refs。",
+          "comparison": "owner_assertion_readのwhole/presenceと原propositionを保持する。targetは元definition_refs[k]のindex/full Ref、support pointer列は同F03 field/outcome実出現へ照合し、詳細owner_actionの同target/outcomeへ対応させる。詳細product role/content/condition sourceは既存leaf規則で照合する。owner_application_textを原propositionへalias/自動意味同値とせず両原値を保持し、文の真偽を判定しない。state/Ref/name/booleanだけで適用成立を作らない。",
+          "branch_and_store": "原owner_assertion_read/proposition、詳細typed action/role/support、理由/basisと全linkをAppliedFieldCheckView.statement_readへ保全。意味的適用判断は同operation CORE owner。"
         },
         {
           "leaf": "application reason",
@@ -19453,8 +19490,8 @@
           "operation_request_raw raw rootからdefinition_application_locatorのroot/object/3 memberを宣言順に読む。既存selectorのn/f/s/bを別namespaceに保つ。",
           "BRAIN実返却後、statement record whole、source observation n、validated input source s、body.records[b]、collection/ref/payloadをこの順に解決する。n/s/bを混同せず、bodyの全member/presence/raw wholeを保持する。",
           "relation 6 memberとnested recordを上記relation_checks順で読む。typed statement cross-checkは後で既に読み取るprofile leafへ適用し、先読み/二重readを作らない。",
-          "record.kind/meaningと全必須leafを次に読み、body_schemaの宣言順を守る: operation_context(scope,revision), core_field(index,ref,binding), brain_field(index,ref,binding), outcome_binding(tag/branch), operand_assertions[k](core_operand,product_role,support_interpretation,owner_action,reason,basis_refs), application_reason, independent_basis_refs。配列原順。",
-          "各owner-cited CORE producer/material leaf、Selection、contract leaf、F03 outcome/fact/meaning/condition、basis Ref/source occurrenceはprofileに初めて現れた時点で一回読み、その位置にtrace追加する。source種類でsort/dedupしない。資格/usability/checkは既存結果wholeとして保全し再評価しない。",
+          "record.kind/meaningと全必須leafを次に読み、body_schemaの宣言順を守る: operation_context(scope,revision), core_field(index,ref,binding), brain_field(index,ref,binding), outcome_binding(tag/branch), owner_assertion(target_core_operand_occurrence,supporting_brain_occurrence_refs,proposition), operand_assertions[k](core_operand,product_role,support_interpretation,owner_action,reason,basis_refs), application_reason, independent_basis_refs。配列原順。",
+          "各owner-cited CORE producer/material leaf、Selection、contract leaf、F03 outcome/fact/meaning/condition、basis Ref/source occurrenceはprofileに初めて現れた時点で一回読み、その位置にtrace追加する。source種類でsort/dedupしない。資格/usability/checkは既存結果wholeとして保全し再評価しない。 owner_assertion.supporting_brain_occurrence_refsの各引用も同様に原順で解決し、別の引用出現と同じpointerでもdedupしない。owner_assertion wholeは最初の同member readをowner_assertion_readへ保持し、後段対応のために二重readしない。",
           "供給されたoptional record ref/binding/source_refだけ用途がある場合に読み、未消費extraはrecord次いでbodyの原member順で保全する。partial carrier全memberをrequired化しない。"
         ],
         "read_at_helper_ja": "このreader専用のprivate技術契約。read_at(root, requested_pointer)一回は、明示されたRFC 6901 pointer一つを解決する一操作であり、ApplicationRawRead一つと実到達locationを最大一件返す。pointer pathの各segmentを別call/traceにしない。operation_request_raw等として既に引数に供給された原rootの保持・opaqueな閉型shape/tag検査はread_at callに数えない。read_order_and_trace_jaの順に明示されるwhole record、object member、array collection member、選択array entry whole、およびdeclared payload memberは、それぞれのpointerを一callとして扱う。配列は原順でcollectionを一回、選択する各entryを一回、そのentryの明示memberを各一回読む。選択外entryは読まない。ApplicationRawRead wrapperのtag/location/rawの型・shape検査やwhole値保存は追加readではなく、nested raw内の値はread_orderに明示されたpointerだけを別callで読む。各callは一回だけ実行し、実在する値ならそのrequested pointerをlocation_traceへ一件追加する。同一pointerを後で再要求した場合も別call/別traceとして原順に保持し、cache、dedup、sortしない。欠落等で解決できない場合も、当該callについて最深の実在到達locationを一件だけ記録し、失敗したrequired accessの依存reader branchをそこで停止する。後続予定pointerは未読であり、read/trace/absent valueを合成しない。仕様上optionalなmemberの不在はabsent readとして保持し、そのoptional規則に従ってのみ後続へ進む。unreachedは未呼出し/停止後の別状態として保持する。location_traceはこのprivate readerの実read観測であり、成功/失敗候補を実行して生成したfixtureではない。返却型にtrace memberがある枝だけに所定の値として含める。unformed枝にtrace memberが無い場合は追加せず、selector_read/source_reads/localcauseにある実到達情報で失敗を保持する。helper/pair/traceはpublic member/APIや資格判定ではない。",
@@ -19462,6 +19499,53 @@
       },
       "location_root_rule_ja": "ApplicationLocation.rootはApplicationOriginのliteral stringである。operation_request_rawのraw fieldを基底にする各ReadはBrainFieldDefinitionApplicationRequest labelと当該actual whole/pointerを併記する。C01返却・native F05 return・F03Evaluationは各actual wholeを受け取っている場合にのみそのroot labelで指す。label単独を実source/資格の証拠にしない。location pointerはそのrootへのRFC6901 pathで、operation_request_raw内部locatorはraw nodeの実locationからの相対解決である。",
       "operation_request_raw_access_ja": "CoreFieldDefinitionApplicationStatementInput.operation_request_rawはApplicationRawRead<CoreJsonValue>。tag=present時の`.raw`が元operation request whole、`.location`がread origin。statement_record_pointer/definition_application_locatorはこの`.raw` JSON値をrootとするRFC6901 pointerで解決する。absent/unreachedはparent_location/member_name/causeで保持し、.rawを読まない。"
+    },
+    "l4_to_l5_refinement_table": {
+      "basis_ja": "固定L4の既存論理意味/原wholeを維持するL5私有技術具体化。L4本文又はnative/public型を変更しない。",
+      "l4_path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "l4_revision": "051fff3fffb4801f638c0af2f9f61fc60f184110",
+      "rows": [
+        {
+          "l4_pointer": "/selected_brain_field_definition_application_contract/statement_reader_contract/minimum_original_body",
+          "l4_member": "owner_assertion={target_core_operand_occurrence,supporting_brain_occurrence_refs[],proposition:RawValue}",
+          "l5_pointer": "/selected_brain_field_definition_application_detail/private_types/statement_profile/typed_private_records/ApplicationOwnerAssertion",
+          "preserve_ja": "同名の原三項目とRawValueを復元。元whole/presenceはowner_assertion_read/body_readへ保存し、target/support出現で詳細operand_assertionsへ対応。原propositionと詳細textの意味同値は推論しない。"
+        },
+        {
+          "l4_pointer": "/selected_brain_field_definition_application_contract/logical_private_ports_and_types/consumer_variants/private_result_types/F05BrainDefinitionApplicationInvocation",
+          "l4_member": "not_called.brain_call_causes / causes、called.value.causesなど私有adapterのlogical Cause[]",
+          "l5_pointer": "/selected_brain_field_definition_application_detail/private_types/local_cause",
+          "preserve_ja": "同じ局所missing/unresolved/mismatch原因をApplicationLocalCause[]のdomain別原read付き閉型へ具体化。native_core_return.causes、native_f05 Formation/Comparison、native claims/analysisのCause[]は元wholeで別保持し変換しない。BRAIN cause/stateも元F03 wholeに保持。"
+        },
+        {
+          "l4_pointer": "/selected_brain_field_definition_application_contract/logical_private_ports_and_types/consumer_variants/private_result_types/F05AppliedComparisonOutcome",
+          "l4_member": "formed{value:CoreComparison}|unformed{causes:Cause[]}（呼出済みprivate適用結果）",
+          "l5_pointer": "/selected_brain_field_definition_application_detail/private_types/application_formation",
+          "preserve_ja": "L5 ApplicationFormation<CoreComparison>が同formed/unformedとCoreComparison全値を保持。unformedの局所原因は上記ApplicationLocalCause[]へ具体化し、未呼出しnot_calledと分離。native outer.f05/value.comparisonのFormation<CoreComparison>とそのnative Cause[]を置換しない。"
+        },
+        {
+          "l4_pointer": "/selected_brain_field_definition_application_contract/logical_private_ports_and_types/consumer_variants/private_result_types/F05BrainDefinitionApplicationClaimsReturn",
+          "l4_member": "applied_claims:Formation<CoreComparison>",
+          "l5_pointer": "/selected_brain_field_definition_application_detail/private_types/consumer_contexts",
+          "preserve_ja": "私有applied結果だけApplicationFormationへ具体化し、native_claims/native_analysisの原Formation/Cause[]と別memberへ保全する。public CoreComparison/ApplicationAnalysisのshapeは同じ。"
+        },
+        {
+          "l4_pointer": "/selected_brain_field_definition_application_contract/logical_private_ports_and_types/consumer_variants/private_result_types/F05BrainDefinitionApplicationAnalysisReturn",
+          "l4_member": "applied_analysis:Formation<CoreApplicationAnalysis>",
+          "l5_pointer": "/selected_brain_field_definition_application_detail/private_types/consumer_contexts",
+          "preserve_ja": "私有applied結果だけApplicationFormationへ具体化し、native_claims/native_analysisの原Formation/Cause[]と別memberへ保全する。public CoreComparison/ApplicationAnalysisのshapeは同じ。"
+        },
+        {
+          "l4_pointer": "/selected_brain_field_definition_application_contract/logical_private_ports_and_types/call_order/2",
+          "l4_member": "同call BRAIN private_full_runnerの実F03Evaluation wholeとsnapshot/source originを保持",
+          "l5_pointer": "/selected_brain_field_definition_application_detail/private_types/brain_runner_return",
+          "preserve_ja": "既存BRAIN private runnerの3member実返却wholeを追加private member brain_runner_returnへ保全し、既存field_value_evaluation memberそのものをbrain_f03_returnへ渡す。呼出し回数/意味を追加せず、再構成や型castをしない。reader入力は抽出F03Evaluationだけで維持。原snapshot identity/資格/配送を追加生成しない。",
+          "brain_fixed_source_pointer": "/field_value_applicability_detail/public_and_private_callers/private_full_runner/private_return",
+          "brain_fixed_source_path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "brain_fixed_source_revision": "051fff3fffb4801f638c0af2f9f61fc60f184110",
+          "brain_fixed_source_file_sha256": "3d97d1333333f99a064a88a0b559365dac4207110c1a980a9e94bedfb8dd3142"
+        }
+      ]
     }
   }
 }

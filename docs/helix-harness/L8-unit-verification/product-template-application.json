@@ -95224,7 +95224,7 @@
             "profile_candidate_binding": {
                 "revision": "current-unpinned-worktree-candidate",
                 "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-                "file_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+                "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
                 "pointer": "/wire_codec_contract/numeric_encode_profile"
             },
             "upstream_decision": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
@@ -111736,7 +111736,7 @@
     "candidate_l5_content_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "source_main": "1b50e0e105f0d51b902b26ba0e48d66381705360",
-      "candidate_file_bytes_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+      "candidate_file_bytes_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
       "revision_semantics": "candidate_file_bytes_sha256はこのL8と同じ保存状態のL5 file bytesを固定する。Git revision/承認を示さない。"
     },
     "producer_condition_presence_probes": [
@@ -112821,7 +112821,7 @@
         "role": "L5詳細設計候補の型・writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+        "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -112837,7 +112837,7 @@
         "role": "既存入力carrierのwire member",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+        "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
         "pointers": [
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/sources",
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/qualifications",
@@ -112936,7 +112936,7 @@
         "role": "L5 native ValidationDetailedReturn型・全leaf writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+        "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -114792,7 +114792,7 @@
         "role": "L5のsource照合・原因診断・利用可能性の集約",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+        "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/check_storage_plan",
           "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table",
@@ -116587,7 +116587,7 @@
         "role": "L5 F05 types・Context/header・Cause propagation writers",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+        "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
         "pointers": [
           "/f05_detail_contract/types/F05DetailedRequest",
           "/f05_detail_contract/types/ActualPredecessor",
@@ -117195,7 +117195,7 @@
     "source_basis": [
       {
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+        "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/checks/2",
           "/f05_detail_contract/validation_cause_diagnostic_contract/public_validation_projection",
@@ -117330,7 +117330,7 @@
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "base_revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
         "base_file_sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
-        "current_file_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+        "current_file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/types/ValidationDetailedReturn",
@@ -123214,7 +123214,7 @@
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "base_revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
         "base_file_sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
-        "current_file_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+        "current_file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/collection_reads/canonical_locations",
@@ -123468,7 +123468,7 @@
       {
         "role": "current_l5_candidate_content_binding_no_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+        "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/types/F05DetailedReturn",
@@ -126471,7 +126471,7 @@
         "role": "current_L5_detail_contract",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+        "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
         "selected_object_count": 17,
         "selected_objects": [
           {
@@ -130435,7 +130435,7 @@
       },
       {
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+        "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "selected_objects": [
           {
@@ -130548,7 +130548,7 @@
       {
         "role": "current_candidate_L5_native_scope_writer_binding",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+        "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
         "binding_kind": "candidate_current_content_no_git_revision",
         "selected_objects": [
           {
@@ -165363,7 +165363,7 @@
     "candidate_l5_binding": {
       "binding_kind": "current_candidate_bytes_no_git_revision_claim",
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-      "file_sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+      "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
       "selected_objects": [
         {
           "pointer": "/f05_detail_contract/input_scope_knowledge_gap_realization",
@@ -165407,7 +165407,7 @@
     "function_ref": "HARNESS-L5-009-F01-SOURCE-OCCURRENCE-ARRAY-BUILDER",
     "design_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-      "sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+      "sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
       "pointer": "/selected_source_occurrence_array_builder_detail",
       "canonical_sha256": "ddeeef52cc9379346350d2948537f1077cb87f529bee9a065ec7b8d9818aaf1e",
       "binding_kind": "current_candidate_content_binding"
@@ -165640,7 +165640,7 @@
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "pointer": "/selected_source_caller_detail",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
+      "sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
       "canonical_sha256": "5a10b75acf27c2292adc9ab413adb415b3215d9b11fbb17ac084c4392796e091"
     },
     "integration_oracle_ref": {
@@ -165648,8 +165648,8 @@
       "pointer": "/selected_source_caller_verification",
       "id": "HARNESS-L9-009-SELECTED-SOURCE-CALLER",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "178968e522b51c36ce8db40ae71a09c0f7ca5bf81a5bf1297c538fe8470d5749",
-      "canonical_sha256": "6bf41de9dcea7b5f7118f347ea55fe5dc9fd5507af89a03045a1f91f9b948626"
+      "sha256": "afca7936658190a1a3f96656d6b6ce948a134b16774acac936e46f013e80a868",
+      "canonical_sha256": "e8c8fcc5b748a566eb6cf6064996589d3b4f00e2904392dacb43284c0acc2ffd"
     },
     "source_basis": [
       {
@@ -165790,8 +165790,8 @@
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "pointer": "/selected_brain_field_definition_application_detail",
       "id": "HARNESS-L5-009-F05-BRAIN-FIELD-DEFINITION-APPLICATION",
-      "sha256": "b6977175b2bc32d5db42c12f52be71dc57dbd9d0ce4618ff05abccd2e299bf0a",
-      "canonical_sha256": "4256ea530def815d7f05fe0dfbe9bf6a834a17b4643497d004a9fed984e886f5",
+      "sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
+      "canonical_sha256": "7a9e85d489d29c9985413b2bf0ffe0a7d5e8a8fbda6094e0ba50169d0f4cc585",
       "binding_kind": "current_candidate_content_binding"
     },
     "paired_l4_binding": {
@@ -165826,11 +165826,23 @@
       "decision_records": [
         {
           "id": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
-          "path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md"
+          "path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+          "approved_reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+          "fixed_l4_authority_ref": {
+            "revision": "051fff3fffb4801f638c0af2f9f61fc60f184110",
+            "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+            "pointer": "/selected_brain_field_definition_application_contract/authority_basis/0"
+          }
         },
         {
           "id": "HDEC-BRAIN-TEMPLATE032-PREREQUISITE-L3L10-2026-10-12",
-          "path": "docs/governance/decisions/helix-brain-template032-prerequisite-l3-l10-delegated-decision-2026-10-12.md"
+          "path": "docs/governance/decisions/helix-brain-template032-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+          "approved_reviewed_content_head": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+          "fixed_l4_authority_ref": {
+            "revision": "051fff3fffb4801f638c0af2f9f61fc60f184110",
+            "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+            "pointer": "/selected_brain_field_definition_application_contract/authority_basis/1"
+          }
         }
       ],
       "limit": "上記の承認はsource_basisに記載した承認時の選択objectだけに適用する。L8 fixtureは承認、実source資格、実運転、受入を生成しない。"
@@ -166273,7 +166285,42 @@
             "native_claims_analysis": "原native wholeを保持し改変しない"
           }
         },
-        "nonclaim": "完全なinputとexpected carrierを未物質化・未実行。合成owner/source/contractの入力前提に限る。実製品owner/資格、BRAIN保証、命題の実真偽、実適用、実runtime成功またはPO受入ではない。"
+        "nonclaim": "完全なinputとexpected carrierを未物質化・未実行。合成owner/source/contractの入力前提に限る。実製品owner/資格、BRAIN保証、命題の実真偽、実適用、実runtime成功またはPO受入ではない。",
+        "current_profile_position_map": {
+          "status": "unmaterialized_original_plan_to_current_private_profile_positions_only",
+          "profile_pointer": "/selected_brain_field_definition_application_detail/private_types/statement_profile",
+          "rows": [
+            {
+              "plan_pointer": "/input/owner_operation_statement/target",
+              "profile_pointer": "/meaning/owner_assertion/target_core_operand_occurrence",
+              "remaining_ja": "既存string targetを実CORE operand index/full Refへ原source付きで物質化する必要がある。単なる名前一致で補わない。"
+            },
+            {
+              "plan_pointer": "/input/owner_operation_statement/support",
+              "profile_pointer": "/meaning/owner_assertion/supporting_brain_occurrence_refs",
+              "remaining_ja": "実F03Evaluationの選択support occurrence pointer列を原frameへ結ぶ必要がある。現plan文字列を実supportへcastしない。"
+            },
+            {
+              "plan_pointer": "/input/owner_operation_statement/proposition",
+              "profile_pointer": "/meaning/owner_assertion/proposition",
+              "remaining_ja": "原RawValueを保存し、詳細operand_assertionsのtextと別に保持する。未取得source/元wholeは引き続き未物質化。"
+            },
+            {
+              "plan_pointer": "/input/owner_operation_statement/reason",
+              "profile_pointer": "/meaning/application_reason",
+              "remaining_ja": "原reason read/presenceとoperand別reasonを別保存して物質化する。"
+            },
+            {
+              "plan_pointer": "/input/owner_operation_statement/independent_basis_refs",
+              "profile_pointer": "/meaning/independent_basis_refs",
+              "remaining_ja": "原Ref/source observationを実出現へ対応させ、planラベルを資格済basisへ格上げしない。"
+            }
+          ],
+          "detailed_projection_ja": "製品role/全operand/owner action/support_interpretation/reason/basis_refsは/meaning/operand_assertions[]の別原recordとして物質化し、原owner_assertionとの出現対応をL5 owner_assertion_correspondenceに従って記載する。位置表を追加してもP1/N1–N6の既存materialization status/期待やfull-flow未完は変えない。",
+          "plan_base_pointer": "/selected_brain_field_definition_application_detail_verification/cases/0",
+          "profile_path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "profile_instance_root": "各profile_pointerはselected SemanticRecord原instanceを基底とするJSONPointer。L5文書内のschema node pointerと混同しない。"
+        }
       },
       {
         "id": "N1-STRUCTURE-PRESENT-STATE-ONLY",
@@ -169421,6 +169468,31 @@
                     "content_occurrences": [],
                     "condition_occurrences": []
                   },
+                  "owner_assertion": {
+                    "target_core_operand_occurrence": {
+                      "index": 0,
+                      "original_ref": {
+                        "identity": "synthetic-reader-operand",
+                        "revision": "synthetic-reader-r1",
+                        "scope": {
+                          "product": "SYNTHETIC-READER-P",
+                          "tenant": "SYNTHETIC-T",
+                          "environment": "SYNTHETIC-E"
+                        },
+                        "owner": "synthetic-core-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      }
+                    },
+                    "supporting_brain_occurrence_refs": [
+                      "/rows/0/definition_read/judgments/0"
+                    ],
+                    "proposition": {
+                      "application": "Use the selected F03 explicit-empty definition outcome as the declared definition support for this product operand.",
+                      "product_operand_role": "selected definition outcome for this product operand",
+                      "declaration_scope": "synthetic reader structure only"
+                    }
+                  },
                   "operand_assertions": [
                     {
                       "core_operand": {
@@ -171599,6 +171671,14 @@
                     "raw": null
                   }
                 },
+                "owner_assertion_read": {
+                  "tag": "present",
+                  "location": {
+                    "root": "BrainFieldDefinitionApplicationRequest",
+                    "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion"
+                  },
+                  "raw": null
+                },
                 "typed_statement": null,
                 "extra_members_raw": []
               }
@@ -171662,6 +171742,11 @@
               "op": "copy",
               "from": "/work/statement/meaning",
               "path": "/positive_expected_without_trace/body_read/presence_and_raw/raw"
+            },
+            {
+              "op": "copy",
+              "from": "/work/statement/meaning/owner_assertion",
+              "path": "/positive_expected_without_trace/owner_assertion_read/raw"
             },
             {
               "op": "copy",
@@ -172068,6 +172153,38 @@
                 },
                 {
                   "root": "BrainFieldDefinitionApplicationRequest",
+                  "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion"
+                },
+                {
+                  "root": "BrainFieldDefinitionApplicationRequest",
+                  "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion/target_core_operand_occurrence"
+                },
+                {
+                  "root": "BrainFieldDefinitionApplicationRequest",
+                  "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion/target_core_operand_occurrence/index"
+                },
+                {
+                  "root": "BrainFieldDefinitionApplicationRequest",
+                  "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion/target_core_operand_occurrence/original_ref"
+                },
+                {
+                  "root": "BrainFieldDefinitionApplicationRequest",
+                  "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion/supporting_brain_occurrence_refs"
+                },
+                {
+                  "root": "BrainFieldDefinitionApplicationRequest",
+                  "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion/supporting_brain_occurrence_refs/0"
+                },
+                {
+                  "root": "F03Evaluation",
+                  "pointer": "/rows/0/definition_read/judgments/0"
+                },
+                {
+                  "root": "BrainFieldDefinitionApplicationRequest",
+                  "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion/proposition"
+                },
+                {
+                  "root": "BrainFieldDefinitionApplicationRequest",
                   "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/operand_assertions"
                 },
                 {
@@ -172289,8 +172406,8 @@
         "reconstruction_protocol_ja": [
           "formal_storage.initial_envelope_skeletonを全値copyしたobjectから開始する。",
           "fixed_git_imports各件の指定revision:pathをGit JSONとして読み、file_sha256と選択pointer値のcanonical SHA-256を照合する。取得した全値を各op/pathへ標準JSON Patch addとして挿入する。ignored local artifactやhashだけから値を補わない。",
-          "rfc6902_recipeの105操作を原順で標準RFC6902として適用する。先頭12操作は固定BRAIN cases/0/fixture_patchのpathへ/brainを前置して著述したstorage再構成であり、意味評価ではない。",
-          "full_positive_completion_patchの2操作を原順で適用する。positive_expected_without_trace全値copyに、この節で著述した126-entry location_traceを付けてpositive全返却にする。候補readerを実行してtraceを得ない。",
+          "rfc6902_recipeの106操作を原順で標準RFC6902として適用する。先頭12操作は固定BRAIN cases/0/fixture_patchのpathへ/brainを前置して著述したstorage再構成であり、意味評価ではない。",
+          "full_positive_completion_patchの2操作を原順で適用する。positive_expected_without_trace全値copyに、この節で著述した134-entry location_traceを付けてpositive全返却にする。候補readerを実行してtraceを得ない。",
           "result_pointersの6nodeを実引数/期待/原rootに分けて取り出す。expected/root補助nodeをreaderの6入力へ混入させない。canonicalizationはUTF-8 JSON ensure_ascii=false,sort_keys=true,separators=(comma,colon)。下記result_hashesのSHA/bytes/member順へ照合する。"
         ],
         "source_access_plan": {
@@ -172742,6 +172859,54 @@
             },
             {
               "root": "BrainFieldDefinitionApplicationRequest",
+              "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion",
+              "phase": "original_owner_assertion",
+              "source_rule": "read_order_and_trace_ja/4"
+            },
+            {
+              "root": "BrainFieldDefinitionApplicationRequest",
+              "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion/target_core_operand_occurrence",
+              "phase": "original_owner_assertion",
+              "source_rule": "read_order_and_trace_ja/4"
+            },
+            {
+              "root": "BrainFieldDefinitionApplicationRequest",
+              "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion/target_core_operand_occurrence/index",
+              "phase": "original_owner_assertion",
+              "source_rule": "read_order_and_trace_ja/4"
+            },
+            {
+              "root": "BrainFieldDefinitionApplicationRequest",
+              "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion/target_core_operand_occurrence/original_ref",
+              "phase": "original_owner_assertion",
+              "source_rule": "read_order_and_trace_ja/4"
+            },
+            {
+              "root": "BrainFieldDefinitionApplicationRequest",
+              "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion/supporting_brain_occurrence_refs",
+              "phase": "original_owner_assertion",
+              "source_rule": "read_order_and_trace_ja/4"
+            },
+            {
+              "root": "BrainFieldDefinitionApplicationRequest",
+              "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion/supporting_brain_occurrence_refs/0",
+              "phase": "original_owner_assertion",
+              "source_rule": "read_order_and_trace_ja/4"
+            },
+            {
+              "root": "F03Evaluation",
+              "pointer": "/rows/0/definition_read/judgments/0",
+              "phase": "original_owner_assertion_support",
+              "source_rule": "read_order_and_trace_ja/5"
+            },
+            {
+              "root": "BrainFieldDefinitionApplicationRequest",
+              "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/owner_assertion/proposition",
+              "phase": "original_owner_assertion",
+              "source_rule": "read_order_and_trace_ja/4"
+            },
+            {
+              "root": "BrainFieldDefinitionApplicationRequest",
               "pointer": "/operation_request_raw/raw/core_material/semantic_records/0/meaning/operand_assertions",
               "phase": "profile",
               "source_rule": "read_order_and_trace_ja/4"
@@ -173061,7 +173226,7 @@
             "empty collectionはcollection callだけ、entry callは作らない。未選択entryも読まない。",
             "locator missing負例は最初のselectorobject callがabsentとなり後続停止。unformed出力にtrace memberを追加しない。"
           ],
-          "call_count": 126,
+          "call_count": 134,
           "unit_ja": "各rowはprivate read_at一call。traceは各rowのroot/pointerだけを原順で射影した2member record列。phase/source_ruleはoracle著述の追跡metadataで、reader入力又は返却memberではない。"
         },
         "positive": {
@@ -173072,9 +173237,9 @@
           "expected_return_pointer": "/positive_expected",
           "actual_origin_root_pointer": "/origin_request",
           "expected_tag": "present",
-          "expected_trace_count": 126,
+          "expected_trace_count": 134,
           "given_origin_ja": "actual origin rootは結果pointerのorigin_request whole。operation_request_raw.locationは/operation_request_raw/rawの実raw nodeを指し、relationは同rawの/application_relationに実在する。f05はFormation.formed.value内、producer_observationsはcatalogue順の7member配列でproducer literal/comparison.producer_symbolを対応させる。",
-          "structure_scope_ja": "source observerはunestablishedのtyped givenであり構造読取presentと適用summary形成を分離する。body payloadはrecordのsource_refだけをenvelope側へ外付けした元member全値。BRAIN field/ref/bindingは実F03Evaluationの元型/原pointerで保持する。"
+          "structure_scope_ja": "source observerはunestablishedのtyped givenであり構造読取presentと適用summary形成を分離する。body payloadはrecordのsource_refだけをenvelope側へ外付けした元member全値。BRAIN field/ref/bindingは実F03Evaluationの元型/原pointerで保持する。 原owner_assertion三項目とproposition RawValueを保持し、詳細owner_application_textとは異なるraw値を使って置換/aliasを識別する。owner_assertion_readは同原objectのwhole readである。"
         },
         "negative_same_given_locator_absent": {
           "id": "DIRECT-READER-SYNTHETIC-LOCATOR-ABSENT",
@@ -173102,7 +173267,8 @@
           "CoreReturn.producer_observationsは正本DispatchObservation[]、7catalogue順の各producer literalとcomparison.producer_symbolを一致。新private named-record型を追加しない。",
           "BRAIN原requestはgolden F03BasicContext.inputそのものではなく、そのsnapshot.input（SupplyInput raw）を既存runner引数型として保持。F03Evaluationは同golden expected whole。これは実same-callの証明ではなくunit明示precondition。",
           "application_relationはoperation raw内実memberとして存在し、read originは/operation_request_raw/raw/application_relation。phantom pointerを使わない。",
-          "negativeはlocator memberだけ除き、typed_relation=null/source_reads=[]でselector局所失敗に停止。relationの先読を期待しない。"
+          "negativeはlocator memberだけ除き、typed_relation=null/source_reads=[]でselector局所失敗に停止。relationの先読を期待しない。",
+          "原owner_assertion.propositionはobjectのRawValue、詳細support_interpretation.owner_application_textは別の原string readとして与える。同じ意味のaliasと推定せず、target/full RefとF03支持出現だけを構造対応させて両原値を保全する。"
         ],
         "nonclaims_ja": [
           "実C01又はBRAIN runnerの実行/返却生成",
@@ -173119,8 +173285,8 @@
         "result_hashes": {
           "positive_input": {
             "pointer": "/positive_input",
-            "canonical_sha256": "6070de21c6dc28242052a09fea9ba5eeb202a2ecb9ef2b246339a5e2235c33ad",
-            "canonical_bytes": 1152398,
+            "canonical_sha256": "cd3191ed6f7f64a082ff316551c838c73e529c4478fb803923ac1ad63ac75cb1",
+            "canonical_bytes": 1172408,
             "member_order": [
               "operation_request_raw",
               "core_detail_return",
@@ -173132,8 +173298,8 @@
           },
           "positive_expected_full_return": {
             "pointer": "/positive_expected",
-            "canonical_sha256": "8aaa0fcfd744cc31ab14589d1244940e66a62b2830034c16113f7554462bc878",
-            "canonical_bytes": 1576056,
+            "canonical_sha256": "a38c43aaec8c6bfd6600951eb0868d1dc393bb1da2944f84a773e9609b0f03d7",
+            "canonical_bytes": 1602208,
             "member_order": [
               "tag",
               "original_request",
@@ -173149,6 +173315,7 @@
               "source_usability",
               "source_record_read",
               "body_read",
+              "owner_assertion_read",
               "typed_statement",
               "extra_members_raw",
               "location_trace"
@@ -173156,8 +173323,8 @@
           },
           "negative_input": {
             "pointer": "/negative_input",
-            "canonical_sha256": "81a63530a2db88bb44366423000cbe086d41e66b8baac86b0fbe8604ff7627c0",
-            "canonical_bytes": 1152249,
+            "canonical_sha256": "24754e60fdbe11f5aefa374ae6f0fd5b655f7b312ce55f67377a37ddda2e4817",
+            "canonical_bytes": 1172259,
             "member_order": [
               "operation_request_raw",
               "core_detail_return",
@@ -173169,8 +173336,8 @@
           },
           "negative_expected_full_return": {
             "pointer": "/negative_expected",
-            "canonical_sha256": "04eb164c98a05131aeb274f9fee92f40bdf577abf9778d0aa41435355505b7e7",
-            "canonical_bytes": 1153026,
+            "canonical_sha256": "b4454a43efc65afe2606ecaa238add4fc7ae4c2682b6f45133c4b52420171753",
+            "canonical_bytes": 1173036,
             "member_order": [
               "tag",
               "original_request",
@@ -173188,8 +173355,8 @@
           },
           "positive_actual_origin_root": {
             "pointer": "/origin_request",
-            "canonical_sha256": "023dd489b5ce485d68651682c94e906ab4b16d5d7c563e6dc740e1576d5bfcc6",
-            "canonical_bytes": 1132210,
+            "canonical_sha256": "313c7d06983a0b1acef6c2e719110404b6f9bd885d36e858a88853cf79e06889",
+            "canonical_bytes": 1138213,
             "member_order": [
               "core_caller_inputs",
               "brain_same_call_request",
@@ -173200,8 +173367,8 @@
           },
           "negative_actual_origin_root": {
             "pointer": "/negative_origin_request",
-            "canonical_sha256": "a48bcd9646558ffce0e265837165e2be82b1c5b9fb066b53f03cb941b41af67f",
-            "canonical_bytes": 1132061,
+            "canonical_sha256": "6a61f94734a6340b172567dec268a02e33eec3bec7653377323f9eedb76a76dc",
+            "canonical_bytes": 1138064,
             "member_order": [
               "core_caller_inputs",
               "brain_same_call_request",
@@ -173216,22 +173383,22 @@
             "input": "result_pointersの当該input全値",
             "expected": "result_pointersの当該expected全値"
           },
-          "positive": "206d145e5f35a4de2552cdcf3d3e847e96fa050be3a21de44a877b735e878f07",
-          "negative": "cf2171f32b2337303355be0a29d67f5b4fd95eb23f6187495fff0bfa8fe641fe"
+          "positive": "464f6286a9bbca2c2075424a2aa079d578d3551e0cbc54557acf9813f7852961",
+          "negative": "c949f86b9ba16709dba57d440195b928f2078f754206e4e3b489d3137888c414"
         },
         "static_verification": {
           "execution_state": "not_executed",
-          "method_ja": "固定Git importsのfile/value SHA、105標準操作＋trace完成2操作のstorage再構成、native閉型/partial schema、private record/union shape、原位置とraw値、全trace位置/規則pointer、whole/member順、negative locator-only差分の静的照合。候補reader/evaluatorは実行しない。",
+          "method_ja": "固定Git importsのfile/value SHA、106標準操作＋trace完成2操作のstorage再構成、native閉型/partial schema、private record/union shape、原位置とraw値、全trace位置/規則pointer、whole/member順、negative locator-only差分の静的照合。候補reader/evaluatorは実行しない。",
           "fixed_git_import_count": 5,
-          "core_recipe_operation_count": 105,
+          "core_recipe_operation_count": 106,
           "trace_completion_operation_count": 2,
           "native_type_nodes_checked": 996,
-          "private_records_and_endpoint_checks": 26,
+          "private_records_and_endpoint_checks": 28,
           "private_present_read_origin_matches": {
-            "positive": 970,
+            "positive": 971,
             "negative": 876
           },
-          "trace_positions_and_source_rules_checked": 126,
+          "trace_positions_and_source_rules_checked": 134,
           "single_negative_delta_verified": true,
           "scope_ja": "この有限与件の静的型/原位置保全であり、全入力域の意味、実生成可能性、owner資格、配送、runtime合格又は受入を証明しない。"
         }
