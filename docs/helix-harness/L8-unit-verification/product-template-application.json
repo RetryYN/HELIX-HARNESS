@@ -142233,7 +142233,7 @@
     "candidate_l5_content_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "source_main": "1b50e0e105f0d51b902b26ba0e48d66381705360",
-      "candidate_file_bytes_sha256": "ebc2ab250bc651ee8e99d6dcb7484edcd1169d948557d0f115ba33db70e12776",
+      "candidate_file_bytes_sha256": "30f9d88ee3ac7a5f2c33be13d2905422fef848cabde35046866e773d33853e28",
       "revision_semantics": "candidate_file_bytes_sha256はこのL8と同じ保存状態のL5 file bytesを固定する。Git revision/承認を示さない。"
     },
     "producer_condition_presence_probes": [
