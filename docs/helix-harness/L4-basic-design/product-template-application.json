@@ -1601,7 +1601,8 @@
       "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
       "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。",
       "field_source_materialization_contract_ref": "/field_source_materialization_contract",
-      "field_semantic_evidence_contract_ref": "/field_semantic_evidence_contract"
+      "field_semantic_evidence_contract_ref": "/field_semantic_evidence_contract",
+      "input_scope_knowledge_gap_contract_ref": "/input_scope_knowledge_gap_contract"
     },
     {
       "id": "HARNESS-L4-009-F06",
@@ -5296,5 +5297,356 @@
     },
     "cause_pattern_notation": "各rightはOperandのwriter指定であり、read_origin_jaは返却memberではない。original指定は説明した実input nodeのReadをreadへ格納する。normative_literal指定は記載したvalueとright.rule_pointer（当該patternの/right/valueを指す）をそのまま返す。Cause自体のrule_pointerはpattern本体を指し、規範値の所在と区別する。Cause左右の原値をラベル文字列に置換しない。",
     "scope_column_equality": "unfinished_obligation_refsの列同値は長さ・出現順・反復数を含み、対応位置のRefの全型付き原memberを既存Ref/論理JSONの同値で比較する。object memberの記載順は意味差とせず、booleanとnumberを同一視しない。配列をsort/dedupして比較せず、数値の新codec又はcanonical化規則をここで導入しない。"
+  },
+  "input_scope_knowledge_gap_contract": {
+    "id": "HARNESS-L4-009-F05-INPUT-SCOPE-KNOWLEDGE-GAP",
+    "requirement_ref": "HARNESS-L3-009-F05",
+    "system_oracle_ref": "HARNESS-L10-009-F05",
+    "paired_verification_ref": "HARNESS-L9-009-F05-INPUT-SCOPE-KNOWLEDGE-GAP",
+    "status": "基本設計の技術具体化候補。限定input-only読取と別post-return境界。実装・全F05完了の証拠ではない。",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "scope": "同じValidationDetailPortReturn全値を保ち、ownerの原profileと入力scope内の必要版出現を分離する。要求意味・不足4候補・返却責務・承認gateは変更しない。",
+    "source_basis": [
+      {
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "file_sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1",
+        "pointer": "/requirements/27",
+        "canonical_sha256": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54",
+        "authority_scope": "承認済みF05意味のみ。"
+      },
+      {
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "file_sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c",
+        "pointer": "/cases/27",
+        "canonical_sha256": "329d608fb08cf5191eef0934b1e26a2bd1bf4e7d1f8fe3a1e3752a31dfb08f2d",
+        "authority_scope": "承認済み対検証条件のみ。"
+      },
+      {
+        "revision": "e45c49727263f2bceb3c8b7d832eff1510cdb9f8",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "file_sha256": "77c1e3e4f1f29d4ccabc9c8b47f5c311874c131153223fd0eb8de76c282eae5a",
+        "pointers": [
+          "/f05_validation_material_call_contract/logical_ports/validation_detail",
+          "/field_semantic_evidence_contract",
+          "/field_obligation_scope_contract"
+        ],
+        "selected_canonical_sha256": {
+          "/f05_validation_material_call_contract/logical_ports/validation_detail": "adefb3db1439ad5a3faa4d27cb5ad3fa58b5eaea9e79672fdb2729227b239826",
+          "/field_semantic_evidence_contract": "739d8838896cbb169eafecfae38673e338fc8d82bc2c340195e96b89707dbc6e",
+          "/field_obligation_scope_contract": "d0aada2de42168fef7e383c7ba423002dec423105fbeff3a07944b2a7ddffe31"
+        },
+        "status": "tracked current design input; candidate addition only, not written"
+      },
+      {
+        "revision": "e45c49727263f2bceb3c8b7d832eff1510cdb9f8",
+        "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "file_sha256": "f5d3aa65adb27e4aa7eb52a4dc04903aa3c5f0ede75be409b335573d9004bb6f",
+        "pointers": [
+          "/field_semantic_evidence_verification",
+          "/f05_validation_material_call_verification"
+        ],
+        "status": "existing pair read as context; no formal edit"
+      }
+    ],
+    "input_only_contract": {
+      "request_signature": "read_input_scope_knowledge_version_gap(validation_detail_return: ValidationDetailPortReturn) -> InputScopeKnowledgeGapView",
+      "request_members": [
+        "validation_detail_return"
+      ],
+      "validation_detail_port_pointer": "/f05_validation_material_call_contract/logical_ports/validation_detail",
+      "validation_detail_members": [
+        "original_raw_input",
+        "validated",
+        "source_observations"
+      ],
+      "view_closed_members": [
+        "validation_detail_return",
+        "profile_scan"
+      ],
+      "profile_scan_union": {
+        "input_unavailable": {
+          "tag": "input_unavailable",
+          "reason": "validated.input_is_null",
+          "meaning_ja": "validated.input=nullの原状態を保持。空collectionやNoClaimへ変換しない。これは注記であり返却memberではない。"
+        },
+        "scanned": {
+          "tag": "scanned",
+          "semantic_record_indices": "validated.input.semantic_recordsの原配列indexを全て原順で保持",
+          "profile_observations": "本readerで識別可能なprofile候補ごとの原順観測。必要member未成立でも候補を保持する。空列は識別可能な候補出現が無いことだけを表し、全原宣言の不存在を意味しない。",
+          "semantic_records_read": "Read<CoreJsonValue[]>"
+        },
+        "semantic_records_unresolved": {
+          "tag": "semantic_records_unresolved",
+          "semantic_records_read": "Read<CoreJsonValue>",
+          "meaning_ja": "validated.inputは非nullだがsemantic_recordsを配列として走査できない状態。Readがabsent・present(null/type外)・unreachedの原状態を保持し、profileなしとは扱わない。",
+          "reason": "semantic_records_not_array"
+        }
+      },
+      "profile_observation_closed_members": [
+        "semantic_record_index",
+        "semantic_record_read",
+        "profile_body_read",
+        "source_ref_read",
+        "source_envelope_resolution",
+        "source_observation_resolution",
+        "field_input_resolution",
+        "gap_proposal_resolution",
+        "required_knowledge_ref_read",
+        "actual_knowledge_collection_read",
+        "actual_scope_knowledge_indices",
+        "same_required_version_identity_scope_owner_indices",
+        "scope_relation",
+        "judgment",
+        "recipient_projection"
+      ],
+      "judgment_enum": [
+        "required_version_absent_from_declared_input_scope",
+        "required_version_present_in_declared_input_scope",
+        "unestablished"
+      ],
+      "recipient_projection_enum": [
+        "not_performed_by_input_reader"
+      ],
+      "read_shape": "Read.presentは所在するJSON nodeを値そのまま保持し、value=nullもpresent(null)である。Read.absentはrequested memberが親に存在しない場合、Read.unreachedはrequested nodeまで到達できず最後に到達した実node/親を保持する場合。nullをabsent/unreachedへ正規化しない。",
+      "matching_rule_ja": "profile識別・SemanticRecord/source/body/field/profileの対応は下記profile_interpretation_boundaryと既存L4 common_target_guardsへ結ぶ。SemanticRecord.source_ref→実SourceEnvelope.ref→同validation_detail_returnの実source occurrence/source_indexと、元field/template/proposal/required Ref、supply_scope及びinput/field/template/full bindingの原対応を保持する。proposal.source_refs配列の有無をselector/gateにしない。required knowledge Refと同一identity/scope/ownerで当該fieldに対応して実入力へ入ったknowledge_records全出現を原順でactual_scope_knowledge_indicesへ記録し、その中でrevisionも対応する原出現をsame_required_version_identity_scope_owner_indicesへ別に記録する。ここでいう版一致はRef wholeの字面一致ではなく、source_locatorをidentityにしない。原full Ref/digest/presenceは全て保持し、供給digest条件の既存Ref解決/source-body integrity観測とは別列として扱う。欠落した対象Ref/Scope/collection又は必要なprofile/source対応は当該judgmentのunestablishedへ残し、lookup miss又はrevision差だけからglobal unavailableを作らない。",
+      "ordered_writer": [
+        "1. L4 validation_detailの一回の同call全返却をrequest.validation_detail_returnとして受け、そのwholeをoutput.validation_detail_returnへ無変換で保持する。",
+        "2. validated.inputがnullならprofile_scan=input_unavailable。input_issues/unusable_source_refs/source_observationsはそのまま保持する。",
+        "3. validated.inputがobjectでもsemantic_recordsのReadが配列でなければprofile_scan=semantic_records_unresolvedとし、原Readとreason=semantic_records_not_arrayを保つ。配列なら全原index/順をsemantic_record_indicesとsemantic_records_readへ保持してscannedへ進む。本readerのprofile候補識別はprofile_interpretation_boundaryの原kind/profile_idによる。識別できる候補のprofile_version又は他の必要memberが未観測/null/型外/未対応であっても観測を落とさず原record/bodyのReadを保持し、当該解釈をunestablishedとする。識別できない原recordもsemantic_records_read wholeに残し、空profile_observationsだけから全原宣言の不存在を推定しない。",
+        "4. 各profile候補宣言のsource_ref/SourceEnvelope/source_observation、原body.recordsのcollection/ref/payload対応を既存L4 wrapper_and_source_contractへ結ぶ。ProfileOccurrenceResolutionのlocated枝だけが対応する実在indexと実Readを持ち、unestablished枝はcollection Readと実際に観測した候補occurrenceだけを保持する。locatedは原nodeの取得所在が対応したという意味であり、source資格/body integrity又はprofile意味判断の成功を表さない。欠落/曖昧/未到達へ架空indexやLocationを作らない。",
+        "5. field_input/gap_proposalとprofile supply_scopeの対応も同じoccurrence resolution・Read形で保持し、欠落/型外/別scopeはunestablishedのまま原scope/材料を保持する。scope_relationの全operandと軸結果を省略しない。",
+        "5a. 上記scope operands全体と既存L4 /field_semantic_evidence_contract/common_target_guards に従う各axis結果を保存する。いずれかの必要memberが未観測/異なる場合はその原presenceと局所結果を保ち、profile claimをscope適合と裁定しない。",
+        "6. knowledge_recordsの原全列と各full Refを保持し、当該fieldに対応する同identity/scope/ownerの各原indexをactual_scope_knowledge_indicesへ、その中の同revisionの原indexをsame_required_version_identity_scope_owner_indicesへ原順で記録する。版存在はcomparison_axes_ja.knowledge_membershipにいう当該input scope内の原版出現の観測であり、source_locator又はdigestをRef identityへ加えたwhole同値判定ではない。本3caseの原条件の下で同版あり→present、同版なし→対象/profile対応とcollectionが全て観測できた範囲だけで当該入力内不在、それ以外はunestablished。供給digest条件の差/未観測又は本文integrityの不成立を版不在へ変換せず、版出現の観測からintegrity成功を生成しない。未行使の条件組合せの判断は本3caseから補完しない。",
+        "7. input-only readerはrecipient/ticket/ReturnLinkを生成しない。必要な返却先の意味はF05 owner contractへ渡す候補情報として、原owner statementをprofile_body_read内に保存する。"
+      ],
+      "nonclaims_ja": [
+        "全域unavailable",
+        "知識の利用可否/承認/資格/availability",
+        "本番採用",
+        "全fieldや全sourceの完全性gate",
+        "BRAINへの実配送",
+        "候補意味算法の実行成功",
+        "新authority/owner/provider"
+      ],
+      "closed_schema": {
+        "schema_status": "基本側の技術選定。新wrapperのmember集合を閉じ、既存L4 logical portのValidationDetailPortReturnは全値通過させて再定義しない。",
+        "type_definitions": {
+          "CoreJsonValue": "JSON null | boolean | number | string | CoreJsonValue[] | object<string,CoreJsonValue>。既存logical JSON値。codecや同値規則を新設しない。",
+          "Natural": "既存の非負整数index型。指定原配列の実在indexだけを持ち、lookup miss時に合成しない。",
+          "JSONPointer": "RFC 6901 JSON Pointer構文。Read.present.location、Read.absent.parent、Read.unreached.reachedは実nodeを指す。absent/unreached.requestedは非実在又は未到達の要求先も表せる。",
+          "Location": {
+            "kind": "closed_record",
+            "members": {
+              "root": "literal:validation_return",
+              "pointer": "JSONPointer"
+            }
+          },
+          "Read<T>": {
+            "kind": "tagged_union",
+            "tag": "tag",
+            "variants": {
+              "present": {
+                "location": "Location",
+                "value": "T"
+              },
+              "absent": {
+                "requested": "Location",
+                "parent": "Location",
+                "parent_value": "CoreJsonValue"
+              },
+              "unreached": {
+                "requested": "Location",
+                "reached": "Location",
+                "reached_value": "CoreJsonValue"
+              }
+            }
+          },
+          "ValidationDetailPortReturn": {
+            "kind": "existing_L4_logical_port_output",
+            "source_pointer": "/f05_validation_material_call_contract/logical_ports/validation_detail",
+            "members": [
+              "original_raw_input",
+              "validated",
+              "source_observations"
+            ],
+            "nested_members": "既存L4 logical portの全返却を保存する。新しいrequired key集合を入力carrierへ付加しない。"
+          },
+          "ProfileObservation": {
+            "kind": "closed_record",
+            "members": {
+              "semantic_record_index": "Natural",
+              "semantic_record_read": "Read<CoreJsonValue>",
+              "profile_body_read": "Read<CoreJsonValue>",
+              "source_ref_read": "Read<CoreJsonValue>",
+              "source_envelope_resolution": "ProfileOccurrenceResolution",
+              "source_observation_resolution": "ProfileOccurrenceResolution",
+              "field_input_resolution": "ProfileOccurrenceResolution",
+              "gap_proposal_resolution": "ProfileOccurrenceResolution",
+              "required_knowledge_ref_read": "Read<CoreJsonValue>",
+              "actual_knowledge_collection_read": "Read<CoreJsonValue>",
+              "actual_scope_knowledge_indices": "Natural[]",
+              "same_required_version_identity_scope_owner_indices": "Natural[]",
+              "scope_relation": {
+                "kind": "closed_record",
+                "members": {
+                  "operands": "7memberの閉record（各Read<CoreJsonValue>）: application_input_ref_read, field_input_ref_read, field_input_template_ref_read, field_input_binding_read, semantic_record_binding_read, profile_binding_read, profile_supply_scope_read",
+                  "axis_results": "閉じた原順配列: input_ref_vs_supply_scope.input_ref, field_ref_vs_supply_scope.field_ref, template_ref_vs_supply_scope.template_ref, field_binding_vs_semantic_record.binding, field_binding_vs_profile.binding, field_binding_vs_supply_scope.binding; 各結果はcorresponding|different|unestablished",
+                  "aggregate_result": "enum:corresponding|different|unestablished"
+                }
+              },
+              "judgment": "enum:required_version_absent_from_declared_input_scope|required_version_present_in_declared_input_scope|unestablished",
+              "recipient_projection": "literal:not_performed_by_input_reader"
+            }
+          },
+          "InputProfileScan": {
+            "kind": "tagged_union",
+            "tag": "tag",
+            "variants": {
+              "input_unavailable": {
+                "reason": "literal:validated.input_is_null"
+              },
+              "scanned": {
+                "semantic_record_indices": "Natural[]",
+                "profile_observations": "ProfileObservation[]",
+                "semantic_records_read": "Read<CoreJsonValue[]>"
+              },
+              "semantic_records_unresolved": {
+                "semantic_records_read": "Read<CoreJsonValue>",
+                "reason": "literal:semantic_records_not_array"
+              }
+            }
+          },
+          "InputScopeKnowledgeGapView": {
+            "kind": "closed_record",
+            "members": {
+              "validation_detail_return": "ValidationDetailPortReturn",
+              "profile_scan": "InputProfileScan"
+            }
+          },
+          "InputScopeKnowledgeGapRequest": {
+            "kind": "closed_record",
+            "members": {
+              "validation_detail_return": "ValidationDetailPortReturn"
+            }
+          },
+          "ProfileOccurrenceCandidate": {
+            "kind": "closed_record",
+            "members": {
+              "index": "Natural",
+              "read": "Read<CoreJsonValue>"
+            },
+            "index_rule_ja": "indexは元配列に実在したoccurrenceのindexだけ。"
+          },
+          "ProfileOccurrenceResolution": {
+            "kind": "tagged_union",
+            "tag": "tag",
+            "variants": {
+              "located": {
+                "index": "Natural",
+                "read": "Read<CoreJsonValue>"
+              },
+              "unestablished": {
+                "collection_read": "Read<CoreJsonValue>",
+                "observed_occurrences": "ProfileOccurrenceCandidate[]"
+              }
+            },
+            "rules_ja": [
+              "located枝だけが対応確定済みの実在indexを持ち、readはその元nodeのRead全値。",
+              "unestablished枝はcollection nodeのReadと実在候補occurrenceだけを保持する。候補が無い場合は空配列、複数等なら全候補を原index順で保持する。indexやLocationは合成しない。",
+              "全raw材料はvalidation_detail_returnの同一snapshot内に保持し、元scope/source/bodyを落とさない。"
+            ]
+          }
+        }
+      },
+      "comparison_axes_ja": {
+        "scope_relation": "同一ValidationDetailPortReturnで、profile supply_scope、field/template Ref、Bindingを同じinput/fieldへ対応付ける。既存 /field_semantic_evidence_contract/common_target_guards に従い、Ref全原値を保ち、source_locatorは所在として扱いidentityにしない。",
+        "knowledge_membership": "実候補collectionは同validation_detail_return.validated.input.knowledge_recordsの原whole配列。当該fieldへのrequired_field_refs対応とknowledge Refのidentity/scope/ownerで入力内候補出現を保持し、revisionも対応する出現を同版の原index列へ保存する。原full Refは保持するがsource_locatorは所在であってidentityではない。供給されたdigestの条件は既存L4 common_target_guards/3のRef解決及び元source/body照合で別に保持し、その不成立/未観測を版absenceへ変換しない。逆に当該入力内の版出現はknowledgeの利用可否/資格/availability又は本文integrity成立を意味しない。digest未供給を新しい必須digest gateにしない。反復/別所在を除去せず原順で全候補及び全同版indexを保持する。",
+        "absence_boundary": "宣言field/scopeのcollectionが適合形の全列として観測でき、必要な対応を確かめた範囲だけで、必要版が当該入力scopeにないと記録する。欠落/null/型外/collection又はBinding未解決はunestablished。全域unavailable/availabilityを判定しない。"
+      },
+      "profile_scan_union_notation_ja": "このprose unionは閉型InputProfileScanの説明。reasonはinput_unavailable/semantic_records_unresolvedの必須literal、scannedにはreason memberなし。meaning_ja等の説明memberは返却memberではなく、返却shapeはclosed_schema.type_definitions.InputProfileScanが正本。",
+      "profile_interpretation_boundary": {
+        "finite_profile_identifier": {
+          "semantic_record_kind": "f05_knowledge_revision_gap_evidence",
+          "meaning_profile_id": "f05_knowledge_revision_gap_evidence",
+          "meaning_profile_version": 1,
+          "source": "本3caseのS12/S13原semantic_records[0]のkind、meaning.profile_id、meaning.profile_versionから固定する局所reader識別子。新collection/owner/authorityではない。"
+        },
+        "candidate_and_formation": "原kind又はmeaning.profile_idで本profile候補と識別できる出現を原index順で保持する。意味を読む範囲では上記kind/profile_id/profile_versionの原対応を別に確認し、識別可能だが必要member未観測/null/型外/unsupported version/既知差なら候補raw wholeを落とさず当該judgmentをunestablishedへ残す。kindという文字列だけからprofileの裁定又は不足を生成しない。無関係/識別不能の元recordも全semantic_records_readに保持し、任意の新profileへ変換しない。",
+        "source_and_body": "元SemanticRecord.source_ref→SourceEnvelope.ref→同validation_detail_return.source_observationsの実source occurrenceを結び、既存 /field_semantic_evidence_contract/wrapper_and_source_contract に従ってbody.recordsのcollection=semantic_records、ref及びpayloadの原対応を読む。payloadは元recordからsource_refだけをenvelope側へ外付けしたref/binding/kind/meaningの原member全値/presenceであり、source_refをpayloadへ再帰埋込みしない。元source/Qualification/root/owner/subject/bytes/body/digest観測の不成立は当該解釈へ残し、located又は空unusable_source_refsから成功を補わない。source/wrapper ownerと元knowledge/template側の意味owner関係は既存common_target_guards/role_owner_bindingの範囲を保持し、field.ref.ownerとの一律一致やBRAIN文字列だけの資格を足さない。",
+        "field_and_profile": "原profile.field_ref/template_refは実FieldInput.ref/template_refへ、profile.proposal_refは実GapProposal.refへ結び、当該proposal.subject_ref/原bindingと対象fieldの対応を保つ。profile.binding、元SemanticRecord.binding及びprofile.supply_scopeのinput_ref/field_ref/template_ref/bindingは既存scope_relationの原7Read・6axisとcommon_target_guardsで同input/field/full bindingへ照合する。profile.required_knowledge_refは原operandとして独立に保持し、field.binding.knowledge_ref又は隣接Refから不足member/版を補完しない。必要な対象対応が未成立ならraw候補と局所未成立を保持し、別field/frame成功で置換しない。",
+        "non_gates": "owner_statement/reason/basis_refs等の元追加memberはprofile_body_read wholeへ保持する。これらの文字列/配列を新しい完全inventory又はproposal.source_refs gateにせず、原版出現を利用可否/本番採用/返却先配送へ昇格しない。",
+        "unexercised": "本3例はS12/S13の当該profile候補が完全対応し、S14はsemantic_records=[]。profile識別可能なまま一部欠落/unsupported version/別field/frame/source/body不成立のwhole期待は未収載である。一般枝の判断成功を本例から補完しない。"
+      }
+    },
+    "post_return_projection": {
+      "separate_from_input_reader": true,
+      "request_signature": "project_actual_f05_return_link(profile_observation_index, actual_outer_f05: Formation<ActualF05ProducerReturn>)",
+      "formed_rule": "形成済actual_outer_f05.valueが存在する場合のみReturnLink{root:\"f05_return\",pointer:\"\"}を作り、参照先は実F05 detailed return全体。入力だけからReturnLinkを先行生成しない。",
+      "unformed_rule": "実outer F05がunformedなら実Cause全値をそのまま保持し、ReturnLinkを作らない。Cause实例を合成しない。",
+      "boundary": "L4 /f05_validation_material_call_contract/outer_return_boundary。F05DetailedReturn実在時はcontext/header/comparison内部未形成でもoriginal_request/raw evidence linkを禁止しない。recipient決定と配信はこのbasic pairの責務ではなくL5/OS境界に残す。",
+      "finite_coverage": "S12/S13/S14はinput-only pairのみ。形成済の実F05 return premise/whole fixtureがV4素材に無いためpost-return formed branchは未収載。outer-unformed cause instanceも固定fixtureに無く未行使。",
+      "closed_schema": {
+        "type": "PostReturnProjection",
+        "input_members": {
+          "profile_observation_index": "Natural",
+          "actual_outer_f05": "Formation<ActualF05ProducerReturn>"
+        },
+        "output_members": {
+          "profile_observation_index": "Natural",
+          "actual_f05_link": "Formation<ReturnLink>"
+        },
+        "ReturnLink": {
+          "kind": "closed_record",
+          "members": {
+            "root": "literal:f05_return",
+            "pointer": "JSONPointer"
+          }
+        },
+        "formed_branch": "実際のouter F05がformedで、そのvalueが存在するときだけroot=f05_return、pointer=\"\"（root全体を指すJSON Pointer）のReturnLinkを作る。このlinkはproducerの実出力を指すもので、BRAINでの受領や配送を意味しない。",
+        "unformed_branch": "実際のouter F05がunformedなら、実Cause全値をそのまま保持する。linkもunformedのままとしReturnLink valueを作らない。合成Causeは追加しない。",
+        "input_reader_independence": "InputScopeKnowledgeGapViewはpost-return呼出しに依存せず成立する。将来のreturn linkを入力前提にしない。",
+        "ActualF05ProducerReturn": {
+          "kind": "opaque_actual_producer_return_payload",
+          "boundary": "COREの外側F05 producerが実際に返したformed payload。L4側では内部memberを再定義しない。",
+          "mapping_note": "現在のL5 outer return型ではCoreApplicationDetailReturn.f05の単一FormationのvalueがF05DetailedReturn。ここではそのpayloadの外側名だけをActualF05ProducerReturnとして扱い、L5 private recordのmember構造やraw decode規則をL4契約へ取り込まない。"
+        }
+      }
+    },
+    "legacy_comparison": {
+      "legacy_asset_refs": [
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": "16–60,81–92",
+          "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "lines": "33–77",
+          "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": "65–101",
+          "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+        }
+      ],
+      "failure_basis": "既存failure_basisの旧predecessor audit UTW-014（欠損→空集合）、UTW-020（部分原因をaggregateへ隠す）、UTW-021（自己申告completion）を意味根拠とは別の失敗対応として読む。",
+      "preserve_change_reason": "template定義と製品instance/原値、原field/意味owner/要否/trace、個別unknown/N/A理由/再評価、原版/source/未完とderived viewの分離、原F05の4候補と返却先。 旧registry/planner/式木/runtimeを移植せず、現SemanticRecord/SourceEnvelope上へ局所定義命題と原質問/排他/導出/非適用関係を技術的logical bodyとして表す。全inventory完備性/新owner/承認gateは追加しない。 前段は原payloadの所在を決めるが、meaning全体の取得だけで定義存在/不在又は4分類は定まらない。原意味を有限body/対象operandへ束縛して、source取得不成立とdomain不足及び分類不明の混同を防ぐ。"
+    },
+    "limits": [
+      "固定入力はV4 local oracle由来であるため、その旧L5一般出力や本番authorityを正本へ昇格しない。",
+      "L4 logical ValidationDetailPortReturnのinner source-observation wire type全域、shape-malformed branch、source qualification unestablished branchの新caseは未収載。",
+      "Post-return formed/unformedの全whole期待は未固定。形成済actual F05DetailedReturn全値がfixtureに無く、outer unformed Cause例も無い。",
+      "L5 RecipientMaterial実返却、BRAIN delivery/receipt、B019/030 consumer接続は別未完。",
+      "knowledge Refの供給digest差/未観測と原版存在の組合せ、source/body integrity不成立、識別可能profileの必要member欠落/null/型外/unsupported version/別subject-frameは本3全期待で未行使。元材料と既存局所未成立を保持し、版absence/integrity成功/global unavailable又は新gateへ補完しない。prose unionのinput_unavailable/semantic_records_unresolved reason枝も未行使。",
+      "3例はscannedかつlocated/presentの有限前提。input=null、semantic_records欠落/null/型外、未到達、profile未形成/別版、source資格未成立、scope差/unknown、供給digestの差/未観測、複数候補の全返却は未収載。",
+      "入力版出現の判断を利用認可/全域availability/本文integrity成功に昇格しない。実source起源・fn0/producer実行・配送・実受入は未成立。"
+    ]
   }
 }
