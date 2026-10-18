@@ -3964,7 +3964,238 @@
       "refs_reason": "Axis.original_refs/Finding.source_refsは該当category又は当該Claim basisの実Refsだけ。source/body/Claimの元locatorと原因をreasonへ結ぶ。個別Ref.ownerをpublic backflow_ownerへ代入しない。",
       "rule_routing": "元missing＋reference_only置換はfn6 rule87、元unknown＋任意fallback成立主張はfn7 rule93。kind/positiveだけで発火せず原target/状態/basisを比較。同Claimを二重Findingにしない。新body unknownを既存codeのpredicate外へ流用しない。",
       "order": "常時003/005/007/008/028、CORE返却019/022/030、selector core_return/core_source/labo、既決conditional core_source/labo内固定018/020→原operation025、原handoff、Claim原順。body局所材料は対応dependencyに保持。旧22rules/role/null/conditional原順は変更しない。",
-      "handoff": "原recordの全state/reason/Refを保持。単に複数のraw stateが違うという理由で追加conflictを作らない。"
+      "handoff": "原recordの全state/reason/Refを保持。単に複数のraw stateが違うという理由で追加conflictを作らない。",
+      "axis_reason_writer": {
+        "status": "新規private typed writerの技術具体化候補。reason文字列の形成を定める。上流意味、axis state、既存failure predicate、cause code、backflow role、原Refは変更しない。",
+        "pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer",
+        "comparison_root": {
+          "source": "同L4節のpublic_return_shapes/comparisonと、ports/0およびpublic_projection/order。",
+          "member_order": [
+            "axes",
+            "findings",
+            "producer_symbol",
+            "input_binding"
+          ],
+          "member_values": "同一snapshotの原inputと、各AxisResult/Finding writerが形成した配列全値。producer_symbolは既存caller symbol literal。input_bindingは原Binding全値、原bindingがabsent/nullならnull。"
+        },
+        "axis_root": {
+          "source": "同L4節のpublic_return_shapes/axis_result。",
+          "member_order": [
+            "subject_ref",
+            "binding",
+            "axis",
+            "state",
+            "original_refs",
+            "reason",
+            "backflow_owner"
+          ],
+          "writers": {
+            "subject_ref": "dependency subjectはL4 public_projection/dependency_subjectに従う原input binding Ref、handoffは同じinputの元HandoffRecord.subject_ref。形成不能ならAxisResultを作らない。",
+            "binding": "同一inputの原Binding全値。別carrierから補完しない。",
+            "axis": "dependency axisはL4 public_projection/axis_mappingの該当literal。unselected_source/handoffはそれぞれL4 canonical no-call/failure classificationが示すaxis literal。",
+            "state": "L4 CanonicalBodyReadとaxis_mappingの対応literal。selector false/unselected/no-callはcanonical_ordered_branches/1およびfailure_classifications/89が示すunobserved。明示handoff stateは原値。",
+            "original_refs": "L4 public_projection/refs_reasonとorderに従う、実category Ref出現だけを原順・重複込みで複写。欠落identityのRefは作らない。handoff source_refは供給済み非nullのときだけ保持。",
+            "reason": "reason_serializationに従い、BodyReadProblem.reason、L4 diagnostic mappingのliteral、または元handoff.reasonを損失なく記録する。任意raw文字列を補間しない。",
+            "backflow_owner": "L4 axis_mappingまたはfailure_classificationsのrole literalのみ。未選択unobservedのAxisResultはこの有限caseではnull。classification/89のFindingが別predicateにより実際に成立した場合に限り、そのFindingはknowledge_owner。明示not_receivedのhandoffはclassification/84に従いos_owner。"
+          }
+        },
+        "finding_root": {
+          "source": "同L4節のpublic_return_shapes/findingと既存failure_classifications。",
+          "writer": "既存L4 predicateがfailure_rule_ref_mapping.entriesのどれかに一致するときだけFindingを形成する。code/rule_ref/axis/state/backflow_ownerは同一entryの固定値を使い、subject/binding/source_refs/reasonは当該predicateを支持する同一inputのL4原値から形成する。複数entryを混ぜず、新predicate/Findingを作らない。mapping外のpredicateについてこの有限追加は新しいrule_ref対応を主張しない。"
+        },
+        "reason_serialization": {
+          "public_field": "AxisResult.reasonとFinding.reasonは既存string memberのままとし、Comparison/Axis/Findingにmemberを追加しない。",
+          "string_grammar": "`<prefix> + LF + \"TRACE=\" + compact UTF-8 JSON object`。末尾空白なし、ensure_ascii=false。trace member順はtrace_member_orderに固定する。Ref/Binding/RawValueの内側member順は原順のままとし、sort/dedupしない。byte列全体をL4 common_rules/reason_formatに従って比較する。",
+          "trace_member_order": [
+            "format",
+            "producer_symbol",
+            "axis",
+            "state",
+            "subject_ref",
+            "binding",
+            "original_refs",
+            "backflow_owner",
+            "request_locator",
+            "source_category_locator",
+            "cause",
+            "canonical_body_support",
+            "handoff_record",
+            "selection_observation"
+          ],
+          "trace_value_rules": {
+            "format": "固定識別子 BRAIN032-F09-axis-reason-trace-v1",
+            "producer_symbol": "固定識別子 compare_dependencies_and_handoff",
+            "axis_state_subject_binding_original_refs_backflow_owner": "該当AxisResultまたはFindingの対応memberを全値複写する。推測で置換しない。",
+            "request_locator": "実際のCanonicalReadRequest.request_ref_locator、明示されたHandoffRecord locator、またはreadが無ければnull。",
+            "source_category_locator": "実在するcategory配列のpointerのみ。",
+            "cause": "resolvedかつsource問題なしならnull。それ以外は対応するL4 BodyReadProblemまたは実成立したL4 failure-classification観測を、state/member/presence/reason/source_locators込みで保持する。原因を新設しない。",
+            "canonical_body_support": "L4 canonical ordered branchで実際に対応したCanonicalBodyRecord/qualificationのcrosswalkのみ。target/source Ref、content locator、basis_refs、source Qualification Ref、subject Ref/digest、applicable scope、root Refを各rowに保持する。canonical readがなければ空配列。",
+            "handoff_record": "明示的に存在する元HandoffRecord全値。無ければnull。raw reason/source_ref presence/original stateを保持する。",
+            "selection_observation": "unselectedとなるselector原値・presenceとunselected_refが実在するときだけ記録。no-callを表し、canonical body rowを作らない。",
+            "backflow_owner": "対応するAxisResult/Findingの正確なmember値。通常のunselected_source=unobserved AxisResultはnull、別個に成立したclassification/89 Findingはknowledge_ownerとなる。"
+          },
+          "prefix_table": [
+            {
+              "branch": "canonical body全値解決",
+              "prefix": "canonical owner本文を同scope/target/versionで全値提供。",
+              "basis": "L4 canonical_ordered_branches/5,8,9。body recordは原contentとframe全値を持つ。applicable/adopted/実trustを意味しない。"
+            },
+            {
+              "branch": "source/body/frame不明",
+              "prefix": "対応するL4 BodyReadProblem.reasonをそのまま使用する。",
+              "basis": "L4 diagnostic_return_contract/canonical_diagnostic_mappingの該当行。raw文字列を追加補間しない。"
+            },
+            {
+              "branch": "必要identity不足",
+              "prefix": "L4 canonical_diagnostic_mapping/3のreason literalを使用する。",
+              "basis": "既存L4 diagnostic mapping。欠落identityを合成せず、L4のreason literalだけを使う。"
+            },
+            {
+              "branch": "unselected_source unobserved",
+              "prefix": "未選択sourceは未観測。",
+              "basis": "L4 canonical_ordered_branches/1のno-callとpublic_projection/axis_mappingの対応を保持する。別predicateが成立しない限りFindingを作らない。"
+            },
+            {
+              "branch": "明示HandoffRecord",
+              "prefix": "受渡しstateを元recordから保持。",
+              "basis": "元reasonをtraceに保持し、明示not_receivedはL4 failure_classifications/84に従う。欠落行からstateを推定しない。"
+            }
+          ]
+        },
+        "trace_limits": "traceは公開fieldへ出した原資料を説明する。新authority、qualification gate、canonical adoption、実runtime evidenceを作らない。canonical bodyの取得は既存L4 body portだけを通し、そのstate/problemsを変えない。",
+        "normative_source_scope": {
+          "authority": "規範根拠は同じL4文書のpublic projection、canonical body port、diagnostic mapping、failure classifications、および承認済みL3/L10の意味に限る。",
+          "l4_pointers": [
+            "/dependency_semantic_ports/ports/0",
+            "/dependency_semantic_ports/public_projection/dependency_subject",
+            "/dependency_semantic_ports/public_projection/claim_subject",
+            "/dependency_semantic_ports/public_projection/axis_mapping",
+            "/dependency_semantic_ports/public_projection/refs_reason",
+            "/dependency_semantic_ports/public_projection/order",
+            "/dependency_semantic_ports/public_projection/handoff",
+            "/dependency_semantic_ports/diagnostic_return_contract/common_rules/reason_format",
+            "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/3",
+            "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/5",
+            "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/6",
+            "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/8",
+            "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/12",
+            "/dependency_semantic_ports/canonical_ordered_branches/1",
+            "/dependency_semantic_ports/canonical_ordered_branches/5",
+            "/dependency_semantic_ports/canonical_ordered_branches/8",
+            "/dependency_semantic_ports/canonical_ordered_branches/9",
+            "/failure_classifications/84",
+            "/failure_classifications/89"
+          ]
+        },
+        "public_return_shapes": {
+          "closed_shape_rule": "以下のfield集合と順序をこの節で固定する。これらは既存Comparison/AxisResult/Findingの公開返却shapeを明記したものであり、新しい公開member・failure predicate・authorityを追加しない。各Ref/Bindingは同一snapshotの既存入力carrierから取る。",
+          "comparison": {
+            "members": [
+              "axes",
+              "findings",
+              "producer_symbol",
+              "input_binding"
+            ],
+            "fields": {
+              "axes": "AxisResult[]。既存orderに従う。",
+              "findings": "Finding[]。該当する既存failure classificationだけを保持する。",
+              "producer_symbol": "string。既存caller symbol `compare_dependencies_and_handoff`。",
+              "input_binding": "Binding|null。同一validated.inputの原binding全値。bindingが未供給またはnullの場合はnullを保持し、sourceから補完しない。"
+            },
+            "additional_members": "許可しない"
+          },
+          "axis_result": {
+            "members": [
+              "subject_ref",
+              "binding",
+              "axis",
+              "state",
+              "original_refs",
+              "reason",
+              "backflow_owner"
+            ],
+            "fields": {
+              "subject_ref": "Ref。同一input bindingのdependency_subjectまたは元HandoffRecord.subject_refからL4のsubject規則に従って取得する。形成不能時に代用Refを作らない。",
+              "binding": "Binding。同一inputの原binding全値。source/qualification/rootから補完しない。",
+              "axis": "string。dependency axisはL4 public_projection/axis_mappingの該当literal。unselected_source/handoffはそれぞれL4 canonical no-call/failure classificationが示すaxis literal。",
+              "state": "string。L4 canonical body read stateとpublic_projection/axis_mappingの対応literal。unselected_source/no-callはL4 canonical_ordered_branches/1およびfailure_classifications/89のunobserved。明示handoffは元state。",
+              "original_refs": "Ref[]。L4 refs_reasonとorderが指す実category Ref出現を元順・反復込みで保持する。欠落identityを生成しない。handoff source_refは実供給かつ非nullのときだけ含める。",
+              "reason": "string。AxisResult.reasonは既存string memberとして出力し、reason_serializationに従う。問題のないCanonicalBodyReadはL4 common_rules/reason_formatに従ってproblems=[]とし、BodyReadProblemもそのreasonも追加しない。",
+              "backflow_owner": "string|null。L4 axis_mapping/classificationが定める論理role。Ref.ownerから推定しない。"
+            },
+            "additional_members": "許可しない"
+          },
+          "finding": {
+            "members": [
+              "code",
+              "rule_ref",
+              "subject_ref",
+              "binding",
+              "axis",
+              "state",
+              "source_refs",
+              "reason",
+              "backflow_owner"
+            ],
+            "fields": {
+              "code": "string。成立した既存L4 failure_classificationsのcode。新codeを作らない。",
+              "rule_ref": "string。L4 failure_rule_ref_mappingの、該当する既存L4 predicateに結び付いた固定rule_ref literal。",
+              "subject_ref": "Ref。該当failureのL4 target/subject規則に従う実Ref。",
+              "binding": "Binding。同一inputの原binding全値。",
+              "axis": "string。該当L4 classificationのexpected_axis。",
+              "state": "string。該当L4 classificationのexpected_state。",
+              "source_refs": "Ref[]。既存failure predicateを実際に支持する入力上のRef occurrenceのみ、元順・反復を保つ。",
+              "reason": "string。同じreason serializerと、実際に一致したL4原原因を使う。",
+              "backflow_owner": "string|null。該当L4 classificationのbackflow_owner。"
+            },
+            "additional_members": "許可しない"
+          }
+        },
+        "failure_rule_ref_mapping": {
+          "scope": "このC6有限対照で関係する既存F09 predicateだけを閉じて対応付ける。既存predicate、code、axis/state/owner、rule_ref literalを新設・変更しない。ここにないFailureは未照合のままであり、この有限mappingから全F09を閉じたとはしない。",
+          "entries": [
+            {
+              "predicate": "required_dependency_missing",
+              "l4_basis": [
+                "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/3",
+                "/dependency_semantic_ports/public_projection/axis_mapping/0"
+              ],
+              "code": "required_dependency_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+              "axis": "dependency_reference",
+              "state": "missing",
+              "backflow_owner": "knowledge_owner",
+              "predicate_scope": "L3 F09で必要なidentityが該当Ref categoryに供給されていない既存条件。subject/binding/original_refs/source_refsは同一inputで形成できる場合だけ元L4構造に従い、identity/Refを補完しない。"
+            },
+            {
+              "predicate": "receipt_as_definition",
+              "l4_basis": [
+                "/failure_classifications/84"
+              ],
+              "code": "receipt_as_definition",
+              "rule_ref": "HELIXBRAIN-L5-032-R-receipt_as_definition",
+              "axis": "handoff",
+              "state": "not_received",
+              "backflow_owner": "os_owner",
+              "predicate_scope": "明示handoff recordがnot_receivedであり、それをgeneric definition missingへ変換する既存条件。欠落handoff rowだけから成立させない。"
+            },
+            {
+              "predicate": "unselected_source_success",
+              "l4_basis": [
+                "/failure_classifications/89",
+                "/dependency_semantic_ports/canonical_ordered_branches/1"
+              ],
+              "code": "unselected_source_success",
+              "rule_ref": "HELIXBRAIN-L5-032-R-unselected_source_success",
+              "axis": "unselected_source",
+              "state": "unobserved",
+              "backflow_owner": "knowledge_owner",
+              "predicate_scope": "LABO sourceを選択しておらず実観測根拠がないのに観測済みと主張する既存条件。通常のunselected AxisResultはnull ownerを保ち、該当Findingだけがこのroleを持つ。"
+            }
+          ],
+          "closed_mapping_rule": "Finding.rule_refは該当する上記entryの固定literalをそのまま出力する。code、rule_ref、axis、state、backflow_ownerは同じentryの値から取り、別entryを組み合わせない。source_refsは実在するpredicate根拠のRef出現だけ。predicateが成立しない場合はFindingを出さない。"
+        }
+      }
     },
     "caller_and_consumers": {
       "entry": "raw→validate_supply_input→DefinitionContext{validated}→compare_descriptor_definitions→DependencyContext{validated,definitions}→compare_dependencies_and_handoff。portsは同immutable rawを読む。任意cached Comparisonを注入しない。",
