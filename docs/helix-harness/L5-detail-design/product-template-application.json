@@ -17877,5 +17877,165 @@
         }
       ]
     }
+  },
+  "selected_source_occurrence_array_builder_detail": {
+    "id": "HARNESS-L5-009-F01-SOURCE-OCCURRENCE-ARRAY-BUILDER",
+    "status": "limited_private_detail_candidate_not_implementation_or_acceptance",
+    "requirement_refs": [
+      "HARNESS-L3-009-F01",
+      "HARNESS-L3-009-F05"
+    ],
+    "system_oracle_refs": [
+      "HARNESS-L10-009-F01",
+      "HARNESS-L10-009-F05"
+    ],
+    "design_binding": {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "revision": "726bc0e426d5c97651f69aac58b51f58c37b6344",
+      "sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+      "pointer": "/selected_brain_source_occurrence_contract",
+      "canonical_sha256": "d0784dfe42a7b76cbb9372499eda9958a7fbeb72664dd70e398ac31287df3d5e",
+      "selected_pointer": "/selected_brain_source_occurrence_contract/projection/destination_layout",
+      "selected_canonical_sha256": "be44eacda7595e478d7baf6e7f2ca39d385b2ee7f07af5bb762d823b11bcb76e",
+      "binding_kind": "exact_git_revision_candidate_design_binding"
+    },
+    "source_basis": [
+      {
+        "kind": "normative_requirement_and_boundary_via_selected_L4",
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "revision": "726bc0e426d5c97651f69aac58b51f58c37b6344",
+        "sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+        "pointer": "/selected_brain_source_occurrence_contract",
+        "canonical_sha256": "d0784dfe42a7b76cbb9372499eda9958a7fbeb72664dd70e398ac31287df3d5e",
+        "authority_basis": "同sectionのsource_basisに束縛されたHARNESS-L3/L10-009-F01/F05とBRAIN032 F01。source配送義務・資格義務を新設せず、L4選択objectのscopeだけを詳細化する。"
+      },
+      {
+        "kind": "existing_CORE_closed_carrier_and_receiver",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "726bc0e426d5c97651f69aac58b51f58c37b6344",
+        "sha256": "388c98a02330aa375aaf6d560ce08973c3f7e351f3e139af3dbf7953c52de16b",
+        "selected_objects": [
+          {
+            "pointer": "/type_contract/types/RawValue",
+            "canonical_sha256": "2b8678d2ae36cd7aa656516d5c286d81bf01764ba12934fca77e7b0ba77da268"
+          },
+          {
+            "pointer": "/type_contract/types/SourceEnvelope",
+            "canonical_sha256": "eec4f9ee3b2388919eac6b82c0a4649146612aa2ee7c5d88ccbf4a96600f2638"
+          },
+          {
+            "pointer": "/type_contract/types/InputIssue",
+            "canonical_sha256": "62668a1b2b06f04a4070bf78712615a838f73a734129bfcbf6b226d3c9d3b8c1"
+          },
+          {
+            "pointer": "/functions/0",
+            "canonical_sha256": "9467c4850e539bc7cde44447d83a9aa1746f51ec389ff0e02b3eec3cc0ee2137",
+            "object_id": "HARNESS-L5-009-validate_application_input"
+          },
+          {
+            "pointer": "/wire_codec_contract/numeric_encode_profile/numeric_predicates/integer",
+            "canonical_sha256": "b222817c89f6b22b04eb4cf6200bb5db04e3dccf40a7ea81f7737d2b497e85dd"
+          },
+          {
+            "pointer": "/wire_codec_contract/schema/$defs/SourceEnvelope",
+            "canonical_sha256": "41144b81c5dfc5837e3bd920db5d9202d26ad55611795d74cc1c3e3f639e6e7f"
+          }
+        ]
+      },
+      {
+        "kind": "observed_BRAIN_origin_carrier_not_selection_authority",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "726bc0e426d5c97651f69aac58b51f58c37b6344",
+        "sha256": "f8a953cc2348f4ef9e42fb14bb8b90b3303d3b020afc3e54bc1727e6d0e4d448",
+        "selected_objects": [
+          {
+            "pointer": "/type_contract/types/SupplyInput/fields/sources",
+            "canonical_sha256": "5ff36c7c6dfc69d67ce7847faaff33f968825b73194639824af0e62259cc104f"
+          },
+          {
+            "pointer": "/type_contract/types/QualifiedSource",
+            "canonical_sha256": "76871c1aa3ba0113e70b284ff0a7fc43eeb95621fa97a13933f869df4bd98eec"
+          },
+          {
+            "pointer": "/type_contract/types/SupplyAnalysis",
+            "canonical_sha256": "cdeba0483f1494a705fc51f1b956c8eca6ecf7336a73ec384f23f61edf0e9bf0"
+          }
+        ],
+        "boundary": "source occurrenceの原値はimmutable SupplyInput.sourcesにある。SupplyAnalysis refs/diagnostics/materialはsource payload又は資格の代替ではない。"
+      }
+    ],
+    "legacy_comparison": {
+      "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+      "sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b",
+      "lines": "34–58",
+      "retained": "I/O、副作用、失敗、状態、consumer/oracleの意味を境界として照合し、語句や型名の類似だけで責務を統合しない。",
+      "changed": "旧DomainGraph/registry/gate/runtimeは移植せず、現行ApplicationInputBindingとCORE fn0の間に一つの純DTO組立て責務を具体化する。",
+      "reason": "現行の承認済み要求と固定L4が権威。旧設計sourceはinventory-firstの比較起点であり、要求や実装authorityを追加しない。"
+    },
+    "owner_and_effect": {
+      "owner_component_ref": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "revision": "726bc0e426d5c97651f69aac58b51f58c37b6344",
+        "sha256": "f31b141f923f21282d60c4c32db3448a0e82331280a56b01f3aaa7ee33d10937",
+        "pointer": "/components/0",
+        "component_id": "ApplicationInputBinding"
+      },
+      "planned_private_symbol": "_build_source_occurrence_array",
+      "signature": "_build_source_occurrence_array(origin_snapshot: PresenceJsonValue, origin_sources: PresenceJsonValue, i: PresenceJsonValue, destination_before_snapshot: PresenceJsonValue, destination_before_sources: PresenceJsonValue, destination_after_snapshot: PresenceJsonValue, j: PresenceJsonValue) -> PrivateSourceOccurrenceBuildResult",
+      "type_note": "PresenceJsonValueは既存Presence<JsonValue>別名。配列・RawValueを含む論理値はCORE ownerの既存CoreJsonValue/CoreNumber host profileで保持し、i/jの数値判定はCORE profileへ接続する。CoreNumber等のhost carrierを別domain値やwire JSON objectへ変換しない。",
+      "effect": "pure。入力snapshot/source treeを変更せず、ID発行・永続化・通信・資格発行を行わない。"
+    },
+    "call_boundary": {
+      "placement": "既存ApplicationInputBinding内で、同一callのowner-held origin/before/after文脈を確認した後、既存callerが完成ApplicationInputのraw memberを作り既存HARNESS-L5-009-validate_application_input (functions/0)へ渡す直前。source member以外のassembly責務は既存callerに残す。",
+      "formed_handoff": "formed_raw_projectionだけを既存callerが同じcallのraw ApplicationInput.sources位置へ差し込み、同一raw全体をfn0へ渡す。これ自体はvalid SourceEnvelope、選択authority、資格、実delivery/lineageの成立ではない。",
+      "unformed_handoff": "未形成resultを成功sourcesとして使わない。元callのraw/presenceを変更せず保持し、fallback/default/reselectをしない。既存fn0を呼ぶcallerがある場合も、builder由来の投影成功とは記録しない。"
+    },
+    "input_contract": {
+      "presence": "各argumentは既存PresenceJsonValueを通し、absentとpresent-nullを区別する。collectionは既存CollectionPresence規則でabsent/null/empty/value/invalid_typeを分ける。Ref nullable規則を四field全供給gateへ変えない。",
+      "origin_selection": "origin_sourcesは配列で、iはそのimmutable配列の0-based occurrenceを選ぶ。同一Refの重複をcollapseせず、indexだけで一出現を識別する。",
+      "destination_selection": "destination_before_sourcesがimmutable配列。0<=j<len(before)は一slot置換、j==len(before)は一件だけ末尾append。他は局所未形成。途中挿入/hole/fallbackなし。",
+      "snapshot_binding": "origin_snapshotは選択元SupplyInput snapshot。pairはそのidentity+revision+iとcaller供給destination_after_snapshot identity+revision+jを同じcallで保持する。before/afterのidentityとrevision各fieldは存在するtupleとして比較し、明示nullは値として保存し、欠落/非objectでtuple形成不能なら未形成。配列値/長さが変わる操作ではbefore/after tupleを異ならせる。安定identityのままrevision変更可。配列が変わるのにtupleが同一なら未形成。配列全値不変なら同一tupleも許す。ID生成なし。",
+      "index_semantics": "i/jはCORE既存numeric_encode_profile/numeric_predicates/integerとtyped_equalityのJSON数学整数規則で判定する。strict native int(bool除外)又は有効CoreNumberを使い、1.0/1e0は整数値、0.1は非整数、true/falseは常に別型。新たな数値字句・桁数制限を加えず、配列長との比較はexactに行う。 有限の配列lenとの符号/整数/上限比較をexact値で先に行い、有効範囲内と確定した場合だけ既存host indexへ変換する。巨大指数tokenの先行native整数実体化や固定数値上限を導入しない。",
+      "destination_layout": "jはbefore内ならjのみ置換、j==len(before)なら末尾追加。j<0、非整数、boolean、j>len(before)、欠落/null、before.sourcesの欠落/null/非配列は成功しない。"
+    },
+    "projection_algorithm": [
+      "1. 原引数のpresenceを変換せず検査し、origin/beforeのsourcesが配列であること、各snapshot文脈がidentity+revision tupleとして比較可能なことを確認。失敗はunformedへ。",
+      "2. i/jをCORE既存integer述語でexact判定し、符号と有限配列lenをexact比較してからi/jが有効範囲内と確定した値だけ既存host indexへ変換する。失敗はunformedへ。巨大指数を先にnative整数化しない。",
+      "3. origin_sources[i]がobjectであることを確認。null/scalar/array等はfield map不能なのでunformedとし元入力を保持。duplicate object memberをordinary object化して保持できない場合もunformed。",
+      "4. 元source objectをRawValue値ごとpresence付きで投影する。ref→ref、content→body、content_bytes→content_bytes、qualification_ref→qualification_refはvalue/presenceを保つ。roleはsemantic_jsonだけsemantic_sourceへ写し、他値はrawのまま。bodyへ移す元以外の未知memberは損失なく保持し、CORE fn0にraw envelopeを渡せるようにする。",
+      "5. content→bodyで別の既存source member bodyと衝突する場合は優先順位を作らずunformed。未知memberを落とす、invalid roleを正常化する、bytesをbodyから再生成する経路を作らない。",
+      "6. destination-beforeを複製し、jが存在ならその一slotを置換、末尾なら一件append。他slotの値/順序/重複を保持する。origin/beforeはimmutable。配列が変わったのにbefore/after identity+revisionが同一なら破棄してunformedとする。",
+      "7. 成功時だけ新sources配列と{origin_snapshot,i,destination_after_snapshot,j} pairのprivate DTOを返す。Qualification値を変換せず資格を推論せず、意味relationを補わない。"
+    ],
+    "result_and_failure": {
+      "private_result": "private sum: formed_raw_projection {new_sources: RawValue[], pair: {origin_snapshot: RawValue, source_index: Natural, destination_snapshot: RawValue, destination_index: Natural}} | unformed {original_arguments: exact presence/raw values, input_issues: InputIssue[]}. 公開状態enum、永続状態、APIを追加しない。formedは機械的raw mappingでありtyped SourceEnvelope/資格を意味しない。",
+      "issue_reuse": "unformedの局所理由は既存InputIssue {locator,reason,source_ref|null}で保持する。新public error code/vocabularyや万能状態machineは作らない。",
+      "raw_invalid_forwarding": "selected itemがobjectで、invalid/missing/null role、invalid field type、又はnon-colliding extra memberがraw値として完全保持可能ならformed_raw_projectionとしてその不正値を残し、既存fn0へ渡す。fn0の既存decode/schema/bytes/qualification判定が所有する結果を具体的に先取りしない。CORE SourceEnvelope schemaはadditionalProperties=falseでrole enumを持つ閉shapeであり、L5 function/0が受信境界。",
+      "unformed_examples": "source occurrenceがnull/nonobject、origin/before collectionやindex/snapshotが未形成、重複key等をraw targetへ損失なく表せない、content→body collision、配列変更なのにsnapshot tuple同一。原引数を捨てず成功DTO/pairを返さない。",
+      "qualification_shape": "BRAIN Qualification(applicable_scope/qualification_body)からCORE Qualification(owner/scope/body)へのcast・field rename・Ref.owner推定を行わない。qualification_ref自体はpresence/value/nullごと保つ。CORE qualification_roots/qualificationsを構成する全assemblyも対象外。"
+    },
+    "counterfactual_scope": {
+      "paired_normal_oracle": "L8は同じMのL9 source-occurrence replace/append caseをそのまま参照し、入力/期待JSONを再収載しない。",
+      "receiver_boundary": "CORE fn0は渡されたCORE raw inputのdecode、source body/bytes等、CORE qualificationを検査する。BRAIN origin selection/lineage・選択権限・配送を検証する機能ではない。",
+      "not_closed_here": [
+        "source acquisition/選択producer/caller bindingと実delivery",
+        "BRAIN→CORE qualificationの意味対応・authority",
+        "template/query/requirement relationと全ApplicationInput assembly",
+        "formal codec/schema実装・実行・CI・PO L11 acceptance"
+      ]
+    },
+    "legacy_noncopy_note": "LEGACY-ASSET-603D0E8D8193914F4AC0の責務比較を起点にするが、旧domain modelやold runtime/gateを移植しない。",
+    "failure_basis": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "lines": "65–101",
+      "selected_failures": [
+        "UTW-014",
+        "UTW-020",
+        "UTW-021"
+      ],
+      "meaning": "source欠損を空集合化しない。部分事実をaggregateで隠さずoccurrence単位で保ち、作業自身の成功申告から完了を作らない。ここではsourcesの欠落/null/空、選択index、配列1slotの反例を個別に識別し、実成立は主張しない。"
+    }
   }
 }
