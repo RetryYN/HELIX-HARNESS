@@ -13307,7 +13307,13 @@
           "ScopeSourceInterpretation",
           "ScopeObligationCorrespondence",
           "FieldScopeSourceOrigin",
-          "FieldScopeAssessmentOrigin"
+          "FieldScopeAssessmentOrigin",
+          "CoreApplicationAnalysis",
+          "InputScopeKnowledgeGapCallerDetail",
+          "InputScopePostReturnLink",
+          "InputScopePostReturnLinkFormation",
+          "InputScopePostReturnProjection",
+          "InputScopeProfileScan"
         ],
         "rule": "members/variants/enum又はgeneric/optional構文だけで型を指す。guard/由来文章は型member定義の代替ではない。ObligationOriginは3枝の有限unionであり、Legacy枝とscope二枝及び関連body等の今回追加6named typeをtype_namesへ一度ずつ宣言する。"
       },
@@ -13334,6 +13340,48 @@
           "/type_contract/types/ProjectionInputFinding"
         ],
         "rule": "既存logical生成返却→同member/enum/順序のnative対応。CoreJsonValue leaf対応だけで任意objectの成功を認定せず、caller側全typed形成基準の未閉包はcaller_return_writer_contract/projection_native_correspondence_frontierに明記する。"
+      },
+      "input_scope_native_namespace": {
+        "pointer": "/f05_detail_contract/input_scope_knowledge_gap_realization/types",
+        "type_names": [
+          "InputScopeAxis",
+          "InputScopeBodyOccurrence",
+          "InputScopeBodyResolution",
+          "InputScopeDigestCheckMaterial",
+          "InputScopeDigestSourceMaterial",
+          "InputScopeFieldLookupCondition",
+          "InputScopeFieldOperandRead",
+          "InputScopeGraphRequest",
+          "InputScopeGraphReturn",
+          "InputScopeGuardObservation",
+          "InputScopeGuardOperand",
+          "InputScopeKnowledgeDigestEvaluation",
+          "InputScopeKnowledgeDigestRequest",
+          "InputScopeKnowledgeGapRequest",
+          "InputScopeKnowledgeGapView",
+          "InputScopeKnowledgeMembership",
+          "InputScopeKnowledgeOccurrence",
+          "InputScopeLocation",
+          "InputScopeLookupRequest",
+          "InputScopeLookupResult",
+          "InputScopeOccurrenceCandidate",
+          "InputScopeOccurrenceResolution",
+          "InputScopeOperands",
+          "InputScopePathSegment",
+          "InputScopeProfileEvaluation",
+          "InputScopeProfileObservation",
+          "InputScopeProfileRequest",
+          "InputScopeProfileScan",
+          "InputScopeRead",
+          "InputScopeReadRequest",
+          "InputScopeRelation",
+          "InputScopeSixAxes",
+          "InputScopeSourceCheckCandidate",
+          "InputScopeSourceObservationCandidate",
+          "InputScopeSourceObservationResolution",
+          "InputScopeSourceViewRequest"
+        ],
+        "rule": "この名前空間の36型は同block内の型参照として解決する。global InputScopeProfileScanはこの名前空間の同名閉型へexisting_typeで結ぶalias。ここへ別型本体を複製しない。既存型依存は同blockのexisting_type_dependencies/current_local_native_type_bindingsへ結ぶ。"
       }
     },
     "writer_output_roots": {
@@ -13341,7 +13389,7 @@
       "f05_detail": "F05DetailedReturn /original_request,/context_formation,/header_formation,/comparison,/owner_material (F01..F16)",
       "claims_detail": "CoreComparison 実fn9返却。元native Context及び同F05wholeを実引数にする (C03,consumer_interpretation_binding)",
       "analysis_detail": "CoreApplicationAnalysis 実fn10返却。元native Context及び同F05wholeを実引数にする (C04,consumer_interpretation_binding)",
-      "actual_private_caller": "CoreApplicationDetailReturn /validation,/f05,/producer_observations,/claims,/analysis,/causes (C01..C05; caller_return_writer_contract)。7観測目録と専用全返却を分離。選択owner接続全返却/未接続typed portは別追補残務。"
+      "actual_private_caller": "CoreApplicationDetailReturn /validation,/f05,/producer_observations,/claims,/analysis,/causes,/input_scope_knowledge_gap (C01..C05; caller_return_writer_contract)。7観測目録と専用全返却を分離。選択owner接続全返却/未接続typed portは別追補残務。"
     },
     "selection_contract": {
       "raw_domain": "全field_inputs/gap_proposals原occurrenceはFieldResult/GapResultのどちらの枝でも全原whole/index/presenceを保存する。raw domainとsemantic evaluation domainを同一視しない。",
@@ -14324,15 +14372,15 @@
         "branch_matrix": [
           {
             "profile_scan_tag": "input_unavailable",
-            "profile_observations": "not a member for this variant",
             "projections": [],
-            "caller_rule": "元tag/reason保持。F05 producer呼出しを変更しない。"
+            "caller_rule": "元tag/reason保持。F05 producer呼出しを変更しない。",
+            "profile_observations_note_ja": "この枝の閉型にはprofile_observations memberがない。説明欄であり返却memberを追加しない。"
           },
           {
             "profile_scan_tag": "semantic_records_unresolved",
-            "profile_observations": "not a member for this variant",
             "projections": [],
-            "caller_rule": "元Read/reason保持。 absent/null/unreachedの区別を変更しない。"
+            "caller_rule": "元Read/reason保持。 absent/null/unreachedの区別を変更しない。",
+            "profile_observations_note_ja": "この枝の閉型にはprofile_observations memberがない。説明欄であり返却memberを追加しない。"
           },
           {
             "profile_scan_tag": "scanned",
@@ -14349,9 +14397,13 @@
               }
             ],
             "projections": [
-              "InputScopePostReturnProjection for each same ordinal"
+              {
+                "profile_observation_index": "元観測の配列位置i",
+                "actual_f05_link": "同outer F05に対応する型付き全Formation"
+              }
             ],
-            "caller_rule": "input scanだけでreturn linkを先行生成しない。outer F05 Formation全値が確定した後（formed/unformedの双方）だけpost projectionを行う。"
+            "caller_rule": "input scanだけでreturn linkを先行生成しない。outer F05 Formation全値が確定した後（formed/unformedの双方）だけpost projectionを行う。",
+            "projection_rule_ja": "各元観測の配列位置ごとにInputScopePostReturnProjection全値を一つずつ、同じ原順で返す。この行は代表的な宣言図であり、空のprojections表示を実nonempty枝の期待値にはしない。"
           }
         ],
         "preserve_ja": [
