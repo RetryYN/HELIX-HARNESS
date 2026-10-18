@@ -365153,7 +365153,7 @@
             }
           ],
           "existing_four_recipes_and_two_controls_unchanged": true,
-          "authority_effect": "none; no new case, schema, DSL, mechanism, runtime, CI, gate, or scenario",
+          "authority_effect": "なし。新しいcase・schema・DSL・機構・runtime・CI・gate・scenarioを追加しない。",
           "existing_case02_invocation_retained": true
         }
       },
