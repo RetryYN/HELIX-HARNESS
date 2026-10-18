@@ -1378,6 +1378,26 @@
             "independent_obligation_rows": "各原rowのtarget/source対応が成立しているなら、同じtarget/item_idを持つ別obligation_refのrowも独立寄与として元順に保持する。public selected IDだけ既存規則で一度出力し、原row・候補・source・参照・順・反復をdedupしない。",
             "precedence": "同じ評価範囲でknown相反があれば既存conflict優先。独立unknown cause/rawも保持する。foreignを新たなconflictにしない。",
             "scope_limit": "この技術補足と6局所projectionから、pure3全体/Invocation9/consumer14+3の新wholeや全OS020/実資格成立を主張しない。OS017の未知graph rowを供給する新adapter/資格機構はここで創作しない。"
+          },
+          "effective_sourceboundprofile_refinement": {
+            "historical_import_pointer": "/contracts/0/selection_producer_contract/private_call_contract/external_type_bindings/5",
+            "historical_scope_ja": "固定revisionのSourceBoundProfile source pinはその時点の型を指す資料として保持し、新bytesへ書換えない。",
+            "effective_l5_type": {
+              "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+              "pointer": "/logical_types/47"
+            },
+            "member_refinement": {
+              "member": "os_binding",
+              "basic_type_pointer": "/contracts/0/source_bound_binding_parent_contract/logical_return_type",
+              "detail_type_pointer": "/logical_types/55"
+            },
+            "applies_to": [
+              "PlanSelectionInvocation.consumer_return",
+              "Profile.source_bound: Field<SourceBoundProfile>",
+              "ExpectedContext.profile.source_bound: Field<SourceBoundProfile>",
+              "ExpectedContext.source_bound_selection: Field<SourceBoundProfile>"
+            ],
+            "meaning_ja": "このpairでF02009から渡すRは現行L5の全14memberを持ち、os_bindingだけを新専用型へ具体化する。R外側と親presence、同一Rの3接続先を維持する。歴史source pinの型名だけから現行型解決を済ませず、現行L5の47/55と対応させる。これはField入力decodeや他13memberの型変更ではない。"
           }
         }
       },
@@ -2765,9 +2785,17 @@
       "L5 /logical_types/16/fields/binding",
       "L5 /functions/8/return_derivation/os_binding"
     ],
-    "meaning_ja": "binding親4状態の基本形成規則はbasic_contract_pointer、専用論理型はbasic_type_pointerに定義した。現行L5のSourceBoundProfile.os_bindingはplain Bindingのままであり、非supplied親と子状態を保持する詳細writer・対L8・F02002等のconsumer追随が未成立なので、このfrontierはunclosedを保持する。新必須binding・新not_called条件を作らず、生成の全memberと既存比較規則を保持して後続pairへ追跡する。",
+    "meaning_ja": "binding親4状態の基本規則と専用論理型はbasic_contract_pointer/basic_type_pointerに定義し、L5/L8で当該memberの型参照・4枝writer・5全返却期待を詳細化した。consumer側の全返却、既存same-R oracleの不一致、生成Profileからの全連鎖が未成立なのでunclosedを保持する。新gate/not_calledを追加せず、他memberと既存比較規則を維持する。",
     "basic_contract_pointer": "/contracts/0/source_bound_binding_parent_contract",
-    "basic_type_pointer": "/contracts/0/source_bound_binding_parent_contract/logical_return_type"
+    "basic_type_pointer": "/contracts/0/source_bound_binding_parent_contract/logical_return_type",
+    "detail_contract": {
+      "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+      "pointer": "/contracts/4"
+    },
+    "detail_oracle": {
+      "path": "docs/helix-os/L8-unit-verification/ci-profile-execution-recovery.json",
+      "pointer": "/source_bound_binding_parent_return_verification"
+    }
   },
   "downstream_connection_obligation": {
     "same_snapshot_ja": "生成したassembled_callerを既存F02009の入力へ渡し、その全Rを既存三接続先/親presence規則で同値接続してF02002へ渡す義務は維持する。actual/expected/sourceの既存比較を保持し、consumer出力から前段選択や原変更資料を逆生成しない。",
@@ -3013,7 +3041,7 @@
 },
       "source_bound_binding_parent_contract": {
         "id": "OS020-F02009-BINDING-PARENT-L4",
-        "status": "basic_design_detail_pending",
+        "status": "basic_and_limited_detail_defined_consumer_unclosed",
         "authority_effect": "none",
         "operation_effect": "none",
         "purpose_ja": "F02009返却のos_bindingで、CIInput.bindingの親状態を保持する。既存のOS plan/HARNESS比較と全14返却、F02002三接続先の意味を維持する。",
@@ -3051,7 +3079,7 @@
             ]
           },
           {
-            "role": "現行L5の型とF02009 writer（後続追随対象）",
+            "role": "追随前の固定revisionにおけるL5の型とF02009 writer。現行の対応先はL5 logical_types/55・contracts/4とL8 source_bound_binding_parent_return_verification。",
             "revision": "6858d44b9243f68eff1317c7b63ecc44b72b57f8",
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
@@ -3172,7 +3200,6 @@
         "f02009_return_mapping": {
           "target_type": "SourceBoundProfile",
           "target_member": "/logical_types/47/fields/os_binding",
-          "existing_member_type": "Binding",
           "writer_rule": "caller.bindingがsuppliedならvalueのBindingをそのまま返却。absent/null/emptyなら同tag-only枝を返却。Bindingと比較に使うsource bindingは独立させ、comparison結果で本原値を上書きしない。",
           "outer_return_shape": "SourceBoundProfileの14 memberは維持し、os_binding以外の13 memberは既存F02009 writerの値・順序を維持する。",
           "new_public_status_or_gate": false,
@@ -3180,7 +3207,8 @@
           "target_function_pointer": "/functions/8",
           "logical_input_axis": "caller.binding",
           "target_member_type": "SourceBoundOSBinding",
-          "status_preservation": "os_bindingは原presence転送値であり、独立した5関係のstatusを決めない。親binding非suppliedだけでstatus/unresolved_pointers/資格/実行に条件を追加しない。既存F02002のCIInput.binding対context.binding比較と不足処理は別に維持し、Rから入力を補わない。"
+          "status_preservation": "os_bindingは原presence転送値であり、独立した5関係のstatusを決めない。親binding非suppliedだけでstatus/unresolved_pointers/資格/実行に条件を追加しない。既存F02002のCIInput.binding対context.binding比較と不足処理は別に維持し、Rから入力を補わない。",
+          "historical_member_type": "Binding"
         },
         "f02002_attachment_crosswalk": {
           "logical_axes_and_physical_pointers_are_distinct": true,
@@ -3243,7 +3271,7 @@
           "change": "旧設計に本Field structural sumの完全一致型はない。承認済みF01と現行Fieldの4状態を全14member返却へ結ぶ技術的な再導出である。旧固定profile・予算・full fallback規則・CI・runtimeを移植又は実行しない。"
         },
         "unclosed_scope_ja": [
-          "このL4 siblingは現行L5のSourceBoundProfile.os_binding: Bindingを自動変更しない。L5/L8の追随pairが必要であり、現状のL5が全4親状態を満たすとは主張しない。",
+          "対応L5 /logical_types/55 と /contracts/4、F02009 os_binding writer、対L8 /source_bound_binding_parent_return_verificationで親4状態と子状態混在1例を定義する。これは有限の型・生成規則と期待の詳細化であり、F02009全域やF02002/F02008への全接続成立を認定しない。",
           "wire codec、未知key/不足member/型外JSONの分類・保持、実caller、実owner資格、実配送、F02002全返却、3 attachment親状態の全組合せは閉じない。",
           "有限5例は親4状態と一つの子状態混在例。全子状態の組合せ、F02009全域、実装Ready、製品動作、実資格は未成立。"
         ],
@@ -3298,7 +3326,7 @@
         "type_location": {
           "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
           "pointer": "/contracts/0/source_bound_binding_parent_contract/logical_return_type",
-          "meaning_ja": "この契約の専用論理型を一箇所で宣言する。既存private_closed_types配列の拡張や共通Bindingの変更ではない。L5/L8はこの基本型へ後続で対応させる。"
+          "meaning_ja": "この契約の専用論理型を一箇所で宣言する。既存private_closed_types配列の拡張や共通Bindingの変更ではない。L5 /logical_types/55・/contracts/4とL8 /source_bound_binding_parent_return_verificationに限定した対応を定義済み。全consumerの閉包は別に保持する。"
         }
       }
     },
