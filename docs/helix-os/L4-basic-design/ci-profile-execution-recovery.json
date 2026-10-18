@@ -3008,7 +3008,292 @@
     }
   },
   "global_origin_issues_ja": "原OriginRead.Supplied.issuesは不足情報の診断であり、そのkind/位置/元値だけから無関係なsourceと確定しない。既知の行相反は優先し、それがなく非空issuesの場合はchanged_targetsをField.null、change_set_statusをunknownに保つ。他の既知Profile member、全rowの局所status、全issuesの原順は変えない。値をコピーしないためselected_indicesは[]。issuesだけを原因とする場合にunresolved_indicesへ架空indexを追加しない。これは元の行条件だけでissuesを集約へ反映しなかった設計からの技術修正であり、必須入力・資格・全体停止条件を増やさない。"
-}
+},
+      "source_bound_binding_parent_contract": {
+        "id": "OS020-F02009-BINDING-PARENT-L4",
+        "status": "basic_design_detail_pending",
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "purpose_ja": "F02009返却のos_bindingで、CIInput.bindingの親状態を保持する。既存のOS plan/HARNESS比較と全14返却、F02002三接続先の意味を維持する。",
+        "source_basis": [
+          {
+            "role": "承認済みL3要件",
+            "revision": "6858d44b9243f68eff1317c7b63ecc44b72b57f8",
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+            "objects": [
+              {
+                "pointer": "/requirements/37",
+                "canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3"
+              }
+            ]
+          },
+          {
+            "role": "現行L4基本設計と接続境界",
+            "revision": "6858d44b9243f68eff1317c7b63ecc44b72b57f8",
+            "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "objects": [
+              {
+                "pointer": "/contracts/0",
+                "canonical_sha256": "00c822db6c6410dfdfed318a8370d6ecd5408b0c404c8fd8c5cc6200264dc5b0"
+              },
+              {
+                "pointer": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/12",
+                "canonical_sha256": "98da5232ef933827a8d4888efbc7843b1315ae56e6ba8896e4a15b501ab7a916"
+              },
+              {
+                "pointer": "/contracts/0/selection_producer_contract/private_call_contract/producer_consumer_boundary/existing_consumer/same_call_assembly/source_bound_assembly",
+                "canonical_sha256": "d4a1944ca0ecc871a2a02095366a8eaba72ee623fc950b344c7de656b81cbb67"
+              }
+            ]
+          },
+          {
+            "role": "現行L5の型とF02009 writer（後続追随対象）",
+            "revision": "6858d44b9243f68eff1317c7b63ecc44b72b57f8",
+            "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
+            "objects": [
+              {
+                "pointer": "/logical_types/1",
+                "canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3"
+              },
+              {
+                "pointer": "/logical_types/2",
+                "canonical_sha256": "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b"
+              },
+              {
+                "pointer": "/logical_types/6",
+                "canonical_sha256": "40955bb830410b3a52ea93388f6f832fbc1df282ef6d2951752b0017120255a1"
+              },
+              {
+                "pointer": "/logical_types/15",
+                "canonical_sha256": "596922cde7007a905498ac10a226e32347ab62081a92b5f4b90cee05aa91e21f"
+              },
+              {
+                "pointer": "/logical_types/16",
+                "canonical_sha256": "f7f7d57e9d5f0786aad5e67ce07c06275826b8df2d4307b99ae13f09f21aa944"
+              },
+              {
+                "pointer": "/logical_types/47",
+                "canonical_sha256": "ed15f8592f9e4c65a1df147d327b3d0d250e9e657d8d2ea22d2d24eeaed2944f"
+              },
+              {
+                "pointer": "/functions/8",
+                "canonical_sha256": "b6a768a22b8ae0032c4a7c92fd03f35dc1d69dc62c180fdf17f7bce97cefd9d4"
+              },
+              {
+                "pointer": "/functions/8/return_derivation/os_binding",
+                "canonical_sha256": "c29d5c27d5144a26e5e69024c12e50fba9cdcbad46c8de13b580b90571c4caf2"
+              }
+            ]
+          },
+          {
+            "role": "現行L9の固定されたF02009 control case",
+            "revision": "6858d44b9243f68eff1317c7b63ecc44b72b57f8",
+            "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+            "file_sha256": "664e299c1a72a5bf9531c251f3a51b0fc66ff43a70a1e6e8e747862e1228a232",
+            "objects": [
+              {
+                "pointer": "/producer_selection_integration_verification/cases/0/raw/arguments/input/original_packet/value",
+                "canonical_sha256": "f219d0dc552700264a787349f931e80d33876366ead65fa784badc62f606fbda"
+              },
+              {
+                "pointer": "/producer_selection_integration_verification/cases/0/expected_observation/calls/0/arguments/caller",
+                "canonical_sha256": "8acf9fe4702a06a0c4f99e9572fc9ec983cfe6ee651f3ac708ce1e4eea5bfad0"
+              },
+              {
+                "pointer": "/producer_selection_integration_verification/cases/0/expected_observation/calls/0/return",
+                "canonical_sha256": "b4d5820f7b1b48a873a3774284ea18a62a63572c1e7de9474b99064e0b16d5bb"
+              }
+            ]
+          },
+          {
+            "role": "現行L10対応",
+            "revision": "6858d44b9243f68eff1317c7b63ecc44b72b57f8",
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+            "objects": [
+              {
+                "pointer": "/cases/37",
+                "canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c"
+              }
+            ]
+          },
+          {
+            "role": "固定L9 seed（有限親状態と子状態ケースの再構成元）",
+            "revision": "08563da40262d0eca822dfb739293ca1483313bf",
+            "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+            "file_sha256": "140c6e83e52fb43fbb0064c908d71e98fbfed257454bad7b90a5f3dd7e6bdf6d",
+            "objects": [
+              {
+                "pointer": "/producer_selection_integration_verification/cases/0/raw/arguments/input/original_packet/value",
+                "canonical_sha256": "f219d0dc552700264a787349f931e80d33876366ead65fa784badc62f606fbda"
+              },
+              {
+                "pointer": "/producer_selection_integration_verification/cases/0/expected_observation/calls/0/arguments/caller",
+                "canonical_sha256": "8acf9fe4702a06a0c4f99e9572fc9ec983cfe6ee651f3ac708ce1e4eea5bfad0"
+              },
+              {
+                "pointer": "/producer_selection_integration_verification/cases/0/expected_observation/calls/0/return",
+                "canonical_sha256": "b4d5820f7b1b48a873a3774284ea18a62a63572c1e7de9474b99064e0b16d5bb"
+              }
+            ]
+          },
+          {
+            "role": "旧HELIX source（要求とcomponent boundary）",
+            "revision": "6858d44b9243f68eff1317c7b63ecc44b72b57f8",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+            "file_sha256": "65400847881f1a72b273f0bdeff503a5ea302705cd0e71d7913fc7d0f8dd18fb",
+            "objects": []
+          },
+          {
+            "role": "旧HELIX source（impact/recovery component boundary）",
+            "revision": "6858d44b9243f68eff1317c7b63ecc44b72b57f8",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/impact-ci-recovery.md",
+            "file_sha256": "04e44d8382a5029a1dbe6e8bc69d6882ea15ee1410c3fc781136aad7db6b2391",
+            "objects": []
+          }
+        ],
+        "current_l4_mapping": {
+          "contract": "/contracts/0",
+          "existing_plan_selection_invocation_array_element": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/12",
+          "existing_consumer_attachment_rule": "/contracts/0/selection_producer_contract/private_call_contract/producer_consumer_boundary/existing_consumer/same_call_assembly/source_bound_assembly",
+          "existing_scope_preserved": "F02009(assembled_caller)の返却R全体を、既存の供給済み先へ同一値で渡す。親Field.absent/null/emptyの場合は親状態を保ち、子を作らない。3接続先すべてが利用可能な場合に限り同一Rの完全接続とする。",
+          "no_private_closed_types_array_change": true
+        },
+        "child_field_preservation": {
+          "contract": "Bindingの13 Field<string> memberを全て保存する。親bindingがsuppliedであれば、子Fieldがabsent/null/emptyでもplain Binding枝を使う。子Fieldは全13個suppliedである必要条件でも、親状態の代替表現でもない。",
+          "no_new_gate": "child memberの一部が未供給でも、新しいbinding completeness gate/statusを追加しない。既存のsource比較が扱う個別operandのstateを別に保持する。",
+          "verification_case_id": "F02009-BINDING-SUPPLIED-PARTIAL-CHILDREN"
+        },
+        "f02009_return_mapping": {
+          "target_type": "SourceBoundProfile",
+          "target_member": "/logical_types/47/fields/os_binding",
+          "existing_member_type": "Binding",
+          "writer_rule": "caller.bindingがsuppliedならvalueのBindingをそのまま返却。absent/null/emptyなら同tag-only枝を返却。Bindingと比較に使うsource bindingは独立させ、comparison結果で本原値を上書きしない。",
+          "outer_return_shape": "SourceBoundProfileの14 memberは維持し、os_binding以外の13 memberは既存F02009 writerの値・順序を維持する。",
+          "new_public_status_or_gate": false,
+          "target_document": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+          "target_function_pointer": "/functions/8",
+          "logical_input_axis": "caller.binding",
+          "target_member_type": "SourceBoundOSBinding",
+          "status_preservation": "os_bindingは原presence転送値であり、独立した5関係のstatusを決めない。親binding非suppliedだけでstatus/unresolved_pointers/資格/実行に条件を追加しない。既存F02002のCIInput.binding対context.binding比較と不足処理は別に維持し、Rから入力を補わない。"
+        },
+        "f02002_attachment_crosswalk": {
+          "logical_axes_and_physical_pointers_are_distinct": true,
+          "logical_axes_source_pointer": "/contracts/0/selection_producer_contract/private_call_contract/producer_consumer_boundary/existing_consumer/same_call_assembly/source_bound_assembly/destinations",
+          "attachments": [
+            {
+              "logical_destination": "/profile/source_bound",
+              "physical_destination_pointer": "/profile/value/source_bound",
+              "required_parent_pointers": [
+                "/profile"
+              ],
+              "required_parent_tag": "supplied"
+            },
+            {
+              "logical_destination": "/context/profile/source_bound",
+              "physical_destination_pointer": "/context/value/profile/value/source_bound",
+              "required_parent_pointers": [
+                "/context",
+                "/context/value/profile"
+              ],
+              "required_parent_tag": "supplied"
+            },
+            {
+              "logical_destination": "/context/source_bound_selection",
+              "physical_destination_pointer": "/context/value/source_bound_selection",
+              "required_parent_pointers": [
+                "/context"
+              ],
+              "required_parent_tag": "supplied"
+            }
+          ],
+          "write_rule": "既存の全親がsuppliedのとき、対応する既存recordのsource_bound memberだけをField.supplied(R)へ設定し、他memberは同値保持する。親がabsent/null/emptyならその親wholeを保持して子を作らない。片側だけの接続をF02002の完全接続として扱わない。",
+          "non_supplied_os_binding_does_not_change_parent_policy": true
+        },
+        "finite_pair_crosswalk": {
+          "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+          "pointer": "/source_bound_binding_parent_verification",
+          "meaning": "固定Git sourceの原value・caller・全14返却から、親4状態とsupplied内部の子状態混在1例を別々に再構成して照合する。各caseの全返却期待と他13writerの保持を確認する。原valueとcallerのcontext差を保存し、RawPacket全体の再decodeや実同call成立を主張しない。"
+        },
+        "legacy_comparison": {
+          "sources": [
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+              "sha256": "65400847881f1a72b273f0bdeff503a5ea302705cd0e71d7913fc7d0f8dd18fb",
+              "locations": [
+                "CIS-R-01 execution identity",
+                "CIS-R-08 full fallback"
+              ]
+            },
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/impact-ci-recovery.md",
+              "sha256": "04e44d8382a5029a1dbe6e8bc69d6882ea15ee1410c3fc781136aad7db6b2391",
+              "locations": [
+                "§2 component boundaries",
+                "§3 typed projection"
+              ]
+            }
+          ],
+          "retain": "execution identityと原source境界、不明を別greenや推測で既知値へ補完しない意味を保持する。",
+          "change": "旧設計に本Field structural sumの完全一致型はない。承認済みF01と現行Fieldの4状態を全14member返却へ結ぶ技術的な再導出である。旧固定profile・予算・full fallback規則・CI・runtimeを移植又は実行しない。"
+        },
+        "unclosed_scope_ja": [
+          "このL4 siblingは現行L5のSourceBoundProfile.os_binding: Bindingを自動変更しない。L5/L8の追随pairが必要であり、現状のL5が全4親状態を満たすとは主張しない。",
+          "wire codec、未知key/不足member/型外JSONの分類・保持、実caller、実owner資格、実配送、F02002全返却、3 attachment親状態の全組合せは閉じない。",
+          "有限5例は親4状態と一つの子状態混在例。全子状態の組合せ、F02009全域、実装Ready、製品動作、実資格は未成立。"
+        ],
+        "logical_return_type": {
+          "name": "SourceBoundOSBinding",
+          "kind": "closed_structural_sum",
+          "discriminant_rule": "宣言済み論理値の構造で分ける。plain Bindingは13宣言memberを持ちtagを持たず、非suppliedの3枝は指定tag一つだけを持つ。この型の宣言は未知rawを既知枝へ変換するcodec又はvalidatorではない。",
+          "variants": [
+            {
+              "name": "supplied_binding",
+              "shape": "Binding",
+              "source_type_pointer": "/logical_types/2",
+              "members_in_order": [
+                "project",
+                "requirement_revision",
+                "scope",
+                "ticket_graph_ref",
+                "head",
+                "base",
+                "pair_ref",
+                "oracle_ref",
+                "harness_version",
+                "environment_ref",
+                "runner_ref",
+                "run_ref",
+                "authority_ref"
+              ],
+              "value_rule": "13のrecord memberをcaller.binding.valueから無変換で保持する。各member自体は従来どおりField<string>であり、13個全てがsuppliedであることを要求しない。absent/null/empty child Fieldもそのまま保持し、child tagから親binding tagを推測しない。"
+            },
+            {
+              "name": "absent_parent",
+              "shape": {
+                "tag": "absent"
+              }
+            },
+            {
+              "name": "null_parent",
+              "shape": {
+                "tag": "null"
+              }
+            },
+            {
+              "name": "empty_parent",
+              "shape": {
+                "tag": "empty"
+              }
+            }
+          ],
+          "disjointness": "supplied Bindingは13の宣言memberを全て持ちtagを持たず、他の3枝はtag-onlyのため、本論理型内の枝は互いに交差しない。未知key・不足member・型外値のJSON wire判定/保持codecはこのL4案の対象外。",
+          "why_no_supplied_wrapper": "suppliedの場合は従来のplain Bindingを保持する。非supplied親をtag-only値で保持し、全14member返却の外側や正常値を包み直さない。"
+        }
+      }
     },
     {
       "id": "HELIXOS-L4-020-F02",

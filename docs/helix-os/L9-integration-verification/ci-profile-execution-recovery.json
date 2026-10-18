@@ -108936,7 +108936,7 @@
     "owner_outer_field_priority": "最優先でplan_owner.raw_valueのouter Fieldを判定する。raw ownerがabsentならselection outer Field=absent、raw null/empty又はtyped decode失敗ならouter Field=nullとし、後段membership/item規則で上書きしない。raw/typedの不一致や供給済の独立軸/全raw候補はtraceへ保持し省略しない。typed owner内plan_ref/bindingの原Field tag/値は保持する。",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+      "body_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -108960,7 +108960,7 @@
     "kind": "finite_independent_producer_to_consumer_integration_observation",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+      "body_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
       "binding_kind": "同一変更に含む正式pathのL4本文をSHA-256で解決する。local scratchファイルを規範入力にしない。"
     },
@@ -275689,7 +275689,7 @@
     "kind": "T02の独立局所projection素材",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+      "body_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
       "pointer": "/contracts/0/selection_producer_contract/private_call_contract/relation_comparison_units",
       "binding_kind": "同一候補の正式L4 path/本文SHAへ結ぶ。scratchを意味正本にしない。"
     },
@@ -395892,7 +395892,7 @@
     "system_oracle_ref": "HELIXOS-L10-020-B01",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+      "body_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
       "pointer": "/contracts/3/owner_return_contract",
       "object_canonical_sha256": "92d83cfb6cdf9c4bd271b85eddca6cf398412481dac52aed87bf02d46f1fa9dc"
     },
@@ -396010,7 +396010,7 @@
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
       "pointer": "/contracts/1/operation_call_contract",
-      "body_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c"
+      "body_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb"
     },
     "source_basis": [
       {
@@ -396146,14 +396146,14 @@
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
       "pointer": "/contracts/2/prior_projection_call_contract",
-      "body_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+      "body_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
       "object_canonical_sha256": "18859b9a615acb625455f56689569bdb681c0f289f11ef3f29fcdeec9ec173e2"
     },
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/3",
-      "sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
-      "object_canonical_sha256": "844079938dff273de5ac391e02567c57387ba694f860eb37204a05ff9e095266"
+      "sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
+      "object_canonical_sha256": "43792f6033b2e827fa8c8bd4c9288d156bd320919f9a9a85780b081436833160"
     },
     "independent_source_conditions": {
       "source_path": "scaffold/review-handoff/local/os020-operation-root-source-conditions-at-075f0ed3/conditions.json",
@@ -396328,14 +396328,14 @@
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
       "pointer": "/contracts/2/resume_call_contract",
-      "body_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+      "body_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
       "object_canonical_sha256": "2dc4d694753023e1cadef20307b664b7d0dcf1cf02146a97d32c565b0987abfd"
     },
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/4",
-      "sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
-      "object_canonical_sha256": "7a157d2244804fba7c970282814f37fd6c52c951d836b57cdbcc8f8927b5ae28"
+      "sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
+      "object_canonical_sha256": "59cbbe1aad5ca76fef892e0d3062dafc8e52cb850c5226207a397d99403b1764"
     },
     "original_source_conditions": [
       {
@@ -396733,7 +396733,7 @@
     "system_oracle_ref": "HELIXOS-L10-020-F01",
     "current_l4_binding": {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "body_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+      "body_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
       "pointer": "/contracts/0/f01_owner_return_contract",
       "object_canonical_sha256": "faf239b286e40775abfbd8171fb1e1027c00ffe901729feab1535a8b294f04d4"
     },
@@ -396758,16 +396758,16 @@
       },
       "current_L4_F01_contract": {
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-        "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+        "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
         "pointer": "/contracts/0/f01_owner_return_contract",
         "object_canonical_sha256": "faf239b286e40775abfbd8171fb1e1027c00ffe901729feab1535a8b294f04d4",
         "label_ja": "同pair current L4 F01契約"
       },
       "current_L5_F01_binding": {
         "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-        "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
+        "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
         "pointer": "/private_producer_bindings/5",
-        "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+        "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
         "label_ja": "同pair current L5 F01 binding"
       },
       "tracked_native_types": [
@@ -396906,16 +396906,16 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract",
             "object_canonical_sha256": "faf239b286e40775abfbd8171fb1e1027c00ffe901729feab1535a8b294f04d4",
             "label_ja": "current L4 F01契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
             "pointer": "/private_producer_bindings/5",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "current L5 F01 binding"
           },
           {
@@ -396952,14 +396952,14 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/runner_scope_pair",
             "object_canonical_sha256": "875e2aa342b50da191436952ff6a92dc25d0afdadb9f113791fc6ea0ea3822bd",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/runner_resource/0",
             "object_canonical_sha256": "5ab836641b0a42fdfd1dca74390f388f525b08684212a2aece723a345ff917b8",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
@@ -397007,16 +397007,16 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract",
             "object_canonical_sha256": "faf239b286e40775abfbd8171fb1e1027c00ffe901729feab1535a8b294f04d4",
             "label_ja": "current L4 F01契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
             "pointer": "/private_producer_bindings/5",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "current L5 F01 binding"
           },
           {
@@ -397053,14 +397053,14 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/runner_scope_pair/separate_full_binding",
             "object_canonical_sha256": "619c9d2fd0b27bc6456829b6a15981149fde77c153ec35d31c9242909e893e6c",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/runner_resource/0",
             "object_canonical_sha256": "5ab836641b0a42fdfd1dca74390f388f525b08684212a2aece723a345ff917b8",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
@@ -397108,16 +397108,16 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract",
             "object_canonical_sha256": "faf239b286e40775abfbd8171fb1e1027c00ffe901729feab1535a8b294f04d4",
             "label_ja": "current L4 F01契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
             "pointer": "/private_producer_bindings/5",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "current L5 F01 binding"
           },
           {
@@ -397154,14 +397154,14 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/resource_scope_pair",
             "object_canonical_sha256": "fb96da1f5cd3bc02dd104de67348223e4f7e5070016fa4f85e25c2ae3c7c0fce",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/witness_boundary",
             "object_canonical_sha256": "6b2cba5abc50c5b20f68ff2d4405da8bfdd6e2adac45235d1029a9c1c14f8bfa",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
@@ -397209,16 +397209,16 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract",
             "object_canonical_sha256": "faf239b286e40775abfbd8171fb1e1027c00ffe901729feab1535a8b294f04d4",
             "label_ja": "current L4 F01契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
             "pointer": "/private_producer_bindings/5",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "current L5 F01 binding"
           },
           {
@@ -397255,14 +397255,14 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/resource_scope_pair",
             "object_canonical_sha256": "fb96da1f5cd3bc02dd104de67348223e4f7e5070016fa4f85e25c2ae3c7c0fce",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/runner_resource/1",
             "object_canonical_sha256": "81bba55395bd59e1d3fe8248d4d25f32d1c67c231aecb6ac8d7ff34f407a1f38",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
@@ -397310,16 +397310,16 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract",
             "object_canonical_sha256": "faf239b286e40775abfbd8171fb1e1027c00ffe901729feab1535a8b294f04d4",
             "label_ja": "current L4 F01契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
             "pointer": "/private_producer_bindings/5",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "current L5 F01 binding"
           },
           {
@@ -397356,14 +397356,14 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/resource_scope_pair/comparison",
             "object_canonical_sha256": "fce17f457059a5f982f230c9aa964f8f0f5defcddc330dee87c4e9a419ea5c69",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/relation_and_issues",
             "object_canonical_sha256": "c7ed6ff4b27e147d2ddae6988985b0ab9aa3433cacf60651ffd54b17b17ce707",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
@@ -397411,16 +397411,16 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract",
             "object_canonical_sha256": "faf239b286e40775abfbd8171fb1e1027c00ffe901729feab1535a8b294f04d4",
             "label_ja": "current L4 F01契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
             "pointer": "/private_producer_bindings/5",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "current L5 F01 binding"
           },
           {
@@ -397457,14 +397457,14 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/independent_routes",
             "object_canonical_sha256": "09277756a1616c65499ae094270aca6e42f8c771f43adbe538240dcd3e904a56",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/runner_resource/2",
             "object_canonical_sha256": "ed5c776a3562c6481602ca24742e7c25073421455308de2a4b506a19c443d8a7",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
@@ -397512,16 +397512,16 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract",
             "object_canonical_sha256": "faf239b286e40775abfbd8171fb1e1027c00ffe901729feab1535a8b294f04d4",
             "label_ja": "current L4 F01契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
             "pointer": "/private_producer_bindings/5",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "current L5 F01 binding"
           },
           {
@@ -397558,14 +397558,14 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/independent_routes",
             "object_canonical_sha256": "09277756a1616c65499ae094270aca6e42f8c771f43adbe538240dcd3e904a56",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/runner_resource/3",
             "object_canonical_sha256": "35991174b5595854638f6d8b51d319e194b6d9c27e9ca87d02b02251317feef1",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
@@ -397613,16 +397613,16 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract",
             "object_canonical_sha256": "faf239b286e40775abfbd8171fb1e1027c00ffe901729feab1535a8b294f04d4",
             "label_ja": "current L4 F01契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
             "pointer": "/private_producer_bindings/5",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "current L5 F01 binding"
           },
           {
@@ -397659,14 +397659,14 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/ticket_scope/3",
             "object_canonical_sha256": "30efa09c307718b2827a226f8253c26884a331daee292a63e3856c199a37917d",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/os_binding_ja",
             "object_canonical_sha256": "ff0b2bd8344fc9a85f2504bb5ffec1c493caf38838e3275e87680b702ebde4c4",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
@@ -397714,16 +397714,16 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract",
             "object_canonical_sha256": "faf239b286e40775abfbd8171fb1e1027c00ffe901729feab1535a8b294f04d4",
             "label_ja": "current L4 F01契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
             "pointer": "/private_producer_bindings/5",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "current L5 F01 binding"
           },
           {
@@ -397760,14 +397760,14 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/selection_ja",
             "object_canonical_sha256": "11c44f900049efb5aa7ca227db7a254e29a59c349e3e08f0fb9f982a58638cb9",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/runner_resource/1",
             "object_canonical_sha256": "81bba55395bd59e1d3fe8248d4d25f32d1c67c231aecb6ac8d7ff34f407a1f38",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
@@ -397815,16 +397815,16 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract",
             "object_canonical_sha256": "faf239b286e40775abfbd8171fb1e1027c00ffe901729feab1535a8b294f04d4",
             "label_ja": "current L4 F01契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
             "pointer": "/private_producer_bindings/5",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "current L5 F01 binding"
           },
           {
@@ -397861,14 +397861,14 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/routing_scope_and_codes/0",
             "object_canonical_sha256": "268bfd01410ff13607e2326395d9671a50c2f1b6139d71192fe7b06d071e97e5",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/not_reused_as_f01_alias/2",
             "object_canonical_sha256": "1e474e8c30531b85c5ff3524a210ecc0de8f09dced71152647a0327fee6e77a4",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
@@ -397876,7 +397876,7 @@
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/3/owner_return_contract/limits_ja",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "0b1bcbbbd634eeaca29a2b3e23fa0eb01cf232fe17fb24ebf9bc809e7ccb8391",
             "label_ja": "B01原返却と別F01 callerの併存説明"
           }
@@ -397907,42 +397907,42 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/harness_f01",
             "object_canonical_sha256": "c571987059136cffd7605a41aff029665d8f78345215829077a9bf2d837c3e4b",
             "label_ja": "invocation join"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
             "pointer": "/private_producer_bindings/5",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "producer binding"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/harness_f01/0",
             "object_canonical_sha256": "6a09bae83f517d36b7fe971a04402d0bb684f02d164fed73106d62d6ebd7a8cc",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/private_types/4/fields/invocation",
             "object_canonical_sha256": "0a80ee13bb37d793e77a5235b6c98dc10b0f7f57c3460118782ecdc20e12819d",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/harness_f01/2",
             "object_canonical_sha256": "918d11fc02415069b4bbf69a69156d85fa889f5968a19b77100ddd106d95bc06",
             "label_ja": "nested requiredの同call別carrier"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/private_types/4/fields/nested_full_required",
             "object_canonical_sha256": "e06e2d29f4b74bd7d359e1d1d26a4b0cb67fd7263b2259758f1f20ab6bb970f4",
             "label_ja": "HARNESS原Fieldのsource"
@@ -397976,14 +397976,14 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/private_types/7/fields/native_infra_input_origin",
             "object_canonical_sha256": "bdccf5621c6613d52e03f870ac515e724a550dc8988de299e59bcdde94f7c5dd",
             "label_ja": "raw I carrier"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/native_whole_retention",
             "object_canonical_sha256": "01e2abe3e536e4f254f6ee2d30ab4583b35bd3f05e7414e6760866192d734350",
             "label_ja": "raw/typed全値比較"
@@ -398031,35 +398031,35 @@
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/independent_routes",
             "object_canonical_sha256": "09277756a1616c65499ae094270aca6e42f8c771f43adbe538240dcd3e904a56",
             "label_ja": "兄弟別処理"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/private_types/7",
             "object_canonical_sha256": "870ae71a364e81dd9104c6a3b50fff884c5048036675c6a1520a18f95f3607e0",
             "label_ja": "この条件に対応するcurrent L4 operand/分岐"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/suborigin_aliases",
             "object_canonical_sha256": "51594e11ee1967d682e222bac0c7f7e14759d7f5904eb8d1ebac07890bc54939",
             "label_ja": "suborigin Field unwrap"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/intake_ports/2/refinement",
             "object_canonical_sha256": "6bbba9a3ef15be02b5ec93b1a94f0c7322275b304aaa01539714b35e2e92e8ee",
             "label_ja": "R consumer operand"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "pointer": "/contracts/0/f01_owner_return_contract/intake_ports/3/refinement",
             "object_canonical_sha256": "5a98b3179b11129a472d409258fb607d2980a30b85d5ec5ef82cbad504b3ec2f",
             "label_ja": "T consumer operand"
@@ -398094,29 +398094,29 @@
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/harness_f01",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "c571987059136cffd7605a41aff029665d8f78345215829077a9bf2d837c3e4b",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/common_origin_vs_semantic_difference",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "1551a6b8390726390c78ee9c2c631d2087d96587bd2c59f858e44cc56d1f6dd1",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/intake_ports/0",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "d8a445e1e99ac427131f7f38fac43d47d376913ff9269a37490c02ba522e70d5",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "同callerのL5 import"
           }
         ]
@@ -398146,36 +398146,36 @@
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/caller_operand_contract/native_invocation",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "9635fdb563cd552f08c3bdab441861e7da0e599f1547d31b0c31e8e4232e641c",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/harness_f01/0",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "6a09bae83f517d36b7fe971a04402d0bb684f02d164fed73106d62d6ebd7a8cc",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/harness_f01/2",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "918d11fc02415069b4bbf69a69156d85fa889f5968a19b77100ddd106d95bc06",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/common_origin_vs_semantic_difference/2",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "9a4476a4e1e88a8dd13e6bf22039e1771d246bbf9959031501e9cad6cdf4967d",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "同callerのL5 import"
           }
         ]
@@ -398205,36 +398205,36 @@
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/ticket_scope",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "ba6324b9c4a18182f1f133f37a6495ebd5334b89670ebfffa87876577d9687ed",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/private_types/5",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "7a452d271fb0c7044592a98f1695465fa18c17654f1fdb2368069abcecf3ab91",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/private_types/6",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "13513056367bab398e0c1c3d479ceeb9954420d67d2982f4ba8ee559081277df",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/intake_ports/1",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "8a79ed36531bbc00794d02c02232b0322e8904f7efbf66660475883164bf8141",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "同callerのL5 import"
           }
         ]
@@ -398264,36 +398264,36 @@
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/ticket_scope/2",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "1014ac356f6f7d380a13764ce91ba5927fba8fa55e9a32af550d89e6101b4bd7",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/ticket_scope/3",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "30efa09c307718b2827a226f8253c26884a331daee292a63e3856c199a37917d",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/ticket_scope/4",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "2baf8b258385c46daa1d8070aaad1e99d71ffc26c790e3467d57fbef8af85cbf",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/ticket_scope/5",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "c733698305034077ec852e08d30be046bab0916de88b23f2ef97aea94e605cc0",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "同callerのL5 import"
           }
         ]
@@ -398323,29 +398323,29 @@
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/routing_scope_and_codes",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "17cf70adb344502672b80aa4d12ef6c36726af114f05af10b5299a9ad7ad2946",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/common_origin_vs_semantic_difference",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "1551a6b8390726390c78ee9c2c631d2087d96587bd2c59f858e44cc56d1f6dd1",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/call_order",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "953738d09ed7ad9c9561b8ad1a373d1cf0245061d23328cfb414234c7768b6ff",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "同callerのL5 import"
           }
         ]
@@ -398375,36 +398375,36 @@
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/private_types/14",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "27b37f4f77a6e40d623bc77daf61de0760510e48f5a8817eb3b1da960180143a",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/private_types/15",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "3fdb72649230dc5ae46b987e555e53b7c0bf5f0f4468dff618626b564d983428",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/call_order",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "953738d09ed7ad9c9561b8ad1a373d1cf0245061d23328cfb414234c7768b6ff",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
             "pointer": "/contracts/0/f01_owner_return_contract/scope_binding_operand_contract/request_identity",
-            "file_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+            "file_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
             "object_canonical_sha256": "e09c55cfdf9eaafa8e4460ee67af5e5ca1068d7a55ec0d952fd4193a24ef05f0",
             "label_ja": "この分岐の原契約"
           },
           {
             "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
             "pointer": "/private_producer_bindings/5",
-            "file_sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
-            "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614",
+            "file_sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
+            "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45",
             "label_ja": "同callerのL5 import"
           }
         ]
@@ -398415,8 +398415,8 @@
     "candidate_l5_binding": {
       "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
       "pointer": "/private_producer_bindings/5",
-      "sha256": "559d206dd90814a5f1dcddbbba0d84d0982b2af5c38b175d131ed9f821ee30ec",
-      "object_canonical_sha256": "d9608b8652cf6f708b923dee5a6d9f25c6a5bbf12054ebfd1d3e5c289ba54614"
+      "sha256": "47f0894dc8c5d244041c140ec41e0b2227b2f891ca458a133667f0862def0d64",
+      "object_canonical_sha256": "e14bae6ae5391a29bab0e64c01d708851ab13271081df93201054e08b3cf4d45"
     },
     "authoring_history_ja": {
       "meaning_ja": "準備時のC12/C08/C15/C14/R2/erratum等は著述履歴であり規範根拠ではない。各condition.source_refsが追跡可能な規範sourceと対象pointerを示す。元10条件は保持し、追加3条件もsymbolicでありliteral input/expectedや実行成立を示さない。"
@@ -398431,7 +398431,7 @@
   "current_l4_binding": {
     "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
     "pointer": "/contracts/0/profile_assembly_contract",
-    "body_sha256": "2af93b167e18135f791789e5fa2bdf1471f2d480096aa464831bcd27e6e7b68c",
+    "body_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
     "object_canonical_sha256": "0a1f6ea5aa2d8bc20ee9795c0ddb5037e5766643017e13811f903ba1f53b36ff"
   },
   "fixed_git_sources": [
@@ -408895,5 +408895,423 @@
     "profile_member_projection_issue_rule_ja": "Field.emptyは元Field/OriginReadを保持し、issue_pointersは当該原read rootを指す。Field.supplied([])は既知の空配列を保持しissue_pointers=[]とする。これはsource read failure、新Finding、unknownへの変換ではない。"
   },
   "evidence_boundary_ja": "入力・全返却期待は固定Git seedと明示literal/copy recipeから再構成する。reconstruction_hashesはこの有限値の固定であり、候補producer/reader/writer/validator/algorithmの実行結果、全域意味Green、owner資格・配送・製品CI・受入の証拠ではない。"
-}
+},
+  "source_bound_binding_parent_verification": {
+    "id": "OS020-F02009-BINDING-PARENT-L9",
+    "parent": "HELIXOS-L3-020-F01",
+    "scope": "F02009のbinding親4状態と、supplied内部の子3状態を保持する有限5例。全14返却を照合し既存正常全返却を保持する。",
+    "current_l4_binding": {
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "pointer": "/contracts/0/source_bound_binding_parent_contract",
+      "body_sha256": "8dbe92b4f0fe87c600dbde7b58682b427915c55960688d24b03359cecf3d21eb",
+      "object_canonical_sha256": "8d778f774af846cd2c36e29f181de53e25ce0be69e8cd85fa86f8ff7f8fb97d4"
+    },
+    "fixed_git_seed": {
+      "revision": "08563da40262d0eca822dfb739293ca1483313bf",
+      "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+      "file_sha256": "140c6e83e52fb43fbb0064c908d71e98fbfed257454bad7b90a5f3dd7e6bdf6d",
+      "objects": [
+        {
+          "pointer": "/producer_selection_integration_verification/cases/0/raw/arguments/input/original_packet/value",
+          "canonical_sha256": "f219d0dc552700264a787349f931e80d33876366ead65fa784badc62f606fbda"
+        },
+        {
+          "pointer": "/producer_selection_integration_verification/cases/0/expected_observation/calls/0/arguments/caller",
+          "canonical_sha256": "8acf9fe4702a06a0c4f99e9572fc9ec983cfe6ee651f3ac708ce1e4eea5bfad0"
+        },
+        {
+          "pointer": "/producer_selection_integration_verification/cases/0/expected_observation/calls/0/return",
+          "canonical_sha256": "b4d5820f7b1b48a873a3774284ea18a62a63572c1e7de9474b99064e0b16d5bb"
+        }
+      ]
+    },
+    "reconstruction": {
+      "canonical_json": "UTF-8、ensure_ascii=false、sort_keys=true、separators=(comma,colon)、有限JSON値。これは本有限資料の照合表現であり製品wire codecではない。",
+      "workspace": "固定Git seed全fileをJSON parseしたfixed_sourceと、空object5件のcases配列を持つworkspace。各case recipeは同じ固定seedの3nodeを各caseへ独立copyする。",
+      "operation_semantics": "RFC 6902 copy/replace。from/pathはこのworkspaceに対するRFC 6901 pointer。candidate関数は実行しない。",
+      "comparison": "各caseのraw_value/caller/expected_return全体を再構成して指定hashと照合する。実装後の観測対象はF02009 callerに対する全14返却であり、subset比較にしない。",
+      "raw_scope": "raw_valueはoriginal_packet.valueのみの原資料witness。変異caseへRawPacket wrapperやそのcanonical_sha256を流用しない。",
+      "raw_caller_difference": "固定seedのraw_valueとcallerはcontextだけ異なり、他13memberは一致。既存selection接続差を消さず別々に保持する。tag-only変異は論理callerの著述値でありF02001投影の実証ではない。"
+    },
+    "unchanged_return_members": [
+      "status",
+      "plan_ref",
+      "harness_source_snapshot",
+      "profile_obligations",
+      "profile_items",
+      "selection_sources",
+      "source_refs",
+      "unresolved_pointers",
+      "conflict_pointers",
+      "missing_minimum_refs",
+      "selected_outside_inventory_refs",
+      "qualification_state",
+      "execution_state"
+    ],
+    "unchanged_member_canonical_sha256": {
+      "status": "8061f70b278a2a238e1bc93b4989a8c2809d5eaad14e5a9ef4b8af9c99ae2b82",
+      "plan_ref": "a74bdf1554b5838dcc5389eb9efe14d3177bd164e4dca433a9dd02ed5b4f1c9f",
+      "harness_source_snapshot": "03938b17e3ada0315c80ba0cb7b94f7b1dedb21f0e42e609ace1c8630c181ed9",
+      "profile_obligations": "fad7d94396f6b4d3163b4bdaadd1292e8450eaeac585b38a6c4055c28e7c40e7",
+      "profile_items": "46122ad39a86689c9e92f0d32ad307623b2ca54fcbd72769055e159a7bc1c8be",
+      "selection_sources": "0c1c6acf821e79abe0e56f3ed6fc75b8f2d6ef1f6394f24e987d557d77027b98",
+      "source_refs": "0a372cd16b85338e4c7933d6684a9d5031fa5fc3e6cc7e78e1972a8225024443",
+      "unresolved_pointers": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "conflict_pointers": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "missing_minimum_refs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "selected_outside_inventory_refs": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "qualification_state": "434e0a30986d284f55880579dfb506626caa5f8b11991300db324a0cc0e4838d",
+      "execution_state": "f776efdd24f11497d555b2e6cd96c2e2c9bc679daaac704f364dd7bc27ea7f09"
+    },
+    "cases": [
+      {
+        "id": "F02009-BINDING-SUPPLIED",
+        "parent_state": "supplied",
+        "rfc6902_recipe": [
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/raw/arguments/input/original_packet/value",
+            "path": "/cases/0/raw_value"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/expected_observation/calls/0/arguments/caller",
+            "path": "/cases/0/caller"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/expected_observation/calls/0/return",
+            "path": "/cases/0/expected_return"
+          },
+          {
+            "op": "copy",
+            "from": "/cases/0/caller/binding/value",
+            "path": "/cases/0/expected_return/os_binding"
+          }
+        ],
+        "raw_value_canonical_sha256": "f219d0dc552700264a787349f931e80d33876366ead65fa784badc62f606fbda",
+        "caller_canonical_sha256": "8acf9fe4702a06a0c4f99e9572fc9ec983cfe6ee651f3ac708ce1e4eea5bfad0",
+        "full_return_canonical_sha256": "b4d5820f7b1b48a873a3774284ea18a62a63572c1e7de9474b99064e0b16d5bb",
+        "expected_os_binding": {
+          "project": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-PROJECT"
+          },
+          "requirement_revision": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-REQUIREMENT_REVISION"
+          },
+          "scope": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-SCOPE"
+          },
+          "ticket_graph_ref": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-TICKET_GRAPH_REF"
+          },
+          "head": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-HEAD"
+          },
+          "base": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-BASE"
+          },
+          "pair_ref": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-PAIR_REF"
+          },
+          "oracle_ref": {
+            "tag": "supplied",
+            "value": "ORACLE-020"
+          },
+          "harness_version": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-HARNESS_VERSION"
+          },
+          "environment_ref": {
+            "tag": "supplied",
+            "value": "ENV-1"
+          },
+          "runner_ref": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-RUNNER_REF"
+          },
+          "run_ref": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-RUN_REF"
+          },
+          "authority_ref": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-AUTHORITY_REF"
+          }
+        }
+      },
+      {
+        "id": "F02009-BINDING-ABSENT",
+        "parent_state": "absent",
+        "rfc6902_recipe": [
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/raw/arguments/input/original_packet/value",
+            "path": "/cases/1/raw_value"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/expected_observation/calls/0/arguments/caller",
+            "path": "/cases/1/caller"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/expected_observation/calls/0/return",
+            "path": "/cases/1/expected_return"
+          },
+          {
+            "op": "replace",
+            "path": "/cases/1/raw_value/binding",
+            "value": {
+              "tag": "absent"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/cases/1/caller/binding",
+            "value": {
+              "tag": "absent"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/1/caller/binding",
+            "path": "/cases/1/expected_return/os_binding"
+          }
+        ],
+        "raw_value_canonical_sha256": "512b3fdaf7d95e6771f5eb6ff21fc020580ab3761e99e22d1d32d1176518e2d9",
+        "caller_canonical_sha256": "be49c56c509838d7f234b45b01c8e14f4bf11fb627727f581a13bd0d659b3ea9",
+        "full_return_canonical_sha256": "b1c43f42ae938bb0456f38d24d487181f747be6e5c423d65e4afbf96ff41881c",
+        "expected_os_binding": {
+          "tag": "absent"
+        }
+      },
+      {
+        "id": "F02009-BINDING-NULL",
+        "parent_state": "null",
+        "rfc6902_recipe": [
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/raw/arguments/input/original_packet/value",
+            "path": "/cases/2/raw_value"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/expected_observation/calls/0/arguments/caller",
+            "path": "/cases/2/caller"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/expected_observation/calls/0/return",
+            "path": "/cases/2/expected_return"
+          },
+          {
+            "op": "replace",
+            "path": "/cases/2/raw_value/binding",
+            "value": {
+              "tag": "null"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/cases/2/caller/binding",
+            "value": {
+              "tag": "null"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/2/caller/binding",
+            "path": "/cases/2/expected_return/os_binding"
+          }
+        ],
+        "raw_value_canonical_sha256": "ad94d3e45c1e9901252265b72e5714bf429c5fdc0fc4122e98ba29a28acc8b29",
+        "caller_canonical_sha256": "91eb755150275176c27d7180f52d291c00dbaf3c03f0dfe03294fd4e1fd49274",
+        "full_return_canonical_sha256": "3f81648da967f756fd23b545d15c56fd8c2454910d30c8eaefcfcab5adc64c44",
+        "expected_os_binding": {
+          "tag": "null"
+        }
+      },
+      {
+        "id": "F02009-BINDING-EMPTY",
+        "parent_state": "empty",
+        "rfc6902_recipe": [
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/raw/arguments/input/original_packet/value",
+            "path": "/cases/3/raw_value"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/expected_observation/calls/0/arguments/caller",
+            "path": "/cases/3/caller"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/expected_observation/calls/0/return",
+            "path": "/cases/3/expected_return"
+          },
+          {
+            "op": "replace",
+            "path": "/cases/3/raw_value/binding",
+            "value": {
+              "tag": "empty"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/cases/3/caller/binding",
+            "value": {
+              "tag": "empty"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/3/caller/binding",
+            "path": "/cases/3/expected_return/os_binding"
+          }
+        ],
+        "raw_value_canonical_sha256": "029fbfd887b4b99ae51e9c593ef2de68de1f5e2dcd4d05c72474cecce7e10adf",
+        "caller_canonical_sha256": "2aab57a6eea614fadf74d322a2d90d33b13a899c2ea38ef12afd3cc5dd275bd1",
+        "full_return_canonical_sha256": "1e82783bb7c5bace4e77bec0b5ddbf77fcba21b69b3cf448ea05e3ddc4a267f8",
+        "expected_os_binding": {
+          "tag": "empty"
+        }
+      },
+      {
+        "id": "F02009-BINDING-SUPPLIED-PARTIAL-CHILDREN",
+        "parent_state": "supplied",
+        "rfc6902_recipe": [
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/raw/arguments/input/original_packet/value",
+            "path": "/cases/4/raw_value"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/expected_observation/calls/0/arguments/caller",
+            "path": "/cases/4/caller"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_source/producer_selection_integration_verification/cases/0/expected_observation/calls/0/return",
+            "path": "/cases/4/expected_return"
+          },
+          {
+            "op": "replace",
+            "path": "/cases/4/raw_value/binding/value/project",
+            "value": {
+              "tag": "absent"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/cases/4/raw_value/binding/value/scope",
+            "value": {
+              "tag": "null"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/cases/4/raw_value/binding/value/head",
+            "value": {
+              "tag": "empty"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/cases/4/caller/binding/value/project",
+            "value": {
+              "tag": "absent"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/cases/4/caller/binding/value/scope",
+            "value": {
+              "tag": "null"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/cases/4/caller/binding/value/head",
+            "value": {
+              "tag": "empty"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/cases/4/caller/binding/value",
+            "path": "/cases/4/expected_return/os_binding"
+          }
+        ],
+        "raw_value_canonical_sha256": "d9a60ffc45307a1953fc38893c0e07637cc1201c7fd9d2847b4e0ed10a0e784d",
+        "caller_canonical_sha256": "e9497d603d987f6fba4c7099e33101b59ef488c7212a181bbe061a314231c019",
+        "full_return_canonical_sha256": "55a476b926c6403a742a579ee4050bae7888ff75f6336a039e713495c79f580c",
+        "expected_os_binding": {
+          "project": {
+            "tag": "absent"
+          },
+          "requirement_revision": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-REQUIREMENT_REVISION"
+          },
+          "scope": {
+            "tag": "null"
+          },
+          "ticket_graph_ref": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-TICKET_GRAPH_REF"
+          },
+          "head": {
+            "tag": "empty"
+          },
+          "base": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-BASE"
+          },
+          "pair_ref": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-PAIR_REF"
+          },
+          "oracle_ref": {
+            "tag": "supplied",
+            "value": "ORACLE-020"
+          },
+          "harness_version": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-HARNESS_VERSION"
+          },
+          "environment_ref": {
+            "tag": "supplied",
+            "value": "ENV-1"
+          },
+          "runner_ref": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-RUNNER_REF"
+          },
+          "run_ref": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-RUN_REF"
+          },
+          "authority_ref": {
+            "tag": "supplied",
+            "value": "SYNTHETIC-AUTHORITY_REF"
+          }
+        }
+      }
+    ],
+    "unclosed": [
+      "L5のos_binding型とwriterの詳細追随、対L8は後続。現在のL5が非supplied枝を満たすとの主張ではない。",
+      "F02002全返却、3attachment親状態の組合せ、unknown raw/extra key/不正値分類、正式codec、実owner資格・実call・配送・製品CIは本5例では実証しない。",
+      "5例はbinding親4状態と一つの子状態混在例に限定する。全子状態の組合せ、全域の意味完了、実装Ready、実行Red/Greenは未成立。"
+    ]
+  }
 }
