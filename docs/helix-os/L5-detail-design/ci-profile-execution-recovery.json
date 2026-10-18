@@ -237,6 +237,11 @@
       "path": "docs/helix-harness/L9-integration-verification/verification-discipline.json",
       "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
       "whole_sha256": "19498cf4c9cc07d7335592cda45bfdfbaea51cba08ec39c5118ac83b4e8e0221"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "revision": "9b2e3c9ae109425843be21e3ed1587dd6a88aa07",
+      "whole_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6"
     }
   ],
   "parent_basic_source_pins": [
@@ -795,6 +800,484 @@
         "F01RunnerResourceOwnerProjection.os_bindingは別のField<Binding>。この専用返却型へ統合しない。"
       ],
       "legacy_basis_ja": "L4同契約のlegacy_comparisonとsource_basisに戻る。原identity・不明の保持を維持し、旧CI/runtime/fallbackの実行規則を移植しない。"
+    },
+    {
+      "id": "HELIXOS-L5-020-CI-MATERIAL-SAME-CALL",
+      "requirement_ref": "HELIXOS-L3-020-F01",
+      "status": "limited_detail_defined_not_executed",
+      "authority_effect": "none",
+      "operation_effect": "none",
+      "scope_ja": "L4 OS020-CI-MATERIAL-SAME-CALL-L4の19 private typeと同一snapshotの8呼出し契約を、既存L5のF02009/F02002〜F02008へ結ぶ。公開9関数のsignatureは変えず、FieldからProfileBodyへの一般形成規則とcodecは別の技術選択に残す。",
+      "source_basis": [
+        {
+          "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+          "file_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
+          "pointer": "/contracts/0/ci_material_same_call_contract",
+          "object_canonical_sha256": "a75eb338f132f1966146a343975e0fe11f13c21309169ed6142304c353381d2d",
+          "binding_role_ja": "L5型の意味を起草した時点で選択した現L4 source。whole-fileとobjectのhashでバイトを特定する。L8ではこのsourceを固定baselineとして別途記録する。"
+        },
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "revision": "9b2e3c9ae109425843be21e3ed1587dd6a88aa07",
+          "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+          "pointer": "/requirements/37",
+          "canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3"
+        },
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "revision": "9b2e3c9ae109425843be21e3ed1587dd6a88aa07",
+          "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+          "pointer": "/requirements/39",
+          "canonical_sha256": "6afea8cd6d91c2ac23d0b55f1f778c917c1a1aa5245fa1349fe0be905024f856"
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+          "file_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
+          "pointer": "/diagnostic_contract/comparison_table/revalidation",
+          "canonical_sha256": "afeb67d36a7e2c9e5bb4b33a4f15abd0de589155bd6635c3803a2c5338224e9a",
+          "binding_role_ja": "L5型の意味を起草した時点で選択した現L4 source。whole-fileとobjectのhashでバイトを特定する。L8ではこのsourceを固定baselineとして別途記録する。"
+        }
+      ],
+      "closed_type_source_binding": {
+        "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+        "file_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
+        "pointer": "/contracts/0/ci_material_same_call_contract",
+        "object_canonical_sha256": "a75eb338f132f1966146a343975e0fe11f13c21309169ed6142304c353381d2d",
+        "closed_private_types_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types",
+        "closed_private_types_count": 19,
+        "meaning_ja": "19 closed private typesを一括して現L4契約へ結ぶ。各L5型のsource_pointerは対応するL4配列memberを示す。",
+        "source_role_ja": "L5 logical typeの意味源。起草時点で選択した現L4契約をwhole-file/object hashで特定する。revisionはL8が固定oracle baselineとして別途保持する。"
+      },
+      "logical_type_refs": {
+        "F02009SameCall": "/logical_types/56",
+        "F02009Arguments": "/logical_types/57",
+        "F02002SameCall": "/logical_types/58",
+        "F02002Arguments": "/logical_types/59",
+        "F02003SameCall": "/logical_types/60",
+        "F02003Arguments": "/logical_types/61",
+        "F02004SameCall": "/logical_types/62",
+        "F02004Arguments": "/logical_types/63",
+        "F02005SameCall": "/logical_types/64",
+        "F02005Arguments": "/logical_types/65",
+        "F02006SameCall": "/logical_types/66",
+        "F02006Arguments": "/logical_types/67",
+        "F02007SameCall": "/logical_types/68",
+        "F02007Arguments": "/logical_types/69",
+        "F02008SameCall": "/logical_types/70",
+        "F02008Arguments": "/logical_types/71",
+        "ProfileMaterialCapture": "/logical_types/72",
+        "CIMaterialCalls": "/logical_types/73",
+        "CIMaterialInvocation": "/logical_types/74"
+      },
+      "private_writer": {
+        "visibility": "private_pure_composition",
+        "signature": "capture_ci_material_same_call(assembled_caller: CIInput) -> CIMaterialInvocation",
+        "input": "既存PlanSelectionInvocation.assembled_callerから得る、すでに型付けされたCIInput全体値を受け取る。F02001.fieldsとの同値を要求せず、上流invocationの未存在returnも合成しない。",
+        "return": "CIMaterialInvocation",
+        "effects": "none",
+        "not_a_public_function": true,
+        "return_derivation": {
+          "assembled_caller": "入力引数そのもの。CIInputの全member/Field tag/RawPacketを含む全体値を保持する。",
+          "bound_input": {
+            "base": "assembled_callerの全体値を複製する。",
+            "existing_source_bound_assembly": {
+              "source_pointer": "/contracts/0/selection_producer_contract/private_call_contract/producer_consumer_boundary/existing_consumer/same_call_assembly/source_bound_assembly",
+              "same_return_symbol": "RはF02009(arguments.caller=assembled_caller)の全SourceBoundProfile返却。三接続先へ同じField.supplied(R)を渡す。",
+              "destinations": [
+                {
+                  "logical_destination": "/profile/source_bound",
+                  "parent": "/profile",
+                  "parent_requirement": "Field.supplied(Profile)",
+                  "write": "供給済み/profile recordの既存source_bound memberだけをField.supplied(R)へ設定する。"
+                },
+                {
+                  "logical_destination": "/context/profile/source_bound",
+                  "parent": "/context と /context/profile",
+                  "parent_requirement": "各Field.supplied(ExpectedContext/Profile)",
+                  "write": "両親が供給済みrecordのとき、/context/profileの既存source_bound memberだけをField.supplied(R)へ設定する。"
+                },
+                {
+                  "logical_destination": "/context/source_bound_selection",
+                  "parent": "/context",
+                  "parent_requirement": "Field.supplied(ExpectedContext)",
+                  "write": "供給済み/context recordの既存source_bound_selection memberだけをField.supplied(R)へ設定する。ここはsource_bound memberではない。"
+                }
+              ],
+              "parent_presence_rule": "各宛先の全parentがField.supplied(declared record)の場合だけ当該memberを設定する。親がabsent/null/emptyならその親Field全体を維持してchildを作らない。未指定memberと他memberは全値保持する。3枝すべて接続できることをsource-bound branchの成立とし、partial接続から成立を主張しない。"
+            }
+          },
+          "calls": {
+            "binding": {
+              "arguments": {
+                "caller": "assembled_callerの全体値"
+              },
+              "returned": "実際のF02009呼出しの全SourceBoundProfile R"
+            },
+            "metadata": {
+              "arguments": {
+                "input": "bound_inputの全体値"
+              },
+              "returned": "実際のF02002呼出しの全MetadataAssessment"
+            },
+            "operation": {
+              "arguments": {
+                "input": "bound_inputの全体値",
+                "phase": "metadata.returned.selected_phase"
+              },
+              "returned": "実際のF02003呼出しの全FacetAssessment"
+            },
+            "collection": {
+              "arguments": {
+                "input": "bound_inputの全体値",
+                "phase": "metadata.returned.selected_phase"
+              },
+              "returned": "実際のF02004呼出しの全CollectionAssessment"
+            },
+            "continuity": {
+              "arguments": {
+                "input": "bound_inputの全体値",
+                "phase": "metadata.returned.selected_phase"
+              },
+              "returned": "実際のF02005呼出しの全FacetAssessment"
+            },
+            "revalidation": {
+              "arguments": {
+                "input": "bound_inputの全体値",
+                "phase": "metadata.returned.selected_phase"
+              },
+              "returned": "実際のF02006呼出しの全RevalidationAssessment"
+            },
+            "decision": {
+              "arguments": {
+                "input": "bound_inputの全体値"
+              },
+              "returned": "実際のF02007呼出しの全FacetAssessment"
+            },
+            "material": {
+              "arguments": {
+                "input": "bound_inputの全体値",
+                "metadata": "calls.metadata.returned全体",
+                "operation": "calls.operation.returned全体",
+                "collection": "calls.collection.returned全体",
+                "continuity": "calls.continuity.returned全体",
+                "revalidation": "calls.revalidation.returned全体",
+                "decision": "calls.decision.returned全体"
+              },
+              "returned": "実際のF02008呼出しの全CIProposal。15宣言memberを保持し、optional source_selection_statusesが存在すればそのField tag/valueも保持し、不在なら不在を保つ。"
+            }
+          },
+          "projection": {
+            "source_profile": "bound_input.profile全体をそのまま複製する。Field tagとProfileの6 member/source_boundを保持する。",
+            "body": "calls.material.returned.profile_materialをそのまま複製する。未形成値を補わない。",
+            "digest": "calls.material.returned.profile_material_digestをそのまま複製する。独立に再計算・代用しない。"
+          },
+          "closure": "CIMaterialInvocationのassembled_caller/bound_input/calls/projection、CIMaterialCallsのbinding/metadata/operation/collection/continuity/revalidation/decision/material、各callのarguments/returned、ProfileMaterialCaptureの3 memberを上記対応で全て埋める。別の公開関数・DB・通信・状態更新は呼ばない。"
+        }
+      },
+      "public_calls": {
+        "F02009": {
+          "argument_type": "F02009Arguments",
+          "argument_fields": [
+            "caller"
+          ],
+          "return_type": "SourceBoundProfile",
+          "return_members": [
+            "status",
+            "os_binding",
+            "plan_ref",
+            "harness_source_snapshot",
+            "profile_obligations",
+            "profile_items",
+            "selection_sources",
+            "source_refs",
+            "unresolved_pointers",
+            "conflict_pointers",
+            "missing_minimum_refs",
+            "selected_outside_inventory_refs",
+            "qualification_state",
+            "execution_state"
+          ]
+        },
+        "F02002": {
+          "argument_type": "F02002Arguments",
+          "argument_fields": [
+            "input"
+          ],
+          "return_type": "MetadataAssessment",
+          "return_members": [
+            "selected_phase",
+            "findings",
+            "source_selection_statuses"
+          ],
+          "optional_return_members": [
+            "source_selection_statuses"
+          ]
+        },
+        "F02003": {
+          "argument_type": "F02003Arguments",
+          "argument_fields": [
+            "input",
+            "phase"
+          ],
+          "return_type": "FacetAssessment",
+          "return_members": [
+            "findings"
+          ]
+        },
+        "F02004": {
+          "argument_type": "F02004Arguments",
+          "argument_fields": [
+            "input",
+            "phase"
+          ],
+          "return_type": "CollectionAssessment",
+          "return_members": [
+            "original_result_outcome",
+            "findings"
+          ]
+        },
+        "F02005": {
+          "argument_type": "F02005Arguments",
+          "argument_fields": [
+            "input",
+            "phase"
+          ],
+          "return_type": "FacetAssessment",
+          "return_members": [
+            "findings"
+          ]
+        },
+        "F02006": {
+          "argument_type": "F02006Arguments",
+          "argument_fields": [
+            "input",
+            "phase"
+          ],
+          "return_type": "RevalidationAssessment",
+          "return_members": [
+            "selected",
+            "findings"
+          ]
+        },
+        "F02007": {
+          "argument_type": "F02007Arguments",
+          "argument_fields": [
+            "input"
+          ],
+          "return_type": "FacetAssessment",
+          "return_members": [
+            "findings"
+          ]
+        },
+        "F02008": {
+          "argument_type": "F02008Arguments",
+          "argument_fields": [
+            "input",
+            "metadata",
+            "operation",
+            "collection",
+            "continuity",
+            "revalidation",
+            "decision"
+          ],
+          "return_type": "CIProposal",
+          "return_members": [
+            "condition",
+            "selected_phase",
+            "facet_correspondence",
+            "profile_material",
+            "profile_material_digest",
+            "original_result_outcome",
+            "collection_material_corresponding",
+            "resume_material_corresponding",
+            "findings",
+            "actual_ci_started",
+            "actual_result_collected",
+            "actual_resume_executed",
+            "whole_ci_verified",
+            "operation_effect"
+          ],
+          "optional_return_members": [
+            "source_selection_statuses"
+          ],
+          "optional_return_member_presence": {
+            "source_selection_statuses": "CIProposalの宣言済みoptional member。返却に存在する場合はField tag/valueをそのまま保持し、不在の場合は不在を保持する。nullやdefaultへ正規化しない。"
+          },
+          "declared_return_members": [
+            "condition",
+            "selected_phase",
+            "facet_correspondence",
+            "profile_material",
+            "profile_material_digest",
+            "original_result_outcome",
+            "collection_material_corresponding",
+            "resume_material_corresponding",
+            "findings",
+            "actual_ci_started",
+            "actual_result_collected",
+            "actual_resume_executed",
+            "whole_ci_verified",
+            "operation_effect",
+            "source_selection_statuses"
+          ]
+        }
+      },
+      "call_order": [
+        "F02009を1回、caller=assembled_callerで呼び、typed arguments全体と返却SourceBoundProfile R全体を保持する。",
+        "assembled_caller全体からbound_inputを作る。既存same_call_assembly.source_bound_assemblyを適用し、/profile/source_bound（親 /profile）、/context/profile/source_bound（親 /context と /context/profile）、/context/source_bound_selection（親 /context）の各宛先について、当該宛先の全親がField.supplied(record)の場合だけその既存memberへ同一Field.supplied(R)を設定する。absent/null/emptyの親Field全体は保持し子recordを作らない。他の値/Field tagを保持し、部分接続をsource-bound branch成立とは扱わない。新status/finding/gateは追加しない。",
+        "F02002を1回、input=bound_inputで呼び、typed arguments全体とMetadataAssessment返却全体を保持する。",
+        "F02003、F02004、F02005、F02006を各1回、同じbound_inputとF02002.returned.selected_phaseで呼び、各typed arguments全体とそれぞれのFacetAssessment/CollectionAssessment/RevalidationAssessment返却全体を保持する。",
+        "F02007を1回、input=bound_inputで呼び、typed arguments全体とFacetAssessment返却全体を保持する。",
+        "F02008を1回、input=bound_input、metadata/operation/collection/continuity/revalidation/decisionには直前の実呼出しの各返却全体を渡す。7引数とCIProposal全返却を保持し、optional source_selection_statusesの不在/存在とField tagを区別して保存する。",
+        "projection.source_profile=bound_input.profile、body=F02008返却.profile_material、digest=F02008返却.profile_material_digestを各々原値のまま複製する。変換、cast、欠落値補完、source/digestの代用はしない。"
+      ],
+      "f02006_phase_rule": {
+        "source_pointer": "/diagnostic_contract/comparison_table/revalidation",
+        "source_canonical_sha256": "afeb67d36a7e2c9e5bb4b33a4f15abd0de589155bd6635c3803a2c5338224e9a",
+        "rule_ja": "L4の適用表ではphases=[resume]であり、既知のold/current binding差分があるときに限り選択される。この表へ従いresume以外では当該再検証比較を適用せず、selected=false/findings=[]を返す。resume時は既存F02006の振る舞いに従う。resume以外に新しい検査/gateを加えない。",
+        "non_generalization_ja": "4件の有限assemble例は、resume以外の全入力domainに対するreturnを証明しない。L4適用表の外にある未閉包のdomain/phaseは未確定のまま残す。F02006公開signatureは変更しない。"
+      },
+      "preconditions_and_unclosed": [
+        "writerはすでに型付けされたCIInputだけを受け取る。raw JSON schema/decode、不正な外側値、外部資格判定は未閉包であり、ここでは推測しない。",
+        "一般typed domainの全域性と任意のpartial parent組合せは4有限caseで証明されない。元のField tagと既存F02002比較挙動を保持する。",
+        "not_called status/type、新しいstate/finding/authority/gate、運用上の呼出しを追加しない。この合成は論理的かつ副作用なし。",
+        "Field<T>からProfileBodyを作る一般規則、canonical digest、codecの選択はここでは行わない。",
+        "固定L9の4件ではsource_bound attachmentの3親すべてがsupplied。absent/null/empty/partialの親組合せは未評価であり、L4の既存保持則を超える保証をしない。"
+      ],
+      "retained_and_changed_ja": "旧CIS-R-01/04/07/10の証拠束縛・義務不変・unknown保持を維持する。旧固定stage/runtime/telemetry方式は移植せず、現行契約が指定する8呼出しを原値で結ぶ。T29/T35/T40の照合をL8全値oracle bindingへ反映し、gate/runtime新設の根拠にはしない。",
+      "legacy_inventory": [
+        {
+          "asset_id": "LEGACY-ASSET-DA012A9B04D5BE9419CE",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+          "source_sha256": "65400847881f1a72b273f0bdeff503a5ea302705cd0e71d7913fc7d0f8dd18fb",
+          "sections": [
+            "§0",
+            "CIS-R-01",
+            "CIS-R-04",
+            "CIS-R-07",
+            "CIS-R-10"
+          ],
+          "literal_locations": [
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+              "line_range": "39-44",
+              "anchor": "CIS-R-01 実行identity"
+            },
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+              "line_range": "60-63",
+              "anchor": "CIS-R-04 証明責務identity"
+            },
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+              "line_range": "77-80",
+              "anchor": "CIS-R-07 planの完全分割"
+            },
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+              "line_range": "94-97",
+              "anchor": "CIS-R-10 obligation不変"
+            }
+          ],
+          "retain": "要求identity、証拠来歴の正確な束縛、required set不変を保持する。",
+          "change": "legacy stage/runtime/selector/storageを移植せず、現行で既存契約が指定する8呼出しだけを同一snapshotで合成する。",
+          "reason": "現在のL3/L4 authorityと範囲を適用する。legacy構成やtiming閾値は現行要求ではない。"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-D888FB040D52499EE09E",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/impact-ci-recovery.md",
+          "source_sha256": "04e44d8382a5029a1dbe6e8bc69d6882ea15ee1410c3fc781136aad7db6b2391",
+          "sections": [
+            "§1",
+            "§2",
+            "§3",
+            "§5",
+            "§6",
+            "§8"
+          ],
+          "literal_locations": [
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/impact-ci-recovery.md",
+              "line_range": "17-21",
+              "anchor": "設計目的 / 必須検査集合を縮退させない"
+            },
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/impact-ci-recovery.md",
+              "line_range": "23-34",
+              "anchor": "component境界 / exact HEADとstale判定"
+            }
+          ],
+          "retain": "候補/base/receiptのidentity、stale証拠の扱い、raw logからauthorityを導かない点を保持する。",
+          "change": "旧inventory、receipt DB、runner、固定profile名、adapter runtimeは再構成しない。",
+          "reason": "今回閉じるのはL4同一callのmaterial assembly来歴だけであり、製品/運用は未構築である。"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-8DE0535125B1E39C6FEA",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ci-system-synthesis-acceptance.md",
+          "source_sha256": "f5dcd1910a4eef57c66e1c2c03fffe20e5c681ed9e9d043b9e8f15a211e65d9b",
+          "sections": [
+            "CIS-AC-001",
+            "CIS-AC-004",
+            "CIS-AC-007",
+            "CIS-AC-010"
+          ],
+          "literal_locations": [
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ci-system-synthesis-acceptance.md",
+              "line_range": "26",
+              "anchor": "CIS-AC-001 / CIS-R-01"
+            },
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ci-system-synthesis-acceptance.md",
+              "line_range": "29",
+              "anchor": "CIS-AC-004 / CIS-R-04"
+            },
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ci-system-synthesis-acceptance.md",
+              "line_range": "32",
+              "anchor": "CIS-AC-007 / CIS-R-07"
+            },
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ci-system-synthesis-acceptance.md",
+              "line_range": "35",
+              "anchor": "CIS-AC-010 / CIS-R-10"
+            }
+          ],
+          "retain": "oracle/input/revisionのexact性とnegative条件を、status summaryだけでなくL8 pairに保存する。",
+          "change": "legacy acceptance scenarioは現行L8結果として実行/昇格しない。",
+          "reason": "固定Git L9 seedと現行L4/L5契約をfinite oracle入力として用いる。"
+        }
+      ],
+      "failure_and_consumer_basis": [
+        {
+          "audit_path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json",
+          "audit_file_sha256": "ee62f8040a8f7cdd125a050277c3f09b5f13062a357ec43b04ca5041bed52f05",
+          "pointer": "/failure_types/28",
+          "id": "T29",
+          "object_canonical_sha256": "4814e264de0bbe9ccdc741ee14802f6c7bcc1397440d8829fdc41b54e31189b2",
+          "historical_source": "HELIX-WP-THEME@edb49f6 #206（e2e未実行）、#210（path filterで未起動）、#332（symlink）；#2720参考コメント（derived-lessons.md「CI」）",
+          "current_consumer_mapping": "HELIXOS-L3-020-F01からL4 ci_material_same_call_contract、L8の8呼出し全input/return比較へ結ぶ。未実行・欠落callをstatus summaryだけから実行済みと扱わない。"
+        },
+        {
+          "audit_path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json",
+          "audit_file_sha256": "ee62f8040a8f7cdd125a050277c3f09b5f13062a357ec43b04ca5041bed52f05",
+          "pointer": "/failure_types/34",
+          "id": "T35",
+          "object_canonical_sha256": "ba06c8d5be48b126826682c6690117bd423e16dce3f091d0b92a037d2fdcaae6",
+          "historical_source": "前身弱点ledger UTW-008（audit L74；bun test 37 fail、bun run test green）",
+          "current_consumer_mapping": "関連する根拠として、typed snapshotと明示L8 recipeで同一入力を束縛する。local/canonical runnerの同値性はこのwrapperの範囲外であり、成立を主張しない。"
+        },
+        {
+          "audit_path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json",
+          "audit_file_sha256": "ee62f8040a8f7cdd125a050277c3f09b5f13062a357ec43b04ca5041bed52f05",
+          "pointer": "/failure_types/39",
+          "id": "T40",
+          "object_canonical_sha256": "379c5d8db4ad05391dcd28105d59d822702436cc509ec7e6e6fbc1af1d1557df",
+          "historical_source": "前身弱点ledger UTW-005（audit L71）",
+          "current_consumer_mapping": "現L4/L9のrevision、固定seedのobject hash、L5全体/object hashを明示する。旧HEADのoracle根拠を現行へ暗黙に昇格しない。"
+        }
+      ],
+      "partial_parent_and_field_presence_scope_ja": "Wrapperは/profile、/context、/context/profileの各親Field tag/valueを原値として保持する。L4既存接続則では、/profile/source_boundは/profile供給時、/context/profile/source_boundは/contextと/context/profileの両方が供給時、/context/source_bound_selectionは/context供給時に限り既存memberを更新する。固定4 oracleは3親すべてsuppliedのみを扱う。absent/null/empty/任意partial組合せはこの検証では未評価であり、L4規則を超える保証をしない。"
     }
   ],
   "trace": [
@@ -1851,6 +2334,226 @@
         "Field<T>": "/logical_types/1",
         "scope_ja": "参照先L4 sumのsupplied_binding.shape=Bindingと子Fieldは、このOS020の既存論理型へ解決する。別のwire表現又は同名他機構型へ置換しない。"
       }
+    },
+    {
+      "name": "F02009SameCall",
+      "kind": "record",
+      "fields": {
+        "arguments": "F02009Arguments",
+        "returned": "SourceBoundProfile"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/0",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02009Arguments",
+      "kind": "record",
+      "fields": {
+        "caller": "CIInput"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/1",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02002SameCall",
+      "kind": "record",
+      "fields": {
+        "arguments": "F02002Arguments",
+        "returned": "MetadataAssessment"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/2",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02002Arguments",
+      "kind": "record",
+      "fields": {
+        "input": "CIInput"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/3",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02003SameCall",
+      "kind": "record",
+      "fields": {
+        "arguments": "F02003Arguments",
+        "returned": "FacetAssessment"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/4",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02003Arguments",
+      "kind": "record",
+      "fields": {
+        "input": "CIInput",
+        "phase": "MaybePhase"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/5",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02004SameCall",
+      "kind": "record",
+      "fields": {
+        "arguments": "F02004Arguments",
+        "returned": "CollectionAssessment"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/6",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02004Arguments",
+      "kind": "record",
+      "fields": {
+        "input": "CIInput",
+        "phase": "MaybePhase"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/7",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02005SameCall",
+      "kind": "record",
+      "fields": {
+        "arguments": "F02005Arguments",
+        "returned": "FacetAssessment"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/8",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02005Arguments",
+      "kind": "record",
+      "fields": {
+        "input": "CIInput",
+        "phase": "MaybePhase"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/9",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02006SameCall",
+      "kind": "record",
+      "fields": {
+        "arguments": "F02006Arguments",
+        "returned": "RevalidationAssessment"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/10",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02006Arguments",
+      "kind": "record",
+      "fields": {
+        "input": "CIInput",
+        "phase": "MaybePhase"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/11",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02007SameCall",
+      "kind": "record",
+      "fields": {
+        "arguments": "F02007Arguments",
+        "returned": "FacetAssessment"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/12",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02007Arguments",
+      "kind": "record",
+      "fields": {
+        "input": "CIInput"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/13",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02008SameCall",
+      "kind": "record",
+      "fields": {
+        "arguments": "F02008Arguments",
+        "returned": "CIProposal"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/14",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "F02008Arguments",
+      "kind": "record",
+      "fields": {
+        "input": "CIInput",
+        "metadata": "MetadataAssessment",
+        "operation": "FacetAssessment",
+        "collection": "CollectionAssessment",
+        "continuity": "FacetAssessment",
+        "revalidation": "RevalidationAssessment",
+        "decision": "FacetAssessment"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/15",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "ProfileMaterialCapture",
+      "kind": "record",
+      "fields": {
+        "source_profile": "Field<Profile>",
+        "body": "MaybeProfile",
+        "digest": "MaybeString"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/16",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "CIMaterialCalls",
+      "kind": "record",
+      "fields": {
+        "binding": "F02009SameCall",
+        "metadata": "F02002SameCall",
+        "operation": "F02003SameCall",
+        "collection": "F02004SameCall",
+        "continuity": "F02005SameCall",
+        "revalidation": "F02006SameCall",
+        "decision": "F02007SameCall",
+        "material": "F02008SameCall"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/17",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
+    },
+    {
+      "name": "CIMaterialInvocation",
+      "kind": "record",
+      "fields": {
+        "assembled_caller": "CIInput",
+        "bound_input": "CIInput",
+        "calls": "CIMaterialCalls",
+        "projection": "ProfileMaterialCapture"
+      },
+      "source_binding_ref": "/contracts/5/closed_type_source_binding",
+      "source_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types/18",
+      "meaning_ja": "閉じたmember集合はsource-pinned L4基本契約を正とする。論理型参照であり、wire codec/validator実装の成立を意味しない。"
     }
   ],
   "functions": [
@@ -2428,14 +3131,14 @@
       ],
       "return_derivation": {
         "selected": "resumeで旧/current bindingにknown相反が1つ以上の時true。unknownのみで変更を推測しない。",
-        "findings": "unknown旧/current source、必要時だけrevalidationの現在/旧binding/source/state比較。不要時のnullを不足gateにしない。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。同じcode/pointerの異なるfacet/dispositionは別所見として保持し、全関数をまたぐfacet集約前に消さない。"
+        "findings": "L4 diagnostic_contract.comparison_table.revalidationの適用phases=[resume]に従い、resume以外はselected=false/findings=[]で比較を適用しない。resumeではunknown旧/current source、必要時だけrevalidationの現在/旧binding/source/state比較。不要時だけのnullを不足gateにしない。中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。同じcode/pointerの異なるfacet/dispositionは別所見として保持し、全関数をまたぐfacet集約前に消さない。"
       },
       "preconditions": [
         "原270素材の宣言record/list/primitive形。全宣言Fieldのabsence/null/empty/valueを保持した論理値を供給する。",
         "各input.contextは独立供給された原比較値。実qualification/選択tool/CI/runtime/全外側不正shapeの判定は供給されていない。"
       ],
       "algorithm": [
-        "context.prior.bindingとcontext.bindingの13fieldを見て片側unknownなら/context/prior/binding→revalidationのresume_source_unresolvedを保持。両known相反が1つでもあるときだけrevalidationを読む。record非dictなら/revalidation revalidation_missing、dictならbindingをcontext.bindingへ比較、prior_bindingをcontext.prior.bindingへ各field比較、source_refをcontext.revalidation_source_refへ比較。stateがrecorded_material以外ならrevalidation_unresolved。HEAD/環境等の変更を旧greenで補完せず、旧失敗と新対象の再照合素材を別に保持する。"
+        "L4 diagnostic_contract.comparison_table.revalidationの適用phases=[resume]に従う。phase!=resumeではselected=false/findings=[]とし、resume比較を実行しない。resumeではcontext.prior.bindingとcontext.bindingの13fieldを見て片側unknownなら/context/prior/binding→revalidationのresume_source_unresolvedを保持。両known相反が1つでもあるときだけrevalidationを読む。record非dictなら/revalidation revalidation_missing、dictならbindingをcontext.bindingへ比較、prior_bindingをcontext.prior.bindingへ各field比較、source_refをcontext.revalidation_source_refへ比較。stateがrecorded_material以外ならrevalidation_unresolved。HEAD/環境等の変更を旧greenで補完せず、旧失敗と新対象の再照合素材を別に保持する。"
       ],
       "postconditions": [
         "実作用はnone。素材対応と実CI/結果回収/再開/上流判断を区別する。"
