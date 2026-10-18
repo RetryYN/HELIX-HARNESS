@@ -2158,7 +2158,857 @@
           "source_proposal_revision": "005e25bf096e64a92e443b97f947069f186aa6e8",
           "meaning_ja": "この値は助言・著述の来歴であり、現在の契約根拠や承認revisionではない。現在の根拠はsource_basisと各source pointerで示す。"
         }
+      },
+      "profile_assembly_contract": {
+  "candidate_id": "OS020-PROFILE-ASSEMBLY",
+  "candidate_status": "設計候補・独立レビュー前",
+  "purpose_ja": "同一snapshotのF02001投影・既存PlanSelectionDerivationResult・独立変更原資料から、OS020がactual Profile全6memberと全原値traceを組み立てる私有契約。既存consumerへの同call接続義務は保持し、返却型の一般枝やF02008全facet接続の未閉包を新しいnot_called状態や必須入力gateへ変換しない。",
+  "sibling_placement_ja": "/contracts/0/selection_producer_contract/private_call_contract の全文・型・署名・順序は保持し、同じ /contracts/0 の兄弟 /contracts/0/profile_assembly_contract に置く。既存producerのconsumer-only六wholeとの適用範囲を置換せず、新しいOS-owned actual profile construction entryを別に定義する。",
+  "reuse_and_nonreuse": {
+    "reuse": [
+      {
+        "name": "CIInput",
+        "source": "L5 /logical_types/16",
+        "use": "F02001 same-call projected input wholeを基礎にする。"
+      },
+      {
+        "name": "Profile",
+        "source": "L5 /logical_types/6",
+        "use": "6member public recordは変更せず各memberの既存Field<T>を使う。"
+      },
+      {
+        "name": "Field<T>",
+        "source": "L5 /logical_types/1",
+        "use": "absent/null/empty/suppliedの4 tagとvalueをcopyする。新unknown/conflict tagは追加しない。"
+      },
+      {
+        "name": "PlanSelectionDerivationResult",
+        "source": "L4 /contracts/0/selection_producer_contract/private_call_contract/private_closed_types/11",
+        "use": "同一呼出し結果wholeを再計算せず取り込む。"
+      },
+      {
+        "name": "SourceObjectLocator",
+        "source": "L4 /contracts/3/owner_return_contract/private_types/1",
+        "use": "origin recordの所在識別だけに使う。qualification/authorityの証明にはしない。"
+      },
+      {
+        "name": "OriginRead<T>",
+        "source": "L4 /contracts/3/owner_return_contract/private_types/7",
+        "use": "NotRequested/NotObserved/Supplied(records,issues)/Unavailable/DecodeInvalid各枝と複数record保持を再利用する。"
       }
+    ],
+    "new_private_shape_rationale_ja": "F01TicketOwnerProjection (L4 /contracts/0/f01_owner_return_contract/private_types/5) はticket_scope/F01 finding後のsource returnで、native_workflow_inputを含む。Profile構築に同じ型を使うとF01のscope・呼び順を誤って流用するため、preassembly専用のChangeSetTargetObservationを定義する。OriginRead・SourceObjectLocator・RawValue・Fieldだけを再利用し、F01 source port / lookup request / qualification resultは再利用しない。"
+  },
+  "patch_changes_only": [
+    "既存selection producer/callerを置換せずsibling Profile構築契約を追加する。",
+    "同callの原raw/projected/選択/独立変更sourceから六memberを保持する。",
+    "一般consumer返却domainとF02008全facet統合の未成立を保持する。"
+  ],
+  "closed_private_types": [
+    {
+      "name": "ProfileChangeSetOriginRequest",
+      "kind": "record",
+      "fields": {
+        "original_packet": "RawPacket",
+        "projected_ci_input": "CIInput"
+      },
+      "meaning_ja": "F02001が同一呼出しで保持した原packetとprojected CIInput。requestからsource role/資格/変更値を作らない。",
+      "required_fields": [
+        "original_packet",
+        "projected_ci_input"
+      ],
+      "additional_fields": false
+    },
+    {
+      "name": "ChangeSetTargetObservation",
+      "kind": "record",
+      "fields": {
+        "source_locator": "SourceObjectLocator",
+        "source_body": "RawValue",
+        "change_ref": "Field<string>",
+        "base": "Field<string>",
+        "head": "Field<string>",
+        "changed_targets": "Field<list<string>>"
+      },
+      "meaning_ja": "owner bodyと該当原memberのField tag/valueを別々に保持する私有read record。source_locator/bodyは由来を追う材料で資格・承認を生成しない。",
+      "required_fields": [
+        "source_locator",
+        "source_body",
+        "change_ref",
+        "base",
+        "head",
+        "changed_targets"
+      ],
+      "additional_fields": false
+    },
+    {
+      "name": "ProfileMemberProjection",
+      "kind": "record",
+      "fields": {
+        "member": "enum(binding,source_ref,changed_targets,obligations,items,source_bound)",
+        "source_kind": "enum(located_field,unestablished_parent,origin_read,generated_constant)",
+        "source_pointer": "Field<string>",
+        "requested_pointer": "Field<string>",
+        "source_value": "RawValue",
+        "output_value": "RawValue",
+        "rule": "enum(copy_same_call_binding,copy_same_call_input_plan_ref,copy_origin_changed_targets,copy_selection_obligations,copy_selection_items,initialize_absent_until_f02009)",
+        "issue_pointers": "list<string>"
+      },
+      "meaning_ja": "source_valueは実在source nodeの全値である。located_fieldではField envelopeそのものをRawValueに一回だけ保持し、Field<RawValue>で包まない。unestablished_parentでは実在する親Field envelopeをsource_value/source_pointerへ保持し、requested_pointerは要求した子の所在候補だけを表す。origin_readではOriginRead全値、generated_constantでは生成したField.absent envelopeを保持する。output_valueは常に生成Profile memberのField envelope一個であり二重Field化しない。",
+      "required_fields": [
+        "member",
+        "source_kind",
+        "source_pointer",
+        "requested_pointer",
+        "source_value",
+        "output_value",
+        "rule",
+        "issue_pointers"
+      ],
+      "additional_fields": false
+    },
+    {
+      "name": "ProfileAssemblyTrace",
+      "kind": "record",
+      "fields": {
+        "original_packet": "RawPacket",
+        "projected_ci_input": "CIInput",
+        "producer_result": "PlanSelectionDerivationResult",
+        "change_set_origin_read": "OriginRead<ChangeSetTargetObservation>",
+        "change_set_row_dispositions": "list<ChangeSetOriginDisposition>",
+        "member_projections": "list<ProfileMemberProjection>",
+        "direct_plan_ref": "ProfilePlanRefObservation",
+        "selection_plan_ref": "ProfilePlanRefObservation",
+        "plan_ref_relation": "SelectionComparisonStatus",
+        "change_set_status": "SelectionComparisonStatus",
+        "change_set_selected_indices": "list<integer>",
+        "change_set_unresolved_indices": "list<integer>",
+        "change_set_conflict_indices": "list<integer>"
+      },
+      "meaning_ja": "入力の全raw/typed、producer全返却、OriginRead全値、全row、索引、局所判定を保持する。member_projectionsはbinding/source_ref/changed_targets/obligations/items/source_bound順の6件。plan_ref_relationは下記閉分岐に従い、どちらのplan_refも置換しない。indicesは同read.recordsの0始まり原indexで重複を除去しない。",
+      "required_fields": [
+        "original_packet",
+        "projected_ci_input",
+        "producer_result",
+        "change_set_origin_read",
+        "change_set_row_dispositions",
+        "member_projections",
+        "direct_plan_ref",
+        "selection_plan_ref",
+        "plan_ref_relation",
+        "change_set_status",
+        "change_set_selected_indices",
+        "change_set_unresolved_indices",
+        "change_set_conflict_indices"
+      ],
+      "additional_fields": false
+    },
+    {
+      "name": "ProfileAssemblyResult",
+      "kind": "record",
+      "fields": {
+        "actual_profile": "Profile",
+        "assembled_caller": "CIInput",
+        "trace": "ProfileAssemblyTrace"
+      },
+      "meaning_ja": "actual_profileは既存Profile 6memberをすべて持つ。assembled_callerは同一F02001 CIInputのcloneで、actual profileと既存selection context接続だけを変える。",
+      "required_fields": [
+        "actual_profile",
+        "assembled_caller",
+        "trace"
+      ],
+      "additional_fields": false
+    },
+    {
+      "name": "ProfileAssemblyInvocation",
+      "kind": "record",
+      "fields": {
+        "selection_input": "PlanSelectionDerivationInput",
+        "selection_return": "PlanSelectionDerivationResult",
+        "change_set_origin_request": "ProfileChangeSetOriginRequest",
+        "change_set_origin_return": "OriginRead<ChangeSetTargetObservation>",
+        "assembly_input": "ProfileAssemblyInput",
+        "profile_assembly": "ProfileAssemblyResult"
+      },
+      "meaning_ja": "同一の投影済み入力からderive/read/assemble各一回の実入力と全返却を保持する生成入口の呼出し記録。後続consumerを呼んだ記録ではなく、後続全接続の成立/不成立をこの型の返却variantとして発明しない。",
+      "required_fields": [
+        "selection_input",
+        "selection_return",
+        "change_set_origin_request",
+        "change_set_origin_return",
+        "assembly_input",
+        "profile_assembly"
+      ],
+      "additional_fields": false
+    },
+    {
+      "name": "ProfileAssemblyInput",
+      "kind": "record",
+      "fields": {
+        "producer_result": "PlanSelectionDerivationResult",
+        "change_set_origin_request": "ProfileChangeSetOriginRequest",
+        "change_set_origin_return": "OriginRead<ChangeSetTargetObservation>"
+      },
+      "meaning_ja": "原packet/CIInputはproducer_result.trace.input_snapshot.original_packet/projected_ci_inputを明示的に読む。requestの両memberはその同じ全値と等しく、このrequestに対する当該readの全returnを組にする。別call、期待値、contextの逆生成で補わない。",
+      "required_fields": [
+        "producer_result",
+        "change_set_origin_request",
+        "change_set_origin_return"
+      ],
+      "additional_fields": false
+    },
+    {
+      "name": "ProfilePlanRefObservation",
+      "kind": "closed_sum",
+      "variants": {
+        "Located": {
+          "parent_pointer": "string",
+          "parent_value": "RawValue",
+          "source_pointer": "string",
+          "source_field": "Field<string>"
+        },
+        "Unestablished": {
+          "parent_pointer": "string",
+          "parent_value": "RawValue",
+          "requested_pointer": "string",
+          "parent_status": "enum(absent,null,empty)",
+          "computed_field": "Field<string>"
+        }
+      },
+      "meaning_ja": "Locatedはsupplied親に実在する子Fieldだけ。Unestablishedは親Field全値と要求pointerを保持し、子を読んだと主張しない。computed_fieldは常に生成Field.absentであり、親のnull/emptyを子の原null/emptyに変換しない。"
+    },
+    {
+      "name": "ChangeSetOriginDisposition",
+      "kind": "record",
+      "fields": {
+        "record_index": "integer",
+        "raw_pointer": "string",
+        "raw_record": "RawValue",
+        "typed_record": "ChangeSetTargetObservation",
+        "raw_typed_status": "enum(corresponding,conflict,unestablished)",
+        "change_ref_status": "SelectionComparisonStatus",
+        "base_status": "SelectionComparisonStatus",
+        "head_status": "SelectionComparisonStatus",
+        "applicability": "enum(matched,not_applicable,unknown)",
+        "issues": "list<OriginSourceIssue>"
+      },
+      "meaning_ja": "Supplied.recordsの全出現ごとに原順で一件。record_indexは同recordsの0始まり整数。raw_pointerは当該typed record内/source_body、raw_recordは同source_body全値、typed_recordは原record全値。raw_typed_statusは下記同名field対応の確認であり、owner資格を認定しない。原readの全issuesはtraceへ別途保持し、局所issuesも根拠なしに作らない。 raw_pointerは同じtyped_recordを相対rootとする/source_bodyであり、任意の外部collectionや元request上位pathを捏造しない。",
+      "required_fields": [
+        "record_index",
+        "raw_pointer",
+        "raw_record",
+        "typed_record",
+        "raw_typed_status",
+        "change_ref_status",
+        "base_status",
+        "head_status",
+        "applicability",
+        "issues"
+      ],
+      "additional_fields": false
+    }
+  ],
+  "source_ports_and_signatures": [
+    {
+      "name": "read_profile_change_set_origins",
+      "signature": "read_profile_change_set_origins(request: ProfileChangeSetOriginRequest) -> OriginRead<ChangeSetTargetObservation>",
+      "timing": "呼出し前提として既に得たF02001投影の同packet/CIInputを受け、F02002 finding形成前に読む。既存finding後のF01 lookupを前倒ししたとは扱わない。",
+      "not_a_claim": "このportの型だけでowner資格、承認、変更graph完全性、実読取成功は成立しない。"
+    },
+    {
+      "name": "assemble_os_profile",
+      "signature": "assemble_os_profile(input: ProfileAssemblyInput) -> ProfileAssemblyResult",
+      "timing": "同producer.trace.input_snapshotを唯一のraw/projected取得口とし、同request/read全返却を一回受ける。変更sourceと選択資料を別供給口として保持し、選択資料の責務は既存producer/HARNESSに残す。sourceの所有者・実資格は型名一致やlocator一致から生成しない。"
+    },
+    {
+      "name": "profile_assembly_call",
+      "signature": "profile_assembly_call(input: PlanSelectionDerivationInput) -> ProfileAssemblyInvocation",
+      "meaning_ja": "既存F02001投影済み入力を受け、derive/read/assemble各一回の実入力・返却をProfileAssemblyInvocationに保持する。後続F02009/F02002への同snapshot接続義務はdownstream_connection_obligationへ記載し、製品の新しい未証明/not_called分岐は追加しない。"
+    }
+  ],
+  "six_member_writer_order": [
+    {
+      "member": "binding",
+      "writer": "producer.trace.input_snapshot.projected_ci_input.bindingのField全値をコピーする。selection.bindingは別の部分選択資料であり上書きしない。"
+    },
+    {
+      "member": "source_ref",
+      "writer": "同projected_ci_input.inputsがsuppliedなら実在plan_ref Field全値をコピーしLocatedを保持する。親absent/null/emptyなら親全値と親pointerをUnestablishedに保持し、Profile.source_refだけ生成Field.absentとする。未実在子をreadした原null/emptyと称しない。"
+    },
+    {
+      "member": "changed_targets",
+      "writer": "下記原source/typed対応とchange_ref/base/head局所比較を経たmatched row群のchanged_targets Field全値をコピーする。原順・重複・tag・空listを保持し、actual/context ProfileやOS016/OS017関係から逆生成しない。"
+    },
+    {
+      "member": "obligations",
+      "writer": "producer.selectionがsuppliedならselected_obligation_refs Field全値をコピーする。親absent/null/emptyなら親全値/pointerを記録し生成Field.absentを返す。親tagを子の原tagと称しない。"
+    },
+    {
+      "member": "items",
+      "writer": "producer.selectionがsuppliedならitems Field全値をコピーする。親未成立はobligationsと同様に原親を保持し生成Field.absentとする。catalogや期待Profileから補わない。"
+    },
+    {
+      "member": "source_bound",
+      "writer": "新Profileの初期source_boundは生成Field.absentとする。F02009全Rを既存三宛先/親presence規則で接続するのは後続の独立した接続義務であり、本生成返却には架空Rを入れない。"
+    }
+  ],
+  "origin_read_branch_mapping": [
+    {
+      "input": "NotRequested | NotObserved",
+      "changed_targets": "Field.absent",
+      "status": "not_supplied",
+      "trace": "原variant全値を保持し、他の既知memberを継続する。"
+    },
+    {
+      "input": "Unavailable | DecodeInvalid",
+      "changed_targets": "Field.null",
+      "status": "unknown",
+      "trace": "原issues/raw_value全値を保持し、他memberを消さない。"
+    },
+    {
+      "input": "Supplied; matchedなし、unknown contenderなし",
+      "changed_targets": "Field.null",
+      "status": "unknown",
+      "trace": "records=[]および既知foreignだけを既知空target集合へ昇格しない。全foreign/issueを保持する。"
+    },
+    {
+      "input": "Supplied; raw/typed対応に既知相反がある、又はmatched群の対象Field全値が相反",
+      "changed_targets": "Field.null",
+      "status": "conflict",
+      "trace": "比較可能な既知相反をunknown contenderで隠さず、相反と未知の全row/index/原値をそれぞれ保持する。既知foreignだけを相反へ算入しない。以後のunknown/同値投影枝より優先する。"
+    },
+    {
+      "input": "Supplied; 上記既知相反なし、unknown contenderあり又は原issuesが非空",
+      "changed_targets": "Field.null",
+      "status": "unknown",
+      "trace": "matchedがあっても未解決候補や原資料の不足診断を捨てない。全matched/unknown/not_applicableと原issuesを保持する。issuesには対象/row対応がないため対象外とは推定せず、架空rowや索引を作らない。"
+    },
+    {
+      "input": "Supplied; matched一件以上、unknown contenderなし、原issuesが空、matchedのchange_ref/base/headおよびchanged_targets Field全値が同じ",
+      "changed_targets": "matchedの共有changed_targets Field全値",
+      "status": "corresponding",
+      "trace": "locator/source_body全体の一致は不要。他body差・異locator・既知foreignを全保持し、同じtarget Fieldを一回投影する。target absent/null/emptyを充足判定しない。"
+    }
+  ],
+  "ordered_call_graph": [
+    "呼出し前提：既存F02001一回によるInputProjection.raw/fieldsを入力original_packet/projected_ci_inputとして受ける。entry内部でF02001を呼び直さず、wire codecの未成立を保持する。",
+    "同PlanSelectionDerivationInputでderive_os_plan_selectionを一回呼び、trace.input_snapshotが入力全値であることを記録し、全返却を保持する。",
+    "そのinput_snapshotのoriginal_packet/projected_ci_inputをProfileChangeSetOriginRequestへコピーしてread_profile_change_set_originsを一回呼ぶ。request/returnを明示pairとして保持する。",
+    "ProfileAssemblyInputのproducer_result/request/returnを同callで束縛しassemble_os_profileを一回呼ぶ。六memberを構築し元CIInputをcloneしてactual profileだけsupplied新Profileへ置く。元profileはsnapshotに残す。元context親suppliedの場合だけ既存plan_selection_source接続を行い、親未形成からExpectedContextを生成しない。"
+  ],
+  "failure_and_unknown_preservation": {
+    "field_tags": "既存absent/null/empty/suppliedだけを使う。unknownは比較statusでありField tagを追加しない。",
+    "partial_member": "changed_targets未形成でも既知binding/source_ref/obligations/itemsを消さない。",
+    "preloaded_actual_profile": "元packet/CIInputの由来として保持し、構築sourceには使わない。",
+    "expected_context": "独立比較入力でありactualの供給源にしない。",
+    "producer_plan_ref": "directと独立保持し、未形成と既知相反を上記閉statusで記録する。",
+    "origin_read": "原variant、全body/locator/issues/row順、foreign/unknown/相反を保持する。"
+  },
+  "l9_oracle_followup_basis": {
+    "status": "finite_pair_authored_full_domain_unclosed",
+    "meaning_ja": "同VのL9 /profile_assembly_verificationへ全引数・全返却の有限期待を著述済み。対象HEADの独立reviewと有限期待の照合を全域の意味完了や実行証拠と同一視しない。",
+    "fixed_positive_seed": "既存 /producer_selection_integration_verification/cases/0 のNORMAL-MINIMUM-U1は固定条件例の材料であり、preloaded actual Profileを新構築sourceにしない。",
+    "consumer_only_controls_preserved": [
+      "/profile_selection_probes/0",
+      "/profile_selection_probes/1",
+      "/profile_selection_probes/2",
+      "/profile_selection_probes/3"
+    ],
+    "new_expected_projection": [
+      "ProfileAssemblyInputの全3member・元producer全返却と同request/readの原値",
+      "ProfileAssemblyResult全3member（actual_profileの全6Field、assembled_caller全値、trace全member/全row/原順/索引）",
+      "後続F02009全R・三接続後CIInput・F02002全MetadataAssessmentは元scopeに残る別の未閉包検証義務。生成入口の有限期待だけでこれらを確認済みにしない。"
+    ],
+    "discriminating_cases": [
+      "preloaded profile不存在でも既知他memberを構築し変更source未形成だけを保持",
+      "同選択で異change/base/headでも同義務/itemsを許す",
+      "異locator/他body差の同対象Field複数は全保持し利用",
+      "foreignとmatched併存はmatchedを抑止せず、unknown contender併存は局所unknown",
+      "direct/selection planの相反、両非供給、片側未形成を分ける"
+    ],
+    "scope_limit": "新L9の有限全返却期待は起草済みである。未行使枝はL9 oracle_scope_ja/unexercised_jaへ明示し、列挙を全域検証成功へ変換しない。"
+  },
+  "legacy_and_scope": {
+    "legacy_sources": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+        "topic": "CIS-R05の意味impactとunknownの過少絞込み防止を再導出し、旧固定profile規則を写さない。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/impact-ci-recovery.md",
+        "topic": "旧変更/base/head由来の構築責務を再導出し、旧runtime/workflow/閾値を実行・移植しない。"
+      }
+    ],
+    "current_requirement": "L2 OS020とL3 F01のProfile構築責務を具体化する。異なる変更が異なる義務/選択を必ず生むとは要求しない。",
+    "preserved_ja": "旧selection caller/six whole、HARNESS義務owner、独立context比較、source資格と実execution未成立を保持する。",
+    "difference_ja": "選択だけで全Profileとしないため、同投影のbinding/direct planと独立した変更sourceを用いたsibling構築口を追加する。既存finding後source lookupを前段成功と扱わず専用read境界を明示する。これは既存要求の技術再導出であり要求意味や承認手続きを増やさない。"
+  },
+  "limits_ja": [
+    "未承認の正式L4/L9契約であり、候補アルゴリズム・reader・validator・runtime・CI・testは実行していない。",
+    "OriginReadの実source/qualification/providerが成立したとは主張しない。",
+    "F01 finding後のticket_scope origin lookupを事前の変更set読取として流用しない。",
+    "既存consumer-only L9 26 probesと既存selection producer 6 wholeの範囲は縮小/置換しない。",
+    "実行を始めるための承認gateや新しいowner/provider義務を追加しない。"
+  ],
+  "existing_facet_interface_boundary": {
+    "basis_ja": "既存L5 docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json の /functions/2〜/functions/8 と /contracts/0/selection_producer_contract/private_call_contract を直接照合した。profile構築案が担う範囲と、既存F02008の統合責務を混同しない。",
+    "preserved_facets": [
+      {
+        "function": "F02003",
+        "pointer": "/functions/2",
+        "signature": "compare_operation_sources(input: CIInput, phase: MaybePhase) -> FacetAssessment"
+      },
+      {
+        "function": "F02004",
+        "pointer": "/functions/3",
+        "signature": "compare_result_collection(input: CIInput, phase: MaybePhase) -> CollectionAssessment"
+      },
+      {
+        "function": "F02005",
+        "pointer": "/functions/4",
+        "signature": "compare_failure_continuity(input: CIInput, phase: MaybePhase) -> FacetAssessment"
+      },
+      {
+        "function": "F02006",
+        "pointer": "/functions/5",
+        "signature": "compare_changed_target_revalidation(input: CIInput, phase: MaybePhase) -> RevalidationAssessment"
+      },
+      {
+        "function": "F02007",
+        "pointer": "/functions/6",
+        "signature": "compare_decision_claims(input: CIInput) -> FacetAssessment"
+      }
+    ],
+    "interface_ja": "profile_assembly_callは投影済み入力を受けderive_os_plan_selection→profile origin read→assemble_os_profileの全返却までを直接定義する。後続F02009/F02002と他facetを同snapshotで結ぶ義務はdownstream_connection_obligationに保全する。F02003〜F02007の実返却やF02008のCIProposalはこの生成入口の返却に追加せず、MetadataAssessmentを他facetの結果へ流用しない。",
+    "f02008": {
+      "pointer": "/functions/7",
+      "signature": "assemble_ci_material(input: CIInput, metadata: MetadataAssessment, operation: FacetAssessment, collection: CollectionAssessment, continuity: FacetAssessment, revalidation: RevalidationAssessment, decision: FacetAssessment) -> CIProposal",
+      "required_actual_arguments": [
+        "input",
+        "metadata",
+        "operation",
+        "collection",
+        "continuity",
+        "revalidation",
+        "decision"
+      ],
+      "boundary_ja": "F02008は上記7つの実引数と同call返却を要する。新profile assembly案が供給するのはCIInputとF02002のMetadataAssessmentのみで、F02003〜F02007の実返却を作らない。したがってこの案ではF02008を呼ばず、CIProposalも返さない。既存facet全呼出し・not_called cascade・順序・入力・返却を別途実接続できるまで、profile assemblyから全体CI proposalまでの接続は未閉包として残す。ダミー値、以前の呼出しの返却、期待値で7引数を補わない。 またF02009/F02002への一般typed domain接続もconsumer_domain_frontierの通り未閉包であり、assemblyから常に全Metadata返却を得ると断定しない。",
+      "closure_status": "unclosed_in_this_candidate"
+    }
+  },
+  "source_basis": [
+    {
+      "basis_role": "fixed_source",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "08563da40262d0eca822dfb739293ca1483313bf",
+      "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "objects": [
+        {
+          "pointer": "/requirements/37",
+          "canonical_sha256": "f6392f7d48d0c311a1bf67e7e37b490654e50c35a0603aab8c06fc2ebd62fab3"
+        }
+      ]
+    },
+    {
+      "basis_role": "fixed_source",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "08563da40262d0eca822dfb739293ca1483313bf",
+      "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "objects": [
+        {
+          "pointer": "/cases/37",
+          "canonical_sha256": "f55bca771d67df7c90376febcba96e21e1ef6d63f5e07a42454f5230db2c153c"
+        }
+      ]
+    },
+    {
+      "basis_role": "fixed_source",
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "revision": "08563da40262d0eca822dfb739293ca1483313bf",
+      "file_sha256": "a28389a0bd359f8090ceff5ba31518dee65d0066f4679423dab3e7464b88d679",
+      "objects": [
+        {
+          "pointer": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/9",
+          "canonical_sha256": "fb45b160b4887aff1de3aec4a2f4c92fb0244b3aa982805f55da43a9a1357fb6"
+        },
+        {
+          "pointer": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/10",
+          "canonical_sha256": "cf3f33685242b1fd13f92a049f3990ef23ef435bd3e4c2a39b7074281b76a342"
+        },
+        {
+          "pointer": "/contracts/0/selection_producer_contract/private_call_contract/private_closed_types/11",
+          "canonical_sha256": "43647a173ecdaaa857e99c2ccd3c67b07056d6c62d28d6964c6d823a8bb1cbf0"
+        },
+        {
+          "pointer": "/contracts/0/selection_producer_contract/private_call_contract/producer_consumer_boundary",
+          "canonical_sha256": "5f0ec3f6e0755aea7185ecf65ac2ddca1969dbc495c38b87ee2d65f906ca67cd"
+        },
+        {
+          "pointer": "/contracts/0/selection_producer_contract/private_call_contract/execution_order",
+          "canonical_sha256": "8adbe9c4e3603d9fb71710eed7275f787b429177547d539e73db4940a1117c46"
+        },
+        {
+          "pointer": "/contracts/0/f01_owner_return_contract/source_join_rules/ticket_scope",
+          "canonical_sha256": "ba6324b9c4a18182f1f133f37a6495ebd5334b89670ebfffa87876577d9687ed"
+        },
+        {
+          "pointer": "/contracts/0/f01_owner_return_contract/call_order",
+          "canonical_sha256": "953738d09ed7ad9c9561b8ad1a373d1cf0245061d23328cfb414234c7768b6ff"
+        },
+        {
+          "pointer": "/contracts/3/owner_return_contract/private_types/1",
+          "canonical_sha256": "752c11624b2c8d21af9f3538736a3e4c1117b7f1eba6865c15d6fdd1baa5cd8d"
+        },
+        {
+          "pointer": "/contracts/3/owner_return_contract/private_types/2",
+          "canonical_sha256": "6073993ba3283f09feb4a9ea4bd6dd173d22d8f936cc59d87d6cab20c0e0d9c9"
+        },
+        {
+          "pointer": "/contracts/3/owner_return_contract/private_types/7",
+          "canonical_sha256": "50566b58dbe98e6adc419ad3f978caa914f852fba3d893dd9d60d4efd7219c90"
+        }
+      ]
+    },
+    {
+      "basis_role": "fixed_source",
+      "path": "docs/helix-os/L5-detail-design/ci-profile-execution-recovery.json",
+      "revision": "08563da40262d0eca822dfb739293ca1483313bf",
+      "file_sha256": "f8a658b7ecee5793a55061cc6c24e9cf460dc252b63898f7f09a2c2eda48c522",
+      "objects": [
+        {
+          "pointer": "/logical_types/0",
+          "canonical_sha256": "a7210ab837f2368b193ae61b11484adeb8bb43f334a975d3079aaf7204678768"
+        },
+        {
+          "pointer": "/logical_types/1",
+          "canonical_sha256": "385e0801abf90ab22061e64d923e9b20ca420fba06ded5de8190ab0df549ebd3"
+        },
+        {
+          "pointer": "/logical_types/2",
+          "canonical_sha256": "c6e20220878d357d7eeb9bdb7a7520dd0d5f2486c5b17dbb125d69a74462ec4b"
+        },
+        {
+          "pointer": "/logical_types/3",
+          "canonical_sha256": "42d3efdadb7a86d0507eba6e38bf57027a45cae780cf8f0f69754df0d924dc3e"
+        },
+        {
+          "pointer": "/logical_types/6",
+          "canonical_sha256": "40955bb830410b3a52ea93388f6f832fbc1df282ef6d2951752b0017120255a1"
+        },
+        {
+          "pointer": "/logical_types/16",
+          "canonical_sha256": "f7f7d57e9d5f0786aad5e67ce07c06275826b8df2d4307b99ae13f09f21aa944"
+        },
+        {
+          "pointer": "/logical_types/17",
+          "canonical_sha256": "2a37527edebbb099008f757cae3a41376ac229f69451a3180d751da90fb42360"
+        },
+        {
+          "pointer": "/logical_types/18",
+          "canonical_sha256": "9d7e6c991055e169a2802abc726b9c1700bc1df89d26f0aa87e8eb328fa2fa84"
+        },
+        {
+          "pointer": "/logical_types/30",
+          "canonical_sha256": "82ba86a58f714cb7b69042d3206d6713517bc429cf226bceaf445a8cf3be72d8"
+        },
+        {
+          "pointer": "/logical_types/47",
+          "canonical_sha256": "ed15f8592f9e4c65a1df147d327b3d0d250e9e657d8d2ea22d2d24eeaed2944f"
+        },
+        {
+          "pointer": "/logical_types/49",
+          "canonical_sha256": "fa99e551e681f72c8efa2702602806b2d4dab601888611f7d12012452241f4c7"
+        },
+        {
+          "pointer": "/logical_types/51",
+          "canonical_sha256": "99c75e15d9b15d2189b9efced303593940997f11e49e3353fdbe98d52b9beba3"
+        },
+        {
+          "pointer": "/functions/0",
+          "canonical_sha256": "2836195c6dcb267228d1f006c0409abf14f04d02da4022b24a06eeed716966c7"
+        },
+        {
+          "pointer": "/functions/1",
+          "canonical_sha256": "6dbe1c4672e9a915417da50bb3f41bf777d24d689f709eb3570a8d88c58752d3"
+        },
+        {
+          "pointer": "/functions/7",
+          "canonical_sha256": "97292d7858fcec408b2b946b24c49e79beb1e5f02cf35cebe28faad274e126ee"
+        },
+        {
+          "pointer": "/functions/8",
+          "canonical_sha256": "b6a768a22b8ae0032c4a7c92fd03f35dc1d69dc62c180fdf17f7bce97cefd9d4"
+        }
+      ]
+    }
+  ],
+  "source_binding_ja": "source_basisは固定08563の本文根拠であり、追補後ファイル自身のhashを参照しない。型名は選択した元record名に結び、RawPacket=/logical_types/17、InputProjection=/logical_types/18、PlanSelectionDerivationResult=既存L4 private_closed_types/11とする。これらの文字列から新しいcodec、owner資格、実配送の成功を生成しない。",
+  "closed_type_interpretation_ja": "新しいrecordはfieldsに列挙した全memberを必須とし余剰memberを持たない。閉sumは列挙variantだけで各variantの宣言memberをすべて保持する。integer索引は対象原配列の0始まり非負整数であり、raw JSON number一般や既存RawValueを整数へ狭めない。既存Field<T>等の許容域/optional属性は改変しない。",
+  "preassembly_source_writer_ja": [
+    "readは当該requestの変更sourceの原資料を対象とし、source_locatorは同時点の元revision/path/pointer/object hash、source_bodyはその元object全値を保持する。locatorのhashだけで実owner資格やcustody成立を認定しない。取得adapterと実資格は未成立のまま明示する。",
+    "source_bodyの同名change_ref/base/head/changed_targetsの各原memberを既存Field投影規則でtyped同名fieldへ対応させる。presence/tag/value/list原順を一つずつ照合し、unknown memberもsource_body全体へ保持する。bodyの不存在子、型外値をsupplied正常値へcastしない。必要投影対応未形成ならraw_typed_status=unestablished、既知食違いならconflictとする。後者は局所applicability=unknownに保ち、集約change_set_status=conflictとconflict_indicesへ残す。局所unknownを理由に既知相反を消さず、新しい全体gateにはしない。",
+    "同requestのinputs.change_ref、binding.base/headを左右別に原親/子presenceごとに保つ。親未成立は子operandを捏造せず当該比較unknown。両側supplied文字列一致はcorresponding、既知差はconflict、両側absentはnot_supplied、それ以外はunknown。empty/null/未形成をknown一致にしない。",
+    "raw_typed_status=correspondingかつ三operand対応はmatched。既知operand差が一つでもあり対象外を確定できるrowはnot_applicableとして全raw保持する。対象外確定前に必要対応が未形成のrowはunknown contender。raw/typed相反をknown foreignの証拠に使わない。適用性はこの変更集合の局所判定であり全体資格を生成しない。",
+    "原readがSuppliedのとき全recordsを原indexでdispositionへ一対一保持する。Unavailable/DecodeInvalid等は原variantと全issues/raw_valueをtraceへ保持し架空rowを作らない。取得sourceが当該requestに属すること、原body→typed対応、後のfacet判断は異なる責務であり、consumer判断から前段owner資料を逆生成しない。",
+    "change_set_conflict_indicesはraw_typed_status=conflictの元row index、およびmatched群のchanged_targets Field全値の既知相反に参加した元indexを原records順で保持する。change_set_unresolved_indicesはapplicability=unknownの元indexを原順に保持する。raw_typed相反から対象外を確定できないrowは両列へ同時に残す。和を取る際は同一原出現の二理由による二重追加だけを避け、異なる元indexの反復rowを削除しない。statusは既知相反を優先し、unknown/known共存を全traceへ残す。",
+    "change_set_selected_indicesは実際にchanged_targets Fieldをコピーしたmatched全rowの元indexを原records順に保持する。値をコピーしていない枝では[]である。source_binding/target Fieldの不明と原matched候補の存在はrow dispositionsへ保ち、この索引を候補全集合と取り違えない。"
+  ],
+  "direct_selection_plan_relation_ja": [
+    "directは同projected CIInput.inputs.plan_ref、selectionは同producer_result.selection.plan_ref。両親suppliedならLocated、親absent/null/emptyならUnestablished。source_valueは親又は子の実在nodeだけである。",
+    "親又は必要子がnull/empty、片側のみabsent、その他必要対応未形成はunknown。両側親absent、又は両側Locatedで子absentはnot_supplied。片側親未成立absentと他側Located子absentも供給済み同一値の観測ではなくnot_suppliedとして両由来を保持する。",
+    "両側Locatedで子がsuppliedの非空stringの場合だけ全string等値をcorresponding、既知差をconflictとする。いずれもactual Profile.source_refや選択plan_refを互いに代用しない。relationはtraceの局所観測でありProfile構築を全停止するgateではない。"
+  ],
+  "consumer_domain_frontier": {
+    "status": "unclosed_in_this_candidate",
+    "source_pointers": [
+      "L5 /logical_types/47/fields/os_binding",
+      "L5 /logical_types/16/fields/binding",
+      "L5 /functions/8/return_derivation/os_binding"
+    ],
+    "meaning_ja": "SourceBoundProfile.os_bindingはplain BindingだがF02009返却記述はcaller.bindingの原値/13memberで、その入力親はField<Binding>である。一般absent/null/empty枝について原返却型の形成規則を追加照合する必要があるという未証明事項であり、実欠陥・新必須binding・新not_called条件を確定しない。生成の全member保持を継続し、既存F02009詳細/対oracleへ根拠付きで追跡する。"
+  },
+  "downstream_connection_obligation": {
+    "same_snapshot_ja": "生成したassembled_callerを既存F02009の入力へ渡し、その全Rを既存三接続先/親presence規則で同値接続してF02002へ渡す義務は維持する。actual/expected/sourceの既存比較を保持し、consumer出力から前段選択や原変更資料を逆生成しない。",
+    "completion_ja": "本生成契約のProfileAssemblyInvocationだけでは後続全呼出し/全返却の成立を示さない。既存F02009一般入力の返却型境界と、全facetからF02008へ渡す7引数・全CIProposalの接続を、同一revisionの対設計で別途閉じる。未証明という監査状態を、製品の成功/失敗/not_calledや新gateへ置換しない。",
+    "not_a_substitute_ja": "本追補の有限Profile期待を全OS020/7経路/430義務の完成へ読み替えない。元の全scopeは既存remainingと本義務に保全する。"
+  },
+  "trace_member_writers": {
+    "pointer_root": "assemble_os_profileの実引数ProfileAssemblyInput",
+    "pointer_representation_ja": "ここに記したpointerはFieldをJSONで表すenvelopeの/valueも含むRFC6901。既存consumerのlogical CIInput pointerとはrootを区別する。source_pointerとrequested_pointerは既存Field<string> envelopeで表す。",
+    "rows": [
+      {
+        "member": "binding",
+        "source_kind": "located_field",
+        "source_pointer": "Field.supplied(/producer_result/trace/input_snapshot/projected_ci_input/binding)",
+        "requested_pointer": "同source_pointer",
+        "source_value": "入力の当該Field envelope全値をRawValueとして一回保持",
+        "output_value": "同じ原Field envelope全値",
+        "issue_pointers": "原Field.tagがsuppliedなら[]、absent/null/emptyなら[/producer_result/trace/input_snapshot/projected_ci_input/binding]。supplied Binding内の13memberを本projectionで再検証/補修しない。"
+      },
+      {
+        "member": "source_ref",
+        "parent_pointer": "/producer_result/trace/input_snapshot/projected_ci_input/inputs",
+        "child_pointer": "/producer_result/trace/input_snapshot/projected_ci_input/inputs/value/plan_ref",
+        "parent_supplied": {
+          "source_kind": "located_field",
+          "source_pointer": "Field.supplied(child_pointer)",
+          "requested_pointer": "Field.supplied(child_pointer)",
+          "source_value": "実在する子Field envelope全値",
+          "output_value": "子Field envelopeの同値copy",
+          "issue_pointers": "子Field.tag=suppliedなら[]、absent/null/emptyなら[child_pointer]"
+        },
+        "parent_absent_null_empty": {
+          "source_kind": "unestablished_parent",
+          "source_pointer": "Field.supplied(parent_pointer)",
+          "requested_pointer": "Field.supplied(child_pointer)（候補所在であり読取済みとしない）",
+          "source_value": "実在する原親Field envelope全値",
+          "output_value": "生成Field.absent envelope一個",
+          "issue_pointers": "[parent_pointer]。不存在子のpointerをこの列へ出さない。"
+        }
+      },
+      {
+        "member": "changed_targets",
+        "all_origin_read_variants": {
+          "source_kind": "origin_read",
+          "source_pointer": "Field.supplied(/change_set_origin_return)",
+          "requested_pointer": "同source_pointer（読取口全体。単一勝者rowのpointerを選ばない）",
+          "source_value": "input.change_set_origin_returnのOriginRead全値、全variant payload/records/issue/原順を含む",
+          "output_value": "origin_read_branch_mappingが定めるField envelope全値",
+          "issue_pointers": "change_set_statusがcorrespondingかつ出力tagがsuppliedのとき[]。それ以外のNotRequested/NotObserved/Supplied/Unavailable/DecodeInvalidすべてで[/change_set_origin_return]。row別の比較原因・元Fieldはchange_set_row_dispositions/原read全値へ保持し、このlocatorへ統合消去しない。"
+        },
+        "multiple_rows": "source_valueには常に全OriginReadを保持し、change_set_selected_indicesが原records内のコピー根拠を全件示す。metadataのために先頭を正本にしない。"
+      },
+      {
+        "member": "obligations",
+        "parent_pointer": "/producer_result/selection",
+        "child_pointer": "/producer_result/selection/value/selected_obligation_refs",
+        "parent_supplied": {
+          "source_kind": "located_field",
+          "source_pointer": "Field.supplied(child_pointer)",
+          "requested_pointer": "Field.supplied(child_pointer)",
+          "source_value": "実在する子Field envelope全値",
+          "output_value": "子Field envelopeの同値copy",
+          "issue_pointers": "子Field.tag=suppliedなら[]、absent/null/emptyなら[child_pointer]"
+        },
+        "parent_absent_null_empty": {
+          "source_kind": "unestablished_parent",
+          "source_pointer": "Field.supplied(parent_pointer)",
+          "requested_pointer": "Field.supplied(child_pointer)（候補所在であり読取済みとしない）",
+          "source_value": "実在する原親Field envelope全値",
+          "output_value": "生成Field.absent envelope一個",
+          "issue_pointers": "[parent_pointer]。不存在子のpointerをこの列へ出さない。"
+        }
+      },
+      {
+        "member": "items",
+        "parent_pointer": "/producer_result/selection",
+        "child_pointer": "/producer_result/selection/value/items",
+        "parent_supplied": {
+          "source_kind": "located_field",
+          "source_pointer": "Field.supplied(child_pointer)",
+          "requested_pointer": "Field.supplied(child_pointer)",
+          "source_value": "実在する子Field envelope全値",
+          "output_value": "子Field envelopeの同値copy",
+          "issue_pointers": "子Field.tag=suppliedなら[]、absent/null/emptyなら[child_pointer]"
+        },
+        "parent_absent_null_empty": {
+          "source_kind": "unestablished_parent",
+          "source_pointer": "Field.supplied(parent_pointer)",
+          "requested_pointer": "Field.supplied(child_pointer)（候補所在であり読取済みとしない）",
+          "source_value": "実在する原親Field envelope全値",
+          "output_value": "生成Field.absent envelope一個",
+          "issue_pointers": "[parent_pointer]。不存在子のpointerをこの列へ出さない。"
+        }
+      },
+      {
+        "member": "source_bound",
+        "source_kind": "generated_constant",
+        "source_pointer": "Field.absent",
+        "requested_pointer": "Field.absent",
+        "source_value": "生成Field.absent envelope一個",
+        "output_value": "同じField.absent envelope一個",
+        "issue_pointers": "常に[]。初期化済みという生成の記録であり、後続F02009の取得済み・成功を示さない。"
+      }
+    ],
+    "field_envelope_ja": "source_value/output_valueはRawValue欄へField envelopeを一個だけ格納し、Field.supplied(Field...)へ二重化しない。origin_readだけsource_valueはOriginRead全値であり、生成target Fieldへ縮めない。",
+    "issue_scope_ja": "issue_pointersは原入力で必要な値を未形成と観測したsource locatorの列。OriginSourceIssue/Finding/code/quality gateを生成せず、元issuesを置換しない。各行で0又は1pointerの規則に閉じ、6行の順を変えない。supplier値がsuppliedというだけで意味・資格・全child妥当性を認定しない。 Field.emptyは元empty markerを保持するもので、Field.supplied([])という既知空listとは区別する。前者はcorresponding sourceでもsupplied値を持たないmemberの原所在locatorを残し、後者は[]にする。このlocatorだけから原source読取失敗/既知相反/充足/新Findingを認定せず、change_set_statusと元Fieldタグを変えない。",
+    "plan_observation_writers": [
+      {
+        "member": "direct_plan_ref",
+        "parent_pointer": "/producer_result/trace/input_snapshot/projected_ci_input/inputs",
+        "child_pointer": "/producer_result/trace/input_snapshot/projected_ci_input/inputs/value/plan_ref"
+      },
+      {
+        "member": "selection_plan_ref",
+        "parent_pointer": "/producer_result/selection",
+        "child_pointer": "/producer_result/selection/value/plan_ref"
+      }
+    ],
+    "plan_observation_branches_ja": "親Field.suppliedの場合だけLocated(parent_pointer,parent_value=原親envelope,source_pointer=child_pointer,source_field=実在子Field全値)。親absent/null/emptyの場合はUnestablished(parent_pointer,parent_value=原親envelope,requested_pointer=child_pointer,parent_status=原tag,computed_field=生成Field.absent)。これは上記direct_selection_plan_relation_jaの閉statusへ渡し、未形成の子を読んだとしない。",
+    "trace_aggregate_rows": [
+      {
+        "member": "original_packet",
+        "writer_ja": "input.producer_result.trace.input_snapshot.original_packetを全値copyする。"
+      },
+      {
+        "member": "projected_ci_input",
+        "writer_ja": "同input_snapshot.projected_ci_inputを全値copyする。"
+      },
+      {
+        "member": "producer_result",
+        "writer_ja": "input.producer_resultを全値copyする。"
+      },
+      {
+        "member": "change_set_origin_read",
+        "writer_ja": "input.change_set_origin_returnをvariant/payload/records/全issues/全raw_valueを含め全値copyする。rowへissuesを配賦しない。"
+      },
+      {
+        "member": "change_set_row_dispositions",
+        "writer_ja": "readがSuppliedならrecordsの全出現に下記10member writerを原index順で適用した記録を保持する。他variantは[]とし架空rowを作らない。"
+      },
+      {
+        "member": "member_projections",
+        "writer_ja": "既存trace_member_writers.rowsの6memberをbinding/source_ref/changed_targets/obligations/items/source_bound順で保持する。全Field tagとsource_kind別の原所在/生成値は既存6行の規則だけで形成する。"
+      },
+      {
+        "member": "direct_plan_ref",
+        "writer_ja": "既存plan_observation_writers[0]とplan_observation_branches_jaを同入力へ適用したLocated/Unestablished全値。"
+      },
+      {
+        "member": "selection_plan_ref",
+        "writer_ja": "既存plan_observation_writers[1]とplan_observation_branches_jaを同入力へ適用したLocated/Unestablished全値。"
+      },
+      {
+        "member": "plan_ref_relation",
+        "writer_ja": "上記二原observationから既存direct_selection_plan_relation_jaの全枝でnot_supplied/unknown/corresponding/conflictを決める。未形成を相反や同値へ昇格しない。"
+      },
+      {
+        "member": "change_set_status",
+        "writer_ja": "NotRequested/NotObservedはnot_supplied、Unavailable/DecodeInvalidはunknown。Suppliedは既知raw_typed相反又はmatched対象Field相反があればconflictを先行する。相反なしでunknown候補又は非空の原issuesがあればunknown、matchedなしもunknown。それ以外のmatched一件以上で対象Field全値同じの場合だけcorresponding。非空issuesは対象/rowを特定する型情報がないため対象外と推定せず、原read全値を保持する。これはchanged_targetsの局所判定であり、新しい全体gateを追加しない。"
+      },
+      {
+        "member": "change_set_selected_indices",
+        "writer_ja": "実際にchanged_targets Fieldをコピーしたcorresponding枝だけ、applicability=matchedの全元record_indexを原records順で返す。値をコピーしない全枝は[]。候補全集合とは区別する。"
+      },
+      {
+        "member": "change_set_unresolved_indices",
+        "writer_ja": "Suppliedでapplicability=unknownとなった全元record_indexを原records順で保持する。raw_typed_status=conflictで対象対応を確定できないrowもunknown候補としてここに保持し、その同indexがconflict_indicesにも存在することを許す。not_applicableとmatchedは入れない。他variantは[]。"
+      },
+      {
+        "member": "change_set_conflict_indices",
+        "writer_ja": "Suppliedのraw_typed_status=conflictの元indexと、matched群のchanged_targets Field全値相反に参加する全元indexの和を原records順で保持する。同一出現を二理由で二重追加せず、異なる原出現の反復recordは削除しない。unknown列と相殺しない。他variantは[]。"
+      }
+    ],
+    "row_disposition_rows": [
+      {
+        "member": "record_index",
+        "writer_ja": "同Supplied.recordsの0始まり原index。source Ref/locatorやbody値によるdedupを行わない。"
+      },
+      {
+        "member": "raw_pointer",
+        "writer_ja": "常に/source_body。同じtyped_recordを相対rootとするRFC6901であり、request又は外部collectionの実在nodeと称しない。"
+      },
+      {
+        "member": "raw_record",
+        "writer_ja": "当該原record.source_body全値。"
+      },
+      {
+        "member": "typed_record",
+        "writer_ja": "当該原ChangeSetTargetObservationの全6memberを全値copyする。"
+      },
+      {
+        "member": "raw_typed_status",
+        "writer_ja": "既存preassembly_source_writer_ja[1]に従い、source_bodyの同名4memberとtyped各Fieldの原presence/tag/valueを対応させる。既知食違いが一つでもあればconflict、食違いなしで必要な投影対応が未形成ならunestablished、4memberすべて対応済みの場合だけcorresponding。実wire codec/owner資格の成功をこの比較から生成しない。"
+      },
+      {
+        "member": "change_ref_status",
+        "writer_ja": "原record.change_ref対同request.projected_ci_input.inputsの実在change_ref。親suppliedなら原子Field同士を既存規則で比較し、両supplied文字列同値=corresponding、既知差=conflict、両absent=not_supplied、他=unknown。親未成立なら子を作らずunknown。raw/typed判定とは独立に値を保持する。"
+      },
+      {
+        "member": "base_status",
+        "writer_ja": "原record.base対同request.projected_ci_input.bindingの実在base。親未成立/各Field tagの扱いはchange_ref_statusと同じ。"
+      },
+      {
+        "member": "head_status",
+        "writer_ja": "原record.head対同request.projected_ci_input.bindingの実在head。親未成立/各Field tagの扱いはchange_ref_statusと同じ。"
+      },
+      {
+        "member": "applicability",
+        "writer_ja": "raw_typed_status=correspondingかつ3operandがすべてcorrespondingならmatched。同raw_typed_status=correspondingで3operandの一つ以上に既知差conflictがある場合はnot_applicable（他operand未知でも当該既知差で対象外を確定できる）。それ以外はunknown。raw_typed相反そのものからforeignを推論しない。"
+      },
+      {
+        "member": "issues",
+        "writer_ja": "全row、全raw_typed/applicability/status枝で常に[]。input recordにrow別issuesがないため、OriginRead.issuesをpointer文字列等で推測配賦せず、新OriginSourceIssueを生成しない。原OriginRead全issuesはtrace.change_set_origin_readに全値/原順で保持する。"
+      }
+    ],
+    "logical_fixture_representation": {
+      "scope_ja": "本pairの有限検証における閉sum論理値のJSON表示を固定する。正式wire schema/codec/外部API/取得providerの採用や既存他経路の符号化変更を含まない。",
+      "origin_read": {
+        "selector_member": "tag",
+        "selector_values": [
+          "NotRequested",
+          "NotObserved",
+          "Supplied",
+          "Unavailable",
+          "DecodeInvalid"
+        ],
+        "payload_ja": "既存OriginRead<T>の当該variant宣言memberだけを同じobjectへ置く。tagはvariant選択表示でありpayload追加fieldではない。Suppliedはrecords/issues、Unavailableはissues、DecodeInvalidはraw_value/issues、NotRequested/NotObservedはpayloadなし。"
+      },
+      "profile_plan_ref_observation": {
+        "selector_member": "tag",
+        "selector_values": [
+          "Located",
+          "Unestablished"
+        ],
+        "payload_ja": "当該閉variantの宣言memberを同じobjectへ置き原親envelopeと子又は生成Fieldを保持する。"
+      },
+      "field_ja": "Field<T>のabsent/null/empty/supplied tag/value表示は既存どおりであり、OriginReadの大文字variantやplan観測selectorと混同しない。",
+      "not_claimed_ja": "この論理表示だけで全外側不正shapeのcodec、元bytes/重複object member/実資格、製品通信上のdecode成立を認定しない。",
+      "source_body_operand_ja": "本pairの有限fixtureでは、source_bodyのchange_ref/base/head/changed_targetsに明示されたField envelopeはその論理Fieldとして対応させ、さらにFieldへ包まない。裸のnullはField.null、子の不在はField.absentへ対応する。これは固定L5 /functions/0/algorithm/0の不在/null/空/値の分離を用いた有限論理対応であり、raw JSON objectそのものとtyped Fieldとの等値を意味しない。元source_bodyは変換せず保持する。その他の原表現の必要対応が未形成ならraw_typed_status=unestablishedに保ち、正式wire schema/codec、実provider、資格の成立を生成しない。"
+    }
+  },
+  "global_origin_issues_ja": "原OriginRead.Supplied.issuesは不足情報の診断であり、そのkind/位置/元値だけから無関係なsourceと確定しない。既知の行相反は優先し、それがなく非空issuesの場合はchanged_targetsをField.null、change_set_statusをunknownに保つ。他の既知Profile member、全rowの局所status、全issuesの原順は変えない。値をコピーしないためselected_indicesは[]。issuesだけを原因とする場合にunresolved_indicesへ架空indexを追加しない。これは元の行条件だけでissuesを集約へ反映しなかった設計からの技術修正であり、必須入力・資格・全体停止条件を増やさない。"
+}
     },
     {
       "id": "HELIXOS-L4-020-F02",
