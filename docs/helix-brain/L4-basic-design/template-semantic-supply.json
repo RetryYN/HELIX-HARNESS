@@ -3992,8 +3992,8 @@
           "writers": {
             "subject_ref": "dependency subjectはL4 public_projection/dependency_subjectに従う原input binding Ref、handoffは同じinputの元HandoffRecord.subject_ref。形成不能ならAxisResultを作らない。",
             "binding": "同一inputの原Binding全値。別carrierから補完しない。",
-            "axis": "dependency axisはL4 public_projection/axis_mappingの該当literal。unselected_source/handoffはそれぞれL4 canonical no-call/failure classificationが示すaxis literal。",
-            "state": "L4 CanonicalBodyReadとaxis_mappingの対応literal。selector false/unselected/no-callはcanonical_ordered_branches/1およびfailure_classifications/89が示すunobserved。明示handoff stateは原値。",
+            "axis": "dependency axisは同L4 public_projection/axis_mappingの該当literal。通常unselected_sourceはconditional_source_dependency_contract/decision_table/reason_rules/2とprojection_material/axis_mapping/channel_falseのliteralであり、failure_classifications/89の発火を要しない。handoffは既存元record/classificationのaxisを保持する。",
+            "state": "L4 CanonicalBodyReadとaxis_mappingの対応literal。通常selector false/unselectedはconditional_source_dependency_contract/decision_table/reason_rules/2のunobservedを、canonical_ordered_branches/1のno-callと分けて保持する。failure_classifications/89は別に成立するFindingの根拠であり通常AxisResult生成条件ではない。明示handoff stateは原値。",
             "original_refs": "L4 public_projection/refs_reasonとorderに従う、実category Ref出現だけを原順・重複込みで複写。欠落identityのRefは作らない。handoff source_refは供給済み非nullのときだけ保持。",
             "reason": "reason_serializationに従い、BodyReadProblem.reason、L4 diagnostic mappingのliteral、または元handoff.reasonを損失なく記録する。任意raw文字列を補間しない。",
             "backflow_owner": "L4 axis_mappingまたはfailure_classificationsのrole literalのみ。未選択unobservedのAxisResultはこの有限caseではnull。classification/89のFindingが別predicateにより実際に成立した場合に限り、そのFindingはknowledge_owner。明示not_receivedのhandoffはclassification/84に従いos_owner。"
@@ -4029,16 +4029,118 @@
             "request_locator": "実際のCanonicalReadRequest.request_ref_locator、明示されたHandoffRecord locator、またはreadが無ければnull。",
             "source_category_locator": "実在するcategory配列のpointerのみ。",
             "cause": "resolvedかつsource問題なしならnull。それ以外は対応するL4 BodyReadProblemまたは実成立したL4 failure-classification観測を、state/member/presence/reason/source_locators込みで保持する。原因を新設しない。",
-            "canonical_body_support": "L4 canonical ordered branchで実際に対応したCanonicalBodyRecord/qualificationのcrosswalkのみ。target/source Ref、content locator、basis_refs、source Qualification Ref、subject Ref/digest、applicable scope、root Refを各rowに保持する。canonical readがなければ空配列。",
+            "canonical_body_support": {
+              "closed_shape": "canonical_body_supportは同call CanonicalBodyRead.recordsを元にしたrow配列。各rowの許可memberはmember_orderの10名だけ。required_membersは原CanonicalBodyRecordから必ず得る4名で、それ以外は元source/body/Qualificationに実供給されたmemberだけを同順で追加する。未供給をnull/{}へ補完しない。現positive5rowは10member全てを持つ。",
+              "member_order": [
+                "target_ref",
+                "source_ref",
+                "canonical_body_locator",
+                "canonical_body_inner_locator",
+                "basis_refs",
+                "qualification_ref",
+                "qualification_subject_ref",
+                "qualification_subject_sha256",
+                "qualification_scope",
+                "qualification_root_ref"
+              ],
+              "required_members": [
+                "target_ref",
+                "source_ref",
+                "canonical_body_locator",
+                "basis_refs"
+              ],
+              "member_values": {
+                "target_ref": {
+                  "type": "Ref",
+                  "source": "対応する原CanonicalBodyRecord.target_ref全値。request Ref又はsource.refで上書きしない。"
+                },
+                "source_ref": {
+                  "type": "Ref",
+                  "source": "同record.source_ref全値。"
+                },
+                "canonical_body_locator": {
+                  "type": "RFC6901 string",
+                  "source": "同record.body_locatorそのもの。元snapshot /sources/{原source index}/content を指す。"
+                },
+                "canonical_body_inner_locator": {
+                  "type": "RawValue (原body内のpointer宣言値)",
+                  "source": "同record.canonical_bodyのcanonical_body_pointer memberが実供給されていれば、その原値をコピーする。現positiveは /owner_statement/quoted_requirement。sourceのbody_kind/owner_statementを見て固定pathを作文しない。このmetadataを新しい意味reader要求又は解決済みpointerへ昇格しない。absentならkeyを省略し、明示null/型外は供給原値として保持する。"
+                },
+                "basis_refs": {
+                  "type": "Ref[]",
+                  "source": "同record.basis_refs全列を原順/反復込みでコピー。category_refsを混ぜない。"
+                },
+                "qualification_ref": {
+                  "type": "Ref",
+                  "source": "record.body_locatorから辿る元source.qualification_refに既存Ref条件で対応し、同validateの当該sourceへ結ばれた元Qualification.ref全値。"
+                },
+                "qualification_subject_ref": {
+                  "type": "Ref",
+                  "source": "上記同じ原Qualification.subject_refが供給されているとき、その原値。source_refから補完しない。"
+                },
+                "qualification_subject_sha256": {
+                  "type": "RawValue",
+                  "source": "同じ原Qualification.subject_sha256が供給されているとき、その原値。source digestから補完しない。"
+                },
+                "qualification_scope": {
+                  "type": "RawValue",
+                  "source": "同じ原Qualification.applicable_scopeが供給されているとき、その原値。binding/scope又はsource.ref.scopeから補完しない。"
+                },
+                "qualification_root_ref": {
+                  "type": "Ref",
+                  "source": "同じ原Qualification.root_refが供給されているとき、その原値。原独立rootとの資格照合は元validate/portの観測であり、このRefの掲載自体からtrustを発行しない。"
+                }
+              },
+              "row_order": "原CanonicalBodyRead.recordsの返却順を保つ。各recordについて同sourceの元qualification routeが複数実対応している範囲は元qualifications配列の出現順を保ち、同値/同Ref反復をdedupしない。recordのsource所在とqualification原出現の対応を入れ替えず、別sourceの成功Qを補完しない。原資格routeの未取得/未形成をこのserializerが再計算して成功にしない。",
+              "read_and_empty_boundary": "canonical readが無いno-callでは[]。実readのrecords=[]なら[]。原recordsがある範囲だけrowを形成し、元problems/stateはcause/AxisResultへそのまま保持する。rowを作れたことをresolvedの追加条件又は新source/qualification gateにせず、CanonicalBodyReadを再実行/再分類しない。",
+              "port_basis": "CanonicalBodyRecordはtarget/source/binding/canonical_body/body_locator/basis_refsの6memberだけを持つ既存返却で、inner pointerやQualification fieldをtyped recordの必須memberへ追加しない。canonical ordered branch/5,8が認める全RawValue bodyの返却は特定owner_statement構造又はcanonical_body_pointerの供給を必須にしていないため、traceの任意補足memberの省略を原body不適合やunknownへ変換しない。schema/portが既に要求する資格/Ref条件は緩めず元返却を保つ。"
+            },
             "handoff_record": "明示的に存在する元HandoffRecord全値。無ければnull。raw reason/source_ref presence/original stateを保持する。",
-            "selection_observation": "unselectedとなるselector原値・presenceとunselected_refが実在するときだけ記録。no-callを表し、canonical body rowを作らない。",
+            "selection_observation": {
+              "closed_shape": "selection_observationは該当unselected_source AxisResultのときだけ下記閉object。それ以外のaxisではnull。許可memberはmember_orderの5名だけで、実供給が無い任意memberは省略する。null補完又は追加presence/unselected_ref memberを生成しない。",
+              "member_order": [
+                "core_source_selected",
+                "labo_evaluation_selected",
+                "port_call",
+                "raw_source_role",
+                "source_ref"
+              ],
+              "required_members": [
+                "port_call"
+              ],
+              "member_values": {
+                "core_source_selected": {
+                  "type": "RawValue (供給されたselector原値)",
+                  "source": "同input /dependencies/core_source_selected。memberが存在すれば型/明示nullを含め原値をコピー、absentならkeyを省略する。falseを既定値にしない。"
+                },
+                "labo_evaluation_selected": {
+                  "type": "RawValue (供給されたselector原値)",
+                  "source": "同input /dependencies/labo_evaluation_selected。同じpresence保存規則。"
+                },
+                "port_call": {
+                  "type": "literal:not_called_for_unselected_ref",
+                  "source": "既存canonical_ordered_branches/1の当該非選択Refをcanonical body portへ渡さない経路を表すserializerの固定値。実CanonicalBodyReadを生成又は成功化しない。"
+                },
+                "raw_source_role": {
+                  "type": "RawValue (供給された元source.role)",
+                  "source": "当該原unselected_refへ既存Ref条件で対応する同input.sourcesの原出現を一つに特定でき、role memberが供給されている場合だけ、その元role原値をコピー。content_statement又はowner名から推定しない。"
+                },
+                "source_ref": {
+                  "type": "Ref",
+                  "source": "上記同じ一つの原source出現のref全値をコピー。元unselected_refをsource.refへ置換したり、CanonicalBodyRecord.source_refから借用したりしない。"
+                }
+              },
+              "presence_and_unselected_ref": "selectorのpresenceは当該object内keyの有無及び元inputのpresenceで保つ。原unselected_refはAxisResult.original_refs=[当該原Ref]及びtrace.original_refsへ保持し、trace.request_locator=/dependencies/unselected_refs/{原index}、source_category_locator=/dependencies/unselected_refsでその実出現を指す。selection_observationへ重複memberとして加えない。",
+              "finite_case_conditions": "本4caseは2selectorとも厳密falseで、先頭3memberを同順で持つ。case0/1/2には当該Refへ対応する原source出現が無くraw_source_role/source_refを持たない。case3は /sources/15 に当該Refへ対応する一つの原sourceが掲載され、role=reference_onlyとそのref全値が実供給されているため末尾2memberを同順で持つ。この原掲載観測はbody port call/qualification/semantic authorityを意味しない。",
+              "raw_source_extension_limit": "末尾2memberは一つに特定できた原sourceの掲載所見に限る。複数候補を先頭/Ref dedupで一つへ作らず、特定できない場合はこの拡張を生成しない。拡張欠落からraw source全体の不存在を推定せず同snapshot全rawを保持する。これはcanonical port/state又は元AxisResultを変更するgateではない。"
+            },
             "backflow_owner": "対応するAxisResult/Findingの正確なmember値。通常のunselected_source=unobserved AxisResultはnull、別個に成立したclassification/89 Findingはknowledge_ownerとなる。"
           },
           "prefix_table": [
             {
               "branch": "canonical body全値解決",
               "prefix": "canonical owner本文を同scope/target/versionで全値提供。",
-              "basis": "L4 canonical_ordered_branches/5,8,9。body recordは原contentとframe全値を持つ。applicable/adopted/実trustを意味しない。"
+              "basis": "L4 canonical_ordered_branches/5,8。body recordは原contentとframe全値を持つ。applicable/adopted/実trustを意味しない。/9のMeaningComparisonはこの有限対照では未行使。"
             },
             {
               "branch": "source/body/frame不明",
@@ -4053,16 +4155,16 @@
             {
               "branch": "unselected_source unobserved",
               "prefix": "未選択sourceは未観測。",
-              "basis": "L4 canonical_ordered_branches/1のno-callとpublic_projection/axis_mappingの対応を保持する。別predicateが成立しない限りFindingを作らない。"
+              "basis": "conditional_source_dependency_contract/decision_table/reason_rules/2及びprojection_material/axis_mapping/channel_falseの通常unselected_source/unobservedと、canonical_ordered_branches/1のno-callを保持する。別predicateが成立しない限りFindingを作らない。"
             },
             {
               "branch": "明示HandoffRecord",
-              "prefix": "受渡しstateを元recordから保持。",
+              "prefix": "受渡しstateを原recordから保持。",
               "basis": "元reasonをtraceに保持し、明示not_receivedはL4 failure_classifications/84に従う。欠落行からstateを推定しない。"
             }
           ]
         },
-        "trace_limits": "traceは公開fieldへ出した原資料を説明する。新authority、qualification gate、canonical adoption、実runtime evidenceを作らない。canonical bodyの取得は既存L4 body portだけを通し、そのstate/problemsを変えない。",
+        "trace_limits": "traceは公開fieldへ出した原資料を説明する。新authority、qualification gate、canonical adoption、実runtime evidenceを作らない。canonical bodyの取得は既存L4 body portだけを通し、そのstate/problemsを変えない。 この追加の有限範囲・未行使branchは対L9のunexercised_l4_branches_ja及びunexercised_scope_jaに明記する。既存ports節の有限観測の限界は継続し、全F09の完成を認定しない。",
         "normative_source_scope": {
           "authority": "規範根拠は同じL4文書のpublic projection、canonical body port、diagnostic mapping、failure classifications、および承認済みL3/L10の意味に限る。",
           "l4_pointers": [
@@ -4084,7 +4186,11 @@
             "/dependency_semantic_ports/canonical_ordered_branches/8",
             "/dependency_semantic_ports/canonical_ordered_branches/9",
             "/failure_classifications/84",
-            "/failure_classifications/89"
+            "/failure_classifications/89",
+            "/conditional_source_dependency_contract/decision_table/reason_rules/2",
+            "/conditional_source_dependency_contract/projection_material/axis_mapping/channel_false",
+            "/dependency_semantic_ports/schema/new_defs/CanonicalBodyRecord",
+            "/dependency_semantic_ports/canonical_trace_fields"
           ]
         },
         "public_return_shapes": {
@@ -4117,8 +4223,8 @@
             "fields": {
               "subject_ref": "Ref。同一input bindingのdependency_subjectまたは元HandoffRecord.subject_refからL4のsubject規則に従って取得する。形成不能時に代用Refを作らない。",
               "binding": "Binding。同一inputの原binding全値。source/qualification/rootから補完しない。",
-              "axis": "string。dependency axisはL4 public_projection/axis_mappingの該当literal。unselected_source/handoffはそれぞれL4 canonical no-call/failure classificationが示すaxis literal。",
-              "state": "string。L4 canonical body read stateとpublic_projection/axis_mappingの対応literal。unselected_source/no-callはL4 canonical_ordered_branches/1およびfailure_classifications/89のunobserved。明示handoffは元state。",
+              "axis": "string。dependency axisは同L4 public_projection/axis_mappingの該当literal。通常unselected_sourceはconditional_source_dependency_contract/decision_table/reason_rules/2とprojection_material/axis_mapping/channel_falseのliteralであり、failure_classifications/89の発火を要しない。handoffは既存元record/classificationのaxisを保持する。",
+              "state": "string。L4 CanonicalBodyReadとaxis_mappingの対応literal。通常selector false/unselectedはconditional_source_dependency_contract/decision_table/reason_rules/2のunobservedを、canonical_ordered_branches/1のno-callと分けて保持する。failure_classifications/89は別に成立するFindingの根拠であり通常AxisResult生成条件ではない。明示handoff stateは原値。",
               "original_refs": "Ref[]。L4 refs_reasonとorderが指す実category Ref出現を元順・反復込みで保持する。欠落identityを生成しない。handoff source_refは実供給かつ非nullのときだけ含める。",
               "reason": "string。AxisResult.reasonは既存string memberとして出力し、reason_serializationに従う。問題のないCanonicalBodyReadはL4 common_rules/reason_formatに従ってproblems=[]とし、BodyReadProblemもそのreasonも追加しない。",
               "backflow_owner": "string|null。L4 axis_mapping/classificationが定める論理role。Ref.ownerから推定しない。"
@@ -4194,6 +4300,19 @@
             }
           ],
           "closed_mapping_rule": "Finding.rule_refは該当する上記entryの固定literalをそのまま出力する。code、rule_ref、axis、state、backflow_ownerは同じentryの値から取り、別entryを組み合わせない。source_refsは実在するpredicate根拠のRef出現だけ。predicateが成立しない場合はFindingを出さない。"
+        },
+        "unselected_axis_occurrence_order": {
+          "basis_pointers": [
+            "/conditional_source_dependency_contract/decision_table/reason_rules/2",
+            "/conditional_source_dependency_contract/projection_material/axis_mapping/channel_false",
+            "/conditional_source_dependency_contract/decision_table/backflow_owner_rules/nonfailure",
+            "/dependency_semantic_ports/canonical_ordered_branches/1",
+            "/dependency_semantic_ports/public_projection/order"
+          ],
+          "technical_derivation": "channel_not_selectedは厳密falseの当該channelを非評価/unobservedとし、channel_falseはunselected_sourceへ投影する。これは2channel私有rowから新しい公開Axisを複製する指示ではない。既存false経路が処理する元dependencies.unselected_refsの実出現一件につき一つのunselected_source AxisResultを、当該原配列index順に保持する。両channel falseでも同一Ref出現をchannel数だけ二重出力しない。原配列に同値Refが反復していれば別出現として各一件を原順で保持しRef dedupしない。",
+          "axis_values": "axis=unselected_source,state=unobserved,backflow_owner=nullの通常AxisResult。source_category_locatorは/dependencies/unselected_refs、request_locatorはその実/{index}、original_refsは当該原Ref一件。subject/bindingは既存dependency_subject規則をそのまま使い、typed subject形成不能を架空Refで補完しない。",
+          "failure_separation": "通常の非選択だけでclassification/89のFindingを作らない。unselected_source_successの原predicateが別に成立したときのFinding/knowledge_ownerは独立。operation/025/body portの呼出しを非選択Refへ足さない。",
+          "source_vs_inventory": "L9の4例は各1原Ref出現だけを持つ有限照合。原Ref単位/原順の選択は既存port no-call/public projectionと、既存L5 fn6 algorithm/4が私有channel_not_selectedから公開を新設せず元unselected_refs/R89 false経路を保持することの技術具体化である。L9期待そのものを新しい意味authorityにしない。"
         }
       }
     },

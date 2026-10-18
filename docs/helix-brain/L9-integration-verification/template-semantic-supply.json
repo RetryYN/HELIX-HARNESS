@@ -8711,7 +8711,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "eb86bbc5bd1766df9898639d6534be7e73e17ad44c82b84089b34cd3e036bd50",
+      "sha256": "dbb4abd618d3947ab3731f69388266c8baf69ecc777bf1b091d9020c8b66e327",
       "meaning": "このL9と同候補のL4全UTF-8 bytesへのbinding。base source_pinsは原sourceの履歴根拠であり、このbindingを代替しない。commit revisionや上流承認をここから生成しない。"
     }
   },
@@ -22883,7 +22883,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "eb86bbc5bd1766df9898639d6534be7e73e17ad44c82b84089b34cd3e036bd50"
+      "sha256": "dbb4abd618d3947ab3731f69388266c8baf69ecc777bf1b091d9020c8b66e327"
     }
   },
   "descriptor_target_port_verification": {
@@ -22892,7 +22892,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "observed_source_revision": "64dc8a7032990e8f961f4e5e9601a1909d2e4f6d",
-      "sha256": "eb86bbc5bd1766df9898639d6534be7e73e17ad44c82b84089b34cd3e036bd50",
+      "sha256": "dbb4abd618d3947ab3731f69388266c8baf69ecc777bf1b091d9020c8b66e327",
       "binding_kind": "このscaffold候補L4 whole本文bytesへのbinding。前提source revision/正式採用とは区別。"
     },
     "scope": "9素材の同call原input/Claim引数/全私的target port返却。旧10port/10conditionalの期待scopeを変更しない。",
@@ -92571,7 +92571,7 @@
     ],
     "current_L4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "candidate_file_sha256": "eb86bbc5bd1766df9898639d6534be7e73e17ad44c82b84089b34cd3e036bd50",
+      "candidate_file_sha256": "dbb4abd618d3947ab3731f69388266c8baf69ecc777bf1b091d9020c8b66e327",
       "scope": "同じL4文書全bytesへの束縛。固定規範snapshotの歴史source pinとは別に、対象revisionはgit commitとreview対象HEADから確認する。"
     }
   },
@@ -120205,7 +120205,7 @@
     },
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "file_sha256": "eb86bbc5bd1766df9898639d6534be7e73e17ad44c82b84089b34cd3e036bd50",
+      "file_sha256": "dbb4abd618d3947ab3731f69388266c8baf69ecc777bf1b091d9020c8b66e327",
       "pointer": "/field_value_applicability_contract",
       "role": "現在の基本設計全bytesへの明示binding。固定履歴pinとは別。"
     },
@@ -180488,7 +180488,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "eb86bbc5bd1766df9898639d6534be7e73e17ad44c82b84089b34cd3e036bd50",
+      "sha256": "dbb4abd618d3947ab3731f69388266c8baf69ecc777bf1b091d9020c8b66e327",
       "current_vs_fixed": "当該提案L4全bytesへのbinding。fixed fixture gitseed及び歴史inventory/source pinを更新しない。"
     },
     "schema_resource_id": "urn:helix-brain:l4:032:identity-trace-logical",
@@ -192364,7 +192364,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-003",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -192634,7 +192634,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-005",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -192904,7 +192904,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-007",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -193174,7 +193174,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-008",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -193444,7 +193444,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-028",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -200703,7 +200703,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-003",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -200752,7 +200752,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-005",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -200801,7 +200801,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-007",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -200850,7 +200850,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-008",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -200899,7 +200899,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-028",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -204026,7 +204026,7 @@
             }
           ]
         },
-        "materialized_input_sha256_sorted_keys": "c1482435717762ab7209dd1954d87a488d45bbdf0d4ceb413a392807d45764a7",
+        "materialized_input_sha256_sorted_keys": "6a0481435b82d5e5faa170e387e81e44ccacc407bf7fdb330ac7a61fa39b19bb",
         "expected_comparison_literal": {
           "axes": [
             {
@@ -204999,7 +204999,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-003",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -205104,7 +205104,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-005",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -205209,7 +205209,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-007",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -205314,7 +205314,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-008",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -205419,7 +205419,7 @@
               "qualification_body": {
                 "owner": "synthetic-knowledge-owner",
                 "subject": "HELIXBRAIN-L2-028",
-                "basis": "case-authored fixture assumption: independent qualification record links this exact source bytes/ref and same binding scope; this is not a live trust assertion."
+                "basis": "case著述時の合成前提：独立qualification recordがこの正確なsource bytes/Refと同じBinding scopeを結ぶ。実稼働中のtrustを主張するものではない。"
               },
               "root_ref": {
                 "identity": "SYNTHETIC-F09-C6-INDEPENDENT-QUALIFICATION-ROOT",
@@ -231187,6 +231187,18 @@
         "P15_handoff_records": "[]",
         "normal_control_handoff_state": "not_received",
         "L4_classification": "/failure_classifications/84"
+      },
+      "file_pin_count_scope": {
+        "scope": "L9 /comparison_axis_reason_writer_verification内を再帰走査。dictにpath/revision/file_sha256が共存する出現のうち、legacy_preserve_change_reason以下の3旧asset pinを除外する。重複同fileも出現単位で数える。key末尾だけの検索とは異なる。",
+        "count": 76,
+        "groups": {
+          "source_basis": 6,
+          "input_seed": 1,
+          "cases": 65,
+          "current_source_basis": 4
+        },
+        "excluded_legacy_pins": 3,
+        "not_a_completeness_claim": "76はこの条件のfile pin出現数。全契約の意味整合や全key被覆を意味しない。"
       }
     },
     "canonical_port_coverage": {
@@ -231235,7 +231247,7 @@
             "HELIXBRAIN-L2-008",
             "HELIXBRAIN-L2-028"
           ],
-          "locator_kind": "Markdown heading/ID anchors; not RFC 6901 pointers"
+          "locator_kind": "Markdown見出し/ID anchor。RFC 6901 pointerではない。"
         },
         "L4": {
           "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
@@ -231414,9 +231426,10 @@
       "paired_L4_addition": {
         "target_file": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
         "target_pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer",
-        "operation_value_canonical_sha256": "df5b22f052c370881ea20155b695e4bc520b2b955f19b75e36e8623c3ad17497",
+        "operation_value_canonical_sha256": "e25487048e5a3ad400dcc3f5541582a3c3cce480f46d405d52b8108587b7c6a5",
         "meaning": "このRFC追加でL4へ加える同じ二対象pairの基本port/writer。L5 private writerを規範sourceにしない。"
-      }
+      },
+      "actual_pr_base_note_ja": "authoring snapshotは199a3737のまま固定する。PR実base 105a8917ではこのBRAIN4文書のbytesは199aと同一。旧pinをcurrentへ書換えず、追加後writer objectのcurrent bindingと分離する。"
     },
     "fixed_and_historical_source_roles": {
       "fixed_e45_sources": {
@@ -231593,8 +231606,8 @@
         "scope": "Ref frameのabsent/null又は既知相反"
       },
       {
-        "pointer": "/dependency_semantic_ports/canonical_ordered_branches/5",
-        "scope": "供給sourceのunusable_source_refs問題としての返却"
+        "pointer": "/dependency_semantic_ports/canonical_ordered_branches/4",
+        "scope": "前半の対応sourceなしはunknown行で部分行使。後半の供給sourceのunusable_source_refs問題としての返却は未行使。/5はpositive caseで行使。"
       },
       {
         "pointer": "/dependency_semantic_ports/canonical_ordered_branches/6",
@@ -231626,7 +231639,8 @@
     "unexercised_scope_ja": [
       "この有限oracle外のF09入力、全22 failure rule、全selector状態、全body read state/problem組合せ、全Claim intent/origin枝。",
       "実source/資格/trust/custody/owner由来、実same-call producer、実採用/適用、全Comparison/F09全返却、製品runtime・CIの成立。",
-      "positive source本文は条件付き合成fixtureの仮定であり、実ownerが発行・承認したcanonical bodyとは主張しない。"
+      "positive source本文は条件付き合成fixtureの仮定であり、実ownerが発行・承認したcanonical bodyとは主張しない。",
+      "dependency_subjectのknowledge_refが形成不能なときのtemplate_ref fallbackは4caseで未行使。"
     ],
     "authoring_inventory": {
       "local_snapshot_sha256": "ca8e9dfa549f786479bf733d621a766a7156d6ed2b35c03a1b70e6f46d688ac3",
