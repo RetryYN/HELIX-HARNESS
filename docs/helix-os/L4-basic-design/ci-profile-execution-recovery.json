@@ -2785,7 +2785,7 @@
       "L5 /logical_types/16/fields/binding",
       "L5 /functions/8/return_derivation/os_binding"
     ],
-    "meaning_ja": "binding親4状態の基本規則と専用論理型はbasic_contract_pointer/basic_type_pointerに定義し、L5/L8で当該memberの型参照・4枝writer・5全返却期待を詳細化した。consumer側の全返却、既存same-R oracleの不一致、生成Profileからの全連鎖が未成立なのでunclosedを保持する。新gate/not_calledを追加せず、他memberと既存比較規則を維持する。",
+    "meaning_ja": "binding親4状態の基本規則と専用論理型はbasic_contract_pointer/basic_type_pointerに定義し、L5/L8で当該memberの型参照・4枝writer・5全返却期待を詳細化した。既存4pipelineの同R期待と同call plan sourceの差は是正済みだが、consumer側の全返却と生成Profileからの全連鎖は未成立なのでunclosedを保持する。新gate/not_calledを追加せず、他memberと既存比較規則を維持する。",
     "basic_contract_pointer": "/contracts/0/source_bound_binding_parent_contract",
     "basic_type_pointer": "/contracts/0/source_bound_binding_parent_contract/logical_return_type",
     "detail_contract": {
