@@ -422,7 +422,8 @@
       ],
       "input": "同template/knowledge/source/scopeへ結ぶ意味項目と独立原根拠。任意claimは原項目から分離。",
       "output": "原項目状態/値不足/適用未決/版互換/運用state/受渡しを独立して返す。",
-      "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。"
+      "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
+      "identity_trace_contract_ref": "/identity_version_trace_contract"
     },
     {
       "id": "HELIXBRAIN-L4-032-F05",
@@ -520,7 +521,8 @@
       ],
       "input": "同template/knowledge/source/scopeへ結ぶ意味項目と独立原根拠。任意claimは原項目から分離。",
       "output": "原項目状態/値不足/適用未決/版互換/運用state/受渡しを独立して返す。",
-      "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。"
+      "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
+      "identity_trace_contract_ref": "/identity_version_trace_contract"
     },
     {
       "id": "HELIXBRAIN-L4-032-N02",
@@ -8834,6 +8836,2666 @@
       ],
       "raw_value_domain": "suppliedのF03BPresenceRaw.valueは、JSON null/object/scalar/arrayの原値をcastせずそのまま保持する。absentとsupplied nullを区別し、欠落keyを追加しない。",
       "formed_guard": "既存の局所guardが原型と同じsource/subject/frameへの対応を確認した後にだけ、必要な型付きF03BBinding/F03BRef viewを下流で使う。元schemaで任意のkeyの不在をnullへ補完せず、absent/null/型外からRefやBindingを作文しない。型受理だけを資格又は意味knownへ昇格しない。"
+    }
+  },
+  "identity_version_trace_contract": {
+    "id": "HELIXBRAIN-L4-032-F04-N01-IDENTITY-TRACE-PORTS",
+    "requirements": [
+      "HELIXBRAIN-L3-032-F04",
+      "HELIXBRAIN-L3-032-N01"
+    ],
+    "paired_verification_ref": "HELIXBRAIN-L9-032-F04-N01-IDENTITY-TRACE-PORTS",
+    "authority": "既存F04/N01を満たすAI技術選定。上流意味/採用・承認gateを追加しない。",
+    "schema": {
+      "dialect": "JSON Schema 2020-12 closed local logical ports",
+      "imports": [],
+      "$defs": {
+        "RawValue": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RawValue"
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/RawValue"
+              }
+            }
+          ]
+        },
+        "Ref": {
+          "type": "object",
+          "properties": {
+            "identity": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "revision": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "scope": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_locator": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "Binding": {
+          "type": "object",
+          "properties": {
+            "template_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "knowledge_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "requirement_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "oracle_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "pack_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "pack_contract_version": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "pack_artifact_version": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "pack_dependency_versions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "version_target": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "QualifiedSource": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "content": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "content_bytes": {
+              "type": "string"
+            },
+            "qualification_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "role": {
+              "type": "string",
+              "enum": [
+                "semantic_json",
+                "derived_view",
+                "explanation",
+                "reference_only"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "Qualification": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "subject_sha256": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "applicable_scope": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "qualification_body": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "root_ref": {
+              "$ref": "#/$defs/Ref"
+            }
+          },
+          "additionalProperties": false
+        },
+        "MeaningFact": {
+          "type": "object",
+          "properties": {
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "meaning": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "condition": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "oracle_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            }
+          },
+          "additionalProperties": false
+        },
+        "MeaningComparison": {
+          "type": "object",
+          "properties": {
+            "left_fact_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "right_fact_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "comparison_source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "equivalent": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "DescriptorSlot": {
+          "type": "object",
+          "properties": {
+            "slot_identity": {
+              "type": "string"
+            },
+            "descriptor_kind": {
+              "type": "string"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "facts": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/MeaningFact"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "comparison_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "definition_applicability_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "SectionField": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "descriptor_slot_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "parent_section_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "meaning_fact_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "requiredness_fact_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "normative_rule_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "oracle_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "value_fact_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "applicability_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "ValueFact": {
+          "type": "object",
+          "properties": {
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "value": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "origin": {
+              "type": "string",
+              "enum": [
+                "project_owner",
+                "reference_fixture",
+                "absent"
+              ]
+            },
+            "applicability_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            }
+          },
+          "additionalProperties": false
+        },
+        "ApplicabilityRecord": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "decision": {
+              "type": "string",
+              "enum": [
+                "applicable",
+                "not_applicable",
+                "unknown"
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reentry_condition": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "RelationRecord": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "kind": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "from_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "to_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "direction": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "OracleBinding": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "obligation_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "oracle_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "viewpoint": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "evidence_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompatibilityRecord": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "left_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "right_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "compatible": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "KnowledgeRecord": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "operational_state": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "provenance_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "limited_adoption_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evaluation_scope": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "evaluation_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "os_registration_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "independent_verification_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "adoption_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "limits": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "counterexamples": {
+              "$ref": "#/$defs/RawValue"
+            }
+          },
+          "additionalProperties": false
+        },
+        "DependencySelection": {
+          "type": "object",
+          "properties": {
+            "core_return_requested": {
+              "type": "boolean"
+            },
+            "core_source_selected": {
+              "type": "boolean"
+            },
+            "labo_evaluation_selected": {
+              "type": "boolean"
+            },
+            "always_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "core_return_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "selected_source_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "selected_evaluation_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "unselected_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "HandoffRecord": {
+          "type": "object",
+          "properties": {
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "not_requested",
+                "not_received",
+                "received",
+                "unknown",
+                "conflict"
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "Claim": {
+          "type": "object",
+          "properties": {
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "actor": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kind": {
+              "type": "string"
+            },
+            "proposed_value": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "SupplyInput": {
+          "type": "object",
+          "properties": {
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "required_descriptor_kinds": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/QualifiedSource"
+              }
+            },
+            "qualification_roots": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "qualifications": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Qualification"
+              }
+            },
+            "descriptors": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/DescriptorSlot"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "meaning_comparisons": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/MeaningComparison"
+              }
+            },
+            "section_fields": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SectionField"
+              }
+            },
+            "values": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ValueFact"
+              }
+            },
+            "applicability_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ApplicabilityRecord"
+              }
+            },
+            "relations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RelationRecord"
+              }
+            },
+            "oracle_bindings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/OracleBinding"
+              }
+            },
+            "compatibility_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/CompatibilityRecord"
+              }
+            },
+            "knowledge_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KnowledgeRecord"
+              }
+            },
+            "dependencies": {
+              "$ref": "#/$defs/DependencySelection"
+            },
+            "handoff_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/HandoffRecord"
+              }
+            },
+            "claims": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Claim"
+              }
+            },
+            "candidates": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "PresenceRaw": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "absent"
+                }
+              },
+              "required": [
+                "presence"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "presence": {
+                  "const": "supplied"
+                },
+                "value": {
+                  "$ref": "#/$defs/RawValue"
+                }
+              },
+              "required": [
+                "presence",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "SourceState": {
+          "type": "string",
+          "enum": [
+            "resolved",
+            "missing",
+            "unknown",
+            "conflict",
+            "unobserved"
+          ]
+        },
+        "InputIssue": {
+          "type": "object",
+          "properties": {
+            "locator": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "locator",
+            "reason",
+            "source_ref"
+          ],
+          "additionalProperties": false
+        },
+        "ValidatedSupply": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/SupplyInput"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "input_issues": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/InputIssue"
+              }
+            },
+            "unusable_source_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "required": [
+            "input",
+            "input_issues",
+            "unusable_source_refs"
+          ],
+          "additionalProperties": false
+        },
+        "IdentitySnapshot": {
+          "type": "object",
+          "properties": {
+            "validated": {
+              "$ref": "#/$defs/ValidatedSupply"
+            }
+          },
+          "required": [
+            "validated"
+          ],
+          "additionalProperties": false
+        },
+        "IdentitySourceRequest": {
+          "type": "object",
+          "properties": {
+            "raw_input": {
+              "$ref": "#/$defs/RawValue"
+            }
+          },
+          "required": [
+            "raw_input"
+          ],
+          "additionalProperties": false
+        },
+        "AxisResult": {
+          "type": "object",
+          "properties": {
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "axis": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "original_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "reason": {
+              "type": "string"
+            },
+            "backflow_owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "subject_ref",
+            "binding",
+            "axis",
+            "state",
+            "original_refs",
+            "reason",
+            "backflow_owner"
+          ],
+          "additionalProperties": false
+        },
+        "Finding": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "rule_ref": {
+              "type": "string"
+            },
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "axis": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "source_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "reason": {
+              "type": "string"
+            },
+            "backflow_owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "code",
+            "rule_ref",
+            "subject_ref",
+            "binding",
+            "axis",
+            "state",
+            "source_refs",
+            "reason",
+            "backflow_owner"
+          ],
+          "additionalProperties": false
+        },
+        "Comparison": {
+          "type": "object",
+          "properties": {
+            "axes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/AxisResult"
+              }
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Finding"
+              }
+            },
+            "producer_symbol": {
+              "type": "string"
+            },
+            "input_binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Binding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "axes",
+            "findings",
+            "producer_symbol",
+            "input_binding"
+          ],
+          "additionalProperties": false
+        },
+        "OriginalOccurrence": {
+          "type": "object",
+          "properties": {
+            "index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "locator": {
+              "type": "string"
+            },
+            "original_read": {
+              "$ref": "#/$defs/PresenceRaw"
+            }
+          },
+          "required": [
+            "index",
+            "locator",
+            "original_read"
+          ],
+          "additionalProperties": false
+        },
+        "SourceQualificationRead": {
+          "type": "object",
+          "properties": {
+            "source_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "source": {
+              "$ref": "#/$defs/OriginalOccurrence"
+            },
+            "qualifications": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/OriginalOccurrence"
+              }
+            },
+            "roots": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/OriginalOccurrence"
+              }
+            },
+            "fn0_disposition": {
+              "type": "string",
+              "enum": [
+                "usable",
+                "unusable",
+                "unobserved"
+              ]
+            },
+            "state": {
+              "$ref": "#/$defs/SourceState"
+            }
+          },
+          "required": [
+            "source_index",
+            "source",
+            "qualifications",
+            "roots",
+            "fn0_disposition",
+            "state"
+          ],
+          "additionalProperties": false
+        },
+        "EndpointMembershipRequest": {
+          "type": "object",
+          "properties": {
+            "source_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "endpoint_locator": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "source_index",
+            "endpoint_locator"
+          ],
+          "additionalProperties": false
+        },
+        "CompatibleRefOccurrence": {
+          "type": "object",
+          "properties": {
+            "ref_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "locator": {
+              "type": "string"
+            },
+            "original_read": {
+              "$ref": "#/$defs/PresenceRaw"
+            },
+            "read_classification": {
+              "type": "string",
+              "enum": [
+                "null",
+                "out_of_type",
+                "supplied"
+              ]
+            },
+            "full_ref_relation": {
+              "type": "string",
+              "enum": [
+                "corresponding",
+                "different",
+                "unestablished",
+                "not_applicable"
+              ]
+            }
+          },
+          "required": [
+            "ref_index",
+            "locator",
+            "original_read",
+            "read_classification",
+            "full_ref_relation"
+          ],
+          "additionalProperties": false
+        },
+        "EndpointMembershipRead": {
+          "type": "object",
+          "properties": {
+            "source_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "endpoint_locator": {
+              "type": "string"
+            },
+            "endpoint_read": {
+              "$ref": "#/$defs/PresenceRaw"
+            },
+            "container_read": {
+              "$ref": "#/$defs/PresenceRaw"
+            },
+            "occurrences": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/CompatibleRefOccurrence"
+              }
+            },
+            "matching_ref_indices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "resolved",
+                "unknown"
+              ]
+            },
+            "cause": {
+              "type": "string",
+              "enum": [
+                "matching_refs",
+                "container_absent",
+                "container_null",
+                "container_type",
+                "endpoint_unresolved",
+                "member_no_match",
+                "member_unresolved"
+              ]
+            },
+            "meaning_limit": {
+              "const": "raw_endpoint_ref_membership_only"
+            }
+          },
+          "required": [
+            "source_index",
+            "endpoint_locator",
+            "endpoint_read",
+            "container_read",
+            "occurrences",
+            "matching_ref_indices",
+            "state",
+            "cause",
+            "meaning_limit"
+          ],
+          "additionalProperties": false
+        },
+        "ActualOperandRequest": {
+          "type": "object",
+          "properties": {
+            "member_locator": {
+              "type": "string"
+            },
+            "actual_role": {
+              "type": "string",
+              "enum": [
+                "template_actual_ref",
+                "knowledge_actual_ref",
+                "requirement_actual_ref",
+                "oracle_actual_ref",
+                "pack_actual_ref",
+                "template_actual_revision",
+                "knowledge_actual_revision",
+                "pack_actual_revision",
+                "pack_actual_contract_version",
+                "pack_actual_artifact_version",
+                "knowledge_actual_operational_state",
+                "pack_actual_dependency_version"
+              ]
+            }
+          },
+          "required": [
+            "member_locator",
+            "actual_role"
+          ],
+          "additionalProperties": false
+        },
+        "ActualOperandOccurrence": {
+          "type": "object",
+          "properties": {
+            "source_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "body_locator": {
+              "type": "string"
+            },
+            "actual_read": {
+              "$ref": "#/$defs/PresenceRaw"
+            },
+            "owner_declaration_locator": {
+              "type": "string"
+            },
+            "owner_declaration_read": {
+              "$ref": "#/$defs/PresenceRaw"
+            },
+            "relation": {
+              "type": "string",
+              "enum": [
+                "corresponding",
+                "different",
+                "unestablished",
+                "not_applicable"
+              ]
+            },
+            "state": {
+              "$ref": "#/$defs/SourceState"
+            }
+          },
+          "required": [
+            "source_index",
+            "body_locator",
+            "actual_read",
+            "owner_declaration_locator",
+            "owner_declaration_read",
+            "relation",
+            "state"
+          ],
+          "additionalProperties": false
+        },
+        "ActualOperandRead": {
+          "type": "object",
+          "properties": {
+            "request": {
+              "$ref": "#/$defs/ActualOperandRequest"
+            },
+            "original_read": {
+              "$ref": "#/$defs/PresenceRaw"
+            },
+            "read_classification": {
+              "type": "string",
+              "enum": [
+                "absent",
+                "null",
+                "out_of_type",
+                "supplied"
+              ]
+            },
+            "observations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ActualOperandOccurrence"
+              }
+            },
+            "state": {
+              "$ref": "#/$defs/SourceState"
+            },
+            "cause": {
+              "type": "string",
+              "enum": [
+                "actual_owner_body_unprovided",
+                "actual_owner_body_corresponding",
+                "actual_owner_body_differs",
+                "actual_owner_body_unresolved",
+                "actual_owner_body_multiple_opposing",
+                "input_member_absent",
+                "input_member_null",
+                "input_member_out_of_type",
+                "subject_unformed",
+                "actual_scope_unresolved",
+                "actual_scope_differs",
+                "actual_qualification_unresolved"
+              ]
+            }
+          },
+          "required": [
+            "request",
+            "original_read",
+            "read_classification",
+            "observations",
+            "state",
+            "cause"
+          ],
+          "additionalProperties": false
+        },
+        "TraceRequest": {
+          "type": "object",
+          "properties": {
+            "slot_locator": {
+              "type": "string"
+            },
+            "fact_locator": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "slot_locator",
+            "fact_locator"
+          ],
+          "additionalProperties": false
+        },
+        "ProvenanceOccurrence": {
+          "type": "object",
+          "properties": {
+            "knowledge_record_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "provenance_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "locator": {
+              "type": "string"
+            },
+            "original_read": {
+              "$ref": "#/$defs/PresenceRaw"
+            },
+            "relation": {
+              "type": "string",
+              "enum": [
+                "corresponding",
+                "different",
+                "unestablished",
+                "not_applicable"
+              ]
+            }
+          },
+          "required": [
+            "knowledge_record_index",
+            "provenance_index",
+            "locator",
+            "original_read",
+            "relation"
+          ],
+          "additionalProperties": false
+        },
+        "DescriptorTraceRead": {
+          "type": "object",
+          "properties": {
+            "request": {
+              "$ref": "#/$defs/TraceRequest"
+            },
+            "slot_read": {
+              "$ref": "#/$defs/PresenceRaw"
+            },
+            "fact_read": {
+              "$ref": "#/$defs/PresenceRaw"
+            },
+            "knowledge_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/OriginalOccurrence"
+              }
+            },
+            "provenance_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ProvenanceOccurrence"
+              }
+            },
+            "source_indices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "body_groups": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/OriginalOccurrence"
+              }
+            },
+            "state": {
+              "$ref": "#/$defs/SourceState"
+            },
+            "cause": {
+              "type": "string",
+              "enum": [
+                "original_trace_corresponding",
+                "source_unresolved",
+                "qualification_unresolved",
+                "body_unresolved",
+                "knowledge_unresolved",
+                "mixed_knowledge_revision",
+                "scope_unresolved",
+                "scope_differs"
+              ]
+            }
+          },
+          "required": [
+            "request",
+            "slot_read",
+            "fact_read",
+            "knowledge_records",
+            "provenance_refs",
+            "source_indices",
+            "body_groups",
+            "state",
+            "cause"
+          ],
+          "additionalProperties": false
+        },
+        "BilateralRequest": {
+          "type": "object",
+          "properties": {
+            "record_locator": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "record_locator"
+          ],
+          "additionalProperties": false
+        },
+        "EndpointOwnerRead": {
+          "type": "object",
+          "properties": {
+            "endpoint": {
+              "type": "string",
+              "enum": [
+                "left",
+                "right"
+              ]
+            },
+            "source_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "membership": {
+              "$ref": "#/$defs/EndpointMembershipRead"
+            },
+            "body_read": {
+              "$ref": "#/$defs/PresenceRaw"
+            },
+            "record_ref_read": {
+              "$ref": "#/$defs/PresenceRaw"
+            },
+            "counterpart_source_ref_read": {
+              "$ref": "#/$defs/PresenceRaw"
+            },
+            "target_scope_relation": {
+              "type": "string",
+              "enum": [
+                "same",
+                "different",
+                "unobserved"
+              ]
+            },
+            "state": {
+              "$ref": "#/$defs/SourceState"
+            },
+            "cause": {
+              "type": "string",
+              "enum": [
+                "owner_body_corresponding",
+                "owner_scope_differs",
+                "owner_qualification_unresolved",
+                "owner_subject_unresolved",
+                "owner_decision_unresolved",
+                "owner_decision_differs",
+                "owner_counterpart_unresolved"
+              ]
+            }
+          },
+          "required": [
+            "endpoint",
+            "source_index",
+            "membership",
+            "body_read",
+            "record_ref_read",
+            "counterpart_source_ref_read",
+            "target_scope_relation",
+            "state",
+            "cause"
+          ],
+          "additionalProperties": false
+        },
+        "BilateralCompatibilityRead": {
+          "type": "object",
+          "properties": {
+            "request": {
+              "$ref": "#/$defs/BilateralRequest"
+            },
+            "record_read": {
+              "$ref": "#/$defs/PresenceRaw"
+            },
+            "owner_reads": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/EndpointOwnerRead"
+              }
+            },
+            "state": {
+              "$ref": "#/$defs/SourceState"
+            },
+            "cause": {
+              "type": "string",
+              "enum": [
+                "positive",
+                "null",
+                "scope",
+                "outside",
+                "opposing",
+                "source_ref_absent",
+                "source_unresolved",
+                "source_unusable",
+                "qualification_unresolved",
+                "endpoint_unresolved",
+                "endpoint_differs",
+                "scope_unresolved",
+                "body_record_differs",
+                "compatible_null",
+                "range_unresolved",
+                "left_owner_unprovided",
+                "right_owner_unprovided",
+                "bilateral_owner_unresolved",
+                "bilateral_decisions_opposing"
+              ]
+            }
+          },
+          "required": [
+            "request",
+            "record_read",
+            "owner_reads",
+            "state",
+            "cause"
+          ],
+          "additionalProperties": false
+        },
+        "IdentityTraceReturn": {
+          "type": "object",
+          "properties": {
+            "comparison": {
+              "$ref": "#/$defs/Comparison"
+            },
+            "source_qualifications": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SourceQualificationRead"
+              }
+            },
+            "actual_operands": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ActualOperandRead"
+              }
+            },
+            "descriptor_traces": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/DescriptorTraceRead"
+              }
+            },
+            "bilateral_pairs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/BilateralCompatibilityRead"
+              }
+            }
+          },
+          "required": [
+            "comparison",
+            "source_qualifications",
+            "actual_operands",
+            "descriptor_traces",
+            "bilateral_pairs"
+          ],
+          "additionalProperties": false
+        },
+        "DeclaredRange": {
+          "type": "object",
+          "properties": {
+            "pack_contract_versions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "pack_artifact_versions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "pack_contract_versions",
+            "pack_artifact_versions"
+          ],
+          "additionalProperties": false
+        },
+        "EndpointOwnerDeclaration": {
+          "type": "object",
+          "properties": {
+            "endpoint": {
+              "const": "left"
+            },
+            "endpoint_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "owner": {
+              "type": "string"
+            },
+            "compatible": {
+              "type": "boolean"
+            },
+            "range_relation": {
+              "type": "string",
+              "enum": [
+                "outside",
+                "not_supplied"
+              ]
+            },
+            "range_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "endpoint",
+            "endpoint_ref",
+            "owner",
+            "compatible",
+            "range_relation",
+            "range_reason"
+          ],
+          "additionalProperties": false
+        },
+        "LeftOwnerSourceBody": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "compatible_refs": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                "compatible": {
+                  "const": true
+                },
+                "compatibility_record_ref": {
+                  "$ref": "#/$defs/Ref"
+                },
+                "counterpart_source_ref": {
+                  "$ref": "#/$defs/Ref"
+                },
+                "endpoint_owner_declaration": {
+                  "$ref": "#/$defs/EndpointOwnerDeclaration"
+                }
+              },
+              "required": [
+                "compatible_refs",
+                "compatible",
+                "compatibility_record_ref",
+                "counterpart_source_ref",
+                "endpoint_owner_declaration"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "compatible_refs": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                "compatible": {
+                  "const": false
+                },
+                "compatibility_record_ref": {
+                  "$ref": "#/$defs/Ref"
+                },
+                "counterpart_source_ref": {
+                  "$ref": "#/$defs/Ref"
+                },
+                "endpoint_owner_declaration": {
+                  "$ref": "#/$defs/EndpointOwnerDeclaration"
+                },
+                "declared_range": {
+                  "$ref": "#/$defs/DeclaredRange"
+                }
+              },
+              "required": [
+                "compatible_refs",
+                "compatible",
+                "compatibility_record_ref",
+                "counterpart_source_ref",
+                "endpoint_owner_declaration",
+                "declared_range"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "RangeOwnerDeclaration": {
+          "type": "object",
+          "properties": {
+            "endpoint_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "owner": {
+              "type": "string"
+            },
+            "relation": {
+              "const": "outside"
+            }
+          },
+          "required": [
+            "endpoint_ref",
+            "owner",
+            "relation"
+          ],
+          "additionalProperties": false
+        },
+        "RangeDeclaration": {
+          "type": "object",
+          "properties": {
+            "left_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "right_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "actual_pack_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "actual_contract_version": {
+              "type": "string"
+            },
+            "actual_artifact_version": {
+              "type": "string"
+            },
+            "declared_range": {
+              "$ref": "#/$defs/DeclaredRange"
+            },
+            "relation": {
+              "const": "outside"
+            },
+            "reason": {
+              "type": "string"
+            },
+            "owner_declarations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RangeOwnerDeclaration"
+              }
+            }
+          },
+          "required": [
+            "left_ref",
+            "right_ref",
+            "actual_pack_ref",
+            "actual_contract_version",
+            "actual_artifact_version",
+            "declared_range",
+            "relation",
+            "reason",
+            "owner_declarations"
+          ],
+          "additionalProperties": false
+        },
+        "ActualOperandCall": {
+          "type": "object",
+          "properties": {
+            "snapshot": {
+              "$ref": "#/$defs/IdentitySnapshot"
+            },
+            "request": {
+              "$ref": "#/$defs/ActualOperandRequest"
+            }
+          },
+          "required": [
+            "snapshot",
+            "request"
+          ],
+          "additionalProperties": false
+        },
+        "TraceCall": {
+          "type": "object",
+          "properties": {
+            "snapshot": {
+              "$ref": "#/$defs/IdentitySnapshot"
+            },
+            "request": {
+              "$ref": "#/$defs/TraceRequest"
+            }
+          },
+          "required": [
+            "snapshot",
+            "request"
+          ],
+          "additionalProperties": false
+        },
+        "EndpointMembershipCall": {
+          "type": "object",
+          "properties": {
+            "snapshot": {
+              "$ref": "#/$defs/IdentitySnapshot"
+            },
+            "request": {
+              "$ref": "#/$defs/EndpointMembershipRequest"
+            }
+          },
+          "required": [
+            "snapshot",
+            "request"
+          ],
+          "additionalProperties": false
+        },
+        "BilateralCall": {
+          "type": "object",
+          "properties": {
+            "snapshot": {
+              "$ref": "#/$defs/IdentitySnapshot"
+            },
+            "request": {
+              "$ref": "#/$defs/BilateralRequest"
+            }
+          },
+          "required": [
+            "snapshot",
+            "request"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "entry_request": "IdentitySourceRequest",
+      "entry_snapshot": "IdentitySnapshot",
+      "entry_return": "IdentityTraceReturn",
+      "meaning": "既存public raw型19defは下記inventoryの意味をL4に再導出したliteral。required欠落/null/空配列の元区別を保持する。新生成read recordのみclosed、raw QualifiedSource.contentはRawValueのまま。LeftOwnerSourceBody/RangeDeclarationはraw_carriers.projection_guardが示す消費位置で形成を確認する局所projection型であり、raw入力の許容値を狭めない。private C3Evaluation型のimportも必須引数も無い。",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "urn:helix-brain:l4:032:identity-trace-logical",
+      "resource_root": "このschema object自体を独立JSON Schema resourceとして読む。#/$defsはこのobject内$defsへ解決する。外側L4文書root又はL5へのrefではない。"
+    },
+    "ports": [
+      {
+        "symbol": "read_identity_source_snapshot",
+        "input": "IdentitySourceRequest",
+        "output": "IdentitySnapshot",
+        "effect": "none",
+        "consumer": "下記全identity/actual/trace/bilateral port。",
+        "meaning": "同rawに対する既存構造/bytes/body/digest/source資格を一回取得しvalidated全値を返す。実現は後続L5 fn0。新validator/APIを別実装しない。"
+      },
+      {
+        "symbol": "read_actual_identity_operand",
+        "input": "ActualOperandCall",
+        "output": "ActualOperandRead",
+        "effect": "none",
+        "consumer": "TemplateBoundaryCheckの独立identity/version/state各軸。",
+        "meaning": "原値suppliedとqualified実owner actual bodyを分離し、同sourceの原右operand全出現を返す。Binding自己Ref/generic content.binding/compatible_refsをactualへ昇格しない。"
+      },
+      {
+        "symbol": "read_descriptor_identity_trace",
+        "input": "TraceCall",
+        "output": "DescriptorTraceRead",
+        "effect": "none",
+        "consumer": "TemplateDescriptorSupplyの項目trace及びTemplateBoundaryCheck。",
+        "meaning": "slot原locator/id/Binding/fact→同knowledge/provenance_refs→原source/Q/root/body全出現を保持。slot Refを新造しない。"
+      },
+      {
+        "symbol": "read_compatibility_endpoint_refs",
+        "input": "EndpointMembershipCall",
+        "output": "EndpointMembershipRead",
+        "effect": "none",
+        "consumer": "read_bilateral_compatibilityの各endpoint owner本文読取。",
+        "meaning": "source.content.compatible_refs原全出現を原index順で当該endpoint fullRefへ独立照合。matching index全件/別subject/反復/型外を保持。position0/1にroleを割当てない。membership resolved自体はowner資格/互換成立を意味しない。"
+      },
+      {
+        "symbol": "read_bilateral_compatibility",
+        "input": "BilateralCall",
+        "output": "BilateralCompatibilityRead",
+        "effect": "none",
+        "consumer": "TemplateBoundaryCheckの明示pair compatibility軸。",
+        "meaning": "明示recordだけを読む。右はrecord.source_ref→qualified右owner本文、左は明示record_ref/counterpart_source_ref→qualified左owner本文。両側でmembership portを使い全matched出現保持。片owner/根拠未供給unknown、既知scope差/範囲外/原相反conflict。"
+      },
+      {
+        "symbol": "compare_identity_trace_snapshot",
+        "input": "IdentitySnapshot",
+        "output": "IdentityTraceReturn",
+        "effect": "none",
+        "consumer": "TemplateCandidateReturnはcomparison4だけ。L9はlogical read全値を検証。",
+        "meaning": "同snapshotの全独立read結果からpublic Comparisonを形成する。後続L5 private realizationの名前/型は本portの必須引数ではない。"
+      }
+    ],
+    "same_call": {
+      "raw_entry": "一つのIdentitySourceRequest.raw_input→同一invocation read_identity_source_snapshot→IdentitySnapshot.validated。全portへ同snapshot全値を明示引数で渡す。",
+      "fn0_realization": "後続L5 raw runnerでは v=validate_supply_input(raw) を一回取得しsnapshot={validated:v}。fn3 privateは既存IdentityContext{validated:v}を取り、同vだけから本基本portを実現する。fn1へ渡るvも同値。expected/C3Evaluation/privatewalkをinputにしない。",
+      "direct_context": "既存public compare_identity_versions_and_trace(IdentityContext{validated:v})直呼出しも同vを明示snapshotとして読む。rawが無いことを理由にv.inputをrawへ逆変換しない。rawdecodeそのものの検証はfn0/raw入口の別観測。",
+      "qualification": "fn0 usable/空unusableだけからowner主体/意味適合を作らない。source/Q/rootの原owner資格成立は既存fn0 qualification義務に結び、当該subject/frameと各body判断は各readerで別照合する。fixtureのroot仮定はlogical入力前提で実運用trust成立ではない。",
+      "no_ambient": "cache/clock/fs/network/DB/別call private材料/任意owner判断の注入無し。未知は当該axis/recordへ保持し無関係な有資格項目を維持。",
+      "partial_and_null": "validated.input=nullならComparison.axes/findings=[]/input_binding=null、全read集合[]、原InputIssueとrawは入口で保持。decode可能partial inputでは各必要member presenceを個別に読み、形成できないsubjectを捏造せず該当private logical readをunknownへ保持し他原軸を消さない。",
+      "closed_port_calls": "source portの返却snapshot全値を{snapshot,request}の各named Call recordへ明示する。全Callのsnapshot.validatedは同v whole値。L9のrequests列は同snapshotとの組合せを明示してEndpointMembershipCallを構成する。",
+      "source_qualification_writer": "SourceQualificationReadは、同snapshotのactual/trace/bilateral portが当該局所読取で対象sourceとして実際に束縛又は検査した原source index群だけを、元sources配列のindex順に返す。同じsource indexを複数portが用いてもsource行は一つとし、同Refであっても別原indexのsource行をRef値でdedupしない。各対象source行では、実際に対応させて得たsource/Q/rootの全原出現・順・原値・fn0局所usable/unusable/unobservedを保持する。未使用のsourceを成功行として生成しない。未使用を含むraw sources/qualifications/qualification_roots全原値はIdentitySnapshot.validated whole内に保持する。fn0資格義務を満たす原chainを後続readerが同subject/frameへ別に結び、unusable_source_refs=[]又はowner文字列だけから資格/actual/bilateral成功を生成しない。資格未成立の対象sourceも原観測を消さず当該readへunknownを残す。"
+    },
+    "raw_carriers": {
+      "existing": "SupplyInput構造member及びQualifiedSource型は不変、content:RawValueの元owner本文に局所projectionを追加。",
+      "left_owner": "source.content（原所在 /sources/{source_index}/content）を独立left-owner本文として読む場合の、形成済みlogical projectionの閉型がLeftOwnerSourceBodyである。QualifiedSource.content自体のRawValue型をこの閉型へ置換しない。独立template-owner source/Q/rootから元left subject/fullframe・compatibility_record_ref・counterpart_source_refへ別に結ぶ。endpoint roleはendpoint_owner_declaration.endpointで明示し、compatible_refsの位置から生成しない。",
+      "pack_range": "source.content.compatibility_range_declaration（原所在 /sources/{source_index}/content/compatibility_range_declaration）を実pack ownerの範囲宣言として読む場合の、形成済みlogical projectionの閉型がRangeDeclarationである。source.content全体はRawValueのまま保持し、source5 owner_declarations中の他owner文字列を独立他owner資格にしない。actual_pack_ref/contract/artifactは当該qualified実pack owner本文の独立右operandとして、同subject/fullframeのguardを別に満たす範囲だけで使う。",
+      "compatible_refs": "既存L4/L5には位置role宣言無し。Ref[]原collectionとして元順/全重複/別subject/未決を保持。両端Refに対して別々に同じ全列を読む。",
+      "provenance": "body/content_bytes/source.ref.sha256/qualification.subject_ref+subject_sha256を同snapshotで同期。変更した右sourceへのrecord/source_refと左counterpart_source_refも同期する。旧7原sourceは変更しない。",
+      "projection_guard": {
+        "type_application": "read_bilateral_compatibilityがleft本文を読む位置でLeftOwnerSourceBodyを、同port及びread_actual_identity_operandがpack範囲/実operandを読む位置でRangeDeclarationを局所projection型として用いる。これらはraw入力schemaの必須Ref closureへ接続する型ではないため、QualifiedSource.contentの$refを変更しない。",
+        "formation_guard": "該当原nodeのpresence、JSON型、当該閉型のmember集合・member型が形成できた範囲でのみ、その型として消費する。source/Q/root/body digest/record link/endpoint membership/subject/fullframe/原判断の意味guardは別に適用し、型成立をqualified owner又は互換成立に昇格しない。",
+        "unformed": "absence/null/型外/閉型未形成は原PresenceRaw及びsnapshot wholeへそのまま保存する。memberを落として型に合わせたり、null/{}へ補完/castしたりせず、該当readの既存unknown原因へ残す。独立兄弟/sourceを止める新gateにはしない。"
+      }
+    },
+    "read_branch_contracts": {
+      "actual": {
+        "population": "同節roles（/identity_version_trace_contract/read_branch_contracts/actual/roles）と原dependency各出現。原値readと実owner照合は別列。",
+        "roles": {
+          "template.identity": "template_actual_ref",
+          "knowledge.identity": "knowledge_actual_ref",
+          "requirement.identity": "requirement_actual_ref",
+          "oracle.identity": "oracle_actual_ref",
+          "pack.identity": "pack_actual_ref",
+          "template.version": "template_actual_revision",
+          "knowledge.revision": "knowledge_actual_revision",
+          "pack.revision": "pack_actual_revision",
+          "pack.contract_version": "pack_actual_contract_version",
+          "pack.artifact_version": "pack_actual_artifact_version",
+          "knowledge.operational_state": "knowledge_actual_operational_state"
+        },
+        "source": "same-call validated.input.sourcesのqualified semantic_json原bodyだけを独立actual右operand候補とする。Qualification/ref/subject/digest/自己scope/root/元owner資格と対象subject/fullframeを保持する。Ref値の供給や根拠sourceのRef一致だけではactual本文を生成しない。",
+        "six_case_source_selection": {
+          "source_unprovided_cases": "P15/旧片owner pair/新bilateral positive/source-null/scope差は独立actual owner artifact/version/state本文未供給。原値とroleを保持しactual_comparisons=[]、unknown。",
+          "actual_pack_source_cases": "bilateral range-false/相反はsource5.content.compatibility_range_declaration.actual_pack_ref/actual_contract_version/actual_artifact_versionだけpack4軸の右operand。独立template-owner compatibility本文はtemplate実artifact/version本文ではない。"
+        },
+        "multiple": "全原出現保持、最後勝ち/dedup禁止。同frameの既知相反actualはconflict、同値複数は各行を保持してresolved、資格/subjectframe未成立の各行はunknownとして保持。sourceが複数あること自体を成功又は失敗へ変換しない。",
+        "finite_branch_order": [
+          {
+            "cause": "subject_unformed",
+            "state": "unknown",
+            "condition": "原subject Refを形成できず、public軸は生成せずprivateへ保持。"
+          },
+          {
+            "cause": "input_member_absent",
+            "state": "unknown",
+            "condition": "原memberが欠落。原Read absent。"
+          },
+          {
+            "cause": "input_member_null",
+            "state": "unknown",
+            "condition": "原memberは明示null。原Read supplied(null)。"
+          },
+          {
+            "cause": "input_member_out_of_type",
+            "state": "unknown",
+            "condition": "原member型外。原Read supplied原値。"
+          },
+          {
+            "cause": "actual_owner_body_unprovided",
+            "state": "unknown",
+            "condition": "当該role/subjectへの原actual owner本文未供給。[]は成功ではない。"
+          },
+          {
+            "cause": "actual_qualification_unresolved",
+            "state": "unknown",
+            "condition": "原source/Q/root/owner資格未成立。"
+          },
+          {
+            "cause": "actual_scope_unresolved",
+            "state": "unknown",
+            "condition": "対象frame又はsource frame未観測。"
+          },
+          {
+            "cause": "actual_scope_differs",
+            "state": "conflict",
+            "condition": "原actual宣言が当該subject候補を指すが要求frameと既知差。別subjectの原宣言はactual対応候補を生成しない。"
+          },
+          {
+            "cause": "actual_owner_body_multiple_opposing",
+            "state": "conflict",
+            "condition": "同subject/fullframeへの資格済みactual複数判断が既知相反。"
+          },
+          {
+            "cause": "actual_owner_body_differs",
+            "state": "conflict",
+            "condition": "同subject/fullframeの独立actual本文と原値が既知差。"
+          },
+          {
+            "cause": "actual_owner_body_unresolved",
+            "state": "unknown",
+            "condition": "上記以外の原値/operand/対応が未成立。"
+          },
+          {
+            "cause": "actual_owner_body_corresponding",
+            "state": "resolved",
+            "condition": "独立資格済み同subject/fullframe actual本文との対応が成立。"
+          }
+        ],
+        "findings": "actual軸unknown/conflictへ自動新Findingを作らない。既存failure predicateが実原材料で成立したものだけ原ruleへ結ぶ。本7literalはpair rule61/62以外の実predicateを供給していない。"
+      },
+      "bilateral": {
+        "entrypoint": "read_bilateral_compatibility(snapshot:IdentitySnapshot,request:BilateralRequest)->BilateralCompatibilityRead。TemplateBoundaryCheckの明示record consumer。private詳細型は引数又は返却の正本ではない。",
+        "input_source": "同一snapshot.validated.input.sources/qualifications/qualification_roots全原値。CompatibilityRecord.source_refは右sourceへの直接原link、左sourceはLeftOwnerSourceBodyのcompatibility_record_ref＋counterpart_source_refという明示原link。",
+        "left": "左owner原subject/fullRefとsource.ref.owner/Q.qualification_body.owner/root.ownerの既存qualified owner解決を別照合。owner名だけは資格ではない。recordlinkとcounterpartsourcefullRefも独立照合。 compatible_refs全原Ref出現を読む。位置[0]をrole根拠としない。",
+        "right": "原right endpoint fullRefを当該source.content.compatible_refsの全原出現へ独立照合し、対応index全件をEndpointMembershipReadへ保存する。record.source_ref/source.ref/Q/root/ownerと原body.compatibleも別照合する。位置[1]固定はしない。",
+        "source_field_reads": "absentはPresenceRaw absent、null/型外はsupplied原値。型未形成で消したbodyを成功へ数えずprivate原source whole/原Readへ保持する。",
+        "different_subject_frame": "別subject又は別record/counterpartの原declは対応候補に昇格せず原source/readを保持。対象pairで必要側候補が無ければunknown。対象subject候補を明示するdeclの既知scope差はconflict、本scope case。",
+        "multiple": "全source原index順に全出現保持。同値複数は保存、既知相反はconflict、unknown出現は対応side配列に残す。後勝ち/owner名dedupなし。個別不成立を兄弟成功で消さない。",
+        "endpoint_cause_state_table": [
+          {
+            "cause": "owner_qualification_unresolved",
+            "state": "unknown",
+            "condition": "source/Q/root/owner資格又はsubject/digest/body対応未成立。"
+          },
+          {
+            "cause": "owner_subject_unresolved",
+            "state": "unknown",
+            "condition": "原endpoint、record又は対象frameへの対応未成立。"
+          },
+          {
+            "cause": "owner_counterpart_unresolved",
+            "state": "unknown",
+            "condition": "左原record_ref又はcounterpart_source_refを対象record/右sourceへ結べない。"
+          },
+          {
+            "cause": "owner_decision_unresolved",
+            "state": "unknown",
+            "condition": "原compatible/rangeがabsence/null/型外/未決である。"
+          },
+          {
+            "cause": "owner_scope_differs",
+            "state": "conflict",
+            "condition": "対象subject候補の原qualified source scopeと対象pair frameが既知差。"
+          },
+          {
+            "cause": "owner_decision_differs",
+            "state": "conflict",
+            "condition": "対象pair同frameへの原bodyと原recordの判断が既知差。"
+          },
+          {
+            "cause": "owner_body_corresponding",
+            "state": "resolved",
+            "condition": "独立owner資格、subject/frame、record/source link、原decisionの全対応が成立。"
+          }
+        ],
+        "pair_aggregation": "片側未供給はleft_owner_unprovided/right_owner_unprovided unknown。資格/対応未成立はbilateral_owner_unresolved unknown。同pair原scope既知差/conflicting bodyはconflict。左右原判断相反はbilateral_decisions_opposing conflict。左右ともtrueのみpositive resolved。左右とも原実版outsideはoutside conflict(rule62)。全原読みを保持する。",
+        "rule61": "独立片側owner未供給で既存両端owner根拠の解決不能predicateが成立するときcompatibility_unknown。source-null同様、rule58への転用無し。",
+        "logical_limits": "原qual/rootの意味に従った条件付きlogical oracle。JSON/hash/source名から実運用trustを発行しない。新owner承認gateを加えない。",
+        "finite_cause_precedence": {
+          "selection_status": "既存F04の根拠null→unknown・qualified範囲外→conflictと本7著述期待を保持するAIの有限writer選定。全未行使causeの競合順を上流指定又は検証済みと主張しない。",
+          "ordered_cases": [
+            {
+              "priority": 1,
+              "condition": "原record.source_refが明示nullである本source-null例。依存ownerの取得先を形成できない。",
+              "cause": "null",
+              "state": "unknown",
+              "reason": "left_owner_unprovided/right_owner_unprovidedを後から代表causeへ代入せず、原nullという先行原因を保持する。"
+            },
+            {
+              "priority": 2,
+              "condition": "右owner本文の原sourceと資格/subject/frame対応が成立するが、独立左owner本文が未供給である本旧片owner例。",
+              "cause": "left_owner_unprovided",
+              "state": "unknown",
+              "reason": "compatible_refsの両端掲載及びfixtureの両owner宣言というproseを左owner資格にしない。"
+            },
+            {
+              "priority": 3,
+              "condition": "source自身の資格scopeが成立した対象subject候補で、対象pair frameへの既知scope差がある本scope例。",
+              "cause": "scope",
+              "state": "conflict",
+              "reason": "owner/compatibilityの成功へ進めず、左の原成功readと右の既知差readをともに保持する。"
+            },
+            {
+              "priority": 4,
+              "condition": "同frameの独立両owner本文が当該実版のoutsideを原宣言する本range-false例及びcase7の後続record。",
+              "cause": "outside",
+              "state": "conflict",
+              "reason": "qualified原outsideをbool false又は版文字列だけから生成しない。"
+            },
+            {
+              "priority": 5,
+              "condition": "同frameの独立両owner本文と当該recordの原判断がtrueで対応する本positive例及びcase7の先行record。",
+              "cause": "positive",
+              "state": "resolved",
+              "reason": "必要根拠未成立をこの枝へ補完しない。"
+            }
+          ],
+          "observation_preservation": "これは当該有限例の代表cause選定順であり、原source/owner/Read材料の取得・保存を代表cause一語へ畳む指示ではない。各元branchの全原観測を保持する。",
+          "unexercised": "19causeのうち上記5以外の競合順はL9 finite_branch_coverageへ未行使として明示する。未観測causeをnull/positive/owner不足へ正規化しない。"
+        },
+        "finite_multiple_record_boundary": "本7期待の最終case（C3-TWO-INDEPENDENT-BILATERAL-OPPOSING-SOURCES-WHOLE）では、同じ対象subject/fullframe及び同向き明示pairに対応する原record index0/1を個別に保持する。BilateralCompatibilityReadは原順でpositive/resolvedとoutside/conflictの二wholeを返し、両原source/owner/Q/rootと各reasonを残す。この有限入力の既存compatibility一軸はconflictで、原record_indices=[0,1]/record_states=[resolved,conflict]をreasonに保持する。Findingはqualified outsideの既存compatibility_mismatch predicateに対応する一件だけで、新aggregate codeを作らない。この観測から別record/別subject/別frameを無条件に一軸へ併合する一般規則を導出せず、一般multiple-recordの形成・順序・集約は未行使/未閉包へ残す。"
+      },
+      "trace": "既存原trace比較及びsource_statesを維持。元source/Q/root/provenance不足は該当trace unknown、版/対象frame既知差・原相反はconflict。現7 fixtureのtrace15は全原対応であり他14を停止しない。",
+      "membership": [
+        {
+          "cause": "endpoint_unresolved",
+          "state": "unknown",
+          "condition": "endpoint locator absent/null/型外又は必要fullRef member未観測。原Read保持。"
+        },
+        {
+          "cause": "container_absent",
+          "state": "unknown",
+          "condition": "content.compatible_refs member absent。"
+        },
+        {
+          "cause": "container_null",
+          "state": "unknown",
+          "condition": "明示null。"
+        },
+        {
+          "cause": "container_type",
+          "state": "unknown",
+          "condition": "配列型外。原値保持。"
+        },
+        {
+          "cause": "member_unresolved",
+          "state": "unknown",
+          "condition": "endpointへ対応する可能性を判別できない型外/partial memberしか無く照合未成立。"
+        },
+        {
+          "cause": "member_no_match",
+          "state": "unknown",
+          "condition": "配列の全観測済み原Refが異subject/frame、又は[]。対象owner本文の支持を生成しない。"
+        },
+        {
+          "cause": "matching_refs",
+          "state": "resolved",
+          "condition": "fullRef対応原出現が一つ以上ある。原matches全件/その他全出現は保持。membership onlyでqualified owner/互換trueへ昇格しない。"
+        }
+      ],
+      "membership_precedence": "request endpoint形成→container presence/type→各原memberのpresence/type/fullRef関係を全件保存→matching_ref_indices全件。matchingがあればmembershipだけresolvedとし未決/別subject memberも保存、matching無しなら型外/partialで対応可能性未決はmember_unresolved、全件既知別subject又は[]はmember_no_match。owner/record/資格/互換判断は別branch。"
+    },
+    "public_projection": {
+      "shape": "Comparison4 / AxisResult7 / Finding9全memberを維持。producer_symbol/input_bindingは同入力からwriterが形成する。",
+      "counts": "P15 11独立+15trace=26、明示pair1群の6caseは27。[]dependencyは0原出現。unknown原軸は削らない。",
+      "read_vs_judgment": "元値suppliedは分類列だけ。原actual body未供給はunknown。両owner原宣言/実版範囲外/根拠NA等既存意味は独立branchで保持。",
+      "failure_rules": "既存source/version/scope missing及びrule61/62等の原predicateを維持。membership missing専用新rule/globalgate無し。"
+    },
+    "public_type_mapping": [
+      {
+        "name": "RawValue",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/RawValue",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/RawValue",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "Ref",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/Ref",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/Ref",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "Binding",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/Binding",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/Binding",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "QualifiedSource",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/QualifiedSource",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/QualifiedSource",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "Qualification",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/Qualification",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/Qualification",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "MeaningFact",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/MeaningFact",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/MeaningFact",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "MeaningComparison",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/MeaningComparison",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/MeaningComparison",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "DescriptorSlot",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/DescriptorSlot",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/DescriptorSlot",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "SectionField",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/SectionField",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/SectionField",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "ValueFact",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/ValueFact",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/ValueFact",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "ApplicabilityRecord",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/ApplicabilityRecord",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/ApplicabilityRecord",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "RelationRecord",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/RelationRecord",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/RelationRecord",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "OracleBinding",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/OracleBinding",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/OracleBinding",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "CompatibilityRecord",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/CompatibilityRecord",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/CompatibilityRecord",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "KnowledgeRecord",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/KnowledgeRecord",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/KnowledgeRecord",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "DependencySelection",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/DependencySelection",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/DependencySelection",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "HandoffRecord",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/HandoffRecord",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/HandoffRecord",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "Claim",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/Claim",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/Claim",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "SupplyInput",
+        "inventory_pointer": "/logical_input_structure/schema/$defs/SupplyInput",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/SupplyInput",
+        "mode": "意味再導出したL4 literal。既存public shape/presenceを維持。"
+      },
+      {
+        "name": "InputIssue",
+        "inventory_pointer": "/type_contract/types/InputIssue",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/InputIssue",
+        "mode": "既存declared fieldsをL4 closed returnへ意味再導出。"
+      },
+      {
+        "name": "ValidatedSupply",
+        "inventory_pointer": "/type_contract/types/ValidatedSupply",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/ValidatedSupply",
+        "mode": "既存declared fieldsをL4 closed returnへ意味再導出。"
+      },
+      {
+        "name": "AxisResult",
+        "inventory_pointer": "/type_contract/types/AxisResult",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/AxisResult",
+        "mode": "既存declared fieldsをL4 closed returnへ意味再導出。"
+      },
+      {
+        "name": "Finding",
+        "inventory_pointer": "/type_contract/types/Finding",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/Finding",
+        "mode": "既存declared fieldsをL4 closed returnへ意味再導出。"
+      },
+      {
+        "name": "Comparison",
+        "inventory_pointer": "/type_contract/types/Comparison",
+        "l4_pointer": "/identity_version_trace_contract/schema/$defs/Comparison",
+        "mode": "既存declared fieldsをL4 closed returnへ意味再導出。"
+      }
+    ],
+    "consumer_table": [
+      {
+        "boundary": "既存public SupplyInput全19def closure",
+        "consumer": "IdentitySnapshot.validated.inputとL9 whole inputの保存。C3非消費memberも元全値を失わない。",
+        "necessity": "同snapshot whole対応を閉じるため。private実行型のcopyではない。"
+      },
+      {
+        "boundary": "SourceQualificationRead/OriginalOccurrence",
+        "consumer": "各actual/trace/bilateral readerとL9",
+        "necessity": "原source/Q/rootの全値・index・fn0局所状態の同call対応。"
+      },
+      {
+        "boundary": "ActualOperandRead",
+        "consumer": "独立identity/actual版/state axis writer",
+        "necessity": "suppliedとactual成功の分離。"
+      },
+      {
+        "boundary": "DescriptorTraceRead",
+        "consumer": "15各原項目trace axis writer",
+        "necessity": "slot Refを捏造せず原source/provenanceへ戻る。"
+      },
+      {
+        "boundary": "EndpointMembershipRead",
+        "consumer": "独立左右owner reader",
+        "necessity": "[1]位置推定を排し全Ref原出現/重複/別subjectの保持。"
+      },
+      {
+        "boundary": "BilateralCompatibilityRead",
+        "consumer": "明示pair compatibility axis writer",
+        "necessity": "左owner不足と既知outside/相反を別に保持。"
+      },
+      {
+        "boundary": "Comparison",
+        "consumer": "TemplateCandidateReturn / L9 / 後続L5 fn4 fn7 builder",
+        "necessity": "既存public4memberのまま構成。"
+      }
+    ],
+    "legacy_rederivation": {
+      "source": [
+        {
+          "asset": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "read_lines": [
+            16,
+            92
+          ],
+          "file_bytes_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+        },
+        {
+          "asset": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "read_lines": [
+            30,
+            148
+          ],
+          "file_bytes_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "read_lines": [
+            65,
+            101
+          ],
+          "failures": [
+            "UTW-014",
+            "UTW-020",
+            "UTW-021"
+          ],
+          "file_bytes_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+          "asset": "LEGACY-ASSET-A127DEC3EEE6ED63CF17"
+        }
+      ],
+      "preserve": "JSON意味/owner/source原trace、計画印と実版分離、unknown非成功、局所原失敗/相反の保持。",
+      "change": "基本側はraw carrier projection、独立actual/trace/bilateral/全Ref出現membershipのclosed logical portと原source/index対応をAI技術選定する。private C3Evaluation/writerは後続詳細実現。旧整数version/runtime/registry/全体gateは移植しない。",
+      "reason": "既存F04/N01を実装可能な全返却/対oracleへ閉じるため。唯一現規範の復元とは言わず、上流意味や承認gateを増やさない。"
+    },
+    "limits": [
+      "基本logical port候補のみ。実資格provider/trustresolver/codec/候補実装の実行成立を認定しない。",
+      "本PR初回公開revisionに固定した7例のraw/validated/public Comparison/基本返却を保全する（対L9 prior_publication_basis）。それより古いlocal著述の真正性は未証明。typed index期待は本基本portの対検証であり、L5private型を基本必須引数にしない。",
+      "本7wholeと3membership全返却で行使しないcause及びvalidated.input=nullは対L9 finite_branch_coverageへ個別列挙する。未行使causeの競合優先・一般multiple-record集約の未閉包を全域成立又は成功へ補完せず、runtime/実装coverageと混同しない。"
+    ],
+    "public_source_inventory": {
+      "revision": "e45c49727263f2bceb3c8b7d832eff1510cdb9f8",
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "file_sha256": "3d3bda59edbdaef1fad80e9d6f8d8784d00775d6eb7bdb052cf48b3d70a0a196",
+      "role": "既存public形/元consumerのinventory/source。新基本schemaのnormative importではない。",
+      "public_shape_closure": "既存logical_input_structure/schema/$defsの全19public定義は同名literalをL4へ意味再導出。whole SupplyInputの非C3memberも変更せず保存する必要性をconsumer_tableへ記録。",
+      "private_import_count": 0
     }
   }
 }
