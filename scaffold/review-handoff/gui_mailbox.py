@@ -272,15 +272,11 @@ def active_work(data, worker, now):
     current = data.get("work", {}).get(worker)
     if not current:
         return None
-    message = data["messages"].get(current["event_id"])
-    if message is None:
-        acked = data.get("closed", {}).get(current["event_id"], {}).get("status") == "acked"
-    else:
-        if message["status"] in ("queued", "claimed") and message["expires"] <= now:
-            message["status"] = "expired"
-        acked = message["status"] == "acked"
-    if acked:
+    if current.get("acked_at") is not None:
         return current
+    message = data["messages"].get(current["event_id"])
+    if message is not None and message["status"] in ("queued", "claimed") and message["expires"] <= now:
+        message["status"] = "expired"
     if message is not None and message["status"] in ("queued", "claimed"):
         return current
     del data["work"][worker]
@@ -344,6 +340,10 @@ def ack(data, event_id, runtime, session, digest, nonce, now):
     p.require(message["digest"] == digest and message["claim"]["nonce"] == nonce, "ACK digest/nonce不一致")
     message["status"] = "acked"
     message["ack"] = dict(session=session, at=now)
+    current = data.get("work", {}).get(runtime)
+    if payload["kind"] == "work_request" and current and current["event_id"] == event_id:
+        # 着手した作業を割当側に記録する。終了通知の記録（closed）は24時間で消えるため、それに頼らない。
+        current["acked_at"] = now
 
 
 def retry(data, runtime, session, event_id, now):

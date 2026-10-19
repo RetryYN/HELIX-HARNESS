@@ -729,6 +729,17 @@ class GuiChecks(unittest.TestCase):
         with self.assertRaises(ValueError):
             g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, self.now + 2)
         self.assertEqual(self.data["work"]["devin"]["event_id"], "work-1")
+        # R2 F4: 終了通知の記録（closed）が保持期限で消えても、ACK済みの作業は結果かreleaseまで外れない。
+        later = self.now + 2 + g.CLOSED_RETENTION_SECONDS + 1
+        g.compact(self.data, later)
+        self.assertNotIn("work-1", self.data.get("closed", {}))
+        g.bind(self.data, "claude", "claude-gui", "review_merge", 60, later)
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, later)
+        with self.assertRaises(ValueError):
+            g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, later)
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-1")
+        g.release_work(self.data, "claude", "claude-gui", "devin", later)
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, later)
 
     def test_unclaimed_expired_work_frees_worker_without_waiting_retention(self):
         # R1 F3: 受け手が受け取らないまま期限を過ぎた依頼は、終了記録の保持期間を待たずに次の依頼を通す。
