@@ -887,192 +887,10 @@
         "return": "CoreF02ProviderReturnの順序をsource_frame, caller_inputs_read, call_capture, relation_observations, proposed_body, causesとする。全元captureと失敗原因を保持し、recordだけを省略/上書きしない。"
       },
       "closed_private_types": {
-        "fixed_existing_type_bindings": [
-          {
-            "label": "CoreJsonValue",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
-            "pointer": "/f05_detail_contract/types/CoreJsonValue",
-            "canonical_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2"
-          },
-          {
-            "label": "CoreJsonValueNative",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
-            "pointer": "/wire_codec_contract/numeric_encode_profile/private_host_types/CoreJsonValue",
-            "canonical_sha256": "45c22fbf9c62c45cde479e6ce67bf0df050376ccd5f3d41941d8f3ed3f6beaf6"
-          },
-          {
-            "label": "CoreRef",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
-            "pointer": "/f05_detail_contract/types/CoreRef",
-            "canonical_sha256": "56913bce08ec0d8ce7765564c7c358b275e3a5796e20be785ccacf458a7e6998"
-          },
-          {
-            "label": "CoreRead",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
-            "pointer": "/f05_detail_contract/types/Read",
-            "canonical_sha256": "9bf82653b27dc972e1bc0a111b90537fbfc5067e37eed1207da0c67e551c62ef"
-          },
-          {
-            "label": "CoreCause",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
-            "pointer": "/f05_detail_contract/types/Cause",
-            "canonical_sha256": "3be43e03de6360c1067a7b7bdc0d8c631ab8ef04d847c99d1cb09166fd9451d0"
-          },
-          {
-            "label": "CoreNatural",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
-            "pointer": "/type_contract/types/Natural",
-            "canonical_sha256": "1bf0a85f6bac07a88d2d21cbdc46bd05ff10d14064c2bd9795d6ea9094c1fc53"
-          },
-          {
-            "label": "CoreJSONPointer",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
-            "pointer": "/f05_detail_contract/types/JSONPointer",
-            "canonical_sha256": "c3f640125287565611f42a3ce0f4fe26b8ff4167de9c7fc7e91082998651eaac"
-          },
-          {
-            "label": "CallerInputs",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
-            "pointer": "/f05_detail_contract/types/CallerInputs",
-            "canonical_sha256": "3bb204dfd0b72ee78ac9429d8e194f696ff2fa0469b3b1a81c489055b1f5667e"
-          },
-          {
-            "label": "NativeProposalRecordDetailedReturn",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
-            "pointer": "/proposal_native_record_material_detail/private_types/NativeProposalRecordDetailedReturn",
-            "canonical_sha256": "f42f3c2d293ebb4c8688d44cfae533caaed939a4327c164321888deb35450d17"
-          },
-          {
-            "label": "CorePrivateWrapper",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
-            "pointer": "/proposal_native_record_material_detail/entry_points/private_wrapper",
-            "canonical_sha256": "c82c3e87416f3e0f1f50a56785ec3e075439e74ac27d28a3918fdf19fd702616"
-          },
-          {
-            "label": "TypedEquality",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
-            "pointer": "/wire_codec_contract/numeric_encode_profile/numeric_predicates/typed_equality",
-            "canonical_sha256": "c4d9b90c117d6c9cc753af8caf601e5c40425b3c72b79bdfc6b23f955c238ca5"
-          },
-          {
-            "label": "OSRef4",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
-            "pointer": "/type_contract/types/Ref",
-            "canonical_sha256": "5f0a1f37eca49818b7d24ec61c01072e344cade5ae675b4f991bef142f586d82"
-          },
-          {
-            "label": "OSField",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
-            "pointer": "/type_contract/types/Field",
-            "canonical_sha256": "0280be67218856131dc741aab3a2019e94517a61d6c3c1bdded2c2847af3ef53"
-          },
-          {
-            "label": "OSQualification",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
-            "pointer": "/type_contract/types/Qualification",
-            "canonical_sha256": "9f331aaca5cbad77f2d796338a77584fd22562527cc7b243b83a1e3fd8dccb80"
-          },
-          {
-            "label": "OSQualificationRoot",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
-            "pointer": "/type_contract/types/QualificationRoot",
-            "canonical_sha256": "20e59aaf7f82620ade4755fd78ac215306791539e5930c1520c5ae0735e42110"
-          },
-          {
-            "label": "OSInputIssue",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
-            "pointer": "/type_contract/types/InputIssue",
-            "canonical_sha256": "a732dfe94a199db1fffb1c2fe3a4af68072cb8e101bb11440aaa0f5644ea94d4"
-          },
-          {
-            "label": "OSSourceWalkOrigin",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
-            "pointer": "/type_contract/types/SourceWalkOrigin",
-            "canonical_sha256": "3e3e4385833051c7270915eb814ea8c2fbb666eed142e376ebc53e39204c7f2a"
-          },
-          {
-            "label": "OSQualificationRecordOrigin",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
-            "pointer": "/type_contract/types/QualifiedRecordOriginOccurrence",
-            "canonical_sha256": "98f5f7dd39b433cc5c3995802035d4757293bfd628c917c424015491c5266db3"
-          },
-          {
-            "label": "OSOwnerRecord",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
-            "pointer": "/type_contract/types/OwnerRecord",
-            "canonical_sha256": "fff889e7855afa5f25db859b62987b9ea2e25ac82ae2ab063b6daf24cc1e6084"
-          },
-          {
-            "label": "OSSourceSectionValue",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
-            "pointer": "/type_contract/types/SourceSectionValue",
-            "canonical_sha256": "538eb591a26cae26bb58ca01955ee17cf6b23bf574fca2354392640242543181"
-          },
-          {
-            "label": "OSSourceEnvelope",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
-            "pointer": "/type_contract/types/SourceEnvelope",
-            "canonical_sha256": "79ecf7664d626d40f1935ec595f42062ded37b73096dad5c66009b0172f7d6f2"
-          },
-          {
-            "label": "OSSourceQualificationRules",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
-            "pointer": "/reference_resolution_contract",
-            "canonical_sha256": "8f4b42300c173cb2e3afcadfbadaeb516debfc996c8b91696930e698591aa473"
-          },
-          {
-            "label": "OSSelectorDecodeRules",
-            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
-            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
-            "pointer": "/wire_codec_contract/selector_resolution",
-            "canonical_sha256": "4a96885c5b75dc2a4ca8a502e54cc0d699e1aa0f6f0c6ff78974ece0d4076c34"
-          }
-        ],
+        "fixed_existing_type_bindings": {
+          "source_pointer": "/source_basis/current_type_snapshot/bindings",
+          "copy_semantics": "同じL4 child内の既存type binding正本を参照し重複収載しない。"
+        },
         "aliases": {
           "CoreJsonValue": {
             "kind": "exact_existing_type",
@@ -1441,7 +1259,7 @@
             ],
             "fields": {
               "proposed_refs": "existing OS Ref[] (identity,revision,scope,owner)",
-              "proposed_source": "existing CORE Ref (six attributes)"
+              "proposed_source": "OSRef4 (independent operation payload value copied whole; no CoreRef6 conversion)"
             },
             "note_ja": "proposed_sourceは元operation payloadの独立CORE Ref値を全値copy。source_refとsubject_refから生成しない。"
           },
@@ -1668,26 +1486,10 @@
         "body_absence": "N enumeration coverage incompleteならnative_coverage_incomplete。選択したtarget source occurrenceがunqualifiedならselected_native_source_unqualified。どちらも有効な兄弟観測を保持する。",
         "total_failure": "raw source parse不能、operation source未資格/conflict/unresolved、role decode不能ではwrapperを呼ばない必要があるが、その全branchのtotal result型と完全な返却oracleはここでは定義しない。限定成功entryをこれらの成功型へ流用しない。"
       },
-      "failure_basis": [
-        {
-          "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
-          "lines": "65–101",
-          "failure": "UTW-014",
-          "effect": "欠落を空集合扱いしない。"
-        },
-        {
-          "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
-          "lines": "65–101",
-          "failure": "UTW-020",
-          "effect": "partial failureで有効な兄弟を失わない。"
-        },
-        {
-          "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
-          "lines": "65–101",
-          "failure": "UTW-021",
-          "effect": "件数/hash/自己申告でcoverageや資格を証明しない。"
-        }
-      ],
+      "failure_basis": {
+        "source_pointer": "/source_basis/source_and_failure_basis",
+        "semantic_note": "UTW-014/020/021と対応する防止理由はsource_basisに一度だけ記載する。"
+      },
       "unclosed": [
         "この候補はL5実装、閉じたnative codec、L8との実接続、実wrapper呼出し、OS受領/資格/記録/配送、ProductScope/ProjectScope/保存identityを成立させない。",
         "raw UTF-8 parse失敗・入力型外・qualification conflicting/unresolved・role decode不能のtotal result branchesは未定。",
