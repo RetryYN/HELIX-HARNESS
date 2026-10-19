@@ -101,9 +101,19 @@ def work_items(data, worker):
     return ([current] if current else []) + list(data.get("work_queue", {}).get(worker, []))
 
 
-def set_work_items(data, worker, items):
+def set_work_items(data, worker, items, now=None):
     work = data.setdefault("work", {})
     queue = data.setdefault("work_queue", {})
+    previous = work.get(worker)
+    if items and previous and previous["event_id"] != items[0]["event_id"] and now is not None:
+        promoted = items[0]
+        message = data.get("messages", {}).get(promoted["event_id"])
+        pending_ttl = promoted.pop("pending_ttl", None)
+        if (pending_ttl is not None and message and message.get("work_waiting") is True
+                and message["status"] in ("queued", "claimed")):
+            # Waiting time is not delivery time. Start its original one-shot TTL at FIFO promotion.
+            message["expires"] = now + pending_ttl
+            message.pop("work_waiting", None)
     if items:
         work[worker] = items[0]
         if len(items) > 1:
@@ -117,12 +127,12 @@ def set_work_items(data, worker, items):
         data.pop("work_queue", None)
 
 
-def remove_work(data, worker, event_id):
-    set_work_items(data, worker, [item for item in work_items(data, worker) if item["event_id"] != event_id])
+def remove_work(data, worker, event_id, now=None):
+    set_work_items(data, worker, [item for item in work_items(data, worker) if item["event_id"] != event_id], now)
 
 
 def prune_expired_work(data, worker, now):
-    """未ACK依頼の期限切れだけを割当から外す。ACK済み依頼は結果/releaseまで残す。"""
+    """有効期限後の未ACK先頭を外す。待機依頼は昇格後から期限を数え、ACK済みは結果/releaseまで残す。"""
     kept = []
     for item in work_items(data, worker):
         if item.get("acked_at") is not None:
@@ -131,19 +141,21 @@ def prune_expired_work(data, worker, now):
         message = data.get("messages", {}).get(item["event_id"])
         if message is None:
             continue
-        if message["status"] in ("queued", "claimed") and message["expires"] <= now:
+        waiting = message.get("work_waiting") is True
+        if message["status"] in ("queued", "claimed") and not waiting and message["expires"] <= now:
             message["status"] = "expired"
         if message["status"] in ("queued", "claimed"):
             kept.append(item)
-    set_work_items(data, worker, kept)
+    set_work_items(data, worker, kept, now)
 
 
 def close(data, event_id, status, now):
     # 本文（request・response）を消し、重複判定・再ACK照合に要る識別子だけを残す。
     message = data["messages"].pop(event_id)
     payload = message["payload"]
-    # 保持期間は実際に終わった時刻（ACK時刻、未ACKなら有効期限）から数え、溜まった古い記録を残し続けない。
-    ended = (message.get("ack") or {}).get("at") if status == "acked" else message["expires"]
+    # 保持期間は実際に終わった時刻（ACK時刻、期限切れなら期限、取消なら取消時刻）から数える。
+    ended = ((message.get("ack") or {}).get("at") if status == "acked"
+             else message["expires"] if status == "expired" else now)
     ended = min(now, ended if isinstance(ended, (int, float)) else now)
     claim = message.get("claim") or {}
     data.setdefault("closed", {})[event_id] = dict(
@@ -154,7 +166,7 @@ def close(data, event_id, status, now):
     request = payload["request"]
     if payload["kind"] == "work_request" and status != "acked":
         # 受け取られずに終わった作業依頼は着手されていない。次の依頼を止めない。
-        remove_work(data, payload["receiver_runtime"], event_id)
+        remove_work(data, payload["receiver_runtime"], event_id, now)
     # 監査記録は識別子と時刻だけ。依頼・応答の本文（purpose、scope、findings等）は書かない。
     return dict(event_id=event_id, kind=payload["kind"], status=status, digest=message["digest"],
                 sender_runtime=payload["sender_runtime"], sender_session=payload["sender_session"],
@@ -172,7 +184,7 @@ def compact(data, now):
     for event_id, message in list(data["messages"].items()):
         if message["status"] in TERMINAL:
             records.append(close(data, event_id, message["status"], now))
-        elif message["expires"] <= now - CLOSED_RETENTION_SECONDS:
+        elif message.get("work_waiting") is not True and message["expires"] <= now - CLOSED_RETENTION_SECONDS:
             # 宛先sessionが交代してclaimされない通知も、表示上のexpiredを保持期間だけ見せた後に閉じる。
             records.append(close(data, event_id, "expired", now))
     closed = data.get("closed", {})
@@ -276,14 +288,14 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now):
     previous = data["messages"].get(event_id)
     if previous:
         p.require(previous["digest"] == digest, "同じevent IDの異なるpayload")
-        if previous["expires"] <= now and previous["status"] != "acked":
+        if previous.get("work_waiting") is not True and previous["expires"] <= now and previous["status"] != "acked":
             previous["status"] = "expired"
         return previous
     # 同じ依頼・同じ応答を別IDで再送してもGUIを再起動させない。
     for message in data["messages"].values():
         old = message["payload"]
         if all(old[key] == payload[key] for key in ("kind", "sender_session", "receiver_session", "request", "response")):
-            if message["expires"] <= now and message["status"] != "acked":
+            if message.get("work_waiting") is not True and message["expires"] <= now and message["status"] != "acked":
                 message["status"] = "expired"
             return message
     key = content_key(payload)
@@ -300,10 +312,20 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now):
         # session交代などで通常dedupeを通らない同一依頼の二重積みを防ぐ。
         p.require(not any(item["payload_sha256"] == request["payload_sha256"] and item["dispatcher"] == runtime
                           for item in items), "同じ作業依頼が未完了")
-        items.append(dict(event_id=event_id, request_id=request["request_id"],
+        waiting = target_runtime == "devin" and bool(items)
+        item = dict(event_id=event_id, request_id=request["request_id"],
                           payload_sha256=request["payload_sha256"], issue=request["issue"],
-                          dispatcher=runtime, since=now))
-        set_work_items(data, target_runtime, items)
+                          dispatcher=runtime, since=now)
+        if waiting:
+            item["pending_ttl"] = ttl
+        items.append(item)
+        set_work_items(data, target_runtime, items, now)
+        message = dict(payload=payload, digest=digest, created=now, expires=now + ttl,
+                       status="queued", claim=None, ack=None)
+        if waiting:
+            message["work_waiting"] = True
+        data["messages"][event_id] = message
+        return message
     elif kind == "work_result":
         # 結果は完全に一致する割当だけを外す。受信後・ACK前の結果でも元通知を残さず、後からの重複配送を防ぐ。
         matching = next((item for item in work_items(data, runtime)
@@ -312,8 +334,9 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now):
         if matching:
             original = data.get("messages", {}).get(matching["event_id"])
             if original and original["status"] in ("queued", "claimed"):
-                original["status"] = "expired" if original["expires"] <= now else "cancelled"
-            remove_work(data, runtime, matching["event_id"])
+                original["status"] = ("cancelled" if original.get("work_waiting") is True
+                                       else "expired" if original["expires"] <= now else "cancelled")
+            remove_work(data, runtime, matching["event_id"], now)
     message = dict(payload=payload, digest=digest, created=now, expires=now + ttl,
                    status="queued", claim=None, ack=None)
     data["messages"][event_id] = message
@@ -321,8 +344,8 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now):
 
 
 def active_work(data, worker, now):
-    """作業側の現在の割当。受け取られないまま期限を過ぎた依頼は、終了記録の保持期間を待たずに外す。
-    ACK済みの依頼は期限では外さず、作業結果か明示releaseで外す。"""
+    """作業側の現在の割当。待機依頼は先頭へ昇格してからTTLを数える。
+    未ACK先頭は期限で外し、ACK済み依頼は作業結果か明示releaseまで保持する。"""
     prune_expired_work(data, worker, now)
     items = work_items(data, worker)
     return items[0] if items else None
@@ -345,7 +368,7 @@ def release_work(data, runtime, session, worker, now, event_id=None):
     if message is not None and message["status"] in ("queued", "claimed"):
         # 取り下げた依頼を後から配送・ACKさせない。cancelledは既存の終了記録・監査記録の経路で閉じる。
         message["status"] = "cancelled"
-    remove_work(data, worker, selected["event_id"])
+    remove_work(data, worker, selected["event_id"], now)
 
 
 def claim(data, runtime, session, now):
@@ -357,6 +380,8 @@ def claim(data, runtime, session, now):
         if payload["receiver_runtime"] != runtime or payload["receiver_session"] != session:
             continue
         if message["status"] in ("acked", "expired", "cancelled"):
+            continue
+        if message.get("work_waiting") is True:
             continue
         if message["expires"] <= now:
             message["status"] = "expired"
@@ -378,7 +403,8 @@ def claim(data, runtime, session, now):
 
 def effective_status(message, now):
     # 期限切れの記録は宛先sessionのclaim時にしか付かない。statusは読取専用のまま、期限超過の未ACKをexpiredと表示する。
-    if message["status"] in ("queued", "claimed") and message["expires"] <= now:
+    if (message["status"] in ("queued", "claimed") and message.get("work_waiting") is not True
+            and message["expires"] <= now):
         return "expired"
     return message["status"]
 

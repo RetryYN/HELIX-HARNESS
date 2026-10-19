@@ -746,15 +746,80 @@ class GuiChecks(unittest.TestCase):
             g.send(self.data, "claude", "claude-gui", "work-duplicate", "work_request", work, None, 60, self.now)
         self.assertEqual([item["event_id"] for item in g.work_items(self.data, "devin")], ["work-1"])
 
-    def test_all_expired_unacked_queue_entries_free_slots(self):
+    def test_waiting_queue_ttl_starts_once_on_promotion(self):
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
         for number, ttl in ((1, 1), (2, 1), (3, 60)):
             request = self.work(request_id=f"WORK-{number}")
             g.send(self.data, "claude", "claude-gui", f"work-{number}", "work_request", request, None, ttl, self.now)
         claimed = g.claim(self.data, "devin", "devin-gui", self.now + 2)
-        self.assertEqual(claimed["payload"]["event_id"], "work-3")
-        self.assertEqual([item["event_id"] for item in g.work_items(self.data, "devin")], ["work-3"])
-        self.assertEqual([self.data["messages"][f"work-{number}"]["status"] for number in (1, 2)], ["expired", "expired"])
+        self.assertEqual(claimed["payload"]["event_id"], "work-2")
+        self.assertEqual([item["event_id"] for item in g.work_items(self.data, "devin")], ["work-2", "work-3"])
+        self.assertEqual(self.data["messages"]["work-1"]["status"], "expired")
+        self.assertEqual(self.data["messages"]["work-2"]["expires"], self.now + 3)
+        self.assertNotIn("work_waiting", self.data["messages"]["work-2"])
+        self.assertTrue(self.data["messages"]["work-3"].get("work_waiting"))
+        third = g.claim(self.data, "devin", "devin-gui", self.now + 3)
+        self.assertEqual(third["payload"]["event_id"], "work-3")
+        self.assertEqual(self.data["messages"]["work-3"]["expires"], self.now + 63)
+
+    def test_waiting_work_survives_ttl_compaction_and_gets_fresh_one_shot_window(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        first, second = self.work(request_id="WORK-1"), self.work(request_id="WORK-2")
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", first, None, 1, self.now)
+        head = g.claim(self.data, "devin", "devin-gui", self.now)
+        g.ack(self.data, "work-1", "devin", "devin-gui", head["digest"], head["claim"]["nonce"], self.now)
+        waiting = g.send(self.data, "claude", "claude-gui", "work-2", "work_request", second, None, 1, self.now)
+        original_expiry = waiting["expires"]
+        late = self.now + g.CLOSED_RETENTION_SECONDS + 20
+        g.compact(self.data, late)
+        self.assertIn("work-2", self.data["messages"])
+        self.assertEqual(g.effective_status(waiting, late), "queued")
+        self.assertEqual(waiting["expires"], original_expiry)
+        g.bind(self.data, "claude", "claude-gui", "review_merge", 60, late)
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, late)
+        self.assertIsNone(g.claim(self.data, "devin", "devin-gui", late))
+        # Same-event retries cannot expire or extend the waiting request.
+        duplicate = g.send(self.data, "claude", "claude-gui", "work-2", "work_request", second, None, 60, late)
+        self.assertIs(duplicate, waiting)
+        self.assertEqual(waiting["expires"], original_expiry)
+        g.release_work(self.data, "claude", "claude-gui", "devin", late, "work-1")
+        self.assertEqual(waiting["expires"], late + 1)
+        self.assertNotIn("work_waiting", waiting)
+        self.assertNotIn("pending_ttl", self.data["work"]["devin"])
+        self.assertEqual(g.claim(self.data, "devin", "devin-gui", late)["payload"]["event_id"], "work-2")
+        g.prune_expired_work(self.data, "devin", late + 2)
+        self.assertEqual(waiting["status"], "expired")
+        self.assertNotIn("devin", self.data["work"])
+
+    def test_nonhead_result_cancels_only_matching_waiting_item_at_current_time(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        requests = [self.work(request_id=f"WORK-{number}") for number in (1, 2, 3)]
+        for number, request in enumerate(requests, 1):
+            g.send(self.data, "claude", "claude-gui", f"work-{number}", "work_request", request, None, 1, self.now)
+        head = self.data["work"]["devin"]
+        third = copy.deepcopy(self.data["work_queue"]["devin"][1])
+        late = self.now + g.CLOSED_RETENTION_SECONDS + 5
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, late)
+        g.send(self.data, "devin", "devin-gui", "result-2", "work_result", requests[1],
+               self.result(requests[1]), 60, late)
+        self.assertEqual(self.data["work"]["devin"], head)
+        self.assertEqual(self.data["work_queue"]["devin"], [third])
+        self.assertEqual(self.data["messages"]["work-2"]["status"], "cancelled")
+        records = g.compact(self.data, late)
+        closed = next(record for record in records if record["event_id"] == "work-2")
+        self.assertEqual(closed["closed"], late)
+        self.assertNotIn("work_waiting", self.data["messages"]["work-3"])
+        self.assertEqual(self.data["messages"]["work-3"]["expires"], late + 1)
+
+    def test_unauthorized_release_of_specific_queued_devin_work_is_rejected(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        for number in (1, 2):
+            g.send(self.data, "claude", "claude-gui", f"work-{number}", "work_request",
+                   self.work(request_id=f"WORK-{number}"), None, 1, self.now)
+        before = copy.deepcopy((self.data["work"], self.data["work_queue"], self.data["messages"]))
+        with self.assertRaisesRegex(ValueError, "release権限"):
+            g.release_work(self.data, "codex", "codex-gui", "devin", self.now, "work-2")
+        self.assertEqual((self.data["work"], self.data["work_queue"], self.data["messages"]), before)
 
     def test_legacy_singleton_work_state_accepts_devin_queue_extension(self):
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
@@ -853,9 +918,9 @@ class GuiChecks(unittest.TestCase):
         g.bind(self.data, "devin", "devin-gui", "worker", 60, later)
         g.send(self.data, "claude", "claude-gui", "work-2", "work_request", second, None, 60, later)
         self.assertEqual(self.data["work"]["devin"]["event_id"], "work-1")
-        g.release_work(self.data, "claude", "claude-gui", "devin", later)
+        g.release_work(self.data, "claude", "claude-gui", "devin", later, "work-1")
         g.send(self.data, "claude", "claude-gui", "work-3", "work_request", self.work(request_id="WORK-3"), None, 60, later)
-        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-3")
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-2")
 
     def test_unclaimed_expired_work_frees_worker_without_waiting_retention(self):
         # R1 F3: 受け手が受け取らないまま期限を過ぎた依頼は、終了記録の保持期間を待たずに次の依頼を通す。
