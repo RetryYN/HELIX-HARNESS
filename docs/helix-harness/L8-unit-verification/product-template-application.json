@@ -156908,11 +156908,31 @@
           "F03": "positive support payload shapeを参照するがbodyは合成しない"
         },
         "expected": {
+          "structural_conclusion_ja": "記載された入力はplanned_minimal_delta_not_full_goldenであり、具体的な型・原source・operand対応の欠落または不一致を示す物化済み値ではない。この記述だけからapplicationをunformedとは確定しない。",
+          "conditional_local_unformed_ja": "入力が具体化され、L5の必須profile、選択F03出現またはCORE operand出現の欠落・型不一致・対応不一致が観測されたとき、その実際の原因に限り既存の局所unformed経路で扱う。",
+          "all_typed_consistent_ja": "typed構造・原source・operand対応が全て整合する入力について、known/approvedという文字列やpropositionのRawValueだけからknownまたはunformedを導かない。",
+          "reader_writer_boundary_ja": "readerのpresentはowner writerの意味形成を示さない。原propositionの自然文が意味的に十分かを自動判定する期待は、現L5からは確定できず未解決である。",
           "relation": "保持",
           "F03_support": "raw whole保持",
-          "application_statement": "meaningを示す内容がないためunformed",
-          "applied_definition": "knownを発行しない",
           "presence_as_truth": "false"
+        },
+        "original_semantic_concern": {
+          "status": "unresolved_not_a_current_fixed_expected",
+          "source": {
+            "revision": "eeb66cca3a642c6f7631d9942a3b0900a0113add",
+            "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+            "pointer": "/selected_brain_field_definition_application_detail_verification/cases/1",
+            "file_sha256": "67b51ef33dfa4185ee90bce25f3b930a1fd9692ab8ee899982be1073ed9bf092",
+            "canonical_sha256": "5057acf7a78bca05976bea81fbcd2539e1590373aee0f27e15e6a9bcb430fe54"
+          },
+          "original_expected": {
+            "relation": "保持",
+            "F03_support": "raw whole保持",
+            "application_statement": "meaningを示す内容がないためunformed",
+            "applied_definition": "knownを発行しない",
+            "presence_as_truth": "false"
+          },
+          "handling_ja": "元期待は歴史的懸念として全member保持する。現L5の構造観測で裏付けられない自然文semantic判定を、現在の確定oracleとして扱わない。"
         }
       },
       {
@@ -156931,10 +156951,30 @@
           "core_product_role": "別Refのanalysis_result_idだがstatement内で適用関係を述べない"
         },
         "expected": {
+          "structural_conclusion_ja": "このplanned inputの自然文記述だけでは、物化済みowner_action、product_role、support occurrence、operand対応の具体値がない。従って、入力の語句反復だけをunformedの確定条件にしない。",
+          "conditional_local_unformed_ja": "具体化された入力で必要なowner_action/product_role/support/operand出現が欠落する、または選択された原出現とのpointer・index・scope対応が不一致なら、その観測可能な構造原因に限り局所unformedを判定できる。",
+          "all_typed_consistent_ja": "必要なtyped linksと原出現対応が整合している場合、generic本文の逐語反復だけを失敗としない。反復を成功根拠にも失敗根拠にもするNLP判定は置かず、known/unformedを自然文だけから発明しない。",
+          "reader_writer_boundary_ja": "readerが文やroleの構造をpresentとして返すことは、owner writerが適用意味を形成した証拠ではない。意味的な十分性の原懸念は別途未解決として保持する。",
           "generic_definition": "原source/read/supportとして保持",
           "core_product_field": "別identityで保持",
-          "applied_definition": "製品roleへの適用を表していないためunformed",
           "equal_text_or_index": "mapping根拠にしない"
+        },
+        "original_semantic_concern": {
+          "status": "unresolved_not_a_current_fixed_expected",
+          "source": {
+            "revision": "eeb66cca3a642c6f7631d9942a3b0900a0113add",
+            "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+            "pointer": "/selected_brain_field_definition_application_detail_verification/cases/2",
+            "file_sha256": "67b51ef33dfa4185ee90bce25f3b930a1fd9692ab8ee899982be1073ed9bf092",
+            "canonical_sha256": "42ac884ba3e32749c887c6bb39e2f416196d9ca2a6ba801a6932ce1b814c521a"
+          },
+          "original_expected": {
+            "generic_definition": "原source/read/supportとして保持",
+            "core_product_field": "別identityで保持",
+            "applied_definition": "製品roleへの適用を表していないためunformed",
+            "equal_text_or_index": "mapping根拠にしない"
+          },
+          "handling_ja": "元期待は歴史的懸念として全member保持する。現L5の構造観測で裏付けられない自然文semantic判定を、現在の確定oracleとして扱わない。"
         }
       },
       {
@@ -157440,7 +157480,17 @@
       "semantic_port": "S2の意味入力/reader portとleaf writer全体はL5設計で確定する。このL8期待は入力の意味、分岐の区別、独立oracleを固定し、実装signatureを先取りしない。",
       "execution": "未実行。runtime、製品意味program、test、CIを起動していない。",
       "authority": "実ownerの認可、source資格、配送、承認、適用、受入、要求変更を示さない。",
-      "scope_ja": "この未物質化表は既存P1/N1–N6およびfull applied flowを対象とする。reader_probe_gap/direct_reader_finite_casesの独立した直接reader2caseは全入力/全返却recipeを収録済みだが未実行。"
+      "scope_ja": "この未物質化表は既存P1/N1–N6およびfull applied flowを対象とする。reader_probe_gap/direct_reader_finite_casesの独立した直接reader2caseは全入力/全返却recipeを収録済みだが未実行。",
+      "unresolved_semantic_concerns": [
+        {
+          "case_ids": [
+            "N1-STRUCTURE-PRESENT-STATE-ONLY",
+            "N2-GENERIC-TEXT-REPEATED-NO-PRODUCT-ROLE"
+          ],
+          "status": "unresolved_not_replaced_by_structural_missing_case",
+          "reason_ja": "N1/N2の原semantic懸念は各caseのoriginal_semantic_concernへ元期待全値と固定来歴を保全した。具体的なtyped/source/operand欠落・不一致なら現L5の局所unformed経路で検証可能だが、その簡単な構造欠落を元懸念の代替としない。全typed対応が整った場合も自然文の意味だけからknown/unformedを確定しない。"
+        }
+      ]
     },
     "not_required": [
       "全descriptor role/fieldや全knowledge sourceを一律gateにすること。",
