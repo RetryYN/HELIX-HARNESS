@@ -49998,11 +49998,12 @@
           "value": "{\"adapter_revision\":\"consumer-adapter-r1\",\"artifact_digest\":\"consumer-artifact-digest-r1\",\"contract_revision\":\"OTHER-FIXED-CONTRACT\",\"dependency_revision\":\"common-pack-r1\",\"endpoint_identity\":\"ENDPOINT-consumer\",\"mechanism_revision\":\"consumer-mechanism-r1\",\"transport_revision\":\"consumer-transport-r1\"}"
         },
         {
-          "op": "replace",
-          "path": "/original_fixed_bytes_after",
-          "value": "{\"adapter_revision\":\"consumer-adapter-r1\",\"artifact_digest\":\"consumer-artifact-digest-r1\",\"contract_revision\":\"OTHER-FIXED-CONTRACT\",\"dependency_revision\":\"common-pack-r1\",\"endpoint_identity\":\"ENDPOINT-consumer\",\"mechanism_revision\":\"consumer-mechanism-r1\",\"transport_revision\":\"consumer-transport-r1\"}"
+          "op": "copy",
+          "from": "/original_fixed_bytes_before",
+          "path": "/original_fixed_bytes_after"
         }
       ],
+      "raw_json_patch_contract": "op0のliteralを保持し、op1のみ標準RFC6902 copy（from=/original_fixed_bytes_before, path=/original_fixed_bytes_after）を受ける局所契約。独自op・resolver・DSLは追加せず、先行op順を保持する。",
       "expected_material": {
         "retained_kind": "SOURCE-MECHANISM",
         "retained_changed_before": {
