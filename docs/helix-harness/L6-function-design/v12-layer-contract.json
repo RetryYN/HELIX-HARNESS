@@ -365,23 +365,23 @@
     "paired_verification_ref": "HARNESS-L7-001-PURE-REPEAT"
   },
   "return_contract_detail": {
-    "authority_and_scope_ja": "この節はL5 /types、/common_contract、/finding_classification、/functions/0、/functions/1、/functions/2を関数設計へ具体化する。input/output record・enum・Finding code・owner authorityを追加しない。inputは未信頼、Contextは別のtyped immutable owner-qualified snapshotというL5前提を保つ。Contextのsource recordが欠ける/validityがmissing等はsoft未成立として既存Findingへ写し、構造的に不正な公開inputはinvalid/value=null。Context内部不正を公開input Refで捏造せず、typed前提外はcaller側の構成責務に返す。 ArtifactClaim tupleの元位置は意味locatorとして保持し、RefSet・layer_universe・pairsは集合として扱う。X02の順序反転は各kindの正規化規則保証と同一視しない。",
+    "authority_and_scope_ja": "この節はL5 /types、/common_contract、/finding_classification、/functions/0、/functions/1、/functions/2を関数設計へ具体化する。input/output record・enum・Finding code・owner authorityを追加しない。inputは未信頼、Contextは別のtyped immutable owner-qualified snapshotというL5前提を保つ。Meaning tupleは空を許し、該当Meaningの不在/validity=missing等は既存Findingへ写す。Evidence tupleは5 signal各1件というtyped前提を持ち、record不在とstate=missingを区別する。前者やContext内部不正はcaller側の構成責務であり、公開inputのinvalidや架空locatorへ写さない。構造的に不正な公開inputはinvalid/value=null。ArtifactClaim tupleの元位置は意味locatorとして保持し、RefSet・layer_universe・pairsは集合として扱う。X02の順序反転は各kindの正規化規則保証と同一視しない。",
     "result_shell_ja": {
       "invalid": "全input tuple/memberの型・field・閉record検査を行い、既存input_invalidを保持してvalue=null。invalid inputから一部valueを作らない。",
       "non_invalid": "既存の閉じたoutput全fieldを構成できる既知部分を返し、影響を受けた対象のみ未解決へ移す。outcomeは既存Finding分類をinvalid>conflict>stale>unknown>incomplete>satisfiedで集約する。Findingが0件でも外部authority/運転成立は含意しない。"
     },
     "finding_fields": {
       "code": "L5 /finding_classificationにある既存codeだけを使用する。型/field違反=input_invalid、Refの状態=reference_missing/unknown/conflict/stale、内容照合不能=content_unproven、canonical集合差=layer_universe_mismatchまたはpair_mismatch、意味差=artifact_meaning_mismatch、同identity多義=artifact_identity_conflict、実装trace欠落=implementation_trace_missing、B01のauthority推測=authority_inferred、未観測実検証=verification_unobserved。 非null implementation traceとcurrent Meaningの矛盾はreference_conflict。",
-      "pointer": "公開inputの原因fieldまたは最小原因集合。B01 claimed_evidenceのsignal原因は入力配列の固定indexでなく、signal名を照合して特定した元位置 /claimed_evidence/{original-index} を使う。ArtifactClaim tupleは元位置locatorを保つ。F01 layer_universe=/layer_universe、pair集合=/pairs、単独right=/pairs/{元index}/right、artifact mismatch=/artifacts/{元index}/{field}、重複identity=/artifacts、trace欠落=/artifacts/{元index}/{implementation_design_ref|implementation_test_ref}、anchor=/charter_refまたは/concept_ref。Contextだけが原因のときはinput root locator \"\"。/contextという仮想fieldは作らない。",
-      "subject_ref": "F01のartifact意味/trace所見はその有効artifact_ref、誤anchorは有効な入力anchor Refを使う。層/pair集合差、型不正で安全なRefがないときはContext.subject_ref。F01二重identityは二つの有効artifact Refを各原因packetに一つずつ対応付け、同じidentityの意味衝突をRefSetへ結合しない。B01 state比較はContext側Evidence.subject_refを使い、別対象のclaim Refは別所見subjectとして保持する。入力Refが不正ならContext.subject_ref。",
+      "pointer": "公開inputの原因fieldまたは最小原因集合。B01 claimed_evidenceのsignal原因は入力配列の固定indexでなく、signal名を照合して特定した元位置 /claimed_evidence/{original-index} を使う。ArtifactClaim tupleは元位置locatorを保つ。F01 layer_universe=/layer_universe、pair集合=/pairs、単独right=/pairs/{元index}/right、artifact mismatch=/artifacts/{元index}/{field}、重複identity=/artifacts、trace欠落=/artifacts/{元index}/{implementation_design_ref|implementation_test_ref}、anchor=/charter_refまたは/concept_ref。Contextだけが原因のときはinput root locator \"\"。/contextという仮想fieldは作らない。 状態表のclaim/Context比較所見はContext側のみのcodeや同code合流も元claim index。content_unprovenなどContextのみの内容所見はinput rootとし、F01 artifact source所見はcause mapのartifact locatorを使う。",
+      "subject_ref": "F01のartifact意味/trace所見はその有効artifact_ref、誤anchorは有効な入力anchor Refを使う。層/pair集合差および全input_invalidのsubjectはContext.subject_ref。不正memberに隣接するRefをsubjectへ採らない。F01二重identityは元claim行ごとに有効artifact_refをsubjectへ対応付ける。B01 state比較はContext側Evidence.subject_refを使い、別対象のclaim Refは別所見subjectとして保持する。",
       "requirement_ref": "F01の全FindingはHARNESS-L3-001-F01、B01の全FindingはHARNESS-L3-001-B01。B01内部でF01相当を再照合しても公開B01 callのFindingをF01 requirementへ付け替えない。",
       "backflow_owner": "F01の層/pair/input/return contract、B01の投影・照合規則という論理修正先はHARNESS-L2-001。HARNESS-L2-040はcatalog契約そのものの意味差分がsourceで特定された原因だけ、HARNESS-L2-056はpair-result契約そのものの意味差分が特定された原因だけに用いる。001は論理修正候補の宛先でありauthority issuer/recipientではない。欠落authorityの実担当、issuer、実recipientをこの関数から推定しない。",
-      "evidence_refs": "供給済みRefからどのRefを各causeのFindingへ含めるかは、cause別候補と未解決境界をfinding_cause_mapに示す。共通の未凍結条件はevidence_selection_policy_jaを参照。"
+      "evidence_refs": "finding_cause_mapのfield選択を厳密なmembershipとして適用し、finding_evidence_packet_rulesで正規化・分割する。未供給Refは作らず、current_roots/source_check_refsを暗黙に補わない。"
     },
     "finding_evidence_packet_rules": [
-      "RefSetのkeyはidentity/revision/owner/scope。Refの比較順はidentity/revision/owner/scope/content_sha256のUnicode code point昇順で、RefSet自体に意味順を付けない。input RefSetの同key重複は同digestでもinput_invalidとして先に検出し、出力正規化で不正を隠さない。 以下のpacket規則は、原因別の厳密なmembershipが別途凍結され、候補から採るRefが選択された後にだけ適用する。候補列挙を選択規則に読み替えない。",
-      "選択済みの一原因packet内で同key・同digestの供給Refは一つへ束ねる。同key・異digestが選択された場合は一つのFinding.evidence_refsへ混ぜない。input側RefとContext側Refを別packetへ分けて両側を保持する具体ルールは、原因別selectionと同時に凍結する。現段階では正当化なく双方を選択/unionせず、実装者の「実際使った」判断で決めない。",
-      "原因別のpacket selectionが将来複数の同key衝突を含むと明示された場合は、衝突key・各側単位の固定packetとし、異なる衝突keyのCartesian展開をしない。現L5 Contextには選択根拠のcause relationがないため、この分割の適用範囲・membership自体は未凍結。"
+      "RefSetのkeyはidentity/revision/owner/scope。Refの比較順はidentity/revision/owner/scope/content_sha256のUnicode code point昇順。入力RefSetの同key重複は同digestでもinput_invalidとして先に検出し、出力正規化で不正を隠さない。以下は一つの原因についてfinding_cause_mapから選択したRefだけに適用する。",
+      "選択Refを全5 field同値で一つへ束ね、keyごとに異なるdigestを数える。digestが一つのkeyのRef全体を共通集合とする。衝突keyがなければ共通集合をRef順にした一つのFindingを返す。選択Refが空でもevidence_refs=[]のFinding一つを返す。",
+      "衝突keyがある場合は、各衝突keyの各digestのRefごとに、共通集合とそのRefだけを含むFindingを一つ返す。別の衝突keyはそのkey自身のpacketで表す。全選択Refを少なくとも一つのpacketへ保持し、key間のCartesian展開やzip対応をしない。同じ原因の各packetはcode/pointer/subject_ref/requirement_ref/backflow_ownerを保持し、最終Finding順はfinding_orderによる。"
     ],
     "finding_order": [
       "code",
@@ -395,7 +395,7 @@
       "requirement_ref",
       "evidence_refsのRef sort key tuple"
     ],
-    "finding_duplicates": "上記sort keyで並べ、全6fieldが完全一致するFindingも重複除去しない。異なるowner/evidence/対象はすべて保持する。原因分類・pointer系列・subjectの代替・requirement_ref・論理修正先を上記で指定する。証拠packetの厳密な構成とContextだけにあるsourceの選択は未解決で、全6fieldの対応は未凍結である。同key異digestの両側をどう選ぶかも含み、完全なFinding constructorの凍結を主張しない。",
+    "finding_duplicates": "上記sort keyで並べ、全6fieldが完全一致するFindingも異なる独立原因に由来するなら重複除去しない。同じmatrix cellの同一codeがclaimとContextの双方のstateから生じた場合は一原因とし、両側のfield集合を選択してpacket分割する。別のtrace fieldや別claim行の原因は合成しない。membershipの具体化を、全入力・全返却oracleの凍結や全原因分類の全域証明とは扱わない。 B01 subject Ref不一致の二原因はcause mapのsubject/pointer規則で分離し、同一cell同codeの合流を別subjectへ適用しない。",
     "f01": {
       "precondition_ja": "公開inputはL5 F01の閉recordで全5 field必須。ContextはL5のtyped immutable owner-qualified snapshotとして呼出し側から供給される。snapshot内の該当Meaningがmissing/unknown/stale/conflictならinvalidにせず既存soft Findingを返す。 ArtifactClaim.layer/paired_layerはTextとして型検査されるため、L0等の不正な層文字列は構造invalidではなく、current Meaningとの不一致を既存conflict Findingで返す。",
       "return_rule_ja": "correspondencesはArtifactClaim tupleの元順を保つ安定filterであり、当該行のartifact_ref/kind/layer/pair/traceの全てがcurrent Meaningとcanonical層・pairへ一致する行だけを含む。既知Meaningとclaim/traceが食い違う行、同identity多義の全当該行はcorrespondencesから除き、その有効Refをunresolved_artifact_refsへ保持する。Meaning自体が未解決の行も一件も出さずunresolvedへ置く。別artifactの独立して正しい行は保持する。十二層/六pairのglobal集合差はFindingを返すが、それだけで独立した正しいartifact行を一括削除しない。 layer_universeとpairsはunordered集合として照合し、集合内の順序変更を意味差にしない。ArtifactClaim tupleは集合化せず元位置locatorと順序を保持する。",
@@ -590,24 +590,24 @@
         }
       },
       "state_overlay_ja": [
-        "25セル表はstate文字列だけの比較ではない。先にsignal identityとsubject_refのidentity/revision/owner/scope、evidence_refsとcontent_check_refsの照合対象を比較し、同一対象である場合だけ基底state表を適用する。subject違いまたは同revision異digest等の実Ref相反は当該signalだけ返却conflict＋reference_conflictとし、別対象のContext currentを流用しない。古い対象revisionは当該signalのreference_stale。 claim Evidence tupleの入力順は未規定であり、signal indexを固定値としない。",
-        "Context record欠落またはvalidity=missingはreference_missing等のsoft未成立。公開inputのsignal重複/欠落、必須field/enum型不正はinput_invalid/value=null。Context内部がtyped immutable premiseに反する場合、input Refや架空locatorで代用しない。",
+        "25セル表はstate文字列だけの比較ではない。先にsignal identityとsubject_refのidentity/revision/owner/scope、evidence_refsとcontent_check_refsの照合対象を比較し、同一対象である場合だけ基底state表を適用する。subject違いまたは同revision異digest等の実Ref相反は当該signalだけ返却conflict＋reference_conflictとし、別対象のContext currentを流用しない。古い対象revisionは当該signalのreference_stale。 claim Evidence tupleの入力順は未規定であり、signal indexを固定値としない。 subject Ref自体の不一致は両subject別の二原因としてcause mapに従い、各原因へ同じ両側証拠集合を選択する。状態表の比較codeは、同codeを合流する場合もsignal対応する元claim位置をpointerとする。",
+        "Context Evidence recordの不在は5 signal各1件というtyped premise違反であり、この関数のsoft Resultを作らずcaller側へ返す。供給されたEvidence.state=missingは既存state表のsoft未成立。公開inputのsignal重複/欠落、必須field/enum型不正はinput_invalid/value=null。Meaning record不在とEvidence record不在を混同しない。",
         "Context Evidenceのcurrentはowner-qualified immutable snapshotとして供給された事実を前提にする。空の根拠Ref/content_check_refsでcurrent内容を照合できない場合は返却state=missing＋content_unproven。非空Refやhashの存在だけでContext qualification/内容照合が成立したとはみなさない。L6はrefsの外側にある未定義raw bodyや評価器を参照しない。",
-        "actual_verificationのContextがdesign-only、またはactual oracle・対象実行・実観測の内容照合が無い場合は返却missing＋verification_unobserved。claim=currentかつContext missingのときはverification_unobservedに加えauthority_inferredを保持し、Context record自体の欠落が原因ならreference_missingも保持する。異なる既存codeを「同じ未観測」として省かない。",
-        "現行L5の意味でstate自体が非currentならそのstateを返し、missing_signalsに加えるのは返却state=missingのみ。unknown/stale/conflictはevidence_statesとFindingに残し、missingへ丸めない。返却evidence_statesはL5 Signal宣言順。入力claimed_evidenceの各signal要素とContext recordの一致はsignal名・対象・owner・revision・scopeによる。各evidence_refsの厳密な出所/選択は未凍結項目を参照。"
+        "actual_verificationのContextがdesign-only、またはactual oracle・対象実行・実観測の内容照合が無い場合は返却missing＋verification_unobserved。claim=currentかつContext state=missingのときはverification_unobservedに加えauthority_inferredを保持する。異なる既存codeを「同じ未観測」として省かない。Context recordの不在はtyped premise違反であり、このsoft所見の追加条件にしない。",
+        "現行L5の意味でstate自体が非currentならそのstateを返し、missing_signalsに加えるのは返却state=missingのみ。unknown/stale/conflictをmissingへ丸めない。返却evidence_statesはL5 Signal宣言順。各evidence_refsはsignal名で特定したContext Evidence.evidence_refsだけの正規化コピーとし、claim refsもcontent_check_refsも加えない。state downgrade、missing/unknown/stale/conflict、subject不一致でも供給されたContext Refを診断用snapshotとして保持する。これはRefのcurrent資格・authority・内容成立の認定ではない。"
       ],
       "partial_value_ja": "層対応recordは未信頼入力として再検査する。完全一致するcorrespondence行は元順で保持し、誤った行はそのartifact Refをunresolved_artifact_refsへ移し、既存unresolved refsも保持する。他の正しい行をauthority signal不足で消さない。5 evidence_statesはsignal宣言順で全件を返し、各stateはContext由来の既知値を基底とする。claim側の非current状態は既存Findingで別に残し、Context currentをclaim不足だけで消さない。 claimed_evidence tuple順は要求せず、signal名で照合する。",
-      "owner_boundary_ja": "catalog_refや別signalのevidence_refsだけでauthorityを成立させない。claimのcurrentがContextの根拠を欠くときauthority_inferredを返し、実authorityのissuer/recipient/ownerを推定しない。HARNESS-L2-001はこの純関数契約の論理修正先に限る。 返却evidence_states.evidence_refsがclaim由来・Context由来・両者のいずれかはL5で決まっておらず未凍結。claim/ContextのRefSetを根拠なくunionせず、この項目の独立判断が要る。"
+      "owner_boundary_ja": "catalog_refや別signalのevidence_refsだけでauthorityを成立させない。claimのcurrentがContextの根拠を欠くときauthority_inferredを返し、実authorityのissuer/recipient/ownerを推定しない。HARNESS-L2-001はこの純関数契約の論理修正先に限る。出力evidence_states.evidence_refsはContext由来だけとする設計上の選択であり、claim/Context差はFindingへ残す。claimのRefやcontent_check_refsを出力evidence_refsへunionして補強しない。 状態表のcurrent claimに対しContext unknown/stale/conflictでもauthority_inferredを残すのは、L5の「current根拠が無い」と未知/古い/矛盾の併存を具体化する設計上の選択である。Context固有のreference codeと返却stateを保持し、unknown等をmissingへ丸めたり、この診断から新しい承認義務を作らない。"
     },
     "finding_cause_map": [
       {
         "cause": "公開入力の閉record・型・必須field・enum違反、ArtifactClaimの完全同値重複、または入力RefSetの重複・不正member",
         "code": "input_invalid",
         "pointer": "不正な公開input field/memberの元JSON Pointer。早期打切りで他tuple memberの不正所見を隠さない。",
-        "subject_ref": "Context.subject_ref。有効input Ref自体が独立した不正member原因の対象なら、その原因に限って当該Refを使う。",
+        "subject_ref": "Context.subject_ref。全input_invalidで固定する。",
         "requirement_ref": "F01ではHARNESS-L3-001-F01、B01ではHARNESS-L3-001-B01。",
         "backflow_owner": "公開pure契約の入力境界としてHARNESS-L2-001。",
-        "evidence_source_selection": "不正memberに隣接する有効Ref候補と、この呼出しに供給されたContext.source_check_refs/current_roots。malformed valueをRefにせず、欠落Refも作らない。"
+        "evidence_source_selection": "空集合。malformed inputから有効そうな隣接Refを拾わず、Context全体の根拠も加えない。"
       },
       {
         "cause": "canonical layer集合が異なる",
@@ -616,7 +616,7 @@
         "subject_ref": "Context.subject_ref",
         "requirement_ref": "HARNESS-L3-001-F01",
         "backflow_owner": "HARNESS-L2-001",
-        "evidence_source_selection": "Context.source_check_refs/current_rootsに供給されたcanonical layer/pair contract binding Ref候補と、比較対象の分類に属する有効artifact Ref。path_labelは使わない。"
+        "evidence_source_selection": "空集合。canonical集合は既存契約の定数であり、Contextのglobal Refや無関係なartifactを証拠へ加えない。"
       },
       {
         "cause": "canonical pair集合が異なる",
@@ -625,16 +625,16 @@
         "subject_ref": "Context.subject_ref",
         "requirement_ref": "HARNESS-L3-001-F01",
         "backflow_owner": "HARNESS-L2-001",
-        "evidence_source_selection": "Context.source_check_refs/current_rootsに供給されたcanonical layer/pair contract binding Ref候補と、比較memberを使うlayer/pairのartifact Ref。"
+        "evidence_source_selection": "空集合。canonical集合は既存契約の定数であり、Contextのglobal Refや無関係なartifactを証拠へ加えない。"
       },
       {
-        "cause": "artifact Meaning sourceがmissing/unknown/stale/conflict",
-        "code": "reference_missing | reference_unknown | reference_stale | reference_conflict",
-        "pointer": "未解決Meaningとclaimの不一致は/artifacts/{original-index}/layer。それ以外は未解決sourceを参照する原因field。",
+        "cause": "artifact Meaning sourceがmissing/unknown/stale/conflict、またはcurrent内容を根拠へ照合できない",
+        "code": "reference_missing | reference_unknown | reference_stale | reference_conflict | content_unproven",
+        "pointer": "当該sourceを照合したartifactの入力locator /artifacts/{original-index}/layer。claimがnullでもこのartifact識別位置を使い、source-only missing/unknown/stale/conflict/content_unprovenで仮想Context fieldを作らない。Ref自体の構造不正は別のinput_invalid規則。",
         "subject_ref": "Meaning照合対象の有効なArtifactClaim.artifact_ref。",
         "requirement_ref": "HARNESS-L3-001-F01",
         "backflow_owner": "層対応契約の論理修正先としてHARNESS-L2-001。",
-        "evidence_source_selection": "claim artifact_ref、合致するContext Meaning.artifact_ref、当該Meaningのbasis_refs/content_check_refs、およびContext.source_check_refs/current_rootsの候補。別source recordが欠けても供給済み候補を捨てない。"
+        "evidence_source_selection": "当該claimのartifact_ref。既存比較でMeaning recordが特定されている場合だけ、そのMeaning.artifact_ref、basis_refs全件、content_check_refs全件を加える。record不在ならclaim artifact_refだけとし、近いrevisionや別ownerのMeaningを新たに探索して補わない。"
       },
       {
         "cause": "current Meaningのkind/layer/pair/path非依存分類、または非implementation traceがclaimと異なる",
@@ -643,16 +643,16 @@
         "subject_ref": "当該行のArtifactClaim.artifact_ref。",
         "requirement_ref": "HARNESS-L3-001-F01",
         "backflow_owner": "HARNESS-L2-001",
-        "evidence_source_selection": "claim artifact_ref、合致するMeaning.artifact_ref、Meaning basis_refs/content_check_refs、およびContext.source_check_refs/current_rootsが候補。「このfieldの比較に実際に使ったもの」という選択条件は未凍結。"
+        "evidence_source_selection": "当該claimのartifact_ref。既存比較でMeaning recordが特定されている場合だけ、そのMeaning.artifact_ref、basis_refs全件、content_check_refs全件を加える。record不在ならclaim artifact_refだけとし、近いrevisionや別ownerのMeaningを新たに探索して補わない。 trace field比較の原因では、さらにその原因fieldのnon-null claim trace Refと、特定済みMeaningの同じtrace fieldのnon-null Refだけを加える。他方のtraceは加えない。"
       },
       {
         "cause": "同じArtifactClaim identity keyへ両立しない意味が割り当てられている",
         "code": "artifact_identity_conflict",
         "pointer": "/artifacts",
-        "subject_ref": "各側のpacketごとに一つの有効artifact Ref。衝突する二つの意味を一つのRefSetへまとめない。",
+        "subject_ref": "衝突する元claim行ごとに、その行の有効artifact_ref。",
         "requirement_ref": "HARNESS-L3-001-F01",
         "backflow_owner": "HARNESS-L2-001",
-        "evidence_source_selection": "各側のpacketにはその側のartifact_refと、衝突しない共通Meaning basis/content/current root Refが候補。両側を保持し、無関係な衝突をCartesian展開しない。厳密な構成は未凍結。"
+        "evidence_source_selection": "元claim行ごとを別原因とし、その行にartifact Meaning選択規則を適用する。他行のartifact_refを一律にunionしない。同key異digestが一原因内で選択された場合だけpacket規則で両側を保持する。"
       },
       {
         "cause": "implementation traceが欠落している（design/testの両trace ref、またはいずれかのmember）",
@@ -661,7 +661,7 @@
         "subject_ref": "当該implementationのArtifactClaim.artifact_ref。",
         "requirement_ref": "HARNESS-L3-001-F01",
         "backflow_owner": "HARNESS-L2-001",
-        "evidence_source_selection": "候補fieldはclaim artifact_ref、供給済みnon-null trace Ref、およびあれば合致するMeaning.artifact_ref。Meaning.basis_refs/content_check_refsまたはContext.source_check_refs/current_rootsを含める関係はtyped source modelから導けず、未凍結。"
+        "evidence_source_selection": "当該claimのartifact_ref。既存比較でMeaning recordが特定されている場合だけ、そのMeaning.artifact_ref、basis_refs全件、content_check_refs全件を加える。record不在ならclaim artifact_refだけとし、近いrevisionや別ownerのMeaningを新たに探索して補わない。 欠落した原因trace fieldに対応するnon-null claim/Meaning trace Refを加える。両trace欠落はimplementation_design_refをpointerとする一原因とし、この場合だけ両方の対応fieldを対象とする。"
       },
       {
         "cause": "input charter/concept anchorがcurrent anchor Meaningと完全一致しない",
@@ -670,25 +670,25 @@
         "subject_ref": "有効な入力anchor Ref。入力が有効RefでなければContext.subject_ref。",
         "requirement_ref": "HARNESS-L3-001-F01",
         "backflow_owner": "HARNESS-L2-001",
-        "evidence_source_selection": "input anchor Ref、供給されている場合は合致するcurrent Meaning.artifact_ref、そのbasis_refs/content_check_refs、Context.source_check_refs/current_rootsが候補。返却するanchor値は原入力を保持。"
+        "evidence_source_selection": "有効なinput anchor Refと、既存anchor比較で明示的に特定されたMeaningのartifact_ref・basis_refs全件・content_check_refs全件だけ。比較Meaningが特定されていなければinput anchor Refだけ。正しそうな別anchorを探索して補わず、返却anchorは原入力を保持する。"
       },
       {
         "cause": "B01 claim/Context signal evidenceが非currentまたは未裏付け",
         "code": "reference_missing | reference_unknown | reference_stale | reference_conflict | authority_inferred",
-        "pointer": "/claimed_evidence/{original-index-found-by-signal}。Contextだけが原因の場合は空JSON Pointer。",
-        "subject_ref": "一致したContext evidence_records[signal].subject_ref。異なる有効claim subjectは、そのclaim Refをsubjectにした別原因packetへ保持する。",
+        "pointer": "状態表の全code、claim/Context同codeの合流、subject/Ref比較の所見は、signalで特定した /claimed_evidence/{original-index}。Contextの状態だけが非currentでも、状態表の比較所見はこの位置を使う。",
+        "subject_ref": "subject_refの全5 fieldが一致する比較はContext Evidence.subject_refの一原因。subject Ref自体が異なる比較では、Context subjectの一原因とclaim subjectの一原因の二つを返す。両原因のpointerは同じ元claim位置で、evidence_source_selectionも両側の同じ選択集合。それぞれにpacket規則を適用し、異なるsubjectを束ねない。subject一致でevidence_refsだけが相反する場合は一原因。",
         "requirement_ref": "HARNESS-L3-001-B01",
         "backflow_owner": "投影規則の論理修正先としてHARNESS-L2-001。authority recipientを指定するfieldではない。",
-        "evidence_source_selection": "候補fieldはsignal一致したclaim evidence_refsとContext Evidence.evidence_refs/content_check_refs。Context.source_check_refs/current_rootsとのcause relationはtypedで定義されていないため、個別packetへの採用は未凍結。claim/Context setを既定でunionしない。"
+        "evidence_source_selection": "state表のcodeがclaim stateから生じる場合は、そのclaim Evidence.subject_ref・evidence_refs全件・content_check_refs全件。Context stateから生じる場合はsignal一致Context Evidenceの同3 field。同一cellで同一codeが両側から生じる場合は両集合を一原因として選択する。authority_inferredおよび実Ref相反のreference_conflictはclaim/Context両側の同3 field。別signalやcatalog、global root/checkは選ばない。"
       },
       {
         "cause": "B01 current contentを供給済み参照から確認できない",
         "code": "content_unproven",
-        "pointer": "/claimed_evidence/{original-index-found-by-signal}。Contextだけが原因の場合は空JSON Pointer。",
+        "pointer": "空JSON Pointer \"\"。内容未成立を判定したContext Evidenceだけを原因とし、claim配列の位置へ付け替えない。",
         "subject_ref": "一致したContext evidenceのsubject。catalog_refや他signalから推定しない。",
         "requirement_ref": "HARNESS-L3-001-B01",
         "backflow_owner": "HARNESS-L2-001",
-        "evidence_source_selection": "候補fieldはsignal一致したclaim refsとContext Evidence.content_check_refs/evidence_refs。Contextはsource_check/current root refsをcauseへ結ぶ関係を持たず、厳密なpacket構成は未凍結。空check refsからRefを作らず、非空Refだけでは内容を証明しない。"
+        "evidence_source_selection": "内容未成立を判定したsignal一致Context Evidence.subject_ref・evidence_refs全件・content_check_refs全件だけ。空のcheck RefからRefを作らず、非空Refだけで内容成立としない。"
       },
       {
         "cause": "actual_verificationがdesign-only、またはactual oracle/run/observation contentを欠く",
@@ -697,7 +697,7 @@
         "subject_ref": "Context evidence_records[actual_verification].subject_ref",
         "requirement_ref": "HARNESS-L3-001-B01",
         "backflow_owner": "HARNESS-L2-001",
-        "evidence_source_selection": "候補fieldはactual_verification claim refsとContext Evidence evidence/content-check refs。Contextはsource_check/current root refsをcauseへ結ぶ関係を持たず、厳密なpacket構成は未凍結。claim=currentかつContext state=missingならverification_unobservedとauthority_inferredを保持し、別途Context recordがmissingならreference_missingも保持。"
+        "evidence_source_selection": "actual_verificationのclaimとsignal一致Context Evidenceのsubject_ref・evidence_refs全件・content_check_refs全件。claim=currentかつContext state=missingならverification_unobservedとauthority_inferredを保持する。Context record不在はtyped premise違反として扱う。"
       },
       {
         "cause": "implementation traceが非nullだがcurrent Meaningと矛盾する",
@@ -706,9 +706,9 @@
         "subject_ref": "当該implementationのArtifactClaim.artifact_ref。",
         "requirement_ref": "HARNESS-L3-001-F01",
         "backflow_owner": "HARNESS-L2-001",
-        "evidence_source_selection": "候補fieldはclaim artifact_ref、矛盾するtrace Ref、合致するMeaning.artifact_ref。typed Contextにcauseとの関係がなく、Meaning basis/contentおよびContext source_check/current root refsの採用は未解決。"
+        "evidence_source_selection": "当該claimのartifact_ref。既存比較でMeaning recordが特定されている場合だけ、そのMeaning.artifact_ref、basis_refs全件、content_check_refs全件を加える。record不在ならclaim artifact_refだけとし、近いrevisionや別ownerのMeaningを新たに探索して補わない。 矛盾する原因trace fieldのnon-null claim Refと、特定済みMeaningの同fieldのnon-null Refだけを加える。他方のtraceは加えない。"
       }
     ],
-    "evidence_selection_policy_ja": "原因ごとの候補fieldは下表に示すが、現行L5 typed Contextには各source refと各causeの関係がない。このため候補からFinding.evidence_refsへ採る厳密な集合、B01出力evidence_refsのclaim/Context由来、同key異digestの両側を選ぶ条件は未凍結である。「実際に使った/関係した」という実装時の裁量を規則にしない。根拠なくclaimとContextのRefSetをunionせず、未供給Refを作らない。この設計は完全な6-field Finding constructorの凍結を主張しない。"
+    "evidence_selection_policy_ja": "選択は既存recordのfield包含に固定し、「実際に使った/関係した」という実装裁量、隠れresolver、新しいcause relation型を導入しない。Meaningは既存比較で特定済みのrecordだけ、Evidenceはsignalで特定した供給済みrecordだけを使う。全原因からContext.current_roots/source_check_refs、無関係なMeaning/Evidence、Fact/N/Aを除外する。B01の層対応再照合にはF01の同じselectorを適用し、pointerを/layer_correspondences配下へ移しrequirement_refをB01に保持する。Refがsnapshotにあることはsource資格や意味成立の証明ではない。membership/packet構成/出力Refの出所は本候補で具体化するが、元familyの全入力・Context・全返却oracleと前段の全原因分類は未凍結であり、完全なconstructor凍結は主張しない。"
   }
 }
