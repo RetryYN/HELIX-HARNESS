@@ -1948,7 +1948,7 @@
         ],
         "execution_state": "not_executed"
       },
-    "original_operation_proposal_provider_oracles":     {
+      "original_operation_proposal_provider_oracles": {
       "id": "HARNESS-L9-009-F02-OPP",
       "design_ref": "HARNESS-L4-009-F02#/original_operation_proposal_provider",
       "requirement_refs": [
@@ -4232,8 +4232,7 @@
         "別途のOS/ProjectScope/ref4 identity/authority/保存/受入/CI成立を主張しない。"
       ],
       "execution_state": "not_executed"
-    }
-  },
+    }},
     {
       "id": "HARNESS-L9-009-F03",
       "design_ref": "HARNESS-L4-009-F03",
@@ -84344,7 +84343,7 @@
             "document_id": "HELIX-HARNESS-L4-009",
             "candidate_local_pointer": "/contracts/4/source_result_reference_projection",
             "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
-            "candidate_l4_bytes_sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
+            "candidate_l4_bytes_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
             "candidate_l4_path": "docs/helix-harness/L4-basic-design/product-template-application.json"
           },
           "expectation_basis": "L3/L10 F03にある根拠・適用範囲・不足の返却義務と、L4の必須軸、順序付きcondition pair、Presence<JsonValue>診断規則を用いる。各probeのrawと全返却期待はcase内に保持し、local先固定履歴はGit上の時系列証明とは区別する。",
@@ -134846,7 +134845,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
+        "sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
         "pointer": "/field_source_materialization_contract",
         "canonical_sha256": "9affbb54ace3e5c6f22c92d004999e474be0a36d84b439aaf3d7b60aecd433bf",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
@@ -149614,7 +149613,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
+        "sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
         "pointer": "/field_semantic_evidence_contract",
         "canonical_sha256": "739d8838896cbb169eafecfae38673e338fc8d82bc2c340195e96b89707dbc6e",
         "role": "現行L4基本候補のreturn/body契約。commit済み歴史revisionとは区別し、同PRの対象bytesと選択節を固定する。",
@@ -167494,7 +167493,7 @@
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
         "pointer": "/f05_validation_material_call_contract",
-        "file_sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
+        "file_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
         "canonical_sha256": "0bae5fc583b45d6c4631a7dd2a6574361cd299e22623e5f93e90431ef0be368d",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "status": "作業時のcurrent L4 candidate bytes。commit revisionとは主張しない。"
@@ -185327,7 +185326,7 @@
         "pointer": "/field_obligation_scope_contract",
         "canonical_sha256": "d0aada2de42168fef7e383c7ba423002dec423105fbeff3a07944b2a7ddffe31",
         "role": "本packet内候補objectへの固定binding。base5671 whole hashを新candidate currentとしない。",
-        "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c"
+        "sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724"
       },
       {
         "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
@@ -213317,7 +213316,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
+      "sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
       "pointer": "/input_scope_knowledge_gap_contract"
     },
     "comparison_contract": {
@@ -300817,7 +300816,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
+      "sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
       "pointer": "/input_scope_knowledge_gap_contract/post_return_projection",
       "canonical_sha256": "7a5d00f5c69b7ec0edbdc013e475d14cfed5ec362f5fa07cbc44e7a89c3c9618"
     },
@@ -304460,7 +304459,7 @@
     ],
     "design_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
+      "sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
       "pointer": "/selected_brain_source_occurrence_contract",
       "canonical_sha256": "d0784dfe42a7b76cbb9372499eda9958a7fbeb72664dd70e398ac31287df3d5e",
       "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
@@ -305044,15 +305043,15 @@
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "pointer": "/selected_source_caller_contract",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
+      "sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
       "canonical_sha256": "f75a907ecb152a4cd46d075ef23b1886279c9cea7959fe1c4da1852ad0cab60d"
     },
     "detail_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "pointer": "/selected_source_caller_detail",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
-      "canonical_sha256": "7ba62d7a004f7768ef0c4a49d11f73862431f30c15343afb6bab3efb1014309f"
+      "sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+      "canonical_sha256": "6d42b40e5e0267571753e7dcb8775ee54b0b3fe2f534db45c4e33e777fca52ba"
     },
     "expectation_basis": {
       "independent_oracle": "scaffold/review-handoff/local/core-source-selection-30dad57c/independent-oracle-basis.json",
@@ -305404,7 +305403,7 @@
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "pointer": "/selected_brain_field_definition_application_contract",
       "id": "HARNESS-L4-009-F05-BRAIN-FIELD-DEFINITION-APPLICATION",
-      "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
+      "sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
       "canonical_sha256": "fb8477a51a0819953e8674b8330e7d0cfafd5f08c7e116662c63e23b478a0b04",
       "binding_kind": "current_candidate_content_binding"
     },

@@ -598,7 +598,7 @@
           "上流COREAPPLY要件の意味変更は含まない。追加の要求不足が見つかった場合は既存Backflowへ候補として戻す。"
         ]
       },
-    "original_operation_proposal_provider":     {
+      "original_operation_proposal_provider": {
       "status": "candidate_basic_design_contract",
       "authority_effect": "none",
       "purpose": "HARNESS-L3-009-F02/F03の採択意味を保ち、COREの原source資格・operation role解釈を同一呼出し内で行った後に既存native recorderを一度呼び、その実返却全体と独立した提案record材料を保持する供給境界を定める。要求意味・OS受領・実装成立を追加しない。",
@@ -1372,8 +1372,7 @@
       "design_ref": "HARNESS-L4-009-F02",
       "verification_ref": "HARNESS-L9-009-F02",
       "title": "原sourceから提案record providerへの同一呼出し境界"
-    }
-  },
+    }},
     {
       "id": "HARNESS-L4-009-F03",
       "requirement_ref": "HARNESS-L3-009-F03",
