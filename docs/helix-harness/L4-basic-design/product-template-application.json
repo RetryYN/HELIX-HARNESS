@@ -597,7 +597,1108 @@
           "OS Ref4/project scope、OS002/OS053のowner qualification、配送・受信、source qualification、selected/used/評価集合への投影は、別の境界に属し未完である。",
           "上流COREAPPLY要件の意味変更は含まない。追加の要求不足が見つかった場合は既存Backflowへ候補として戻す。"
         ]
-      }},
+      },
+    "original_operation_proposal_provider":     {
+      "status": "candidate_basic_design_contract",
+      "authority_effect": "none",
+      "purpose": "HARNESS-L3-009-F02/F03の採択意味を保ち、COREの原source資格・operation role解釈を同一呼出し内で行った後に既存native recorderを一度呼び、その実返却全体と独立した提案record材料を保持する供給境界を定める。要求意味・OS受領・実装成立を追加しない。",
+      "source_basis": {
+        "reference_snapshot_revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+        "requirements": [
+          {
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/24",
+            "identity": "HARNESS-L3-009-F02",
+            "canonical_sha256": "24bc8c32bd201d805ae635188a247d44b5770c5af0d56c92918f33267dba14c1"
+          },
+          {
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/25",
+            "identity": "HARNESS-L3-009-F03",
+            "canonical_sha256": "6c3eebfe5f9a38a9df0859bf17172d98cbac59e1dd8cb4767dabcbd0571e91ff"
+          }
+        ],
+        "current_type_snapshot": {
+          "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+          "scope": "既存CORE/OS L5型・signature・numeric規範の参照snapshot。新規provider childの存在revisionを示さない。",
+          "binding_count": 23,
+          "bindings": [
+            {
+              "label": "CoreJsonValue",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+              "pointer": "/f05_detail_contract/types/CoreJsonValue",
+              "canonical_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2"
+            },
+            {
+              "label": "CoreJsonValueNative",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+              "pointer": "/wire_codec_contract/numeric_encode_profile/private_host_types/CoreJsonValue",
+              "canonical_sha256": "45c22fbf9c62c45cde479e6ce67bf0df050376ccd5f3d41941d8f3ed3f6beaf6"
+            },
+            {
+              "label": "CoreRef",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+              "pointer": "/f05_detail_contract/types/CoreRef",
+              "canonical_sha256": "56913bce08ec0d8ce7765564c7c358b275e3a5796e20be785ccacf458a7e6998"
+            },
+            {
+              "label": "CoreRead",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+              "pointer": "/f05_detail_contract/types/Read",
+              "canonical_sha256": "9bf82653b27dc972e1bc0a111b90537fbfc5067e37eed1207da0c67e551c62ef"
+            },
+            {
+              "label": "CoreCause",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+              "pointer": "/f05_detail_contract/types/Cause",
+              "canonical_sha256": "3be43e03de6360c1067a7b7bdc0d8c631ab8ef04d847c99d1cb09166fd9451d0"
+            },
+            {
+              "label": "CoreNatural",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+              "pointer": "/type_contract/types/Natural",
+              "canonical_sha256": "1bf0a85f6bac07a88d2d21cbdc46bd05ff10d14064c2bd9795d6ea9094c1fc53"
+            },
+            {
+              "label": "CoreJSONPointer",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+              "pointer": "/f05_detail_contract/types/JSONPointer",
+              "canonical_sha256": "c3f640125287565611f42a3ce0f4fe26b8ff4167de9c7fc7e91082998651eaac"
+            },
+            {
+              "label": "CallerInputs",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+              "pointer": "/f05_detail_contract/types/CallerInputs",
+              "canonical_sha256": "3bb204dfd0b72ee78ac9429d8e194f696ff2fa0469b3b1a81c489055b1f5667e"
+            },
+            {
+              "label": "NativeProposalRecordDetailedReturn",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+              "pointer": "/proposal_native_record_material_detail/private_types/NativeProposalRecordDetailedReturn",
+              "canonical_sha256": "f42f3c2d293ebb4c8688d44cfae533caaed939a4327c164321888deb35450d17"
+            },
+            {
+              "label": "CorePrivateWrapper",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+              "pointer": "/proposal_native_record_material_detail/entry_points/private_wrapper",
+              "canonical_sha256": "c82c3e87416f3e0f1f50a56785ec3e075439e74ac27d28a3918fdf19fd702616"
+            },
+            {
+              "label": "TypedEquality",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+              "pointer": "/wire_codec_contract/numeric_encode_profile/numeric_predicates/typed_equality",
+              "canonical_sha256": "c4d9b90c117d6c9cc753af8caf601e5c40425b3c72b79bdfc6b23f955c238ca5"
+            },
+            {
+              "label": "OSRef4",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+              "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+              "pointer": "/type_contract/types/Ref",
+              "canonical_sha256": "5f0a1f37eca49818b7d24ec61c01072e344cade5ae675b4f991bef142f586d82"
+            },
+            {
+              "label": "OSField",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+              "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+              "pointer": "/type_contract/types/Field",
+              "canonical_sha256": "0280be67218856131dc741aab3a2019e94517a61d6c3c1bdded2c2847af3ef53"
+            },
+            {
+              "label": "OSQualification",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+              "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+              "pointer": "/type_contract/types/Qualification",
+              "canonical_sha256": "9f331aaca5cbad77f2d796338a77584fd22562527cc7b243b83a1e3fd8dccb80"
+            },
+            {
+              "label": "OSQualificationRoot",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+              "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+              "pointer": "/type_contract/types/QualificationRoot",
+              "canonical_sha256": "20e59aaf7f82620ade4755fd78ac215306791539e5930c1520c5ae0735e42110"
+            },
+            {
+              "label": "OSInputIssue",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+              "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+              "pointer": "/type_contract/types/InputIssue",
+              "canonical_sha256": "a732dfe94a199db1fffb1c2fe3a4af68072cb8e101bb11440aaa0f5644ea94d4"
+            },
+            {
+              "label": "OSSourceWalkOrigin",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+              "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+              "pointer": "/type_contract/types/SourceWalkOrigin",
+              "canonical_sha256": "3e3e4385833051c7270915eb814ea8c2fbb666eed142e376ebc53e39204c7f2a"
+            },
+            {
+              "label": "OSQualificationRecordOrigin",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+              "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+              "pointer": "/type_contract/types/QualifiedRecordOriginOccurrence",
+              "canonical_sha256": "98f5f7dd39b433cc5c3995802035d4757293bfd628c917c424015491c5266db3"
+            },
+            {
+              "label": "OSOwnerRecord",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+              "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+              "pointer": "/type_contract/types/OwnerRecord",
+              "canonical_sha256": "fff889e7855afa5f25db859b62987b9ea2e25ac82ae2ab063b6daf24cc1e6084"
+            },
+            {
+              "label": "OSSourceSectionValue",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+              "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+              "pointer": "/type_contract/types/SourceSectionValue",
+              "canonical_sha256": "538eb591a26cae26bb58ca01955ee17cf6b23bf574fca2354392640242543181"
+            },
+            {
+              "label": "OSSourceEnvelope",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+              "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+              "pointer": "/type_contract/types/SourceEnvelope",
+              "canonical_sha256": "79ecf7664d626d40f1935ec595f42062ded37b73096dad5c66009b0172f7d6f2"
+            },
+            {
+              "label": "OSSourceQualificationRules",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+              "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+              "pointer": "/reference_resolution_contract",
+              "canonical_sha256": "8f4b42300c173cb2e3afcadfbadaeb516debfc996c8b91696930e698591aa473"
+            },
+            {
+              "label": "OSSelectorDecodeRules",
+              "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+              "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+              "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+              "pointer": "/wire_codec_contract/selector_resolution",
+              "canonical_sha256": "4a96885c5b75dc2a4ca8a502e54cc0d699e1aa0f6f0c6ff78974ece0d4076c34"
+            }
+          ]
+        },
+        "qualification_inputs": {
+          "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointers": [
+            "/normal_fixtures/3/input/sources/0/qualification_ref",
+            "/normal_fixtures/4/input/sources/0/qualification_ref"
+          ],
+          "role": "synthetic raw requestに使う qualification_ref の独立source"
+        },
+        "independent_I_recipe": {
+          "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/frozen_json_recipe",
+          "steps_pointer": "/proposal_material_formation_native_oracle/frozen_oracle/normal_case_recipe_steps",
+          "case_indices": [
+            0,
+            9
+          ],
+          "role": "operation payload CallerInputsをN captureから独立して復元"
+        },
+        "fixed_N_oracles": {
+          "revision": "45f542e2bb5788aacbed62288f240b8977dfc103",
+          "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+          "recipe_pointer": "/cases/3/proposal_native_record_material_cases/source_reconstruction/candidate_frozen_seed_and_completion_ops",
+          "case_indices": [
+            0,
+            3
+          ],
+          "role": "native return wholeを固定Git recipeで再構成し、provider期待へcopy"
+        },
+        "legacy_source": {
+          "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+          "source_generation_label": "legacy-generation-2026-09-14",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+          "sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b",
+          "lines": "§0–1",
+          "mode": "semantic_rederivation",
+          "preserve": "I/O・副作用・失敗・state・call graph・consumer contract・oracleの意味signatureを確認し、private symbolだけに固定しない。",
+          "change": "旧案のDB schema・transaction規則は採用せず、既存F02/F03とCORE/OS責務に絞った候補provider boundaryを記述する。"
+        },
+        "source_and_failure_basis": [
+          {
+            "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "lines": "65–101",
+            "failure": "UTW-014: 欠損sourceを空集合へ縮退しabsenceを見落とす。",
+            "prevention": "source観測欠落と既知emptyを分け、元Readを保持する。"
+          },
+          {
+            "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "lines": "65–101",
+            "failure": "UTW-020: 部分failureがaggregateに隠れ、診断粒度が粗くなる。",
+            "prevention": "source occurrence/index単位で資格問題と有効な兄弟を保持する。"
+          },
+          {
+            "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "lines": "65–101",
+            "failure": "UTW-021: 完了が自己申告・件数・hashへ縮退する。",
+            "prevention": "raw source qualification、N coverage、native record resultを別の観測として保持し、hash/件数を資格や完了にしない。"
+          }
+        ]
+      },
+      "authority_boundary": "候補設計。L3/L10の意味・承認を増やさず、COREは提案材料、OSは別境界で受信・登録する。",
+      "owner_and_boundary": {
+        "owner": "HELIX-HARNESS-CORE（CORE009）。",
+        "input": "RawProviderRequestのみ。source occurrence配列、qualification、rootは原値。derived walk、資格boolean、operation frame、N expected/cacheを入力しない。",
+        "ordered_stages": [
+          "同じRawProviderRequestの各RawSourceOccurrenceをstrict UTF-8 JSON parseし、RawRecord(payload=CoreJsonValue)として原値・順序を保持する。",
+          "各occurrenceのqualification_refでQualification.refを選び、Qualification.source_refをraw source_refと別個に全Ref照合する。QualificationRootも独立に対応させ、digest・owner・subjectの既存規則へ従う。",
+          "指定operation source occurrenceはRawProviderRequest.operation_source_occurrence_indexで選ぶ。issue配列・先頭一致・qualified twinから選択しない。この3caseでは元operation recordがdecoded_records[0]であることをfixtureとして固定するが、任意入力のfirst-match規則には一般化しない。同じ資格walkのそのrecordからcaller_inputs、proposed_source、relation_occurrencesをprivate OperationFrameへrole decodeする。recordが0件/複数の入力は未定義である。",
+          "既存CallerInputsをbuild_native_proposal_record_detailへ一度だけ渡し、その同一invocationの実返却NativeProposalRecordDetailedReturn全体をcaptureする。formerでwrapper/recorderを再実行しない。",
+          "formerは捕捉済みN全体を保持し、partial/qualification/locator条件を反映したrecord bodyを別に組み立てる。"
+        ],
+        "call_capture": "CallCaptureはreturned、既存private symbol、count=1、同じoperation record payload内のCallerInputs、実返却N全体に限る。有限oracleの固定Nは条件付き静的premiseであり実行観測ではない。",
+        "return": "CoreF02ProviderReturnの順序をsource_frame, caller_inputs_read, call_capture, relation_observations, proposed_body, causesとする。全元captureと失敗原因を保持し、recordだけを省略/上書きしない。"
+      },
+      "closed_private_types": {
+        "fixed_existing_type_bindings": [
+          {
+            "label": "CoreJsonValue",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+            "pointer": "/f05_detail_contract/types/CoreJsonValue",
+            "canonical_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2"
+          },
+          {
+            "label": "CoreJsonValueNative",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+            "pointer": "/wire_codec_contract/numeric_encode_profile/private_host_types/CoreJsonValue",
+            "canonical_sha256": "45c22fbf9c62c45cde479e6ce67bf0df050376ccd5f3d41941d8f3ed3f6beaf6"
+          },
+          {
+            "label": "CoreRef",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+            "pointer": "/f05_detail_contract/types/CoreRef",
+            "canonical_sha256": "56913bce08ec0d8ce7765564c7c358b275e3a5796e20be785ccacf458a7e6998"
+          },
+          {
+            "label": "CoreRead",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+            "pointer": "/f05_detail_contract/types/Read",
+            "canonical_sha256": "9bf82653b27dc972e1bc0a111b90537fbfc5067e37eed1207da0c67e551c62ef"
+          },
+          {
+            "label": "CoreCause",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+            "pointer": "/f05_detail_contract/types/Cause",
+            "canonical_sha256": "3be43e03de6360c1067a7b7bdc0d8c631ab8ef04d847c99d1cb09166fd9451d0"
+          },
+          {
+            "label": "CoreNatural",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+            "pointer": "/type_contract/types/Natural",
+            "canonical_sha256": "1bf0a85f6bac07a88d2d21cbdc46bd05ff10d14064c2bd9795d6ea9094c1fc53"
+          },
+          {
+            "label": "CoreJSONPointer",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+            "pointer": "/f05_detail_contract/types/JSONPointer",
+            "canonical_sha256": "c3f640125287565611f42a3ce0f4fe26b8ff4167de9c7fc7e91082998651eaac"
+          },
+          {
+            "label": "CallerInputs",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+            "pointer": "/f05_detail_contract/types/CallerInputs",
+            "canonical_sha256": "3bb204dfd0b72ee78ac9429d8e194f696ff2fa0469b3b1a81c489055b1f5667e"
+          },
+          {
+            "label": "NativeProposalRecordDetailedReturn",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+            "pointer": "/proposal_native_record_material_detail/private_types/NativeProposalRecordDetailedReturn",
+            "canonical_sha256": "f42f3c2d293ebb4c8688d44cfae533caaed939a4327c164321888deb35450d17"
+          },
+          {
+            "label": "CorePrivateWrapper",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+            "pointer": "/proposal_native_record_material_detail/entry_points/private_wrapper",
+            "canonical_sha256": "c82c3e87416f3e0f1f50a56785ec3e075439e74ac27d28a3918fdf19fd702616"
+          },
+          {
+            "label": "TypedEquality",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "file_sha256": "0939e387453c7d1ddae215d64b977d7a2362d0dff6d97caae7186475bfa12c60",
+            "pointer": "/wire_codec_contract/numeric_encode_profile/numeric_predicates/typed_equality",
+            "canonical_sha256": "c4d9b90c117d6c9cc753af8caf601e5c40425b3c72b79bdfc6b23f955c238ca5"
+          },
+          {
+            "label": "OSRef4",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "pointer": "/type_contract/types/Ref",
+            "canonical_sha256": "5f0a1f37eca49818b7d24ec61c01072e344cade5ae675b4f991bef142f586d82"
+          },
+          {
+            "label": "OSField",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "pointer": "/type_contract/types/Field",
+            "canonical_sha256": "0280be67218856131dc741aab3a2019e94517a61d6c3c1bdded2c2847af3ef53"
+          },
+          {
+            "label": "OSQualification",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "pointer": "/type_contract/types/Qualification",
+            "canonical_sha256": "9f331aaca5cbad77f2d796338a77584fd22562527cc7b243b83a1e3fd8dccb80"
+          },
+          {
+            "label": "OSQualificationRoot",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "pointer": "/type_contract/types/QualificationRoot",
+            "canonical_sha256": "20e59aaf7f82620ade4755fd78ac215306791539e5930c1520c5ae0735e42110"
+          },
+          {
+            "label": "OSInputIssue",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "pointer": "/type_contract/types/InputIssue",
+            "canonical_sha256": "a732dfe94a199db1fffb1c2fe3a4af68072cb8e101bb11440aaa0f5644ea94d4"
+          },
+          {
+            "label": "OSSourceWalkOrigin",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "pointer": "/type_contract/types/SourceWalkOrigin",
+            "canonical_sha256": "3e3e4385833051c7270915eb814ea8c2fbb666eed142e376ebc53e39204c7f2a"
+          },
+          {
+            "label": "OSQualificationRecordOrigin",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "pointer": "/type_contract/types/QualifiedRecordOriginOccurrence",
+            "canonical_sha256": "98f5f7dd39b433cc5c3995802035d4757293bfd628c917c424015491c5266db3"
+          },
+          {
+            "label": "OSOwnerRecord",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "pointer": "/type_contract/types/OwnerRecord",
+            "canonical_sha256": "fff889e7855afa5f25db859b62987b9ea2e25ac82ae2ab063b6daf24cc1e6084"
+          },
+          {
+            "label": "OSSourceSectionValue",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "pointer": "/type_contract/types/SourceSectionValue",
+            "canonical_sha256": "538eb591a26cae26bb58ca01955ee17cf6b23bf574fca2354392640242543181"
+          },
+          {
+            "label": "OSSourceEnvelope",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "pointer": "/type_contract/types/SourceEnvelope",
+            "canonical_sha256": "79ecf7664d626d40f1935ec595f42062ded37b73096dad5c66009b0172f7d6f2"
+          },
+          {
+            "label": "OSSourceQualificationRules",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "pointer": "/reference_resolution_contract",
+            "canonical_sha256": "8f4b42300c173cb2e3afcadfbadaeb516debfc996c8b91696930e698591aa473"
+          },
+          {
+            "label": "OSSelectorDecodeRules",
+            "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+            "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "pointer": "/wire_codec_contract/selector_resolution",
+            "canonical_sha256": "4a96885c5b75dc2a4ca8a502e54cc0d699e1aa0f6f0c6ff78974ece0d4076c34"
+          }
+        ],
+        "aliases": {
+          "CoreJsonValue": {
+            "kind": "exact_existing_type",
+            "binding": "CoreJsonValue",
+            "transitive_binding": "CoreJsonValueNative"
+          },
+          "CoreRef6": {
+            "kind": "exact_existing_type_alias",
+            "binding": "CoreRef",
+            "preserve_ja": "partial_carrier。供給memberだけを保持し、6属性known/requiredを追加しない。旧type_contract.types.Refを6requiredへ転写しない。"
+          },
+          "CoreRead<T>": {
+            "kind": "exact_existing_generic_alias",
+            "binding": "CoreRead",
+            "preserve_ja": "present(location,value)/absent(requested,parent,parent_value)/unreached(requested,reached,reached_value)の既存whole。新OriginRootを追加しない。"
+          },
+          "ProviderCause": {
+            "kind": "exact_existing_type_alias",
+            "binding": "CoreCause",
+            "scope_ja": "原3caseのcauses=[]は不変。新source資格不成立はInputIssueへ保持し、このsliceで新ProviderCauseを生成しない。既存Cause.location/OriginRootを拡張しない。"
+          },
+          "Natural": {
+            "kind": "exact_existing_type_alias",
+            "binding": "CoreNatural"
+          },
+          "JsonPointer": {
+            "kind": "exact_existing_type_alias",
+            "binding": "CoreJSONPointer"
+          },
+          "Sha256": {
+            "kind": "alias",
+            "target": "string",
+            "scope_ja": "原供給digestは既存stringとして保持しUTF8 SHA256比較へ使う。生成digestはSHA256の64lowerhexだが追加wire regex gateを生まない。"
+          },
+          "OSRef4": {
+            "kind": "exact_external_type_binding",
+            "binding": "OSRef4",
+            "scope_ja": "source/header/native Ref4の私有参照名。CoreRef6と共通型/alias/castにしない。"
+          },
+          "Ref4": {
+            "kind": "alias",
+            "target": "OSRef4"
+          },
+          "Ref": {
+            "kind": "alias",
+            "target": "OSRef4"
+          },
+          "Field<T>": {
+            "kind": "exact_external_generic_binding",
+            "binding": "OSField",
+            "scope_ja": "InputIssue.source_ref等で既存missing/supplied(T)/supplied(null)を保持。新tagged ProviderBodyFieldへ読み替えない。"
+          },
+          "Qualification": {
+            "kind": "exact_external_type_binding",
+            "binding": "OSQualification"
+          },
+          "QualificationRoot": {
+            "kind": "exact_external_type_binding",
+            "binding": "OSQualificationRoot"
+          },
+          "InputIssue": {
+            "kind": "exact_external_type_binding",
+            "binding": "OSInputIssue"
+          },
+          "CallerInputs": {
+            "kind": "exact_existing_type",
+            "binding": "CallerInputs"
+          },
+          "NativeProposalRecordDetailedReturn": {
+            "kind": "exact_existing_type",
+            "binding": "NativeProposalRecordDetailedReturn"
+          },
+          "CallCaptureState": {
+            "kind": "enum",
+            "values": [
+              "returned"
+            ],
+            "scope_ja": "operation-read成功後という限定entryの観測。未呼出し/失敗の総結果型を表さない。"
+          },
+          "CorePrivateSymbol": {
+            "kind": "enum",
+            "values": [
+              "build_native_proposal_record_detail"
+            ]
+          },
+          "ProviderBodyAbsenceReason": {
+            "kind": "enum",
+            "values": [
+              "native_coverage_incomplete",
+              "selected_native_source_unqualified"
+            ],
+            "scope_ja": "既存3caseの2literalだけ。未知failureをこの2理由へ押し込まない。"
+          }
+        },
+        "closed_types": {
+          "OSRef": {
+            "fields": {
+              "identity": "Field<string>",
+              "revision": "Field<string>",
+              "scope": "Field<Scope>",
+              "owner": "Field<string>"
+            },
+            "basis": "M4 OS L5 /type_contract/types/Ref"
+          },
+          "OSQualification": {
+            "fields": {
+              "ref": "Ref",
+              "root_ref": "Ref",
+              "source_ref": "Ref",
+              "owner": "string",
+              "subject_refs": "Ref[]",
+              "source_sha256": "string"
+            },
+            "basis": "M4 OS L5 /type_contract/types/Qualification"
+          },
+          "OSQualificationRoot": {
+            "fields": {
+              "ref": "Ref",
+              "owner": "string",
+              "allowed_subject_refs": "Ref[]",
+              "allowed_source_ref": "Ref",
+              "allowed_source_sha256": "string"
+            },
+            "basis": "M4 OS L5 /type_contract/types/QualificationRoot"
+          },
+          "OSOwnerRecord": {
+            "fields": {
+              "subject_ref": "Ref",
+              "section_key": "string",
+              "record_kind": "string",
+              "payload": "map<string,SourceSectionValue>",
+              "owner": "string"
+            },
+            "basis": "M4 OS L5 /type_contract/types/OwnerRecord"
+          },
+          "CoreRef6": {
+            "fields": {
+              "identity": "string|null",
+              "revision": "string|null",
+              "scope": "RawValue",
+              "owner": "string|null",
+              "source_locator": "string|null",
+              "sha256": "string|null"
+            },
+            "basis": "M4 CORE L5 /type_contract/types/Ref"
+          },
+          "CoreCallerInputs": {
+            "basis": "M2 CORE L8 /proposal_material_formation_native_oracle/frozen_oracle/frozen_json_recipe; whole value is imported from the frozen input recipe"
+          },
+          "RawSourceOccurrence": {
+            "ordered_members": [
+              "source_ref",
+              "owner",
+              "source_json_utf8",
+              "source_sha256",
+              "qualification_ref"
+            ],
+            "fields": {
+              "source_ref": "OS Ref",
+              "owner": "string",
+              "source_json_utf8": "string",
+              "source_sha256": "Sha256",
+              "qualification_ref": "OS Ref"
+            },
+            "basis": "M4 OS L5 /type_contract/types/SourceEnvelope",
+            "note_ja": "raw request型。decoded_recordsは入力memberではない。qualification_refはQualification.ref lookupに使い、source_refと混同しない。"
+          },
+          "ParsedSourceOccurrence": {
+            "ordered_members": [
+              "source_ref",
+              "owner",
+              "source_json_utf8",
+              "source_sha256",
+              "decoded_records",
+              "qualification_ref"
+            ],
+            "fields": {
+              "source_ref": "OS Ref",
+              "owner": "string",
+              "source_json_utf8": "string",
+              "source_sha256": "Sha256",
+              "decoded_records": "RawRecord[]",
+              "qualification_ref": "OS Ref"
+            },
+            "note_ja": "返却SourceFrameで保持するstrict parse結果。",
+            "basis": "M4 OS L5 /type_contract/types/SourceEnvelope の既存member順へ、strict parseしたdecoded_recordsを追加した局所返却型。元型の全値・順序を保持する。"
+          },
+          "SourceWalkOrigin": {
+            "ordered_members": [
+              "source_occurrence_index",
+              "source_ref",
+              "qualified_record_indices",
+              "input_issue_indices",
+              "source_issue_indices",
+              "classification_flags"
+            ],
+            "fields": {
+              "source_occurrence_index": "Natural",
+              "source_ref": "Ref",
+              "qualified_record_indices": "Natural[]",
+              "input_issue_indices": "Natural[]",
+              "source_issue_indices": "Natural[]",
+              "classification_flags": "SourceClassification[]"
+            },
+            "basis": "M4 OS L5 /type_contract/types/SourceWalkOrigin",
+            "index_rule_ja": "qualified_record_indicesはqualified_raw_occurrences配列のglobal flat index。source local record_indexとは異なる。"
+          },
+          "QualifiedRawOccurrence": {
+            "ordered_members": [
+              "source_occurrence_index",
+              "source_ref",
+              "record_index",
+              "qualified_record_index",
+              "record"
+            ],
+            "fields": {
+              "source_occurrence_index": "Natural",
+              "source_ref": "Ref",
+              "record_index": "Natural",
+              "qualified_record_index": "Natural",
+              "record": "RawRecord"
+            }
+          },
+          "InputIssue": {
+            "ordered_members": [
+              "path",
+              "state",
+              "detail",
+              "backflow_owner",
+              "axis",
+              "source_ref",
+              "related_source_refs"
+            ],
+            "fields": {
+              "path": "string",
+              "state": "string",
+              "detail": "string",
+              "backflow_owner": "string",
+              "axis": "string",
+              "source_ref": "OS Field<OS Ref>; supplied value serializes as the Ref object",
+              "related_source_refs": "Ref[]"
+            },
+            "basis": "M4 OS L5 /type_contract/types/InputIssue",
+            "note_ja": "既存の7-member logical shapeを使用。state/axisは既存stringであり、新enumを追加しない。source issueは同一source occurrenceのqualification digest不一致を記録する。"
+          },
+          "RelationOccurrence": {
+            "ordered_members": [
+              "core_ref6_key",
+              "native_ref4_locator"
+            ],
+            "fields": {
+              "core_ref6_key": "CoreRef6 (partial carrier; member absence/null remains as supplied)",
+              "native_ref4_locator": "NativeRef4Locator"
+            },
+            "note_ja": "元operation payloadからparseした返却projection。別の外側request aliasを設けない。"
+          },
+          "NativeRef4Locator": {
+            "ordered_members": [
+              "source_occurrence_index",
+              "source_ref",
+              "record_index",
+              "subject_ref",
+              "payload_pointer"
+            ],
+            "fields": {
+              "source_occurrence_index": "Natural",
+              "source_ref": "Ref",
+              "record_index": "Natural",
+              "subject_ref": "Ref",
+              "payload_pointer": "JsonPointer"
+            }
+          },
+          "CallerInputsCapture": {
+            "ordered_members": [
+              "source_occurrence_index",
+              "record_index",
+              "payload_pointer",
+              "value"
+            ],
+            "fields": {
+              "source_occurrence_index": "Natural",
+              "record_index": "Natural",
+              "payload_pointer": "JsonPointer",
+              "value": "existing CORE CallerInputs whole"
+            },
+            "pointer_root_ja": "provider whole return root。pointer値は/source_frame/source_occurrences/0/decoded_records/0/payload/caller_inputs。"
+          },
+          "ProviderCallCapture": {
+            "ordered_members": [
+              "state",
+              "symbol",
+              "call_count",
+              "argument_pointer",
+              "native_return"
+            ],
+            "fields": {
+              "state": "CallCaptureState",
+              "symbol": "CorePrivateSymbol",
+              "call_count": "Natural",
+              "argument_pointer": "JsonPointer",
+              "native_return": "NativeProposalRecordDetailedReturn"
+            },
+            "CallCaptureState": [
+              "returned"
+            ],
+            "CorePrivateSymbol": [
+              "build_native_proposal_record_detail"
+            ],
+            "pointer_root_ja": "provider whole return root。argument_pointerは/source_frame/source_occurrences/0/decoded_records/0/payload/caller_inputs。"
+          },
+          "RelationObservation": {
+            "ordered_members": [
+              "candidate_entry_index",
+              "result_index",
+              "member_index",
+              "native_member_read",
+              "relation_occurrence_indices",
+              "relation_core_ref6_key",
+              "native_ref4_locator",
+              "target_source_occurrence_index",
+              "target_record_index",
+              "target_payload_pointer",
+              "target_native_ref4_read",
+              "target_source_qualification",
+              "target_qualification_origin"
+            ],
+            "fields": {
+              "candidate_entry_index": "Natural",
+              "result_index": "Natural",
+              "member_index": "Natural",
+              "native_member_read": "CoreRead<CoreRef6>",
+              "relation_occurrence_indices": "Natural[]",
+              "relation_core_ref6_key": "CoreRef6 (partial carrier; member absence/null remains as supplied)",
+              "native_ref4_locator": "NativeRef4Locator",
+              "target_source_occurrence_index": "Natural",
+              "target_record_index": "Natural",
+              "target_payload_pointer": "JsonPointer",
+              "target_native_ref4_read": "RawField<OSRef4>",
+              "target_source_qualification": "SourceQualificationState",
+              "target_qualification_origin": "SourceQualificationOrigin"
+            },
+            "note_ja": "candidate_entry元はN.record.candidate_entries。result_index元はN.capture.proposal.template_results。raw peek値だけで資格成立とせず、source occurrence qualificationを別に照合する。"
+          },
+          "SourceQualificationOrigin": {
+            "ordered_members": [
+              "source_occurrence_index",
+              "source_ref",
+              "source_sha256",
+              "qualified_record_indices",
+              "input_issue_indices",
+              "source_issue_indices"
+            ],
+            "fields": {
+              "source_occurrence_index": "Natural",
+              "source_ref": "Ref",
+              "source_sha256": "Sha256",
+              "qualified_record_indices": "Natural[]",
+              "input_issue_indices": "Natural[]",
+              "source_issue_indices": "Natural[]"
+            }
+          },
+          "ProposalBody": {
+            "ordered_members": [
+              "proposed_refs",
+              "proposed_source"
+            ],
+            "fields": {
+              "proposed_refs": "existing OS Ref[] (identity,revision,scope,owner)",
+              "proposed_source": "existing CORE Ref (six attributes)"
+            },
+            "note_ja": "proposed_sourceは元operation payloadの独立CORE Ref値を全値copy。source_refとsubject_refから生成しない。"
+          },
+          "ProviderBodyField": {
+            "tag": "tag",
+            "ordered_variants": {
+              "present": [
+                "value"
+              ],
+              "absent": [
+                "reason"
+              ]
+            },
+            "variant_fields": {
+              "present": {
+                "value": "ProposalBody"
+              },
+              "absent": {
+                "reason": "ProviderBodyAbsenceReason"
+              }
+            },
+            "ProviderBodyAbsenceReason": [
+              "native_coverage_incomplete",
+              "selected_native_source_unqualified"
+            ]
+          },
+          "CoreF02ProviderReturn": {
+            "ordered_members": [
+              "source_frame",
+              "caller_inputs_read",
+              "call_capture",
+              "relation_observations",
+              "proposed_body",
+              "causes"
+            ],
+            "fields": {
+              "source_frame": "SourceFrame",
+              "caller_inputs_read": "CallerInputsCapture",
+              "call_capture": "ProviderCallCapture",
+              "relation_observations": "RelationObservation[]",
+              "proposed_body": "ProviderBodyField",
+              "causes": "ProviderCause[]"
+            },
+            "note_ja": "この3ケースでは既存CORE Cause[]は空配列。qualification issueはOS InputIssue[]側にだけ保持。"
+          },
+          "SourceFrame": {
+            "ordered_members": [
+              "operation_source_occurrence_index",
+              "source_occurrences",
+              "qualification_inputs",
+              "qualification_root_inputs",
+              "input_issues",
+              "source_issues",
+              "source_walks",
+              "qualified_raw_occurrences",
+              "operation_record_pointer",
+              "caller_inputs_pointer",
+              "relation_occurrences_pointer",
+              "relation_occurrences"
+            ],
+            "fields": {
+              "operation_source_occurrence_index": "Natural",
+              "source_occurrences": "ParsedSourceOccurrence[]",
+              "qualification_inputs": "Qualification[]",
+              "qualification_root_inputs": "QualificationRoot[]",
+              "input_issues": "InputIssue[]",
+              "source_issues": "InputIssue[]",
+              "source_walks": "SourceWalkOrigin[]",
+              "qualified_raw_occurrences": "QualifiedRawOccurrence[]",
+              "operation_record_pointer": "JsonPointer",
+              "caller_inputs_pointer": "JsonPointer",
+              "relation_occurrences_pointer": "JsonPointer",
+              "relation_occurrences": "RelationOccurrence[]"
+            },
+            "pointer_root_ja": "この3つの内部pointerはSourceFrame root。"
+          },
+          "CoreCause": {
+            "ordered_members": [
+              "kind",
+              "target",
+              "left",
+              "right",
+              "rule_pointer"
+            ],
+            "fields": {
+              "kind": "CauseKind",
+              "target": "Location",
+              "left": "CheckOperand",
+              "right": "CheckOperand",
+              "rule_pointer": "JSONPointer"
+            },
+            "basis": "M4 CORE L5 /f05_detail_contract/types/Cause"
+          },
+          "Sha256": {
+            "format": "64 lowercase hexadecimal characters"
+          },
+          "JsonPointer": {
+            "format": "RFC 6901 string"
+          }
+        },
+        "new_private_types": {
+          "RawRecord": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "subject_ref": "OSRef4",
+              "section_key": "string",
+              "record_kind": "string",
+              "payload": "CoreJsonValue",
+              "owner": "string"
+            },
+            "meaning_ja": "新CORE-owned private原record carrier。OSOwnerRecordのaliasでない。payloadはstrict parseされた元CoreJsonValue wholeであり、OS SourceSectionValue decode成功とはしない。旧OS型/selector/公開record_kindの許可を緩めない。"
+          },
+          "RawSourceBody": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "records": "RawRecord[]"
+            },
+            "meaning_ja": "source_json_utf8のstrict parse対象。この限定profileではrecords wrapperを読み、原record/payloadの順序と値を保持。"
+          },
+          "OperationFrame": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "caller_inputs": "CallerInputs",
+              "proposed_source": "OSRef4",
+              "relation_occurrences": "RelationOccurrence[]"
+            },
+            "meaning_ja": "資格を確認した指定原operation record.payloadから新private roledecodeをした内部値。raw payloadはSourceFrameのRawRecordに別途全保持する。caller_inputsをOS CaseInputへcastしない。"
+          },
+          "RawProviderRequest": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "operation_source_occurrence_index": "Natural",
+              "source_occurrences": "RawSourceOccurrence[]",
+              "qualification_inputs": "Qualification[]",
+              "qualification_root_inputs": "QualificationRoot[]"
+            },
+            "meaning_ja": "callerの唯一のprovider入力。source_walks/資格結果/parse結果/roleframe/N/expected/boolを入力にしない。"
+          },
+          "RawField<T>": {
+            "kind": "closed_tagged_union",
+            "tag": "tag",
+            "ordered_variants": {
+              "present": {
+                "value": "T"
+              },
+              "absent": {
+                "reason": "string"
+              }
+            },
+            "meaning_ja": "新private raw診断Field。既存CORE Read/OriginRoot/OS Fieldとは別型。原3caseはpresentのみで値は不変。未資格raw peekのpresentはtyped source利用資格を表さない。"
+          },
+          "SourceClassification": {
+            "kind": "enum",
+            "values": [
+              "qualified",
+              "unqualified",
+              "conflicting",
+              "unresolved"
+            ],
+            "basis_binding": "OSSourceWalkOrigin",
+            "basis_member": "fields/classification_flags",
+            "meaning_ja": "既存4literalを再使用。classification_flagsは非排他配列、元順序規約を保持。"
+          },
+          "SourceQualificationState": {
+            "kind": "alias",
+            "target": "SourceClassification",
+            "meaning_ja": "新private scalar観測名の技術案。今回3caseはqualified/unqualifiedだけ。非排他flagsからsingularへ任意勝者を選ばない。複数該当/競合/未解決の集約は未被覆で、このfreezeが総定義したとはしない。"
+          },
+          "SourceQualificationCapture": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "source_occurrences": "ParsedSourceOccurrence[]",
+              "qualification_inputs": "Qualification[]",
+              "qualification_root_inputs": "QualificationRoot[]",
+              "input_issues": "InputIssue[]",
+              "source_issues": "InputIssue[]",
+              "source_walks": "SourceWalkOrigin[]",
+              "qualified_raw_occurrences": "QualifiedRawOccurrence[]"
+            },
+            "meaning_ja": "新CORE local同walk readerの内部生成観測。型を満たす外部claimを信頼する入力portではない。OperationFrame形成前の段階なのでcaller_inputs/relation projectionは含めない。"
+          }
+        },
+        "applied_type_overrides": [
+          {
+            "pointer": "/closed_type_contract/ParsedSourceOccurrence/fields/decoded_records",
+            "from": "OwnerRecord[]",
+            "to": "RawRecord[]"
+          },
+          {
+            "pointer": "/closed_type_contract/QualifiedRawOccurrence/fields/record",
+            "from": "OwnerRecord",
+            "to": "RawRecord"
+          },
+          {
+            "pointer": "/closed_type_contract/RelationObservation/fields/native_member_read",
+            "from": "CoreField<CoreRef6>",
+            "to": "CoreRead<CoreRef6>"
+          },
+          {
+            "pointer": "/closed_type_contract/ProviderCause",
+            "action_ja": "後続検討TODOを上記既存CoreCause aliasへ閉じる。期待[]/既存原因を変更せず新生成なし。"
+          },
+          {
+            "pointer": "/closed_type_contract/SourceWalkOrigin/fields/classification_flags",
+            "action_ja": "未定SourceClassificationを上記既存4literal aliasへ閉じる。"
+          },
+          {
+            "pointer": "/closed_type_contract/RelationObservation/fields/target_native_ref4_read",
+            "action_ja": "RawField<Ref4>を上記新private diagnostic unionへ束縛。"
+          }
+        ],
+        "type_scope_ja": "上記23 source bindingはM4時点で既存のCORE/OS型・function/numeric ruleを参照する。新規provider型の過去存在を示さず、wire/schemaの追加要件にもならない。固定型snapshotとこの候補のprivate閉型定義を分離する。"
+      },
+      "relation_boundary": {
+        "qualification_ref": "完全Ref値でQualification.refを選択するlocator。source_refとは別の役割。",
+        "source_ref": "qualification.source_refとの照合に使うraw occurrence identity。qualification_refへ変換しない。",
+        "subject_ref": "RawRecordの原subjectを保持し、資格locatorやproposed_sourceへ代用しない。",
+        "CoreRef6": "返却candidate_entriesのnative key readに対応させる既存partial CoreRef read全値。すべてのRelationOccurrenceを入力順で走査し同一keyの重複も保持する。属性補完・cast禁止。",
+        "OSRef4": "target native locatorは独立source occurrence index/source_ref/record_index/subject_ref/payload_pointerから保持し、同じ資格walk内でその原occurrence自身の資格を評価する。別sourceの同じRef6 keyやqualified twinで未資格targetを救済しない。",
+        "proposed_source": "OperationFrame原operation payloadから得る独立Ref4。source_ref/subject_ref/twin qualificationから生成しない。"
+      },
+      "failure_and_partial_rules": {
+        "source_locality": "不資格twinは原occurrenceへ局所source issueを置き、資格済兄弟やoperation sourceを巻き込まない。全sourceが資格済みであることをentry gateにしない。",
+        "body_absence": "N enumeration coverage incompleteならnative_coverage_incomplete。選択したtarget source occurrenceがunqualifiedならselected_native_source_unqualified。どちらも有効な兄弟観測を保持する。",
+        "total_failure": "raw source parse不能、operation source未資格/conflict/unresolved、role decode不能ではwrapperを呼ばない必要があるが、その全branchのtotal result型と完全な返却oracleはここでは定義しない。限定成功entryをこれらの成功型へ流用しない。"
+      },
+      "failure_basis": [
+        {
+          "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": "65–101",
+          "failure": "UTW-014",
+          "effect": "欠落を空集合扱いしない。"
+        },
+        {
+          "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": "65–101",
+          "failure": "UTW-020",
+          "effect": "partial failureで有効な兄弟を失わない。"
+        },
+        {
+          "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": "65–101",
+          "failure": "UTW-021",
+          "effect": "件数/hash/自己申告でcoverageや資格を証明しない。"
+        }
+      ],
+      "unclosed": [
+        "この候補はL5実装、閉じたnative codec、L8との実接続、実wrapper呼出し、OS受領/資格/記録/配送、ProductScope/ProjectScope/保存identityを成立させない。",
+        "raw UTF-8 parse失敗・入力型外・qualification conflicting/unresolved・role decode不能のtotal result branchesは未定。",
+        "複数relation、duplicate/out-of-range native index、Ref6欠落/異型、native target locator未観測、未知source qualification複合状態の全形は有限caseで未行使。",
+        "valid N/A/known empty、OS selected/used projection、実provider/runtime/CI/Green/PO受入は未成立。"
+      ],
+      "design_ref": "HARNESS-L4-009-F02",
+      "verification_ref": "HARNESS-L9-009-F02",
+      "title": "原sourceから提案record providerへの同一呼出し境界"
+    }
+  },
     {
       "id": "HARNESS-L4-009-F03",
       "requirement_ref": "HARNESS-L3-009-F03",
