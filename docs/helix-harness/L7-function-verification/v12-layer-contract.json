@@ -5495,11 +5495,26 @@
       }
     },
     "expected_provenance": {
-      "whole_literal_sha256": "28a1e6fd0400509b5f4e6fc1365d2a54e87c4701a6c1dea1817669063cf946ee",
-      "source_basis_sha256": "a07841e7d4ac74a92783cad05b5fac6e7bf2b73bfef46639bf2ec5b147e31985",
-      "role_ja": "別担当がL3/L10→L5/L8と明示されたL6技術選択から先に著述した候補全値。そのsource記録の誤L3/L10 pathは旧記録を保持して別記録で訂正した。運用環境のlocal fileを再構成依存にしない。",
+      "whole_results_canonical_sha256": "8fe36cc47da77ec6475dd658e16dec73b17617c7788e19b9eccfd97b9e9fc52a",
+      "hash_contract_ja": "この文書のprimary_call_oracles.calls全23件についてexpected_result_recipeを標準JSON Pointer/RFC 6902で復元し、call_idをkey、復元したwhole ResultをvalueとするJSON objectを作る。そのobjectをsorted keys・compact separators（comma/colon直後の空白なし）・ensure_ascii=false・allow_nan=falseでUTF-8 JSONへ直列化した全bytesのSHA-256。callの配列順で連結せず、input/Context・profile・metadataはこの集約hashへ含めない。",
+      "basis_source_pin_refs": [
+        "/source_pins/0",
+        "/source_pins/1",
+        "/source_pins/2",
+        "/source_pins/3",
+        "/source_pins/10",
+        "/source_pins/11"
+      ],
+      "historical_L6_source": {
+        "revision": "fc820399857ec88f39594dc96c8f7b34aa848484",
+        "path": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
+        "file_sha256": "a834da5af6d94efe515ba491f1473b92adb27299af181a66a79a984a28bedda5",
+        "selected_pointers": [
+          "/return_contract_detail"
+        ]
+      },
       "candidate_l6_basis_ref": "/paired_candidate_binding",
-      "basis_roles_ja": "source_basisの固定L6はsource_main=fc820399の歴史source（a834da5a…）を指す。同候補のidentity診断保持・L5準拠null・非current優先という3技術選択は、paired_candidate_bindingに束縛したL6候補と別に照合する。歴史pinを候補bytesへ付け替えず、候補選択を独立した上流source承認とも呼ばない。"
+      "role_ja": "別担当が先にL3/L10→L5/L8と明示したL6選択から全23値を著述した候補。集約hashはこのPRだけから再計算できる照合値。上流sourceは既存pinを参照し、歴史L6は上記commitのraw file bytes、同候補3技術選択はpaired_candidate_bindingを通じて別役割に束縛する。private準備記録は再構成依存でも上流authorityでもない。"
     }
   }
 }
