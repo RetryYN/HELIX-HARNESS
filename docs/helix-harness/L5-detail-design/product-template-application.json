@@ -20984,5 +20984,819 @@
       "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103",
       "candidate_scope_ja": "M3 baseから変えていない既存型・関数・数値規範を候補worktreeで同じpointerへ解決する。候補L5 childの追加はこれら旧objectの定義を変更しない。"
     }
+  },
+  "original_operation_proposal_provider_detail": {
+    "id": "HARNESS-L5-009-F02-OPP-TOTAL",
+    "title": "原operation source total attemptのprivate型と段階writer",
+    "status": "詳細設計。source-first oracleとの静的照合・独立review・実装成立は別に確認する。",
+    "authority_effect": "none",
+    "requirement_refs": [
+      "HARNESS-L3-009-F02",
+      "HARNESS-L3-009-F03"
+    ],
+    "basic_design_ref": {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/contracts/3/original_operation_proposal_provider/total_attempt_boundary",
+      "revision_binding": "同一設計snapshot。新childを過去M6へ固定pinしない。"
+    },
+    "owner_and_effect": "CORE源泉側private処理。外部I/O、保存、登録、認可、OS状態変更を行わない。OS主体がCORE private入口又はOS private validatorを直接呼ぶ設計にしない。",
+    "source_basis": {
+      "fixed_revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+      "role": "追補前の型・既決意味・primitive/資格規範の固定source。新L4/L5 childの存在revisionではない。",
+      "selected_sources": [
+        {
+          "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "raw_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "pointer": "/requirements/24",
+          "canonical_sha256": "24bc8c32bd201d805ae635188a247d44b5770c5af0d56c92918f33267dba14c1",
+          "role_ja": "採択F02 exact setと理由/元scope/version、OS setとの分離"
+        },
+        {
+          "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "raw_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "pointer": "/requirements/25",
+          "canonical_sha256": "6c3eebfe5f9a38a9df0859bf17172d98cbac59e1dd8cb4767dabcbd0571e91ff",
+          "role_ja": "採択F03四判定/N/A4/未解決の保持"
+        },
+        {
+          "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "raw_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+          "pointer": "/cases/24",
+          "canonical_sha256": "32e05dbb65455ce59e80a4e2c3ce9fe782fa6c1db8da6ac259afbf49ca5fb0f4",
+          "role_ja": "別revision/母集合未定/提案→使用の失敗保持"
+        },
+        {
+          "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "raw_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+          "pointer": "/cases/25",
+          "canonical_sha256": "33e74b9d6adfc7365452feb2a1741cc4dc3db8ac51f510a761ecb81f22925308",
+          "role_ja": "欠落N/A/unknownを完了にしない"
+        },
+        {
+          "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "raw_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+          "pointer": "/wire_codec_contract/numeric_encode_profile/decode_ordered_steps",
+          "canonical_sha256": "111b932a9d0beffcb8d2cfd910bf3c289716af02a648ebc9176d84b844620fad",
+          "role_ja": "旧primitive段階/数値/重複/観測順"
+        },
+        {
+          "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "raw_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+          "pointer": "/wire_codec_contract/numeric_encode_profile/stage_and_failure_writers",
+          "canonical_sha256": "4be4546f710a4596793058ef09ae42747031f7e4787ed9eb07b1485b9244ec46",
+          "role_ja": "既存失敗phase/reason/origin writer"
+        },
+        {
+          "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "raw_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+          "pointer": "/f05_detail_contract/presence_and_decode_rules",
+          "canonical_sha256": "925a41bee5aa03d10e89c6c482882fdb9cccec87f4ed25714dfc94b6e7679f58",
+          "role_ja": "外側codecとtyped raw内domain検証の境界"
+        },
+        {
+          "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+          "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+          "raw_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+          "pointer": "/reference_resolution_contract",
+          "canonical_sha256": "8f4b42300c173cb2e3afcadfbadaeb516debfc996c8b91696930e698591aa473",
+          "role_ja": "資格/ref/bytes/相反/局所保持の意味をCORE-localへ再導出"
+        },
+        {
+          "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+          "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+          "raw_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+          "pointer": "/functions/19/algorithm",
+          "canonical_sha256": "bd1f500f4b894a9bd7c11753bbf1dabca8404f9b787d972b493987ddcad061c8",
+          "role_ja": "既存same-walk origin/非排他flags/global flat index規則。private関数の直呼びではない。"
+        },
+        {
+          "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+          "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+          "raw_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+          "pointer": "/wire_codec_contract/field_encoding",
+          "canonical_sha256": "a66d0a175f3c882278bd36e54237fbcb800287f7d7d1743de0158eee0202c3b8",
+          "role_ja": "Ref4のField欠落/null/原値のlogical表現"
+        }
+      ]
+    },
+    "existing_type_bindings": {
+      "RawProviderRequest": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/new_private_types/RawProviderRequest",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "02010d2c58850f63189843a2bb7d7330e8f7e4375d3901c30d4845f1cf9693c5"
+      },
+      "RawSourceBody": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/new_private_types/RawSourceBody",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "4f817312ef6a3ae54c9dfe6a9a4ad581e51ff83662859ace0bd2d84a5f09bb65"
+      },
+      "RawRecord": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/new_private_types/RawRecord",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "bf6bbadbae5de647a577ee8010f9fdee83a28de2dfefe58cea46848528531836"
+      },
+      "OperationFrame": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/new_private_types/OperationFrame",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "930dfb43ba2bf443caf38b2a7e28d2a19a0d743255fa268056487c03575ea986"
+      },
+      "RawSourceOccurrence": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/closed_types/RawSourceOccurrence",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "da761a69ca9f5eb7ee30b93d3b554c5a14bdb5c935dbfffecce4b8caee441d85"
+      },
+      "ParsedSourceOccurrence": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/closed_types/ParsedSourceOccurrence",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "90e46db77e35a08f1c53f2e783bd35ded51a633f93aea2f945cfe8d91bef9afd"
+      },
+      "SourceWalkOrigin": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/closed_types/SourceWalkOrigin",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "890fc4740814c723b56710ad1de1800c2f762a667d504b905e0c7729e43ae7cb"
+      },
+      "QualifiedRawOccurrence": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/closed_types/QualifiedRawOccurrence",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "8c1037d1d22e53e5194d122917fc32515a38f8224f237799637e2bdc700ac735"
+      },
+      "RelationOccurrence": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/closed_types/RelationOccurrence",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "fb7d813a9eb5873fa45bd47da6cfb30fb8d4e2bd66b6a86a4337d46c05113838"
+      },
+      "ExistingProviderReturn": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/closed_types/CoreF02ProviderReturn",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "c15f5a7b1c2a9acd9fd018ebd8af2c3252891f1d48d3bc6c5a7048a422ccd98d"
+      },
+      "OSRef4": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/aliases/OSRef4",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "380231667cee20605132eb1b53f998420f68477f761d1e207067f5c88122cd3a"
+      },
+      "Qualification": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/aliases/Qualification",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "c56e372deefff5029fd94bbb59034f6960c1edae19f7d4b83bf4c18b4d4a80d4"
+      },
+      "QualificationRoot": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/aliases/QualificationRoot",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "826363b5d2f12391b52e5eaa40eca7ce961af9b1d6074c737a3558b2f4e469da"
+      },
+      "LocalIssue": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/aliases/InputIssue",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "266a2a0b0380d360bb4fe17f8ad016c34af27a372a9c34a5746cd3b0929cf9bf"
+      },
+      "Natural": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/aliases/Natural",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "422ce1be151fcc459a69f68ca7fa19f01ee024c256cc1564ff7bb68e012d060d"
+      },
+      "JsonPointer": {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/aliases/JsonPointer",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "canonical_sha256": "cd0d6aa87f713b5243a32ad5229e478875d55072c550241f87a50af897184575"
+      },
+      "CoreDecodeResult": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/wire_codec_contract/numeric_encode_profile/private_host_types/CoreDecodeResult",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "canonical_sha256": "7aebb2325f18cd1900efaa82fe2e19381da1fccb9745579ebabb3f2e4dd14202"
+      },
+      "CallerInputs": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/f05_detail_contract/types/CallerInputs",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "canonical_sha256": "3bb204dfd0b72ee78ac9429d8e194f696ff2fa0469b3b1a81c489055b1f5667e"
+      },
+      "ValidationInput": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/f05_detail_contract/types/ValidationInput",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "canonical_sha256": "c1f10500ba16a58c2223bf4a8dbfc7ab2cd9aebc2f5cd86d1a5c2be84c148762"
+      },
+      "NativeReturn": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/proposal_native_record_material_detail/private_types/NativeProposalRecordDetailedReturn",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "canonical_sha256": "f42f3c2d293ebb4c8688d44cfae533caaed939a4327c164321888deb35450d17"
+      },
+      "CoreJsonValue": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/f05_detail_contract/types/CoreJsonValue",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "canonical_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2"
+      },
+      "CoreInputIssue": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/f05_detail_contract/types/CoreInputIssue",
+        "binding": "追補前M6の既存型へのexact alias。新childの過去存在を示さず、型本文を再定義しない。",
+        "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+        "raw_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "canonical_sha256": "f9c70a517a396d1af5277d208604ef883d5f243c8bcac6287c78f11507572168"
+      }
+    },
+    "private_type_language": "既存閉型/列/strict Natural/JSONPointerを用いる。ordered_members/ordered_variantsは返却格納順であり、未宣言型や余分memberを追加しない。T/null/presenceの元意味を変更しない。",
+    "private_types": {
+      "DiagnosticRef": {
+        "kind": "closed_record",
+        "ordered_members": {
+          "pointer": "JsonPointer"
+        },
+        "extra_members": "この新private型では追加memberを許可しない。",
+        "meaning_ja": "CoreF02ProviderAttempt rootに対するRFC6901。実在するdecode結果/実InputIssue/実source walk/実role診断を指す。旧Location/OriginRoot/Readではなく新private所在参照。未到達の子や架空診断を参照しない。"
+      },
+      "SourceDecodeOutcome": {
+        "kind": "closed_tagged_union",
+        "tag": "tag",
+        "ordered_variants": {
+          "ready": {
+            "body": "RawSourceBody"
+          },
+          "failed": {
+            "decode": "CoreDecodeResult"
+          }
+        },
+        "meaning_ja": "新private固定source-body readerの返却選択。readyは原records/body全値・順序を保存し、request_captureが原textを保持する。failedは観測した全CoreDecodeResultを無変換で保持する。既存公開codecの返却型を変更/射影する機能ではなく、旧6entryへ追加しない。"
+      },
+      "SourceQualificationOutcome": {
+        "kind": "closed_tagged_union",
+        "tag": "tag",
+        "ordered_variants": {
+          "unreached": {
+            "blocked_by": "DiagnosticRef[]"
+          },
+          "observed": {
+            "walk_index": "Natural"
+          }
+        },
+        "meaning_ja": "observedは同source比較を行ったことだけで資格成功を意味しない。walk_indexはQualificationSnapshot.source_walksの実index。parse/shape失敗ならunreachedで資格比較を捏造しない。"
+      },
+      "SourceAttempt": {
+        "kind": "closed_record",
+        "ordered_members": {
+          "source_occurrence_index": "Natural",
+          "decode": "SourceDecodeOutcome",
+          "qualification": "SourceQualificationOutcome"
+        },
+        "extra_members": "この新private型では追加memberを許可しない。",
+        "meaning_ja": "入力source配列の全出現を同index/順で一回ずつ保存。raw全値はrequest_captureにある。成功sourceだけへ原indexを詰め直さない。"
+      },
+      "QualificationSnapshot": {
+        "kind": "closed_record",
+        "ordered_members": {
+          "input_issues": "LocalIssue[]",
+          "source_issues": "LocalIssue[]",
+          "source_walks": "SourceWalkOrigin[]",
+          "qualified_raw_occurrences": "QualifiedRawOccurrence[]"
+        },
+        "extra_members": "この新private型では追加memberを許可しない。",
+        "meaning_ja": "新CORE-local readerの全source資格walk観測。walkはparse/RawSourceBody成立後に実比較したsourceだけを原順で含む。parse失敗はSourceAttempt.qualification=unreachedで表し、未実施walkを空成功で作らない。既存SourceWalkOriginのissue indicesはこのsnapshot各配列、qualified_record_indicesはこのglobal flat配列だけを指す。"
+      },
+      "SourceRecordLocation": {
+        "kind": "closed_record",
+        "ordered_members": {
+          "source_occurrence_index": "Natural",
+          "record_index": "Natural",
+          "subject_ref": "OSRef4",
+          "payload_pointer": "JsonPointer"
+        },
+        "extra_members": "この新private型では追加memberを許可しない。",
+        "meaning_ja": "同attemptのsource_attempts[s].decode.ready.body.records[r]に実在する原record所在。payload_pointerはattempt whole内の当該RawRecord.payloadを指す。source_ref/subject_refを新identityへ変換しない。"
+      },
+      "OperationRoleOutcome": {
+        "kind": "closed_tagged_union",
+        "tag": "tag",
+        "ordered_variants": {
+          "unreached": {
+            "blocked_by": "DiagnosticRef[]"
+          },
+          "failed": {
+            "candidate_records": "SourceRecordLocation[]",
+            "input_issues": "LocalIssue[]"
+          },
+          "ready": {
+            "selected_record": "SourceRecordLocation",
+            "frame": "OperationFrame"
+          }
+        },
+        "meaning_ja": "未資格/未parse/相反でroleを読まない時はunreached。原record選択又はOperationFrame外側型形成の失敗はfailed。資格済raw record/原payloadはsource捕捉に残るのでrole失敗で資格を取消さない。readyは既存CallerInputs等へのrole形成だけで内部domain検証成功ではない。 指定source index範囲外は候補0件のfailedとし、実indexを指すLocalIssueを保持する。"
+      },
+      "NativeDispatchOutcome": {
+        "kind": "closed_tagged_union",
+        "tag": "tag",
+        "ordered_variants": {
+          "not_called": {
+            "native_call_count": "literal 0",
+            "blocked_by": "DiagnosticRef[]"
+          },
+          "existing_view_returned": {
+            "native_call_count": "literal 1",
+            "value": "ExistingProviderReturn"
+          },
+          "native_capture_only": {
+            "native_call_count": "literal 1",
+            "native_return": "NativeReturn",
+            "view_issues": "LocalIssue[]"
+          }
+        },
+        "meaning_ja": "既存3whole success-viewはvalueへ無変換内包し二重定義しない。native_capture_onlyは実Nがあるが旧success-view型へ全stageを正直に表せない場合の私有技術表現。製品成功/失敗/資格/受入enumではない。"
+      },
+      "CoreF02ProviderAttempt": {
+        "kind": "closed_record",
+        "ordered_members": {
+          "request_capture": "RawProviderRequest",
+          "source_attempts": "SourceAttempt[]",
+          "qualification_snapshot": "QualificationSnapshot",
+          "operation_role": "OperationRoleOutcome",
+          "native_dispatch": "NativeDispatchOutcome"
+        },
+        "extra_members": "この新private型では追加memberを許可しない。",
+        "meaning_ja": "新private total controllerの結果型候補。typed4member inputから全観測を生成する。外側codec型外はこの型へ入れず既存外側返却に残す。"
+      }
+    },
+    "entry_points": {
+      "private_controller": {
+        "symbol": "attempt_original_operation_proposal_provider",
+        "visibility": "private",
+        "signature": "RawProviderRequest -> CoreF02ProviderAttempt",
+        "runtime_arguments": [
+          "RawProviderRequest whole"
+        ],
+        "not_arguments": [
+          "expected",
+          "cached N",
+          "replacement return",
+          "qualification boolean",
+          "same-call boolean",
+          "derived source walk",
+          "OperationFrame"
+        ],
+        "ordered_steps": [
+          "S0 capture",
+          "S1 source body reader",
+          "S2 same-walk qualification",
+          "S3 operation role reader",
+          "S4 native dispatcher",
+          "S5 existing-view/capture-only writer"
+        ]
+      },
+      "fixed_source_reader": {
+        "symbol": "read_provider_source_body",
+        "visibility": "private",
+        "signature": "source_json_utf8:string -> SourceDecodeOutcome",
+        "fixed_profile": "既存RawSourceBody/RawRecordだけをroot/schemaへ固定する。旧decode_core009_wireの新entry又は公開schema selectorを受けない。"
+      },
+      "same_walk_reader": {
+        "symbol": "qualify_provider_source_attempts",
+        "visibility": "private",
+        "signature": "(同request, 内部で得たSourceDecodeOutcome[]) -> {source_attempts:SourceAttempt[],qualification_snapshot:QualificationSnapshot}",
+        "input_boundary": "中間decode列はS1実返却だけ。外部のready/資格claimから生成しない。"
+      },
+      "operation_reader": {
+        "symbol": "read_provider_operation_role",
+        "visibility": "private",
+        "signature": "(同request, 同SourceAttempt[], 同QualificationSnapshot) -> OperationRoleOutcome"
+      },
+      "native_callee": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/proposal_native_record_material_detail/entry_points/private_wrapper",
+        "symbol": "build_native_proposal_record_detail",
+        "visibility": "既存privateのまま",
+        "signature": "既存CallerInputs -> 既存NativeReturn"
+      },
+      "view_writer": {
+        "symbol": "form_provider_attempt_native_view",
+        "visibility": "private",
+        "signature": "(同request/source/role実観測, 同actual NativeReturn) -> NativeDispatchOutcome.existing_view_returned | NativeDispatchOutcome.native_capture_only",
+        "effects": "native wrapper/各producerを再実行せず、実Nを変更しない。"
+      }
+    },
+    "stage_contracts": {
+      "S0_capture": "request_captureにtyped4member入力全値を欠落/null/原配列/member順を保ちwhole保存する。以後別walk/別requestの観測を混ぜない。",
+      "S1_source_body": {
+        "order": "source_occurrencesの全原index順。一件失敗でも他sourceを読む。入力stringは置換なしUTF-8として原bytesへ結び、原textはrequest_captureに残す。",
+        "primitive": "既存numeric_encode_profile.decode_ordered_stepsのstrict JSON、CorePairObject/CoreParsedNumber、decoded-key重複、exact数値形成、stage_and_failure_writersを同じ順に用いる。boolをnumberへ、欠落をnullへ、unread/未観測offsetを仮値へ変換しない。",
+        "schema": "rootはclosed RawSourceBody{records:RawRecord[]}、各recordは既存RawRecordの宣言供給型へ固定する。OSRef4は既存Fieldのmissing/supplied-null/原値を保持するcarrierであり全属性knownを新wire条件にしない。payloadはCoreJsonValue全値でopaque。OSOwnerRecord/SourceSectionValue/CaseInputへdecodeしない。",
+        "ready_writer": "成功時はready{body:実RawSourceBody全値}だけを返す。生成したrecordsを再serializeしたhashで原source digestを置換しない。これは新private readerの成功返却選択であり、旧CoreDecodeResultの返却memberを削る機能ではない。",
+        "failed_writer": "失敗時はfailed{decode:実CoreDecodeResult全値}を保持する。原octets/tree/token/member/presence/InputIssue/phase/phase_completeを削らず、失敗bodyを作らない。既存primitive/shapeの理由をLocalIssueへ言い換えない。",
+        "qualification": "failed sourceはSourceAttempt.qualification=unreached。blocked_byは実decode.input_issues[k]を原順に指し、途中資源失敗でその列が無い範囲は実decode全nodeへのDiagnosticRefを使う。仮のwalk/decoded_records=[]/成功bodyを生成しない。",
+        "plain_shape_rule": "RawSourceBody.recordsとRawRecordの宣言plain memberは当該新private closed recordの型成立に必要。Ref4/ScopeのField memberは既存欠落/nullを許すcarrierであり全requiredへ強化しない。record型に不成立があれば原失敗decode全値へ返し、入力RawRecordのownerとsource occurrence.ownerを同じnodeへ混ぜない。"
+      },
+      "S2_qualification": {
+        "input_scope": "S1 ready sourceだけを原source index順で処理する。SourceAttemptは全入力sourceと同数・同原index順とし、ready sourceのqualification.observed.walk_indexはこの実source_walks位置。observedは資格成功を意味しない。",
+        "ref_matching": "qualification_ref→Qualification.refと、選択claim.source_ref→原source_refを別々に完全な元Ref値で照合する。独立root_ref→QualificationRoot.refを別に選ぶ。CoreRef6やRef文字列grammarからRef4/資格を生成しない。必要な元比較端が未供給/nullで既知比較不能ならunresolvedとして保持し、既知差と区別する。input carrierの欠落自体をglobal wire失敗にしない。",
+        "matching_occurrences": "同じlocatorの全claim/root原出現を保持する。原順を捨てず、同内容重複は同値出現のまま、対応端の相反は未解決診断として保持する。first/last勝者や同Refの別sourceによる救済を行わない。原requestに全claim/root出現を残し、診断pathから各原indexへ戻す。",
+        "comparisons_in_order": [
+          "原text UTF-8 SHAと原source.source_sha256。ready.bodyはそのtextの同一parse結果であり、外部decoded_records自己申告を入力しない。",
+          "qualification_refの完全値lookup、claim.source_ref/owner/source_sha256、全原subject_refのclaim.subject_refsへの対応。",
+          "独立root_ref lookup、root.owner/allowed_source_ref/allowed_source_sha256、全原subject_refのroot.allowed_subject_refsへの対応。",
+          "資格済record間の同subject/section相反。元record_kind/payloadの全内容・presenceを比較し、既知異本文を同値へ丸めない。"
+        ],
+        "classification": "資格bindingが成立すればqualified（record0件でも成立可）。既知不対応はunqualified、必要端未取得/対応不定はunresolved、既存同subject/section相反はconflictingとunresolvedを保持する。flagsはqualified,unqualified,conflicting,unresolvedの宣言順で該当値を各一回。非排他でありqualified_record_indices件数や単一scalarへ縮約しない。",
+        "conflict_and_flat_indices": "同subject/sectionに相反する有資格recordを供給した双方sourceを相反として記録し、双方sourceのrecordをqualified_raw_occurrencesから除く。別の有効source兄弟は残す。全相反比較後に残存source原順→record原順で一度flat採番し、qualified_record_index=j、source walk.qualified_record_indicesはその同じ配列のindexにする。record_indexは原body indexのまま。",
+        "issues": "追加した時点のinput_issues/source_issues indexをそのsource walkへ保持する。同文言別issueを統合せず、共有issueの同一index参照は可能。元source indexとsnapshot walk indexを混ぜない。全stage診断は後段role失敗でも取消さない。",
+        "implementation_boundary": "OS既存意味を新CORE-local readerへ再導出する。OS private validate_record_trace_with_originsの直接呼出し、OSOwnerRecordへのpayload cast、実trust/custody/認可成立を主張しない。",
+        "input_issue_scope": "typed request内の資格比較はsource_issuesへ保持する。このprofileのinput_issuesは[]であり、primitive CoreInputIssueやrole input_issuesをこの配列へ変換して足さない。既存SourceWalkOrigin.input_issue_indicesもこのsnapshotの実配列だけを指す。",
+        "comparison_domain": "Ref4 lookup/所属は既存logical Ref4の完全値（Field欠落/null/供給値を区別）で行う。body相反はCoreJsonValueの既存typed_core_json_equalで比較する。CoreRef6/Ref4共通型・castを作らず、object member順/hashを新しい値等値条件にしない。必要なRefのidentity/revision/scope/ownerの比較端がmissing/nullで比較不能なら未解決とするが、scope object内へ新しいproject/tenant/environment供給gateを生成しない。",
+        "source_eligibility": "同locatorに同内容のclaim/rootが反復しても全出現を保持し同じ対応を使用する。対応候補の原内容が相反して一意に定まらない場合はunresolvedであり一方を選ばない。全必要比較が既知一致する対応が一意（同値反復を含む）の時だけ資格binding成立。既知差と未知端が独立に有れば両診断/flagsを残す。",
+        "closed_comparison_rows": [
+          {
+            "comparison": "raw UTF8 digestとdeclared source digest",
+            "different_path": "/source_occurrences/{s}/source_sha256",
+            "state": "unqualified",
+            "detail": "原source textのUTF-8 SHA-256と供給source_sha256が一致しない。"
+          },
+          {
+            "comparison": "qualification_ref lookup不在/相反",
+            "unresolved_path": "/source_occurrences/{s}/qualification_ref",
+            "state": "unresolved",
+            "detail": "原source資格比較に必要な独立対応端を一意に取得できない。"
+          },
+          {
+            "comparison": "claim.source_refとsource.source_ref",
+            "different_path": "/qualification_inputs/{q}/source_ref",
+            "state": "unqualified",
+            "detail": "原sourceと独立Qualification又はQualificationRootの対応端が既知に異なる。"
+          },
+          {
+            "comparison": "claim.ownerとsource.owner",
+            "different_path": "/qualification_inputs/{q}/owner",
+            "state": "unqualified",
+            "detail": "原sourceと独立Qualification又はQualificationRootの対応端が既知に異なる。"
+          },
+          {
+            "comparison": "claim.root_ref lookup不在/相反",
+            "unresolved_path": "/qualification_inputs/{q}/root_ref",
+            "state": "unresolved",
+            "detail": "原source資格比較に必要な独立対応端を一意に取得できない。"
+          },
+          {
+            "comparison": "root.ownerとsource.owner/claim.owner",
+            "different_path": "/qualification_root_inputs/{u}/owner",
+            "state": "unqualified",
+            "detail": "原sourceと独立Qualification又はQualificationRootの対応端が既知に異なる。"
+          },
+          {
+            "comparison": "root.allowed_source_refとsource.source_ref",
+            "different_path": "/qualification_root_inputs/{u}/allowed_source_ref",
+            "state": "unqualified",
+            "detail": "原sourceと独立Qualification又はQualificationRootの対応端が既知に異なる。"
+          },
+          {
+            "comparison": "原source/claim/root digestの相互対応",
+            "different_path": "/source_occurrences/{s}/source_sha256",
+            "state": "unqualified",
+            "detail_binding": "local_issue_writer.qualification_issues.known_digest_mismatch。元claim/rootが取得できた同一組について一件。"
+          },
+          {
+            "comparison": "原record.subject_refのclaim.subject_refsとroot.allowed_subject_refsへの所属",
+            "different_path": "/source_occurrences/{s}/decoded_records/{r}/subject_ref",
+            "state": "unqualified",
+            "detail": "原sourceと独立Qualification又はQualificationRootの対応端が既知に異なる。"
+          },
+          {
+            "comparison": "既存Refの必要比較端がmissing/nullで比較不能",
+            "unresolved_path": "その原memberの実logical pointer",
+            "state": "unresolved",
+            "detail": "原source資格比較に必要な独立対応端を一意に取得できない。"
+          }
+        ],
+        "comparison_row_order": "同sourceではclosed_comparison_rowsの記載順に独立issueを保持する。claim/root全原出現順、subjectは原record順。raw digestの既知差とclaim/root対応差は別の原比較であり相殺しない。source相反は既存規則どおり全資格照合後の別群。",
+        "flag_writer": "資格bindingが成立した場合のqualifiedは元binding観測として保持する。その後record相反があればconflictingとunresolvedも残し、qualifiedをflat record件数から消さない。既知binding差はunqualified、未知対応はunresolved。S3で指定sourceを利用可能とする条件は、その資格binding成立かつunqualified/conflicting/unresolvedが無いこと。候補原recordを利用する時はそのrecordが最終qualified_raw_occurrencesに残ることも照合する。record0件でもsource資格自体はqualifiedであり、候補0件はrole.failedで別に扱う。"
+      },
+      "S3_operation_role": {
+        "out_of_range": "s=request_capture.operation_source_occurrence_indexが範囲外ならfailed{candidate_records:[],input_issues:[operation_index_out_of_range]}。存在しないsource/walk/recordへのReadやDiagnosticRefを作らない。",
+        "unreached": "指定source.decodeがfailed、又はその同walkが未資格/未解決/相反で利用可能な原recordに到達しない場合はunreached。blocked_byにはその実decode issue/walk/資格issueへのDiagnosticRefだけを持つ。同Ref twinやissue配列の順から別sourceを選ばない。",
+        "header_candidates": "指定sourceが利用可能な資格済sourceである場合、その原recordsのsection_key==F02かつrecord_kind==original_trace_sectionを満たす候補を原record順で全列挙する。payloadを先にdecodeして型外候補を捨て、一件へ縮退させない。0又は複数は各templateの一件LocalIssueと全SourceRecordLocationを返す。",
+        "outer_role_shape": "一意候補payloadについてOperationFrame宣言member順caller_inputs→proposed_source→relation_occurrences、各既存closed外側型の宣言member順/原array順で型形成する。独立した型外memberは全保持し、親型不成立から架空child診断を足さない。余剰memberは原member順で局所issue。原payloadはready.bodyへ全保持し、形成不能時に{}又はnullのFrameを作らない。",
+        "native_mode": "ValidationInput.nativeのrawは既存CoreJsonValue全値として保存する。binding[]/軸不足/原semantic unknown等の内側domain不備はここで判定せず、既存native calleeへ一回渡す。source_result_reference_projectionの供給Read wholeも既存型/presenceのまま保持する。",
+        "same_decode_mode": "same_decode_successは既存の実CoreDecodeResultと同一decode取得対応が必要である。この原JSON profileからnominal/原octets/実callを捏造しない。未成立の型対応はsame_decode_correspondence_unformedとしてfailedへ保持する。これは既存CallerInputs型の削除やnative.raw domain拒否条件ではない。",
+        "failed_and_ready": "外側role失敗はfailed{candidate_records:[一意原所在],input_issues:全局所診断}。全形成可能ならready{selected_record:同原所在,frame:同payloadの外側typed値}。source資格観測はどちらでも保存する。"
+      },
+      "S4_native_dispatch": {
+        "not_called": "role.failedなら実role input_issues[k]へのDiagnosticRefを原順でblocked_byへ、role.unreachedならその実blocked_byをそのまま持ち、not_called/native_call_count=0。N/value/旧ProviderCallCapture.returned(count=0)を追加しない。",
+        "called": "role.ready.frame.caller_inputsの同全値を既存private build_native_proposal_record_detailへ正確に一回渡し、そのactual NativeReturnを束縛する。domain不備、native proposal unavailable、coverage incompleteでも実Nをnull/空観測/別期待へ置換しない。",
+        "same_call": "controllerが原operation→role→同I→実callを内部で束縛する。外部same-call bool/expected/cache/source-qualified boolを受けない。"
+      },
+      "S5_native_view": {
+        "whole_preservation": "全branchで実N全値を保持する。legacy_view_domainが成立するときだけ既存CoreF02ProviderReturnの全member/順序を形成してexisting_view_returned{native_call_count:1,value:同旧whole}へ無変換内包する。旧3wholeを改変しない。",
+        "capture_only": "旧SourceFrameで表せないfailed source、unavailable N、限定viewへ対応しない一般relation/body材料はnative_capture_only{native_call_count:1,native_return:同実N,view_issues:局所7member全列}。この枝からOS bodyを補完形成しない。",
+        "view_issue_order": "failed sourceがあれば原source順で各一件のfailed_source_not_representableだけを返し、下流viewの派生不足を追加しない。全source readyでN proposal unavailableなら一件native_proposal_unavailable。これら以外の旧view域外は一件provider_view_scope_unformed。元capture内の独立したsource/native診断は削らない。",
+        "no_reexecution": "旧whole又はview issueを作るためにS1/S2/native/producerを別callで取り直さない。型/値/資格を候補期待から補わない。"
+      }
+    },
+    "legacy_view_domain": {
+      "scope_ja": "既存3caseの意味に対応する限定view形成域。ここで拒否されるものもcontrollerのnative_capture_onlyで全実Nを保持する。全F02/F03/bodyformer一般形の完成ではない。",
+      "conditions_in_order": [
+        "全sourceがreadyで既存ParsedSourceOccurrenceを原source順で形成できる。operation_role.readyである。",
+        "N.capture.proposalはobserved。N.record.coverageはenumerated。candidate_entriesの全原出現はrequired_candidate/conditional_candidateとして保持され、個々の元membership/ReadはN captureにある。",
+        "各candidateの原template_ref_readに対し、同一OperationFrame.relation_occurrencesを原順で読み、typed_core_json_equalによる原CoreRef6 key対応が一意に得られる。複数対応/未観測/型対応不能を先頭選択しない。CoreRef6全属性known条件やdigest null拒否を追加しない。",
+        "native_ref4_locatorの指定source/record/subject/payload所在が原ready.body内に実在し、独立native Ref4原値へtypedに対応する。relation自己申告、source wrapper Ref、proposed_sourceからnative Ref4を作らない。",
+        "対象sourceの同walk flagsは今回の旧viewで表せる単一qualified又は単一unqualified。複合flags/conflict/unresolvedをSourceQualificationStateの任意勝者へ縮約しない。",
+        "covered_as_capturedかつresolved_for_captured_membersかつ全対象qualified、又はincomplete_as_capturedかつ全対象qualified、又はcovered_as_capturedかつresolved_for_captured_membersかつ選択target unqualifiedのいずれか。N unavailable/residual一般形、二つの旧body不成立理由が同時に必要な組合せはcapture_onlyに残す。"
+      ],
+      "writer": [
+        "SourceFrameにはrequestの原header/qualification/root、各ready.body.recordsをdecoded_recordsとして原順に保持し、同snapshot issues/walks/qualified_raw_occurrencesを全copyする。operation/caller/relation pointerはそのSourceFrame rootの実所在へ作る。",
+        "caller_inputs_readは指定source/record index、旧provider whole内の/source_frameから始まる実payload pointer、同I全値。call_captureはreturned、既存symbol、call_count=1、同argument pointer、同actual N全値。",
+        "relation_observationsはN.record.candidate_entries原順。candidate/result/member index、元NativeRead、同relation全対応index、独立locator/native Ref4 raw read、同source walkのissue/global indicesを保持する。未資格raw peekのpresentを資格成立にしない。",
+        "N coverage incompleteならproposed_body.absent(native_coverage_incomplete)。covered/resolvedで選択target unqualifiedならabsent(selected_native_source_unqualified)。covered/resolvedかつ全target qualifiedでは元target Ref4をcandidate出現順のproposed_refsへcopyし、proposed_sourceは同OperationFrame原Ref4をcopyする。Refの重複を消さず、OS selected/used登録へ昇格しない。",
+        "既存ProviderCause列の3case全値は[]。資格issueを新Causeへcastしない。原NのNA除外/residual/元母集合exactness状態をcaptureに保持し、候補arrayだけから集合完成を新認定しない。"
+      ]
+    },
+    "local_issue_writer": {
+      "type": "LocalIssue（既存InputIssueの7member）",
+      "ordered_members": [
+        "path",
+        "state",
+        "detail",
+        "backflow_owner",
+        "axis",
+        "source_ref",
+        "related_source_refs"
+      ],
+      "common": "新role/view templatesのbackflow_owner=CORE、related_source_refs=[]。source_refは実sourceが有る場合その原Ref4をField.supplied、out-of-rangeではField.missing。Fieldのwire欠落/null/原値表現は既存規範であり新wrapperを作らない。",
+      "template_semantics": "nameは設計表の識別子で返却member/新Cause enumではない。path中{s}/{r}/{q}は原Naturalの10進indexだけをRFC6901へ挿入する。detailは表の日本語literalを無変更で使う。",
+      "role_templates": [
+        {
+          "name": "operation_index_out_of_range",
+          "path": "/operation_source_occurrence_index",
+          "state": "invalid_shape",
+          "axis": "operation_source",
+          "detail": "指定operation source occurrence indexが原配列の範囲外である。",
+          "source_ref": "Field.missing",
+          "guard": "s >= len(request_capture.source_occurrences)"
+        },
+        {
+          "name": "operation_record_absent",
+          "path": "/source_occurrences/{s}/decoded_records",
+          "state": "unresolved",
+          "axis": "operation_role",
+          "detail": "指定source内に原operation profileのheader roleに対応するrecordがない。",
+          "source_ref": "Field.supplied(元source_ref)",
+          "guard": "資格済指定sourceのheader候補0件"
+        },
+        {
+          "name": "operation_record_multiple",
+          "path": "/source_occurrences/{s}/decoded_records",
+          "state": "unresolved",
+          "axis": "operation_role",
+          "detail": "指定source内に原operation profileのheader roleに対応するrecordが複数あり、一意に形成できない。",
+          "source_ref": "Field.supplied(元source_ref)",
+          "guard": "header候補2件以上。全候補所在/順をcandidate_recordsへ保持"
+        },
+        {
+          "name": "operation_role_shape",
+          "path": "実不成立memberのlogical source pointer",
+          "state": "invalid_shape",
+          "axis": "operation_role",
+          "detail": "原operation payloadをOperationFrameの既存外側型へ形成できない。",
+          "source_ref": "Field.supplied(元source_ref)",
+          "guard": "一意候補のpayload/CallerInputs外側/Ref4/RelationOccurrenceの宣言供給型不成立"
+        },
+        {
+          "name": "same_decode_correspondence_unformed",
+          "path": "/source_occurrences/{s}/decoded_records/{r}/payload/caller_inputs/validation_input",
+          "state": "unresolved",
+          "axis": "operation_role",
+          "detail": "既存CoreDecodeResultの同一decode取得対応を原operation payloadだけから形成できない。",
+          "source_ref": "Field.supplied(元source_ref)",
+          "guard": "same_decode_successの実decode whole取得対応が未形成。通常JSONをnominal又は同call観測へcastしない。"
+        }
+      ],
+      "view_templates": [
+        {
+          "name": "failed_source_not_representable",
+          "path": "/source_occurrences/{s}",
+          "state": "unresolved",
+          "axis": "provider_view",
+          "detail": "原source decode失敗を既存SourceFrameのParsedSourceOccurrenceとして表せない。",
+          "source_ref": "Field.supplied(元source_ref)",
+          "guard": "decode.failedのsourceごとに1件。原source順。"
+        },
+        {
+          "name": "native_proposal_unavailable",
+          "path": "/native_return/capture/proposal",
+          "state": "unresolved",
+          "axis": "provider_view",
+          "detail": "実native proposalがunavailableであり、既存provider viewの形成域に対応しない。",
+          "source_ref": "Field.supplied(指定operation source_ref)",
+          "guard": "N.capture.proposal.tag=unavailable"
+        },
+        {
+          "name": "provider_view_scope_unformed",
+          "path": "/native_return",
+          "state": "unresolved",
+          "axis": "provider_view",
+          "detail": "実native全返却と原relation材料の一般形は既存provider viewの限定形成域に対応しない。",
+          "source_ref": "Field.supplied(指定operation source_ref)",
+          "guard": "上記以外でlegacy_view_domainの条件不成立。全Nは別memberに無変換保持。"
+        }
+      ],
+      "qualification_issues": {
+        "storage": "資格比較の既存意味に対応する7member source_issuesをsame walkで保持する。input全体型外/role失敗/primitive失敗へ吸収しない。backflow_ownerは当該原source.owner、axis=source qualification、source_ref=Field.supplied(元Ref4)、related_source_refsは相反相手の全原Refを原順（同Ref反復も保持）。",
+        "known_digest_mismatch": {
+          "path": "/source_occurrences/{s}/source_sha256",
+          "state": "unqualified",
+          "detail_template": "source occurrenceのSHA-256 {raw_sha}が、qualification_refで選択されたQualification.source_sha256 {claim_sha}およびQualificationRoot.allowed_source_sha256 {root_sha}と一致しない。",
+          "scope": "既存normal/twin oracleと同じ一意claim/rootのdigest差。元3wholeの全issue文字列を変えない。複数独立差は対応する原端のissueとして原比較順で保持。"
+        },
+        "other_known_difference": {
+          "state": "unqualified",
+          "detail": "原sourceと独立Qualification又はQualificationRootの対応端が既知に異なる。",
+          "path": "最初の既知差へまとめず、各独立比較の実logical member pointer。"
+        },
+        "required_operand_unresolved": {
+          "state": "unresolved",
+          "detail": "原source資格比較に必要な独立対応端を一意に取得できない。",
+          "path": "原qualification_ref又は実選択claimのroot_ref等の実logical pointer。空lookupの架空indexを作らない。"
+        },
+        "qualified_source_conflict": {
+          "state": "conflicting",
+          "detail": "有資格原recordの同subjectとsectionに相反する内容がある。",
+          "path": "/source_occurrences/{s}/decoded_records/{r}",
+          "storage": "相反組を原source/record辞書式順で列挙し、双方の実source walkへissue indexを保持する。片方を正しい元にしない。"
+        },
+        "ordering": "source原順、同source内はstage S2比較の記載順、同lookup全原出現順、subject原record順。digestのraw/claim/root差を同一組で上記templateに結べる場合は一件とし、別独立比較/異なる原組をdedupeしない。source conflictは全資格照合後に別群で原組順。"
+      },
+      "no_conversion": "CoreDecodeResultのCoreInputIssue3memberとLocalIssue7memberは別型。primitive reason/locatorをsource qualification state又はrole LocalIssueへ上書きしない。",
+      "wire_member_rule": {
+        "required": [
+          "path",
+          "state",
+          "detail",
+          "backflow_owner",
+          "axis",
+          "related_source_refs"
+        ],
+        "optional": [
+          "source_ref"
+        ],
+        "source_ref_encoding": "既存Field encodingのみ。missingならJSON keyを省略、supplied nullなら元null、supplied Refなら元Ref全値。{state,value}等のwrapper、架空Ref、missing代用nullを作らない。",
+        "source_basis": {
+          "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+          "pointer": "/wire_codec_contract/schema/$defs/InputIssue",
+          "revision_binding": "追補前M6の既存schema。既存aliasのencoding解決に限る。",
+          "revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+          "raw_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+          "canonical_sha256": "61053989fa2f08b09422d5f51557ca7ddc004f026c692572ea994ad88945dc36"
+        }
+      }
+    },
+    "logical_to_physical_locations": {
+      "logical_root": "既存provider source materialのlogical root。旧path文字列を物理nodeへのReadであるとみなさない。",
+      "rows": [
+        {
+          "logical": "/operation_source_occurrence_index",
+          "attempt": "/request_capture/operation_source_occurrence_index"
+        },
+        {
+          "logical": "/source_occurrences/{s}/<raw header member>",
+          "attempt": "/request_capture/source_occurrences/{s}/<同member>"
+        },
+        {
+          "logical": "/source_occurrences/{s}/decoded_records/{r}/...",
+          "attempt": "/source_attempts/{s}/decode/body/records/{r}/...",
+          "guard": "source readyの時だけ。failedにこのchildを生成しない。"
+        },
+        {
+          "logical": "/qualification_inputs/{q}/...",
+          "attempt": "/request_capture/qualification_inputs/{q}/..."
+        },
+        {
+          "logical": "/qualification_root_inputs/{q}/...",
+          "attempt": "/request_capture/qualification_root_inputs/{q}/..."
+        },
+        {
+          "logical": "/native_return/...",
+          "attempt": "/native_dispatch/native_return/...",
+          "guard": "native_capture_onlyの場合。旧view内の同実Nは/native_dispatch/value/call_capture/native_returnに格納するが元内部rootは変更しない。"
+        }
+      ],
+      "primitive_locator": "CoreDecodeResult.input_issues[*].locatorはその原source textのschema/tree座標のまま。attemptのtyped body childではない。実failed.decodeのraw_diagnosticsとrequest原textへ戻す。",
+      "DiagnosticRef": "新DiagnosticRef.pointerだけがCoreF02ProviderAttempt root。実decode issue/role issue/snapshot walk/そのissueの全nodeへ直接結ぶ。別意味rootのpointer文字列を書き換えて旧Readとして使わない。",
+      "SourceRecordLocation": "payload_pointer=/source_attempts/{s}/decode/body/records/{r}/payload。selected_recordとcandidate_recordsは同じ原node・subject_refを保持。",
+      "old_whole_root": "existing_view_returned.value内の旧SourceFrame pointerはSourceFrame root、旧caller_inputs_read.payload_pointer/旧call_capture.argument_pointerはそのvalue whole root。旧Read/NativeReturnLocationは既存rootのまま。prefix追加で旧3wholeを変更しない。"
+    },
+    "branch_and_failure_invariants": [
+      "source_attemptsは全source原出現と同数。walk_indexはready sourceの実比較順、global qualified_record_indexは相反除外後の最終順。これら三つのindexを再利用して同一としない。",
+      "operation source未parse/未資格/相反/未解決ではnative0。無関係sourceの同失敗では、有効operation role/兄弟資格/actual Nを一律失効させない。",
+      "role候補0/複数は全原所在と局所issue、parent型不成立は実親を保持。架空Read、dummyN、empty producer観測、旧returned count0で埋めない。",
+      "typed native CallerInputsの内domain失敗でもnative1。binding[]の元ValidationDetailedReturnとF05 raw_onlyの元全返却を変更しない。",
+      "SourceWalk flagsは非排他。旧viewのscalar資格状態へ一般形を無理に写さずcapture_onlyとする。",
+      "typed source controllerの各branchを閉じた返却へ収めることと、実native calleeの任意host例外、全bodyformer/OS受理/要求完了は別である。"
+    ],
+    "legacy_and_failure_correspondence": {
+      "reuse_mode": "既決意味の再導出。旧runtime/CLI/test/CIを実行せず、旧schema/式木/registry digestを追加gateとして移植しない。",
+      "sources": [
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": "16-92",
+          "preserve": "原source/版・exact set・未解決と非適用の分離。"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "lines": "16-77, 103-108",
+          "preserve": "閉型と原入力/失敗・不足の明示。"
+        }
+      ],
+      "failure_source": {
+        "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": "65-101",
+        "failures": [
+          "UTW-014",
+          "UTW-020",
+          "UTW-021"
+        ]
+      },
+      "preserved": "未観測sourceを既知emptyへ縮退せず、局所issue/有効兄弟/原全返却を保持し、件数/hash/自己申告を資格や完了にしない。",
+      "changed": "既存operation読取成功域へ、新CORE-private typed total source/controller返却を追補する。原source取得段階・role不成立・native0/1・旧view形成不能を別に保持する。",
+      "reason": "元providerはraw parse/資格/role前段の全返却型を定義しておらず、旧SourceFrameだけではparse失敗sourceとactual native返却を同時に正直に保持できなかった。既決意味を変えずその失敗取得を明示する。"
+    },
+    "verification_and_remaining": {
+      "pairs": [
+        "L4/L9",
+        "L5/L8"
+      ],
+      "source_first": "独立期待は固定Git sourceと標準JSONPointer/Patchで著述する。既存3provider whole、binding[] native全期待、成功5body及び前段反例の凍結は各対oracleで別途照合し、設計candidate評価結果から期待を逆生成しない。",
+      "preserved_old_values": "旧codec六entry、CoreDecodeResult、旧RawProviderRequest/ProviderReturn/CallerInputs/OriginRoot/Read/native wrapper/旧3wholeは変更しない。",
+      "unclosed": [
+        "全relation重複・未観測locator・複合資格flags・NA/residual一般形からOS bodyを形成するwriterはnative_capture_onlyに残す。",
+        "same_decode_successの実decode whole取得対応、外側codec型外及び任意host例外の総実行契約は別境界。",
+        "元母集合exactness、source identity/persist、OS proposed受理/selected/used、CONNECT/実資格/実runtime/CI/受入の成立は主張しない。",
+        "この追補をHARNESS-L3-009-F02/F03全体又はIssueの完了へ読み替えない。"
+      ]
+    }
   }
 }
