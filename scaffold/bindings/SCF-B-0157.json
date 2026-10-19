@@ -32,6 +32,11 @@
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
       "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
       "note": "静的read-only参照のみ。旧文書・tool・runtimeは実行せず、形式とsource対応の比較材料としてのみ読む。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "note": "静的read-only参照のみ。§1（16行）・§2（32行）の意味正本と生成viewの責務を読む。旧tool・runtimeは実行しない。"
     }
   ],
   "role": "brain-l2-l11-meaning-json-byte-identical-view-research",

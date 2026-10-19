@@ -56,6 +56,6 @@ python3 -B scaffold/research/brain-requirement-json-migration/compare.py
 
 ## 旧source・失敗との対応
 
-旧 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md` §2・§5（LEGACY-ASSET-98372FEE8A3AC8F9C299）と、旧L4の同名文書§1〜§2（LEGACY-ASSET-4F5A1F0739EC1111D91D）を起点とする。意味のowner・構造field・source→target対応と、旧authorityを自動昇格しない点を保持する。旧compiler、registry、runtime、gateは移植しない。
+旧 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md` §2（30行）・§5（110行）（LEGACY-ASSET-98372FEE8A3AC8F9C299、SHA-256 `3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830`）と、旧 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md` §1（16行）〜§2（32行）（LEGACY-ASSET-4F5A1F0739EC1111D91D、SHA-256 `e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb`）を起点とする。意味のowner・構造field・source→target対応と、旧authorityを自動昇格しない点を保持する。旧compiler、registry、runtime、gateは移植しない。
 
 今回の起点は、#3139に記録した巨大JSONと参照更新漏れ、および先行した16文書の比較候補で、2,516,532 bytesの原文に対して11,832,777 bytesの保存量になった観測である。block／row／cellのrawと監査情報を重ねた形式を日常編集する正本へそのまま採用せず、意味内容と監査情報の役割を分ける。容量削減だけで意味保存や変更コスト改善を認定しない。
