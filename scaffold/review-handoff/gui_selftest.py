@@ -687,6 +687,57 @@ class GuiChecks(unittest.TestCase):
         with self.assertRaises(ValueError):
             g.send(self.data, "codex", "codex-gui", "mix-2", "work_request", self.request, None, 60, self.now)
 
+    def test_released_work_is_not_delivered(self):
+        # R1 F1: 取り下げた依頼は配送もACKもされない。新しい依頼は影響を受けない。
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", self.work(), None, 60, self.now)
+        g.release_work(self.data, "claude", "claude-gui", "devin", self.now)
+        self.assertEqual(self.data["messages"]["work-1"]["status"], "cancelled")
+        self.assertIsNone(g.claim(self.data, "devin", "devin-gui", self.now))
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, self.now)
+        m = g.claim(self.data, "devin", "devin-gui", self.now)
+        self.assertEqual(m["payload"]["event_id"], "work-2")
+        # 受信済み（未ACK）の依頼を取り下げると、古いnonceでACKできない。
+        g.release_work(self.data, "devin", "devin-gui", "devin", self.now)
+        with self.assertRaises(ValueError):
+            g.ack(self.data, "work-2", "devin", "devin-gui", m["digest"], m["claim"]["nonce"], self.now)
+        records = g.compact(self.data, self.now)
+        self.assertEqual(sorted((r["event_id"], r["status"]) for r in records), [("work-1", "cancelled"), ("work-2", "cancelled")])
+
+    def test_late_result_does_not_release_current_work(self):
+        # R1 F2: 取り下げた割当への遅い結果で、同じrequest IDを持つ別内容の現在の割当を外さない。
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        old = self.work()
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", old, None, 60, self.now)
+        g.release_work(self.data, "claude", "claude-gui", "devin", self.now)
+        current = json.loads(subprocess.check_output([
+            sys.executable, "-B", str(g.HERE / "packet.py"), "build-work", "--base", self.head, "--issue", "1",
+            "--request-id", "WORK-1", "--dispatcher", "claude", "--worker", "devin",
+            "--purpose", "内容の異なる同じrequest ID", "--scope", "GUI受信を主張しない"]))
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", current, None, 60, self.now)
+        g.send(self.data, "devin", "devin-gui", "late-1", "work_result", old, self.result(old), 60, self.now)
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-2")
+        g.send(self.data, "devin", "devin-gui", "result-2", "work_result", current, self.result(current), 60, self.now)
+        self.assertNotIn("devin", self.data["work"])
+
+    def test_acked_work_is_not_released_by_ttl(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 600, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", self.work(), None, 1, self.now)
+        m = g.claim(self.data, "devin", "devin-gui", self.now)
+        g.ack(self.data, "work-1", "devin", "devin-gui", m["digest"], m["claim"]["nonce"], self.now)
+        g.compact(self.data, self.now + 2)
+        with self.assertRaises(ValueError):
+            g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, self.now + 2)
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-1")
+
+    def test_unclaimed_expired_work_frees_worker_without_waiting_retention(self):
+        # R1 F3: 受け手が受け取らないまま期限を過ぎた依頼は、終了記録の保持期間を待たずに次の依頼を通す。
+        g.bind(self.data, "devin", "devin-gui", "worker", 600, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", self.work(), None, 1, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, self.now + 2)
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-2")
+        self.assertEqual(self.data["messages"]["work-1"]["status"], "expired")
+
     def test_unclaimed_expired_work_frees_worker(self):
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
         g.send(self.data, "claude", "claude-gui", "work-1", "work_request", self.work(), None, 1, self.now)

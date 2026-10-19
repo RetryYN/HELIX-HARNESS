@@ -250,16 +250,41 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now):
     work = data.setdefault("work", {})
     if kind == "work_request":
         # 1つの作業側が同時に持つ作業依頼は1件。作業結果か明示releaseまで次を受け付けない。
-        p.require(target_runtime not in work, "作業側に未完了の作業依頼がある")
-        work[target_runtime] = dict(event_id=event_id, request_id=request["request_id"], issue=request["issue"],
+        p.require(active_work(data, target_runtime, now) is None, "作業側に未完了の作業依頼がある")
+        work[target_runtime] = dict(event_id=event_id, request_id=request["request_id"],
+                                    payload_sha256=request["payload_sha256"], issue=request["issue"],
                                     dispatcher=runtime, since=now)
-    elif kind == "work_result" and (work.get(runtime) or {}).get("request_id") == request["request_id"]:
+    elif kind == "work_result":
         # 作業側が結果（提案・未完・辞退）を返したら、その作業側は次の依頼を受けられる。
-        del work[runtime]
+        # 枠を外すのは、現在の割当と同じ依頼payloadへの結果だけ。取り下げ後の遅い結果で別の割当を外さない。
+        current = work.get(runtime)
+        if current and current["payload_sha256"] == request["payload_sha256"] and current["dispatcher"] == request["dispatcher"]:
+            del work[runtime]
     message = dict(payload=payload, digest=digest, created=now, expires=now + ttl,
                    status="queued", claim=None, ack=None)
     data["messages"][event_id] = message
     return message
+
+
+def active_work(data, worker, now):
+    """作業側の現在の割当。受け取られないまま期限を過ぎた依頼は、終了記録の保持期間を待たずに外す。
+    ACK済みの依頼は期限では外さず、作業結果か明示releaseで外す。"""
+    current = data.get("work", {}).get(worker)
+    if not current:
+        return None
+    message = data["messages"].get(current["event_id"])
+    if message is None:
+        acked = data.get("closed", {}).get(current["event_id"], {}).get("status") == "acked"
+    else:
+        if message["status"] in ("queued", "claimed") and message["expires"] <= now:
+            message["status"] = "expired"
+        acked = message["status"] == "acked"
+    if acked:
+        return current
+    if message is not None and message["status"] in ("queued", "claimed"):
+        return current
+    del data["work"][worker]
+    return None
 
 
 def release_work(data, runtime, session, worker, now):
@@ -268,6 +293,10 @@ def release_work(data, runtime, session, worker, now):
     current = data.get("work", {}).get(worker)
     p.require(current, "未完了の作業依頼がない")
     p.require(runtime in (current["dispatcher"], worker), "release権限がない")
+    message = data["messages"].get(current["event_id"])
+    if message is not None and message["status"] in ("queued", "claimed"):
+        # 取り下げた依頼を後から配送・ACKさせない。cancelledは既存の終了記録・監査記録の経路で閉じる。
+        message["status"] = "cancelled"
     del data["work"][worker]
 
 
