@@ -99,7 +99,7 @@
         "照合結果からOS ticketを発行",
         "旧runtimeを実行fallbackにする"
       ],
-      "failure_observation": "層対応は同じでも根拠のない成立を返さない。不足のidentity/revisionと意味owner/実運転ownerを分けて返す。",
+      "failure_observation": "層対応は同じでも根拠のない成立を返さない。不足のidentity/revisionと意味owner/実運転ownerを分けて返す。論理修正候補を返しても、元のsignal・対象参照・stateの不足は残る。個別authority ownerの対応が現入力に無い場合はsubject・catalog・別signalのownerから補完せず、論理候補をauthority issuer又は実recipientの資格として使わない。001返却設計の不足を001へ戻すことと、欠落authorityの担当を001へ変更することを区別する。実binding・配送が未成立のままなら、それを成功又は実返却済みにしない。",
       "execution_state": "not_executed"
     }
   ],
