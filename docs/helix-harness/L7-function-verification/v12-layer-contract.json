@@ -4,11 +4,11 @@
   "paired_document": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
   "parent": "HARNESS-L2-001",
   "status": "candidate_verification_design_only",
-  "source_main": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+  "source_main": "a8f2371d6cfe51152f732c740e3f3e38b2f062c8",
   "scope_ja": "L6のF01/F02/B01設計とL8既存oracleを結ぶ対検証設計候補。新caseや製品test codeを追加せず、固定済み材料と未凍結範囲を区別する。",
   "source_pins": [
     {
-      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "revision": "a8f2371d6cfe51152f732c740e3f3e38b2f062c8",
       "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
       "file_sha256": "c26879d003cb8f56fca89057b341d783e102ee25f94efb6c560fae6a465c0137",
       "selected_pointers": [
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "revision": "a8f2371d6cfe51152f732c740e3f3e38b2f062c8",
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
       "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
       "selected_pointers": [
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "revision": "a8f2371d6cfe51152f732c740e3f3e38b2f062c8",
       "path": "docs/helix-harness/L10-verification/functional-verification.json",
       "file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
       "selected_pointers": [
@@ -99,7 +99,7 @@
       "file_sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
     },
     {
-      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "revision": "a8f2371d6cfe51152f732c740e3f3e38b2f062c8",
       "path": "docs/helix-harness/L3-requirements/business-requirements.json",
       "file_sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
       "selected_pointers": [
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "revision": "a8f2371d6cfe51152f732c740e3f3e38b2f062c8",
       "path": "docs/helix-harness/L10-verification/business-verification.json",
       "file_sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
       "selected_pointers": [
@@ -141,6 +141,22 @@
         {
           "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
           "pointer": "/extra_cases/2"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/f02_constructor_oracles/source_materials"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/f02_constructor_oracles/additional_source_materials"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/f02_constructor_oracles/base_arguments/context"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/fixture_basis"
         }
       ],
       "l3_l10_refs": [
@@ -156,7 +172,30 @@
       "coverage_ja": "十二層/6pair exact set、層外anchor、Meaning/current/reference照合、二重identity、unknown保持、implementation design/test trace、構造異常。L8 case0の11 mutationを現期待のまま対応させる。",
       "oracle_contract_ja": "L8自然文profileに対応する入力/Contextとwhole expectedを、実装前に独立根拠から具体化して凍結する計画。現時点のL8 case0は全mutationの全返却Resultがliteralで固定済みではない。部分期待・既知の保持制約を全Result完成と取り違えず、L5共通Result/Finding規則を含む全member比較へ渡す。L3/L10→L4/L5と既存sourceをbasisとし、実装出力から期待を作らない。",
       "execution_state": "not_executed",
-      "freeze_status": "not_frozen_as_full_whole_oracle"
+      "freeze_status": "not_frozen_as_full_whole_oracle",
+      "l8_mutation_trace": {
+        "source_case": "/cases/0",
+        "primary_mutation_indices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "independent_variant_index": 10,
+        "expected_scope": "各原mutationのfinding code/outcome/pointerと既存output constraintsを保持。全Result literalsのfreeze済み主張ではない。"
+      },
+      "whole_oracle_obligations_ja": [
+        "/cases/0の基準の正常系入力/Context全体と11mutationの全返却member（特にL6 /return_contract_detail/f01/return_rule_ja が定める、意味不一致行をcorrespondencesから除きunresolvedへ保持する内容、Finding 6 fields、evidence packets/order）を独立根拠から具体化し、実装前に固定する。",
+        "正常構成の入力材料はL8 /cases/0と/fixture_basisを基礎とする。共有できるのは/f02_constructor_oracles/base_arguments/contextの既存Context型の値、および/f02_constructor_oracles/source_materials・/f02_constructor_oracles/additional_source_materialsにある参照とMeaning等の原文資料である。F02専用の10-field inputやF02の期待返却をF01/B01の入力・oracleとして使わない。共有値の再利用はF01/B01の全入力・全返却の凍結やsource資格の成立を意味しない。raw payloadを重複配置せず、各群の要求と独立期待を保持する。",
+        "同identity多義の影響行・trace mismatch・anchor mismatchごとの完全Finding、RefSet、partial valueは未凍結。RefSet/layer_universe/pairsはunordered、ArtifactClaim tupleの元位置はsemantic locatorとして保つ。Finding全6 fieldと厳密なevidence packet membershipは未凍結。このgroupは返却構造/状態投影の具体化と残るfreeze条件を扱い、全family/whole-oracle freeze完了を主張しない。"
+      ]
     },
     {
       "id": "HARNESS-L7-001-F02",
@@ -223,6 +262,22 @@
         {
           "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
           "pointer": "/extra_cases/4"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/f02_constructor_oracles/source_materials"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/f02_constructor_oracles/additional_source_materials"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/f02_constructor_oracles/base_arguments/context"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/fixture_basis"
         }
       ],
       "l3_l10_refs": [
@@ -238,7 +293,24 @@
       "coverage_ja": "F01返却の再照合、5 evidence signal、catalogとauthorityの分離、actual verification未観測、他signalへの過剰依存、外部作用なし。L8 case2の6 mutationを保つ。",
       "oracle_contract_ja": "L8自然文profileと部分期待を保持し、入力/Contextと全Resultを独立に具体化・凍結した後、signalごとの状態・Ref順・Finding順・missing_signalsを全member比較する計画。現時点では全mutationのwhole expectedは未凍結。設計書/green表示だけで実観測を作らない。",
       "execution_state": "not_executed",
-      "freeze_status": "not_frozen_as_full_whole_oracle"
+      "freeze_status": "not_frozen_as_full_whole_oracle",
+      "l8_mutation_trace": {
+        "source_case": "/cases/2",
+        "primary_mutation_indices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "expected_scope": "P/M/design-only基準、catalog流用3mutation、実観測なし、閉record外field2件。5signal state matrixは根拠Ref/subject/content overlayを含む。"
+      },
+      "whole_oracle_obligations_ja": [
+        "/cases/2のP/M/design-only各Context、6mutationのinput全体・5 signal output全member・全Finding 6 fields/evidence packet・順序を独立に具体化し実装前に固定する。",
+        "正常構成の入力材料はL8 /cases/2と/fixture_basisを基礎とする。共有できるのは/f02_constructor_oracles/base_arguments/contextの既存Context型の値、および/f02_constructor_oracles/source_materials・/f02_constructor_oracles/additional_source_materialsにある参照とMeaning等の原文資料である。F02専用の10-field inputやF02の期待返却をF01/B01の入力・oracleとして使わない。共有値の再利用はF01/B01の全入力・全返却の凍結やsource資格の成立を意味しない。raw payloadを重複配置せず、各群の要求と独立期待を保持する。",
+        "5×5 state matrixの全セルへsubject/ref/content overlayを適用したwhole expected、非current claimとcurrent Contextの二重Finding、same-key異digestの両側packetは未凍結。RefSet/layer_universe/pairsはunordered、ArtifactClaim tupleの元位置はsemantic locatorとして保つ。Finding全6 fieldと厳密なevidence packet membershipは未凍結。このgroupは返却構造/状態投影の具体化と残るfreeze条件を扱い、全family/whole-oracle freeze完了を主張しない。 evidence_states.evidence_refsのclaim/Context originも未凍結。"
+      ]
     },
     {
       "id": "HARNESS-L7-001-PURE-REPEAT",
@@ -295,7 +367,8 @@
     "freeze対象は入力bytes、Context/F02Context snapshot、全返却member・配列順・null/presence、failure classification、source pins、test-to-symbol-to-requirement trace。条件が欠ければ該当groupをnot_frozenとし、そのgroupの実装へ進まない。これは既存TDD前提の記述であり新たな製品gateの追加ではない。",
     "既存L8 `/cases/0..2` と `/extra_cases/0..4` はnot_executed。F01/B01を含む自然文case familyも、必要な全入力と全返却が完全固定された実行oracleと同じではない。F02前段の全入力/whole expectedも未物質化。後段34 constructor材料とorder controlはF02前段を代替しない。",
     "独立basisにできるのは承認L3/L10要求、L4/L5原契約、固定されたsource/対検証の期待である。期待導出が実装者だけに依存する範囲は独立未確立として開示する。",
-    "未定義入力、expected外部故障、または実装内部例外を新しいResult/Findingへ勝手に写さない。L5が定める不正・欠落等のResult分類と、実行基盤の中断/環境失敗は観測上区別して記録する。後者を対象関数のRed/Green証拠としない。"
+    "未定義入力、expected外部故障、または実装内部例外を新しいResult/Findingへ勝手に写さない。L5が定める不正・欠落等のResult分類と、実行基盤の中断/環境失敗は観測上区別して記録する。後者を対象関数のRed/Green証拠としない。",
+    "L6 F01/B01の選択されたreturn rulesを、対応するL7 groupの反例・全返却member確認へ結ぶ。設計上の規則表を独立oracle、Red/Green実観測、全family凍結の証拠として扱わない。"
   ],
   "red_green_refactor_ja": {
     "red": "凍結した特定入力で、実装前の未実装/意図的欠陥対象が期待された分類・返却と異なることを観測する。syntax/environment故障はRed不成立。",
@@ -332,11 +405,13 @@
     "binding_kind": "same-candidate-pair-current-binding",
     "selected_pointers": [
       "/function_design",
-      "/purity_and_retry_ja",
-      "/failure_and_recovery_boundary"
+      "/return_contract_detail/f01",
+      "/return_contract_detail/b01",
+      "/failure_and_recovery_boundary",
+      "/purity_and_retry_ja"
     ],
-    "note_ja": "同時作成のL6候補bytesを照合するcurrent binding。独立した承認済sourceや歴史的固定revisionとして扱わず、L6候補の変更時はこのhashと選択箇所を追随する。",
-    "file_sha256": "5d0c752c5de2f4808a4fb2dfc1a987f700b29610387c580a8d790a1a07e7c577"
+    "note_ja": "同時作成L6候補のraw bytesと選択箇所を照合するcurrent binding。独立承認済sourceや歴史的固定revisionではない。L6変更時はhashと選択箇所を追随する。",
+    "file_sha256": "fb4691ae3a60a33ea22c449adfac2798c522e6ca73ca76ccc50bf6426e985274"
   },
   "derived_from_document_id": "HARNESS-L8-001-V12-LAYER-CONTRACT"
 }
