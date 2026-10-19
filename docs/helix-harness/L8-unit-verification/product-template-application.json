@@ -192826,11 +192826,11 @@
     "l9_oracle_binding": {
       "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
       "pointer": "/cases/3/original_operation_proposal_provider_oracles/total_attempt_oracles",
-      "canonical_sha256": "5fa2d313a74e17d536743919573164539510a524f7da61d1ac5a5bcfcbce4344",
-      "ordered_sha256": "97de4470cce10a554f2afaa32f372f5103aab3db5dd82b65dea924a7253e3897",
-      "canonical_byte_length": 202686,
+      "canonical_sha256": "259cdcf0d2cf10827b92f397567de07b51aaf67bbc2e96490ff5b2f0aba5d1ce",
+      "ordered_sha256": "cfe8fbb6115d148a1c0e35d751872e72ab4b9c197286405fe36b42359ffb8d9a",
+      "canonical_byte_length": 218983,
       "base_revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
-      "candidate_file_sha256": "e4a262ee984c2ce2f4f5ddfe0d20ee7765cf0d6cab408dfb7f22254dfb0ca749",
+      "candidate_file_sha256": "0365ccc2943f3e5d6715bef69ef4c03ff9e456edf7afe220230b5a2d30b2f81e",
       "candidate_scope_ja": "同じ候補変更内のL9 childを結ぶ。base_revisionにchildが存在したとは扱わず、後続case追補でL9 bytesが変わる場合はbindingを更新する。"
     },
     "verification_boundary_ja": "固定Git source、厳密な汎用JSON parse、RFC6902 copyとhash照合による期待再構成手順を定義する。実製品の実装前Red/Green、codec/provider/wrapper、資格、OS受領、CI、性能を実行した結果ではない。期待はcandidate実装から生成しない。",
@@ -192844,7 +192844,8 @@
       "frontの各caseはfresh basisからinput_seed/expected_seedをcopyし、input_ops、case_body_preparation（存在する場合）、expected_opsの順に適用する。独立再構成summaryにある各input/expected canonical・ordered hashとbyte長、branch/member期待を照合する。",
       "published_three_total_attempt_whole_casesは固定M5 case seedとliteral_to_request_occurrence mappingでinputを作る。literal pool indexとrequest occurrence indexを混同せず、raw sourceをstrict JSON parseし、same-source recordをsource attempt bodyとqualification occurrenceへcopyする。",
       "独立M2 IはM2 frozen_json_recipeから再構成し、raw operation source内CallerInputsと全値比較する。Nはfixed_native_case_recipe_pointerが示すM3 recipeのworkspace_seed/completion_opsを適用した後の/expectedを選ぶ。recipe pointer自体をmaterialized Nとしてcopyしない。",
-      "old_provider_wholeはM5 expected_output_seed/completion_ops/whole_return_assembly_opsと再構成済みM3 Nから/expectedを作り、hash照合後/old_provider_wholeへcopyする。その全体を新total expected native_dispatch.valueへ無変換copyし、total whole hashを照合する。"
+      "old_provider_wholeはM5 expected_output_seed/completion_ops/whole_return_assembly_opsと再構成済みM3 Nから/expectedを作り、hash照合後/old_provider_wholeへcopyする。その全体を新total expected native_dispatch.valueへ無変換copyし、total whole hashを照合する。",
+      "binding_array_total_attempt_caseは同じ候補child内のbinding_array_domain_native_oracle/frozen_specのsource_mounts/workspace_seed/standard_json_patch_prelude/completion_opsからIとNを再構成する。結果を/binding/inputと/binding/native_expectedへcopyし、inline front case6 input seedからstrict parseしたsource bodyへIをcopy、primitive rawとsource/Qualification/Root digestを整合させてからexpected_completion_opsを順適用する。whole input/expected、N、raw primitiveのhash・ordered bytesを照合する。"
     ],
     "expected_component_checks": [
       {
@@ -193312,10 +193313,76 @@
           }
         ],
         "acceptance_ja": "凍結済みfixed sources、workspace basis、case入力とRFC6902順序から各wholeを再構成し、input/expected全値とhashを照合する。製品実行結果とは扱わない。"
+      },
+      {
+        "component": "binding_array_total_attempt_case",
+        "case_id": "TYPED_BINDING_ARRAY_DOMAIN_FAILURE_NATIVE1_PROPOSAL_UNAVAILABLE",
+        "whole_hashes": {
+          "total_input": {
+            "canonical": {
+              "sha256": "bc4d666fa92375f051d17883b1704dc83d212a36e9aae7800412fff2de143f59",
+              "byte_length": 2647
+            },
+            "ordered": {
+              "sha256": "76a48a75dbe044ba5f97174cdd4d34f8b239a55a270113187c0cafa28030a83f",
+              "byte_length": 2647
+            }
+          },
+          "total_expected": {
+            "canonical": {
+              "sha256": "31a71592496ae7724f0acd1606b42bb8ca791cf674055a8edc4a686b963eb4e0",
+              "byte_length": 1632383
+            },
+            "ordered": {
+              "sha256": "c16ae81c67d74a685736d176684e03d4e4b2e79675a27e17a7dacb962f66ec90",
+              "byte_length": 1632383
+            }
+          },
+          "native_N": {
+            "canonical": {
+              "sha256": "fef815b0dea8974e3bdeea5dcedcd77bc084bb551a544caa24efb0b53aa1a22e",
+              "byte_length": 1626349
+            },
+            "ordered": {
+              "sha256": "db8df16750214ae3eba81034ef1a90e3423422006f2f04441a19a36504a0a268",
+              "byte_length": 1626349
+            }
+          },
+          "source_primitive": {
+            "sha256": "8720d43185e12f304ce72ec70fab2dc7570cbf10cb91108ee2133f6d131c108e",
+            "byte_length": 668
+          }
+        },
+        "static_controls": {
+          "source_count": 1,
+          "source_decode_tags": [
+            "ready"
+          ],
+          "source_walk_original_indices": [
+            0
+          ],
+          "source_walk_flags": [
+            [
+              "qualified"
+            ]
+          ],
+          "qualified_flat_record_indices": [
+            0
+          ],
+          "input_issues": [],
+          "source_issues": [],
+          "operation_role": "ready",
+          "native_dispatch": "native_capture_only",
+          "native_call_count": 1,
+          "view_issue_count": 1,
+          "view_issue_name": "native_proposal_unavailable",
+          "OS_body_formed": false
+        },
+        "acceptance_ja": "同一候補child内のbinding input/N recipe、inline source body recipe、qualification digestコピー、expected completion opsから全返却を再構成し、input/expected/N/primitiveのhashとmember順を照合する。条件付きsynthetic証拠で実callや実認可ではない。"
       }
     ],
     "not_yet_included_ja": [
-      "binding[] native branchの独立凍結whole recipeは存在するが、新total-attempt全体のprefix/全返却は未収載。既存binding[]部分fixtureだけから完成扱いしない。",
+      "全source失敗・その他role/qualification組合せ・未収載の入力は対象外。",
       "全source失敗・その他role/qualification組合せ・未収載の入力は対象外。",
       "実装前Red/Green、実source資格・producer・wrapper実行、OS受領/配送、CI、PO受入は成立していない。"
     ],

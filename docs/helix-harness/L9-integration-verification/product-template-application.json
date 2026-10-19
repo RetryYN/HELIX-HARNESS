@@ -4252,7 +4252,7 @@
           "note_ja": "同じ候補snapshotのtotal_attempt_boundaryを参照する。M5/M6固定source、承認済revision、又は実接続の成立を意味しない。"
         },
         "purpose_ja": "total-attempt全体を完了扱いにせず、凍結済みの重複primitive拒否、旧whole保存、source-body材料、binding=[] domain failure/native全値を共通のsource-first再構成区画へ置く。",
-        "authority_and_limit_ja": "有限期待の候補設計であり、実reader/provider/wrapper、資格判定、OS受領、CI、受入を実行・成立させない。成功decodeはready{body:RawSourceBody}、失敗decodeはfailed{decode:CoreDecodeResult}とする新CORE-private outcomeの技術選択を用いる。既存6 codec entry、既存公開CoreDecodeResult、既存3 provider wholeは変更しない。",
+        "authority_and_limit_ja": "有限期待の候補設計であり、実reader/provider/wrapper、資格判定、OS受領、CI、受入を実行・成立させない。成功decodeはready{body:RawSourceBody}、失敗decodeはfailed{decode:CoreDecodeResult}とする新CORE-private outcomeの技術選択を用いる。既存6 codec entry、既存公開CoreDecodeResult、既存3 provider wholeは変更しない。 binding[] branchの新total-attempt wholeも固定Git recipeと同一candidateの既inline shared recipeから再構成する静的期待である。",
         "fixed_source_bindings": [
           {
             "revision": "56c3bd6348291eeda71bbe3563a7616b1924df76",
@@ -8446,9 +8446,9 @@
           }
         },
         "coverage_boundary_ja": [
-          "収載した有限front failure 8件、既存3 successとduplicate primitive、およびbinding[] native domain branchに限る。未収載の入力・型・全branch一般の保証ではない。",
-          "各wholeは固定sourceと標準copy/patchで静的に再構成する期待であり、実製品のRed/Green、実wrapper/producer実行、実資格・実認可、OS受領・配送、PO受入を示さない。",
-          "CORE internal provider source-side boundaryまでの候補契約。OS側受領pair、CONNECT配送、全source失敗を含むtotal function、実装・CI・運用は未成立。"
+          "収載した有限front failure 8件、既存3 successとduplicate primitive、及びbinding=[] native domain branchの全返却wholeに限る。未収載の入力・型・全branch一般の保証ではない。",
+          "各wholeは固定Git sourceと標準copy/patchで静的に再構成する期待であり、実製品のRed/Green、実wrapper/provider、実資格・実認可、OS受領/配送、PO受入を示さない。",
+          "CORE internal provider source-side boundaryまでの候補契約。OS側受領pair、CONNECT配送、他のsource失敗を含む全入力total function、実装・CI・運用は未成立。"
         ],
         "current_l4_candidate_ref": {
           "candidate_id": "HARNESS-L4-009-F02-OPP-TOTAL",
@@ -8459,8 +8459,6 @@
         },
         "requirement_scope_ja": "HARNESS-L3-009-F02（functional-requirements.json#/requirements/24）とHARNESS-L10-009-F02 (functional-verification.json#/cases/24)の候補exact set、及びHARNESS-L3-009-F03 (#/requirements/25)とHARNESS-L10-009-F03 (#/cases/25)の四判定を照合対象とする。proposal/candidateをOS selected/usedへ昇格したとは扱わず、N/A等の判定意味も適用scopeを越えて拡張しない。",
         "front_eight_total_attempt_failure_cases": {
-          "freeze_sha256": "4cd5f0bdeb5df0dc47bb0c8f780f672d476632a71dbb14278bd0bbbffb38cc28",
-          "freeze_byte_length": 67444,
           "freeze": {
             "kind": "CORE_F02_front_total_attempt_eight_whole_oracle_freeze",
             "authority_effect": "なし。固定sourceとAI技術選択に基づく独立静的期待。実観測/要件変更/全F02完了ではない。",
@@ -10445,13 +10443,10 @@
           },
           "independent_reconstruction_summary": {
             "kind": "root_independent_generic_JSON_Pointer_Patch_reconstruction",
-            "receipt_path": "scaffold/review-handoff/local/core-f02-pre-total-independent-check-m6-20261020/receipt.json",
             "receipt_sha256": "d9d4155f2a9dc57579bab74495f03ca56e00c11b841206ee4a3b7bb56217f680",
-            "meaning_review_path": "scaffold/review-handoff/local/front-eight-source-meaning-root-review.json",
             "meaning_review_sha256": "f92686a0e19f80f856a4974d54c39422433f8a37be5db9ff05617598d8c7fd96",
             "closed_type_review_receipt_sha256": "4b2f8f357b08d19c2e4e6dd788600c25331ec398f7e0096fa25d8c4ecf154b93",
             "case_count": 8,
-            "whole_expected_sha256_and_ordered_sha256_are_recorded_per_case_in_freeze": true,
             "limits_ja": "固定Git source・標準pointer/patchからの静的再構成と意味source照合。製品reader/providerの実行、権限行使、OS受領、実接続の証拠ではない。",
             "case_results": [
               {
@@ -10725,7 +10720,24 @@
                 ],
                 "qualified_raw_record_count": 2
               }
+            ],
+            "verification_provenance_ja": "以下のdigestは独立静的再構成・意味照合の来歴を識別する参考値で、local artifact pathを正式入力依存にしない。formal inputsは直下inline freezeと固定Git sourceだけである。",
+            "case_results_pointer": "/independent_reconstruction_summary/case_results",
+            "case_result_hash_fields": [
+              "expected_canonical.sha256",
+              "expected_ordered.sha256",
+              "expected_canonical.byte_length"
             ]
+          },
+          "original_source_artifact": {
+            "sha256": "4cd5f0bdeb5df0dc47bb0c8f780f672d476632a71dbb14278bd0bbbffb38cc28",
+            "byte_length": 67444,
+            "role_ja": "旧Plan除去・公開revision訂正前の不変な著述snapshot。inline freezeそのもののhashではなく、正式recipeの実行依存でもない。"
+          },
+          "inline_freeze_hashes": {
+            "canonical_sha256": "7b6c7d2ea6daeb8eacf5413f1ce7013739c94dea4e459ee3586e029852c00120",
+            "ordered_sha256": "62434282a1f818fcb824207aff4f300b1c4a9574c4f47d8745896c8e27f08b93",
+            "canonical_byte_length": 40032
           }
         },
         "published_three_total_attempt_whole_cases": {
@@ -11444,6 +11456,502 @@
           ],
           "comparison_ja": "各caseは独立M2 CallerInputsを固定M5 raw operation sourceと全値比較し、M3 case recipeを再構成したNを旧provider recipeへ適用する。候補provider関数の返却から期待を生成しない。",
           "limits_ja": "Nは条件付きsource-first oracle。実wrapper観測、実CORE provider実行、資格発行、OS受領・配送を示さない。"
+        },
+        "binding_array_total_attempt_case": {
+          "id": "TYPED_BINDING_ARRAY_DOMAIN_FAILURE_NATIVE1_PROPOSAL_UNAVAILABLE",
+          "status_ja": "独立freeze済み全返却wholeの正式候補。条件付きsynthetic input/oracleで、製品実行ではない。",
+          "original_source_artifact": {
+            "sha256": "9af97a84027e56962b57dd256c64e6c05ea6e6bcb7d0253a59fb1302001baf94",
+            "byte_length": 18157,
+            "role_ja": "immutable local authoring snapshotの来歴値。formal source dependencyではない。"
+          },
+          "fixed_formal_norm": {
+            "revision": "61c17d9dc691690e89589dc4e2d8a4dfeaa1d90c",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "raw_sha256": "eb45e61d2bc892ebaef72aec29344cec02d464f3f39cee759e97350d2f1a0fe4",
+            "pointer": "/original_operation_proposal_provider_detail",
+            "selected_canonical_sha256": "e6024e575af74a672674af3a4028890edaab934e64235e42340a274f579b1c91",
+            "selected_ordered_sha256": "6a389bff5b7322321171fa83cbf0d496d36e62e2659ea38083812803fb76b532",
+            "normative_pointers": [
+              "/private_types",
+              "/stage_contracts/S1_source_body",
+              "/stage_contracts/S2_qualification",
+              "/stage_contracts/S3_operation_role/native_mode",
+              "/stage_contracts/S4_native_dispatch",
+              "/stage_contracts/S5_native_view/view_issue_order",
+              "/local_issue_writer/view_templates/1",
+              "/logical_to_physical_locations"
+            ]
+          },
+          "shared_binding_input_and_native_recipe": {
+            "same_candidate_revision": "same_candidate_snapshot",
+            "source_pointer": "/binding_array_domain_native_oracle/frozen_spec",
+            "workspace_seed_pointer": "/binding_array_domain_native_oracle/frozen_spec/workspace_seed",
+            "source_mounts_pointer": "/binding_array_domain_native_oracle/frozen_spec/source_mounts",
+            "rfc6902_prelude_pointer": "/binding_array_domain_native_oracle/frozen_spec/standard_json_patch_prelude",
+            "rfc6902_completion_pointer": "/binding_array_domain_native_oracle/frozen_spec/standard_json_patch_completion_ops",
+            "result_selectors": {
+              "I": "再構成workspaceの/input",
+              "N": "再構成workspaceの/native_expected"
+            },
+            "selection_rule_ja": "固定Git source mountsとworkspace_seedから始め、2 replace prelude後に135 RFC 6902 copyを適用する。入力I・native Nは処理後workspaceのresult selectorで得る。source mount内のhash/pointerを直接materialized wholeとみなさない。",
+            "materialized_result_hashes": {
+              "input": {
+                "canonical_sha256": "bc7c4cf35766f0e2d3c0d64f1dd8a7bba8011f202bc175366fb3d70f61efa4a9",
+                "ordered_sha256": "092e3dfbfdd12b5ee167a589af9e073e2fff1c1c7a21c6d1563aa7ae41a44f67",
+                "canonical_bytes": 210,
+                "ordered_bytes": 210
+              },
+              "caller_expected": {
+                "canonical_sha256": "ac88a0d9f5c34ae780a178f1ee8c423b5d97a3c4a8057b5a72849153e3e397aa",
+                "ordered_sha256": "3f4af89c9f88447f07e1f634465832f5a415ff688547127833fe5934e2abd545",
+                "canonical_bytes": 1607634,
+                "ordered_bytes": 1607634
+              },
+              "proposal_expected": {
+                "canonical_sha256": "6b301b04e06d488c1db0f9e7b4fde6c61f298ffa4685f3c6a4f6b2987a6609c6",
+                "ordered_sha256": "6e904afb0148697bc144426592f2a485593f8b2911e3c68e3d9c4fbbc8f621d3",
+                "canonical_bytes": 1625750,
+                "ordered_bytes": 1625750
+              },
+              "native_expected": {
+                "canonical_sha256": "fef815b0dea8974e3bdeea5dcedcd77bc084bb551a544caa24efb0b53aa1a22e",
+                "ordered_sha256": "db8df16750214ae3eba81034ef1a90e3423422006f2f04441a19a36504a0a268",
+                "canonical_bytes": 1626349,
+                "ordered_bytes": 1626349
+              }
+            },
+            "workspace_namespace_ja": "source mounts/seed/patchを一時workspaceで再構成し、最終result /inputを/binding/input、/native_expectedを/binding/native_expectedへ標準copyして固定する。その後、全attempt用workspace_seedとprimitiveを別々にmountし、input_completion_opsで独立Iをoperation sourceへ組み込み、expected_completion_opsを適用する。"
+          },
+          "workspace_seed": {
+            "input": {
+              "operation_source_occurrence_index": 0,
+              "source_occurrences": [
+                {
+                  "source_ref": {
+                    "identity": "SOURCE-SYNTH-F02",
+                    "revision": "source1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  },
+                  "owner": "CORE",
+                  "source_json_utf8": "{\"records\":[{\"subject_ref\":{\"identity\":\"SYNTH-F02-SUBJECT\",\"revision\":\"source1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"CORE\"},\"section_key\":\"F02\",\"record_kind\":\"original_trace_section\",\"payload\":{\"caller_inputs\":null,\"proposed_source\":{\"identity\":\"CORE-P1\",\"revision\":\"core1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"CORE\"},\"relation_occurrences\":[]},\"owner\":\"CORE\"}]}",
+                  "source_sha256": "b2adb8c4e7bc2a1f8d005b2ee446305331cf9df4756fd5d20f61cee05b709835",
+                  "qualification_ref": {
+                    "identity": "QUAL-F02-CORE",
+                    "revision": "qual1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  }
+                }
+              ],
+              "qualification_inputs": [
+                {
+                  "ref": {
+                    "identity": "QUAL-F02-CORE",
+                    "revision": "qual1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  },
+                  "root_ref": {
+                    "identity": "ROOT-F02-CORE",
+                    "revision": "root1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  },
+                  "source_ref": {
+                    "identity": "SOURCE-SYNTH-F02",
+                    "revision": "source1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  },
+                  "owner": "CORE",
+                  "subject_refs": [
+                    {
+                      "identity": "SYNTH-F02-SUBJECT",
+                      "revision": "source1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    }
+                  ],
+                  "source_sha256": "b2adb8c4e7bc2a1f8d005b2ee446305331cf9df4756fd5d20f61cee05b709835"
+                }
+              ],
+              "qualification_root_inputs": [
+                {
+                  "ref": {
+                    "identity": "ROOT-F02-CORE",
+                    "revision": "root1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  },
+                  "owner": "CORE",
+                  "allowed_subject_refs": [
+                    {
+                      "identity": "SYNTH-F02-SUBJECT",
+                      "revision": "source1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    }
+                  ],
+                  "allowed_source_ref": {
+                    "identity": "SOURCE-SYNTH-F02",
+                    "revision": "source1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  },
+                  "allowed_source_sha256": "b2adb8c4e7bc2a1f8d005b2ee446305331cf9df4756fd5d20f61cee05b709835"
+                }
+              ]
+            },
+            "source_body": null,
+            "expected": {
+              "request_capture": null,
+              "source_attempts": [
+                {
+                  "source_occurrence_index": 0,
+                  "decode": {
+                    "tag": "ready",
+                    "body": null
+                  },
+                  "qualification": {
+                    "tag": "observed",
+                    "walk_index": 0
+                  }
+                }
+              ],
+              "qualification_snapshot": {
+                "input_issues": [],
+                "source_issues": [],
+                "source_walks": [
+                  {
+                    "source_occurrence_index": 0,
+                    "source_ref": {
+                      "identity": "SOURCE-SYNTH-F02",
+                      "revision": "source1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    },
+                    "qualified_record_indices": [
+                      0
+                    ],
+                    "input_issue_indices": [],
+                    "source_issue_indices": [],
+                    "classification_flags": [
+                      "qualified"
+                    ]
+                  }
+                ],
+                "qualified_raw_occurrences": [
+                  {
+                    "source_occurrence_index": 0,
+                    "source_ref": {
+                      "identity": "SOURCE-SYNTH-F02",
+                      "revision": "source1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    },
+                    "record_index": 0,
+                    "qualified_record_index": 0,
+                    "record": null
+                  }
+                ]
+              },
+              "operation_role": {
+                "tag": "ready",
+                "selected_record": {
+                  "source_occurrence_index": 0,
+                  "record_index": 0,
+                  "subject_ref": {
+                    "identity": "SYNTH-F02-SUBJECT",
+                    "revision": "source1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  },
+                  "payload_pointer": "/source_attempts/0/decode/body/records/0/payload"
+                },
+                "frame": null
+              },
+              "native_dispatch": {
+                "tag": "native_capture_only",
+                "native_call_count": 1,
+                "native_return": null,
+                "view_issues": [
+                  {
+                    "path": "/native_return/capture/proposal",
+                    "state": "unresolved",
+                    "detail": "実native proposalがunavailableであり、既存provider viewの形成域に対応しない。",
+                    "backflow_owner": "CORE",
+                    "axis": "provider_view",
+                    "source_ref": {
+                      "identity": "SOURCE-SYNTH-F02",
+                      "revision": "source1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    },
+                    "related_source_refs": []
+                  }
+                ]
+              }
+            }
+          },
+          "source_body_recipe": {
+            "parse_source": "/front_eight_total_attempt_failure_cases/freeze/cases/6/input_seed/source_occurrences/0/source_json_utf8",
+            "parse_destination": "/source_body",
+            "old_utf8_sha256": "b2adb8c4e7bc2a1f8d005b2ee446305331cf9df4756fd5d20f61cee05b709835",
+            "parse": "duplicate decoded key拒否のstrict generic JSON parse。原member/array順を保持。",
+            "standard_ops": [
+              {
+                "op": "copy",
+                "from": "/binding/input",
+                "path": "/source_body/records/0/payload/caller_inputs"
+              }
+            ],
+            "serialization": {
+              "operation": "generic ordered compact JSON serialize",
+              "value_pointer": "/source_body",
+              "ensure_ascii": false,
+              "sort_keys": false,
+              "separators": [
+                ",",
+                ":"
+              ],
+              "allow_nan": false,
+              "encoding": "UTF-8",
+              "destination": "/prepared_source/source_json_utf8",
+              "result_must_equal_fixed_primitive": true
+            },
+            "parse_source_basis_ja": "same_candidate_snapshot内front freeze case 6の原source body seed。CallerInputs nullの原値をstrict parseし、完成したbinding Iは同一payload fieldへ標準copyする。"
+          },
+          "fixed_source_primitive": {
+            "source_json_utf8": "{\"records\":[{\"subject_ref\":{\"identity\":\"SYNTH-F02-SUBJECT\",\"revision\":\"source1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"CORE\"},\"section_key\":\"F02\",\"record_kind\":\"original_trace_section\",\"payload\":{\"caller_inputs\":{\"validation_input\":{\"raw\":{\"binding\":[]},\"tag\":\"native\"},\"source_result_reference_projection\":{\"tag\":\"present\",\"location\":{\"root\":\"caller_inputs\",\"pointer\":\"/source_result_reference_projection\"},\"value\":null}},\"proposed_source\":{\"identity\":\"CORE-P1\",\"revision\":\"core1\",\"scope\":{\"project\":\"P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-test\"},\"owner\":\"CORE\"},\"relation_occurrences\":[]},\"owner\":\"CORE\"}]}",
+            "utf8_sha256": "8720d43185e12f304ce72ec70fab2dc7570cbf10cb91108ee2133f6d131c108e",
+            "utf8_byte_length": 668,
+            "body_canonical_sha256": "e83dc5e387440e1c95bbf43b74adcb436065b76881a723c7b2cc34561467df07",
+            "body_ordered_sha256": "8720d43185e12f304ce72ec70fab2dc7570cbf10cb91108ee2133f6d131c108e"
+          },
+          "input_completion_ops": [
+            {
+              "op": "copy",
+              "from": "/fixed_primitive/source_json_utf8",
+              "path": "/input/source_occurrences/0/source_json_utf8"
+            },
+            {
+              "op": "copy",
+              "from": "/fixed_primitive/utf8_sha256",
+              "path": "/input/source_occurrences/0/source_sha256"
+            },
+            {
+              "op": "copy",
+              "from": "/fixed_primitive/utf8_sha256",
+              "path": "/input/qualification_inputs/0/source_sha256"
+            },
+            {
+              "op": "copy",
+              "from": "/fixed_primitive/utf8_sha256",
+              "path": "/input/qualification_root_inputs/0/allowed_source_sha256"
+            }
+          ],
+          "expected_completion_ops": [
+            {
+              "op": "copy",
+              "from": "/input",
+              "path": "/expected/request_capture"
+            },
+            {
+              "op": "copy",
+              "from": "/source_body",
+              "path": "/expected/source_attempts/0/decode/body"
+            },
+            {
+              "op": "copy",
+              "from": "/source_body/records/0",
+              "path": "/expected/qualification_snapshot/qualified_raw_occurrences/0/record"
+            },
+            {
+              "op": "copy",
+              "from": "/source_body/records/0/payload",
+              "path": "/expected/operation_role/frame"
+            },
+            {
+              "op": "copy",
+              "from": "/binding/native_expected",
+              "path": "/expected/native_dispatch/native_return"
+            }
+          ],
+          "reconstruction_protocol_ja": "既存binding recipeを/binding作業領域として独立に復元。固定front case6 whole input seedと新expected_seedをworkspace_seedのままmount。fixed_source_primitiveを/fixed_primitiveへmount。原source_body_recipeのstrict parseと明示1copy、ordered compact serializeで固定new literal/hashを照合。input_completion_ops4copy、expected_completion_ops5copyを順に一度適用。結果/input、/expected以外の作業mountは返却memberにしない。候補controllerを呼ばず全leafがこれらのseed/固定source/標準opsだけで決まる。",
+          "source_body_materialization_ja": "front case6 input_seed.source_occurrences/0/source_json_utf8をstrict generic JSON parseして/source_bodyへ置く。/binding/inputから/source_body/records/0/payload/caller_inputsへ標準copyし、declared ordered compact UTF-8 serializerでsource_json_utf8を再構築する。raw bytes、source_sha256、Qualification入力のsource_sha256、Root allowed_source_sha256を同じprimitive digestへ更新し、生成rawが固定primitive全文と668 byte/hashで一致することを条件付きfixture内比較で確かめる。資格の実発行・許可は成立させない。",
+          "whole_hashes": {
+            "total_input": {
+              "canonical": {
+                "sha256": "bc4d666fa92375f051d17883b1704dc83d212a36e9aae7800412fff2de143f59",
+                "byte_length": 2647
+              },
+              "ordered": {
+                "sha256": "76a48a75dbe044ba5f97174cdd4d34f8b239a55a270113187c0cafa28030a83f",
+                "byte_length": 2647
+              }
+            },
+            "total_expected": {
+              "canonical": {
+                "sha256": "31a71592496ae7724f0acd1606b42bb8ca791cf674055a8edc4a686b963eb4e0",
+                "byte_length": 1632383
+              },
+              "ordered": {
+                "sha256": "c16ae81c67d74a685736d176684e03d4e4b2e79675a27e17a7dacb962f66ec90",
+                "byte_length": 1632383
+              }
+            },
+            "native_N": {
+              "canonical": {
+                "sha256": "fef815b0dea8974e3bdeea5dcedcd77bc084bb551a544caa24efb0b53aa1a22e",
+                "byte_length": 1626349
+              },
+              "ordered": {
+                "sha256": "db8df16750214ae3eba81034ef1a90e3423422006f2f04441a19a36504a0a268",
+                "byte_length": 1626349
+              }
+            },
+            "source_primitive": {
+              "sha256": "8720d43185e12f304ce72ec70fab2dc7570cbf10cb91108ee2133f6d131c108e",
+              "byte_length": 668
+            }
+          },
+          "expected_member_orders": {
+            "attempt": [
+              "request_capture",
+              "source_attempts",
+              "qualification_snapshot",
+              "operation_role",
+              "native_dispatch"
+            ],
+            "source_attempt": [
+              "source_occurrence_index",
+              "decode",
+              "qualification"
+            ],
+            "source_decode": [
+              "tag",
+              "body"
+            ],
+            "qualification": [
+              "tag",
+              "walk_index"
+            ],
+            "operation_role": [
+              "tag",
+              "selected_record",
+              "frame"
+            ],
+            "frame": [
+              "caller_inputs",
+              "proposed_source",
+              "relation_occurrences"
+            ],
+            "native_dispatch": [
+              "tag",
+              "native_call_count",
+              "native_return",
+              "view_issues"
+            ],
+            "view_issue": [
+              "path",
+              "state",
+              "detail",
+              "backflow_owner",
+              "axis",
+              "source_ref",
+              "related_source_refs"
+            ]
+          },
+          "expected_static_controls": {
+            "source_count": 1,
+            "source_decode_tags": [
+              "ready"
+            ],
+            "source_walk_original_indices": [
+              0
+            ],
+            "source_walk_flags": [
+              [
+                "qualified"
+              ]
+            ],
+            "qualified_flat_record_indices": [
+              0
+            ],
+            "input_issues": [],
+            "source_issues": [],
+            "operation_role": "ready",
+            "native_dispatch": "native_capture_only",
+            "native_call_count": 1,
+            "view_issue_count": 1,
+            "view_issue_name": "native_proposal_unavailable",
+            "OS_body_formed": false
+          },
+          "independence_and_qualification_ja": [
+            "Iは既存binding[] original ValidationInputをもつ210Bの閉じたCallerInputs全値。front case6のcaller_inputs=nullという外側不成立だけをtyped Iに置換し、内domain検証は既存calleeの実1回へ委ねる。",
+            "元fixtureのsource_ref/subject_ref/revision/owner/proposed_source/relation_occurrences=[]を全保持。製品source identityを生成しない。source raw/SHA・claim digest・独立root digestは新synthetic fixtureの明示原値で、実trust発行又は旧不成立資料の後追い救済と称さない。",
+            "資格はtyped operation raw本文と独立claim/root全端が一致する合成前提。decoded_records/source_walks/資格boolをprovider入力へ加えない。strict source parseとqualification期待は入力rawと原規範から著述したもので候補providerの観測ではない。",
+            "固定N fef815…は別source-first oracleが正当なbinding[] domain failureから著述した条件付き全返却。allskip Nを付替えず、totalcontrollerが同IからこのNを返した実観測とは称さない。runtime expected/cache/N注入を入力契約に追加しない。",
+            "failed source兄弟なしでN.capture.proposal.tag=unavailableのため、S5順位はnative_proposal_unavailable issue一件。source/role失敗や無用relationを生成しない。原Nの全診断/7member caller/producer skip差を一切変更しない。"
+          ],
+          "scope_limits_ja": [
+            "typed RawProviderRequest4member内の一case。外側codec6entry/型外、前段8、旧success3 wholeは変更しない。",
+            "binding[]というnative内domain不備native1のtotal prefix/role/N/診断だけを全値凍結。一般body、他domain failure、実call/実資格、OS受領の完成は認定しない。"
+          ]
         }
       }
     }},
