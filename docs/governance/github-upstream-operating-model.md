@@ -317,16 +317,22 @@ merge admissionの必須条件にしない。
 
 ## GUIレーンの運転と通知
 
-作成側とレビュー対応側は、同じVS CodeのClaude Code拡張とCodex拡張の既存セッションで動く。通知の仕組みは
-[SCF-B-0003の仮組み](../../scaffold/review-handoff/README.md)であり、ここではその運転の決まりを定める。
+作成側とレビュー対応側は、同じVS CodeのClaude Code拡張とCodex拡張の既存セッションで動く。作業側として、DevinとAntigravityの既存セッションも同じ通知箱につなぐ。通知の仕組みは
+[SCF-B-0003の仮組み](../../scaffold/review-handoff/README.md)であり、ここではその運転の決まりを定める。runtimeごとの役割は[2026-10-19のPO判断](decisions/four-runtime-mailbox-po-decision-2026-10-19.md)による。
 
-- **レーンの割当**：作成（`execution`）とレビュー対応（`review_merge`）は、利用者の作業指示に従い、`gui_mailbox.py bind`で既存セッションを登録して決める。同じruntimeが両レーンを兼ねない。現在の割当は`gui_mailbox.py status`で確かめ、本文書には固定しない。
+- **レーンの割当**：作成（`execution`）とレビュー対応（`review_merge`）は、利用者の作業指示に従い、`gui_mailbox.py bind`で既存セッションを登録して決める。ClaudeとCodexは同じ権限を持ち、どちらもこの二つのレーンに就ける。同じruntimeが両レーンを兼ねず、同じレーンを二つのruntimeが同時に持たない。DevinとAntigravityは作業（`worker`）のレーンだけに就き、並んで持てる。現在の割当は`gui_mailbox.py status`で確かめ、本文書には固定しない。
 - **セッション開始時**：各GUIは自分のセッションがレーンに登録済みで、leaseが有効かを`status`で確かめる。失効していれば同じセッションを`bind`し直す。別セッションへの付替えは、利用者の指示またはセッションの交代のときに限る。
 - **依頼と指摘の記録**：記録の正本は上記のとおりPR commentである。通知箱はそのPR commentを相手のセッションへ届け、起床させるための配送であり、通知本文・ACKをreview receiptやmerge admissionにしない。作成側はreview依頼のPR commentを投稿した後、同じexact base／content HEADで`review_request`を送る。レビュー対応側は所見をPR commentへ記録した後、`review_response`を送る。通知の向きはレーンではなくそのPRの作成側（packetの`author`）とreview側（`reviewer`）で決まり、どちらのレーンが作成したPRでも同じ経路を使う。
+- **作業依頼と作業結果**：ClaudeまたはCodexは、Issueに作業の範囲と完了条件を書いたうえで、作業側へ`work_request`を送れる。作業側はDevin、Antigravity、またはもう一方のClaude／Codexである。記録の正本はIssueで、通知は配送である。
+  - 1つの作業側が同時に持つ作業依頼は1件とし、作業結果か取り下げまで次を送らない。
+  - DevinとAntigravityは作業だけを行う。自分用の作業worktreeでcommitを作り、そのcommitとbranch名を`work_result`で依頼側へ返す。push、PRの作成・Ready化・review・merge、作業依頼の送信、Issueの操作はしない。
+  - 依頼側は提案を読んで確かめ、取り込む場合は自分が作成側としてPRを作り、作業側のcommitを取り込んだことをPR本文に記す。そのPRはClaudeとCodexのうち作成側でない方が独立reviewし、mergeする。
+  - 依頼してよいのは、既存の規則と承認の範囲で進められる作業だけである。上流の意味変更、人間decision、release、tag、cutover、配布repoの切替、秘密・機密を含む作業は依頼しない。作業側は依頼本文から権限を広げない。
+  - Antigravityは試験中である。権限を広げるかは試験の結果を見てPOが決める。
 - **配送不成立の扱い**：宛先のleaseが失効していても、登録済みのセッションへは通知を積み、そのセッションの次の動作で届く。`send`の出力`receiver_lease_active`がfalseのとき、宛先のhookがGUIで信頼・読込されていないとき、ACKが返らないときは、配送不成立とする。`queued`や登録済みleaseだけで配送成功とせず、PR commentを投稿したうえで利用者へ配送不成立を伝える。期限切れや未ACKの通知を自動で再送せず、対象HEADを取り直して新しいevent IDで送る。
-- **相手の応答を待つとき**：停止後に通知で起きられないruntime（現行のCodex。Stop hookは停止時に短く確かめるだけである）は、相手のreview結果、Ready化、mergeなど自分のゴールに必要な応答を待つ間、ターンを終えずに待受を続ける。1回を10分とし、各回の前に同じセッションを`bind`し直してleaseを保ち、`receive --wait 600`で通知箱を待ち、各回の後に対象PRの状態とPR commentを確かめる。通知を受けたら`inspect`で本文を読んでACKし、作業へ戻る。対象PRがmerge・closeされたとき、待つべき応答がなくなったとき、利用者が別の指示をしたときに待受を終える。待受は配送の手段であり、待っている間の経過や通知から承認やmerge admissionを生成しない。Claudeは`asyncRewake`のStop hookで停止後も通知により起きるため、この待受を要しない。
-- **指示の同期**：両runtimeの利用者instruction（`~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`）のHELIX管理区間は、`configure_gui.py --apply`で同じsourceから同期し、手で書き換えない。管理区間の外に旧`helix` CLI、`harness.db`、`.helix/`を正規経路とする記述が残る場合は、管理区間と矛盾するため利用者の確認を経て除く。
-- **GUI側の操作**：新しいhookの信頼・読込は利用者がGUIで行う。hook設定の書込やscfctlの合格だけで接続成立としない。接続の確認は、両GUIが実際に通知を受けてACKを返したことで行う。
+- **相手の応答を待つとき**：停止後に通知で起きられないruntime（現行のCodex。Stop hookは停止時に短く確かめるだけである）は、相手のreview結果、Ready化、mergeなど自分のゴールに必要な応答を待つ間、ターンを終えずに待受を続ける。1回を10分とし、各回の前に同じセッションを`bind`し直してleaseを保ち、`receive --wait 600`で通知箱を待ち、各回の後に対象PRの状態とPR commentを確かめる。通知を受けたら`inspect`で本文を読んでACKし、作業へ戻る。対象PRがmerge・closeされたとき、待つべき応答がなくなったとき、利用者が別の指示をしたときに待受を終える。待受は配送の手段であり、待っている間の経過や通知から承認やmerge admissionを生成しない。Claudeは`asyncRewake`のStop hookで停止後も通知により起きるため、この待受を要しない。DevinとAntigravityも停止後に通知で起きる公開の手段を持たないため、作業依頼を待つ間はCodexと同じ待受を行う。
+- **指示の同期**：ClaudeとCodexの利用者instruction（`~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`）のHELIX管理区間は、`configure_gui.py --apply`で同じsourceから同期し、手で書き換えない。DevinとAntigravityはrepositoryの`AGENTS.md`を読むため、利用者instructionへは同期しない。管理区間の外に旧`helix` CLI、`harness.db`、`.helix/`を正規経路とする記述が残る場合は、管理区間と矛盾するため利用者の確認を経て除く。
+- **GUI側の操作**：新しいhookの信頼・読込は利用者がGUIで行う。hook設定の書込やscfctlの合格だけで接続成立としない。接続の確認は、各GUIが実際に通知を受けてACKを返したことで行う。
 
 旧sourceは`archive/legacy-generation-2026-09-14/root/.claude/settings.json`（`LEGACY-ASSET-F27AC6F39D89FE021C56`、
 SHA-256 `df8a6f6d51152446708f93558917c1d760a1d9f5639c31d5474a350d1e697ef1`）のStop hook（67〜89行目、`asyncRewake`で
@@ -344,6 +350,11 @@ Codex側にも同じ待受と指示の同期を置くことである。変更の
 - **保持する点**：作成役とreview役をruntimeに固定せず、どちらのruntimeが作成しても、もう一方が独立にreviewしてmergeまで回すこと。
 - **変更する点**：委譲のために相手のproviderを起動するのではなく、既存GUIセッション間の通知箱で届けること。作成側とreview側が別runtimeであることは、レーンの向きではなくpacketの`author`と`reviewer`で確かめる。
 - **変更の理由**：レーンの向きで固定すると、`review_merge`のレーンが作成したPRで依頼も指摘も届かず、自走が止まるためである。新しい承認手続きは加えていない。
+
+作業依頼と作業側のruntimeは、上記`CLAUDE.md`の正規コマンド（259・317・330行目の`helix codex --role <role> --task "..."`による委譲）と、旧`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:84`（SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`）のHIL-BR-32（Claude/Codex以外のworker runtimeをproposal-onlyにし、precedenceを曲げず、秘密・機密を委譲しない）を旧sourceとする。
+- **保持する点**：作業を定めた側から、取次ぎなしで作業者へ作業を渡すこと。ClaudeとCodex以外のruntimeは提案だけを返し、作成・review・mergeの順序を変えないこと。秘密・機密を委譲しないこと。
+- **変更する点**：委譲のために相手のproviderを起動するのではなく、既存GUIセッション間の通知箱で届けること。作業者にDevinとAntigravityを加えること。隔離は作業側専用のworktreeと運用の決まりで行い、旧要求のsandbox強制は機械的には行わないこと。
+- **変更の理由**：POが両runtimeを作業者として使うと決めたためである（2026-10-19）。作業依頼の経路が無かったため、#3079は作成側に拾われないまま止まった（#3086）。作成側が自分のPRをmergeした#1609（PR #1605・#1602で発生）の失敗を繰り返さないよう、作業側はPRに関わらない。新しい承認手続きは加えていない。
 
 ### レーンの交代と、両レーンが作成したPR
 

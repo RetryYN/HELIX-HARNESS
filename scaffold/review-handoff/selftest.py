@@ -55,6 +55,44 @@ class PacketChecks(unittest.TestCase):
         r["reviewer"] = r["author"]
         with self.assertRaises(ValueError): self.check(r)
 
+    def test_worker_runtime_roles(self):
+        # PRの作成側・review側はClaudeとCodexだけ。DevinとAntigravityは作業結果を返す作業側に限る。
+        for author, reviewer in (("devin", "claude"), ("antigravity", "codex"), ("claude", "devin")):
+            r = copy.deepcopy(self.request)
+            r.update(author=author, reviewer=reviewer)
+            core = {k: v for k, v in r.items() if k != "payload_sha256"}
+            r["payload_sha256"] = p.sha(p.encode(core))
+            with self.assertRaises(ValueError): self.check(r)
+
+    def test_work_packet(self):
+        work = json.loads(subprocess.check_output([
+            sys.executable, "-B", str(p.Path(__file__).with_name("packet.py")), "build-work",
+            "--base", self.base, "--issue", "1", "--request-id", "WORK-SELFTEST", "--dispatcher", "codex",
+            "--worker", "devin", "--purpose", "仮設形式検査", "--scope", "合成入力のみ"], cwd=p.ROOT))
+        p.validate_work(work, self.base)
+        for field, value in (("dispatcher", "devin"), ("worker", "codex"), ("issue", 0), ("purpose", "改変"),
+                             ("authority_effect", "approved"), ("route", "manual_handoff_no_launch")):
+            r = copy.deepcopy(work)
+            r[field] = value
+            with self.assertRaises(ValueError): p.validate_work(r, self.base)
+        with self.assertRaises(ValueError): p.validate_work(work, self.head)
+        with self.assertRaises(ValueError): p.validate(work, self.base, self.head)
+        result = dict(schema="scaffold-work-result.v1", evidence_kind="scaffold", authority_effect="none",
+                      request_id=work["request_id"], request_payload_sha256=work["payload_sha256"], issue=1,
+                      base_sha=self.base, dispatcher="codex", worker="devin", result="proposal",
+                      result_sha=self.head, branch="devin/selftest", summary=["合成入力"])
+        p.validate_work_result(result, work)
+        for field, value in (("result_sha", self.base), ("branch", "bad branch"), ("worker", "antigravity"),
+                             ("request_payload_sha256", "0" * 64), ("summary", []), ("result", "done")):
+            r = dict(result, **{field: value})
+            with self.assertRaises(ValueError): p.validate_work_result(r, work)
+        # 依頼baseから派生しないcommitは提案にできない。
+        with self.assertRaises(ValueError):
+            p.validate_work_result(dict(result, result_sha=self.base, base_sha=self.base), dict(work, base_sha=self.head))
+        p.validate_work_result(dict(result, result="incomplete", result_sha=None, branch=None), work)
+        with self.assertRaises(ValueError):
+            p.validate_work_result(dict(result, result="declined"), work)
+
     def test_unknown_authority(self):
         for field, value in (("approved", True), ("authority_effect", "approved"), ("route", "cli")):
             r = copy.deepcopy(self.request)

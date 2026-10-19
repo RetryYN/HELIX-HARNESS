@@ -468,6 +468,19 @@ def operation_preflight(binding, operation, all_bindings=None):
     return check_rules(binding, related)
 
 
+def hook_commands(value):
+    """hook設定の中のcommand文字列を、入れ子の形を問わず集める。"""
+    if isinstance(value, dict):
+        if isinstance(value.get("command"), str):
+            yield value["command"]
+        for child in value.values():
+            if isinstance(child, (dict, list)):
+                yield from hook_commands(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from hook_commands(child)
+
+
 def external_hook_residuals(binding, home=None, manifest_path=None):
     """binding隣接の参照台帳を読む。利用者設定を実行・変更しない。"""
     declared_manifest = os.path.join(SCF, "external-references", binding["id"] + ".json")
@@ -484,7 +497,8 @@ def external_hook_residuals(binding, home=None, manifest_path=None):
         if spec["binding_id"] != binding["id"] or spec["authority_effect"] != "none":
             raise ValueError("参照台帳identity不一致")
         for relative in spec["settings_paths"]:
-            if relative not in ("~/.claude/settings.json", "~/.codex/hooks.json"):
+            if relative not in ("~/.claude/settings.json", "~/.codex/hooks.json",
+                                "~/.config/devin/config.json", "~/.gemini/config/hooks.json"):
                 raise ValueError("参照台帳settings対象外")
             path = os.path.join(home or os.path.expanduser("~"), relative[2:])
             if not os.path.exists(path):
@@ -492,16 +506,15 @@ def external_hook_residuals(binding, home=None, manifest_path=None):
             with open(path) as stream:
                 settings = json.load(stream)
             count = 0
-            for records in settings.get("hooks", {}).values():
-                for record in records:
-                    for hook in record.get("hooks", []):
-                        tokens = shlex.split(hook.get("command", ""))
-                        scripts = [t for t in tokens if t.endswith(spec["script_suffix"])]
-                        if not scripts:
-                            continue
-                        count += 1
-                        if any(not os.path.isfile(t) for t in scripts):
-                            errors.append("外部hook参照先不在: " + relative)
+            # Antigravityはhook名→event→処理、他はhooks→event→matcher→処理。形の違いを問わずcommandを数える。
+            for hook in hook_commands(settings.get("hooks", {}) if relative != "~/.gemini/config/hooks.json" else settings):
+                tokens = shlex.split(hook)
+                scripts = [t for t in tokens if t.endswith(spec["script_suffix"])]
+                if not scripts:
+                    continue
+                count += 1
+                if any(not os.path.isfile(t) for t in scripts):
+                    errors.append("外部hook参照先不在: " + relative)
             limit = spec["retired_expected_count"] if binding["state"] == "retired" else spec["maximum_per_settings_file"]
             if count > limit:
                 errors.append("外部hook残留・重複: %s count=%d" % (relative, count))

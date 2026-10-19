@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""GUI通知hookとHELIX所有instruction（Claude／Codex）をconsumerへ接続／撤去する。"""
+"""GUI通知hook（Claude／Codex／Devin／Antigravity）とHELIX所有instruction（Claude／Codex）をconsumerへ接続／撤去する。"""
 import argparse
 import copy
 import hashlib
@@ -19,18 +19,35 @@ POLICY_SHA256 = "c11d90db93c373cfb4213ccdc8db4a65d98f7813e6ceac2265ca0cc18d3666b
 # 同じHELIX管理区間を両runtimeの利用者instructionへ同期する。marker外の利用者本文は保持する。
 POLICY_PATHS = {"claude": "~/.claude/CLAUDE.md", "codex": "~/.codex/AGENTS.md"}
 FORBIDDEN_POLICY_TEXT = ("許可している", "承認済み", "権限を与える", "authorized", "#1888")
+RUNTIMES = ("claude", "codex", "devin", "antigravity")
+SETTINGS_PATHS = {"claude": "~/.claude/settings.json", "codex": "~/.codex/hooks.json",
+                  "devin": "~/.config/devin/config.json", "antigravity": "~/.gemini/config/hooks.json"}
+# 所有hookの件数。Claudeは回復用ConfigChangeを含む。
+OWNED_COUNTS = {"claude": 3, "codex": 2, "devin": 2, "antigravity": 2}
+# Antigravityのhooks.jsonはhook名→event設定の写像。HELIXの所有はこの名前の項目だけ。
+ANTIGRAVITY_GROUP = "helix-gui-mailbox"
 
 
 
 def entries(runtime):
-    def command(wait):
-        call = shlex.join(["python3", "-B", str(HERE / "gui_mailbox.py"), "hook", "--runtime", runtime, "--wait", str(wait)])
+    def command(wait, event=None):
+        args = ["python3", "-B", str(HERE / "gui_mailbox.py"), "hook", "--runtime", runtime, "--wait", str(wait)]
+        if runtime in ("devin", "antigravity"):
+            # 両runtimeはhook入力のevent名が無い・保証されないため、設定側からeventを渡す。
+            args += ["--event", event]
         # 通知専用42だけをClaudeの2に変換。不在・argparse・例外の2/1は常に0。
-        return call + '; helix_hook_rc=$?; if [ "$helix_hook_rc" -eq 42 ]; then exit 2; fi; exit 0'
-    stop = dict(type="command", command=command(3600 if runtime == "claude" else 5), timeout=3660 if runtime == "claude" else 10)
+        return shlex.join(args) + '; helix_hook_rc=$?; if [ "$helix_hook_rc" -eq 42 ]; then exit 2; fi; exit 0'
+    if runtime == "antigravity":
+        # SessionStart・Stopは処理をevent直下に並べる（matcherは使わない）。Stopの既定timeoutは30秒。
+        return {ANTIGRAVITY_GROUP: {
+            "SessionStart": [dict(type="command", command=command(0, "SessionStart"), timeout=10)],
+            "Stop": [dict(type="command", command=command(5, "Stop"), timeout=10)],
+        }}
+    stop = dict(type="command", command=command(3600 if runtime == "claude" else 5, "Stop"),
+                timeout=3660 if runtime == "claude" else 10)
     if runtime == "claude": stop["asyncRewake"] = True
     result = {
-        "SessionStart": [{"hooks": [dict(type="command", command=command(0), timeout=10)]}],
+        "SessionStart": [{"hooks": [dict(type="command", command=command(0, "SessionStart"), timeout=10)]}],
         "Stop": [{"hooks": [stop]}],
     }
     if runtime == "claude":
@@ -50,13 +67,32 @@ def owned(hook):
     for index, token in enumerate(tokens):
         if token.endswith("/scaffold/review-handoff/gui_mailbox.py"):
             if tokens[index + 1:index + 3] == ["hook", "--runtime"]:
-                return index + 3 < len(tokens) and tokens[index + 3] in ("claude", "codex")
+                return index + 3 < len(tokens) and tokens[index + 3] in RUNTIMES
     return False
 
 
-def count_owned(existing):
-    return sum(owned(h) for records in existing.get("hooks", {}).values()
-               for record in records for h in record.get("hooks", []))
+def handlers(records):
+    """event配下の処理。Claude形式（matcher＋hooks）とAntigravityのSessionStart／Stop形式（処理を直接並べる）を読む。"""
+    for record in records if isinstance(records, list) else []:
+        if not isinstance(record, dict):
+            continue
+        if "command" in record:
+            yield record
+        for hook in record.get("hooks", []) if isinstance(record.get("hooks"), list) else []:
+            if isinstance(hook, dict):
+                yield hook
+
+
+def event_maps(existing, runtime):
+    """hook設定のevent→records写像の一覧。Antigravityはhook名ごと、他はhooks key配下。"""
+    if runtime == "antigravity":
+        return [value for value in existing.values() if isinstance(value, dict)]
+    return [existing.get("hooks", {})]
+
+
+def count_owned(existing, runtime="claude"):
+    return sum(owned(h) for events in event_maps(existing, runtime) for records in events.values()
+               for h in handlers(records))
 
 
 def update_policy(existing, remove=False, source=None):
@@ -156,24 +192,51 @@ def update(existing, runtime, remove=False, rearm_token=None):
                     hook["statusMessage"] = "HELIX GUI recovery " + rearm_token
         return result
     result = copy.deepcopy(existing)
+    if runtime == "antigravity":
+        # 所有hook名を除き、別名の項目に紛れた所有処理も外す。他の利用者hook（helix_guard等）は保持する。
+        result.pop(ANTIGRAVITY_GROUP, None)
+        for name in list(result):
+            group = result[name]
+            if not isinstance(group, dict):
+                continue
+            for event in [key for key, value in group.items() if isinstance(value, list)]:
+                group[event] = strip_owned(group[event])
+                if not group[event]: del group[event]
+        if not remove:
+            result.update(entries(runtime))
+        return result
     hooks = result.setdefault("hooks", {})
     for event in list(hooks):
-        retained = []
-        for record in hooks[event]:
-            children = record.get("hooks", [])
-            remaining = [h for h in children if not owned(h)]
-            if len(remaining) == len(children):
-                retained.append(record)
-            elif remaining:
-                record["hooks"] = remaining
-                retained.append(record)
+        retained = strip_owned(hooks[event])
         if retained: hooks[event] = retained
         else: del hooks[event]
     if not remove:
         for event, records in entries(runtime).items():
             hooks.setdefault(event, []).extend(records)
     if not hooks: result.pop("hooks", None)
+    if runtime == "devin" and not remove:
+        # DevinはClaudeの~/.claude/settings.json等も読み、Claude用hookやinstructionを二重に走らせる。
+        # HELIXのruleは各repoのAGENTS.mdから読むため、Claude設定の取込みだけを止める。撤去時は利用者の値として残す。
+        result.setdefault("read_config_from", {})["claude"] = False
     return result
+
+
+def strip_owned(records):
+    retained = []
+    for record in records:
+        if isinstance(record, dict) and owned(record):
+            continue
+        children = record.get("hooks", []) if isinstance(record, dict) else []
+        if not isinstance(children, list) or not children:
+            retained.append(record)
+            continue
+        remaining = [h for h in children if not owned(h)]
+        if len(remaining) == len(children):
+            retained.append(record)
+        elif remaining:
+            record["hooks"] = remaining
+            retained.append(record)
+    return retained
 
 
 def main():
@@ -196,7 +259,7 @@ def main():
         # instruction marker異常時にhookだけを先に変更しないよう、全書込より前に検証する。
         policy_after = None if (args.audit or args.rearm) else update_policy(policy_text, args.remove).encode()
         policies.append((runtime, relative, policy_path, policy_before, policy_text, policy_after))
-    paths = {"claude": Path.home() / ".claude/settings.json", "codex": Path.home() / ".codex/hooks.json"}
+    paths = {runtime: Path.home() / relative[2:] for runtime, relative in SETTINGS_PATHS.items()}
     changes = []
     read_after = []
     for runtime, path in paths.items():
@@ -205,7 +268,7 @@ def main():
         before = path.read_bytes() if path.exists() else None
         existing = json.loads(before) if before is not None else {}
         if args.audit:
-            count = count_owned(existing)
+            count = count_owned(existing, runtime)
             residual_count += count
             print(runtime + ": owned_hook_residuals=" + str(count))
             continue
@@ -236,7 +299,7 @@ def main():
         atomic_write_all(changes)
         for runtime, path, after in read_after:
             assert json.loads(path.read_bytes()) == after
-            assert count_owned(after) == (0 if args.remove else (3 if runtime == "claude" else 2))
+            assert count_owned(after, runtime) == (0 if args.remove else OWNED_COUNTS[runtime])
             print(runtime + ": hook設定read-after一致。GUI側のtrust／読込／受信ACKは別確認")
         if not args.rearm:
             for runtime, relative, policy_path, policy_before, policy_text, policy_after in policies:

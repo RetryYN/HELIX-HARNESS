@@ -105,8 +105,8 @@
     },
     {
       "path": "scaffold/tools/scfctl.py",
-      "sha256": "ff48b2949c92116fe29a1b5c9a690c1454db77929dff5b5b977b78f137425aed",
-      "note": "実行するScaffold Binding checker [2026-09-26 GUIレーン運転の整備 read-after: scaffold/tools/scfctl.pyは、GitHub上流運用モデルへ「GUIレーンの運転と通知」節を研究用pinの行範囲（112〜177行目）の外に追加し、HELIX管理ローダ（scaffold/review-handoff/claude-current-loader.md）をCodexの~/.codex/AGENTS.mdへも同じsourceから同期するようconfigure_gui.py・scfctlの外部参照検査・参照台帳を広げた変更に合わせて付け直した。既存の本文・行範囲・判定条件は変えていない。採否・authorityを変更しない。]"
+      "sha256": "f25e07a8b020535186e269c758cbccf27e934c4c833e945a2c80fe4bac14b384",
+      "note": "実行するScaffold Binding checker [2026-09-26 GUIレーン運転の整備 read-after: scaffold/tools/scfctl.pyは、GitHub上流運用モデルへ「GUIレーンの運転と通知」節を研究用pinの行範囲（112〜177行目）の外に追加し、HELIX管理ローダ（scaffold/review-handoff/claude-current-loader.md）をCodexの~/.codex/AGENTS.mdへも同じsourceから同期するようconfigure_gui.py・scfctlの外部参照検査・参照台帳を広げた変更に合わせて付け直した。既存の本文・行範囲・判定条件は変えていない。採否・authorityを変更しない。] [2026-10-19 通知箱の4者化 read-after: scfctlの外部hook残留検査を、Devin（~/.config/devin/config.json）とAntigravity（~/.gemini/config/hooks.json）の設定形式でもcommandを数えるよう広げた。本bindingが使う検査（validate・stale等）の判定条件は変えていない。採否・authorityを変更しない。 前file SHA-256=ff48b2949c92116fe29a1b5c9a690c1454db77929dff5b5b977b78f137425aed; 現file SHA-256=f25e07a8b020535186e269c758cbccf27e934c4c833e945a2c80fe4bac14b384。]"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
@@ -230,5 +230,5 @@
     "confirmation_digest": null
   },
   "created": "2026-09-23",
-  "updated": "2026-09-23"
+  "updated": "2026-10-19"
 }
