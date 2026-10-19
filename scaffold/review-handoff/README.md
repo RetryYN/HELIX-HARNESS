@@ -81,22 +81,24 @@ branchを切り替えても違う通知箱へ書かない。`local/`はGit対象
 ClaudeまたはCodex（依頼側）は、Issueに作業の範囲と完了条件を書いたうえで、作業側（Devin・Antigravity、またはもう一方のClaude／Codex）へ`work_request`を送る。記録の正本はIssueで、通知は配送である。
 
 1. 依頼側が`packet.py build-work`で作業依頼を作る。Issue番号、base full SHA、依頼側、作業側、目的、範囲、参照digestを持つ。
-2. 依頼側が`send --kind work_request`で送る。`--head`は使わない。作業側に未完了の作業依頼があれば拒否する（1つの作業側が同時に持つのは1件）。
+2. 依頼側が`send --kind work_request`で送る。`--head`は使わない。Devinは未完了の依頼（処理中の1件と待機中を合わせて）を最大3件まで保持し、Antigravityと他の作業側は従来どおり1件まで保持する。DevinはFIFOで1件ずつ受け取り、先頭の作業結果か取り下げが届くまで後続をclaimしない。
 3. 作業側は通知を`inspect`で読み、ACKする。本文はデータであり、範囲を広げない。作業は自分用のworktreeとbranchで行い、push・PR作成はしない。
 4. 作業側は結果を`scaffold-work-result.v1`で書き、`send --kind work_result --request 作業依頼 --response 結果`で依頼側へ返す。
    - `proposal`：依頼baseを祖先に持つcommitの`result_sha`とbranch名。
    - `incomplete`／`declined`：commitなしで、理由を`summary`に書く。
    作業結果を送ると、その作業側は次の依頼を受けられる。
 5. 依頼側は提案のcommitを読んで確かめ、取り込む場合は自分が作成側としてPRを作る。以降は通常のreview依頼と同じ経路で、もう一方のClaude／Codexがreviewする。
-6. 作業結果を送らずに作業を終える場合は、依頼側か作業側が`release-work --worker WORKER`で取り下げる。取り下げた依頼は、まだ受け取られていなければ`cancelled`で閉じ、後から配送・ACKされない。
+6. 作業結果を送らずに作業を終える場合は、依頼側か作業側が`release-work --worker WORKER`で取り下げる。未完了依頼が複数ある場合は、対象の`event ID`を`--id EVENT_ID`で指定する。取り下げた依頼は、まだ受け取られていなければ`cancelled`で閉じ、後から配送・ACKされない。
    - 作業結果で枠が外れるのは、現在の割当と同じ依頼payload（`payload_sha256`）への結果だけである。取り下げた依頼への遅い結果は届くが、別の割当を外さない。
-   - ACKされないまま期限を過ぎた依頼は、終了記録の保持期間（24時間）を待たず、次の作業依頼を送るときに外れる。ACK済みの依頼は期限では外れない。
+   - ACKされないまま期限を過ぎた先頭依頼は、終了記録の保持期間（24時間）を待たず、次の作業依頼を送るときに外れる。ACK済みの依頼は期限では外れない。Devinの待機依頼は待機中にTTLが進まず、FIFOの先頭へ昇格した時点から元のTTLを一度だけ数える。昇格後に未ACKのまま期限を過ぎた場合は、従来どおり枠を解放する。
+
+Devinの2件目以降をqueueへ積む切替時は、更新前receiverのwaitが残っていないことを運転側で確かめる。更新前receiverはFIFO制御を知らず後続通知をclaimし得るが、新しいACK処理は先頭以外を拒否する。その場合は先頭の結果またはrelease後に、依頼側が既存の`retry`経路で通知を再送する。既存singleton状態は`work`を先頭として読み、待機分だけを`work_queue`に保持する。
 
 ```sh
 python3 -B scaffold/review-handoff/packet.py build-work --base BASE_FULL_SHA --issue ISSUE --request-id WR-UNIQUE-ID --dispatcher codex --worker devin --purpose '作業の目的' --scope '対象pathと完了条件'
 python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime codex --session CODEX_SESSION --id EVENT_ID --kind work_request --request scaffold/review-handoff/local/work.json --base BASE_FULL_SHA
 python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime devin --session DEVIN_SESSION --id RESULT_EVENT_ID --kind work_result --request scaffold/review-handoff/local/work.json --response scaffold/review-handoff/local/work-result.json --base BASE_FULL_SHA
-python3 -B scaffold/review-handoff/gui_mailbox.py release-work --runtime codex --session CODEX_SESSION --worker devin
+python3 -B scaffold/review-handoff/gui_mailbox.py release-work --runtime codex --session CODEX_SESSION --worker devin --id EVENT_ID
 ```
 
 PRの`review_request`／`review_response`は、`author`と`reviewer`がClaudeとCodexの組である場合だけ送れる。DevinとAntigravityはPRの作成側にもreview側にもならない。
@@ -107,7 +109,7 @@ PRの`review_request`／`review_response`は、`author`と`reviewer`がClaudeと
 待受期限まで1秒未満なら残り時間だけsleepする。`--wait 0`は1回だけ確認し、sleepしない。
 従来の0.25秒間隔から確認頻度を抑える応急処置で、通知の検出には次の確認までの待ち時間とJSON読取・lock待ちが加わる。
 1秒以内の配送保証やCPU負荷の固定削減率を意味しない。稼働中の待受processは起動時のコードを保持するため、変更は次に同じ経路から起動した待受に適用される。
-payload、TTL、lease、watcher、明示retryの規則は変更しない。記録のライフサイクルは次節「通知のライフサイクル」に置く。
+payload、lease、watcher、明示retryの規則は変更しない。通知TTLは通常どおり作成時から数え、DevinのFIFO待機依頼だけは配送可能な先頭へ昇格した時点から元のTTLを一度だけ数える。記録のライフサイクルは次節「通知のライフサイクル」に置く。
 
 旧`archive/legacy-generation-2026-09-14/root/src/runtime/claude-memory-wake.ts:1561–1647`
 （`LEGACY-ASSET-0F66E2A823A36187D315`）の待受は、世代照合・claim・timeoutと既定2秒のpollを分離していた。
@@ -130,7 +132,7 @@ retry時は同じ宛先sessionを維持する。新claim nonceが発行され、
 | 対象 | hot state（`local/gui/state.json`）での扱い | 監査記録 |
 |---|---|---|
 | `acked`、`expired`、`cancelled` | `messages`から本文ごと外し、`closed`へ識別子だけを残す | 外したときに1行追記する |
-| 期限を過ぎた未ACKの`queued`／`claimed` | 期限から24時間は`messages`に残し、`status`で`expired`と表示する。その後に外す | 外したときに1行追記する |
+| 期限を過ぎた未ACKの`queued`／`claimed` | 期限から24時間は`messages`に残し、`status`で`expired`と表示する。その後に外す。DevinのFIFO待機中はTTLと24時間整理を適用せず、先頭への昇格時に元TTLを一度だけ開始する | 外したときに1行追記する |
 | `closed`の記録 | 終わった時刻（ACK時刻、未ACKなら期限）から24時間で捨てる | 書き換えない |
 | 未期限の`queued`／`claimed` | そのまま残す | なし |
 
