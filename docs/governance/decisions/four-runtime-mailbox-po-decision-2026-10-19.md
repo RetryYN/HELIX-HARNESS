@@ -31,6 +31,10 @@ Claudeが「DevinとAntigravityにはどの役割を持たせるか」を選択�
 
 「この連携のPRは誰が作り、誰が独立reviewするか」の問いに対し、POは「Claudeが作りCodexがreview (Recommended)」を選んだ。
 
+PRの作成後、Claudeが未決として示した訓練利用opt-outについて、POは次のように述べた（原文）。
+
+> アンチグラビティとDevinの学習データカットはOK
+
 ## 判断
 
 1. **方式**：連携は既存の通知箱（メールボックス）を広げて行う。相手のproviderを起動する方式や非公開IPCは使わない。
@@ -38,6 +42,7 @@ Claudeが「DevinとAntigravityにはどの役割を持たせるか」を選択�
 3. **Devin**：作業だけを行うWorkerとする。
 4. **Antigravity**：試験中とし、試験の間はDevinと同じく作業だけを行う。権限を広げるかは、試験の結果を見てPOが決める。「フロントはきれいに作る」は、作業を割り当てるときの材料として記録する。割当の規則にはしない。
 5. **この変更のPR**：Claudeが作成し、Codexが独立reviewしてmergeする。
+6. **訓練利用opt-out**：DevinとAntigravityのアカウントで、作業内容を学習データに使わない設定が済んでいることを、POが確認した。Claudeはアカウントの設定画面を確かめていない。本書はPOの確認を記録するもので、HELIXSECURITY-L2-029の候補を採択したものではない。
 
 ## 「作業だけ」の読み方
 
@@ -53,5 +58,4 @@ POの「完全Worker型（作業のみ）」を、旧HELIXの要求HIL-BR-32の�
 ## 未決として残すもの
 
 - Antigravityの試験の合否と、その後の権限。
-- DevinとAntigravityのアカウントの訓練利用opt-outの状態。HELIXSECURITY-L2-029の候補は、opt-outの完了をruntime採用の前提として保持している。この候補は未採択であり、本書ではopt-outの状態を確かめていない。
 - 作業側の実行を、sandboxで機械的に隔離すること。
