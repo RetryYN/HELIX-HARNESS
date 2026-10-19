@@ -1,0 +1,116 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0157",
+  "kind": "scaffold",
+  "title": "BRAIN要求・受入の意味JSON表現とbyte同一viewの移行比較（採用なし）",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS-CORE（上流意味文書の形式移行比較）",
+  "state": "registered",
+  "reason": "FT-DESIGN-REFACTOR-001のPO指示に従い、未JSON化の要求文書を点検する。既存BRAIN L2/L11の意味・版・採択固定revision・出典を保つ表現を比較するために候補を置く。正式JSON正本・schema・renderer・authority移行は未成立であり、候補から要求採否を生成しない。",
+  "upstream": [
+    {
+      "path": "docs/governance/feature-tickets/FT-DESIGN-REFACTOR-001.md",
+      "sha256": "52b9c81f22f0f0e70a3a227dd23fcb8d1261ec8279123b91c64738706297ec81",
+      "note": "形式移行比較の固定入力。承認は対象revisionの個別decisionから読む。"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+      "note": "形式移行比較の固定入力。承認は対象revisionの個別decisionから読む。"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87",
+      "note": "形式移行比較の固定入力。承認は対象revisionの個別decisionから読む。"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657",
+      "note": "形式移行比較の固定入力。承認は対象revisionの個別decisionから読む。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+      "note": "静的read-only参照のみ。旧文書・tool・runtimeは実行せず、形式とsource対応の比較材料としてのみ読む。"
+    }
+  ],
+  "role": "brain-l2-l11-meaning-json-byte-identical-view-research",
+  "obligations": [
+    "BRAINの全44要求identityとL11の40表行・4個別節、ID外の共通条件・注記・source・版を保全する。",
+    "意味値の編集箇所とbyte表示用の情報を分け、原Markdown bytesの復元と構造対応を比較する。",
+    "9/28基準集合42件とcurrent本文44件、本文metadataと対象revisionの採択判断を区別する。",
+    "旧source pins・48L3/L10 JSONとview・現L2/L11 Markdownを更新しない。",
+    "原意味、配列順、反復、空値、未定義、N/A、保留、出典と独立期待を保全する。",
+    "単なる復元一致を要求意味全域・製品検証・移行承認に読み替えない。"
+  ],
+  "connections": {
+    "consumers": [
+      "FT-DESIGN-REFACTOR-001に沿った上流意味JSONの移行検討と独立review"
+    ],
+    "dependencies": [
+      "docs/governance/feature-tickets/FT-DESIGN-REFACTOR-001.md",
+      "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md"
+    ],
+    "boundary": "このbindingとscaffold/research/brain-requirement-json-migration/の比較物だけ。正式文書・製品runtime・既存CI・要求authorityを変更しない。"
+  },
+  "operations": {
+    "allowed": [
+      "read-only source inspection",
+      "write registered research candidates and comparison evidence within scaffold/",
+      "static JSON reconstruction and source-byte comparison",
+      "python3 scaffold/tools/scfctl.py stale|validate|residuals|selftest",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "旧archiveは実行しない",
+      "execute product runtime or legacy tests/CI",
+      "decide adoption, approval, requirement meaning, or completion",
+      "promote research JSON to canonical requirements or claim inherited approval",
+      "change current L2/L11 Markdown or existing L3/L10 JSON/source pins",
+      "add a global resolver, mandatory gate, formal schema, or renderer"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/brain-requirement-json-migration/README.md",
+    "scaffold/research/brain-requirement-json-migration/brain-requirements.json",
+    "scaffold/research/brain-requirement-json-migration/brain-acceptance.json",
+    "scaffold/research/brain-requirement-json-migration/compare.py",
+    "scaffold/research/brain-requirement-json-migration/comparison.json",
+    "scaffold/bindings/SCF-B-0157.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "Fixed Git source vs reconstructed whole Markdown bytes and per-identity source comparison",
+      "Independent review of labels, all44 requirement identities, L11 conditions, common limitations and authority boundary",
+      "python3 scaffold/tools/scfctl.py stale|validate|residuals|selftest",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "本文を復元できてもID・ラベル・L11対応が欠落した候補を正式意味JSONと扱わない",
+      "本文draft文字列や基準42件だけでcurrent44件のauthorityを判定しない",
+      "raw表示だけ更新し意味値を無視した候補を一致としない",
+      "source・条件・N/A・未決や反復を黙って削除しない"
+    ]
+  },
+  "replacement": {
+    "role_target": "既存要求の意味・個別採択revision・生成view対応を保つ正式JSON表現。別途の既存設計・authority経路で成立した場合のみ移管する。",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-19",
+  "updated": "2026-10-19"
+}

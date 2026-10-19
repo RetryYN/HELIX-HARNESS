@@ -1,0 +1,43 @@
+{
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "scope": "固定二文書の全bytes・原ラベル/ID/表/見出し対応の静的照合",
+  "source_revision": "0437a7886aa2d61c9121fde1a3c4e6459c09ca65",
+  "results": {
+    "brain-requirements.json": {
+      "identities": 44,
+      "table_rows": 40,
+      "typed_headings_checked": 55,
+      "original_labeled_facets_checked": 314,
+      "candidate_sha256": "111acfb241c63854987b244f23109ff5ad948ccd1e3feb69f92baa1d3a8d348a",
+      "candidate_bytes": 249066,
+      "source_bytes": 78839,
+      "restored_sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    "brain-acceptance.json": {
+      "identities": 44,
+      "table_rows": 40,
+      "typed_headings_checked": 9,
+      "original_labeled_facets_checked": 23,
+      "candidate_sha256": "1e1bb47c148d7810b318eec5bca8bc737d041afb65c9c27d09315fbd919dc800",
+      "candidate_bytes": 67209,
+      "source_bytes": 27596,
+      "restored_sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    }
+  },
+  "negative_controls": {
+    "meaning_edit_changes_view_without_surface_edit": true,
+    "remove_032": true,
+    "change_shared_condition": true,
+    "swap_acceptance_conditions": true,
+    "wrong_heading_level": true
+  },
+  "limits": [
+    "研究候補の範囲だけ。将来編集後の意味同等性、Markdown一般の仕様、正式schema、製品TDD、authority移行を判定しない。",
+    "source_content内の共通条件/旧source等の意味分類は未完。全bytesは保持している。",
+    "current44要求の一括承認、他14文書の移行、製品runtime/CI/受入の成立は主張しない。"
+  ],
+  "compare_script_sha256": "0e0deab37b8df752375f6e8ea5ea34511eb720061b8ee9c9077363335cd1a2bb",
+  "research_question": "意味値の単一編集箇所とbyte同一viewを分け、既存source/authority/pinsを保持する表現を比較する。",
+  "meaning_and_authority_scope": "要求の意味・採否は既存の対象revision/decisionから読む。この記録は候補内構造とfixed sourceの対応だけ。"
+}

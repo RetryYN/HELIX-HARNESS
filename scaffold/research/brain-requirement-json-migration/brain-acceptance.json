@@ -1,0 +1,1958 @@
+{
+  "candidate_kind": "local_bounded_json_pair_editing_comparison",
+  "candidate_status": "research_only_unadopted",
+  "authority_effect": "none",
+  "approval_inheritance": "not_inherited_to_candidate_bytes",
+  "formal_schema_status": "none",
+  "document_kind": "BRAIN_L11_ACCEPTANCE",
+  "source": {
+    "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+    "revision": "0437a7886aa2d61c9121fde1a3c4e6459c09ca65",
+    "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87",
+    "bytes": 27596
+  },
+  "source_content": [
+    {
+      "source_order": 0,
+      "raw_text": "\n"
+    },
+    {
+      "source_order": 1,
+      "raw_text": "\n本書は[HELIX-BRAIN要求候補](../L2-requirements/brain-requirements.md)と対になる受入条件候補である。すべて未実行・未採択であり、文書、ID登録、review、mergeから要求合意・L3承認・実装許可を作らない。対象要求revision、scope、実物、結果、根拠を照合して利用者が判断する。\n\n受入ではunknownをpassにしない。L2のunit、connection、compositeを別々に判定し、unit合格からconnection/compositeを成立扱いしない。`version_target`は目標版で実版ではない。機能pack共通のidentity/contract/artifact/dependency version、compatibility、交換・更新・rollback・未完義務引継ぎはHARNESS-L2-010/011が所有し、BRAIN受入はそれを参照して知識固有identity/revision/stateを照合する。\n\n"
+    },
+    {
+      "source_order": 2,
+      "raw_text": "\n"
+    },
+    {
+      "source_order": 3,
+      "raw_text": "\n- **Provenanceと採否**：候補、LABO評価対象、OS登録状態、BRAIN変更検証、accepted revisionについて、owner・identity・revisionを追い、拒否/hold/unknownからsuccessへ暗黙遷移しないことを確認する。\n- **製品意味と汎用知識**：製品固有requirement、screen、business rule、runtime stateを含む例を投入し、汎用候補への混入を止める。分離可能部分の候補受付は昇格と別に記録する。\n- **版と互換**：knowledge version/state、productが参照したversion、共通pack contract/artifact/dependency version、`version_target`を別欄で確認し、互換不明のfallbackを拒否する。\n- **Failure/NFR**：failure例、restore、capacity、latency、availability、cost、observability等に原文の条件と制約が保持され、製品側の数値要求をBRAINが決めないことを確認する。\n- **2.0外部情報**：source provenanceとLABO評価のない候補を止め、1.0の内部seed・機能が2.0外部収集に依存しないことを確認する。\n\n"
+    },
+    {
+      "source_order": 4,
+      "raw_text": "\nL2の「親L1全12件の受け先」の各行を、この文書の同ID受入へ接続する。1.0のL1義務は1.0列で受け入れ、026/027は外部sourceを扱う2.0拡張として別に受け入れる。Infrastructure知識を表せることと、実資源の自動増減・自動切替等が実装済みであることは別に判定する。\n\n\n"
+    },
+    {
+      "source_order": 5,
+      "raw_text": "\n起点は[PO原文第1項](../../helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md)と[判断記録](../../governance/decisions/capability-reinforcement-po-decisions-2026-09-27.md)。本受入は未実行候補。primary BRAIN identityは `HELIXBRAIN-L2-029` unit（親 `HELIXBRAIN-L1-003`, `HELIXBRAIN-L1-005`, `HELIXBRAIN-L1-009`）と `HELIXBRAIN-L2-030` connection（親 `HELIXBRAIN-L1-003`, `HELIXBRAIN-L1-005`, `HELIXBRAIN-L1-012`）。consumer contextは `HARNESS-L1-009`, `HARNESS-L1-001`。製品固有設計のownerはHARNESS-L2-026、構成体ownerはHARNESS-L2-025で、BRAIN側に置かない。\n\n"
+    },
+    {
+      "source_order": 6,
+      "raw_text": "\n契約版/互換不明はqueryを保留する。Pattern意味・条件・関係の不整合はBRAINの該当親L1へ、受取scope/schemaやHARNESS設計義務への結合不備はHARNESSへ戻す。候補の受渡し、BRAIN内候補の構成、LABO評価の存在からPattern採択・承認・実装を生成しない。成功は当該knowledge identity/versionとquery scopeだけに限り、万能な設計能力の保証にしない。\n\n\n"
+    }
+  ],
+  "surface_recipe": [
+    {
+      "ref": "/front_matter_raw"
+    },
+    {
+      "ref": "/source_content/0/raw_text"
+    },
+    {
+      "literal": "# "
+    },
+    {
+      "ref": "/headings/0/text"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/source_content/1/raw_text"
+    },
+    {
+      "literal": "| "
+    },
+    {
+      "ref": "/acceptance_matrix/source_column_order/0"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_matrix/source_column_order/1"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_matrix/source_column_order/2"
+    },
+    {
+      "literal": " |\n|---|---|---|\n| "
+    },
+    {
+      "ref": "/acceptance_records/0/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/0/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/0/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/1/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/1/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/1/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/2/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/2/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/2/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/3/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/3/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/3/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/4/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/4/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/4/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/5/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/5/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/5/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/6/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/6/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/6/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/7/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/7/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/7/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/8/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/8/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/8/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/9/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/9/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/9/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/10/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/10/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/10/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/11/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/11/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/11/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/12/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/12/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/12/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/13/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/13/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/13/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/14/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/14/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/14/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/15/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/15/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/15/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/16/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/16/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/16/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/17/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/17/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/17/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/18/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/18/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/18/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/19/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/19/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/19/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/20/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/20/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/20/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/21/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/21/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/21/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/22/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/22/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/22/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/23/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/23/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/23/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/24/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/24/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/24/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/25/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/25/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/25/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/26/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/26/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/26/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/27/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/27/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/27/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/28/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/28/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/28/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/29/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/29/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/29/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/30/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/30/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/30/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/31/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/31/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/31/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/32/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/32/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/32/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/33/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/33/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/33/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/34/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/34/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/34/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/35/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/35/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/35/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/36/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/36/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/36/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/37/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/37/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/37/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/38/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/38/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/38/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n| "
+    },
+    {
+      "ref": "/acceptance_records/39/requirement_id"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/39/acceptance_matrix/version_target"
+    },
+    {
+      "literal": " | "
+    },
+    {
+      "ref": "/acceptance_records/39/acceptance_matrix/success_conditions_and_counterexamples"
+    },
+    {
+      "literal": " |\n"
+    },
+    {
+      "ref": "/source_content/2/raw_text"
+    },
+    {
+      "literal": "## "
+    },
+    {
+      "ref": "/headings/1/text"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/source_content/3/raw_text"
+    },
+    {
+      "literal": "## "
+    },
+    {
+      "ref": "/headings/2/text"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/source_content/4/raw_text"
+    },
+    {
+      "literal": "## "
+    },
+    {
+      "ref": "/headings/3/text"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/source_content/5/raw_text"
+    },
+    {
+      "literal": "### "
+    },
+    {
+      "ref": "/acceptance_records/40/requirement_id"
+    },
+    {
+      "literal": " "
+    },
+    {
+      "ref": "/acceptance_records/40/detail_heading/title"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/40/body/0/raw_text"
+    },
+    {
+      "literal": "**"
+    },
+    {
+      "ref": "/acceptance_records/40/body/1/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/40/body/1/raw_value"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/40/body/2/raw_text"
+    },
+    {
+      "literal": "**"
+    },
+    {
+      "ref": "/acceptance_records/40/body/3/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/40/body/3/raw_value"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/40/body/4/raw_text"
+    },
+    {
+      "literal": "**"
+    },
+    {
+      "ref": "/acceptance_records/40/body/5/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/40/body/5/raw_value"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/40/body/6/raw_text"
+    },
+    {
+      "literal": "**"
+    },
+    {
+      "ref": "/acceptance_records/40/body/7/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/40/body/7/raw_value"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/40/body/8/raw_text"
+    },
+    {
+      "literal": "### "
+    },
+    {
+      "ref": "/acceptance_records/41/requirement_id"
+    },
+    {
+      "literal": " "
+    },
+    {
+      "ref": "/acceptance_records/41/detail_heading/title"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/41/body/0/raw_text"
+    },
+    {
+      "literal": "**"
+    },
+    {
+      "ref": "/acceptance_records/41/body/1/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/41/body/1/raw_value"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/41/body/2/raw_text"
+    },
+    {
+      "literal": "**"
+    },
+    {
+      "ref": "/acceptance_records/41/body/3/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/41/body/3/raw_value"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/41/body/4/raw_text"
+    },
+    {
+      "literal": "**"
+    },
+    {
+      "ref": "/acceptance_records/41/body/5/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/41/body/5/raw_value"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/41/body/6/raw_text"
+    },
+    {
+      "literal": "**"
+    },
+    {
+      "ref": "/acceptance_records/41/body/7/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/41/body/7/raw_value"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/41/body/8/raw_text"
+    },
+    {
+      "literal": "**"
+    },
+    {
+      "ref": "/acceptance_records/41/body/9/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/41/body/9/raw_value"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/41/body/10/raw_text"
+    },
+    {
+      "literal": "**"
+    },
+    {
+      "ref": "/acceptance_records/41/body/11/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/41/body/11/raw_value"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/41/body/12/raw_text"
+    },
+    {
+      "literal": "**"
+    },
+    {
+      "ref": "/acceptance_records/41/body/13/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/41/body/13/raw_value"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/41/body/14/raw_text"
+    },
+    {
+      "literal": "**"
+    },
+    {
+      "ref": "/acceptance_records/41/body/15/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/41/body/15/raw_value"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/41/body/16/raw_text"
+    },
+    {
+      "literal": "### "
+    },
+    {
+      "ref": "/headings/4/text"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/source_content/6/raw_text"
+    },
+    {
+      "literal": "### "
+    },
+    {
+      "ref": "/acceptance_records/42/requirement_id"
+    },
+    {
+      "ref": "/acceptance_records/42/detail_heading/title"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/42/body/0/raw_text"
+    },
+    {
+      "literal": "- **"
+    },
+    {
+      "ref": "/acceptance_records/42/body/1/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/42/body/1/raw_value"
+    },
+    {
+      "literal": "\n- **"
+    },
+    {
+      "ref": "/acceptance_records/42/body/2/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/42/body/2/raw_value"
+    },
+    {
+      "literal": "\n- **"
+    },
+    {
+      "ref": "/acceptance_records/42/body/3/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/42/body/3/raw_value"
+    },
+    {
+      "literal": "\n- **"
+    },
+    {
+      "ref": "/acceptance_records/42/body/4/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/42/body/4/raw_value"
+    },
+    {
+      "literal": "\n- **"
+    },
+    {
+      "ref": "/acceptance_records/42/body/5/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/42/body/5/raw_value"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/42/body/6/raw_text"
+    },
+    {
+      "literal": "### "
+    },
+    {
+      "ref": "/acceptance_records/43/requirement_id"
+    },
+    {
+      "literal": " "
+    },
+    {
+      "ref": "/acceptance_records/43/detail_heading/title"
+    },
+    {
+      "literal": "\n"
+    },
+    {
+      "ref": "/acceptance_records/43/body/0/raw_text"
+    },
+    {
+      "literal": "- **"
+    },
+    {
+      "ref": "/acceptance_records/43/body/1/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/43/body/1/raw_value"
+    },
+    {
+      "literal": "\n- **"
+    },
+    {
+      "ref": "/acceptance_records/43/body/2/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/43/body/2/raw_value"
+    },
+    {
+      "literal": "\n- **"
+    },
+    {
+      "ref": "/acceptance_records/43/body/3/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/43/body/3/raw_value"
+    },
+    {
+      "literal": "\n- **"
+    },
+    {
+      "ref": "/acceptance_records/43/body/4/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/43/body/4/raw_value"
+    },
+    {
+      "literal": "\n- **"
+    },
+    {
+      "ref": "/acceptance_records/43/body/5/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/43/body/5/raw_value"
+    },
+    {
+      "literal": "\n- **"
+    },
+    {
+      "ref": "/acceptance_records/43/body/6/source_label"
+    },
+    {
+      "literal": "**："
+    },
+    {
+      "ref": "/acceptance_records/43/body/6/raw_value"
+    },
+    {
+      "literal": "\n"
+    }
+  ],
+  "limits_ja": [
+    "本物は指定revisionの現Markdownを再構成するためのローカル比較候補であり、JSON正本・正式schema・renderer・runtime・CIではない。",
+    "候補作成やbyte一致は、現在または過去のPO承認を候補JSONの物理bytesへ継承しない。",
+    "source surface recipeのlocal refはこの比較物内だけの表現であり、共通resolver/DSLの採用ではない。",
+    "明示された原sourceラベルと構造だけを保持し、未記載項目にN/A/nullや新しい状態を補わない。"
+  ],
+  "acceptance_matrix": {
+    "source_column_order": [
+      "L2要求",
+      "version_target",
+      "成功条件と反例"
+    ],
+    "source_row_order": [
+      "HELIXBRAIN-L2-001",
+      "HELIXBRAIN-L2-002",
+      "HELIXBRAIN-L2-003",
+      "HELIXBRAIN-L2-004",
+      "HELIXBRAIN-L2-005",
+      "HELIXBRAIN-L2-006",
+      "HELIXBRAIN-L2-007",
+      "HELIXBRAIN-L2-008",
+      "HELIXBRAIN-L2-009",
+      "HELIXBRAIN-L2-010",
+      "HELIXBRAIN-L2-011",
+      "HELIXBRAIN-L2-012",
+      "HELIXBRAIN-L2-INFRA-001",
+      "HELIXBRAIN-L2-INFRA-002",
+      "HELIXBRAIN-L2-INFRA-003",
+      "HELIXBRAIN-L2-INFRA-004",
+      "HELIXBRAIN-L2-INFRA-005",
+      "HELIXBRAIN-L2-INFRA-006",
+      "HELIXBRAIN-L2-INFRA-007",
+      "HELIXBRAIN-L2-INFRA-008",
+      "HELIXBRAIN-L2-INFRA-009",
+      "HELIXBRAIN-L2-INFRA-010",
+      "HELIXBRAIN-L2-INFRA-011",
+      "HELIXBRAIN-L2-INFRA-012",
+      "HELIXBRAIN-L2-INFRA-013",
+      "HELIXBRAIN-L2-INFRA-014",
+      "HELIXBRAIN-L2-INFRA-015",
+      "HELIXBRAIN-L2-INFRA-016",
+      "HELIXBRAIN-L2-INFRA-017",
+      "HELIXBRAIN-L2-018",
+      "HELIXBRAIN-L2-019",
+      "HELIXBRAIN-L2-020",
+      "HELIXBRAIN-L2-021",
+      "HELIXBRAIN-L2-022",
+      "HELIXBRAIN-L2-023",
+      "HELIXBRAIN-L2-024",
+      "HELIXBRAIN-L2-025",
+      "HELIXBRAIN-L2-026",
+      "HELIXBRAIN-L2-027",
+      "HELIXBRAIN-L2-028"
+    ]
+  },
+  "acceptance_records": [
+    {
+      "source_order": 0,
+      "requirement_id": "HELIXBRAIN-L2-001",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Software Architecture、Application Architecture、Backend、Frontend、API / Integration、Data / Database、Infrastructure、Security、Visual Design、UX / Interactionを識別でき、Domainの追加・分割・統合・退役ができる。Reliability / Recovery、Performance、Observability、Testing / Quality、Operations / Maintenance、Accessibility等の候補を初版で充実必須と解釈、または特定製品/projectをDomainに固定したら不合格。"
+      }
+    },
+    {
+      "source_order": 1,
+      "requirement_id": "HELIXBRAIN-L2-002",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Domain→Pattern→Design Unit→Partを辿り、Visual DesignのDashboard→Navigation/KPI/Work Area→Table/Filter/Status例を階層で表せる。ファイル/code片/UI部品の集合だけでPattern/Unit/Partの意味がない場合は不合格。"
+      }
+    },
+    {
+      "source_order": 2,
+      "requirement_id": "HELIXBRAIN-L2-003",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Patternにproblem、前提、applicability、required input、constraint、trade-off、negative case、failure mode、compatible/incompatible pattern、evidence、maturityを結び、適用可能条件を追える。Patternの存在だけで今回の採用を断定、またはnegative/failure/evidenceを欠落したら不合格。"
+      }
+    },
+    {
+      "source_order": 3,
+      "requirement_id": "HELIXBRAIN-L2-004",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Strong/Eventually Consistent/Compensating Transaction等の同一問題に成立し得るPatternを併存させ、適用条件、長短、制約、failure、costで比較できる。一つを恒久の正解として他を上書き、または稼働案件での選択をBRAINが確定したら不合格。"
+      }
+    },
+    {
+      "source_order": 4,
+      "requirement_id": "HELIXBRAIN-L2-005",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Pattern/Unit/Part間でrequires、depends_on、compatible_with、conflicts_with、affects、alternative_to、composed_ofを方向・意味付きで辿れる。relation名だけ、端点不明、未確認の因果を確定relationにしたら不合格。"
+      }
+    },
+    {
+      "source_order": 5,
+      "requirement_id": "HELIXBRAIN-L2-006",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Information Architecture、Visual Hierarchy、Layout、Grid、Spacing/Density、Typography、Navigation、Component Composition、Form、Feedback、Empty/Loading/Error State、Responsive Design、Dashboard、Content Hierarchy、Accessibilityの知識例を再利用構造として扱える。製品固有の「黒背景・青accent」等のVisual Identityを汎用知識へ取り込んだら不合格。"
+      }
+    },
+    {
+      "source_order": 6,
+      "requirement_id": "HELIXBRAIN-L2-007",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Pattern/Unit/Partにsource、provenance、根拠、採用理由、評価範囲、反例、限界、LABO評価の対象revisionを辿れる。AI生成や実績一件を根拠にaccepted/matureへ進めたら不合格。"
+      }
+    },
+    {
+      "source_order": 7,
+      "requirement_id": "HELIXBRAIN-L2-008",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "knowledge identity、revision、current/superseded/deprecated/experimental/retiredを区別し、製品Coreが参照したexact版を追跡できる。旧版を黙って置換、BRAINの知識状態とOSのproject利用・登録状態を同じ正本にしたら不合格。"
+      }
+    },
+    {
+      "source_order": 8,
+      "requirement_id": "HELIXBRAIN-L2-009",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "既存PatternのUnitを組み合わせrelationを加えた構成候補を表せ、LABO評価・OS登録とBRAIN独立検証が終わる前はcandidateに留める。構成候補だけで確立Patternへ昇格したら不合格。"
+      }
+    },
+    {
+      "source_order": 9,
+      "requirement_id": "HELIXBRAIN-L2-010",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Single Point of Failure、Network Partition、Dependency Failure、Storage Exhaustion、Queue Saturation、Connection Exhaustion、Resource Starvation、Cascading Failure、Region/Zone Failure、Deployment/Backup/Restore Failure、configuration drift等について、成立条件・影響・反例を知識として持てる。failureの前提を消して常時禁止/常時適用へ一般化したら不合格。"
+      }
+    },
+    {
+      "source_order": 10,
+      "requirement_id": "HELIXBRAIN-L2-011",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "製品名、product requirement、画面、業務ルール、利用者判断を含む候補で、汎用化可能な部分と製品固有部分を識別し、分離不能なら受入を止める。個別製品意味をそのまま汎用Patternへ昇格したら不合格。"
+      }
+    },
+    {
+      "source_order": 11,
+      "requirement_id": "HELIXBRAIN-L2-012",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "BRAINの返却がPattern候補、required input、relation、alternative、constraint、evidenceに限定され、採用決定はHARNESS-CORE/INTELLIGENCE/人等の該当ownerに残る。候補返却を採用authorityや案件のruntime判断と誤認したら不合格。"
+      }
+    },
+    {
+      "source_order": 12,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-001",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Compute、Network、Storage、Database Infrastructure、Cache、Queue/Messaging、Load Balancing、Service Discovery、Deployment、Scaling、Availability、Reliability、Backup/Restore、Disaster Recovery、Observability、Capacity、Cost Architecture、Infrastructure Security、Environment、Runtime/Execution Platformの20 subdomainを扱え、追加・分割・統合・退役が可能。列挙を固定enum、または実Runtime resource一覧としたら不合格。"
+      }
+    },
+    {
+      "source_order": 13,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-002",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Infrastructure知識もDomain→Pattern→Design Unit→Partを表し、Active/PassiveやBlue-Greenの各部品とrelationを辿れる。Cloud provider固有設定だけをprovider非依存Patternとして登録したら不合格。"
+      }
+    },
+    {
+      "source_order": 14,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-003",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Patternにproblem、workload assumptions、expected load、availability、consistency、latency、capacity、scaling、failure/recovery、durability、network/security、operational complexity、cost、observability、applicability、negative case、trade-off、evidenceを持てる。「一般的だから適用」としたら不合格。数値根拠がないRTO/RPO等をここで新設しない。"
+      }
+    },
+    {
+      "source_order": 15,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-004",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Availability、Performance、Capacity、Reliability、Recoverability、Security、Privacy、Observability、Maintainability、Cost等の要求特性から関係Patternと必要設計inputを辿れる。BRAINが要求値や製品NFR値を決めたら不合格。"
+      }
+    },
+    {
+      "source_order": 16,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-005",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Single Point of Failure、Network Partition、Dependency Failure、Storage Exhaustion、Queue Saturation、Connection Exhaustion、Resource Starvation、Cascading Failure、Region/Zone Failure、Deployment/Backup/Restore Failure、configuration driftの例について想定failure、detection、impact、containment、recovery、residual riskを対応付ける。列挙例または観点の脱落は不合格。"
+      }
+    },
+    {
+      "source_order": 17,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-006",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Retry、Timeout、Circuit Breaker、Failover、Graceful Degradation、Rollback、Restore、Rebuild、Reconciliation、Disaster Recoveryの知識を保持し、防止と復旧を区別する。復旧可能性を根拠なく「落ちない構成」で代替したら不合格。"
+      }
+    },
+    {
+      "source_order": 18,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-007",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Rolling Deployment、Blue-Green、Canary、Immutable Deployment、In-place Update、Staged Rolloutを影響範囲、rollback特性、必要重複、availability、migration制約、観測で比較できる。BRAINがrelease/deployを実行または進行したら不合格。"
+      }
+    },
+    {
+      "source_order": 19,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-008",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Vertical/Horizontal Scaling、Queue-based Load Leveling、Sharding、Read Replica、Cache、Worker Pool、Backpressureを保持し、trigger、bottleneck、limit、state、sync cost、saturation behaviorを識別できる。自動scaling実行能力をBRAINの知識要件に混入したら不合格。"
+      }
+    },
+    {
+      "source_order": 20,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-009",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Pattern成立の確認にmetrics、log、trace、health、dependency、capacity、saturation、error、latency、deployment/recovery state等の観測点を関係付ける。実際のlogs/metricsをBRAINに保存、または観測欠如を正常と判断したら不合格。"
+      }
+    },
+    {
+      "source_order": 21,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-010",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Backup strategy/retention/replication、Restore、recovery verificationを関係付け、backupだけで復旧可能と結論しない。実際のRTO/RPO値は製品要求側に残し、BRAINが一律値を発明したら不合格。"
+      }
+    },
+    {
+      "source_order": 22,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-011",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Fixed/variable cost、idle、scaling、redundancy、storage、network、operation cost等の特性をtrade-offとして比較し、時点/provider依存の実価格と構造上の費用特性を分離できる。変動価格を恒久の定数として扱ったら不合格。"
+      }
+    },
+    {
+      "source_order": 23,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-012",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Provider非依存Pattern（Object Storage）とimplementation例（S3、GCS、Azure Blob、MinIO）を別identityで関係付け、implements/compatible_with/constraint_of等を辿れる。Patternを特定providerへ固定したら不合格。"
+      }
+    },
+    {
+      "source_order": 24,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-013",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Local machine、VPS、dedicated server、cloud、GPU node、distributed worker nodeを共通resource/capability model上で識別できる。特定provider/計算機構成をBRAINの前提として必須化したら不合格。"
+      }
+    },
+    {
+      "source_order": 25,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-014",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Topologyでdepends_on、communicates_with、replicated_by、backed_up_by、monitored_by、failover_to、secured_by、deployed_on、scales_withを端点・意味付きで辿れる。component一覧のみでtopology成立としたら不合格。"
+      }
+    },
+    {
+      "source_order": 26,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-015",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "InfrastructureとAPI、Data、Security、Visual/UX等のDomain間にaffects、constrains、may affect等のrelationを保持し、根拠と不確かさを区別できる。影響可能性を根拠のない確定因果へ変えたら不合格。"
+      }
+    },
+    {
+      "source_order": 27,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-016",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Single Point of Failure、Shared Mutable Production State、Unbounded Retry/Queue/Resource Growth、Missing Timeout、Backup Without Restore Test、Monitoring Without Action、Manual-only Recovery、Hidden Dependency、Undocumented Egressを条件・兆候・安全な代替と結ぶ。対象条件を外して全状況の禁止としたら不合格。"
+      }
+    },
+    {
+      "source_order": 28,
+      "requirement_id": "HELIXBRAIN-L2-INFRA-017",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "experimental、observed、validated、mature、deprecated、retiredを区別し、利用実績、failure、反例、LABO評価を対象revisionに結ぶ。内部製品で一度成功しただけでuniversal Patternへ昇格したら不合格。"
+      }
+    },
+    {
+      "source_order": 29,
+      "requirement_id": "HELIXBRAIN-L2-018",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "HELIX-HARNESS-CORE由来candidateのsource/revisionを保持し、製品固有意味・利用者原本と再利用候補を区別してintakeする。BRAINへraw originalを保存、またはcandidate受取だけでPattern accepted/matureとしたら不合格。HELIX原本の扱いに新しい内部保持期限/破棄証拠を追加しない。"
+      }
+    },
+    {
+      "source_order": 30,
+      "requirement_id": "HELIXBRAIN-L2-019",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Product Core queryに対しPattern/Unit/Part、required input、条件、代替、constraint、反例、根拠、maturity、exact knowledge versionを返す。返却候補が製品での採用決定として扱われたら不合格。"
+      }
+    },
+    {
+      "source_order": 31,
+      "requirement_id": "HELIXBRAIN-L2-020",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "LABO evaluation対象revisionと候補revision、scope、method、result、failure、反例、未評価範囲がL2-007/008のgeneric provenance/identity/stateに対応する。Infrastructure candidateでmaturityを扱う場合に限りL2-INFRA-017のstate/evidenceも同じrevisionに結ぶ。評価の一部欠落や対象不一致でaccepted/matureへ進めたら不合格。"
+      }
+    },
+    {
+      "source_order": 32,
+      "requirement_id": "HELIXBRAIN-L2-021",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "INTELLIGENCEへsource/version付き知識と適用条件を判断材料として返し、BRAIN knowledgeの改変・採用をINTELLIGENCEが直接行わない。knowledge suggestionがruntime decisionと混同されたら不合格。"
+      }
+    },
+    {
+      "source_order": 33,
+      "requirement_id": "HELIXBRAIN-L2-022",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Pattern required inputとUnit/Part dependencyからHARNESS-L2-009 obligationへtraceでき、HARNESS-CORE/HARNESSが工程表・遷移図・実装優先順位を導くための材料として受け取れる。BRAINが製品要求値や導出物を単独決定、またはinput/dependencyを接続先へ落とさない場合は不合格。"
+      }
+    },
+    {
+      "source_order": 34,
+      "requirement_id": "HELIXBRAIN-L2-023",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "BRAINの汎用Visual Design/UX知識をVisual Design HARNESSへ渡し、製品固有screen/flow/token/Visual Identityは各製品Coreに残る。Visual Design HARNESS結果がLABOを経ず直接汎用knowledgeへ昇格したら不合格。"
+      }
+    },
+    {
+      "source_order": 35,
+      "requirement_id": "HELIXBRAIN-L2-024",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Infrastructure設計知識はCORE経由、実利用結果はRuntime owner→LABO評価→L2-020経由とし、BRAIN↔Runtimeの直接read/write/learning pathを作らない。Runtime実状態とBRAIN knowledgeを別owner/identityに保ち、実log/metrics/credential/account/操作権限をBRAINに入れない。Runtime操作またはraw runtime data保存は不合格。"
+      }
+    },
+    {
+      "source_order": 36,
+      "requirement_id": "HELIXBRAIN-L2-025",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "Candidate→LABO evaluation→OS registration/routing→BRAIN change independent verification→adoptionの各状態とowner、対象revisionを別に追う。AI生成、単一実績、LABO評価、OS ticket、文書存在だけでaccepted/matureへ昇格、または意味を変えない差分へ新たなhuman approvalを加えたら不合格。Infrastructure candidateのmaturity判定は該当時のみL2-INFRA-017のstate/evidenceを確認する。"
+      }
+    },
+    {
+      "source_order": 37,
+      "requirement_id": "HELIXBRAIN-L2-026",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "2.0",
+        "success_conditions_and_counterexamples": "OSS、設計資料、論文、Issue、PR等のsource identity/revisionを保持し、CONNECT等の取得物をuntrusted dataとしてLABOの分解・比較・評価を経て候補入力する。外部で成功した方式をそのままBRAINへ取り込んだら不合格。列挙例を全外部情報の固定範囲と扱わない。"
+      }
+    },
+    {
+      "source_order": 38,
+      "requirement_id": "HELIXBRAIN-L2-027",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "2.0",
+        "success_conditions_and_counterexamples": "外部source→LABO評価対象→BRAIN candidate/revisionのidentity chainを追い、source確認、分解・比較・実験、OS登録、BRAIN独立検証、採否を各owner契約どおり別に確認する。Infrastructure candidateのmaturityは該当時のみL2-INFRA-017と照合する。外部成功を自環境の成功とする、revision/反例/評価限界を失う、または1.0成立を2.0能力に依存させたら不合格。"
+      }
+    },
+    {
+      "source_order": 39,
+      "requirement_id": "HELIXBRAIN-L2-028",
+      "body": [],
+      "acceptance_matrix": {
+        "version_target": "1.0",
+        "success_conditions_and_counterexamples": "HARNESS-L2-010/011 descriptorのidentity、contract/artifact/dependency versionsとcompatibility rangeに、BRAIN知識revision/version/stateを別に照合する。unknown/mismatch/range外を止め、`version_target`を実版と扱わない。common exchange/rollback/unfinished-obligation contractをBRAINが再定義したら不合格。"
+      }
+    },
+    {
+      "source_order": 40,
+      "requirement_id": "HELIXBRAIN-L2-029",
+      "body": [
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "正常例",
+          "raw_value": "一般化された「承認後は編集不可」の課題に関係する複数Pattern/Unit候補を用意し、各々のproblem/applicability/required input/constraint/trade-off/negative case/source/versionと、相互のconflicts_with / alternative_to / compatible_with relationを、両端identity付きで辿れることを確認する。構成は候補状態に留まり、今回製品で採用する案を決定しない。"
+        },
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "誤りを含む例",
+          "raw_value": "製品固有の「申請」名称や具体的API/permissionを汎用知識へ昇格する、互換不能なPatternをrelationなしで組み合わせる、required inputやsourceを落とす、ある製品の一度の適用から確立Patternへ昇格する。いずれも不合格。"
+        },
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "未見例",
+          "raw_value": "試験側に伏せた別Domainの組合せまたは必須input欠落を使い、conditionに基づく適用可否、conflict relation、unknownの保持を照合する。oracle/Domain scopeが定まらない条件は未評価。受入は限定知識構造の正しさであり、全設計領域の網羅性や製品適用判断を保証しない。"
+        },
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "依存区分",
+          "raw_value": "**常時必須**＝HELIXBRAIN-L2-003/005の適用条件・relation意味とHELIXBRAIN-L2-008のidentity/version/provenance。**特定操作時のみ**＝比較操作時のL2-004、構成候補作成時のL2-009。**選択した入力元に応じて必須**＝製品Core候補を入力にする場合のL2-018、LABO評価済み候補を入力にする場合のL2-020のsource/scope/evaluation契約。未選択sourceは未観測。**参照資料のみ**＝説明資料。required field・relation root・oracleの代替にしない。"
+        },
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        }
+      ],
+      "detail_heading": {
+        "title": "unit",
+        "heading_level": 3,
+        "between_id_and_title": " "
+      },
+      "heading_id_occurrence": "source_occurrence_preserved"
+    },
+    {
+      "source_order": 41,
+      "requirement_id": "HELIXBRAIN-L2-030",
+      "body": [
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "正常例",
+          "raw_value": "HARNESS-COREからのqueryでconnector契約版/互換範囲とscopeを照合し、選択した複数Patternのidentity/version、required input、applicability、relation、反例、sourceを漏れなくHARNESS-L2-009へ対応付けたreceiptを返す。製品固有の最終選択・値は未決のまま返り、consumerが受取内容を個別設計へ結べる。"
+        },
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "追加oracle（定義済みfieldの値未決）",
+          "raw_value": "選択Pattern/Unit/Partのrequired-field定義がそのknowledge revisionに存在し、required input値の一つだけがunknown/未設定のfixtureを使う。知識receiptは受領可能であり、既存receiptにfield identityと未決理由を残す。Pattern/Unit/Part/input identityとknowledge versionからHARNESS-L2-009受取義務identityへ辿り、その義務から同じ元knowledge revisionとrequired inputへ逆引きできることを照合する。receiptを受領しても設計義務/接続全体は未完のままとし、未充足義務が閉じるまでは設計完成または実装準備の成立として扱わない。"
+        },
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "誤りを含む例",
+          "raw_value": "connector contractがmissing/stale、選択したPatternのversion/required input/conflictが欠落、unknownを適用可能に変換、またはBRAINが製品固有のAPI・state・permissionを選択済みとして返す。これらを他Patternや単体成功で相殺しない。"
+        },
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "追加oracle（field定義欠落）",
+          "raw_value": "選択knowledge revisionにrequired-field一覧または選択fieldの定義がない場合、それを定義済みfieldの値未設定と読み替えて通常受領してはならない。義務identityのreceipt欠落、逆引き先のknowledge revision/field/scope違い、または受領後の未充足義務を完了扱いする場合も不合格とする。知識意味・field定義の欠落はBRAINへ、HARNESS義務への対応付けまたはreceiver scopeの欠落はHARNESSへ戻す。"
+        },
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "未見例",
+          "raw_value": "未公開のPattern pairまたは互換範囲外の版を与え、正確な版照合、required field・relation・unknownのreceipt保持を照合する。Patternを選択しない利用では未観測であり、そのsourceの知識や適用性を推定しない。connectionは知識の受渡し範囲を判定し、製品設計が正しいとは判定しない。"
+        },
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "追加oracle（混在inputと未知field）",
+          "raw_value": "別のPattern/Unit/Part組で定義済みrequired fieldを複数選び、既知値と一部未設定値を混在させる。値はfield単位でreceiptに保ち、知識receiptの受領のみ成立可能、未充足義務あり、設計義務/接続全体と設計完成/実装準備は未成立とする。field定義の欠落、逆trace欠落、別scopeへの義務結付けは成功にしない。値の補完・製品設計の選択を受入側で創作せず、未選択知識は未観測のまま保つ。"
+        },
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "依存区分",
+          "raw_value": "**常時必須**＝connector contract identity/version/compatibility、scope/query/receipt schema、consumer HELIX-HARNESS-CORE contract。**特定操作時のみ**＝選択知識を適用候補へ使うときのapplicability/required input/relation/negative case照合。**選択した入力元に応じて必須**＝選択knowledgeの全identity/version/source/required fields。未選択knowledgeは未観測。**参照資料のみ**＝背景説明。receiptやauthorityの代替にしない。"
+        },
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "依存状態の追加oracle",
+          "raw_value": "選択required inputのfield定義とfield値の状態を別に記録する。値未決は受領可能な知識receiptと未充足義務として保持するが、field定義そのものが欠ける状態を値未決へ読み替えない。knowledge receiptの受領、HARNESS設計義務の充足、設計完成/実装準備を別々に判定し、未充足required inputがある義務は完了としない。Pattern/Unit/Part/inputからHARNESS-L2-009義務へのtraceと、義務から元knowledge revision/fieldへの逆traceを両方照合する。"
+        },
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        }
+      ],
+      "detail_heading": {
+        "title": "connection",
+        "heading_level": 3,
+        "between_id_and_title": " "
+      },
+      "heading_id_occurrence": "source_occurrence_preserved"
+    },
+    {
+      "source_order": 42,
+      "requirement_id": "HELIXBRAIN-L2-031",
+      "body": [
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "有効例",
+          "raw_value": "role termごとに識別、意味、適用条件、consumer非依存の例、negative example、source、knowledge revision/stateを持つ候補をPattern/Unit/Partの既存階層へ結ぶ。CORE queryは選択された知識だけをidentity/version付きで返し、未選択項目を網羅済みと表示しない。"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "区別例",
+          "raw_value": "QueryとCommand、Entityとimmutable ValueObject、Aggregateと単なるpayload、PortとAdapter等の境界例で、責務・state・authorityの根拠を辿れる。語だけ合っていて意味根拠がない場合は不合格。"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "製品固有反例",
+          "raw_value": "製品固有のscreen名、API、業務語、permissionを含む例を入れ、一般化できる role concept と固有意味を分離する。固有名を汎用knowledgeへ昇格したら不合格。"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "版・成熟度",
+          "raw_value": "source/版/state/反例が欠落、または単一の成功例やAI生成のみでaccepted/matureにした場合は不合格。評価・独立検証を通ったという根拠が候補に無ければ未評価のまま保持する。"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "HARNESS境界",
+          "raw_value": "返却されたrole knowledgeを使っても、HARNESSのcanonical name、例外、rename、consumer/oracle mappingは別途のHARNESS判断とする。BRAINが採用名を決めたりコード変更を行ったら不合格。"
+        },
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        }
+      ],
+      "detail_heading": {
+        "title": "のL11受入候補（未実行）",
+        "heading_level": 3,
+        "between_id_and_title": ""
+      },
+      "heading_id_occurrence": "source_occurrence_preserved"
+    },
+    {
+      "source_order": 43,
+      "requirement_id": "HELIXBRAIN-L2-032",
+      "body": [
+        {
+          "kind": "source_text",
+          "raw_text": "\n"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "正常例",
+          "raw_value": "同じsource/knowledge revisionに結ぶtemplate候補に、identity、version、layer/pair、applicability、required input/section/field、relation、意味owner、trace、negative oracle、measurement、completion、downstream kind、supersessionを与える。各項目と根拠を個別に比較でき、measurement/completionが適用義務と対oracleへ結ばれ、知識採否やproject適用結果とは別に識別できることを確認する。単体・接続・構成体で必要になる項目内容の違いは保持し、一つの製品設計値を共通の正解にしない。"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "項目欠落の反例",
+          "raw_value": "上記15項目を一つずつ欠落・未定義にした入力は、不足項目と元revisionを示し、完全なtemplate契約として返さない。required section/fieldの定義がないものを、別のPatternのrequired inputだけで補完しない。意味owner、measurement、completionの意味が不明なものを文書の生成成功で閉じない。"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "値未決・非適用",
+          "raw_value": "required fieldの定義があり、その製品要求値だけが未設定なら、field identity・未決理由・元knowledge版を残す。BRAIN030の受領は可能でも設計義務は未完のままCOREへ返す。根拠を示す非適用と、適用条件がunknownの場合を区別し、unknownを非適用や完全な契約へ読み替えない。"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "identity/viewの反例",
+          "raw_value": "同じfilenameの異なるtemplate identity/版、別revisionのoracle、生成Markdown/HTMLだけの変更を入力する。filename一致・表示の更新だけでJSON意味契約の一致/更新を成立させず、具体的な不一致を返す。source/版/scopeが欠落した場合は未評価を保持する。"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "責務と未見例",
+          "raw_value": "未提示の別domainまたはactorを加えた材料に、製品固有のscreen/API/permission/state、projectの採用値、単一の成功結果を混入する。汎用契約と製品固有値を区別し、BRAINが製品template選択・要求合意・設計完成・project義務消込を決定したら不合格。BRAIN候補、LABO評価、OS受領だけでaccepted/matureにしない。"
+        },
+        {
+          "kind": "source_labeled_text",
+          "source_label": "範囲",
+          "raw_value": "これは032の内容oracle案であり、実行済みfixture、全seed採択、formal successor移管、L3承認を示さない。具体schema/判定algorithm/runtime、実際の計測値・閾値、全seedの選択・採否は別に導出する。"
+        }
+      ],
+      "detail_heading": {
+        "title": "汎用Design Template意味契約の受入候補",
+        "heading_level": 3,
+        "between_id_and_title": " "
+      },
+      "heading_id_occurrence": "source_occurrence_preserved"
+    }
+  ],
+  "front_matter_raw": "---\ntitle: \"HELIX-BRAIN受入候補\"\ncanonical_vmodel: L1-L12\ncanonical_layer: L11\ncanonical_pair: L2\nlayer: L11\nkind: test_design\nstatus: draft\nauthority_status: draft_candidate\nfreeze_blocking: true\nparent_concept: docs/concept/helix-concept.md\nparent_planning: docs/helix-brain/L1-planning/brain-intent.md\npair_artifact: docs/helix-brain/L2-requirements/brain-requirements.md\nsources:\n  - docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md\n  - docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md\n  - docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md\n  - docs/governance/decisions/brain-l1-idea-po-decisions-2026-09-26.md\n---\n",
+  "headings": [
+    {
+      "source_order": 0,
+      "level": 1,
+      "text": "HELIX-BRAIN受入候補"
+    },
+    {
+      "source_order": 1,
+      "level": 2,
+      "text": "端から端までの確認"
+    },
+    {
+      "source_order": 2,
+      "level": 2,
+      "text": "親L1との対応"
+    },
+    {
+      "source_order": 3,
+      "level": 2,
+      "text": "G15 HARNESS設計合成向けBRAIN受入"
+    },
+    {
+      "source_order": 4,
+      "level": 3,
+      "text": "限界と戻し先"
+    }
+  ]
+}
