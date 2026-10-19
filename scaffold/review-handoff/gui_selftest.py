@@ -636,10 +636,10 @@ class GuiChecks(unittest.TestCase):
         scf=importlib.util.module_from_spec(spec); spec.loader.exec_module(scf)
         self.assertEqual(set(config.FORBIDDEN_POLICY_TEXT), set(scf.INSTRUCTION_FORBIDDEN_TEXT))
 
-    def work(self, worker="devin", request_id="WORK-1"):
+    def work(self, worker="devin", request_id="WORK-1", dispatcher="claude"):
         return json.loads(subprocess.check_output([
             sys.executable, "-B", str(g.HERE / "packet.py"), "build-work", "--base", self.head, "--issue", "1",
-            "--request-id", request_id, "--dispatcher", "claude", "--worker", worker,
+            "--request-id", request_id, "--dispatcher", dispatcher, "--worker", worker,
             "--purpose", "合成入力の作業依頼", "--scope", "GUI受信を主張しない"]))
 
     def result(self, work, kind="incomplete"):
@@ -899,6 +899,67 @@ class GuiChecks(unittest.TestCase):
         self.assertEqual(self.data["work"]["devin"]["event_id"], "work-2")
         g.send(self.data, "devin", "devin-gui", "result-2", "work_result", current, self.result(current), 60, self.now)
         self.assertNotIn("devin", self.data["work"])
+
+    def test_work_result_reaches_any_runtime(self):
+        # #3404: 結果は自分以外の誰へでも送れ、省略時は通知で起きるClaudeへ届く。依頼側の書換えは拒否する。
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        g.bind(self.data, "antigravity", "agy-gui", "worker", 60, self.now)
+        work = self.work(dispatcher="codex")
+        g.send(self.data, "codex", "codex-gui", "work-1", "work_request", work, None, 60, self.now)
+        result = self.result(work)
+        sent = g.send(self.data, "devin", "devin-gui", "result-1", "work_result", work, result, 60, self.now)
+        self.assertEqual(sent["payload"]["receiver_runtime"], "claude")
+        self.assertNotIn("devin", self.data["work"])
+        # 同じ結果を依頼側にも、別の作業側にも送れる。自分自身へは送れない。
+        for event, to in (("result-2", "codex"), ("result-3", "antigravity")):
+            sent = g.send(self.data, "devin", "devin-gui", event, "work_result", work, result, 60, self.now, to)
+            self.assertEqual(sent["payload"]["receiver_runtime"], to)
+        with self.assertRaises(ValueError):
+            g.send(self.data, "devin", "devin-gui", "result-4", "work_result", work, result, 60, self.now, "devin")
+        # 依頼側を書き換えてpayload hashを計算し直した依頼は、送信記録と一致しない。
+        forged = dict(work, dispatcher="claude")
+        core = {k: v for k, v in forged.items() if k != "payload_sha256"}
+        forged["payload_sha256"] = p.sha(p.encode(core))
+        with self.assertRaises(ValueError):
+            g.send(self.data, "devin", "devin-gui", "forged-1", "work_result", forged, self.result(forged), 60, self.now)
+        # payload hashを元のまま本文だけ変えた依頼も拒否する。
+        with self.assertRaises(ValueError):
+            g.send(self.data, "devin", "devin-gui", "forged-2", "work_result", dict(work, purpose="改変"), result, 60, self.now)
+        # 宛先指定は作業結果だけ。
+        with self.assertRaises(ValueError):
+            g.send(self.data, "codex", "codex-gui", "review-to", "review_request", self.request, None, 60, self.now, "claude")
+        # Claudeが作業側のときは、省略時に依頼側へ返す。
+        claude_work = self.work(worker="claude", request_id="WORK-C", dispatcher="codex")
+        g.send(self.data, "codex", "codex-gui", "work-c", "work_request", claude_work, None, 60, self.now)
+        sent = g.send(self.data, "claude", "claude-gui", "result-c", "work_result", claude_work, self.result(claude_work), 60, self.now)
+        self.assertEqual(sent["payload"]["receiver_runtime"], "codex")
+        # 送信記録は、最後の結果から保持期間を過ぎたら消え、その後の結果は受け付けない。
+        later = self.now + g.CLOSED_RETENTION_SECONDS + 1
+        g.compact(self.data, later)
+        self.assertNotIn(work["payload_sha256"], self.data.get("issued", {}))
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, later)
+        with self.assertRaises(ValueError):
+            g.send(self.data, "devin", "devin-gui", "result-5", "work_result", work, result, 60, later, "codex")
+
+    def test_work_result_for_request_issued_before_records(self):
+        # #3404の移行: 送信記録を持つ前の割当は、割当とpayload hashの一致だけで結果を受ける。書換えは拒否する。
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        work = self.work(dispatcher="codex")
+        g.send(self.data, "codex", "codex-gui", "work-1", "work_request", work, None, 60, self.now)
+        self.data.pop("issued")
+        forged = dict(work, dispatcher="claude")
+        core = {k: v for k, v in forged.items() if k != "payload_sha256"}
+        forged["payload_sha256"] = p.sha(p.encode(core))
+        with self.assertRaises(ValueError):
+            g.send(self.data, "devin", "devin-gui", "forged-1", "work_result", forged, self.result(forged), 60, self.now)
+        with self.assertRaises(ValueError):
+            g.send(self.data, "devin", "devin-gui", "forged-2", "work_result", dict(work, purpose="改変"), self.result(work), 60, self.now)
+        sent = g.send(self.data, "devin", "devin-gui", "result-1", "work_result", work, self.result(work), 60, self.now)
+        self.assertEqual(sent["payload"]["receiver_runtime"], "claude")
+        self.assertNotIn("devin", self.data["work"])
+        # 割当から外れた後の結果は、送信記録が無いため受けない。
+        with self.assertRaises(ValueError):
+            g.send(self.data, "devin", "devin-gui", "result-2", "work_result", work, self.result(work), 60, self.now, "codex")
 
     def test_acked_work_is_not_released_by_ttl(self):
         g.bind(self.data, "devin", "devin-gui", "worker", 600, self.now)

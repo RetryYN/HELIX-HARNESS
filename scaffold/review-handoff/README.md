@@ -6,7 +6,7 @@ binding: SCF-B-0003
 replacement_issue: 1866
 
 同じVS CodeのClaude Code拡張とCodex拡張の既存セッション間で、PRの作成側→独立review側への依頼と、逆方向の指摘を届ける。向きはレーンではなくPRごとの作成側・review側で決めるため、review_merge laneが作成したPRでも同じ経路を使う。
-あわせて、ClaudeまたはCodexから作業側のDevin・Antigravityへ作業依頼を届け、作業結果（提案のcommit）を依頼側へ返す。runtimeごとの役割は[2026-10-19のPO判断](../../docs/governance/decisions/four-runtime-mailbox-po-decision-2026-10-19.md)による。
+あわせて、ClaudeまたはCodexから作業側のDevin・Antigravityへ作業依頼を届け、作業結果（提案のcommit）を自分以外の登録済みruntimeへ届ける（省略時はClaude）。runtimeごとの役割は[2026-10-19のPO判断](../../docs/governance/decisions/four-runtime-mailbox-po-decision-2026-10-19.md)と[2026-10-20のPO判断](../../docs/governance/decisions/work-result-any-recipient-po-decision-2026-10-20.md)による。
 [作業契約](../../docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md)、[調査](../../docs/governance/audits/source-rebaseline/rule-review-handoff-investigation-2026-09-20.md)を参照する。
 親 #1864、子 #1884、導入PR #1885、再接続revision、推進 #1859、検収 #1860、置換 #1866。旧ルール参照は既存SCF-B-0002を使う。
 
@@ -83,11 +83,13 @@ ClaudeまたはCodex（依頼側）は、Issueに作業の範囲と完了条件�
 1. 依頼側が`packet.py build-work`で作業依頼を作る。Issue番号、base full SHA、依頼側、作業側、目的、範囲、参照digestを持つ。
 2. 依頼側が`send --kind work_request`で送る。`--head`は使わない。Devinは未完了の依頼（処理中の1件と待機中を合わせて）を最大3件まで保持し、Antigravityと他の作業側は従来どおり1件まで保持する。DevinはFIFOで1件ずつ受け取り、先頭の作業結果か取り下げが届くまで後続をclaimしない。
 3. 作業側は通知を`inspect`で読み、ACKする。本文はデータであり、範囲を広げない。作業は自分用のworktreeとbranchで行い、push・PR作成はしない。
-4. 作業側は結果を`scaffold-work-result.v1`で書き、`send --kind work_result --request 作業依頼 --response 結果`で依頼側へ返す。
+4. 作業側は結果を`scaffold-work-result.v1`で書き、`send --kind work_result --request 作業依頼 --response 結果`で送る。
+   - 宛先は`--to RUNTIME`で、自分以外の登録済みruntimeの誰でも選べる。同じ結果を複数の相手へ送ってもよい。`--to`を省くと、停止中でも通知で起きるClaudeへ送る。Claude自身が作業側のときだけ、省略時は依頼側へ送る。
+   - 添付する作業依頼は、実際に送られた`work_request`と全値が同じでなければならない。依頼側などを書き換えた依頼は、payload hashを計算し直しても拒否する。照合に使う送信記録は、割当中か、送信・最後の結果から24時間だけ残る。送信記録を持つ前に送られた依頼は、割当中に限り、割当とpayload hashの一致で受ける。
    - `proposal`：依頼baseを祖先に持つcommitの`result_sha`とbranch名。
    - `incomplete`／`declined`：commitなしで、理由を`summary`に書く。
    作業結果を送ると、その作業側は次の依頼を受けられる。
-5. 依頼側は提案のcommitを読んで確かめ、取り込む場合は自分が作成側としてPRを作る。以降は通常のreview依頼と同じ経路で、もう一方のClaude／Codexがreviewする。
+5. 結果を受け取ったClaude／Codexは、提案のcommitを読んで確かめ、取り込む場合は自分が作成側としてPRを作る。以降は通常のreview依頼と同じ経路で、もう一方のClaude／Codexがreviewする。
 6. 作業結果を送らずに作業を終える場合は、依頼側か作業側が`release-work --worker WORKER`で取り下げる。未完了依頼が複数ある場合は、対象の`event ID`を`--id EVENT_ID`で指定する。取り下げた依頼は、まだ受け取られていなければ`cancelled`で閉じ、後から配送・ACKされない。
    - 作業結果で枠が外れるのは、現在の割当と同じ依頼payload（`payload_sha256`）への結果だけである。取り下げた依頼への遅い結果は届くが、別の割当を外さない。
    - ACKされないまま期限を過ぎた先頭依頼は、終了記録の保持期間（24時間）を待たず、次の作業依頼を送るときに外れる。ACK済みの依頼は期限では外れない。Devinの待機依頼は待機中にTTLが進まず、FIFOの先頭へ昇格した時点から元のTTLを一度だけ数える。昇格後に未ACKのまま期限を過ぎた場合は、従来どおり枠を解放する。
@@ -97,7 +99,7 @@ Devinの2件目以降をqueueへ積む切替時は、更新前receiverのwaitが
 ```sh
 python3 -B scaffold/review-handoff/packet.py build-work --base BASE_FULL_SHA --issue ISSUE --request-id WR-UNIQUE-ID --dispatcher codex --worker devin --purpose '作業の目的' --scope '対象pathと完了条件'
 python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime codex --session CODEX_SESSION --id EVENT_ID --kind work_request --request scaffold/review-handoff/local/work.json --base BASE_FULL_SHA
-python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime devin --session DEVIN_SESSION --id RESULT_EVENT_ID --kind work_result --request scaffold/review-handoff/local/work.json --response scaffold/review-handoff/local/work-result.json --base BASE_FULL_SHA
+python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime devin --session DEVIN_SESSION --id RESULT_EVENT_ID --kind work_result --request scaffold/review-handoff/local/work.json --response scaffold/review-handoff/local/work-result.json --base BASE_FULL_SHA [--to codex]
 python3 -B scaffold/review-handoff/gui_mailbox.py release-work --runtime codex --session CODEX_SESSION --worker devin --id EVENT_ID
 ```
 
