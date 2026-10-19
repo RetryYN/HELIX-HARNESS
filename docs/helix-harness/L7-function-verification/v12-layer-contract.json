@@ -419,7 +419,7 @@
       "/return_contract_detail/b01/x05_candidate_concretizations_ja"
     ],
     "note_ja": "同時作成L6候補のraw bytesと選択箇所を照合するcurrent binding。独立承認済sourceや歴史的固定revisionではない。L6変更時はhashと選択箇所を追随する。",
-    "file_sha256": "1fe63d31e646cc6651e3517934d4af7667fc416ab832c6c3670e5e5a4fbec525"
+    "file_sha256": "bc401b17f41e5f0cc750ccad7a3aef5e0633f9ac88e7f25e0daa1d9208fc4e5d"
   },
   "derived_from_document_id": "HARNESS-L8-001-V12-LAYER-CONTRACT",
   "primary_call_oracles": {
@@ -8551,7 +8551,7 @@
       "expected_results_aggregate_canonical_sha256": "9d411d07704153d5a09e6df821d91d1fda0d787ebf3fc4602005bc86cf536148",
       "limits_ja": [
         "この候補は指定32件だけを具体化し、B01の全入力・Context・全返却oracleを凍結しない。",
-        "ケース8〜28の由来本文・revisionを回収できないunknown provenanceは解消していない。入力/期待値の再構成可能性は、期待の原sourceを検証できることと別である。",
+        "この32件では実callerの資格と原sourceに基づく実観測は未証明であり、技術選択T1〜T4は現行sourceから一意に導かれない候補である。",
         "actual state/checkの組合せ全域、25-cell matrix全体、異なるsubjectの複合原因、その他X群およびF02全域は未確定・未凍結のまま残る。",
         "静的な入力再構成・whole Result照合・独立意味レビューは、実装前Red、Green、Refactor、実source資格、実運転・受入の証拠ではない。"
       ]
