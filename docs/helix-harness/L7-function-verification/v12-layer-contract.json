@@ -425,7 +425,7 @@
       "/return_contract_detail/f02_front_stage_candidate_concretizations_ja"
     ],
     "note_ja": "同時作成L6候補のraw bytesと選択箇所を照合するcurrent binding。独立承認済sourceや歴史的固定revisionではない。L6変更時はhashと選択箇所を追随する。",
-    "file_sha256": "69928afec1b03bd0ff6428a84af8ac8448b955d7c2d4d8dfe8dd79fbe8581222"
+    "file_sha256": "a93591a026b77649c903d794763ebcef4692d0ea374fea279384f54b0055ee76"
   },
   "derived_from_document_id": "HARNESS-L8-001-V12-LAYER-CONTRACT",
   "primary_call_oracles": {
@@ -8570,43 +8570,6 @@
     "candidate_branch_base_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
     "authority_effect": "none; synthetic input values do not prove real owner qualification, authorization, or delivery",
     "scope_ja": "F02の6 scope、元L8の10 mutation、X04の13 selected caseからなる限定29 callのinput/Context/whole Result候補を、RFC 6901 Pointer・RFC 6902 patch・canonical hashだけで記録する。既存F02 constructor 34件は後段であり本recordへ複製しない。",
-    "source_artifacts": [
-      {
-        "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-input-artifact-6ed36b63-r2.json",
-        "sha256": "40aa005e70045d38b0fe86447e77f3b070679b52ba32be2f86736944a0de5cf1",
-        "role_ja": "input/context recipes"
-      },
-      {
-        "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-whole-expected-6ed36b63-r2.json",
-        "sha256": "db229d10d5e42344e674e3c0c88d7c5f33b91baa0917157a80c15646cbd87fd6",
-        "role_ja": "hand-authored whole Results"
-      },
-      {
-        "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-whole-source-notes-6ed36b63-r1.json",
-        "sha256": "8431ab1cc4a68a7c6e83d79a3297cfa2da2e90fa1934af6cd4856896a01da691",
-        "role_ja": "C1-C6 source-choice notes"
-      },
-      {
-        "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-c4-selector-source-correction-6ed36b63.json",
-        "sha256": "b57ee3e8289b2ca0a9da08ec30639a1af48506e839c7f8c2a1bf442e525a44da",
-        "role_ja": "C4 selector correction"
-      },
-      {
-        "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-root-input-locator-correction-b92b0c61.json",
-        "sha256": "618edc6434119810013ea6029d3e7ff433a702ae49f187359c45afe1910c8a5e",
-        "role_ja": "root correction/29×2 argument hash verification"
-      },
-      {
-        "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-root-selector-membership-b92b0c61.json",
-        "sha256": "55ca7e55efc065aabb062a489cdf88c1d9be05ae52067740432b675fe1b54d45",
-        "role_ja": "root selector membership static verification"
-      },
-      {
-        "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-root-whole-static-b92b0c61.json",
-        "sha256": "98667a29f0b10a9bfde7268939a31b93c127570fc206032060cec0046fba810d",
-        "role_ja": "root whole-result static verification"
-      }
-    ],
     "source_pins": {
       "L3": {
         "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -8801,7 +8764,11 @@
       {
         "profile_id": "F02-S1-NO-NO",
         "source_profile_chain": [
-          "/profiles/0"
+          {
+            "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-input-artifact-6ed36b63-r2.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/profiles/0"
+          }
         ],
         "base_input_ref": "/f02_front_stage_candidate_oracles/input_base",
         "input_patches_rfc6902": [
@@ -9151,7 +9118,11 @@
       {
         "profile_id": "F02-S2-NO-YES",
         "source_profile_chain": [
-          "/profiles/1"
+          {
+            "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-input-artifact-6ed36b63-r2.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/profiles/1"
+          }
         ],
         "base_input_ref": "/f02_front_stage_candidate_oracles/input_base",
         "input_patches_rfc6902": [
@@ -9411,7 +9382,11 @@
       {
         "profile_id": "F02-S3-YES-NO",
         "source_profile_chain": [
-          "/profiles/2"
+          {
+            "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-input-artifact-6ed36b63-r2.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/profiles/2"
+          }
         ],
         "base_input_ref": "/f02_front_stage_candidate_oracles/input_base",
         "input_patches_rfc6902": [
@@ -9671,7 +9646,11 @@
       {
         "profile_id": "F02-S4-YES-YES",
         "source_profile_chain": [
-          "/profiles/3"
+          {
+            "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-input-artifact-6ed36b63-r2.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/profiles/3"
+          }
         ],
         "base_input_ref": "/f02_front_stage_candidate_oracles/input_base",
         "input_patches_rfc6902": [],
@@ -9767,7 +9746,11 @@
       {
         "profile_id": "F02-S5-UNKNOWN-UNKNOWN",
         "source_profile_chain": [
-          "/profiles/4"
+          {
+            "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-input-artifact-6ed36b63-r2.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/profiles/4"
+          }
         ],
         "base_input_ref": "/f02_front_stage_candidate_oracles/input_base",
         "input_patches_rfc6902": [
@@ -9929,7 +9912,11 @@
       {
         "profile_id": "F02-S6-RESULTS-WITHOUT-AGREEMENT",
         "source_profile_chain": [
-          "/profiles/5"
+          {
+            "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-input-artifact-6ed36b63-r2.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/profiles/5"
+          }
         ],
         "base_input_ref": "/f02_front_stage_candidate_oracles/input_base",
         "input_patches_rfc6902": [
@@ -10193,7 +10180,11 @@
       {
         "profile_id": "F02-X04-UNKNOWN-YES",
         "source_profile_chain": [
-          "/profiles/6"
+          {
+            "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-input-artifact-6ed36b63-r2.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/profiles/6"
+          }
         ],
         "base_input_ref": "/f02_front_stage_candidate_oracles/input_base",
         "input_patches_rfc6902": [
@@ -10356,7 +10347,11 @@
       {
         "profile_id": "F02-X04-YES-UNKNOWN",
         "source_profile_chain": [
-          "/profiles/7"
+          {
+            "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-input-artifact-6ed36b63-r2.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/profiles/7"
+          }
         ],
         "base_input_ref": "/f02_front_stage_candidate_oracles/input_base",
         "input_patches_rfc6902": [
@@ -10519,8 +10514,16 @@
       {
         "profile_id": "F02-S1-EMPTY-IMPACT-PROTOTYPE",
         "source_profile_chain": [
-          "/profiles/0",
-          "/profiles/8"
+          {
+            "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-input-artifact-6ed36b63-r2.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/profiles/0"
+          },
+          {
+            "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-input-artifact-6ed36b63-r2.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/profiles/8"
+          }
         ],
         "base_input_ref": "/f02_front_stage_candidate_oracles/input_base",
         "input_patches_rfc6902": [
@@ -10973,8 +10976,16 @@
       {
         "profile_id": "F02-S1-EMPTY-IMPACT-POC",
         "source_profile_chain": [
-          "/profiles/0",
-          "/profiles/9"
+          {
+            "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-input-artifact-6ed36b63-r2.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/profiles/0"
+          },
+          {
+            "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-input-artifact-6ed36b63-r2.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/profiles/9"
+          }
         ],
         "base_input_ref": "/f02_front_stage_candidate_oracles/input_base",
         "input_patches_rfc6902": [
@@ -12379,7 +12390,6 @@
     "calls": [
       {
         "case_id": "F02-S1-NO-NO",
-        "source_locator_description": "/fixture_basis/applicability and /cases/1/positive_input",
         "source_input_statement": "facts=['no', 'no']; claims=['not_applicable', 'not_applicable']; N/A routes=['prototype', 'poc']; S6 has successful synthetic results but missing agreement.",
         "source_case_pointer": "/fixture_basis/applicability and /cases/1/positive_input",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -12409,11 +12419,23 @@
         },
         "manual_reason_ja": "両Fact=no、両routeに独立したcurrent N/A全5属性があるため両not_applicable/l25 not_applicable。合意current、両target currentをtyped前提として固定。空要求影響2例もinput/同route NaBasisが共に空で無影響の別合成根拠を保持する。",
         "limited_choice_refs": [],
-        "causes": []
+        "causes": [],
+        "source_locator_description": "/fixture_basis/applicability and /cases/1/positive_input",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/fixture_basis/applicability"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/positive_input"
+          }
+        ]
       },
       {
         "case_id": "F02-S2-NO-YES",
-        "source_locator_description": "/fixture_basis/applicability and /cases/1/positive_input",
         "source_input_statement": "facts=['no', 'yes']; claims=['not_applicable', 'applicable']; N/A routes=['prototype']; S6 has successful synthetic results but missing agreement.",
         "source_case_pointer": "/fixture_basis/applicability and /cases/1/positive_input",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/1",
@@ -12442,11 +12464,23 @@
         },
         "manual_reason_ja": "screen=noからprototypeのみNA、technical=yesは独立にapplicable。prototype N/A完全、l25 required。",
         "limited_choice_refs": [],
-        "causes": []
+        "causes": [],
+        "source_locator_description": "/fixture_basis/applicability and /cases/1/positive_input",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/fixture_basis/applicability"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/positive_input"
+          }
+        ]
       },
       {
         "case_id": "F02-S3-YES-NO",
-        "source_locator_description": "/fixture_basis/applicability and /cases/1/positive_input",
         "source_input_statement": "facts=['yes', 'no']; claims=['applicable', 'not_applicable']; N/A routes=['poc']; S6 has successful synthetic results but missing agreement.",
         "source_case_pointer": "/fixture_basis/applicability and /cases/1/positive_input",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/2",
@@ -12475,11 +12509,23 @@
         },
         "manual_reason_ja": "screen=yesとtechnical=noを独立に保持。poc N/A完全、l25 required。",
         "limited_choice_refs": [],
-        "causes": []
+        "causes": [],
+        "source_locator_description": "/fixture_basis/applicability and /cases/1/positive_input",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/fixture_basis/applicability"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/positive_input"
+          }
+        ]
       },
       {
         "case_id": "F02-S4-YES-YES",
-        "source_locator_description": "/fixture_basis/applicability and /cases/1/positive_input",
         "source_input_statement": "facts=['yes', 'yes']; claims=['applicable', 'applicable']; N/A routes=[]; S6 has successful synthetic results but missing agreement.",
         "source_case_pointer": "/fixture_basis/applicability and /cases/1/positive_input",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/3",
@@ -12506,11 +12552,23 @@
         },
         "manual_reason_ja": "両Fact=yesにより両applicable/l25 required。claimと一致し、合意とtargetも独立currentというtyped前提。",
         "limited_choice_refs": [],
-        "causes": []
+        "causes": [],
+        "source_locator_description": "/fixture_basis/applicability and /cases/1/positive_input",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/fixture_basis/applicability"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/positive_input"
+          }
+        ]
       },
       {
         "case_id": "F02-S5-UNKNOWN-UNKNOWN",
-        "source_locator_description": "/fixture_basis/applicability and /cases/1/positive_input",
         "source_input_statement": "facts=['unknown', 'unknown']; claims=['unknown', 'unknown']; N/A routes=[]; S6 has successful synthetic results but missing agreement.",
         "source_case_pointer": "/fixture_basis/applicability and /cases/1/positive_input",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/4",
@@ -12581,11 +12639,23 @@
             ],
             "reason_ja": "両Factのvalue/validityともunknownを明示。両適用unknown、l25 unknown。原因は/poc_claimと/prototype_claim各1を別々に保持。Factのunknown分類は既存fact_unknownへ表し、同じunknown事実へreference_unknownを別原因として追加しない候補。"
           }
+        ],
+        "source_locator_description": "/fixture_basis/applicability and /cases/1/positive_input",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/fixture_basis/applicability"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/positive_input"
+          }
         ]
       },
       {
         "case_id": "F02-S6-RESULTS-WITHOUT-AGREEMENT",
-        "source_locator_description": "/fixture_basis/applicability and /cases/1/positive_input",
         "source_input_statement": "facts=['yes', 'yes']; claims=['applicable', 'applicable']; N/A routes=[]; S6 has successful synthetic results but missing agreement.",
         "source_case_pointer": "/fixture_basis/applicability and /cases/1/positive_input",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/5",
@@ -12633,11 +12703,23 @@
             ],
             "reason_ja": "Contextのl2_agreementはmissing。試作とPoC resultは合意へ転用せず、claimed_agreement_refs空/SYN結果Refの場合ともagreement_missing一原因。signalのcontent_check_refsは空なのでFinding evidence_refsも空。別signal/global checkへfallbackしない。"
           }
+        ],
+        "source_locator_description": "/fixture_basis/applicability and /cases/1/positive_input",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/fixture_basis/applicability"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/positive_input"
+          }
         ]
       },
       {
         "case_id": "F02-L9-MUT-01",
-        "source_locator_description": "/cases/1/negative_mutations/0",
         "source_input_statement": "no UI/yes tech scopeでnot_applicableを主張。技術Factはyesのまま",
         "source_case_pointer": "/cases/1/negative_mutations/0",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/1",
@@ -12695,11 +12777,18 @@
             ],
             "reason_ja": "technical Fact=yesをapplicableとして保持。claimだけnot_applicableは/poc_claimのapplicability_mismatch。N/A検査は解決Fact起点とし、poc_na=nullから余分な不足を生成しない。"
           }
+        ],
+        "source_locator_description": "/cases/1/negative_mutations/0",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/negative_mutations/0"
+          }
         ]
       },
       {
         "case_id": "F02-L9-MUT-02",
-        "source_locator_description": "/cases/1/negative_mutations/1",
         "source_input_statement": "tech unknown scopeでnot_applicableを主張。Factはunknownのまま",
         "source_case_pointer": "/cases/1/negative_mutations/1",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/7",
@@ -12760,11 +12849,18 @@
             ],
             "reason_ja": "screen=yesを保持、technical unknownはclaim unknown/NAいずれも/poc_claimのfact_unknown。l25 required、unknown側を消さない。unknown側claim NAからN/A検査を起動しない。"
           }
+        ],
+        "source_locator_description": "/cases/1/negative_mutations/1",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/negative_mutations/1"
+          }
         ]
       },
       {
         "case_id": "F02-L9-MUT-03",
-        "source_locator_description": "/cases/1/negative_mutations/2",
         "source_input_statement": "UI unknown scopeでnot_applicableを主張。Factはunknownのまま",
         "source_case_pointer": "/cases/1/negative_mutations/2",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/6",
@@ -12825,11 +12921,18 @@
             ],
             "reason_ja": "screen unknownは/prototype_claimのfact_unknown、technical=yesを保持。l25 required、unknown側を消さない。unknown側claim NAからN/A検査を起動しない。"
           }
+        ],
+        "source_locator_description": "/cases/1/negative_mutations/2",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/negative_mutations/2"
+          }
         ]
       },
       {
         "case_id": "F02-L9-MUT-04",
-        "source_locator_description": "/cases/1/negative_mutations/3",
         "source_input_statement": "両result成功/合意missing scopeでresult Refをagreementとして渡す",
         "source_case_pointer": "/cases/1/negative_mutations/3",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/5",
@@ -12898,11 +13001,18 @@
             ],
             "reason_ja": "Contextのl2_agreementはmissing。試作とPoC resultは合意へ転用せず、claimed_agreement_refs空/SYN結果Refの場合ともagreement_missing一原因。signalのcontent_check_refsは空なのでFinding evidence_refsも空。別signal/global checkへfallbackしない。"
           }
+        ],
+        "source_locator_description": "/cases/1/negative_mutations/3",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/negative_mutations/3"
+          }
         ]
       },
       {
         "case_id": "F02-L9-MUT-05",
-        "source_locator_description": "/cases/1/negative_mutations/4",
         "source_input_statement": "明示null",
         "source_case_pointer": "/cases/1/negative_mutations/4",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/3",
@@ -12952,11 +13062,18 @@
             "candidate_choice_refs": [],
             "reason_ja": "明示nullのL2 Refへreference_missing一原因。subjectはContext.subject_ref、evidenceは明示source_check_refsだけ。独立した両applicable/l25 requiredを保持する。後段既定でagreement_state missing/backflow_refs=[]、target比較を重ねずcurrent targetを返さない。独立agreement_missingを追加しない。"
           }
+        ],
+        "source_locator_description": "/cases/1/negative_mutations/4",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/negative_mutations/4"
+          }
         ]
       },
       {
         "case_id": "F02-L9-MUT-06",
-        "source_locator_description": "/cases/1/negative_mutations/5",
         "source_input_statement": "no/no scopeでnull、他4属性とpoc_naは保持",
         "source_case_pointer": "/cases/1/negative_mutations/5",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -13038,11 +13155,18 @@
             ],
             "reason_ja": "Fact=no/noを保持するがN/A不足のためl25 unknown。null memberは当該実input locatorだけをna_basis_missing/missing_na_fieldsへ残し、同fieldの非null Contextとの差をreference_conflictへ二重分類しない。whole NaReason nullは実parent locator一件。"
           }
+        ],
+        "source_locator_description": "/cases/1/negative_mutations/5",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/negative_mutations/5"
+          }
         ]
       },
       {
         "case_id": "F02-L9-MUT-07",
-        "source_locator_description": "/cases/1/negative_mutations/6",
         "source_input_statement": "no/no scopeでnull、他4属性保持",
         "source_case_pointer": "/cases/1/negative_mutations/6",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -13124,11 +13248,18 @@
             ],
             "reason_ja": "Fact=no/noを保持するがN/A不足のためl25 unknown。null memberは当該実input locatorだけをna_basis_missing/missing_na_fieldsへ残し、同fieldの非null Contextとの差をreference_conflictへ二重分類しない。whole NaReason nullは実parent locator一件。"
           }
+        ],
+        "source_locator_description": "/cases/1/negative_mutations/6",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/negative_mutations/6"
+          }
         ]
       },
       {
         "case_id": "F02-L9-MUT-08",
-        "source_locator_description": "/cases/1/negative_mutations/7",
         "source_input_statement": "no/no scopeでnull、他4属性保持",
         "source_case_pointer": "/cases/1/negative_mutations/7",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -13210,11 +13341,18 @@
             ],
             "reason_ja": "Fact=no/noを保持するがN/A不足のためl25 unknown。null memberは当該実input locatorだけをna_basis_missing/missing_na_fieldsへ残し、同fieldの非null Contextとの差をreference_conflictへ二重分類しない。whole NaReason nullは実parent locator一件。"
           }
+        ],
+        "source_locator_description": "/cases/1/negative_mutations/7",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/negative_mutations/7"
+          }
         ]
       },
       {
         "case_id": "F02-L9-MUT-09",
-        "source_locator_description": "/cases/1/negative_mutations/8",
         "source_input_statement": "no/no scopeでnull、他4属性保持",
         "source_case_pointer": "/cases/1/negative_mutations/8",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -13296,11 +13434,18 @@
             ],
             "reason_ja": "Fact=no/noを保持するがN/A不足のためl25 unknown。null memberは当該実input locatorだけをna_basis_missing/missing_na_fieldsへ残し、同fieldの非null Contextとの差をreference_conflictへ二重分類しない。whole NaReason nullは実parent locator一件。"
           }
+        ],
+        "source_locator_description": "/cases/1/negative_mutations/8",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/negative_mutations/8"
+          }
         ]
       },
       {
         "case_id": "F02-L9-MUT-10",
-        "source_locator_description": "/cases/1/negative_mutations/9",
         "source_input_statement": "no/no scopeでnull、他4属性保持",
         "source_case_pointer": "/cases/1/negative_mutations/9",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -13382,11 +13527,18 @@
             ],
             "reason_ja": "Fact=no/noを保持するがN/A不足のためl25 unknown。null memberは当該実input locatorだけをna_basis_missing/missing_na_fieldsへ残し、同fieldの非null Contextとの差をreference_conflictへ二重分類しない。whole NaReason nullは実parent locator一件。"
           }
+        ],
+        "source_locator_description": "/cases/1/negative_mutations/9",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/cases/1/negative_mutations/9"
+          }
         ]
       },
       {
         "case_id": "F02-X04-POC-NULL-reason",
-        "source_locator_description": "/extra_cases/3",
         "source_input_statement": "X04 named input axis: F02-X04-POC-NULL-reason; source-defined",
         "source_case_pointer": "/extra_cases/3",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -13468,11 +13620,18 @@
             ],
             "reason_ja": "Fact=no/noを保持するがN/A不足のためl25 unknown。null memberは当該実input locatorだけをna_basis_missing/missing_na_fieldsへ残し、同fieldの非null Contextとの差をreference_conflictへ二重分類しない。whole NaReason nullは実parent locator一件。"
           }
+        ],
+        "source_locator_description": "/extra_cases/3",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/extra_cases/3"
+          }
         ]
       },
       {
         "case_id": "F02-X04-POC-NULL-decider_ref",
-        "source_locator_description": "/extra_cases/3",
         "source_input_statement": "X04 named input axis: F02-X04-POC-NULL-decider_ref; source-defined",
         "source_case_pointer": "/extra_cases/3",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -13554,11 +13713,18 @@
             ],
             "reason_ja": "Fact=no/noを保持するがN/A不足のためl25 unknown。null memberは当該実input locatorだけをna_basis_missing/missing_na_fieldsへ残し、同fieldの非null Contextとの差をreference_conflictへ二重分類しない。whole NaReason nullは実parent locator一件。"
           }
+        ],
+        "source_locator_description": "/extra_cases/3",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/extra_cases/3"
+          }
         ]
       },
       {
         "case_id": "F02-X04-POC-NULL-target_head",
-        "source_locator_description": "/extra_cases/3",
         "source_input_statement": "X04 named input axis: F02-X04-POC-NULL-target_head; source-defined",
         "source_case_pointer": "/extra_cases/3",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -13640,11 +13806,18 @@
             ],
             "reason_ja": "Fact=no/noを保持するがN/A不足のためl25 unknown。null memberは当該実input locatorだけをna_basis_missing/missing_na_fieldsへ残し、同fieldの非null Contextとの差をreference_conflictへ二重分類しない。whole NaReason nullは実parent locator一件。"
           }
+        ],
+        "source_locator_description": "/extra_cases/3",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/extra_cases/3"
+          }
         ]
       },
       {
         "case_id": "F02-X04-POC-NULL-requirement_impact_refs",
-        "source_locator_description": "/extra_cases/3",
         "source_input_statement": "X04 named input axis: F02-X04-POC-NULL-requirement_impact_refs; source-defined",
         "source_case_pointer": "/extra_cases/3",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -13726,11 +13899,18 @@
             ],
             "reason_ja": "Fact=no/noを保持するがN/A不足のためl25 unknown。null memberは当該実input locatorだけをna_basis_missing/missing_na_fieldsへ残し、同fieldの非null Contextとの差をreference_conflictへ二重分類しない。whole NaReason nullは実parent locator一件。"
           }
+        ],
+        "source_locator_description": "/extra_cases/3",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/extra_cases/3"
+          }
         ]
       },
       {
         "case_id": "F02-X04-POC-NULL-reevaluation_condition",
-        "source_locator_description": "/extra_cases/3",
         "source_input_statement": "X04 named input axis: F02-X04-POC-NULL-reevaluation_condition; source-defined",
         "source_case_pointer": "/extra_cases/3",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -13812,11 +13992,18 @@
             ],
             "reason_ja": "Fact=no/noを保持するがN/A不足のためl25 unknown。null memberは当該実input locatorだけをna_basis_missing/missing_na_fieldsへ残し、同fieldの非null Contextとの差をreference_conflictへ二重分類しない。whole NaReason nullは実parent locator一件。"
           }
+        ],
+        "source_locator_description": "/extra_cases/3",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/extra_cases/3"
+          }
         ]
       },
       {
         "case_id": "F02-X04-WHOLE-NULL-prototype",
-        "source_locator_description": "/extra_cases/3",
         "source_input_statement": "X04 named input axis: F02-X04-WHOLE-NULL-prototype; whole-nullは実在するparent locator一件。内側fieldがnullの5単独変異とは別。",
         "source_case_pointer": "/extra_cases/3",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -13898,11 +14085,18 @@
             ],
             "reason_ja": "Fact=no/noを保持するがN/A不足のためl25 unknown。null memberは当該実input locatorだけをna_basis_missing/missing_na_fieldsへ残し、同fieldの非null Contextとの差をreference_conflictへ二重分類しない。whole NaReason nullは実parent locator一件。"
           }
+        ],
+        "source_locator_description": "/extra_cases/3",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/extra_cases/3"
+          }
         ]
       },
       {
         "case_id": "F02-X04-OLD-HEAD-prototype",
-        "source_locator_description": "/extra_cases/3",
         "source_input_statement": "X04 named input axis: F02-X04-OLD-HEAD-prototype; 同fieldの古さをreference_conflictへ二重分類せず、古いN/A根拠でl25=not_applicableへ進めない。",
         "source_case_pointer": "/extra_cases/3",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -13977,11 +14171,18 @@
             ],
             "reason_ja": "要求revision r1に対するsynthetic r0 headを古いとしてreference_stale。nullではないためmissing_na_fields=[]、同fieldへreference_conflictを重ねない。N/Aは完全currentでないためno/noのl25 unknown。"
           }
+        ],
+        "source_locator_description": "/extra_cases/3",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/extra_cases/3"
+          }
         ]
       },
       {
         "case_id": "F02-X04-EMPTY-IMPACT-prototype",
-        "source_locator_description": "/extra_cases/3",
         "source_input_statement": "X04 named input axis: F02-X04-EMPTY-IMPACT-prototype; inputだけ空にしてContextの非空要求影響を残す変異は別の内容矛盾になるため、根拠付き無影響正常と混同しない。",
         "source_case_pointer": "/extra_cases/3",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/8",
@@ -14011,11 +14212,18 @@
         },
         "manual_reason_ja": "両Fact=no、両routeに独立したcurrent N/A全5属性があるため両not_applicable/l25 not_applicable。合意current、両target currentをtyped前提として固定。空要求影響2例もinput/同route NaBasisが共に空で無影響の別合成根拠を保持する。",
         "limited_choice_refs": [],
-        "causes": []
+        "causes": [],
+        "source_locator_description": "/extra_cases/3",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/extra_cases/3"
+          }
+        ]
       },
       {
         "case_id": "F02-X04-WHOLE-NULL-poc",
-        "source_locator_description": "/extra_cases/3",
         "source_input_statement": "X04 named input axis: F02-X04-WHOLE-NULL-poc; whole-nullは実在するparent locator一件。内側fieldがnullの5単独変異とは別。",
         "source_case_pointer": "/extra_cases/3",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -14097,11 +14305,18 @@
             ],
             "reason_ja": "Fact=no/noを保持するがN/A不足のためl25 unknown。null memberは当該実input locatorだけをna_basis_missing/missing_na_fieldsへ残し、同fieldの非null Contextとの差をreference_conflictへ二重分類しない。whole NaReason nullは実parent locator一件。"
           }
+        ],
+        "source_locator_description": "/extra_cases/3",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/extra_cases/3"
+          }
         ]
       },
       {
         "case_id": "F02-X04-OLD-HEAD-poc",
-        "source_locator_description": "/extra_cases/3",
         "source_input_statement": "X04 named input axis: F02-X04-OLD-HEAD-poc; 同fieldの古さをreference_conflictへ二重分類せず、古いN/A根拠でl25=not_applicableへ進めない。",
         "source_case_pointer": "/extra_cases/3",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/0",
@@ -14176,11 +14391,18 @@
             ],
             "reason_ja": "要求revision r1に対するsynthetic r0 headを古いとしてreference_stale。nullではないためmissing_na_fields=[]、同fieldへreference_conflictを重ねない。N/Aは完全currentでないためno/noのl25 unknown。"
           }
+        ],
+        "source_locator_description": "/extra_cases/3",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/extra_cases/3"
+          }
         ]
       },
       {
         "case_id": "F02-X04-EMPTY-IMPACT-poc",
-        "source_locator_description": "/extra_cases/3",
         "source_input_statement": "X04 named input axis: F02-X04-EMPTY-IMPACT-poc; inputだけ空にしてContextの非空要求影響を残す変異は別の内容矛盾になるため、根拠付き無影響正常と混同しない。",
         "source_case_pointer": "/extra_cases/3",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/9",
@@ -14210,11 +14432,18 @@
         },
         "manual_reason_ja": "両Fact=no、両routeに独立したcurrent N/A全5属性があるため両not_applicable/l25 not_applicable。合意current、両target currentをtyped前提として固定。空要求影響2例もinput/同route NaBasisが共に空で無影響の別合成根拠を保持する。",
         "limited_choice_refs": [],
-        "causes": []
+        "causes": [],
+        "source_locator_description": "/extra_cases/3",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/extra_cases/3"
+          }
+        ]
       },
       {
         "case_id": "F02-X04-UNKNOWN-YES",
-        "source_locator_description": "/extra_cases/3",
         "source_input_statement": "X04 named input axis: F02-X04-UNKNOWN-YES; source-defined",
         "source_case_pointer": "/extra_cases/3",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/6",
@@ -14269,11 +14498,18 @@
             ],
             "reason_ja": "screen unknownは/prototype_claimのfact_unknown、technical=yesを保持。l25 required、unknown側を消さない。unknown側claim NAからN/A検査を起動しない。"
           }
+        ],
+        "source_locator_description": "/extra_cases/3",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/extra_cases/3"
+          }
         ]
       },
       {
         "case_id": "F02-X04-YES-UNKNOWN",
-        "source_locator_description": "/extra_cases/3",
         "source_input_statement": "X04 named input axis: F02-X04-YES-UNKNOWN; source-defined",
         "source_case_pointer": "/extra_cases/3",
         "input_context_profile_ref": "/f02_front_stage_candidate_oracles/input_context_profiles/7",
@@ -14327,6 +14563,14 @@
               "F02-C6-UNKNOWN-CAUSE"
             ],
             "reason_ja": "screen=yesを保持、technical unknownはclaim unknown/NAいずれも/poc_claimのfact_unknown。l25 required、unknown側を消さない。unknown側claim NAからN/A検査を起動しない。"
+          }
+        ],
+        "source_locator_description": "/extra_cases/3",
+        "source_case_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+            "revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+            "pointer": "/extra_cases/3"
           }
         ]
       }
@@ -14384,6 +14628,44 @@
       "003/008実binding/配送/受信",
       "oracle freezeまたは独立review完了",
       "実装、Red/Green/Refactor実観測、製品CI、PO受入、release/deploy"
-    ]
+    ],
+    "optional_private_preparation_provenance": [
+      {
+        "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-input-artifact-6ed36b63-r2.json",
+        "sha256": "40aa005e70045d38b0fe86447e77f3b070679b52ba32be2f86736944a0de5cf1",
+        "role_ja": "input/context recipes"
+      },
+      {
+        "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-whole-expected-6ed36b63-r2.json",
+        "sha256": "db229d10d5e42344e674e3c0c88d7c5f33b91baa0917157a80c15646cbd87fd6",
+        "role_ja": "hand-authored whole Results"
+      },
+      {
+        "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-whole-source-notes-6ed36b63-r1.json",
+        "sha256": "8431ab1cc4a68a7c6e83d79a3297cfa2da2e90fa1934af6cd4856896a01da691",
+        "role_ja": "C1-C6 source-choice notes"
+      },
+      {
+        "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-c4-selector-source-correction-6ed36b63.json",
+        "sha256": "b57ee3e8289b2ca0a9da08ec30639a1af48506e839c7f8c2a1bf442e525a44da",
+        "role_ja": "C4 selector correction"
+      },
+      {
+        "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-root-input-locator-correction-b92b0c61.json",
+        "sha256": "618edc6434119810013ea6029d3e7ff433a702ae49f187359c45afe1910c8a5e",
+        "role_ja": "root correction/29×2 argument hash verification"
+      },
+      {
+        "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-root-selector-membership-b92b0c61.json",
+        "sha256": "55ca7e55efc065aabb062a489cdf88c1d9be05ae52067740432b675fe1b54d45",
+        "role_ja": "root selector membership static verification"
+      },
+      {
+        "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-root-whole-static-b92b0c61.json",
+        "sha256": "98667a29f0b10a9bfde7268939a31b93c127570fc206032060cec0046fba810d",
+        "role_ja": "root whole-result static verification"
+      }
+    ],
+    "provenance_policy_ja": "以下のlocal準備artifactとroot静的receiptは任意のprivate作業来歴であり、規範sourceや意味判断の根拠ではない。記録内にinput base、RFC 6902 recipe、12 authored expected base、expected patch、結果hashを保持するため、再構成はこのL7記録とsource_pinsの固定文書だけで行える。"
   }
 }

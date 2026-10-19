@@ -721,16 +721,6 @@
     "f02_front_stage_candidate_concretizations_ja": {
       "status": "有限範囲のF02前段候補具体化。source choice・selectorは独立review前のcandidateであり、上流から一意に導出された規範、承認、oracle freezeではない。",
       "scope_ja": "F02 check_prototype_poc_applicability のL5照合前段について、既存L3/L10/L5/L8の意味を変えず、限定したC1-C6選択を明示する。F01/B01の規則や既存F02後段constructor oracleから前段選択を逆算しない。",
-      "source_choice_notes": [
-        {
-          "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-whole-source-notes-6ed36b63-r1.json",
-          "sha256": "8431ab1cc4a68a7c6e83d79a3297cfa2da2e90fa1934af6cd4856896a01da691"
-        },
-        {
-          "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-c4-selector-source-correction-6ed36b63.json",
-          "sha256": "b57ee3e8289b2ca0a9da08ec30639a1af48506e839c7f8c2a1bf442e525a44da"
-        }
-      ],
       "candidate_choices": [
         {
           "id": "C1",
@@ -796,8 +786,7 @@
               "id": "agreement",
               "selected_ja": "signal=l2_agreementのContext Evidence.content_check_refsだけ。今回はmissingで空。global source_check_refsやresult Refで補わない。",
               "source_refs": [
-                "L5#/functions/1/steps/3",
-                "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-c4-selector-source-correction-6ed36b63.json#/source_independent_selection_basis/0"
+                "L5#/functions/1/steps/3"
               ]
             }
           ],
@@ -827,7 +816,7 @@
       ],
       "finding_order_and_deduplication_route": {
         "applies_to": "F02 check_prototype_poc_applicability only.",
-        "rule": "F02のFinding順、RefSet/evidence_refs正規化、同値Findingの重複除去はL5 /f02_return_construction/finding_constructor/sort と /f02_return_construction/finding_constructor/fields/evidence_refs へ明示的にrouteする。RefSet canonical orderはL5 /types/RefSetへ従う。同じ全6 fieldのFindingのみ重複除去し、異なるowner/根拠/原因を統合しない。",
+        "rule": "F02のFinding順、RefSet/evidence_refs正規化、同値Findingの重複除去はL5 /f02_return_construction/finding_constructor/sort と /f02_return_construction/finding_constructor/fields/evidence_refs へ明示的にrouteする。RefSet canonical orderはL5 /types/RefSetへ従う。既存F02契約どおり全6 fieldが完全一致するFindingだけをdedupeする。異owner/異根拠など全6 fieldのどれかが異なるFindingは保持する。cause identityを追加・推定しない。",
         "non_inheritance": "L6 /return_contract_detail/authority_and_scope_ja、/finding_order、/finding_duplicates、/finding_cause_map の一般記述をF02へ暗黙に適用しない。L5 F02固有契約を優先する。この追補はF01/B01の契約を変更しない。",
         "source_refs": [
           "L5#/types/RefSet",
@@ -854,7 +843,18 @@
         "retained_ja": "型付きinputとpure result境界、不正/欠落/unknownを確定扱いへ丸めないこと、function単位で入力・出力・failure・traceを明示する点を参照した。",
         "changed_ja": "旧UI適用性・prototype lifecycleの大規模screen機構ではなく、現L5で定義済みのPython pure function F02のみへ対象を限定する。",
         "not_carried_ja": "旧owner authority、DB transaction、receipt、gate write、browser/artifact lifecycle、旧test oracleを現行契約へ移さない。"
-      }
+      },
+      "optional_private_preparation_provenance": [
+        {
+          "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-whole-source-notes-6ed36b63-r1.json",
+          "sha256": "8431ab1cc4a68a7c6e83d79a3297cfa2da2e90fa1934af6cd4856896a01da691"
+        },
+        {
+          "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-c4-selector-source-correction-6ed36b63.json",
+          "sha256": "b57ee3e8289b2ca0a9da08ec30639a1af48506e839c7f8c2a1bf442e525a44da"
+        }
+      ],
+      "provenance_policy_ja": "このローカル準備記録とhashは任意の作業来歴で、規範source、意味判断、候補の再構成に依存しない。候補の選択内容はこの追跡済みL6本文と、ここに示したL5/L8の追跡済みsource pointerだけで確認できる。"
     }
   }
 }
