@@ -313,6 +313,290 @@
         "formation": "検討母集合と提案membershipを別に保持し、templateごとのpolicy occurrenceと四判定の根拠を対応させる。既存契約が当該出現に対する一意なpolicy根拠を与える範囲ではrequired/conditionalを提案membership候補へ反映できる。conditionalの条件・未充足状態は保持する。N/Aは既存の出典根拠と理由を伴う除外候補としてのみ扱い、四属性や元判定を補完しない。",
         "unresolved_and_multiple_occurrences": "membershipの根拠が未解決、または同じtemplate Refに複数policy occurrenceがあり、既存契約から合成規則が一意に定まらない場合はmembershipを形成せず、全occurrence・順序・個別返却・未解決理由を保持する。先勝ち/後勝ち、any/all、黙示dedupe、別出現からの理由転用をしない。有効な別出現はそれぞれ保持する。",
         "failure_and_boundary": "producer未観測、返却欠落、別呼出し・別scope・別revisionの混入、母集合/Ref/条件/N/A根拠不足は、元証拠と個別findingを保った未形成または未解決材料として返し、空集合・N/A・成功へ丸めない。これは提案材料であり、OSRef4への投影、OSの三集合/selected/used、資格、配送、記録、実装、受入の成立を定めない。"
+      },
+      "proposal_native_record_material": {
+        "status": "candidate_basic_design_contract",
+        "authority_effect": "none",
+        "purpose": "既存HARNESS-L3-009-F02/F03の採択意味を保ち、既存compare_candidate_universeのnative返却からCOREの提案材料bodyを形成する境界を定める。L4契約候補であり、要求採用、実装、OS記録成立を主張しない。",
+        "source_basis": {
+          "fixed_main_revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+          "freeze_json_sha256": "5c343bd3f46025c62ccb1ef033ef5a2fd5b1d391d71c966f3be8b6462a276752",
+          "selected_raw_and_object_hashes": [
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+              "raw_file_sha256": "b07e56e4edc81c4b26e2510f2aff6e9e092338813a712d90529df78406fa5b99",
+              "selected_objects": [
+                {
+                  "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/frozen_json_recipe",
+                  "canonical_sha256": "9cff0c90e1ed60d07184ff90dafd744ddc20dd152f612f12276ec92fdddd8593"
+                },
+                {
+                  "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/normal_case_recipe_steps",
+                  "canonical_sha256": "8a3513bfd7775f92fd041fd022024d77b536c07d92cd400bd6fd943e992159bc"
+                },
+                {
+                  "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/allskip_whole_source_oracle",
+                  "canonical_sha256": "875a396b854895f04590268240576f9a3dc8e5ed5205d921f0ee00639767d363"
+                },
+                {
+                  "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/published_generic_reconstruction_results",
+                  "canonical_sha256": "ee22a2a52dd9466f0dd9145a3925b364c1abef2ae6f75d6fb8b0014054d9a7ba"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "raw_file_sha256": "6b48691078976423d500978728f685a9f31fcbf022e52b821902e03e776e3bd1",
+              "selected_objects": [
+                {
+                  "pointer": "/proposal_material_formation_detail",
+                  "canonical_sha256": "ebbf99b40b8f2217ca58a2a2cef2353f1d1ff7a39c34512cab9160d59f45644a"
+                },
+                {
+                  "pointer": "/f05_detail_contract/types/CallerInputs",
+                  "canonical_sha256": "3bb204dfd0b72ee78ac9429d8e194f696ff2fa0469b3b1a81c489055b1f5667e"
+                },
+                {
+                  "pointer": "/f05_detail_contract/types/CoreApplicationDetailReturn",
+                  "canonical_sha256": "11c5efbc812534b6ae1f771c36a7e65b2b96a41a93792a7dd15662e4a8423dff"
+                },
+                {
+                  "pointer": "/type_contract/types/CandidateUniverse",
+                  "canonical_sha256": "f2b5110bdf1d1a148fb994d520c5bb786bf47459e15978c61b38a0cf08d72f26"
+                },
+                {
+                  "pointer": "/type_contract/types/CandidateUniverseMaterial",
+                  "canonical_sha256": "8333fc255d1b6dcff8c189a1ad3c98920eaa3f7573aa7178e29c270d93f3dd40"
+                },
+                {
+                  "pointer": "/functions/2",
+                  "canonical_sha256": "61050802abe605f012d7945e86f08c030a3c4dc553aa50a6e21e0cbf725f2f04"
+                },
+                {
+                  "pointer": "/functions/3",
+                  "canonical_sha256": "58305fed8f7143ce6f46176d6bdd83513870b7208a525cc3ad7dbf5227b879f1"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+              "raw_file_sha256": "4e1404bef671f7c777b39b209739f5518222d07632f132df919269140f27f84d",
+              "selected_objects": [
+                {
+                  "pointer": "/contracts/3/proposal_material_formation",
+                  "canonical_sha256": "9f0e94abff53e96ca28843e6b2902e754bde4d85f63514e6ed737427cc77b341"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "raw_file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+              "selected_objects": [
+                {
+                  "pointer": "/requirements/24",
+                  "canonical_sha256": "24bc8c32bd201d805ae635188a247d44b5770c5af0d56c92918f33267dba14c1"
+                },
+                {
+                  "pointer": "/requirements/25",
+                  "canonical_sha256": "6c3eebfe5f9a38a9df0859bf17172d98cbac59e1dd8cb4767dabcbd0571e91ff"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-os/L4-basic-design/atomic-canonicalization.json",
+              "raw_file_sha256": "3e14df41a7782889a4d7e1d416afe98b99693e9d7a32bb8fb17c006466129e62",
+              "selected_objects": [
+                {
+                  "pointer": "/ports/0",
+                  "canonical_sha256": "2c5d32aec43107c679225de5af4ee258afada5b4d93c7227f03bfaf266674235"
+                },
+                {
+                  "pointer": "/architecture/dependency_direction",
+                  "canonical_sha256": "b864e4208807b10ca6c990946947b12d925845b43bab95b8d10890d4a7500b2e"
+                },
+                {
+                  "pointer": "/contracts/0",
+                  "canonical_sha256": "763f998f6763ba000b1251137f9f6d2e4d5cab7d028503d7ae43b8bf8d421c40"
+                },
+                {
+                  "pointer": "/operation_model/identity_axes",
+                  "canonical_sha256": "23df0d580699c87baab77d81e948172e19cde04c2db3b504abd62ee6cd65d5e9"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+              "raw_file_sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c",
+              "selected_objects": []
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+              "raw_file_sha256": "341a12c73079aa57d16a3e8d164d23d29a0d375caf2bfd8a8f53b8b5123ff108",
+              "selected_objects": []
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/governance/decisions/helix-os-prerequisite053-l3-l10-delegated-decision-2026-10-12.md",
+              "raw_file_sha256": "75f12b09d65eceb5c42a1a650c3471c7c30dae30ea112f643b72dbf17b94c543",
+              "selected_objects": []
+            }
+          ],
+          "adopted_requirement_basis": [
+            {
+              "identity": "HARNESS-L3-009-F02",
+              "pointer": "/requirements/24",
+              "source_revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb"
+            },
+            {
+              "identity": "HARNESS-L3-009-F03",
+              "pointer": "/requirements/25",
+              "source_revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb"
+            },
+            {
+              "identity": "COREAPPLY",
+              "source": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+              "sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c"
+            },
+            {
+              "identity": "HARNESS-CORE009-L3L10-delegated-decision",
+              "source": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+              "sha256": "341a12c73079aa57d16a3e8d164d23d29a0d375caf2bfd8a8f53b8b5123ff108"
+            }
+          ],
+          "l3_l10_ref": "HARNESS-L3-009-F02/F03 and their fixed HARNESS-L10-009-F02/F03 counterpart; this child does not alter their meaning."
+        },
+        "owner_and_boundary": {
+          "semantic_owner": "HELIX-HARNESS-CORE (CORE009) forms product-application proposal material.",
+          "input": "Existing CallerInputs only. A wrapper calls existing build_proposal_material_detail exactly once with unchanged CallerInputs, binds its actual complete CoreProposalDetailedReturn, and passes that value to the private former.",
+          "private_former": "form_native_proposal_record_detail(CoreProposalDetailedReturn) reads only its one supplied native return, preserves it whole under capture, forms a body-only record and performs no source repair, external I/O, registration, persistence, authority decision or qualification.",
+          "output": "NativeProposalRecordDetailedReturn = closed record {capture: original CoreProposalDetailedReturn whole, record: NativeProposalRecordMaterial}. Member order is capture then record.",
+          "prohibited_runtime_inputs": [
+            "expected value",
+            "cached return",
+            "caller-return replacement",
+            "source-qualification boolean",
+            "same-call boolean",
+            "OS project scope",
+            "OS Ref4"
+          ],
+          "consumer_boundary": "The body is candidate material for later owner-qualified OS proposal handling. The relevant consumer boundary is HELIX-OS OS053 `OwnerInputPort` (`docs/helix-os/L4-basic-design/atomic-canonicalization.json#/ports/0`): its presence does not establish a producer-to-port binding. OS002/OS053 receipt, selected/used sets, dispatch, source qualification, record/container identity and persistence are not established by this contract."
+        },
+        "source_pool_roles": {
+          "captured_pool": "The original compare_candidate_universe candidate_member_refs material is the enumerated source pool; preserve original order, duplicates, raw presence/null/type and source Read.",
+          "membership_partition": "For each observed result occurrence, preserve required/conditional candidate entries, valid N/A exclusion candidates, and unresolved/unformed residuals in separate stable arrays. Do not choose a winner, merge policy occurrences, deduplicate, or drop a valid sibling because another occurrence is unresolved.",
+          "coverage": "EnumerationCoverage describes only structural occurrence correspondence from every source-array index to result occurrences and their retained original member_read. It is not membership resolution, owner/source qualification or universe exactness.",
+          "membership_completion": "Describes only whether captured observed results were partitioned without residuals and the enumerated coverage is complete. Incomplete or unavailable coverage prevents resolved_for_captured_members even when residual_entries is empty. It cannot certify source-pool completeness or exactness.",
+          "original_universe_exactness": "Retain the original comparison observation and CallerInputs locations with not_recomputed/no_new_exactness_claim. The original comparison alone owns universe boundary/source/revision/scope and qualified semantic equality."
+        },
+        "closed_record_shapes": {
+          "CandidateEntry": [
+            "result_index",
+            "member_index",
+            "kind: required_candidate|conditional_candidate",
+            "template_ref_read: original full Read<CoreRef>",
+            "native_result_location"
+          ],
+          "NAExclusionEntry": [
+            "result_index",
+            "member_index",
+            "kind: na_exclusion_candidate",
+            "template_ref_read: original full Read<CoreRef>",
+            "native_result_location"
+          ],
+          "ResidualEntry": [
+            "result_index",
+            "member_index",
+            "template_ref_read: original full Read<CoreRef>",
+            "membership: original unresolved|unformed full value and causes",
+            "native_result_location"
+          ],
+          "EnumerationCoverage.enumerated": [
+            "member_coverage: source index order",
+            "unmatched_result_indices: original result order",
+            "unreadable_result_indices: original result order",
+            "completion: covered_as_captured|incomplete_as_captured"
+          ],
+          "EnumerationCoverage.not_observed": [
+            "source_observation_location: original F02 producer observation"
+          ],
+          "EnumerationCoverage.unavailable_shape": [
+            "source_material_location: original considered material and Read",
+            "result_indices: all original template result indices; never coerce to empty"
+          ],
+          "MemberCoverage": [
+            "member_index",
+            "result_indices: every matching occurrence in original order",
+            "correspondence: corresponding|different|unreadable"
+          ],
+          "OriginalUniverseExactnessBasis": [
+            "state: not_recomputed",
+            "producer_observation_location",
+            "caller_inputs_location",
+            "claim: no_new_exactness_claim"
+          ],
+          "NativeReturnLocation": [
+            "root: native_proposal_return",
+            "pointer: RFC6901 pointer into former input"
+          ]
+        },
+        "formation_and_failure": {
+          "stable_partition": "Walk proposal.template_results once in source order. Each occurrence is retained once in the array selected by its original membership kind. Preserve all other result fields, policy occurrences, source row/NA4, conditions, findings, causes and producer material in capture.",
+          "correspondence": "For each source member index, exactly one result whose original member_index matches and whose present member_read is JSON-type-equal to the original source member is corresponding. Known mismatch is different; absent, duplicate, unreadable or invalid correspondence is unreadable. Out-of-range result indices remain unmatched in source order. Preserve duplicate source entries and duplicate result occurrences.",
+          "completion_rules": "Coverage is covered_as_captured only when every original source index is corresponding and unmatched/unreadable lists are empty. Known [] with no results remains enumerated/covered with empty rows. Absent/null/non-array source remains unavailable_shape. Unobserved producer remains not_observed. For observed output, membership_completion is resolved_for_captured_members only when there are no residuals and coverage is complete; otherwise residual_for_captured_members. Unobserved producer yields not_observed.",
+          "failures": [
+            "producer not observed",
+            "missing or cross-call return",
+            "scope/revision mismatch",
+            "source/member Read absent or malformed",
+            "unmatched, duplicate or unreadable occurrence",
+            "unresolved/unformed membership",
+            "missing N/A basis"
+          ],
+          "failure_behavior": "Keep original value, Read, occurrence order and finding/residual; do not coerce to empty, N/A, success or globally unavailable. A residual does not erase an unrelated valid candidate. Do not infer exactness from empty residuals/findings or complete local coverage."
+        },
+        "legacy_comparison": {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "source_lines": "36–60, 81–92",
+          "mode": "semantic_rederivation",
+          "keep": "候補集合・unknown・理由付きN/A・Backflow・義務/対oracle/版traceを照合する。",
+          "change": "COREのbody材料形成を独立したnative capture/recordとして切り出し、BRAIN知識・CORE適用・OS案件記録の責務を分離する。",
+          "reason": "採択COREAPPLYと現行F02/F03の既存責務に基づく。旧registry digest gate、式木、planner/runtimeは移植しない。"
+        },
+        "failure_basis": [
+          {
+            "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "lines": "65–101",
+            "failure": "UTW-014: 欠損sourceを空集合へ縮退させabsenceを見落とす。",
+            "prevention": "not_observed/unavailable_shapeと既知emptyを区別し、原Readを保持する。"
+          },
+          {
+            "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "lines": "65–101",
+            "failure": "UTW-020: partial failureがaggregateに隠れて診断単位が粗い。",
+            "prevention": "occurrenceごとのcandidate/exclusion/residualとcoverage findingを保持する。"
+          },
+          {
+            "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "lines": "65–101",
+            "failure": "UTW-021: completionが自己申告・件数/hashへ戻り得る。",
+            "prevention": "局所coverage・membership・元universe exactnessの3役を分離し、hashや件数から資格/完了を生成しない。"
+          }
+        ],
+        "unclosed": [
+          "L5関数・閉型codec・L8の実接続は未作成。このL4/L9候補と凍結有限caseは製品実装/CI/Greenではない。",
+          "valid N/A除外と既知empty/unknownの境界は未行使。4 oracle case中1件は、未解決result 1件を除いたcounterfactualで欠落coverageを行使するが、duplicate、範囲外index、別形のcoverage破損は未行使。",
+          "native record identity/revision/source_ref、登録operation identityと保存はCallerInputsに供給元のbindingがなく未成立。hash/filename/上流要求Refから新identityを生成しない。",
+          "OS Ref4/project scope、OS002/OS053 owner資格、配送・受信、source qualification、selected/used/評価集合への投影は別境界で未完。",
+          "上流COREAPPLY要件の意味変更は含まない。追加の要求不足が見つかった場合は既存Backflowへ候補として戻す。"
+        ]
       }},
     {
       "id": "HARNESS-L4-009-F03",
