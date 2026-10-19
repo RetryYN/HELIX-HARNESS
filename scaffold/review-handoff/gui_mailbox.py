@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""同じVS Codeの既存GUIセッションを結ぶ仮設通知箱。providerを起動しない。"""
+"""同じVS Codeの既存GUIセッション（Claude・Codex・Devin・Antigravity）を結ぶ仮設通知箱。providerを起動しない。"""
 import argparse
 from contextlib import contextmanager
 import fcntl
@@ -16,7 +16,14 @@ import packet as p
 HERE = Path(__file__).resolve().parent
 STORE = HERE / "local" / "gui"
 BINDING = HERE.parent / "bindings" / "SCF-B-0003.json"
-RUNTIMES = ("claude", "codex")
+RUNTIMES = p.RUNTIMES
+# ClaudeとCodexは作成（execution）とレビュー対応（review_merge）のどちらにも就く。DevinとAntigravityは作業（worker）だけ。
+LANES = {"claude": ("execution", "review_merge"), "codex": ("execution", "review_merge"),
+         "devin": ("worker",), "antigravity": ("worker",)}
+# 同じ役割を同時に二つのruntimeへ割り当てない役割。workerは複数のruntimeが並んで持てる。
+EXCLUSIVE_LANES = ("execution", "review_merge")
+HOOK_EVENTS = {"claude": ("SessionStart", "Stop", "ConfigChange"), "codex": ("SessionStart", "Stop"),
+               "devin": ("SessionStart", "Stop"), "antigravity": ("SessionStart", "Stop")}
 RECEIVE_POLL_SECONDS = 1.0
 # 対応済み（acked）・期限切れの通知は本文を消し、同じevent ID・同じ内容の再送を見分ける小さな記録だけをこの間残す。
 CLOSED_RETENTION_SECONDS = 86400
@@ -101,11 +108,16 @@ def close(data, event_id, status, now):
         receiver_runtime=payload["receiver_runtime"], receiver_session=payload["receiver_session"],
         nonce=claim.get("nonce"), closed=ended)
     request = payload["request"]
+    work = data.get("work", {}).get(payload["receiver_runtime"])
+    if payload["kind"] == "work_request" and status != "acked" and work and work["event_id"] == event_id:
+        # 受け取られずに終わった作業依頼は着手されていない。次の依頼を止めない。
+        del data["work"][payload["receiver_runtime"]]
     # 監査記録は識別子と時刻だけ。依頼・応答の本文（purpose、scope、findings等）は書かない。
     return dict(event_id=event_id, kind=payload["kind"], status=status, digest=message["digest"],
                 sender_runtime=payload["sender_runtime"], sender_session=payload["sender_session"],
                 receiver_runtime=payload["receiver_runtime"], receiver_session=payload["receiver_session"],
-                request_id=request.get("request_id"), pr=request.get("pr"), base_sha=request.get("base_sha"),
+                request_id=request.get("request_id"), pr=request.get("pr"), issue=request.get("issue"),
+                base_sha=request.get("base_sha"),
                 content_sha=request.get("content_sha"), created=message.get("created"), expires=message["expires"],
                 claimed=claim.get("at"), acked=(message.get("ack") or {}).get("at"), closed=ended)
 
@@ -159,13 +171,14 @@ def remove_orphan_temps(store, now):
 
 
 def bind(data, runtime, session, lane, ttl, now):
-    p.require(runtime in RUNTIMES and lane in ("execution", "review_merge"), "レーン形式不正")
+    p.require(runtime in RUNTIMES and lane in LANES[runtime], "レーン形式不正")
     identity(session)
     p.require(1 <= ttl <= 7200, "TTL範囲は1..7200秒")
     prior = data["lanes"].get(runtime)
     p.require(not prior or prior["expires"] <= now or prior["session"] == session, "生存中レーンの別sessionへの上書き禁止。unbindが必要")
-    other = data["lanes"].get("codex" if runtime == "claude" else "claude")
-    p.require(not other or other["expires"] <= now or other["lane"] != lane, "同じ役割への二重binding")
+    if lane in EXCLUSIVE_LANES:
+        for other_runtime, other in data["lanes"].items():
+            p.require(other_runtime == runtime or other["expires"] <= now or other["lane"] != lane, "同じ役割への二重binding")
     data["lanes"][runtime] = dict(session=session, lane=lane, expires=now + ttl)
 
 
@@ -177,21 +190,37 @@ def lane(data, runtime, session, now):
 
 def send(data, runtime, session, event_id, kind, request, response, ttl, now):
     identity(event_id)
-    source = lane(data, runtime, session, now)
-    target_runtime = "claude" if runtime == "codex" else "codex"
+    lane(data, runtime, session, now)
+    # 宛先は送り手の相手方ではなく、packetが指す作成側・review側・作業側で決める。packetが両者を別runtimeに限る。
+    if kind in ("review_request", "review_response"):
+        # PRの作成とreviewはClaudeとCodexだけ。作業側runtimeのPR経路をCLI検証に頼らずここでも閉じる。
+        p.require({request.get("author"), request.get("reviewer")} == set(p.PR_RUNTIMES), "PRの作成側・review側はClaudeとCodex")
+    if kind == "review_request":
+        p.require(request.get("schema") == "scaffold-review-request.v1", "review依頼schema不一致")
+        p.require(runtime == request["author"] and response is None, "review依頼のruntime/応答不正")
+        target_runtime = request["reviewer"]
+    elif kind == "review_response":
+        p.require(request.get("schema") == "scaffold-review-request.v1", "review依頼schema不一致")
+        p.require(runtime == request["reviewer"], "reviewer不一致")
+        p.validate_response(response, request)
+        target_runtime = request["author"]
+    elif kind == "work_request":
+        p.require(request.get("schema") == "scaffold-work-request.v1", "作業依頼schema不一致")
+        p.require(runtime == request["dispatcher"] and response is None, "作業依頼のruntime/応答不正")
+        target_runtime = request["worker"]
+    elif kind == "work_result":
+        p.require(request.get("schema") == "scaffold-work-request.v1", "作業依頼schema不一致")
+        p.require(runtime == request["worker"], "作業側不一致")
+        p.validate_work_result(response, request)
+        target_runtime = request["dispatcher"]
+    else:
+        raise ValueError("通知kind不正")
+    p.require(target_runtime in RUNTIMES and target_runtime != runtime, "宛先runtime不正")
     target = data["lanes"].get(target_runtime)
     # leaseが切れた登録済みsessionへも積む。同じsessionの次のhook activityがleaseを更新して受け取る。
     p.require(target, "宛先レーン未登録")
     p.require(request["route"] == "vscode_gui_mailbox", "GUI経路のrequestが必要")
     p.require(1 <= ttl <= 7200, "TTL範囲は1..7200秒")
-    # 向きはレーンではなくPRごとの作成側・review側で決める。packetが作成側とreview側を別runtimeに限る。
-    if kind == "review_request":
-        p.require(runtime == request["author"] and response is None, "review依頼のruntime/応答不正")
-    elif kind == "review_response":
-        p.require(runtime == request["reviewer"], "reviewer不一致")
-        p.validate_response(response, request)
-    else:
-        raise ValueError("通知kind不正")
     payload = dict(evidence_kind="scaffold", authority_effect="none", event_id=event_id, kind=kind,
                    sender_runtime=runtime, sender_session=session, receiver_runtime=target_runtime,
                    receiver_session=target["session"], request=request, response=response)
@@ -218,10 +247,53 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now):
     for closed_id, value in closed.items():
         if value["content"] == key:
             return dict(payload=dict(event_id=closed_id), digest=value["digest"], status=value["status"])
+    work = data.setdefault("work", {})
+    if kind == "work_request":
+        # 1つの作業側が同時に持つ作業依頼は1件。作業結果か明示releaseまで次を受け付けない。
+        p.require(active_work(data, target_runtime, now) is None, "作業側に未完了の作業依頼がある")
+        work[target_runtime] = dict(event_id=event_id, request_id=request["request_id"],
+                                    payload_sha256=request["payload_sha256"], issue=request["issue"],
+                                    dispatcher=runtime, since=now)
+    elif kind == "work_result":
+        # 作業側が結果（提案・未完・辞退）を返したら、その作業側は次の依頼を受けられる。
+        # 枠を外すのは、現在の割当と同じ依頼payloadへの結果だけ。取り下げ後の遅い結果で別の割当を外さない。
+        current = work.get(runtime)
+        if current and current["payload_sha256"] == request["payload_sha256"] and current["dispatcher"] == request["dispatcher"]:
+            del work[runtime]
     message = dict(payload=payload, digest=digest, created=now, expires=now + ttl,
                    status="queued", claim=None, ack=None)
     data["messages"][event_id] = message
     return message
+
+
+def active_work(data, worker, now):
+    """作業側の現在の割当。受け取られないまま期限を過ぎた依頼は、終了記録の保持期間を待たずに外す。
+    ACK済みの依頼は期限では外さず、作業結果か明示releaseで外す。"""
+    current = data.get("work", {}).get(worker)
+    if not current:
+        return None
+    if current.get("acked_at") is not None:
+        return current
+    message = data["messages"].get(current["event_id"])
+    if message is not None and message["status"] in ("queued", "claimed") and message["expires"] <= now:
+        message["status"] = "expired"
+    if message is not None and message["status"] in ("queued", "claimed"):
+        return current
+    del data["work"][worker]
+    return None
+
+
+def release_work(data, runtime, session, worker, now):
+    """依頼した側か作業側が、作業結果を送らずに作業依頼を終える（中止・取り下げ）。"""
+    lane(data, runtime, session, now)
+    current = data.get("work", {}).get(worker)
+    p.require(current, "未完了の作業依頼がない")
+    p.require(runtime in (current["dispatcher"], worker), "release権限がない")
+    message = data["messages"].get(current["event_id"])
+    if message is not None and message["status"] in ("queued", "claimed"):
+        # 取り下げた依頼を後から配送・ACKさせない。cancelledは既存の終了記録・監査記録の経路で閉じる。
+        message["status"] = "cancelled"
+    del data["work"][worker]
 
 
 def claim(data, runtime, session, now):
@@ -268,6 +340,10 @@ def ack(data, event_id, runtime, session, digest, nonce, now):
     p.require(message["digest"] == digest and message["claim"]["nonce"] == nonce, "ACK digest/nonce不一致")
     message["status"] = "acked"
     message["ack"] = dict(session=session, at=now)
+    current = data.get("work", {}).get(runtime)
+    if payload["kind"] == "work_request" and current and current["event_id"] == event_id:
+        # 着手した作業を割当側に記録する。終了通知の記録（closed）は24時間で消えるため、それに頼らない。
+        current["acked_at"] = now
 
 
 def retry(data, runtime, session, event_id, now):
@@ -338,19 +414,36 @@ def apply_enrollment(data, runtime, session, now, chain):
         pass
 
 
-def hook(runtime, wait):
+def hook_input(runtime, entry, event_arg=None):
+    """runtimeごとのhook入力を、session・event・作業directoryへ揃える。"""
+    p.require(isinstance(entry, dict), "hook入力形式不正")
+    if runtime == "antigravity":
+        # Antigravityはcamel caseで、event名を入力に持たない。設定側が--eventで渡す。
+        session, event = entry.get("conversationId"), event_arg
+        paths = entry.get("workspacePaths")
+        cwd = paths[0] if isinstance(paths, list) and len(paths) == 1 else None
+    else:
+        session, event = entry.get("session_id"), entry.get("hook_event_name") or event_arg
+        cwd = entry.get("cwd")
+        if runtime == "devin" and cwd is None:
+            # Devinの入力にcwdは無い。Devinが設定するproject rootを使う。
+            cwd = os.environ.get("DEVIN_PROJECT_DIR")
+    p.require(event_arg is None or event == event_arg, "hook event不一致")
+    p.require(event in HOOK_EVENTS[runtime], "未対応hook event")
+    return identity(session), event, cwd
+
+
+def hook(runtime, wait, event_arg=None):
     if not binding_active():
         print("{}")
         return
     entry = json.load(sys.stdin)
-    session = identity(entry.get("session_id"))
-    event = entry.get("hook_event_name")
-    p.require(event in ("SessionStart", "Stop", "ConfigChange"), "未対応hook event")
+    session, event, cwd = hook_input(runtime, entry, event_arg)
     if event == "ConfigChange":
         p.require(runtime == "claude" and entry.get("source") == "user_settings", "回復hookの対象外")
         p.require(entry.get("file_path") == str(Path.home() / ".claude/settings.json"), "回復hookの設定path不一致")
-    p.require(isinstance(entry.get("cwd"), str) and Path(entry["cwd"]).is_absolute(), "hook cwdが必要")
-    cwd = Path(entry.get("cwd", "")).resolve()
+    p.require(isinstance(cwd, str) and Path(cwd).is_absolute(), "hook cwdが必要")
+    cwd = Path(cwd).resolve()
     # 同じGit repositoryのGUIだけ。別projectや裸CLIをこの設定から起動しない。
     result = __import__("subprocess").run(["git", "-C", str(cwd), "rev-parse", "--path-format=absolute", "--git-common-dir"],
                                          capture_output=True, text=True)
@@ -367,7 +460,7 @@ def hook(runtime, wait):
         if registered and registered["session"] == session:
             registered["expires"] = now + 3600
         active = registered and registered["session"] == session and registered["expires"] > now
-    if entry.get("hook_event_name") == "SessionStart" or not active:
+    if event == "SessionStart" or not active:
         print("{}")
         return
     watcher = uuid.uuid4().hex
@@ -388,29 +481,33 @@ def hook(runtime, wait):
     if runtime == "claude":
         print(notification(message), file=sys.stderr)
         raise SystemExit(42)
-    print(json.dumps({"decision": "block", "reason": notification(message)}, ensure_ascii=False))
+    # Codex・DevinのStopは"block"、Antigravityは"continue"で停止を止め、reasonを同じ会話へ入れる。
+    decision = "continue" if runtime == "antigravity" else "block"
+    print(json.dumps({"decision": decision, "reason": notification(message)}, ensure_ascii=False))
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
-    for command in ("bind", "enroll", "unbind", "send", "receive", "ack", "retry", "hook", "inspect"):
+    for command in ("bind", "enroll", "unbind", "send", "receive", "ack", "retry", "hook", "inspect", "release-work"):
         cmd = sub.add_parser(command)
         cmd.add_argument("--runtime", choices=RUNTIMES, required=True)
         if command not in ("hook", "enroll"): cmd.add_argument("--session", required=True)
         if command in ("bind", "enroll"):
-            cmd.add_argument("--lane", choices=("execution", "review_merge"), required=True)
+            cmd.add_argument("--lane", choices=("execution", "review_merge", "worker"), required=True)
             cmd.add_argument("--ttl", type=int, default=3600)
         if command == "enroll": cmd.add_argument("--pid", type=int, required=True)
         if command == "send":
             cmd.add_argument("--id", required=True)
-            cmd.add_argument("--kind", choices=("review_request", "review_response"), required=True)
+            cmd.add_argument("--kind", choices=("review_request", "review_response", "work_request", "work_result"), required=True)
             cmd.add_argument("--request", required=True)
             cmd.add_argument("--response")
             cmd.add_argument("--base", required=True)
-            cmd.add_argument("--head", required=True)
+            cmd.add_argument("--head")
             cmd.add_argument("--ttl", type=int, default=3600)
         if command in ("receive", "hook"): cmd.add_argument("--wait", type=int, default=45)
+        if command == "hook": cmd.add_argument("--event", choices=("SessionStart", "Stop"))
+        if command == "release-work": cmd.add_argument("--worker", choices=RUNTIMES, required=True)
         if command in ("ack", "retry", "inspect"): cmd.add_argument("--id", required=True)
         if command == "ack":
             cmd.add_argument("--digest", required=True)
@@ -419,14 +516,20 @@ def main():
     args = parser.parse_args()
     try:
         if args.command == "hook":
-            hook(args.runtime, args.wait)
+            hook(args.runtime, args.wait, args.event)
             return
         if args.command == "receive":
             print(json.dumps(receive(args.runtime, identity(args.session), args.wait), ensure_ascii=False))
             return
         if args.command == "send":
             request = json.loads(Path(args.request).read_text())
-            p.validate(request, args.base, args.head)
+            if args.kind in ("work_request", "work_result"):
+                p.require(args.head is None, "作業依頼・作業結果に--headは使わない")
+                p.require((args.response is None) == (args.kind == "work_request"), "作業結果だけが--responseを持つ")
+                p.validate_work(request, args.base)
+            else:
+                p.require(bool(args.head), "--headが必要")
+                p.validate(request, args.base, args.head)
             response = json.loads(Path(args.response).read_text()) if args.response else None
         with state() as data:
             now = time.time()
@@ -444,7 +547,7 @@ def main():
                 del data["lanes"][args.runtime]
             elif args.command == "send":
                 message = send(data, args.runtime, args.session, args.id, args.kind, request, response, args.ttl, now)
-                target = data["lanes"]["claude" if args.runtime == "codex" else "codex"]
+                target = data["lanes"][message["payload"]["receiver_runtime"]]
                 print(json.dumps(dict(event_id=message["payload"]["event_id"], digest=message["digest"], status=message["status"],
                                       receiver_lease_active=target["expires"] > now)))
             elif args.command == "ack": ack(data, args.id, args.runtime, args.session, args.digest, args.nonce, now)
@@ -457,8 +560,10 @@ def main():
                 print(json.dumps(dict(untrusted_data=m), ensure_ascii=True))
             elif args.command == "retry":
                 retry(data, args.runtime, args.session, args.id, now)
+            elif args.command == "release-work":
+                release_work(data, args.runtime, args.session, args.worker, now)
             elif args.command == "status":
-                print(json.dumps(dict(lanes=data["lanes"], enrollment=data.get("enrollment",{}), observed=data["observed"], messages={key:dict(status=effective_status(m, now), expires=m["expires"], kind=m["payload"]["kind"]) for key,m in data["messages"].items()}, closed={key:dict(status=value["status"], closed=value["closed"]) for key,value in data.get("closed",{}).items()}), ensure_ascii=False, indent=2))
+                print(json.dumps(dict(lanes=data["lanes"], work=data.get("work",{}), enrollment=data.get("enrollment",{}), observed=data["observed"], messages={key:dict(status=effective_status(m, now), expires=m["expires"], kind=m["payload"]["kind"]) for key,m in data["messages"].items()}, closed={key:dict(status=value["status"], closed=value["closed"]) for key,value in data.get("closed",{}).items()}), ensure_ascii=False, indent=2))
     except (ValueError, TypeError, KeyError, OSError) as error:
         parser.exit(1, "scaffold GUI: 拒否: " + str(error) + "\n")
 

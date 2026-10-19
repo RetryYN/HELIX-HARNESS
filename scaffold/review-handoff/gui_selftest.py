@@ -495,7 +495,7 @@ class GuiChecks(unittest.TestCase):
             self.assertEqual([(x["event_id"], x["status"], x["digest"]) for x in lines], [("event-1", "acked", m["digest"])])
             self.assertEqual(lines[0]["acked"], self.now)
             self.assertEqual(set(lines[0]), {"event_id", "kind", "status", "digest", "sender_runtime", "sender_session",
-                                             "receiver_runtime", "receiver_session", "request_id", "pr", "base_sha",
+                                             "receiver_runtime", "receiver_session", "request_id", "pr", "issue", "base_sha",
                                              "content_sha", "created", "expires", "claimed", "acked", "closed"})
             self.assertNotIn("合成入力の通知試験", json.dumps(lines, ensure_ascii=False))
             with g.state(store) as data:
@@ -629,6 +629,206 @@ class GuiChecks(unittest.TestCase):
         spec=importlib.util.spec_from_file_location("scfctl",g.HERE.parent / "tools/scfctl.py")
         scf=importlib.util.module_from_spec(spec); spec.loader.exec_module(scf)
         self.assertEqual(set(config.FORBIDDEN_POLICY_TEXT), set(scf.INSTRUCTION_FORBIDDEN_TEXT))
+
+    def work(self, worker="devin", request_id="WORK-1"):
+        return json.loads(subprocess.check_output([
+            sys.executable, "-B", str(g.HERE / "packet.py"), "build-work", "--base", self.head, "--issue", "1",
+            "--request-id", request_id, "--dispatcher", "claude", "--worker", worker,
+            "--purpose", "合成入力の作業依頼", "--scope", "GUI受信を主張しない"]))
+
+    def result(self, work, kind="incomplete"):
+        return dict(schema="scaffold-work-result.v1", evidence_kind="scaffold", authority_effect="none",
+                    request_id=work["request_id"], request_payload_sha256=work["payload_sha256"], issue=work["issue"],
+                    base_sha=work["base_sha"], dispatcher=work["dispatcher"], worker=work["worker"], result=kind,
+                    result_sha=None, branch=None, summary=["合成入力。提案なし"])
+
+    def test_four_runtime_lanes(self):
+        # DevinとAntigravityは作業だけのworkerレーン。複数が並べる。ClaudeとCodexの排他レーンは保つ。
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        g.bind(self.data, "antigravity", "agy-gui", "worker", 60, self.now)
+        for runtime, lane in (("devin", "execution"), ("antigravity", "review_merge"), ("claude", "worker")):
+            with self.assertRaises(ValueError): g.bind(self.data, runtime, runtime + "-x", lane, 60, self.now + 61)
+        data = dict(version=1, lanes={}, observed={}, messages={})
+        g.bind(data, "codex", "codex-gui", "review_merge", 60, self.now)
+        with self.assertRaises(ValueError): g.bind(data, "claude", "claude-gui", "review_merge", 60, self.now)
+
+    def test_work_request_routing_and_single_outstanding(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        g.bind(self.data, "antigravity", "agy-gui", "worker", 60, self.now)
+        work = self.work()
+        message = g.send(self.data, "claude", "claude-gui", "work-1", "work_request", work, None, 60, self.now)
+        self.assertEqual(message["payload"]["receiver_runtime"], "devin")
+        self.assertIsNone(g.claim(self.data, "codex", "codex-gui", self.now))
+        claimed = g.claim(self.data, "devin", "devin-gui", self.now)
+        g.ack(self.data, "work-1", "devin", "devin-gui", claimed["digest"], claimed["claim"]["nonce"], self.now)
+        # 同じ作業側へ2件目は送れない。別の作業側へは送れる。
+        with self.assertRaises(ValueError):
+            g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-3", "work_request", self.work("antigravity", "WORK-3"), None, 60, self.now)
+        # 作業側は依頼を送れず、PRのreview依頼・応答も送れない。結果は作業結果で依頼側へ返し、それで作業依頼が終わる。
+        with self.assertRaises(ValueError):
+            g.send(self.data, "devin", "devin-gui", "work-4", "work_request", dict(work, dispatcher="devin"), None, 60, self.now)
+        with self.assertRaises(ValueError):
+            g.send(self.data, "devin", "devin-gui", "devin-review", "review_request", dict(self.request, author="devin"), None, 60, self.now)
+        result = self.result(work)
+        with self.assertRaises(ValueError):
+            g.send(self.data, "antigravity", "agy-gui", "result-x", "work_result", work, result, 60, self.now)
+        sent = g.send(self.data, "devin", "devin-gui", "result-1", "work_result", work, result, 60, self.now)
+        self.assertEqual(sent["payload"]["receiver_runtime"], "claude")
+        self.assertNotIn("devin", self.data["work"])
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, self.now)
+        # 中止は依頼した側か作業側だけ。
+        with self.assertRaises(ValueError): g.release_work(self.data, "codex", "codex-gui", "antigravity", self.now)
+        g.release_work(self.data, "antigravity", "agy-gui", "antigravity", self.now)
+        self.assertNotIn("antigravity", self.data["work"])
+        # 作業依頼はreview依頼の種類として送れず、review依頼は作業依頼として送れない。
+        with self.assertRaises(ValueError):
+            g.send(self.data, "claude", "claude-gui", "mix-1", "review_request", work, None, 60, self.now)
+        with self.assertRaises(ValueError):
+            g.send(self.data, "codex", "codex-gui", "mix-2", "work_request", self.request, None, 60, self.now)
+
+    def test_released_work_is_not_delivered(self):
+        # R1 F1: 取り下げた依頼は配送もACKもされない。新しい依頼は影響を受けない。
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", self.work(), None, 60, self.now)
+        g.release_work(self.data, "claude", "claude-gui", "devin", self.now)
+        self.assertEqual(self.data["messages"]["work-1"]["status"], "cancelled")
+        self.assertIsNone(g.claim(self.data, "devin", "devin-gui", self.now))
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, self.now)
+        m = g.claim(self.data, "devin", "devin-gui", self.now)
+        self.assertEqual(m["payload"]["event_id"], "work-2")
+        # 受信済み（未ACK）の依頼を取り下げると、古いnonceでACKできない。
+        g.release_work(self.data, "devin", "devin-gui", "devin", self.now)
+        with self.assertRaises(ValueError):
+            g.ack(self.data, "work-2", "devin", "devin-gui", m["digest"], m["claim"]["nonce"], self.now)
+        records = g.compact(self.data, self.now)
+        self.assertEqual(sorted((r["event_id"], r["status"]) for r in records), [("work-1", "cancelled"), ("work-2", "cancelled")])
+
+    def test_late_result_does_not_release_current_work(self):
+        # R1 F2: 取り下げた割当への遅い結果で、同じrequest IDを持つ別内容の現在の割当を外さない。
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        old = self.work()
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", old, None, 60, self.now)
+        g.release_work(self.data, "claude", "claude-gui", "devin", self.now)
+        current = json.loads(subprocess.check_output([
+            sys.executable, "-B", str(g.HERE / "packet.py"), "build-work", "--base", self.head, "--issue", "1",
+            "--request-id", "WORK-1", "--dispatcher", "claude", "--worker", "devin",
+            "--purpose", "内容の異なる同じrequest ID", "--scope", "GUI受信を主張しない"]))
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", current, None, 60, self.now)
+        g.send(self.data, "devin", "devin-gui", "late-1", "work_result", old, self.result(old), 60, self.now)
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-2")
+        g.send(self.data, "devin", "devin-gui", "result-2", "work_result", current, self.result(current), 60, self.now)
+        self.assertNotIn("devin", self.data["work"])
+
+    def test_acked_work_is_not_released_by_ttl(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 600, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", self.work(), None, 1, self.now)
+        m = g.claim(self.data, "devin", "devin-gui", self.now)
+        g.ack(self.data, "work-1", "devin", "devin-gui", m["digest"], m["claim"]["nonce"], self.now)
+        g.compact(self.data, self.now + 2)
+        with self.assertRaises(ValueError):
+            g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, self.now + 2)
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-1")
+        # R2 F4: 終了通知の記録（closed）が保持期限で消えても、ACK済みの作業は結果かreleaseまで外れない。
+        later = self.now + 2 + g.CLOSED_RETENTION_SECONDS + 1
+        g.compact(self.data, later)
+        self.assertNotIn("work-1", self.data.get("closed", {}))
+        g.bind(self.data, "claude", "claude-gui", "review_merge", 60, later)
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, later)
+        with self.assertRaises(ValueError):
+            g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, later)
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-1")
+        g.release_work(self.data, "claude", "claude-gui", "devin", later)
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, later)
+
+    def test_unclaimed_expired_work_frees_worker_without_waiting_retention(self):
+        # R1 F3: 受け手が受け取らないまま期限を過ぎた依頼は、終了記録の保持期間を待たずに次の依頼を通す。
+        g.bind(self.data, "devin", "devin-gui", "worker", 600, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", self.work(), None, 1, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, self.now + 2)
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-2")
+        self.assertEqual(self.data["messages"]["work-1"]["status"], "expired")
+
+    def test_unclaimed_expired_work_frees_worker(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", self.work(), None, 1, self.now)
+        g.compact(self.data, self.now + 1 + g.CLOSED_RETENTION_SECONDS)
+        self.assertNotIn("devin", self.data["work"])
+
+    def test_hook_input_adapters(self):
+        root = str(p.ROOT)
+        self.assertEqual(g.hook_input("antigravity", dict(conversationId="agy-1", workspacePaths=[root]), "Stop"),
+                         ("agy-1", "Stop", root))
+        with patch.dict("os.environ", {"DEVIN_PROJECT_DIR": root}):
+            self.assertEqual(g.hook_input("devin", dict(session_id="devin-1", hook_event_name="Stop"), "Stop"),
+                             ("devin-1", "Stop", root))
+        for runtime, entry, event in (("antigravity", dict(conversationId="a", workspacePaths=[root]), None),
+                                      ("antigravity", dict(conversationId="a", workspacePaths=[root, root]), "Stop"),
+                                      ("devin", dict(session_id="d", hook_event_name="SessionStart"), "Stop"),
+                                      ("devin", dict(session_id="d", hook_event_name="ConfigChange"), None),
+                                      ("codex", dict(session_id="c", hook_event_name="ConfigChange", cwd=root), None)):
+            try:
+                _, _, cwd = g.hook_input(runtime, entry, event)
+                self.assertIsNone(cwd)
+            except ValueError:
+                pass
+
+    def test_worker_hook_output(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        g.bind(self.data, "antigravity", "agy-gui", "worker", 60, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", self.work(), None, 60, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work("antigravity", "WORK-2"), None, 60, self.now)
+        from contextlib import contextmanager
+        @contextmanager
+        def fake_state(): yield self.data
+        for runtime, session, entry, decision in (
+                ("devin", "devin-gui", dict(session_id="devin-gui", hook_event_name="Stop", cwd=str(p.ROOT)), "block"),
+                ("antigravity", "agy-gui", dict(conversationId="agy-gui", workspacePaths=[str(p.ROOT)]), "continue")):
+            m = g.claim(self.data, runtime, session, self.now)
+            stdout = io.StringIO()
+            with patch.object(g, "state", fake_state), patch.object(g, "receive", return_value=m), \
+                    patch.object(sys, "stdin", io.StringIO(json.dumps(entry))), patch.object(sys, "stdout", stdout):
+                g.hook(runtime, 0, "Stop")
+            self.assertEqual(json.loads(stdout.getvalue())["decision"], decision)
+
+    def test_worker_hook_config(self):
+        devin_old = {"version": 1, "hooks": {"Stop": [{"hooks": [{"type": "command", "command": "existing-hook"}]}]}}
+        devin = config.update(devin_old, "devin")
+        self.assertEqual(devin, config.update(devin, "devin"))
+        self.assertEqual(config.count_owned(devin, "devin"), config.OWNED_COUNTS["devin"])
+        self.assertIs(devin["read_config_from"]["claude"], False)
+        removed = config.update(devin, "devin", True)
+        self.assertEqual(removed["hooks"], devin_old["hooks"])
+        self.assertEqual(config.count_owned(removed, "devin"), 0)
+        agy_old = {"helix_guard": {"PreToolUse": [{"matcher": "*", "hooks": [{"type": "command", "command": "guard.py", "timeout": 10}]}]}}
+        agy = config.update(agy_old, "antigravity")
+        self.assertEqual(agy, config.update(agy, "antigravity"))
+        self.assertEqual(config.count_owned(agy, "antigravity"), config.OWNED_COUNTS["antigravity"])
+        self.assertEqual(config.update(agy, "antigravity", True), agy_old)
+        # 別名の項目へ移された所有処理も撤去する。
+        moved = dict(agy_old, other={"Stop": copy.deepcopy(agy[config.ANTIGRAVITY_GROUP]["Stop"])})
+        self.assertEqual(config.update(moved, "antigravity", True), dict(agy_old, other={}))
+        for runtime in ("devin", "antigravity"):
+            commands = json.dumps(config.entries(runtime))
+            self.assertIn("--event", commands)
+
+    def test_external_hook_residuals_worker_formats(self):
+        import importlib.util
+        spec=importlib.util.spec_from_file_location("scfctl",g.HERE.parent / "tools/scfctl.py")
+        scf=importlib.util.module_from_spec(spec); spec.loader.exec_module(scf)
+        binding=dict(id="SCF-B-0003",state="active",upstream=[dict(path="scaffold/external-references/SCF-B-0003.json")])
+        with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
+            home=Path(directory); (home / ".gemini/config").mkdir(parents=True); (home / ".config/devin").mkdir(parents=True)
+            agy=home / ".gemini/config/hooks.json"; devin=home / ".config/devin/config.json"
+            agy.write_text(json.dumps(config.update({}, "antigravity"))); devin.write_text(json.dumps(config.update({}, "devin")))
+            self.assertEqual(scf.external_hook_residuals(binding,str(home)),[])
+            duplicate=config.update({}, "antigravity"); duplicate["copy"]=copy.deepcopy(duplicate[config.ANTIGRAVITY_GROUP])
+            duplicate["copy2"]=copy.deepcopy(duplicate[config.ANTIGRAVITY_GROUP])
+            agy.write_text(json.dumps(duplicate))
+            self.assertTrue(scf.external_hook_residuals(binding,str(home)))
+            agy.write_text(json.dumps(config.update({}, "antigravity")))
+            binding["state"]="retired"
+            self.assertTrue(scf.external_hook_residuals(binding,str(home)))
 
     def test_external_hook_residuals(self):
         import importlib.util

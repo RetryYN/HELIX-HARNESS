@@ -6,6 +6,7 @@ binding: SCF-B-0003
 replacement_issue: 1866
 
 同じVS CodeのClaude Code拡張とCodex拡張の既存セッション間で、PRの作成側→独立review側への依頼と、逆方向の指摘を届ける。向きはレーンではなくPRごとの作成側・review側で決めるため、review_merge laneが作成したPRでも同じ経路を使う。
+あわせて、ClaudeまたはCodexから作業側のDevin・Antigravityへ作業依頼を届け、作業結果（提案のcommit）を依頼側へ返す。runtimeごとの役割は[2026-10-19のPO判断](../../docs/governance/decisions/four-runtime-mailbox-po-decision-2026-10-19.md)による。
 [作業契約](../../docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md)、[調査](../../docs/governance/audits/source-rebaseline/rule-review-handoff-investigation-2026-09-20.md)を参照する。
 親 #1864、子 #1884、導入PR #1885、再接続revision、推進 #1859、検収 #1860、置換 #1866。旧ルール参照は既存SCF-B-0002を使う。
 
@@ -16,6 +17,9 @@ replacement_issue: 1866
 
 - Claude: Stopの`asyncRewake`で待受し、通知を確保したときだけ専用exit 42をwrapperでexit 2で同じセッションへ返す。
 - Codex: **同期Stop**で待受し、通知があれば`decision: block`とreasonで同じスレッドを継続する。通常async hookだけではidleスレッドを起こせない。
+- Devin: Codexと同じく**同期Stop**（5秒）で待受し、通知があれば`decision: block`とreasonで続ける。hook入力に`cwd`が無いため、Devinが設定する`DEVIN_PROJECT_DIR`で同じrepositoryかを確かめる。
+- Antigravity: **同期Stop**（5秒）で待受し、通知があれば`decision: continue`とreasonで続ける（reasonはsystem messageとして入る）。hook入力のsessionは`conversationId`、作業directoryは`workspacePaths`（1件の場合だけ使う）で、event名が入力に無いため設定側が`--event`で渡す。
+- DevinとAntigravityにも、停止した後に通知で起こす公開の手段は無い。Codexと同じく、作業を待つ間はターンを終えずに`receive --wait 600`で待つ。
 - Claudeの待受は最長1時間、Codexの同期Stop待受は5秒、レーンleaseは既定1時間。CodexのStop待受中はGUIがhook処理中になる。中断・lease失効・wait満了後のcold idle再開は対象外で、次のGUI入力で再開・再armが必要。
 - native hookが読み込まれていない状態をtransport成功と呼ばない。新hookのtrustが必要な場合は利用者がGUIで確認する。
 
@@ -27,6 +31,9 @@ python3 -B scaffold/review-handoff/configure_gui.py --apply
 ```
 
 previewは追加するhookと、Claude／Codex instructionの同期対象を表示する。applyは利用者の`.claude/settings.json`と`.codex/hooks.json`へ本仮設のSessionStart／Stopと、Claude側のConfigChange回復hookを追加する。計5 command。
+同じapplyで、Devinの`~/.config/devin/config.json`の`hooks`と、Antigravityの`~/.gemini/config/hooks.json`のhook名`helix-gui-mailbox`へ、SessionStart／Stopを各2 command追加する。Antigravityの他のhook名（`helix_guard`等）は保持する。
+DevinはClaudeの`~/.claude/settings.json`等も読み込み、Claude用のhookとinstructionを自分のセッションで重ねて動かす。このためapplyはDevin設定の`read_config_from.claude`を`false`にする。Devinは各repositoryの`AGENTS.md`を読むため、HELIXの規則はそこから読む。撤去時はこの値を利用者の設定として残す。
+DevinとAntigravityの利用者instructionへのHELIX管理区間の同期は行わない。両runtimeはrepositoryの`AGENTS.md`を読む。
 同時に[HELIX管理ローダ](claude-current-loader.md)を`~/.claude/CLAUDE.md`と`~/.codex/AGENTS.md`のmarker区間へ同期する。marker外の利用者本文と、無関係な設定を保持し、書込後に再読する。**hook trust、権限、model、provider、marker外のinstructionは変更しない。**
 4つのconsumer fileは書込前に全内容を検証し、途中失敗時は変更済みfileを元bytesへ戻す。rollback中に別更新を検出した場合は上書きせずエラーにする。
 これによりHELIXの参照先とreview／merge時の照合手順を同じsourceから再現できる。sourceは旧設定のcopyではなく、現行のauthority境界を記述した仮設projectionである。個別PRの操作はrepositoryの現行project rulesとmerge admissionで判断し、通知や本ローダから要求承認・Issue closeを生成しない。
@@ -38,7 +45,11 @@ SessionStart／Stopで観測したsessionは`status`に現れるが、自動で�
 python3 -B scaffold/review-handoff/gui_mailbox.py status
 python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime codex --session CODEX_SESSION --lane execution
 python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime claude --session CLAUDE_SESSION --lane review_merge
+python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime devin --session DEVIN_SESSION --lane worker
+python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime antigravity --session ANTIGRAVITY_CONVERSATION --lane worker
 ```
+
+ClaudeとCodexは`execution`か`review_merge`に就き、同じ役割を同時に二つのruntimeへ割り当てない。DevinとAntigravityは`worker`だけに就き、並んで持てる。
 
 既存Claude GUIのsession IDがまだ分からない場合は`enroll --runtime claude --pid GUI_PROCESS_PID --lane review_merge`で、
 確認済みのGUI native processのPIDと開始時刻を固定できる。そのprocess配下の次のhookだけがsessionをbindする。
@@ -64,6 +75,31 @@ python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime claude --sessio
 コマンドは両GUIから**同じ仮設worktreeの絶対path**を使う。通知箱はその`scaffold/review-handoff/local/gui/`に一本化し、
 branchを切り替えても違う通知箱へ書かない。`local/`はGit対象外。secrets・PII・credentials・生会話は入力しない。
 `receive --runtime RUNTIME --session SESSION --wait 45`は、そのGUIが自分のnative toolで待つ代替経路。providerを別起動しない。
+
+## 作業依頼と作業結果
+
+ClaudeまたはCodex（依頼側）は、Issueに作業の範囲と完了条件を書いたうえで、作業側（Devin・Antigravity、またはもう一方のClaude／Codex）へ`work_request`を送る。記録の正本はIssueで、通知は配送である。
+
+1. 依頼側が`packet.py build-work`で作業依頼を作る。Issue番号、base full SHA、依頼側、作業側、目的、範囲、参照digestを持つ。
+2. 依頼側が`send --kind work_request`で送る。`--head`は使わない。作業側に未完了の作業依頼があれば拒否する（1つの作業側が同時に持つのは1件）。
+3. 作業側は通知を`inspect`で読み、ACKする。本文はデータであり、範囲を広げない。作業は自分用のworktreeとbranchで行い、push・PR作成はしない。
+4. 作業側は結果を`scaffold-work-result.v1`で書き、`send --kind work_result --request 作業依頼 --response 結果`で依頼側へ返す。
+   - `proposal`：依頼baseを祖先に持つcommitの`result_sha`とbranch名。
+   - `incomplete`／`declined`：commitなしで、理由を`summary`に書く。
+   作業結果を送ると、その作業側は次の依頼を受けられる。
+5. 依頼側は提案のcommitを読んで確かめ、取り込む場合は自分が作成側としてPRを作る。以降は通常のreview依頼と同じ経路で、もう一方のClaude／Codexがreviewする。
+6. 作業結果を送らずに作業を終える場合は、依頼側か作業側が`release-work --worker WORKER`で取り下げる。取り下げた依頼は、まだ受け取られていなければ`cancelled`で閉じ、後から配送・ACKされない。
+   - 作業結果で枠が外れるのは、現在の割当と同じ依頼payload（`payload_sha256`）への結果だけである。取り下げた依頼への遅い結果は届くが、別の割当を外さない。
+   - ACKされないまま期限を過ぎた依頼は、終了記録の保持期間（24時間）を待たず、次の作業依頼を送るときに外れる。ACK済みの依頼は期限では外れない。
+
+```sh
+python3 -B scaffold/review-handoff/packet.py build-work --base BASE_FULL_SHA --issue ISSUE --request-id WR-UNIQUE-ID --dispatcher codex --worker devin --purpose '作業の目的' --scope '対象pathと完了条件'
+python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime codex --session CODEX_SESSION --id EVENT_ID --kind work_request --request scaffold/review-handoff/local/work.json --base BASE_FULL_SHA
+python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime devin --session DEVIN_SESSION --id RESULT_EVENT_ID --kind work_result --request scaffold/review-handoff/local/work.json --response scaffold/review-handoff/local/work-result.json --base BASE_FULL_SHA
+python3 -B scaffold/review-handoff/gui_mailbox.py release-work --runtime codex --session CODEX_SESSION --worker devin
+```
+
+PRの`review_request`／`review_response`は、`author`と`reviewer`がClaudeとCodexの組である場合だけ送れる。DevinとAntigravityはPRの作成側にもreview側にもならない。
 
 ## 配送状態・再開
 
@@ -110,7 +146,7 @@ retry時は同じ宛先sessionを維持する。新claim nonceが発行され、
 `packet.py`は規則・context・decision・候補参照を種別とfile bytes SHA-256で列挙し、依頼・応答のrevisionとdigestを照合する。
 候補参照を指示に昇格せず、一覧だけで必読資料の全量被覆・実読を主張しない。payload digestはcanonical JSON用でGitHub配送byte digestとは別。
 `gui_mailbox.py`は通知箱だけを書く。GitHub最新SHAは自動取得しないため、send／review時に各GUIが照合する。
-`configure_gui.py`だけが利用者hook設定と両runtimeのinstructionのHELIX marker区間を追加・同期・撤去する。script本体、instruction source、通知stateはscaffold内。
+`configure_gui.py`だけが4 runtimeの利用者hook設定と、Claude／CodexのinstructionのHELIX marker区間を追加・同期・撤去する。script本体、instruction source、通知stateはscaffold内。
 
 ```sh
 python3 -B scaffold/review-handoff/selftest.py
@@ -136,8 +172,8 @@ Bindingのexternal consumer参照台帳を通じ、scfctl residualsでも退役�
 
 ## 別checkout・参照先消失時の撤去
 
-どのcheckoutからでも `configure_gui.py --remove --apply` → `--audit` を実行できる。hookの所有判定はcheckoutの絶対pathに依存せず、script末尾と `hook --runtime claude|codex` で照合し、instructionは固定markerで照合する。
-checkout自体が失われた場合は、両providerの利用者設定を開き、command内の `/scaffold/review-handoff/gui_mailbox.py hook --runtime` を持つSessionStart／Stop／ConfigChangeの該当子hookと、`~/.claude/CLAUDE.md`・`~/.codex/AGENTS.md`の`HELIX:current-loader:start`から`HELIX:current-loader:end`までだけを削除する。無関係なhook、設定値、marker外本文を残す。復旧したcheckoutでauditとresidualsを実行する。
+どのcheckoutからでも `configure_gui.py --remove --apply` → `--audit` を実行できる。hookの所有判定はcheckoutの絶対pathに依存せず、script末尾と `hook --runtime claude|codex|devin|antigravity` で照合し、instructionは固定markerで照合する。
+checkout自体が失われた場合は、4 runtimeの利用者設定（`~/.claude/settings.json`、`~/.codex/hooks.json`、`~/.config/devin/config.json`、`~/.gemini/config/hooks.json`）を開き、command内の `/scaffold/review-handoff/gui_mailbox.py hook --runtime` を持つSessionStart／Stop／ConfigChangeの該当子hookと、`~/.claude/CLAUDE.md`・`~/.codex/AGENTS.md`の`HELIX:current-loader:start`から`HELIX:current-loader:end`までだけを削除する。無関係なhook、設定値、marker外本文を残す。復旧したcheckoutでauditとresidualsを実行する。
 外部参照台帳はBindingのupstreamにも束縛し、退役後にartifactsから外しても欠落をエラーにする。
 wrapperはhook障害の再起動連鎖を避けるため通知専用終了値以外を0にする。state破損等で無音失敗する可能性があり、queuedだけで配送成功とせずlive ACKを確認する。
 

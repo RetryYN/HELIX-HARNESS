@@ -2,7 +2,7 @@
   "binding_id": "SCF-B-0003",
   "evidence_kind": "scaffold",
   "authority_effect": "none",
-  "settings_paths": ["~/.claude/settings.json", "~/.codex/hooks.json"],
+  "settings_paths": ["~/.claude/settings.json", "~/.codex/hooks.json", "~/.config/devin/config.json", "~/.gemini/config/hooks.json"],
   "instruction_paths": ["~/.claude/CLAUDE.md", "~/.codex/AGENTS.md"],
   "instruction_source": "scaffold/review-handoff/claude-current-loader.md",
   "instruction_source_sha256": "c11d90db93c373cfb4213ccdc8db4a65d98f7813e6ceac2265ca0cc18d3666b5",

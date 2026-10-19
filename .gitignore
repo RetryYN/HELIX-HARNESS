@@ -33,3 +33,8 @@ __pycache__/
 npm-debug.log*
 codex-env.txt
 downloads/
+
+# Agent runtime workspace state (Devin, Antigravity). Hooks live in user-global settings.
+.devin/
+.agents/
+.gemini/
