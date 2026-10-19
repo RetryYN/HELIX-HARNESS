@@ -21330,7 +21330,7 @@
           "payload_pointer": "JsonPointer"
         },
         "extra_members": "この新private型では追加memberを許可しない。",
-        "meaning_ja": "同attemptのsource_attempts[s].decode.ready.body.records[r]に実在する原record所在。payload_pointerはattempt whole内の当該RawRecord.payloadを指す。source_ref/subject_refを新identityへ変換しない。"
+        "meaning_ja": "同attemptのsource_attempts[s].decode.body.records[r]（tag=ready）に実在する原record所在。payload_pointerはattempt whole内の当該RawRecord.payloadを指す。source_ref/subject_refを新identityへ変換しない。"
       },
       "OperationRoleOutcome": {
         "kind": "closed_tagged_union",
@@ -21721,6 +21721,11 @@
         {
           "logical": "/source_occurrences/{s}/<raw header member>",
           "attempt": "/request_capture/source_occurrences/{s}/<同member>"
+        },
+        {
+          "logical": "/source_occurrences/{s}/decoded_records",
+          "attempt": "/source_attempts/{s}/decode/body/records",
+          "guard": "source readyの時だけ。failedにこのcollectionを生成しない。"
         },
         {
           "logical": "/source_occurrences/{s}/decoded_records/{r}/...",
