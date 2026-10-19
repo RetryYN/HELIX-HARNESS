@@ -1268,6 +1268,685 @@
         ],
         "side_effect_boundary": "この対検証案は静的な設計期待であり、実製品のTDD Red/Green、runtime評価、OS配送/記録、L5/L8実装の成立を主張しない。",
         "execution_state": "not_executed"
+      },
+      "proposal_native_record_material_cases": {
+        "id": "HARNESS-L9-009-F02-NPRM",
+        "design_ref": "HARNESS-L4-009-F02#/proposal_native_record_material",
+        "requirement_refs": [
+          "HARNESS-L3-009-F02",
+          "HARNESS-L3-009-F03"
+        ],
+        "system_oracle_refs": [
+          "HARNESS-L10-009-F02",
+          "HARNESS-L10-009-F03"
+        ],
+        "status": "frozen_finite_oracle_candidate_not_executed",
+        "authority_effect": "none",
+        "source_basis": {
+          "freeze_json_sha256": "5c343bd3f46025c62ccb1ef033ef5a2fd5b1d391d71c966f3be8b6462a276752",
+          "independent_root_check_sha256": "2496d4b770bef7c01b74129e4000014c239dc0e34e725b44e69625a6f22bc7d2",
+          "additional_counterexample_freeze_sha256": "7a8dfa547f54390afd0375e9509955f2b6e0d182a943e71de4885abf8f45aa91",
+          "additional_counterexample_root_check_sha256": "289222297d1423bd9223a43862ef6b9cf1b95ef725748a470b9b45dfae4d3d67",
+          "root_check_scope": "candidate writerより前に、事前作成された全体input/return 3件とcounterfactualのformer境界input/return 1件を、汎用JSON/Pointer/Patch/hash再構成で確認した。candidate/domain実装は実行していない。",
+          "fixed_source_pins": [
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+              "raw_file_sha256": "b07e56e4edc81c4b26e2510f2aff6e9e092338813a712d90529df78406fa5b99",
+              "selected_objects": [
+                {
+                  "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/frozen_json_recipe",
+                  "canonical_sha256": "9cff0c90e1ed60d07184ff90dafd744ddc20dd152f612f12276ec92fdddd8593"
+                },
+                {
+                  "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/normal_case_recipe_steps",
+                  "canonical_sha256": "8a3513bfd7775f92fd041fd022024d77b536c07d92cd400bd6fd943e992159bc"
+                },
+                {
+                  "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/allskip_whole_source_oracle",
+                  "canonical_sha256": "875a396b854895f04590268240576f9a3dc8e5ed5205d921f0ee00639767d363"
+                },
+                {
+                  "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/published_generic_reconstruction_results",
+                  "canonical_sha256": "ee22a2a52dd9466f0dd9145a3925b364c1abef2ae6f75d6fb8b0014054d9a7ba"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "raw_file_sha256": "6b48691078976423d500978728f685a9f31fcbf022e52b821902e03e776e3bd1",
+              "selected_objects": [
+                {
+                  "pointer": "/proposal_material_formation_detail",
+                  "canonical_sha256": "ebbf99b40b8f2217ca58a2a2cef2353f1d1ff7a39c34512cab9160d59f45644a"
+                },
+                {
+                  "pointer": "/f05_detail_contract/types/CallerInputs",
+                  "canonical_sha256": "3bb204dfd0b72ee78ac9429d8e194f696ff2fa0469b3b1a81c489055b1f5667e"
+                },
+                {
+                  "pointer": "/f05_detail_contract/types/CoreApplicationDetailReturn",
+                  "canonical_sha256": "11c5efbc812534b6ae1f771c36a7e65b2b96a41a93792a7dd15662e4a8423dff"
+                },
+                {
+                  "pointer": "/type_contract/types/CandidateUniverse",
+                  "canonical_sha256": "f2b5110bdf1d1a148fb994d520c5bb786bf47459e15978c61b38a0cf08d72f26"
+                },
+                {
+                  "pointer": "/type_contract/types/CandidateUniverseMaterial",
+                  "canonical_sha256": "8333fc255d1b6dcff8c189a1ad3c98920eaa3f7573aa7178e29c270d93f3dd40"
+                },
+                {
+                  "pointer": "/functions/2",
+                  "canonical_sha256": "61050802abe605f012d7945e86f08c030a3c4dc553aa50a6e21e0cbf725f2f04"
+                },
+                {
+                  "pointer": "/functions/3",
+                  "canonical_sha256": "58305fed8f7143ce6f46176d6bdd83513870b7208a525cc3ad7dbf5227b879f1"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+              "raw_file_sha256": "4e1404bef671f7c777b39b209739f5518222d07632f132df919269140f27f84d",
+              "selected_objects": [
+                {
+                  "pointer": "/contracts/3/proposal_material_formation",
+                  "canonical_sha256": "9f0e94abff53e96ca28843e6b2902e754bde4d85f63514e6ed737427cc77b341"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "raw_file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+              "selected_objects": [
+                {
+                  "pointer": "/requirements/24",
+                  "canonical_sha256": "24bc8c32bd201d805ae635188a247d44b5770c5af0d56c92918f33267dba14c1"
+                },
+                {
+                  "pointer": "/requirements/25",
+                  "canonical_sha256": "6c3eebfe5f9a38a9df0859bf17172d98cbac59e1dd8cb4767dabcbd0571e91ff"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-os/L4-basic-design/atomic-canonicalization.json",
+              "raw_file_sha256": "3e14df41a7782889a4d7e1d416afe98b99693e9d7a32bb8fb17c006466129e62",
+              "selected_objects": [
+                {
+                  "pointer": "/ports/0",
+                  "canonical_sha256": "2c5d32aec43107c679225de5af4ee258afada5b4d93c7227f03bfaf266674235"
+                },
+                {
+                  "pointer": "/architecture/dependency_direction",
+                  "canonical_sha256": "b864e4208807b10ca6c990946947b12d925845b43bab95b8d10890d4a7500b2e"
+                },
+                {
+                  "pointer": "/contracts/0",
+                  "canonical_sha256": "763f998f6763ba000b1251137f9f6d2e4d5cab7d028503d7ae43b8bf8d421c40"
+                },
+                {
+                  "pointer": "/operation_model/identity_axes",
+                  "canonical_sha256": "23df0d580699c87baab77d81e948172e19cde04c2db3b504abd62ee6cd65d5e9"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+              "raw_file_sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c",
+              "selected_objects": []
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+              "raw_file_sha256": "341a12c73079aa57d16a3e8d164d23d29a0d375caf2bfd8a8f53b8b5123ff108",
+              "selected_objects": []
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/governance/decisions/helix-os-prerequisite053-l3-l10-delegated-decision-2026-10-12.md",
+              "raw_file_sha256": "75f12b09d65eceb5c42a1a650c3471c7c30dae30ea112f643b72dbf17b94c543",
+              "selected_objects": []
+            }
+          ],
+          "canonical_hash_rule": "UTF-8 JSONをensure_ascii=false、sort_keys=true、separators=(\",\",\":\")、allow_nan=falseで符号化する。ordered hashではobjectの挿入順も保持し、配列順はどちらの場合も保持する。",
+          "selected_recipe_object_hashes": {
+            "l8_frozen_json_recipe": "9cff0c90e1ed60d07184ff90dafd744ddc20dd152f612f12276ec92fdddd8593",
+            "l8_normal_steps": "8a3513bfd7775f92fd041fd022024d77b536c07d92cd400bd6fd943e992159bc",
+            "l8_allskip_oracle": "875a396b854895f04590268240576f9a3dc8e5ed5205d921f0ee00639767d363",
+            "l4_existing_f02_contract": "9f0e94abff53e96ca28843e6b2902e754bde4d85f63514e6ed737427cc77b341"
+          }
+        },
+        "purpose": "captureしたnative return全体と独立したrecord材料を保持する、former入力/全返却期待4件を固定する。最初の3件は既存native oracle caseであり、4件目は既存の混在caseからunresolved resultを1件除いて作るcounterfactualのformer境界coverage controlである。いずれも実producer実行、wrapper観測、qualification、OS receipt、実装の証拠ではない。",
+        "source_reconstruction": {
+          "normal_case_recipe_source": {
+            "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+            "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+            "file_sha256": "b07e56e4edc81c4b26e2510f2aff6e9e092338813a712d90529df78406fa5b99",
+            "recipe_pointer": "/proposal_material_formation_native_oracle/frozen_oracle/frozen_json_recipe",
+            "steps_pointer": "/proposal_material_formation_native_oracle/frozen_oracle/normal_case_recipe_steps",
+            "steps": [
+              "normal_seed全値を複写し、各importが指定する固定revision/pathから3つのGit blobを読み込む。",
+              "authored_variant_inputsを複写し、normal_base_patchを順序どおり標準RFC6902で適用する。",
+              "各caseでfreshなnormal baseの複製を使い、expected.proposalをnormal_expected_proposal_seedへ置く。case input_patch、共通normal_input_refresh_patch、case input_refresh_patch（あれば）、expected_proposal_patch、refresh_expected_readsの順で適用する。refresh_expected_reads末尾の既存copyがinput全体をexpected.captureへ写す。",
+              "imports/assets/authored_variant_inputsはoracle著述のworkspace recipeであり、wrapper/runtime引数ではない。"
+            ],
+            "case_indices": [
+              0,
+              9
+            ],
+            "rule": "各import元は、それぞれ固定revision/path/file hashを持つ。新しいnormal_seedとimport済みblobから開始し、normal_base_patchを順に適用する。各caseでは新しいnormal baseの複製を使い、input_patch、normal_input_refresh_patch、（存在する場合は）case input_refresh_patch、expected_proposal_patch、refresh_expected_readsの順で適用する。既存refresh operationとその順序をすべて保持する。"
+          },
+          "allskip_case_recipe_source": {
+            "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+            "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+            "file_sha256": "b07e56e4edc81c4b26e2510f2aff6e9e092338813a712d90529df78406fa5b99",
+            "recipe_pointer": "/proposal_material_formation_native_oracle/frozen_oracle/allskip_whole_source_oracle",
+            "formal_source_oracle_pointer": "/f05_native_seven_member_caller_full_return_oracle",
+            "formal_source_revision": "9fdd43c261722375eb2006c001de6798e8a2b446",
+            "formal_source_file_sha256": "1e475ea6275b21ffd62166e47bf2a6f5cfdcf9c97ea9434581095f7a5f30c31f",
+            "seed_import_source": {
+              "revision": "83ad243ae78bc326292c247eb193c3512f29ed1a",
+              "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+              "file_sha256": "e3619baeecf0ea51116fb53a1588bc5a98afceeba3313d566608d974ce3d0cae",
+              "workspace_destination": "/source",
+              "selection_role": "固定L9文書全体をimportする。pointer選択や抽出は行わない。"
+            },
+            "import_patch_pointer": "/proposal_material_formation_native_oracle/frozen_oracle/allskip_whole_source_oracle/seed_envelope_import_patch",
+            "copy_recipe_pointer": "/proposal_material_formation_native_oracle/frozen_oracle/allskip_whole_source_oracle/standard_json_patch_copy_recipe",
+            "copy_operation_count": 88,
+            "completion_steps": "固定88-operation recipeをすべて適用し、再構成したCoreApplicationDetailReturn全体のworkspaceを/allskip_reconstructedへcopyする。次にnew_expected_input_seedを/inputへ配置し、{capture:null, proposal: proposal_unavailable_seed}を/expectedへ配置してから、new_expected_import_patch、その後にadditional_standard_copy_operationsの3件すべてを宣言順に適用する。これによりcaptureを含む完全なCoreProposalDetailedReturnを/expectedに形成する。この完成済みworkspaceをcase用の/native_reconstructedへcopyし、case completion_opsで/native_reconstructed/expectedを/inputへ、/inputを/expected/captureへcopyする。88-operationのsource workspace、新しいexpected workspace、case用native_reconstructed workspaceを混同しない。capture copyを省略せず、helperで置き換えない。",
+            "expected_existing_whole": {
+              "member_order": [
+                "validation",
+                "f05",
+                "producer_observations",
+                "claims",
+                "analysis",
+                "causes",
+                "input_scope_knowledge_gap"
+              ],
+              "canonical_sha256": "75031ec3d315c727dd312c5a6046f18b293a8aac12cd95ba8cdc416dc2d4bad8",
+              "canonicalization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(\",\",\":\")",
+              "canonical_byte_length": 49431441,
+              "member_count": 7,
+              "expanded_whole_embedded": false
+            }
+          },
+          "former_input_derivation": "最初の3件では、native_reconstructed/expected（既存の完全なCoreProposalDetailedReturn expected source全体）をinputへcopyする。4件目のcounterfactualではcase-9のnative全体をinputへcopyし、凍結されたremove operationを/input/proposal/template_results/0へ適用する。これはstatic former-boundary controlであり、実producer traceではない。どのcaseでもexpected値をwrapper CallerInputsへ注入しない。wrapperは既存CallerInputsを受け取り、build_proposal_material_detailを1回実行して、その実際の完全な返却値をformerへ渡す。",
+          "candidate_frozen_seed_and_completion_ops": "以下のworkspace_seedとcompletion_opsは変更しない凍結recipeである。completion_opsを配列順に、deep value copyを行う標準RFC6902 copyとして適用する。最終pathは/inputと/expectedである。ignored local helperやcandidate writerには依存しない。"
+        },
+        "cases": [
+          {
+            "id": "required_raw_condition_absent",
+            "source_case_index": 0,
+            "premise": "既存formal oracleのexpected全体を、同一のcaller実返却がこの値であるという条件付きformer入力として固定する。期待値を製品wrapperへ渡すものではない。実producer実行、資格判定、wrapperの実観測を示さない。",
+            "input_native_return_hashes": {
+              "canonical": {
+                "sha256": "0733931f1e4ee3c134abb424401dcacabcafa57d07da04787082489617a5ba95",
+                "byte_length": 53431388
+              },
+              "ordered": {
+                "sha256": "0ad7dc45435562153a78f71a48d5c9599a522c15bb07288f86613bcf5359570b",
+                "byte_length": 53431388
+              }
+            },
+            "workspace_seed": {
+              "native_reconstructed": null,
+              "input": null,
+              "expected": {
+                "capture": null,
+                "record": {
+                  "candidate_entries": [
+                    {
+                      "result_index": 0,
+                      "member_index": 0,
+                      "kind": "required_candidate",
+                      "template_ref_read": null,
+                      "native_result_location": {
+                        "root": "native_proposal_return",
+                        "pointer": "/proposal/template_results/0"
+                      }
+                    }
+                  ],
+                  "na_exclusion_entries": [],
+                  "residual_entries": [],
+                  "coverage": {
+                    "tag": "enumerated",
+                    "member_coverage": [
+                      {
+                        "member_index": 0,
+                        "result_indices": [
+                          0
+                        ],
+                        "correspondence": "corresponding"
+                      }
+                    ],
+                    "unmatched_result_indices": [],
+                    "unreadable_result_indices": [],
+                    "completion": "covered_as_captured"
+                  },
+                  "membership_completion": "resolved_for_captured_members",
+                  "original_universe_exactness": {
+                    "state": "not_recomputed",
+                    "producer_observation_location": {
+                      "root": "native_proposal_return",
+                      "pointer": "/capture/caller_return/producer_observations/1"
+                    },
+                    "caller_inputs_location": {
+                      "root": "native_proposal_return",
+                      "pointer": "/capture/caller_inputs"
+                    },
+                    "claim": "no_new_exactness_claim"
+                  }
+                }
+              }
+            },
+            "completion_ops": [
+              {
+                "op": "copy",
+                "from": "/native_reconstructed/expected",
+                "path": "/input"
+              },
+              {
+                "op": "copy",
+                "from": "/input",
+                "path": "/expected/capture"
+              },
+              {
+                "op": "copy",
+                "from": "/input/proposal/template_results/0/member_read",
+                "path": "/expected/record/candidate_entries/0/template_ref_read"
+              }
+            ],
+            "result_pointers": {
+              "former_input": "/input",
+              "whole_expected_return": "/expected"
+            },
+            "new_record_whole_coverage": "expected seedとcompletion_opsが全leaf/member順を規定する。literal nullは作業placeholderであり、copy後の全返却に未解決placeholderを残さない。元rawのnull/presenceはcaptureとtemplate_ref_readに無変換で保持する。",
+            "independent_root_reconstruction": {
+              "input_canonical": {
+                "sha256": "0733931f1e4ee3c134abb424401dcacabcafa57d07da04787082489617a5ba95",
+                "byte_length": 53431388
+              },
+              "input_ordered": {
+                "sha256": "0ad7dc45435562153a78f71a48d5c9599a522c15bb07288f86613bcf5359570b",
+                "byte_length": 53431388
+              },
+              "expected_canonical": {
+                "sha256": "d4ce74be064b0fa4e5072596a7dae067215f36c28fa660f18c1c262f18c6b2c0",
+                "byte_length": 53432604
+              },
+              "expected_ordered": {
+                "sha256": "d0ecc7e89cb56107b6d1d91f161229b93be4b4ae9db4238951c2509f941a6748",
+                "byte_length": 53432604
+              },
+              "whole_capture_preserved": true
+            }
+          },
+          {
+            "id": "unresolved_with_valid_sibling",
+            "source_case_index": 9,
+            "premise": "既存formal oracleのexpected全体を、同一のcaller実返却がこの値であるという条件付きformer入力として固定する。期待値を製品wrapperへ渡すものではない。実producer実行、資格判定、wrapperの実観測を示さない。",
+            "input_native_return_hashes": {
+              "canonical": {
+                "sha256": "c0e140977642c46b6e07032b023c2d62fe45e172c9987badc309bab803fe8096",
+                "byte_length": 53896845
+              },
+              "ordered": {
+                "sha256": "cabafcd5fb10f8d1acabb4c3dda7b68e91efe4e67a71dd1b4a3cbf916c236ba5",
+                "byte_length": 53896845
+              }
+            },
+            "workspace_seed": {
+              "native_reconstructed": null,
+              "input": null,
+              "expected": {
+                "capture": null,
+                "record": {
+                  "candidate_entries": [
+                    {
+                      "result_index": 1,
+                      "member_index": 1,
+                      "kind": "required_candidate",
+                      "template_ref_read": null,
+                      "native_result_location": {
+                        "root": "native_proposal_return",
+                        "pointer": "/proposal/template_results/1"
+                      }
+                    }
+                  ],
+                  "na_exclusion_entries": [],
+                  "residual_entries": [
+                    {
+                      "result_index": 0,
+                      "member_index": 0,
+                      "template_ref_read": null,
+                      "membership": null,
+                      "native_result_location": {
+                        "root": "native_proposal_return",
+                        "pointer": "/proposal/template_results/0"
+                      }
+                    }
+                  ],
+                  "coverage": {
+                    "tag": "enumerated",
+                    "member_coverage": [
+                      {
+                        "member_index": 0,
+                        "result_indices": [
+                          0
+                        ],
+                        "correspondence": "corresponding"
+                      },
+                      {
+                        "member_index": 1,
+                        "result_indices": [
+                          1
+                        ],
+                        "correspondence": "corresponding"
+                      }
+                    ],
+                    "unmatched_result_indices": [],
+                    "unreadable_result_indices": [],
+                    "completion": "covered_as_captured"
+                  },
+                  "membership_completion": "residual_for_captured_members",
+                  "original_universe_exactness": {
+                    "state": "not_recomputed",
+                    "producer_observation_location": {
+                      "root": "native_proposal_return",
+                      "pointer": "/capture/caller_return/producer_observations/1"
+                    },
+                    "caller_inputs_location": {
+                      "root": "native_proposal_return",
+                      "pointer": "/capture/caller_inputs"
+                    },
+                    "claim": "no_new_exactness_claim"
+                  }
+                }
+              }
+            },
+            "completion_ops": [
+              {
+                "op": "copy",
+                "from": "/native_reconstructed/expected",
+                "path": "/input"
+              },
+              {
+                "op": "copy",
+                "from": "/input",
+                "path": "/expected/capture"
+              },
+              {
+                "op": "copy",
+                "from": "/input/proposal/template_results/1/member_read",
+                "path": "/expected/record/candidate_entries/0/template_ref_read"
+              },
+              {
+                "op": "copy",
+                "from": "/input/proposal/template_results/0/member_read",
+                "path": "/expected/record/residual_entries/0/template_ref_read"
+              },
+              {
+                "op": "copy",
+                "from": "/input/proposal/template_results/0/membership",
+                "path": "/expected/record/residual_entries/0/membership"
+              }
+            ],
+            "result_pointers": {
+              "former_input": "/input",
+              "whole_expected_return": "/expected"
+            },
+            "new_record_whole_coverage": "expected seedとcompletion_opsが全leaf/member順を規定する。literal nullは作業placeholderであり、copy後の全返却に未解決placeholderを残さない。元rawのnull/presenceはcaptureとtemplate_ref_readに無変換で保持する。",
+            "independent_root_reconstruction": {
+              "input_canonical": {
+                "sha256": "c0e140977642c46b6e07032b023c2d62fe45e172c9987badc309bab803fe8096",
+                "byte_length": 53896845
+              },
+              "input_ordered": {
+                "sha256": "cabafcd5fb10f8d1acabb4c3dda7b68e91efe4e67a71dd1b4a3cbf916c236ba5",
+                "byte_length": 53896845
+              },
+              "expected_canonical": {
+                "sha256": "2bf61b507575a28d36dc157c63c3330fdd9bd07a70e9ad0974b5062026535c45",
+                "byte_length": 53898697
+              },
+              "expected_ordered": {
+                "sha256": "3ecddf55352669b449d8ddcab0557ad668683fdec8af9504d5db574f671d1cb6",
+                "byte_length": 53898697
+              },
+              "whole_capture_preserved": true
+            }
+          },
+          {
+            "id": "existing_allskip_unavailable",
+            "source_case_index": null,
+            "premise": "既存formal oracleのexpected全体を、同一のcaller実返却がこの値であるという条件付きformer入力として固定する。期待値を製品wrapperへ渡すものではない。実producer実行、資格判定、wrapperの実観測を示さない。",
+            "input_native_return_hashes": {
+              "canonical": {
+                "sha256": "23775a9f5193d905f9b431657aa094243cc0a3b2a5f80093625815b01d138bb5",
+                "byte_length": 50256472
+              },
+              "ordered": {
+                "sha256": "e42aaf612fa36cf0167850753f75534156a5b864fa50ff83efa447b9dba73b77",
+                "byte_length": 50256472
+              }
+            },
+            "workspace_seed": {
+              "native_reconstructed": null,
+              "input": null,
+              "expected": {
+                "capture": null,
+                "record": {
+                  "candidate_entries": [],
+                  "na_exclusion_entries": [],
+                  "residual_entries": [],
+                  "coverage": {
+                    "tag": "not_observed",
+                    "source_observation_location": {
+                      "root": "native_proposal_return",
+                      "pointer": "/capture/caller_return/producer_observations/1"
+                    }
+                  },
+                  "membership_completion": "not_observed",
+                  "original_universe_exactness": {
+                    "state": "not_recomputed",
+                    "producer_observation_location": {
+                      "root": "native_proposal_return",
+                      "pointer": "/capture/caller_return/producer_observations/1"
+                    },
+                    "caller_inputs_location": {
+                      "root": "native_proposal_return",
+                      "pointer": "/capture/caller_inputs"
+                    },
+                    "claim": "no_new_exactness_claim"
+                  }
+                }
+              }
+            },
+            "completion_ops": [
+              {
+                "op": "copy",
+                "from": "/native_reconstructed/expected",
+                "path": "/input"
+              },
+              {
+                "op": "copy",
+                "from": "/input",
+                "path": "/expected/capture"
+              }
+            ],
+            "result_pointers": {
+              "former_input": "/input",
+              "whole_expected_return": "/expected"
+            },
+            "new_record_whole_coverage": "expected seedとcompletion_opsが全leaf/member順を規定する。literal nullは作業placeholderであり、copy後の全返却に未解決placeholderを残さない。元rawのnull/presenceはcaptureとtemplate_ref_readに無変換で保持する。",
+            "independent_root_reconstruction": {
+              "input_canonical": {
+                "sha256": "23775a9f5193d905f9b431657aa094243cc0a3b2a5f80093625815b01d138bb5",
+                "byte_length": 50256472
+              },
+              "input_ordered": {
+                "sha256": "e42aaf612fa36cf0167850753f75534156a5b864fa50ff83efa447b9dba73b77",
+                "byte_length": 50256472
+              },
+              "expected_canonical": {
+                "sha256": "9ec5057f8395f10cb55ef2b83476c2de07891c739b69c678c95998359ca1ac5f",
+                "byte_length": 50257071
+              },
+              "expected_ordered": {
+                "sha256": "176021a40c244f37424cf2a3ed40087d4a1f4e44d0ea735eb35cf098b83056cf",
+                "byte_length": 50257071
+              },
+              "whole_capture_preserved": true
+            }
+          },
+          {
+            "id": "missing_result_preserves_known_sibling",
+            "source_case_index": 9,
+            "premise": "Counterfactualなnative former-boundary controlであり、実producer/wrapper traceではない。既存の混在native returnからunresolved template resultをちょうど1件取り除く。元source member universeと有効な兄弟はそのまま保つ。",
+            "source_native_return_hashes_before_control": {
+              "canonical": {
+                "sha256": "c0e140977642c46b6e07032b023c2d62fe45e172c9987badc309bab803fe8096",
+                "byte_length": 53896845
+              },
+              "ordered": {
+                "sha256": "cabafcd5fb10f8d1acabb4c3dda7b68e91efe4e67a71dd1b4a3cbf916c236ba5",
+                "byte_length": 53896845
+              }
+            },
+            "input_native_return_hashes": {
+              "canonical": {
+                "sha256": "3323c4b92588122f653f8216b4cf4625a098e210bf9a8e12d57d8fc5e6e589eb",
+                "byte_length": 53889916
+              },
+              "ordered": {
+                "sha256": "2b8813c4caaf2fa4705446d49fd384f00fcebf0df402b9ec46a2b6a6363fe088",
+                "byte_length": 53889916
+              }
+            },
+            "workspace_seed": {
+              "native_reconstructed": null,
+              "input": null,
+              "expected": {
+                "capture": null,
+                "record": {
+                  "candidate_entries": [
+                    {
+                      "result_index": 0,
+                      "member_index": 1,
+                      "kind": "required_candidate",
+                      "template_ref_read": null,
+                      "native_result_location": {
+                        "root": "native_proposal_return",
+                        "pointer": "/proposal/template_results/0"
+                      }
+                    }
+                  ],
+                  "na_exclusion_entries": [],
+                  "residual_entries": [],
+                  "coverage": {
+                    "tag": "enumerated",
+                    "member_coverage": [
+                      {
+                        "member_index": 0,
+                        "result_indices": [],
+                        "correspondence": "unreadable"
+                      },
+                      {
+                        "member_index": 1,
+                        "result_indices": [
+                          0
+                        ],
+                        "correspondence": "corresponding"
+                      }
+                    ],
+                    "unmatched_result_indices": [],
+                    "unreadable_result_indices": [],
+                    "completion": "incomplete_as_captured"
+                  },
+                  "membership_completion": "residual_for_captured_members",
+                  "original_universe_exactness": {
+                    "state": "not_recomputed",
+                    "producer_observation_location": {
+                      "root": "native_proposal_return",
+                      "pointer": "/capture/caller_return/producer_observations/1"
+                    },
+                    "caller_inputs_location": {
+                      "root": "native_proposal_return",
+                      "pointer": "/capture/caller_inputs"
+                    },
+                    "claim": "no_new_exactness_claim"
+                  }
+                }
+              }
+            },
+            "completion_ops": [
+              {
+                "op": "copy",
+                "from": "/native_reconstructed/expected",
+                "path": "/input"
+              },
+              {
+                "op": "remove",
+                "path": "/input/proposal/template_results/0"
+              },
+              {
+                "op": "copy",
+                "from": "/input",
+                "path": "/expected/capture"
+              },
+              {
+                "op": "copy",
+                "from": "/input/proposal/template_results/0/member_read",
+                "path": "/expected/record/candidate_entries/0/template_ref_read"
+              }
+            ],
+            "result_pointers": {
+              "former_input": "/input",
+              "whole_expected_return": "/expected"
+            },
+            "discriminating_defect": "常にcoveredとするrecord、source member0の欠落、兄弟全体の削除、または空のresidual arrayだけから完了と推定する場合は、この凍結済み全体expected returnと一致してはならない。",
+            "independent_root_reconstruction": {
+              "input_canonical": {
+                "sha256": "3323c4b92588122f653f8216b4cf4625a098e210bf9a8e12d57d8fc5e6e589eb",
+                "byte_length": 53889916
+              },
+              "input_ordered": {
+                "sha256": "2b8813c4caaf2fa4705446d49fd384f00fcebf0df402b9ec46a2b6a6363fe088",
+                "byte_length": 53889916
+              },
+              "expected_canonical": {
+                "sha256": "03e756cf038df66fde629d8ffc6a95766b197ddc5489bda37fc20e5d216859ba",
+                "byte_length": 53891213
+              },
+              "expected_ordered": {
+                "sha256": "37d1edcf67dd55072834e9025f7fefe7061629a4684ba0a504286db9ace64fdc",
+                "byte_length": 53891213
+              },
+              "whole_capture_preserved": true,
+              "original_source_capture_preserved": true,
+              "missing_occurrence_detected_and_known_sibling_preserved": true,
+              "empty_residual_does_not_prove_membership_completion": true,
+              "candidate_or_product_evaluator_executed": false,
+              "scope": "Counterfactualなformer-boundary static oracle 1件のみ。実producer/wrapper runtime traceやsource qualificationを示さない。"
+            }
+          }
+        ],
+        "scope_limits": [
+          "4件を通じてvalid N/Aとknown-empty source poolは未行使である。4件目は混在caseからunresolved resultをちょうど1件取り除き、missing-result coverageの不完全を行使する。duplicate、範囲外、その他のmalformed coverage shapeは未行使である。",
+          "case unresolved_with_valid_siblingではresidualと有効な兄弟が共存する。有効candidateを保持する。",
+          "All-skipはproposal producerが未観測であることを意味し、既知の空source/member集合を意味しない。",
+          "すべてのexpected全体返却はcaptureを保持する。これによってsource qualification、exact universe、owner binding、製品動作、runtime実行が成立するわけではない。"
+        ],
+        "execution_state": "not_executed"
       }},
     {
       "id": "HARNESS-L9-009-F03",
@@ -81379,7 +82058,7 @@
             "document_id": "HELIX-HARNESS-L4-009",
             "candidate_local_pointer": "/contracts/4/source_result_reference_projection",
             "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
-            "candidate_l4_bytes_sha256": "4e1404bef671f7c777b39b209739f5518222d07632f132df919269140f27f84d",
+            "candidate_l4_bytes_sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
             "candidate_l4_path": "docs/helix-harness/L4-basic-design/product-template-application.json"
           },
           "expectation_basis": "L3/L10 F03にある根拠・適用範囲・不足の返却義務と、L4の必須軸、順序付きcondition pair、Presence<JsonValue>診断規則を用いる。各probeのrawと全返却期待はcase内に保持し、local先固定履歴はGit上の時系列証明とは区別する。",
@@ -131881,7 +132560,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "4e1404bef671f7c777b39b209739f5518222d07632f132df919269140f27f84d",
+        "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
         "pointer": "/field_source_materialization_contract",
         "canonical_sha256": "9affbb54ace3e5c6f22c92d004999e474be0a36d84b439aaf3d7b60aecd433bf",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
@@ -146649,7 +147328,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "4e1404bef671f7c777b39b209739f5518222d07632f132df919269140f27f84d",
+        "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
         "pointer": "/field_semantic_evidence_contract",
         "canonical_sha256": "739d8838896cbb169eafecfae38673e338fc8d82bc2c340195e96b89707dbc6e",
         "role": "現行L4基本候補のreturn/body契約。commit済み歴史revisionとは区別し、同PRの対象bytesと選択節を固定する。",
@@ -164529,7 +165208,7 @@
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
         "pointer": "/f05_validation_material_call_contract",
-        "file_sha256": "4e1404bef671f7c777b39b209739f5518222d07632f132df919269140f27f84d",
+        "file_sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
         "canonical_sha256": "0bae5fc583b45d6c4631a7dd2a6574361cd299e22623e5f93e90431ef0be368d",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "status": "作業時のcurrent L4 candidate bytes。commit revisionとは主張しない。"
@@ -182362,7 +183041,7 @@
         "pointer": "/field_obligation_scope_contract",
         "canonical_sha256": "d0aada2de42168fef7e383c7ba423002dec423105fbeff3a07944b2a7ddffe31",
         "role": "本packet内候補objectへの固定binding。base5671 whole hashを新candidate currentとしない。",
-        "sha256": "4e1404bef671f7c777b39b209739f5518222d07632f132df919269140f27f84d"
+        "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c"
       },
       {
         "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
@@ -210352,7 +211031,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "4e1404bef671f7c777b39b209739f5518222d07632f132df919269140f27f84d",
+      "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
       "pointer": "/input_scope_knowledge_gap_contract"
     },
     "comparison_contract": {
@@ -297852,7 +298531,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "4e1404bef671f7c777b39b209739f5518222d07632f132df919269140f27f84d",
+      "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
       "pointer": "/input_scope_knowledge_gap_contract/post_return_projection",
       "canonical_sha256": "7a5d00f5c69b7ec0edbdc013e475d14cfed5ec362f5fa07cbc44e7a89c3c9618"
     },
@@ -301495,7 +302174,7 @@
     ],
     "design_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "sha256": "4e1404bef671f7c777b39b209739f5518222d07632f132df919269140f27f84d",
+      "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
       "pointer": "/selected_brain_source_occurrence_contract",
       "canonical_sha256": "d0784dfe42a7b76cbb9372499eda9958a7fbeb72664dd70e398ac31287df3d5e",
       "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
@@ -302079,15 +302758,15 @@
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "pointer": "/selected_source_caller_contract",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "4e1404bef671f7c777b39b209739f5518222d07632f132df919269140f27f84d",
+      "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
       "canonical_sha256": "f75a907ecb152a4cd46d075ef23b1886279c9cea7959fe1c4da1852ad0cab60d"
     },
     "detail_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "pointer": "/selected_source_caller_detail",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "6b48691078976423d500978728f685a9f31fcbf022e52b821902e03e776e3bd1",
-      "canonical_sha256": "c91ebebc7645f3d43b6593c525d218f8e01ff6a274a0b39895ff0b4a2de1a9e6"
+      "sha256": "d975953f2fe79924143bd73a6f75f457081991ee356fcbd12719ae57e77bc1db",
+      "canonical_sha256": "7ba62d7a004f7768ef0c4a49d11f73862431f30c15343afb6bab3efb1014309f"
     },
     "expectation_basis": {
       "independent_oracle": "scaffold/review-handoff/local/core-source-selection-30dad57c/independent-oracle-basis.json",
@@ -302439,7 +303118,7 @@
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "pointer": "/selected_brain_field_definition_application_contract",
       "id": "HARNESS-L4-009-F05-BRAIN-FIELD-DEFINITION-APPLICATION",
-      "sha256": "4e1404bef671f7c777b39b209739f5518222d07632f132df919269140f27f84d",
+      "sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
       "canonical_sha256": "fb8477a51a0819953e8674b8330e7d0cfafd5f08c7e116662c63e23b478a0b04",
       "binding_kind": "current_candidate_content_binding"
     },

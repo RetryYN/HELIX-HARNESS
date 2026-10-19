@@ -313,6 +313,290 @@
         "formation": "検討母集合と提案membershipを別に保持し、templateごとのpolicy occurrenceと四判定の根拠を対応させる。既存契約が当該出現に対する一意なpolicy根拠を与える範囲ではrequired/conditionalを提案membership候補へ反映できる。conditionalの条件・未充足状態は保持する。N/Aは既存の出典根拠と理由を伴う除外候補としてのみ扱い、四属性や元判定を補完しない。",
         "unresolved_and_multiple_occurrences": "membershipの根拠が未解決、または同じtemplate Refに複数policy occurrenceがあり、既存契約から合成規則が一意に定まらない場合はmembershipを形成せず、全occurrence・順序・個別返却・未解決理由を保持する。先勝ち/後勝ち、any/all、黙示dedupe、別出現からの理由転用をしない。有効な別出現はそれぞれ保持する。",
         "failure_and_boundary": "producer未観測、返却欠落、別呼出し・別scope・別revisionの混入、母集合/Ref/条件/N/A根拠不足は、元証拠と個別findingを保った未形成または未解決材料として返し、空集合・N/A・成功へ丸めない。これは提案材料であり、OSRef4への投影、OSの三集合/selected/used、資格、配送、記録、実装、受入の成立を定めない。"
+      },
+      "proposal_native_record_material": {
+        "status": "candidate_basic_design_contract",
+        "authority_effect": "none",
+        "purpose": "既存HARNESS-L3-009-F02/F03の採択意味を保ち、既存compare_candidate_universeのnative返却からCOREの提案材料bodyを形成する境界を定める。L4契約候補であり、要求採用、実装、OS記録成立を主張しない。",
+        "source_basis": {
+          "fixed_main_revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+          "freeze_json_sha256": "5c343bd3f46025c62ccb1ef033ef5a2fd5b1d391d71c966f3be8b6462a276752",
+          "selected_raw_and_object_hashes": [
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+              "raw_file_sha256": "b07e56e4edc81c4b26e2510f2aff6e9e092338813a712d90529df78406fa5b99",
+              "selected_objects": [
+                {
+                  "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/frozen_json_recipe",
+                  "canonical_sha256": "9cff0c90e1ed60d07184ff90dafd744ddc20dd152f612f12276ec92fdddd8593"
+                },
+                {
+                  "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/normal_case_recipe_steps",
+                  "canonical_sha256": "8a3513bfd7775f92fd041fd022024d77b536c07d92cd400bd6fd943e992159bc"
+                },
+                {
+                  "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/allskip_whole_source_oracle",
+                  "canonical_sha256": "875a396b854895f04590268240576f9a3dc8e5ed5205d921f0ee00639767d363"
+                },
+                {
+                  "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/published_generic_reconstruction_results",
+                  "canonical_sha256": "ee22a2a52dd9466f0dd9145a3925b364c1abef2ae6f75d6fb8b0014054d9a7ba"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "raw_file_sha256": "6b48691078976423d500978728f685a9f31fcbf022e52b821902e03e776e3bd1",
+              "selected_objects": [
+                {
+                  "pointer": "/proposal_material_formation_detail",
+                  "canonical_sha256": "ebbf99b40b8f2217ca58a2a2cef2353f1d1ff7a39c34512cab9160d59f45644a"
+                },
+                {
+                  "pointer": "/f05_detail_contract/types/CallerInputs",
+                  "canonical_sha256": "3bb204dfd0b72ee78ac9429d8e194f696ff2fa0469b3b1a81c489055b1f5667e"
+                },
+                {
+                  "pointer": "/f05_detail_contract/types/CoreApplicationDetailReturn",
+                  "canonical_sha256": "11c5efbc812534b6ae1f771c36a7e65b2b96a41a93792a7dd15662e4a8423dff"
+                },
+                {
+                  "pointer": "/type_contract/types/CandidateUniverse",
+                  "canonical_sha256": "f2b5110bdf1d1a148fb994d520c5bb786bf47459e15978c61b38a0cf08d72f26"
+                },
+                {
+                  "pointer": "/type_contract/types/CandidateUniverseMaterial",
+                  "canonical_sha256": "8333fc255d1b6dcff8c189a1ad3c98920eaa3f7573aa7178e29c270d93f3dd40"
+                },
+                {
+                  "pointer": "/functions/2",
+                  "canonical_sha256": "61050802abe605f012d7945e86f08c030a3c4dc553aa50a6e21e0cbf725f2f04"
+                },
+                {
+                  "pointer": "/functions/3",
+                  "canonical_sha256": "58305fed8f7143ce6f46176d6bdd83513870b7208a525cc3ad7dbf5227b879f1"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+              "raw_file_sha256": "4e1404bef671f7c777b39b209739f5518222d07632f132df919269140f27f84d",
+              "selected_objects": [
+                {
+                  "pointer": "/contracts/3/proposal_material_formation",
+                  "canonical_sha256": "9f0e94abff53e96ca28843e6b2902e754bde4d85f63514e6ed737427cc77b341"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "raw_file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+              "selected_objects": [
+                {
+                  "pointer": "/requirements/24",
+                  "canonical_sha256": "24bc8c32bd201d805ae635188a247d44b5770c5af0d56c92918f33267dba14c1"
+                },
+                {
+                  "pointer": "/requirements/25",
+                  "canonical_sha256": "6c3eebfe5f9a38a9df0859bf17172d98cbac59e1dd8cb4767dabcbd0571e91ff"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/helix-os/L4-basic-design/atomic-canonicalization.json",
+              "raw_file_sha256": "3e14df41a7782889a4d7e1d416afe98b99693e9d7a32bb8fb17c006466129e62",
+              "selected_objects": [
+                {
+                  "pointer": "/ports/0",
+                  "canonical_sha256": "2c5d32aec43107c679225de5af4ee258afada5b4d93c7227f03bfaf266674235"
+                },
+                {
+                  "pointer": "/architecture/dependency_direction",
+                  "canonical_sha256": "b864e4208807b10ca6c990946947b12d925845b43bab95b8d10890d4a7500b2e"
+                },
+                {
+                  "pointer": "/contracts/0",
+                  "canonical_sha256": "763f998f6763ba000b1251137f9f6d2e4d5cab7d028503d7ae43b8bf8d421c40"
+                },
+                {
+                  "pointer": "/operation_model/identity_axes",
+                  "canonical_sha256": "23df0d580699c87baab77d81e948172e19cde04c2db3b504abd62ee6cd65d5e9"
+                }
+              ]
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+              "raw_file_sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c",
+              "selected_objects": []
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+              "raw_file_sha256": "341a12c73079aa57d16a3e8d164d23d29a0d375caf2bfd8a8f53b8b5123ff108",
+              "selected_objects": []
+            },
+            {
+              "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+              "path": "docs/governance/decisions/helix-os-prerequisite053-l3-l10-delegated-decision-2026-10-12.md",
+              "raw_file_sha256": "75f12b09d65eceb5c42a1a650c3471c7c30dae30ea112f643b72dbf17b94c543",
+              "selected_objects": []
+            }
+          ],
+          "adopted_requirement_basis": [
+            {
+              "identity": "HARNESS-L3-009-F02",
+              "pointer": "/requirements/24",
+              "source_revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb"
+            },
+            {
+              "identity": "HARNESS-L3-009-F03",
+              "pointer": "/requirements/25",
+              "source_revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb"
+            },
+            {
+              "identity": "COREAPPLY",
+              "source": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+              "sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c"
+            },
+            {
+              "identity": "HARNESS-CORE009-L3L10-delegated-decision",
+              "source": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+              "sha256": "341a12c73079aa57d16a3e8d164d23d29a0d375caf2bfd8a8f53b8b5123ff108"
+            }
+          ],
+          "l3_l10_ref": "HARNESS-L3-009-F02/F03および対応する固定HARNESS-L10-009-F02/F03を指す。この子文書はそれらの意味を変更しない。"
+        },
+        "owner_and_boundary": {
+          "semantic_owner": "HELIX-HARNESS-CORE（CORE009）が製品適用の提案材料を形成する。",
+          "input": "既存のCallerInputsのみを入力とする。wrapperはCallerInputsを変更せず、既存のbuild_proposal_material_detailを正確に1回呼び出し、その実際の完全なCoreProposalDetailedReturnを束縛してprivate formerへ渡す。",
+          "private_former": "form_native_proposal_record_detail(CoreProposalDetailedReturn)は、渡された唯一のnative returnだけを読み、captureの下に全体を保持したうえでbodyのみのrecordを形成する。source補修、外部I/O、登録、永続化、authority判断、qualificationは行わない。",
+          "output": "NativeProposalRecordDetailedReturn = closed record {capture: 元のCoreProposalDetailedReturn全体, record: NativeProposalRecordMaterial}。member順はcapture、record。",
+          "prohibited_runtime_inputs": [
+            "expected value",
+            "cached return",
+            "caller-return replacement",
+            "source-qualification boolean",
+            "same-call boolean",
+            "OS project scope",
+            "OS Ref4"
+          ],
+          "consumer_boundary": "このbodyは、後続のowner-qualifiedなOS提案処理に渡す候補材料である。対応するconsumer境界はHELIX-OS OS053の`OwnerInputPort`（`docs/helix-os/L4-basic-design/atomic-canonicalization.json#/ports/0`）だが、その存在だけではproducerからportへのbindingは成立しない。OS002/OS053のreceipt、selected/used集合、dispatch、source qualification、record/container identity、永続化は本契約の成立範囲外である。"
+        },
+        "source_pool_roles": {
+          "captured_pool": "元のcompare_candidate_universeのcandidate_member_refs材料を列挙対象のsource poolとする。元の順序、重複、rawのpresence/null/type、source Readを保持する。",
+          "membership_partition": "観測された各result occurrenceについて、required/conditional candidate、妥当なN/A exclusion candidate、unresolved/unformed residualを別々の安定配列に保持する。winnerを選ばず、policy occurrenceを統合せず、重複排除せず、別のoccurrenceにunresolvedがあることを理由に有効な兄弟を捨てない。",
+          "coverage": "EnumerationCoverageは、各source-array indexと対応するresult occurrence、および保持された元のmember_readとの構造上の対応だけを表す。membership resolution、owner/source qualification、universe exactnessを表すものではない。",
+          "membership_completion": "captureされた観測結果がresidualなしでpartitionされ、列挙coverageも完全かどうかだけを表す。coverageが不完全または利用不能なら、residual_entriesが空でもresolved_for_captured_membersにはならない。source poolの完全性やexactnessを証明しない。",
+          "original_universe_exactness": "元のcomparison observationとCallerInputsの位置をnot_recomputed/no_new_exactness_claimとして保持する。universeの境界/source/revision/scopeとqualified semantic equalityを所有するのは元comparisonのみである。"
+        },
+        "closed_record_shapes": {
+          "CandidateEntry": [
+            "result_index",
+            "member_index",
+            "kind: required_candidate|conditional_candidate",
+            "template_ref_read: 元の完全なRead<CoreRef>",
+            "native_result_location"
+          ],
+          "NAExclusionEntry": [
+            "result_index",
+            "member_index",
+            "kind: na_exclusion_candidate",
+            "template_ref_read: 元の完全なRead<CoreRef>",
+            "native_result_location"
+          ],
+          "ResidualEntry": [
+            "result_index",
+            "member_index",
+            "template_ref_read: 元の完全なRead<CoreRef>",
+            "membership: 元のunresolved|unformed全値とcauses",
+            "native_result_location"
+          ],
+          "EnumerationCoverage.enumerated": [
+            "member_coverage: source index順",
+            "unmatched_result_indices: 元のresult順",
+            "unreadable_result_indices: 元のresult順",
+            "completion: covered_as_captured|incomplete_as_captured"
+          ],
+          "EnumerationCoverage.not_observed": [
+            "source_observation_location: 元のF02 producer observation"
+          ],
+          "EnumerationCoverage.unavailable_shape": [
+            "source_material_location: 元のconsidered materialとRead",
+            "result_indices: 元の全template result index。空へ読み替えない。"
+          ],
+          "MemberCoverage": [
+            "member_index",
+            "result_indices: 元の順で保持する全matching occurrence",
+            "correspondence: corresponding|different|unreadable"
+          ],
+          "OriginalUniverseExactnessBasis": [
+            "state: not_recomputed",
+            "producer_observation_location",
+            "caller_inputs_location",
+            "claim: no_new_exactness_claim"
+          ],
+          "NativeReturnLocation": [
+            "root: native_proposal_return",
+            "pointer: former入力内を指すRFC6901 pointer"
+          ]
+        },
+        "formation_and_failure": {
+          "stable_partition": "proposal.template_resultsを元の順序で1回走査する。各occurrenceは元のmembership kindに対応する配列へ1回だけ保持する。それ以外のresult field、policy occurrence、source row/NA4、conditions、findings、causes、producer materialはcapture内にすべて保持する。",
+          "correspondence": "各source member indexについて、元のmember_indexが一致し、presentなmember_readが元のsource memberとJSON型を含めて等しいresultがちょうど1件ある場合にcorrespondingとする。既知の不一致はdifferentとする。欠落、重複、読取不能、または不正な対応はunreadableとする。範囲外のresult indexは元の順序のままunmatchedに残す。重複したsource entryとresult occurrenceを保持する。",
+          "completion_rules": "全ての元source indexがcorrespondingで、unmatched/unreadableの一覧が空の場合に限りcoverageをcovered_as_capturedとする。既知の[]でresultもない場合は、空の行を持つenumerated/coveredとする。欠落/null/非arrayのsourceはunavailable_shapeとする。producer未観測はnot_observedとする。観測済み出力ではresidualがなくcoverageも完全な場合に限りmembership_completionをresolved_for_captured_membersとし、それ以外はresidual_for_captured_membersとする。producer未観測時はnot_observedとする。",
+          "failures": [
+            "producer未観測",
+            "返却値の欠落または別呼出しからの返却",
+            "scope/revisionの不一致",
+            "source/member Readの欠落または不正形",
+            "未対応・重複・読取不能のoccurrence",
+            "unresolved/unformed membership",
+            "N/A basisの欠落"
+          ],
+          "failure_behavior": "元の値、Read、occurrence順、finding/residualを保持し、empty、N/A、success、または全体unavailableへ読み替えない。residualを理由に無関係な有効candidateを消さない。空のresidual/findingや局所coverageの完全性からexactnessを推論しない。"
+        },
+        "legacy_comparison": {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "source_lines": "36–60, 81–92",
+          "mode": "semantic_rederivation",
+          "keep": "候補集合・unknown・理由付きN/A・Backflow・義務/対oracle/版traceを照合する。",
+          "change": "COREのbody材料形成を、独立したnative capture/recordとして切り出し、BRAINの知識、COREの適用、OSの案件記録の責務を分離する。",
+          "reason": "採択済みCOREAPPLYと現行F02/F03の責務に基づく。旧registry digest gate、式木、planner/runtimeは移植しない。"
+        },
+        "failure_basis": [
+          {
+            "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "lines": "65–101",
+            "failure": "UTW-014: 欠損sourceを空集合へ縮退させabsenceを見落とす。",
+            "prevention": "not_observed/unavailable_shapeと既知emptyを区別し、原Readを保持する。"
+          },
+          {
+            "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "lines": "65–101",
+            "failure": "UTW-020: 部分failureがaggregateに隠れ、診断単位が粗くなる。",
+            "prevention": "occurrenceごとのcandidate/exclusion/residualとcoverage findingを保持する。"
+          },
+          {
+            "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "lines": "65–101",
+            "failure": "UTW-021: completionが自己申告・件数/hashへ戻り得る。",
+            "prevention": "局所coverage、membership、元universe exactnessの3つの役割を分離し、hashや件数からqualification/完了を生成しない。"
+          }
+        ],
+        "unclosed": [
+          "L5関数、closed型codec、L8との実接続は未作成である。このL4/L9候補と凍結された有限caseは、製品実装/CI/Greenを示さない。",
+          "valid N/A除外と既知empty/unknownの境界は未行使である。4つのoracle caseのうち1件は、未解決resultを1件除いたcounterfactualにより欠落coverageを行使するが、duplicate、範囲外index、その他のcoverage破損形は未行使である。",
+          "native record identity/revision/source_ref、登録operation identity、保存は、CallerInputsに供給元bindingがないため未成立である。hash/filename/上流要求Refから新identityを生成しない。",
+          "OS Ref4/project scope、OS002/OS053のowner qualification、配送・受信、source qualification、selected/used/評価集合への投影は、別の境界に属し未完である。",
+          "上流COREAPPLY要件の意味変更は含まない。追加の要求不足が見つかった場合は既存Backflowへ候補として戻す。"
+        ]
       }},
     {
       "id": "HARNESS-L4-009-F03",
