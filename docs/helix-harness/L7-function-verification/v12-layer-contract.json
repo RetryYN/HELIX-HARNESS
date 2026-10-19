@@ -336,7 +336,7 @@
       "/failure_and_recovery_boundary"
     ],
     "note_ja": "同時作成のL6候補bytesを照合するcurrent binding。独立した承認済sourceや歴史的固定revisionとして扱わず、L6候補の変更時はこのhashと選択箇所を追随する。",
-    "file_sha256": "6d98f325916a62761726b97c7692a7f42b47ceb4df26c09795c68fac1d22c05a"
+    "file_sha256": "5d0c752c5de2f4808a4fb2dfc1a987f700b29610387c580a8d790a1a07e7c577"
   },
   "derived_from_document_id": "HARNESS-L8-001-V12-LAYER-CONTRACT"
 }

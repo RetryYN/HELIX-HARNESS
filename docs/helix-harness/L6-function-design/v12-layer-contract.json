@@ -352,7 +352,7 @@
       ],
       "decision": "N/A",
       "reason_ja": "L5は外部アクセス0・入力不変を定め、3関数は永続状態と途中状態を所有しない。呼出し全体の中断は上記の未完として保持し、外部作業の完了や復旧を主張しない。",
-      "judged_by": "Codex design author; independent review pending",
+      "judged_by": "L6設計候補の作成者",
       "target_requirement_revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
       "reevaluation_condition_ja": "L5契約に副作用・外部依存呼出し・永続途中状態が加わる、または関数境界が変更される場合。"
     },
