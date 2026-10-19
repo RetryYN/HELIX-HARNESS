@@ -1098,7 +1098,7 @@
               "source_occurrence_index": "Natural",
               "record_index": "Natural",
               "payload_pointer": "JsonPointer",
-              "value": "existing CORE CallerInputs whole"
+              "value": "CallerInputs"
             },
             "pointer_root_ja": "provider whole return root。pointer値は/source_frame/source_occurrences/0/decoded_records/0/payload/caller_inputs。"
           },
