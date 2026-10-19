@@ -1961,7 +1961,24 @@
         }
       ],
       "patch_operation_count": 311,
-      "entry_ja": "この文書のcasesは再構成前の素材配置である。各caseの入力を利用する前にmaterialization_patch全体を配列順に適用し、元のJSON論理文書へ復元した結果を使う。未展開context:nullをfixture入力のnullとして渡さない。"
+      "entry_ja": "この文書のcasesは再構成前の素材配置である。各caseの入力を利用する前にmaterialization_patch全体を配列順に適用し、元のJSON論理文書へ復元した結果を使う。未展開context:nullをfixture入力のnullとして渡さない。",
+      "materialization_source_basis": {
+        "purpose_ja": "この手順のcopy元と復元前の文書論理値を固定する照合基準。物理source pin、承認、権限または新しいauthorityを発行するものではない。",
+        "revision": "47834b8b9c739ff4073cf5be077b6948a91a84ac",
+        "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+        "raw_file_sha256": "ba3b70636d0e943f42a0bc045c4cc1c6b058656dd06e7a804f6106c9aaefc69e",
+        "raw_file_bytes": 3978274,
+        "whole_logical_ordered_sha256": "a95ea5d361621941888aca96ca33b9e3c4cda1c172f34e414ebd589b8c37a45d",
+        "whole_logical_ordered_bytes": 2318632,
+        "whole_logical_canonical_sha256": "b378c12a9ef7eb96774f590defee1a7e25e32677da5e2a7501e9f6fceeccc901",
+        "seed_context_pointer": "/cases/0/given/input/context",
+        "seed_context_ordered_sha256": "015e08c425dc2a60deec03a2007fb180ad4546425dd3c239f8e25eda98813371",
+        "seed_context_ordered_bytes": 1009,
+        "seed_context_canonical_sha256": "e9d45353894b4242c6ac7a5f8d7651fed26ffaff0f718312477c4f39bdc1cd3d",
+        "seed_context_canonical_bytes": 1009,
+        "hash_serialization_ja": "UTF-8 JSON。compact化はseparators=(\",\", \":\"), ensure_ascii=false, allow_nan=false。orderedはobject insertion順を保持し、canonicalはsort_keys=true。array順はいずれも保持する。",
+        "boundary_ja": "raw_file_sha256は指定revisionのsource file bytesを指す。whole logical hashとseed context hashはJSON値のhashであり、物理source hashと混同しない。"
+      }
     }
   },
   "cases": [
